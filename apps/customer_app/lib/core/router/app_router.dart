@@ -4,6 +4,8 @@ import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
+import '../../features/store/presentation/pages/product_details_page.dart';
+import '../../features/store/presentation/pages/product_list_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -16,6 +18,17 @@ class AppRouter {
         builder: (context, state) => const RegisterPage(),
       ),
       GoRoute(path: '/', builder: (context, state) => const HomePage()),
+      GoRoute(
+        path: '/store',
+        builder: (context, state) => const ProductListPage(),
+      ),
+      GoRoute(
+        path: '/product/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return ProductDetailsPage(productId: id);
+        },
+      ),
       GoRoute(
         path: '/profile',
         builder: (context, state) => const ProfilePage(),
