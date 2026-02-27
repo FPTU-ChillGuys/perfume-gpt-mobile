@@ -48,12 +48,12 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () => context.push('/chat'),
                             icon: const Icon(Icons.chat),
                             label: const Text('Consult AI'),
                           ),
                           ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () => context.push('/quiz'),
                             icon: const Icon(Icons.quiz),
                             label: const Text('Take Quiz'),
                           ),
@@ -87,15 +87,22 @@ class HomePage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    return Container(
-                      width: 150,
-                      margin: const EdgeInsets.only(right: 16),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Center(
-                        child: Icon(Icons.image, size: 50, color: Colors.grey),
+                    return GestureDetector(
+                      onTap: () => context.push('/store'),
+                      child: Container(
+                        width: 150,
+                        margin: const EdgeInsets.only(right: 16),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.image,
+                            size: 50,
+                            color: Colors.grey,
+                          ),
+                        ),
                       ),
                     );
                   },
