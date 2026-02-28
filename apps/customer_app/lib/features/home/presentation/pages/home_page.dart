@@ -10,7 +10,10 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('PerfumeGPT'),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart)),
+          IconButton(
+            onPressed: () => context.push('/cart'),
+            icon: const Icon(Icons.shopping_cart),
+          ),
         ],
       ),
       body: SingleChildScrollView(
