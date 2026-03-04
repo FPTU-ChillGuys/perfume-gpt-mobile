@@ -1,0 +1,7 @@
+import '../entities/product.dart';
+
+abstract class ProductRepository {
+  Future<List<Product>> getProducts();
+  Future<Product?> getProductBySku(String sku);
+  Future<void> updateStock(String productId, int quantityChange, String reason);
+}
