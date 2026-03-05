@@ -21,8 +21,9 @@ class ProductDetailScreen extends ConsumerWidget {
             return const Center(child: CircularProgressIndicator());
           }
           final product = snapshot.data;
-          if (product == null)
+          if (product == null) {
             return const Center(child: Text('Product not found'));
+          }
 
           return SingleChildScrollView(
             padding: const EdgeInsets.all(16),

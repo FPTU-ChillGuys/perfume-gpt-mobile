@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../features/inventory/presentation/screens/inventory_screen.dart';
 import '../../features/inventory/presentation/screens/product_detail_screen.dart';
+import '../../features/pos/presentation/screens/pos_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -20,8 +21,7 @@ GoRouter appRouter(Ref ref) {
             routes: [
               GoRoute(
                 path: '/pos',
-                builder: (context, state) =>
-                    const PlaceholderScreen(title: 'Mobile POS'),
+                builder: (context, state) => const PosScreen(),
               ),
             ],
           ),

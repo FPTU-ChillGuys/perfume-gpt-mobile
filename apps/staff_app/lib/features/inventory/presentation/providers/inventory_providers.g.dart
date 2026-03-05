@@ -46,7 +46,7 @@ final class InventoryListProvider
   }
 }
 
-String _$inventoryListHash() => r'589ab60ecb225a2bc9b3eb73cc8ecd5738cdeeaf';
+String _$inventoryListHash() => r'159a149c351823a1c066640d8c58c0f2c5917f85';
 
 @ProviderFor(InventorySearchQuery)
 final inventorySearchQueryProvider = InventorySearchQueryProvider._();
@@ -139,4 +139,4 @@ final class FilteredInventoryListProvider
 }
 
 String _$filteredInventoryListHash() =>
-    r'03f938588e18422bee8565d711a3868e44e78952';
+    r'6d40db07a50214f9d293de079b413f1e44b1906c';
