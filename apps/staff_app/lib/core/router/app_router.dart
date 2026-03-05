@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../features/inventory/presentation/screens/inventory_screen.dart';
+import '../../features/inventory/presentation/screens/product_detail_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -27,8 +29,16 @@ GoRouter appRouter(Ref ref) {
             routes: [
               GoRoute(
                 path: '/inventory',
-                builder: (context, state) =>
-                    const PlaceholderScreen(title: 'Inventory'),
+                builder: (context, state) => const InventoryScreen(),
+                routes: [
+                  GoRoute(
+                    path: ':sku',
+                    builder: (context, state) {
+                      final sku = state.pathParameters['sku']!;
+                      return ProductDetailScreen(sku: sku);
+                    },
+                  ),
+                ],
               ),
             ],
           ),
