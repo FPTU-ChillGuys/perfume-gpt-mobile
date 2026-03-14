@@ -9,5 +9,5 @@ abstract class MainClient {
   factory MainClient(Dio dio, {String baseUrl}) = _MainClient;
 
   @GET("/auths/login")
-  Future<String> healthCheck();
+  Future<String> login();
 }
