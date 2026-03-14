@@ -1,4 +1,4 @@
-import 'package:customer_app/core/network/main/main_client.dart';
+import 'package:customer_app/core/network/main/login_client.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,10 +18,9 @@ abstract class NetworkModule {
     );
   }
 
-  @lazySingleton
-  MainClient mainClient(Dio dio) {
-    return MainClient(dio, baseUrl: ApiConstants.mainBaseUrl);
+    @lazySingleton
+    LoginClient mainClient(Dio dio) {
+    return LoginClient(dio, baseUrl: authUrl("/auths"));
   }
   
-
 }

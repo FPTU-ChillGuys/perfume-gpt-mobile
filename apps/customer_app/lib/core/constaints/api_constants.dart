@@ -12,3 +12,7 @@ class ApiConstants {
   static final String mainBaseUrl = host("7011/api");
   static final String aiBaseUrl = host("3000");
 }
+
+String authUrl(String url) => "${ApiConstants.mainBaseUrl}$url";
+
+String conversationUrl(String url) => "${ApiConstants.aiBaseUrl}$url";
