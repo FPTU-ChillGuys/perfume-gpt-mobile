@@ -1,0 +1,18 @@
+# perfumegpt_api_client.model.VerifyImportDetailRequest
+
+## Load the model package
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**importDetailId** | **String** |  | [optional] 
+**rejectQuantity** | **int** |  | [optional] 
+**note** | **String** |  | [optional] 
+**batches** | [**List&lt;CreateBatchRequest&gt;**](CreateBatchRequest.md) |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -1,0 +1,205 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'get_cart_item_response.dart';
+
+// **************************************************************************
+// CopyWithGenerator
+// **************************************************************************
+
+abstract class _$GetCartItemResponseCWProxy {
+  GetCartItemResponse cartItemId(String? cartItemId);
+
+  GetCartItemResponse variantId(String? variantId);
+
+  GetCartItemResponse variantName(String? variantName);
+
+  GetCartItemResponse imageUrl(String? imageUrl);
+
+  GetCartItemResponse volumeMl(int? volumeMl);
+
+  GetCartItemResponse type(VariantType? type);
+
+  GetCartItemResponse variantPrice(num? variantPrice);
+
+  GetCartItemResponse quantity(int? quantity);
+
+  GetCartItemResponse isAvailable(bool? isAvailable);
+
+  GetCartItemResponse subTotal(num? subTotal);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GetCartItemResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// GetCartItemResponse(...).copyWith(id: 12, name: "My name")
+  /// ````
+  GetCartItemResponse call({
+    String? cartItemId,
+    String? variantId,
+    String? variantName,
+    String? imageUrl,
+    int? volumeMl,
+    VariantType? type,
+    num? variantPrice,
+    int? quantity,
+    bool? isAvailable,
+    num? subTotal,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGetCartItemResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfGetCartItemResponse.copyWith.fieldName(...)`
+class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
+  const _$GetCartItemResponseCWProxyImpl(this._value);
+
+  final GetCartItemResponse _value;
+
+  @override
+  GetCartItemResponse cartItemId(String? cartItemId) =>
+      this(cartItemId: cartItemId);
+
+  @override
+  GetCartItemResponse variantId(String? variantId) =>
+      this(variantId: variantId);
+
+  @override
+  GetCartItemResponse variantName(String? variantName) =>
+      this(variantName: variantName);
+
+  @override
+  GetCartItemResponse imageUrl(String? imageUrl) => this(imageUrl: imageUrl);
+
+  @override
+  GetCartItemResponse volumeMl(int? volumeMl) => this(volumeMl: volumeMl);
+
+  @override
+  GetCartItemResponse type(VariantType? type) => this(type: type);
+
+  @override
+  GetCartItemResponse variantPrice(num? variantPrice) =>
+      this(variantPrice: variantPrice);
+
+  @override
+  GetCartItemResponse quantity(int? quantity) => this(quantity: quantity);
+
+  @override
+  GetCartItemResponse isAvailable(bool? isAvailable) =>
+      this(isAvailable: isAvailable);
+
+  @override
+  GetCartItemResponse subTotal(num? subTotal) => this(subTotal: subTotal);
+
+  @override
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GetCartItemResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// GetCartItemResponse(...).copyWith(id: 12, name: "My name")
+  /// ````
+  GetCartItemResponse call({
+    Object? cartItemId = const $CopyWithPlaceholder(),
+    Object? variantId = const $CopyWithPlaceholder(),
+    Object? variantName = const $CopyWithPlaceholder(),
+    Object? imageUrl = const $CopyWithPlaceholder(),
+    Object? volumeMl = const $CopyWithPlaceholder(),
+    Object? type = const $CopyWithPlaceholder(),
+    Object? variantPrice = const $CopyWithPlaceholder(),
+    Object? quantity = const $CopyWithPlaceholder(),
+    Object? isAvailable = const $CopyWithPlaceholder(),
+    Object? subTotal = const $CopyWithPlaceholder(),
+  }) {
+    return GetCartItemResponse(
+      cartItemId: cartItemId == const $CopyWithPlaceholder()
+          ? _value.cartItemId
+          // ignore: cast_nullable_to_non_nullable
+          : cartItemId as String?,
+      variantId: variantId == const $CopyWithPlaceholder()
+          ? _value.variantId
+          // ignore: cast_nullable_to_non_nullable
+          : variantId as String?,
+      variantName: variantName == const $CopyWithPlaceholder()
+          ? _value.variantName
+          // ignore: cast_nullable_to_non_nullable
+          : variantName as String?,
+      imageUrl: imageUrl == const $CopyWithPlaceholder()
+          ? _value.imageUrl
+          // ignore: cast_nullable_to_non_nullable
+          : imageUrl as String?,
+      volumeMl: volumeMl == const $CopyWithPlaceholder()
+          ? _value.volumeMl
+          // ignore: cast_nullable_to_non_nullable
+          : volumeMl as int?,
+      type: type == const $CopyWithPlaceholder()
+          ? _value.type
+          // ignore: cast_nullable_to_non_nullable
+          : type as VariantType?,
+      variantPrice: variantPrice == const $CopyWithPlaceholder()
+          ? _value.variantPrice
+          // ignore: cast_nullable_to_non_nullable
+          : variantPrice as num?,
+      quantity: quantity == const $CopyWithPlaceholder()
+          ? _value.quantity
+          // ignore: cast_nullable_to_non_nullable
+          : quantity as int?,
+      isAvailable: isAvailable == const $CopyWithPlaceholder()
+          ? _value.isAvailable
+          // ignore: cast_nullable_to_non_nullable
+          : isAvailable as bool?,
+      subTotal: subTotal == const $CopyWithPlaceholder()
+          ? _value.subTotal
+          // ignore: cast_nullable_to_non_nullable
+          : subTotal as num?,
+    );
+  }
+}
+
+extension $GetCartItemResponseCopyWith on GetCartItemResponse {
+  /// Returns a callable class that can be used as follows: `instanceOfGetCartItemResponse.copyWith(...)` or like so:`instanceOfGetCartItemResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$GetCartItemResponseCWProxy get copyWith =>
+      _$GetCartItemResponseCWProxyImpl(this);
+}
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+GetCartItemResponse _$GetCartItemResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('GetCartItemResponse', json, ($checkedConvert) {
+      final val = GetCartItemResponse(
+        cartItemId: $checkedConvert('cartItemId', (v) => v as String?),
+        variantId: $checkedConvert('variantId', (v) => v as String?),
+        variantName: $checkedConvert('variantName', (v) => v as String?),
+        imageUrl: $checkedConvert('imageUrl', (v) => v as String?),
+        volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
+        type: $checkedConvert(
+          'type',
+          (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
+        ),
+        variantPrice: $checkedConvert('variantPrice', (v) => v as num?),
+        quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
+        isAvailable: $checkedConvert('isAvailable', (v) => v as bool?),
+        subTotal: $checkedConvert('subTotal', (v) => v as num?),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$GetCartItemResponseToJson(
+  GetCartItemResponse instance,
+) => <String, dynamic>{
+  'cartItemId': ?instance.cartItemId,
+  'variantId': ?instance.variantId,
+  'variantName': ?instance.variantName,
+  'imageUrl': ?instance.imageUrl,
+  'volumeMl': ?instance.volumeMl,
+  'type': ?_$VariantTypeEnumMap[instance.type],
+  'variantPrice': ?instance.variantPrice,
+  'quantity': ?instance.quantity,
+  'isAvailable': ?instance.isAvailable,
+  'subTotal': ?instance.subTotal,
+};
+
+const _$VariantTypeEnumMap = {
+  VariantType.fullBox: 'FullBox',
+  VariantType.tester: 'Tester',
+  VariantType.mini: 'Mini',
+};

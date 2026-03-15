@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../../../core/providers/api_client_provider.dart';
 import '../../../../data/repositories/product_repository_impl.dart';
 import '../../../../domain/entities/product.dart';
 import '../../../../domain/repositories/product_repository.dart';
@@ -8,7 +9,8 @@ part 'product_provider.g.dart';
 
 @riverpod
 ProductRepository productRepository(Ref ref) {
-  return ProductRepositoryImpl();
+  final apiClient = ref.watch(apiClientProvider);
+  return ProductRepositoryImpl(apiClient.getProductsApi());
 }
 
 @riverpod

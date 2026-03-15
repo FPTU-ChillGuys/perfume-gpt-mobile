@@ -2,97 +2,95 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/repositories/product_repository.dart';
 
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import '../../core/providers/api_client_provider.dart';
+
 part 'product_repository_impl.g.dart';
 
-class MockProductRepository implements ProductRepository {
-  final List<Product> _products = [
-    const Product(
-      id: '1',
-      sku: 'CHAN-5-100',
-      name: 'Chanel No. 5',
-      description: 'The essence of femininity. A powdery floral bouquet.',
-      price: 150.0,
-      imageUrl: 'https://picsum.photos/200',
-      scentNotes: ['Aldehydes', 'Jasmine', 'Rose'],
-      brand: 'Chanel',
-      rating: 4.8,
-      reviewCount: 1250,
-      stockQuantity: 15,
-    ),
-    const Product(
-      id: '2',
-      sku: 'DIOR-SAV-100',
-      name: 'Dior Sauvage',
-      description:
-          'A radically fresh composition, dictated by a name that has the ring of a manifesto.',
-      price: 120.0,
-      imageUrl: 'https://picsum.photos/200',
-      scentNotes: ['Bergamot', 'Ambroxan', 'Pepper'],
-      brand: 'Dior',
-      rating: 4.7,
-      reviewCount: 3500,
-      stockQuantity: 42,
-    ),
-    const Product(
-      id: '3',
-      sku: 'YSL-LIB-50',
-      name: 'YSL Libre',
-      description:
-          'A grand floral Eau de Parfum with an unequivocal YSL twist.',
-      price: 130.0,
-      imageUrl: 'https://picsum.photos/200',
-      scentNotes: ['Lavender', 'Orange Blossom', 'Musk'],
-      brand: 'YSL',
-      rating: 4.9,
-      reviewCount: 890,
-      stockQuantity: 8,
-    ),
-  ];
+class ProductRepositoryImpl implements ProductRepository {
+  final PerfumegptApiClient _apiClient;
+
+  ProductRepositoryImpl(this._apiClient);
 
   @override
   Future<List<Product>> getProducts() async {
-    await Future.delayed(const Duration(milliseconds: 500));
-    return _products;
+    final response = await _apiClient.getInventoryApi().apiInventoryStockGet();
+    final items = response.data?.payload?.items ?? [];
+
+    return items
+        .map(
+          (item) => Product(
+            id: item.variantId ?? '',
+            sku: item.variantSku ?? '',
+            name: item.productName ?? '',
+            description: '', // Not in stock response
+            price: 0, // Not in stock response
+            imageUrl: '', // Not in stock response
+            scentNotes: [], // Not in stock response
+            brand: '',
+            rating: 0,
+            reviewCount: 0,
+            stockQuantity: item.availableQuantity ?? 0,
+          ),
+        )
+        .toList();
   }
 
   @override
   Future<Product?> getProductBySku(String sku) async {
-    await Future.delayed(const Duration(milliseconds: 300));
-    try {
-      return _products.firstWhere((p) => p.sku == sku);
-    } catch (_) {
-      return null;
-    }
+    final response = await _apiClient.getInventoryApi().apiInventoryStockGet(
+      searchTerm: sku,
+    );
+    final items = response.data?.payload?.items ?? [];
+
+    if (items.isEmpty) return null;
+
+    final item = items.first;
+    return Product(
+      id: item.variantId ?? '',
+      sku: item.variantSku ?? sku,
+      name: item.productName ?? '',
+      description: '',
+      price: 0,
+      imageUrl: '',
+      scentNotes: [],
+      brand: '',
+      rating: 0,
+      reviewCount: 0,
+      stockQuantity: item.availableQuantity ?? 0,
+    );
   }
 
   @override
   Future<void> updateStock(
-    String productId,
+    String productId, // actually variantId based on our mapping
     int quantityChange,
     String reason,
   ) async {
-    await Future.delayed(const Duration(milliseconds: 500));
-    final index = _products.indexWhere((p) => p.id == productId);
-    if (index != -1) {
-      final p = _products[index];
-      _products[index] = Product(
-        id: p.id,
-        sku: p.sku,
-        name: p.name,
-        description: p.description,
-        price: p.price,
-        imageUrl: p.imageUrl,
-        scentNotes: p.scentNotes,
-        brand: p.brand,
-        rating: p.rating,
-        reviewCount: p.reviewCount,
-        stockQuantity: p.stockQuantity + quantityChange,
-      );
-    }
+    final adjustReason = quantityChange > 0
+        ? StockAdjustmentReason.found
+        : StockAdjustmentReason.loss;
+
+    final request = CreateStockAdjustmentRequest(
+      reason: adjustReason,
+      note: reason,
+      adjustmentDetails: [
+        CreateStockAdjustmentDetailRequest(
+          variantId: productId,
+          adjustmentQuantity: quantityChange.abs(),
+          note: reason,
+        ),
+      ],
+    );
+
+    await _apiClient.getStockAdjustmentsApi().apiStockadjustmentsPost(
+      createStockAdjustmentRequest: request,
+    );
   }
 }
 
 @riverpod
 ProductRepository productRepository(Ref ref) {
-  return MockProductRepository();
+  final apiClient = ref.watch(apiClientProvider);
+  return ProductRepositoryImpl(apiClient);
 }
