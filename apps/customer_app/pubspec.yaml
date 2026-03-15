@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   dio: ^5.9.2
+  perfumegpt_api_client:
+    path: ../../packages/perfumegpt_api_client
   flutter:
     sdk: flutter
   flutter_chat_types: ^3.6.2

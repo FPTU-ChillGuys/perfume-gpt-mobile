@@ -1,34 +1,69 @@
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
+  final PerfumegptApiClient _apiClient;
   User? _currentUser;
+
+  AuthRepositoryImpl(this._apiClient);
 
   @override
   Future<User?> login(String email, String password) async {
-    // Simulating API call
-    await Future.delayed(const Duration(seconds: 1));
-    if (email == 'test@example.com' && password == 'password') {
-      _currentUser = User(id: '1', email: email, name: 'Test User');
-      return _currentUser;
+    final response = await _apiClient.getAuthsApi().apiAuthsLoginPost(
+          loginRequest: LoginRequest(credential: email, password: password),
+        );
+    
+    final token = response.data?.payload?.accessToken;
+    if (token != null) {
+      // Set bearer token for subsequent calls
+      _apiClient.setBearerAuth('Bearer', token);
+      
+      return await getCurrentUser();
     }
     return null;
   }
 
   @override
   Future<void> register(String email, String password, String name) async {
-    await Future.delayed(const Duration(seconds: 1));
-    _currentUser = User(id: '2', email: email, name: name);
+    await _apiClient.getAuthsApi().apiAuthsRegisterPost(
+          registerRequest: RegisterRequest(
+            email: email,
+            password: password,
+            fullName: name,
+            phoneNumber: '', // Assuming not strictly req
+          ),
+        );
+    // Usually requires login afterwards or automatically logs in depending on API
   }
 
   @override
   Future<void> logout() async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    _apiClient.setBearerAuth('Bearer', ''); // Clear token
     _currentUser = null;
   }
 
   @override
   Future<User?> getCurrentUser() async {
-    return _currentUser;
+    if (_currentUser != null) return _currentUser;
+    
+    try {
+      final response = await _apiClient.getUsersApi().apiUsersMeGet();
+      final userResponse = response.data?.payload;
+      
+      if (userResponse != null) {
+        _currentUser = User(
+          id: userResponse.id ?? '',
+          email: userResponse.email ?? '',
+          name: userResponse.fullName,
+        );
+        return _currentUser;
+      }
+    } catch (e) {
+      // Token might be invalid or not set
+      print('Error getting current user: $e');
+    }
+    
+    return null;
   }
 }

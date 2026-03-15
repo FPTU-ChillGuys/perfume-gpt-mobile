@@ -1,0 +1,120 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'create_batch_request.dart';
+
+// **************************************************************************
+// CopyWithGenerator
+// **************************************************************************
+
+abstract class _$CreateBatchRequestCWProxy {
+  CreateBatchRequest batchCode(String? batchCode);
+
+  CreateBatchRequest manufactureDate(DateTime? manufactureDate);
+
+  CreateBatchRequest expiryDate(DateTime? expiryDate);
+
+  CreateBatchRequest quantity(int? quantity);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateBatchRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// CreateBatchRequest(...).copyWith(id: 12, name: "My name")
+  /// ````
+  CreateBatchRequest call({
+    String? batchCode,
+    DateTime? manufactureDate,
+    DateTime? expiryDate,
+    int? quantity,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateBatchRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateBatchRequest.copyWith.fieldName(...)`
+class _$CreateBatchRequestCWProxyImpl implements _$CreateBatchRequestCWProxy {
+  const _$CreateBatchRequestCWProxyImpl(this._value);
+
+  final CreateBatchRequest _value;
+
+  @override
+  CreateBatchRequest batchCode(String? batchCode) => this(batchCode: batchCode);
+
+  @override
+  CreateBatchRequest manufactureDate(DateTime? manufactureDate) =>
+      this(manufactureDate: manufactureDate);
+
+  @override
+  CreateBatchRequest expiryDate(DateTime? expiryDate) =>
+      this(expiryDate: expiryDate);
+
+  @override
+  CreateBatchRequest quantity(int? quantity) => this(quantity: quantity);
+
+  @override
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateBatchRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// CreateBatchRequest(...).copyWith(id: 12, name: "My name")
+  /// ````
+  CreateBatchRequest call({
+    Object? batchCode = const $CopyWithPlaceholder(),
+    Object? manufactureDate = const $CopyWithPlaceholder(),
+    Object? expiryDate = const $CopyWithPlaceholder(),
+    Object? quantity = const $CopyWithPlaceholder(),
+  }) {
+    return CreateBatchRequest(
+      batchCode: batchCode == const $CopyWithPlaceholder()
+          ? _value.batchCode
+          // ignore: cast_nullable_to_non_nullable
+          : batchCode as String?,
+      manufactureDate: manufactureDate == const $CopyWithPlaceholder()
+          ? _value.manufactureDate
+          // ignore: cast_nullable_to_non_nullable
+          : manufactureDate as DateTime?,
+      expiryDate: expiryDate == const $CopyWithPlaceholder()
+          ? _value.expiryDate
+          // ignore: cast_nullable_to_non_nullable
+          : expiryDate as DateTime?,
+      quantity: quantity == const $CopyWithPlaceholder()
+          ? _value.quantity
+          // ignore: cast_nullable_to_non_nullable
+          : quantity as int?,
+    );
+  }
+}
+
+extension $CreateBatchRequestCopyWith on CreateBatchRequest {
+  /// Returns a callable class that can be used as follows: `instanceOfCreateBatchRequest.copyWith(...)` or like so:`instanceOfCreateBatchRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CreateBatchRequestCWProxy get copyWith =>
+      _$CreateBatchRequestCWProxyImpl(this);
+}
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CreateBatchRequest _$CreateBatchRequestFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('CreateBatchRequest', json, ($checkedConvert) {
+      final val = CreateBatchRequest(
+        batchCode: $checkedConvert('batchCode', (v) => v as String?),
+        manufactureDate: $checkedConvert(
+          'manufactureDate',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        expiryDate: $checkedConvert(
+          'expiryDate',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$CreateBatchRequestToJson(CreateBatchRequest instance) =>
+    <String, dynamic>{
+      'batchCode': ?instance.batchCode,
+      'manufactureDate': ?instance.manufactureDate?.toIso8601String(),
+      'expiryDate': ?instance.expiryDate?.toIso8601String(),
+      'quantity': ?instance.quantity,
+    };
