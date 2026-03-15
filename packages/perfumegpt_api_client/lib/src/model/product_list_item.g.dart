@@ -1,0 +1,209 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'product_list_item.dart';
+
+// **************************************************************************
+// CopyWithGenerator
+// **************************************************************************
+
+abstract class _$ProductListItemCWProxy {
+  ProductListItem id(String? id);
+
+  ProductListItem name(String? name);
+
+  ProductListItem brandId(int? brandId);
+
+  ProductListItem brandName(String? brandName);
+
+  ProductListItem categoryId(int? categoryId);
+
+  ProductListItem categoryName(String? categoryName);
+
+  ProductListItem description(String? description);
+
+  ProductListItem numberOfVariants(int? numberOfVariants);
+
+  ProductListItem primaryImage(MediaResponse? primaryImage);
+
+  ProductListItem attributes(List<ProductAttributeResponse>? attributes);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductListItem(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductListItem call({
+    String? id,
+    String? name,
+    int? brandId,
+    String? brandName,
+    int? categoryId,
+    String? categoryName,
+    String? description,
+    int? numberOfVariants,
+    MediaResponse? primaryImage,
+    List<ProductAttributeResponse>? attributes,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductListItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductListItem.copyWith.fieldName(...)`
+class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
+  const _$ProductListItemCWProxyImpl(this._value);
+
+  final ProductListItem _value;
+
+  @override
+  ProductListItem id(String? id) => this(id: id);
+
+  @override
+  ProductListItem name(String? name) => this(name: name);
+
+  @override
+  ProductListItem brandId(int? brandId) => this(brandId: brandId);
+
+  @override
+  ProductListItem brandName(String? brandName) => this(brandName: brandName);
+
+  @override
+  ProductListItem categoryId(int? categoryId) => this(categoryId: categoryId);
+
+  @override
+  ProductListItem categoryName(String? categoryName) =>
+      this(categoryName: categoryName);
+
+  @override
+  ProductListItem description(String? description) =>
+      this(description: description);
+
+  @override
+  ProductListItem numberOfVariants(int? numberOfVariants) =>
+      this(numberOfVariants: numberOfVariants);
+
+  @override
+  ProductListItem primaryImage(MediaResponse? primaryImage) =>
+      this(primaryImage: primaryImage);
+
+  @override
+  ProductListItem attributes(List<ProductAttributeResponse>? attributes) =>
+      this(attributes: attributes);
+
+  @override
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductListItem(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductListItem call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
+    Object? brandId = const $CopyWithPlaceholder(),
+    Object? brandName = const $CopyWithPlaceholder(),
+    Object? categoryId = const $CopyWithPlaceholder(),
+    Object? categoryName = const $CopyWithPlaceholder(),
+    Object? description = const $CopyWithPlaceholder(),
+    Object? numberOfVariants = const $CopyWithPlaceholder(),
+    Object? primaryImage = const $CopyWithPlaceholder(),
+    Object? attributes = const $CopyWithPlaceholder(),
+  }) {
+    return ProductListItem(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      name: name == const $CopyWithPlaceholder()
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String?,
+      brandId: brandId == const $CopyWithPlaceholder()
+          ? _value.brandId
+          // ignore: cast_nullable_to_non_nullable
+          : brandId as int?,
+      brandName: brandName == const $CopyWithPlaceholder()
+          ? _value.brandName
+          // ignore: cast_nullable_to_non_nullable
+          : brandName as String?,
+      categoryId: categoryId == const $CopyWithPlaceholder()
+          ? _value.categoryId
+          // ignore: cast_nullable_to_non_nullable
+          : categoryId as int?,
+      categoryName: categoryName == const $CopyWithPlaceholder()
+          ? _value.categoryName
+          // ignore: cast_nullable_to_non_nullable
+          : categoryName as String?,
+      description: description == const $CopyWithPlaceholder()
+          ? _value.description
+          // ignore: cast_nullable_to_non_nullable
+          : description as String?,
+      numberOfVariants: numberOfVariants == const $CopyWithPlaceholder()
+          ? _value.numberOfVariants
+          // ignore: cast_nullable_to_non_nullable
+          : numberOfVariants as int?,
+      primaryImage: primaryImage == const $CopyWithPlaceholder()
+          ? _value.primaryImage
+          // ignore: cast_nullable_to_non_nullable
+          : primaryImage as MediaResponse?,
+      attributes: attributes == const $CopyWithPlaceholder()
+          ? _value.attributes
+          // ignore: cast_nullable_to_non_nullable
+          : attributes as List<ProductAttributeResponse>?,
+    );
+  }
+}
+
+extension $ProductListItemCopyWith on ProductListItem {
+  /// Returns a callable class that can be used as follows: `instanceOfProductListItem.copyWith(...)` or like so:`instanceOfProductListItem.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductListItemCWProxy get copyWith => _$ProductListItemCWProxyImpl(this);
+}
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProductListItem _$ProductListItemFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ProductListItem', json, ($checkedConvert) {
+  final val = ProductListItem(
+    id: $checkedConvert('id', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String?),
+    brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
+    brandName: $checkedConvert('brandName', (v) => v as String?),
+    categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
+    categoryName: $checkedConvert('categoryName', (v) => v as String?),
+    description: $checkedConvert('description', (v) => v as String?),
+    numberOfVariants: $checkedConvert(
+      'numberOfVariants',
+      (v) => (v as num?)?.toInt(),
+    ),
+    primaryImage: $checkedConvert(
+      'primaryImage',
+      (v) =>
+          v == null ? null : MediaResponse.fromJson(v as Map<String, dynamic>),
+    ),
+    attributes: $checkedConvert(
+      'attributes',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => ProductAttributeResponse.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ProductListItemToJson(ProductListItem instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'name': ?instance.name,
+      'brandId': ?instance.brandId,
+      'brandName': ?instance.brandName,
+      'categoryId': ?instance.categoryId,
+      'categoryName': ?instance.categoryName,
+      'description': ?instance.description,
+      'numberOfVariants': ?instance.numberOfVariants,
+      'primaryImage': ?instance.primaryImage?.toJson(),
+      'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
+    };

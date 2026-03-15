@@ -1,0 +1,41 @@
+import 'package:test/test.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+
+// tests for FileContentResult
+void main() {
+  final FileContentResult? instance = /* FileContentResult(...) */ null;
+  // TODO add properties to the entity
+
+  group(FileContentResult, () {
+    // String fileContents
+    test('to test the property `fileContents`', () async {
+      // TODO
+    });
+
+    // String contentType
+    test('to test the property `contentType`', () async {
+      // TODO
+    });
+
+    // String fileDownloadName
+    test('to test the property `fileDownloadName`', () async {
+      // TODO
+    });
+
+    // DateTime lastModified
+    test('to test the property `lastModified`', () async {
+      // TODO
+    });
+
+    // EntityTagHeaderValue entityTag
+    test('to test the property `entityTag`', () async {
+      // TODO
+    });
+
+    // bool enableRangeProcessing
+    test('to test the property `enableRangeProcessing`', () async {
+      // TODO
+    });
+
+  });
+}

@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../../../core/providers/api_client_provider.dart';
 import '../../../../data/repositories/auth_repository_impl.dart';
 import '../../../../domain/entities/user.dart';
 import '../../../../domain/repositories/auth_repository.dart';
@@ -8,7 +9,8 @@ part 'auth_provider.g.dart';
 
 @riverpod
 AuthRepository authRepository(Ref ref) {
-  return AuthRepositoryImpl();
+  final apiClient = ref.watch(apiClientProvider);
+  return AuthRepositoryImpl(apiClient);
 }
 
 @riverpod
