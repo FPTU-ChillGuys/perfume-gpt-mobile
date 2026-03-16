@@ -1,0 +1,13 @@
+name: perfume_gpt_mobile
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+workspace:
+  - apps/customer_app
+  - apps/staff_app
+  - packages/perfumegpt_api_client
+
+dev_dependencies:
+  melos: ^6.0.0

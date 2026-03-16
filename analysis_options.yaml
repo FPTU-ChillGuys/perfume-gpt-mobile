@@ -1,0 +1,16 @@
+include: package:flutter_lints/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "packages/perfumegpt_api_client/lib/src/api/**"
+    - "packages/perfumegpt_api_client/lib/src/model/**"
+
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_final_locals
+    - always_declare_return_types
+    - avoid_void_async
