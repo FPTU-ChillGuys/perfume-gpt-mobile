@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_image_upload_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,76 +19,45 @@ part 'product_image_upload_item.g.dart';
 class ProductImageUploadItem {
   /// Returns a new [ProductImageUploadItem] instance.
   ProductImageUploadItem({
+    this.imageFile,
 
-     this.imageFile,
+    this.altText,
 
-     this.altText,
+    this.displayOrder,
 
-     this.displayOrder,
-
-     this.isPrimary,
+    this.isPrimary,
   });
 
   @JsonKey(ignore: true)
-
-
   final MultipartFile? imageFile;
 
-
-
-  @JsonKey(
-    
-    name: r'altText',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'altText', required: false, includeIfNull: false)
   final String? altText;
 
-
-
-  @JsonKey(
-    
-    name: r'displayOrder',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'displayOrder', required: false, includeIfNull: false)
   final int? displayOrder;
 
-
-
-  @JsonKey(
-    
-    name: r'isPrimary',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isPrimary', required: false, includeIfNull: false)
   final bool? isPrimary;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductImageUploadItem &&
+          other.imageFile == imageFile &&
+          other.altText == altText &&
+          other.displayOrder == displayOrder &&
+          other.isPrimary == isPrimary;
 
+  @override
+  int get hashCode =>
+      imageFile.hashCode +
+      (altText == null ? 0 : altText.hashCode) +
+      displayOrder.hashCode +
+      isPrimary.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductImageUploadItem &&
-      other.imageFile == imageFile &&
-      other.altText == altText &&
-      other.displayOrder == displayOrder &&
-      other.isPrimary == isPrimary;
-
-    @override
-    int get hashCode =>
-        imageFile.hashCode +
-        (altText == null ? 0 : altText.hashCode) +
-        displayOrder.hashCode +
-        isPrimary.hashCode;
-
-  factory ProductImageUploadItem.fromJson(Map<String, dynamic> json) => _$ProductImageUploadItemFromJson(json);
+  factory ProductImageUploadItem.fromJson(Map<String, dynamic> json) =>
+      _$ProductImageUploadItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductImageUploadItemToJson(this);
 
@@ -97,6 +65,4 @@ class ProductImageUploadItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

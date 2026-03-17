@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_attribute_value_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,34 +17,21 @@ part 'update_attribute_value_request.g.dart';
 )
 class UpdateAttributeValueRequest {
   /// Returns a new [UpdateAttributeValueRequest] instance.
-  UpdateAttributeValueRequest({
+  UpdateAttributeValueRequest({this.value});
 
-     this.value,
-  });
-
-  @JsonKey(
-    
-    name: r'value',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'value', required: false, includeIfNull: false)
   final String? value;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateAttributeValueRequest && other.value == value;
 
+  @override
+  int get hashCode => (value == null ? 0 : value.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateAttributeValueRequest &&
-      other.value == value;
-
-    @override
-    int get hashCode =>
-        (value == null ? 0 : value.hashCode);
-
-  factory UpdateAttributeValueRequest.fromJson(Map<String, dynamic> json) => _$UpdateAttributeValueRequestFromJson(json);
+  factory UpdateAttributeValueRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateAttributeValueRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateAttributeValueRequestToJson(this);
 
@@ -53,6 +39,4 @@ class UpdateAttributeValueRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

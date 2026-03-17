@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_review_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,81 +18,45 @@ part 'create_review_request.g.dart';
 class CreateReviewRequest {
   /// Returns a new [CreateReviewRequest] instance.
   CreateReviewRequest({
+    this.orderDetailId,
 
-     this.orderDetailId,
+    this.rating,
 
-     this.rating,
+    this.comment,
 
-     this.comment,
-
-     this.temporaryMediaIds,
+    this.temporaryMediaIds,
   });
 
-  @JsonKey(
-    
-    name: r'orderDetailId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'orderDetailId', required: false, includeIfNull: false)
   final String? orderDetailId;
 
-
-
-  @JsonKey(
-    
-    name: r'rating',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'rating', required: false, includeIfNull: false)
   final int? rating;
 
-
-
-  @JsonKey(
-    
-    name: r'comment',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'comment', required: false, includeIfNull: false)
   final String? comment;
 
-
-
-  @JsonKey(
-    
-    name: r'temporaryMediaIds',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'temporaryMediaIds', required: false, includeIfNull: false)
   final List<String>? temporaryMediaIds;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateReviewRequest &&
+          other.orderDetailId == orderDetailId &&
+          other.rating == rating &&
+          other.comment == comment &&
+          other.temporaryMediaIds == temporaryMediaIds;
 
+  @override
+  int get hashCode =>
+      orderDetailId.hashCode +
+      rating.hashCode +
+      comment.hashCode +
+      (temporaryMediaIds == null ? 0 : temporaryMediaIds.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateReviewRequest &&
-      other.orderDetailId == orderDetailId &&
-      other.rating == rating &&
-      other.comment == comment &&
-      other.temporaryMediaIds == temporaryMediaIds;
-
-    @override
-    int get hashCode =>
-        orderDetailId.hashCode +
-        rating.hashCode +
-        comment.hashCode +
-        (temporaryMediaIds == null ? 0 : temporaryMediaIds.hashCode);
-
-  factory CreateReviewRequest.fromJson(Map<String, dynamic> json) => _$CreateReviewRequestFromJson(json);
+  factory CreateReviewRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateReviewRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateReviewRequestToJson(this);
 
@@ -101,6 +64,4 @@ class CreateReviewRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -13,16 +13,15 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_calculate_fee_r
 import 'package:perfumegpt_api_client/src/model/calculate_fee_request.dart';
 
 class ShippingsApi {
-
   final Dio _dio;
 
   const ShippingsApi(this._dio);
 
   /// apiShippingsCalculateFeePost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [calculateFeeRequest] 
+  /// * [calculateFeeRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -32,7 +31,8 @@ class ShippingsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfCalculateFeeResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfCalculateFeeResponse>> apiShippingsCalculateFeePost({ 
+  Future<Response<BaseResponseOfCalculateFeeResponse>>
+  apiShippingsCalculateFeePost({
     required CalculateFeeRequest calculateFeeRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -44,16 +44,10 @@ class ShippingsApi {
     final _path = r'/api/shippings/calculate-fee';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -64,13 +58,10 @@ class ShippingsApi {
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(calculateFeeRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(calculateFeeRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -89,9 +80,13 @@ _bodyData=jsonEncode(calculateFeeRequest);
     BaseResponseOfCalculateFeeResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfCalculateFeeResponse, BaseResponseOfCalculateFeeResponse>(rawData, 'BaseResponseOfCalculateFeeResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfCalculateFeeResponse,
+              BaseResponseOfCalculateFeeResponse
+            >(rawData, 'BaseResponseOfCalculateFeeResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -113,5 +108,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCalculateFeeR
       extra: _response.extra,
     );
   }
-
 }

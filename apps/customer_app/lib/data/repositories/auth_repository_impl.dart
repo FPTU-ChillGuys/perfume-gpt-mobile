@@ -11,14 +11,14 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<User?> login(String email, String password) async {
     final response = await _apiClient.getAuthsApi().apiAuthsLoginPost(
-          loginRequest: LoginRequest(credential: email, password: password),
-        );
-    
+      loginRequest: LoginRequest(credential: email, password: password),
+    );
+
     final token = response.data?.payload?.accessToken;
     if (token != null) {
       // Set bearer token for subsequent calls
       _apiClient.setBearerAuth('Bearer', token);
-      
+
       return await getCurrentUser();
     }
     return null;
@@ -27,13 +27,13 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> register(String email, String password, String name) async {
     await _apiClient.getAuthsApi().apiAuthsRegisterPost(
-          registerRequest: RegisterRequest(
-            email: email,
-            password: password,
-            fullName: name,
-            phoneNumber: '', // Assuming not strictly req
-          ),
-        );
+      registerRequest: RegisterRequest(
+        email: email,
+        password: password,
+        fullName: name,
+        phoneNumber: '', // Assuming not strictly req
+      ),
+    );
     // Usually requires login afterwards or automatically logs in depending on API
   }
 
@@ -46,11 +46,11 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<User?> getCurrentUser() async {
     if (_currentUser != null) return _currentUser;
-    
+
     try {
       final response = await _apiClient.getUsersApi().apiUsersMeGet();
       final userResponse = response.data?.payload;
-      
+
       if (userResponse != null) {
         _currentUser = User(
           id: userResponse.id ?? '',
@@ -61,9 +61,8 @@ class AuthRepositoryImpl implements AuthRepository {
       }
     } catch (e) {
       // Token might be invalid or not set
-      print('Error getting current user: $e');
     }
-    
+
     return null;
   }
 }

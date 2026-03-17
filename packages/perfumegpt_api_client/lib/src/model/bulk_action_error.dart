@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'bulk_action_error.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,50 +17,26 @@ part 'bulk_action_error.g.dart';
 )
 class BulkActionError {
   /// Returns a new [BulkActionError] instance.
-  BulkActionError({
+  BulkActionError({this.id, this.errorMessage});
 
-     this.id,
-
-     this.errorMessage,
-  });
-
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'errorMessage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'errorMessage', required: false, includeIfNull: false)
   final String? errorMessage;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BulkActionError &&
+          other.id == id &&
+          other.errorMessage == errorMessage;
 
+  @override
+  int get hashCode => id.hashCode + errorMessage.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BulkActionError &&
-      other.id == id &&
-      other.errorMessage == errorMessage;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        errorMessage.hashCode;
-
-  factory BulkActionError.fromJson(Map<String, dynamic> json) => _$BulkActionErrorFromJson(json);
+  factory BulkActionError.fromJson(Map<String, dynamic> json) =>
+      _$BulkActionErrorFromJson(json);
 
   Map<String, dynamic> toJson() => _$BulkActionErrorToJson(this);
 
@@ -69,6 +44,4 @@ class BulkActionError {
   String toString() {
     return toJson().toString();
   }
-
 }
-

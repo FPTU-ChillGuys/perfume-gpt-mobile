@@ -6,20 +6,56 @@ part of 'cart_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(Cart)
+final cartProvider = CartProvider._();
+
+final class CartProvider extends $NotifierProvider<Cart, List<CartItem>> {
+  CartProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'cartProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$cartHash();
+
+  @$internal
+  @override
+  Cart create() => Cart();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<CartItem> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<CartItem>>(value),
+    );
+  }
+}
+
 String _$cartHash() => r'7a4f9e28fe6a6064935e8fef846dd9e43ffe6613';
 
-/// See also [Cart].
-@ProviderFor(Cart)
-final cartProvider = AutoDisposeNotifierProvider<Cart, List<CartItem>>.internal(
-  Cart.new,
-  name: r'cartProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$cartHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$Cart = AutoDisposeNotifier<List<CartItem>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$Cart extends $Notifier<List<CartItem>> {
+  List<CartItem> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<List<CartItem>, List<CartItem>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<List<CartItem>, List<CartItem>>,
+              List<CartItem>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

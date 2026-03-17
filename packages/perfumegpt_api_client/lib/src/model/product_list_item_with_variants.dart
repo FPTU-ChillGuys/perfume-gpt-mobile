@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_list_item_with_variants.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,193 +21,94 @@ part 'product_list_item_with_variants.g.dart';
 class ProductListItemWithVariants {
   /// Returns a new [ProductListItemWithVariants] instance.
   ProductListItemWithVariants({
+    this.variants,
 
-     this.variants,
+    this.id,
 
-     this.id,
+    this.name,
 
-     this.name,
+    this.brandId,
 
-     this.brandId,
+    this.brandName,
 
-     this.brandName,
+    this.categoryId,
 
-     this.categoryId,
+    this.categoryName,
 
-     this.categoryName,
+    this.description,
 
-     this.description,
+    this.numberOfVariants,
 
-     this.numberOfVariants,
+    this.primaryImage,
 
-     this.primaryImage,
-
-     this.attributes,
+    this.attributes,
   });
 
-  @JsonKey(
-    
-    name: r'variants',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variants', required: false, includeIfNull: false)
   final List<VariantSummaryItem>? variants;
 
-
-
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: false, includeIfNull: false)
   final String? name;
 
-
-
-  @JsonKey(
-    
-    name: r'brandId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'brandId', required: false, includeIfNull: false)
   final int? brandId;
 
-
-
-  @JsonKey(
-    
-    name: r'brandName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'brandName', required: false, includeIfNull: false)
   final String? brandName;
 
-
-
-  @JsonKey(
-    
-    name: r'categoryId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'categoryId', required: false, includeIfNull: false)
   final int? categoryId;
 
-
-
-  @JsonKey(
-    
-    name: r'categoryName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'categoryName', required: false, includeIfNull: false)
   final String? categoryName;
 
-
-
-  @JsonKey(
-    
-    name: r'description',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'description', required: false, includeIfNull: false)
   final String? description;
 
-
-
-  @JsonKey(
-    
-    name: r'numberOfVariants',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'numberOfVariants', required: false, includeIfNull: false)
   final int? numberOfVariants;
 
-
-
-  @JsonKey(
-    
-    name: r'primaryImage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'primaryImage', required: false, includeIfNull: false)
   final MediaResponse? primaryImage;
 
-
-
-  @JsonKey(
-    
-    name: r'attributes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'attributes', required: false, includeIfNull: false)
   final List<ProductAttributeResponse>? attributes;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductListItemWithVariants &&
+          other.variants == variants &&
+          other.id == id &&
+          other.name == name &&
+          other.brandId == brandId &&
+          other.brandName == brandName &&
+          other.categoryId == categoryId &&
+          other.categoryName == categoryName &&
+          other.description == description &&
+          other.numberOfVariants == numberOfVariants &&
+          other.primaryImage == primaryImage &&
+          other.attributes == attributes;
 
+  @override
+  int get hashCode =>
+      variants.hashCode +
+      id.hashCode +
+      (name == null ? 0 : name.hashCode) +
+      brandId.hashCode +
+      brandName.hashCode +
+      categoryId.hashCode +
+      categoryName.hashCode +
+      (description == null ? 0 : description.hashCode) +
+      numberOfVariants.hashCode +
+      (primaryImage == null ? 0 : primaryImage.hashCode) +
+      (attributes == null ? 0 : attributes.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductListItemWithVariants &&
-      other.variants == variants &&
-      other.id == id &&
-      other.name == name &&
-      other.brandId == brandId &&
-      other.brandName == brandName &&
-      other.categoryId == categoryId &&
-      other.categoryName == categoryName &&
-      other.description == description &&
-      other.numberOfVariants == numberOfVariants &&
-      other.primaryImage == primaryImage &&
-      other.attributes == attributes;
-
-    @override
-    int get hashCode =>
-        variants.hashCode +
-        id.hashCode +
-        (name == null ? 0 : name.hashCode) +
-        brandId.hashCode +
-        brandName.hashCode +
-        categoryId.hashCode +
-        categoryName.hashCode +
-        (description == null ? 0 : description.hashCode) +
-        numberOfVariants.hashCode +
-        (primaryImage == null ? 0 : primaryImage.hashCode) +
-        (attributes == null ? 0 : attributes.hashCode);
-
-  factory ProductListItemWithVariants.fromJson(Map<String, dynamic> json) => _$ProductListItemWithVariantsFromJson(json);
+  factory ProductListItemWithVariants.fromJson(Map<String, dynamic> json) =>
+      _$ProductListItemWithVariantsFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductListItemWithVariantsToJson(this);
 
@@ -216,6 +116,4 @@ class ProductListItemWithVariants {
   String toString() {
     return toJson().toString();
   }
-
 }
-

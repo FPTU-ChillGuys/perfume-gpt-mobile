@@ -108,10 +108,13 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
               ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
+            // ignore: deprecated_member_use
             RadioListTile(
               title: const Text('Momo'),
               value: 'Momo',
+              // ignore: deprecated_member_use
               groupValue: _selectedPayment,
+              // ignore: deprecated_member_use
               onChanged: (value) =>
                   setState(() => _selectedPayment = value as String),
               secondary: const Icon(
@@ -119,18 +122,24 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                 color: Colors.pink,
               ),
             ),
+            // ignore: deprecated_member_use
             RadioListTile(
               title: const Text('VNPay'),
               value: 'VNPay',
+              // ignore: deprecated_member_use
               groupValue: _selectedPayment,
+              // ignore: deprecated_member_use
               onChanged: (value) =>
                   setState(() => _selectedPayment = value as String),
               secondary: const Icon(Icons.payment, color: Colors.blue),
             ),
+            // ignore: deprecated_member_use
             RadioListTile(
               title: const Text('Cash on Delivery (COD)'),
               value: 'COD',
+              // ignore: deprecated_member_use
               groupValue: _selectedPayment,
+              // ignore: deprecated_member_use
               onChanged: (value) =>
                   setState(() => _selectedPayment = value as String),
               secondary: const Icon(Icons.money, color: Colors.green),

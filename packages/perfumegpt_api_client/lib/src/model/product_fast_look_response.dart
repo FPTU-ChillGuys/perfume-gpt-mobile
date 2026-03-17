@@ -10,7 +10,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_fast_look_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,145 +20,73 @@ part 'product_fast_look_response.g.dart';
 class ProductFastLookResponse {
   /// Returns a new [ProductFastLookResponse] instance.
   ProductFastLookResponse({
+    this.id,
 
-     this.id,
+    this.name,
 
-     this.name,
+    this.description,
 
-     this.description,
+    this.brandName,
 
-     this.brandName,
+    this.variants,
 
-     this.variants,
+    this.attribute,
 
-     this.attribute,
+    this.rating,
 
-     this.rating,
-
-     this.reviewCount,
+    this.reviewCount,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: false, includeIfNull: false)
   final String? name;
 
-
-
-  @JsonKey(
-    
-    name: r'description',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'description', required: false, includeIfNull: false)
   final String? description;
 
-
-
-  @JsonKey(
-    
-    name: r'brandName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'brandName', required: false, includeIfNull: false)
   final String? brandName;
 
-
-
-  @JsonKey(
-    
-    name: r'variants',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variants', required: false, includeIfNull: false)
   final List<VariantFastLookResponse>? variants;
 
-
-
-  @JsonKey(
-    
-    name: r'attribute',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'attribute', required: false, includeIfNull: false)
   final ProductAttributeResponse? attribute;
 
-
-
-  @JsonKey(
-    
-    name: r'rating',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'rating', required: false, includeIfNull: false)
   final int? rating;
 
-
-
-  @JsonKey(
-    
-    name: r'reviewCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'reviewCount', required: false, includeIfNull: false)
   final int? reviewCount;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductFastLookResponse &&
+          other.id == id &&
+          other.name == name &&
+          other.description == description &&
+          other.brandName == brandName &&
+          other.variants == variants &&
+          other.attribute == attribute &&
+          other.rating == rating &&
+          other.reviewCount == reviewCount;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      name.hashCode +
+      (description == null ? 0 : description.hashCode) +
+      brandName.hashCode +
+      variants.hashCode +
+      (attribute == null ? 0 : attribute.hashCode) +
+      rating.hashCode +
+      reviewCount.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductFastLookResponse &&
-      other.id == id &&
-      other.name == name &&
-      other.description == description &&
-      other.brandName == brandName &&
-      other.variants == variants &&
-      other.attribute == attribute &&
-      other.rating == rating &&
-      other.reviewCount == reviewCount;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        name.hashCode +
-        (description == null ? 0 : description.hashCode) +
-        brandName.hashCode +
-        variants.hashCode +
-        (attribute == null ? 0 : attribute.hashCode) +
-        rating.hashCode +
-        reviewCount.hashCode;
-
-  factory ProductFastLookResponse.fromJson(Map<String, dynamic> json) => _$ProductFastLookResponseFromJson(json);
+  factory ProductFastLookResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductFastLookResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductFastLookResponseToJson(this);
 
@@ -167,6 +94,4 @@ class ProductFastLookResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

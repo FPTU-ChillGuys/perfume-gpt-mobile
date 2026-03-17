@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_attribute_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,66 +17,33 @@ part 'create_attribute_request.g.dart';
 )
 class CreateAttributeRequest {
   /// Returns a new [CreateAttributeRequest] instance.
-  CreateAttributeRequest({
+  CreateAttributeRequest({this.name, this.description, this.isVariantLevel});
 
-     this.name,
-
-     this.description,
-
-     this.isVariantLevel,
-  });
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: false, includeIfNull: false)
   final String? name;
 
-
-
-  @JsonKey(
-    
-    name: r'description',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'description', required: false, includeIfNull: false)
   final String? description;
 
-
-
-  @JsonKey(
-    
-    name: r'isVariantLevel',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isVariantLevel', required: false, includeIfNull: false)
   final bool? isVariantLevel;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateAttributeRequest &&
+          other.name == name &&
+          other.description == description &&
+          other.isVariantLevel == isVariantLevel;
 
+  @override
+  int get hashCode =>
+      name.hashCode +
+      (description == null ? 0 : description.hashCode) +
+      isVariantLevel.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateAttributeRequest &&
-      other.name == name &&
-      other.description == description &&
-      other.isVariantLevel == isVariantLevel;
-
-    @override
-    int get hashCode =>
-        name.hashCode +
-        (description == null ? 0 : description.hashCode) +
-        isVariantLevel.hashCode;
-
-  factory CreateAttributeRequest.fromJson(Map<String, dynamic> json) => _$CreateAttributeRequestFromJson(json);
+  factory CreateAttributeRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateAttributeRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateAttributeRequestToJson(this);
 
@@ -85,6 +51,4 @@ class CreateAttributeRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

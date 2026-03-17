@@ -22,25 +22,24 @@ import 'package:perfumegpt_api_client/src/model/create_review_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_review_request.dart';
 
 class ReviewsApi {
-
   final Dio _dio;
 
   const ReviewsApi(this._dio);
 
   /// apiReviewsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [variantId] 
-  /// * [userId] 
-  /// * [minRating] 
-  /// * [maxRating] 
-  /// * [hasImages] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [variantId]
+  /// * [userId]
+  /// * [minRating]
+  /// * [maxRating]
+  /// * [hasImages]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -50,7 +49,7 @@ class ReviewsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfReviewListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfReviewListItem>> apiReviewsGet({ 
+  Future<Response<BaseResponseOfPagedResultOfReviewListItem>> apiReviewsGet({
     String? variantId,
     String? userId,
     int? minRating,
@@ -71,16 +70,10 @@ class ReviewsApi {
     final _path = r'/api/reviews';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -112,9 +105,17 @@ class ReviewsApi {
     BaseResponseOfPagedResultOfReviewListItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfReviewListItem, BaseResponseOfPagedResultOfReviewListItem>(rawData, 'BaseResponseOfPagedResultOfReviewListItem', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfReviewListItem,
+              BaseResponseOfPagedResultOfReviewListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfReviewListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -138,10 +139,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiReviewsImagesTemporaryPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [images] 
+  /// * [images]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -151,7 +152,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>> apiReviewsImagesTemporaryPost({ 
+  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>>
+  apiReviewsImagesTemporaryPost({
     List<MultipartFile>? images,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -163,16 +165,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     final _path = r'/api/reviews/images/temporary';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -182,14 +178,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
 
     dynamic _bodyData;
 
-    try {
-
-    } catch(error, stackTrace) {
+    try {} catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -208,9 +199,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse, BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(rawData, 'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse,
+              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
+            >(
+              rawData,
+              'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -221,7 +220,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
       );
     }
 
-    return Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(
+    return Response<
+      BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -234,7 +235,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   }
 
   /// apiReviewsMeGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -246,7 +247,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfReviewResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfReviewResponse>> apiReviewsMeGet({ 
+  Future<Response<BaseResponseOfListOfReviewResponse>> apiReviewsMeGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -257,16 +258,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     final _path = r'/api/reviews/me';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -284,9 +279,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     BaseResponseOfListOfReviewResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewResponse, BaseResponseOfListOfReviewResponse>(rawData, 'BaseResponseOfListOfReviewResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfReviewResponse,
+              BaseResponseOfListOfReviewResponse
+            >(rawData, 'BaseResponseOfListOfReviewResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -310,10 +309,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewR
   }
 
   /// apiReviewsPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createReviewRequest] 
+  /// * [createReviewRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -323,7 +322,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfGuid] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfGuid>> apiReviewsPost({ 
+  Future<Response<BaseResponseOfBulkActionResultOfGuid>> apiReviewsPost({
     required CreateReviewRequest createReviewRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -335,16 +334,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewR
     final _path = r'/api/reviews';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -355,13 +348,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createReviewRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createReviewRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -380,9 +370,13 @@ _bodyData=jsonEncode(createReviewRequest);
     BaseResponseOfBulkActionResultOfGuid? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfGuid, BaseResponseOfBulkActionResultOfGuid>(rawData, 'BaseResponseOfBulkActionResultOfGuid', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBulkActionResultOfGuid,
+              BaseResponseOfBulkActionResultOfGuid
+            >(rawData, 'BaseResponseOfBulkActionResultOfGuid', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -406,10 +400,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   }
 
   /// apiReviewsReviewIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [reviewId] 
+  /// * [reviewId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -419,7 +413,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiReviewsReviewIdDelete({ 
+  Future<Response<BaseResponseOfstring>> apiReviewsReviewIdDelete({
     required String reviewId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -428,19 +422,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/reviews/{reviewId}'.replaceAll('{' r'reviewId' '}', reviewId.toString());
+    final _path = r'/api/reviews/{reviewId}'.replaceAll(
+      '{'
+      r'reviewId'
+      '}',
+      reviewId.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -458,9 +451,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -484,10 +482,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiReviewsReviewIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [reviewId] 
+  /// * [reviewId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -497,7 +495,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfReviewDetailResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfReviewDetailResponse>> apiReviewsReviewIdGet({ 
+  Future<Response<BaseResponseOfReviewDetailResponse>> apiReviewsReviewIdGet({
     required String reviewId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -506,19 +504,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/reviews/{reviewId}'.replaceAll('{' r'reviewId' '}', reviewId.toString());
+    final _path = r'/api/reviews/{reviewId}'.replaceAll(
+      '{'
+      r'reviewId'
+      '}',
+      reviewId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -536,9 +533,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfReviewDetailResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfReviewDetailResponse, BaseResponseOfReviewDetailResponse>(rawData, 'BaseResponseOfReviewDetailResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfReviewDetailResponse,
+              BaseResponseOfReviewDetailResponse
+            >(rawData, 'BaseResponseOfReviewDetailResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -562,10 +563,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfReviewDetailR
   }
 
   /// apiReviewsReviewIdImagesGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [reviewId] 
+  /// * [reviewId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -575,7 +576,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfReviewDetailR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfMediaResponse>> apiReviewsReviewIdImagesGet({ 
+  Future<Response<BaseResponseOfListOfMediaResponse>>
+  apiReviewsReviewIdImagesGet({
     required String reviewId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -584,19 +586,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfReviewDetailR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/reviews/{reviewId}/images'.replaceAll('{' r'reviewId' '}', reviewId.toString());
+    final _path = r'/api/reviews/{reviewId}/images'.replaceAll(
+      '{'
+      r'reviewId'
+      '}',
+      reviewId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -614,9 +615,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfReviewDetailR
     BaseResponseOfListOfMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaResponse, BaseResponseOfListOfMediaResponse>(rawData, 'BaseResponseOfListOfMediaResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfMediaResponse,
+              BaseResponseOfListOfMediaResponse
+            >(rawData, 'BaseResponseOfListOfMediaResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -640,11 +645,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaRe
   }
 
   /// apiReviewsReviewIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [reviewId] 
-  /// * [updateReviewRequest] 
+  /// * [reviewId]
+  /// * [updateReviewRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -654,7 +659,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaRe
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfstring>> apiReviewsReviewIdPut({ 
+  Future<Response<BaseResponseOfBulkActionResultOfstring>>
+  apiReviewsReviewIdPut({
     required String reviewId,
     required UpdateReviewRequest updateReviewRequest,
     CancelToken? cancelToken,
@@ -664,19 +670,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaRe
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/reviews/{reviewId}'.replaceAll('{' r'reviewId' '}', reviewId.toString());
+    final _path = r'/api/reviews/{reviewId}'.replaceAll(
+      '{'
+      r'reviewId'
+      '}',
+      reviewId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -687,13 +692,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaRe
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateReviewRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateReviewRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -712,9 +714,17 @@ _bodyData=jsonEncode(updateReviewRequest);
     BaseResponseOfBulkActionResultOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfstring, BaseResponseOfBulkActionResultOfstring>(rawData, 'BaseResponseOfBulkActionResultOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBulkActionResultOfstring,
+              BaseResponseOfBulkActionResultOfstring
+            >(
+              rawData,
+              'BaseResponseOfBulkActionResultOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -738,10 +748,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   }
 
   /// apiReviewsVariantVariantIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [variantId] 
+  /// * [variantId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -751,7 +761,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfReviewResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfReviewResponse>> apiReviewsVariantVariantIdGet({ 
+  Future<Response<BaseResponseOfListOfReviewResponse>>
+  apiReviewsVariantVariantIdGet({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -760,19 +771,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/reviews/variant/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/reviews/variant/{variantId}'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -790,9 +800,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     BaseResponseOfListOfReviewResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewResponse, BaseResponseOfListOfReviewResponse>(rawData, 'BaseResponseOfListOfReviewResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfReviewResponse,
+              BaseResponseOfListOfReviewResponse
+            >(rawData, 'BaseResponseOfListOfReviewResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -816,10 +830,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewR
   }
 
   /// apiReviewsVariantVariantIdStatisticsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [variantId] 
+  /// * [variantId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -829,7 +843,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfReviewStatisticsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfReviewStatisticsResponse>> apiReviewsVariantVariantIdStatisticsGet({ 
+  Future<Response<BaseResponseOfReviewStatisticsResponse>>
+  apiReviewsVariantVariantIdStatisticsGet({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -838,19 +853,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/reviews/variant/{variantId}/statistics'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/reviews/variant/{variantId}/statistics'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -868,9 +882,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfReviewR
     BaseResponseOfReviewStatisticsResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfReviewStatisticsResponse, BaseResponseOfReviewStatisticsResponse>(rawData, 'BaseResponseOfReviewStatisticsResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfReviewStatisticsResponse,
+              BaseResponseOfReviewStatisticsResponse
+            >(
+              rawData,
+              'BaseResponseOfReviewStatisticsResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -892,5 +914,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfReviewStatist
       extra: _response.extra,
     );
   }
-
 }

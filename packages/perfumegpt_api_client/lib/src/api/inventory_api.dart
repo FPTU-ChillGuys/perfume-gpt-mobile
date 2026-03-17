@@ -17,16 +17,15 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of
 import 'package:perfumegpt_api_client/src/model/base_response_of_stock_response.dart';
 
 class InventoryApi {
-
   final Dio _dio;
 
   const InventoryApi(this._dio);
 
   /// apiInventoryBatchesBatchIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [batchId] 
+  /// * [batchId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -36,7 +35,8 @@ class InventoryApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBatchDetailResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBatchDetailResponse>> apiInventoryBatchesBatchIdGet({ 
+  Future<Response<BaseResponseOfBatchDetailResponse>>
+  apiInventoryBatchesBatchIdGet({
     required String batchId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -45,19 +45,18 @@ class InventoryApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/inventory/batches/{batchId}'.replaceAll('{' r'batchId' '}', batchId.toString());
+    final _path = r'/api/inventory/batches/{batchId}'.replaceAll(
+      '{'
+      r'batchId'
+      '}',
+      batchId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -75,9 +74,13 @@ class InventoryApi {
     BaseResponseOfBatchDetailResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBatchDetailResponse, BaseResponseOfBatchDetailResponse>(rawData, 'BaseResponseOfBatchDetailResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBatchDetailResponse,
+              BaseResponseOfBatchDetailResponse
+            >(rawData, 'BaseResponseOfBatchDetailResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -101,18 +104,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBatchDetailRe
   }
 
   /// apiInventoryBatchesGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [variantId] 
-  /// * [searchTerm] 
-  /// * [isExpired] 
-  /// * [isExpiringSoon] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [variantId]
+  /// * [searchTerm]
+  /// * [isExpired]
+  /// * [isExpiringSoon]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -122,7 +125,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBatchDetailRe
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfBatchDetailResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfBatchDetailResponse>> apiInventoryBatchesGet({ 
+  Future<Response<BaseResponseOfPagedResultOfBatchDetailResponse>>
+  apiInventoryBatchesGet({
     String? variantId,
     String? searchTerm,
     bool? isExpired,
@@ -142,16 +146,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBatchDetailRe
     final _path = r'/api/inventory/batches';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -182,9 +180,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBatchDetailRe
     BaseResponseOfPagedResultOfBatchDetailResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfBatchDetailResponse, BaseResponseOfPagedResultOfBatchDetailResponse>(rawData, 'BaseResponseOfPagedResultOfBatchDetailResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfBatchDetailResponse,
+              BaseResponseOfPagedResultOfBatchDetailResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfBatchDetailResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -208,10 +214,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiInventoryBatchesVariantVariantIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [variantId] 
+  /// * [variantId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -221,7 +227,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfBatchDetailResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfBatchDetailResponse>> apiInventoryBatchesVariantVariantIdGet({ 
+  Future<Response<BaseResponseOfListOfBatchDetailResponse>>
+  apiInventoryBatchesVariantVariantIdGet({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -230,19 +237,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/inventory/batches/variant/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/inventory/batches/variant/{variantId}'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -260,9 +266,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfListOfBatchDetailResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBatchDetailResponse, BaseResponseOfListOfBatchDetailResponse>(rawData, 'BaseResponseOfListOfBatchDetailResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfBatchDetailResponse,
+              BaseResponseOfListOfBatchDetailResponse
+            >(
+              rawData,
+              'BaseResponseOfListOfBatchDetailResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -286,17 +300,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBatchDe
   }
 
   /// apiInventoryStockGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [variantId] 
-  /// * [searchTerm] 
-  /// * [isLowStock] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [variantId]
+  /// * [searchTerm]
+  /// * [isLowStock]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -306,7 +320,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBatchDe
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfStockResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfStockResponse>> apiInventoryStockGet({ 
+  Future<Response<BaseResponseOfPagedResultOfStockResponse>>
+  apiInventoryStockGet({
     String? variantId,
     String? searchTerm,
     bool? isLowStock,
@@ -325,16 +340,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBatchDe
     final _path = r'/api/inventory/stock';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -364,9 +373,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBatchDe
     BaseResponseOfPagedResultOfStockResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfStockResponse, BaseResponseOfPagedResultOfStockResponse>(rawData, 'BaseResponseOfPagedResultOfStockResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfStockResponse,
+              BaseResponseOfPagedResultOfStockResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfStockResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -390,10 +407,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiInventoryStockVariantVariantIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [variantId] 
+  /// * [variantId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -403,7 +420,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfStockResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfStockResponse>> apiInventoryStockVariantVariantIdGet({ 
+  Future<Response<BaseResponseOfStockResponse>>
+  apiInventoryStockVariantVariantIdGet({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -412,19 +430,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/inventory/stock/variant/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/inventory/stock/variant/{variantId}'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -442,9 +459,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfStockResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfStockResponse, BaseResponseOfStockResponse>(rawData, 'BaseResponseOfStockResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfStockResponse,
+              BaseResponseOfStockResponse
+            >(rawData, 'BaseResponseOfStockResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -468,7 +489,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStockResponse
   }
 
   /// apiInventorySummaryGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -480,7 +501,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStockResponse
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfInventorySummaryResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfInventorySummaryResponse>> apiInventorySummaryGet({ 
+  Future<Response<BaseResponseOfInventorySummaryResponse>>
+  apiInventorySummaryGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -491,16 +513,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStockResponse
     final _path = r'/api/inventory/summary';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -518,9 +534,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStockResponse
     BaseResponseOfInventorySummaryResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfInventorySummaryResponse, BaseResponseOfInventorySummaryResponse>(rawData, 'BaseResponseOfInventorySummaryResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfInventorySummaryResponse,
+              BaseResponseOfInventorySummaryResponse
+            >(
+              rawData,
+              'BaseResponseOfInventorySummaryResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -542,5 +566,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfInventorySumm
       extra: _response.extra,
     );
   }
-
 }

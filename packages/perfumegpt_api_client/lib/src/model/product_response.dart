@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,193 +21,94 @@ part 'product_response.g.dart';
 class ProductResponse {
   /// Returns a new [ProductResponse] instance.
   ProductResponse({
+    this.id,
 
-     this.id,
+    this.name,
 
-     this.name,
+    this.brandId,
 
-     this.brandId,
+    this.brandName,
 
-     this.brandName,
+    this.categoryId,
 
-     this.categoryId,
+    this.categoryName,
 
-     this.categoryName,
+    this.description,
 
-     this.description,
+    this.numberOfVariants,
 
-     this.numberOfVariants,
+    this.media,
 
-     this.media,
+    this.variants,
 
-     this.variants,
-
-     this.attributes,
+    this.attributes,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: false, includeIfNull: false)
   final String? name;
 
-
-
-  @JsonKey(
-    
-    name: r'brandId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'brandId', required: false, includeIfNull: false)
   final int? brandId;
 
-
-
-  @JsonKey(
-    
-    name: r'brandName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'brandName', required: false, includeIfNull: false)
   final String? brandName;
 
-
-
-  @JsonKey(
-    
-    name: r'categoryId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'categoryId', required: false, includeIfNull: false)
   final int? categoryId;
 
-
-
-  @JsonKey(
-    
-    name: r'categoryName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'categoryName', required: false, includeIfNull: false)
   final String? categoryName;
 
-
-
-  @JsonKey(
-    
-    name: r'description',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'description', required: false, includeIfNull: false)
   final String? description;
 
-
-
-  @JsonKey(
-    
-    name: r'numberOfVariants',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'numberOfVariants', required: false, includeIfNull: false)
   final int? numberOfVariants;
 
-
-
-  @JsonKey(
-    
-    name: r'media',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'media', required: false, includeIfNull: false)
   final List<MediaResponse>? media;
 
-
-
-  @JsonKey(
-    
-    name: r'variants',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variants', required: false, includeIfNull: false)
   final List<ProductVariantResponse>? variants;
 
-
-
-  @JsonKey(
-    
-    name: r'attributes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'attributes', required: false, includeIfNull: false)
   final List<ProductAttributeResponse>? attributes;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductResponse &&
+          other.id == id &&
+          other.name == name &&
+          other.brandId == brandId &&
+          other.brandName == brandName &&
+          other.categoryId == categoryId &&
+          other.categoryName == categoryName &&
+          other.description == description &&
+          other.numberOfVariants == numberOfVariants &&
+          other.media == media &&
+          other.variants == variants &&
+          other.attributes == attributes;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      (name == null ? 0 : name.hashCode) +
+      brandId.hashCode +
+      brandName.hashCode +
+      categoryId.hashCode +
+      categoryName.hashCode +
+      (description == null ? 0 : description.hashCode) +
+      numberOfVariants.hashCode +
+      media.hashCode +
+      variants.hashCode +
+      attributes.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductResponse &&
-      other.id == id &&
-      other.name == name &&
-      other.brandId == brandId &&
-      other.brandName == brandName &&
-      other.categoryId == categoryId &&
-      other.categoryName == categoryName &&
-      other.description == description &&
-      other.numberOfVariants == numberOfVariants &&
-      other.media == media &&
-      other.variants == variants &&
-      other.attributes == attributes;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        (name == null ? 0 : name.hashCode) +
-        brandId.hashCode +
-        brandName.hashCode +
-        categoryId.hashCode +
-        categoryName.hashCode +
-        (description == null ? 0 : description.hashCode) +
-        numberOfVariants.hashCode +
-        media.hashCode +
-        variants.hashCode +
-        attributes.hashCode;
-
-  factory ProductResponse.fromJson(Map<String, dynamic> json) => _$ProductResponseFromJson(json);
+  factory ProductResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductResponseToJson(this);
 
@@ -216,6 +116,4 @@ class ProductResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

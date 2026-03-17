@@ -14,13 +14,12 @@ import 'package:perfumegpt_api_client/src/model/base_response_ofboolean.dart';
 import 'package:perfumegpt_api_client/src/model/points_request.dart';
 
 class LoyaltyPointsApi {
-
   final Dio _dio;
 
   const LoyaltyPointsApi(this._dio);
 
   /// apiLoyaltypointsMeGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -32,7 +31,7 @@ class LoyaltyPointsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfLoyaltyPointResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfLoyaltyPointResponse>> apiLoyaltypointsMeGet({ 
+  Future<Response<BaseResponseOfLoyaltyPointResponse>> apiLoyaltypointsMeGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -43,16 +42,10 @@ class LoyaltyPointsApi {
     final _path = r'/api/loyaltypoints/me';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -70,9 +63,13 @@ class LoyaltyPointsApi {
     BaseResponseOfLoyaltyPointResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyPointResponse, BaseResponseOfLoyaltyPointResponse>(rawData, 'BaseResponseOfLoyaltyPointResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfLoyaltyPointResponse,
+              BaseResponseOfLoyaltyPointResponse
+            >(rawData, 'BaseResponseOfLoyaltyPointResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -96,11 +93,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyPointR
   }
 
   /// apiLoyaltypointsUserIdPlusPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [userId] 
-  /// * [pointsRequest] 
+  /// * [userId]
+  /// * [pointsRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -110,7 +107,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyPointR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiLoyaltypointsUserIdPlusPost({ 
+  Future<Response<BaseResponseOfboolean>> apiLoyaltypointsUserIdPlusPost({
     required String userId,
     required PointsRequest pointsRequest,
     CancelToken? cancelToken,
@@ -120,19 +117,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyPointR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/loyaltypoints/{userId}/plus'.replaceAll('{' r'userId' '}', userId.toString());
+    final _path = r'/api/loyaltypoints/{userId}/plus'.replaceAll(
+      '{'
+      r'userId'
+      '}',
+      userId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -143,13 +139,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyPointR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(pointsRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(pointsRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -168,9 +161,14 @@ _bodyData=jsonEncode(pointsRequest);
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
+              rawData,
+              'BaseResponseOfboolean',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -194,10 +192,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   }
 
   /// apiLoyaltypointsUserIdPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [userId] 
+  /// * [userId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -207,7 +205,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiLoyaltypointsUserIdPost({ 
+  Future<Response<BaseResponseOfboolean>> apiLoyaltypointsUserIdPost({
     required String userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -216,19 +214,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/loyaltypoints/{userId}'.replaceAll('{' r'userId' '}', userId.toString());
+    final _path = r'/api/loyaltypoints/{userId}'.replaceAll(
+      '{'
+      r'userId'
+      '}',
+      userId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -246,9 +243,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
+              rawData,
+              'BaseResponseOfboolean',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -272,11 +274,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   }
 
   /// apiLoyaltypointsUserIdRedeemPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [userId] 
-  /// * [pointsRequest] 
+  /// * [userId]
+  /// * [pointsRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -286,7 +288,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiLoyaltypointsUserIdRedeemPost({ 
+  Future<Response<BaseResponseOfboolean>> apiLoyaltypointsUserIdRedeemPost({
     required String userId,
     required PointsRequest pointsRequest,
     CancelToken? cancelToken,
@@ -296,19 +298,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/loyaltypoints/{userId}/redeem'.replaceAll('{' r'userId' '}', userId.toString());
+    final _path = r'/api/loyaltypoints/{userId}/redeem'.replaceAll(
+      '{'
+      r'userId'
+      '}',
+      userId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -319,13 +320,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(pointsRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(pointsRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -344,9 +342,14 @@ _bodyData=jsonEncode(pointsRequest);
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
+              rawData,
+              'BaseResponseOfboolean',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -368,5 +371,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
       extra: _response.extra,
     );
   }
-
 }

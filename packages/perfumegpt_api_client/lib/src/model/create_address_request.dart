@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_address_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,161 +18,80 @@ part 'create_address_request.g.dart';
 class CreateAddressRequest {
   /// Returns a new [CreateAddressRequest] instance.
   CreateAddressRequest({
+    this.receiverName,
 
-     this.receiverName,
+    this.phone,
 
-     this.phone,
+    this.street,
 
-     this.street,
+    this.ward,
 
-     this.ward,
+    this.district,
 
-     this.district,
+    this.city,
 
-     this.city,
+    this.wardCode,
 
-     this.wardCode,
+    this.districtId,
 
-     this.districtId,
-
-     this.provinceId,
+    this.provinceId,
   });
 
-  @JsonKey(
-    
-    name: r'receiverName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'receiverName', required: false, includeIfNull: false)
   final String? receiverName;
 
-
-
-  @JsonKey(
-    
-    name: r'phone',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'phone', required: false, includeIfNull: false)
   final String? phone;
 
-
-
-  @JsonKey(
-    
-    name: r'street',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'street', required: false, includeIfNull: false)
   final String? street;
 
-
-
-  @JsonKey(
-    
-    name: r'ward',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'ward', required: false, includeIfNull: false)
   final String? ward;
 
-
-
-  @JsonKey(
-    
-    name: r'district',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'district', required: false, includeIfNull: false)
   final String? district;
 
-
-
-  @JsonKey(
-    
-    name: r'city',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'city', required: false, includeIfNull: false)
   final String? city;
 
-
-
-  @JsonKey(
-    
-    name: r'wardCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'wardCode', required: false, includeIfNull: false)
   final String? wardCode;
 
-
-
-  @JsonKey(
-    
-    name: r'districtId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'districtId', required: false, includeIfNull: false)
   final int? districtId;
 
-
-
-  @JsonKey(
-    
-    name: r'provinceId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'provinceId', required: false, includeIfNull: false)
   final int? provinceId;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateAddressRequest &&
+          other.receiverName == receiverName &&
+          other.phone == phone &&
+          other.street == street &&
+          other.ward == ward &&
+          other.district == district &&
+          other.city == city &&
+          other.wardCode == wardCode &&
+          other.districtId == districtId &&
+          other.provinceId == provinceId;
 
+  @override
+  int get hashCode =>
+      receiverName.hashCode +
+      phone.hashCode +
+      street.hashCode +
+      ward.hashCode +
+      district.hashCode +
+      city.hashCode +
+      wardCode.hashCode +
+      districtId.hashCode +
+      provinceId.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateAddressRequest &&
-      other.receiverName == receiverName &&
-      other.phone == phone &&
-      other.street == street &&
-      other.ward == ward &&
-      other.district == district &&
-      other.city == city &&
-      other.wardCode == wardCode &&
-      other.districtId == districtId &&
-      other.provinceId == provinceId;
-
-    @override
-    int get hashCode =>
-        receiverName.hashCode +
-        phone.hashCode +
-        street.hashCode +
-        ward.hashCode +
-        district.hashCode +
-        city.hashCode +
-        wardCode.hashCode +
-        districtId.hashCode +
-        provinceId.hashCode;
-
-  factory CreateAddressRequest.fromJson(Map<String, dynamic> json) => _$CreateAddressRequestFromJson(json);
+  factory CreateAddressRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateAddressRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateAddressRequestToJson(this);
 
@@ -181,6 +99,4 @@ class CreateAddressRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

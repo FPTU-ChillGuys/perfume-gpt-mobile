@@ -12,13 +12,12 @@ import 'package:dio/dio.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_supplier_lookup_item.dart';
 
 class SuppliersApi {
-
   final Dio _dio;
 
   const SuppliersApi(this._dio);
 
   /// apiSuppliersLookupGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -30,7 +29,8 @@ class SuppliersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfSupplierLookupItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfSupplierLookupItem>> apiSuppliersLookupGet({ 
+  Future<Response<BaseResponseOfListOfSupplierLookupItem>>
+  apiSuppliersLookupGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -41,16 +41,10 @@ class SuppliersApi {
     final _path = r'/api/suppliers/lookup';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -68,9 +62,17 @@ class SuppliersApi {
     BaseResponseOfListOfSupplierLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfSupplierLookupItem, BaseResponseOfListOfSupplierLookupItem>(rawData, 'BaseResponseOfListOfSupplierLookupItem', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfSupplierLookupItem,
+              BaseResponseOfListOfSupplierLookupItem
+            >(
+              rawData,
+              'BaseResponseOfListOfSupplierLookupItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -92,5 +94,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfSupplie
       extra: _response.extra,
     );
   }
-
 }
