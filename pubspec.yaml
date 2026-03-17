@@ -2,7 +2,7 @@ name: perfume_gpt_mobile
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.9.0
 
 workspace:
   - apps/customer_app
@@ -10,4 +10,23 @@ workspace:
   - packages/perfumegpt_api_client
 
 dev_dependencies:
-  melos: ^6.0.0
+  melos: ^7.0.0
+
+melos:
+  scripts:
+    test:
+      exec: flutter test
+      description: Run tests in all packages.
+    get:
+      exec: flutter pub get
+      description: Run pub get in all packages.
+    clean:
+      exec: flutter clean
+      description: Run clean in all packages.
+    generate-api:
+      run: |
+        openapi-generator-cli generate -i https://localhost:7011/openapi/v1.json -g dart-dio -o packages/perfumegpt_api_client
+        cd packages/perfumegpt_api_client
+        dart pub get
+        dart run build_runner build --delete-conflicting-outputs
+      description: Regenerate the OpenAPI client and run build_runner.
