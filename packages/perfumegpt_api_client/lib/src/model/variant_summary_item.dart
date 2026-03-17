@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'variant_summary_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,66 +17,31 @@ part 'variant_summary_item.g.dart';
 )
 class VariantSummaryItem {
   /// Returns a new [VariantSummaryItem] instance.
-  VariantSummaryItem({
+  VariantSummaryItem({this.id, this.displayName, this.concentrationName});
 
-     this.id,
-
-     this.displayName,
-
-     this.concentrationName,
-  });
-
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'displayName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'displayName', required: false, includeIfNull: false)
   final String? displayName;
 
-
-
-  @JsonKey(
-    
-    name: r'concentrationName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'concentrationName', required: false, includeIfNull: false)
   final String? concentrationName;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VariantSummaryItem &&
+          other.id == id &&
+          other.displayName == displayName &&
+          other.concentrationName == concentrationName;
 
+  @override
+  int get hashCode =>
+      id.hashCode + displayName.hashCode + concentrationName.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is VariantSummaryItem &&
-      other.id == id &&
-      other.displayName == displayName &&
-      other.concentrationName == concentrationName;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        displayName.hashCode +
-        concentrationName.hashCode;
-
-  factory VariantSummaryItem.fromJson(Map<String, dynamic> json) => _$VariantSummaryItemFromJson(json);
+  factory VariantSummaryItem.fromJson(Map<String, dynamic> json) =>
+      _$VariantSummaryItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$VariantSummaryItemToJson(this);
 
@@ -85,6 +49,4 @@ class VariantSummaryItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

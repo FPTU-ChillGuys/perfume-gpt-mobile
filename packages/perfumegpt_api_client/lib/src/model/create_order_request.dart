@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_order_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,129 +21,66 @@ part 'create_order_request.g.dart';
 class CreateOrderRequest {
   /// Returns a new [CreateOrderRequest] instance.
   CreateOrderRequest({
+    this.voucherCode,
 
-     this.voucherCode,
+    this.itemIds,
 
-     this.itemIds,
+    this.deliveryMethod,
 
-     this.deliveryMethod,
+    this.guestEmail,
 
-     this.guestEmail,
+    this.savedAddressId,
 
-     this.savedAddressId,
+    this.recipient,
 
-     this.recipient,
-
-     this.payment,
+    this.payment,
   });
 
-  @JsonKey(
-    
-    name: r'voucherCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'voucherCode', required: false, includeIfNull: false)
   final String? voucherCode;
 
-
-
-  @JsonKey(
-    
-    name: r'itemIds',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'itemIds', required: false, includeIfNull: false)
   final List<String>? itemIds;
 
-
-
-  @JsonKey(
-    
-    name: r'deliveryMethod',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'deliveryMethod', required: false, includeIfNull: false)
   final DeliveryMethod? deliveryMethod;
 
-
-
-  @JsonKey(
-    
-    name: r'guestEmail',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'guestEmail', required: false, includeIfNull: false)
   final String? guestEmail;
 
-
-
-  @JsonKey(
-    
-    name: r'savedAddressId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'savedAddressId', required: false, includeIfNull: false)
   final String? savedAddressId;
 
-
-
-  @JsonKey(
-    
-    name: r'recipient',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'recipient', required: false, includeIfNull: false)
   final RecipientInformation? recipient;
 
-
-
-  @JsonKey(
-    
-    name: r'payment',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'payment', required: false, includeIfNull: false)
   final PaymentInformation? payment;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateOrderRequest &&
+          other.voucherCode == voucherCode &&
+          other.itemIds == itemIds &&
+          other.deliveryMethod == deliveryMethod &&
+          other.guestEmail == guestEmail &&
+          other.savedAddressId == savedAddressId &&
+          other.recipient == recipient &&
+          other.payment == payment;
 
+  @override
+  int get hashCode =>
+      (voucherCode == null ? 0 : voucherCode.hashCode) +
+      itemIds.hashCode +
+      deliveryMethod.hashCode +
+      (guestEmail == null ? 0 : guestEmail.hashCode) +
+      (savedAddressId == null ? 0 : savedAddressId.hashCode) +
+      (recipient == null ? 0 : recipient.hashCode) +
+      payment.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateOrderRequest &&
-      other.voucherCode == voucherCode &&
-      other.itemIds == itemIds &&
-      other.deliveryMethod == deliveryMethod &&
-      other.guestEmail == guestEmail &&
-      other.savedAddressId == savedAddressId &&
-      other.recipient == recipient &&
-      other.payment == payment;
-
-    @override
-    int get hashCode =>
-        (voucherCode == null ? 0 : voucherCode.hashCode) +
-        itemIds.hashCode +
-        deliveryMethod.hashCode +
-        (guestEmail == null ? 0 : guestEmail.hashCode) +
-        (savedAddressId == null ? 0 : savedAddressId.hashCode) +
-        (recipient == null ? 0 : recipient.hashCode) +
-        payment.hashCode;
-
-  factory CreateOrderRequest.fromJson(Map<String, dynamic> json) => _$CreateOrderRequestFromJson(json);
+  factory CreateOrderRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateOrderRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateOrderRequestToJson(this);
 
@@ -152,6 +88,4 @@ class CreateOrderRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

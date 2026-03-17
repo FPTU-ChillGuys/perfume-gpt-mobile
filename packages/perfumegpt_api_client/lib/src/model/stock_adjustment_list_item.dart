@@ -10,7 +10,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'stock_adjustment_list_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,129 +20,66 @@ part 'stock_adjustment_list_item.g.dart';
 class StockAdjustmentListItem {
   /// Returns a new [StockAdjustmentListItem] instance.
   StockAdjustmentListItem({
+    this.id,
 
-     this.id,
+    this.createdByName,
 
-     this.createdByName,
+    this.adjustmentDate,
 
-     this.adjustmentDate,
+    this.reason,
 
-     this.reason,
+    this.status,
 
-     this.status,
+    this.totalItems,
 
-     this.totalItems,
-
-     this.createdAt,
+    this.createdAt,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'createdByName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'createdByName', required: false, includeIfNull: false)
   final String? createdByName;
 
-
-
-  @JsonKey(
-    
-    name: r'adjustmentDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'adjustmentDate', required: false, includeIfNull: false)
   final DateTime? adjustmentDate;
 
-
-
-  @JsonKey(
-    
-    name: r'reason',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'reason', required: false, includeIfNull: false)
   final StockAdjustmentReason? reason;
 
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final StockAdjustmentStatus? status;
 
-
-
-  @JsonKey(
-    
-    name: r'totalItems',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'totalItems', required: false, includeIfNull: false)
   final int? totalItems;
 
-
-
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
   final DateTime? createdAt;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StockAdjustmentListItem &&
+          other.id == id &&
+          other.createdByName == createdByName &&
+          other.adjustmentDate == adjustmentDate &&
+          other.reason == reason &&
+          other.status == status &&
+          other.totalItems == totalItems &&
+          other.createdAt == createdAt;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      createdByName.hashCode +
+      adjustmentDate.hashCode +
+      reason.hashCode +
+      status.hashCode +
+      totalItems.hashCode +
+      createdAt.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is StockAdjustmentListItem &&
-      other.id == id &&
-      other.createdByName == createdByName &&
-      other.adjustmentDate == adjustmentDate &&
-      other.reason == reason &&
-      other.status == status &&
-      other.totalItems == totalItems &&
-      other.createdAt == createdAt;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        createdByName.hashCode +
-        adjustmentDate.hashCode +
-        reason.hashCode +
-        status.hashCode +
-        totalItems.hashCode +
-        createdAt.hashCode;
-
-  factory StockAdjustmentListItem.fromJson(Map<String, dynamic> json) => _$StockAdjustmentListItemFromJson(json);
+  factory StockAdjustmentListItem.fromJson(Map<String, dynamic> json) =>
+      _$StockAdjustmentListItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$StockAdjustmentListItemToJson(this);
 
@@ -151,6 +87,4 @@ class StockAdjustmentListItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

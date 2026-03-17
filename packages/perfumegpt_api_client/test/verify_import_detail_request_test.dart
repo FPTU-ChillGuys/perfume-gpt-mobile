@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VerifyImportDetailRequest
 void main() {
-  final VerifyImportDetailRequest? instance = /* VerifyImportDetailRequest(...) */ null;
+  final VerifyImportDetailRequest?
+  instance = /* VerifyImportDetailRequest(...) */ null;
   // TODO add properties to the entity
 
   group(VerifyImportDetailRequest, () {
@@ -26,6 +27,5 @@ void main() {
     test('to test the property `batches`', () async {
       // TODO
     });
-
   });
 }

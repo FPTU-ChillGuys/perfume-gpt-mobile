@@ -10,7 +10,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'payment_info_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,97 +20,52 @@ part 'payment_info_response.g.dart';
 class PaymentInfoResponse {
   /// Returns a new [PaymentInfoResponse] instance.
   PaymentInfoResponse({
+    this.id,
 
-     this.id,
+    this.status,
 
-     this.status,
+    this.paymentMethod,
 
-     this.paymentMethod,
+    this.failureReason,
 
-     this.failureReason,
-
-     this.totalAmount,
+    this.totalAmount,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final TransactionStatus? status;
 
-
-
-  @JsonKey(
-    
-    name: r'paymentMethod',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'paymentMethod', required: false, includeIfNull: false)
   final PaymentMethod? paymentMethod;
 
-
-
-  @JsonKey(
-    
-    name: r'failureReason',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'failureReason', required: false, includeIfNull: false)
   final String? failureReason;
 
-
-
-  @JsonKey(
-    
-    name: r'totalAmount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'totalAmount', required: false, includeIfNull: false)
   final num? totalAmount;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PaymentInfoResponse &&
+          other.id == id &&
+          other.status == status &&
+          other.paymentMethod == paymentMethod &&
+          other.failureReason == failureReason &&
+          other.totalAmount == totalAmount;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      status.hashCode +
+      paymentMethod.hashCode +
+      (failureReason == null ? 0 : failureReason.hashCode) +
+      totalAmount.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PaymentInfoResponse &&
-      other.id == id &&
-      other.status == status &&
-      other.paymentMethod == paymentMethod &&
-      other.failureReason == failureReason &&
-      other.totalAmount == totalAmount;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        status.hashCode +
-        paymentMethod.hashCode +
-        (failureReason == null ? 0 : failureReason.hashCode) +
-        totalAmount.hashCode;
-
-  factory PaymentInfoResponse.fromJson(Map<String, dynamic> json) => _$PaymentInfoResponseFromJson(json);
+  factory PaymentInfoResponse.fromJson(Map<String, dynamic> json) =>
+      _$PaymentInfoResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$PaymentInfoResponseToJson(this);
 
@@ -119,6 +73,4 @@ class PaymentInfoResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

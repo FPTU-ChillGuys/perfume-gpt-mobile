@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'staff_lookup_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,82 +17,35 @@ part 'staff_lookup_item.g.dart';
 )
 class StaffLookupItem {
   /// Returns a new [StaffLookupItem] instance.
-  StaffLookupItem({
+  StaffLookupItem({this.id, this.userName, this.fullName, this.email});
 
-     this.id,
-
-     this.userName,
-
-     this.fullName,
-
-     this.email,
-  });
-
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'userName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'userName', required: false, includeIfNull: false)
   final String? userName;
 
-
-
-  @JsonKey(
-    
-    name: r'fullName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'fullName', required: false, includeIfNull: false)
   final String? fullName;
 
-
-
-  @JsonKey(
-    
-    name: r'email',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'email', required: false, includeIfNull: false)
   final String? email;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StaffLookupItem &&
+          other.id == id &&
+          other.userName == userName &&
+          other.fullName == fullName &&
+          other.email == email;
 
+  @override
+  int get hashCode =>
+      id.hashCode + userName.hashCode + fullName.hashCode + email.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is StaffLookupItem &&
-      other.id == id &&
-      other.userName == userName &&
-      other.fullName == fullName &&
-      other.email == email;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        userName.hashCode +
-        fullName.hashCode +
-        email.hashCode;
-
-  factory StaffLookupItem.fromJson(Map<String, dynamic> json) => _$StaffLookupItemFromJson(json);
+  factory StaffLookupItem.fromJson(Map<String, dynamic> json) =>
+      _$StaffLookupItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$StaffLookupItemToJson(this);
 
@@ -101,6 +53,4 @@ class StaffLookupItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_stock_adjustment_status_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,41 +18,28 @@ part 'update_stock_adjustment_status_request.g.dart';
 )
 class UpdateStockAdjustmentStatusRequest {
   /// Returns a new [UpdateStockAdjustmentStatusRequest] instance.
-  UpdateStockAdjustmentStatusRequest({
+  UpdateStockAdjustmentStatusRequest({this.status});
 
-     this.status,
-  });
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final StockAdjustmentStatus? status;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateStockAdjustmentStatusRequest && other.status == status;
 
+  @override
+  int get hashCode => status.hashCode;
 
+  factory UpdateStockAdjustmentStatusRequest.fromJson(
+    Map<String, dynamic> json,
+  ) => _$UpdateStockAdjustmentStatusRequestFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateStockAdjustmentStatusRequest &&
-      other.status == status;
-
-    @override
-    int get hashCode =>
-        status.hashCode;
-
-  factory UpdateStockAdjustmentStatusRequest.fromJson(Map<String, dynamic> json) => _$UpdateStockAdjustmentStatusRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UpdateStockAdjustmentStatusRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$UpdateStockAdjustmentStatusRequestToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

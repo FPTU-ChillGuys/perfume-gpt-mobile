@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for ReviewsApi
 void main() {
   final instance = PerfumegptApiClient().getReviewsApi();
@@ -56,6 +55,5 @@ void main() {
     test('test apiReviewsVariantVariantIdStatisticsGet', () async {
       // TODO
     });
-
   });
 }

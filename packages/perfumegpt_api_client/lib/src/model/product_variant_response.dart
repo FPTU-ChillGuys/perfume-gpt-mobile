@@ -12,7 +12,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_variant_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -23,241 +22,115 @@ part 'product_variant_response.g.dart';
 class ProductVariantResponse {
   /// Returns a new [ProductVariantResponse] instance.
   ProductVariantResponse({
+    this.id,
 
-     this.id,
+    this.productId,
 
-     this.productId,
+    this.productName,
 
-     this.productName,
+    this.media,
 
-     this.media,
+    this.barcode,
 
-     this.barcode,
+    this.sku,
 
-     this.sku,
+    this.volumeMl,
 
-     this.volumeMl,
+    this.concentrationId,
 
-     this.concentrationId,
+    this.concentrationName,
 
-     this.concentrationName,
+    this.type,
 
-     this.type,
+    this.basePrice,
 
-     this.basePrice,
+    this.status,
 
-     this.status,
+    this.stockQuantity,
 
-     this.stockQuantity,
-
-     this.attributes,
+    this.attributes,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'productId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'productId', required: false, includeIfNull: false)
   final String? productId;
 
-
-
-  @JsonKey(
-    
-    name: r'productName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'productName', required: false, includeIfNull: false)
   final String? productName;
 
-
-
-  @JsonKey(
-    
-    name: r'media',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'media', required: false, includeIfNull: false)
   final List<MediaResponse>? media;
 
-
-
-  @JsonKey(
-    
-    name: r'barcode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'barcode', required: false, includeIfNull: false)
   final String? barcode;
 
-
-
-  @JsonKey(
-    
-    name: r'sku',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'sku', required: false, includeIfNull: false)
   final String? sku;
 
-
-
-  @JsonKey(
-    
-    name: r'volumeMl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'volumeMl', required: false, includeIfNull: false)
   final int? volumeMl;
 
-
-
-  @JsonKey(
-    
-    name: r'concentrationId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'concentrationId', required: false, includeIfNull: false)
   final int? concentrationId;
 
-
-
-  @JsonKey(
-    
-    name: r'concentrationName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'concentrationName', required: false, includeIfNull: false)
   final String? concentrationName;
 
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'type', required: false, includeIfNull: false)
   final VariantType? type;
 
-
-
-  @JsonKey(
-    
-    name: r'basePrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'basePrice', required: false, includeIfNull: false)
   final num? basePrice;
 
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final VariantStatus? status;
 
-
-
-  @JsonKey(
-    
-    name: r'stockQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'stockQuantity', required: false, includeIfNull: false)
   final int? stockQuantity;
 
-
-
-  @JsonKey(
-    
-    name: r'attributes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'attributes', required: false, includeIfNull: false)
   final List<ProductAttributeResponse>? attributes;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductVariantResponse &&
+          other.id == id &&
+          other.productId == productId &&
+          other.productName == productName &&
+          other.media == media &&
+          other.barcode == barcode &&
+          other.sku == sku &&
+          other.volumeMl == volumeMl &&
+          other.concentrationId == concentrationId &&
+          other.concentrationName == concentrationName &&
+          other.type == type &&
+          other.basePrice == basePrice &&
+          other.status == status &&
+          other.stockQuantity == stockQuantity &&
+          other.attributes == attributes;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      productId.hashCode +
+      productName.hashCode +
+      media.hashCode +
+      barcode.hashCode +
+      sku.hashCode +
+      volumeMl.hashCode +
+      concentrationId.hashCode +
+      concentrationName.hashCode +
+      type.hashCode +
+      basePrice.hashCode +
+      status.hashCode +
+      stockQuantity.hashCode +
+      (attributes == null ? 0 : attributes.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductVariantResponse &&
-      other.id == id &&
-      other.productId == productId &&
-      other.productName == productName &&
-      other.media == media &&
-      other.barcode == barcode &&
-      other.sku == sku &&
-      other.volumeMl == volumeMl &&
-      other.concentrationId == concentrationId &&
-      other.concentrationName == concentrationName &&
-      other.type == type &&
-      other.basePrice == basePrice &&
-      other.status == status &&
-      other.stockQuantity == stockQuantity &&
-      other.attributes == attributes;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        productId.hashCode +
-        productName.hashCode +
-        media.hashCode +
-        barcode.hashCode +
-        sku.hashCode +
-        volumeMl.hashCode +
-        concentrationId.hashCode +
-        concentrationName.hashCode +
-        type.hashCode +
-        basePrice.hashCode +
-        status.hashCode +
-        stockQuantity.hashCode +
-        (attributes == null ? 0 : attributes.hashCode);
-
-  factory ProductVariantResponse.fromJson(Map<String, dynamic> json) => _$ProductVariantResponseFromJson(json);
+  factory ProductVariantResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductVariantResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductVariantResponseToJson(this);
 
@@ -265,6 +138,4 @@ class ProductVariantResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

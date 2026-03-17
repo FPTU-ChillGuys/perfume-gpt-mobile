@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for StockAdjustmentResponse
 void main() {
-  final StockAdjustmentResponse? instance = /* StockAdjustmentResponse(...) */ null;
+  final StockAdjustmentResponse? instance = /* StockAdjustmentResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(StockAdjustmentResponse, () {
@@ -66,6 +67,5 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
-
   });
 }

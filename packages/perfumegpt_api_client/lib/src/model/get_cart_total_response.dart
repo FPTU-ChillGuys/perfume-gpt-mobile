@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'get_cart_total_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,81 +18,45 @@ part 'get_cart_total_response.g.dart';
 class GetCartTotalResponse {
   /// Returns a new [GetCartTotalResponse] instance.
   GetCartTotalResponse({
+    this.subtotal,
 
-     this.subtotal,
+    this.shippingFee,
 
-     this.shippingFee,
+    this.discount,
 
-     this.discount,
-
-     this.totalPrice,
+    this.totalPrice,
   });
 
-  @JsonKey(
-    
-    name: r'subtotal',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'subtotal', required: false, includeIfNull: false)
   final num? subtotal;
 
-
-
-  @JsonKey(
-    
-    name: r'shippingFee',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'shippingFee', required: false, includeIfNull: false)
   final num? shippingFee;
 
-
-
-  @JsonKey(
-    
-    name: r'discount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'discount', required: false, includeIfNull: false)
   final num? discount;
 
-
-
-  @JsonKey(
-    
-    name: r'totalPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'totalPrice', required: false, includeIfNull: false)
   final num? totalPrice;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GetCartTotalResponse &&
+          other.subtotal == subtotal &&
+          other.shippingFee == shippingFee &&
+          other.discount == discount &&
+          other.totalPrice == totalPrice;
 
+  @override
+  int get hashCode =>
+      subtotal.hashCode +
+      shippingFee.hashCode +
+      discount.hashCode +
+      totalPrice.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is GetCartTotalResponse &&
-      other.subtotal == subtotal &&
-      other.shippingFee == shippingFee &&
-      other.discount == discount &&
-      other.totalPrice == totalPrice;
-
-    @override
-    int get hashCode =>
-        subtotal.hashCode +
-        shippingFee.hashCode +
-        discount.hashCode +
-        totalPrice.hashCode;
-
-  factory GetCartTotalResponse.fromJson(Map<String, dynamic> json) => _$GetCartTotalResponseFromJson(json);
+  factory GetCartTotalResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetCartTotalResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$GetCartTotalResponseToJson(this);
 
@@ -101,6 +64,4 @@ class GetCartTotalResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

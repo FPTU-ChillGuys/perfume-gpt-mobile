@@ -14,13 +14,12 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_get_cart_total_
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 
 class CartApi {
-
   final Dio _dio;
 
   const CartApi(this._dio);
 
   /// apiCartClearDelete
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -32,7 +31,7 @@ class CartApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCartClearDelete({ 
+  Future<Response<BaseResponseOfstring>> apiCartClearDelete({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -43,16 +42,10 @@ class CartApi {
     final _path = r'/api/cart/clear';
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -70,9 +63,14 @@ class CartApi {
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -96,10 +94,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCartItemsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [itemIds] 
+  /// * [itemIds]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -109,7 +107,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfGetCartItemsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfGetCartItemsResponse>> apiCartItemsGet({ 
+  Future<Response<BaseResponseOfGetCartItemsResponse>> apiCartItemsGet({
     List<String>? itemIds,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -121,16 +119,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/cart/items';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -153,9 +145,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfGetCartItemsResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartItemsResponse, BaseResponseOfGetCartItemsResponse>(rawData, 'BaseResponseOfGetCartItemsResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfGetCartItemsResponse,
+              BaseResponseOfGetCartItemsResponse
+            >(rawData, 'BaseResponseOfGetCartItemsResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -179,21 +175,21 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartItemsR
   }
 
   /// apiCartTotalGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [voucherCode] 
-  /// * [itemIds] 
-  /// * [savedAddressId] 
-  /// * [recipientPeriodFullName] 
-  /// * [recipientPeriodPhone] 
-  /// * [recipientPeriodDistrictId] 
-  /// * [recipientPeriodDistrictName] 
-  /// * [recipientPeriodWardCode] 
-  /// * [recipientPeriodWardName] 
-  /// * [recipientPeriodProvinceId] 
-  /// * [recipientPeriodProvinceName] 
-  /// * [recipientPeriodFullAddress] 
+  /// * [voucherCode]
+  /// * [itemIds]
+  /// * [savedAddressId]
+  /// * [recipientPeriodFullName]
+  /// * [recipientPeriodPhone]
+  /// * [recipientPeriodDistrictId]
+  /// * [recipientPeriodDistrictName]
+  /// * [recipientPeriodWardCode]
+  /// * [recipientPeriodWardName]
+  /// * [recipientPeriodProvinceId]
+  /// * [recipientPeriodProvinceName]
+  /// * [recipientPeriodFullAddress]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -203,7 +199,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartItemsR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfGetCartTotalResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfGetCartTotalResponse>> apiCartTotalGet({ 
+  Future<Response<BaseResponseOfGetCartTotalResponse>> apiCartTotalGet({
     String? voucherCode,
     List<String>? itemIds,
     String? savedAddressId,
@@ -226,16 +222,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartItemsR
     final _path = r'/api/cart/total';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -246,15 +236,24 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartItemsR
       if (voucherCode != null) r'VoucherCode': voucherCode,
       if (itemIds != null) r'ItemIds': itemIds,
       if (savedAddressId != null) r'SavedAddressId': savedAddressId,
-      if (recipientPeriodFullName != null) r'Recipient.FullName': recipientPeriodFullName,
-      if (recipientPeriodPhone != null) r'Recipient.Phone': recipientPeriodPhone,
-      if (recipientPeriodDistrictId != null) r'Recipient.DistrictId': recipientPeriodDistrictId,
-      if (recipientPeriodDistrictName != null) r'Recipient.DistrictName': recipientPeriodDistrictName,
-      if (recipientPeriodWardCode != null) r'Recipient.WardCode': recipientPeriodWardCode,
-      if (recipientPeriodWardName != null) r'Recipient.WardName': recipientPeriodWardName,
-      if (recipientPeriodProvinceId != null) r'Recipient.ProvinceId': recipientPeriodProvinceId,
-      if (recipientPeriodProvinceName != null) r'Recipient.ProvinceName': recipientPeriodProvinceName,
-      if (recipientPeriodFullAddress != null) r'Recipient.FullAddress': recipientPeriodFullAddress,
+      if (recipientPeriodFullName != null)
+        r'Recipient.FullName': recipientPeriodFullName,
+      if (recipientPeriodPhone != null)
+        r'Recipient.Phone': recipientPeriodPhone,
+      if (recipientPeriodDistrictId != null)
+        r'Recipient.DistrictId': recipientPeriodDistrictId,
+      if (recipientPeriodDistrictName != null)
+        r'Recipient.DistrictName': recipientPeriodDistrictName,
+      if (recipientPeriodWardCode != null)
+        r'Recipient.WardCode': recipientPeriodWardCode,
+      if (recipientPeriodWardName != null)
+        r'Recipient.WardName': recipientPeriodWardName,
+      if (recipientPeriodProvinceId != null)
+        r'Recipient.ProvinceId': recipientPeriodProvinceId,
+      if (recipientPeriodProvinceName != null)
+        r'Recipient.ProvinceName': recipientPeriodProvinceName,
+      if (recipientPeriodFullAddress != null)
+        r'Recipient.FullAddress': recipientPeriodFullAddress,
     };
 
     final _response = await _dio.request<Object>(
@@ -269,9 +268,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartItemsR
     BaseResponseOfGetCartTotalResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartTotalResponse, BaseResponseOfGetCartTotalResponse>(rawData, 'BaseResponseOfGetCartTotalResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfGetCartTotalResponse,
+              BaseResponseOfGetCartTotalResponse
+            >(rawData, 'BaseResponseOfGetCartTotalResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -293,5 +296,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartTotalR
       extra: _response.extra,
     );
   }
-
 }

@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_lookup_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,82 +18,38 @@ part 'product_lookup_item.g.dart';
 )
 class ProductLookupItem {
   /// Returns a new [ProductLookupItem] instance.
-  ProductLookupItem({
+  ProductLookupItem({this.id, this.name, this.brandName, this.primaryImage});
 
-     this.id,
-
-     this.name,
-
-     this.brandName,
-
-     this.primaryImage,
-  });
-
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: false, includeIfNull: false)
   final String? name;
 
-
-
-  @JsonKey(
-    
-    name: r'brandName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'brandName', required: false, includeIfNull: false)
   final String? brandName;
 
-
-
-  @JsonKey(
-    
-    name: r'primaryImage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'primaryImage', required: false, includeIfNull: false)
   final MediaResponse? primaryImage;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductLookupItem &&
+          other.id == id &&
+          other.name == name &&
+          other.brandName == brandName &&
+          other.primaryImage == primaryImage;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      name.hashCode +
+      brandName.hashCode +
+      (primaryImage == null ? 0 : primaryImage.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductLookupItem &&
-      other.id == id &&
-      other.name == name &&
-      other.brandName == brandName &&
-      other.primaryImage == primaryImage;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        name.hashCode +
-        brandName.hashCode +
-        (primaryImage == null ? 0 : primaryImage.hashCode);
-
-  factory ProductLookupItem.fromJson(Map<String, dynamic> json) => _$ProductLookupItemFromJson(json);
+  factory ProductLookupItem.fromJson(Map<String, dynamic> json) =>
+      _$ProductLookupItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductLookupItemToJson(this);
 
@@ -102,6 +57,4 @@ class ProductLookupItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

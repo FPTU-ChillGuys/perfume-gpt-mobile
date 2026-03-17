@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'points_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,34 +17,21 @@ part 'points_request.g.dart';
 )
 class PointsRequest {
   /// Returns a new [PointsRequest] instance.
-  PointsRequest({
+  PointsRequest({this.points});
 
-     this.points,
-  });
-
-  @JsonKey(
-    
-    name: r'points',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'points', required: false, includeIfNull: false)
   final int? points;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PointsRequest && other.points == points;
 
+  @override
+  int get hashCode => points.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PointsRequest &&
-      other.points == points;
-
-    @override
-    int get hashCode =>
-        points.hashCode;
-
-  factory PointsRequest.fromJson(Map<String, dynamic> json) => _$PointsRequestFromJson(json);
+  factory PointsRequest.fromJson(Map<String, dynamic> json) =>
+      _$PointsRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$PointsRequestToJson(this);
 
@@ -53,6 +39,4 @@ class PointsRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

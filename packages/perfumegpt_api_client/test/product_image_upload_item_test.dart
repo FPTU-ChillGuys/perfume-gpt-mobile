@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductImageUploadItem
 void main() {
-  final ProductImageUploadItem? instance = /* ProductImageUploadItem(...) */ null;
+  final ProductImageUploadItem? instance = /* ProductImageUploadItem(...) */
+      null;
   // TODO add properties to the entity
 
   group(ProductImageUploadItem, () {
@@ -26,6 +27,5 @@ void main() {
     test('to test the property `isPrimary`', () async {
       // TODO
     });
-
   });
 }

@@ -26,6 +26,5 @@ void main() {
     test('to test the property `primaryImage`', () async {
       // TODO
     });
-
   });
 }

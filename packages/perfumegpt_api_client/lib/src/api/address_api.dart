@@ -20,13 +20,12 @@ import 'package:perfumegpt_api_client/src/model/create_address_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_address_request.dart';
 
 class AddressApi {
-
   final Dio _dio;
 
   const AddressApi(this._dio);
 
   /// apiAddressDefaultGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -38,7 +37,7 @@ class AddressApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfAddressResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfAddressResponse>> apiAddressDefaultGet({ 
+  Future<Response<BaseResponseOfAddressResponse>> apiAddressDefaultGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -49,16 +48,10 @@ class AddressApi {
     final _path = r'/api/address/default';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -76,9 +69,13 @@ class AddressApi {
     BaseResponseOfAddressResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfAddressResponse, BaseResponseOfAddressResponse>(rawData, 'BaseResponseOfAddressResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfAddressResponse,
+              BaseResponseOfAddressResponse
+            >(rawData, 'BaseResponseOfAddressResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -102,10 +99,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
   }
 
   /// apiAddressDistrictsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [provinceId] 
+  /// * [provinceId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -115,7 +112,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfDistrictResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfDistrictResponse>> apiAddressDistrictsGet({ 
+  Future<Response<BaseResponseOfListOfDistrictResponse>>
+  apiAddressDistrictsGet({
     int? provinceId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -127,16 +125,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
     final _path = r'/api/address/districts';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -159,9 +151,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
     BaseResponseOfListOfDistrictResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfDistrictResponse, BaseResponseOfListOfDistrictResponse>(rawData, 'BaseResponseOfListOfDistrictResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfDistrictResponse,
+              BaseResponseOfListOfDistrictResponse
+            >(rawData, 'BaseResponseOfListOfDistrictResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -185,7 +181,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfDistric
   }
 
   /// apiAddressGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -197,7 +193,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfDistric
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfAddressResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfAddressResponse>> apiAddressGet({ 
+  Future<Response<BaseResponseOfListOfAddressResponse>> apiAddressGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -208,16 +204,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfDistric
     final _path = r'/api/address';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -235,9 +225,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfDistric
     BaseResponseOfListOfAddressResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAddressResponse, BaseResponseOfListOfAddressResponse>(rawData, 'BaseResponseOfListOfAddressResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfAddressResponse,
+              BaseResponseOfListOfAddressResponse
+            >(rawData, 'BaseResponseOfListOfAddressResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -261,10 +255,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAddress
   }
 
   /// apiAddressIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -274,7 +268,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAddress
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAddressIdDelete({ 
+  Future<Response<BaseResponseOfstring>> apiAddressIdDelete({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -283,19 +277,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAddress
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/address/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/address/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -313,9 +306,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAddress
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -339,10 +337,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiAddressIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -352,7 +350,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfAddressResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfAddressResponse>> apiAddressIdGet({ 
+  Future<Response<BaseResponseOfAddressResponse>> apiAddressIdGet({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -361,19 +359,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/address/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/address/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -391,9 +388,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfAddressResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfAddressResponse, BaseResponseOfAddressResponse>(rawData, 'BaseResponseOfAddressResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfAddressResponse,
+              BaseResponseOfAddressResponse
+            >(rawData, 'BaseResponseOfAddressResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -417,11 +418,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
   }
 
   /// apiAddressIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [updateAddressRequest] 
+  /// * [id]
+  /// * [updateAddressRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -431,7 +432,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAddressIdPut({ 
+  Future<Response<BaseResponseOfstring>> apiAddressIdPut({
     required String id,
     required UpdateAddressRequest updateAddressRequest,
     CancelToken? cancelToken,
@@ -441,19 +442,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/address/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/address/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -464,13 +464,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateAddressRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateAddressRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -489,9 +486,14 @@ _bodyData=jsonEncode(updateAddressRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -515,10 +517,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiAddressIdSetDefaultPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -528,7 +530,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAddressIdSetDefaultPut({ 
+  Future<Response<BaseResponseOfstring>> apiAddressIdSetDefaultPut({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -537,19 +539,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/address/{id}/set-default'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/address/{id}/set-default'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -567,9 +568,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -593,10 +599,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiAddressPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createAddressRequest] 
+  /// * [createAddressRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -606,7 +612,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAddressPost({ 
+  Future<Response<BaseResponseOfstring>> apiAddressPost({
     required CreateAddressRequest createAddressRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -618,16 +624,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/address';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -638,13 +638,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createAddressRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createAddressRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -663,9 +660,14 @@ _bodyData=jsonEncode(createAddressRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -689,7 +691,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiAddressProvincesGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -701,7 +703,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfProvinceResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfProvinceResponse>> apiAddressProvincesGet({ 
+  Future<Response<BaseResponseOfListOfProvinceResponse>>
+  apiAddressProvincesGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -712,16 +715,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/address/provinces';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -739,9 +736,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfListOfProvinceResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProvinceResponse, BaseResponseOfListOfProvinceResponse>(rawData, 'BaseResponseOfListOfProvinceResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfProvinceResponse,
+              BaseResponseOfListOfProvinceResponse
+            >(rawData, 'BaseResponseOfListOfProvinceResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -765,12 +766,12 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProvinc
   }
 
   /// apiAddressStreetsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [province] 
-  /// * [district] 
-  /// * [wardStreet] 
+  /// * [province]
+  /// * [district]
+  /// * [wardStreet]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -780,7 +781,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProvinc
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfAddressLevel4Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfAddressLevel4Response>> apiAddressStreetsGet({ 
+  Future<Response<BaseResponseOfAddressLevel4Response>> apiAddressStreetsGet({
     String? province,
     String? district,
     String? wardStreet,
@@ -794,16 +795,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProvinc
     final _path = r'/api/address/streets';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -828,9 +823,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProvinc
     BaseResponseOfAddressLevel4Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfAddressLevel4Response, BaseResponseOfAddressLevel4Response>(rawData, 'BaseResponseOfAddressLevel4Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfAddressLevel4Response,
+              BaseResponseOfAddressLevel4Response
+            >(rawData, 'BaseResponseOfAddressLevel4Response', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -854,10 +853,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressLevel4
   }
 
   /// apiAddressWardsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [districtId] 
+  /// * [districtId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -867,7 +866,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressLevel4
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfWardResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfWardResponse>> apiAddressWardsGet({ 
+  Future<Response<BaseResponseOfListOfWardResponse>> apiAddressWardsGet({
     int? districtId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -879,16 +878,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressLevel4
     final _path = r'/api/address/wards';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -911,9 +904,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressLevel4
     BaseResponseOfListOfWardResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfWardResponse, BaseResponseOfListOfWardResponse>(rawData, 'BaseResponseOfListOfWardResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfWardResponse,
+              BaseResponseOfListOfWardResponse
+            >(rawData, 'BaseResponseOfListOfWardResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -935,5 +932,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfWardRes
       extra: _response.extra,
     );
   }
-
 }

@@ -17,17 +17,16 @@ import 'package:perfumegpt_api_client/src/model/register_request.dart';
 import 'package:perfumegpt_api_client/src/model/user_role.dart';
 
 class AuthsApi {
-
   final Dio _dio;
 
   const AuthsApi(this._dio);
 
   /// apiAuthsAdminRegisterPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [registerRequest] 
-  /// * [role] 
+  /// * [registerRequest]
+  /// * [role]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -37,7 +36,7 @@ class AuthsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAuthsAdminRegisterPost({ 
+  Future<Response<BaseResponseOfstring>> apiAuthsAdminRegisterPost({
     required RegisterRequest registerRequest,
     UserRole? role,
     CancelToken? cancelToken,
@@ -50,16 +49,10 @@ class AuthsApi {
     final _path = r'/api/auths/admin/register';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -67,17 +60,15 @@ class AuthsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-      if (role != null) r'role': role,
-    };
+    final _queryParameters = <String, dynamic>{if (role != null) r'role': role};
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(registerRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(registerRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -101,9 +92,14 @@ _bodyData=jsonEncode(registerRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -127,7 +123,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiAuthsApiTokenPost
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -139,7 +135,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfTokenResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfTokenResponse>> apiAuthsApiTokenPost({ 
+  Future<Response<BaseResponseOfTokenResponse>> apiAuthsApiTokenPost({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -150,16 +146,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/auths/api-token';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -177,9 +167,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfTokenResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse, BaseResponseOfTokenResponse>(rawData, 'BaseResponseOfTokenResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfTokenResponse,
+              BaseResponseOfTokenResponse
+            >(rawData, 'BaseResponseOfTokenResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -203,10 +197,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
   }
 
   /// apiAuthsGoogleLoginPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [googleLoginRequest] 
+  /// * [googleLoginRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -216,7 +210,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfTokenResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfTokenResponse>> apiAuthsGoogleLoginPost({ 
+  Future<Response<BaseResponseOfTokenResponse>> apiAuthsGoogleLoginPost({
     required GoogleLoginRequest googleLoginRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -228,16 +222,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
     final _path = r'/api/auths/google-login';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -248,13 +236,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(googleLoginRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(googleLoginRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -273,9 +258,13 @@ _bodyData=jsonEncode(googleLoginRequest);
     BaseResponseOfTokenResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse, BaseResponseOfTokenResponse>(rawData, 'BaseResponseOfTokenResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfTokenResponse,
+              BaseResponseOfTokenResponse
+            >(rawData, 'BaseResponseOfTokenResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -299,10 +288,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
   }
 
   /// apiAuthsLoginPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [loginRequest] 
+  /// * [loginRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -312,7 +301,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfTokenResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfTokenResponse>> apiAuthsLoginPost({ 
+  Future<Response<BaseResponseOfTokenResponse>> apiAuthsLoginPost({
     required LoginRequest loginRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -324,16 +313,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
     final _path = r'/api/auths/login';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -344,13 +327,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(loginRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(loginRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -369,9 +349,13 @@ _bodyData=jsonEncode(loginRequest);
     BaseResponseOfTokenResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse, BaseResponseOfTokenResponse>(rawData, 'BaseResponseOfTokenResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfTokenResponse,
+              BaseResponseOfTokenResponse
+            >(rawData, 'BaseResponseOfTokenResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -395,10 +379,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
   }
 
   /// apiAuthsRegisterPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [registerRequest] 
+  /// * [registerRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -408,7 +392,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAuthsRegisterPost({ 
+  Future<Response<BaseResponseOfstring>> apiAuthsRegisterPost({
     required RegisterRequest registerRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -420,16 +404,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
     final _path = r'/api/auths/register';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -440,13 +418,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(registerRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(registerRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -465,9 +440,14 @@ _bodyData=jsonEncode(registerRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -491,11 +471,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiAuthsVerifyEmailGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [email] 
-  /// * [token] 
+  /// * [email]
+  /// * [token]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -505,7 +485,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAuthsVerifyEmailGet({ 
+  Future<Response<BaseResponseOfstring>> apiAuthsVerifyEmailGet({
     String? email,
     String? token,
     CancelToken? cancelToken,
@@ -518,16 +498,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/auths/verify-email';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -551,9 +525,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -575,5 +554,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
       extra: _response.extra,
     );
   }
-
 }

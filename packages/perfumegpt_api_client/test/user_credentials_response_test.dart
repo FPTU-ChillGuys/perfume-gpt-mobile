@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UserCredentialsResponse
 void main() {
-  final UserCredentialsResponse? instance = /* UserCredentialsResponse(...) */ null;
+  final UserCredentialsResponse? instance = /* UserCredentialsResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(UserCredentialsResponse, () {
@@ -26,6 +27,5 @@ void main() {
     test('to test the property `email`', () async {
       // TODO
     });
-
   });
 }

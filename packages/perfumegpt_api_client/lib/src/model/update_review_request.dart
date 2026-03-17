@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_review_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,81 +18,49 @@ part 'update_review_request.g.dart';
 class UpdateReviewRequest {
   /// Returns a new [UpdateReviewRequest] instance.
   UpdateReviewRequest({
+    this.rating,
 
-     this.rating,
+    this.comment,
 
-     this.comment,
+    this.temporaryMediaIdsToAdd,
 
-     this.temporaryMediaIdsToAdd,
-
-     this.mediaIdsToDelete,
+    this.mediaIdsToDelete,
   });
 
-  @JsonKey(
-    
-    name: r'rating',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'rating', required: false, includeIfNull: false)
   final int? rating;
 
-
-
-  @JsonKey(
-    
-    name: r'comment',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'comment', required: false, includeIfNull: false)
   final String? comment;
 
-
-
   @JsonKey(
-    
     name: r'temporaryMediaIdsToAdd',
     required: false,
     includeIfNull: false,
   )
-
-
   final List<String>? temporaryMediaIdsToAdd;
 
-
-
-  @JsonKey(
-    
-    name: r'mediaIdsToDelete',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'mediaIdsToDelete', required: false, includeIfNull: false)
   final List<String>? mediaIdsToDelete;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateReviewRequest &&
+          other.rating == rating &&
+          other.comment == comment &&
+          other.temporaryMediaIdsToAdd == temporaryMediaIdsToAdd &&
+          other.mediaIdsToDelete == mediaIdsToDelete;
 
+  @override
+  int get hashCode =>
+      rating.hashCode +
+      comment.hashCode +
+      (temporaryMediaIdsToAdd == null ? 0 : temporaryMediaIdsToAdd.hashCode) +
+      (mediaIdsToDelete == null ? 0 : mediaIdsToDelete.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateReviewRequest &&
-      other.rating == rating &&
-      other.comment == comment &&
-      other.temporaryMediaIdsToAdd == temporaryMediaIdsToAdd &&
-      other.mediaIdsToDelete == mediaIdsToDelete;
-
-    @override
-    int get hashCode =>
-        rating.hashCode +
-        comment.hashCode +
-        (temporaryMediaIdsToAdd == null ? 0 : temporaryMediaIdsToAdd.hashCode) +
-        (mediaIdsToDelete == null ? 0 : mediaIdsToDelete.hashCode);
-
-  factory UpdateReviewRequest.fromJson(Map<String, dynamic> json) => _$UpdateReviewRequestFromJson(json);
+  factory UpdateReviewRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateReviewRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateReviewRequestToJson(this);
 
@@ -101,6 +68,4 @@ class UpdateReviewRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

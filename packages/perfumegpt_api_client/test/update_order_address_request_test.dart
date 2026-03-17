@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateOrderAddressRequest
 void main() {
-  final UpdateOrderAddressRequest? instance = /* UpdateOrderAddressRequest(...) */ null;
+  final UpdateOrderAddressRequest?
+  instance = /* UpdateOrderAddressRequest(...) */ null;
   // TODO add properties to the entity
 
   group(UpdateOrderAddressRequest, () {
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `recipientInformation`', () async {
       // TODO
     });
-
   });
 }

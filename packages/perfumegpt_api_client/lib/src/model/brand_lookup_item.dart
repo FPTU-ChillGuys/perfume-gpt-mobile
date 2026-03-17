@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'brand_lookup_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,50 +17,24 @@ part 'brand_lookup_item.g.dart';
 )
 class BrandLookupItem {
   /// Returns a new [BrandLookupItem] instance.
-  BrandLookupItem({
+  BrandLookupItem({this.id, this.name});
 
-     this.id,
-
-     this.name,
-  });
-
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final int? id;
 
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: false, includeIfNull: false)
   final String? name;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BrandLookupItem && other.id == id && other.name == name;
 
+  @override
+  int get hashCode => id.hashCode + name.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BrandLookupItem &&
-      other.id == id &&
-      other.name == name;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        name.hashCode;
-
-  factory BrandLookupItem.fromJson(Map<String, dynamic> json) => _$BrandLookupItemFromJson(json);
+  factory BrandLookupItem.fromJson(Map<String, dynamic> json) =>
+      _$BrandLookupItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$BrandLookupItemToJson(this);
 
@@ -69,6 +42,4 @@ class BrandLookupItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

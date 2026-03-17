@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_variant_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,177 +21,91 @@ part 'update_variant_request.g.dart';
 class UpdateVariantRequest {
   /// Returns a new [UpdateVariantRequest] instance.
   UpdateVariantRequest({
+    this.sku,
 
-     this.sku,
+    this.barcode,
 
-     this.barcode,
+    this.volumeMl,
 
-     this.volumeMl,
+    this.concentrationId,
 
-     this.concentrationId,
+    this.type,
 
-     this.type,
+    this.basePrice,
 
-     this.basePrice,
+    this.status,
 
-     this.status,
+    this.mediaIdsToDelete,
 
-     this.mediaIdsToDelete,
+    this.temporaryMediaIdsToAdd,
 
-     this.temporaryMediaIdsToAdd,
-
-     this.attributes,
+    this.attributes,
   });
 
-  @JsonKey(
-    
-    name: r'sku',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'sku', required: false, includeIfNull: false)
   final String? sku;
 
-
-
-  @JsonKey(
-    
-    name: r'barcode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'barcode', required: false, includeIfNull: false)
   final String? barcode;
 
-
-
-  @JsonKey(
-    
-    name: r'volumeMl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'volumeMl', required: false, includeIfNull: false)
   final int? volumeMl;
 
-
-
-  @JsonKey(
-    
-    name: r'concentrationId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'concentrationId', required: false, includeIfNull: false)
   final int? concentrationId;
 
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'type', required: false, includeIfNull: false)
   final VariantType? type;
 
-
-
-  @JsonKey(
-    
-    name: r'basePrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'basePrice', required: false, includeIfNull: false)
   final num? basePrice;
 
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final VariantStatus? status;
 
-
-
-  @JsonKey(
-    
-    name: r'mediaIdsToDelete',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'mediaIdsToDelete', required: false, includeIfNull: false)
   final List<String>? mediaIdsToDelete;
 
-
-
   @JsonKey(
-    
     name: r'temporaryMediaIdsToAdd',
     required: false,
     includeIfNull: false,
   )
-
-
   final List<String>? temporaryMediaIdsToAdd;
 
-
-
-  @JsonKey(
-    
-    name: r'attributes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'attributes', required: false, includeIfNull: false)
   final List<ProductAttributeDto>? attributes;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateVariantRequest &&
+          other.sku == sku &&
+          other.barcode == barcode &&
+          other.volumeMl == volumeMl &&
+          other.concentrationId == concentrationId &&
+          other.type == type &&
+          other.basePrice == basePrice &&
+          other.status == status &&
+          other.mediaIdsToDelete == mediaIdsToDelete &&
+          other.temporaryMediaIdsToAdd == temporaryMediaIdsToAdd &&
+          other.attributes == attributes;
 
+  @override
+  int get hashCode =>
+      sku.hashCode +
+      barcode.hashCode +
+      volumeMl.hashCode +
+      concentrationId.hashCode +
+      type.hashCode +
+      basePrice.hashCode +
+      status.hashCode +
+      (mediaIdsToDelete == null ? 0 : mediaIdsToDelete.hashCode) +
+      (temporaryMediaIdsToAdd == null ? 0 : temporaryMediaIdsToAdd.hashCode) +
+      (attributes == null ? 0 : attributes.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateVariantRequest &&
-      other.sku == sku &&
-      other.barcode == barcode &&
-      other.volumeMl == volumeMl &&
-      other.concentrationId == concentrationId &&
-      other.type == type &&
-      other.basePrice == basePrice &&
-      other.status == status &&
-      other.mediaIdsToDelete == mediaIdsToDelete &&
-      other.temporaryMediaIdsToAdd == temporaryMediaIdsToAdd &&
-      other.attributes == attributes;
-
-    @override
-    int get hashCode =>
-        sku.hashCode +
-        barcode.hashCode +
-        volumeMl.hashCode +
-        concentrationId.hashCode +
-        type.hashCode +
-        basePrice.hashCode +
-        status.hashCode +
-        (mediaIdsToDelete == null ? 0 : mediaIdsToDelete.hashCode) +
-        (temporaryMediaIdsToAdd == null ? 0 : temporaryMediaIdsToAdd.hashCode) +
-        (attributes == null ? 0 : attributes.hashCode);
-
-  factory UpdateVariantRequest.fromJson(Map<String, dynamic> json) => _$UpdateVariantRequestFromJson(json);
+  factory UpdateVariantRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateVariantRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateVariantRequestToJson(this);
 
@@ -200,6 +113,4 @@ class UpdateVariantRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

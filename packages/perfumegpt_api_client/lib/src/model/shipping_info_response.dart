@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'shipping_info_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,113 +19,59 @@ part 'shipping_info_response.g.dart';
 class ShippingInfoResponse {
   /// Returns a new [ShippingInfoResponse] instance.
   ShippingInfoResponse({
+    this.id,
 
-     this.id,
+    this.carrierName,
 
-     this.carrierName,
+    this.trackingNumber,
 
-     this.trackingNumber,
+    this.shippingFee,
 
-     this.shippingFee,
+    this.status,
 
-     this.status,
-
-     this.leadTime,
+    this.leadTime,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'carrierName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'carrierName', required: false, includeIfNull: false)
   final CarrierName? carrierName;
 
-
-
-  @JsonKey(
-    
-    name: r'trackingNumber',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'trackingNumber', required: false, includeIfNull: false)
   final String? trackingNumber;
 
-
-
-  @JsonKey(
-    
-    name: r'shippingFee',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'shippingFee', required: false, includeIfNull: false)
   final num? shippingFee;
 
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final int? status;
 
-
-
-  @JsonKey(
-    
-    name: r'leadTime',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'leadTime', required: false, includeIfNull: false)
   final int? leadTime;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ShippingInfoResponse &&
+          other.id == id &&
+          other.carrierName == carrierName &&
+          other.trackingNumber == trackingNumber &&
+          other.shippingFee == shippingFee &&
+          other.status == status &&
+          other.leadTime == leadTime;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      carrierName.hashCode +
+      (trackingNumber == null ? 0 : trackingNumber.hashCode) +
+      shippingFee.hashCode +
+      status.hashCode +
+      (leadTime == null ? 0 : leadTime.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ShippingInfoResponse &&
-      other.id == id &&
-      other.carrierName == carrierName &&
-      other.trackingNumber == trackingNumber &&
-      other.shippingFee == shippingFee &&
-      other.status == status &&
-      other.leadTime == leadTime;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        carrierName.hashCode +
-        (trackingNumber == null ? 0 : trackingNumber.hashCode) +
-        shippingFee.hashCode +
-        status.hashCode +
-        (leadTime == null ? 0 : leadTime.hashCode);
-
-  factory ShippingInfoResponse.fromJson(Map<String, dynamic> json) => _$ShippingInfoResponseFromJson(json);
+  factory ShippingInfoResponse.fromJson(Map<String, dynamic> json) =>
+      _$ShippingInfoResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ShippingInfoResponseToJson(this);
 
@@ -134,6 +79,4 @@ class ShippingInfoResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

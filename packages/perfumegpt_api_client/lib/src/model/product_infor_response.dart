@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_infor_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,177 +18,87 @@ part 'product_infor_response.g.dart';
 class ProductInforResponse {
   /// Returns a new [ProductInforResponse] instance.
   ProductInforResponse({
+    this.productCode,
 
-     this.productCode,
+    this.brandName,
 
-     this.brandName,
+    this.origin,
 
-     this.origin,
+    this.releaseYear,
 
-     this.releaseYear,
+    this.scentGroup,
 
-     this.scentGroup,
+    this.style,
 
-     this.style,
+    this.topNotes,
 
-     this.topNotes,
+    this.middleNotes,
 
-     this.middleNotes,
+    this.baseNotes,
 
-     this.baseNotes,
-
-     this.description,
+    this.description,
   });
 
-  @JsonKey(
-    
-    name: r'productCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'productCode', required: false, includeIfNull: false)
   final String? productCode;
 
-
-
-  @JsonKey(
-    
-    name: r'brandName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'brandName', required: false, includeIfNull: false)
   final String? brandName;
 
-
-
-  @JsonKey(
-    
-    name: r'origin',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'origin', required: false, includeIfNull: false)
   final String? origin;
 
-
-
-  @JsonKey(
-    
-    name: r'releaseYear',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'releaseYear', required: false, includeIfNull: false)
   final int? releaseYear;
 
-
-
-  @JsonKey(
-    
-    name: r'scentGroup',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'scentGroup', required: false, includeIfNull: false)
   final String? scentGroup;
 
-
-
-  @JsonKey(
-    
-    name: r'style',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'style', required: false, includeIfNull: false)
   final String? style;
 
-
-
-  @JsonKey(
-    
-    name: r'topNotes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'topNotes', required: false, includeIfNull: false)
   final String? topNotes;
 
-
-
-  @JsonKey(
-    
-    name: r'middleNotes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'middleNotes', required: false, includeIfNull: false)
   final String? middleNotes;
 
-
-
-  @JsonKey(
-    
-    name: r'baseNotes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'baseNotes', required: false, includeIfNull: false)
   final String? baseNotes;
 
-
-
-  @JsonKey(
-    
-    name: r'description',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'description', required: false, includeIfNull: false)
   final String? description;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductInforResponse &&
+          other.productCode == productCode &&
+          other.brandName == brandName &&
+          other.origin == origin &&
+          other.releaseYear == releaseYear &&
+          other.scentGroup == scentGroup &&
+          other.style == style &&
+          other.topNotes == topNotes &&
+          other.middleNotes == middleNotes &&
+          other.baseNotes == baseNotes &&
+          other.description == description;
 
+  @override
+  int get hashCode =>
+      productCode.hashCode +
+      brandName.hashCode +
+      origin.hashCode +
+      releaseYear.hashCode +
+      scentGroup.hashCode +
+      style.hashCode +
+      topNotes.hashCode +
+      middleNotes.hashCode +
+      baseNotes.hashCode +
+      description.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductInforResponse &&
-      other.productCode == productCode &&
-      other.brandName == brandName &&
-      other.origin == origin &&
-      other.releaseYear == releaseYear &&
-      other.scentGroup == scentGroup &&
-      other.style == style &&
-      other.topNotes == topNotes &&
-      other.middleNotes == middleNotes &&
-      other.baseNotes == baseNotes &&
-      other.description == description;
-
-    @override
-    int get hashCode =>
-        productCode.hashCode +
-        brandName.hashCode +
-        origin.hashCode +
-        releaseYear.hashCode +
-        scentGroup.hashCode +
-        style.hashCode +
-        topNotes.hashCode +
-        middleNotes.hashCode +
-        baseNotes.hashCode +
-        description.hashCode;
-
-  factory ProductInforResponse.fromJson(Map<String, dynamic> json) => _$ProductInforResponseFromJson(json);
+  factory ProductInforResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductInforResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductInforResponseToJson(this);
 
@@ -197,6 +106,4 @@ class ProductInforResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

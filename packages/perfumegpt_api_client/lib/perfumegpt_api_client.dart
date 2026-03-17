@@ -8,7 +8,6 @@ export 'package:perfumegpt_api_client/src/auth/basic_auth.dart';
 export 'package:perfumegpt_api_client/src/auth/bearer_auth.dart';
 export 'package:perfumegpt_api_client/src/auth/oauth.dart';
 
-
 export 'package:perfumegpt_api_client/src/api/address_api.dart';
 export 'package:perfumegpt_api_client/src/api/attributes_api.dart';
 export 'package:perfumegpt_api_client/src/api/auths_api.dart';
@@ -264,4 +263,3 @@ export 'package:perfumegpt_api_client/src/model/verify_stock_adjustment_detail_r
 export 'package:perfumegpt_api_client/src/model/verify_stock_adjustment_request.dart';
 export 'package:perfumegpt_api_client/src/model/voucher_response.dart';
 export 'package:perfumegpt_api_client/src/model/ward_response.dart';
-

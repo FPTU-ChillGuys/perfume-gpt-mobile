@@ -9,15 +9,13 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-
 class BackgroundJobsApi {
-
   final Dio _dio;
 
   const BackgroundJobsApi(this._dio);
 
   /// apiBackgroundjobsCleanupTemporaryMediaPost
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -29,7 +27,7 @@ class BackgroundJobsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> apiBackgroundjobsCleanupTemporaryMediaPost({ 
+  Future<Response<void>> apiBackgroundjobsCleanupTemporaryMediaPost({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -40,16 +38,10 @@ class BackgroundJobsApi {
     final _path = r'/api/backgroundjobs/cleanup-temporary-media';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -68,7 +60,7 @@ class BackgroundJobsApi {
   }
 
   /// apiBackgroundjobsDashboardUrlGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -80,7 +72,7 @@ class BackgroundJobsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> apiBackgroundjobsDashboardUrlGet({ 
+  Future<Response<void>> apiBackgroundjobsDashboardUrlGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -91,16 +83,10 @@ class BackgroundJobsApi {
     final _path = r'/api/backgroundjobs/dashboard-url';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -119,7 +105,7 @@ class BackgroundJobsApi {
   }
 
   /// apiBackgroundjobsProcessExpiredReservationsPost
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -131,7 +117,7 @@ class BackgroundJobsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> apiBackgroundjobsProcessExpiredReservationsPost({ 
+  Future<Response<void>> apiBackgroundjobsProcessExpiredReservationsPost({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -142,16 +128,10 @@ class BackgroundJobsApi {
     final _path = r'/api/backgroundjobs/process-expired-reservations';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -170,7 +150,7 @@ class BackgroundJobsApi {
   }
 
   /// apiBackgroundjobsTriggerJobPost
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -182,7 +162,7 @@ class BackgroundJobsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> apiBackgroundjobsTriggerJobPost({ 
+  Future<Response<void>> apiBackgroundjobsTriggerJobPost({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -193,16 +173,10 @@ class BackgroundJobsApi {
     final _path = r'/api/backgroundjobs/trigger-job';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -219,5 +193,4 @@ class BackgroundJobsApi {
 
     return _response;
   }
-
 }

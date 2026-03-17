@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateInStoreOrderRequest
 void main() {
-  final CreateInStoreOrderRequest? instance = /* CreateInStoreOrderRequest(...) */ null;
+  final CreateInStoreOrderRequest?
+  instance = /* CreateInStoreOrderRequest(...) */ null;
   // TODO add properties to the entity
 
   group(CreateInStoreOrderRequest, () {
@@ -31,6 +32,5 @@ void main() {
     test('to test the property `payment`', () async {
       // TODO
     });
-
   });
 }

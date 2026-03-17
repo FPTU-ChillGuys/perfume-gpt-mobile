@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'stock_adjustment_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,209 +21,101 @@ part 'stock_adjustment_response.g.dart';
 class StockAdjustmentResponse {
   /// Returns a new [StockAdjustmentResponse] instance.
   StockAdjustmentResponse({
+    this.id,
 
-     this.id,
+    this.createdById,
 
-     this.createdById,
+    this.createdByName,
 
-     this.createdByName,
+    this.verifiedById,
 
-     this.verifiedById,
+    this.verifiedByName,
 
-     this.verifiedByName,
+    this.adjustmentDate,
 
-     this.adjustmentDate,
+    this.reason,
 
-     this.reason,
+    this.note,
 
-     this.note,
+    this.status,
 
-     this.status,
+    this.adjustmentDetails,
 
-     this.adjustmentDetails,
+    this.createdAt,
 
-     this.createdAt,
-
-     this.updatedAt,
+    this.updatedAt,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'createdById',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'createdById', required: false, includeIfNull: false)
   final String? createdById;
 
-
-
-  @JsonKey(
-    
-    name: r'createdByName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'createdByName', required: false, includeIfNull: false)
   final String? createdByName;
 
-
-
-  @JsonKey(
-    
-    name: r'verifiedById',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'verifiedById', required: false, includeIfNull: false)
   final String? verifiedById;
 
-
-
-  @JsonKey(
-    
-    name: r'verifiedByName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'verifiedByName', required: false, includeIfNull: false)
   final String? verifiedByName;
 
-
-
-  @JsonKey(
-    
-    name: r'adjustmentDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'adjustmentDate', required: false, includeIfNull: false)
   final DateTime? adjustmentDate;
 
-
-
-  @JsonKey(
-    
-    name: r'reason',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'reason', required: false, includeIfNull: false)
   final StockAdjustmentReason? reason;
 
-
-
-  @JsonKey(
-    
-    name: r'note',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
   final String? note;
 
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final StockAdjustmentStatus? status;
 
-
-
-  @JsonKey(
-    
-    name: r'adjustmentDetails',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'adjustmentDetails', required: false, includeIfNull: false)
   final List<StockAdjustmentDetailResponse>? adjustmentDetails;
 
-
-
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
   final DateTime? createdAt;
 
-
-
-  @JsonKey(
-    
-    name: r'updatedAt',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
   final DateTime? updatedAt;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StockAdjustmentResponse &&
+          other.id == id &&
+          other.createdById == createdById &&
+          other.createdByName == createdByName &&
+          other.verifiedById == verifiedById &&
+          other.verifiedByName == verifiedByName &&
+          other.adjustmentDate == adjustmentDate &&
+          other.reason == reason &&
+          other.note == note &&
+          other.status == status &&
+          other.adjustmentDetails == adjustmentDetails &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      createdById.hashCode +
+      createdByName.hashCode +
+      (verifiedById == null ? 0 : verifiedById.hashCode) +
+      (verifiedByName == null ? 0 : verifiedByName.hashCode) +
+      adjustmentDate.hashCode +
+      reason.hashCode +
+      (note == null ? 0 : note.hashCode) +
+      status.hashCode +
+      adjustmentDetails.hashCode +
+      createdAt.hashCode +
+      (updatedAt == null ? 0 : updatedAt.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is StockAdjustmentResponse &&
-      other.id == id &&
-      other.createdById == createdById &&
-      other.createdByName == createdByName &&
-      other.verifiedById == verifiedById &&
-      other.verifiedByName == verifiedByName &&
-      other.adjustmentDate == adjustmentDate &&
-      other.reason == reason &&
-      other.note == note &&
-      other.status == status &&
-      other.adjustmentDetails == adjustmentDetails &&
-      other.createdAt == createdAt &&
-      other.updatedAt == updatedAt;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        createdById.hashCode +
-        createdByName.hashCode +
-        (verifiedById == null ? 0 : verifiedById.hashCode) +
-        (verifiedByName == null ? 0 : verifiedByName.hashCode) +
-        adjustmentDate.hashCode +
-        reason.hashCode +
-        (note == null ? 0 : note.hashCode) +
-        status.hashCode +
-        adjustmentDetails.hashCode +
-        createdAt.hashCode +
-        (updatedAt == null ? 0 : updatedAt.hashCode);
-
-  factory StockAdjustmentResponse.fromJson(Map<String, dynamic> json) => _$StockAdjustmentResponseFromJson(json);
+  factory StockAdjustmentResponse.fromJson(Map<String, dynamic> json) =>
+      _$StockAdjustmentResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$StockAdjustmentResponseToJson(this);
 
@@ -232,6 +123,4 @@ class StockAdjustmentResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'variant_lookup_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,145 +19,73 @@ part 'variant_lookup_item.g.dart';
 class VariantLookupItem {
   /// Returns a new [VariantLookupItem] instance.
   VariantLookupItem({
+    this.id,
 
-     this.id,
+    this.barcode,
 
-     this.barcode,
+    this.sku,
 
-     this.sku,
+    this.displayName,
 
-     this.displayName,
+    this.volumeMl,
 
-     this.volumeMl,
+    this.concentrationName,
 
-     this.concentrationName,
+    this.basePrice,
 
-     this.basePrice,
-
-     this.primaryImage,
+    this.primaryImage,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'barcode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'barcode', required: false, includeIfNull: false)
   final String? barcode;
 
-
-
-  @JsonKey(
-    
-    name: r'sku',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'sku', required: false, includeIfNull: false)
   final String? sku;
 
-
-
-  @JsonKey(
-    
-    name: r'displayName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'displayName', required: false, includeIfNull: false)
   final String? displayName;
 
-
-
-  @JsonKey(
-    
-    name: r'volumeMl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'volumeMl', required: false, includeIfNull: false)
   final int? volumeMl;
 
-
-
-  @JsonKey(
-    
-    name: r'concentrationName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'concentrationName', required: false, includeIfNull: false)
   final String? concentrationName;
 
-
-
-  @JsonKey(
-    
-    name: r'basePrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'basePrice', required: false, includeIfNull: false)
   final num? basePrice;
 
-
-
-  @JsonKey(
-    
-    name: r'primaryImage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'primaryImage', required: false, includeIfNull: false)
   final MediaResponse? primaryImage;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VariantLookupItem &&
+          other.id == id &&
+          other.barcode == barcode &&
+          other.sku == sku &&
+          other.displayName == displayName &&
+          other.volumeMl == volumeMl &&
+          other.concentrationName == concentrationName &&
+          other.basePrice == basePrice &&
+          other.primaryImage == primaryImage;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      barcode.hashCode +
+      sku.hashCode +
+      displayName.hashCode +
+      volumeMl.hashCode +
+      concentrationName.hashCode +
+      basePrice.hashCode +
+      (primaryImage == null ? 0 : primaryImage.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is VariantLookupItem &&
-      other.id == id &&
-      other.barcode == barcode &&
-      other.sku == sku &&
-      other.displayName == displayName &&
-      other.volumeMl == volumeMl &&
-      other.concentrationName == concentrationName &&
-      other.basePrice == basePrice &&
-      other.primaryImage == primaryImage;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        barcode.hashCode +
-        sku.hashCode +
-        displayName.hashCode +
-        volumeMl.hashCode +
-        concentrationName.hashCode +
-        basePrice.hashCode +
-        (primaryImage == null ? 0 : primaryImage.hashCode);
-
-  factory VariantLookupItem.fromJson(Map<String, dynamic> json) => _$VariantLookupItemFromJson(json);
+  factory VariantLookupItem.fromJson(Map<String, dynamic> json) =>
+      _$VariantLookupItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$VariantLookupItemToJson(this);
 
@@ -166,6 +93,4 @@ class VariantLookupItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-
