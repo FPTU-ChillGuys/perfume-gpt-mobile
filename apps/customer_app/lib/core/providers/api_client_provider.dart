@@ -19,8 +19,10 @@ PerfumegptApiClient apiClient(Ref ref) {
   final dio = Dio(BaseOptions(baseUrl: baseUrl));
 
   if (!kIsWeb && kDebugMode) {
-    (dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate = (client) {
-      client.badCertificateCallback = (cert, host, port) => true;
+    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
+      final client = HttpClient();
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
       return client;
     };
   }
