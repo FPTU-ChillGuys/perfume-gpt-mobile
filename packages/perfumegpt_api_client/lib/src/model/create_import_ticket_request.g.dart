@@ -15,12 +15,13 @@ abstract class _$CreateImportTicketRequestCWProxy {
     List<CreateImportDetailRequest>? importDetails,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateImportTicketRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateImportTicketRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateImportTicketRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateImportTicketRequest call({
     int? supplierId,
     DateTime? expectedArrivalDate,
@@ -28,7 +29,8 @@ abstract class _$CreateImportTicketRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateImportTicketRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateImportTicketRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateImportTicketRequest.copyWith(...)` or call `instanceOfCreateImportTicketRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateImportTicketRequestCWProxyImpl
     implements _$CreateImportTicketRequestCWProxy {
   const _$CreateImportTicketRequestCWProxyImpl(this._value);
@@ -37,25 +39,26 @@ class _$CreateImportTicketRequestCWProxyImpl
 
   @override
   CreateImportTicketRequest supplierId(int? supplierId) =>
-      this(supplierId: supplierId);
+      call(supplierId: supplierId);
 
   @override
   CreateImportTicketRequest expectedArrivalDate(
     DateTime? expectedArrivalDate,
-  ) => this(expectedArrivalDate: expectedArrivalDate);
+  ) => call(expectedArrivalDate: expectedArrivalDate);
 
   @override
   CreateImportTicketRequest importDetails(
     List<CreateImportDetailRequest>? importDetails,
-  ) => this(importDetails: importDetails);
+  ) => call(importDetails: importDetails);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateImportTicketRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateImportTicketRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateImportTicketRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateImportTicketRequest call({
     Object? supplierId = const $CopyWithPlaceholder(),
     Object? expectedArrivalDate = const $CopyWithPlaceholder(),
@@ -79,7 +82,8 @@ class _$CreateImportTicketRequestCWProxyImpl
 }
 
 extension $CreateImportTicketRequestCopyWith on CreateImportTicketRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateImportTicketRequest.copyWith(...)` or like so:`instanceOfCreateImportTicketRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateImportTicketRequest.copyWith(...)` or `instanceOfCreateImportTicketRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateImportTicketRequestCWProxy get copyWith =>
       _$CreateImportTicketRequestCWProxyImpl(this);

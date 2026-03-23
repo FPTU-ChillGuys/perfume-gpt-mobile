@@ -21,12 +21,13 @@ abstract class _$AvailableVoucherResponseCWProxy {
 
   AvailableVoucherResponse remainingQuantity(int? remainingQuantity);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AvailableVoucherResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AvailableVoucherResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AvailableVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AvailableVoucherResponse call({
     String? id,
     String? code,
@@ -38,7 +39,8 @@ abstract class _$AvailableVoucherResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAvailableVoucherResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAvailableVoucherResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAvailableVoucherResponse.copyWith(...)` or call `instanceOfAvailableVoucherResponse.copyWith.fieldName(value)` for a single field.
 class _$AvailableVoucherResponseCWProxyImpl
     implements _$AvailableVoucherResponseCWProxy {
   const _$AvailableVoucherResponseCWProxyImpl(this._value);
@@ -46,38 +48,39 @@ class _$AvailableVoucherResponseCWProxyImpl
   final AvailableVoucherResponse _value;
 
   @override
-  AvailableVoucherResponse id(String? id) => this(id: id);
+  AvailableVoucherResponse id(String? id) => call(id: id);
 
   @override
-  AvailableVoucherResponse code(String? code) => this(code: code);
+  AvailableVoucherResponse code(String? code) => call(code: code);
 
   @override
   AvailableVoucherResponse discountValue(num? discountValue) =>
-      this(discountValue: discountValue);
+      call(discountValue: discountValue);
 
   @override
   AvailableVoucherResponse discountType(DiscountType? discountType) =>
-      this(discountType: discountType);
+      call(discountType: discountType);
 
   @override
   AvailableVoucherResponse minOrderValue(num? minOrderValue) =>
-      this(minOrderValue: minOrderValue);
+      call(minOrderValue: minOrderValue);
 
   @override
   AvailableVoucherResponse expiryDate(DateTime? expiryDate) =>
-      this(expiryDate: expiryDate);
+      call(expiryDate: expiryDate);
 
   @override
   AvailableVoucherResponse remainingQuantity(int? remainingQuantity) =>
-      this(remainingQuantity: remainingQuantity);
+      call(remainingQuantity: remainingQuantity);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AvailableVoucherResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AvailableVoucherResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AvailableVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AvailableVoucherResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? code = const $CopyWithPlaceholder(),
@@ -121,7 +124,8 @@ class _$AvailableVoucherResponseCWProxyImpl
 }
 
 extension $AvailableVoucherResponseCopyWith on AvailableVoucherResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfAvailableVoucherResponse.copyWith(...)` or like so:`instanceOfAvailableVoucherResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAvailableVoucherResponse.copyWith(...)` or `instanceOfAvailableVoucherResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AvailableVoucherResponseCWProxy get copyWith =>
       _$AvailableVoucherResponseCWProxyImpl(this);

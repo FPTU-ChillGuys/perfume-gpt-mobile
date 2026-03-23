@@ -15,12 +15,13 @@ abstract class _$AttributeLookupItemCWProxy {
 
   AttributeLookupItem isVariantLevel(bool? isVariantLevel);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AttributeLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AttributeLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AttributeLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AttributeLookupItem call({
     int? id,
     String? name,
@@ -29,33 +30,35 @@ abstract class _$AttributeLookupItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAttributeLookupItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAttributeLookupItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAttributeLookupItem.copyWith(...)` or call `instanceOfAttributeLookupItem.copyWith.fieldName(value)` for a single field.
 class _$AttributeLookupItemCWProxyImpl implements _$AttributeLookupItemCWProxy {
   const _$AttributeLookupItemCWProxyImpl(this._value);
 
   final AttributeLookupItem _value;
 
   @override
-  AttributeLookupItem id(int? id) => this(id: id);
+  AttributeLookupItem id(int? id) => call(id: id);
 
   @override
-  AttributeLookupItem name(String? name) => this(name: name);
+  AttributeLookupItem name(String? name) => call(name: name);
 
   @override
   AttributeLookupItem description(String? description) =>
-      this(description: description);
+      call(description: description);
 
   @override
   AttributeLookupItem isVariantLevel(bool? isVariantLevel) =>
-      this(isVariantLevel: isVariantLevel);
+      call(isVariantLevel: isVariantLevel);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AttributeLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AttributeLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AttributeLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AttributeLookupItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
@@ -84,7 +87,8 @@ class _$AttributeLookupItemCWProxyImpl implements _$AttributeLookupItemCWProxy {
 }
 
 extension $AttributeLookupItemCopyWith on AttributeLookupItem {
-  /// Returns a callable class that can be used as follows: `instanceOfAttributeLookupItem.copyWith(...)` or like so:`instanceOfAttributeLookupItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAttributeLookupItem.copyWith(...)` or `instanceOfAttributeLookupItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AttributeLookupItemCWProxy get copyWith =>
       _$AttributeLookupItemCWProxyImpl(this);

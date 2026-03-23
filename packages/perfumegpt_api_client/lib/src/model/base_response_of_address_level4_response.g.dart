@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfAddressLevel4ResponseCWProxy {
 
   BaseResponseOfAddressLevel4Response errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfAddressLevel4Response(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfAddressLevel4Response(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfAddressLevel4Response(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfAddressLevel4Response call({
     AddressLevel4Response? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfAddressLevel4ResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfAddressLevel4Response.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfAddressLevel4Response.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfAddressLevel4Response.copyWith(...)` or call `instanceOfBaseResponseOfAddressLevel4Response.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfAddressLevel4ResponseCWProxyImpl
     implements _$BaseResponseOfAddressLevel4ResponseCWProxy {
   const _$BaseResponseOfAddressLevel4ResponseCWProxyImpl(this._value);
@@ -41,31 +43,32 @@ class _$BaseResponseOfAddressLevel4ResponseCWProxyImpl
 
   @override
   BaseResponseOfAddressLevel4Response payload(AddressLevel4Response? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
   BaseResponseOfAddressLevel4Response success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfAddressLevel4Response message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfAddressLevel4Response errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfAddressLevel4Response errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfAddressLevel4Response(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfAddressLevel4Response(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfAddressLevel4Response(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfAddressLevel4Response call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -100,7 +103,8 @@ class _$BaseResponseOfAddressLevel4ResponseCWProxyImpl
 
 extension $BaseResponseOfAddressLevel4ResponseCopyWith
     on BaseResponseOfAddressLevel4Response {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfAddressLevel4Response.copyWith(...)` or like so:`instanceOfBaseResponseOfAddressLevel4Response.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfAddressLevel4Response.copyWith(...)` or `instanceOfBaseResponseOfAddressLevel4Response.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfAddressLevel4ResponseCWProxy get copyWith =>
       _$BaseResponseOfAddressLevel4ResponseCWProxyImpl(this);

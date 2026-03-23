@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfbooleanCWProxy {
 
   BaseResponseOfboolean errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfboolean(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfboolean(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfboolean(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfboolean call({
     bool? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfbooleanCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfboolean.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfboolean.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfboolean.copyWith(...)` or call `instanceOfBaseResponseOfboolean.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfbooleanCWProxyImpl
     implements _$BaseResponseOfbooleanCWProxy {
   const _$BaseResponseOfbooleanCWProxyImpl(this._value);
@@ -40,28 +42,29 @@ class _$BaseResponseOfbooleanCWProxyImpl
   final BaseResponseOfboolean _value;
 
   @override
-  BaseResponseOfboolean payload(bool? payload) => this(payload: payload);
+  BaseResponseOfboolean payload(bool? payload) => call(payload: payload);
 
   @override
-  BaseResponseOfboolean success(bool? success) => this(success: success);
+  BaseResponseOfboolean success(bool? success) => call(success: success);
 
   @override
-  BaseResponseOfboolean message(String? message) => this(message: message);
+  BaseResponseOfboolean message(String? message) => call(message: message);
 
   @override
-  BaseResponseOfboolean errors(List<String>? errors) => this(errors: errors);
+  BaseResponseOfboolean errors(List<String>? errors) => call(errors: errors);
 
   @override
   BaseResponseOfboolean errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfboolean(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfboolean(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfboolean(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfboolean call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -95,7 +98,8 @@ class _$BaseResponseOfbooleanCWProxyImpl
 }
 
 extension $BaseResponseOfbooleanCopyWith on BaseResponseOfboolean {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfboolean.copyWith(...)` or like so:`instanceOfBaseResponseOfboolean.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfboolean.copyWith(...)` or `instanceOfBaseResponseOfboolean.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfbooleanCWProxy get copyWith =>
       _$BaseResponseOfbooleanCWProxyImpl(this);

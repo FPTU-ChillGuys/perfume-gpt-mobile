@@ -15,12 +15,13 @@ abstract class _$StaffLookupItemCWProxy {
 
   StaffLookupItem email(String? email);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StaffLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StaffLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StaffLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StaffLookupItem call({
     String? id,
     String? userName,
@@ -29,31 +30,33 @@ abstract class _$StaffLookupItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfStaffLookupItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfStaffLookupItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfStaffLookupItem.copyWith(...)` or call `instanceOfStaffLookupItem.copyWith.fieldName(value)` for a single field.
 class _$StaffLookupItemCWProxyImpl implements _$StaffLookupItemCWProxy {
   const _$StaffLookupItemCWProxyImpl(this._value);
 
   final StaffLookupItem _value;
 
   @override
-  StaffLookupItem id(String? id) => this(id: id);
+  StaffLookupItem id(String? id) => call(id: id);
 
   @override
-  StaffLookupItem userName(String? userName) => this(userName: userName);
+  StaffLookupItem userName(String? userName) => call(userName: userName);
 
   @override
-  StaffLookupItem fullName(String? fullName) => this(fullName: fullName);
+  StaffLookupItem fullName(String? fullName) => call(fullName: fullName);
 
   @override
-  StaffLookupItem email(String? email) => this(email: email);
+  StaffLookupItem email(String? email) => call(email: email);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StaffLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StaffLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StaffLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StaffLookupItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? userName = const $CopyWithPlaceholder(),
@@ -82,7 +85,8 @@ class _$StaffLookupItemCWProxyImpl implements _$StaffLookupItemCWProxy {
 }
 
 extension $StaffLookupItemCopyWith on StaffLookupItem {
-  /// Returns a callable class that can be used as follows: `instanceOfStaffLookupItem.copyWith(...)` or like so:`instanceOfStaffLookupItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfStaffLookupItem.copyWith(...)` or `instanceOfStaffLookupItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$StaffLookupItemCWProxy get copyWith => _$StaffLookupItemCWProxyImpl(this);
 }

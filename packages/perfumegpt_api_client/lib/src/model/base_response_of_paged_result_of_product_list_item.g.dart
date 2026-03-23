@@ -21,12 +21,13 @@ abstract class _$BaseResponseOfPagedResultOfProductListItemCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPagedResultOfProductListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfProductListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPagedResultOfProductListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPagedResultOfProductListItem call({
     PagedResultOfProductListItem? payload,
     bool? success,
@@ -36,7 +37,8 @@ abstract class _$BaseResponseOfPagedResultOfProductListItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfPagedResultOfProductListItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfPagedResultOfProductListItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfPagedResultOfProductListItem.copyWith(...)` or call `instanceOfBaseResponseOfPagedResultOfProductListItem.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfPagedResultOfProductListItemCWProxyImpl
     implements _$BaseResponseOfPagedResultOfProductListItemCWProxy {
   const _$BaseResponseOfPagedResultOfProductListItemCWProxyImpl(this._value);
@@ -46,32 +48,33 @@ class _$BaseResponseOfPagedResultOfProductListItemCWProxyImpl
   @override
   BaseResponseOfPagedResultOfProductListItem payload(
     PagedResultOfProductListItem? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfPagedResultOfProductListItem success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfPagedResultOfProductListItem message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfPagedResultOfProductListItem errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfPagedResultOfProductListItem errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPagedResultOfProductListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfProductListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPagedResultOfProductListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPagedResultOfProductListItem call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -106,7 +109,8 @@ class _$BaseResponseOfPagedResultOfProductListItemCWProxyImpl
 
 extension $BaseResponseOfPagedResultOfProductListItemCopyWith
     on BaseResponseOfPagedResultOfProductListItem {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfPagedResultOfProductListItem.copyWith(...)` or like so:`instanceOfBaseResponseOfPagedResultOfProductListItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfPagedResultOfProductListItem.copyWith(...)` or `instanceOfBaseResponseOfPagedResultOfProductListItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfPagedResultOfProductListItemCWProxy get copyWith =>
       _$BaseResponseOfPagedResultOfProductListItemCWProxyImpl(this);

@@ -19,12 +19,13 @@ abstract class _$PickListBatchInfoCWProxy {
 
   PickListBatchInfo expiryDate(DateTime? expiryDate);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PickListBatchInfo(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PickListBatchInfo(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PickListBatchInfo(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PickListBatchInfo call({
     String? reservationId,
     String? batchId,
@@ -35,7 +36,8 @@ abstract class _$PickListBatchInfoCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPickListBatchInfo.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPickListBatchInfo.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPickListBatchInfo.copyWith(...)` or call `instanceOfPickListBatchInfo.copyWith.fieldName(value)` for a single field.
 class _$PickListBatchInfoCWProxyImpl implements _$PickListBatchInfoCWProxy {
   const _$PickListBatchInfoCWProxyImpl(this._value);
 
@@ -43,32 +45,33 @@ class _$PickListBatchInfoCWProxyImpl implements _$PickListBatchInfoCWProxy {
 
   @override
   PickListBatchInfo reservationId(String? reservationId) =>
-      this(reservationId: reservationId);
+      call(reservationId: reservationId);
 
   @override
-  PickListBatchInfo batchId(String? batchId) => this(batchId: batchId);
+  PickListBatchInfo batchId(String? batchId) => call(batchId: batchId);
 
   @override
-  PickListBatchInfo batchCode(String? batchCode) => this(batchCode: batchCode);
+  PickListBatchInfo batchCode(String? batchCode) => call(batchCode: batchCode);
 
   @override
-  PickListBatchInfo note(String? note) => this(note: note);
+  PickListBatchInfo note(String? note) => call(note: note);
 
   @override
   PickListBatchInfo reservedQuantity(int? reservedQuantity) =>
-      this(reservedQuantity: reservedQuantity);
+      call(reservedQuantity: reservedQuantity);
 
   @override
   PickListBatchInfo expiryDate(DateTime? expiryDate) =>
-      this(expiryDate: expiryDate);
+      call(expiryDate: expiryDate);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PickListBatchInfo(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PickListBatchInfo(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PickListBatchInfo(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PickListBatchInfo call({
     Object? reservationId = const $CopyWithPlaceholder(),
     Object? batchId = const $CopyWithPlaceholder(),
@@ -107,7 +110,8 @@ class _$PickListBatchInfoCWProxyImpl implements _$PickListBatchInfoCWProxy {
 }
 
 extension $PickListBatchInfoCopyWith on PickListBatchInfo {
-  /// Returns a callable class that can be used as follows: `instanceOfPickListBatchInfo.copyWith(...)` or like so:`instanceOfPickListBatchInfo.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPickListBatchInfo.copyWith(...)` or `instanceOfPickListBatchInfo.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PickListBatchInfoCWProxy get copyWith =>
       _$PickListBatchInfoCWProxyImpl(this);

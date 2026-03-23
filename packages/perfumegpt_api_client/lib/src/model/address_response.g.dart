@@ -29,12 +29,13 @@ abstract class _$AddressResponseCWProxy {
 
   AddressResponse isDefault(bool? isDefault);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AddressResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AddressResponse call({
     String? id,
     String? receiverName,
@@ -50,53 +51,55 @@ abstract class _$AddressResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAddressResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAddressResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAddressResponse.copyWith(...)` or call `instanceOfAddressResponse.copyWith.fieldName(value)` for a single field.
 class _$AddressResponseCWProxyImpl implements _$AddressResponseCWProxy {
   const _$AddressResponseCWProxyImpl(this._value);
 
   final AddressResponse _value;
 
   @override
-  AddressResponse id(String? id) => this(id: id);
+  AddressResponse id(String? id) => call(id: id);
 
   @override
   AddressResponse receiverName(String? receiverName) =>
-      this(receiverName: receiverName);
+      call(receiverName: receiverName);
 
   @override
-  AddressResponse phone(String? phone) => this(phone: phone);
+  AddressResponse phone(String? phone) => call(phone: phone);
 
   @override
-  AddressResponse street(String? street) => this(street: street);
+  AddressResponse street(String? street) => call(street: street);
 
   @override
-  AddressResponse ward(String? ward) => this(ward: ward);
+  AddressResponse ward(String? ward) => call(ward: ward);
 
   @override
-  AddressResponse district(String? district) => this(district: district);
+  AddressResponse district(String? district) => call(district: district);
 
   @override
-  AddressResponse city(String? city) => this(city: city);
+  AddressResponse city(String? city) => call(city: city);
 
   @override
-  AddressResponse wardCode(String? wardCode) => this(wardCode: wardCode);
+  AddressResponse wardCode(String? wardCode) => call(wardCode: wardCode);
 
   @override
-  AddressResponse districtId(int? districtId) => this(districtId: districtId);
+  AddressResponse districtId(int? districtId) => call(districtId: districtId);
 
   @override
-  AddressResponse provinceId(int? provinceId) => this(provinceId: provinceId);
+  AddressResponse provinceId(int? provinceId) => call(provinceId: provinceId);
 
   @override
-  AddressResponse isDefault(bool? isDefault) => this(isDefault: isDefault);
+  AddressResponse isDefault(bool? isDefault) => call(isDefault: isDefault);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AddressResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AddressResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? receiverName = const $CopyWithPlaceholder(),
@@ -160,7 +163,8 @@ class _$AddressResponseCWProxyImpl implements _$AddressResponseCWProxy {
 }
 
 extension $AddressResponseCopyWith on AddressResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfAddressResponse.copyWith(...)` or like so:`instanceOfAddressResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAddressResponse.copyWith(...)` or `instanceOfAddressResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AddressResponseCWProxy get copyWith => _$AddressResponseCWProxyImpl(this);
 }

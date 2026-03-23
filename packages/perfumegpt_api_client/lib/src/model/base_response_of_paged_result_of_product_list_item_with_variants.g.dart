@@ -25,12 +25,13 @@ abstract class _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPagedResultOfProductListItemWithVariants call({
     PagedResultOfProductListItemWithVariants? payload,
     bool? success,
@@ -40,7 +41,8 @@ abstract class _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith(...)` or call `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxyImpl
     implements _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxy {
   const _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxyImpl(
@@ -52,35 +54,36 @@ class _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxyImpl
   @override
   BaseResponseOfPagedResultOfProductListItemWithVariants payload(
     PagedResultOfProductListItemWithVariants? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfPagedResultOfProductListItemWithVariants success(
     bool? success,
-  ) => this(success: success);
+  ) => call(success: success);
 
   @override
   BaseResponseOfPagedResultOfProductListItemWithVariants message(
     String? message,
-  ) => this(message: message);
+  ) => call(message: message);
 
   @override
   BaseResponseOfPagedResultOfProductListItemWithVariants errors(
     List<String>? errors,
-  ) => this(errors: errors);
+  ) => call(errors: errors);
 
   @override
   BaseResponseOfPagedResultOfProductListItemWithVariants errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPagedResultOfProductListItemWithVariants call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -115,7 +118,8 @@ class _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxyImpl
 
 extension $BaseResponseOfPagedResultOfProductListItemWithVariantsCopyWith
     on BaseResponseOfPagedResultOfProductListItemWithVariants {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith(...)` or like so:`instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith(...)` or `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxy
   get copyWith =>

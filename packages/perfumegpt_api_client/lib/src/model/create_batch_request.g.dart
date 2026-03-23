@@ -15,12 +15,13 @@ abstract class _$CreateBatchRequestCWProxy {
 
   CreateBatchRequest quantity(int? quantity);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateBatchRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateBatchRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateBatchRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateBatchRequest call({
     String? batchCode,
     DateTime? manufactureDate,
@@ -29,33 +30,35 @@ abstract class _$CreateBatchRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateBatchRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateBatchRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateBatchRequest.copyWith(...)` or call `instanceOfCreateBatchRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateBatchRequestCWProxyImpl implements _$CreateBatchRequestCWProxy {
   const _$CreateBatchRequestCWProxyImpl(this._value);
 
   final CreateBatchRequest _value;
 
   @override
-  CreateBatchRequest batchCode(String? batchCode) => this(batchCode: batchCode);
+  CreateBatchRequest batchCode(String? batchCode) => call(batchCode: batchCode);
 
   @override
   CreateBatchRequest manufactureDate(DateTime? manufactureDate) =>
-      this(manufactureDate: manufactureDate);
+      call(manufactureDate: manufactureDate);
 
   @override
   CreateBatchRequest expiryDate(DateTime? expiryDate) =>
-      this(expiryDate: expiryDate);
+      call(expiryDate: expiryDate);
 
   @override
-  CreateBatchRequest quantity(int? quantity) => this(quantity: quantity);
+  CreateBatchRequest quantity(int? quantity) => call(quantity: quantity);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateBatchRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateBatchRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateBatchRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateBatchRequest call({
     Object? batchCode = const $CopyWithPlaceholder(),
     Object? manufactureDate = const $CopyWithPlaceholder(),
@@ -84,7 +87,8 @@ class _$CreateBatchRequestCWProxyImpl implements _$CreateBatchRequestCWProxy {
 }
 
 extension $CreateBatchRequestCopyWith on CreateBatchRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateBatchRequest.copyWith(...)` or like so:`instanceOfCreateBatchRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateBatchRequest.copyWith(...)` or `instanceOfCreateBatchRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateBatchRequestCWProxy get copyWith =>
       _$CreateBatchRequestCWProxyImpl(this);

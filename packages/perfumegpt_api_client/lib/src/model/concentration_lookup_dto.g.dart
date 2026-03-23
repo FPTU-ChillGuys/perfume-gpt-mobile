@@ -11,16 +11,18 @@ abstract class _$ConcentrationLookupDtoCWProxy {
 
   ConcentrationLookupDto name(String? name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ConcentrationLookupDto(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConcentrationLookupDto(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ConcentrationLookupDto(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ConcentrationLookupDto call({int? id, String? name});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfConcentrationLookupDto.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfConcentrationLookupDto.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfConcentrationLookupDto.copyWith(...)` or call `instanceOfConcentrationLookupDto.copyWith.fieldName(value)` for a single field.
 class _$ConcentrationLookupDtoCWProxyImpl
     implements _$ConcentrationLookupDtoCWProxy {
   const _$ConcentrationLookupDtoCWProxyImpl(this._value);
@@ -28,18 +30,19 @@ class _$ConcentrationLookupDtoCWProxyImpl
   final ConcentrationLookupDto _value;
 
   @override
-  ConcentrationLookupDto id(int? id) => this(id: id);
+  ConcentrationLookupDto id(int? id) => call(id: id);
 
   @override
-  ConcentrationLookupDto name(String? name) => this(name: name);
+  ConcentrationLookupDto name(String? name) => call(name: name);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ConcentrationLookupDto(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConcentrationLookupDto(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ConcentrationLookupDto(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ConcentrationLookupDto call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
@@ -58,7 +61,8 @@ class _$ConcentrationLookupDtoCWProxyImpl
 }
 
 extension $ConcentrationLookupDtoCopyWith on ConcentrationLookupDto {
-  /// Returns a callable class that can be used as follows: `instanceOfConcentrationLookupDto.copyWith(...)` or like so:`instanceOfConcentrationLookupDto.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfConcentrationLookupDto.copyWith(...)` or `instanceOfConcentrationLookupDto.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ConcentrationLookupDtoCWProxy get copyWith =>
       _$ConcentrationLookupDtoCWProxyImpl(this);

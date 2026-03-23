@@ -17,12 +17,13 @@ abstract class _$StringSegmentCWProxy {
 
   StringSegment hasValue(bool? hasValue);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StringSegment(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StringSegment(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StringSegment(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StringSegment call({
     String? buffer,
     int? offset,
@@ -32,34 +33,36 @@ abstract class _$StringSegmentCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfStringSegment.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfStringSegment.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfStringSegment.copyWith(...)` or call `instanceOfStringSegment.copyWith.fieldName(value)` for a single field.
 class _$StringSegmentCWProxyImpl implements _$StringSegmentCWProxy {
   const _$StringSegmentCWProxyImpl(this._value);
 
   final StringSegment _value;
 
   @override
-  StringSegment buffer(String? buffer) => this(buffer: buffer);
+  StringSegment buffer(String? buffer) => call(buffer: buffer);
 
   @override
-  StringSegment offset(int? offset) => this(offset: offset);
+  StringSegment offset(int? offset) => call(offset: offset);
 
   @override
-  StringSegment length(int? length) => this(length: length);
+  StringSegment length(int? length) => call(length: length);
 
   @override
-  StringSegment value(String? value) => this(value: value);
+  StringSegment value(String? value) => call(value: value);
 
   @override
-  StringSegment hasValue(bool? hasValue) => this(hasValue: hasValue);
+  StringSegment hasValue(bool? hasValue) => call(hasValue: hasValue);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StringSegment(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StringSegment(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StringSegment(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StringSegment call({
     Object? buffer = const $CopyWithPlaceholder(),
     Object? offset = const $CopyWithPlaceholder(),
@@ -93,7 +96,8 @@ class _$StringSegmentCWProxyImpl implements _$StringSegmentCWProxy {
 }
 
 extension $StringSegmentCopyWith on StringSegment {
-  /// Returns a callable class that can be used as follows: `instanceOfStringSegment.copyWith(...)` or like so:`instanceOfStringSegment.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfStringSegment.copyWith(...)` or `instanceOfStringSegment.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$StringSegmentCWProxy get copyWith => _$StringSegmentCWProxyImpl(this);
 }

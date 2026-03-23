@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfReviewDetailResponseCWProxy {
 
   BaseResponseOfReviewDetailResponse errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfReviewDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfReviewDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfReviewDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfReviewDetailResponse call({
     ReviewDetailResponse? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfReviewDetailResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfReviewDetailResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfReviewDetailResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfReviewDetailResponse.copyWith(...)` or call `instanceOfBaseResponseOfReviewDetailResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfReviewDetailResponseCWProxyImpl
     implements _$BaseResponseOfReviewDetailResponseCWProxy {
   const _$BaseResponseOfReviewDetailResponseCWProxyImpl(this._value);
@@ -41,31 +43,32 @@ class _$BaseResponseOfReviewDetailResponseCWProxyImpl
 
   @override
   BaseResponseOfReviewDetailResponse payload(ReviewDetailResponse? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
   BaseResponseOfReviewDetailResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfReviewDetailResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfReviewDetailResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfReviewDetailResponse errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfReviewDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfReviewDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfReviewDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfReviewDetailResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -100,7 +103,8 @@ class _$BaseResponseOfReviewDetailResponseCWProxyImpl
 
 extension $BaseResponseOfReviewDetailResponseCopyWith
     on BaseResponseOfReviewDetailResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfReviewDetailResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfReviewDetailResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfReviewDetailResponse.copyWith(...)` or `instanceOfBaseResponseOfReviewDetailResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfReviewDetailResponseCWProxy get copyWith =>
       _$BaseResponseOfReviewDetailResponseCWProxyImpl(this);

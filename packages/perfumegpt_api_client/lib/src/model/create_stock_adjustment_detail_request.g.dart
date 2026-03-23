@@ -17,12 +17,13 @@ abstract class _$CreateStockAdjustmentDetailRequestCWProxy {
 
   CreateStockAdjustmentDetailRequest note(String? note);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateStockAdjustmentDetailRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateStockAdjustmentDetailRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateStockAdjustmentDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateStockAdjustmentDetailRequest call({
     String? variantId,
     String? batchId,
@@ -31,7 +32,8 @@ abstract class _$CreateStockAdjustmentDetailRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateStockAdjustmentDetailRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateStockAdjustmentDetailRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateStockAdjustmentDetailRequest.copyWith(...)` or call `instanceOfCreateStockAdjustmentDetailRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateStockAdjustmentDetailRequestCWProxyImpl
     implements _$CreateStockAdjustmentDetailRequestCWProxy {
   const _$CreateStockAdjustmentDetailRequestCWProxyImpl(this._value);
@@ -40,27 +42,28 @@ class _$CreateStockAdjustmentDetailRequestCWProxyImpl
 
   @override
   CreateStockAdjustmentDetailRequest variantId(String? variantId) =>
-      this(variantId: variantId);
+      call(variantId: variantId);
 
   @override
   CreateStockAdjustmentDetailRequest batchId(String? batchId) =>
-      this(batchId: batchId);
+      call(batchId: batchId);
 
   @override
   CreateStockAdjustmentDetailRequest adjustmentQuantity(
     int? adjustmentQuantity,
-  ) => this(adjustmentQuantity: adjustmentQuantity);
+  ) => call(adjustmentQuantity: adjustmentQuantity);
 
   @override
-  CreateStockAdjustmentDetailRequest note(String? note) => this(note: note);
+  CreateStockAdjustmentDetailRequest note(String? note) => call(note: note);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateStockAdjustmentDetailRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateStockAdjustmentDetailRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateStockAdjustmentDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateStockAdjustmentDetailRequest call({
     Object? variantId = const $CopyWithPlaceholder(),
     Object? batchId = const $CopyWithPlaceholder(),
@@ -90,7 +93,8 @@ class _$CreateStockAdjustmentDetailRequestCWProxyImpl
 
 extension $CreateStockAdjustmentDetailRequestCopyWith
     on CreateStockAdjustmentDetailRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateStockAdjustmentDetailRequest.copyWith(...)` or like so:`instanceOfCreateStockAdjustmentDetailRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateStockAdjustmentDetailRequest.copyWith(...)` or `instanceOfCreateStockAdjustmentDetailRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateStockAdjustmentDetailRequestCWProxy get copyWith =>
       _$CreateStockAdjustmentDetailRequestCWProxyImpl(this);

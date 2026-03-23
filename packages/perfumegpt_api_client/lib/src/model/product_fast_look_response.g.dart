@@ -23,12 +23,13 @@ abstract class _$ProductFastLookResponseCWProxy {
 
   ProductFastLookResponse reviewCount(int? reviewCount);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductFastLookResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductFastLookResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductFastLookResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductFastLookResponse call({
     String? id,
     String? name,
@@ -41,7 +42,8 @@ abstract class _$ProductFastLookResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductFastLookResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductFastLookResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductFastLookResponse.copyWith(...)` or call `instanceOfProductFastLookResponse.copyWith.fieldName(value)` for a single field.
 class _$ProductFastLookResponseCWProxyImpl
     implements _$ProductFastLookResponseCWProxy {
   const _$ProductFastLookResponseCWProxyImpl(this._value);
@@ -49,41 +51,42 @@ class _$ProductFastLookResponseCWProxyImpl
   final ProductFastLookResponse _value;
 
   @override
-  ProductFastLookResponse id(String? id) => this(id: id);
+  ProductFastLookResponse id(String? id) => call(id: id);
 
   @override
-  ProductFastLookResponse name(String? name) => this(name: name);
+  ProductFastLookResponse name(String? name) => call(name: name);
 
   @override
   ProductFastLookResponse description(String? description) =>
-      this(description: description);
+      call(description: description);
 
   @override
   ProductFastLookResponse brandName(String? brandName) =>
-      this(brandName: brandName);
+      call(brandName: brandName);
 
   @override
   ProductFastLookResponse variants(List<VariantFastLookResponse>? variants) =>
-      this(variants: variants);
+      call(variants: variants);
 
   @override
   ProductFastLookResponse attribute(ProductAttributeResponse? attribute) =>
-      this(attribute: attribute);
+      call(attribute: attribute);
 
   @override
-  ProductFastLookResponse rating(int? rating) => this(rating: rating);
+  ProductFastLookResponse rating(int? rating) => call(rating: rating);
 
   @override
   ProductFastLookResponse reviewCount(int? reviewCount) =>
-      this(reviewCount: reviewCount);
+      call(reviewCount: reviewCount);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductFastLookResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductFastLookResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductFastLookResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductFastLookResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
@@ -132,7 +135,8 @@ class _$ProductFastLookResponseCWProxyImpl
 }
 
 extension $ProductFastLookResponseCopyWith on ProductFastLookResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfProductFastLookResponse.copyWith(...)` or like so:`instanceOfProductFastLookResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductFastLookResponse.copyWith(...)` or `instanceOfProductFastLookResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductFastLookResponseCWProxy get copyWith =>
       _$ProductFastLookResponseCWProxyImpl(this);

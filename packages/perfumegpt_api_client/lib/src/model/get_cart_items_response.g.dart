@@ -9,16 +9,18 @@ part of 'get_cart_items_response.dart';
 abstract class _$GetCartItemsResponseCWProxy {
   GetCartItemsResponse items(List<GetCartItemResponse>? items);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GetCartItemsResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemsResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GetCartItemsResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GetCartItemsResponse call({List<GetCartItemResponse>? items});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGetCartItemsResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfGetCartItemsResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfGetCartItemsResponse.copyWith(...)` or call `instanceOfGetCartItemsResponse.copyWith.fieldName(value)` for a single field.
 class _$GetCartItemsResponseCWProxyImpl
     implements _$GetCartItemsResponseCWProxy {
   const _$GetCartItemsResponseCWProxyImpl(this._value);
@@ -27,15 +29,16 @@ class _$GetCartItemsResponseCWProxyImpl
 
   @override
   GetCartItemsResponse items(List<GetCartItemResponse>? items) =>
-      this(items: items);
+      call(items: items);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GetCartItemsResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemsResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GetCartItemsResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GetCartItemsResponse call({Object? items = const $CopyWithPlaceholder()}) {
     return GetCartItemsResponse(
       items: items == const $CopyWithPlaceholder()
@@ -47,7 +50,8 @@ class _$GetCartItemsResponseCWProxyImpl
 }
 
 extension $GetCartItemsResponseCopyWith on GetCartItemsResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfGetCartItemsResponse.copyWith(...)` or like so:`instanceOfGetCartItemsResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfGetCartItemsResponse.copyWith(...)` or `instanceOfGetCartItemsResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$GetCartItemsResponseCWProxy get copyWith =>
       _$GetCartItemsResponseCWProxyImpl(this);

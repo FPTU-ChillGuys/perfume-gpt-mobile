@@ -21,12 +21,13 @@ abstract class _$BaseResponseOfPagedResultOfImportTicketListItemCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPagedResultOfImportTicketListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfImportTicketListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPagedResultOfImportTicketListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPagedResultOfImportTicketListItem call({
     PagedResultOfImportTicketListItem? payload,
     bool? success,
@@ -36,7 +37,8 @@ abstract class _$BaseResponseOfPagedResultOfImportTicketListItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfPagedResultOfImportTicketListItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfPagedResultOfImportTicketListItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfPagedResultOfImportTicketListItem.copyWith(...)` or call `instanceOfBaseResponseOfPagedResultOfImportTicketListItem.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfPagedResultOfImportTicketListItemCWProxyImpl
     implements _$BaseResponseOfPagedResultOfImportTicketListItemCWProxy {
   const _$BaseResponseOfPagedResultOfImportTicketListItemCWProxyImpl(
@@ -48,33 +50,34 @@ class _$BaseResponseOfPagedResultOfImportTicketListItemCWProxyImpl
   @override
   BaseResponseOfPagedResultOfImportTicketListItem payload(
     PagedResultOfImportTicketListItem? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfPagedResultOfImportTicketListItem success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfPagedResultOfImportTicketListItem message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfPagedResultOfImportTicketListItem errors(
     List<String>? errors,
-  ) => this(errors: errors);
+  ) => call(errors: errors);
 
   @override
   BaseResponseOfPagedResultOfImportTicketListItem errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPagedResultOfImportTicketListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfImportTicketListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPagedResultOfImportTicketListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPagedResultOfImportTicketListItem call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -109,7 +112,8 @@ class _$BaseResponseOfPagedResultOfImportTicketListItemCWProxyImpl
 
 extension $BaseResponseOfPagedResultOfImportTicketListItemCopyWith
     on BaseResponseOfPagedResultOfImportTicketListItem {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfPagedResultOfImportTicketListItem.copyWith(...)` or like so:`instanceOfBaseResponseOfPagedResultOfImportTicketListItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfPagedResultOfImportTicketListItem.copyWith(...)` or `instanceOfBaseResponseOfPagedResultOfImportTicketListItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfPagedResultOfImportTicketListItemCWProxy get copyWith =>
       _$BaseResponseOfPagedResultOfImportTicketListItemCWProxyImpl(this);

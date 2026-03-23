@@ -23,12 +23,13 @@ abstract class _$UpdateProductRequestCWProxy {
 
   UpdateProductRequest attributes(List<ProductAttributeDto>? attributes);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateProductRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProductRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateProductRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateProductRequest call({
     String? name,
     int? brandId,
@@ -40,7 +41,8 @@ abstract class _$UpdateProductRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateProductRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateProductRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateProductRequest.copyWith(...)` or call `instanceOfUpdateProductRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateProductRequestCWProxyImpl
     implements _$UpdateProductRequestCWProxy {
   const _$UpdateProductRequestCWProxyImpl(this._value);
@@ -48,39 +50,40 @@ class _$UpdateProductRequestCWProxyImpl
   final UpdateProductRequest _value;
 
   @override
-  UpdateProductRequest name(String? name) => this(name: name);
+  UpdateProductRequest name(String? name) => call(name: name);
 
   @override
-  UpdateProductRequest brandId(int? brandId) => this(brandId: brandId);
+  UpdateProductRequest brandId(int? brandId) => call(brandId: brandId);
 
   @override
   UpdateProductRequest categoryId(int? categoryId) =>
-      this(categoryId: categoryId);
+      call(categoryId: categoryId);
 
   @override
   UpdateProductRequest description(String? description) =>
-      this(description: description);
+      call(description: description);
 
   @override
   UpdateProductRequest temporaryMediaIdsToAdd(
     List<String>? temporaryMediaIdsToAdd,
-  ) => this(temporaryMediaIdsToAdd: temporaryMediaIdsToAdd);
+  ) => call(temporaryMediaIdsToAdd: temporaryMediaIdsToAdd);
 
   @override
   UpdateProductRequest mediaIdsToDelete(List<String>? mediaIdsToDelete) =>
-      this(mediaIdsToDelete: mediaIdsToDelete);
+      call(mediaIdsToDelete: mediaIdsToDelete);
 
   @override
   UpdateProductRequest attributes(List<ProductAttributeDto>? attributes) =>
-      this(attributes: attributes);
+      call(attributes: attributes);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateProductRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProductRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateProductRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateProductRequest call({
     Object? name = const $CopyWithPlaceholder(),
     Object? brandId = const $CopyWithPlaceholder(),
@@ -125,7 +128,8 @@ class _$UpdateProductRequestCWProxyImpl
 }
 
 extension $UpdateProductRequestCopyWith on UpdateProductRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateProductRequest.copyWith(...)` or like so:`instanceOfUpdateProductRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateProductRequest.copyWith(...)` or `instanceOfUpdateProductRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateProductRequestCWProxy get copyWith =>
       _$UpdateProductRequestCWProxyImpl(this);

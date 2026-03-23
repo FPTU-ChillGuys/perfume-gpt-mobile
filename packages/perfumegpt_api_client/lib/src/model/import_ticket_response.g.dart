@@ -29,12 +29,13 @@ abstract class _$ImportTicketResponseCWProxy {
 
   ImportTicketResponse importDetails(List<ImportDetailResponse>? importDetails);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ImportTicketResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportTicketResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ImportTicketResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ImportTicketResponse call({
     String? id,
     String? createdByName,
@@ -50,7 +51,8 @@ abstract class _$ImportTicketResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfImportTicketResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfImportTicketResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfImportTicketResponse.copyWith(...)` or call `instanceOfImportTicketResponse.copyWith.fieldName(value)` for a single field.
 class _$ImportTicketResponseCWProxyImpl
     implements _$ImportTicketResponseCWProxy {
   const _$ImportTicketResponseCWProxyImpl(this._value);
@@ -58,54 +60,55 @@ class _$ImportTicketResponseCWProxyImpl
   final ImportTicketResponse _value;
 
   @override
-  ImportTicketResponse id(String? id) => this(id: id);
+  ImportTicketResponse id(String? id) => call(id: id);
 
   @override
   ImportTicketResponse createdByName(String? createdByName) =>
-      this(createdByName: createdByName);
+      call(createdByName: createdByName);
 
   @override
   ImportTicketResponse verifiedByName(String? verifiedByName) =>
-      this(verifiedByName: verifiedByName);
+      call(verifiedByName: verifiedByName);
 
   @override
   ImportTicketResponse supplierId(int? supplierId) =>
-      this(supplierId: supplierId);
+      call(supplierId: supplierId);
 
   @override
   ImportTicketResponse supplierName(String? supplierName) =>
-      this(supplierName: supplierName);
+      call(supplierName: supplierName);
 
   @override
   ImportTicketResponse expectedArrivalDate(DateTime? expectedArrivalDate) =>
-      this(expectedArrivalDate: expectedArrivalDate);
+      call(expectedArrivalDate: expectedArrivalDate);
 
   @override
   ImportTicketResponse actualImportDate(DateTime? actualImportDate) =>
-      this(actualImportDate: actualImportDate);
+      call(actualImportDate: actualImportDate);
 
   @override
-  ImportTicketResponse totalCost(num? totalCost) => this(totalCost: totalCost);
+  ImportTicketResponse totalCost(num? totalCost) => call(totalCost: totalCost);
 
   @override
-  ImportTicketResponse status(ImportStatus? status) => this(status: status);
+  ImportTicketResponse status(ImportStatus? status) => call(status: status);
 
   @override
   ImportTicketResponse createdAt(DateTime? createdAt) =>
-      this(createdAt: createdAt);
+      call(createdAt: createdAt);
 
   @override
   ImportTicketResponse importDetails(
     List<ImportDetailResponse>? importDetails,
-  ) => this(importDetails: importDetails);
+  ) => call(importDetails: importDetails);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ImportTicketResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportTicketResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ImportTicketResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ImportTicketResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? createdByName = const $CopyWithPlaceholder(),
@@ -169,7 +172,8 @@ class _$ImportTicketResponseCWProxyImpl
 }
 
 extension $ImportTicketResponseCopyWith on ImportTicketResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfImportTicketResponse.copyWith(...)` or like so:`instanceOfImportTicketResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfImportTicketResponse.copyWith(...)` or `instanceOfImportTicketResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ImportTicketResponseCWProxy get copyWith =>
       _$ImportTicketResponseCWProxyImpl(this);

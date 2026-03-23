@@ -9,16 +9,18 @@ part of 'address_level4_response.dart';
 abstract class _$AddressLevel4ResponseCWProxy {
   AddressLevel4Response data(List<String>? data);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AddressLevel4Response(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressLevel4Response(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressLevel4Response(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AddressLevel4Response call({List<String>? data});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAddressLevel4Response.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAddressLevel4Response.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAddressLevel4Response.copyWith(...)` or call `instanceOfAddressLevel4Response.copyWith.fieldName(value)` for a single field.
 class _$AddressLevel4ResponseCWProxyImpl
     implements _$AddressLevel4ResponseCWProxy {
   const _$AddressLevel4ResponseCWProxyImpl(this._value);
@@ -26,15 +28,16 @@ class _$AddressLevel4ResponseCWProxyImpl
   final AddressLevel4Response _value;
 
   @override
-  AddressLevel4Response data(List<String>? data) => this(data: data);
+  AddressLevel4Response data(List<String>? data) => call(data: data);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AddressLevel4Response(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressLevel4Response(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressLevel4Response(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AddressLevel4Response call({Object? data = const $CopyWithPlaceholder()}) {
     return AddressLevel4Response(
       data: data == const $CopyWithPlaceholder()
@@ -46,7 +49,8 @@ class _$AddressLevel4ResponseCWProxyImpl
 }
 
 extension $AddressLevel4ResponseCopyWith on AddressLevel4Response {
-  /// Returns a callable class that can be used as follows: `instanceOfAddressLevel4Response.copyWith(...)` or like so:`instanceOfAddressLevel4Response.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAddressLevel4Response.copyWith(...)` or `instanceOfAddressLevel4Response.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AddressLevel4ResponseCWProxy get copyWith =>
       _$AddressLevel4ResponseCWProxyImpl(this);

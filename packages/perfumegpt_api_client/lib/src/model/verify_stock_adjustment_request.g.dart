@@ -11,18 +11,20 @@ abstract class _$VerifyStockAdjustmentRequestCWProxy {
     List<VerifyStockAdjustmentDetailRequest>? adjustmentDetails,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VerifyStockAdjustmentRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyStockAdjustmentRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VerifyStockAdjustmentRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VerifyStockAdjustmentRequest call({
     List<VerifyStockAdjustmentDetailRequest>? adjustmentDetails,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfVerifyStockAdjustmentRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfVerifyStockAdjustmentRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVerifyStockAdjustmentRequest.copyWith(...)` or call `instanceOfVerifyStockAdjustmentRequest.copyWith.fieldName(value)` for a single field.
 class _$VerifyStockAdjustmentRequestCWProxyImpl
     implements _$VerifyStockAdjustmentRequestCWProxy {
   const _$VerifyStockAdjustmentRequestCWProxyImpl(this._value);
@@ -32,15 +34,16 @@ class _$VerifyStockAdjustmentRequestCWProxyImpl
   @override
   VerifyStockAdjustmentRequest adjustmentDetails(
     List<VerifyStockAdjustmentDetailRequest>? adjustmentDetails,
-  ) => this(adjustmentDetails: adjustmentDetails);
+  ) => call(adjustmentDetails: adjustmentDetails);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VerifyStockAdjustmentRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyStockAdjustmentRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VerifyStockAdjustmentRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VerifyStockAdjustmentRequest call({
     Object? adjustmentDetails = const $CopyWithPlaceholder(),
   }) {
@@ -55,7 +58,8 @@ class _$VerifyStockAdjustmentRequestCWProxyImpl
 
 extension $VerifyStockAdjustmentRequestCopyWith
     on VerifyStockAdjustmentRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfVerifyStockAdjustmentRequest.copyWith(...)` or like so:`instanceOfVerifyStockAdjustmentRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVerifyStockAdjustmentRequest.copyWith(...)` or `instanceOfVerifyStockAdjustmentRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$VerifyStockAdjustmentRequestCWProxy get copyWith =>
       _$VerifyStockAdjustmentRequestCWProxyImpl(this);

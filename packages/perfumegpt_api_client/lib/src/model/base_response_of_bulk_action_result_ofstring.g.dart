@@ -21,12 +21,13 @@ abstract class _$BaseResponseOfBulkActionResultOfstringCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfBulkActionResultOfstring(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfBulkActionResultOfstring(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfBulkActionResultOfstring(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfBulkActionResultOfstring call({
     BulkActionResultOfstring? payload,
     bool? success,
@@ -36,7 +37,8 @@ abstract class _$BaseResponseOfBulkActionResultOfstringCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfBulkActionResultOfstring.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfBulkActionResultOfstring.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfBulkActionResultOfstring.copyWith(...)` or call `instanceOfBaseResponseOfBulkActionResultOfstring.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfBulkActionResultOfstringCWProxyImpl
     implements _$BaseResponseOfBulkActionResultOfstringCWProxy {
   const _$BaseResponseOfBulkActionResultOfstringCWProxyImpl(this._value);
@@ -46,32 +48,33 @@ class _$BaseResponseOfBulkActionResultOfstringCWProxyImpl
   @override
   BaseResponseOfBulkActionResultOfstring payload(
     BulkActionResultOfstring? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfBulkActionResultOfstring success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfBulkActionResultOfstring message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfBulkActionResultOfstring errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfBulkActionResultOfstring errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfBulkActionResultOfstring(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfBulkActionResultOfstring(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfBulkActionResultOfstring(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfBulkActionResultOfstring call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -106,7 +109,8 @@ class _$BaseResponseOfBulkActionResultOfstringCWProxyImpl
 
 extension $BaseResponseOfBulkActionResultOfstringCopyWith
     on BaseResponseOfBulkActionResultOfstring {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfBulkActionResultOfstring.copyWith(...)` or like so:`instanceOfBaseResponseOfBulkActionResultOfstring.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfBulkActionResultOfstring.copyWith(...)` or `instanceOfBaseResponseOfBulkActionResultOfstring.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfBulkActionResultOfstringCWProxy get copyWith =>
       _$BaseResponseOfBulkActionResultOfstringCWProxyImpl(this);

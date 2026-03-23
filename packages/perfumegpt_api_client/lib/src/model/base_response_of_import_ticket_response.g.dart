@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfImportTicketResponseCWProxy {
 
   BaseResponseOfImportTicketResponse errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfImportTicketResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfImportTicketResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfImportTicketResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfImportTicketResponse call({
     ImportTicketResponse? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfImportTicketResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfImportTicketResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfImportTicketResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfImportTicketResponse.copyWith(...)` or call `instanceOfBaseResponseOfImportTicketResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfImportTicketResponseCWProxyImpl
     implements _$BaseResponseOfImportTicketResponseCWProxy {
   const _$BaseResponseOfImportTicketResponseCWProxyImpl(this._value);
@@ -41,31 +43,32 @@ class _$BaseResponseOfImportTicketResponseCWProxyImpl
 
   @override
   BaseResponseOfImportTicketResponse payload(ImportTicketResponse? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
   BaseResponseOfImportTicketResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfImportTicketResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfImportTicketResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfImportTicketResponse errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfImportTicketResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfImportTicketResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfImportTicketResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfImportTicketResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -100,7 +103,8 @@ class _$BaseResponseOfImportTicketResponseCWProxyImpl
 
 extension $BaseResponseOfImportTicketResponseCopyWith
     on BaseResponseOfImportTicketResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfImportTicketResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfImportTicketResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfImportTicketResponse.copyWith(...)` or `instanceOfBaseResponseOfImportTicketResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfImportTicketResponseCWProxy get copyWith =>
       _$BaseResponseOfImportTicketResponseCWProxyImpl(this);

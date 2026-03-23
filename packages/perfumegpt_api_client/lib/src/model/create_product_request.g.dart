@@ -19,12 +19,13 @@ abstract class _$CreateProductRequestCWProxy {
 
   CreateProductRequest attributes(List<ProductAttributeDto>? attributes);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateProductRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateProductRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateProductRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateProductRequest call({
     String? name,
     int? brandId,
@@ -35,7 +36,8 @@ abstract class _$CreateProductRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateProductRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateProductRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateProductRequest.copyWith(...)` or call `instanceOfCreateProductRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateProductRequestCWProxyImpl
     implements _$CreateProductRequestCWProxy {
   const _$CreateProductRequestCWProxyImpl(this._value);
@@ -43,34 +45,35 @@ class _$CreateProductRequestCWProxyImpl
   final CreateProductRequest _value;
 
   @override
-  CreateProductRequest name(String? name) => this(name: name);
+  CreateProductRequest name(String? name) => call(name: name);
 
   @override
-  CreateProductRequest brandId(int? brandId) => this(brandId: brandId);
+  CreateProductRequest brandId(int? brandId) => call(brandId: brandId);
 
   @override
   CreateProductRequest categoryId(int? categoryId) =>
-      this(categoryId: categoryId);
+      call(categoryId: categoryId);
 
   @override
   CreateProductRequest description(String? description) =>
-      this(description: description);
+      call(description: description);
 
   @override
   CreateProductRequest temporaryMediaIds(List<String>? temporaryMediaIds) =>
-      this(temporaryMediaIds: temporaryMediaIds);
+      call(temporaryMediaIds: temporaryMediaIds);
 
   @override
   CreateProductRequest attributes(List<ProductAttributeDto>? attributes) =>
-      this(attributes: attributes);
+      call(attributes: attributes);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateProductRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateProductRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateProductRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateProductRequest call({
     Object? name = const $CopyWithPlaceholder(),
     Object? brandId = const $CopyWithPlaceholder(),
@@ -109,7 +112,8 @@ class _$CreateProductRequestCWProxyImpl
 }
 
 extension $CreateProductRequestCopyWith on CreateProductRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateProductRequest.copyWith(...)` or like so:`instanceOfCreateProductRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateProductRequest.copyWith(...)` or `instanceOfCreateProductRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateProductRequestCWProxy get copyWith =>
       _$CreateProductRequestCWProxyImpl(this);

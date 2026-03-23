@@ -11,16 +11,18 @@ abstract class _$BulkActionResultOfGuidCWProxy {
 
   BulkActionResultOfGuid metadata(BulkActionMetadata? metadata);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkActionResultOfGuid(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionResultOfGuid(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkActionResultOfGuid(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkActionResultOfGuid call({String data, BulkActionMetadata? metadata});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBulkActionResultOfGuid.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBulkActionResultOfGuid.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBulkActionResultOfGuid.copyWith(...)` or call `instanceOfBulkActionResultOfGuid.copyWith.fieldName(value)` for a single field.
 class _$BulkActionResultOfGuidCWProxyImpl
     implements _$BulkActionResultOfGuidCWProxy {
   const _$BulkActionResultOfGuidCWProxyImpl(this._value);
@@ -28,25 +30,26 @@ class _$BulkActionResultOfGuidCWProxyImpl
   final BulkActionResultOfGuid _value;
 
   @override
-  BulkActionResultOfGuid data(String data) => this(data: data);
+  BulkActionResultOfGuid data(String data) => call(data: data);
 
   @override
   BulkActionResultOfGuid metadata(BulkActionMetadata? metadata) =>
-      this(metadata: metadata);
+      call(metadata: metadata);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkActionResultOfGuid(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionResultOfGuid(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkActionResultOfGuid(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkActionResultOfGuid call({
     Object? data = const $CopyWithPlaceholder(),
     Object? metadata = const $CopyWithPlaceholder(),
   }) {
     return BulkActionResultOfGuid(
-      data: data == const $CopyWithPlaceholder()
+      data: data == const $CopyWithPlaceholder() || data == null
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
           : data as String,
@@ -59,7 +62,8 @@ class _$BulkActionResultOfGuidCWProxyImpl
 }
 
 extension $BulkActionResultOfGuidCopyWith on BulkActionResultOfGuid {
-  /// Returns a callable class that can be used as follows: `instanceOfBulkActionResultOfGuid.copyWith(...)` or like so:`instanceOfBulkActionResultOfGuid.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBulkActionResultOfGuid.copyWith(...)` or `instanceOfBulkActionResultOfGuid.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BulkActionResultOfGuidCWProxy get copyWith =>
       _$BulkActionResultOfGuidCWProxyImpl(this);

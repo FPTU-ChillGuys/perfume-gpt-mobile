@@ -11,34 +11,37 @@ abstract class _$LoginRequestCWProxy {
 
   LoginRequest password(String? password);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LoginRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoginRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// LoginRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   LoginRequest call({String? credential, String? password});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLoginRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfLoginRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfLoginRequest.copyWith(...)` or call `instanceOfLoginRequest.copyWith.fieldName(value)` for a single field.
 class _$LoginRequestCWProxyImpl implements _$LoginRequestCWProxy {
   const _$LoginRequestCWProxyImpl(this._value);
 
   final LoginRequest _value;
 
   @override
-  LoginRequest credential(String? credential) => this(credential: credential);
+  LoginRequest credential(String? credential) => call(credential: credential);
 
   @override
-  LoginRequest password(String? password) => this(password: password);
+  LoginRequest password(String? password) => call(password: password);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LoginRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoginRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// LoginRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   LoginRequest call({
     Object? credential = const $CopyWithPlaceholder(),
     Object? password = const $CopyWithPlaceholder(),
@@ -57,7 +60,8 @@ class _$LoginRequestCWProxyImpl implements _$LoginRequestCWProxy {
 }
 
 extension $LoginRequestCopyWith on LoginRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfLoginRequest.copyWith(...)` or like so:`instanceOfLoginRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfLoginRequest.copyWith(...)` or `instanceOfLoginRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$LoginRequestCWProxy get copyWith => _$LoginRequestCWProxyImpl(this);
 }

@@ -25,12 +25,13 @@ abstract class _$ProfileResponseCWProxy {
 
   ProfileResponse createdAt(DateTime? createdAt);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProfileResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProfileResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProfileResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProfileResponse call({
     String? id,
     String? userId,
@@ -44,49 +45,51 @@ abstract class _$ProfileResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProfileResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProfileResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProfileResponse.copyWith(...)` or call `instanceOfProfileResponse.copyWith.fieldName(value)` for a single field.
 class _$ProfileResponseCWProxyImpl implements _$ProfileResponseCWProxy {
   const _$ProfileResponseCWProxyImpl(this._value);
 
   final ProfileResponse _value;
 
   @override
-  ProfileResponse id(String? id) => this(id: id);
+  ProfileResponse id(String? id) => call(id: id);
 
   @override
-  ProfileResponse userId(String? userId) => this(userId: userId);
+  ProfileResponse userId(String? userId) => call(userId: userId);
 
   @override
   ProfileResponse scentPreference(String? scentPreference) =>
-      this(scentPreference: scentPreference);
+      call(scentPreference: scentPreference);
 
   @override
-  ProfileResponse minBudget(num? minBudget) => this(minBudget: minBudget);
+  ProfileResponse minBudget(num? minBudget) => call(minBudget: minBudget);
 
   @override
-  ProfileResponse maxBudget(num? maxBudget) => this(maxBudget: maxBudget);
+  ProfileResponse maxBudget(num? maxBudget) => call(maxBudget: maxBudget);
 
   @override
   ProfileResponse preferredStyle(String? preferredStyle) =>
-      this(preferredStyle: preferredStyle);
+      call(preferredStyle: preferredStyle);
 
   @override
   ProfileResponse favoriteNotes(String? favoriteNotes) =>
-      this(favoriteNotes: favoriteNotes);
+      call(favoriteNotes: favoriteNotes);
 
   @override
-  ProfileResponse updatedAt(DateTime? updatedAt) => this(updatedAt: updatedAt);
+  ProfileResponse updatedAt(DateTime? updatedAt) => call(updatedAt: updatedAt);
 
   @override
-  ProfileResponse createdAt(DateTime? createdAt) => this(createdAt: createdAt);
+  ProfileResponse createdAt(DateTime? createdAt) => call(createdAt: createdAt);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProfileResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProfileResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProfileResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProfileResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
@@ -140,7 +143,8 @@ class _$ProfileResponseCWProxyImpl implements _$ProfileResponseCWProxy {
 }
 
 extension $ProfileResponseCopyWith on ProfileResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfProfileResponse.copyWith(...)` or like so:`instanceOfProfileResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProfileResponse.copyWith(...)` or `instanceOfProfileResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProfileResponseCWProxy get copyWith => _$ProfileResponseCWProxyImpl(this);
 }

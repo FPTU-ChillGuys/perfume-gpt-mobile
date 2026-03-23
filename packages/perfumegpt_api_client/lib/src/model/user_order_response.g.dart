@@ -37,12 +37,13 @@ abstract class _$UserOrderResponseCWProxy {
 
   UserOrderResponse orderDetails(List<OrderDetailResponse>? orderDetails);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserOrderResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserOrderResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UserOrderResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UserOrderResponse call({
     String? id,
     OrderType? type,
@@ -61,72 +62,74 @@ abstract class _$UserOrderResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUserOrderResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUserOrderResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUserOrderResponse.copyWith(...)` or call `instanceOfUserOrderResponse.copyWith.fieldName(value)` for a single field.
 class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
   const _$UserOrderResponseCWProxyImpl(this._value);
 
   final UserOrderResponse _value;
 
   @override
-  UserOrderResponse id(String? id) => this(id: id);
+  UserOrderResponse id(String? id) => call(id: id);
 
   @override
-  UserOrderResponse type(OrderType? type) => this(type: type);
+  UserOrderResponse type(OrderType? type) => call(type: type);
 
   @override
-  UserOrderResponse status(OrderStatus? status) => this(status: status);
+  UserOrderResponse status(OrderStatus? status) => call(status: status);
 
   @override
   UserOrderResponse paymentStatus(PaymentStatus? paymentStatus) =>
-      this(paymentStatus: paymentStatus);
+      call(paymentStatus: paymentStatus);
 
   @override
   UserOrderResponse totalAmount(num? totalAmount) =>
-      this(totalAmount: totalAmount);
+      call(totalAmount: totalAmount);
 
   @override
   UserOrderResponse voucherCode(String? voucherCode) =>
-      this(voucherCode: voucherCode);
+      call(voucherCode: voucherCode);
 
   @override
   UserOrderResponse paymentExpiresAt(DateTime? paymentExpiresAt) =>
-      this(paymentExpiresAt: paymentExpiresAt);
+      call(paymentExpiresAt: paymentExpiresAt);
 
   @override
-  UserOrderResponse paidAt(DateTime? paidAt) => this(paidAt: paidAt);
+  UserOrderResponse paidAt(DateTime? paidAt) => call(paidAt: paidAt);
 
   @override
   UserOrderResponse createdAt(DateTime? createdAt) =>
-      this(createdAt: createdAt);
+      call(createdAt: createdAt);
 
   @override
   UserOrderResponse updatedAt(DateTime? updatedAt) =>
-      this(updatedAt: updatedAt);
+      call(updatedAt: updatedAt);
 
   @override
   UserOrderResponse paymentTransactions(
     List<PaymentInfoResponse>? paymentTransactions,
-  ) => this(paymentTransactions: paymentTransactions);
+  ) => call(paymentTransactions: paymentTransactions);
 
   @override
   UserOrderResponse shippingInfo(ShippingInfoResponse? shippingInfo) =>
-      this(shippingInfo: shippingInfo);
+      call(shippingInfo: shippingInfo);
 
   @override
   UserOrderResponse recipientInfo(RecipientInfoResponse? recipientInfo) =>
-      this(recipientInfo: recipientInfo);
+      call(recipientInfo: recipientInfo);
 
   @override
   UserOrderResponse orderDetails(List<OrderDetailResponse>? orderDetails) =>
-      this(orderDetails: orderDetails);
+      call(orderDetails: orderDetails);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserOrderResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserOrderResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UserOrderResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UserOrderResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
@@ -205,7 +208,8 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
 }
 
 extension $UserOrderResponseCopyWith on UserOrderResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfUserOrderResponse.copyWith(...)` or like so:`instanceOfUserOrderResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUserOrderResponse.copyWith(...)` or `instanceOfUserOrderResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UserOrderResponseCWProxy get copyWith =>
       _$UserOrderResponseCWProxyImpl(this);

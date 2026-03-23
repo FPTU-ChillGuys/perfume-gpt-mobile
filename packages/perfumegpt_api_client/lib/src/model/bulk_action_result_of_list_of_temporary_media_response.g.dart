@@ -15,19 +15,21 @@ abstract class _$BulkActionResultOfListOfTemporaryMediaResponseCWProxy {
     BulkActionMetadata? metadata,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkActionResultOfListOfTemporaryMediaResponse call({
     List<TemporaryMediaResponse>? data,
     BulkActionMetadata? metadata,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)` or call `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(value)` for a single field.
 class _$BulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl
     implements _$BulkActionResultOfListOfTemporaryMediaResponseCWProxy {
   const _$BulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl(
@@ -39,20 +41,21 @@ class _$BulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl
   @override
   BulkActionResultOfListOfTemporaryMediaResponse data(
     List<TemporaryMediaResponse>? data,
-  ) => this(data: data);
+  ) => call(data: data);
 
   @override
   BulkActionResultOfListOfTemporaryMediaResponse metadata(
     BulkActionMetadata? metadata,
-  ) => this(metadata: metadata);
+  ) => call(metadata: metadata);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkActionResultOfListOfTemporaryMediaResponse call({
     Object? data = const $CopyWithPlaceholder(),
     Object? metadata = const $CopyWithPlaceholder(),
@@ -72,7 +75,8 @@ class _$BulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl
 
 extension $BulkActionResultOfListOfTemporaryMediaResponseCopyWith
     on BulkActionResultOfListOfTemporaryMediaResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)` or like so:`instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)` or `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BulkActionResultOfListOfTemporaryMediaResponseCWProxy get copyWith =>
       _$BulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl(this);

@@ -19,12 +19,13 @@ abstract class _$BulkActionMetadataCWProxy {
 
   BulkActionMetadata totalFailed(int? totalFailed);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkActionMetadata(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionMetadata(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkActionMetadata(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkActionMetadata call({
     List<BulkOperationResult>? operations,
     bool? hasPartialFailure,
@@ -35,7 +36,8 @@ abstract class _$BulkActionMetadataCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBulkActionMetadata.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBulkActionMetadata.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBulkActionMetadata.copyWith(...)` or call `instanceOfBulkActionMetadata.copyWith.fieldName(value)` for a single field.
 class _$BulkActionMetadataCWProxyImpl implements _$BulkActionMetadataCWProxy {
   const _$BulkActionMetadataCWProxyImpl(this._value);
 
@@ -43,35 +45,36 @@ class _$BulkActionMetadataCWProxyImpl implements _$BulkActionMetadataCWProxy {
 
   @override
   BulkActionMetadata operations(List<BulkOperationResult>? operations) =>
-      this(operations: operations);
+      call(operations: operations);
 
   @override
   BulkActionMetadata hasPartialFailure(bool? hasPartialFailure) =>
-      this(hasPartialFailure: hasPartialFailure);
+      call(hasPartialFailure: hasPartialFailure);
 
   @override
   BulkActionMetadata allSucceeded(bool? allSucceeded) =>
-      this(allSucceeded: allSucceeded);
+      call(allSucceeded: allSucceeded);
 
   @override
   BulkActionMetadata totalOperations(int? totalOperations) =>
-      this(totalOperations: totalOperations);
+      call(totalOperations: totalOperations);
 
   @override
   BulkActionMetadata totalSucceeded(int? totalSucceeded) =>
-      this(totalSucceeded: totalSucceeded);
+      call(totalSucceeded: totalSucceeded);
 
   @override
   BulkActionMetadata totalFailed(int? totalFailed) =>
-      this(totalFailed: totalFailed);
+      call(totalFailed: totalFailed);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkActionMetadata(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionMetadata(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkActionMetadata(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkActionMetadata call({
     Object? operations = const $CopyWithPlaceholder(),
     Object? hasPartialFailure = const $CopyWithPlaceholder(),
@@ -110,7 +113,8 @@ class _$BulkActionMetadataCWProxyImpl implements _$BulkActionMetadataCWProxy {
 }
 
 extension $BulkActionMetadataCopyWith on BulkActionMetadata {
-  /// Returns a callable class that can be used as follows: `instanceOfBulkActionMetadata.copyWith(...)` or like so:`instanceOfBulkActionMetadata.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBulkActionMetadata.copyWith(...)` or `instanceOfBulkActionMetadata.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BulkActionMetadataCWProxy get copyWith =>
       _$BulkActionMetadataCWProxyImpl(this);

@@ -9,31 +9,34 @@ part of 'create_brand_request.dart';
 abstract class _$CreateBrandRequestCWProxy {
   CreateBrandRequest name(String? name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateBrandRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateBrandRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateBrandRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateBrandRequest call({String? name});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateBrandRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateBrandRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateBrandRequest.copyWith(...)` or call `instanceOfCreateBrandRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateBrandRequestCWProxyImpl implements _$CreateBrandRequestCWProxy {
   const _$CreateBrandRequestCWProxyImpl(this._value);
 
   final CreateBrandRequest _value;
 
   @override
-  CreateBrandRequest name(String? name) => this(name: name);
+  CreateBrandRequest name(String? name) => call(name: name);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateBrandRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateBrandRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateBrandRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateBrandRequest call({Object? name = const $CopyWithPlaceholder()}) {
     return CreateBrandRequest(
       name: name == const $CopyWithPlaceholder()
@@ -45,7 +48,8 @@ class _$CreateBrandRequestCWProxyImpl implements _$CreateBrandRequestCWProxy {
 }
 
 extension $CreateBrandRequestCopyWith on CreateBrandRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateBrandRequest.copyWith(...)` or like so:`instanceOfCreateBrandRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateBrandRequest.copyWith(...)` or `instanceOfCreateBrandRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateBrandRequestCWProxy get copyWith =>
       _$CreateBrandRequestCWProxyImpl(this);

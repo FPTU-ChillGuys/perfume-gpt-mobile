@@ -11,16 +11,18 @@ abstract class _$UpdateOrderStatusRequestCWProxy {
 
   UpdateOrderStatusRequest note(String? note);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateOrderStatusRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOrderStatusRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateOrderStatusRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateOrderStatusRequest call({OrderStatus? status, String? note});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateOrderStatusRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateOrderStatusRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateOrderStatusRequest.copyWith(...)` or call `instanceOfUpdateOrderStatusRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateOrderStatusRequestCWProxyImpl
     implements _$UpdateOrderStatusRequestCWProxy {
   const _$UpdateOrderStatusRequestCWProxyImpl(this._value);
@@ -28,18 +30,19 @@ class _$UpdateOrderStatusRequestCWProxyImpl
   final UpdateOrderStatusRequest _value;
 
   @override
-  UpdateOrderStatusRequest status(OrderStatus? status) => this(status: status);
+  UpdateOrderStatusRequest status(OrderStatus? status) => call(status: status);
 
   @override
-  UpdateOrderStatusRequest note(String? note) => this(note: note);
+  UpdateOrderStatusRequest note(String? note) => call(note: note);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateOrderStatusRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOrderStatusRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateOrderStatusRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateOrderStatusRequest call({
     Object? status = const $CopyWithPlaceholder(),
     Object? note = const $CopyWithPlaceholder(),
@@ -58,7 +61,8 @@ class _$UpdateOrderStatusRequestCWProxyImpl
 }
 
 extension $UpdateOrderStatusRequestCopyWith on UpdateOrderStatusRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateOrderStatusRequest.copyWith(...)` or like so:`instanceOfUpdateOrderStatusRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateOrderStatusRequest.copyWith(...)` or `instanceOfUpdateOrderStatusRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateOrderStatusRequestCWProxy get copyWith =>
       _$UpdateOrderStatusRequestCWProxyImpl(this);

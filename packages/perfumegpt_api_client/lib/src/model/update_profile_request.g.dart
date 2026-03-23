@@ -17,12 +17,13 @@ abstract class _$UpdateProfileRequestCWProxy {
 
   UpdateProfileRequest favoriteNotes(String? favoriteNotes);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateProfileRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProfileRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateProfileRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateProfileRequest call({
     String? scentPreference,
     num? minBudget,
@@ -32,7 +33,8 @@ abstract class _$UpdateProfileRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateProfileRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateProfileRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateProfileRequest.copyWith(...)` or call `instanceOfUpdateProfileRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateProfileRequestCWProxyImpl
     implements _$UpdateProfileRequestCWProxy {
   const _$UpdateProfileRequestCWProxyImpl(this._value);
@@ -41,29 +43,30 @@ class _$UpdateProfileRequestCWProxyImpl
 
   @override
   UpdateProfileRequest scentPreference(String? scentPreference) =>
-      this(scentPreference: scentPreference);
+      call(scentPreference: scentPreference);
 
   @override
-  UpdateProfileRequest minBudget(num? minBudget) => this(minBudget: minBudget);
+  UpdateProfileRequest minBudget(num? minBudget) => call(minBudget: minBudget);
 
   @override
-  UpdateProfileRequest maxBudget(num? maxBudget) => this(maxBudget: maxBudget);
+  UpdateProfileRequest maxBudget(num? maxBudget) => call(maxBudget: maxBudget);
 
   @override
   UpdateProfileRequest preferredStyle(String? preferredStyle) =>
-      this(preferredStyle: preferredStyle);
+      call(preferredStyle: preferredStyle);
 
   @override
   UpdateProfileRequest favoriteNotes(String? favoriteNotes) =>
-      this(favoriteNotes: favoriteNotes);
+      call(favoriteNotes: favoriteNotes);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateProfileRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProfileRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateProfileRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateProfileRequest call({
     Object? scentPreference = const $CopyWithPlaceholder(),
     Object? minBudget = const $CopyWithPlaceholder(),
@@ -97,7 +100,8 @@ class _$UpdateProfileRequestCWProxyImpl
 }
 
 extension $UpdateProfileRequestCopyWith on UpdateProfileRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateProfileRequest.copyWith(...)` or like so:`instanceOfUpdateProfileRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateProfileRequest.copyWith(...)` or `instanceOfUpdateProfileRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateProfileRequestCWProxy get copyWith =>
       _$UpdateProfileRequestCWProxyImpl(this);

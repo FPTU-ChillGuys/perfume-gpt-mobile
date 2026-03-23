@@ -33,12 +33,13 @@ abstract class _$VariantPagedItemCWProxy {
 
   VariantPagedItem attributes(List<ProductAttributeResponse>? attributes);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VariantPagedItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantPagedItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VariantPagedItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VariantPagedItem call({
     String? id,
     String? productId,
@@ -56,63 +57,65 @@ abstract class _$VariantPagedItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfVariantPagedItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfVariantPagedItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVariantPagedItem.copyWith(...)` or call `instanceOfVariantPagedItem.copyWith.fieldName(value)` for a single field.
 class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
   const _$VariantPagedItemCWProxyImpl(this._value);
 
   final VariantPagedItem _value;
 
   @override
-  VariantPagedItem id(String? id) => this(id: id);
+  VariantPagedItem id(String? id) => call(id: id);
 
   @override
-  VariantPagedItem productId(String? productId) => this(productId: productId);
+  VariantPagedItem productId(String? productId) => call(productId: productId);
 
   @override
   VariantPagedItem primaryImage(MediaResponse? primaryImage) =>
-      this(primaryImage: primaryImage);
+      call(primaryImage: primaryImage);
 
   @override
-  VariantPagedItem barcode(String? barcode) => this(barcode: barcode);
+  VariantPagedItem barcode(String? barcode) => call(barcode: barcode);
 
   @override
-  VariantPagedItem sku(String? sku) => this(sku: sku);
+  VariantPagedItem sku(String? sku) => call(sku: sku);
 
   @override
-  VariantPagedItem volumeMl(int? volumeMl) => this(volumeMl: volumeMl);
+  VariantPagedItem volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
   VariantPagedItem concentrationId(int? concentrationId) =>
-      this(concentrationId: concentrationId);
+      call(concentrationId: concentrationId);
 
   @override
   VariantPagedItem concentrationName(String? concentrationName) =>
-      this(concentrationName: concentrationName);
+      call(concentrationName: concentrationName);
 
   @override
-  VariantPagedItem type(VariantType? type) => this(type: type);
+  VariantPagedItem type(VariantType? type) => call(type: type);
 
   @override
-  VariantPagedItem basePrice(num? basePrice) => this(basePrice: basePrice);
+  VariantPagedItem basePrice(num? basePrice) => call(basePrice: basePrice);
 
   @override
-  VariantPagedItem status(VariantStatus? status) => this(status: status);
+  VariantPagedItem status(VariantStatus? status) => call(status: status);
 
   @override
   VariantPagedItem stockQuantity(int? stockQuantity) =>
-      this(stockQuantity: stockQuantity);
+      call(stockQuantity: stockQuantity);
 
   @override
   VariantPagedItem attributes(List<ProductAttributeResponse>? attributes) =>
-      this(attributes: attributes);
+      call(attributes: attributes);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VariantPagedItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantPagedItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VariantPagedItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VariantPagedItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? productId = const $CopyWithPlaceholder(),
@@ -186,7 +189,8 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
 }
 
 extension $VariantPagedItemCopyWith on VariantPagedItem {
-  /// Returns a callable class that can be used as follows: `instanceOfVariantPagedItem.copyWith(...)` or like so:`instanceOfVariantPagedItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVariantPagedItem.copyWith(...)` or `instanceOfVariantPagedItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$VariantPagedItemCWProxy get copyWith => _$VariantPagedItemCWProxyImpl(this);
 }

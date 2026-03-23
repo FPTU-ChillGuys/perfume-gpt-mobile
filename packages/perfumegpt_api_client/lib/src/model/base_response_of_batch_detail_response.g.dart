@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfBatchDetailResponseCWProxy {
 
   BaseResponseOfBatchDetailResponse errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfBatchDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfBatchDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfBatchDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfBatchDetailResponse call({
     BatchDetailResponse? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfBatchDetailResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfBatchDetailResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfBatchDetailResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfBatchDetailResponse.copyWith(...)` or call `instanceOfBaseResponseOfBatchDetailResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfBatchDetailResponseCWProxyImpl
     implements _$BaseResponseOfBatchDetailResponseCWProxy {
   const _$BaseResponseOfBatchDetailResponseCWProxyImpl(this._value);
@@ -41,31 +43,32 @@ class _$BaseResponseOfBatchDetailResponseCWProxyImpl
 
   @override
   BaseResponseOfBatchDetailResponse payload(BatchDetailResponse? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
   BaseResponseOfBatchDetailResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfBatchDetailResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfBatchDetailResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfBatchDetailResponse errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfBatchDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfBatchDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfBatchDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfBatchDetailResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -100,7 +103,8 @@ class _$BaseResponseOfBatchDetailResponseCWProxyImpl
 
 extension $BaseResponseOfBatchDetailResponseCopyWith
     on BaseResponseOfBatchDetailResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfBatchDetailResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfBatchDetailResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfBatchDetailResponse.copyWith(...)` or `instanceOfBaseResponseOfBatchDetailResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfBatchDetailResponseCWProxy get copyWith =>
       _$BaseResponseOfBatchDetailResponseCWProxyImpl(this);

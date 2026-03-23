@@ -19,12 +19,13 @@ abstract class _$CalculateFeeRequestCWProxy {
 
   CalculateFeeRequest weight(int? weight);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CalculateFeeRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalculateFeeRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CalculateFeeRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CalculateFeeRequest call({
     int? toDistrictId,
     String? toWardCode,
@@ -35,7 +36,8 @@ abstract class _$CalculateFeeRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCalculateFeeRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCalculateFeeRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCalculateFeeRequest.copyWith(...)` or call `instanceOfCalculateFeeRequest.copyWith.fieldName(value)` for a single field.
 class _$CalculateFeeRequestCWProxyImpl implements _$CalculateFeeRequestCWProxy {
   const _$CalculateFeeRequestCWProxyImpl(this._value);
 
@@ -43,31 +45,32 @@ class _$CalculateFeeRequestCWProxyImpl implements _$CalculateFeeRequestCWProxy {
 
   @override
   CalculateFeeRequest toDistrictId(int? toDistrictId) =>
-      this(toDistrictId: toDistrictId);
+      call(toDistrictId: toDistrictId);
 
   @override
   CalculateFeeRequest toWardCode(String? toWardCode) =>
-      this(toWardCode: toWardCode);
+      call(toWardCode: toWardCode);
 
   @override
-  CalculateFeeRequest length(int? length) => this(length: length);
+  CalculateFeeRequest length(int? length) => call(length: length);
 
   @override
-  CalculateFeeRequest width(int? width) => this(width: width);
+  CalculateFeeRequest width(int? width) => call(width: width);
 
   @override
-  CalculateFeeRequest height(int? height) => this(height: height);
+  CalculateFeeRequest height(int? height) => call(height: height);
 
   @override
-  CalculateFeeRequest weight(int? weight) => this(weight: weight);
+  CalculateFeeRequest weight(int? weight) => call(weight: weight);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CalculateFeeRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalculateFeeRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CalculateFeeRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CalculateFeeRequest call({
     Object? toDistrictId = const $CopyWithPlaceholder(),
     Object? toWardCode = const $CopyWithPlaceholder(),
@@ -106,7 +109,8 @@ class _$CalculateFeeRequestCWProxyImpl implements _$CalculateFeeRequestCWProxy {
 }
 
 extension $CalculateFeeRequestCopyWith on CalculateFeeRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCalculateFeeRequest.copyWith(...)` or like so:`instanceOfCalculateFeeRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCalculateFeeRequest.copyWith(...)` or `instanceOfCalculateFeeRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CalculateFeeRequestCWProxy get copyWith =>
       _$CalculateFeeRequestCWProxyImpl(this);

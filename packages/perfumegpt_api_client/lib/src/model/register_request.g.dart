@@ -17,12 +17,13 @@ abstract class _$RegisterRequestCWProxy {
 
   RegisterRequest clientUri(String? clientUri);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RegisterRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RegisterRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RegisterRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RegisterRequest call({
     String? fullName,
     String? phoneNumber,
@@ -32,35 +33,37 @@ abstract class _$RegisterRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfRegisterRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfRegisterRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfRegisterRequest.copyWith(...)` or call `instanceOfRegisterRequest.copyWith.fieldName(value)` for a single field.
 class _$RegisterRequestCWProxyImpl implements _$RegisterRequestCWProxy {
   const _$RegisterRequestCWProxyImpl(this._value);
 
   final RegisterRequest _value;
 
   @override
-  RegisterRequest fullName(String? fullName) => this(fullName: fullName);
+  RegisterRequest fullName(String? fullName) => call(fullName: fullName);
 
   @override
   RegisterRequest phoneNumber(String? phoneNumber) =>
-      this(phoneNumber: phoneNumber);
+      call(phoneNumber: phoneNumber);
 
   @override
-  RegisterRequest email(String? email) => this(email: email);
+  RegisterRequest email(String? email) => call(email: email);
 
   @override
-  RegisterRequest password(String? password) => this(password: password);
+  RegisterRequest password(String? password) => call(password: password);
 
   @override
-  RegisterRequest clientUri(String? clientUri) => this(clientUri: clientUri);
+  RegisterRequest clientUri(String? clientUri) => call(clientUri: clientUri);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RegisterRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RegisterRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RegisterRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RegisterRequest call({
     Object? fullName = const $CopyWithPlaceholder(),
     Object? phoneNumber = const $CopyWithPlaceholder(),
@@ -94,7 +97,8 @@ class _$RegisterRequestCWProxyImpl implements _$RegisterRequestCWProxy {
 }
 
 extension $RegisterRequestCopyWith on RegisterRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfRegisterRequest.copyWith(...)` or like so:`instanceOfRegisterRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfRegisterRequest.copyWith(...)` or `instanceOfRegisterRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$RegisterRequestCWProxy get copyWith => _$RegisterRequestCWProxyImpl(this);
 }

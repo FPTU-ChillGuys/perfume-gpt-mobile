@@ -11,35 +11,38 @@ abstract class _$BulkActionErrorCWProxy {
 
   BulkActionError errorMessage(String? errorMessage);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkActionError(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionError(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkActionError(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkActionError call({String? id, String? errorMessage});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBulkActionError.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBulkActionError.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBulkActionError.copyWith(...)` or call `instanceOfBulkActionError.copyWith.fieldName(value)` for a single field.
 class _$BulkActionErrorCWProxyImpl implements _$BulkActionErrorCWProxy {
   const _$BulkActionErrorCWProxyImpl(this._value);
 
   final BulkActionError _value;
 
   @override
-  BulkActionError id(String? id) => this(id: id);
+  BulkActionError id(String? id) => call(id: id);
 
   @override
   BulkActionError errorMessage(String? errorMessage) =>
-      this(errorMessage: errorMessage);
+      call(errorMessage: errorMessage);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkActionError(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionError(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkActionError(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkActionError call({
     Object? id = const $CopyWithPlaceholder(),
     Object? errorMessage = const $CopyWithPlaceholder(),
@@ -58,7 +61,8 @@ class _$BulkActionErrorCWProxyImpl implements _$BulkActionErrorCWProxy {
 }
 
 extension $BulkActionErrorCopyWith on BulkActionError {
-  /// Returns a callable class that can be used as follows: `instanceOfBulkActionError.copyWith(...)` or like so:`instanceOfBulkActionError.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBulkActionError.copyWith(...)` or `instanceOfBulkActionError.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BulkActionErrorCWProxy get copyWith => _$BulkActionErrorCWProxyImpl(this);
 }

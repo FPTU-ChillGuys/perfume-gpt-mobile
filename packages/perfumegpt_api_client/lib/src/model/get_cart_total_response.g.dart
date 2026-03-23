@@ -15,12 +15,13 @@ abstract class _$GetCartTotalResponseCWProxy {
 
   GetCartTotalResponse totalPrice(num? totalPrice);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GetCartTotalResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartTotalResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GetCartTotalResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GetCartTotalResponse call({
     num? subtotal,
     num? shippingFee,
@@ -29,7 +30,8 @@ abstract class _$GetCartTotalResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGetCartTotalResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfGetCartTotalResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfGetCartTotalResponse.copyWith(...)` or call `instanceOfGetCartTotalResponse.copyWith.fieldName(value)` for a single field.
 class _$GetCartTotalResponseCWProxyImpl
     implements _$GetCartTotalResponseCWProxy {
   const _$GetCartTotalResponseCWProxyImpl(this._value);
@@ -37,26 +39,27 @@ class _$GetCartTotalResponseCWProxyImpl
   final GetCartTotalResponse _value;
 
   @override
-  GetCartTotalResponse subtotal(num? subtotal) => this(subtotal: subtotal);
+  GetCartTotalResponse subtotal(num? subtotal) => call(subtotal: subtotal);
 
   @override
   GetCartTotalResponse shippingFee(num? shippingFee) =>
-      this(shippingFee: shippingFee);
+      call(shippingFee: shippingFee);
 
   @override
-  GetCartTotalResponse discount(num? discount) => this(discount: discount);
+  GetCartTotalResponse discount(num? discount) => call(discount: discount);
 
   @override
   GetCartTotalResponse totalPrice(num? totalPrice) =>
-      this(totalPrice: totalPrice);
+      call(totalPrice: totalPrice);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GetCartTotalResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartTotalResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GetCartTotalResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GetCartTotalResponse call({
     Object? subtotal = const $CopyWithPlaceholder(),
     Object? shippingFee = const $CopyWithPlaceholder(),
@@ -85,7 +88,8 @@ class _$GetCartTotalResponseCWProxyImpl
 }
 
 extension $GetCartTotalResponseCopyWith on GetCartTotalResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfGetCartTotalResponse.copyWith(...)` or like so:`instanceOfGetCartTotalResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfGetCartTotalResponse.copyWith(...)` or `instanceOfGetCartTotalResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$GetCartTotalResponseCWProxy get copyWith =>
       _$GetCartTotalResponseCWProxyImpl(this);

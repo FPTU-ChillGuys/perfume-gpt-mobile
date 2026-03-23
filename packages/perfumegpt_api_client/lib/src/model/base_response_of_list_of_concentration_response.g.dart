@@ -21,12 +21,13 @@ abstract class _$BaseResponseOfListOfConcentrationResponseCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfConcentrationResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfConcentrationResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfConcentrationResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfConcentrationResponse call({
     List<ConcentrationResponse>? payload,
     bool? success,
@@ -36,7 +37,8 @@ abstract class _$BaseResponseOfListOfConcentrationResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfListOfConcentrationResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfListOfConcentrationResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfListOfConcentrationResponse.copyWith(...)` or call `instanceOfBaseResponseOfListOfConcentrationResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfListOfConcentrationResponseCWProxyImpl
     implements _$BaseResponseOfListOfConcentrationResponseCWProxy {
   const _$BaseResponseOfListOfConcentrationResponseCWProxyImpl(this._value);
@@ -46,32 +48,33 @@ class _$BaseResponseOfListOfConcentrationResponseCWProxyImpl
   @override
   BaseResponseOfListOfConcentrationResponse payload(
     List<ConcentrationResponse>? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfListOfConcentrationResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfListOfConcentrationResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfListOfConcentrationResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfListOfConcentrationResponse errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfConcentrationResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfConcentrationResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfConcentrationResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfConcentrationResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -106,7 +109,8 @@ class _$BaseResponseOfListOfConcentrationResponseCWProxyImpl
 
 extension $BaseResponseOfListOfConcentrationResponseCopyWith
     on BaseResponseOfListOfConcentrationResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfListOfConcentrationResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfListOfConcentrationResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfListOfConcentrationResponse.copyWith(...)` or `instanceOfBaseResponseOfListOfConcentrationResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfListOfConcentrationResponseCWProxy get copyWith =>
       _$BaseResponseOfListOfConcentrationResponseCWProxyImpl(this);

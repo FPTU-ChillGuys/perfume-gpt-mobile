@@ -13,12 +13,13 @@ abstract class _$ExcelTemplateResponseCWProxy {
 
   ExcelTemplateResponse contentType(String? contentType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ExcelTemplateResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ExcelTemplateResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ExcelTemplateResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ExcelTemplateResponse call({
     String? fileContent,
     String? fileName,
@@ -26,7 +27,8 @@ abstract class _$ExcelTemplateResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfExcelTemplateResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfExcelTemplateResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfExcelTemplateResponse.copyWith(...)` or call `instanceOfExcelTemplateResponse.copyWith.fieldName(value)` for a single field.
 class _$ExcelTemplateResponseCWProxyImpl
     implements _$ExcelTemplateResponseCWProxy {
   const _$ExcelTemplateResponseCWProxyImpl(this._value);
@@ -35,22 +37,23 @@ class _$ExcelTemplateResponseCWProxyImpl
 
   @override
   ExcelTemplateResponse fileContent(String? fileContent) =>
-      this(fileContent: fileContent);
+      call(fileContent: fileContent);
 
   @override
-  ExcelTemplateResponse fileName(String? fileName) => this(fileName: fileName);
+  ExcelTemplateResponse fileName(String? fileName) => call(fileName: fileName);
 
   @override
   ExcelTemplateResponse contentType(String? contentType) =>
-      this(contentType: contentType);
+      call(contentType: contentType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ExcelTemplateResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ExcelTemplateResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ExcelTemplateResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ExcelTemplateResponse call({
     Object? fileContent = const $CopyWithPlaceholder(),
     Object? fileName = const $CopyWithPlaceholder(),
@@ -74,7 +77,8 @@ class _$ExcelTemplateResponseCWProxyImpl
 }
 
 extension $ExcelTemplateResponseCopyWith on ExcelTemplateResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfExcelTemplateResponse.copyWith(...)` or like so:`instanceOfExcelTemplateResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfExcelTemplateResponse.copyWith(...)` or `instanceOfExcelTemplateResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ExcelTemplateResponseCWProxy get copyWith =>
       _$ExcelTemplateResponseCWProxyImpl(this);

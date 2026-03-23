@@ -25,12 +25,13 @@ abstract class _$UpdateVoucherRequestCWProxy {
 
   UpdateVoucherRequest isPublic(bool? isPublic);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateVoucherRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateVoucherRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateVoucherRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateVoucherRequest call({
     String? code,
     num? discountValue,
@@ -44,7 +45,8 @@ abstract class _$UpdateVoucherRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateVoucherRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateVoucherRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateVoucherRequest.copyWith(...)` or call `instanceOfUpdateVoucherRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateVoucherRequestCWProxyImpl
     implements _$UpdateVoucherRequestCWProxy {
   const _$UpdateVoucherRequestCWProxyImpl(this._value);
@@ -52,46 +54,47 @@ class _$UpdateVoucherRequestCWProxyImpl
   final UpdateVoucherRequest _value;
 
   @override
-  UpdateVoucherRequest code(String? code) => this(code: code);
+  UpdateVoucherRequest code(String? code) => call(code: code);
 
   @override
   UpdateVoucherRequest discountValue(num? discountValue) =>
-      this(discountValue: discountValue);
+      call(discountValue: discountValue);
 
   @override
   UpdateVoucherRequest discountType(DiscountType? discountType) =>
-      this(discountType: discountType);
+      call(discountType: discountType);
 
   @override
   UpdateVoucherRequest requiredPoints(int? requiredPoints) =>
-      this(requiredPoints: requiredPoints);
+      call(requiredPoints: requiredPoints);
 
   @override
   UpdateVoucherRequest minOrderValue(num? minOrderValue) =>
-      this(minOrderValue: minOrderValue);
+      call(minOrderValue: minOrderValue);
 
   @override
   UpdateVoucherRequest expiryDate(DateTime? expiryDate) =>
-      this(expiryDate: expiryDate);
+      call(expiryDate: expiryDate);
 
   @override
   UpdateVoucherRequest totalQuantity(int? totalQuantity) =>
-      this(totalQuantity: totalQuantity);
+      call(totalQuantity: totalQuantity);
 
   @override
   UpdateVoucherRequest remainingQuantity(int? remainingQuantity) =>
-      this(remainingQuantity: remainingQuantity);
+      call(remainingQuantity: remainingQuantity);
 
   @override
-  UpdateVoucherRequest isPublic(bool? isPublic) => this(isPublic: isPublic);
+  UpdateVoucherRequest isPublic(bool? isPublic) => call(isPublic: isPublic);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateVoucherRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateVoucherRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateVoucherRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateVoucherRequest call({
     Object? code = const $CopyWithPlaceholder(),
     Object? discountValue = const $CopyWithPlaceholder(),
@@ -145,7 +148,8 @@ class _$UpdateVoucherRequestCWProxyImpl
 }
 
 extension $UpdateVoucherRequestCopyWith on UpdateVoucherRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateVoucherRequest.copyWith(...)` or like so:`instanceOfUpdateVoucherRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateVoucherRequest.copyWith(...)` or `instanceOfUpdateVoucherRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateVoucherRequestCWProxy get copyWith =>
       _$UpdateVoucherRequestCWProxyImpl(this);

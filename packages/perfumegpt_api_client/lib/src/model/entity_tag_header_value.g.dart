@@ -11,16 +11,18 @@ abstract class _$EntityTagHeaderValueCWProxy {
 
   EntityTagHeaderValue isWeak(bool? isWeak);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `EntityTagHeaderValue(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EntityTagHeaderValue(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// EntityTagHeaderValue(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   EntityTagHeaderValue call({StringSegment? tag, bool? isWeak});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfEntityTagHeaderValue.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfEntityTagHeaderValue.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfEntityTagHeaderValue.copyWith(...)` or call `instanceOfEntityTagHeaderValue.copyWith.fieldName(value)` for a single field.
 class _$EntityTagHeaderValueCWProxyImpl
     implements _$EntityTagHeaderValueCWProxy {
   const _$EntityTagHeaderValueCWProxyImpl(this._value);
@@ -28,18 +30,19 @@ class _$EntityTagHeaderValueCWProxyImpl
   final EntityTagHeaderValue _value;
 
   @override
-  EntityTagHeaderValue tag(StringSegment? tag) => this(tag: tag);
+  EntityTagHeaderValue tag(StringSegment? tag) => call(tag: tag);
 
   @override
-  EntityTagHeaderValue isWeak(bool? isWeak) => this(isWeak: isWeak);
+  EntityTagHeaderValue isWeak(bool? isWeak) => call(isWeak: isWeak);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `EntityTagHeaderValue(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EntityTagHeaderValue(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// EntityTagHeaderValue(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   EntityTagHeaderValue call({
     Object? tag = const $CopyWithPlaceholder(),
     Object? isWeak = const $CopyWithPlaceholder(),
@@ -58,7 +61,8 @@ class _$EntityTagHeaderValueCWProxyImpl
 }
 
 extension $EntityTagHeaderValueCopyWith on EntityTagHeaderValue {
-  /// Returns a callable class that can be used as follows: `instanceOfEntityTagHeaderValue.copyWith(...)` or like so:`instanceOfEntityTagHeaderValue.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfEntityTagHeaderValue.copyWith(...)` or `instanceOfEntityTagHeaderValue.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$EntityTagHeaderValueCWProxy get copyWith =>
       _$EntityTagHeaderValueCWProxyImpl(this);

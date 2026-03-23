@@ -21,12 +21,13 @@ abstract class _$PagedResultOfUserVoucherResponseCWProxy {
 
   PagedResultOfUserVoucherResponse hasNextPage(bool? hasNextPage);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PagedResultOfUserVoucherResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfUserVoucherResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PagedResultOfUserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PagedResultOfUserVoucherResponse call({
     List<UserVoucherResponse> items,
     int pageNumber,
@@ -38,7 +39,8 @@ abstract class _$PagedResultOfUserVoucherResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPagedResultOfUserVoucherResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPagedResultOfUserVoucherResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPagedResultOfUserVoucherResponse.copyWith(...)` or call `instanceOfPagedResultOfUserVoucherResponse.copyWith.fieldName(value)` for a single field.
 class _$PagedResultOfUserVoucherResponseCWProxyImpl
     implements _$PagedResultOfUserVoucherResponseCWProxy {
   const _$PagedResultOfUserVoucherResponseCWProxyImpl(this._value);
@@ -47,39 +49,40 @@ class _$PagedResultOfUserVoucherResponseCWProxyImpl
 
   @override
   PagedResultOfUserVoucherResponse items(List<UserVoucherResponse> items) =>
-      this(items: items);
+      call(items: items);
 
   @override
   PagedResultOfUserVoucherResponse pageNumber(int pageNumber) =>
-      this(pageNumber: pageNumber);
+      call(pageNumber: pageNumber);
 
   @override
   PagedResultOfUserVoucherResponse pageSize(int pageSize) =>
-      this(pageSize: pageSize);
+      call(pageSize: pageSize);
 
   @override
   PagedResultOfUserVoucherResponse totalCount(int totalCount) =>
-      this(totalCount: totalCount);
+      call(totalCount: totalCount);
 
   @override
   PagedResultOfUserVoucherResponse totalPages(int totalPages) =>
-      this(totalPages: totalPages);
+      call(totalPages: totalPages);
 
   @override
   PagedResultOfUserVoucherResponse hasPreviousPage(bool? hasPreviousPage) =>
-      this(hasPreviousPage: hasPreviousPage);
+      call(hasPreviousPage: hasPreviousPage);
 
   @override
   PagedResultOfUserVoucherResponse hasNextPage(bool? hasNextPage) =>
-      this(hasNextPage: hasNextPage);
+      call(hasNextPage: hasNextPage);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PagedResultOfUserVoucherResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfUserVoucherResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PagedResultOfUserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PagedResultOfUserVoucherResponse call({
     Object? items = const $CopyWithPlaceholder(),
     Object? pageNumber = const $CopyWithPlaceholder(),
@@ -90,23 +93,26 @@ class _$PagedResultOfUserVoucherResponseCWProxyImpl
     Object? hasNextPage = const $CopyWithPlaceholder(),
   }) {
     return PagedResultOfUserVoucherResponse(
-      items: items == const $CopyWithPlaceholder()
+      items: items == const $CopyWithPlaceholder() || items == null
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
           : items as List<UserVoucherResponse>,
-      pageNumber: pageNumber == const $CopyWithPlaceholder()
+      pageNumber:
+          pageNumber == const $CopyWithPlaceholder() || pageNumber == null
           ? _value.pageNumber
           // ignore: cast_nullable_to_non_nullable
           : pageNumber as int,
-      pageSize: pageSize == const $CopyWithPlaceholder()
+      pageSize: pageSize == const $CopyWithPlaceholder() || pageSize == null
           ? _value.pageSize
           // ignore: cast_nullable_to_non_nullable
           : pageSize as int,
-      totalCount: totalCount == const $CopyWithPlaceholder()
+      totalCount:
+          totalCount == const $CopyWithPlaceholder() || totalCount == null
           ? _value.totalCount
           // ignore: cast_nullable_to_non_nullable
           : totalCount as int,
-      totalPages: totalPages == const $CopyWithPlaceholder()
+      totalPages:
+          totalPages == const $CopyWithPlaceholder() || totalPages == null
           ? _value.totalPages
           // ignore: cast_nullable_to_non_nullable
           : totalPages as int,
@@ -124,7 +130,8 @@ class _$PagedResultOfUserVoucherResponseCWProxyImpl
 
 extension $PagedResultOfUserVoucherResponseCopyWith
     on PagedResultOfUserVoucherResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfPagedResultOfUserVoucherResponse.copyWith(...)` or like so:`instanceOfPagedResultOfUserVoucherResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPagedResultOfUserVoucherResponse.copyWith(...)` or `instanceOfPagedResultOfUserVoucherResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PagedResultOfUserVoucherResponseCWProxy get copyWith =>
       _$PagedResultOfUserVoucherResponseCWProxyImpl(this);

@@ -19,12 +19,13 @@ abstract class _$FileContentResultCWProxy {
 
   FileContentResult enableRangeProcessing(bool? enableRangeProcessing);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `FileContentResult(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FileContentResult(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// FileContentResult(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   FileContentResult call({
     String? fileContents,
     String? contentType,
@@ -35,7 +36,8 @@ abstract class _$FileContentResultCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfFileContentResult.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfFileContentResult.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfFileContentResult.copyWith(...)` or call `instanceOfFileContentResult.copyWith.fieldName(value)` for a single field.
 class _$FileContentResultCWProxyImpl implements _$FileContentResultCWProxy {
   const _$FileContentResultCWProxyImpl(this._value);
 
@@ -43,35 +45,36 @@ class _$FileContentResultCWProxyImpl implements _$FileContentResultCWProxy {
 
   @override
   FileContentResult fileContents(String? fileContents) =>
-      this(fileContents: fileContents);
+      call(fileContents: fileContents);
 
   @override
   FileContentResult contentType(String? contentType) =>
-      this(contentType: contentType);
+      call(contentType: contentType);
 
   @override
   FileContentResult fileDownloadName(String? fileDownloadName) =>
-      this(fileDownloadName: fileDownloadName);
+      call(fileDownloadName: fileDownloadName);
 
   @override
   FileContentResult lastModified(DateTime? lastModified) =>
-      this(lastModified: lastModified);
+      call(lastModified: lastModified);
 
   @override
   FileContentResult entityTag(EntityTagHeaderValue? entityTag) =>
-      this(entityTag: entityTag);
+      call(entityTag: entityTag);
 
   @override
   FileContentResult enableRangeProcessing(bool? enableRangeProcessing) =>
-      this(enableRangeProcessing: enableRangeProcessing);
+      call(enableRangeProcessing: enableRangeProcessing);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `FileContentResult(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FileContentResult(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// FileContentResult(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   FileContentResult call({
     Object? fileContents = const $CopyWithPlaceholder(),
     Object? contentType = const $CopyWithPlaceholder(),
@@ -111,7 +114,8 @@ class _$FileContentResultCWProxyImpl implements _$FileContentResultCWProxy {
 }
 
 extension $FileContentResultCopyWith on FileContentResult {
-  /// Returns a callable class that can be used as follows: `instanceOfFileContentResult.copyWith(...)` or like so:`instanceOfFileContentResult.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfFileContentResult.copyWith(...)` or `instanceOfFileContentResult.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$FileContentResultCWProxy get copyWith =>
       _$FileContentResultCWProxyImpl(this);

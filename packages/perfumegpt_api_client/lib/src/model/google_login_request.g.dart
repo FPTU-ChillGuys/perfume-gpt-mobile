@@ -9,31 +9,34 @@ part of 'google_login_request.dart';
 abstract class _$GoogleLoginRequestCWProxy {
   GoogleLoginRequest idToken(String? idToken);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GoogleLoginRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleLoginRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GoogleLoginRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GoogleLoginRequest call({String? idToken});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGoogleLoginRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfGoogleLoginRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfGoogleLoginRequest.copyWith(...)` or call `instanceOfGoogleLoginRequest.copyWith.fieldName(value)` for a single field.
 class _$GoogleLoginRequestCWProxyImpl implements _$GoogleLoginRequestCWProxy {
   const _$GoogleLoginRequestCWProxyImpl(this._value);
 
   final GoogleLoginRequest _value;
 
   @override
-  GoogleLoginRequest idToken(String? idToken) => this(idToken: idToken);
+  GoogleLoginRequest idToken(String? idToken) => call(idToken: idToken);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GoogleLoginRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleLoginRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GoogleLoginRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GoogleLoginRequest call({Object? idToken = const $CopyWithPlaceholder()}) {
     return GoogleLoginRequest(
       idToken: idToken == const $CopyWithPlaceholder()
@@ -45,7 +48,8 @@ class _$GoogleLoginRequestCWProxyImpl implements _$GoogleLoginRequestCWProxy {
 }
 
 extension $GoogleLoginRequestCopyWith on GoogleLoginRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfGoogleLoginRequest.copyWith(...)` or like so:`instanceOfGoogleLoginRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfGoogleLoginRequest.copyWith(...)` or `instanceOfGoogleLoginRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$GoogleLoginRequestCWProxy get copyWith =>
       _$GoogleLoginRequestCWProxyImpl(this);

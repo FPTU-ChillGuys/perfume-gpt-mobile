@@ -21,12 +21,13 @@ abstract class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPagedResultOfUserVoucherResponse call({
     PagedResultOfUserVoucherResponse? payload,
     bool? success,
@@ -36,7 +37,8 @@ abstract class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith(...)` or call `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl
     implements _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxy {
   const _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl(
@@ -48,32 +50,33 @@ class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl
   @override
   BaseResponseOfPagedResultOfUserVoucherResponse payload(
     PagedResultOfUserVoucherResponse? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfPagedResultOfUserVoucherResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfPagedResultOfUserVoucherResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfPagedResultOfUserVoucherResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfPagedResultOfUserVoucherResponse errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPagedResultOfUserVoucherResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -108,7 +111,8 @@ class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl
 
 extension $BaseResponseOfPagedResultOfUserVoucherResponseCopyWith
     on BaseResponseOfPagedResultOfUserVoucherResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith(...)` or `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxy get copyWith =>
       _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl(this);

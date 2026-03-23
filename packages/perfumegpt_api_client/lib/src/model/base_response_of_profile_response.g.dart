@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfProfileResponseCWProxy {
 
   BaseResponseOfProfileResponse errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfProfileResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfProfileResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfProfileResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfProfileResponse call({
     ProfileResponse? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfProfileResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfProfileResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfProfileResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfProfileResponse.copyWith(...)` or call `instanceOfBaseResponseOfProfileResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfProfileResponseCWProxyImpl
     implements _$BaseResponseOfProfileResponseCWProxy {
   const _$BaseResponseOfProfileResponseCWProxyImpl(this._value);
@@ -41,31 +43,32 @@ class _$BaseResponseOfProfileResponseCWProxyImpl
 
   @override
   BaseResponseOfProfileResponse payload(ProfileResponse? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
   BaseResponseOfProfileResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfProfileResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfProfileResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfProfileResponse errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfProfileResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfProfileResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfProfileResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfProfileResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -100,7 +103,8 @@ class _$BaseResponseOfProfileResponseCWProxyImpl
 
 extension $BaseResponseOfProfileResponseCopyWith
     on BaseResponseOfProfileResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfProfileResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfProfileResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfProfileResponse.copyWith(...)` or `instanceOfBaseResponseOfProfileResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfProfileResponseCWProxy get copyWith =>
       _$BaseResponseOfProfileResponseCWProxyImpl(this);

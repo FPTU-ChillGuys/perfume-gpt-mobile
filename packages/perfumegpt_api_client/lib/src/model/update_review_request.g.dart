@@ -17,12 +17,13 @@ abstract class _$UpdateReviewRequestCWProxy {
 
   UpdateReviewRequest mediaIdsToDelete(List<String>? mediaIdsToDelete);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateReviewRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateReviewRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateReviewRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateReviewRequest call({
     int? rating,
     String? comment,
@@ -31,34 +32,36 @@ abstract class _$UpdateReviewRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateReviewRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateReviewRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateReviewRequest.copyWith(...)` or call `instanceOfUpdateReviewRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateReviewRequestCWProxyImpl implements _$UpdateReviewRequestCWProxy {
   const _$UpdateReviewRequestCWProxyImpl(this._value);
 
   final UpdateReviewRequest _value;
 
   @override
-  UpdateReviewRequest rating(int? rating) => this(rating: rating);
+  UpdateReviewRequest rating(int? rating) => call(rating: rating);
 
   @override
-  UpdateReviewRequest comment(String? comment) => this(comment: comment);
+  UpdateReviewRequest comment(String? comment) => call(comment: comment);
 
   @override
   UpdateReviewRequest temporaryMediaIdsToAdd(
     List<String>? temporaryMediaIdsToAdd,
-  ) => this(temporaryMediaIdsToAdd: temporaryMediaIdsToAdd);
+  ) => call(temporaryMediaIdsToAdd: temporaryMediaIdsToAdd);
 
   @override
   UpdateReviewRequest mediaIdsToDelete(List<String>? mediaIdsToDelete) =>
-      this(mediaIdsToDelete: mediaIdsToDelete);
+      call(mediaIdsToDelete: mediaIdsToDelete);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateReviewRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateReviewRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateReviewRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateReviewRequest call({
     Object? rating = const $CopyWithPlaceholder(),
     Object? comment = const $CopyWithPlaceholder(),
@@ -88,7 +91,8 @@ class _$UpdateReviewRequestCWProxyImpl implements _$UpdateReviewRequestCWProxy {
 }
 
 extension $UpdateReviewRequestCopyWith on UpdateReviewRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateReviewRequest.copyWith(...)` or like so:`instanceOfUpdateReviewRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateReviewRequest.copyWith(...)` or `instanceOfUpdateReviewRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateReviewRequestCWProxy get copyWith =>
       _$UpdateReviewRequestCWProxyImpl(this);

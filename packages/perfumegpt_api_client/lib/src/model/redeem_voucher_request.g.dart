@@ -11,16 +11,18 @@ abstract class _$RedeemVoucherRequestCWProxy {
 
   RedeemVoucherRequest receiverEmailOrPhone(String? receiverEmailOrPhone);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RedeemVoucherRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RedeemVoucherRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RedeemVoucherRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RedeemVoucherRequest call({String? voucherId, String? receiverEmailOrPhone});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfRedeemVoucherRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfRedeemVoucherRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfRedeemVoucherRequest.copyWith(...)` or call `instanceOfRedeemVoucherRequest.copyWith.fieldName(value)` for a single field.
 class _$RedeemVoucherRequestCWProxyImpl
     implements _$RedeemVoucherRequestCWProxy {
   const _$RedeemVoucherRequestCWProxyImpl(this._value);
@@ -29,19 +31,20 @@ class _$RedeemVoucherRequestCWProxyImpl
 
   @override
   RedeemVoucherRequest voucherId(String? voucherId) =>
-      this(voucherId: voucherId);
+      call(voucherId: voucherId);
 
   @override
   RedeemVoucherRequest receiverEmailOrPhone(String? receiverEmailOrPhone) =>
-      this(receiverEmailOrPhone: receiverEmailOrPhone);
+      call(receiverEmailOrPhone: receiverEmailOrPhone);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RedeemVoucherRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RedeemVoucherRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RedeemVoucherRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RedeemVoucherRequest call({
     Object? voucherId = const $CopyWithPlaceholder(),
     Object? receiverEmailOrPhone = const $CopyWithPlaceholder(),
@@ -60,7 +63,8 @@ class _$RedeemVoucherRequestCWProxyImpl
 }
 
 extension $RedeemVoucherRequestCopyWith on RedeemVoucherRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfRedeemVoucherRequest.copyWith(...)` or like so:`instanceOfRedeemVoucherRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfRedeemVoucherRequest.copyWith(...)` or `instanceOfRedeemVoucherRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$RedeemVoucherRequestCWProxy get copyWith =>
       _$RedeemVoucherRequestCWProxyImpl(this);

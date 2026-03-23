@@ -21,12 +21,13 @@ abstract class _$BaseResponseOfListOfCategoriesLookupItemCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfCategoriesLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfCategoriesLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfCategoriesLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfCategoriesLookupItem call({
     List<CategoriesLookupItem>? payload,
     bool? success,
@@ -36,7 +37,8 @@ abstract class _$BaseResponseOfListOfCategoriesLookupItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfListOfCategoriesLookupItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfListOfCategoriesLookupItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfListOfCategoriesLookupItem.copyWith(...)` or call `instanceOfBaseResponseOfListOfCategoriesLookupItem.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfListOfCategoriesLookupItemCWProxyImpl
     implements _$BaseResponseOfListOfCategoriesLookupItemCWProxy {
   const _$BaseResponseOfListOfCategoriesLookupItemCWProxyImpl(this._value);
@@ -46,32 +48,33 @@ class _$BaseResponseOfListOfCategoriesLookupItemCWProxyImpl
   @override
   BaseResponseOfListOfCategoriesLookupItem payload(
     List<CategoriesLookupItem>? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfListOfCategoriesLookupItem success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfListOfCategoriesLookupItem message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfListOfCategoriesLookupItem errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfListOfCategoriesLookupItem errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfCategoriesLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfCategoriesLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfCategoriesLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfCategoriesLookupItem call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -106,7 +109,8 @@ class _$BaseResponseOfListOfCategoriesLookupItemCWProxyImpl
 
 extension $BaseResponseOfListOfCategoriesLookupItemCopyWith
     on BaseResponseOfListOfCategoriesLookupItem {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfListOfCategoriesLookupItem.copyWith(...)` or like so:`instanceOfBaseResponseOfListOfCategoriesLookupItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfListOfCategoriesLookupItem.copyWith(...)` or `instanceOfBaseResponseOfListOfCategoriesLookupItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfListOfCategoriesLookupItemCWProxy get copyWith =>
       _$BaseResponseOfListOfCategoriesLookupItemCWProxyImpl(this);

@@ -23,12 +23,13 @@ abstract class _$TemporaryMediaResponseCWProxy {
 
   TemporaryMediaResponse createdAt(DateTime? createdAt);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TemporaryMediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TemporaryMediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// TemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   TemporaryMediaResponse call({
     String? id,
     String? url,
@@ -41,7 +42,8 @@ abstract class _$TemporaryMediaResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfTemporaryMediaResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfTemporaryMediaResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfTemporaryMediaResponse.copyWith(...)` or call `instanceOfTemporaryMediaResponse.copyWith.fieldName(value)` for a single field.
 class _$TemporaryMediaResponseCWProxyImpl
     implements _$TemporaryMediaResponseCWProxy {
   const _$TemporaryMediaResponseCWProxyImpl(this._value);
@@ -49,39 +51,40 @@ class _$TemporaryMediaResponseCWProxyImpl
   final TemporaryMediaResponse _value;
 
   @override
-  TemporaryMediaResponse id(String? id) => this(id: id);
+  TemporaryMediaResponse id(String? id) => call(id: id);
 
   @override
-  TemporaryMediaResponse url(String? url) => this(url: url);
+  TemporaryMediaResponse url(String? url) => call(url: url);
 
   @override
-  TemporaryMediaResponse altText(String? altText) => this(altText: altText);
+  TemporaryMediaResponse altText(String? altText) => call(altText: altText);
 
   @override
   TemporaryMediaResponse displayOrder(int? displayOrder) =>
-      this(displayOrder: displayOrder);
+      call(displayOrder: displayOrder);
 
   @override
-  TemporaryMediaResponse fileSize(int? fileSize) => this(fileSize: fileSize);
+  TemporaryMediaResponse fileSize(int? fileSize) => call(fileSize: fileSize);
 
   @override
-  TemporaryMediaResponse mimeType(String? mimeType) => this(mimeType: mimeType);
+  TemporaryMediaResponse mimeType(String? mimeType) => call(mimeType: mimeType);
 
   @override
   TemporaryMediaResponse expiresAt(DateTime? expiresAt) =>
-      this(expiresAt: expiresAt);
+      call(expiresAt: expiresAt);
 
   @override
   TemporaryMediaResponse createdAt(DateTime? createdAt) =>
-      this(createdAt: createdAt);
+      call(createdAt: createdAt);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TemporaryMediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TemporaryMediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// TemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   TemporaryMediaResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? url = const $CopyWithPlaceholder(),
@@ -130,7 +133,8 @@ class _$TemporaryMediaResponseCWProxyImpl
 }
 
 extension $TemporaryMediaResponseCopyWith on TemporaryMediaResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfTemporaryMediaResponse.copyWith(...)` or like so:`instanceOfTemporaryMediaResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfTemporaryMediaResponse.copyWith(...)` or `instanceOfTemporaryMediaResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$TemporaryMediaResponseCWProxy get copyWith =>
       _$TemporaryMediaResponseCWProxyImpl(this);

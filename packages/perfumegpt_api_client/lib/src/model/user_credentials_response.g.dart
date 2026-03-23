@@ -15,12 +15,13 @@ abstract class _$UserCredentialsResponseCWProxy {
 
   UserCredentialsResponse email(String? email);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserCredentialsResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserCredentialsResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UserCredentialsResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UserCredentialsResponse call({
     String? id,
     String? fullName,
@@ -29,7 +30,8 @@ abstract class _$UserCredentialsResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUserCredentialsResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUserCredentialsResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUserCredentialsResponse.copyWith(...)` or call `instanceOfUserCredentialsResponse.copyWith.fieldName(value)` for a single field.
 class _$UserCredentialsResponseCWProxyImpl
     implements _$UserCredentialsResponseCWProxy {
   const _$UserCredentialsResponseCWProxyImpl(this._value);
@@ -37,26 +39,27 @@ class _$UserCredentialsResponseCWProxyImpl
   final UserCredentialsResponse _value;
 
   @override
-  UserCredentialsResponse id(String? id) => this(id: id);
+  UserCredentialsResponse id(String? id) => call(id: id);
 
   @override
   UserCredentialsResponse fullName(String? fullName) =>
-      this(fullName: fullName);
+      call(fullName: fullName);
 
   @override
   UserCredentialsResponse phoneNumber(String? phoneNumber) =>
-      this(phoneNumber: phoneNumber);
+      call(phoneNumber: phoneNumber);
 
   @override
-  UserCredentialsResponse email(String? email) => this(email: email);
+  UserCredentialsResponse email(String? email) => call(email: email);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserCredentialsResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserCredentialsResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UserCredentialsResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UserCredentialsResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? fullName = const $CopyWithPlaceholder(),
@@ -85,7 +88,8 @@ class _$UserCredentialsResponseCWProxyImpl
 }
 
 extension $UserCredentialsResponseCopyWith on UserCredentialsResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfUserCredentialsResponse.copyWith(...)` or like so:`instanceOfUserCredentialsResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUserCredentialsResponse.copyWith(...)` or `instanceOfUserCredentialsResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UserCredentialsResponseCWProxy get copyWith =>
       _$UserCredentialsResponseCWProxyImpl(this);

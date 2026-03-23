@@ -29,12 +29,13 @@ abstract class _$UserVoucherResponseCWProxy {
 
   UserVoucherResponse redeemedAt(DateTime? redeemedAt);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserVoucherResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserVoucherResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UserVoucherResponse call({
     String? id,
     String? voucherId,
@@ -50,58 +51,60 @@ abstract class _$UserVoucherResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUserVoucherResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUserVoucherResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUserVoucherResponse.copyWith(...)` or call `instanceOfUserVoucherResponse.copyWith.fieldName(value)` for a single field.
 class _$UserVoucherResponseCWProxyImpl implements _$UserVoucherResponseCWProxy {
   const _$UserVoucherResponseCWProxyImpl(this._value);
 
   final UserVoucherResponse _value;
 
   @override
-  UserVoucherResponse id(String? id) => this(id: id);
+  UserVoucherResponse id(String? id) => call(id: id);
 
   @override
   UserVoucherResponse voucherId(String? voucherId) =>
-      this(voucherId: voucherId);
+      call(voucherId: voucherId);
 
   @override
-  UserVoucherResponse code(String? code) => this(code: code);
+  UserVoucherResponse code(String? code) => call(code: code);
 
   @override
   UserVoucherResponse discountValue(num? discountValue) =>
-      this(discountValue: discountValue);
+      call(discountValue: discountValue);
 
   @override
   UserVoucherResponse discountType(String? discountType) =>
-      this(discountType: discountType);
+      call(discountType: discountType);
 
   @override
   UserVoucherResponse minOrderValue(num? minOrderValue) =>
-      this(minOrderValue: minOrderValue);
+      call(minOrderValue: minOrderValue);
 
   @override
   UserVoucherResponse expiryDate(DateTime? expiryDate) =>
-      this(expiryDate: expiryDate);
+      call(expiryDate: expiryDate);
 
   @override
-  UserVoucherResponse isUsed(bool? isUsed) => this(isUsed: isUsed);
+  UserVoucherResponse isUsed(bool? isUsed) => call(isUsed: isUsed);
 
   @override
-  UserVoucherResponse status(String? status) => this(status: status);
+  UserVoucherResponse status(String? status) => call(status: status);
 
   @override
-  UserVoucherResponse isExpired(bool? isExpired) => this(isExpired: isExpired);
+  UserVoucherResponse isExpired(bool? isExpired) => call(isExpired: isExpired);
 
   @override
   UserVoucherResponse redeemedAt(DateTime? redeemedAt) =>
-      this(redeemedAt: redeemedAt);
+      call(redeemedAt: redeemedAt);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserVoucherResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserVoucherResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UserVoucherResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? voucherId = const $CopyWithPlaceholder(),
@@ -165,7 +168,8 @@ class _$UserVoucherResponseCWProxyImpl implements _$UserVoucherResponseCWProxy {
 }
 
 extension $UserVoucherResponseCopyWith on UserVoucherResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfUserVoucherResponse.copyWith(...)` or like so:`instanceOfUserVoucherResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUserVoucherResponse.copyWith(...)` or `instanceOfUserVoucherResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UserVoucherResponseCWProxy get copyWith =>
       _$UserVoucherResponseCWProxyImpl(this);

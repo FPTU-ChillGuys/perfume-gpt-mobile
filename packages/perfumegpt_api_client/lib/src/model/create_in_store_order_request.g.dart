@@ -19,12 +19,13 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
 
   CreateInStoreOrderRequest payment(PaymentInformation? payment);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateInStoreOrderRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateInStoreOrderRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateInStoreOrderRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateInStoreOrderRequest call({
     String? voucherCode,
     bool? isPickupInStore,
@@ -34,7 +35,8 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateInStoreOrderRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateInStoreOrderRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateInStoreOrderRequest.copyWith(...)` or call `instanceOfCreateInStoreOrderRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateInStoreOrderRequestCWProxyImpl
     implements _$CreateInStoreOrderRequestCWProxy {
   const _$CreateInStoreOrderRequestCWProxyImpl(this._value);
@@ -43,32 +45,33 @@ class _$CreateInStoreOrderRequestCWProxyImpl
 
   @override
   CreateInStoreOrderRequest voucherCode(String? voucherCode) =>
-      this(voucherCode: voucherCode);
+      call(voucherCode: voucherCode);
 
   @override
   CreateInStoreOrderRequest isPickupInStore(bool? isPickupInStore) =>
-      this(isPickupInStore: isPickupInStore);
+      call(isPickupInStore: isPickupInStore);
 
   @override
   CreateInStoreOrderRequest orderDetails(
     List<CreateOrderDetailRequest>? orderDetails,
-  ) => this(orderDetails: orderDetails);
+  ) => call(orderDetails: orderDetails);
 
   @override
   CreateInStoreOrderRequest recipient(RecipientInformation? recipient) =>
-      this(recipient: recipient);
+      call(recipient: recipient);
 
   @override
   CreateInStoreOrderRequest payment(PaymentInformation? payment) =>
-      this(payment: payment);
+      call(payment: payment);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateInStoreOrderRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateInStoreOrderRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateInStoreOrderRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateInStoreOrderRequest call({
     Object? voucherCode = const $CopyWithPlaceholder(),
     Object? isPickupInStore = const $CopyWithPlaceholder(),
@@ -102,7 +105,8 @@ class _$CreateInStoreOrderRequestCWProxyImpl
 }
 
 extension $CreateInStoreOrderRequestCopyWith on CreateInStoreOrderRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateInStoreOrderRequest.copyWith(...)` or like so:`instanceOfCreateInStoreOrderRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateInStoreOrderRequest.copyWith(...)` or `instanceOfCreateInStoreOrderRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateInStoreOrderRequestCWProxy get copyWith =>
       _$CreateInStoreOrderRequestCWProxyImpl(this);
