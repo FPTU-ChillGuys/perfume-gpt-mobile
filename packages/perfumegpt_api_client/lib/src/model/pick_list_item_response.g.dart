@@ -17,12 +17,13 @@ abstract class _$PickListItemResponseCWProxy {
 
   PickListItemResponse batches(List<PickListBatchInfo>? batches);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PickListItemResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PickListItemResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PickListItemResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PickListItemResponse call({
     String? orderDetailId,
     String? variantId,
@@ -32,7 +33,8 @@ abstract class _$PickListItemResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPickListItemResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPickListItemResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPickListItemResponse.copyWith(...)` or call `instanceOfPickListItemResponse.copyWith.fieldName(value)` for a single field.
 class _$PickListItemResponseCWProxyImpl
     implements _$PickListItemResponseCWProxy {
   const _$PickListItemResponseCWProxyImpl(this._value);
@@ -41,30 +43,31 @@ class _$PickListItemResponseCWProxyImpl
 
   @override
   PickListItemResponse orderDetailId(String? orderDetailId) =>
-      this(orderDetailId: orderDetailId);
+      call(orderDetailId: orderDetailId);
 
   @override
   PickListItemResponse variantId(String? variantId) =>
-      this(variantId: variantId);
+      call(variantId: variantId);
 
   @override
   PickListItemResponse variantName(String? variantName) =>
-      this(variantName: variantName);
+      call(variantName: variantName);
 
   @override
-  PickListItemResponse quantity(int? quantity) => this(quantity: quantity);
+  PickListItemResponse quantity(int? quantity) => call(quantity: quantity);
 
   @override
   PickListItemResponse batches(List<PickListBatchInfo>? batches) =>
-      this(batches: batches);
+      call(batches: batches);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PickListItemResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PickListItemResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PickListItemResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PickListItemResponse call({
     Object? orderDetailId = const $CopyWithPlaceholder(),
     Object? variantId = const $CopyWithPlaceholder(),
@@ -98,7 +101,8 @@ class _$PickListItemResponseCWProxyImpl
 }
 
 extension $PickListItemResponseCopyWith on PickListItemResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfPickListItemResponse.copyWith(...)` or like so:`instanceOfPickListItemResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPickListItemResponse.copyWith(...)` or `instanceOfPickListItemResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PickListItemResponseCWProxy get copyWith =>
       _$PickListItemResponseCWProxyImpl(this);

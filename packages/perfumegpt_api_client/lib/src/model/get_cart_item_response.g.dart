@@ -27,12 +27,13 @@ abstract class _$GetCartItemResponseCWProxy {
 
   GetCartItemResponse subTotal(num? subTotal);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GetCartItemResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GetCartItemResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GetCartItemResponse call({
     String? cartItemId,
     String? variantId,
@@ -47,7 +48,8 @@ abstract class _$GetCartItemResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGetCartItemResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfGetCartItemResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfGetCartItemResponse.copyWith(...)` or call `instanceOfGetCartItemResponse.copyWith.fieldName(value)` for a single field.
 class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
   const _$GetCartItemResponseCWProxyImpl(this._value);
 
@@ -55,46 +57,47 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
 
   @override
   GetCartItemResponse cartItemId(String? cartItemId) =>
-      this(cartItemId: cartItemId);
+      call(cartItemId: cartItemId);
 
   @override
   GetCartItemResponse variantId(String? variantId) =>
-      this(variantId: variantId);
+      call(variantId: variantId);
 
   @override
   GetCartItemResponse variantName(String? variantName) =>
-      this(variantName: variantName);
+      call(variantName: variantName);
 
   @override
-  GetCartItemResponse imageUrl(String? imageUrl) => this(imageUrl: imageUrl);
+  GetCartItemResponse imageUrl(String? imageUrl) => call(imageUrl: imageUrl);
 
   @override
-  GetCartItemResponse volumeMl(int? volumeMl) => this(volumeMl: volumeMl);
+  GetCartItemResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
-  GetCartItemResponse type(VariantType? type) => this(type: type);
+  GetCartItemResponse type(VariantType? type) => call(type: type);
 
   @override
   GetCartItemResponse variantPrice(num? variantPrice) =>
-      this(variantPrice: variantPrice);
+      call(variantPrice: variantPrice);
 
   @override
-  GetCartItemResponse quantity(int? quantity) => this(quantity: quantity);
+  GetCartItemResponse quantity(int? quantity) => call(quantity: quantity);
 
   @override
   GetCartItemResponse isAvailable(bool? isAvailable) =>
-      this(isAvailable: isAvailable);
+      call(isAvailable: isAvailable);
 
   @override
-  GetCartItemResponse subTotal(num? subTotal) => this(subTotal: subTotal);
+  GetCartItemResponse subTotal(num? subTotal) => call(subTotal: subTotal);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GetCartItemResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GetCartItemResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GetCartItemResponse call({
     Object? cartItemId = const $CopyWithPlaceholder(),
     Object? variantId = const $CopyWithPlaceholder(),
@@ -153,7 +156,8 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
 }
 
 extension $GetCartItemResponseCopyWith on GetCartItemResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfGetCartItemResponse.copyWith(...)` or like so:`instanceOfGetCartItemResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfGetCartItemResponse.copyWith(...)` or `instanceOfGetCartItemResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$GetCartItemResponseCWProxy get copyWith =>
       _$GetCartItemResponseCWProxyImpl(this);

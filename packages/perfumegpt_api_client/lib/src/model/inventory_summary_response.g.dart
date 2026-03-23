@@ -19,12 +19,13 @@ abstract class _$InventorySummaryResponseCWProxy {
 
   InventorySummaryResponse expiringSoonCount(int? expiringSoonCount);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InventorySummaryResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `InventorySummaryResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// InventorySummaryResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   InventorySummaryResponse call({
     int? totalVariants,
     int? totalStockQuantity,
@@ -35,7 +36,8 @@ abstract class _$InventorySummaryResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfInventorySummaryResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfInventorySummaryResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfInventorySummaryResponse.copyWith(...)` or call `instanceOfInventorySummaryResponse.copyWith.fieldName(value)` for a single field.
 class _$InventorySummaryResponseCWProxyImpl
     implements _$InventorySummaryResponseCWProxy {
   const _$InventorySummaryResponseCWProxyImpl(this._value);
@@ -44,35 +46,36 @@ class _$InventorySummaryResponseCWProxyImpl
 
   @override
   InventorySummaryResponse totalVariants(int? totalVariants) =>
-      this(totalVariants: totalVariants);
+      call(totalVariants: totalVariants);
 
   @override
   InventorySummaryResponse totalStockQuantity(int? totalStockQuantity) =>
-      this(totalStockQuantity: totalStockQuantity);
+      call(totalStockQuantity: totalStockQuantity);
 
   @override
   InventorySummaryResponse lowStockVariantsCount(int? lowStockVariantsCount) =>
-      this(lowStockVariantsCount: lowStockVariantsCount);
+      call(lowStockVariantsCount: lowStockVariantsCount);
 
   @override
   InventorySummaryResponse totalBatches(int? totalBatches) =>
-      this(totalBatches: totalBatches);
+      call(totalBatches: totalBatches);
 
   @override
   InventorySummaryResponse expiredBatchesCount(int? expiredBatchesCount) =>
-      this(expiredBatchesCount: expiredBatchesCount);
+      call(expiredBatchesCount: expiredBatchesCount);
 
   @override
   InventorySummaryResponse expiringSoonCount(int? expiringSoonCount) =>
-      this(expiringSoonCount: expiringSoonCount);
+      call(expiringSoonCount: expiringSoonCount);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InventorySummaryResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `InventorySummaryResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// InventorySummaryResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   InventorySummaryResponse call({
     Object? totalVariants = const $CopyWithPlaceholder(),
     Object? totalStockQuantity = const $CopyWithPlaceholder(),
@@ -112,7 +115,8 @@ class _$InventorySummaryResponseCWProxyImpl
 }
 
 extension $InventorySummaryResponseCopyWith on InventorySummaryResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfInventorySummaryResponse.copyWith(...)` or like so:`instanceOfInventorySummaryResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfInventorySummaryResponse.copyWith(...)` or `instanceOfInventorySummaryResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$InventorySummaryResponseCWProxy get copyWith =>
       _$InventorySummaryResponseCWProxyImpl(this);

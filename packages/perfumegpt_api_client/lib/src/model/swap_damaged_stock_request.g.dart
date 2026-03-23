@@ -13,12 +13,13 @@ abstract class _$SwapDamagedStockRequestCWProxy {
 
   SwapDamagedStockRequest damageNote(String? damageNote);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SwapDamagedStockRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SwapDamagedStockRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// SwapDamagedStockRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   SwapDamagedStockRequest call({
     String? orderDetailId,
     String? damagedReservationId,
@@ -26,7 +27,8 @@ abstract class _$SwapDamagedStockRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSwapDamagedStockRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfSwapDamagedStockRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfSwapDamagedStockRequest.copyWith(...)` or call `instanceOfSwapDamagedStockRequest.copyWith.fieldName(value)` for a single field.
 class _$SwapDamagedStockRequestCWProxyImpl
     implements _$SwapDamagedStockRequestCWProxy {
   const _$SwapDamagedStockRequestCWProxyImpl(this._value);
@@ -35,23 +37,24 @@ class _$SwapDamagedStockRequestCWProxyImpl
 
   @override
   SwapDamagedStockRequest orderDetailId(String? orderDetailId) =>
-      this(orderDetailId: orderDetailId);
+      call(orderDetailId: orderDetailId);
 
   @override
   SwapDamagedStockRequest damagedReservationId(String? damagedReservationId) =>
-      this(damagedReservationId: damagedReservationId);
+      call(damagedReservationId: damagedReservationId);
 
   @override
   SwapDamagedStockRequest damageNote(String? damageNote) =>
-      this(damageNote: damageNote);
+      call(damageNote: damageNote);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SwapDamagedStockRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SwapDamagedStockRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// SwapDamagedStockRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   SwapDamagedStockRequest call({
     Object? orderDetailId = const $CopyWithPlaceholder(),
     Object? damagedReservationId = const $CopyWithPlaceholder(),
@@ -75,7 +78,8 @@ class _$SwapDamagedStockRequestCWProxyImpl
 }
 
 extension $SwapDamagedStockRequestCopyWith on SwapDamagedStockRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfSwapDamagedStockRequest.copyWith(...)` or like so:`instanceOfSwapDamagedStockRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfSwapDamagedStockRequest.copyWith(...)` or `instanceOfSwapDamagedStockRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$SwapDamagedStockRequestCWProxy get copyWith =>
       _$SwapDamagedStockRequestCWProxyImpl(this);

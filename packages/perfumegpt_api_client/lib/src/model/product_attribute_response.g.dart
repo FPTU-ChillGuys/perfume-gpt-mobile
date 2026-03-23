@@ -19,12 +19,13 @@ abstract class _$ProductAttributeResponseCWProxy {
 
   ProductAttributeResponse value(String? value);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAttributeResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductAttributeResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductAttributeResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductAttributeResponse call({
     String? id,
     int? attributeId,
@@ -35,7 +36,8 @@ abstract class _$ProductAttributeResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductAttributeResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductAttributeResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductAttributeResponse.copyWith(...)` or call `instanceOfProductAttributeResponse.copyWith.fieldName(value)` for a single field.
 class _$ProductAttributeResponseCWProxyImpl
     implements _$ProductAttributeResponseCWProxy {
   const _$ProductAttributeResponseCWProxyImpl(this._value);
@@ -43,33 +45,34 @@ class _$ProductAttributeResponseCWProxyImpl
   final ProductAttributeResponse _value;
 
   @override
-  ProductAttributeResponse id(String? id) => this(id: id);
+  ProductAttributeResponse id(String? id) => call(id: id);
 
   @override
   ProductAttributeResponse attributeId(int? attributeId) =>
-      this(attributeId: attributeId);
+      call(attributeId: attributeId);
 
   @override
-  ProductAttributeResponse valueId(int? valueId) => this(valueId: valueId);
+  ProductAttributeResponse valueId(int? valueId) => call(valueId: valueId);
 
   @override
   ProductAttributeResponse attribute(String? attribute) =>
-      this(attribute: attribute);
+      call(attribute: attribute);
 
   @override
   ProductAttributeResponse description(String? description) =>
-      this(description: description);
+      call(description: description);
 
   @override
-  ProductAttributeResponse value(String? value) => this(value: value);
+  ProductAttributeResponse value(String? value) => call(value: value);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAttributeResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductAttributeResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductAttributeResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductAttributeResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? attributeId = const $CopyWithPlaceholder(),
@@ -108,7 +111,8 @@ class _$ProductAttributeResponseCWProxyImpl
 }
 
 extension $ProductAttributeResponseCopyWith on ProductAttributeResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfProductAttributeResponse.copyWith(...)` or like so:`instanceOfProductAttributeResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductAttributeResponse.copyWith(...)` or `instanceOfProductAttributeResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductAttributeResponseCWProxy get copyWith =>
       _$ProductAttributeResponseCWProxyImpl(this);

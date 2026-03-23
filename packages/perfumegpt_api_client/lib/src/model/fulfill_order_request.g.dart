@@ -9,16 +9,18 @@ part of 'fulfill_order_request.dart';
 abstract class _$FulfillOrderRequestCWProxy {
   FulfillOrderRequest items(List<FulfillOrderItemRequest>? items);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `FulfillOrderRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FulfillOrderRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// FulfillOrderRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   FulfillOrderRequest call({List<FulfillOrderItemRequest>? items});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfFulfillOrderRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfFulfillOrderRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfFulfillOrderRequest.copyWith(...)` or call `instanceOfFulfillOrderRequest.copyWith.fieldName(value)` for a single field.
 class _$FulfillOrderRequestCWProxyImpl implements _$FulfillOrderRequestCWProxy {
   const _$FulfillOrderRequestCWProxyImpl(this._value);
 
@@ -26,15 +28,16 @@ class _$FulfillOrderRequestCWProxyImpl implements _$FulfillOrderRequestCWProxy {
 
   @override
   FulfillOrderRequest items(List<FulfillOrderItemRequest>? items) =>
-      this(items: items);
+      call(items: items);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `FulfillOrderRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FulfillOrderRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// FulfillOrderRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   FulfillOrderRequest call({Object? items = const $CopyWithPlaceholder()}) {
     return FulfillOrderRequest(
       items: items == const $CopyWithPlaceholder()
@@ -46,7 +49,8 @@ class _$FulfillOrderRequestCWProxyImpl implements _$FulfillOrderRequestCWProxy {
 }
 
 extension $FulfillOrderRequestCopyWith on FulfillOrderRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfFulfillOrderRequest.copyWith(...)` or like so:`instanceOfFulfillOrderRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfFulfillOrderRequest.copyWith(...)` or `instanceOfFulfillOrderRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$FulfillOrderRequestCWProxy get copyWith =>
       _$FulfillOrderRequestCWProxyImpl(this);

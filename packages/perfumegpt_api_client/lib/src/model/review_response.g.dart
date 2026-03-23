@@ -31,12 +31,13 @@ abstract class _$ReviewResponseCWProxy {
 
   ReviewResponse updatedAt(DateTime? updatedAt);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ReviewResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ReviewResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ReviewResponse call({
     String? id,
     String? userId,
@@ -53,59 +54,61 @@ abstract class _$ReviewResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfReviewResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfReviewResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfReviewResponse.copyWith(...)` or call `instanceOfReviewResponse.copyWith.fieldName(value)` for a single field.
 class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
   const _$ReviewResponseCWProxyImpl(this._value);
 
   final ReviewResponse _value;
 
   @override
-  ReviewResponse id(String? id) => this(id: id);
+  ReviewResponse id(String? id) => call(id: id);
 
   @override
-  ReviewResponse userId(String? userId) => this(userId: userId);
+  ReviewResponse userId(String? userId) => call(userId: userId);
 
   @override
   ReviewResponse userFullName(String? userFullName) =>
-      this(userFullName: userFullName);
+      call(userFullName: userFullName);
 
   @override
   ReviewResponse userProfilePictureUrl(String? userProfilePictureUrl) =>
-      this(userProfilePictureUrl: userProfilePictureUrl);
+      call(userProfilePictureUrl: userProfilePictureUrl);
 
   @override
   ReviewResponse orderDetailId(String? orderDetailId) =>
-      this(orderDetailId: orderDetailId);
+      call(orderDetailId: orderDetailId);
 
   @override
-  ReviewResponse variantId(String? variantId) => this(variantId: variantId);
+  ReviewResponse variantId(String? variantId) => call(variantId: variantId);
 
   @override
   ReviewResponse variantName(String? variantName) =>
-      this(variantName: variantName);
+      call(variantName: variantName);
 
   @override
-  ReviewResponse rating(int? rating) => this(rating: rating);
+  ReviewResponse rating(int? rating) => call(rating: rating);
 
   @override
-  ReviewResponse comment(String? comment) => this(comment: comment);
+  ReviewResponse comment(String? comment) => call(comment: comment);
 
   @override
-  ReviewResponse images(List<MediaResponse>? images) => this(images: images);
+  ReviewResponse images(List<MediaResponse>? images) => call(images: images);
 
   @override
-  ReviewResponse createdAt(DateTime? createdAt) => this(createdAt: createdAt);
+  ReviewResponse createdAt(DateTime? createdAt) => call(createdAt: createdAt);
 
   @override
-  ReviewResponse updatedAt(DateTime? updatedAt) => this(updatedAt: updatedAt);
+  ReviewResponse updatedAt(DateTime? updatedAt) => call(updatedAt: updatedAt);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ReviewResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ReviewResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ReviewResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
@@ -175,7 +178,8 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
 }
 
 extension $ReviewResponseCopyWith on ReviewResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfReviewResponse.copyWith(...)` or like so:`instanceOfReviewResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfReviewResponse.copyWith(...)` or `instanceOfReviewResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ReviewResponseCWProxy get copyWith => _$ReviewResponseCWProxyImpl(this);
 }

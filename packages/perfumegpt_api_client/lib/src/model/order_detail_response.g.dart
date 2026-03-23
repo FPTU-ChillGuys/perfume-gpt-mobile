@@ -25,12 +25,13 @@ abstract class _$OrderDetailResponseCWProxy {
     List<ReservedBatchResponse>? reservedBatches,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OrderDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// OrderDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   OrderDetailResponse call({
     String? id,
     String? variantId,
@@ -43,47 +44,49 @@ abstract class _$OrderDetailResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfOrderDetailResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfOrderDetailResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfOrderDetailResponse.copyWith(...)` or call `instanceOfOrderDetailResponse.copyWith.fieldName(value)` for a single field.
 class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
   const _$OrderDetailResponseCWProxyImpl(this._value);
 
   final OrderDetailResponse _value;
 
   @override
-  OrderDetailResponse id(String? id) => this(id: id);
+  OrderDetailResponse id(String? id) => call(id: id);
 
   @override
   OrderDetailResponse variantId(String? variantId) =>
-      this(variantId: variantId);
+      call(variantId: variantId);
 
   @override
   OrderDetailResponse variantName(String? variantName) =>
-      this(variantName: variantName);
+      call(variantName: variantName);
 
   @override
-  OrderDetailResponse imageUrl(String? imageUrl) => this(imageUrl: imageUrl);
+  OrderDetailResponse imageUrl(String? imageUrl) => call(imageUrl: imageUrl);
 
   @override
-  OrderDetailResponse quantity(int? quantity) => this(quantity: quantity);
+  OrderDetailResponse quantity(int? quantity) => call(quantity: quantity);
 
   @override
-  OrderDetailResponse unitPrice(num? unitPrice) => this(unitPrice: unitPrice);
+  OrderDetailResponse unitPrice(num? unitPrice) => call(unitPrice: unitPrice);
 
   @override
-  OrderDetailResponse total(num? total) => this(total: total);
+  OrderDetailResponse total(num? total) => call(total: total);
 
   @override
   OrderDetailResponse reservedBatches(
     List<ReservedBatchResponse>? reservedBatches,
-  ) => this(reservedBatches: reservedBatches);
+  ) => call(reservedBatches: reservedBatches);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OrderDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// OrderDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   OrderDetailResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? variantId = const $CopyWithPlaceholder(),
@@ -132,7 +135,8 @@ class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
 }
 
 extension $OrderDetailResponseCopyWith on OrderDetailResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfOrderDetailResponse.copyWith(...)` or like so:`instanceOfOrderDetailResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfOrderDetailResponse.copyWith(...)` or `instanceOfOrderDetailResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$OrderDetailResponseCWProxy get copyWith =>
       _$OrderDetailResponseCWProxyImpl(this);

@@ -13,19 +13,21 @@ abstract class _$UpdateOrderAddressRequestCWProxy {
     RecipientInformation? recipientInformation,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateOrderAddressRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOrderAddressRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateOrderAddressRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateOrderAddressRequest call({
     String? savedAddressId,
     RecipientInformation? recipientInformation,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateOrderAddressRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateOrderAddressRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateOrderAddressRequest.copyWith(...)` or call `instanceOfUpdateOrderAddressRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateOrderAddressRequestCWProxyImpl
     implements _$UpdateOrderAddressRequestCWProxy {
   const _$UpdateOrderAddressRequestCWProxyImpl(this._value);
@@ -34,20 +36,21 @@ class _$UpdateOrderAddressRequestCWProxyImpl
 
   @override
   UpdateOrderAddressRequest savedAddressId(String? savedAddressId) =>
-      this(savedAddressId: savedAddressId);
+      call(savedAddressId: savedAddressId);
 
   @override
   UpdateOrderAddressRequest recipientInformation(
     RecipientInformation? recipientInformation,
-  ) => this(recipientInformation: recipientInformation);
+  ) => call(recipientInformation: recipientInformation);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateOrderAddressRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOrderAddressRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateOrderAddressRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateOrderAddressRequest call({
     Object? savedAddressId = const $CopyWithPlaceholder(),
     Object? recipientInformation = const $CopyWithPlaceholder(),
@@ -66,7 +69,8 @@ class _$UpdateOrderAddressRequestCWProxyImpl
 }
 
 extension $UpdateOrderAddressRequestCopyWith on UpdateOrderAddressRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateOrderAddressRequest.copyWith(...)` or like so:`instanceOfUpdateOrderAddressRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateOrderAddressRequest.copyWith(...)` or `instanceOfUpdateOrderAddressRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateOrderAddressRequestCWProxy get copyWith =>
       _$UpdateOrderAddressRequestCWProxyImpl(this);

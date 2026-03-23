@@ -17,12 +17,13 @@ abstract class _$PreviewOrderResponseCWProxy {
 
   PreviewOrderResponse total(num? total);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PreviewOrderResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PreviewOrderResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PreviewOrderResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PreviewOrderResponse call({
     List<OrderDetailListItems>? items,
     num? subTotal,
@@ -32,7 +33,8 @@ abstract class _$PreviewOrderResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPreviewOrderResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPreviewOrderResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPreviewOrderResponse.copyWith(...)` or call `instanceOfPreviewOrderResponse.copyWith.fieldName(value)` for a single field.
 class _$PreviewOrderResponseCWProxyImpl
     implements _$PreviewOrderResponseCWProxy {
   const _$PreviewOrderResponseCWProxyImpl(this._value);
@@ -41,28 +43,29 @@ class _$PreviewOrderResponseCWProxyImpl
 
   @override
   PreviewOrderResponse items(List<OrderDetailListItems>? items) =>
-      this(items: items);
+      call(items: items);
 
   @override
-  PreviewOrderResponse subTotal(num? subTotal) => this(subTotal: subTotal);
+  PreviewOrderResponse subTotal(num? subTotal) => call(subTotal: subTotal);
 
   @override
   PreviewOrderResponse shippingFee(num? shippingFee) =>
-      this(shippingFee: shippingFee);
+      call(shippingFee: shippingFee);
 
   @override
-  PreviewOrderResponse discount(num? discount) => this(discount: discount);
+  PreviewOrderResponse discount(num? discount) => call(discount: discount);
 
   @override
-  PreviewOrderResponse total(num? total) => this(total: total);
+  PreviewOrderResponse total(num? total) => call(total: total);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PreviewOrderResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PreviewOrderResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PreviewOrderResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PreviewOrderResponse call({
     Object? items = const $CopyWithPlaceholder(),
     Object? subTotal = const $CopyWithPlaceholder(),
@@ -96,7 +99,8 @@ class _$PreviewOrderResponseCWProxyImpl
 }
 
 extension $PreviewOrderResponseCopyWith on PreviewOrderResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfPreviewOrderResponse.copyWith(...)` or like so:`instanceOfPreviewOrderResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPreviewOrderResponse.copyWith(...)` or `instanceOfPreviewOrderResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PreviewOrderResponseCWProxy get copyWith =>
       _$PreviewOrderResponseCWProxyImpl(this);

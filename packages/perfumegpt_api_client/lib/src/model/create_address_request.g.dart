@@ -25,12 +25,13 @@ abstract class _$CreateAddressRequestCWProxy {
 
   CreateAddressRequest provinceId(int? provinceId);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateAddressRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateAddressRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateAddressRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateAddressRequest call({
     String? receiverName,
     String? phone,
@@ -44,7 +45,8 @@ abstract class _$CreateAddressRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateAddressRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateAddressRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateAddressRequest.copyWith(...)` or call `instanceOfCreateAddressRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateAddressRequestCWProxyImpl
     implements _$CreateAddressRequestCWProxy {
   const _$CreateAddressRequestCWProxyImpl(this._value);
@@ -53,41 +55,42 @@ class _$CreateAddressRequestCWProxyImpl
 
   @override
   CreateAddressRequest receiverName(String? receiverName) =>
-      this(receiverName: receiverName);
+      call(receiverName: receiverName);
 
   @override
-  CreateAddressRequest phone(String? phone) => this(phone: phone);
+  CreateAddressRequest phone(String? phone) => call(phone: phone);
 
   @override
-  CreateAddressRequest street(String? street) => this(street: street);
+  CreateAddressRequest street(String? street) => call(street: street);
 
   @override
-  CreateAddressRequest ward(String? ward) => this(ward: ward);
+  CreateAddressRequest ward(String? ward) => call(ward: ward);
 
   @override
-  CreateAddressRequest district(String? district) => this(district: district);
+  CreateAddressRequest district(String? district) => call(district: district);
 
   @override
-  CreateAddressRequest city(String? city) => this(city: city);
+  CreateAddressRequest city(String? city) => call(city: city);
 
   @override
-  CreateAddressRequest wardCode(String? wardCode) => this(wardCode: wardCode);
+  CreateAddressRequest wardCode(String? wardCode) => call(wardCode: wardCode);
 
   @override
   CreateAddressRequest districtId(int? districtId) =>
-      this(districtId: districtId);
+      call(districtId: districtId);
 
   @override
   CreateAddressRequest provinceId(int? provinceId) =>
-      this(provinceId: provinceId);
+      call(provinceId: provinceId);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateAddressRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateAddressRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateAddressRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateAddressRequest call({
     Object? receiverName = const $CopyWithPlaceholder(),
     Object? phone = const $CopyWithPlaceholder(),
@@ -141,7 +144,8 @@ class _$CreateAddressRequestCWProxyImpl
 }
 
 extension $CreateAddressRequestCopyWith on CreateAddressRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateAddressRequest.copyWith(...)` or like so:`instanceOfCreateAddressRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateAddressRequest.copyWith(...)` or `instanceOfCreateAddressRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateAddressRequestCWProxy get copyWith =>
       _$CreateAddressRequestCWProxyImpl(this);

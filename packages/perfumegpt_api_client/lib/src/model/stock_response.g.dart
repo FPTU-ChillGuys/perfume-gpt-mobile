@@ -27,12 +27,13 @@ abstract class _$StockResponseCWProxy {
 
   StockResponse isLowStock(bool? isLowStock);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StockResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StockResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StockResponse call({
     String? id,
     String? variantId,
@@ -47,54 +48,56 @@ abstract class _$StockResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfStockResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfStockResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfStockResponse.copyWith(...)` or call `instanceOfStockResponse.copyWith.fieldName(value)` for a single field.
 class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
   const _$StockResponseCWProxyImpl(this._value);
 
   final StockResponse _value;
 
   @override
-  StockResponse id(String? id) => this(id: id);
+  StockResponse id(String? id) => call(id: id);
 
   @override
-  StockResponse variantId(String? variantId) => this(variantId: variantId);
+  StockResponse variantId(String? variantId) => call(variantId: variantId);
 
   @override
-  StockResponse variantSku(String? variantSku) => this(variantSku: variantSku);
+  StockResponse variantSku(String? variantSku) => call(variantSku: variantSku);
 
   @override
   StockResponse productName(String? productName) =>
-      this(productName: productName);
+      call(productName: productName);
 
   @override
-  StockResponse volumeMl(int? volumeMl) => this(volumeMl: volumeMl);
+  StockResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
   StockResponse concentrationName(String? concentrationName) =>
-      this(concentrationName: concentrationName);
+      call(concentrationName: concentrationName);
 
   @override
   StockResponse totalQuantity(int? totalQuantity) =>
-      this(totalQuantity: totalQuantity);
+      call(totalQuantity: totalQuantity);
 
   @override
   StockResponse availableQuantity(int? availableQuantity) =>
-      this(availableQuantity: availableQuantity);
+      call(availableQuantity: availableQuantity);
 
   @override
   StockResponse lowStockThreshold(int? lowStockThreshold) =>
-      this(lowStockThreshold: lowStockThreshold);
+      call(lowStockThreshold: lowStockThreshold);
 
   @override
-  StockResponse isLowStock(bool? isLowStock) => this(isLowStock: isLowStock);
+  StockResponse isLowStock(bool? isLowStock) => call(isLowStock: isLowStock);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StockResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StockResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StockResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? variantId = const $CopyWithPlaceholder(),
@@ -153,7 +156,8 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
 }
 
 extension $StockResponseCopyWith on StockResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfStockResponse.copyWith(...)` or like so:`instanceOfStockResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfStockResponse.copyWith(...)` or `instanceOfStockResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$StockResponseCWProxy get copyWith => _$StockResponseCWProxyImpl(this);
 }

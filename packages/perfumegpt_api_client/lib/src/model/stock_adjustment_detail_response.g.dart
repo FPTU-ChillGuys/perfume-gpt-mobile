@@ -25,12 +25,13 @@ abstract class _$StockAdjustmentDetailResponseCWProxy {
 
   StockAdjustmentDetailResponse note(String? note);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StockAdjustmentDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockAdjustmentDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StockAdjustmentDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StockAdjustmentDetailResponse call({
     String? id,
     String? productVariantId,
@@ -44,7 +45,8 @@ abstract class _$StockAdjustmentDetailResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfStockAdjustmentDetailResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfStockAdjustmentDetailResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfStockAdjustmentDetailResponse.copyWith(...)` or call `instanceOfStockAdjustmentDetailResponse.copyWith.fieldName(value)` for a single field.
 class _$StockAdjustmentDetailResponseCWProxyImpl
     implements _$StockAdjustmentDetailResponseCWProxy {
   const _$StockAdjustmentDetailResponseCWProxyImpl(this._value);
@@ -52,46 +54,47 @@ class _$StockAdjustmentDetailResponseCWProxyImpl
   final StockAdjustmentDetailResponse _value;
 
   @override
-  StockAdjustmentDetailResponse id(String? id) => this(id: id);
+  StockAdjustmentDetailResponse id(String? id) => call(id: id);
 
   @override
   StockAdjustmentDetailResponse productVariantId(String? productVariantId) =>
-      this(productVariantId: productVariantId);
+      call(productVariantId: productVariantId);
 
   @override
   StockAdjustmentDetailResponse productName(String? productName) =>
-      this(productName: productName);
+      call(productName: productName);
 
   @override
   StockAdjustmentDetailResponse variantSku(String? variantSku) =>
-      this(variantSku: variantSku);
+      call(variantSku: variantSku);
 
   @override
   StockAdjustmentDetailResponse batchId(String? batchId) =>
-      this(batchId: batchId);
+      call(batchId: batchId);
 
   @override
   StockAdjustmentDetailResponse batchCode(String? batchCode) =>
-      this(batchCode: batchCode);
+      call(batchCode: batchCode);
 
   @override
   StockAdjustmentDetailResponse adjustmentQuantity(int? adjustmentQuantity) =>
-      this(adjustmentQuantity: adjustmentQuantity);
+      call(adjustmentQuantity: adjustmentQuantity);
 
   @override
   StockAdjustmentDetailResponse approvedQuantity(int? approvedQuantity) =>
-      this(approvedQuantity: approvedQuantity);
+      call(approvedQuantity: approvedQuantity);
 
   @override
-  StockAdjustmentDetailResponse note(String? note) => this(note: note);
+  StockAdjustmentDetailResponse note(String? note) => call(note: note);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StockAdjustmentDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockAdjustmentDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StockAdjustmentDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StockAdjustmentDetailResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? productVariantId = const $CopyWithPlaceholder(),
@@ -146,7 +149,8 @@ class _$StockAdjustmentDetailResponseCWProxyImpl
 
 extension $StockAdjustmentDetailResponseCopyWith
     on StockAdjustmentDetailResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfStockAdjustmentDetailResponse.copyWith(...)` or like so:`instanceOfStockAdjustmentDetailResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfStockAdjustmentDetailResponse.copyWith(...)` or `instanceOfStockAdjustmentDetailResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$StockAdjustmentDetailResponseCWProxy get copyWith =>
       _$StockAdjustmentDetailResponseCWProxyImpl(this);

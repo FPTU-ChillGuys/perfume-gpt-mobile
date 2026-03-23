@@ -49,12 +49,13 @@ abstract class _$OrderResponseCWProxy {
 
   OrderResponse orderDetails(List<OrderDetailResponse>? orderDetails);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OrderResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// OrderResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   OrderResponse call({
     String? id,
     String? customerId,
@@ -79,89 +80,91 @@ abstract class _$OrderResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfOrderResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfOrderResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfOrderResponse.copyWith(...)` or call `instanceOfOrderResponse.copyWith.fieldName(value)` for a single field.
 class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
   const _$OrderResponseCWProxyImpl(this._value);
 
   final OrderResponse _value;
 
   @override
-  OrderResponse id(String? id) => this(id: id);
+  OrderResponse id(String? id) => call(id: id);
 
   @override
-  OrderResponse customerId(String? customerId) => this(customerId: customerId);
+  OrderResponse customerId(String? customerId) => call(customerId: customerId);
 
   @override
   OrderResponse customerName(String? customerName) =>
-      this(customerName: customerName);
+      call(customerName: customerName);
 
   @override
   OrderResponse customerEmail(String? customerEmail) =>
-      this(customerEmail: customerEmail);
+      call(customerEmail: customerEmail);
 
   @override
-  OrderResponse staffId(String? staffId) => this(staffId: staffId);
+  OrderResponse staffId(String? staffId) => call(staffId: staffId);
 
   @override
-  OrderResponse staffName(String? staffName) => this(staffName: staffName);
+  OrderResponse staffName(String? staffName) => call(staffName: staffName);
 
   @override
-  OrderResponse type(OrderType? type) => this(type: type);
+  OrderResponse type(OrderType? type) => call(type: type);
 
   @override
-  OrderResponse status(OrderStatus? status) => this(status: status);
+  OrderResponse status(OrderStatus? status) => call(status: status);
 
   @override
   OrderResponse paymentStatus(PaymentStatus? paymentStatus) =>
-      this(paymentStatus: paymentStatus);
+      call(paymentStatus: paymentStatus);
 
   @override
-  OrderResponse totalAmount(num? totalAmount) => this(totalAmount: totalAmount);
+  OrderResponse totalAmount(num? totalAmount) => call(totalAmount: totalAmount);
 
   @override
-  OrderResponse voucherId(String? voucherId) => this(voucherId: voucherId);
+  OrderResponse voucherId(String? voucherId) => call(voucherId: voucherId);
 
   @override
   OrderResponse voucherCode(String? voucherCode) =>
-      this(voucherCode: voucherCode);
+      call(voucherCode: voucherCode);
 
   @override
   OrderResponse paymentExpiresAt(DateTime? paymentExpiresAt) =>
-      this(paymentExpiresAt: paymentExpiresAt);
+      call(paymentExpiresAt: paymentExpiresAt);
 
   @override
-  OrderResponse paidAt(DateTime? paidAt) => this(paidAt: paidAt);
+  OrderResponse paidAt(DateTime? paidAt) => call(paidAt: paidAt);
 
   @override
-  OrderResponse createdAt(DateTime? createdAt) => this(createdAt: createdAt);
+  OrderResponse createdAt(DateTime? createdAt) => call(createdAt: createdAt);
 
   @override
-  OrderResponse updatedAt(DateTime? updatedAt) => this(updatedAt: updatedAt);
+  OrderResponse updatedAt(DateTime? updatedAt) => call(updatedAt: updatedAt);
 
   @override
   OrderResponse paymentTransactions(
     List<PaymentInfoResponse>? paymentTransactions,
-  ) => this(paymentTransactions: paymentTransactions);
+  ) => call(paymentTransactions: paymentTransactions);
 
   @override
   OrderResponse shippingInfo(ShippingInfoResponse? shippingInfo) =>
-      this(shippingInfo: shippingInfo);
+      call(shippingInfo: shippingInfo);
 
   @override
   OrderResponse recipientInfo(RecipientInfoResponse? recipientInfo) =>
-      this(recipientInfo: recipientInfo);
+      call(recipientInfo: recipientInfo);
 
   @override
   OrderResponse orderDetails(List<OrderDetailResponse>? orderDetails) =>
-      this(orderDetails: orderDetails);
+      call(orderDetails: orderDetails);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OrderResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// OrderResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   OrderResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? customerId = const $CopyWithPlaceholder(),
@@ -270,7 +273,8 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
 }
 
 extension $OrderResponseCopyWith on OrderResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfOrderResponse.copyWith(...)` or like so:`instanceOfOrderResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfOrderResponse.copyWith(...)` or `instanceOfOrderResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$OrderResponseCWProxy get copyWith => _$OrderResponseCWProxyImpl(this);
 }

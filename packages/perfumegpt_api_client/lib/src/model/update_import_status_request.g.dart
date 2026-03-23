@@ -9,16 +9,18 @@ part of 'update_import_status_request.dart';
 abstract class _$UpdateImportStatusRequestCWProxy {
   UpdateImportStatusRequest status(ImportStatus? status);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateImportStatusRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateImportStatusRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateImportStatusRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateImportStatusRequest call({ImportStatus? status});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateImportStatusRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateImportStatusRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateImportStatusRequest.copyWith(...)` or call `instanceOfUpdateImportStatusRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateImportStatusRequestCWProxyImpl
     implements _$UpdateImportStatusRequestCWProxy {
   const _$UpdateImportStatusRequestCWProxyImpl(this._value);
@@ -27,15 +29,16 @@ class _$UpdateImportStatusRequestCWProxyImpl
 
   @override
   UpdateImportStatusRequest status(ImportStatus? status) =>
-      this(status: status);
+      call(status: status);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateImportStatusRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateImportStatusRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateImportStatusRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateImportStatusRequest call({
     Object? status = const $CopyWithPlaceholder(),
   }) {
@@ -49,7 +52,8 @@ class _$UpdateImportStatusRequestCWProxyImpl
 }
 
 extension $UpdateImportStatusRequestCopyWith on UpdateImportStatusRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateImportStatusRequest.copyWith(...)` or like so:`instanceOfUpdateImportStatusRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateImportStatusRequest.copyWith(...)` or `instanceOfUpdateImportStatusRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateImportStatusRequestCWProxy get copyWith =>
       _$UpdateImportStatusRequestCWProxyImpl(this);

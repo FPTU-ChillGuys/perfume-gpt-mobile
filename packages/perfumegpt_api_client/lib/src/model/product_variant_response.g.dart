@@ -35,12 +35,13 @@ abstract class _$ProductVariantResponseCWProxy {
 
   ProductVariantResponse attributes(List<ProductAttributeResponse>? attributes);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductVariantResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductVariantResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductVariantResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductVariantResponse call({
     String? id,
     String? productId,
@@ -59,7 +60,8 @@ abstract class _$ProductVariantResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductVariantResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductVariantResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductVariantResponse.copyWith(...)` or call `instanceOfProductVariantResponse.copyWith.fieldName(value)` for a single field.
 class _$ProductVariantResponseCWProxyImpl
     implements _$ProductVariantResponseCWProxy {
   const _$ProductVariantResponseCWProxyImpl(this._value);
@@ -67,63 +69,64 @@ class _$ProductVariantResponseCWProxyImpl
   final ProductVariantResponse _value;
 
   @override
-  ProductVariantResponse id(String? id) => this(id: id);
+  ProductVariantResponse id(String? id) => call(id: id);
 
   @override
   ProductVariantResponse productId(String? productId) =>
-      this(productId: productId);
+      call(productId: productId);
 
   @override
   ProductVariantResponse productName(String? productName) =>
-      this(productName: productName);
+      call(productName: productName);
 
   @override
   ProductVariantResponse media(List<MediaResponse>? media) =>
-      this(media: media);
+      call(media: media);
 
   @override
-  ProductVariantResponse barcode(String? barcode) => this(barcode: barcode);
+  ProductVariantResponse barcode(String? barcode) => call(barcode: barcode);
 
   @override
-  ProductVariantResponse sku(String? sku) => this(sku: sku);
+  ProductVariantResponse sku(String? sku) => call(sku: sku);
 
   @override
-  ProductVariantResponse volumeMl(int? volumeMl) => this(volumeMl: volumeMl);
+  ProductVariantResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
   ProductVariantResponse concentrationId(int? concentrationId) =>
-      this(concentrationId: concentrationId);
+      call(concentrationId: concentrationId);
 
   @override
   ProductVariantResponse concentrationName(String? concentrationName) =>
-      this(concentrationName: concentrationName);
+      call(concentrationName: concentrationName);
 
   @override
-  ProductVariantResponse type(VariantType? type) => this(type: type);
+  ProductVariantResponse type(VariantType? type) => call(type: type);
 
   @override
   ProductVariantResponse basePrice(num? basePrice) =>
-      this(basePrice: basePrice);
+      call(basePrice: basePrice);
 
   @override
-  ProductVariantResponse status(VariantStatus? status) => this(status: status);
+  ProductVariantResponse status(VariantStatus? status) => call(status: status);
 
   @override
   ProductVariantResponse stockQuantity(int? stockQuantity) =>
-      this(stockQuantity: stockQuantity);
+      call(stockQuantity: stockQuantity);
 
   @override
   ProductVariantResponse attributes(
     List<ProductAttributeResponse>? attributes,
-  ) => this(attributes: attributes);
+  ) => call(attributes: attributes);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductVariantResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductVariantResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductVariantResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductVariantResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? productId = const $CopyWithPlaceholder(),
@@ -202,7 +205,8 @@ class _$ProductVariantResponseCWProxyImpl
 }
 
 extension $ProductVariantResponseCopyWith on ProductVariantResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfProductVariantResponse.copyWith(...)` or like so:`instanceOfProductVariantResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductVariantResponse.copyWith(...)` or `instanceOfProductVariantResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductVariantResponseCWProxy get copyWith =>
       _$ProductVariantResponseCWProxyImpl(this);

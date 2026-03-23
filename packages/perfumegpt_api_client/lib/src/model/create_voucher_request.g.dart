@@ -23,12 +23,13 @@ abstract class _$CreateVoucherRequestCWProxy {
 
   CreateVoucherRequest isPublic(bool? isPublic);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateVoucherRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateVoucherRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateVoucherRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateVoucherRequest call({
     String? code,
     num? discountValue,
@@ -41,7 +42,8 @@ abstract class _$CreateVoucherRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateVoucherRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateVoucherRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateVoucherRequest.copyWith(...)` or call `instanceOfCreateVoucherRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateVoucherRequestCWProxyImpl
     implements _$CreateVoucherRequestCWProxy {
   const _$CreateVoucherRequestCWProxyImpl(this._value);
@@ -49,42 +51,43 @@ class _$CreateVoucherRequestCWProxyImpl
   final CreateVoucherRequest _value;
 
   @override
-  CreateVoucherRequest code(String? code) => this(code: code);
+  CreateVoucherRequest code(String? code) => call(code: code);
 
   @override
   CreateVoucherRequest discountValue(num? discountValue) =>
-      this(discountValue: discountValue);
+      call(discountValue: discountValue);
 
   @override
   CreateVoucherRequest discountType(DiscountType? discountType) =>
-      this(discountType: discountType);
+      call(discountType: discountType);
 
   @override
   CreateVoucherRequest requiredPoints(int? requiredPoints) =>
-      this(requiredPoints: requiredPoints);
+      call(requiredPoints: requiredPoints);
 
   @override
   CreateVoucherRequest minOrderValue(num? minOrderValue) =>
-      this(minOrderValue: minOrderValue);
+      call(minOrderValue: minOrderValue);
 
   @override
   CreateVoucherRequest expiryDate(DateTime? expiryDate) =>
-      this(expiryDate: expiryDate);
+      call(expiryDate: expiryDate);
 
   @override
   CreateVoucherRequest totalQuantity(int? totalQuantity) =>
-      this(totalQuantity: totalQuantity);
+      call(totalQuantity: totalQuantity);
 
   @override
-  CreateVoucherRequest isPublic(bool? isPublic) => this(isPublic: isPublic);
+  CreateVoucherRequest isPublic(bool? isPublic) => call(isPublic: isPublic);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateVoucherRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateVoucherRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateVoucherRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateVoucherRequest call({
     Object? code = const $CopyWithPlaceholder(),
     Object? discountValue = const $CopyWithPlaceholder(),
@@ -133,7 +136,8 @@ class _$CreateVoucherRequestCWProxyImpl
 }
 
 extension $CreateVoucherRequestCopyWith on CreateVoucherRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateVoucherRequest.copyWith(...)` or like so:`instanceOfCreateVoucherRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateVoucherRequest.copyWith(...)` or `instanceOfCreateVoucherRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateVoucherRequestCWProxy get copyWith =>
       _$CreateVoucherRequestCWProxyImpl(this);

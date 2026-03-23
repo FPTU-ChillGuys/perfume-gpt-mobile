@@ -35,12 +35,13 @@ abstract class _$BatchDetailResponseCWProxy {
 
   BatchDetailResponse createdAt(DateTime? createdAt);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BatchDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BatchDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BatchDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BatchDetailResponse call({
     String? variantId,
     String? variantSku,
@@ -59,7 +60,8 @@ abstract class _$BatchDetailResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBatchDetailResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBatchDetailResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBatchDetailResponse.copyWith(...)` or call `instanceOfBatchDetailResponse.copyWith.fieldName(value)` for a single field.
 class _$BatchDetailResponseCWProxyImpl implements _$BatchDetailResponseCWProxy {
   const _$BatchDetailResponseCWProxyImpl(this._value);
 
@@ -67,64 +69,65 @@ class _$BatchDetailResponseCWProxyImpl implements _$BatchDetailResponseCWProxy {
 
   @override
   BatchDetailResponse variantId(String? variantId) =>
-      this(variantId: variantId);
+      call(variantId: variantId);
 
   @override
   BatchDetailResponse variantSku(String? variantSku) =>
-      this(variantSku: variantSku);
+      call(variantSku: variantSku);
 
   @override
   BatchDetailResponse productName(String? productName) =>
-      this(productName: productName);
+      call(productName: productName);
 
   @override
-  BatchDetailResponse volumeMl(int? volumeMl) => this(volumeMl: volumeMl);
+  BatchDetailResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
   BatchDetailResponse concentrationName(String? concentrationName) =>
-      this(concentrationName: concentrationName);
+      call(concentrationName: concentrationName);
 
   @override
-  BatchDetailResponse isExpired(bool? isExpired) => this(isExpired: isExpired);
+  BatchDetailResponse isExpired(bool? isExpired) => call(isExpired: isExpired);
 
   @override
   BatchDetailResponse daysUntilExpiry(int? daysUntilExpiry) =>
-      this(daysUntilExpiry: daysUntilExpiry);
+      call(daysUntilExpiry: daysUntilExpiry);
 
   @override
-  BatchDetailResponse id(String? id) => this(id: id);
+  BatchDetailResponse id(String? id) => call(id: id);
 
   @override
   BatchDetailResponse batchCode(String? batchCode) =>
-      this(batchCode: batchCode);
+      call(batchCode: batchCode);
 
   @override
   BatchDetailResponse manufactureDate(DateTime? manufactureDate) =>
-      this(manufactureDate: manufactureDate);
+      call(manufactureDate: manufactureDate);
 
   @override
   BatchDetailResponse expiryDate(DateTime? expiryDate) =>
-      this(expiryDate: expiryDate);
+      call(expiryDate: expiryDate);
 
   @override
   BatchDetailResponse importQuantity(int? importQuantity) =>
-      this(importQuantity: importQuantity);
+      call(importQuantity: importQuantity);
 
   @override
   BatchDetailResponse remainingQuantity(int? remainingQuantity) =>
-      this(remainingQuantity: remainingQuantity);
+      call(remainingQuantity: remainingQuantity);
 
   @override
   BatchDetailResponse createdAt(DateTime? createdAt) =>
-      this(createdAt: createdAt);
+      call(createdAt: createdAt);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BatchDetailResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BatchDetailResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BatchDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BatchDetailResponse call({
     Object? variantId = const $CopyWithPlaceholder(),
     Object? variantSku = const $CopyWithPlaceholder(),
@@ -203,7 +206,8 @@ class _$BatchDetailResponseCWProxyImpl implements _$BatchDetailResponseCWProxy {
 }
 
 extension $BatchDetailResponseCopyWith on BatchDetailResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBatchDetailResponse.copyWith(...)` or like so:`instanceOfBatchDetailResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBatchDetailResponse.copyWith(...)` or `instanceOfBatchDetailResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BatchDetailResponseCWProxy get copyWith =>
       _$BatchDetailResponseCWProxyImpl(this);

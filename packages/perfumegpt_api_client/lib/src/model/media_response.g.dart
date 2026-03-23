@@ -21,12 +21,13 @@ abstract class _$MediaResponseCWProxy {
 
   MediaResponse mimeType(String? mimeType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `MediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `MediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// MediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   MediaResponse call({
     String? id,
     String? url,
@@ -38,41 +39,43 @@ abstract class _$MediaResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfMediaResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfMediaResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfMediaResponse.copyWith(...)` or call `instanceOfMediaResponse.copyWith.fieldName(value)` for a single field.
 class _$MediaResponseCWProxyImpl implements _$MediaResponseCWProxy {
   const _$MediaResponseCWProxyImpl(this._value);
 
   final MediaResponse _value;
 
   @override
-  MediaResponse id(String? id) => this(id: id);
+  MediaResponse id(String? id) => call(id: id);
 
   @override
-  MediaResponse url(String? url) => this(url: url);
+  MediaResponse url(String? url) => call(url: url);
 
   @override
-  MediaResponse altText(String? altText) => this(altText: altText);
+  MediaResponse altText(String? altText) => call(altText: altText);
 
   @override
   MediaResponse displayOrder(int? displayOrder) =>
-      this(displayOrder: displayOrder);
+      call(displayOrder: displayOrder);
 
   @override
-  MediaResponse isPrimary(bool? isPrimary) => this(isPrimary: isPrimary);
+  MediaResponse isPrimary(bool? isPrimary) => call(isPrimary: isPrimary);
 
   @override
-  MediaResponse fileSize(int? fileSize) => this(fileSize: fileSize);
+  MediaResponse fileSize(int? fileSize) => call(fileSize: fileSize);
 
   @override
-  MediaResponse mimeType(String? mimeType) => this(mimeType: mimeType);
+  MediaResponse mimeType(String? mimeType) => call(mimeType: mimeType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `MediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `MediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// MediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   MediaResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? url = const $CopyWithPlaceholder(),
@@ -116,7 +119,8 @@ class _$MediaResponseCWProxyImpl implements _$MediaResponseCWProxy {
 }
 
 extension $MediaResponseCopyWith on MediaResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfMediaResponse.copyWith(...)` or like so:`instanceOfMediaResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfMediaResponse.copyWith(...)` or `instanceOfMediaResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$MediaResponseCWProxy get copyWith => _$MediaResponseCWProxyImpl(this);
 }

@@ -15,12 +15,13 @@ abstract class _$ProductLookupItemCWProxy {
 
   ProductLookupItem primaryImage(MediaResponse? primaryImage);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductLookupItem call({
     String? id,
     String? name,
@@ -29,32 +30,34 @@ abstract class _$ProductLookupItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductLookupItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductLookupItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductLookupItem.copyWith(...)` or call `instanceOfProductLookupItem.copyWith.fieldName(value)` for a single field.
 class _$ProductLookupItemCWProxyImpl implements _$ProductLookupItemCWProxy {
   const _$ProductLookupItemCWProxyImpl(this._value);
 
   final ProductLookupItem _value;
 
   @override
-  ProductLookupItem id(String? id) => this(id: id);
+  ProductLookupItem id(String? id) => call(id: id);
 
   @override
-  ProductLookupItem name(String? name) => this(name: name);
+  ProductLookupItem name(String? name) => call(name: name);
 
   @override
-  ProductLookupItem brandName(String? brandName) => this(brandName: brandName);
+  ProductLookupItem brandName(String? brandName) => call(brandName: brandName);
 
   @override
   ProductLookupItem primaryImage(MediaResponse? primaryImage) =>
-      this(primaryImage: primaryImage);
+      call(primaryImage: primaryImage);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductLookupItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
@@ -83,7 +86,8 @@ class _$ProductLookupItemCWProxyImpl implements _$ProductLookupItemCWProxy {
 }
 
 extension $ProductLookupItemCopyWith on ProductLookupItem {
-  /// Returns a callable class that can be used as follows: `instanceOfProductLookupItem.copyWith(...)` or like so:`instanceOfProductLookupItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductLookupItem.copyWith(...)` or `instanceOfProductLookupItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductLookupItemCWProxy get copyWith =>
       _$ProductLookupItemCWProxyImpl(this);

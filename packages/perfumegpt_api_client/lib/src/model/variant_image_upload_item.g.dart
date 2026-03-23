@@ -15,12 +15,13 @@ abstract class _$VariantImageUploadItemCWProxy {
 
   VariantImageUploadItem isPrimary(bool? isPrimary);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VariantImageUploadItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantImageUploadItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VariantImageUploadItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VariantImageUploadItem call({
     MultipartFile? imageFile,
     String? altText,
@@ -29,7 +30,8 @@ abstract class _$VariantImageUploadItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfVariantImageUploadItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfVariantImageUploadItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVariantImageUploadItem.copyWith(...)` or call `instanceOfVariantImageUploadItem.copyWith.fieldName(value)` for a single field.
 class _$VariantImageUploadItemCWProxyImpl
     implements _$VariantImageUploadItemCWProxy {
   const _$VariantImageUploadItemCWProxyImpl(this._value);
@@ -38,26 +40,27 @@ class _$VariantImageUploadItemCWProxyImpl
 
   @override
   VariantImageUploadItem imageFile(MultipartFile? imageFile) =>
-      this(imageFile: imageFile);
+      call(imageFile: imageFile);
 
   @override
-  VariantImageUploadItem altText(String? altText) => this(altText: altText);
+  VariantImageUploadItem altText(String? altText) => call(altText: altText);
 
   @override
   VariantImageUploadItem displayOrder(int? displayOrder) =>
-      this(displayOrder: displayOrder);
+      call(displayOrder: displayOrder);
 
   @override
   VariantImageUploadItem isPrimary(bool? isPrimary) =>
-      this(isPrimary: isPrimary);
+      call(isPrimary: isPrimary);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VariantImageUploadItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantImageUploadItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VariantImageUploadItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VariantImageUploadItem call({
     Object? imageFile = const $CopyWithPlaceholder(),
     Object? altText = const $CopyWithPlaceholder(),
@@ -86,7 +89,8 @@ class _$VariantImageUploadItemCWProxyImpl
 }
 
 extension $VariantImageUploadItemCopyWith on VariantImageUploadItem {
-  /// Returns a callable class that can be used as follows: `instanceOfVariantImageUploadItem.copyWith(...)` or like so:`instanceOfVariantImageUploadItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVariantImageUploadItem.copyWith(...)` or `instanceOfVariantImageUploadItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$VariantImageUploadItemCWProxy get copyWith =>
       _$VariantImageUploadItemCWProxyImpl(this);

@@ -9,16 +9,18 @@ part of 'update_concentration_request.dart';
 abstract class _$UpdateConcentrationRequestCWProxy {
   UpdateConcentrationRequest name(String? name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateConcentrationRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateConcentrationRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateConcentrationRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateConcentrationRequest call({String? name});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateConcentrationRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateConcentrationRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateConcentrationRequest.copyWith(...)` or call `instanceOfUpdateConcentrationRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateConcentrationRequestCWProxyImpl
     implements _$UpdateConcentrationRequestCWProxy {
   const _$UpdateConcentrationRequestCWProxyImpl(this._value);
@@ -26,15 +28,16 @@ class _$UpdateConcentrationRequestCWProxyImpl
   final UpdateConcentrationRequest _value;
 
   @override
-  UpdateConcentrationRequest name(String? name) => this(name: name);
+  UpdateConcentrationRequest name(String? name) => call(name: name);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateConcentrationRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateConcentrationRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateConcentrationRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateConcentrationRequest call({
     Object? name = const $CopyWithPlaceholder(),
   }) {
@@ -48,7 +51,8 @@ class _$UpdateConcentrationRequestCWProxyImpl
 }
 
 extension $UpdateConcentrationRequestCopyWith on UpdateConcentrationRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateConcentrationRequest.copyWith(...)` or like so:`instanceOfUpdateConcentrationRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateConcentrationRequest.copyWith(...)` or `instanceOfUpdateConcentrationRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateConcentrationRequestCWProxy get copyWith =>
       _$UpdateConcentrationRequestCWProxyImpl(this);

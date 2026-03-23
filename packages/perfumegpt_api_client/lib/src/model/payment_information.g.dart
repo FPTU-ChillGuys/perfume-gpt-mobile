@@ -9,31 +9,34 @@ part of 'payment_information.dart';
 abstract class _$PaymentInformationCWProxy {
   PaymentInformation method(PaymentMethod? method);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PaymentInformation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInformation(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PaymentInformation(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PaymentInformation call({PaymentMethod? method});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPaymentInformation.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPaymentInformation.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPaymentInformation.copyWith(...)` or call `instanceOfPaymentInformation.copyWith.fieldName(value)` for a single field.
 class _$PaymentInformationCWProxyImpl implements _$PaymentInformationCWProxy {
   const _$PaymentInformationCWProxyImpl(this._value);
 
   final PaymentInformation _value;
 
   @override
-  PaymentInformation method(PaymentMethod? method) => this(method: method);
+  PaymentInformation method(PaymentMethod? method) => call(method: method);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PaymentInformation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInformation(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PaymentInformation(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PaymentInformation call({Object? method = const $CopyWithPlaceholder()}) {
     return PaymentInformation(
       method: method == const $CopyWithPlaceholder()
@@ -45,7 +48,8 @@ class _$PaymentInformationCWProxyImpl implements _$PaymentInformationCWProxy {
 }
 
 extension $PaymentInformationCopyWith on PaymentInformation {
-  /// Returns a callable class that can be used as follows: `instanceOfPaymentInformation.copyWith(...)` or like so:`instanceOfPaymentInformation.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPaymentInformation.copyWith(...)` or `instanceOfPaymentInformation.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PaymentInformationCWProxy get copyWith =>
       _$PaymentInformationCWProxyImpl(this);

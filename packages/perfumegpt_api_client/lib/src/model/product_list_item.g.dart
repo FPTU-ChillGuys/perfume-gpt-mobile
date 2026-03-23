@@ -27,12 +27,13 @@ abstract class _$ProductListItemCWProxy {
 
   ProductListItem attributes(List<ProductAttributeResponse>? attributes);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductListItem call({
     String? id,
     String? name,
@@ -47,54 +48,56 @@ abstract class _$ProductListItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductListItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductListItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductListItem.copyWith(...)` or call `instanceOfProductListItem.copyWith.fieldName(value)` for a single field.
 class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
   const _$ProductListItemCWProxyImpl(this._value);
 
   final ProductListItem _value;
 
   @override
-  ProductListItem id(String? id) => this(id: id);
+  ProductListItem id(String? id) => call(id: id);
 
   @override
-  ProductListItem name(String? name) => this(name: name);
+  ProductListItem name(String? name) => call(name: name);
 
   @override
-  ProductListItem brandId(int? brandId) => this(brandId: brandId);
+  ProductListItem brandId(int? brandId) => call(brandId: brandId);
 
   @override
-  ProductListItem brandName(String? brandName) => this(brandName: brandName);
+  ProductListItem brandName(String? brandName) => call(brandName: brandName);
 
   @override
-  ProductListItem categoryId(int? categoryId) => this(categoryId: categoryId);
+  ProductListItem categoryId(int? categoryId) => call(categoryId: categoryId);
 
   @override
   ProductListItem categoryName(String? categoryName) =>
-      this(categoryName: categoryName);
+      call(categoryName: categoryName);
 
   @override
   ProductListItem description(String? description) =>
-      this(description: description);
+      call(description: description);
 
   @override
   ProductListItem numberOfVariants(int? numberOfVariants) =>
-      this(numberOfVariants: numberOfVariants);
+      call(numberOfVariants: numberOfVariants);
 
   @override
   ProductListItem primaryImage(MediaResponse? primaryImage) =>
-      this(primaryImage: primaryImage);
+      call(primaryImage: primaryImage);
 
   @override
   ProductListItem attributes(List<ProductAttributeResponse>? attributes) =>
-      this(attributes: attributes);
+      call(attributes: attributes);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductListItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
@@ -153,7 +156,8 @@ class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
 }
 
 extension $ProductListItemCopyWith on ProductListItem {
-  /// Returns a callable class that can be used as follows: `instanceOfProductListItem.copyWith(...)` or like so:`instanceOfProductListItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductListItem.copyWith(...)` or `instanceOfProductListItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductListItemCWProxy get copyWith => _$ProductListItemCWProxyImpl(this);
 }

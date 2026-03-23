@@ -15,12 +15,13 @@ abstract class _$ProductImageUploadItemCWProxy {
 
   ProductImageUploadItem isPrimary(bool? isPrimary);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductImageUploadItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductImageUploadItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductImageUploadItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductImageUploadItem call({
     MultipartFile? imageFile,
     String? altText,
@@ -29,7 +30,8 @@ abstract class _$ProductImageUploadItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductImageUploadItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductImageUploadItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductImageUploadItem.copyWith(...)` or call `instanceOfProductImageUploadItem.copyWith.fieldName(value)` for a single field.
 class _$ProductImageUploadItemCWProxyImpl
     implements _$ProductImageUploadItemCWProxy {
   const _$ProductImageUploadItemCWProxyImpl(this._value);
@@ -38,26 +40,27 @@ class _$ProductImageUploadItemCWProxyImpl
 
   @override
   ProductImageUploadItem imageFile(MultipartFile? imageFile) =>
-      this(imageFile: imageFile);
+      call(imageFile: imageFile);
 
   @override
-  ProductImageUploadItem altText(String? altText) => this(altText: altText);
+  ProductImageUploadItem altText(String? altText) => call(altText: altText);
 
   @override
   ProductImageUploadItem displayOrder(int? displayOrder) =>
-      this(displayOrder: displayOrder);
+      call(displayOrder: displayOrder);
 
   @override
   ProductImageUploadItem isPrimary(bool? isPrimary) =>
-      this(isPrimary: isPrimary);
+      call(isPrimary: isPrimary);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductImageUploadItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductImageUploadItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductImageUploadItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductImageUploadItem call({
     Object? imageFile = const $CopyWithPlaceholder(),
     Object? altText = const $CopyWithPlaceholder(),
@@ -86,7 +89,8 @@ class _$ProductImageUploadItemCWProxyImpl
 }
 
 extension $ProductImageUploadItemCopyWith on ProductImageUploadItem {
-  /// Returns a callable class that can be used as follows: `instanceOfProductImageUploadItem.copyWith(...)` or like so:`instanceOfProductImageUploadItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductImageUploadItem.copyWith(...)` or `instanceOfProductImageUploadItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductImageUploadItemCWProxy get copyWith =>
       _$ProductImageUploadItemCWProxyImpl(this);

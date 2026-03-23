@@ -11,16 +11,18 @@ abstract class _$CreateOrderDetailRequestCWProxy {
 
   CreateOrderDetailRequest quantity(int? quantity);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateOrderDetailRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateOrderDetailRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateOrderDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateOrderDetailRequest call({String? variantId, int? quantity});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateOrderDetailRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateOrderDetailRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateOrderDetailRequest.copyWith(...)` or call `instanceOfCreateOrderDetailRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateOrderDetailRequestCWProxyImpl
     implements _$CreateOrderDetailRequestCWProxy {
   const _$CreateOrderDetailRequestCWProxyImpl(this._value);
@@ -29,18 +31,19 @@ class _$CreateOrderDetailRequestCWProxyImpl
 
   @override
   CreateOrderDetailRequest variantId(String? variantId) =>
-      this(variantId: variantId);
+      call(variantId: variantId);
 
   @override
-  CreateOrderDetailRequest quantity(int? quantity) => this(quantity: quantity);
+  CreateOrderDetailRequest quantity(int? quantity) => call(quantity: quantity);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateOrderDetailRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateOrderDetailRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateOrderDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateOrderDetailRequest call({
     Object? variantId = const $CopyWithPlaceholder(),
     Object? quantity = const $CopyWithPlaceholder(),
@@ -59,7 +62,8 @@ class _$CreateOrderDetailRequestCWProxyImpl
 }
 
 extension $CreateOrderDetailRequestCopyWith on CreateOrderDetailRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateOrderDetailRequest.copyWith(...)` or like so:`instanceOfCreateOrderDetailRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateOrderDetailRequest.copyWith(...)` or `instanceOfCreateOrderDetailRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateOrderDetailRequestCWProxy get copyWith =>
       _$CreateOrderDetailRequestCWProxyImpl(this);

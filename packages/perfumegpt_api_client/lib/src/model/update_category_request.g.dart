@@ -9,16 +9,18 @@ part of 'update_category_request.dart';
 abstract class _$UpdateCategoryRequestCWProxy {
   UpdateCategoryRequest name(String? name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateCategoryRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCategoryRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateCategoryRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateCategoryRequest call({String? name});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateCategoryRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateCategoryRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateCategoryRequest.copyWith(...)` or call `instanceOfUpdateCategoryRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateCategoryRequestCWProxyImpl
     implements _$UpdateCategoryRequestCWProxy {
   const _$UpdateCategoryRequestCWProxyImpl(this._value);
@@ -26,15 +28,16 @@ class _$UpdateCategoryRequestCWProxyImpl
   final UpdateCategoryRequest _value;
 
   @override
-  UpdateCategoryRequest name(String? name) => this(name: name);
+  UpdateCategoryRequest name(String? name) => call(name: name);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateCategoryRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCategoryRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateCategoryRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateCategoryRequest call({Object? name = const $CopyWithPlaceholder()}) {
     return UpdateCategoryRequest(
       name: name == const $CopyWithPlaceholder()
@@ -46,7 +49,8 @@ class _$UpdateCategoryRequestCWProxyImpl
 }
 
 extension $UpdateCategoryRequestCopyWith on UpdateCategoryRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateCategoryRequest.copyWith(...)` or like so:`instanceOfUpdateCategoryRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateCategoryRequest.copyWith(...)` or `instanceOfUpdateCategoryRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateCategoryRequestCWProxy get copyWith =>
       _$UpdateCategoryRequestCWProxyImpl(this);

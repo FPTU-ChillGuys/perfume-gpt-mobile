@@ -15,12 +15,13 @@ abstract class _$UpdateImportRequestCWProxy {
     List<UpdateImportDetailRequest>? importDetails,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateImportRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateImportRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateImportRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateImportRequest call({
     int? supplierId,
     DateTime? expectedArrivalDate,
@@ -28,7 +29,8 @@ abstract class _$UpdateImportRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateImportRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateImportRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateImportRequest.copyWith(...)` or call `instanceOfUpdateImportRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateImportRequestCWProxyImpl implements _$UpdateImportRequestCWProxy {
   const _$UpdateImportRequestCWProxyImpl(this._value);
 
@@ -36,24 +38,25 @@ class _$UpdateImportRequestCWProxyImpl implements _$UpdateImportRequestCWProxy {
 
   @override
   UpdateImportRequest supplierId(int? supplierId) =>
-      this(supplierId: supplierId);
+      call(supplierId: supplierId);
 
   @override
   UpdateImportRequest expectedArrivalDate(DateTime? expectedArrivalDate) =>
-      this(expectedArrivalDate: expectedArrivalDate);
+      call(expectedArrivalDate: expectedArrivalDate);
 
   @override
   UpdateImportRequest importDetails(
     List<UpdateImportDetailRequest>? importDetails,
-  ) => this(importDetails: importDetails);
+  ) => call(importDetails: importDetails);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateImportRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateImportRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateImportRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateImportRequest call({
     Object? supplierId = const $CopyWithPlaceholder(),
     Object? expectedArrivalDate = const $CopyWithPlaceholder(),
@@ -77,7 +80,8 @@ class _$UpdateImportRequestCWProxyImpl implements _$UpdateImportRequestCWProxy {
 }
 
 extension $UpdateImportRequestCopyWith on UpdateImportRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateImportRequest.copyWith(...)` or like so:`instanceOfUpdateImportRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateImportRequest.copyWith(...)` or `instanceOfUpdateImportRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateImportRequestCWProxy get copyWith =>
       _$UpdateImportRequestCWProxyImpl(this);

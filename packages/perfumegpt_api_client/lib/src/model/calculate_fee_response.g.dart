@@ -13,12 +13,13 @@ abstract class _$CalculateFeeResponseCWProxy {
 
   CalculateFeeResponse data(CalculateFeeData? data);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CalculateFeeResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalculateFeeResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CalculateFeeResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CalculateFeeResponse call({
     int? code,
     String? message,
@@ -26,7 +27,8 @@ abstract class _$CalculateFeeResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCalculateFeeResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCalculateFeeResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCalculateFeeResponse.copyWith(...)` or call `instanceOfCalculateFeeResponse.copyWith.fieldName(value)` for a single field.
 class _$CalculateFeeResponseCWProxyImpl
     implements _$CalculateFeeResponseCWProxy {
   const _$CalculateFeeResponseCWProxyImpl(this._value);
@@ -34,21 +36,22 @@ class _$CalculateFeeResponseCWProxyImpl
   final CalculateFeeResponse _value;
 
   @override
-  CalculateFeeResponse code(int? code) => this(code: code);
+  CalculateFeeResponse code(int? code) => call(code: code);
 
   @override
-  CalculateFeeResponse message(String? message) => this(message: message);
+  CalculateFeeResponse message(String? message) => call(message: message);
 
   @override
-  CalculateFeeResponse data(CalculateFeeData? data) => this(data: data);
+  CalculateFeeResponse data(CalculateFeeData? data) => call(data: data);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CalculateFeeResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalculateFeeResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CalculateFeeResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CalculateFeeResponse call({
     Object? code = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
@@ -72,7 +75,8 @@ class _$CalculateFeeResponseCWProxyImpl
 }
 
 extension $CalculateFeeResponseCopyWith on CalculateFeeResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfCalculateFeeResponse.copyWith(...)` or like so:`instanceOfCalculateFeeResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCalculateFeeResponse.copyWith(...)` or `instanceOfCalculateFeeResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CalculateFeeResponseCWProxy get copyWith =>
       _$CalculateFeeResponseCWProxyImpl(this);

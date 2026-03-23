@@ -13,16 +13,18 @@ abstract class _$LoyaltyPointResponseCWProxy {
 
   LoyaltyPointResponse updatedAt(DateTime? updatedAt);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LoyaltyPointResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoyaltyPointResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// LoyaltyPointResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   LoyaltyPointResponse call({String? id, int? points, DateTime? updatedAt});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLoyaltyPointResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfLoyaltyPointResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfLoyaltyPointResponse.copyWith(...)` or call `instanceOfLoyaltyPointResponse.copyWith.fieldName(value)` for a single field.
 class _$LoyaltyPointResponseCWProxyImpl
     implements _$LoyaltyPointResponseCWProxy {
   const _$LoyaltyPointResponseCWProxyImpl(this._value);
@@ -30,22 +32,23 @@ class _$LoyaltyPointResponseCWProxyImpl
   final LoyaltyPointResponse _value;
 
   @override
-  LoyaltyPointResponse id(String? id) => this(id: id);
+  LoyaltyPointResponse id(String? id) => call(id: id);
 
   @override
-  LoyaltyPointResponse points(int? points) => this(points: points);
+  LoyaltyPointResponse points(int? points) => call(points: points);
 
   @override
   LoyaltyPointResponse updatedAt(DateTime? updatedAt) =>
-      this(updatedAt: updatedAt);
+      call(updatedAt: updatedAt);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LoyaltyPointResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoyaltyPointResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// LoyaltyPointResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   LoyaltyPointResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? points = const $CopyWithPlaceholder(),
@@ -69,7 +72,8 @@ class _$LoyaltyPointResponseCWProxyImpl
 }
 
 extension $LoyaltyPointResponseCopyWith on LoyaltyPointResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfLoyaltyPointResponse.copyWith(...)` or like so:`instanceOfLoyaltyPointResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfLoyaltyPointResponse.copyWith(...)` or `instanceOfLoyaltyPointResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$LoyaltyPointResponseCWProxy get copyWith =>
       _$LoyaltyPointResponseCWProxyImpl(this);

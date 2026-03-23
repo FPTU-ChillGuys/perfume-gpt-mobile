@@ -17,12 +17,13 @@ abstract class _$CreateStockAdjustmentRequestCWProxy {
     List<CreateStockAdjustmentDetailRequest>? adjustmentDetails,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateStockAdjustmentRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateStockAdjustmentRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateStockAdjustmentRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateStockAdjustmentRequest call({
     DateTime? adjustmentDate,
     StockAdjustmentReason? reason,
@@ -31,7 +32,8 @@ abstract class _$CreateStockAdjustmentRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateStockAdjustmentRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateStockAdjustmentRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateStockAdjustmentRequest.copyWith(...)` or call `instanceOfCreateStockAdjustmentRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateStockAdjustmentRequestCWProxyImpl
     implements _$CreateStockAdjustmentRequestCWProxy {
   const _$CreateStockAdjustmentRequestCWProxyImpl(this._value);
@@ -40,27 +42,28 @@ class _$CreateStockAdjustmentRequestCWProxyImpl
 
   @override
   CreateStockAdjustmentRequest adjustmentDate(DateTime? adjustmentDate) =>
-      this(adjustmentDate: adjustmentDate);
+      call(adjustmentDate: adjustmentDate);
 
   @override
   CreateStockAdjustmentRequest reason(StockAdjustmentReason? reason) =>
-      this(reason: reason);
+      call(reason: reason);
 
   @override
-  CreateStockAdjustmentRequest note(String? note) => this(note: note);
+  CreateStockAdjustmentRequest note(String? note) => call(note: note);
 
   @override
   CreateStockAdjustmentRequest adjustmentDetails(
     List<CreateStockAdjustmentDetailRequest>? adjustmentDetails,
-  ) => this(adjustmentDetails: adjustmentDetails);
+  ) => call(adjustmentDetails: adjustmentDetails);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateStockAdjustmentRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateStockAdjustmentRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateStockAdjustmentRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateStockAdjustmentRequest call({
     Object? adjustmentDate = const $CopyWithPlaceholder(),
     Object? reason = const $CopyWithPlaceholder(),
@@ -90,7 +93,8 @@ class _$CreateStockAdjustmentRequestCWProxyImpl
 
 extension $CreateStockAdjustmentRequestCopyWith
     on CreateStockAdjustmentRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateStockAdjustmentRequest.copyWith(...)` or like so:`instanceOfCreateStockAdjustmentRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateStockAdjustmentRequest.copyWith(...)` or `instanceOfCreateStockAdjustmentRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateStockAdjustmentRequestCWProxy get copyWith =>
       _$CreateStockAdjustmentRequestCWProxyImpl(this);

@@ -21,12 +21,13 @@ abstract class _$BaseResponseOfSwapDamagedStockResponseCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfSwapDamagedStockResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfSwapDamagedStockResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfSwapDamagedStockResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfSwapDamagedStockResponse call({
     SwapDamagedStockResponse? payload,
     bool? success,
@@ -36,7 +37,8 @@ abstract class _$BaseResponseOfSwapDamagedStockResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith(...)` or call `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfSwapDamagedStockResponseCWProxyImpl
     implements _$BaseResponseOfSwapDamagedStockResponseCWProxy {
   const _$BaseResponseOfSwapDamagedStockResponseCWProxyImpl(this._value);
@@ -46,32 +48,33 @@ class _$BaseResponseOfSwapDamagedStockResponseCWProxyImpl
   @override
   BaseResponseOfSwapDamagedStockResponse payload(
     SwapDamagedStockResponse? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfSwapDamagedStockResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfSwapDamagedStockResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfSwapDamagedStockResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfSwapDamagedStockResponse errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfSwapDamagedStockResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfSwapDamagedStockResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfSwapDamagedStockResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfSwapDamagedStockResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -106,7 +109,8 @@ class _$BaseResponseOfSwapDamagedStockResponseCWProxyImpl
 
 extension $BaseResponseOfSwapDamagedStockResponseCopyWith
     on BaseResponseOfSwapDamagedStockResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith(...)` or `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfSwapDamagedStockResponseCWProxy get copyWith =>
       _$BaseResponseOfSwapDamagedStockResponseCWProxyImpl(this);

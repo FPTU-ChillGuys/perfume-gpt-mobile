@@ -29,12 +29,13 @@ abstract class _$UpdateVariantRequestCWProxy {
 
   UpdateVariantRequest attributes(List<ProductAttributeDto>? attributes);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateVariantRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateVariantRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateVariantRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateVariantRequest call({
     String? sku,
     String? barcode,
@@ -49,7 +50,8 @@ abstract class _$UpdateVariantRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateVariantRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateVariantRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateVariantRequest.copyWith(...)` or call `instanceOfUpdateVariantRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateVariantRequestCWProxyImpl
     implements _$UpdateVariantRequestCWProxy {
   const _$UpdateVariantRequestCWProxyImpl(this._value);
@@ -57,47 +59,48 @@ class _$UpdateVariantRequestCWProxyImpl
   final UpdateVariantRequest _value;
 
   @override
-  UpdateVariantRequest sku(String? sku) => this(sku: sku);
+  UpdateVariantRequest sku(String? sku) => call(sku: sku);
 
   @override
-  UpdateVariantRequest barcode(String? barcode) => this(barcode: barcode);
+  UpdateVariantRequest barcode(String? barcode) => call(barcode: barcode);
 
   @override
-  UpdateVariantRequest volumeMl(int? volumeMl) => this(volumeMl: volumeMl);
+  UpdateVariantRequest volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
   UpdateVariantRequest concentrationId(int? concentrationId) =>
-      this(concentrationId: concentrationId);
+      call(concentrationId: concentrationId);
 
   @override
-  UpdateVariantRequest type(VariantType? type) => this(type: type);
+  UpdateVariantRequest type(VariantType? type) => call(type: type);
 
   @override
-  UpdateVariantRequest basePrice(num? basePrice) => this(basePrice: basePrice);
+  UpdateVariantRequest basePrice(num? basePrice) => call(basePrice: basePrice);
 
   @override
-  UpdateVariantRequest status(VariantStatus? status) => this(status: status);
+  UpdateVariantRequest status(VariantStatus? status) => call(status: status);
 
   @override
   UpdateVariantRequest mediaIdsToDelete(List<String>? mediaIdsToDelete) =>
-      this(mediaIdsToDelete: mediaIdsToDelete);
+      call(mediaIdsToDelete: mediaIdsToDelete);
 
   @override
   UpdateVariantRequest temporaryMediaIdsToAdd(
     List<String>? temporaryMediaIdsToAdd,
-  ) => this(temporaryMediaIdsToAdd: temporaryMediaIdsToAdd);
+  ) => call(temporaryMediaIdsToAdd: temporaryMediaIdsToAdd);
 
   @override
   UpdateVariantRequest attributes(List<ProductAttributeDto>? attributes) =>
-      this(attributes: attributes);
+      call(attributes: attributes);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateVariantRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateVariantRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateVariantRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateVariantRequest call({
     Object? sku = const $CopyWithPlaceholder(),
     Object? barcode = const $CopyWithPlaceholder(),
@@ -157,7 +160,8 @@ class _$UpdateVariantRequestCWProxyImpl
 }
 
 extension $UpdateVariantRequestCopyWith on UpdateVariantRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateVariantRequest.copyWith(...)` or like so:`instanceOfUpdateVariantRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateVariantRequest.copyWith(...)` or `instanceOfUpdateVariantRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateVariantRequestCWProxy get copyWith =>
       _$UpdateVariantRequestCWProxyImpl(this);

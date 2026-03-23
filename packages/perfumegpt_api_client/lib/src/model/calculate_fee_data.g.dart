@@ -31,12 +31,13 @@ abstract class _$CalculateFeeDataCWProxy {
 
   CalculateFeeData codFailedFee(int? codFailedFee);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CalculateFeeData(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalculateFeeData(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CalculateFeeData(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CalculateFeeData call({
     int? total,
     int? serviceFee,
@@ -53,63 +54,65 @@ abstract class _$CalculateFeeDataCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCalculateFeeData.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCalculateFeeData.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCalculateFeeData.copyWith(...)` or call `instanceOfCalculateFeeData.copyWith.fieldName(value)` for a single field.
 class _$CalculateFeeDataCWProxyImpl implements _$CalculateFeeDataCWProxy {
   const _$CalculateFeeDataCWProxyImpl(this._value);
 
   final CalculateFeeData _value;
 
   @override
-  CalculateFeeData total(int? total) => this(total: total);
+  CalculateFeeData total(int? total) => call(total: total);
 
   @override
-  CalculateFeeData serviceFee(int? serviceFee) => this(serviceFee: serviceFee);
+  CalculateFeeData serviceFee(int? serviceFee) => call(serviceFee: serviceFee);
 
   @override
   CalculateFeeData insuranceFee(int? insuranceFee) =>
-      this(insuranceFee: insuranceFee);
+      call(insuranceFee: insuranceFee);
 
   @override
   CalculateFeeData pickStationFee(int? pickStationFee) =>
-      this(pickStationFee: pickStationFee);
+      call(pickStationFee: pickStationFee);
 
   @override
   CalculateFeeData couponValue(int? couponValue) =>
-      this(couponValue: couponValue);
+      call(couponValue: couponValue);
 
   @override
-  CalculateFeeData r2sFee(int? r2sFee) => this(r2sFee: r2sFee);
+  CalculateFeeData r2sFee(int? r2sFee) => call(r2sFee: r2sFee);
 
   @override
   CalculateFeeData documentReturn(int? documentReturn) =>
-      this(documentReturn: documentReturn);
+      call(documentReturn: documentReturn);
 
   @override
   CalculateFeeData doubleCheck(int? doubleCheck) =>
-      this(doubleCheck: doubleCheck);
+      call(doubleCheck: doubleCheck);
 
   @override
-  CalculateFeeData codFee(int? codFee) => this(codFee: codFee);
+  CalculateFeeData codFee(int? codFee) => call(codFee: codFee);
 
   @override
   CalculateFeeData pickRemoteAreasFee(int? pickRemoteAreasFee) =>
-      this(pickRemoteAreasFee: pickRemoteAreasFee);
+      call(pickRemoteAreasFee: pickRemoteAreasFee);
 
   @override
   CalculateFeeData deliverRemoteAreasFee(int? deliverRemoteAreasFee) =>
-      this(deliverRemoteAreasFee: deliverRemoteAreasFee);
+      call(deliverRemoteAreasFee: deliverRemoteAreasFee);
 
   @override
   CalculateFeeData codFailedFee(int? codFailedFee) =>
-      this(codFailedFee: codFailedFee);
+      call(codFailedFee: codFailedFee);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CalculateFeeData(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalculateFeeData(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CalculateFeeData(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CalculateFeeData call({
     Object? total = const $CopyWithPlaceholder(),
     Object? serviceFee = const $CopyWithPlaceholder(),
@@ -179,7 +182,8 @@ class _$CalculateFeeDataCWProxyImpl implements _$CalculateFeeDataCWProxy {
 }
 
 extension $CalculateFeeDataCopyWith on CalculateFeeData {
-  /// Returns a callable class that can be used as follows: `instanceOfCalculateFeeData.copyWith(...)` or like so:`instanceOfCalculateFeeData.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCalculateFeeData.copyWith(...)` or `instanceOfCalculateFeeData.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CalculateFeeDataCWProxy get copyWith => _$CalculateFeeDataCWProxyImpl(this);
 }

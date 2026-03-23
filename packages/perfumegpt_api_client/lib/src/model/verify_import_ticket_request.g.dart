@@ -11,18 +11,20 @@ abstract class _$VerifyImportTicketRequestCWProxy {
     List<VerifyImportDetailRequest>? importDetails,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VerifyImportTicketRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyImportTicketRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VerifyImportTicketRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VerifyImportTicketRequest call({
     List<VerifyImportDetailRequest>? importDetails,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfVerifyImportTicketRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfVerifyImportTicketRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVerifyImportTicketRequest.copyWith(...)` or call `instanceOfVerifyImportTicketRequest.copyWith.fieldName(value)` for a single field.
 class _$VerifyImportTicketRequestCWProxyImpl
     implements _$VerifyImportTicketRequestCWProxy {
   const _$VerifyImportTicketRequestCWProxyImpl(this._value);
@@ -32,15 +34,16 @@ class _$VerifyImportTicketRequestCWProxyImpl
   @override
   VerifyImportTicketRequest importDetails(
     List<VerifyImportDetailRequest>? importDetails,
-  ) => this(importDetails: importDetails);
+  ) => call(importDetails: importDetails);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VerifyImportTicketRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyImportTicketRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VerifyImportTicketRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VerifyImportTicketRequest call({
     Object? importDetails = const $CopyWithPlaceholder(),
   }) {
@@ -54,7 +57,8 @@ class _$VerifyImportTicketRequestCWProxyImpl
 }
 
 extension $VerifyImportTicketRequestCopyWith on VerifyImportTicketRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfVerifyImportTicketRequest.copyWith(...)` or like so:`instanceOfVerifyImportTicketRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVerifyImportTicketRequest.copyWith(...)` or `instanceOfVerifyImportTicketRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$VerifyImportTicketRequestCWProxy get copyWith =>
       _$VerifyImportTicketRequestCWProxyImpl(this);

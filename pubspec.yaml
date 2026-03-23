@@ -2,7 +2,7 @@ name: perfume_gpt_mobile
 publish_to: none
 
 environment:
-  sdk: ^3.9.0
+  sdk: ^3.11.0
 
 workspace:
   - apps/customer_app

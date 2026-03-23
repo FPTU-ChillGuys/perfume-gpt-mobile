@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfUserOrderResponseCWProxy {
 
   BaseResponseOfUserOrderResponse errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfUserOrderResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfUserOrderResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfUserOrderResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfUserOrderResponse call({
     UserOrderResponse? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfUserOrderResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfUserOrderResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfUserOrderResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfUserOrderResponse.copyWith(...)` or call `instanceOfBaseResponseOfUserOrderResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfUserOrderResponseCWProxyImpl
     implements _$BaseResponseOfUserOrderResponseCWProxy {
   const _$BaseResponseOfUserOrderResponseCWProxyImpl(this._value);
@@ -41,31 +43,32 @@ class _$BaseResponseOfUserOrderResponseCWProxyImpl
 
   @override
   BaseResponseOfUserOrderResponse payload(UserOrderResponse? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
   BaseResponseOfUserOrderResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfUserOrderResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfUserOrderResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfUserOrderResponse errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfUserOrderResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfUserOrderResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfUserOrderResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfUserOrderResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -100,7 +103,8 @@ class _$BaseResponseOfUserOrderResponseCWProxyImpl
 
 extension $BaseResponseOfUserOrderResponseCopyWith
     on BaseResponseOfUserOrderResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfUserOrderResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfUserOrderResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfUserOrderResponse.copyWith(...)` or `instanceOfBaseResponseOfUserOrderResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfUserOrderResponseCWProxy get copyWith =>
       _$BaseResponseOfUserOrderResponseCWProxyImpl(this);

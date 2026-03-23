@@ -17,12 +17,13 @@ abstract class _$PaymentInfoResponseCWProxy {
 
   PaymentInfoResponse totalAmount(num? totalAmount);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PaymentInfoResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInfoResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PaymentInfoResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PaymentInfoResponse call({
     String? id,
     TransactionStatus? status,
@@ -32,37 +33,39 @@ abstract class _$PaymentInfoResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPaymentInfoResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPaymentInfoResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPaymentInfoResponse.copyWith(...)` or call `instanceOfPaymentInfoResponse.copyWith.fieldName(value)` for a single field.
 class _$PaymentInfoResponseCWProxyImpl implements _$PaymentInfoResponseCWProxy {
   const _$PaymentInfoResponseCWProxyImpl(this._value);
 
   final PaymentInfoResponse _value;
 
   @override
-  PaymentInfoResponse id(String? id) => this(id: id);
+  PaymentInfoResponse id(String? id) => call(id: id);
 
   @override
-  PaymentInfoResponse status(TransactionStatus? status) => this(status: status);
+  PaymentInfoResponse status(TransactionStatus? status) => call(status: status);
 
   @override
   PaymentInfoResponse paymentMethod(PaymentMethod? paymentMethod) =>
-      this(paymentMethod: paymentMethod);
+      call(paymentMethod: paymentMethod);
 
   @override
   PaymentInfoResponse failureReason(String? failureReason) =>
-      this(failureReason: failureReason);
+      call(failureReason: failureReason);
 
   @override
   PaymentInfoResponse totalAmount(num? totalAmount) =>
-      this(totalAmount: totalAmount);
+      call(totalAmount: totalAmount);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PaymentInfoResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInfoResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PaymentInfoResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PaymentInfoResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
@@ -96,7 +99,8 @@ class _$PaymentInfoResponseCWProxyImpl implements _$PaymentInfoResponseCWProxy {
 }
 
 extension $PaymentInfoResponseCopyWith on PaymentInfoResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfPaymentInfoResponse.copyWith(...)` or like so:`instanceOfPaymentInfoResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPaymentInfoResponse.copyWith(...)` or `instanceOfPaymentInfoResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PaymentInfoResponseCWProxy get copyWith =>
       _$PaymentInfoResponseCWProxyImpl(this);

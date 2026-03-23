@@ -11,16 +11,18 @@ abstract class _$CreateAttributeValueRequestCWProxy {
 
   CreateAttributeValueRequest value(String? value);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateAttributeValueRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateAttributeValueRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateAttributeValueRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateAttributeValueRequest call({int? attributeId, String? value});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateAttributeValueRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateAttributeValueRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateAttributeValueRequest.copyWith(...)` or call `instanceOfCreateAttributeValueRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateAttributeValueRequestCWProxyImpl
     implements _$CreateAttributeValueRequestCWProxy {
   const _$CreateAttributeValueRequestCWProxyImpl(this._value);
@@ -29,18 +31,19 @@ class _$CreateAttributeValueRequestCWProxyImpl
 
   @override
   CreateAttributeValueRequest attributeId(int? attributeId) =>
-      this(attributeId: attributeId);
+      call(attributeId: attributeId);
 
   @override
-  CreateAttributeValueRequest value(String? value) => this(value: value);
+  CreateAttributeValueRequest value(String? value) => call(value: value);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateAttributeValueRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateAttributeValueRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateAttributeValueRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateAttributeValueRequest call({
     Object? attributeId = const $CopyWithPlaceholder(),
     Object? value = const $CopyWithPlaceholder(),
@@ -59,7 +62,8 @@ class _$CreateAttributeValueRequestCWProxyImpl
 }
 
 extension $CreateAttributeValueRequestCopyWith on CreateAttributeValueRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateAttributeValueRequest.copyWith(...)` or like so:`instanceOfCreateAttributeValueRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateAttributeValueRequest.copyWith(...)` or `instanceOfCreateAttributeValueRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateAttributeValueRequestCWProxy get copyWith =>
       _$CreateAttributeValueRequestCWProxyImpl(this);

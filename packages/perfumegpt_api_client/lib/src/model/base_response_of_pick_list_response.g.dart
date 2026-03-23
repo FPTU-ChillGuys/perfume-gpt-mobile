@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfPickListResponseCWProxy {
 
   BaseResponseOfPickListResponse errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPickListResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPickListResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPickListResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPickListResponse call({
     PickListResponse? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfPickListResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfPickListResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfPickListResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfPickListResponse.copyWith(...)` or call `instanceOfBaseResponseOfPickListResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfPickListResponseCWProxyImpl
     implements _$BaseResponseOfPickListResponseCWProxy {
   const _$BaseResponseOfPickListResponseCWProxyImpl(this._value);
@@ -41,31 +43,32 @@ class _$BaseResponseOfPickListResponseCWProxyImpl
 
   @override
   BaseResponseOfPickListResponse payload(PickListResponse? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
   BaseResponseOfPickListResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfPickListResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfPickListResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfPickListResponse errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfPickListResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPickListResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfPickListResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfPickListResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -100,7 +103,8 @@ class _$BaseResponseOfPickListResponseCWProxyImpl
 
 extension $BaseResponseOfPickListResponseCopyWith
     on BaseResponseOfPickListResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfPickListResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfPickListResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfPickListResponse.copyWith(...)` or `instanceOfBaseResponseOfPickListResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfPickListResponseCWProxy get copyWith =>
       _$BaseResponseOfPickListResponseCWProxyImpl(this);

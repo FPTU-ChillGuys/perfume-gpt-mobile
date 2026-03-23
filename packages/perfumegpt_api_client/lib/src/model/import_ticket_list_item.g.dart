@@ -27,12 +27,13 @@ abstract class _$ImportTicketListItemCWProxy {
 
   ImportTicketListItem createdAt(DateTime? createdAt);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ImportTicketListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportTicketListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ImportTicketListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ImportTicketListItem call({
     String id,
     String? createdByName,
@@ -47,7 +48,8 @@ abstract class _$ImportTicketListItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfImportTicketListItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfImportTicketListItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfImportTicketListItem.copyWith(...)` or call `instanceOfImportTicketListItem.copyWith.fieldName(value)` for a single field.
 class _$ImportTicketListItemCWProxyImpl
     implements _$ImportTicketListItemCWProxy {
   const _$ImportTicketListItemCWProxyImpl(this._value);
@@ -55,49 +57,50 @@ class _$ImportTicketListItemCWProxyImpl
   final ImportTicketListItem _value;
 
   @override
-  ImportTicketListItem id(String id) => this(id: id);
+  ImportTicketListItem id(String id) => call(id: id);
 
   @override
   ImportTicketListItem createdByName(String? createdByName) =>
-      this(createdByName: createdByName);
+      call(createdByName: createdByName);
 
   @override
   ImportTicketListItem verifiedByName(String? verifiedByName) =>
-      this(verifiedByName: verifiedByName);
+      call(verifiedByName: verifiedByName);
 
   @override
   ImportTicketListItem supplierName(String? supplierName) =>
-      this(supplierName: supplierName);
+      call(supplierName: supplierName);
 
   @override
   ImportTicketListItem expectedArrivalDate(DateTime expectedArrivalDate) =>
-      this(expectedArrivalDate: expectedArrivalDate);
+      call(expectedArrivalDate: expectedArrivalDate);
 
   @override
   ImportTicketListItem actualImportDate(DateTime actualImportDate) =>
-      this(actualImportDate: actualImportDate);
+      call(actualImportDate: actualImportDate);
 
   @override
-  ImportTicketListItem totalCost(num totalCost) => this(totalCost: totalCost);
+  ImportTicketListItem totalCost(num totalCost) => call(totalCost: totalCost);
 
   @override
-  ImportTicketListItem status(ImportStatus? status) => this(status: status);
+  ImportTicketListItem status(ImportStatus? status) => call(status: status);
 
   @override
   ImportTicketListItem totalItems(int? totalItems) =>
-      this(totalItems: totalItems);
+      call(totalItems: totalItems);
 
   @override
   ImportTicketListItem createdAt(DateTime? createdAt) =>
-      this(createdAt: createdAt);
+      call(createdAt: createdAt);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ImportTicketListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportTicketListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ImportTicketListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ImportTicketListItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? createdByName = const $CopyWithPlaceholder(),
@@ -111,7 +114,7 @@ class _$ImportTicketListItemCWProxyImpl
     Object? createdAt = const $CopyWithPlaceholder(),
   }) {
     return ImportTicketListItem(
-      id: id == const $CopyWithPlaceholder()
+      id: id == const $CopyWithPlaceholder() || id == null
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
@@ -127,15 +130,19 @@ class _$ImportTicketListItemCWProxyImpl
           ? _value.supplierName
           // ignore: cast_nullable_to_non_nullable
           : supplierName as String?,
-      expectedArrivalDate: expectedArrivalDate == const $CopyWithPlaceholder()
+      expectedArrivalDate:
+          expectedArrivalDate == const $CopyWithPlaceholder() ||
+              expectedArrivalDate == null
           ? _value.expectedArrivalDate
           // ignore: cast_nullable_to_non_nullable
           : expectedArrivalDate as DateTime,
-      actualImportDate: actualImportDate == const $CopyWithPlaceholder()
+      actualImportDate:
+          actualImportDate == const $CopyWithPlaceholder() ||
+              actualImportDate == null
           ? _value.actualImportDate
           // ignore: cast_nullable_to_non_nullable
           : actualImportDate as DateTime,
-      totalCost: totalCost == const $CopyWithPlaceholder()
+      totalCost: totalCost == const $CopyWithPlaceholder() || totalCost == null
           ? _value.totalCost
           // ignore: cast_nullable_to_non_nullable
           : totalCost as num,
@@ -156,7 +163,8 @@ class _$ImportTicketListItemCWProxyImpl
 }
 
 extension $ImportTicketListItemCopyWith on ImportTicketListItem {
-  /// Returns a callable class that can be used as follows: `instanceOfImportTicketListItem.copyWith(...)` or like so:`instanceOfImportTicketListItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfImportTicketListItem.copyWith(...)` or `instanceOfImportTicketListItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ImportTicketListItemCWProxy get copyWith =>
       _$ImportTicketListItemCWProxyImpl(this);

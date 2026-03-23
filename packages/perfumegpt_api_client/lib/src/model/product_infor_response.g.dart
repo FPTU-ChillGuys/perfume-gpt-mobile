@@ -27,12 +27,13 @@ abstract class _$ProductInforResponseCWProxy {
 
   ProductInforResponse description(String? description);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductInforResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductInforResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductInforResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductInforResponse call({
     String? productCode,
     String? brandName,
@@ -47,7 +48,8 @@ abstract class _$ProductInforResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductInforResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductInforResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductInforResponse.copyWith(...)` or call `instanceOfProductInforResponse.copyWith.fieldName(value)` for a single field.
 class _$ProductInforResponseCWProxyImpl
     implements _$ProductInforResponseCWProxy {
   const _$ProductInforResponseCWProxyImpl(this._value);
@@ -56,48 +58,49 @@ class _$ProductInforResponseCWProxyImpl
 
   @override
   ProductInforResponse productCode(String? productCode) =>
-      this(productCode: productCode);
+      call(productCode: productCode);
 
   @override
   ProductInforResponse brandName(String? brandName) =>
-      this(brandName: brandName);
+      call(brandName: brandName);
 
   @override
-  ProductInforResponse origin(String? origin) => this(origin: origin);
+  ProductInforResponse origin(String? origin) => call(origin: origin);
 
   @override
   ProductInforResponse releaseYear(int? releaseYear) =>
-      this(releaseYear: releaseYear);
+      call(releaseYear: releaseYear);
 
   @override
   ProductInforResponse scentGroup(String? scentGroup) =>
-      this(scentGroup: scentGroup);
+      call(scentGroup: scentGroup);
 
   @override
-  ProductInforResponse style(String? style) => this(style: style);
+  ProductInforResponse style(String? style) => call(style: style);
 
   @override
-  ProductInforResponse topNotes(String? topNotes) => this(topNotes: topNotes);
+  ProductInforResponse topNotes(String? topNotes) => call(topNotes: topNotes);
 
   @override
   ProductInforResponse middleNotes(String? middleNotes) =>
-      this(middleNotes: middleNotes);
+      call(middleNotes: middleNotes);
 
   @override
   ProductInforResponse baseNotes(String? baseNotes) =>
-      this(baseNotes: baseNotes);
+      call(baseNotes: baseNotes);
 
   @override
   ProductInforResponse description(String? description) =>
-      this(description: description);
+      call(description: description);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductInforResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductInforResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductInforResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductInforResponse call({
     Object? productCode = const $CopyWithPlaceholder(),
     Object? brandName = const $CopyWithPlaceholder(),
@@ -156,7 +159,8 @@ class _$ProductInforResponseCWProxyImpl
 }
 
 extension $ProductInforResponseCopyWith on ProductInforResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfProductInforResponse.copyWith(...)` or like so:`instanceOfProductInforResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductInforResponse.copyWith(...)` or `instanceOfProductInforResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductInforResponseCWProxy get copyWith =>
       _$ProductInforResponseCWProxyImpl(this);

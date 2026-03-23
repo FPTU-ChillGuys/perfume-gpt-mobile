@@ -13,12 +13,13 @@ abstract class _$UpdateAttributeRequestCWProxy {
 
   UpdateAttributeRequest isVariantLevel(bool? isVariantLevel);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateAttributeRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateAttributeRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateAttributeRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateAttributeRequest call({
     String? name,
     String? description,
@@ -26,7 +27,8 @@ abstract class _$UpdateAttributeRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfUpdateAttributeRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfUpdateAttributeRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateAttributeRequest.copyWith(...)` or call `instanceOfUpdateAttributeRequest.copyWith.fieldName(value)` for a single field.
 class _$UpdateAttributeRequestCWProxyImpl
     implements _$UpdateAttributeRequestCWProxy {
   const _$UpdateAttributeRequestCWProxyImpl(this._value);
@@ -34,23 +36,24 @@ class _$UpdateAttributeRequestCWProxyImpl
   final UpdateAttributeRequest _value;
 
   @override
-  UpdateAttributeRequest name(String? name) => this(name: name);
+  UpdateAttributeRequest name(String? name) => call(name: name);
 
   @override
   UpdateAttributeRequest description(String? description) =>
-      this(description: description);
+      call(description: description);
 
   @override
   UpdateAttributeRequest isVariantLevel(bool? isVariantLevel) =>
-      this(isVariantLevel: isVariantLevel);
+      call(isVariantLevel: isVariantLevel);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UpdateAttributeRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateAttributeRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// UpdateAttributeRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   UpdateAttributeRequest call({
     Object? name = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
@@ -74,7 +77,8 @@ class _$UpdateAttributeRequestCWProxyImpl
 }
 
 extension $UpdateAttributeRequestCopyWith on UpdateAttributeRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfUpdateAttributeRequest.copyWith(...)` or like so:`instanceOfUpdateAttributeRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateAttributeRequest.copyWith(...)` or `instanceOfUpdateAttributeRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$UpdateAttributeRequestCWProxy get copyWith =>
       _$UpdateAttributeRequestCWProxyImpl(this);

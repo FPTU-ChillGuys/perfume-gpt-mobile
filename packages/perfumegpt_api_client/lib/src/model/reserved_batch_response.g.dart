@@ -15,12 +15,13 @@ abstract class _$ReservedBatchResponseCWProxy {
 
   ReservedBatchResponse expiryDate(DateTime? expiryDate);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ReservedBatchResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReservedBatchResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ReservedBatchResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ReservedBatchResponse call({
     String? batchId,
     String? batchCode,
@@ -29,7 +30,8 @@ abstract class _$ReservedBatchResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfReservedBatchResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfReservedBatchResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfReservedBatchResponse.copyWith(...)` or call `instanceOfReservedBatchResponse.copyWith.fieldName(value)` for a single field.
 class _$ReservedBatchResponseCWProxyImpl
     implements _$ReservedBatchResponseCWProxy {
   const _$ReservedBatchResponseCWProxyImpl(this._value);
@@ -37,27 +39,28 @@ class _$ReservedBatchResponseCWProxyImpl
   final ReservedBatchResponse _value;
 
   @override
-  ReservedBatchResponse batchId(String? batchId) => this(batchId: batchId);
+  ReservedBatchResponse batchId(String? batchId) => call(batchId: batchId);
 
   @override
   ReservedBatchResponse batchCode(String? batchCode) =>
-      this(batchCode: batchCode);
+      call(batchCode: batchCode);
 
   @override
   ReservedBatchResponse reservedQuantity(int? reservedQuantity) =>
-      this(reservedQuantity: reservedQuantity);
+      call(reservedQuantity: reservedQuantity);
 
   @override
   ReservedBatchResponse expiryDate(DateTime? expiryDate) =>
-      this(expiryDate: expiryDate);
+      call(expiryDate: expiryDate);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ReservedBatchResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReservedBatchResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ReservedBatchResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ReservedBatchResponse call({
     Object? batchId = const $CopyWithPlaceholder(),
     Object? batchCode = const $CopyWithPlaceholder(),
@@ -86,7 +89,8 @@ class _$ReservedBatchResponseCWProxyImpl
 }
 
 extension $ReservedBatchResponseCopyWith on ReservedBatchResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfReservedBatchResponse.copyWith(...)` or like so:`instanceOfReservedBatchResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfReservedBatchResponse.copyWith(...)` or `instanceOfReservedBatchResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ReservedBatchResponseCWProxy get copyWith =>
       _$ReservedBatchResponseCWProxyImpl(this);

@@ -21,12 +21,13 @@ abstract class _$PagedResultOfImportTicketListItemCWProxy {
 
   PagedResultOfImportTicketListItem hasNextPage(bool? hasNextPage);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PagedResultOfImportTicketListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfImportTicketListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PagedResultOfImportTicketListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PagedResultOfImportTicketListItem call({
     List<ImportTicketListItem> items,
     int pageNumber,
@@ -38,7 +39,8 @@ abstract class _$PagedResultOfImportTicketListItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPagedResultOfImportTicketListItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPagedResultOfImportTicketListItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPagedResultOfImportTicketListItem.copyWith(...)` or call `instanceOfPagedResultOfImportTicketListItem.copyWith.fieldName(value)` for a single field.
 class _$PagedResultOfImportTicketListItemCWProxyImpl
     implements _$PagedResultOfImportTicketListItemCWProxy {
   const _$PagedResultOfImportTicketListItemCWProxyImpl(this._value);
@@ -47,39 +49,40 @@ class _$PagedResultOfImportTicketListItemCWProxyImpl
 
   @override
   PagedResultOfImportTicketListItem items(List<ImportTicketListItem> items) =>
-      this(items: items);
+      call(items: items);
 
   @override
   PagedResultOfImportTicketListItem pageNumber(int pageNumber) =>
-      this(pageNumber: pageNumber);
+      call(pageNumber: pageNumber);
 
   @override
   PagedResultOfImportTicketListItem pageSize(int pageSize) =>
-      this(pageSize: pageSize);
+      call(pageSize: pageSize);
 
   @override
   PagedResultOfImportTicketListItem totalCount(int totalCount) =>
-      this(totalCount: totalCount);
+      call(totalCount: totalCount);
 
   @override
   PagedResultOfImportTicketListItem totalPages(int totalPages) =>
-      this(totalPages: totalPages);
+      call(totalPages: totalPages);
 
   @override
   PagedResultOfImportTicketListItem hasPreviousPage(bool? hasPreviousPage) =>
-      this(hasPreviousPage: hasPreviousPage);
+      call(hasPreviousPage: hasPreviousPage);
 
   @override
   PagedResultOfImportTicketListItem hasNextPage(bool? hasNextPage) =>
-      this(hasNextPage: hasNextPage);
+      call(hasNextPage: hasNextPage);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PagedResultOfImportTicketListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfImportTicketListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PagedResultOfImportTicketListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PagedResultOfImportTicketListItem call({
     Object? items = const $CopyWithPlaceholder(),
     Object? pageNumber = const $CopyWithPlaceholder(),
@@ -90,23 +93,26 @@ class _$PagedResultOfImportTicketListItemCWProxyImpl
     Object? hasNextPage = const $CopyWithPlaceholder(),
   }) {
     return PagedResultOfImportTicketListItem(
-      items: items == const $CopyWithPlaceholder()
+      items: items == const $CopyWithPlaceholder() || items == null
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
           : items as List<ImportTicketListItem>,
-      pageNumber: pageNumber == const $CopyWithPlaceholder()
+      pageNumber:
+          pageNumber == const $CopyWithPlaceholder() || pageNumber == null
           ? _value.pageNumber
           // ignore: cast_nullable_to_non_nullable
           : pageNumber as int,
-      pageSize: pageSize == const $CopyWithPlaceholder()
+      pageSize: pageSize == const $CopyWithPlaceholder() || pageSize == null
           ? _value.pageSize
           // ignore: cast_nullable_to_non_nullable
           : pageSize as int,
-      totalCount: totalCount == const $CopyWithPlaceholder()
+      totalCount:
+          totalCount == const $CopyWithPlaceholder() || totalCount == null
           ? _value.totalCount
           // ignore: cast_nullable_to_non_nullable
           : totalCount as int,
-      totalPages: totalPages == const $CopyWithPlaceholder()
+      totalPages:
+          totalPages == const $CopyWithPlaceholder() || totalPages == null
           ? _value.totalPages
           // ignore: cast_nullable_to_non_nullable
           : totalPages as int,
@@ -124,7 +130,8 @@ class _$PagedResultOfImportTicketListItemCWProxyImpl
 
 extension $PagedResultOfImportTicketListItemCopyWith
     on PagedResultOfImportTicketListItem {
-  /// Returns a callable class that can be used as follows: `instanceOfPagedResultOfImportTicketListItem.copyWith(...)` or like so:`instanceOfPagedResultOfImportTicketListItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPagedResultOfImportTicketListItem.copyWith(...)` or `instanceOfPagedResultOfImportTicketListItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PagedResultOfImportTicketListItemCWProxy get copyWith =>
       _$PagedResultOfImportTicketListItemCWProxyImpl(this);

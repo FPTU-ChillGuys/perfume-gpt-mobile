@@ -13,12 +13,13 @@ abstract class _$VariantSummaryItemCWProxy {
 
   VariantSummaryItem concentrationName(String? concentrationName);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VariantSummaryItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantSummaryItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VariantSummaryItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VariantSummaryItem call({
     String? id,
     String? displayName,
@@ -26,30 +27,32 @@ abstract class _$VariantSummaryItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfVariantSummaryItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfVariantSummaryItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVariantSummaryItem.copyWith(...)` or call `instanceOfVariantSummaryItem.copyWith.fieldName(value)` for a single field.
 class _$VariantSummaryItemCWProxyImpl implements _$VariantSummaryItemCWProxy {
   const _$VariantSummaryItemCWProxyImpl(this._value);
 
   final VariantSummaryItem _value;
 
   @override
-  VariantSummaryItem id(String? id) => this(id: id);
+  VariantSummaryItem id(String? id) => call(id: id);
 
   @override
   VariantSummaryItem displayName(String? displayName) =>
-      this(displayName: displayName);
+      call(displayName: displayName);
 
   @override
   VariantSummaryItem concentrationName(String? concentrationName) =>
-      this(concentrationName: concentrationName);
+      call(concentrationName: concentrationName);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VariantSummaryItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantSummaryItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VariantSummaryItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VariantSummaryItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? displayName = const $CopyWithPlaceholder(),
@@ -73,7 +76,8 @@ class _$VariantSummaryItemCWProxyImpl implements _$VariantSummaryItemCWProxy {
 }
 
 extension $VariantSummaryItemCopyWith on VariantSummaryItem {
-  /// Returns a callable class that can be used as follows: `instanceOfVariantSummaryItem.copyWith(...)` or like so:`instanceOfVariantSummaryItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVariantSummaryItem.copyWith(...)` or `instanceOfVariantSummaryItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$VariantSummaryItemCWProxy get copyWith =>
       _$VariantSummaryItemCWProxyImpl(this);

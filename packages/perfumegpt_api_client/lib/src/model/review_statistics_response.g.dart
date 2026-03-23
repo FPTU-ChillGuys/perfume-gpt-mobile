@@ -23,12 +23,13 @@ abstract class _$ReviewStatisticsResponseCWProxy {
 
   ReviewStatisticsResponse oneStarCount(int? oneStarCount);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ReviewStatisticsResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewStatisticsResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ReviewStatisticsResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ReviewStatisticsResponse call({
     String? variantId,
     int? totalReviews,
@@ -41,7 +42,8 @@ abstract class _$ReviewStatisticsResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfReviewStatisticsResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfReviewStatisticsResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfReviewStatisticsResponse.copyWith(...)` or call `instanceOfReviewStatisticsResponse.copyWith.fieldName(value)` for a single field.
 class _$ReviewStatisticsResponseCWProxyImpl
     implements _$ReviewStatisticsResponseCWProxy {
   const _$ReviewStatisticsResponseCWProxyImpl(this._value);
@@ -50,43 +52,44 @@ class _$ReviewStatisticsResponseCWProxyImpl
 
   @override
   ReviewStatisticsResponse variantId(String? variantId) =>
-      this(variantId: variantId);
+      call(variantId: variantId);
 
   @override
   ReviewStatisticsResponse totalReviews(int? totalReviews) =>
-      this(totalReviews: totalReviews);
+      call(totalReviews: totalReviews);
 
   @override
   ReviewStatisticsResponse averageRating(double? averageRating) =>
-      this(averageRating: averageRating);
+      call(averageRating: averageRating);
 
   @override
   ReviewStatisticsResponse fiveStarCount(int? fiveStarCount) =>
-      this(fiveStarCount: fiveStarCount);
+      call(fiveStarCount: fiveStarCount);
 
   @override
   ReviewStatisticsResponse fourStarCount(int? fourStarCount) =>
-      this(fourStarCount: fourStarCount);
+      call(fourStarCount: fourStarCount);
 
   @override
   ReviewStatisticsResponse threeStarCount(int? threeStarCount) =>
-      this(threeStarCount: threeStarCount);
+      call(threeStarCount: threeStarCount);
 
   @override
   ReviewStatisticsResponse twoStarCount(int? twoStarCount) =>
-      this(twoStarCount: twoStarCount);
+      call(twoStarCount: twoStarCount);
 
   @override
   ReviewStatisticsResponse oneStarCount(int? oneStarCount) =>
-      this(oneStarCount: oneStarCount);
+      call(oneStarCount: oneStarCount);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ReviewStatisticsResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewStatisticsResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ReviewStatisticsResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ReviewStatisticsResponse call({
     Object? variantId = const $CopyWithPlaceholder(),
     Object? totalReviews = const $CopyWithPlaceholder(),
@@ -135,7 +138,8 @@ class _$ReviewStatisticsResponseCWProxyImpl
 }
 
 extension $ReviewStatisticsResponseCopyWith on ReviewStatisticsResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfReviewStatisticsResponse.copyWith(...)` or like so:`instanceOfReviewStatisticsResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfReviewStatisticsResponse.copyWith(...)` or `instanceOfReviewStatisticsResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ReviewStatisticsResponseCWProxy get copyWith =>
       _$ReviewStatisticsResponseCWProxyImpl(this);

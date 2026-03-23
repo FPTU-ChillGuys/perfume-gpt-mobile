@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfGetCartTotalResponseCWProxy {
 
   BaseResponseOfGetCartTotalResponse errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfGetCartTotalResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfGetCartTotalResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfGetCartTotalResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfGetCartTotalResponse call({
     GetCartTotalResponse? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfGetCartTotalResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfGetCartTotalResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfGetCartTotalResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfGetCartTotalResponse.copyWith(...)` or call `instanceOfBaseResponseOfGetCartTotalResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfGetCartTotalResponseCWProxyImpl
     implements _$BaseResponseOfGetCartTotalResponseCWProxy {
   const _$BaseResponseOfGetCartTotalResponseCWProxyImpl(this._value);
@@ -41,31 +43,32 @@ class _$BaseResponseOfGetCartTotalResponseCWProxyImpl
 
   @override
   BaseResponseOfGetCartTotalResponse payload(GetCartTotalResponse? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
   BaseResponseOfGetCartTotalResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfGetCartTotalResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfGetCartTotalResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfGetCartTotalResponse errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfGetCartTotalResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfGetCartTotalResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfGetCartTotalResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfGetCartTotalResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -100,7 +103,8 @@ class _$BaseResponseOfGetCartTotalResponseCWProxyImpl
 
 extension $BaseResponseOfGetCartTotalResponseCopyWith
     on BaseResponseOfGetCartTotalResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfGetCartTotalResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfGetCartTotalResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfGetCartTotalResponse.copyWith(...)` or `instanceOfBaseResponseOfGetCartTotalResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfGetCartTotalResponseCWProxy get copyWith =>
       _$BaseResponseOfGetCartTotalResponseCWProxyImpl(this);

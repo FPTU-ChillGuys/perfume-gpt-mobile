@@ -27,12 +27,13 @@ abstract class _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWP
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse call({
     BulkActionResultOfListOfTemporaryMediaResponse? payload,
     bool? success,
@@ -42,7 +43,8 @@ abstract class _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWP
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)` or call `instanceOfBaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl
     implements
         _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWProxy {
@@ -55,35 +57,36 @@ class _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl
   @override
   BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse payload(
     BulkActionResultOfListOfTemporaryMediaResponse? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse success(
     bool? success,
-  ) => this(success: success);
+  ) => call(success: success);
 
   @override
   BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse message(
     String? message,
-  ) => this(message: message);
+  ) => call(message: message);
 
   @override
   BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse errors(
     List<String>? errors,
-  ) => this(errors: errors);
+  ) => call(errors: errors);
 
   @override
   BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -118,7 +121,8 @@ class _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl
 
 extension $BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCopyWith
     on BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)` or `instanceOfBaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWProxy
   get copyWith =>

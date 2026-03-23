@@ -23,12 +23,13 @@ abstract class _$VariantLookupItemCWProxy {
 
   VariantLookupItem primaryImage(MediaResponse? primaryImage);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VariantLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VariantLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VariantLookupItem call({
     String? id,
     String? barcode,
@@ -41,46 +42,48 @@ abstract class _$VariantLookupItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfVariantLookupItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfVariantLookupItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVariantLookupItem.copyWith(...)` or call `instanceOfVariantLookupItem.copyWith.fieldName(value)` for a single field.
 class _$VariantLookupItemCWProxyImpl implements _$VariantLookupItemCWProxy {
   const _$VariantLookupItemCWProxyImpl(this._value);
 
   final VariantLookupItem _value;
 
   @override
-  VariantLookupItem id(String? id) => this(id: id);
+  VariantLookupItem id(String? id) => call(id: id);
 
   @override
-  VariantLookupItem barcode(String? barcode) => this(barcode: barcode);
+  VariantLookupItem barcode(String? barcode) => call(barcode: barcode);
 
   @override
-  VariantLookupItem sku(String? sku) => this(sku: sku);
+  VariantLookupItem sku(String? sku) => call(sku: sku);
 
   @override
   VariantLookupItem displayName(String? displayName) =>
-      this(displayName: displayName);
+      call(displayName: displayName);
 
   @override
-  VariantLookupItem volumeMl(int? volumeMl) => this(volumeMl: volumeMl);
+  VariantLookupItem volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
   VariantLookupItem concentrationName(String? concentrationName) =>
-      this(concentrationName: concentrationName);
+      call(concentrationName: concentrationName);
 
   @override
-  VariantLookupItem basePrice(num? basePrice) => this(basePrice: basePrice);
+  VariantLookupItem basePrice(num? basePrice) => call(basePrice: basePrice);
 
   @override
   VariantLookupItem primaryImage(MediaResponse? primaryImage) =>
-      this(primaryImage: primaryImage);
+      call(primaryImage: primaryImage);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VariantLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// VariantLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   VariantLookupItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? barcode = const $CopyWithPlaceholder(),
@@ -129,7 +132,8 @@ class _$VariantLookupItemCWProxyImpl implements _$VariantLookupItemCWProxy {
 }
 
 extension $VariantLookupItemCopyWith on VariantLookupItem {
-  /// Returns a callable class that can be used as follows: `instanceOfVariantLookupItem.copyWith(...)` or like so:`instanceOfVariantLookupItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVariantLookupItem.copyWith(...)` or `instanceOfVariantLookupItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$VariantLookupItemCWProxy get copyWith =>
       _$VariantLookupItemCWProxyImpl(this);

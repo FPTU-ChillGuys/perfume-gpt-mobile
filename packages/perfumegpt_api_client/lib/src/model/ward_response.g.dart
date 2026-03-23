@@ -25,12 +25,13 @@ abstract class _$WardResponseCWProxy {
 
   WardResponse updatedDate(String? updatedDate);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WardResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `WardResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// WardResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   WardResponse call({
     String? wardCode,
     int? districtID,
@@ -44,50 +45,52 @@ abstract class _$WardResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfWardResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfWardResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfWardResponse.copyWith(...)` or call `instanceOfWardResponse.copyWith.fieldName(value)` for a single field.
 class _$WardResponseCWProxyImpl implements _$WardResponseCWProxy {
   const _$WardResponseCWProxyImpl(this._value);
 
   final WardResponse _value;
 
   @override
-  WardResponse wardCode(String? wardCode) => this(wardCode: wardCode);
+  WardResponse wardCode(String? wardCode) => call(wardCode: wardCode);
 
   @override
-  WardResponse districtID(int? districtID) => this(districtID: districtID);
+  WardResponse districtID(int? districtID) => call(districtID: districtID);
 
   @override
-  WardResponse wardName(String? wardName) => this(wardName: wardName);
+  WardResponse wardName(String? wardName) => call(wardName: wardName);
 
   @override
   WardResponse nameExtension(List<String>? nameExtension) =>
-      this(nameExtension: nameExtension);
+      call(nameExtension: nameExtension);
 
   @override
   WardResponse canUpdateCOD(bool? canUpdateCOD) =>
-      this(canUpdateCOD: canUpdateCOD);
+      call(canUpdateCOD: canUpdateCOD);
 
   @override
-  WardResponse supportType(int? supportType) => this(supportType: supportType);
+  WardResponse supportType(int? supportType) => call(supportType: supportType);
 
   @override
-  WardResponse status(int? status) => this(status: status);
+  WardResponse status(int? status) => call(status: status);
 
   @override
   WardResponse createdDate(String? createdDate) =>
-      this(createdDate: createdDate);
+      call(createdDate: createdDate);
 
   @override
   WardResponse updatedDate(String? updatedDate) =>
-      this(updatedDate: updatedDate);
+      call(updatedDate: updatedDate);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WardResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `WardResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// WardResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   WardResponse call({
     Object? wardCode = const $CopyWithPlaceholder(),
     Object? districtID = const $CopyWithPlaceholder(),
@@ -141,7 +144,8 @@ class _$WardResponseCWProxyImpl implements _$WardResponseCWProxy {
 }
 
 extension $WardResponseCopyWith on WardResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfWardResponse.copyWith(...)` or like so:`instanceOfWardResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfWardResponse.copyWith(...)` or `instanceOfWardResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$WardResponseCWProxy get copyWith => _$WardResponseCWProxyImpl(this);
 }

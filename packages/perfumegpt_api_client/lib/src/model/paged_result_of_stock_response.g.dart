@@ -21,12 +21,13 @@ abstract class _$PagedResultOfStockResponseCWProxy {
 
   PagedResultOfStockResponse hasNextPage(bool? hasNextPage);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PagedResultOfStockResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfStockResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PagedResultOfStockResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PagedResultOfStockResponse call({
     List<StockResponse> items,
     int pageNumber,
@@ -38,7 +39,8 @@ abstract class _$PagedResultOfStockResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPagedResultOfStockResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfPagedResultOfStockResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPagedResultOfStockResponse.copyWith(...)` or call `instanceOfPagedResultOfStockResponse.copyWith.fieldName(value)` for a single field.
 class _$PagedResultOfStockResponseCWProxyImpl
     implements _$PagedResultOfStockResponseCWProxy {
   const _$PagedResultOfStockResponseCWProxyImpl(this._value);
@@ -47,38 +49,39 @@ class _$PagedResultOfStockResponseCWProxyImpl
 
   @override
   PagedResultOfStockResponse items(List<StockResponse> items) =>
-      this(items: items);
+      call(items: items);
 
   @override
   PagedResultOfStockResponse pageNumber(int pageNumber) =>
-      this(pageNumber: pageNumber);
+      call(pageNumber: pageNumber);
 
   @override
-  PagedResultOfStockResponse pageSize(int pageSize) => this(pageSize: pageSize);
+  PagedResultOfStockResponse pageSize(int pageSize) => call(pageSize: pageSize);
 
   @override
   PagedResultOfStockResponse totalCount(int totalCount) =>
-      this(totalCount: totalCount);
+      call(totalCount: totalCount);
 
   @override
   PagedResultOfStockResponse totalPages(int totalPages) =>
-      this(totalPages: totalPages);
+      call(totalPages: totalPages);
 
   @override
   PagedResultOfStockResponse hasPreviousPage(bool? hasPreviousPage) =>
-      this(hasPreviousPage: hasPreviousPage);
+      call(hasPreviousPage: hasPreviousPage);
 
   @override
   PagedResultOfStockResponse hasNextPage(bool? hasNextPage) =>
-      this(hasNextPage: hasNextPage);
+      call(hasNextPage: hasNextPage);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PagedResultOfStockResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfStockResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PagedResultOfStockResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PagedResultOfStockResponse call({
     Object? items = const $CopyWithPlaceholder(),
     Object? pageNumber = const $CopyWithPlaceholder(),
@@ -89,23 +92,26 @@ class _$PagedResultOfStockResponseCWProxyImpl
     Object? hasNextPage = const $CopyWithPlaceholder(),
   }) {
     return PagedResultOfStockResponse(
-      items: items == const $CopyWithPlaceholder()
+      items: items == const $CopyWithPlaceholder() || items == null
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
           : items as List<StockResponse>,
-      pageNumber: pageNumber == const $CopyWithPlaceholder()
+      pageNumber:
+          pageNumber == const $CopyWithPlaceholder() || pageNumber == null
           ? _value.pageNumber
           // ignore: cast_nullable_to_non_nullable
           : pageNumber as int,
-      pageSize: pageSize == const $CopyWithPlaceholder()
+      pageSize: pageSize == const $CopyWithPlaceholder() || pageSize == null
           ? _value.pageSize
           // ignore: cast_nullable_to_non_nullable
           : pageSize as int,
-      totalCount: totalCount == const $CopyWithPlaceholder()
+      totalCount:
+          totalCount == const $CopyWithPlaceholder() || totalCount == null
           ? _value.totalCount
           // ignore: cast_nullable_to_non_nullable
           : totalCount as int,
-      totalPages: totalPages == const $CopyWithPlaceholder()
+      totalPages:
+          totalPages == const $CopyWithPlaceholder() || totalPages == null
           ? _value.totalPages
           // ignore: cast_nullable_to_non_nullable
           : totalPages as int,
@@ -122,7 +128,8 @@ class _$PagedResultOfStockResponseCWProxyImpl
 }
 
 extension $PagedResultOfStockResponseCopyWith on PagedResultOfStockResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfPagedResultOfStockResponse.copyWith(...)` or like so:`instanceOfPagedResultOfStockResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPagedResultOfStockResponse.copyWith(...)` or `instanceOfPagedResultOfStockResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PagedResultOfStockResponseCWProxy get copyWith =>
       _$PagedResultOfStockResponseCWProxyImpl(this);

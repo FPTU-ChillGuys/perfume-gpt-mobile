@@ -11,34 +11,37 @@ abstract class _$BrandLookupItemCWProxy {
 
   BrandLookupItem name(String? name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BrandLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BrandLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BrandLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BrandLookupItem call({int? id, String? name});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBrandLookupItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBrandLookupItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBrandLookupItem.copyWith(...)` or call `instanceOfBrandLookupItem.copyWith.fieldName(value)` for a single field.
 class _$BrandLookupItemCWProxyImpl implements _$BrandLookupItemCWProxy {
   const _$BrandLookupItemCWProxyImpl(this._value);
 
   final BrandLookupItem _value;
 
   @override
-  BrandLookupItem id(int? id) => this(id: id);
+  BrandLookupItem id(int? id) => call(id: id);
 
   @override
-  BrandLookupItem name(String? name) => this(name: name);
+  BrandLookupItem name(String? name) => call(name: name);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BrandLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BrandLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BrandLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BrandLookupItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
@@ -57,7 +60,8 @@ class _$BrandLookupItemCWProxyImpl implements _$BrandLookupItemCWProxy {
 }
 
 extension $BrandLookupItemCopyWith on BrandLookupItem {
-  /// Returns a callable class that can be used as follows: `instanceOfBrandLookupItem.copyWith(...)` or like so:`instanceOfBrandLookupItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBrandLookupItem.copyWith(...)` or `instanceOfBrandLookupItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BrandLookupItemCWProxy get copyWith => _$BrandLookupItemCWProxyImpl(this);
 }

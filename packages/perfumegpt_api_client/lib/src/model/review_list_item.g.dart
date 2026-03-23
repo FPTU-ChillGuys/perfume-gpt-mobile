@@ -29,12 +29,13 @@ abstract class _$ReviewListItemCWProxy {
 
   ReviewListItem moderatedAt(DateTime? moderatedAt);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ReviewListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ReviewListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ReviewListItem call({
     String? id,
     String? userId,
@@ -50,57 +51,59 @@ abstract class _$ReviewListItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfReviewListItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfReviewListItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfReviewListItem.copyWith(...)` or call `instanceOfReviewListItem.copyWith.fieldName(value)` for a single field.
 class _$ReviewListItemCWProxyImpl implements _$ReviewListItemCWProxy {
   const _$ReviewListItemCWProxyImpl(this._value);
 
   final ReviewListItem _value;
 
   @override
-  ReviewListItem id(String? id) => this(id: id);
+  ReviewListItem id(String? id) => call(id: id);
 
   @override
-  ReviewListItem userId(String? userId) => this(userId: userId);
+  ReviewListItem userId(String? userId) => call(userId: userId);
 
   @override
   ReviewListItem userFullName(String? userFullName) =>
-      this(userFullName: userFullName);
+      call(userFullName: userFullName);
 
   @override
   ReviewListItem userProfilePictureUrl(String? userProfilePictureUrl) =>
-      this(userProfilePictureUrl: userProfilePictureUrl);
+      call(userProfilePictureUrl: userProfilePictureUrl);
 
   @override
-  ReviewListItem variantId(String? variantId) => this(variantId: variantId);
+  ReviewListItem variantId(String? variantId) => call(variantId: variantId);
 
   @override
   ReviewListItem variantName(String? variantName) =>
-      this(variantName: variantName);
+      call(variantName: variantName);
 
   @override
-  ReviewListItem rating(int? rating) => this(rating: rating);
+  ReviewListItem rating(int? rating) => call(rating: rating);
 
   @override
   ReviewListItem commentPreview(String? commentPreview) =>
-      this(commentPreview: commentPreview);
+      call(commentPreview: commentPreview);
 
   @override
-  ReviewListItem imageCount(int? imageCount) => this(imageCount: imageCount);
+  ReviewListItem imageCount(int? imageCount) => call(imageCount: imageCount);
 
   @override
-  ReviewListItem createdAt(DateTime? createdAt) => this(createdAt: createdAt);
+  ReviewListItem createdAt(DateTime? createdAt) => call(createdAt: createdAt);
 
   @override
   ReviewListItem moderatedAt(DateTime? moderatedAt) =>
-      this(moderatedAt: moderatedAt);
+      call(moderatedAt: moderatedAt);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ReviewListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ReviewListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ReviewListItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
@@ -165,7 +168,8 @@ class _$ReviewListItemCWProxyImpl implements _$ReviewListItemCWProxy {
 }
 
 extension $ReviewListItemCopyWith on ReviewListItem {
-  /// Returns a callable class that can be used as follows: `instanceOfReviewListItem.copyWith(...)` or like so:`instanceOfReviewListItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfReviewListItem.copyWith(...)` or `instanceOfReviewListItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ReviewListItemCWProxy get copyWith => _$ReviewListItemCWProxyImpl(this);
 }

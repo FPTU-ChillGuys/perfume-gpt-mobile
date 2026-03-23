@@ -21,12 +21,13 @@ abstract class _$CreateOrderRequestCWProxy {
 
   CreateOrderRequest payment(PaymentInformation? payment);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateOrderRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateOrderRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateOrderRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateOrderRequest call({
     String? voucherCode,
     List<String>? itemIds,
@@ -38,7 +39,8 @@ abstract class _$CreateOrderRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateOrderRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateOrderRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateOrderRequest.copyWith(...)` or call `instanceOfCreateOrderRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
   const _$CreateOrderRequestCWProxyImpl(this._value);
 
@@ -46,38 +48,39 @@ class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
 
   @override
   CreateOrderRequest voucherCode(String? voucherCode) =>
-      this(voucherCode: voucherCode);
+      call(voucherCode: voucherCode);
 
   @override
-  CreateOrderRequest itemIds(List<String>? itemIds) => this(itemIds: itemIds);
+  CreateOrderRequest itemIds(List<String>? itemIds) => call(itemIds: itemIds);
 
   @override
   CreateOrderRequest deliveryMethod(DeliveryMethod? deliveryMethod) =>
-      this(deliveryMethod: deliveryMethod);
+      call(deliveryMethod: deliveryMethod);
 
   @override
   CreateOrderRequest guestEmail(String? guestEmail) =>
-      this(guestEmail: guestEmail);
+      call(guestEmail: guestEmail);
 
   @override
   CreateOrderRequest savedAddressId(String? savedAddressId) =>
-      this(savedAddressId: savedAddressId);
+      call(savedAddressId: savedAddressId);
 
   @override
   CreateOrderRequest recipient(RecipientInformation? recipient) =>
-      this(recipient: recipient);
+      call(recipient: recipient);
 
   @override
   CreateOrderRequest payment(PaymentInformation? payment) =>
-      this(payment: payment);
+      call(payment: payment);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateOrderRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateOrderRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateOrderRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateOrderRequest call({
     Object? voucherCode = const $CopyWithPlaceholder(),
     Object? itemIds = const $CopyWithPlaceholder(),
@@ -121,7 +124,8 @@ class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
 }
 
 extension $CreateOrderRequestCopyWith on CreateOrderRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateOrderRequest.copyWith(...)` or like so:`instanceOfCreateOrderRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateOrderRequest.copyWith(...)` or `instanceOfCreateOrderRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateOrderRequestCWProxy get copyWith =>
       _$CreateOrderRequestCWProxyImpl(this);

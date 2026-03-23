@@ -19,12 +19,13 @@ abstract class _$BulkOperationResultCWProxy {
 
   BulkOperationResult hasError(bool? hasError);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkOperationResult(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkOperationResult(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkOperationResult(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkOperationResult call({
     String? operationName,
     int? succeededCount,
@@ -35,7 +36,8 @@ abstract class _$BulkOperationResultCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBulkOperationResult.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBulkOperationResult.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBulkOperationResult.copyWith(...)` or call `instanceOfBulkOperationResult.copyWith.fieldName(value)` for a single field.
 class _$BulkOperationResultCWProxyImpl implements _$BulkOperationResultCWProxy {
   const _$BulkOperationResultCWProxyImpl(this._value);
 
@@ -43,34 +45,35 @@ class _$BulkOperationResultCWProxyImpl implements _$BulkOperationResultCWProxy {
 
   @override
   BulkOperationResult operationName(String? operationName) =>
-      this(operationName: operationName);
+      call(operationName: operationName);
 
   @override
   BulkOperationResult succeededCount(int? succeededCount) =>
-      this(succeededCount: succeededCount);
+      call(succeededCount: succeededCount);
 
   @override
   BulkOperationResult failedCount(int? failedCount) =>
-      this(failedCount: failedCount);
+      call(failedCount: failedCount);
 
   @override
   BulkOperationResult errors(List<BulkActionError>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BulkOperationResult totalProcessed(int? totalProcessed) =>
-      this(totalProcessed: totalProcessed);
+      call(totalProcessed: totalProcessed);
 
   @override
-  BulkOperationResult hasError(bool? hasError) => this(hasError: hasError);
+  BulkOperationResult hasError(bool? hasError) => call(hasError: hasError);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BulkOperationResult(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkOperationResult(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BulkOperationResult(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BulkOperationResult call({
     Object? operationName = const $CopyWithPlaceholder(),
     Object? succeededCount = const $CopyWithPlaceholder(),
@@ -109,7 +112,8 @@ class _$BulkOperationResultCWProxyImpl implements _$BulkOperationResultCWProxy {
 }
 
 extension $BulkOperationResultCopyWith on BulkOperationResult {
-  /// Returns a callable class that can be used as follows: `instanceOfBulkOperationResult.copyWith(...)` or like so:`instanceOfBulkOperationResult.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBulkOperationResult.copyWith(...)` or `instanceOfBulkOperationResult.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BulkOperationResultCWProxy get copyWith =>
       _$BulkOperationResultCWProxyImpl(this);

@@ -11,16 +11,18 @@ abstract class _$ProductAttributeDtoCWProxy {
 
   ProductAttributeDto valueId(int? valueId);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAttributeDto(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductAttributeDto(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductAttributeDto(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductAttributeDto call({int? attributeId, int? valueId});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductAttributeDto.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductAttributeDto.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductAttributeDto.copyWith(...)` or call `instanceOfProductAttributeDto.copyWith.fieldName(value)` for a single field.
 class _$ProductAttributeDtoCWProxyImpl implements _$ProductAttributeDtoCWProxy {
   const _$ProductAttributeDtoCWProxyImpl(this._value);
 
@@ -28,18 +30,19 @@ class _$ProductAttributeDtoCWProxyImpl implements _$ProductAttributeDtoCWProxy {
 
   @override
   ProductAttributeDto attributeId(int? attributeId) =>
-      this(attributeId: attributeId);
+      call(attributeId: attributeId);
 
   @override
-  ProductAttributeDto valueId(int? valueId) => this(valueId: valueId);
+  ProductAttributeDto valueId(int? valueId) => call(valueId: valueId);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAttributeDto(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductAttributeDto(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductAttributeDto(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductAttributeDto call({
     Object? attributeId = const $CopyWithPlaceholder(),
     Object? valueId = const $CopyWithPlaceholder(),
@@ -58,7 +61,8 @@ class _$ProductAttributeDtoCWProxyImpl implements _$ProductAttributeDtoCWProxy {
 }
 
 extension $ProductAttributeDtoCopyWith on ProductAttributeDto {
-  /// Returns a callable class that can be used as follows: `instanceOfProductAttributeDto.copyWith(...)` or like so:`instanceOfProductAttributeDto.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductAttributeDto.copyWith(...)` or `instanceOfProductAttributeDto.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductAttributeDtoCWProxy get copyWith =>
       _$ProductAttributeDtoCWProxyImpl(this);

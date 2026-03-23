@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfMediaResponseCWProxy {
 
   BaseResponseOfMediaResponse errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfMediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfMediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfMediaResponse call({
     MediaResponse? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfMediaResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfMediaResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfMediaResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfMediaResponse.copyWith(...)` or call `instanceOfBaseResponseOfMediaResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfMediaResponseCWProxyImpl
     implements _$BaseResponseOfMediaResponseCWProxy {
   const _$BaseResponseOfMediaResponseCWProxyImpl(this._value);
@@ -41,30 +43,31 @@ class _$BaseResponseOfMediaResponseCWProxyImpl
 
   @override
   BaseResponseOfMediaResponse payload(MediaResponse? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
-  BaseResponseOfMediaResponse success(bool? success) => this(success: success);
+  BaseResponseOfMediaResponse success(bool? success) => call(success: success);
 
   @override
   BaseResponseOfMediaResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfMediaResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfMediaResponse errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfMediaResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfMediaResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfMediaResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -98,7 +101,8 @@ class _$BaseResponseOfMediaResponseCWProxyImpl
 }
 
 extension $BaseResponseOfMediaResponseCopyWith on BaseResponseOfMediaResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfMediaResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfMediaResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfMediaResponse.copyWith(...)` or `instanceOfBaseResponseOfMediaResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfMediaResponseCWProxy get copyWith =>
       _$BaseResponseOfMediaResponseCWProxyImpl(this);

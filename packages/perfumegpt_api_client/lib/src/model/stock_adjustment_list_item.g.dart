@@ -21,12 +21,13 @@ abstract class _$StockAdjustmentListItemCWProxy {
 
   StockAdjustmentListItem createdAt(DateTime? createdAt);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StockAdjustmentListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockAdjustmentListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StockAdjustmentListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StockAdjustmentListItem call({
     String? id,
     String? createdByName,
@@ -38,7 +39,8 @@ abstract class _$StockAdjustmentListItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfStockAdjustmentListItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfStockAdjustmentListItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfStockAdjustmentListItem.copyWith(...)` or call `instanceOfStockAdjustmentListItem.copyWith.fieldName(value)` for a single field.
 class _$StockAdjustmentListItemCWProxyImpl
     implements _$StockAdjustmentListItemCWProxy {
   const _$StockAdjustmentListItemCWProxyImpl(this._value);
@@ -46,39 +48,40 @@ class _$StockAdjustmentListItemCWProxyImpl
   final StockAdjustmentListItem _value;
 
   @override
-  StockAdjustmentListItem id(String? id) => this(id: id);
+  StockAdjustmentListItem id(String? id) => call(id: id);
 
   @override
   StockAdjustmentListItem createdByName(String? createdByName) =>
-      this(createdByName: createdByName);
+      call(createdByName: createdByName);
 
   @override
   StockAdjustmentListItem adjustmentDate(DateTime? adjustmentDate) =>
-      this(adjustmentDate: adjustmentDate);
+      call(adjustmentDate: adjustmentDate);
 
   @override
   StockAdjustmentListItem reason(StockAdjustmentReason? reason) =>
-      this(reason: reason);
+      call(reason: reason);
 
   @override
   StockAdjustmentListItem status(StockAdjustmentStatus? status) =>
-      this(status: status);
+      call(status: status);
 
   @override
   StockAdjustmentListItem totalItems(int? totalItems) =>
-      this(totalItems: totalItems);
+      call(totalItems: totalItems);
 
   @override
   StockAdjustmentListItem createdAt(DateTime? createdAt) =>
-      this(createdAt: createdAt);
+      call(createdAt: createdAt);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `StockAdjustmentListItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockAdjustmentListItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StockAdjustmentListItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StockAdjustmentListItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? createdByName = const $CopyWithPlaceholder(),
@@ -122,7 +125,8 @@ class _$StockAdjustmentListItemCWProxyImpl
 }
 
 extension $StockAdjustmentListItemCopyWith on StockAdjustmentListItem {
-  /// Returns a callable class that can be used as follows: `instanceOfStockAdjustmentListItem.copyWith(...)` or like so:`instanceOfStockAdjustmentListItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfStockAdjustmentListItem.copyWith(...)` or `instanceOfStockAdjustmentListItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$StockAdjustmentListItemCWProxy get copyWith =>
       _$StockAdjustmentListItemCWProxyImpl(this);

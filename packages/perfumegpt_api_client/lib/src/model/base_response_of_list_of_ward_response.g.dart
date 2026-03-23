@@ -17,12 +17,13 @@ abstract class _$BaseResponseOfListOfWardResponseCWProxy {
 
   BaseResponseOfListOfWardResponse errorType(ResponseErrorType? errorType);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfWardResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfWardResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfWardResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfWardResponse call({
     List<WardResponse>? payload,
     bool? success,
@@ -32,7 +33,8 @@ abstract class _$BaseResponseOfListOfWardResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfListOfWardResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfListOfWardResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfListOfWardResponse.copyWith(...)` or call `instanceOfBaseResponseOfListOfWardResponse.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfListOfWardResponseCWProxyImpl
     implements _$BaseResponseOfListOfWardResponseCWProxy {
   const _$BaseResponseOfListOfWardResponseCWProxyImpl(this._value);
@@ -41,31 +43,32 @@ class _$BaseResponseOfListOfWardResponseCWProxyImpl
 
   @override
   BaseResponseOfListOfWardResponse payload(List<WardResponse>? payload) =>
-      this(payload: payload);
+      call(payload: payload);
 
   @override
   BaseResponseOfListOfWardResponse success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfListOfWardResponse message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfListOfWardResponse errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfListOfWardResponse errorType(ResponseErrorType? errorType) =>
-      this(errorType: errorType);
+      call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfWardResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfWardResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfWardResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfWardResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -100,7 +103,8 @@ class _$BaseResponseOfListOfWardResponseCWProxyImpl
 
 extension $BaseResponseOfListOfWardResponseCopyWith
     on BaseResponseOfListOfWardResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfListOfWardResponse.copyWith(...)` or like so:`instanceOfBaseResponseOfListOfWardResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfListOfWardResponse.copyWith(...)` or `instanceOfBaseResponseOfListOfWardResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfListOfWardResponseCWProxy get copyWith =>
       _$BaseResponseOfListOfWardResponseCWProxyImpl(this);

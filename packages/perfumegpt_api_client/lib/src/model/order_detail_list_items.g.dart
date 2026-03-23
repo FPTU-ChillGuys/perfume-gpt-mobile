@@ -17,12 +17,13 @@ abstract class _$OrderDetailListItemsCWProxy {
 
   OrderDetailListItems total(int? total);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OrderDetailListItems(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderDetailListItems(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// OrderDetailListItems(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   OrderDetailListItems call({
     String? variantId,
     String? variantName,
@@ -32,7 +33,8 @@ abstract class _$OrderDetailListItemsCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfOrderDetailListItems.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfOrderDetailListItems.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfOrderDetailListItems.copyWith(...)` or call `instanceOfOrderDetailListItems.copyWith.fieldName(value)` for a single field.
 class _$OrderDetailListItemsCWProxyImpl
     implements _$OrderDetailListItemsCWProxy {
   const _$OrderDetailListItemsCWProxyImpl(this._value);
@@ -41,28 +43,29 @@ class _$OrderDetailListItemsCWProxyImpl
 
   @override
   OrderDetailListItems variantId(String? variantId) =>
-      this(variantId: variantId);
+      call(variantId: variantId);
 
   @override
   OrderDetailListItems variantName(String? variantName) =>
-      this(variantName: variantName);
+      call(variantName: variantName);
 
   @override
-  OrderDetailListItems imageUrl(String? imageUrl) => this(imageUrl: imageUrl);
+  OrderDetailListItems imageUrl(String? imageUrl) => call(imageUrl: imageUrl);
 
   @override
-  OrderDetailListItems quantity(int? quantity) => this(quantity: quantity);
+  OrderDetailListItems quantity(int? quantity) => call(quantity: quantity);
 
   @override
-  OrderDetailListItems total(int? total) => this(total: total);
+  OrderDetailListItems total(int? total) => call(total: total);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OrderDetailListItems(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderDetailListItems(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// OrderDetailListItems(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   OrderDetailListItems call({
     Object? variantId = const $CopyWithPlaceholder(),
     Object? variantName = const $CopyWithPlaceholder(),
@@ -96,7 +99,8 @@ class _$OrderDetailListItemsCWProxyImpl
 }
 
 extension $OrderDetailListItemsCopyWith on OrderDetailListItems {
-  /// Returns a callable class that can be used as follows: `instanceOfOrderDetailListItems.copyWith(...)` or like so:`instanceOfOrderDetailListItems.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfOrderDetailListItems.copyWith(...)` or `instanceOfOrderDetailListItems.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$OrderDetailListItemsCWProxy get copyWith =>
       _$OrderDetailListItemsCWProxyImpl(this);

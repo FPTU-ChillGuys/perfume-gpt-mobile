@@ -21,12 +21,13 @@ abstract class _$BaseResponseOfListOfAttributeValueLookupItemCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfAttributeValueLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfAttributeValueLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfAttributeValueLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfAttributeValueLookupItem call({
     List<AttributeValueLookupItem>? payload,
     bool? success,
@@ -36,7 +37,8 @@ abstract class _$BaseResponseOfListOfAttributeValueLookupItemCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfListOfAttributeValueLookupItem.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfListOfAttributeValueLookupItem.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfListOfAttributeValueLookupItem.copyWith(...)` or call `instanceOfBaseResponseOfListOfAttributeValueLookupItem.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfListOfAttributeValueLookupItemCWProxyImpl
     implements _$BaseResponseOfListOfAttributeValueLookupItemCWProxy {
   const _$BaseResponseOfListOfAttributeValueLookupItemCWProxyImpl(this._value);
@@ -46,32 +48,33 @@ class _$BaseResponseOfListOfAttributeValueLookupItemCWProxyImpl
   @override
   BaseResponseOfListOfAttributeValueLookupItem payload(
     List<AttributeValueLookupItem>? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfListOfAttributeValueLookupItem success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfListOfAttributeValueLookupItem message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfListOfAttributeValueLookupItem errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfListOfAttributeValueLookupItem errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfAttributeValueLookupItem(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfAttributeValueLookupItem(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfAttributeValueLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfAttributeValueLookupItem call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -106,7 +109,8 @@ class _$BaseResponseOfListOfAttributeValueLookupItemCWProxyImpl
 
 extension $BaseResponseOfListOfAttributeValueLookupItemCopyWith
     on BaseResponseOfListOfAttributeValueLookupItem {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfListOfAttributeValueLookupItem.copyWith(...)` or like so:`instanceOfBaseResponseOfListOfAttributeValueLookupItem.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfListOfAttributeValueLookupItem.copyWith(...)` or `instanceOfBaseResponseOfListOfAttributeValueLookupItem.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfListOfAttributeValueLookupItemCWProxy get copyWith =>
       _$BaseResponseOfListOfAttributeValueLookupItemCWProxyImpl(this);

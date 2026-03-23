@@ -31,12 +31,13 @@ abstract class _$ProvinceResponseCWProxy {
 
   ProvinceResponse status(int? status);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProvinceResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProvinceResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProvinceResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProvinceResponse call({
     int? provinceID,
     String? provinceName,
@@ -53,58 +54,60 @@ abstract class _$ProvinceResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProvinceResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProvinceResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProvinceResponse.copyWith(...)` or call `instanceOfProvinceResponse.copyWith.fieldName(value)` for a single field.
 class _$ProvinceResponseCWProxyImpl implements _$ProvinceResponseCWProxy {
   const _$ProvinceResponseCWProxyImpl(this._value);
 
   final ProvinceResponse _value;
 
   @override
-  ProvinceResponse provinceID(int? provinceID) => this(provinceID: provinceID);
+  ProvinceResponse provinceID(int? provinceID) => call(provinceID: provinceID);
 
   @override
   ProvinceResponse provinceName(String? provinceName) =>
-      this(provinceName: provinceName);
+      call(provinceName: provinceName);
 
   @override
-  ProvinceResponse countryID(int? countryID) => this(countryID: countryID);
+  ProvinceResponse countryID(int? countryID) => call(countryID: countryID);
 
   @override
-  ProvinceResponse code(int? code) => this(code: code);
+  ProvinceResponse code(int? code) => call(code: code);
 
   @override
   ProvinceResponse nameExtension(List<String>? nameExtension) =>
-      this(nameExtension: nameExtension);
+      call(nameExtension: nameExtension);
 
   @override
-  ProvinceResponse isEnable(int? isEnable) => this(isEnable: isEnable);
+  ProvinceResponse isEnable(int? isEnable) => call(isEnable: isEnable);
 
   @override
-  ProvinceResponse regionID(int? regionID) => this(regionID: regionID);
+  ProvinceResponse regionID(int? regionID) => call(regionID: regionID);
 
   @override
-  ProvinceResponse updatedBy(int? updatedBy) => this(updatedBy: updatedBy);
+  ProvinceResponse updatedBy(int? updatedBy) => call(updatedBy: updatedBy);
 
   @override
-  ProvinceResponse createdAt(String? createdAt) => this(createdAt: createdAt);
+  ProvinceResponse createdAt(String? createdAt) => call(createdAt: createdAt);
 
   @override
-  ProvinceResponse updatedAt(String? updatedAt) => this(updatedAt: updatedAt);
+  ProvinceResponse updatedAt(String? updatedAt) => call(updatedAt: updatedAt);
 
   @override
   ProvinceResponse canUpdateCOD(bool? canUpdateCOD) =>
-      this(canUpdateCOD: canUpdateCOD);
+      call(canUpdateCOD: canUpdateCOD);
 
   @override
-  ProvinceResponse status(int? status) => this(status: status);
+  ProvinceResponse status(int? status) => call(status: status);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProvinceResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProvinceResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProvinceResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProvinceResponse call({
     Object? provinceID = const $CopyWithPlaceholder(),
     Object? provinceName = const $CopyWithPlaceholder(),
@@ -173,7 +176,8 @@ class _$ProvinceResponseCWProxyImpl implements _$ProvinceResponseCWProxy {
 }
 
 extension $ProvinceResponseCopyWith on ProvinceResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfProvinceResponse.copyWith(...)` or like so:`instanceOfProvinceResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProvinceResponse.copyWith(...)` or `instanceOfProvinceResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProvinceResponseCWProxy get copyWith => _$ProvinceResponseCWProxyImpl(this);
 }

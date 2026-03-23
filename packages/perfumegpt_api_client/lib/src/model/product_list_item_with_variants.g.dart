@@ -31,12 +31,13 @@ abstract class _$ProductListItemWithVariantsCWProxy {
     List<ProductAttributeResponse>? attributes,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductListItemWithVariants(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductListItemWithVariants(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductListItemWithVariants call({
     List<VariantSummaryItem>? variants,
     String? id,
@@ -52,7 +53,8 @@ abstract class _$ProductListItemWithVariantsCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductListItemWithVariants.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductListItemWithVariants.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductListItemWithVariants.copyWith(...)` or call `instanceOfProductListItemWithVariants.copyWith.fieldName(value)` for a single field.
 class _$ProductListItemWithVariantsCWProxyImpl
     implements _$ProductListItemWithVariantsCWProxy {
   const _$ProductListItemWithVariantsCWProxyImpl(this._value);
@@ -61,53 +63,54 @@ class _$ProductListItemWithVariantsCWProxyImpl
 
   @override
   ProductListItemWithVariants variants(List<VariantSummaryItem>? variants) =>
-      this(variants: variants);
+      call(variants: variants);
 
   @override
-  ProductListItemWithVariants id(String? id) => this(id: id);
+  ProductListItemWithVariants id(String? id) => call(id: id);
 
   @override
-  ProductListItemWithVariants name(String? name) => this(name: name);
+  ProductListItemWithVariants name(String? name) => call(name: name);
 
   @override
-  ProductListItemWithVariants brandId(int? brandId) => this(brandId: brandId);
+  ProductListItemWithVariants brandId(int? brandId) => call(brandId: brandId);
 
   @override
   ProductListItemWithVariants brandName(String? brandName) =>
-      this(brandName: brandName);
+      call(brandName: brandName);
 
   @override
   ProductListItemWithVariants categoryId(int? categoryId) =>
-      this(categoryId: categoryId);
+      call(categoryId: categoryId);
 
   @override
   ProductListItemWithVariants categoryName(String? categoryName) =>
-      this(categoryName: categoryName);
+      call(categoryName: categoryName);
 
   @override
   ProductListItemWithVariants description(String? description) =>
-      this(description: description);
+      call(description: description);
 
   @override
   ProductListItemWithVariants numberOfVariants(int? numberOfVariants) =>
-      this(numberOfVariants: numberOfVariants);
+      call(numberOfVariants: numberOfVariants);
 
   @override
   ProductListItemWithVariants primaryImage(MediaResponse? primaryImage) =>
-      this(primaryImage: primaryImage);
+      call(primaryImage: primaryImage);
 
   @override
   ProductListItemWithVariants attributes(
     List<ProductAttributeResponse>? attributes,
-  ) => this(attributes: attributes);
+  ) => call(attributes: attributes);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductListItemWithVariants(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductListItemWithVariants(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ProductListItemWithVariants call({
     Object? variants = const $CopyWithPlaceholder(),
     Object? id = const $CopyWithPlaceholder(),
@@ -171,7 +174,8 @@ class _$ProductListItemWithVariantsCWProxyImpl
 }
 
 extension $ProductListItemWithVariantsCopyWith on ProductListItemWithVariants {
-  /// Returns a callable class that can be used as follows: `instanceOfProductListItemWithVariants.copyWith(...)` or like so:`instanceOfProductListItemWithVariants.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductListItemWithVariants.copyWith(...)` or `instanceOfProductListItemWithVariants.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductListItemWithVariantsCWProxy get copyWith =>
       _$ProductListItemWithVariantsCWProxyImpl(this);

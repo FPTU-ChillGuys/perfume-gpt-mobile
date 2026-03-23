@@ -21,12 +21,13 @@ abstract class _$RecipientInfoResponseCWProxy {
 
   RecipientInfoResponse fullAddress(String? fullAddress);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RecipientInfoResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RecipientInfoResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RecipientInfoResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RecipientInfoResponse call({
     String? id,
     String? fullName,
@@ -38,7 +39,8 @@ abstract class _$RecipientInfoResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfRecipientInfoResponse.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfRecipientInfoResponse.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfRecipientInfoResponse.copyWith(...)` or call `instanceOfRecipientInfoResponse.copyWith.fieldName(value)` for a single field.
 class _$RecipientInfoResponseCWProxyImpl
     implements _$RecipientInfoResponseCWProxy {
   const _$RecipientInfoResponseCWProxyImpl(this._value);
@@ -46,36 +48,37 @@ class _$RecipientInfoResponseCWProxyImpl
   final RecipientInfoResponse _value;
 
   @override
-  RecipientInfoResponse id(String? id) => this(id: id);
+  RecipientInfoResponse id(String? id) => call(id: id);
 
   @override
-  RecipientInfoResponse fullName(String? fullName) => this(fullName: fullName);
+  RecipientInfoResponse fullName(String? fullName) => call(fullName: fullName);
 
   @override
-  RecipientInfoResponse phone(String? phone) => this(phone: phone);
+  RecipientInfoResponse phone(String? phone) => call(phone: phone);
 
   @override
   RecipientInfoResponse districtName(String? districtName) =>
-      this(districtName: districtName);
+      call(districtName: districtName);
 
   @override
-  RecipientInfoResponse wardName(String? wardName) => this(wardName: wardName);
+  RecipientInfoResponse wardName(String? wardName) => call(wardName: wardName);
 
   @override
   RecipientInfoResponse provinceName(String? provinceName) =>
-      this(provinceName: provinceName);
+      call(provinceName: provinceName);
 
   @override
   RecipientInfoResponse fullAddress(String? fullAddress) =>
-      this(fullAddress: fullAddress);
+      call(fullAddress: fullAddress);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RecipientInfoResponse(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RecipientInfoResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RecipientInfoResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RecipientInfoResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? fullName = const $CopyWithPlaceholder(),
@@ -119,7 +122,8 @@ class _$RecipientInfoResponseCWProxyImpl
 }
 
 extension $RecipientInfoResponseCopyWith on RecipientInfoResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfRecipientInfoResponse.copyWith(...)` or like so:`instanceOfRecipientInfoResponse.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfRecipientInfoResponse.copyWith(...)` or `instanceOfRecipientInfoResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$RecipientInfoResponseCWProxy get copyWith =>
       _$RecipientInfoResponseCWProxyImpl(this);

@@ -13,12 +13,13 @@ abstract class _$CreateImportDetailRequestCWProxy {
 
   CreateImportDetailRequest unitPrice(num? unitPrice);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateImportDetailRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateImportDetailRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateImportDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateImportDetailRequest call({
     String? variantId,
     int? quantity,
@@ -26,7 +27,8 @@ abstract class _$CreateImportDetailRequestCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCreateImportDetailRequest.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCreateImportDetailRequest.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateImportDetailRequest.copyWith(...)` or call `instanceOfCreateImportDetailRequest.copyWith.fieldName(value)` for a single field.
 class _$CreateImportDetailRequestCWProxyImpl
     implements _$CreateImportDetailRequestCWProxy {
   const _$CreateImportDetailRequestCWProxyImpl(this._value);
@@ -35,22 +37,23 @@ class _$CreateImportDetailRequestCWProxyImpl
 
   @override
   CreateImportDetailRequest variantId(String? variantId) =>
-      this(variantId: variantId);
+      call(variantId: variantId);
 
   @override
-  CreateImportDetailRequest quantity(int? quantity) => this(quantity: quantity);
+  CreateImportDetailRequest quantity(int? quantity) => call(quantity: quantity);
 
   @override
   CreateImportDetailRequest unitPrice(num? unitPrice) =>
-      this(unitPrice: unitPrice);
+      call(unitPrice: unitPrice);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CreateImportDetailRequest(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateImportDetailRequest(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// CreateImportDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   CreateImportDetailRequest call({
     Object? variantId = const $CopyWithPlaceholder(),
     Object? quantity = const $CopyWithPlaceholder(),
@@ -74,7 +77,8 @@ class _$CreateImportDetailRequestCWProxyImpl
 }
 
 extension $CreateImportDetailRequestCopyWith on CreateImportDetailRequest {
-  /// Returns a callable class that can be used as follows: `instanceOfCreateImportDetailRequest.copyWith(...)` or like so:`instanceOfCreateImportDetailRequest.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateImportDetailRequest.copyWith(...)` or `instanceOfCreateImportDetailRequest.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$CreateImportDetailRequestCWProxy get copyWith =>
       _$CreateImportDetailRequestCWProxyImpl(this);

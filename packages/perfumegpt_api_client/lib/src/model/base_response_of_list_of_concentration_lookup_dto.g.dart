@@ -21,12 +21,13 @@ abstract class _$BaseResponseOfListOfConcentrationLookupDtoCWProxy {
     ResponseErrorType? errorType,
   );
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfConcentrationLookupDto(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfConcentrationLookupDto(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfConcentrationLookupDto(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfConcentrationLookupDto call({
     List<ConcentrationLookupDto>? payload,
     bool? success,
@@ -36,7 +37,8 @@ abstract class _$BaseResponseOfListOfConcentrationLookupDtoCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith(...)` or call `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith.fieldName(value)` for a single field.
 class _$BaseResponseOfListOfConcentrationLookupDtoCWProxyImpl
     implements _$BaseResponseOfListOfConcentrationLookupDtoCWProxy {
   const _$BaseResponseOfListOfConcentrationLookupDtoCWProxyImpl(this._value);
@@ -46,32 +48,33 @@ class _$BaseResponseOfListOfConcentrationLookupDtoCWProxyImpl
   @override
   BaseResponseOfListOfConcentrationLookupDto payload(
     List<ConcentrationLookupDto>? payload,
-  ) => this(payload: payload);
+  ) => call(payload: payload);
 
   @override
   BaseResponseOfListOfConcentrationLookupDto success(bool? success) =>
-      this(success: success);
+      call(success: success);
 
   @override
   BaseResponseOfListOfConcentrationLookupDto message(String? message) =>
-      this(message: message);
+      call(message: message);
 
   @override
   BaseResponseOfListOfConcentrationLookupDto errors(List<String>? errors) =>
-      this(errors: errors);
+      call(errors: errors);
 
   @override
   BaseResponseOfListOfConcentrationLookupDto errorType(
     ResponseErrorType? errorType,
-  ) => this(errorType: errorType);
+  ) => call(errorType: errorType);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseResponseOfListOfConcentrationLookupDto(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfConcentrationLookupDto(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// BaseResponseOfListOfConcentrationLookupDto(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   BaseResponseOfListOfConcentrationLookupDto call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
@@ -106,7 +109,8 @@ class _$BaseResponseOfListOfConcentrationLookupDtoCWProxyImpl
 
 extension $BaseResponseOfListOfConcentrationLookupDtoCopyWith
     on BaseResponseOfListOfConcentrationLookupDto {
-  /// Returns a callable class that can be used as follows: `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith(...)` or like so:`instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith(...)` or `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$BaseResponseOfListOfConcentrationLookupDtoCWProxy get copyWith =>
       _$BaseResponseOfListOfConcentrationLookupDtoCWProxyImpl(this);
