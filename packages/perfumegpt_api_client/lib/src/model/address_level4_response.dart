@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'address_level4_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,21 +18,34 @@ part 'address_level4_response.g.dart';
 )
 class AddressLevel4Response {
   /// Returns a new [AddressLevel4Response] instance.
-  AddressLevel4Response({this.data});
+  AddressLevel4Response({
 
-  @JsonKey(name: r'data', required: false, includeIfNull: false)
+     this.data,
+  });
+
+  @JsonKey(
+    
+    name: r'data',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<String>? data;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AddressLevel4Response && other.data == data;
 
-  @override
-  int get hashCode => data.hashCode;
 
-  factory AddressLevel4Response.fromJson(Map<String, dynamic> json) =>
-      _$AddressLevel4ResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is AddressLevel4Response &&
+      other.data == data;
+
+    @override
+    int get hashCode =>
+        data.hashCode;
+
+  factory AddressLevel4Response.fromJson(Map<String, dynamic> json) => _$AddressLevel4ResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddressLevel4ResponseToJson(this);
 
@@ -39,4 +53,6 @@ class AddressLevel4Response {
   String toString() {
     return toJson().toString();
   }
+
 }
+

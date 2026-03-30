@@ -7,19 +7,25 @@ part of 'create_variant_request.dart';
 // **************************************************************************
 
 abstract class _$CreateVariantRequestCWProxy {
-  CreateVariantRequest productId(String? productId);
+  CreateVariantRequest productId(String productId);
 
   CreateVariantRequest barcode(String? barcode);
 
-  CreateVariantRequest sku(String? sku);
+  CreateVariantRequest sku(String sku);
 
   CreateVariantRequest volumeMl(int? volumeMl);
 
   CreateVariantRequest concentrationId(int? concentrationId);
 
+  CreateVariantRequest sillage(int? sillage);
+
+  CreateVariantRequest longevity(int? longevity);
+
   CreateVariantRequest type(VariantType? type);
 
   CreateVariantRequest basePrice(num? basePrice);
+
+  CreateVariantRequest retailPrice(num? retailPrice);
 
   CreateVariantRequest status(VariantStatus? status);
 
@@ -37,13 +43,16 @@ abstract class _$CreateVariantRequestCWProxy {
   /// CreateVariantRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateVariantRequest call({
-    String? productId,
+    String productId,
     String? barcode,
-    String? sku,
+    String sku,
     int? volumeMl,
     int? concentrationId,
+    int? sillage,
+    int? longevity,
     VariantType? type,
     num? basePrice,
+    num? retailPrice,
     VariantStatus? status,
     int? lowStockThreshold,
     List<ProductAttributeDto>? attributes,
@@ -60,14 +69,14 @@ class _$CreateVariantRequestCWProxyImpl
   final CreateVariantRequest _value;
 
   @override
-  CreateVariantRequest productId(String? productId) =>
+  CreateVariantRequest productId(String productId) =>
       call(productId: productId);
 
   @override
   CreateVariantRequest barcode(String? barcode) => call(barcode: barcode);
 
   @override
-  CreateVariantRequest sku(String? sku) => call(sku: sku);
+  CreateVariantRequest sku(String sku) => call(sku: sku);
 
   @override
   CreateVariantRequest volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
@@ -77,10 +86,20 @@ class _$CreateVariantRequestCWProxyImpl
       call(concentrationId: concentrationId);
 
   @override
+  CreateVariantRequest sillage(int? sillage) => call(sillage: sillage);
+
+  @override
+  CreateVariantRequest longevity(int? longevity) => call(longevity: longevity);
+
+  @override
   CreateVariantRequest type(VariantType? type) => call(type: type);
 
   @override
   CreateVariantRequest basePrice(num? basePrice) => call(basePrice: basePrice);
+
+  @override
+  CreateVariantRequest retailPrice(num? retailPrice) =>
+      call(retailPrice: retailPrice);
 
   @override
   CreateVariantRequest status(VariantStatus? status) => call(status: status);
@@ -111,26 +130,29 @@ class _$CreateVariantRequestCWProxyImpl
     Object? sku = const $CopyWithPlaceholder(),
     Object? volumeMl = const $CopyWithPlaceholder(),
     Object? concentrationId = const $CopyWithPlaceholder(),
+    Object? sillage = const $CopyWithPlaceholder(),
+    Object? longevity = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
     Object? basePrice = const $CopyWithPlaceholder(),
+    Object? retailPrice = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
     Object? lowStockThreshold = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
     Object? temporaryMediaIds = const $CopyWithPlaceholder(),
   }) {
     return CreateVariantRequest(
-      productId: productId == const $CopyWithPlaceholder()
+      productId: productId == const $CopyWithPlaceholder() || productId == null
           ? _value.productId
           // ignore: cast_nullable_to_non_nullable
-          : productId as String?,
+          : productId as String,
       barcode: barcode == const $CopyWithPlaceholder()
           ? _value.barcode
           // ignore: cast_nullable_to_non_nullable
           : barcode as String?,
-      sku: sku == const $CopyWithPlaceholder()
+      sku: sku == const $CopyWithPlaceholder() || sku == null
           ? _value.sku
           // ignore: cast_nullable_to_non_nullable
-          : sku as String?,
+          : sku as String,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
@@ -139,6 +161,14 @@ class _$CreateVariantRequestCWProxyImpl
           ? _value.concentrationId
           // ignore: cast_nullable_to_non_nullable
           : concentrationId as int?,
+      sillage: sillage == const $CopyWithPlaceholder()
+          ? _value.sillage
+          // ignore: cast_nullable_to_non_nullable
+          : sillage as int?,
+      longevity: longevity == const $CopyWithPlaceholder()
+          ? _value.longevity
+          // ignore: cast_nullable_to_non_nullable
+          : longevity as int?,
       type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
@@ -147,6 +177,10 @@ class _$CreateVariantRequestCWProxyImpl
           ? _value.basePrice
           // ignore: cast_nullable_to_non_nullable
           : basePrice as num?,
+      retailPrice: retailPrice == const $CopyWithPlaceholder()
+          ? _value.retailPrice
+          // ignore: cast_nullable_to_non_nullable
+          : retailPrice as num?,
       status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
@@ -182,20 +216,24 @@ extension $CreateVariantRequestCopyWith on CreateVariantRequest {
 CreateVariantRequest _$CreateVariantRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateVariantRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['productId', 'sku']);
   final val = CreateVariantRequest(
-    productId: $checkedConvert('productId', (v) => v as String?),
+    productId: $checkedConvert('productId', (v) => v as String),
     barcode: $checkedConvert('barcode', (v) => v as String?),
-    sku: $checkedConvert('sku', (v) => v as String?),
+    sku: $checkedConvert('sku', (v) => v as String),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
     concentrationId: $checkedConvert(
       'concentrationId',
       (v) => (v as num?)?.toInt(),
     ),
+    sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
+    longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
     type: $checkedConvert(
       'type',
       (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
     ),
     basePrice: $checkedConvert('basePrice', (v) => v as num?),
+    retailPrice: $checkedConvert('retailPrice', (v) => v as num?),
     status: $checkedConvert(
       'status',
       (v) => $enumDecodeNullable(_$VariantStatusEnumMap, v),
@@ -221,13 +259,16 @@ CreateVariantRequest _$CreateVariantRequestFromJson(
 Map<String, dynamic> _$CreateVariantRequestToJson(
   CreateVariantRequest instance,
 ) => <String, dynamic>{
-  'productId': ?instance.productId,
+  'productId': instance.productId,
   'barcode': ?instance.barcode,
-  'sku': ?instance.sku,
+  'sku': instance.sku,
   'volumeMl': ?instance.volumeMl,
   'concentrationId': ?instance.concentrationId,
+  'sillage': ?instance.sillage,
+  'longevity': ?instance.longevity,
   'type': ?_$VariantTypeEnumMap[instance.type],
   'basePrice': ?instance.basePrice,
+  'retailPrice': ?instance.retailPrice,
   'status': ?_$VariantStatusEnumMap[instance.status],
   'lowStockThreshold': ?instance.lowStockThreshold,
   'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
@@ -235,6 +276,7 @@ Map<String, dynamic> _$CreateVariantRequestToJson(
 };
 
 const _$VariantTypeEnumMap = {
+  VariantType.standard: 'Standard',
   VariantType.fullBox: 'FullBox',
   VariantType.tester: 'Tester',
   VariantType.mini: 'Mini',
@@ -244,5 +286,4 @@ const _$VariantStatusEnumMap = {
   VariantStatus.active: 'Active',
   VariantStatus.inactive: 'Inactive',
   VariantStatus.discontinued: 'Discontinued',
-  VariantStatus.outOfStock: 'out_of_stock',
 };

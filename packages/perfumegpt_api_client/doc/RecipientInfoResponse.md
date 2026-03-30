@@ -9,8 +9,8 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
-**fullName** | **String** |  | [optional] 
-**phone** | **String** |  | [optional] 
+**recipientName** | **String** |  | [optional] 
+**recipientPhoneNumber** | **String** |  | [optional] 
 **districtName** | **String** |  | [optional] 
 **wardName** | **String** |  | [optional] 
 **provinceName** | **String** |  | [optional] 

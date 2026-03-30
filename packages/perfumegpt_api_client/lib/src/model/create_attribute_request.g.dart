@@ -7,11 +7,13 @@ part of 'create_attribute_request.dart';
 // **************************************************************************
 
 abstract class _$CreateAttributeRequestCWProxy {
-  CreateAttributeRequest name(String? name);
+  CreateAttributeRequest internalCode(String? internalCode);
+
+  CreateAttributeRequest name(String name);
 
   CreateAttributeRequest description(String? description);
 
-  CreateAttributeRequest isVariantLevel(bool? isVariantLevel);
+  CreateAttributeRequest isVariantLevel(bool isVariantLevel);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateAttributeRequest(...).copyWith.fieldName(value)`.
@@ -21,9 +23,10 @@ abstract class _$CreateAttributeRequestCWProxy {
   /// CreateAttributeRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateAttributeRequest call({
-    String? name,
+    String? internalCode,
+    String name,
     String? description,
-    bool? isVariantLevel,
+    bool isVariantLevel,
   });
 }
 
@@ -36,14 +39,18 @@ class _$CreateAttributeRequestCWProxyImpl
   final CreateAttributeRequest _value;
 
   @override
-  CreateAttributeRequest name(String? name) => call(name: name);
+  CreateAttributeRequest internalCode(String? internalCode) =>
+      call(internalCode: internalCode);
+
+  @override
+  CreateAttributeRequest name(String name) => call(name: name);
 
   @override
   CreateAttributeRequest description(String? description) =>
       call(description: description);
 
   @override
-  CreateAttributeRequest isVariantLevel(bool? isVariantLevel) =>
+  CreateAttributeRequest isVariantLevel(bool isVariantLevel) =>
       call(isVariantLevel: isVariantLevel);
 
   @override
@@ -55,23 +62,30 @@ class _$CreateAttributeRequestCWProxyImpl
   /// CreateAttributeRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateAttributeRequest call({
+    Object? internalCode = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
     Object? isVariantLevel = const $CopyWithPlaceholder(),
   }) {
     return CreateAttributeRequest(
-      name: name == const $CopyWithPlaceholder()
+      internalCode: internalCode == const $CopyWithPlaceholder()
+          ? _value.internalCode
+          // ignore: cast_nullable_to_non_nullable
+          : internalCode as String?,
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
       description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
           : description as String?,
-      isVariantLevel: isVariantLevel == const $CopyWithPlaceholder()
+      isVariantLevel:
+          isVariantLevel == const $CopyWithPlaceholder() ||
+              isVariantLevel == null
           ? _value.isVariantLevel
           // ignore: cast_nullable_to_non_nullable
-          : isVariantLevel as bool?,
+          : isVariantLevel as bool,
     );
   }
 }
@@ -91,10 +105,12 @@ extension $CreateAttributeRequestCopyWith on CreateAttributeRequest {
 CreateAttributeRequest _$CreateAttributeRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateAttributeRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name', 'isVariantLevel']);
   final val = CreateAttributeRequest(
-    name: $checkedConvert('name', (v) => v as String?),
+    internalCode: $checkedConvert('internalCode', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
     description: $checkedConvert('description', (v) => v as String?),
-    isVariantLevel: $checkedConvert('isVariantLevel', (v) => v as bool?),
+    isVariantLevel: $checkedConvert('isVariantLevel', (v) => v as bool),
   );
   return val;
 });
@@ -102,7 +118,8 @@ CreateAttributeRequest _$CreateAttributeRequestFromJson(
 Map<String, dynamic> _$CreateAttributeRequestToJson(
   CreateAttributeRequest instance,
 ) => <String, dynamic>{
-  'name': ?instance.name,
+  'internalCode': ?instance.internalCode,
+  'name': instance.name,
   'description': ?instance.description,
-  'isVariantLevel': ?instance.isVariantLevel,
+  'isVariantLevel': instance.isVariantLevel,
 };

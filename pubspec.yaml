@@ -25,9 +25,13 @@ melos:
       exec: flutter clean
       description: Run clean in all packages.
     generate-api:
-      run: |
-        openapi-generator-cli generate -i https://localhost:7011/openapi/v1.json -g dart-dio -o packages/perfumegpt_api_client
-        cd packages/perfumegpt_api_client
-        dart pub get
-        dart run build_runner build --delete-conflicting-outputs
+      env:
+        JAVA_OPTS: "-Dio.swagger.parser.util.RemoteUrl.trustAll=true -Dio.swagger.v3.parser.util.RemoteUrl.trustAll=true"
+      steps:
+        - openapi-generator-cli generate -i https://localhost:7011/openapi/v1.json -g dart-dio -o packages/perfumegpt_api_client --additional-properties=pubName=perfumegpt_api_client,serializationLibrary=json_serializable
+        - melos run build-runner
       description: Regenerate the OpenAPI client and run build_runner.
+    build-runner:
+      exec: |
+        dart run build_runner build --delete-conflicting-outputs
+      description: Run build_runner.

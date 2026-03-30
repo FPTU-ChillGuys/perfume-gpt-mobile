@@ -55,8 +55,12 @@ class ProductDetailScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton.icon(
-                  onPressed: () =>
-                      _showAdjustmentDialog(context, ref, product.id),
+                  onPressed: () => _showAdjustmentDialog(
+                    context,
+                    ref,
+                    product.variantId,
+                    product.batchId,
+                  ),
                   icon: const Icon(Icons.edit),
                   label: const Text('Adjust Stock'),
                 ),
@@ -71,7 +75,8 @@ class ProductDetailScreen extends ConsumerWidget {
   void _showAdjustmentDialog(
     BuildContext context,
     WidgetRef ref,
-    String productId,
+    String variantId,
+    String batchId,
   ) {
     final controller = TextEditingController();
     String reason = 'Restock';
@@ -111,7 +116,7 @@ class ProductDetailScreen extends ConsumerWidget {
               final change = int.tryParse(controller.text) ?? 0;
               await ref
                   .read(productRepositoryProvider)
-                  .updateStock(productId, change, reason);
+                  .updateStock(variantId, batchId, change, reason);
               ref.invalidate(inventoryListProvider);
               if (context.mounted) Navigator.pop(context);
             },

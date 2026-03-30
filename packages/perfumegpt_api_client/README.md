@@ -76,39 +76,55 @@ Class | Method | HTTP request | Description
 [*AddressApi*](doc/AddressApi.md) | [**apiAddressProvincesGet**](doc/AddressApi.md#apiaddressprovincesget) | **GET** /api/address/provinces | 
 [*AddressApi*](doc/AddressApi.md) | [**apiAddressStreetsGet**](doc/AddressApi.md#apiaddressstreetsget) | **GET** /api/address/streets | 
 [*AddressApi*](doc/AddressApi.md) | [**apiAddressWardsGet**](doc/AddressApi.md#apiaddresswardsget) | **GET** /api/address/wards | 
+[*AdminDashboardApi*](doc/AdminDashboardApi.md) | [**apiAdmindashboardInventoryLevelsGet**](doc/AdminDashboardApi.md#apiadmindashboardinventorylevelsget) | **GET** /api/admindashboard/inventory-levels | 
+[*AdminDashboardApi*](doc/AdminDashboardApi.md) | [**apiAdmindashboardOverviewGet**](doc/AdminDashboardApi.md#apiadmindashboardoverviewget) | **GET** /api/admindashboard/overview | 
+[*AdminDashboardApi*](doc/AdminDashboardApi.md) | [**apiAdmindashboardRevenueGet**](doc/AdminDashboardApi.md#apiadmindashboardrevenueget) | **GET** /api/admindashboard/revenue | 
+[*AdminDashboardApi*](doc/AdminDashboardApi.md) | [**apiAdmindashboardTopProductsGet**](doc/AdminDashboardApi.md#apiadmindashboardtopproductsget) | **GET** /api/admindashboard/top-products | 
 [*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesAttributeIdDelete**](doc/AttributesApi.md#apiattributesattributeiddelete) | **DELETE** /api/attributes/{attributeId} | 
 [*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesAttributeIdPut**](doc/AttributesApi.md#apiattributesattributeidput) | **PUT** /api/attributes/{attributeId} | 
+[*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesAttributeIdValuesLookupGet**](doc/AttributesApi.md#apiattributesattributeidvalueslookupget) | **GET** /api/attributes/{attributeId}/values/lookup | 
+[*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesAttributeIdValuesPost**](doc/AttributesApi.md#apiattributesattributeidvaluespost) | **POST** /api/attributes/{attributeId}/values | 
 [*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesLookupGet**](doc/AttributesApi.md#apiattributeslookupget) | **GET** /api/attributes/lookup | 
 [*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesPost**](doc/AttributesApi.md#apiattributespost) | **POST** /api/attributes | 
-[*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesValuesLookupAttributeIdGet**](doc/AttributesApi.md#apiattributesvalueslookupattributeidget) | **GET** /api/attributes/values/lookup/{attributeId} | 
-[*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesValuesPost**](doc/AttributesApi.md#apiattributesvaluespost) | **POST** /api/attributes/values | 
 [*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesValuesValueIdDelete**](doc/AttributesApi.md#apiattributesvaluesvalueiddelete) | **DELETE** /api/attributes/values/{valueId} | 
 [*AttributesApi*](doc/AttributesApi.md) | [**apiAttributesValuesValueIdPut**](doc/AttributesApi.md#apiattributesvaluesvalueidput) | **PUT** /api/attributes/values/{valueId} | 
 [*AuthsApi*](doc/AuthsApi.md) | [**apiAuthsAdminRegisterPost**](doc/AuthsApi.md#apiauthsadminregisterpost) | **POST** /api/auths/admin/register | 
 [*AuthsApi*](doc/AuthsApi.md) | [**apiAuthsApiTokenPost**](doc/AuthsApi.md#apiauthsapitokenpost) | **POST** /api/auths/api-token | 
+[*AuthsApi*](doc/AuthsApi.md) | [**apiAuthsForgotPasswordPost**](doc/AuthsApi.md#apiauthsforgotpasswordpost) | **POST** /api/auths/forgot-password | 
 [*AuthsApi*](doc/AuthsApi.md) | [**apiAuthsGoogleLoginPost**](doc/AuthsApi.md#apiauthsgoogleloginpost) | **POST** /api/auths/google-login | 
 [*AuthsApi*](doc/AuthsApi.md) | [**apiAuthsLoginPost**](doc/AuthsApi.md#apiauthsloginpost) | **POST** /api/auths/login | 
 [*AuthsApi*](doc/AuthsApi.md) | [**apiAuthsRegisterPost**](doc/AuthsApi.md#apiauthsregisterpost) | **POST** /api/auths/register | 
+[*AuthsApi*](doc/AuthsApi.md) | [**apiAuthsResetPasswordPost**](doc/AuthsApi.md#apiauthsresetpasswordpost) | **POST** /api/auths/reset-password | 
 [*AuthsApi*](doc/AuthsApi.md) | [**apiAuthsVerifyEmailGet**](doc/AuthsApi.md#apiauthsverifyemailget) | **GET** /api/auths/verify-email | 
-[*BackgroundJobsApi*](doc/BackgroundJobsApi.md) | [**apiBackgroundjobsCleanupTemporaryMediaPost**](doc/BackgroundJobsApi.md#apibackgroundjobscleanuptemporarymediapost) | **POST** /api/backgroundjobs/cleanup-temporary-media | 
-[*BackgroundJobsApi*](doc/BackgroundJobsApi.md) | [**apiBackgroundjobsDashboardUrlGet**](doc/BackgroundJobsApi.md#apibackgroundjobsdashboardurlget) | **GET** /api/backgroundjobs/dashboard-url | 
-[*BackgroundJobsApi*](doc/BackgroundJobsApi.md) | [**apiBackgroundjobsProcessExpiredReservationsPost**](doc/BackgroundJobsApi.md#apibackgroundjobsprocessexpiredreservationspost) | **POST** /api/backgroundjobs/process-expired-reservations | 
-[*BackgroundJobsApi*](doc/BackgroundJobsApi.md) | [**apiBackgroundjobsTriggerJobPost**](doc/BackgroundJobsApi.md#apibackgroundjobstriggerjobpost) | **POST** /api/backgroundjobs/trigger-job | 
 [*BatchesApi*](doc/BatchesApi.md) | [**apiBatchesGet**](doc/BatchesApi.md#apibatchesget) | **GET** /api/batches | 
 [*BatchesApi*](doc/BatchesApi.md) | [**apiBatchesIdGet**](doc/BatchesApi.md#apibatchesidget) | **GET** /api/batches/{id} | 
-[*BatchesApi*](doc/BatchesApi.md) | [**apiBatchesVariantVariantIdGet**](doc/BatchesApi.md#apibatchesvariantvariantidget) | **GET** /api/batches/variant/{variantId} | 
+[*BatchesApi*](doc/BatchesApi.md) | [**apiBatchesLookupGet**](doc/BatchesApi.md#apibatcheslookupget) | **GET** /api/batches/lookup | 
 [*BrandsApi*](doc/BrandsApi.md) | [**apiBrandsGet**](doc/BrandsApi.md#apibrandsget) | **GET** /api/brands | 
 [*BrandsApi*](doc/BrandsApi.md) | [**apiBrandsIdDelete**](doc/BrandsApi.md#apibrandsiddelete) | **DELETE** /api/brands/{id} | 
 [*BrandsApi*](doc/BrandsApi.md) | [**apiBrandsIdGet**](doc/BrandsApi.md#apibrandsidget) | **GET** /api/brands/{id} | 
 [*BrandsApi*](doc/BrandsApi.md) | [**apiBrandsIdPut**](doc/BrandsApi.md#apibrandsidput) | **PUT** /api/brands/{id} | 
 [*BrandsApi*](doc/BrandsApi.md) | [**apiBrandsLookupGet**](doc/BrandsApi.md#apibrandslookupget) | **GET** /api/brands/lookup | 
 [*BrandsApi*](doc/BrandsApi.md) | [**apiBrandsPost**](doc/BrandsApi.md#apibrandspost) | **POST** /api/brands | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsCampaignIdDelete**](doc/CampaignsApi.md#apicampaignscampaigniddelete) | **DELETE** /api/campaigns/{campaignId} | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsCampaignIdGet**](doc/CampaignsApi.md#apicampaignscampaignidget) | **GET** /api/campaigns/{campaignId} | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsCampaignIdItemsGet**](doc/CampaignsApi.md#apicampaignscampaigniditemsget) | **GET** /api/campaigns/{campaignId}/items | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsCampaignIdPut**](doc/CampaignsApi.md#apicampaignscampaignidput) | **PUT** /api/campaigns/{campaignId} | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsCampaignIdStatusPut**](doc/CampaignsApi.md#apicampaignscampaignidstatusput) | **PUT** /api/campaigns/{campaignId}/status | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsGet**](doc/CampaignsApi.md#apicampaignsget) | **GET** /api/campaigns | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsIdItemsItemIdDelete**](doc/CampaignsApi.md#apicampaignsiditemsitemiddelete) | **DELETE** /api/campaigns/{id}/items/{itemId} | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsIdItemsItemIdPut**](doc/CampaignsApi.md#apicampaignsiditemsitemidput) | **PUT** /api/campaigns/{id}/items/{itemId} | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsIdItemsPost**](doc/CampaignsApi.md#apicampaignsiditemspost) | **POST** /api/campaigns/{id}/items | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsIdVouchersPost**](doc/CampaignsApi.md#apicampaignsidvoucherspost) | **POST** /api/campaigns/{id}/vouchers | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsIdVouchersVoucherIdDelete**](doc/CampaignsApi.md#apicampaignsidvouchersvoucheriddelete) | **DELETE** /api/campaigns/{id}/vouchers/{voucherId} | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsIdVouchersVoucherIdGet**](doc/CampaignsApi.md#apicampaignsidvouchersvoucheridget) | **GET** /api/campaigns/{id}/vouchers/{voucherId} | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsIdVouchersVoucherIdPut**](doc/CampaignsApi.md#apicampaignsidvouchersvoucheridput) | **PUT** /api/campaigns/{id}/vouchers/{voucherId} | 
+[*CampaignsApi*](doc/CampaignsApi.md) | [**apiCampaignsPost**](doc/CampaignsApi.md#apicampaignspost) | **POST** /api/campaigns | 
 [*CartApi*](doc/CartApi.md) | [**apiCartClearDelete**](doc/CartApi.md#apicartcleardelete) | **DELETE** /api/cart/clear | 
 [*CartApi*](doc/CartApi.md) | [**apiCartItemsGet**](doc/CartApi.md#apicartitemsget) | **GET** /api/cart/items | 
+[*CartApi*](doc/CartApi.md) | [**apiCartItemsIdDelete**](doc/CartApi.md#apicartitemsiddelete) | **DELETE** /api/cart/items/{id} | 
+[*CartApi*](doc/CartApi.md) | [**apiCartItemsIdPut**](doc/CartApi.md#apicartitemsidput) | **PUT** /api/cart/items/{id} | 
+[*CartApi*](doc/CartApi.md) | [**apiCartItemsPost**](doc/CartApi.md#apicartitemspost) | **POST** /api/cart/items | 
 [*CartApi*](doc/CartApi.md) | [**apiCartTotalGet**](doc/CartApi.md#apicarttotalget) | **GET** /api/cart/total | 
-[*CartItemsApi*](doc/CartItemsApi.md) | [**apiCartItemsAddToCartPost**](doc/CartItemsApi.md#apicartitemsaddtocartpost) | **POST** /api/cart/items/add-to-cart | 
-[*CartItemsApi*](doc/CartItemsApi.md) | [**apiCartItemsIdRemoveFromCartDelete**](doc/CartItemsApi.md#apicartitemsidremovefromcartdelete) | **DELETE** /api/cart/items/{id}/remove-from-cart | 
-[*CartItemsApi*](doc/CartItemsApi.md) | [**apiCartItemsIdUpdateCartItemPut**](doc/CartItemsApi.md#apicartitemsidupdatecartitemput) | **PUT** /api/cart/items/{id}/update-cart-item | 
 [*CategoriesApi*](doc/CategoriesApi.md) | [**apiCategoriesGet**](doc/CategoriesApi.md#apicategoriesget) | **GET** /api/categories | 
 [*CategoriesApi*](doc/CategoriesApi.md) | [**apiCategoriesIdDelete**](doc/CategoriesApi.md#apicategoriesiddelete) | **DELETE** /api/categories/{id} | 
 [*CategoriesApi*](doc/CategoriesApi.md) | [**apiCategoriesIdGet**](doc/CategoriesApi.md#apicategoriesidget) | **GET** /api/categories/{id} | 
@@ -121,7 +137,8 @@ Class | Method | HTTP request | Description
 [*ConcentrationsApi*](doc/ConcentrationsApi.md) | [**apiConcentrationsIdPut**](doc/ConcentrationsApi.md#apiconcentrationsidput) | **PUT** /api/concentrations/{id} | 
 [*ConcentrationsApi*](doc/ConcentrationsApi.md) | [**apiConcentrationsLookupGet**](doc/ConcentrationsApi.md#apiconcentrationslookupget) | **GET** /api/concentrations/lookup | 
 [*ConcentrationsApi*](doc/ConcentrationsApi.md) | [**apiConcentrationsPost**](doc/ConcentrationsApi.md#apiconcentrationspost) | **POST** /api/concentrations | 
-[*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsDownloadTemplateGet**](doc/ImportTicketsApi.md#apiimportticketsdownloadtemplateget) | **GET** /api/importtickets/download-template | 
+[*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsExcelParserPost**](doc/ImportTicketsApi.md#apiimportticketsexcelparserpost) | **POST** /api/importtickets/excel-parser | 
+[*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsExcelTemplateGet**](doc/ImportTicketsApi.md#apiimportticketsexceltemplateget) | **GET** /api/importtickets/excel-template | 
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsGet**](doc/ImportTicketsApi.md#apiimportticketsget) | **GET** /api/importtickets | 
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsIdDelete**](doc/ImportTicketsApi.md#apiimportticketsiddelete) | **DELETE** /api/importtickets/{id} | 
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsIdGet**](doc/ImportTicketsApi.md#apiimportticketsidget) | **GET** /api/importtickets/{id} | 
@@ -129,35 +146,49 @@ Class | Method | HTTP request | Description
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsIdStatusPut**](doc/ImportTicketsApi.md#apiimportticketsidstatusput) | **PUT** /api/importtickets/{id}/status | 
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsPost**](doc/ImportTicketsApi.md#apiimportticketspost) | **POST** /api/importtickets | 
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsTicketIdVerifyPost**](doc/ImportTicketsApi.md#apiimportticketsticketidverifypost) | **POST** /api/importtickets/{ticketId}/verify | 
-[*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsUploadExcelPost**](doc/ImportTicketsApi.md#apiimportticketsuploadexcelpost) | **POST** /api/importtickets/upload-excel | 
-[*InventoryApi*](doc/InventoryApi.md) | [**apiInventoryBatchesBatchIdGet**](doc/InventoryApi.md#apiinventorybatchesbatchidget) | **GET** /api/inventory/batches/{batchId} | 
-[*InventoryApi*](doc/InventoryApi.md) | [**apiInventoryBatchesGet**](doc/InventoryApi.md#apiinventorybatchesget) | **GET** /api/inventory/batches | 
-[*InventoryApi*](doc/InventoryApi.md) | [**apiInventoryBatchesVariantVariantIdGet**](doc/InventoryApi.md#apiinventorybatchesvariantvariantidget) | **GET** /api/inventory/batches/variant/{variantId} | 
 [*InventoryApi*](doc/InventoryApi.md) | [**apiInventoryStockGet**](doc/InventoryApi.md#apiinventorystockget) | **GET** /api/inventory/stock | 
 [*InventoryApi*](doc/InventoryApi.md) | [**apiInventoryStockVariantVariantIdGet**](doc/InventoryApi.md#apiinventorystockvariantvariantidget) | **GET** /api/inventory/stock/variant/{variantId} | 
 [*InventoryApi*](doc/InventoryApi.md) | [**apiInventorySummaryGet**](doc/InventoryApi.md#apiinventorysummaryget) | **GET** /api/inventory/summary | 
-[*LoyaltyPointsApi*](doc/LoyaltyPointsApi.md) | [**apiLoyaltypointsMeGet**](doc/LoyaltyPointsApi.md#apiloyaltypointsmeget) | **GET** /api/loyaltypoints/me | 
-[*LoyaltyPointsApi*](doc/LoyaltyPointsApi.md) | [**apiLoyaltypointsUserIdPlusPost**](doc/LoyaltyPointsApi.md#apiloyaltypointsuseridpluspost) | **POST** /api/loyaltypoints/{userId}/plus | 
-[*LoyaltyPointsApi*](doc/LoyaltyPointsApi.md) | [**apiLoyaltypointsUserIdPost**](doc/LoyaltyPointsApi.md#apiloyaltypointsuseridpost) | **POST** /api/loyaltypoints/{userId} | 
-[*LoyaltyPointsApi*](doc/LoyaltyPointsApi.md) | [**apiLoyaltypointsUserIdRedeemPost**](doc/LoyaltyPointsApi.md#apiloyaltypointsuseridredeempost) | **POST** /api/loyaltypoints/{userId}/redeem | 
+[*LoyaltyTransactionsApi*](doc/LoyaltyTransactionsApi.md) | [**apiLoyaltytransactionsGet**](doc/LoyaltyTransactionsApi.md#apiloyaltytransactionsget) | **GET** /api/loyaltytransactions | 
+[*LoyaltyTransactionsApi*](doc/LoyaltyTransactionsApi.md) | [**apiLoyaltytransactionsMeHistoryGet**](doc/LoyaltyTransactionsApi.md#apiloyaltytransactionsmehistoryget) | **GET** /api/loyaltytransactions/me/history | 
+[*LoyaltyTransactionsApi*](doc/LoyaltyTransactionsApi.md) | [**apiLoyaltytransactionsMeTotalGet**](doc/LoyaltyTransactionsApi.md#apiloyaltytransactionsmetotalget) | **GET** /api/loyaltytransactions/me/total | 
+[*LoyaltyTransactionsApi*](doc/LoyaltyTransactionsApi.md) | [**apiLoyaltytransactionsUserIdManualChangePost**](doc/LoyaltyTransactionsApi.md#apiloyaltytransactionsuseridmanualchangepost) | **POST** /api/loyaltytransactions/{userId}/manual-change | 
+[*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesGet**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliesget) | **GET** /api/olfactoryfamilies | 
+[*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesIdDelete**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliesiddelete) | **DELETE** /api/olfactoryfamilies/{id} | 
+[*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesIdGet**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliesidget) | **GET** /api/olfactoryfamilies/{id} | 
+[*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesIdPut**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliesidput) | **PUT** /api/olfactoryfamilies/{id} | 
+[*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesLookupGet**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamilieslookupget) | **GET** /api/olfactoryfamilies/lookup | 
+[*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesPost**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliespost) | **POST** /api/olfactoryfamilies | 
+[*OrderCancelRequestsApi*](doc/OrderCancelRequestsApi.md) | [**apiOrdercancelrequestsGet**](doc/OrderCancelRequestsApi.md#apiordercancelrequestsget) | **GET** /api/ordercancelrequests | 
+[*OrderCancelRequestsApi*](doc/OrderCancelRequestsApi.md) | [**apiOrdercancelrequestsIdProcessPost**](doc/OrderCancelRequestsApi.md#apiordercancelrequestsidprocesspost) | **POST** /api/ordercancelrequests/{id}/process | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdCompleteInspectionPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidcompleteinspectionpost) | **POST** /api/orderreturnrequests/{id}/complete-inspection | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdFailInspectionPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidfailinspectionpost) | **POST** /api/orderreturnrequests/{id}/fail-inspection | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdImagesGet**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidimagesget) | **GET** /api/orderreturnrequests/{id}/images | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdRefundPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidrefundpost) | **POST** /api/orderreturnrequests/{id}/refund | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdReviewPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidreviewpost) | **POST** /api/orderreturnrequests/{id}/review | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdStartInspectionPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidstartinspectionpost) | **POST** /api/orderreturnrequests/{id}/start-inspection | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsImagesTemporaryPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsimagestemporarypost) | **POST** /api/orderreturnrequests/images/temporary | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestspost) | **POST** /api/orderreturnrequests | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersCheckoutInStorePost**](doc/OrdersApi.md#apiorderscheckoutinstorepost) | **POST** /api/orders/checkout-in-store | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersCheckoutPost**](doc/OrdersApi.md#apiorderscheckoutpost) | **POST** /api/orders/checkout | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersGet**](doc/OrdersApi.md#apiordersget) | **GET** /api/orders | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersMyOrdersGet**](doc/OrdersApi.md#apiordersmyordersget) | **GET** /api/orders/my-orders | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersMyOrdersOrderIdGet**](doc/OrdersApi.md#apiordersmyordersorderidget) | **GET** /api/orders/my-orders/{orderId} | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersMyOrdersOrderIdInvoiceGet**](doc/OrdersApi.md#apiordersmyordersorderidinvoiceget) | **GET** /api/orders/my-orders/{orderId}/invoice | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdAddressPut**](doc/OrdersApi.md#apiordersorderidaddressput) | **PUT** /api/orders/{orderId}/address | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdCancelPost**](doc/OrdersApi.md#apiordersorderidcancelpost) | **POST** /api/orders/{orderId}/cancel | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdFulfillPost**](doc/OrdersApi.md#apiordersorderidfulfillpost) | **POST** /api/orders/{orderId}/fulfill | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdGet**](doc/OrdersApi.md#apiordersorderidget) | **GET** /api/orders/{orderId} | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdInvoiceGet**](doc/OrdersApi.md#apiordersorderidinvoiceget) | **GET** /api/orders/{orderId}/invoice | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdPicklistGet**](doc/OrdersApi.md#apiordersorderidpicklistget) | **GET** /api/orders/{orderId}/picklist | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdStatusPut**](doc/OrdersApi.md#apiordersorderidstatusput) | **PUT** /api/orders/{orderId}/status | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdSwapDamagedPost**](doc/OrdersApi.md#apiordersorderidswapdamagedpost) | **POST** /api/orders/{orderId}/swap-damaged | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersPreviewGet**](doc/OrdersApi.md#apiorderspreviewget) | **GET** /api/orders/preview | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersStaffStaffIdGet**](doc/OrdersApi.md#apiordersstaffstaffidget) | **GET** /api/orders/staff/{staffId} | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersUserUserIdGet**](doc/OrdersApi.md#apiordersuseruseridget) | **GET** /api/orders/user/{userId} | 
-[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsChangeMethodPaymentIdPut**](doc/PaymentsApi.md#apipaymentschangemethodpaymentidput) | **PUT** /api/payments/change-method/{paymentId} | 
-[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsConfirmPaymentIdPut**](doc/PaymentsApi.md#apipaymentsconfirmpaymentidput) | **PUT** /api/payments/confirm/{paymentId} | 
-[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsRetryPaymentIdPost**](doc/PaymentsApi.md#apipaymentsretrypaymentidpost) | **POST** /api/payments/retry/{paymentId} | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdConfirmPut**](doc/PaymentsApi.md#apipaymentspaymentidconfirmput) | **PUT** /api/payments/{paymentId}/confirm | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdMethodPut**](doc/PaymentsApi.md#apipaymentspaymentidmethodput) | **PUT** /api/payments/{paymentId}/method | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdRetryPost**](doc/PaymentsApi.md#apipaymentspaymentidretrypost) | **POST** /api/payments/{paymentId}/retry | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsVnpayReturnGet**](doc/PaymentsApi.md#apipaymentsvnpayreturnget) | **GET** /api/payments/vnpay-return | 
 [*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsGet**](doc/ProductVariantsApi.md#apiproductvariantsget) | **GET** /api/productvariants | 
 [*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsImagesMediaIdSetPrimaryPut**](doc/ProductVariantsApi.md#apiproductvariantsimagesmediaidsetprimaryput) | **PUT** /api/productvariants/images/{mediaId}/set-primary | 
@@ -170,6 +201,8 @@ Class | Method | HTTP request | Description
 [*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsVariantIdImagesPrimaryGet**](doc/ProductVariantsApi.md#apiproductvariantsvariantidimagesprimaryget) | **GET** /api/productvariants/{variantId}/images/primary | 
 [*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsVariantIdPut**](doc/ProductVariantsApi.md#apiproductvariantsvariantidput) | **PUT** /api/productvariants/{variantId} | 
 [*ProductsApi*](doc/ProductsApi.md) | [**apiProductsBestSellersGet**](doc/ProductsApi.md#apiproductsbestsellersget) | **GET** /api/products/best-sellers | 
+[*ProductsApi*](doc/ProductsApi.md) | [**apiProductsCampaignsCampaignIdGet**](doc/ProductsApi.md#apiproductscampaignscampaignidget) | **GET** /api/products/campaigns/{campaignId} | 
+[*ProductsApi*](doc/ProductsApi.md) | [**apiProductsDailySaleFiguresGet**](doc/ProductsApi.md#apiproductsdailysalefiguresget) | **GET** /api/products/daily-sale-figures | 
 [*ProductsApi*](doc/ProductsApi.md) | [**apiProductsEmbeddingsUpdateAllsPost**](doc/ProductsApi.md#apiproductsembeddingsupdateallspost) | **POST** /api/products/embeddings/update/alls | 
 [*ProductsApi*](doc/ProductsApi.md) | [**apiProductsEmbeddingsUpdateProductIdPost**](doc/ProductsApi.md#apiproductsembeddingsupdateproductidpost) | **POST** /api/products/embeddings/update/{productId} | 
 [*ProductsApi*](doc/ProductsApi.md) | [**apiProductsGet**](doc/ProductsApi.md#apiproductsget) | **GET** /api/products | 
@@ -192,20 +225,30 @@ Class | Method | HTTP request | Description
 [*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsImagesTemporaryPost**](doc/ReviewsApi.md#apireviewsimagestemporarypost) | **POST** /api/reviews/images/temporary | 
 [*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsMeGet**](doc/ReviewsApi.md#apireviewsmeget) | **GET** /api/reviews/me | 
 [*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsPost**](doc/ReviewsApi.md#apireviewspost) | **POST** /api/reviews | 
+[*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsReviewIdAnswerPost**](doc/ReviewsApi.md#apireviewsreviewidanswerpost) | **POST** /api/reviews/{reviewId}/answer | 
 [*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsReviewIdDelete**](doc/ReviewsApi.md#apireviewsreviewiddelete) | **DELETE** /api/reviews/{reviewId} | 
 [*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsReviewIdGet**](doc/ReviewsApi.md#apireviewsreviewidget) | **GET** /api/reviews/{reviewId} | 
 [*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsReviewIdImagesGet**](doc/ReviewsApi.md#apireviewsreviewidimagesget) | **GET** /api/reviews/{reviewId}/images | 
-[*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsReviewIdPut**](doc/ReviewsApi.md#apireviewsreviewidput) | **PUT** /api/reviews/{reviewId} | 
 [*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsVariantVariantIdGet**](doc/ReviewsApi.md#apireviewsvariantvariantidget) | **GET** /api/reviews/variant/{variantId} | 
 [*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsVariantVariantIdStatisticsGet**](doc/ReviewsApi.md#apireviewsvariantvariantidstatisticsget) | **GET** /api/reviews/variant/{variantId}/statistics | 
-[*ShippingsApi*](doc/ShippingsApi.md) | [**apiShippingsCalculateFeePost**](doc/ShippingsApi.md#apishippingscalculatefeepost) | **POST** /api/shippings/calculate-fee | 
+[*ScentNotesApi*](doc/ScentNotesApi.md) | [**apiScentnotesGet**](doc/ScentNotesApi.md#apiscentnotesget) | **GET** /api/scentnotes | 
+[*ScentNotesApi*](doc/ScentNotesApi.md) | [**apiScentnotesIdDelete**](doc/ScentNotesApi.md#apiscentnotesiddelete) | **DELETE** /api/scentnotes/{id} | 
+[*ScentNotesApi*](doc/ScentNotesApi.md) | [**apiScentnotesIdGet**](doc/ScentNotesApi.md#apiscentnotesidget) | **GET** /api/scentnotes/{id} | 
+[*ScentNotesApi*](doc/ScentNotesApi.md) | [**apiScentnotesIdPut**](doc/ScentNotesApi.md#apiscentnotesidput) | **PUT** /api/scentnotes/{id} | 
+[*ScentNotesApi*](doc/ScentNotesApi.md) | [**apiScentnotesLookupGet**](doc/ScentNotesApi.md#apiscentnoteslookupget) | **GET** /api/scentnotes/lookup | 
+[*ScentNotesApi*](doc/ScentNotesApi.md) | [**apiScentnotesPost**](doc/ScentNotesApi.md#apiscentnotespost) | **POST** /api/scentnotes | 
 [*StockAdjustmentsApi*](doc/StockAdjustmentsApi.md) | [**apiStockadjustmentsAdjustmentIdVerifyPost**](doc/StockAdjustmentsApi.md#apistockadjustmentsadjustmentidverifypost) | **POST** /api/stockadjustments/{adjustmentId}/verify | 
 [*StockAdjustmentsApi*](doc/StockAdjustmentsApi.md) | [**apiStockadjustmentsGet**](doc/StockAdjustmentsApi.md#apistockadjustmentsget) | **GET** /api/stockadjustments | 
 [*StockAdjustmentsApi*](doc/StockAdjustmentsApi.md) | [**apiStockadjustmentsIdDelete**](doc/StockAdjustmentsApi.md#apistockadjustmentsiddelete) | **DELETE** /api/stockadjustments/{id} | 
 [*StockAdjustmentsApi*](doc/StockAdjustmentsApi.md) | [**apiStockadjustmentsIdGet**](doc/StockAdjustmentsApi.md#apistockadjustmentsidget) | **GET** /api/stockadjustments/{id} | 
 [*StockAdjustmentsApi*](doc/StockAdjustmentsApi.md) | [**apiStockadjustmentsIdStatusPut**](doc/StockAdjustmentsApi.md#apistockadjustmentsidstatusput) | **PUT** /api/stockadjustments/{id}/status | 
 [*StockAdjustmentsApi*](doc/StockAdjustmentsApi.md) | [**apiStockadjustmentsPost**](doc/StockAdjustmentsApi.md#apistockadjustmentspost) | **POST** /api/stockadjustments | 
+[*SuppliersApi*](doc/SuppliersApi.md) | [**apiSuppliersGet**](doc/SuppliersApi.md#apisuppliersget) | **GET** /api/suppliers | 
+[*SuppliersApi*](doc/SuppliersApi.md) | [**apiSuppliersIdDelete**](doc/SuppliersApi.md#apisuppliersiddelete) | **DELETE** /api/suppliers/{id} | 
+[*SuppliersApi*](doc/SuppliersApi.md) | [**apiSuppliersIdGet**](doc/SuppliersApi.md#apisuppliersidget) | **GET** /api/suppliers/{id} | 
+[*SuppliersApi*](doc/SuppliersApi.md) | [**apiSuppliersIdPut**](doc/SuppliersApi.md#apisuppliersidput) | **PUT** /api/suppliers/{id} | 
 [*SuppliersApi*](doc/SuppliersApi.md) | [**apiSuppliersLookupGet**](doc/SuppliersApi.md#apisupplierslookupget) | **GET** /api/suppliers/lookup | 
+[*SuppliersApi*](doc/SuppliersApi.md) | [**apiSuppliersPost**](doc/SuppliersApi.md#apisupplierspost) | **POST** /api/suppliers | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersAvatarDelete**](doc/UsersApi.md#apiusersavatardelete) | **DELETE** /api/users/avatar | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersAvatarGet**](doc/UsersApi.md#apiusersavatarget) | **GET** /api/users/avatar | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersAvatarPost**](doc/UsersApi.md#apiusersavatarpost) | **POST** /api/users/avatar | 
@@ -214,9 +257,10 @@ Class | Method | HTTP request | Description
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersStaffLookupGet**](doc/UsersApi.md#apiusersstafflookupget) | **GET** /api/users/staff-lookup | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersAvailableGet**](doc/VouchersApi.md#apivouchersavailableget) | **GET** /api/vouchers/available | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersGet**](doc/VouchersApi.md#apivouchersget) | **GET** /api/vouchers | 
-[*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersMyVouchersGet**](doc/VouchersApi.md#apivouchersmyvouchersget) | **GET** /api/vouchers/my-vouchers | 
+[*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersMeGet**](doc/VouchersApi.md#apivouchersmeget) | **GET** /api/vouchers/me | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersPost**](doc/VouchersApi.md#apivoucherspost) | **POST** /api/vouchers | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersRedeemPost**](doc/VouchersApi.md#apivouchersredeempost) | **POST** /api/vouchers/redeem | 
+[*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersRedeemableListGet**](doc/VouchersApi.md#apivouchersredeemablelistget) | **GET** /api/vouchers/redeemable-list | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersVoucherIdDelete**](doc/VouchersApi.md#apivouchersvoucheriddelete) | **DELETE** /api/vouchers/{voucherId} | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersVoucherIdGet**](doc/VouchersApi.md#apivouchersvoucheridget) | **GET** /api/vouchers/{voucherId} | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersVoucherIdPut**](doc/VouchersApi.md#apivouchersvoucheridput) | **PUT** /api/vouchers/{voucherId} | 
@@ -226,50 +270,68 @@ Class | Method | HTTP request | Description
 
  - [AddressLevel4Response](doc/AddressLevel4Response.md)
  - [AddressResponse](doc/AddressResponse.md)
+ - [AdminDashboardOverviewResponse](doc/AdminDashboardOverviewResponse.md)
+ - [AnswerReviewRequest](doc/AnswerReviewRequest.md)
  - [AttributeLookupItem](doc/AttributeLookupItem.md)
  - [AttributeValueLookupItem](doc/AttributeValueLookupItem.md)
  - [AvailableVoucherResponse](doc/AvailableVoucherResponse.md)
  - [BaseResponse](doc/BaseResponse.md)
  - [BaseResponseOfAddressLevel4Response](doc/BaseResponseOfAddressLevel4Response.md)
  - [BaseResponseOfAddressResponse](doc/BaseResponseOfAddressResponse.md)
+ - [BaseResponseOfAdminDashboardOverviewResponse](doc/BaseResponseOfAdminDashboardOverviewResponse.md)
  - [BaseResponseOfBatchDetailResponse](doc/BaseResponseOfBatchDetailResponse.md)
  - [BaseResponseOfBrandResponse](doc/BaseResponseOfBrandResponse.md)
  - [BaseResponseOfBulkActionResultOfGuid](doc/BaseResponseOfBulkActionResultOfGuid.md)
  - [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse](doc/BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.md)
  - [BaseResponseOfBulkActionResultOfstring](doc/BaseResponseOfBulkActionResultOfstring.md)
- - [BaseResponseOfCalculateFeeResponse](doc/BaseResponseOfCalculateFeeResponse.md)
+ - [BaseResponseOfCampaignResponse](doc/BaseResponseOfCampaignResponse.md)
  - [BaseResponseOfCategoryResponse](doc/BaseResponseOfCategoryResponse.md)
  - [BaseResponseOfConcentrationResponse](doc/BaseResponseOfConcentrationResponse.md)
+ - [BaseResponseOfCreateImportTicketRequest](doc/BaseResponseOfCreateImportTicketRequest.md)
  - [BaseResponseOfExcelTemplateResponse](doc/BaseResponseOfExcelTemplateResponse.md)
  - [BaseResponseOfGetCartItemsResponse](doc/BaseResponseOfGetCartItemsResponse.md)
  - [BaseResponseOfGetCartTotalResponse](doc/BaseResponseOfGetCartTotalResponse.md)
  - [BaseResponseOfImportTicketResponse](doc/BaseResponseOfImportTicketResponse.md)
+ - [BaseResponseOfInventoryLevelsResponse](doc/BaseResponseOfInventoryLevelsResponse.md)
  - [BaseResponseOfInventorySummaryResponse](doc/BaseResponseOfInventorySummaryResponse.md)
  - [BaseResponseOfListOfAddressResponse](doc/BaseResponseOfListOfAddressResponse.md)
  - [BaseResponseOfListOfAttributeLookupItem](doc/BaseResponseOfListOfAttributeLookupItem.md)
  - [BaseResponseOfListOfAttributeValueLookupItem](doc/BaseResponseOfListOfAttributeValueLookupItem.md)
- - [BaseResponseOfListOfBatchDetailResponse](doc/BaseResponseOfListOfBatchDetailResponse.md)
+ - [BaseResponseOfListOfBatchLookupResponse](doc/BaseResponseOfListOfBatchLookupResponse.md)
  - [BaseResponseOfListOfBrandLookupItem](doc/BaseResponseOfListOfBrandLookupItem.md)
  - [BaseResponseOfListOfBrandResponse](doc/BaseResponseOfListOfBrandResponse.md)
+ - [BaseResponseOfListOfCampaignPromotionItemResponse](doc/BaseResponseOfListOfCampaignPromotionItemResponse.md)
  - [BaseResponseOfListOfCategoriesLookupItem](doc/BaseResponseOfListOfCategoriesLookupItem.md)
  - [BaseResponseOfListOfCategoryResponse](doc/BaseResponseOfListOfCategoryResponse.md)
  - [BaseResponseOfListOfConcentrationLookupDto](doc/BaseResponseOfListOfConcentrationLookupDto.md)
  - [BaseResponseOfListOfConcentrationResponse](doc/BaseResponseOfListOfConcentrationResponse.md)
  - [BaseResponseOfListOfDistrictResponse](doc/BaseResponseOfListOfDistrictResponse.md)
  - [BaseResponseOfListOfMediaResponse](doc/BaseResponseOfListOfMediaResponse.md)
+ - [BaseResponseOfListOfOlfactoryFamilyResponse](doc/BaseResponseOfListOfOlfactoryFamilyResponse.md)
+ - [BaseResponseOfListOfOlfactoryLookupResponse](doc/BaseResponseOfListOfOlfactoryLookupResponse.md)
+ - [BaseResponseOfListOfProductDailySaleFigureResponse](doc/BaseResponseOfListOfProductDailySaleFigureResponse.md)
  - [BaseResponseOfListOfProductLookupItem](doc/BaseResponseOfListOfProductLookupItem.md)
  - [BaseResponseOfListOfProvinceResponse](doc/BaseResponseOfListOfProvinceResponse.md)
+ - [BaseResponseOfListOfRedeemableVoucherResponse](doc/BaseResponseOfListOfRedeemableVoucherResponse.md)
  - [BaseResponseOfListOfReviewResponse](doc/BaseResponseOfListOfReviewResponse.md)
+ - [BaseResponseOfListOfScentNoteLookupResponse](doc/BaseResponseOfListOfScentNoteLookupResponse.md)
+ - [BaseResponseOfListOfScentNoteResponse](doc/BaseResponseOfListOfScentNoteResponse.md)
  - [BaseResponseOfListOfStaffLookupItem](doc/BaseResponseOfListOfStaffLookupItem.md)
  - [BaseResponseOfListOfSupplierLookupItem](doc/BaseResponseOfListOfSupplierLookupItem.md)
+ - [BaseResponseOfListOfSupplierResponse](doc/BaseResponseOfListOfSupplierResponse.md)
+ - [BaseResponseOfListOfTopProductResponse](doc/BaseResponseOfListOfTopProductResponse.md)
  - [BaseResponseOfListOfVariantLookupItem](doc/BaseResponseOfListOfVariantLookupItem.md)
  - [BaseResponseOfListOfWardResponse](doc/BaseResponseOfListOfWardResponse.md)
- - [BaseResponseOfLoyaltyPointResponse](doc/BaseResponseOfLoyaltyPointResponse.md)
+ - [BaseResponseOfLoyaltyTransactionTotalsResponse](doc/BaseResponseOfLoyaltyTransactionTotalsResponse.md)
  - [BaseResponseOfMediaResponse](doc/BaseResponseOfMediaResponse.md)
+ - [BaseResponseOfOlfactoryFamilyResponse](doc/BaseResponseOfOlfactoryFamilyResponse.md)
  - [BaseResponseOfOrderResponse](doc/BaseResponseOfOrderResponse.md)
  - [BaseResponseOfPagedResultOfAvailableVoucherResponse](doc/BaseResponseOfPagedResultOfAvailableVoucherResponse.md)
  - [BaseResponseOfPagedResultOfBatchDetailResponse](doc/BaseResponseOfPagedResultOfBatchDetailResponse.md)
+ - [BaseResponseOfPagedResultOfCampaignResponse](doc/BaseResponseOfPagedResultOfCampaignResponse.md)
  - [BaseResponseOfPagedResultOfImportTicketListItem](doc/BaseResponseOfPagedResultOfImportTicketListItem.md)
+ - [BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse](doc/BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse.md)
+ - [BaseResponseOfPagedResultOfOrderCancelRequestResponse](doc/BaseResponseOfPagedResultOfOrderCancelRequestResponse.md)
  - [BaseResponseOfPagedResultOfOrderListItem](doc/BaseResponseOfPagedResultOfOrderListItem.md)
  - [BaseResponseOfPagedResultOfProductListItem](doc/BaseResponseOfPagedResultOfProductListItem.md)
  - [BaseResponseOfPagedResultOfProductListItemWithVariants](doc/BaseResponseOfPagedResultOfProductListItemWithVariants.md)
@@ -286,10 +348,14 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfProductResponse](doc/BaseResponseOfProductResponse.md)
  - [BaseResponseOfProductVariantResponse](doc/BaseResponseOfProductVariantResponse.md)
  - [BaseResponseOfProfileResponse](doc/BaseResponseOfProfileResponse.md)
+ - [BaseResponseOfReceiptResponse](doc/BaseResponseOfReceiptResponse.md)
+ - [BaseResponseOfRevenueSummaryResponse](doc/BaseResponseOfRevenueSummaryResponse.md)
  - [BaseResponseOfReviewDetailResponse](doc/BaseResponseOfReviewDetailResponse.md)
  - [BaseResponseOfReviewStatisticsResponse](doc/BaseResponseOfReviewStatisticsResponse.md)
+ - [BaseResponseOfScentNoteResponse](doc/BaseResponseOfScentNoteResponse.md)
  - [BaseResponseOfStockAdjustmentResponse](doc/BaseResponseOfStockAdjustmentResponse.md)
  - [BaseResponseOfStockResponse](doc/BaseResponseOfStockResponse.md)
+ - [BaseResponseOfSupplierResponse](doc/BaseResponseOfSupplierResponse.md)
  - [BaseResponseOfSwapDamagedStockResponse](doc/BaseResponseOfSwapDamagedStockResponse.md)
  - [BaseResponseOfTokenResponse](doc/BaseResponseOfTokenResponse.md)
  - [BaseResponseOfUserCredentialsResponse](doc/BaseResponseOfUserCredentialsResponse.md)
@@ -298,6 +364,7 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfboolean](doc/BaseResponseOfboolean.md)
  - [BaseResponseOfstring](doc/BaseResponseOfstring.md)
  - [BatchDetailResponse](doc/BatchDetailResponse.md)
+ - [BatchLookupResponse](doc/BatchLookupResponse.md)
  - [BatchResponse](doc/BatchResponse.md)
  - [BrandLookupItem](doc/BrandLookupItem.md)
  - [BrandResponse](doc/BrandResponse.md)
@@ -307,41 +374,57 @@ Class | Method | HTTP request | Description
  - [BulkActionResultOfListOfTemporaryMediaResponse](doc/BulkActionResultOfListOfTemporaryMediaResponse.md)
  - [BulkActionResultOfstring](doc/BulkActionResultOfstring.md)
  - [BulkOperationResult](doc/BulkOperationResult.md)
- - [CalculateFeeData](doc/CalculateFeeData.md)
- - [CalculateFeeRequest](doc/CalculateFeeRequest.md)
- - [CalculateFeeResponse](doc/CalculateFeeResponse.md)
+ - [CampaignPromotionItemResponse](doc/CampaignPromotionItemResponse.md)
+ - [CampaignResponse](doc/CampaignResponse.md)
+ - [CampaignStatus](doc/CampaignStatus.md)
+ - [CampaignType](doc/CampaignType.md)
+ - [CancelRequestStatus](doc/CancelRequestStatus.md)
  - [CarrierName](doc/CarrierName.md)
  - [CategoriesLookupItem](doc/CategoriesLookupItem.md)
  - [CategoryResponse](doc/CategoryResponse.md)
  - [ConcentrationLookupDto](doc/ConcentrationLookupDto.md)
  - [ConcentrationResponse](doc/ConcentrationResponse.md)
+ - [ConfirmPaymentRequest](doc/ConfirmPaymentRequest.md)
  - [CreateAddressRequest](doc/CreateAddressRequest.md)
  - [CreateAttributeRequest](doc/CreateAttributeRequest.md)
  - [CreateAttributeValueRequest](doc/CreateAttributeValueRequest.md)
  - [CreateBatchRequest](doc/CreateBatchRequest.md)
  - [CreateBrandRequest](doc/CreateBrandRequest.md)
+ - [CreateCampaignPromotionItemRequest](doc/CreateCampaignPromotionItemRequest.md)
+ - [CreateCampaignRequest](doc/CreateCampaignRequest.md)
+ - [CreateCampaignVoucherRequest](doc/CreateCampaignVoucherRequest.md)
  - [CreateCartItemRequest](doc/CreateCartItemRequest.md)
  - [CreateCategoryRequest](doc/CreateCategoryRequest.md)
  - [CreateConcentrationRequest](doc/CreateConcentrationRequest.md)
  - [CreateImportDetailRequest](doc/CreateImportDetailRequest.md)
  - [CreateImportTicketRequest](doc/CreateImportTicketRequest.md)
  - [CreateInStoreOrderRequest](doc/CreateInStoreOrderRequest.md)
+ - [CreateOlfactoryFamilyRequest](doc/CreateOlfactoryFamilyRequest.md)
  - [CreateOrderDetailRequest](doc/CreateOrderDetailRequest.md)
  - [CreateOrderRequest](doc/CreateOrderRequest.md)
  - [CreateProductRequest](doc/CreateProductRequest.md)
+ - [CreateReturnRequestDetailDto](doc/CreateReturnRequestDetailDto.md)
+ - [CreateReturnRequestDto](doc/CreateReturnRequestDto.md)
  - [CreateReviewRequest](doc/CreateReviewRequest.md)
+ - [CreateScentNoteRequest](doc/CreateScentNoteRequest.md)
  - [CreateStockAdjustmentDetailRequest](doc/CreateStockAdjustmentDetailRequest.md)
  - [CreateStockAdjustmentRequest](doc/CreateStockAdjustmentRequest.md)
+ - [CreateSupplierRequest](doc/CreateSupplierRequest.md)
  - [CreateVariantRequest](doc/CreateVariantRequest.md)
  - [CreateVoucherRequest](doc/CreateVoucherRequest.md)
+ - [CustomerAttributePreferenceResponse](doc/CustomerAttributePreferenceResponse.md)
+ - [CustomerFamilyPreferenceRespone](doc/CustomerFamilyPreferenceRespone.md)
+ - [CustomerNotePreferenceResponse](doc/CustomerNotePreferenceResponse.md)
  - [DeliveryMethod](doc/DeliveryMethod.md)
  - [DiscountType](doc/DiscountType.md)
  - [DistrictResponse](doc/DistrictResponse.md)
  - [EntityTagHeaderValue](doc/EntityTagHeaderValue.md)
  - [ExcelTemplateResponse](doc/ExcelTemplateResponse.md)
  - [FileContentResult](doc/FileContentResult.md)
+ - [ForgotPasswordRequest](doc/ForgotPasswordRequest.md)
  - [FulfillOrderItemRequest](doc/FulfillOrderItemRequest.md)
  - [FulfillOrderRequest](doc/FulfillOrderRequest.md)
+ - [Gender](doc/Gender.md)
  - [GetCartItemResponse](doc/GetCartItemResponse.md)
  - [GetCartItemsResponse](doc/GetCartItemsResponse.md)
  - [GetCartTotalResponse](doc/GetCartTotalResponse.md)
@@ -350,10 +433,18 @@ Class | Method | HTTP request | Description
  - [ImportStatus](doc/ImportStatus.md)
  - [ImportTicketListItem](doc/ImportTicketListItem.md)
  - [ImportTicketResponse](doc/ImportTicketResponse.md)
+ - [InventoryLevelsResponse](doc/InventoryLevelsResponse.md)
  - [InventorySummaryResponse](doc/InventorySummaryResponse.md)
  - [LoginRequest](doc/LoginRequest.md)
- - [LoyaltyPointResponse](doc/LoyaltyPointResponse.md)
+ - [LoyaltyTransactionHistoryItemResponse](doc/LoyaltyTransactionHistoryItemResponse.md)
+ - [LoyaltyTransactionTotalsResponse](doc/LoyaltyTransactionTotalsResponse.md)
+ - [LoyaltyTransactionType](doc/LoyaltyTransactionType.md)
+ - [ManualChangeRequest](doc/ManualChangeRequest.md)
  - [MediaResponse](doc/MediaResponse.md)
+ - [NoteType](doc/NoteType.md)
+ - [OlfactoryFamilyResponse](doc/OlfactoryFamilyResponse.md)
+ - [OlfactoryLookupResponse](doc/OlfactoryLookupResponse.md)
+ - [OrderCancelRequestResponse](doc/OrderCancelRequestResponse.md)
  - [OrderDetailListItems](doc/OrderDetailListItems.md)
  - [OrderDetailResponse](doc/OrderDetailResponse.md)
  - [OrderListItem](doc/OrderListItem.md)
@@ -362,7 +453,10 @@ Class | Method | HTTP request | Description
  - [OrderType](doc/OrderType.md)
  - [PagedResultOfAvailableVoucherResponse](doc/PagedResultOfAvailableVoucherResponse.md)
  - [PagedResultOfBatchDetailResponse](doc/PagedResultOfBatchDetailResponse.md)
+ - [PagedResultOfCampaignResponse](doc/PagedResultOfCampaignResponse.md)
  - [PagedResultOfImportTicketListItem](doc/PagedResultOfImportTicketListItem.md)
+ - [PagedResultOfLoyaltyTransactionHistoryItemResponse](doc/PagedResultOfLoyaltyTransactionHistoryItemResponse.md)
+ - [PagedResultOfOrderCancelRequestResponse](doc/PagedResultOfOrderCancelRequestResponse.md)
  - [PagedResultOfOrderListItem](doc/PagedResultOfOrderListItem.md)
  - [PagedResultOfProductListItem](doc/PagedResultOfProductListItem.md)
  - [PagedResultOfProductListItemWithVariants](doc/PagedResultOfProductListItemWithVariants.md)
@@ -379,68 +473,96 @@ Class | Method | HTTP request | Description
  - [PickListBatchInfo](doc/PickListBatchInfo.md)
  - [PickListItemResponse](doc/PickListItemResponse.md)
  - [PickListResponse](doc/PickListResponse.md)
- - [PointsRequest](doc/PointsRequest.md)
  - [PreviewOrderResponse](doc/PreviewOrderResponse.md)
  - [ProblemDetails](doc/ProblemDetails.md)
+ - [ProcessCancelRequest](doc/ProcessCancelRequest.md)
+ - [ProcessInitialReturnDto](doc/ProcessInitialReturnDto.md)
  - [ProductAttributeDto](doc/ProductAttributeDto.md)
  - [ProductAttributeResponse](doc/ProductAttributeResponse.md)
+ - [ProductDailySaleFigureResponse](doc/ProductDailySaleFigureResponse.md)
  - [ProductFastLookResponse](doc/ProductFastLookResponse.md)
  - [ProductImageUploadItem](doc/ProductImageUploadItem.md)
  - [ProductInforResponse](doc/ProductInforResponse.md)
  - [ProductListItem](doc/ProductListItem.md)
  - [ProductListItemWithVariants](doc/ProductListItemWithVariants.md)
  - [ProductLookupItem](doc/ProductLookupItem.md)
+ - [ProductOlfactoryFamilyResponse](doc/ProductOlfactoryFamilyResponse.md)
  - [ProductResponse](doc/ProductResponse.md)
+ - [ProductScentNoteResponse](doc/ProductScentNoteResponse.md)
  - [ProductVariantResponse](doc/ProductVariantResponse.md)
  - [ProfileResponse](doc/ProfileResponse.md)
+ - [PromotionType](doc/PromotionType.md)
  - [ProvinceResponse](doc/ProvinceResponse.md)
+ - [ReceiptItemDto](doc/ReceiptItemDto.md)
+ - [ReceiptResponse](doc/ReceiptResponse.md)
  - [RecipientInfoResponse](doc/RecipientInfoResponse.md)
  - [RecipientInformation](doc/RecipientInformation.md)
+ - [RecordInspectionDetailDto](doc/RecordInspectionDetailDto.md)
+ - [RecordInspectionDto](doc/RecordInspectionDto.md)
  - [RedeemVoucherRequest](doc/RedeemVoucherRequest.md)
+ - [RedeemableVoucherResponse](doc/RedeemableVoucherResponse.md)
  - [RegisterRequest](doc/RegisterRequest.md)
+ - [RejectInspectionDto](doc/RejectInspectionDto.md)
  - [ReservedBatchResponse](doc/ReservedBatchResponse.md)
- - [ResponseErrorType](doc/ResponseErrorType.md)
+ - [ResetPasswordRequest](doc/ResetPasswordRequest.md)
+ - [RevenueSummaryResponse](doc/RevenueSummaryResponse.md)
  - [ReviewDetailResponse](doc/ReviewDetailResponse.md)
  - [ReviewListItem](doc/ReviewListItem.md)
  - [ReviewResponse](doc/ReviewResponse.md)
  - [ReviewStatisticsResponse](doc/ReviewStatisticsResponse.md)
+ - [ScentNoteDto](doc/ScentNoteDto.md)
+ - [ScentNoteLookupResponse](doc/ScentNoteLookupResponse.md)
+ - [ScentNoteResponse](doc/ScentNoteResponse.md)
  - [ShippingInfoResponse](doc/ShippingInfoResponse.md)
  - [StaffLookupItem](doc/StaffLookupItem.md)
+ - [StartInspectionDto](doc/StartInspectionDto.md)
  - [StockAdjustmentDetailResponse](doc/StockAdjustmentDetailResponse.md)
  - [StockAdjustmentListItem](doc/StockAdjustmentListItem.md)
  - [StockAdjustmentReason](doc/StockAdjustmentReason.md)
  - [StockAdjustmentResponse](doc/StockAdjustmentResponse.md)
  - [StockAdjustmentStatus](doc/StockAdjustmentStatus.md)
  - [StockResponse](doc/StockResponse.md)
+ - [StockStatus](doc/StockStatus.md)
  - [StringSegment](doc/StringSegment.md)
  - [SupplierLookupItem](doc/SupplierLookupItem.md)
+ - [SupplierResponse](doc/SupplierResponse.md)
  - [SwapDamagedStockRequest](doc/SwapDamagedStockRequest.md)
  - [SwapDamagedStockResponse](doc/SwapDamagedStockResponse.md)
  - [TemporaryMediaResponse](doc/TemporaryMediaResponse.md)
  - [TokenResponse](doc/TokenResponse.md)
+ - [TopProductResponse](doc/TopProductResponse.md)
  - [TransactionStatus](doc/TransactionStatus.md)
  - [UpdateAddressRequest](doc/UpdateAddressRequest.md)
  - [UpdateAttributeRequest](doc/UpdateAttributeRequest.md)
  - [UpdateAttributeValueRequest](doc/UpdateAttributeValueRequest.md)
  - [UpdateBrandRequest](doc/UpdateBrandRequest.md)
+ - [UpdateCampaignPromotionItemRequest](doc/UpdateCampaignPromotionItemRequest.md)
+ - [UpdateCampaignRequest](doc/UpdateCampaignRequest.md)
+ - [UpdateCampaignStatusRequest](doc/UpdateCampaignStatusRequest.md)
+ - [UpdateCampaignVoucherRequest](doc/UpdateCampaignVoucherRequest.md)
  - [UpdateCartItemRequest](doc/UpdateCartItemRequest.md)
  - [UpdateCategoryRequest](doc/UpdateCategoryRequest.md)
  - [UpdateConcentrationRequest](doc/UpdateConcentrationRequest.md)
  - [UpdateImportDetailRequest](doc/UpdateImportDetailRequest.md)
  - [UpdateImportRequest](doc/UpdateImportRequest.md)
  - [UpdateImportStatusRequest](doc/UpdateImportStatusRequest.md)
+ - [UpdateNotePreferenceRequest](doc/UpdateNotePreferenceRequest.md)
+ - [UpdateOlfactoryFamilyRequest](doc/UpdateOlfactoryFamilyRequest.md)
  - [UpdateOrderAddressRequest](doc/UpdateOrderAddressRequest.md)
  - [UpdateOrderStatusRequest](doc/UpdateOrderStatusRequest.md)
  - [UpdateProductRequest](doc/UpdateProductRequest.md)
  - [UpdateProfileRequest](doc/UpdateProfileRequest.md)
- - [UpdateReviewRequest](doc/UpdateReviewRequest.md)
+ - [UpdateScentNoteRequest](doc/UpdateScentNoteRequest.md)
  - [UpdateStockAdjustmentStatusRequest](doc/UpdateStockAdjustmentStatusRequest.md)
+ - [UpdateSupplierRequest](doc/UpdateSupplierRequest.md)
  - [UpdateVariantRequest](doc/UpdateVariantRequest.md)
  - [UpdateVoucherRequest](doc/UpdateVoucherRequest.md)
+ - [UserCancelOrderRequest](doc/UserCancelOrderRequest.md)
  - [UserCredentialsResponse](doc/UserCredentialsResponse.md)
  - [UserOrderResponse](doc/UserOrderResponse.md)
  - [UserRole](doc/UserRole.md)
  - [UserVoucherResponse](doc/UserVoucherResponse.md)
+ - [VariantDailySaleFigure](doc/VariantDailySaleFigure.md)
  - [VariantFastLookResponse](doc/VariantFastLookResponse.md)
  - [VariantImageUploadItem](doc/VariantImageUploadItem.md)
  - [VariantLookupItem](doc/VariantLookupItem.md)
@@ -453,6 +575,7 @@ Class | Method | HTTP request | Description
  - [VerifyStockAdjustmentDetailRequest](doc/VerifyStockAdjustmentDetailRequest.md)
  - [VerifyStockAdjustmentRequest](doc/VerifyStockAdjustmentRequest.md)
  - [VoucherResponse](doc/VoucherResponse.md)
+ - [VoucherType](doc/VoucherType.md)
  - [WardResponse](doc/WardResponse.md)
 
 

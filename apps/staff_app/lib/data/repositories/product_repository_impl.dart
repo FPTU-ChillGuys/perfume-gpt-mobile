@@ -20,12 +20,14 @@ class ProductRepositoryImpl implements ProductRepository {
     return items
         .map(
           (item) => Product(
-            id: item.variantId ?? '',
+            id: item.id ?? '',
+            variantId: item.variantId ?? '',
+            batchId: item.id ?? '', // Using id from stock record as batchId
             sku: item.variantSku ?? '',
             name: item.productName ?? '',
             description: '', // Not in stock response
             price: 0, // Not in stock response
-            imageUrl: '', // Not in stock response
+            imageUrl: item.variantImageUrl ?? '',
             scentNotes: [], // Not in stock response
             brand: '',
             rating: 0,
@@ -39,20 +41,22 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<Product?> getProductBySku(String sku) async {
     final response = await _apiClient.getInventoryApi().apiInventoryStockGet(
-      searchTerm: sku,
-    );
+          SKU: sku,
+        );
     final items = response.data?.payload?.items ?? [];
 
     if (items.isEmpty) return null;
 
     final item = items.first;
     return Product(
-      id: item.variantId ?? '',
+      id: item.id ?? '',
+      variantId: item.variantId ?? '',
+      batchId: item.id ?? '', // Using id from stock record as batchId
       sku: item.variantSku ?? sku,
       name: item.productName ?? '',
       description: '',
       price: 0,
-      imageUrl: '',
+      imageUrl: item.variantImageUrl ?? '',
       scentNotes: [],
       brand: '',
       rating: 0,
@@ -63,7 +67,8 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<void> updateStock(
-    String productId, // actually variantId based on our mapping
+    String variantId,
+    String batchId,
     int quantityChange,
     String reason,
   ) async {
@@ -72,11 +77,13 @@ class ProductRepositoryImpl implements ProductRepository {
         : StockAdjustmentReason.loss;
 
     final request = CreateStockAdjustmentRequest(
+      adjustmentDate: DateTime.now(),
       reason: adjustReason,
       note: reason,
       adjustmentDetails: [
         CreateStockAdjustmentDetailRequest(
-          variantId: productId,
+          variantId: variantId,
+          batchId: batchId,
           adjustmentQuantity: quantityChange.abs(),
           note: reason,
         ),
@@ -84,8 +91,8 @@ class ProductRepositoryImpl implements ProductRepository {
     );
 
     await _apiClient.getStockAdjustmentsApi().apiStockadjustmentsPost(
-      createStockAdjustmentRequest: request,
-    );
+          createStockAdjustmentRequest: request,
+        );
   }
 }
 

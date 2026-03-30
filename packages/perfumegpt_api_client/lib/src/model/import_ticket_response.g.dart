@@ -239,5 +239,5 @@ const _$ImportStatusEnumMap = {
   ImportStatus.pending: 'Pending',
   ImportStatus.inProgress: 'InProgress',
   ImportStatus.completed: 'Completed',
-  ImportStatus.canceled: 'Canceled',
+  ImportStatus.cancelled: 'Cancelled',
 };

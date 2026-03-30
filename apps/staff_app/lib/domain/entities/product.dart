@@ -1,5 +1,7 @@
 class Product {
   final String id;
+  final String variantId;
+  final String batchId;
   final String sku;
   final String name;
   final String description;
@@ -13,6 +15,8 @@ class Product {
 
   const Product({
     required this.id,
+    required this.variantId,
+    required this.batchId,
     required this.sku,
     required this.name,
     required this.description,

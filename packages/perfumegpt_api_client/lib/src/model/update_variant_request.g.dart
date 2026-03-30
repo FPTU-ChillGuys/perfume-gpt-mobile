@@ -7,7 +7,7 @@ part of 'update_variant_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateVariantRequestCWProxy {
-  UpdateVariantRequest sku(String? sku);
+  UpdateVariantRequest sku(String sku);
 
   UpdateVariantRequest barcode(String? barcode);
 
@@ -19,7 +19,13 @@ abstract class _$UpdateVariantRequestCWProxy {
 
   UpdateVariantRequest basePrice(num? basePrice);
 
+  UpdateVariantRequest retailPrice(num? retailPrice);
+
   UpdateVariantRequest status(VariantStatus? status);
+
+  UpdateVariantRequest sillage(int? sillage);
+
+  UpdateVariantRequest longevity(int? longevity);
 
   UpdateVariantRequest mediaIdsToDelete(List<String>? mediaIdsToDelete);
 
@@ -37,13 +43,16 @@ abstract class _$UpdateVariantRequestCWProxy {
   /// UpdateVariantRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateVariantRequest call({
-    String? sku,
+    String sku,
     String? barcode,
     int? volumeMl,
     int? concentrationId,
     VariantType? type,
     num? basePrice,
+    num? retailPrice,
     VariantStatus? status,
+    int? sillage,
+    int? longevity,
     List<String>? mediaIdsToDelete,
     List<String>? temporaryMediaIdsToAdd,
     List<ProductAttributeDto>? attributes,
@@ -59,7 +68,7 @@ class _$UpdateVariantRequestCWProxyImpl
   final UpdateVariantRequest _value;
 
   @override
-  UpdateVariantRequest sku(String? sku) => call(sku: sku);
+  UpdateVariantRequest sku(String sku) => call(sku: sku);
 
   @override
   UpdateVariantRequest barcode(String? barcode) => call(barcode: barcode);
@@ -78,7 +87,17 @@ class _$UpdateVariantRequestCWProxyImpl
   UpdateVariantRequest basePrice(num? basePrice) => call(basePrice: basePrice);
 
   @override
+  UpdateVariantRequest retailPrice(num? retailPrice) =>
+      call(retailPrice: retailPrice);
+
+  @override
   UpdateVariantRequest status(VariantStatus? status) => call(status: status);
+
+  @override
+  UpdateVariantRequest sillage(int? sillage) => call(sillage: sillage);
+
+  @override
+  UpdateVariantRequest longevity(int? longevity) => call(longevity: longevity);
 
   @override
   UpdateVariantRequest mediaIdsToDelete(List<String>? mediaIdsToDelete) =>
@@ -108,16 +127,19 @@ class _$UpdateVariantRequestCWProxyImpl
     Object? concentrationId = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
     Object? basePrice = const $CopyWithPlaceholder(),
+    Object? retailPrice = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
+    Object? sillage = const $CopyWithPlaceholder(),
+    Object? longevity = const $CopyWithPlaceholder(),
     Object? mediaIdsToDelete = const $CopyWithPlaceholder(),
     Object? temporaryMediaIdsToAdd = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
   }) {
     return UpdateVariantRequest(
-      sku: sku == const $CopyWithPlaceholder()
+      sku: sku == const $CopyWithPlaceholder() || sku == null
           ? _value.sku
           // ignore: cast_nullable_to_non_nullable
-          : sku as String?,
+          : sku as String,
       barcode: barcode == const $CopyWithPlaceholder()
           ? _value.barcode
           // ignore: cast_nullable_to_non_nullable
@@ -138,10 +160,22 @@ class _$UpdateVariantRequestCWProxyImpl
           ? _value.basePrice
           // ignore: cast_nullable_to_non_nullable
           : basePrice as num?,
+      retailPrice: retailPrice == const $CopyWithPlaceholder()
+          ? _value.retailPrice
+          // ignore: cast_nullable_to_non_nullable
+          : retailPrice as num?,
       status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as VariantStatus?,
+      sillage: sillage == const $CopyWithPlaceholder()
+          ? _value.sillage
+          // ignore: cast_nullable_to_non_nullable
+          : sillage as int?,
+      longevity: longevity == const $CopyWithPlaceholder()
+          ? _value.longevity
+          // ignore: cast_nullable_to_non_nullable
+          : longevity as int?,
       mediaIdsToDelete: mediaIdsToDelete == const $CopyWithPlaceholder()
           ? _value.mediaIdsToDelete
           // ignore: cast_nullable_to_non_nullable
@@ -174,8 +208,9 @@ extension $UpdateVariantRequestCopyWith on UpdateVariantRequest {
 UpdateVariantRequest _$UpdateVariantRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateVariantRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['sku']);
   final val = UpdateVariantRequest(
-    sku: $checkedConvert('sku', (v) => v as String?),
+    sku: $checkedConvert('sku', (v) => v as String),
     barcode: $checkedConvert('barcode', (v) => v as String?),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
     concentrationId: $checkedConvert(
@@ -187,10 +222,13 @@ UpdateVariantRequest _$UpdateVariantRequestFromJson(
       (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
     ),
     basePrice: $checkedConvert('basePrice', (v) => v as num?),
+    retailPrice: $checkedConvert('retailPrice', (v) => v as num?),
     status: $checkedConvert(
       'status',
       (v) => $enumDecodeNullable(_$VariantStatusEnumMap, v),
     ),
+    sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
+    longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
     mediaIdsToDelete: $checkedConvert(
       'mediaIdsToDelete',
       (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -212,19 +250,23 @@ UpdateVariantRequest _$UpdateVariantRequestFromJson(
 Map<String, dynamic> _$UpdateVariantRequestToJson(
   UpdateVariantRequest instance,
 ) => <String, dynamic>{
-  'sku': ?instance.sku,
+  'sku': instance.sku,
   'barcode': ?instance.barcode,
   'volumeMl': ?instance.volumeMl,
   'concentrationId': ?instance.concentrationId,
   'type': ?_$VariantTypeEnumMap[instance.type],
   'basePrice': ?instance.basePrice,
+  'retailPrice': ?instance.retailPrice,
   'status': ?_$VariantStatusEnumMap[instance.status],
+  'sillage': ?instance.sillage,
+  'longevity': ?instance.longevity,
   'mediaIdsToDelete': ?instance.mediaIdsToDelete,
   'temporaryMediaIdsToAdd': ?instance.temporaryMediaIdsToAdd,
   'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
 };
 
 const _$VariantTypeEnumMap = {
+  VariantType.standard: 'Standard',
   VariantType.fullBox: 'FullBox',
   VariantType.tester: 'Tester',
   VariantType.mini: 'Mini',
@@ -234,5 +276,4 @@ const _$VariantStatusEnumMap = {
   VariantStatus.active: 'Active',
   VariantStatus.inactive: 'Inactive',
   VariantStatus.discontinued: 'Discontinued',
-  VariantStatus.outOfStock: 'out_of_stock',
 };

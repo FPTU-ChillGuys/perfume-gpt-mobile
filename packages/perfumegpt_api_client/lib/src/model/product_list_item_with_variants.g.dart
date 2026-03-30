@@ -25,11 +25,11 @@ abstract class _$ProductListItemWithVariantsCWProxy {
 
   ProductListItemWithVariants numberOfVariants(int? numberOfVariants);
 
-  ProductListItemWithVariants primaryImage(MediaResponse? primaryImage);
+  ProductListItemWithVariants variantPrices(List<num>? variantPrices);
 
-  ProductListItemWithVariants attributes(
-    List<ProductAttributeResponse>? attributes,
-  );
+  ProductListItemWithVariants tags(List<String>? tags);
+
+  ProductListItemWithVariants primaryImage(MediaResponse? primaryImage);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductListItemWithVariants(...).copyWith.fieldName(value)`.
@@ -48,8 +48,9 @@ abstract class _$ProductListItemWithVariantsCWProxy {
     String? categoryName,
     String? description,
     int? numberOfVariants,
+    List<num>? variantPrices,
+    List<String>? tags,
     MediaResponse? primaryImage,
-    List<ProductAttributeResponse>? attributes,
   });
 }
 
@@ -95,13 +96,15 @@ class _$ProductListItemWithVariantsCWProxyImpl
       call(numberOfVariants: numberOfVariants);
 
   @override
-  ProductListItemWithVariants primaryImage(MediaResponse? primaryImage) =>
-      call(primaryImage: primaryImage);
+  ProductListItemWithVariants variantPrices(List<num>? variantPrices) =>
+      call(variantPrices: variantPrices);
 
   @override
-  ProductListItemWithVariants attributes(
-    List<ProductAttributeResponse>? attributes,
-  ) => call(attributes: attributes);
+  ProductListItemWithVariants tags(List<String>? tags) => call(tags: tags);
+
+  @override
+  ProductListItemWithVariants primaryImage(MediaResponse? primaryImage) =>
+      call(primaryImage: primaryImage);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -121,8 +124,9 @@ class _$ProductListItemWithVariantsCWProxyImpl
     Object? categoryName = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
     Object? numberOfVariants = const $CopyWithPlaceholder(),
+    Object? variantPrices = const $CopyWithPlaceholder(),
+    Object? tags = const $CopyWithPlaceholder(),
     Object? primaryImage = const $CopyWithPlaceholder(),
-    Object? attributes = const $CopyWithPlaceholder(),
   }) {
     return ProductListItemWithVariants(
       variants: variants == const $CopyWithPlaceholder()
@@ -161,14 +165,18 @@ class _$ProductListItemWithVariantsCWProxyImpl
           ? _value.numberOfVariants
           // ignore: cast_nullable_to_non_nullable
           : numberOfVariants as int?,
+      variantPrices: variantPrices == const $CopyWithPlaceholder()
+          ? _value.variantPrices
+          // ignore: cast_nullable_to_non_nullable
+          : variantPrices as List<num>?,
+      tags: tags == const $CopyWithPlaceholder()
+          ? _value.tags
+          // ignore: cast_nullable_to_non_nullable
+          : tags as List<String>?,
       primaryImage: primaryImage == const $CopyWithPlaceholder()
           ? _value.primaryImage
           // ignore: cast_nullable_to_non_nullable
           : primaryImage as MediaResponse?,
-      attributes: attributes == const $CopyWithPlaceholder()
-          ? _value.attributes
-          // ignore: cast_nullable_to_non_nullable
-          : attributes as List<ProductAttributeResponse>?,
     );
   }
 }
@@ -206,18 +214,18 @@ ProductListItemWithVariants _$ProductListItemWithVariantsFromJson(
       'numberOfVariants',
       (v) => (v as num?)?.toInt(),
     ),
+    variantPrices: $checkedConvert(
+      'variantPrices',
+      (v) => (v as List<dynamic>?)?.map((e) => e as num).toList(),
+    ),
+    tags: $checkedConvert(
+      'tags',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    ),
     primaryImage: $checkedConvert(
       'primaryImage',
       (v) =>
           v == null ? null : MediaResponse.fromJson(v as Map<String, dynamic>),
-    ),
-    attributes: $checkedConvert(
-      'attributes',
-      (v) => (v as List<dynamic>?)
-          ?.map(
-            (e) => ProductAttributeResponse.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
     ),
   );
   return val;
@@ -235,6 +243,7 @@ Map<String, dynamic> _$ProductListItemWithVariantsToJson(
   'categoryName': ?instance.categoryName,
   'description': ?instance.description,
   'numberOfVariants': ?instance.numberOfVariants,
+  'variantPrices': ?instance.variantPrices,
+  'tags': ?instance.tags,
   'primaryImage': ?instance.primaryImage?.toJson(),
-  'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
 };

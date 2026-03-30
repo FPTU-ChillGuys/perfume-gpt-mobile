@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_batch_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,45 +19,82 @@ part 'create_batch_request.g.dart';
 class CreateBatchRequest {
   /// Returns a new [CreateBatchRequest] instance.
   CreateBatchRequest({
-    this.batchCode,
 
-    this.manufactureDate,
+    required  this.batchCode,
 
-    this.expiryDate,
+    required  this.manufactureDate,
 
-    this.quantity,
+    required  this.expiryDate,
+
+     this.quantity,
   });
 
-  @JsonKey(name: r'batchCode', required: false, includeIfNull: false)
-  final String? batchCode;
+  @JsonKey(
+    
+    name: r'batchCode',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @JsonKey(name: r'manufactureDate', required: false, includeIfNull: false)
-  final DateTime? manufactureDate;
 
-  @JsonKey(name: r'expiryDate', required: false, includeIfNull: false)
-  final DateTime? expiryDate;
+  final String batchCode;
 
-  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'manufactureDate',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final DateTime manufactureDate;
+
+
+
+  @JsonKey(
+    
+    name: r'expiryDate',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final DateTime expiryDate;
+
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'quantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? quantity;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateBatchRequest &&
-          other.batchCode == batchCode &&
-          other.manufactureDate == manufactureDate &&
-          other.expiryDate == expiryDate &&
-          other.quantity == quantity;
 
-  @override
-  int get hashCode =>
-      batchCode.hashCode +
-      manufactureDate.hashCode +
-      expiryDate.hashCode +
-      quantity.hashCode;
 
-  factory CreateBatchRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateBatchRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateBatchRequest &&
+      other.batchCode == batchCode &&
+      other.manufactureDate == manufactureDate &&
+      other.expiryDate == expiryDate &&
+      other.quantity == quantity;
+
+    @override
+    int get hashCode =>
+        batchCode.hashCode +
+        manufactureDate.hashCode +
+        expiryDate.hashCode +
+        quantity.hashCode;
+
+  factory CreateBatchRequest.fromJson(Map<String, dynamic> json) => _$CreateBatchRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateBatchRequestToJson(this);
 
@@ -64,4 +102,6 @@ class CreateBatchRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

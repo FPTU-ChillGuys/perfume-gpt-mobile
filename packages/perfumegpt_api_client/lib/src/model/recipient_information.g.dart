@@ -7,9 +7,9 @@ part of 'recipient_information.dart';
 // **************************************************************************
 
 abstract class _$RecipientInformationCWProxy {
-  RecipientInformation fullName(String? fullName);
+  RecipientInformation recipientName(String? recipientName);
 
-  RecipientInformation phone(String? phone);
+  RecipientInformation recipientPhoneNumber(String? recipientPhoneNumber);
 
   RecipientInformation districtId(int? districtId);
 
@@ -33,8 +33,8 @@ abstract class _$RecipientInformationCWProxy {
   /// RecipientInformation(...).copyWith(id: 12, name: "My name")
   /// ```
   RecipientInformation call({
-    String? fullName,
-    String? phone,
+    String? recipientName,
+    String? recipientPhoneNumber,
     int? districtId,
     String? districtName,
     String? wardCode,
@@ -54,10 +54,12 @@ class _$RecipientInformationCWProxyImpl
   final RecipientInformation _value;
 
   @override
-  RecipientInformation fullName(String? fullName) => call(fullName: fullName);
+  RecipientInformation recipientName(String? recipientName) =>
+      call(recipientName: recipientName);
 
   @override
-  RecipientInformation phone(String? phone) => call(phone: phone);
+  RecipientInformation recipientPhoneNumber(String? recipientPhoneNumber) =>
+      call(recipientPhoneNumber: recipientPhoneNumber);
 
   @override
   RecipientInformation districtId(int? districtId) =>
@@ -94,8 +96,8 @@ class _$RecipientInformationCWProxyImpl
   /// RecipientInformation(...).copyWith(id: 12, name: "My name")
   /// ```
   RecipientInformation call({
-    Object? fullName = const $CopyWithPlaceholder(),
-    Object? phone = const $CopyWithPlaceholder(),
+    Object? recipientName = const $CopyWithPlaceholder(),
+    Object? recipientPhoneNumber = const $CopyWithPlaceholder(),
     Object? districtId = const $CopyWithPlaceholder(),
     Object? districtName = const $CopyWithPlaceholder(),
     Object? wardCode = const $CopyWithPlaceholder(),
@@ -105,14 +107,14 @@ class _$RecipientInformationCWProxyImpl
     Object? fullAddress = const $CopyWithPlaceholder(),
   }) {
     return RecipientInformation(
-      fullName: fullName == const $CopyWithPlaceholder()
-          ? _value.fullName
+      recipientName: recipientName == const $CopyWithPlaceholder()
+          ? _value.recipientName
           // ignore: cast_nullable_to_non_nullable
-          : fullName as String?,
-      phone: phone == const $CopyWithPlaceholder()
-          ? _value.phone
+          : recipientName as String?,
+      recipientPhoneNumber: recipientPhoneNumber == const $CopyWithPlaceholder()
+          ? _value.recipientPhoneNumber
           // ignore: cast_nullable_to_non_nullable
-          : phone as String?,
+          : recipientPhoneNumber as String?,
       districtId: districtId == const $CopyWithPlaceholder()
           ? _value.districtId
           // ignore: cast_nullable_to_non_nullable
@@ -161,8 +163,11 @@ RecipientInformation _$RecipientInformationFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('RecipientInformation', json, ($checkedConvert) {
   final val = RecipientInformation(
-    fullName: $checkedConvert('fullName', (v) => v as String?),
-    phone: $checkedConvert('phone', (v) => v as String?),
+    recipientName: $checkedConvert('recipientName', (v) => v as String?),
+    recipientPhoneNumber: $checkedConvert(
+      'recipientPhoneNumber',
+      (v) => v as String?,
+    ),
     districtId: $checkedConvert('districtId', (v) => (v as num?)?.toInt()),
     districtName: $checkedConvert('districtName', (v) => v as String?),
     wardCode: $checkedConvert('wardCode', (v) => v as String?),
@@ -177,8 +182,8 @@ RecipientInformation _$RecipientInformationFromJson(
 Map<String, dynamic> _$RecipientInformationToJson(
   RecipientInformation instance,
 ) => <String, dynamic>{
-  'fullName': ?instance.fullName,
-  'phone': ?instance.phone,
+  'recipientName': ?instance.recipientName,
+  'recipientPhoneNumber': ?instance.recipientPhoneNumber,
   'districtId': ?instance.districtId,
   'districtName': ?instance.districtName,
   'wardCode': ?instance.wardCode,

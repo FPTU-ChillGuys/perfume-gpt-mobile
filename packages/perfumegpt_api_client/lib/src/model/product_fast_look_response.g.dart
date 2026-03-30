@@ -15,9 +15,9 @@ abstract class _$ProductFastLookResponseCWProxy {
 
   ProductFastLookResponse brandName(String? brandName);
 
-  ProductFastLookResponse variants(List<VariantFastLookResponse>? variants);
+  ProductFastLookResponse gender(Gender? gender);
 
-  ProductFastLookResponse attribute(ProductAttributeResponse? attribute);
+  ProductFastLookResponse variants(List<VariantFastLookResponse>? variants);
 
   ProductFastLookResponse rating(int? rating);
 
@@ -35,8 +35,8 @@ abstract class _$ProductFastLookResponseCWProxy {
     String? name,
     String? description,
     String? brandName,
+    Gender? gender,
     List<VariantFastLookResponse>? variants,
-    ProductAttributeResponse? attribute,
     int? rating,
     int? reviewCount,
   });
@@ -65,12 +65,11 @@ class _$ProductFastLookResponseCWProxyImpl
       call(brandName: brandName);
 
   @override
-  ProductFastLookResponse variants(List<VariantFastLookResponse>? variants) =>
-      call(variants: variants);
+  ProductFastLookResponse gender(Gender? gender) => call(gender: gender);
 
   @override
-  ProductFastLookResponse attribute(ProductAttributeResponse? attribute) =>
-      call(attribute: attribute);
+  ProductFastLookResponse variants(List<VariantFastLookResponse>? variants) =>
+      call(variants: variants);
 
   @override
   ProductFastLookResponse rating(int? rating) => call(rating: rating);
@@ -92,8 +91,8 @@ class _$ProductFastLookResponseCWProxyImpl
     Object? name = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
     Object? brandName = const $CopyWithPlaceholder(),
+    Object? gender = const $CopyWithPlaceholder(),
     Object? variants = const $CopyWithPlaceholder(),
-    Object? attribute = const $CopyWithPlaceholder(),
     Object? rating = const $CopyWithPlaceholder(),
     Object? reviewCount = const $CopyWithPlaceholder(),
   }) {
@@ -114,14 +113,14 @@ class _$ProductFastLookResponseCWProxyImpl
           ? _value.brandName
           // ignore: cast_nullable_to_non_nullable
           : brandName as String?,
+      gender: gender == const $CopyWithPlaceholder()
+          ? _value.gender
+          // ignore: cast_nullable_to_non_nullable
+          : gender as Gender?,
       variants: variants == const $CopyWithPlaceholder()
           ? _value.variants
           // ignore: cast_nullable_to_non_nullable
           : variants as List<VariantFastLookResponse>?,
-      attribute: attribute == const $CopyWithPlaceholder()
-          ? _value.attribute
-          // ignore: cast_nullable_to_non_nullable
-          : attribute as ProductAttributeResponse?,
       rating: rating == const $CopyWithPlaceholder()
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
@@ -154,6 +153,10 @@ ProductFastLookResponse _$ProductFastLookResponseFromJson(
     name: $checkedConvert('name', (v) => v as String?),
     description: $checkedConvert('description', (v) => v as String?),
     brandName: $checkedConvert('brandName', (v) => v as String?),
+    gender: $checkedConvert(
+      'gender',
+      (v) => $enumDecodeNullable(_$GenderEnumMap, v),
+    ),
     variants: $checkedConvert(
       'variants',
       (v) => (v as List<dynamic>?)
@@ -161,12 +164,6 @@ ProductFastLookResponse _$ProductFastLookResponseFromJson(
             (e) => VariantFastLookResponse.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
-    ),
-    attribute: $checkedConvert(
-      'attribute',
-      (v) => v == null
-          ? null
-          : ProductAttributeResponse.fromJson(v as Map<String, dynamic>),
     ),
     rating: $checkedConvert('rating', (v) => (v as num?)?.toInt()),
     reviewCount: $checkedConvert('reviewCount', (v) => (v as num?)?.toInt()),
@@ -181,8 +178,14 @@ Map<String, dynamic> _$ProductFastLookResponseToJson(
   'name': ?instance.name,
   'description': ?instance.description,
   'brandName': ?instance.brandName,
+  'gender': ?_$GenderEnumMap[instance.gender],
   'variants': ?instance.variants?.map((e) => e.toJson()).toList(),
-  'attribute': ?instance.attribute?.toJson(),
   'rating': ?instance.rating,
   'reviewCount': ?instance.reviewCount,
+};
+
+const _$GenderEnumMap = {
+  Gender.male: 'Male',
+  Gender.female: 'Female',
+  Gender.unisex: 'Unisex',
 };

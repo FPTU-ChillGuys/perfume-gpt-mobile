@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'fulfill_order_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,21 +19,34 @@ part 'fulfill_order_request.g.dart';
 )
 class FulfillOrderRequest {
   /// Returns a new [FulfillOrderRequest] instance.
-  FulfillOrderRequest({this.items});
+  FulfillOrderRequest({
 
-  @JsonKey(name: r'items', required: false, includeIfNull: false)
-  final List<FulfillOrderItemRequest>? items;
+    required  this.items,
+  });
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is FulfillOrderRequest && other.items == items;
+  @JsonKey(
+    
+    name: r'items',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @override
-  int get hashCode => items.hashCode;
 
-  factory FulfillOrderRequest.fromJson(Map<String, dynamic> json) =>
-      _$FulfillOrderRequestFromJson(json);
+  final List<FulfillOrderItemRequest> items;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is FulfillOrderRequest &&
+      other.items == items;
+
+    @override
+    int get hashCode =>
+        items.hashCode;
+
+  factory FulfillOrderRequest.fromJson(Map<String, dynamic> json) => _$FulfillOrderRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$FulfillOrderRequestToJson(this);
 
@@ -40,4 +54,6 @@ class FulfillOrderRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

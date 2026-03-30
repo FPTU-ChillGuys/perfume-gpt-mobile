@@ -7,7 +7,7 @@ part of 'update_attribute_value_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateAttributeValueRequestCWProxy {
-  UpdateAttributeValueRequest value(String? value);
+  UpdateAttributeValueRequest value(String value);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateAttributeValueRequest(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$UpdateAttributeValueRequestCWProxy {
   /// ```dart
   /// UpdateAttributeValueRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  UpdateAttributeValueRequest call({String? value});
+  UpdateAttributeValueRequest call({String value});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -28,7 +28,7 @@ class _$UpdateAttributeValueRequestCWProxyImpl
   final UpdateAttributeValueRequest _value;
 
   @override
-  UpdateAttributeValueRequest value(String? value) => call(value: value);
+  UpdateAttributeValueRequest value(String value) => call(value: value);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -42,10 +42,10 @@ class _$UpdateAttributeValueRequestCWProxyImpl
     Object? value = const $CopyWithPlaceholder(),
   }) {
     return UpdateAttributeValueRequest(
-      value: value == const $CopyWithPlaceholder()
+      value: value == const $CopyWithPlaceholder() || value == null
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
-          : value as String?,
+          : value as String,
     );
   }
 }
@@ -65,12 +65,13 @@ extension $UpdateAttributeValueRequestCopyWith on UpdateAttributeValueRequest {
 UpdateAttributeValueRequest _$UpdateAttributeValueRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateAttributeValueRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['value']);
   final val = UpdateAttributeValueRequest(
-    value: $checkedConvert('value', (v) => v as String?),
+    value: $checkedConvert('value', (v) => v as String),
   );
   return val;
 });
 
 Map<String, dynamic> _$UpdateAttributeValueRequestToJson(
   UpdateAttributeValueRequest instance,
-) => <String, dynamic>{'value': ?instance.value};
+) => <String, dynamic>{'value': instance.value};

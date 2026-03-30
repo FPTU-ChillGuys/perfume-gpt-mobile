@@ -9,9 +9,9 @@ part of 'recipient_info_response.dart';
 abstract class _$RecipientInfoResponseCWProxy {
   RecipientInfoResponse id(String? id);
 
-  RecipientInfoResponse fullName(String? fullName);
+  RecipientInfoResponse recipientName(String? recipientName);
 
-  RecipientInfoResponse phone(String? phone);
+  RecipientInfoResponse recipientPhoneNumber(String? recipientPhoneNumber);
 
   RecipientInfoResponse districtName(String? districtName);
 
@@ -30,8 +30,8 @@ abstract class _$RecipientInfoResponseCWProxy {
   /// ```
   RecipientInfoResponse call({
     String? id,
-    String? fullName,
-    String? phone,
+    String? recipientName,
+    String? recipientPhoneNumber,
     String? districtName,
     String? wardName,
     String? provinceName,
@@ -51,10 +51,12 @@ class _$RecipientInfoResponseCWProxyImpl
   RecipientInfoResponse id(String? id) => call(id: id);
 
   @override
-  RecipientInfoResponse fullName(String? fullName) => call(fullName: fullName);
+  RecipientInfoResponse recipientName(String? recipientName) =>
+      call(recipientName: recipientName);
 
   @override
-  RecipientInfoResponse phone(String? phone) => call(phone: phone);
+  RecipientInfoResponse recipientPhoneNumber(String? recipientPhoneNumber) =>
+      call(recipientPhoneNumber: recipientPhoneNumber);
 
   @override
   RecipientInfoResponse districtName(String? districtName) =>
@@ -81,8 +83,8 @@ class _$RecipientInfoResponseCWProxyImpl
   /// ```
   RecipientInfoResponse call({
     Object? id = const $CopyWithPlaceholder(),
-    Object? fullName = const $CopyWithPlaceholder(),
-    Object? phone = const $CopyWithPlaceholder(),
+    Object? recipientName = const $CopyWithPlaceholder(),
+    Object? recipientPhoneNumber = const $CopyWithPlaceholder(),
     Object? districtName = const $CopyWithPlaceholder(),
     Object? wardName = const $CopyWithPlaceholder(),
     Object? provinceName = const $CopyWithPlaceholder(),
@@ -93,14 +95,14 @@ class _$RecipientInfoResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      fullName: fullName == const $CopyWithPlaceholder()
-          ? _value.fullName
+      recipientName: recipientName == const $CopyWithPlaceholder()
+          ? _value.recipientName
           // ignore: cast_nullable_to_non_nullable
-          : fullName as String?,
-      phone: phone == const $CopyWithPlaceholder()
-          ? _value.phone
+          : recipientName as String?,
+      recipientPhoneNumber: recipientPhoneNumber == const $CopyWithPlaceholder()
+          ? _value.recipientPhoneNumber
           // ignore: cast_nullable_to_non_nullable
-          : phone as String?,
+          : recipientPhoneNumber as String?,
       districtName: districtName == const $CopyWithPlaceholder()
           ? _value.districtName
           // ignore: cast_nullable_to_non_nullable
@@ -138,8 +140,11 @@ RecipientInfoResponse _$RecipientInfoResponseFromJson(
 ) => $checkedCreate('RecipientInfoResponse', json, ($checkedConvert) {
   final val = RecipientInfoResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    fullName: $checkedConvert('fullName', (v) => v as String?),
-    phone: $checkedConvert('phone', (v) => v as String?),
+    recipientName: $checkedConvert('recipientName', (v) => v as String?),
+    recipientPhoneNumber: $checkedConvert(
+      'recipientPhoneNumber',
+      (v) => v as String?,
+    ),
     districtName: $checkedConvert('districtName', (v) => v as String?),
     wardName: $checkedConvert('wardName', (v) => v as String?),
     provinceName: $checkedConvert('provinceName', (v) => v as String?),
@@ -152,8 +157,8 @@ Map<String, dynamic> _$RecipientInfoResponseToJson(
   RecipientInfoResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'fullName': ?instance.fullName,
-  'phone': ?instance.phone,
+  'recipientName': ?instance.recipientName,
+  'recipientPhoneNumber': ?instance.recipientPhoneNumber,
   'districtName': ?instance.districtName,
   'wardName': ?instance.wardName,
   'provinceName': ?instance.provinceName,

@@ -9,9 +9,9 @@ part of 'register_request.dart';
 abstract class _$RegisterRequestCWProxy {
   RegisterRequest fullName(String? fullName);
 
-  RegisterRequest phoneNumber(String? phoneNumber);
+  RegisterRequest phoneNumber(String phoneNumber);
 
-  RegisterRequest email(String? email);
+  RegisterRequest email(String email);
 
   RegisterRequest password(String? password);
 
@@ -26,8 +26,8 @@ abstract class _$RegisterRequestCWProxy {
   /// ```
   RegisterRequest call({
     String? fullName,
-    String? phoneNumber,
-    String? email,
+    String phoneNumber,
+    String email,
     String? password,
     String? clientUri,
   });
@@ -44,11 +44,11 @@ class _$RegisterRequestCWProxyImpl implements _$RegisterRequestCWProxy {
   RegisterRequest fullName(String? fullName) => call(fullName: fullName);
 
   @override
-  RegisterRequest phoneNumber(String? phoneNumber) =>
+  RegisterRequest phoneNumber(String phoneNumber) =>
       call(phoneNumber: phoneNumber);
 
   @override
-  RegisterRequest email(String? email) => call(email: email);
+  RegisterRequest email(String email) => call(email: email);
 
   @override
   RegisterRequest password(String? password) => call(password: password);
@@ -76,14 +76,15 @@ class _$RegisterRequestCWProxyImpl implements _$RegisterRequestCWProxy {
           ? _value.fullName
           // ignore: cast_nullable_to_non_nullable
           : fullName as String?,
-      phoneNumber: phoneNumber == const $CopyWithPlaceholder()
+      phoneNumber:
+          phoneNumber == const $CopyWithPlaceholder() || phoneNumber == null
           ? _value.phoneNumber
           // ignore: cast_nullable_to_non_nullable
-          : phoneNumber as String?,
-      email: email == const $CopyWithPlaceholder()
+          : phoneNumber as String,
+      email: email == const $CopyWithPlaceholder() || email == null
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
-          : email as String?,
+          : email as String,
       password: password == const $CopyWithPlaceholder()
           ? _value.password
           // ignore: cast_nullable_to_non_nullable
@@ -109,10 +110,11 @@ extension $RegisterRequestCopyWith on RegisterRequest {
 
 RegisterRequest _$RegisterRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('RegisterRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['phoneNumber', 'email']);
       final val = RegisterRequest(
         fullName: $checkedConvert('fullName', (v) => v as String?),
-        phoneNumber: $checkedConvert('phoneNumber', (v) => v as String?),
-        email: $checkedConvert('email', (v) => v as String?),
+        phoneNumber: $checkedConvert('phoneNumber', (v) => v as String),
+        email: $checkedConvert('email', (v) => v as String),
         password: $checkedConvert('password', (v) => v as String?),
         clientUri: $checkedConvert('clientUri', (v) => v as String?),
       );
@@ -122,8 +124,8 @@ RegisterRequest _$RegisterRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$RegisterRequestToJson(RegisterRequest instance) =>
     <String, dynamic>{
       'fullName': ?instance.fullName,
-      'phoneNumber': ?instance.phoneNumber,
-      'email': ?instance.email,
+      'phoneNumber': instance.phoneNumber,
+      'email': instance.email,
       'password': ?instance.password,
       'clientUri': ?instance.clientUri,
     };

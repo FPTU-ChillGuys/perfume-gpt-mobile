@@ -15,7 +15,7 @@ abstract class _$BaseResponseOfVoucherResponseCWProxy {
 
   BaseResponseOfVoucherResponse errors(List<String>? errors);
 
-  BaseResponseOfVoucherResponse errorType(ResponseErrorType? errorType);
+  BaseResponseOfVoucherResponse errorType(int? errorType);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfVoucherResponse(...).copyWith.fieldName(value)`.
@@ -29,7 +29,7 @@ abstract class _$BaseResponseOfVoucherResponseCWProxy {
     bool? success,
     String? message,
     List<String>? errors,
-    ResponseErrorType? errorType,
+    int? errorType,
   });
 }
 
@@ -58,7 +58,7 @@ class _$BaseResponseOfVoucherResponseCWProxyImpl
       call(errors: errors);
 
   @override
-  BaseResponseOfVoucherResponse errorType(ResponseErrorType? errorType) =>
+  BaseResponseOfVoucherResponse errorType(int? errorType) =>
       call(errorType: errorType);
 
   @override
@@ -96,7 +96,7 @@ class _$BaseResponseOfVoucherResponseCWProxyImpl
       errorType: errorType == const $CopyWithPlaceholder()
           ? _value.errorType
           // ignore: cast_nullable_to_non_nullable
-          : errorType as ResponseErrorType?,
+          : errorType as int?,
     );
   }
 }
@@ -130,10 +130,7 @@ BaseResponseOfVoucherResponse _$BaseResponseOfVoucherResponseFromJson(
       'errors',
       (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
     ),
-    errorType: $checkedConvert(
-      'errorType',
-      (v) => $enumDecodeNullable(_$ResponseErrorTypeEnumMap, v),
-    ),
+    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
   );
   return val;
 });
@@ -145,15 +142,5 @@ Map<String, dynamic> _$BaseResponseOfVoucherResponseToJson(
   'success': ?instance.success,
   'message': ?instance.message,
   'errors': ?instance.errors,
-  'errorType': ?_$ResponseErrorTypeEnumMap[instance.errorType],
-};
-
-const _$ResponseErrorTypeEnumMap = {
-  ResponseErrorType.none: 'None',
-  ResponseErrorType.badRequest: 'BadRequest',
-  ResponseErrorType.unauthorized: 'Unauthorized',
-  ResponseErrorType.forbidden: 'Forbidden',
-  ResponseErrorType.notFound: 'NotFound',
-  ResponseErrorType.conflict: 'Conflict',
-  ResponseErrorType.internalError: 'InternalError',
+  'errorType': ?instance.errorType,
 };

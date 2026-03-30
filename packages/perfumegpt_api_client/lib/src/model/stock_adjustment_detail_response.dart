@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'stock_adjustment_detail_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,80 +19,161 @@ part 'stock_adjustment_detail_response.g.dart';
 class StockAdjustmentDetailResponse {
   /// Returns a new [StockAdjustmentDetailResponse] instance.
   StockAdjustmentDetailResponse({
-    this.id,
 
-    this.productVariantId,
+     this.id,
 
-    this.productName,
+     this.productVariantId,
 
-    this.variantSku,
+     this.productName,
 
-    this.batchId,
+     this.variantSku,
 
-    this.batchCode,
+     this.batchId,
 
-    this.adjustmentQuantity,
+     this.batchCode,
 
-    this.approvedQuantity,
+     this.adjustmentQuantity,
 
-    this.note,
+     this.approvedQuantity,
+
+     this.note,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'productVariantId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'productVariantId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? productVariantId;
 
-  @JsonKey(name: r'productName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'productName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? productName;
 
-  @JsonKey(name: r'variantSku', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantSku',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantSku;
 
-  @JsonKey(name: r'batchId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'batchId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? batchId;
 
-  @JsonKey(name: r'batchCode', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'batchCode',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? batchCode;
 
-  @JsonKey(name: r'adjustmentQuantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'adjustmentQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? adjustmentQuantity;
 
-  @JsonKey(name: r'approvedQuantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'approvedQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? approvedQuantity;
 
-  @JsonKey(name: r'note', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'note',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? note;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is StockAdjustmentDetailResponse &&
-          other.id == id &&
-          other.productVariantId == productVariantId &&
-          other.productName == productName &&
-          other.variantSku == variantSku &&
-          other.batchId == batchId &&
-          other.batchCode == batchCode &&
-          other.adjustmentQuantity == adjustmentQuantity &&
-          other.approvedQuantity == approvedQuantity &&
-          other.note == note;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      productVariantId.hashCode +
-      productName.hashCode +
-      variantSku.hashCode +
-      batchId.hashCode +
-      batchCode.hashCode +
-      adjustmentQuantity.hashCode +
-      approvedQuantity.hashCode +
-      (note == null ? 0 : note.hashCode);
 
-  factory StockAdjustmentDetailResponse.fromJson(Map<String, dynamic> json) =>
-      _$StockAdjustmentDetailResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is StockAdjustmentDetailResponse &&
+      other.id == id &&
+      other.productVariantId == productVariantId &&
+      other.productName == productName &&
+      other.variantSku == variantSku &&
+      other.batchId == batchId &&
+      other.batchCode == batchCode &&
+      other.adjustmentQuantity == adjustmentQuantity &&
+      other.approvedQuantity == approvedQuantity &&
+      other.note == note;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        productVariantId.hashCode +
+        productName.hashCode +
+        variantSku.hashCode +
+        batchId.hashCode +
+        batchCode.hashCode +
+        adjustmentQuantity.hashCode +
+        approvedQuantity.hashCode +
+        (note == null ? 0 : note.hashCode);
+
+  factory StockAdjustmentDetailResponse.fromJson(Map<String, dynamic> json) => _$StockAdjustmentDetailResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$StockAdjustmentDetailResponseToJson(this);
 
@@ -99,4 +181,6 @@ class StockAdjustmentDetailResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

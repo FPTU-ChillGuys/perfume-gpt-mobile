@@ -5,15 +5,16 @@
 // ignore_for_file: unused_element
 import 'package:json_annotation/json_annotation.dart';
 
+
 enum ImportStatus {
-  @JsonValue(r'Pending')
-  pending(r'Pending'),
-  @JsonValue(r'InProgress')
-  inProgress(r'InProgress'),
-  @JsonValue(r'Completed')
-  completed(r'Completed'),
-  @JsonValue(r'Canceled')
-  canceled(r'Canceled');
+      @JsonValue(r'Pending')
+      pending(r'Pending'),
+      @JsonValue(r'InProgress')
+      inProgress(r'InProgress'),
+      @JsonValue(r'Completed')
+      completed(r'Completed'),
+      @JsonValue(r'Cancelled')
+      cancelled(r'Cancelled');
 
   const ImportStatus(this.value);
 

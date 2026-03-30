@@ -21,7 +21,7 @@ abstract class _$VariantLookupItemCWProxy {
 
   VariantLookupItem basePrice(num? basePrice);
 
-  VariantLookupItem primaryImage(MediaResponse? primaryImage);
+  VariantLookupItem primaryImageUrl(String? primaryImageUrl);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantLookupItem(...).copyWith.fieldName(value)`.
@@ -38,7 +38,7 @@ abstract class _$VariantLookupItemCWProxy {
     int? volumeMl,
     String? concentrationName,
     num? basePrice,
-    MediaResponse? primaryImage,
+    String? primaryImageUrl,
   });
 }
 
@@ -73,8 +73,8 @@ class _$VariantLookupItemCWProxyImpl implements _$VariantLookupItemCWProxy {
   VariantLookupItem basePrice(num? basePrice) => call(basePrice: basePrice);
 
   @override
-  VariantLookupItem primaryImage(MediaResponse? primaryImage) =>
-      call(primaryImage: primaryImage);
+  VariantLookupItem primaryImageUrl(String? primaryImageUrl) =>
+      call(primaryImageUrl: primaryImageUrl);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -92,7 +92,7 @@ class _$VariantLookupItemCWProxyImpl implements _$VariantLookupItemCWProxy {
     Object? volumeMl = const $CopyWithPlaceholder(),
     Object? concentrationName = const $CopyWithPlaceholder(),
     Object? basePrice = const $CopyWithPlaceholder(),
-    Object? primaryImage = const $CopyWithPlaceholder(),
+    Object? primaryImageUrl = const $CopyWithPlaceholder(),
   }) {
     return VariantLookupItem(
       id: id == const $CopyWithPlaceholder()
@@ -123,10 +123,10 @@ class _$VariantLookupItemCWProxyImpl implements _$VariantLookupItemCWProxy {
           ? _value.basePrice
           // ignore: cast_nullable_to_non_nullable
           : basePrice as num?,
-      primaryImage: primaryImage == const $CopyWithPlaceholder()
-          ? _value.primaryImage
+      primaryImageUrl: primaryImageUrl == const $CopyWithPlaceholder()
+          ? _value.primaryImageUrl
           // ignore: cast_nullable_to_non_nullable
-          : primaryImage as MediaResponse?,
+          : primaryImageUrl as String?,
     );
   }
 }
@@ -156,11 +156,9 @@ VariantLookupItem _$VariantLookupItemFromJson(Map<String, dynamic> json) =>
           (v) => v as String?,
         ),
         basePrice: $checkedConvert('basePrice', (v) => v as num?),
-        primaryImage: $checkedConvert(
-          'primaryImage',
-          (v) => v == null
-              ? null
-              : MediaResponse.fromJson(v as Map<String, dynamic>),
+        primaryImageUrl: $checkedConvert(
+          'primaryImageUrl',
+          (v) => v as String?,
         ),
       );
       return val;
@@ -175,5 +173,5 @@ Map<String, dynamic> _$VariantLookupItemToJson(VariantLookupItem instance) =>
       'volumeMl': ?instance.volumeMl,
       'concentrationName': ?instance.concentrationName,
       'basePrice': ?instance.basePrice,
-      'primaryImage': ?instance.primaryImage?.toJson(),
+      'primaryImageUrl': ?instance.primaryImageUrl,
     };

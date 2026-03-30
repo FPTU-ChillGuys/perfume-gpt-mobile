@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **shippingFee** | **num** |  | [optional] 
 **status** | **int** |  | [optional] 
 **leadTime** | **int** |  | [optional] 
+**shippedDate** | [**DateTime**](DateTime.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

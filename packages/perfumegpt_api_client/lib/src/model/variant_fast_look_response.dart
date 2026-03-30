@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'variant_fast_look_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,52 +20,129 @@ part 'variant_fast_look_response.g.dart';
 class VariantFastLookResponse {
   /// Returns a new [VariantFastLookResponse] instance.
   VariantFastLookResponse({
-    this.id,
 
-    this.displayName,
+     this.id,
 
-    this.price,
+     this.sku,
 
-    this.stockQuantity,
+     this.displayName,
 
-    this.media,
+     this.price,
+
+     this.retailPrice,
+
+     this.stockQuantity,
+
+     this.media,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'displayName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'sku',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? sku;
+
+
+
+  @JsonKey(
+    
+    name: r'displayName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? displayName;
 
-  @JsonKey(name: r'price', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'price',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? price;
 
-  @JsonKey(name: r'stockQuantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'retailPrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? retailPrice;
+
+
+
+  @JsonKey(
+    
+    name: r'stockQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? stockQuantity;
 
-  @JsonKey(name: r'media', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'media',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final MediaResponse? media;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is VariantFastLookResponse &&
-          other.id == id &&
-          other.displayName == displayName &&
-          other.price == price &&
-          other.stockQuantity == stockQuantity &&
-          other.media == media;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      displayName.hashCode +
-      price.hashCode +
-      stockQuantity.hashCode +
-      (media == null ? 0 : media.hashCode);
 
-  factory VariantFastLookResponse.fromJson(Map<String, dynamic> json) =>
-      _$VariantFastLookResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is VariantFastLookResponse &&
+      other.id == id &&
+      other.sku == sku &&
+      other.displayName == displayName &&
+      other.price == price &&
+      other.retailPrice == retailPrice &&
+      other.stockQuantity == stockQuantity &&
+      other.media == media;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        sku.hashCode +
+        displayName.hashCode +
+        price.hashCode +
+        (retailPrice == null ? 0 : retailPrice.hashCode) +
+        stockQuantity.hashCode +
+        (media == null ? 0 : media.hashCode);
+
+  factory VariantFastLookResponse.fromJson(Map<String, dynamic> json) => _$VariantFastLookResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$VariantFastLookResponseToJson(this);
 
@@ -72,4 +150,6 @@ class VariantFastLookResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

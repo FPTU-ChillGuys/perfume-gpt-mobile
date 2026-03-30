@@ -7,9 +7,7 @@ part of 'swap_damaged_stock_request.dart';
 // **************************************************************************
 
 abstract class _$SwapDamagedStockRequestCWProxy {
-  SwapDamagedStockRequest orderDetailId(String? orderDetailId);
-
-  SwapDamagedStockRequest damagedReservationId(String? damagedReservationId);
+  SwapDamagedStockRequest damagedReservationId(String damagedReservationId);
 
   SwapDamagedStockRequest damageNote(String? damageNote);
 
@@ -21,8 +19,7 @@ abstract class _$SwapDamagedStockRequestCWProxy {
   /// SwapDamagedStockRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   SwapDamagedStockRequest call({
-    String? orderDetailId,
-    String? damagedReservationId,
+    String damagedReservationId,
     String? damageNote,
   });
 }
@@ -36,11 +33,7 @@ class _$SwapDamagedStockRequestCWProxyImpl
   final SwapDamagedStockRequest _value;
 
   @override
-  SwapDamagedStockRequest orderDetailId(String? orderDetailId) =>
-      call(orderDetailId: orderDetailId);
-
-  @override
-  SwapDamagedStockRequest damagedReservationId(String? damagedReservationId) =>
+  SwapDamagedStockRequest damagedReservationId(String damagedReservationId) =>
       call(damagedReservationId: damagedReservationId);
 
   @override
@@ -56,19 +49,16 @@ class _$SwapDamagedStockRequestCWProxyImpl
   /// SwapDamagedStockRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   SwapDamagedStockRequest call({
-    Object? orderDetailId = const $CopyWithPlaceholder(),
     Object? damagedReservationId = const $CopyWithPlaceholder(),
     Object? damageNote = const $CopyWithPlaceholder(),
   }) {
     return SwapDamagedStockRequest(
-      orderDetailId: orderDetailId == const $CopyWithPlaceholder()
-          ? _value.orderDetailId
-          // ignore: cast_nullable_to_non_nullable
-          : orderDetailId as String?,
-      damagedReservationId: damagedReservationId == const $CopyWithPlaceholder()
+      damagedReservationId:
+          damagedReservationId == const $CopyWithPlaceholder() ||
+              damagedReservationId == null
           ? _value.damagedReservationId
           // ignore: cast_nullable_to_non_nullable
-          : damagedReservationId as String?,
+          : damagedReservationId as String,
       damageNote: damageNote == const $CopyWithPlaceholder()
           ? _value.damageNote
           // ignore: cast_nullable_to_non_nullable
@@ -92,11 +82,11 @@ extension $SwapDamagedStockRequestCopyWith on SwapDamagedStockRequest {
 SwapDamagedStockRequest _$SwapDamagedStockRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('SwapDamagedStockRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['damagedReservationId']);
   final val = SwapDamagedStockRequest(
-    orderDetailId: $checkedConvert('orderDetailId', (v) => v as String?),
     damagedReservationId: $checkedConvert(
       'damagedReservationId',
-      (v) => v as String?,
+      (v) => v as String,
     ),
     damageNote: $checkedConvert('damageNote', (v) => v as String?),
   );
@@ -106,7 +96,6 @@ SwapDamagedStockRequest _$SwapDamagedStockRequestFromJson(
 Map<String, dynamic> _$SwapDamagedStockRequestToJson(
   SwapDamagedStockRequest instance,
 ) => <String, dynamic>{
-  'orderDetailId': ?instance.orderDetailId,
-  'damagedReservationId': ?instance.damagedReservationId,
+  'damagedReservationId': instance.damagedReservationId,
   'damageNote': ?instance.damageNote,
 };

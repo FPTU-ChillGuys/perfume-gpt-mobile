@@ -9,10 +9,10 @@ part of 'create_import_ticket_request.dart';
 abstract class _$CreateImportTicketRequestCWProxy {
   CreateImportTicketRequest supplierId(int? supplierId);
 
-  CreateImportTicketRequest expectedArrivalDate(DateTime? expectedArrivalDate);
+  CreateImportTicketRequest expectedArrivalDate(DateTime expectedArrivalDate);
 
   CreateImportTicketRequest importDetails(
-    List<CreateImportDetailRequest>? importDetails,
+    List<CreateImportDetailRequest> importDetails,
   );
 
   /// Creates a new instance with the provided field values.
@@ -24,8 +24,8 @@ abstract class _$CreateImportTicketRequestCWProxy {
   /// ```
   CreateImportTicketRequest call({
     int? supplierId,
-    DateTime? expectedArrivalDate,
-    List<CreateImportDetailRequest>? importDetails,
+    DateTime expectedArrivalDate,
+    List<CreateImportDetailRequest> importDetails,
   });
 }
 
@@ -42,13 +42,12 @@ class _$CreateImportTicketRequestCWProxyImpl
       call(supplierId: supplierId);
 
   @override
-  CreateImportTicketRequest expectedArrivalDate(
-    DateTime? expectedArrivalDate,
-  ) => call(expectedArrivalDate: expectedArrivalDate);
+  CreateImportTicketRequest expectedArrivalDate(DateTime expectedArrivalDate) =>
+      call(expectedArrivalDate: expectedArrivalDate);
 
   @override
   CreateImportTicketRequest importDetails(
-    List<CreateImportDetailRequest>? importDetails,
+    List<CreateImportDetailRequest> importDetails,
   ) => call(importDetails: importDetails);
 
   @override
@@ -69,14 +68,17 @@ class _$CreateImportTicketRequestCWProxyImpl
           ? _value.supplierId
           // ignore: cast_nullable_to_non_nullable
           : supplierId as int?,
-      expectedArrivalDate: expectedArrivalDate == const $CopyWithPlaceholder()
+      expectedArrivalDate:
+          expectedArrivalDate == const $CopyWithPlaceholder() ||
+              expectedArrivalDate == null
           ? _value.expectedArrivalDate
           // ignore: cast_nullable_to_non_nullable
-          : expectedArrivalDate as DateTime?,
-      importDetails: importDetails == const $CopyWithPlaceholder()
+          : expectedArrivalDate as DateTime,
+      importDetails:
+          importDetails == const $CopyWithPlaceholder() || importDetails == null
           ? _value.importDetails
           // ignore: cast_nullable_to_non_nullable
-          : importDetails as List<CreateImportDetailRequest>?,
+          : importDetails as List<CreateImportDetailRequest>,
     );
   }
 }
@@ -96,16 +98,20 @@ extension $CreateImportTicketRequestCopyWith on CreateImportTicketRequest {
 CreateImportTicketRequest _$CreateImportTicketRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateImportTicketRequest', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['expectedArrivalDate', 'importDetails'],
+  );
   final val = CreateImportTicketRequest(
     supplierId: $checkedConvert('supplierId', (v) => (v as num?)?.toInt()),
     expectedArrivalDate: $checkedConvert(
       'expectedArrivalDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
+      (v) => DateTime.parse(v as String),
     ),
     importDetails: $checkedConvert(
       'importDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) =>
                 CreateImportDetailRequest.fromJson(e as Map<String, dynamic>),
           )
@@ -119,6 +125,6 @@ Map<String, dynamic> _$CreateImportTicketRequestToJson(
   CreateImportTicketRequest instance,
 ) => <String, dynamic>{
   'supplierId': ?instance.supplierId,
-  'expectedArrivalDate': ?instance.expectedArrivalDate?.toIso8601String(),
-  'importDetails': ?instance.importDetails?.map((e) => e.toJson()).toList(),
+  'expectedArrivalDate': instance.expectedArrivalDate.toIso8601String(),
+  'importDetails': instance.importDetails.map((e) => e.toJson()).toList(),
 };

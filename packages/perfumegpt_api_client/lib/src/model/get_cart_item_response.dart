@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'get_cart_item_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,87 +20,177 @@ part 'get_cart_item_response.g.dart';
 class GetCartItemResponse {
   /// Returns a new [GetCartItemResponse] instance.
   GetCartItemResponse({
-    this.cartItemId,
 
-    this.variantId,
+     this.cartItemId,
 
-    this.variantName,
+     this.variantId,
 
-    this.imageUrl,
+     this.variantName,
 
-    this.volumeMl,
+     this.imageUrl,
 
-    this.type,
+     this.volumeMl,
 
-    this.variantPrice,
+     this.type,
 
-    this.quantity,
+     this.variantPrice,
 
-    this.isAvailable,
+     this.quantity,
 
-    this.subTotal,
+     this.isAvailable,
+
+     this.subTotal,
   });
 
-  @JsonKey(name: r'cartItemId', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'cartItemId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? cartItemId;
 
-  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantId;
 
-  @JsonKey(name: r'variantName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantName;
 
-  @JsonKey(name: r'imageUrl', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'imageUrl',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? imageUrl;
 
-  @JsonKey(name: r'volumeMl', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'volumeMl',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? volumeMl;
 
-  @JsonKey(name: r'type', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'type',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final VariantType? type;
 
-  @JsonKey(name: r'variantPrice', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantPrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? variantPrice;
 
-  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'quantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? quantity;
 
-  @JsonKey(name: r'isAvailable', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'isAvailable',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? isAvailable;
 
-  @JsonKey(name: r'subTotal', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'subTotal',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? subTotal;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is GetCartItemResponse &&
-          other.cartItemId == cartItemId &&
-          other.variantId == variantId &&
-          other.variantName == variantName &&
-          other.imageUrl == imageUrl &&
-          other.volumeMl == volumeMl &&
-          other.type == type &&
-          other.variantPrice == variantPrice &&
-          other.quantity == quantity &&
-          other.isAvailable == isAvailable &&
-          other.subTotal == subTotal;
 
-  @override
-  int get hashCode =>
-      cartItemId.hashCode +
-      variantId.hashCode +
-      variantName.hashCode +
-      imageUrl.hashCode +
-      volumeMl.hashCode +
-      type.hashCode +
-      variantPrice.hashCode +
-      quantity.hashCode +
-      isAvailable.hashCode +
-      subTotal.hashCode;
 
-  factory GetCartItemResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetCartItemResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is GetCartItemResponse &&
+      other.cartItemId == cartItemId &&
+      other.variantId == variantId &&
+      other.variantName == variantName &&
+      other.imageUrl == imageUrl &&
+      other.volumeMl == volumeMl &&
+      other.type == type &&
+      other.variantPrice == variantPrice &&
+      other.quantity == quantity &&
+      other.isAvailable == isAvailable &&
+      other.subTotal == subTotal;
+
+    @override
+    int get hashCode =>
+        cartItemId.hashCode +
+        variantId.hashCode +
+        variantName.hashCode +
+        imageUrl.hashCode +
+        volumeMl.hashCode +
+        type.hashCode +
+        variantPrice.hashCode +
+        quantity.hashCode +
+        isAvailable.hashCode +
+        subTotal.hashCode;
+
+  factory GetCartItemResponse.fromJson(Map<String, dynamic> json) => _$GetCartItemResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$GetCartItemResponseToJson(this);
 
@@ -107,4 +198,6 @@ class GetCartItemResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

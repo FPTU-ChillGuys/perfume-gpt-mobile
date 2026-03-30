@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_attribute_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,59 +19,113 @@ part 'product_attribute_response.g.dart';
 class ProductAttributeResponse {
   /// Returns a new [ProductAttributeResponse] instance.
   ProductAttributeResponse({
-    this.id,
 
-    this.attributeId,
+     this.id,
 
-    this.valueId,
+     this.attributeId,
 
-    this.attribute,
+     this.valueId,
 
-    this.description,
+     this.attribute,
 
-    this.value,
+     this.description,
+
+     this.value,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'attributeId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'attributeId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? attributeId;
 
-  @JsonKey(name: r'valueId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'valueId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? valueId;
 
-  @JsonKey(name: r'attribute', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'attribute',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? attribute;
 
-  @JsonKey(name: r'description', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'description',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? description;
 
-  @JsonKey(name: r'value', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'value',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? value;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProductAttributeResponse &&
-          other.id == id &&
-          other.attributeId == attributeId &&
-          other.valueId == valueId &&
-          other.attribute == attribute &&
-          other.description == description &&
-          other.value == value;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      attributeId.hashCode +
-      valueId.hashCode +
-      attribute.hashCode +
-      description.hashCode +
-      value.hashCode;
 
-  factory ProductAttributeResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductAttributeResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ProductAttributeResponse &&
+      other.id == id &&
+      other.attributeId == attributeId &&
+      other.valueId == valueId &&
+      other.attribute == attribute &&
+      other.description == description &&
+      other.value == value;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        attributeId.hashCode +
+        valueId.hashCode +
+        attribute.hashCode +
+        description.hashCode +
+        value.hashCode;
+
+  factory ProductAttributeResponse.fromJson(Map<String, dynamic> json) => _$ProductAttributeResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductAttributeResponseToJson(this);
 
@@ -78,4 +133,6 @@ class ProductAttributeResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

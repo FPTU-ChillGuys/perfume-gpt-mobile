@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'province_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,101 +19,209 @@ part 'province_response.g.dart';
 class ProvinceResponse {
   /// Returns a new [ProvinceResponse] instance.
   ProvinceResponse({
-    this.provinceID,
 
-    this.provinceName,
+     this.provinceID,
 
-    this.countryID,
+     this.provinceName,
 
-    this.code,
+     this.countryID,
 
-    this.nameExtension,
+     this.code,
 
-    this.isEnable,
+     this.nameExtension,
 
-    this.regionID,
+     this.isEnable,
 
-    this.updatedBy,
+     this.regionID,
 
-    this.createdAt,
+     this.updatedBy,
 
-    this.updatedAt,
+     this.createdAt,
 
-    this.canUpdateCOD,
+     this.updatedAt,
 
-    this.status,
+     this.canUpdateCOD,
+
+     this.status,
   });
 
-  @JsonKey(name: r'ProvinceID', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'ProvinceID',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? provinceID;
 
-  @JsonKey(name: r'ProvinceName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'ProvinceName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? provinceName;
 
-  @JsonKey(name: r'CountryID', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'CountryID',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? countryID;
 
-  @JsonKey(name: r'Code', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'Code',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? code;
 
-  @JsonKey(name: r'NameExtension', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'NameExtension',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<String>? nameExtension;
 
-  @JsonKey(name: r'IsEnable', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'IsEnable',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? isEnable;
 
-  @JsonKey(name: r'RegionID', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'RegionID',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? regionID;
 
-  @JsonKey(name: r'UpdatedBy', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'UpdatedBy',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? updatedBy;
 
-  @JsonKey(name: r'CreatedAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'CreatedAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? createdAt;
 
-  @JsonKey(name: r'UpdatedAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'UpdatedAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? updatedAt;
 
-  @JsonKey(name: r'CanUpdateCOD', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'CanUpdateCOD',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? canUpdateCOD;
 
-  @JsonKey(name: r'Status', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'Status',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? status;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProvinceResponse &&
-          other.provinceID == provinceID &&
-          other.provinceName == provinceName &&
-          other.countryID == countryID &&
-          other.code == code &&
-          other.nameExtension == nameExtension &&
-          other.isEnable == isEnable &&
-          other.regionID == regionID &&
-          other.updatedBy == updatedBy &&
-          other.createdAt == createdAt &&
-          other.updatedAt == updatedAt &&
-          other.canUpdateCOD == canUpdateCOD &&
-          other.status == status;
 
-  @override
-  int get hashCode =>
-      provinceID.hashCode +
-      provinceName.hashCode +
-      countryID.hashCode +
-      code.hashCode +
-      nameExtension.hashCode +
-      isEnable.hashCode +
-      regionID.hashCode +
-      updatedBy.hashCode +
-      createdAt.hashCode +
-      updatedAt.hashCode +
-      canUpdateCOD.hashCode +
-      status.hashCode;
 
-  factory ProvinceResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProvinceResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ProvinceResponse &&
+      other.provinceID == provinceID &&
+      other.provinceName == provinceName &&
+      other.countryID == countryID &&
+      other.code == code &&
+      other.nameExtension == nameExtension &&
+      other.isEnable == isEnable &&
+      other.regionID == regionID &&
+      other.updatedBy == updatedBy &&
+      other.createdAt == createdAt &&
+      other.updatedAt == updatedAt &&
+      other.canUpdateCOD == canUpdateCOD &&
+      other.status == status;
+
+    @override
+    int get hashCode =>
+        provinceID.hashCode +
+        provinceName.hashCode +
+        countryID.hashCode +
+        code.hashCode +
+        nameExtension.hashCode +
+        isEnable.hashCode +
+        regionID.hashCode +
+        updatedBy.hashCode +
+        createdAt.hashCode +
+        updatedAt.hashCode +
+        canUpdateCOD.hashCode +
+        status.hashCode;
+
+  factory ProvinceResponse.fromJson(Map<String, dynamic> json) => _$ProvinceResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProvinceResponseToJson(this);
 
@@ -120,4 +229,6 @@ class ProvinceResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

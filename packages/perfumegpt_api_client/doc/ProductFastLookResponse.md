@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **name** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
 **brandName** | **String** |  | [optional] 
+**gender** | [**Gender**](Gender.md) |  | [optional] 
 **variants** | [**List&lt;VariantFastLookResponse&gt;**](VariantFastLookResponse.md) |  | [optional] 
-**attribute** | [**ProductAttributeResponse**](ProductAttributeResponse.md) |  | [optional] 
 **rating** | **int** |  | [optional] 
 **reviewCount** | **int** |  | [optional] 
 

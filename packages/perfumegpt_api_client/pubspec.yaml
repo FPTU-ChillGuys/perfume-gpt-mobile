@@ -6,7 +6,7 @@ homepage: homepage
 
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.11.0
 
 dependencies:
   dio: '^5.7.0'

@@ -12,12 +12,13 @@ Name | Type | Description | Notes
 **variantId** | **String** |  | [optional] 
 **variantSku** | **String** |  | [optional] 
 **productName** | **String** |  | [optional] 
+**variantImageUrl** | **String** |  | [optional] 
 **volumeMl** | **int** |  | [optional] 
 **concentrationName** | **String** |  | [optional] 
 **totalQuantity** | **int** |  | [optional] 
 **availableQuantity** | **int** |  | [optional] 
 **lowStockThreshold** | **int** |  | [optional] 
-**isLowStock** | **bool** |  | [optional] 
+**status** | [**StockStatus**](StockStatus.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

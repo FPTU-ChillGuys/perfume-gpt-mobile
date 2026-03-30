@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_concentration_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,21 +18,34 @@ part 'update_concentration_request.g.dart';
 )
 class UpdateConcentrationRequest {
   /// Returns a new [UpdateConcentrationRequest] instance.
-  UpdateConcentrationRequest({this.name});
+  UpdateConcentrationRequest({
 
-  @JsonKey(name: r'name', required: false, includeIfNull: false)
-  final String? name;
+    required  this.name,
+  });
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is UpdateConcentrationRequest && other.name == name;
+  @JsonKey(
+    
+    name: r'name',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @override
-  int get hashCode => name.hashCode;
 
-  factory UpdateConcentrationRequest.fromJson(Map<String, dynamic> json) =>
-      _$UpdateConcentrationRequestFromJson(json);
+  final String name;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is UpdateConcentrationRequest &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        name.hashCode;
+
+  factory UpdateConcentrationRequest.fromJson(Map<String, dynamic> json) => _$UpdateConcentrationRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateConcentrationRequestToJson(this);
 
@@ -39,4 +53,6 @@ class UpdateConcentrationRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

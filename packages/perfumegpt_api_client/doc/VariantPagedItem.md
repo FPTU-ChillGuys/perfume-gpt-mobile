@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **productId** | **String** |  | [optional] 
-**primaryImage** | [**MediaResponse**](MediaResponse.md) |  | [optional] 
+**primaryImageUrl** | **String** |  | [optional] 
 **barcode** | **String** |  | [optional] 
 **sku** | **String** |  | [optional] 
 **volumeMl** | **int** |  | [optional] 
@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **concentrationName** | **String** |  | [optional] 
 **type** | [**VariantType**](VariantType.md) |  | [optional] 
 **basePrice** | **num** |  | [optional] 
+**retailPrice** | **num** |  | [optional] 
 **status** | [**VariantStatus**](VariantStatus.md) |  | [optional] 
 **stockQuantity** | **int** |  | [optional] 
 **attributes** | [**List&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | [optional] 

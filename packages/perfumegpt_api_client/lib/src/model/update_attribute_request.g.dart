@@ -7,11 +7,11 @@ part of 'update_attribute_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateAttributeRequestCWProxy {
-  UpdateAttributeRequest name(String? name);
+  UpdateAttributeRequest name(String name);
 
   UpdateAttributeRequest description(String? description);
 
-  UpdateAttributeRequest isVariantLevel(bool? isVariantLevel);
+  UpdateAttributeRequest isVariantLevel(bool isVariantLevel);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateAttributeRequest(...).copyWith.fieldName(value)`.
@@ -21,9 +21,9 @@ abstract class _$UpdateAttributeRequestCWProxy {
   /// UpdateAttributeRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateAttributeRequest call({
-    String? name,
+    String name,
     String? description,
-    bool? isVariantLevel,
+    bool isVariantLevel,
   });
 }
 
@@ -36,14 +36,14 @@ class _$UpdateAttributeRequestCWProxyImpl
   final UpdateAttributeRequest _value;
 
   @override
-  UpdateAttributeRequest name(String? name) => call(name: name);
+  UpdateAttributeRequest name(String name) => call(name: name);
 
   @override
   UpdateAttributeRequest description(String? description) =>
       call(description: description);
 
   @override
-  UpdateAttributeRequest isVariantLevel(bool? isVariantLevel) =>
+  UpdateAttributeRequest isVariantLevel(bool isVariantLevel) =>
       call(isVariantLevel: isVariantLevel);
 
   @override
@@ -60,18 +60,20 @@ class _$UpdateAttributeRequestCWProxyImpl
     Object? isVariantLevel = const $CopyWithPlaceholder(),
   }) {
     return UpdateAttributeRequest(
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
       description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
           : description as String?,
-      isVariantLevel: isVariantLevel == const $CopyWithPlaceholder()
+      isVariantLevel:
+          isVariantLevel == const $CopyWithPlaceholder() ||
+              isVariantLevel == null
           ? _value.isVariantLevel
           // ignore: cast_nullable_to_non_nullable
-          : isVariantLevel as bool?,
+          : isVariantLevel as bool,
     );
   }
 }
@@ -91,10 +93,11 @@ extension $UpdateAttributeRequestCopyWith on UpdateAttributeRequest {
 UpdateAttributeRequest _$UpdateAttributeRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateAttributeRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name', 'isVariantLevel']);
   final val = UpdateAttributeRequest(
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
     description: $checkedConvert('description', (v) => v as String?),
-    isVariantLevel: $checkedConvert('isVariantLevel', (v) => v as bool?),
+    isVariantLevel: $checkedConvert('isVariantLevel', (v) => v as bool),
   );
   return val;
 });
@@ -102,7 +105,7 @@ UpdateAttributeRequest _$UpdateAttributeRequestFromJson(
 Map<String, dynamic> _$UpdateAttributeRequestToJson(
   UpdateAttributeRequest instance,
 ) => <String, dynamic>{
-  'name': ?instance.name,
+  'name': instance.name,
   'description': ?instance.description,
-  'isVariantLevel': ?instance.isVariantLevel,
+  'isVariantLevel': instance.isVariantLevel,
 };

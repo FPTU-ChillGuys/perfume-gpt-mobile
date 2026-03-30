@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_attribute_value_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,26 +18,34 @@ part 'create_attribute_value_request.g.dart';
 )
 class CreateAttributeValueRequest {
   /// Returns a new [CreateAttributeValueRequest] instance.
-  CreateAttributeValueRequest({this.attributeId, this.value});
+  CreateAttributeValueRequest({
 
-  @JsonKey(name: r'attributeId', required: false, includeIfNull: false)
-  final int? attributeId;
+    required  this.value,
+  });
 
-  @JsonKey(name: r'value', required: false, includeIfNull: false)
-  final String? value;
+  @JsonKey(
+    
+    name: r'value',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateAttributeValueRequest &&
-          other.attributeId == attributeId &&
-          other.value == value;
 
-  @override
-  int get hashCode => attributeId.hashCode + value.hashCode;
+  final String value;
 
-  factory CreateAttributeValueRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateAttributeValueRequestFromJson(json);
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateAttributeValueRequest &&
+      other.value == value;
+
+    @override
+    int get hashCode =>
+        value.hashCode;
+
+  factory CreateAttributeValueRequest.fromJson(Map<String, dynamic> json) => _$CreateAttributeValueRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateAttributeValueRequestToJson(this);
 
@@ -44,4 +53,6 @@ class CreateAttributeValueRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

@@ -11,9 +11,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apiVouchersAvailableGet**](VouchersApi.md#apivouchersavailableget) | **GET** /api/vouchers/available | 
 [**apiVouchersGet**](VouchersApi.md#apivouchersget) | **GET** /api/vouchers | 
-[**apiVouchersMyVouchersGet**](VouchersApi.md#apivouchersmyvouchersget) | **GET** /api/vouchers/my-vouchers | 
+[**apiVouchersMeGet**](VouchersApi.md#apivouchersmeget) | **GET** /api/vouchers/me | 
 [**apiVouchersPost**](VouchersApi.md#apivoucherspost) | **POST** /api/vouchers | 
 [**apiVouchersRedeemPost**](VouchersApi.md#apivouchersredeempost) | **POST** /api/vouchers/redeem | 
+[**apiVouchersRedeemableListGet**](VouchersApi.md#apivouchersredeemablelistget) | **GET** /api/vouchers/redeemable-list | 
 [**apiVouchersVoucherIdDelete**](VouchersApi.md#apivouchersvoucheriddelete) | **DELETE** /api/vouchers/{voucherId} | 
 [**apiVouchersVoucherIdGet**](VouchersApi.md#apivouchersvoucheridget) | **GET** /api/vouchers/{voucherId} | 
 [**apiVouchersVoucherIdPut**](VouchersApi.md#apivouchersvoucheridput) | **PUT** /api/vouchers/{voucherId} | 
@@ -121,8 +122,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiVouchersMyVouchersGet**
-> BaseResponseOfPagedResultOfUserVoucherResponse apiVouchersMyVouchersGet(status, isUsed, isExpired, code, discountType, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+# **apiVouchersMeGet**
+> BaseResponseOfPagedResultOfUserVoucherResponse apiVouchersMeGet(status, isUsed, isExpired, code, discountType, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -143,10 +144,10 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiVouchersMyVouchersGet(status, isUsed, isExpired, code, discountType, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiVouchersMeGet(status, isUsed, isExpired, code, discountType, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling VouchersApi->apiVouchersMyVouchersGet: $e\n');
+    print('Exception when calling VouchersApi->apiVouchersMeGet: $e\n');
 }
 ```
 
@@ -258,6 +259,55 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiVouchersRedeemableListGet**
+> BaseResponseOfListOfRedeemableVoucherResponse apiVouchersRedeemableListGet(pageNumber, pageSize, sortBy, sortOrder, isDescending)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getVouchersApi();
+final int pageNumber = 56; // int | 
+final int pageSize = 56; // int | 
+final String sortBy = sortBy_example; // String | 
+final String sortOrder = sortOrder_example; // String | 
+final bool isDescending = true; // bool | 
+
+try {
+    final response = api.apiVouchersRedeemableListGet(pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling VouchersApi->apiVouchersRedeemableListGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageNumber** | **int**|  | [optional] 
+ **pageSize** | **int**|  | [optional] 
+ **sortBy** | **String**|  | [optional] 
+ **sortOrder** | **String**|  | [optional] 
+ **isDescending** | **bool**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfListOfRedeemableVoucherResponse**](BaseResponseOfListOfRedeemableVoucherResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

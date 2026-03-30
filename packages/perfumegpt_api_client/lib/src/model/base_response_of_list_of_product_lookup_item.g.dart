@@ -17,7 +17,7 @@ abstract class _$BaseResponseOfListOfProductLookupItemCWProxy {
 
   BaseResponseOfListOfProductLookupItem errors(List<String>? errors);
 
-  BaseResponseOfListOfProductLookupItem errorType(ResponseErrorType? errorType);
+  BaseResponseOfListOfProductLookupItem errorType(int? errorType);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfProductLookupItem(...).copyWith.fieldName(value)`.
@@ -31,7 +31,7 @@ abstract class _$BaseResponseOfListOfProductLookupItemCWProxy {
     bool? success,
     String? message,
     List<String>? errors,
-    ResponseErrorType? errorType,
+    int? errorType,
   });
 }
 
@@ -61,9 +61,8 @@ class _$BaseResponseOfListOfProductLookupItemCWProxyImpl
       call(errors: errors);
 
   @override
-  BaseResponseOfListOfProductLookupItem errorType(
-    ResponseErrorType? errorType,
-  ) => call(errorType: errorType);
+  BaseResponseOfListOfProductLookupItem errorType(int? errorType) =>
+      call(errorType: errorType);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -100,7 +99,7 @@ class _$BaseResponseOfListOfProductLookupItemCWProxyImpl
       errorType: errorType == const $CopyWithPlaceholder()
           ? _value.errorType
           // ignore: cast_nullable_to_non_nullable
-          : errorType as ResponseErrorType?,
+          : errorType as int?,
     );
   }
 }
@@ -138,10 +137,7 @@ _$BaseResponseOfListOfProductLookupItemFromJson(Map<String, dynamic> json) =>
           'errors',
           (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
         ),
-        errorType: $checkedConvert(
-          'errorType',
-          (v) => $enumDecodeNullable(_$ResponseErrorTypeEnumMap, v),
-        ),
+        errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
       );
       return val;
     });
@@ -153,15 +149,5 @@ Map<String, dynamic> _$BaseResponseOfListOfProductLookupItemToJson(
   'success': ?instance.success,
   'message': ?instance.message,
   'errors': ?instance.errors,
-  'errorType': ?_$ResponseErrorTypeEnumMap[instance.errorType],
-};
-
-const _$ResponseErrorTypeEnumMap = {
-  ResponseErrorType.none: 'None',
-  ResponseErrorType.badRequest: 'BadRequest',
-  ResponseErrorType.unauthorized: 'Unauthorized',
-  ResponseErrorType.forbidden: 'Forbidden',
-  ResponseErrorType.notFound: 'NotFound',
-  ResponseErrorType.conflict: 'Conflict',
-  ResponseErrorType.internalError: 'InternalError',
+  'errorType': ?instance.errorType,
 };

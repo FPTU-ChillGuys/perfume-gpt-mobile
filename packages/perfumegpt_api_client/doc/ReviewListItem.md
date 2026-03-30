@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **commentPreview** | **String** |  | [optional] 
 **imageCount** | **int** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**moderatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

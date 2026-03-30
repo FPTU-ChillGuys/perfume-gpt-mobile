@@ -15,6 +15,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'user_order_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -25,115 +26,241 @@ part 'user_order_response.g.dart';
 class UserOrderResponse {
   /// Returns a new [UserOrderResponse] instance.
   UserOrderResponse({
-    this.id,
 
-    this.type,
+     this.id,
 
-    this.status,
+     this.type,
 
-    this.paymentStatus,
+     this.status,
 
-    this.totalAmount,
+     this.paymentStatus,
 
-    this.voucherCode,
+     this.totalAmount,
 
-    this.paymentExpiresAt,
+     this.voucherCode,
 
-    this.paidAt,
+     this.paymentExpiresAt,
 
-    this.createdAt,
+     this.paidAt,
 
-    this.updatedAt,
+     this.createdAt,
 
-    this.paymentTransactions,
+     this.updatedAt,
 
-    this.shippingInfo,
+     this.paymentTransactions,
 
-    this.recipientInfo,
+     this.shippingInfo,
 
-    this.orderDetails,
+     this.recipientInfo,
+
+     this.orderDetails,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'type', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'type',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final OrderType? type;
 
-  @JsonKey(name: r'status', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'status',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final OrderStatus? status;
 
-  @JsonKey(name: r'paymentStatus', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'paymentStatus',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final PaymentStatus? paymentStatus;
 
-  @JsonKey(name: r'totalAmount', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? totalAmount;
 
-  @JsonKey(name: r'voucherCode', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'voucherCode',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? voucherCode;
 
-  @JsonKey(name: r'paymentExpiresAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'paymentExpiresAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? paymentExpiresAt;
 
-  @JsonKey(name: r'paidAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'paidAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? paidAt;
 
-  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'createdAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? createdAt;
 
-  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'updatedAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? updatedAt;
 
-  @JsonKey(name: r'paymentTransactions', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'paymentTransactions',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<PaymentInfoResponse>? paymentTransactions;
 
-  @JsonKey(name: r'shippingInfo', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'shippingInfo',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final ShippingInfoResponse? shippingInfo;
 
-  @JsonKey(name: r'recipientInfo', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'recipientInfo',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final RecipientInfoResponse? recipientInfo;
 
-  @JsonKey(name: r'orderDetails', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'orderDetails',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<OrderDetailResponse>? orderDetails;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is UserOrderResponse &&
-          other.id == id &&
-          other.type == type &&
-          other.status == status &&
-          other.paymentStatus == paymentStatus &&
-          other.totalAmount == totalAmount &&
-          other.voucherCode == voucherCode &&
-          other.paymentExpiresAt == paymentExpiresAt &&
-          other.paidAt == paidAt &&
-          other.createdAt == createdAt &&
-          other.updatedAt == updatedAt &&
-          other.paymentTransactions == paymentTransactions &&
-          other.shippingInfo == shippingInfo &&
-          other.recipientInfo == recipientInfo &&
-          other.orderDetails == orderDetails;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      type.hashCode +
-      status.hashCode +
-      paymentStatus.hashCode +
-      totalAmount.hashCode +
-      (voucherCode == null ? 0 : voucherCode.hashCode) +
-      (paymentExpiresAt == null ? 0 : paymentExpiresAt.hashCode) +
-      (paidAt == null ? 0 : paidAt.hashCode) +
-      createdAt.hashCode +
-      (updatedAt == null ? 0 : updatedAt.hashCode) +
-      (paymentTransactions == null ? 0 : paymentTransactions.hashCode) +
-      (shippingInfo == null ? 0 : shippingInfo.hashCode) +
-      (recipientInfo == null ? 0 : recipientInfo.hashCode) +
-      orderDetails.hashCode;
 
-  factory UserOrderResponse.fromJson(Map<String, dynamic> json) =>
-      _$UserOrderResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is UserOrderResponse &&
+      other.id == id &&
+      other.type == type &&
+      other.status == status &&
+      other.paymentStatus == paymentStatus &&
+      other.totalAmount == totalAmount &&
+      other.voucherCode == voucherCode &&
+      other.paymentExpiresAt == paymentExpiresAt &&
+      other.paidAt == paidAt &&
+      other.createdAt == createdAt &&
+      other.updatedAt == updatedAt &&
+      other.paymentTransactions == paymentTransactions &&
+      other.shippingInfo == shippingInfo &&
+      other.recipientInfo == recipientInfo &&
+      other.orderDetails == orderDetails;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        type.hashCode +
+        status.hashCode +
+        paymentStatus.hashCode +
+        totalAmount.hashCode +
+        (voucherCode == null ? 0 : voucherCode.hashCode) +
+        (paymentExpiresAt == null ? 0 : paymentExpiresAt.hashCode) +
+        (paidAt == null ? 0 : paidAt.hashCode) +
+        createdAt.hashCode +
+        (updatedAt == null ? 0 : updatedAt.hashCode) +
+        (paymentTransactions == null ? 0 : paymentTransactions.hashCode) +
+        (shippingInfo == null ? 0 : shippingInfo.hashCode) +
+        (recipientInfo == null ? 0 : recipientInfo.hashCode) +
+        orderDetails.hashCode;
+
+  factory UserOrderResponse.fromJson(Map<String, dynamic> json) => _$UserOrderResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserOrderResponseToJson(this);
 
@@ -141,4 +268,6 @@ class UserOrderResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

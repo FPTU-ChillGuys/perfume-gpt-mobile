@@ -15,6 +15,12 @@ abstract class _$VoucherResponseCWProxy {
 
   VoucherResponse discountType(DiscountType? discountType);
 
+  VoucherResponse campaignId(String? campaignId);
+
+  VoucherResponse applyType(VoucherType? applyType);
+
+  VoucherResponse targetItemType(PromotionType? targetItemType);
+
   VoucherResponse requiredPoints(int? requiredPoints);
 
   VoucherResponse minOrderValue(num? minOrderValue);
@@ -43,6 +49,9 @@ abstract class _$VoucherResponseCWProxy {
     String? code,
     num? discountValue,
     DiscountType? discountType,
+    String? campaignId,
+    VoucherType? applyType,
+    PromotionType? targetItemType,
     int? requiredPoints,
     num? minOrderValue,
     DateTime? expiryDate,
@@ -74,6 +83,18 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
   @override
   VoucherResponse discountType(DiscountType? discountType) =>
       call(discountType: discountType);
+
+  @override
+  VoucherResponse campaignId(String? campaignId) =>
+      call(campaignId: campaignId);
+
+  @override
+  VoucherResponse applyType(VoucherType? applyType) =>
+      call(applyType: applyType);
+
+  @override
+  VoucherResponse targetItemType(PromotionType? targetItemType) =>
+      call(targetItemType: targetItemType);
 
   @override
   VoucherResponse requiredPoints(int? requiredPoints) =>
@@ -117,6 +138,9 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
     Object? code = const $CopyWithPlaceholder(),
     Object? discountValue = const $CopyWithPlaceholder(),
     Object? discountType = const $CopyWithPlaceholder(),
+    Object? campaignId = const $CopyWithPlaceholder(),
+    Object? applyType = const $CopyWithPlaceholder(),
+    Object? targetItemType = const $CopyWithPlaceholder(),
     Object? requiredPoints = const $CopyWithPlaceholder(),
     Object? minOrderValue = const $CopyWithPlaceholder(),
     Object? expiryDate = const $CopyWithPlaceholder(),
@@ -143,6 +167,18 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
           ? _value.discountType
           // ignore: cast_nullable_to_non_nullable
           : discountType as DiscountType?,
+      campaignId: campaignId == const $CopyWithPlaceholder()
+          ? _value.campaignId
+          // ignore: cast_nullable_to_non_nullable
+          : campaignId as String?,
+      applyType: applyType == const $CopyWithPlaceholder()
+          ? _value.applyType
+          // ignore: cast_nullable_to_non_nullable
+          : applyType as VoucherType?,
+      targetItemType: targetItemType == const $CopyWithPlaceholder()
+          ? _value.targetItemType
+          // ignore: cast_nullable_to_non_nullable
+          : targetItemType as PromotionType?,
       requiredPoints: requiredPoints == const $CopyWithPlaceholder()
           ? _value.requiredPoints
           // ignore: cast_nullable_to_non_nullable
@@ -200,6 +236,15 @@ VoucherResponse _$VoucherResponseFromJson(Map<String, dynamic> json) =>
           'discountType',
           (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
         ),
+        campaignId: $checkedConvert('campaignId', (v) => v as String?),
+        applyType: $checkedConvert(
+          'applyType',
+          (v) => $enumDecodeNullable(_$VoucherTypeEnumMap, v),
+        ),
+        targetItemType: $checkedConvert(
+          'targetItemType',
+          (v) => $enumDecodeNullable(_$PromotionTypeEnumMap, v),
+        ),
         requiredPoints: $checkedConvert(
           'requiredPoints',
           (v) => (v as num?)?.toInt(),
@@ -233,6 +278,9 @@ Map<String, dynamic> _$VoucherResponseToJson(VoucherResponse instance) =>
       'code': ?instance.code,
       'discountValue': ?instance.discountValue,
       'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
+      'campaignId': ?instance.campaignId,
+      'applyType': ?_$VoucherTypeEnumMap[instance.applyType],
+      'targetItemType': ?_$PromotionTypeEnumMap[instance.targetItemType],
       'requiredPoints': ?instance.requiredPoints,
       'minOrderValue': ?instance.minOrderValue,
       'expiryDate': ?instance.expiryDate?.toIso8601String(),
@@ -245,5 +293,16 @@ Map<String, dynamic> _$VoucherResponseToJson(VoucherResponse instance) =>
 
 const _$DiscountTypeEnumMap = {
   DiscountType.percentage: 'Percentage',
-  DiscountType.fixed: 'Fixed',
+  DiscountType.fixedAmount: 'FixedAmount',
+};
+
+const _$VoucherTypeEnumMap = {
+  VoucherType.order: 'Order',
+  VoucherType.product: 'Product',
+};
+
+const _$PromotionTypeEnumMap = {
+  PromotionType.clearance: 'Clearance',
+  PromotionType.newArrival: 'NewArrival',
+  PromotionType.regular: 'Regular',
 };
