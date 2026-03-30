@@ -14,19 +14,63 @@ class ProfilePage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Profile'),
         actions: [
-          IconButton(
-            onPressed: () {
-              ref.read(authProvider.notifier).logout();
-              context.go('/login');
-            },
-            icon: const Icon(Icons.logout),
-          ),
+          if (authState.value != null)
+            IconButton(
+              onPressed: () {
+                ref.read(authProvider.notifier).logout();
+                // We stay on this page, which will rebuild as Guest View
+              },
+              icon: const Icon(Icons.logout),
+            ),
         ],
       ),
       body: authState.when(
         data: (user) {
           if (user == null) {
-            return const Center(child: Text('Not logged in'));
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.account_circle_outlined,
+                      size: 100,
+                      color: Colors.grey,
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      'Welcome to PerfumeGPT',
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Log in to track your orders, save your scent preferences, and earn loyalty points.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    const SizedBox(height: 40),
+                    ElevatedButton(
+                      onPressed: () => context.push('/login'),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 50),
+                      ),
+                      child: const Text('Log In'),
+                    ),
+                    const SizedBox(height: 16),
+                    OutlinedButton(
+                      onPressed: () => context.push('/register'),
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 50),
+                      ),
+                      child: const Text('Create an Account'),
+                    ),
+                  ],
+                ),
+              ),
+            );
           }
           return Center(
             child: Column(
