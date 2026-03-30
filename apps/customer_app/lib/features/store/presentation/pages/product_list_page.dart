@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/product_provider.dart';
+import '../../../../domain/entities/product.dart';
+import '../../../../core/utils/price_formatter.dart';
 
 class ProductListPage extends ConsumerStatefulWidget {
   const ProductListPage({super.key});
@@ -105,7 +107,7 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            '${product.price.toStringAsFixed(0)} VND',
+                            _getPriceText(product),
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.bold,
@@ -137,5 +139,15 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
         error: (error, stack) => Center(child: Text('Error: $error')),
       ),
     );
+  }
+
+  String _getPriceText(Product product) {
+    if (product.minPrice != null &&
+        product.maxPrice != null &&
+        product.minPrice != product.maxPrice) {
+      return PriceFormatter.formatRange(product.minPrice!, product.maxPrice!);
+    } else {
+      return PriceFormatter.format(product.price);
+    }
   }
 }
