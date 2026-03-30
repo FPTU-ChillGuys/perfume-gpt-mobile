@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../providers/home_providers.dart';
+import '../widgets/product_horizontal_list.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final newArrivalsAsync = ref.watch(newArrivalsProvider);
+    final bestSellersAsync = ref.watch(bestSellersProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('PerfumeGPT'),
@@ -25,8 +31,8 @@ class HomePage extends StatelessWidget {
               Text(
                 'Welcome to PerfumeGPT',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               const SizedBox(height: 20),
               Card(
@@ -67,49 +73,22 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Featured Fragrances',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () => context.push('/store'),
-                    child: const Text('View All'),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              // Placeholder for a horizontal list of products
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () => context.push('/store'),
-                      child: Container(
-                        width: 150,
-                        margin: const EdgeInsets.only(right: 16),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.image,
-                            size: 50,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
+              newArrivalsAsync.when(
+                data: (products) => ProductHorizontalList(
+                  title: 'New Arrivals',
+                  products: products,
                 ),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (error, stack) => Center(child: Text('Error: $error')),
+              ),
+              const SizedBox(height: 32),
+              bestSellersAsync.when(
+                data: (products) => ProductHorizontalList(
+                  title: 'Best Sellers',
+                  products: products,
+                ),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (error, stack) => Center(child: Text('Error: $error')),
               ),
             ],
           ),
