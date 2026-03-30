@@ -31,8 +31,8 @@ class HomePage extends ConsumerWidget {
               Text(
                 'Welcome to PerfumeGPT',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 20),
               Card(

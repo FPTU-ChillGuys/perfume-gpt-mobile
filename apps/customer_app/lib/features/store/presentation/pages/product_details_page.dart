@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:customer_app/features/order/presentation/providers/cart_provider.dart';
 import '../providers/product_provider.dart';
+import '../../../../domain/entities/product.dart';
+import '../../../../core/utils/price_formatter.dart';
 
 class ProductDetailsPage extends ConsumerWidget {
   final String productId;
@@ -45,7 +47,7 @@ class ProductDetailsPage extends ConsumerWidget {
                           ),
                         ),
                         Text(
-                          '${product.price.toStringAsFixed(0)} VND',
+                          _getPriceText(product),
                           style: Theme.of(context).textTheme.headlineSmall
                               ?.copyWith(
                                 color: Theme.of(context).colorScheme.primary,
@@ -181,5 +183,15 @@ class ProductDetailsPage extends ConsumerWidget {
         error: (error, stack) => const SizedBox.shrink(),
       ),
     );
+  }
+
+  String _getPriceText(Product product) {
+    if (product.minPrice != null &&
+        product.maxPrice != null &&
+        product.minPrice != product.maxPrice) {
+      return PriceFormatter.formatRange(product.minPrice!, product.maxPrice!);
+    } else {
+      return PriceFormatter.format(product.price);
+    }
   }
 }

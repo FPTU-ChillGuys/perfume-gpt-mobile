@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../data/repositories/product_repository_impl.dart';
 import '../providers/cart_providers.dart';
+import '../../../../core/utils/price_formatter.dart';
 
 class PosScreen extends ConsumerWidget {
   const PosScreen({super.key});
@@ -77,7 +78,7 @@ class PosScreen extends ConsumerWidget {
                       return ListTile(
                         title: Text(item.product.name),
                         subtitle: Text(
-                          'SKU: ${item.product.sku} | \$${item.product.price}',
+                          'SKU: ${item.product.sku} | ${PriceFormatter.format(item.product.price)}',
                         ),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -125,7 +126,7 @@ class PosScreen extends ConsumerWidget {
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     Text(
-                      '\$${total.toStringAsFixed(2)}',
+                      PriceFormatter.format(total),
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),

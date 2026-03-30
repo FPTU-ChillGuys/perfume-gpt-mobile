@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/utils/price_formatter.dart';
 import '../../../../domain/entities/product.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
   final double width;
 
-  const ProductCard({
-    super.key,
-    required this.product,
-    this.width = 150,
-  });
+  const ProductCard({super.key, required this.product, this.width = 150});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +32,8 @@ class ProductCard extends StatelessWidget {
                       if (loadingProgress == null) return child;
                       return const Center(child: CircularProgressIndicator());
                     },
-                    errorBuilder: (context, error, stackTrace) => const Center(
-                      child: Icon(Icons.image_not_supported),
-                    ),
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Center(child: Icon(Icons.image_not_supported)),
                   ),
                 ),
               ),
@@ -60,7 +56,7 @@ class ProductCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${product.price.toStringAsFixed(0)} VND',
+                      _getPriceText(product),
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.bold,
@@ -74,5 +70,15 @@ class ProductCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getPriceText(Product product) {
+    if (product.minPrice != null &&
+        product.maxPrice != null &&
+        product.minPrice != product.maxPrice) {
+      return PriceFormatter.formatRange(product.minPrice!, product.maxPrice!);
+    } else {
+      return PriceFormatter.format(product.price);
+    }
   }
 }
