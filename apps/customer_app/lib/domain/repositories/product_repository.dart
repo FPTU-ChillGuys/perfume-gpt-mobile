@@ -4,4 +4,6 @@ abstract class ProductRepository {
   Future<List<Product>> getProducts({String? query});
   Future<Product> getProductById(String id);
   Future<List<Product>> semanticSearch(String query);
+  Future<List<Product>> getBestSellers();
+  Future<List<Product>> getNewArrivals();
 }

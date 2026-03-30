@@ -16,21 +16,7 @@ class ProductRepositoryImpl implements ProductRepository {
 
     final response = await _api.apiProductsGet();
     final items = response.data?.payload?.items ?? [];
-    return items
-        .map(
-          (item) => Product(
-            id: item.id ?? '',
-            name: item.name ?? '',
-            description: item.description ?? '',
-            price: 0, // List API doesn't include price, fetched individually
-            imageUrl: item.primaryImage?.url ?? '',
-            scentNotes: item.tags ?? [],
-            brand: item.brandName ?? '',
-            rating: 0,
-            reviewCount: 0,
-          ),
-        )
-        .toList();
+    return items.map(_mapListItemToProduct).toList();
   }
 
   @override
@@ -65,20 +51,48 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<List<Product>> semanticSearch(String query) async {
     final response = await _api.apiProductsSearchSemanticGet(searchText: query);
     final items = response.data?.payload?.items ?? [];
-    return items
-        .map(
-          (item) => Product(
-            id: item.id ?? '',
-            name: item.name ?? '',
-            description: item.description ?? '',
-            price: 0,
-            imageUrl: item.primaryImage?.url ?? '',
-            scentNotes: item.tags ?? [],
-            brand: item.brandName ?? '',
-            rating: 0,
-            reviewCount: 0,
-          ),
-        )
-        .toList();
+    return items.map(_mapListItemWithVariantsToProduct).toList();
+  }
+
+  @override
+  Future<List<Product>> getBestSellers() async {
+    final response = await _api.apiProductsBestSellersGet();
+    final items = response.data?.payload?.items ?? [];
+    return items.map(_mapListItemToProduct).toList();
+  }
+
+  @override
+  Future<List<Product>> getNewArrivals() async {
+    final response = await _api.apiProductsNewArrivalsGet();
+    final items = response.data?.payload?.items ?? [];
+    return items.map(_mapListItemToProduct).toList();
+  }
+
+  Product _mapListItemToProduct(ProductListItem item) {
+    return Product(
+      id: item.id ?? '',
+      name: item.name ?? '',
+      description: item.description ?? '',
+      price: 0, // List API doesn't include price, fetched individually
+      imageUrl: item.primaryImage?.url ?? '',
+      scentNotes: item.tags ?? [],
+      brand: item.brandName ?? '',
+      rating: 0,
+      reviewCount: 0,
+    );
+  }
+
+  Product _mapListItemWithVariantsToProduct(ProductListItemWithVariants item) {
+    return Product(
+      id: item.id ?? '',
+      name: item.name ?? '',
+      description: item.description ?? '',
+      price: 0,
+      imageUrl: item.primaryImage?.url ?? '',
+      scentNotes: item.tags ?? [],
+      brand: item.brandName ?? '',
+      rating: 0,
+      reviewCount: 0,
+    );
   }
 }
