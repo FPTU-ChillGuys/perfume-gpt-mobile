@@ -9,7 +9,8 @@ All URIs are relative to *https://localhost:7011*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiImportticketsDownloadTemplateGet**](ImportTicketsApi.md#apiimportticketsdownloadtemplateget) | **GET** /api/importtickets/download-template | 
+[**apiImportticketsExcelParserPost**](ImportTicketsApi.md#apiimportticketsexcelparserpost) | **POST** /api/importtickets/excel-parser | 
+[**apiImportticketsExcelTemplateGet**](ImportTicketsApi.md#apiimportticketsexceltemplateget) | **GET** /api/importtickets/excel-template | 
 [**apiImportticketsGet**](ImportTicketsApi.md#apiimportticketsget) | **GET** /api/importtickets | 
 [**apiImportticketsIdDelete**](ImportTicketsApi.md#apiimportticketsiddelete) | **DELETE** /api/importtickets/{id} | 
 [**apiImportticketsIdGet**](ImportTicketsApi.md#apiimportticketsidget) | **GET** /api/importtickets/{id} | 
@@ -17,11 +18,55 @@ Method | HTTP request | Description
 [**apiImportticketsIdStatusPut**](ImportTicketsApi.md#apiimportticketsidstatusput) | **PUT** /api/importtickets/{id}/status | 
 [**apiImportticketsPost**](ImportTicketsApi.md#apiimportticketspost) | **POST** /api/importtickets | 
 [**apiImportticketsTicketIdVerifyPost**](ImportTicketsApi.md#apiimportticketsticketidverifypost) | **POST** /api/importtickets/{ticketId}/verify | 
-[**apiImportticketsUploadExcelPost**](ImportTicketsApi.md#apiimportticketsuploadexcelpost) | **POST** /api/importtickets/upload-excel | 
 
 
-# **apiImportticketsDownloadTemplateGet**
-> FileContentResult apiImportticketsDownloadTemplateGet()
+# **apiImportticketsExcelParserPost**
+> BaseResponseOfCreateImportTicketRequest apiImportticketsExcelParserPost(excelFile, supplierId, expectedArrivalDate)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getImportTicketsApi();
+final MultipartFile excelFile = BINARY_DATA_HERE; // MultipartFile | 
+final int supplierId = 56; // int | 
+final DateTime expectedArrivalDate = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final response = api.apiImportticketsExcelParserPost(excelFile, supplierId, expectedArrivalDate);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ImportTicketsApi->apiImportticketsExcelParserPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **excelFile** | **MultipartFile**|  | [optional] 
+ **supplierId** | **int**|  | [optional] 
+ **expectedArrivalDate** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfCreateImportTicketRequest**](BaseResponseOfCreateImportTicketRequest.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiImportticketsExcelTemplateGet**
+> FileContentResult apiImportticketsExcelTemplateGet()
 
 
 
@@ -32,10 +77,10 @@ import 'package:perfumegpt_api_client/api.dart';
 final api = PerfumegptApiClient().getImportTicketsApi();
 
 try {
-    final response = api.apiImportticketsDownloadTemplateGet();
+    final response = api.apiImportticketsExcelTemplateGet();
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ImportTicketsApi->apiImportticketsDownloadTemplateGet: $e\n');
+    print('Exception when calling ImportTicketsApi->apiImportticketsExcelTemplateGet: $e\n');
 }
 ```
 
@@ -364,51 +409,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiImportticketsUploadExcelPost**
-> BaseResponseOfstring apiImportticketsUploadExcelPost(excelFile, supplierId, expectedArrivalDate)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getImportTicketsApi();
-final MultipartFile excelFile = BINARY_DATA_HERE; // MultipartFile | 
-final int supplierId = 56; // int | 
-final DateTime expectedArrivalDate = 2013-10-20T19:20:30+01:00; // DateTime | 
-
-try {
-    final response = api.apiImportticketsUploadExcelPost(excelFile, supplierId, expectedArrivalDate);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling ImportTicketsApi->apiImportticketsUploadExcelPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **excelFile** | **MultipartFile**|  | [optional] 
- **supplierId** | **int**|  | [optional] 
- **expectedArrivalDate** | **DateTime**|  | [optional] 
-
-### Return type
-
-[**BaseResponseOfstring**](BaseResponseOfstring.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

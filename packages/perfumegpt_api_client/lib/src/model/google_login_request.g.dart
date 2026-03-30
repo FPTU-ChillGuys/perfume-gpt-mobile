@@ -7,7 +7,7 @@ part of 'google_login_request.dart';
 // **************************************************************************
 
 abstract class _$GoogleLoginRequestCWProxy {
-  GoogleLoginRequest idToken(String? idToken);
+  GoogleLoginRequest idToken(String idToken);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleLoginRequest(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$GoogleLoginRequestCWProxy {
   /// ```dart
   /// GoogleLoginRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  GoogleLoginRequest call({String? idToken});
+  GoogleLoginRequest call({String idToken});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -27,7 +27,7 @@ class _$GoogleLoginRequestCWProxyImpl implements _$GoogleLoginRequestCWProxy {
   final GoogleLoginRequest _value;
 
   @override
-  GoogleLoginRequest idToken(String? idToken) => call(idToken: idToken);
+  GoogleLoginRequest idToken(String idToken) => call(idToken: idToken);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -39,10 +39,10 @@ class _$GoogleLoginRequestCWProxyImpl implements _$GoogleLoginRequestCWProxy {
   /// ```
   GoogleLoginRequest call({Object? idToken = const $CopyWithPlaceholder()}) {
     return GoogleLoginRequest(
-      idToken: idToken == const $CopyWithPlaceholder()
+      idToken: idToken == const $CopyWithPlaceholder() || idToken == null
           ? _value.idToken
           // ignore: cast_nullable_to_non_nullable
-          : idToken as String?,
+          : idToken as String,
     );
   }
 }
@@ -61,11 +61,12 @@ extension $GoogleLoginRequestCopyWith on GoogleLoginRequest {
 
 GoogleLoginRequest _$GoogleLoginRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('GoogleLoginRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['idToken']);
       final val = GoogleLoginRequest(
-        idToken: $checkedConvert('idToken', (v) => v as String?),
+        idToken: $checkedConvert('idToken', (v) => v as String),
       );
       return val;
     });
 
 Map<String, dynamic> _$GoogleLoginRequestToJson(GoogleLoginRequest instance) =>
-    <String, dynamic>{'idToken': ?instance.idToken};
+    <String, dynamic>{'idToken': instance.idToken};

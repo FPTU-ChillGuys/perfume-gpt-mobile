@@ -8,7 +8,7 @@ part of 'verify_stock_adjustment_request.dart';
 
 abstract class _$VerifyStockAdjustmentRequestCWProxy {
   VerifyStockAdjustmentRequest adjustmentDetails(
-    List<VerifyStockAdjustmentDetailRequest>? adjustmentDetails,
+    List<VerifyStockAdjustmentDetailRequest> adjustmentDetails,
   );
 
   /// Creates a new instance with the provided field values.
@@ -19,7 +19,7 @@ abstract class _$VerifyStockAdjustmentRequestCWProxy {
   /// VerifyStockAdjustmentRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   VerifyStockAdjustmentRequest call({
-    List<VerifyStockAdjustmentDetailRequest>? adjustmentDetails,
+    List<VerifyStockAdjustmentDetailRequest> adjustmentDetails,
   });
 }
 
@@ -33,7 +33,7 @@ class _$VerifyStockAdjustmentRequestCWProxyImpl
 
   @override
   VerifyStockAdjustmentRequest adjustmentDetails(
-    List<VerifyStockAdjustmentDetailRequest>? adjustmentDetails,
+    List<VerifyStockAdjustmentDetailRequest> adjustmentDetails,
   ) => call(adjustmentDetails: adjustmentDetails);
 
   @override
@@ -48,10 +48,12 @@ class _$VerifyStockAdjustmentRequestCWProxyImpl
     Object? adjustmentDetails = const $CopyWithPlaceholder(),
   }) {
     return VerifyStockAdjustmentRequest(
-      adjustmentDetails: adjustmentDetails == const $CopyWithPlaceholder()
+      adjustmentDetails:
+          adjustmentDetails == const $CopyWithPlaceholder() ||
+              adjustmentDetails == null
           ? _value.adjustmentDetails
           // ignore: cast_nullable_to_non_nullable
-          : adjustmentDetails as List<VerifyStockAdjustmentDetailRequest>?,
+          : adjustmentDetails as List<VerifyStockAdjustmentDetailRequest>,
     );
   }
 }
@@ -72,11 +74,12 @@ extension $VerifyStockAdjustmentRequestCopyWith
 VerifyStockAdjustmentRequest _$VerifyStockAdjustmentRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('VerifyStockAdjustmentRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['adjustmentDetails']);
   final val = VerifyStockAdjustmentRequest(
     adjustmentDetails: $checkedConvert(
       'adjustmentDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => VerifyStockAdjustmentDetailRequest.fromJson(
               e as Map<String, dynamic>,
             ),
@@ -90,7 +93,7 @@ VerifyStockAdjustmentRequest _$VerifyStockAdjustmentRequestFromJson(
 Map<String, dynamic> _$VerifyStockAdjustmentRequestToJson(
   VerifyStockAdjustmentRequest instance,
 ) => <String, dynamic>{
-  'adjustmentDetails': ?instance.adjustmentDetails
-      ?.map((e) => e.toJson())
+  'adjustmentDetails': instance.adjustmentDetails
+      .map((e) => e.toJson())
       .toList(),
 };

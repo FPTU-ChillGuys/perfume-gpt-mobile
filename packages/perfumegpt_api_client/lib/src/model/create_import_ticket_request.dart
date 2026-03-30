@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_import_ticket_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,38 +20,66 @@ part 'create_import_ticket_request.g.dart';
 class CreateImportTicketRequest {
   /// Returns a new [CreateImportTicketRequest] instance.
   CreateImportTicketRequest({
-    this.supplierId,
 
-    this.expectedArrivalDate,
+     this.supplierId,
 
-    this.importDetails,
+    required  this.expectedArrivalDate,
+
+    required  this.importDetails,
   });
 
-  @JsonKey(name: r'supplierId', required: false, includeIfNull: false)
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'supplierId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? supplierId;
 
-  @JsonKey(name: r'expectedArrivalDate', required: false, includeIfNull: false)
-  final DateTime? expectedArrivalDate;
 
-  @JsonKey(name: r'importDetails', required: false, includeIfNull: false)
-  final List<CreateImportDetailRequest>? importDetails;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateImportTicketRequest &&
-          other.supplierId == supplierId &&
-          other.expectedArrivalDate == expectedArrivalDate &&
-          other.importDetails == importDetails;
+  @JsonKey(
+    
+    name: r'expectedArrivalDate',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @override
-  int get hashCode =>
-      supplierId.hashCode +
-      expectedArrivalDate.hashCode +
-      importDetails.hashCode;
 
-  factory CreateImportTicketRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateImportTicketRequestFromJson(json);
+  final DateTime expectedArrivalDate;
+
+
+
+  @JsonKey(
+    
+    name: r'importDetails',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final List<CreateImportDetailRequest> importDetails;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateImportTicketRequest &&
+      other.supplierId == supplierId &&
+      other.expectedArrivalDate == expectedArrivalDate &&
+      other.importDetails == importDetails;
+
+    @override
+    int get hashCode =>
+        supplierId.hashCode +
+        expectedArrivalDate.hashCode +
+        importDetails.hashCode;
+
+  factory CreateImportTicketRequest.fromJson(Map<String, dynamic> json) => _$CreateImportTicketRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateImportTicketRequestToJson(this);
 
@@ -58,4 +87,6 @@ class CreateImportTicketRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

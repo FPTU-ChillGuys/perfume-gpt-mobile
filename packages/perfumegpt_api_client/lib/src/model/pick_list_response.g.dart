@@ -9,8 +9,6 @@ part of 'pick_list_response.dart';
 abstract class _$PickListResponseCWProxy {
   PickListResponse orderId(String? orderId);
 
-  PickListResponse orderCode(String? orderCode);
-
   PickListResponse items(List<PickListItemResponse>? items);
 
   /// Creates a new instance with the provided field values.
@@ -20,11 +18,7 @@ abstract class _$PickListResponseCWProxy {
   /// ```dart
   /// PickListResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  PickListResponse call({
-    String? orderId,
-    String? orderCode,
-    List<PickListItemResponse>? items,
-  });
+  PickListResponse call({String? orderId, List<PickListItemResponse>? items});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -36,9 +30,6 @@ class _$PickListResponseCWProxyImpl implements _$PickListResponseCWProxy {
 
   @override
   PickListResponse orderId(String? orderId) => call(orderId: orderId);
-
-  @override
-  PickListResponse orderCode(String? orderCode) => call(orderCode: orderCode);
 
   @override
   PickListResponse items(List<PickListItemResponse>? items) =>
@@ -54,7 +45,6 @@ class _$PickListResponseCWProxyImpl implements _$PickListResponseCWProxy {
   /// ```
   PickListResponse call({
     Object? orderId = const $CopyWithPlaceholder(),
-    Object? orderCode = const $CopyWithPlaceholder(),
     Object? items = const $CopyWithPlaceholder(),
   }) {
     return PickListResponse(
@@ -62,10 +52,6 @@ class _$PickListResponseCWProxyImpl implements _$PickListResponseCWProxy {
           ? _value.orderId
           // ignore: cast_nullable_to_non_nullable
           : orderId as String?,
-      orderCode: orderCode == const $CopyWithPlaceholder()
-          ? _value.orderCode
-          // ignore: cast_nullable_to_non_nullable
-          : orderCode as String?,
       items: items == const $CopyWithPlaceholder()
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
@@ -89,7 +75,6 @@ PickListResponse _$PickListResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('PickListResponse', json, ($checkedConvert) {
       final val = PickListResponse(
         orderId: $checkedConvert('orderId', (v) => v as String?),
-        orderCode: $checkedConvert('orderCode', (v) => v as String?),
         items: $checkedConvert(
           'items',
           (v) => (v as List<dynamic>?)
@@ -105,6 +90,5 @@ PickListResponse _$PickListResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PickListResponseToJson(PickListResponse instance) =>
     <String, dynamic>{
       'orderId': ?instance.orderId,
-      'orderCode': ?instance.orderCode,
       'items': ?instance.items?.map((e) => e.toJson()).toList(),
     };

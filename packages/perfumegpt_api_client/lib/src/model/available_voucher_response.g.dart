@@ -173,5 +173,5 @@ Map<String, dynamic> _$AvailableVoucherResponseToJson(
 
 const _$DiscountTypeEnumMap = {
   DiscountType.percentage: 'Percentage',
-  DiscountType.fixed: 'Fixed',
+  DiscountType.fixedAmount: 'FixedAmount',
 };

@@ -8,8 +8,8 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**importDetailId** | **String** |  | [optional] 
-**rejectQuantity** | **int** |  | [optional] 
+**importDetailId** | **String** |  | 
+**rejectedQuantity** | **int** |  | [optional] 
 **note** | **String** |  | [optional] 
 **batches** | [**List&lt;CreateBatchRequest&gt;**](CreateBatchRequest.md) |  | [optional] 
 

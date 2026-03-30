@@ -190,5 +190,5 @@ const _$StockAdjustmentStatusEnumMap = {
   StockAdjustmentStatus.pending: 'Pending',
   StockAdjustmentStatus.inProgress: 'InProgress',
   StockAdjustmentStatus.completed: 'Completed',
-  StockAdjustmentStatus.canceled: 'Canceled',
+  StockAdjustmentStatus.cancelled: 'Cancelled',
 };

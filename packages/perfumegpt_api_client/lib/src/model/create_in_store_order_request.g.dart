@@ -12,12 +12,12 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
   CreateInStoreOrderRequest isPickupInStore(bool? isPickupInStore);
 
   CreateInStoreOrderRequest orderDetails(
-    List<CreateOrderDetailRequest>? orderDetails,
+    List<CreateOrderDetailRequest> orderDetails,
   );
 
   CreateInStoreOrderRequest recipient(RecipientInformation? recipient);
 
-  CreateInStoreOrderRequest payment(PaymentInformation? payment);
+  CreateInStoreOrderRequest payment(PaymentInformation payment);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateInStoreOrderRequest(...).copyWith.fieldName(value)`.
@@ -29,9 +29,9 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
   CreateInStoreOrderRequest call({
     String? voucherCode,
     bool? isPickupInStore,
-    List<CreateOrderDetailRequest>? orderDetails,
+    List<CreateOrderDetailRequest> orderDetails,
     RecipientInformation? recipient,
-    PaymentInformation? payment,
+    PaymentInformation payment,
   });
 }
 
@@ -53,7 +53,7 @@ class _$CreateInStoreOrderRequestCWProxyImpl
 
   @override
   CreateInStoreOrderRequest orderDetails(
-    List<CreateOrderDetailRequest>? orderDetails,
+    List<CreateOrderDetailRequest> orderDetails,
   ) => call(orderDetails: orderDetails);
 
   @override
@@ -61,7 +61,7 @@ class _$CreateInStoreOrderRequestCWProxyImpl
       call(recipient: recipient);
 
   @override
-  CreateInStoreOrderRequest payment(PaymentInformation? payment) =>
+  CreateInStoreOrderRequest payment(PaymentInformation payment) =>
       call(payment: payment);
 
   @override
@@ -88,18 +88,19 @@ class _$CreateInStoreOrderRequestCWProxyImpl
           ? _value.isPickupInStore
           // ignore: cast_nullable_to_non_nullable
           : isPickupInStore as bool?,
-      orderDetails: orderDetails == const $CopyWithPlaceholder()
+      orderDetails:
+          orderDetails == const $CopyWithPlaceholder() || orderDetails == null
           ? _value.orderDetails
           // ignore: cast_nullable_to_non_nullable
-          : orderDetails as List<CreateOrderDetailRequest>?,
+          : orderDetails as List<CreateOrderDetailRequest>,
       recipient: recipient == const $CopyWithPlaceholder()
           ? _value.recipient
           // ignore: cast_nullable_to_non_nullable
           : recipient as RecipientInformation?,
-      payment: payment == const $CopyWithPlaceholder()
+      payment: payment == const $CopyWithPlaceholder() || payment == null
           ? _value.payment
           // ignore: cast_nullable_to_non_nullable
-          : payment as PaymentInformation?,
+          : payment as PaymentInformation,
     );
   }
 }
@@ -119,13 +120,14 @@ extension $CreateInStoreOrderRequestCopyWith on CreateInStoreOrderRequest {
 CreateInStoreOrderRequest _$CreateInStoreOrderRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateInStoreOrderRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['orderDetails', 'payment']);
   final val = CreateInStoreOrderRequest(
     voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
     isPickupInStore: $checkedConvert('isPickupInStore', (v) => v as bool?),
     orderDetails: $checkedConvert(
       'orderDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => CreateOrderDetailRequest.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
@@ -138,9 +140,7 @@ CreateInStoreOrderRequest _$CreateInStoreOrderRequestFromJson(
     ),
     payment: $checkedConvert(
       'payment',
-      (v) => v == null
-          ? null
-          : PaymentInformation.fromJson(v as Map<String, dynamic>),
+      (v) => PaymentInformation.fromJson(v as Map<String, dynamic>),
     ),
   );
   return val;
@@ -151,7 +151,7 @@ Map<String, dynamic> _$CreateInStoreOrderRequestToJson(
 ) => <String, dynamic>{
   'voucherCode': ?instance.voucherCode,
   'isPickupInStore': ?instance.isPickupInStore,
-  'orderDetails': ?instance.orderDetails?.map((e) => e.toJson()).toList(),
+  'orderDetails': instance.orderDetails.map((e) => e.toJson()).toList(),
   'recipient': ?instance.recipient?.toJson(),
-  'payment': ?instance.payment?.toJson(),
+  'payment': instance.payment.toJson(),
 };

@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'import_ticket_list_item.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,87 +20,177 @@ part 'import_ticket_list_item.g.dart';
 class ImportTicketListItem {
   /// Returns a new [ImportTicketListItem] instance.
   ImportTicketListItem({
-    required this.id,
 
-    this.createdByName,
+    required  this.id,
 
-    this.verifiedByName,
+     this.createdByName,
 
-    this.supplierName,
+     this.verifiedByName,
 
-    required this.expectedArrivalDate,
+     this.supplierName,
 
-    required this.actualImportDate,
+    required  this.expectedArrivalDate,
 
-    required this.totalCost,
+    required  this.actualImportDate,
 
-    this.status,
+    required  this.totalCost,
 
-    this.totalItems,
+     this.status,
 
-    this.createdAt,
+     this.totalItems,
+
+     this.createdAt,
   });
 
-  @JsonKey(name: r'id', required: true, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String id;
 
-  @JsonKey(name: r'createdByName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'createdByName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? createdByName;
 
-  @JsonKey(name: r'verifiedByName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'verifiedByName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? verifiedByName;
 
-  @JsonKey(name: r'supplierName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'supplierName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? supplierName;
 
-  @JsonKey(name: r'expectedArrivalDate', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'expectedArrivalDate',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final DateTime expectedArrivalDate;
 
-  @JsonKey(name: r'actualImportDate', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'actualImportDate',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final DateTime actualImportDate;
 
-  @JsonKey(name: r'totalCost', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalCost',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final num totalCost;
 
-  @JsonKey(name: r'status', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'status',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final ImportStatus? status;
 
-  @JsonKey(name: r'totalItems', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalItems',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? totalItems;
 
-  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'createdAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? createdAt;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ImportTicketListItem &&
-          other.id == id &&
-          other.createdByName == createdByName &&
-          other.verifiedByName == verifiedByName &&
-          other.supplierName == supplierName &&
-          other.expectedArrivalDate == expectedArrivalDate &&
-          other.actualImportDate == actualImportDate &&
-          other.totalCost == totalCost &&
-          other.status == status &&
-          other.totalItems == totalItems &&
-          other.createdAt == createdAt;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      createdByName.hashCode +
-      (verifiedByName == null ? 0 : verifiedByName.hashCode) +
-      supplierName.hashCode +
-      expectedArrivalDate.hashCode +
-      actualImportDate.hashCode +
-      totalCost.hashCode +
-      status.hashCode +
-      totalItems.hashCode +
-      createdAt.hashCode;
 
-  factory ImportTicketListItem.fromJson(Map<String, dynamic> json) =>
-      _$ImportTicketListItemFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ImportTicketListItem &&
+      other.id == id &&
+      other.createdByName == createdByName &&
+      other.verifiedByName == verifiedByName &&
+      other.supplierName == supplierName &&
+      other.expectedArrivalDate == expectedArrivalDate &&
+      other.actualImportDate == actualImportDate &&
+      other.totalCost == totalCost &&
+      other.status == status &&
+      other.totalItems == totalItems &&
+      other.createdAt == createdAt;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        createdByName.hashCode +
+        (verifiedByName == null ? 0 : verifiedByName.hashCode) +
+        supplierName.hashCode +
+        expectedArrivalDate.hashCode +
+        actualImportDate.hashCode +
+        totalCost.hashCode +
+        status.hashCode +
+        totalItems.hashCode +
+        createdAt.hashCode;
+
+  factory ImportTicketListItem.fromJson(Map<String, dynamic> json) => _$ImportTicketListItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$ImportTicketListItemToJson(this);
 
@@ -107,4 +198,6 @@ class ImportTicketListItem {
   String toString() {
     return toJson().toString();
   }
+
 }
+

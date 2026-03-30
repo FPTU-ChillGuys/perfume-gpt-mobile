@@ -5,11 +5,12 @@
 // ignore_for_file: unused_element
 import 'package:json_annotation/json_annotation.dart';
 
+
 enum DiscountType {
-  @JsonValue(r'Percentage')
-  percentage(r'Percentage'),
-  @JsonValue(r'Fixed')
-  fixed(r'Fixed');
+      @JsonValue(r'Percentage')
+      percentage(r'Percentage'),
+      @JsonValue(r'FixedAmount')
+      fixedAmount(r'FixedAmount');
 
   const DiscountType(this.value);
 

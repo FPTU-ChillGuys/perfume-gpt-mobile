@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_import_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,38 +20,66 @@ part 'update_import_request.g.dart';
 class UpdateImportRequest {
   /// Returns a new [UpdateImportRequest] instance.
   UpdateImportRequest({
-    this.supplierId,
 
-    this.expectedArrivalDate,
+     this.supplierId,
 
-    this.importDetails,
+    required  this.expectedArrivalDate,
+
+    required  this.importDetails,
   });
 
-  @JsonKey(name: r'supplierId', required: false, includeIfNull: false)
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'supplierId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? supplierId;
 
-  @JsonKey(name: r'expectedArrivalDate', required: false, includeIfNull: false)
-  final DateTime? expectedArrivalDate;
 
-  @JsonKey(name: r'importDetails', required: false, includeIfNull: false)
-  final List<UpdateImportDetailRequest>? importDetails;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is UpdateImportRequest &&
-          other.supplierId == supplierId &&
-          other.expectedArrivalDate == expectedArrivalDate &&
-          other.importDetails == importDetails;
+  @JsonKey(
+    
+    name: r'expectedArrivalDate',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @override
-  int get hashCode =>
-      supplierId.hashCode +
-      expectedArrivalDate.hashCode +
-      importDetails.hashCode;
 
-  factory UpdateImportRequest.fromJson(Map<String, dynamic> json) =>
-      _$UpdateImportRequestFromJson(json);
+  final DateTime expectedArrivalDate;
+
+
+
+  @JsonKey(
+    
+    name: r'importDetails',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final List<UpdateImportDetailRequest> importDetails;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is UpdateImportRequest &&
+      other.supplierId == supplierId &&
+      other.expectedArrivalDate == expectedArrivalDate &&
+      other.importDetails == importDetails;
+
+    @override
+    int get hashCode =>
+        supplierId.hashCode +
+        expectedArrivalDate.hashCode +
+        importDetails.hashCode;
+
+  factory UpdateImportRequest.fromJson(Map<String, dynamic> json) => _$UpdateImportRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateImportRequestToJson(this);
 
@@ -58,4 +87,6 @@ class UpdateImportRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

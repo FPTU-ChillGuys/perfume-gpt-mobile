@@ -9,9 +9,9 @@ part of 'address_response.dart';
 abstract class _$AddressResponseCWProxy {
   AddressResponse id(String? id);
 
-  AddressResponse receiverName(String? receiverName);
+  AddressResponse recipientName(String? recipientName);
 
-  AddressResponse phone(String? phone);
+  AddressResponse recipientPhoneNumber(String? recipientPhoneNumber);
 
   AddressResponse street(String? street);
 
@@ -38,8 +38,8 @@ abstract class _$AddressResponseCWProxy {
   /// ```
   AddressResponse call({
     String? id,
-    String? receiverName,
-    String? phone,
+    String? recipientName,
+    String? recipientPhoneNumber,
     String? street,
     String? ward,
     String? district,
@@ -62,11 +62,12 @@ class _$AddressResponseCWProxyImpl implements _$AddressResponseCWProxy {
   AddressResponse id(String? id) => call(id: id);
 
   @override
-  AddressResponse receiverName(String? receiverName) =>
-      call(receiverName: receiverName);
+  AddressResponse recipientName(String? recipientName) =>
+      call(recipientName: recipientName);
 
   @override
-  AddressResponse phone(String? phone) => call(phone: phone);
+  AddressResponse recipientPhoneNumber(String? recipientPhoneNumber) =>
+      call(recipientPhoneNumber: recipientPhoneNumber);
 
   @override
   AddressResponse street(String? street) => call(street: street);
@@ -102,8 +103,8 @@ class _$AddressResponseCWProxyImpl implements _$AddressResponseCWProxy {
   /// ```
   AddressResponse call({
     Object? id = const $CopyWithPlaceholder(),
-    Object? receiverName = const $CopyWithPlaceholder(),
-    Object? phone = const $CopyWithPlaceholder(),
+    Object? recipientName = const $CopyWithPlaceholder(),
+    Object? recipientPhoneNumber = const $CopyWithPlaceholder(),
     Object? street = const $CopyWithPlaceholder(),
     Object? ward = const $CopyWithPlaceholder(),
     Object? district = const $CopyWithPlaceholder(),
@@ -118,14 +119,14 @@ class _$AddressResponseCWProxyImpl implements _$AddressResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      receiverName: receiverName == const $CopyWithPlaceholder()
-          ? _value.receiverName
+      recipientName: recipientName == const $CopyWithPlaceholder()
+          ? _value.recipientName
           // ignore: cast_nullable_to_non_nullable
-          : receiverName as String?,
-      phone: phone == const $CopyWithPlaceholder()
-          ? _value.phone
+          : recipientName as String?,
+      recipientPhoneNumber: recipientPhoneNumber == const $CopyWithPlaceholder()
+          ? _value.recipientPhoneNumber
           // ignore: cast_nullable_to_non_nullable
-          : phone as String?,
+          : recipientPhoneNumber as String?,
       street: street == const $CopyWithPlaceholder()
           ? _value.street
           // ignore: cast_nullable_to_non_nullable
@@ -177,8 +178,11 @@ AddressResponse _$AddressResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('AddressResponse', json, ($checkedConvert) {
       final val = AddressResponse(
         id: $checkedConvert('id', (v) => v as String?),
-        receiverName: $checkedConvert('receiverName', (v) => v as String?),
-        phone: $checkedConvert('phone', (v) => v as String?),
+        recipientName: $checkedConvert('recipientName', (v) => v as String?),
+        recipientPhoneNumber: $checkedConvert(
+          'recipientPhoneNumber',
+          (v) => v as String?,
+        ),
         street: $checkedConvert('street', (v) => v as String?),
         ward: $checkedConvert('ward', (v) => v as String?),
         district: $checkedConvert('district', (v) => v as String?),
@@ -194,8 +198,8 @@ AddressResponse _$AddressResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$AddressResponseToJson(AddressResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'receiverName': ?instance.receiverName,
-      'phone': ?instance.phone,
+      'recipientName': ?instance.recipientName,
+      'recipientPhoneNumber': ?instance.recipientPhoneNumber,
       'street': ?instance.street,
       'ward': ?instance.ward,
       'district': ?instance.district,

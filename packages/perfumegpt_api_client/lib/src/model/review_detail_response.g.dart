@@ -39,13 +39,11 @@ abstract class _$ReviewDetailResponseCWProxy {
 
   ReviewDetailResponse images(List<MediaResponse>? images);
 
-  ReviewDetailResponse moderatedByStaffId(String? moderatedByStaffId);
+  ReviewDetailResponse staffFeedbackComment(String? staffFeedbackComment);
 
-  ReviewDetailResponse moderatedByStaffName(String? moderatedByStaffName);
+  ReviewDetailResponse staffFeedbackByStaffId(String? staffFeedbackByStaffId);
 
-  ReviewDetailResponse moderatedAt(DateTime? moderatedAt);
-
-  ReviewDetailResponse moderationReason(String? moderationReason);
+  ReviewDetailResponse staffFeedbackAt(DateTime? staffFeedbackAt);
 
   ReviewDetailResponse createdAt(DateTime? createdAt);
 
@@ -75,10 +73,9 @@ abstract class _$ReviewDetailResponseCWProxy {
     int? rating,
     String? comment,
     List<MediaResponse>? images,
-    String? moderatedByStaffId,
-    String? moderatedByStaffName,
-    DateTime? moderatedAt,
-    String? moderationReason,
+    String? staffFeedbackComment,
+    String? staffFeedbackByStaffId,
+    DateTime? staffFeedbackAt,
     DateTime? createdAt,
     DateTime? updatedAt,
   });
@@ -149,20 +146,16 @@ class _$ReviewDetailResponseCWProxyImpl
       call(images: images);
 
   @override
-  ReviewDetailResponse moderatedByStaffId(String? moderatedByStaffId) =>
-      call(moderatedByStaffId: moderatedByStaffId);
+  ReviewDetailResponse staffFeedbackComment(String? staffFeedbackComment) =>
+      call(staffFeedbackComment: staffFeedbackComment);
 
   @override
-  ReviewDetailResponse moderatedByStaffName(String? moderatedByStaffName) =>
-      call(moderatedByStaffName: moderatedByStaffName);
+  ReviewDetailResponse staffFeedbackByStaffId(String? staffFeedbackByStaffId) =>
+      call(staffFeedbackByStaffId: staffFeedbackByStaffId);
 
   @override
-  ReviewDetailResponse moderatedAt(DateTime? moderatedAt) =>
-      call(moderatedAt: moderatedAt);
-
-  @override
-  ReviewDetailResponse moderationReason(String? moderationReason) =>
-      call(moderationReason: moderationReason);
+  ReviewDetailResponse staffFeedbackAt(DateTime? staffFeedbackAt) =>
+      call(staffFeedbackAt: staffFeedbackAt);
 
   @override
   ReviewDetailResponse createdAt(DateTime? createdAt) =>
@@ -197,10 +190,9 @@ class _$ReviewDetailResponseCWProxyImpl
     Object? rating = const $CopyWithPlaceholder(),
     Object? comment = const $CopyWithPlaceholder(),
     Object? images = const $CopyWithPlaceholder(),
-    Object? moderatedByStaffId = const $CopyWithPlaceholder(),
-    Object? moderatedByStaffName = const $CopyWithPlaceholder(),
-    Object? moderatedAt = const $CopyWithPlaceholder(),
-    Object? moderationReason = const $CopyWithPlaceholder(),
+    Object? staffFeedbackComment = const $CopyWithPlaceholder(),
+    Object? staffFeedbackByStaffId = const $CopyWithPlaceholder(),
+    Object? staffFeedbackAt = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? updatedAt = const $CopyWithPlaceholder(),
   }) {
@@ -270,22 +262,19 @@ class _$ReviewDetailResponseCWProxyImpl
           ? _value.images
           // ignore: cast_nullable_to_non_nullable
           : images as List<MediaResponse>?,
-      moderatedByStaffId: moderatedByStaffId == const $CopyWithPlaceholder()
-          ? _value.moderatedByStaffId
+      staffFeedbackComment: staffFeedbackComment == const $CopyWithPlaceholder()
+          ? _value.staffFeedbackComment
           // ignore: cast_nullable_to_non_nullable
-          : moderatedByStaffId as String?,
-      moderatedByStaffName: moderatedByStaffName == const $CopyWithPlaceholder()
-          ? _value.moderatedByStaffName
+          : staffFeedbackComment as String?,
+      staffFeedbackByStaffId:
+          staffFeedbackByStaffId == const $CopyWithPlaceholder()
+          ? _value.staffFeedbackByStaffId
           // ignore: cast_nullable_to_non_nullable
-          : moderatedByStaffName as String?,
-      moderatedAt: moderatedAt == const $CopyWithPlaceholder()
-          ? _value.moderatedAt
+          : staffFeedbackByStaffId as String?,
+      staffFeedbackAt: staffFeedbackAt == const $CopyWithPlaceholder()
+          ? _value.staffFeedbackAt
           // ignore: cast_nullable_to_non_nullable
-          : moderatedAt as DateTime?,
-      moderationReason: moderationReason == const $CopyWithPlaceholder()
-          ? _value.moderationReason
-          // ignore: cast_nullable_to_non_nullable
-          : moderationReason as String?,
+          : staffFeedbackAt as DateTime?,
       createdAt: createdAt == const $CopyWithPlaceholder()
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
@@ -341,19 +330,18 @@ ReviewDetailResponse _$ReviewDetailResponseFromJson(
           ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
-    moderatedByStaffId: $checkedConvert(
-      'moderatedByStaffId',
+    staffFeedbackComment: $checkedConvert(
+      'staffFeedbackComment',
       (v) => v as String?,
     ),
-    moderatedByStaffName: $checkedConvert(
-      'moderatedByStaffName',
+    staffFeedbackByStaffId: $checkedConvert(
+      'staffFeedbackByStaffId',
       (v) => v as String?,
     ),
-    moderatedAt: $checkedConvert(
-      'moderatedAt',
+    staffFeedbackAt: $checkedConvert(
+      'staffFeedbackAt',
       (v) => v == null ? null : DateTime.parse(v as String),
     ),
-    moderationReason: $checkedConvert('moderationReason', (v) => v as String?),
     createdAt: $checkedConvert(
       'createdAt',
       (v) => v == null ? null : DateTime.parse(v as String),
@@ -385,10 +373,9 @@ Map<String, dynamic> _$ReviewDetailResponseToJson(
   'rating': ?instance.rating,
   'comment': ?instance.comment,
   'images': ?instance.images?.map((e) => e.toJson()).toList(),
-  'moderatedByStaffId': ?instance.moderatedByStaffId,
-  'moderatedByStaffName': ?instance.moderatedByStaffName,
-  'moderatedAt': ?instance.moderatedAt?.toIso8601String(),
-  'moderationReason': ?instance.moderationReason,
+  'staffFeedbackComment': ?instance.staffFeedbackComment,
+  'staffFeedbackByStaffId': ?instance.staffFeedbackByStaffId,
+  'staffFeedbackAt': ?instance.staffFeedbackAt?.toIso8601String(),
   'createdAt': ?instance.createdAt?.toIso8601String(),
   'updatedAt': ?instance.updatedAt?.toIso8601String(),
 };

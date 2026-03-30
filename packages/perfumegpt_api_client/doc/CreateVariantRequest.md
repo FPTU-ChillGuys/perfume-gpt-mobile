@@ -8,13 +8,16 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**productId** | **String** |  | [optional] 
+**productId** | **String** |  | 
 **barcode** | **String** |  | [optional] 
-**sku** | **String** |  | [optional] 
+**sku** | **String** |  | 
 **volumeMl** | **int** |  | [optional] 
 **concentrationId** | **int** |  | [optional] 
+**sillage** | **int** |  | [optional] 
+**longevity** | **int** |  | [optional] 
 **type** | [**VariantType**](VariantType.md) |  | [optional] 
 **basePrice** | **num** |  | [optional] 
+**retailPrice** | **num** |  | [optional] 
 **status** | [**VariantStatus**](VariantStatus.md) |  | [optional] 
 **lowStockThreshold** | **int** |  | [optional] 
 **attributes** | [**List&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 

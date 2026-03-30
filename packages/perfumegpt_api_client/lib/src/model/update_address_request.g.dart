@@ -7,9 +7,9 @@ part of 'update_address_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateAddressRequestCWProxy {
-  UpdateAddressRequest receiverName(String? receiverName);
+  UpdateAddressRequest recipientName(String recipientName);
 
-  UpdateAddressRequest phone(String? phone);
+  UpdateAddressRequest recipientPhoneNumber(String recipientPhoneNumber);
 
   UpdateAddressRequest street(String? street);
 
@@ -19,7 +19,7 @@ abstract class _$UpdateAddressRequestCWProxy {
 
   UpdateAddressRequest city(String? city);
 
-  UpdateAddressRequest wardCode(String? wardCode);
+  UpdateAddressRequest wardCode(String wardCode);
 
   UpdateAddressRequest districtId(int? districtId);
 
@@ -33,13 +33,13 @@ abstract class _$UpdateAddressRequestCWProxy {
   /// UpdateAddressRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateAddressRequest call({
-    String? receiverName,
-    String? phone,
+    String recipientName,
+    String recipientPhoneNumber,
     String? street,
     String? ward,
     String? district,
     String? city,
-    String? wardCode,
+    String wardCode,
     int? districtId,
     int? provinceId,
   });
@@ -54,11 +54,12 @@ class _$UpdateAddressRequestCWProxyImpl
   final UpdateAddressRequest _value;
 
   @override
-  UpdateAddressRequest receiverName(String? receiverName) =>
-      call(receiverName: receiverName);
+  UpdateAddressRequest recipientName(String recipientName) =>
+      call(recipientName: recipientName);
 
   @override
-  UpdateAddressRequest phone(String? phone) => call(phone: phone);
+  UpdateAddressRequest recipientPhoneNumber(String recipientPhoneNumber) =>
+      call(recipientPhoneNumber: recipientPhoneNumber);
 
   @override
   UpdateAddressRequest street(String? street) => call(street: street);
@@ -73,7 +74,7 @@ class _$UpdateAddressRequestCWProxyImpl
   UpdateAddressRequest city(String? city) => call(city: city);
 
   @override
-  UpdateAddressRequest wardCode(String? wardCode) => call(wardCode: wardCode);
+  UpdateAddressRequest wardCode(String wardCode) => call(wardCode: wardCode);
 
   @override
   UpdateAddressRequest districtId(int? districtId) =>
@@ -92,8 +93,8 @@ class _$UpdateAddressRequestCWProxyImpl
   /// UpdateAddressRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateAddressRequest call({
-    Object? receiverName = const $CopyWithPlaceholder(),
-    Object? phone = const $CopyWithPlaceholder(),
+    Object? recipientName = const $CopyWithPlaceholder(),
+    Object? recipientPhoneNumber = const $CopyWithPlaceholder(),
     Object? street = const $CopyWithPlaceholder(),
     Object? ward = const $CopyWithPlaceholder(),
     Object? district = const $CopyWithPlaceholder(),
@@ -103,14 +104,17 @@ class _$UpdateAddressRequestCWProxyImpl
     Object? provinceId = const $CopyWithPlaceholder(),
   }) {
     return UpdateAddressRequest(
-      receiverName: receiverName == const $CopyWithPlaceholder()
-          ? _value.receiverName
+      recipientName:
+          recipientName == const $CopyWithPlaceholder() || recipientName == null
+          ? _value.recipientName
           // ignore: cast_nullable_to_non_nullable
-          : receiverName as String?,
-      phone: phone == const $CopyWithPlaceholder()
-          ? _value.phone
+          : recipientName as String,
+      recipientPhoneNumber:
+          recipientPhoneNumber == const $CopyWithPlaceholder() ||
+              recipientPhoneNumber == null
+          ? _value.recipientPhoneNumber
           // ignore: cast_nullable_to_non_nullable
-          : phone as String?,
+          : recipientPhoneNumber as String,
       street: street == const $CopyWithPlaceholder()
           ? _value.street
           // ignore: cast_nullable_to_non_nullable
@@ -127,10 +131,10 @@ class _$UpdateAddressRequestCWProxyImpl
           ? _value.city
           // ignore: cast_nullable_to_non_nullable
           : city as String?,
-      wardCode: wardCode == const $CopyWithPlaceholder()
+      wardCode: wardCode == const $CopyWithPlaceholder() || wardCode == null
           ? _value.wardCode
           // ignore: cast_nullable_to_non_nullable
-          : wardCode as String?,
+          : wardCode as String,
       districtId: districtId == const $CopyWithPlaceholder()
           ? _value.districtId
           // ignore: cast_nullable_to_non_nullable
@@ -158,14 +162,21 @@ extension $UpdateAddressRequestCopyWith on UpdateAddressRequest {
 UpdateAddressRequest _$UpdateAddressRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateAddressRequest', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['recipientName', 'recipientPhoneNumber', 'wardCode'],
+  );
   final val = UpdateAddressRequest(
-    receiverName: $checkedConvert('receiverName', (v) => v as String?),
-    phone: $checkedConvert('phone', (v) => v as String?),
+    recipientName: $checkedConvert('recipientName', (v) => v as String),
+    recipientPhoneNumber: $checkedConvert(
+      'recipientPhoneNumber',
+      (v) => v as String,
+    ),
     street: $checkedConvert('street', (v) => v as String?),
     ward: $checkedConvert('ward', (v) => v as String?),
     district: $checkedConvert('district', (v) => v as String?),
     city: $checkedConvert('city', (v) => v as String?),
-    wardCode: $checkedConvert('wardCode', (v) => v as String?),
+    wardCode: $checkedConvert('wardCode', (v) => v as String),
     districtId: $checkedConvert('districtId', (v) => (v as num?)?.toInt()),
     provinceId: $checkedConvert('provinceId', (v) => (v as num?)?.toInt()),
   );
@@ -175,13 +186,13 @@ UpdateAddressRequest _$UpdateAddressRequestFromJson(
 Map<String, dynamic> _$UpdateAddressRequestToJson(
   UpdateAddressRequest instance,
 ) => <String, dynamic>{
-  'receiverName': ?instance.receiverName,
-  'phone': ?instance.phone,
+  'recipientName': instance.recipientName,
+  'recipientPhoneNumber': instance.recipientPhoneNumber,
   'street': ?instance.street,
   'ward': ?instance.ward,
   'district': ?instance.district,
   'city': ?instance.city,
-  'wardCode': ?instance.wardCode,
+  'wardCode': instance.wardCode,
   'districtId': ?instance.districtId,
   'provinceId': ?instance.provinceId,
 };

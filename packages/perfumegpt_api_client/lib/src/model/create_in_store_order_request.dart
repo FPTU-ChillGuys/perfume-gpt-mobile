@@ -11,6 +11,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_in_store_order_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,52 +22,97 @@ part 'create_in_store_order_request.g.dart';
 class CreateInStoreOrderRequest {
   /// Returns a new [CreateInStoreOrderRequest] instance.
   CreateInStoreOrderRequest({
-    this.voucherCode,
 
-    this.isPickupInStore,
+     this.voucherCode,
 
-    this.orderDetails,
+     this.isPickupInStore,
 
-    this.recipient,
+    required  this.orderDetails,
 
-    this.payment,
+     this.recipient,
+
+    required  this.payment,
   });
 
-  @JsonKey(name: r'voucherCode', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'voucherCode',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? voucherCode;
 
-  @JsonKey(name: r'isPickupInStore', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'isPickupInStore',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? isPickupInStore;
 
-  @JsonKey(name: r'orderDetails', required: false, includeIfNull: false)
-  final List<CreateOrderDetailRequest>? orderDetails;
 
-  @JsonKey(name: r'recipient', required: false, includeIfNull: false)
+
+  @JsonKey(
+    
+    name: r'orderDetails',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final List<CreateOrderDetailRequest> orderDetails;
+
+
+
+  @JsonKey(
+    
+    name: r'recipient',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final RecipientInformation? recipient;
 
-  @JsonKey(name: r'payment', required: false, includeIfNull: false)
-  final PaymentInformation? payment;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateInStoreOrderRequest &&
-          other.voucherCode == voucherCode &&
-          other.isPickupInStore == isPickupInStore &&
-          other.orderDetails == orderDetails &&
-          other.recipient == recipient &&
-          other.payment == payment;
 
-  @override
-  int get hashCode =>
-      (voucherCode == null ? 0 : voucherCode.hashCode) +
-      isPickupInStore.hashCode +
-      orderDetails.hashCode +
-      (recipient == null ? 0 : recipient.hashCode) +
-      payment.hashCode;
+  @JsonKey(
+    
+    name: r'payment',
+    required: true,
+    includeIfNull: false,
+  )
 
-  factory CreateInStoreOrderRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateInStoreOrderRequestFromJson(json);
+
+  final PaymentInformation payment;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateInStoreOrderRequest &&
+      other.voucherCode == voucherCode &&
+      other.isPickupInStore == isPickupInStore &&
+      other.orderDetails == orderDetails &&
+      other.recipient == recipient &&
+      other.payment == payment;
+
+    @override
+    int get hashCode =>
+        (voucherCode == null ? 0 : voucherCode.hashCode) +
+        isPickupInStore.hashCode +
+        orderDetails.hashCode +
+        (recipient == null ? 0 : recipient.hashCode) +
+        payment.hashCode;
+
+  factory CreateInStoreOrderRequest.fromJson(Map<String, dynamic> json) => _$CreateInStoreOrderRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateInStoreOrderRequestToJson(this);
 
@@ -74,4 +120,6 @@ class CreateInStoreOrderRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

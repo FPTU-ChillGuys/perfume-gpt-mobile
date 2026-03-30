@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'google_login_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,21 +18,34 @@ part 'google_login_request.g.dart';
 )
 class GoogleLoginRequest {
   /// Returns a new [GoogleLoginRequest] instance.
-  GoogleLoginRequest({this.idToken});
+  GoogleLoginRequest({
 
-  @JsonKey(name: r'idToken', required: false, includeIfNull: false)
-  final String? idToken;
+    required  this.idToken,
+  });
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is GoogleLoginRequest && other.idToken == idToken;
+  @JsonKey(
+    
+    name: r'idToken',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @override
-  int get hashCode => idToken.hashCode;
 
-  factory GoogleLoginRequest.fromJson(Map<String, dynamic> json) =>
-      _$GoogleLoginRequestFromJson(json);
+  final String idToken;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is GoogleLoginRequest &&
+      other.idToken == idToken;
+
+    @override
+    int get hashCode =>
+        idToken.hashCode;
+
+  factory GoogleLoginRequest.fromJson(Map<String, dynamic> json) => _$GoogleLoginRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$GoogleLoginRequestToJson(this);
 
@@ -39,4 +53,6 @@ class GoogleLoginRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

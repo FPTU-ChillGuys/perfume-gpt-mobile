@@ -11,7 +11,7 @@ abstract class _$VariantPagedItemCWProxy {
 
   VariantPagedItem productId(String? productId);
 
-  VariantPagedItem primaryImage(MediaResponse? primaryImage);
+  VariantPagedItem primaryImageUrl(String? primaryImageUrl);
 
   VariantPagedItem barcode(String? barcode);
 
@@ -26,6 +26,8 @@ abstract class _$VariantPagedItemCWProxy {
   VariantPagedItem type(VariantType? type);
 
   VariantPagedItem basePrice(num? basePrice);
+
+  VariantPagedItem retailPrice(num? retailPrice);
 
   VariantPagedItem status(VariantStatus? status);
 
@@ -43,7 +45,7 @@ abstract class _$VariantPagedItemCWProxy {
   VariantPagedItem call({
     String? id,
     String? productId,
-    MediaResponse? primaryImage,
+    String? primaryImageUrl,
     String? barcode,
     String? sku,
     int? volumeMl,
@@ -51,6 +53,7 @@ abstract class _$VariantPagedItemCWProxy {
     String? concentrationName,
     VariantType? type,
     num? basePrice,
+    num? retailPrice,
     VariantStatus? status,
     int? stockQuantity,
     List<ProductAttributeResponse>? attributes,
@@ -71,8 +74,8 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
   VariantPagedItem productId(String? productId) => call(productId: productId);
 
   @override
-  VariantPagedItem primaryImage(MediaResponse? primaryImage) =>
-      call(primaryImage: primaryImage);
+  VariantPagedItem primaryImageUrl(String? primaryImageUrl) =>
+      call(primaryImageUrl: primaryImageUrl);
 
   @override
   VariantPagedItem barcode(String? barcode) => call(barcode: barcode);
@@ -98,6 +101,10 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
   VariantPagedItem basePrice(num? basePrice) => call(basePrice: basePrice);
 
   @override
+  VariantPagedItem retailPrice(num? retailPrice) =>
+      call(retailPrice: retailPrice);
+
+  @override
   VariantPagedItem status(VariantStatus? status) => call(status: status);
 
   @override
@@ -119,7 +126,7 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
   VariantPagedItem call({
     Object? id = const $CopyWithPlaceholder(),
     Object? productId = const $CopyWithPlaceholder(),
-    Object? primaryImage = const $CopyWithPlaceholder(),
+    Object? primaryImageUrl = const $CopyWithPlaceholder(),
     Object? barcode = const $CopyWithPlaceholder(),
     Object? sku = const $CopyWithPlaceholder(),
     Object? volumeMl = const $CopyWithPlaceholder(),
@@ -127,6 +134,7 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
     Object? concentrationName = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
     Object? basePrice = const $CopyWithPlaceholder(),
+    Object? retailPrice = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
     Object? stockQuantity = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
@@ -140,10 +148,10 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
           ? _value.productId
           // ignore: cast_nullable_to_non_nullable
           : productId as String?,
-      primaryImage: primaryImage == const $CopyWithPlaceholder()
-          ? _value.primaryImage
+      primaryImageUrl: primaryImageUrl == const $CopyWithPlaceholder()
+          ? _value.primaryImageUrl
           // ignore: cast_nullable_to_non_nullable
-          : primaryImage as MediaResponse?,
+          : primaryImageUrl as String?,
       barcode: barcode == const $CopyWithPlaceholder()
           ? _value.barcode
           // ignore: cast_nullable_to_non_nullable
@@ -172,6 +180,10 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
           ? _value.basePrice
           // ignore: cast_nullable_to_non_nullable
           : basePrice as num?,
+      retailPrice: retailPrice == const $CopyWithPlaceholder()
+          ? _value.retailPrice
+          // ignore: cast_nullable_to_non_nullable
+          : retailPrice as num?,
       status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
@@ -205,11 +217,7 @@ VariantPagedItem _$VariantPagedItemFromJson(
   final val = VariantPagedItem(
     id: $checkedConvert('id', (v) => v as String?),
     productId: $checkedConvert('productId', (v) => v as String?),
-    primaryImage: $checkedConvert(
-      'primaryImage',
-      (v) =>
-          v == null ? null : MediaResponse.fromJson(v as Map<String, dynamic>),
-    ),
+    primaryImageUrl: $checkedConvert('primaryImageUrl', (v) => v as String?),
     barcode: $checkedConvert('barcode', (v) => v as String?),
     sku: $checkedConvert('sku', (v) => v as String?),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
@@ -226,6 +234,7 @@ VariantPagedItem _$VariantPagedItemFromJson(
       (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
     ),
     basePrice: $checkedConvert('basePrice', (v) => v as num?),
+    retailPrice: $checkedConvert('retailPrice', (v) => v as num?),
     status: $checkedConvert(
       'status',
       (v) => $enumDecodeNullable(_$VariantStatusEnumMap, v),
@@ -250,7 +259,7 @@ Map<String, dynamic> _$VariantPagedItemToJson(VariantPagedItem instance) =>
     <String, dynamic>{
       'id': ?instance.id,
       'productId': ?instance.productId,
-      'primaryImage': ?instance.primaryImage?.toJson(),
+      'primaryImageUrl': ?instance.primaryImageUrl,
       'barcode': ?instance.barcode,
       'sku': ?instance.sku,
       'volumeMl': ?instance.volumeMl,
@@ -258,12 +267,14 @@ Map<String, dynamic> _$VariantPagedItemToJson(VariantPagedItem instance) =>
       'concentrationName': ?instance.concentrationName,
       'type': ?_$VariantTypeEnumMap[instance.type],
       'basePrice': ?instance.basePrice,
+      'retailPrice': ?instance.retailPrice,
       'status': ?_$VariantStatusEnumMap[instance.status],
       'stockQuantity': ?instance.stockQuantity,
       'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
     };
 
 const _$VariantTypeEnumMap = {
+  VariantType.standard: 'Standard',
   VariantType.fullBox: 'FullBox',
   VariantType.tester: 'Tester',
   VariantType.mini: 'Mini',
@@ -273,5 +284,4 @@ const _$VariantStatusEnumMap = {
   VariantStatus.active: 'Active',
   VariantStatus.inactive: 'Inactive',
   VariantStatus.discontinued: 'Discontinued',
-  VariantStatus.outOfStock: 'out_of_stock',
 };

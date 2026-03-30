@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'category_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,24 +18,50 @@ part 'category_response.g.dart';
 )
 class CategoryResponse {
   /// Returns a new [CategoryResponse] instance.
-  CategoryResponse({this.id, this.name});
+  CategoryResponse({
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+     this.id,
+
+     this.name,
+  });
+
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? id;
 
-  @JsonKey(name: r'name', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'name',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? name;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CategoryResponse && other.id == id && other.name == name;
 
-  @override
-  int get hashCode => id.hashCode + name.hashCode;
 
-  factory CategoryResponse.fromJson(Map<String, dynamic> json) =>
-      _$CategoryResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CategoryResponse &&
+      other.id == id &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        name.hashCode;
+
+  factory CategoryResponse.fromJson(Map<String, dynamic> json) => _$CategoryResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$CategoryResponseToJson(this);
 
@@ -42,4 +69,6 @@ class CategoryResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

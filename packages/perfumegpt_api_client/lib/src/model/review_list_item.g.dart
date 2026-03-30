@@ -27,8 +27,6 @@ abstract class _$ReviewListItemCWProxy {
 
   ReviewListItem createdAt(DateTime? createdAt);
 
-  ReviewListItem moderatedAt(DateTime? moderatedAt);
-
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewListItem(...).copyWith.fieldName(value)`.
   ///
@@ -47,7 +45,6 @@ abstract class _$ReviewListItemCWProxy {
     String? commentPreview,
     int? imageCount,
     DateTime? createdAt,
-    DateTime? moderatedAt,
   });
 }
 
@@ -93,10 +90,6 @@ class _$ReviewListItemCWProxyImpl implements _$ReviewListItemCWProxy {
   ReviewListItem createdAt(DateTime? createdAt) => call(createdAt: createdAt);
 
   @override
-  ReviewListItem moderatedAt(DateTime? moderatedAt) =>
-      call(moderatedAt: moderatedAt);
-
-  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewListItem(...).copyWith.fieldName(value)`.
   ///
@@ -115,7 +108,6 @@ class _$ReviewListItemCWProxyImpl implements _$ReviewListItemCWProxy {
     Object? commentPreview = const $CopyWithPlaceholder(),
     Object? imageCount = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
-    Object? moderatedAt = const $CopyWithPlaceholder(),
   }) {
     return ReviewListItem(
       id: id == const $CopyWithPlaceholder()
@@ -159,10 +151,6 @@ class _$ReviewListItemCWProxyImpl implements _$ReviewListItemCWProxy {
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
           : createdAt as DateTime?,
-      moderatedAt: moderatedAt == const $CopyWithPlaceholder()
-          ? _value.moderatedAt
-          // ignore: cast_nullable_to_non_nullable
-          : moderatedAt as DateTime?,
     );
   }
 }
@@ -197,10 +185,6 @@ ReviewListItem _$ReviewListItemFromJson(Map<String, dynamic> json) =>
           'createdAt',
           (v) => v == null ? null : DateTime.parse(v as String),
         ),
-        moderatedAt: $checkedConvert(
-          'moderatedAt',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
       );
       return val;
     });
@@ -217,5 +201,4 @@ Map<String, dynamic> _$ReviewListItemToJson(ReviewListItem instance) =>
       'commentPreview': ?instance.commentPreview,
       'imageCount': ?instance.imageCount,
       'createdAt': ?instance.createdAt?.toIso8601String(),
-      'moderatedAt': ?instance.moderatedAt?.toIso8601String(),
     };

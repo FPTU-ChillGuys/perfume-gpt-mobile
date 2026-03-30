@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'district_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,101 +19,209 @@ part 'district_response.g.dart';
 class DistrictResponse {
   /// Returns a new [DistrictResponse] instance.
   DistrictResponse({
-    this.districtID,
 
-    this.provinceID,
+     this.districtID,
 
-    this.districtName,
+     this.provinceID,
 
-    this.code,
+     this.districtName,
 
-    this.type,
+     this.code,
 
-    this.supportType,
+     this.type,
 
-    this.nameExtension,
+     this.supportType,
 
-    this.isEnable,
+     this.nameExtension,
 
-    this.canUpdateCOD,
+     this.isEnable,
 
-    this.status,
+     this.canUpdateCOD,
 
-    this.createdDate,
+     this.status,
 
-    this.updatedDate,
+     this.createdDate,
+
+     this.updatedDate,
   });
 
-  @JsonKey(name: r'DistrictID', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'DistrictID',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? districtID;
 
-  @JsonKey(name: r'ProvinceID', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'ProvinceID',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? provinceID;
 
-  @JsonKey(name: r'DistrictName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'DistrictName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? districtName;
 
-  @JsonKey(name: r'Code', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'Code',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? code;
 
-  @JsonKey(name: r'Type', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'Type',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? type;
 
-  @JsonKey(name: r'SupportType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'SupportType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? supportType;
 
-  @JsonKey(name: r'NameExtension', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'NameExtension',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<String>? nameExtension;
 
-  @JsonKey(name: r'IsEnable', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'IsEnable',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? isEnable;
 
-  @JsonKey(name: r'CanUpdateCOD', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'CanUpdateCOD',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? canUpdateCOD;
 
-  @JsonKey(name: r'Status', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'Status',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? status;
 
-  @JsonKey(name: r'CreatedDate', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'CreatedDate',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? createdDate;
 
-  @JsonKey(name: r'UpdatedDate', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'UpdatedDate',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? updatedDate;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is DistrictResponse &&
-          other.districtID == districtID &&
-          other.provinceID == provinceID &&
-          other.districtName == districtName &&
-          other.code == code &&
-          other.type == type &&
-          other.supportType == supportType &&
-          other.nameExtension == nameExtension &&
-          other.isEnable == isEnable &&
-          other.canUpdateCOD == canUpdateCOD &&
-          other.status == status &&
-          other.createdDate == createdDate &&
-          other.updatedDate == updatedDate;
 
-  @override
-  int get hashCode =>
-      districtID.hashCode +
-      provinceID.hashCode +
-      districtName.hashCode +
-      code.hashCode +
-      type.hashCode +
-      supportType.hashCode +
-      nameExtension.hashCode +
-      isEnable.hashCode +
-      canUpdateCOD.hashCode +
-      status.hashCode +
-      createdDate.hashCode +
-      updatedDate.hashCode;
 
-  factory DistrictResponse.fromJson(Map<String, dynamic> json) =>
-      _$DistrictResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is DistrictResponse &&
+      other.districtID == districtID &&
+      other.provinceID == provinceID &&
+      other.districtName == districtName &&
+      other.code == code &&
+      other.type == type &&
+      other.supportType == supportType &&
+      other.nameExtension == nameExtension &&
+      other.isEnable == isEnable &&
+      other.canUpdateCOD == canUpdateCOD &&
+      other.status == status &&
+      other.createdDate == createdDate &&
+      other.updatedDate == updatedDate;
+
+    @override
+    int get hashCode =>
+        districtID.hashCode +
+        provinceID.hashCode +
+        districtName.hashCode +
+        code.hashCode +
+        type.hashCode +
+        supportType.hashCode +
+        nameExtension.hashCode +
+        isEnable.hashCode +
+        canUpdateCOD.hashCode +
+        status.hashCode +
+        createdDate.hashCode +
+        updatedDate.hashCode;
+
+  factory DistrictResponse.fromJson(Map<String, dynamic> json) => _$DistrictResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$DistrictResponseToJson(this);
 
@@ -120,4 +229,6 @@ class DistrictResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

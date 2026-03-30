@@ -14,10 +14,12 @@ Method | HTTP request | Description
 [**apiOrdersGet**](OrdersApi.md#apiordersget) | **GET** /api/orders | 
 [**apiOrdersMyOrdersGet**](OrdersApi.md#apiordersmyordersget) | **GET** /api/orders/my-orders | 
 [**apiOrdersMyOrdersOrderIdGet**](OrdersApi.md#apiordersmyordersorderidget) | **GET** /api/orders/my-orders/{orderId} | 
+[**apiOrdersMyOrdersOrderIdInvoiceGet**](OrdersApi.md#apiordersmyordersorderidinvoiceget) | **GET** /api/orders/my-orders/{orderId}/invoice | 
 [**apiOrdersOrderIdAddressPut**](OrdersApi.md#apiordersorderidaddressput) | **PUT** /api/orders/{orderId}/address | 
 [**apiOrdersOrderIdCancelPost**](OrdersApi.md#apiordersorderidcancelpost) | **POST** /api/orders/{orderId}/cancel | 
 [**apiOrdersOrderIdFulfillPost**](OrdersApi.md#apiordersorderidfulfillpost) | **POST** /api/orders/{orderId}/fulfill | 
 [**apiOrdersOrderIdGet**](OrdersApi.md#apiordersorderidget) | **GET** /api/orders/{orderId} | 
+[**apiOrdersOrderIdInvoiceGet**](OrdersApi.md#apiordersorderidinvoiceget) | **GET** /api/orders/{orderId}/invoice | 
 [**apiOrdersOrderIdPicklistGet**](OrdersApi.md#apiordersorderidpicklistget) | **GET** /api/orders/{orderId}/picklist | 
 [**apiOrdersOrderIdStatusPut**](OrdersApi.md#apiordersorderidstatusput) | **PUT** /api/orders/{orderId}/status | 
 [**apiOrdersOrderIdSwapDamagedPost**](OrdersApi.md#apiordersorderidswapdamagedpost) | **POST** /api/orders/{orderId}/swap-damaged | 
@@ -271,6 +273,47 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **apiOrdersMyOrdersOrderIdInvoiceGet**
+> BaseResponseOfReceiptResponse apiOrdersMyOrdersOrderIdInvoiceGet(orderId)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrdersApi();
+final String orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiOrdersMyOrdersOrderIdInvoiceGet(orderId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrdersApi->apiOrdersMyOrdersOrderIdInvoiceGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**|  | 
+
+### Return type
+
+[**BaseResponseOfReceiptResponse**](BaseResponseOfReceiptResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **apiOrdersOrderIdAddressPut**
 > BaseResponseOfstring apiOrdersOrderIdAddressPut(orderId, updateOrderAddressRequest)
 
@@ -315,7 +358,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiOrdersOrderIdCancelPost**
-> BaseResponseOfstring apiOrdersOrderIdCancelPost(orderId)
+> BaseResponseOfstring apiOrdersOrderIdCancelPost(orderId, userCancelOrderRequest)
 
 
 
@@ -325,9 +368,10 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrdersApi();
 final String orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final UserCancelOrderRequest userCancelOrderRequest = ; // UserCancelOrderRequest | 
 
 try {
-    final response = api.apiOrdersOrderIdCancelPost(orderId);
+    final response = api.apiOrdersOrderIdCancelPost(orderId, userCancelOrderRequest);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling OrdersApi->apiOrdersOrderIdCancelPost: $e\n');
@@ -339,6 +383,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**|  | 
+ **userCancelOrderRequest** | [**UserCancelOrderRequest**](UserCancelOrderRequest.md)|  | 
 
 ### Return type
 
@@ -350,7 +395,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -427,6 +472,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BaseResponseOfOrderResponse**](BaseResponseOfOrderResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiOrdersOrderIdInvoiceGet**
+> BaseResponseOfReceiptResponse apiOrdersOrderIdInvoiceGet(orderId)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrdersApi();
+final String orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiOrdersOrderIdInvoiceGet(orderId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrdersApi->apiOrdersOrderIdInvoiceGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**|  | 
+
+### Return type
+
+[**BaseResponseOfReceiptResponse**](BaseResponseOfReceiptResponse.md)
 
 ### Authorization
 

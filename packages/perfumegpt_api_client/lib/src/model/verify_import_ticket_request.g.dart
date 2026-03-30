@@ -8,7 +8,7 @@ part of 'verify_import_ticket_request.dart';
 
 abstract class _$VerifyImportTicketRequestCWProxy {
   VerifyImportTicketRequest importDetails(
-    List<VerifyImportDetailRequest>? importDetails,
+    List<VerifyImportDetailRequest> importDetails,
   );
 
   /// Creates a new instance with the provided field values.
@@ -19,7 +19,7 @@ abstract class _$VerifyImportTicketRequestCWProxy {
   /// VerifyImportTicketRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   VerifyImportTicketRequest call({
-    List<VerifyImportDetailRequest>? importDetails,
+    List<VerifyImportDetailRequest> importDetails,
   });
 }
 
@@ -33,7 +33,7 @@ class _$VerifyImportTicketRequestCWProxyImpl
 
   @override
   VerifyImportTicketRequest importDetails(
-    List<VerifyImportDetailRequest>? importDetails,
+    List<VerifyImportDetailRequest> importDetails,
   ) => call(importDetails: importDetails);
 
   @override
@@ -48,10 +48,11 @@ class _$VerifyImportTicketRequestCWProxyImpl
     Object? importDetails = const $CopyWithPlaceholder(),
   }) {
     return VerifyImportTicketRequest(
-      importDetails: importDetails == const $CopyWithPlaceholder()
+      importDetails:
+          importDetails == const $CopyWithPlaceholder() || importDetails == null
           ? _value.importDetails
           // ignore: cast_nullable_to_non_nullable
-          : importDetails as List<VerifyImportDetailRequest>?,
+          : importDetails as List<VerifyImportDetailRequest>,
     );
   }
 }
@@ -71,11 +72,12 @@ extension $VerifyImportTicketRequestCopyWith on VerifyImportTicketRequest {
 VerifyImportTicketRequest _$VerifyImportTicketRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('VerifyImportTicketRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['importDetails']);
   final val = VerifyImportTicketRequest(
     importDetails: $checkedConvert(
       'importDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) =>
                 VerifyImportDetailRequest.fromJson(e as Map<String, dynamic>),
           )
@@ -88,5 +90,5 @@ VerifyImportTicketRequest _$VerifyImportTicketRequestFromJson(
 Map<String, dynamic> _$VerifyImportTicketRequestToJson(
   VerifyImportTicketRequest instance,
 ) => <String, dynamic>{
-  'importDetails': ?instance.importDetails?.map((e) => e.toJson()).toList(),
+  'importDetails': instance.importDetails.map((e) => e.toJson()).toList(),
 };

@@ -24,8 +24,7 @@ class ProductRepositoryImpl implements ProductRepository {
             description: item.description ?? '',
             price: 0, // List API doesn't include price, fetched individually
             imageUrl: item.primaryImage?.url ?? '',
-            scentNotes:
-                item.attributes?.map((a) => a.attribute ?? '').toList() ?? [],
+            scentNotes: item.tags ?? [],
             brand: item.brandName ?? '',
             rating: 0,
             reviewCount: 0,
@@ -74,8 +73,7 @@ class ProductRepositoryImpl implements ProductRepository {
             description: item.description ?? '',
             price: 0,
             imageUrl: item.primaryImage?.url ?? '',
-            scentNotes:
-                item.attributes?.map((a) => a.attribute ?? '').toList() ?? [],
+            scentNotes: item.tags ?? [],
             brand: item.brandName ?? '',
             rating: 0,
             reviewCount: 0,

@@ -7,9 +7,9 @@ part of 'login_request.dart';
 // **************************************************************************
 
 abstract class _$LoginRequestCWProxy {
-  LoginRequest credential(String? credential);
+  LoginRequest credential(String credential);
 
-  LoginRequest password(String? password);
+  LoginRequest password(String password);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoginRequest(...).copyWith.fieldName(value)`.
@@ -18,7 +18,7 @@ abstract class _$LoginRequestCWProxy {
   /// ```dart
   /// LoginRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  LoginRequest call({String? credential, String? password});
+  LoginRequest call({String credential, String password});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -29,10 +29,10 @@ class _$LoginRequestCWProxyImpl implements _$LoginRequestCWProxy {
   final LoginRequest _value;
 
   @override
-  LoginRequest credential(String? credential) => call(credential: credential);
+  LoginRequest credential(String credential) => call(credential: credential);
 
   @override
-  LoginRequest password(String? password) => call(password: password);
+  LoginRequest password(String password) => call(password: password);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -47,14 +47,15 @@ class _$LoginRequestCWProxyImpl implements _$LoginRequestCWProxy {
     Object? password = const $CopyWithPlaceholder(),
   }) {
     return LoginRequest(
-      credential: credential == const $CopyWithPlaceholder()
+      credential:
+          credential == const $CopyWithPlaceholder() || credential == null
           ? _value.credential
           // ignore: cast_nullable_to_non_nullable
-          : credential as String?,
-      password: password == const $CopyWithPlaceholder()
+          : credential as String,
+      password: password == const $CopyWithPlaceholder() || password == null
           ? _value.password
           // ignore: cast_nullable_to_non_nullable
-          : password as String?,
+          : password as String,
     );
   }
 }
@@ -72,15 +73,16 @@ extension $LoginRequestCopyWith on LoginRequest {
 
 LoginRequest _$LoginRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('LoginRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['credential', 'password']);
       final val = LoginRequest(
-        credential: $checkedConvert('credential', (v) => v as String?),
-        password: $checkedConvert('password', (v) => v as String?),
+        credential: $checkedConvert('credential', (v) => v as String),
+        password: $checkedConvert('password', (v) => v as String),
       );
       return val;
     });
 
 Map<String, dynamic> _$LoginRequestToJson(LoginRequest instance) =>
     <String, dynamic>{
-      'credential': ?instance.credential,
-      'password': ?instance.password,
+      'credential': instance.credential,
+      'password': instance.password,
     };

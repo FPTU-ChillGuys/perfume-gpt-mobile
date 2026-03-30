@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'variant_image_upload_item.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,45 +20,76 @@ part 'variant_image_upload_item.g.dart';
 class VariantImageUploadItem {
   /// Returns a new [VariantImageUploadItem] instance.
   VariantImageUploadItem({
-    this.imageFile,
 
-    this.altText,
+     this.imageFile,
 
-    this.displayOrder,
+     this.altText,
 
-    this.isPrimary,
+     this.displayOrder,
+
+     this.isPrimary,
   });
 
   @JsonKey(ignore: true)
+
+
   final MultipartFile? imageFile;
 
-  @JsonKey(name: r'altText', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'altText',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? altText;
 
-  @JsonKey(name: r'displayOrder', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'displayOrder',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? displayOrder;
 
-  @JsonKey(name: r'isPrimary', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'isPrimary',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? isPrimary;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is VariantImageUploadItem &&
-          other.imageFile == imageFile &&
-          other.altText == altText &&
-          other.displayOrder == displayOrder &&
-          other.isPrimary == isPrimary;
 
-  @override
-  int get hashCode =>
-      imageFile.hashCode +
-      (altText == null ? 0 : altText.hashCode) +
-      displayOrder.hashCode +
-      isPrimary.hashCode;
 
-  factory VariantImageUploadItem.fromJson(Map<String, dynamic> json) =>
-      _$VariantImageUploadItemFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is VariantImageUploadItem &&
+      other.imageFile == imageFile &&
+      other.altText == altText &&
+      other.displayOrder == displayOrder &&
+      other.isPrimary == isPrimary;
+
+    @override
+    int get hashCode =>
+        imageFile.hashCode +
+        (altText == null ? 0 : altText.hashCode) +
+        displayOrder.hashCode +
+        isPrimary.hashCode;
+
+  factory VariantImageUploadItem.fromJson(Map<String, dynamic> json) => _$VariantImageUploadItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$VariantImageUploadItemToJson(this);
 
@@ -65,4 +97,6 @@ class VariantImageUploadItem {
   String toString() {
     return toJson().toString();
   }
+
 }
+

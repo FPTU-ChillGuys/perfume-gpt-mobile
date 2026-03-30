@@ -24,10 +24,9 @@ Name | Type | Description | Notes
 **rating** | **int** |  | [optional] 
 **comment** | **String** |  | [optional] 
 **images** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | [optional] 
-**moderatedByStaffId** | **String** |  | [optional] 
-**moderatedByStaffName** | **String** |  | [optional] 
-**moderatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**moderationReason** | **String** |  | [optional] 
+**staffFeedbackComment** | **String** |  | [optional] 
+**staffFeedbackByStaffId** | **String** |  | [optional] 
+**staffFeedbackAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

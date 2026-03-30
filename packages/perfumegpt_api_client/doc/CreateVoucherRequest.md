@@ -8,9 +8,10 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **String** |  | [optional] 
+**code** | **String** |  | 
 **discountValue** | **num** |  | [optional] 
 **discountType** | [**DiscountType**](DiscountType.md) |  | [optional] 
+**applyType** | [**VoucherType**](VoucherType.md) |  | [optional] 
 **requiredPoints** | **int** |  | [optional] 
 **minOrderValue** | **num** |  | [optional] 
 **expiryDate** | [**DateTime**](DateTime.md) |  | [optional] 

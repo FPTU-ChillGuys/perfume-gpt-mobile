@@ -9,7 +9,6 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **orderId** | **String** |  | [optional] 
-**orderCode** | **String** |  | [optional] 
 **items** | [**List&lt;PickListItemResponse&gt;**](PickListItemResponse.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

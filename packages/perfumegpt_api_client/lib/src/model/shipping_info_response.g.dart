@@ -19,6 +19,8 @@ abstract class _$ShippingInfoResponseCWProxy {
 
   ShippingInfoResponse leadTime(int? leadTime);
 
+  ShippingInfoResponse shippedDate(DateTime? shippedDate);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ShippingInfoResponse(...).copyWith.fieldName(value)`.
   ///
@@ -33,6 +35,7 @@ abstract class _$ShippingInfoResponseCWProxy {
     num? shippingFee,
     int? status,
     int? leadTime,
+    DateTime? shippedDate,
   });
 }
 
@@ -66,6 +69,10 @@ class _$ShippingInfoResponseCWProxyImpl
   ShippingInfoResponse leadTime(int? leadTime) => call(leadTime: leadTime);
 
   @override
+  ShippingInfoResponse shippedDate(DateTime? shippedDate) =>
+      call(shippedDate: shippedDate);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ShippingInfoResponse(...).copyWith.fieldName(value)`.
   ///
@@ -80,6 +87,7 @@ class _$ShippingInfoResponseCWProxyImpl
     Object? shippingFee = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
     Object? leadTime = const $CopyWithPlaceholder(),
+    Object? shippedDate = const $CopyWithPlaceholder(),
   }) {
     return ShippingInfoResponse(
       id: id == const $CopyWithPlaceholder()
@@ -106,6 +114,10 @@ class _$ShippingInfoResponseCWProxyImpl
           ? _value.leadTime
           // ignore: cast_nullable_to_non_nullable
           : leadTime as int?,
+      shippedDate: shippedDate == const $CopyWithPlaceholder()
+          ? _value.shippedDate
+          // ignore: cast_nullable_to_non_nullable
+          : shippedDate as DateTime?,
     );
   }
 }
@@ -135,6 +147,10 @@ ShippingInfoResponse _$ShippingInfoResponseFromJson(
     shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
     status: $checkedConvert('status', (v) => (v as num?)?.toInt()),
     leadTime: $checkedConvert('leadTime', (v) => (v as num?)?.toInt()),
+    shippedDate: $checkedConvert(
+      'shippedDate',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
   );
   return val;
 });
@@ -148,6 +164,7 @@ Map<String, dynamic> _$ShippingInfoResponseToJson(
   'shippingFee': ?instance.shippingFee,
   'status': ?instance.status,
   'leadTime': ?instance.leadTime,
+  'shippedDate': ?instance.shippedDate?.toIso8601String(),
 };
 
 const _$CarrierNameEnumMap = {CarrierName.GHN: 'GHN', CarrierName.GHTK: 'GHTK'};

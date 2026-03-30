@@ -203,6 +203,7 @@ Map<String, dynamic> _$GetCartItemResponseToJson(
 };
 
 const _$VariantTypeEnumMap = {
+  VariantType.standard: 'Standard',
   VariantType.fullBox: 'FullBox',
   VariantType.tester: 'Tester',
   VariantType.mini: 'Mini',

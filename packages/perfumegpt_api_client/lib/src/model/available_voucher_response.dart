@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'available_voucher_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,66 +20,129 @@ part 'available_voucher_response.g.dart';
 class AvailableVoucherResponse {
   /// Returns a new [AvailableVoucherResponse] instance.
   AvailableVoucherResponse({
-    this.id,
 
-    this.code,
+     this.id,
 
-    this.discountValue,
+     this.code,
 
-    this.discountType,
+     this.discountValue,
 
-    this.minOrderValue,
+     this.discountType,
 
-    this.expiryDate,
+     this.minOrderValue,
 
-    this.remainingQuantity,
+     this.expiryDate,
+
+     this.remainingQuantity,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'code', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'code',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? code;
 
-  @JsonKey(name: r'discountValue', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'discountValue',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? discountValue;
 
-  @JsonKey(name: r'discountType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'discountType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DiscountType? discountType;
 
-  @JsonKey(name: r'minOrderValue', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'minOrderValue',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? minOrderValue;
 
-  @JsonKey(name: r'expiryDate', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'expiryDate',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? expiryDate;
 
-  @JsonKey(name: r'remainingQuantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'remainingQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? remainingQuantity;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AvailableVoucherResponse &&
-          other.id == id &&
-          other.code == code &&
-          other.discountValue == discountValue &&
-          other.discountType == discountType &&
-          other.minOrderValue == minOrderValue &&
-          other.expiryDate == expiryDate &&
-          other.remainingQuantity == remainingQuantity;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      code.hashCode +
-      discountValue.hashCode +
-      discountType.hashCode +
-      minOrderValue.hashCode +
-      expiryDate.hashCode +
-      remainingQuantity.hashCode;
 
-  factory AvailableVoucherResponse.fromJson(Map<String, dynamic> json) =>
-      _$AvailableVoucherResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is AvailableVoucherResponse &&
+      other.id == id &&
+      other.code == code &&
+      other.discountValue == discountValue &&
+      other.discountType == discountType &&
+      other.minOrderValue == minOrderValue &&
+      other.expiryDate == expiryDate &&
+      other.remainingQuantity == remainingQuantity;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        code.hashCode +
+        discountValue.hashCode +
+        discountType.hashCode +
+        (minOrderValue == null ? 0 : minOrderValue.hashCode) +
+        expiryDate.hashCode +
+        (remainingQuantity == null ? 0 : remainingQuantity.hashCode);
+
+  factory AvailableVoucherResponse.fromJson(Map<String, dynamic> json) => _$AvailableVoucherResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$AvailableVoucherResponseToJson(this);
 
@@ -86,4 +150,6 @@ class AvailableVoucherResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

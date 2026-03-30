@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'pick_list_item_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,52 +20,97 @@ part 'pick_list_item_response.g.dart';
 class PickListItemResponse {
   /// Returns a new [PickListItemResponse] instance.
   PickListItemResponse({
-    this.orderDetailId,
 
-    this.variantId,
+     this.orderDetailId,
 
-    this.variantName,
+     this.variantId,
 
-    this.quantity,
+     this.variantName,
 
-    this.batches,
+     this.quantity,
+
+     this.batches,
   });
 
-  @JsonKey(name: r'orderDetailId', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'orderDetailId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? orderDetailId;
 
-  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantId;
 
-  @JsonKey(name: r'variantName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantName;
 
-  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'quantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? quantity;
 
-  @JsonKey(name: r'batches', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'batches',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<PickListBatchInfo>? batches;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PickListItemResponse &&
-          other.orderDetailId == orderDetailId &&
-          other.variantId == variantId &&
-          other.variantName == variantName &&
-          other.quantity == quantity &&
-          other.batches == batches;
 
-  @override
-  int get hashCode =>
-      orderDetailId.hashCode +
-      variantId.hashCode +
-      variantName.hashCode +
-      quantity.hashCode +
-      batches.hashCode;
 
-  factory PickListItemResponse.fromJson(Map<String, dynamic> json) =>
-      _$PickListItemResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is PickListItemResponse &&
+      other.orderDetailId == orderDetailId &&
+      other.variantId == variantId &&
+      other.variantName == variantName &&
+      other.quantity == quantity &&
+      other.batches == batches;
+
+    @override
+    int get hashCode =>
+        orderDetailId.hashCode +
+        variantId.hashCode +
+        variantName.hashCode +
+        quantity.hashCode +
+        batches.hashCode;
+
+  factory PickListItemResponse.fromJson(Map<String, dynamic> json) => _$PickListItemResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$PickListItemResponseToJson(this);
 
@@ -72,4 +118,6 @@ class PickListItemResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

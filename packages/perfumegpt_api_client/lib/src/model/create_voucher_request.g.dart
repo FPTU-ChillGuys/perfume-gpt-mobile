@@ -7,11 +7,13 @@ part of 'create_voucher_request.dart';
 // **************************************************************************
 
 abstract class _$CreateVoucherRequestCWProxy {
-  CreateVoucherRequest code(String? code);
+  CreateVoucherRequest code(String code);
 
   CreateVoucherRequest discountValue(num? discountValue);
 
   CreateVoucherRequest discountType(DiscountType? discountType);
+
+  CreateVoucherRequest applyType(VoucherType? applyType);
 
   CreateVoucherRequest requiredPoints(int? requiredPoints);
 
@@ -31,9 +33,10 @@ abstract class _$CreateVoucherRequestCWProxy {
   /// CreateVoucherRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateVoucherRequest call({
-    String? code,
+    String code,
     num? discountValue,
     DiscountType? discountType,
+    VoucherType? applyType,
     int? requiredPoints,
     num? minOrderValue,
     DateTime? expiryDate,
@@ -51,7 +54,7 @@ class _$CreateVoucherRequestCWProxyImpl
   final CreateVoucherRequest _value;
 
   @override
-  CreateVoucherRequest code(String? code) => call(code: code);
+  CreateVoucherRequest code(String code) => call(code: code);
 
   @override
   CreateVoucherRequest discountValue(num? discountValue) =>
@@ -60,6 +63,10 @@ class _$CreateVoucherRequestCWProxyImpl
   @override
   CreateVoucherRequest discountType(DiscountType? discountType) =>
       call(discountType: discountType);
+
+  @override
+  CreateVoucherRequest applyType(VoucherType? applyType) =>
+      call(applyType: applyType);
 
   @override
   CreateVoucherRequest requiredPoints(int? requiredPoints) =>
@@ -92,6 +99,7 @@ class _$CreateVoucherRequestCWProxyImpl
     Object? code = const $CopyWithPlaceholder(),
     Object? discountValue = const $CopyWithPlaceholder(),
     Object? discountType = const $CopyWithPlaceholder(),
+    Object? applyType = const $CopyWithPlaceholder(),
     Object? requiredPoints = const $CopyWithPlaceholder(),
     Object? minOrderValue = const $CopyWithPlaceholder(),
     Object? expiryDate = const $CopyWithPlaceholder(),
@@ -99,10 +107,10 @@ class _$CreateVoucherRequestCWProxyImpl
     Object? isPublic = const $CopyWithPlaceholder(),
   }) {
     return CreateVoucherRequest(
-      code: code == const $CopyWithPlaceholder()
+      code: code == const $CopyWithPlaceholder() || code == null
           ? _value.code
           // ignore: cast_nullable_to_non_nullable
-          : code as String?,
+          : code as String,
       discountValue: discountValue == const $CopyWithPlaceholder()
           ? _value.discountValue
           // ignore: cast_nullable_to_non_nullable
@@ -111,6 +119,10 @@ class _$CreateVoucherRequestCWProxyImpl
           ? _value.discountType
           // ignore: cast_nullable_to_non_nullable
           : discountType as DiscountType?,
+      applyType: applyType == const $CopyWithPlaceholder()
+          ? _value.applyType
+          // ignore: cast_nullable_to_non_nullable
+          : applyType as VoucherType?,
       requiredPoints: requiredPoints == const $CopyWithPlaceholder()
           ? _value.requiredPoints
           // ignore: cast_nullable_to_non_nullable
@@ -150,12 +162,17 @@ extension $CreateVoucherRequestCopyWith on CreateVoucherRequest {
 CreateVoucherRequest _$CreateVoucherRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateVoucherRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code']);
   final val = CreateVoucherRequest(
-    code: $checkedConvert('code', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
     discountValue: $checkedConvert('discountValue', (v) => v as num?),
     discountType: $checkedConvert(
       'discountType',
       (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
+    ),
+    applyType: $checkedConvert(
+      'applyType',
+      (v) => $enumDecodeNullable(_$VoucherTypeEnumMap, v),
     ),
     requiredPoints: $checkedConvert(
       'requiredPoints',
@@ -178,9 +195,10 @@ CreateVoucherRequest _$CreateVoucherRequestFromJson(
 Map<String, dynamic> _$CreateVoucherRequestToJson(
   CreateVoucherRequest instance,
 ) => <String, dynamic>{
-  'code': ?instance.code,
+  'code': instance.code,
   'discountValue': ?instance.discountValue,
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
+  'applyType': ?_$VoucherTypeEnumMap[instance.applyType],
   'requiredPoints': ?instance.requiredPoints,
   'minOrderValue': ?instance.minOrderValue,
   'expiryDate': ?instance.expiryDate?.toIso8601String(),
@@ -190,5 +208,10 @@ Map<String, dynamic> _$CreateVoucherRequestToJson(
 
 const _$DiscountTypeEnumMap = {
   DiscountType.percentage: 'Percentage',
-  DiscountType.fixed: 'Fixed',
+  DiscountType.fixedAmount: 'FixedAmount',
+};
+
+const _$VoucherTypeEnumMap = {
+  VoucherType.order: 'Order',
+  VoucherType.product: 'Product',
 };

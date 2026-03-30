@@ -7,7 +7,7 @@ part of 'create_order_detail_request.dart';
 // **************************************************************************
 
 abstract class _$CreateOrderDetailRequestCWProxy {
-  CreateOrderDetailRequest variantId(String? variantId);
+  CreateOrderDetailRequest variantId(String variantId);
 
   CreateOrderDetailRequest quantity(int? quantity);
 
@@ -18,7 +18,7 @@ abstract class _$CreateOrderDetailRequestCWProxy {
   /// ```dart
   /// CreateOrderDetailRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  CreateOrderDetailRequest call({String? variantId, int? quantity});
+  CreateOrderDetailRequest call({String variantId, int? quantity});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -30,7 +30,7 @@ class _$CreateOrderDetailRequestCWProxyImpl
   final CreateOrderDetailRequest _value;
 
   @override
-  CreateOrderDetailRequest variantId(String? variantId) =>
+  CreateOrderDetailRequest variantId(String variantId) =>
       call(variantId: variantId);
 
   @override
@@ -49,10 +49,10 @@ class _$CreateOrderDetailRequestCWProxyImpl
     Object? quantity = const $CopyWithPlaceholder(),
   }) {
     return CreateOrderDetailRequest(
-      variantId: variantId == const $CopyWithPlaceholder()
+      variantId: variantId == const $CopyWithPlaceholder() || variantId == null
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
-          : variantId as String?,
+          : variantId as String,
       quantity: quantity == const $CopyWithPlaceholder()
           ? _value.quantity
           // ignore: cast_nullable_to_non_nullable
@@ -76,8 +76,9 @@ extension $CreateOrderDetailRequestCopyWith on CreateOrderDetailRequest {
 CreateOrderDetailRequest _$CreateOrderDetailRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateOrderDetailRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['variantId']);
   final val = CreateOrderDetailRequest(
-    variantId: $checkedConvert('variantId', (v) => v as String?),
+    variantId: $checkedConvert('variantId', (v) => v as String),
     quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
   );
   return val;
@@ -86,6 +87,6 @@ CreateOrderDetailRequest _$CreateOrderDetailRequestFromJson(
 Map<String, dynamic> _$CreateOrderDetailRequestToJson(
   CreateOrderDetailRequest instance,
 ) => <String, dynamic>{
-  'variantId': ?instance.variantId,
+  'variantId': instance.variantId,
   'quantity': ?instance.quantity,
 };

@@ -13,10 +13,10 @@ Method | HTTP request | Description
 [**apiReviewsImagesTemporaryPost**](ReviewsApi.md#apireviewsimagestemporarypost) | **POST** /api/reviews/images/temporary | 
 [**apiReviewsMeGet**](ReviewsApi.md#apireviewsmeget) | **GET** /api/reviews/me | 
 [**apiReviewsPost**](ReviewsApi.md#apireviewspost) | **POST** /api/reviews | 
+[**apiReviewsReviewIdAnswerPost**](ReviewsApi.md#apireviewsreviewidanswerpost) | **POST** /api/reviews/{reviewId}/answer | 
 [**apiReviewsReviewIdDelete**](ReviewsApi.md#apireviewsreviewiddelete) | **DELETE** /api/reviews/{reviewId} | 
 [**apiReviewsReviewIdGet**](ReviewsApi.md#apireviewsreviewidget) | **GET** /api/reviews/{reviewId} | 
 [**apiReviewsReviewIdImagesGet**](ReviewsApi.md#apireviewsreviewidimagesget) | **GET** /api/reviews/{reviewId}/images | 
-[**apiReviewsReviewIdPut**](ReviewsApi.md#apireviewsreviewidput) | **PUT** /api/reviews/{reviewId} | 
 [**apiReviewsVariantVariantIdGet**](ReviewsApi.md#apireviewsvariantvariantidget) | **GET** /api/reviews/variant/{variantId} | 
 [**apiReviewsVariantVariantIdStatisticsGet**](ReviewsApi.md#apireviewsvariantvariantidstatisticsget) | **GET** /api/reviews/variant/{variantId}/statistics | 
 
@@ -199,6 +199,49 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **apiReviewsReviewIdAnswerPost**
+> BaseResponseOfstring apiReviewsReviewIdAnswerPost(reviewId, answerReviewRequest)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getReviewsApi();
+final String reviewId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final AnswerReviewRequest answerReviewRequest = ; // AnswerReviewRequest | 
+
+try {
+    final response = api.apiReviewsReviewIdAnswerPost(reviewId, answerReviewRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ReviewsApi->apiReviewsReviewIdAnswerPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reviewId** | **String**|  | 
+ **answerReviewRequest** | [**AnswerReviewRequest**](AnswerReviewRequest.md)|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **apiReviewsReviewIdDelete**
 > BaseResponseOfstring apiReviewsReviewIdDelete(reviewId)
 
@@ -318,49 +361,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiReviewsReviewIdPut**
-> BaseResponseOfBulkActionResultOfstring apiReviewsReviewIdPut(reviewId, updateReviewRequest)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getReviewsApi();
-final String reviewId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final UpdateReviewRequest updateReviewRequest = ; // UpdateReviewRequest | 
-
-try {
-    final response = api.apiReviewsReviewIdPut(reviewId, updateReviewRequest);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsReviewIdPut: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **reviewId** | **String**|  | 
- **updateReviewRequest** | [**UpdateReviewRequest**](UpdateReviewRequest.md)|  | 
-
-### Return type
-
-[**BaseResponseOfBulkActionResultOfstring**](BaseResponseOfBulkActionResultOfstring.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

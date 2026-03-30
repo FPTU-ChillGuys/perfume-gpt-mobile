@@ -11,6 +11,12 @@ abstract class _$ProductResponseCWProxy {
 
   ProductResponse name(String? name);
 
+  ProductResponse gender(Gender? gender);
+
+  ProductResponse origin(String? origin);
+
+  ProductResponse releaseYear(int? releaseYear);
+
   ProductResponse brandId(int? brandId);
 
   ProductResponse brandName(String? brandName);
@@ -29,6 +35,12 @@ abstract class _$ProductResponseCWProxy {
 
   ProductResponse attributes(List<ProductAttributeResponse>? attributes);
 
+  ProductResponse olfactoryFamilies(
+    List<ProductOlfactoryFamilyResponse>? olfactoryFamilies,
+  );
+
+  ProductResponse scentNotes(List<ProductScentNoteResponse>? scentNotes);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductResponse(...).copyWith.fieldName(value)`.
   ///
@@ -39,6 +51,9 @@ abstract class _$ProductResponseCWProxy {
   ProductResponse call({
     String? id,
     String? name,
+    Gender? gender,
+    String? origin,
+    int? releaseYear,
     int? brandId,
     String? brandName,
     int? categoryId,
@@ -48,6 +63,8 @@ abstract class _$ProductResponseCWProxy {
     List<MediaResponse>? media,
     List<ProductVariantResponse>? variants,
     List<ProductAttributeResponse>? attributes,
+    List<ProductOlfactoryFamilyResponse>? olfactoryFamilies,
+    List<ProductScentNoteResponse>? scentNotes,
   });
 }
 
@@ -63,6 +80,16 @@ class _$ProductResponseCWProxyImpl implements _$ProductResponseCWProxy {
 
   @override
   ProductResponse name(String? name) => call(name: name);
+
+  @override
+  ProductResponse gender(Gender? gender) => call(gender: gender);
+
+  @override
+  ProductResponse origin(String? origin) => call(origin: origin);
+
+  @override
+  ProductResponse releaseYear(int? releaseYear) =>
+      call(releaseYear: releaseYear);
 
   @override
   ProductResponse brandId(int? brandId) => call(brandId: brandId);
@@ -97,6 +124,15 @@ class _$ProductResponseCWProxyImpl implements _$ProductResponseCWProxy {
       call(attributes: attributes);
 
   @override
+  ProductResponse olfactoryFamilies(
+    List<ProductOlfactoryFamilyResponse>? olfactoryFamilies,
+  ) => call(olfactoryFamilies: olfactoryFamilies);
+
+  @override
+  ProductResponse scentNotes(List<ProductScentNoteResponse>? scentNotes) =>
+      call(scentNotes: scentNotes);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductResponse(...).copyWith.fieldName(value)`.
   ///
@@ -107,6 +143,9 @@ class _$ProductResponseCWProxyImpl implements _$ProductResponseCWProxy {
   ProductResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
+    Object? gender = const $CopyWithPlaceholder(),
+    Object? origin = const $CopyWithPlaceholder(),
+    Object? releaseYear = const $CopyWithPlaceholder(),
     Object? brandId = const $CopyWithPlaceholder(),
     Object? brandName = const $CopyWithPlaceholder(),
     Object? categoryId = const $CopyWithPlaceholder(),
@@ -116,6 +155,8 @@ class _$ProductResponseCWProxyImpl implements _$ProductResponseCWProxy {
     Object? media = const $CopyWithPlaceholder(),
     Object? variants = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
+    Object? olfactoryFamilies = const $CopyWithPlaceholder(),
+    Object? scentNotes = const $CopyWithPlaceholder(),
   }) {
     return ProductResponse(
       id: id == const $CopyWithPlaceholder()
@@ -126,6 +167,18 @@ class _$ProductResponseCWProxyImpl implements _$ProductResponseCWProxy {
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String?,
+      gender: gender == const $CopyWithPlaceholder()
+          ? _value.gender
+          // ignore: cast_nullable_to_non_nullable
+          : gender as Gender?,
+      origin: origin == const $CopyWithPlaceholder()
+          ? _value.origin
+          // ignore: cast_nullable_to_non_nullable
+          : origin as String?,
+      releaseYear: releaseYear == const $CopyWithPlaceholder()
+          ? _value.releaseYear
+          // ignore: cast_nullable_to_non_nullable
+          : releaseYear as int?,
       brandId: brandId == const $CopyWithPlaceholder()
           ? _value.brandId
           // ignore: cast_nullable_to_non_nullable
@@ -162,6 +215,14 @@ class _$ProductResponseCWProxyImpl implements _$ProductResponseCWProxy {
           ? _value.attributes
           // ignore: cast_nullable_to_non_nullable
           : attributes as List<ProductAttributeResponse>?,
+      olfactoryFamilies: olfactoryFamilies == const $CopyWithPlaceholder()
+          ? _value.olfactoryFamilies
+          // ignore: cast_nullable_to_non_nullable
+          : olfactoryFamilies as List<ProductOlfactoryFamilyResponse>?,
+      scentNotes: scentNotes == const $CopyWithPlaceholder()
+          ? _value.scentNotes
+          // ignore: cast_nullable_to_non_nullable
+          : scentNotes as List<ProductScentNoteResponse>?,
     );
   }
 }
@@ -177,53 +238,78 @@ extension $ProductResponseCopyWith on ProductResponse {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProductResponse _$ProductResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ProductResponse', json, ($checkedConvert) {
-      final val = ProductResponse(
-        id: $checkedConvert('id', (v) => v as String?),
-        name: $checkedConvert('name', (v) => v as String?),
-        brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
-        brandName: $checkedConvert('brandName', (v) => v as String?),
-        categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
-        categoryName: $checkedConvert('categoryName', (v) => v as String?),
-        description: $checkedConvert('description', (v) => v as String?),
-        numberOfVariants: $checkedConvert(
-          'numberOfVariants',
-          (v) => (v as num?)?.toInt(),
-        ),
-        media: $checkedConvert(
-          'media',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        variants: $checkedConvert(
-          'variants',
-          (v) => (v as List<dynamic>?)
-              ?.map(
-                (e) =>
-                    ProductVariantResponse.fromJson(e as Map<String, dynamic>),
-              )
-              .toList(),
-        ),
-        attributes: $checkedConvert(
-          'attributes',
-          (v) => (v as List<dynamic>?)
-              ?.map(
-                (e) => ProductAttributeResponse.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
-        ),
-      );
-      return val;
-    });
+ProductResponse _$ProductResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ProductResponse', json, ($checkedConvert) {
+  final val = ProductResponse(
+    id: $checkedConvert('id', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String?),
+    gender: $checkedConvert(
+      'gender',
+      (v) => $enumDecodeNullable(_$GenderEnumMap, v),
+    ),
+    origin: $checkedConvert('origin', (v) => v as String?),
+    releaseYear: $checkedConvert('releaseYear', (v) => (v as num?)?.toInt()),
+    brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
+    brandName: $checkedConvert('brandName', (v) => v as String?),
+    categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
+    categoryName: $checkedConvert('categoryName', (v) => v as String?),
+    description: $checkedConvert('description', (v) => v as String?),
+    numberOfVariants: $checkedConvert(
+      'numberOfVariants',
+      (v) => (v as num?)?.toInt(),
+    ),
+    media: $checkedConvert(
+      'media',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    variants: $checkedConvert(
+      'variants',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => ProductVariantResponse.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    attributes: $checkedConvert(
+      'attributes',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => ProductAttributeResponse.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    olfactoryFamilies: $checkedConvert(
+      'olfactoryFamilies',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => ProductOlfactoryFamilyResponse.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+    ),
+    scentNotes: $checkedConvert(
+      'scentNotes',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => ProductScentNoteResponse.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$ProductResponseToJson(ProductResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
       'name': ?instance.name,
+      'gender': ?_$GenderEnumMap[instance.gender],
+      'origin': ?instance.origin,
+      'releaseYear': ?instance.releaseYear,
       'brandId': ?instance.brandId,
       'brandName': ?instance.brandName,
       'categoryId': ?instance.categoryId,
@@ -233,4 +319,14 @@ Map<String, dynamic> _$ProductResponseToJson(ProductResponse instance) =>
       'media': ?instance.media?.map((e) => e.toJson()).toList(),
       'variants': ?instance.variants?.map((e) => e.toJson()).toList(),
       'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
+      'olfactoryFamilies': ?instance.olfactoryFamilies
+          ?.map((e) => e.toJson())
+          .toList(),
+      'scentNotes': ?instance.scentNotes?.map((e) => e.toJson()).toList(),
     };
+
+const _$GenderEnumMap = {
+  Gender.male: 'Male',
+  Gender.female: 'Female',
+  Gender.unisex: 'Unisex',
+};

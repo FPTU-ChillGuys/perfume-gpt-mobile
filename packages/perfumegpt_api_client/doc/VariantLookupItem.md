@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **volumeMl** | **int** |  | [optional] 
 **concentrationName** | **String** |  | [optional] 
 **basePrice** | **num** |  | [optional] 
-**primaryImage** | [**MediaResponse**](MediaResponse.md) |  | [optional] 
+**primaryImageUrl** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -7,7 +7,7 @@ part of 'update_category_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateCategoryRequestCWProxy {
-  UpdateCategoryRequest name(String? name);
+  UpdateCategoryRequest name(String name);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCategoryRequest(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$UpdateCategoryRequestCWProxy {
   /// ```dart
   /// UpdateCategoryRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  UpdateCategoryRequest call({String? name});
+  UpdateCategoryRequest call({String name});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -28,7 +28,7 @@ class _$UpdateCategoryRequestCWProxyImpl
   final UpdateCategoryRequest _value;
 
   @override
-  UpdateCategoryRequest name(String? name) => call(name: name);
+  UpdateCategoryRequest name(String name) => call(name: name);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -40,10 +40,10 @@ class _$UpdateCategoryRequestCWProxyImpl
   /// ```
   UpdateCategoryRequest call({Object? name = const $CopyWithPlaceholder()}) {
     return UpdateCategoryRequest(
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
     );
   }
 }
@@ -63,12 +63,13 @@ extension $UpdateCategoryRequestCopyWith on UpdateCategoryRequest {
 UpdateCategoryRequest _$UpdateCategoryRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateCategoryRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
   final val = UpdateCategoryRequest(
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
   );
   return val;
 });
 
 Map<String, dynamic> _$UpdateCategoryRequestToJson(
   UpdateCategoryRequest instance,
-) => <String, dynamic>{'name': ?instance.name};
+) => <String, dynamic>{'name': instance.name};

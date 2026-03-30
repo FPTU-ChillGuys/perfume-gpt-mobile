@@ -7,9 +7,9 @@ part of 'fulfill_order_item_request.dart';
 // **************************************************************************
 
 abstract class _$FulfillOrderItemRequestCWProxy {
-  FulfillOrderItemRequest orderDetailId(String? orderDetailId);
+  FulfillOrderItemRequest orderDetailId(String orderDetailId);
 
-  FulfillOrderItemRequest scannedBatchCode(String? scannedBatchCode);
+  FulfillOrderItemRequest scannedBatchCode(String scannedBatchCode);
 
   FulfillOrderItemRequest quantity(int? quantity);
 
@@ -21,8 +21,8 @@ abstract class _$FulfillOrderItemRequestCWProxy {
   /// FulfillOrderItemRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   FulfillOrderItemRequest call({
-    String? orderDetailId,
-    String? scannedBatchCode,
+    String orderDetailId,
+    String scannedBatchCode,
     int? quantity,
   });
 }
@@ -36,11 +36,11 @@ class _$FulfillOrderItemRequestCWProxyImpl
   final FulfillOrderItemRequest _value;
 
   @override
-  FulfillOrderItemRequest orderDetailId(String? orderDetailId) =>
+  FulfillOrderItemRequest orderDetailId(String orderDetailId) =>
       call(orderDetailId: orderDetailId);
 
   @override
-  FulfillOrderItemRequest scannedBatchCode(String? scannedBatchCode) =>
+  FulfillOrderItemRequest scannedBatchCode(String scannedBatchCode) =>
       call(scannedBatchCode: scannedBatchCode);
 
   @override
@@ -60,14 +60,17 @@ class _$FulfillOrderItemRequestCWProxyImpl
     Object? quantity = const $CopyWithPlaceholder(),
   }) {
     return FulfillOrderItemRequest(
-      orderDetailId: orderDetailId == const $CopyWithPlaceholder()
+      orderDetailId:
+          orderDetailId == const $CopyWithPlaceholder() || orderDetailId == null
           ? _value.orderDetailId
           // ignore: cast_nullable_to_non_nullable
-          : orderDetailId as String?,
-      scannedBatchCode: scannedBatchCode == const $CopyWithPlaceholder()
+          : orderDetailId as String,
+      scannedBatchCode:
+          scannedBatchCode == const $CopyWithPlaceholder() ||
+              scannedBatchCode == null
           ? _value.scannedBatchCode
           // ignore: cast_nullable_to_non_nullable
-          : scannedBatchCode as String?,
+          : scannedBatchCode as String,
       quantity: quantity == const $CopyWithPlaceholder()
           ? _value.quantity
           // ignore: cast_nullable_to_non_nullable
@@ -91,9 +94,10 @@ extension $FulfillOrderItemRequestCopyWith on FulfillOrderItemRequest {
 FulfillOrderItemRequest _$FulfillOrderItemRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('FulfillOrderItemRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['orderDetailId', 'scannedBatchCode']);
   final val = FulfillOrderItemRequest(
-    orderDetailId: $checkedConvert('orderDetailId', (v) => v as String?),
-    scannedBatchCode: $checkedConvert('scannedBatchCode', (v) => v as String?),
+    orderDetailId: $checkedConvert('orderDetailId', (v) => v as String),
+    scannedBatchCode: $checkedConvert('scannedBatchCode', (v) => v as String),
     quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
   );
   return val;
@@ -102,7 +106,7 @@ FulfillOrderItemRequest _$FulfillOrderItemRequestFromJson(
 Map<String, dynamic> _$FulfillOrderItemRequestToJson(
   FulfillOrderItemRequest instance,
 ) => <String, dynamic>{
-  'orderDetailId': ?instance.orderDetailId,
-  'scannedBatchCode': ?instance.scannedBatchCode,
+  'orderDetailId': instance.orderDetailId,
+  'scannedBatchCode': instance.scannedBatchCode,
   'quantity': ?instance.quantity,
 };
