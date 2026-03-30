@@ -1,3 +1,4 @@
+import 'dart:developer' as developer;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/repositories/product_repository.dart';
@@ -27,6 +28,9 @@ class ProductRepositoryImpl implements ProductRepository {
             name: item.productName ?? '',
             description: '', // Not in stock response
             price: 0, // Not in stock response
+            retailPrice: null,
+            basePrice: null,
+            discountedPrice: null,
             imageUrl: item.variantImageUrl ?? '',
             scentNotes: [], // Not in stock response
             brand: '',
@@ -41,13 +45,41 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<Product?> getProductBySku(String sku) async {
     final response = await _apiClient.getInventoryApi().apiInventoryStockGet(
-          SKU: sku,
-        );
+      SKU: sku,
+    );
     final items = response.data?.payload?.items ?? [];
 
     if (items.isEmpty) return null;
 
     final item = items.first;
+
+    // Fetch detailed variant info for pricing
+    double retailPrice = 0;
+    double basePrice = 0;
+    double? discountedPrice;
+
+    if (item.variantId != null && item.variantId!.isNotEmpty) {
+      try {
+        final variantResponse = await _apiClient
+            .getProductVariantsApi()
+            .apiProductvariantsVariantIdGet(variantId: item.variantId!);
+        final variantData = variantResponse.data?.payload;
+        if (variantData != null) {
+          retailPrice = (variantData.retailPrice ?? 0).toDouble();
+          basePrice = (variantData.basePrice ?? 0).toDouble();
+          discountedPrice = variantData.discountedPrice?.toDouble();
+        }
+      } catch (e, s) {
+        // If the variant fetch fails, we proceed with 0 prices rather than crashing
+        developer.log(
+          'Failed to fetch variant details for ${item.variantId}',
+          name: 'staff_app.repository',
+          error: e,
+          stackTrace: s,
+        );
+      }
+    }
+
     return Product(
       id: item.id ?? '',
       variantId: item.variantId ?? '',
@@ -55,7 +87,12 @@ class ProductRepositoryImpl implements ProductRepository {
       sku: item.variantSku ?? sku,
       name: item.productName ?? '',
       description: '',
-      price: 0,
+      price: retailPrice > 0
+          ? retailPrice
+          : basePrice, // Prefer retail price, fallback to base
+      retailPrice: retailPrice > 0 ? retailPrice : null,
+      basePrice: basePrice > 0 ? basePrice : null,
+      discountedPrice: discountedPrice,
       imageUrl: item.variantImageUrl ?? '',
       scentNotes: [],
       brand: '',
@@ -91,8 +128,8 @@ class ProductRepositoryImpl implements ProductRepository {
     );
 
     await _apiClient.getStockAdjustmentsApi().apiStockadjustmentsPost(
-          createStockAdjustmentRequest: request,
-        );
+      createStockAdjustmentRequest: request,
+    );
   }
 }
 

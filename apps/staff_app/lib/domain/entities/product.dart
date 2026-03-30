@@ -6,6 +6,9 @@ class Product {
   final String name;
   final String description;
   final double price;
+  final double? retailPrice;
+  final double? basePrice;
+  final double? discountedPrice;
   final String imageUrl;
   final List<String> scentNotes;
   final String brand;
@@ -21,6 +24,9 @@ class Product {
     required this.name,
     required this.description,
     required this.price,
+    this.retailPrice,
+    this.basePrice,
+    this.discountedPrice,
     required this.imageUrl,
     required this.scentNotes,
     required this.brand,

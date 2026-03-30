@@ -26,18 +26,25 @@ class ProductRepositoryImpl implements ProductRepository {
     final product = response.data?.payload;
     if (product == null) throw Exception('Product not found');
 
-    double minPrice = 0;
+    double minP = 0;
+    double maxP = 0;
+    List<double> variantPrices = [];
     if (product.variants != null && product.variants!.isNotEmpty) {
-      minPrice = product.variants!
+      variantPrices = product.variants!
           .map((v) => (v.basePrice ?? 0).toDouble())
-          .reduce(min);
+          .toList();
+      minP = variantPrices.reduce(min);
+      maxP = variantPrices.reduce(max);
     }
 
     return Product(
       id: product.id ?? '',
       name: product.name ?? '',
       description: product.description ?? '',
-      price: minPrice,
+      price: minP,
+      minPrice: minP > 0 ? minP : null,
+      maxPrice: maxP > 0 ? maxP : null,
+      variantPrices: variantPrices,
       imageUrl: product.media?.firstOrNull?.url ?? '',
       scentNotes:
           product.attributes?.map((a) => a.attribute ?? '').toList() ?? [],
@@ -69,11 +76,23 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   Product _mapListItemToProduct(ProductListItem item) {
+    double minP = 0;
+    double maxP = 0;
+    List<double> variantPrices = [];
+    if (item.variantPrices != null && item.variantPrices!.isNotEmpty) {
+      variantPrices = item.variantPrices!.map((p) => p.toDouble()).toList();
+      minP = variantPrices.reduce(min);
+      maxP = variantPrices.reduce(max);
+    }
+
     return Product(
       id: item.id ?? '',
       name: item.name ?? '',
       description: item.description ?? '',
-      price: 0, // List API doesn't include price, fetched individually
+      price: minP,
+      minPrice: minP > 0 ? minP : null,
+      maxPrice: maxP > 0 ? maxP : null,
+      variantPrices: variantPrices,
       imageUrl: item.primaryImage?.url ?? '',
       scentNotes: item.tags ?? [],
       brand: item.brandName ?? '',
@@ -83,11 +102,23 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   Product _mapListItemWithVariantsToProduct(ProductListItemWithVariants item) {
+    double minP = 0;
+    double maxP = 0;
+    List<double> variantPrices = [];
+    if (item.variantPrices != null && item.variantPrices!.isNotEmpty) {
+      variantPrices = item.variantPrices!.map((p) => p.toDouble()).toList();
+      minP = variantPrices.reduce(min);
+      maxP = variantPrices.reduce(max);
+    }
+
     return Product(
       id: item.id ?? '',
       name: item.name ?? '',
       description: item.description ?? '',
-      price: 0,
+      price: minP,
+      minPrice: minP > 0 ? minP : null,
+      maxPrice: maxP > 0 ? maxP : null,
+      variantPrices: variantPrices,
       imageUrl: item.primaryImage?.url ?? '',
       scentNotes: item.tags ?? [],
       brand: item.brandName ?? '',
