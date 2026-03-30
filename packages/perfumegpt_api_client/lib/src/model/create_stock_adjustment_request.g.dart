@@ -7,14 +7,14 @@ part of 'create_stock_adjustment_request.dart';
 // **************************************************************************
 
 abstract class _$CreateStockAdjustmentRequestCWProxy {
-  CreateStockAdjustmentRequest adjustmentDate(DateTime? adjustmentDate);
+  CreateStockAdjustmentRequest adjustmentDate(DateTime adjustmentDate);
 
   CreateStockAdjustmentRequest reason(StockAdjustmentReason? reason);
 
   CreateStockAdjustmentRequest note(String? note);
 
   CreateStockAdjustmentRequest adjustmentDetails(
-    List<CreateStockAdjustmentDetailRequest>? adjustmentDetails,
+    List<CreateStockAdjustmentDetailRequest> adjustmentDetails,
   );
 
   /// Creates a new instance with the provided field values.
@@ -25,10 +25,10 @@ abstract class _$CreateStockAdjustmentRequestCWProxy {
   /// CreateStockAdjustmentRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateStockAdjustmentRequest call({
-    DateTime? adjustmentDate,
+    DateTime adjustmentDate,
     StockAdjustmentReason? reason,
     String? note,
-    List<CreateStockAdjustmentDetailRequest>? adjustmentDetails,
+    List<CreateStockAdjustmentDetailRequest> adjustmentDetails,
   });
 }
 
@@ -41,7 +41,7 @@ class _$CreateStockAdjustmentRequestCWProxyImpl
   final CreateStockAdjustmentRequest _value;
 
   @override
-  CreateStockAdjustmentRequest adjustmentDate(DateTime? adjustmentDate) =>
+  CreateStockAdjustmentRequest adjustmentDate(DateTime adjustmentDate) =>
       call(adjustmentDate: adjustmentDate);
 
   @override
@@ -53,7 +53,7 @@ class _$CreateStockAdjustmentRequestCWProxyImpl
 
   @override
   CreateStockAdjustmentRequest adjustmentDetails(
-    List<CreateStockAdjustmentDetailRequest>? adjustmentDetails,
+    List<CreateStockAdjustmentDetailRequest> adjustmentDetails,
   ) => call(adjustmentDetails: adjustmentDetails);
 
   @override
@@ -71,10 +71,12 @@ class _$CreateStockAdjustmentRequestCWProxyImpl
     Object? adjustmentDetails = const $CopyWithPlaceholder(),
   }) {
     return CreateStockAdjustmentRequest(
-      adjustmentDate: adjustmentDate == const $CopyWithPlaceholder()
+      adjustmentDate:
+          adjustmentDate == const $CopyWithPlaceholder() ||
+              adjustmentDate == null
           ? _value.adjustmentDate
           // ignore: cast_nullable_to_non_nullable
-          : adjustmentDate as DateTime?,
+          : adjustmentDate as DateTime,
       reason: reason == const $CopyWithPlaceholder()
           ? _value.reason
           // ignore: cast_nullable_to_non_nullable
@@ -83,10 +85,12 @@ class _$CreateStockAdjustmentRequestCWProxyImpl
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
           : note as String?,
-      adjustmentDetails: adjustmentDetails == const $CopyWithPlaceholder()
+      adjustmentDetails:
+          adjustmentDetails == const $CopyWithPlaceholder() ||
+              adjustmentDetails == null
           ? _value.adjustmentDetails
           // ignore: cast_nullable_to_non_nullable
-          : adjustmentDetails as List<CreateStockAdjustmentDetailRequest>?,
+          : adjustmentDetails as List<CreateStockAdjustmentDetailRequest>,
     );
   }
 }
@@ -107,10 +111,11 @@ extension $CreateStockAdjustmentRequestCopyWith
 CreateStockAdjustmentRequest _$CreateStockAdjustmentRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateStockAdjustmentRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['adjustmentDate', 'adjustmentDetails']);
   final val = CreateStockAdjustmentRequest(
     adjustmentDate: $checkedConvert(
       'adjustmentDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
+      (v) => DateTime.parse(v as String),
     ),
     reason: $checkedConvert(
       'reason',
@@ -119,8 +124,8 @@ CreateStockAdjustmentRequest _$CreateStockAdjustmentRequestFromJson(
     note: $checkedConvert('note', (v) => v as String?),
     adjustmentDetails: $checkedConvert(
       'adjustmentDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => CreateStockAdjustmentDetailRequest.fromJson(
               e as Map<String, dynamic>,
             ),
@@ -134,11 +139,11 @@ CreateStockAdjustmentRequest _$CreateStockAdjustmentRequestFromJson(
 Map<String, dynamic> _$CreateStockAdjustmentRequestToJson(
   CreateStockAdjustmentRequest instance,
 ) => <String, dynamic>{
-  'adjustmentDate': ?instance.adjustmentDate?.toIso8601String(),
+  'adjustmentDate': instance.adjustmentDate.toIso8601String(),
   'reason': ?_$StockAdjustmentReasonEnumMap[instance.reason],
   'note': ?instance.note,
-  'adjustmentDetails': ?instance.adjustmentDetails
-      ?.map((e) => e.toJson())
+  'adjustmentDetails': instance.adjustmentDetails
+      .map((e) => e.toJson())
       .toList(),
 };
 

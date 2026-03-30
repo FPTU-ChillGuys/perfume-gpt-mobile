@@ -7,7 +7,7 @@ part of 'create_cart_item_request.dart';
 // **************************************************************************
 
 abstract class _$CreateCartItemRequestCWProxy {
-  CreateCartItemRequest variantId(String? variantId);
+  CreateCartItemRequest variantId(String variantId);
 
   CreateCartItemRequest quantity(int? quantity);
 
@@ -18,7 +18,7 @@ abstract class _$CreateCartItemRequestCWProxy {
   /// ```dart
   /// CreateCartItemRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  CreateCartItemRequest call({String? variantId, int? quantity});
+  CreateCartItemRequest call({String variantId, int? quantity});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -30,7 +30,7 @@ class _$CreateCartItemRequestCWProxyImpl
   final CreateCartItemRequest _value;
 
   @override
-  CreateCartItemRequest variantId(String? variantId) =>
+  CreateCartItemRequest variantId(String variantId) =>
       call(variantId: variantId);
 
   @override
@@ -49,10 +49,10 @@ class _$CreateCartItemRequestCWProxyImpl
     Object? quantity = const $CopyWithPlaceholder(),
   }) {
     return CreateCartItemRequest(
-      variantId: variantId == const $CopyWithPlaceholder()
+      variantId: variantId == const $CopyWithPlaceholder() || variantId == null
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
-          : variantId as String?,
+          : variantId as String,
       quantity: quantity == const $CopyWithPlaceholder()
           ? _value.quantity
           // ignore: cast_nullable_to_non_nullable
@@ -76,8 +76,9 @@ extension $CreateCartItemRequestCopyWith on CreateCartItemRequest {
 CreateCartItemRequest _$CreateCartItemRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateCartItemRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['variantId']);
   final val = CreateCartItemRequest(
-    variantId: $checkedConvert('variantId', (v) => v as String?),
+    variantId: $checkedConvert('variantId', (v) => v as String),
     quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
   );
   return val;
@@ -86,6 +87,6 @@ CreateCartItemRequest _$CreateCartItemRequestFromJson(
 Map<String, dynamic> _$CreateCartItemRequestToJson(
   CreateCartItemRequest instance,
 ) => <String, dynamic>{
-  'variantId': ?instance.variantId,
+  'variantId': instance.variantId,
   'quantity': ?instance.quantity,
 };

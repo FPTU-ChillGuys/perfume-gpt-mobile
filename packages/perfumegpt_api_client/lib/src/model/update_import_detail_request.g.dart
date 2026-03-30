@@ -9,9 +9,9 @@ part of 'update_import_detail_request.dart';
 abstract class _$UpdateImportDetailRequestCWProxy {
   UpdateImportDetailRequest id(String? id);
 
-  UpdateImportDetailRequest variantId(String? variantId);
+  UpdateImportDetailRequest variantId(String variantId);
 
-  UpdateImportDetailRequest quantity(int? quantity);
+  UpdateImportDetailRequest expectedQuantity(int? expectedQuantity);
 
   UpdateImportDetailRequest unitPrice(num? unitPrice);
 
@@ -24,8 +24,8 @@ abstract class _$UpdateImportDetailRequestCWProxy {
   /// ```
   UpdateImportDetailRequest call({
     String? id,
-    String? variantId,
-    int? quantity,
+    String variantId,
+    int? expectedQuantity,
     num? unitPrice,
   });
 }
@@ -42,11 +42,12 @@ class _$UpdateImportDetailRequestCWProxyImpl
   UpdateImportDetailRequest id(String? id) => call(id: id);
 
   @override
-  UpdateImportDetailRequest variantId(String? variantId) =>
+  UpdateImportDetailRequest variantId(String variantId) =>
       call(variantId: variantId);
 
   @override
-  UpdateImportDetailRequest quantity(int? quantity) => call(quantity: quantity);
+  UpdateImportDetailRequest expectedQuantity(int? expectedQuantity) =>
+      call(expectedQuantity: expectedQuantity);
 
   @override
   UpdateImportDetailRequest unitPrice(num? unitPrice) =>
@@ -63,7 +64,7 @@ class _$UpdateImportDetailRequestCWProxyImpl
   UpdateImportDetailRequest call({
     Object? id = const $CopyWithPlaceholder(),
     Object? variantId = const $CopyWithPlaceholder(),
-    Object? quantity = const $CopyWithPlaceholder(),
+    Object? expectedQuantity = const $CopyWithPlaceholder(),
     Object? unitPrice = const $CopyWithPlaceholder(),
   }) {
     return UpdateImportDetailRequest(
@@ -71,14 +72,14 @@ class _$UpdateImportDetailRequestCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      variantId: variantId == const $CopyWithPlaceholder()
+      variantId: variantId == const $CopyWithPlaceholder() || variantId == null
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
-          : variantId as String?,
-      quantity: quantity == const $CopyWithPlaceholder()
-          ? _value.quantity
+          : variantId as String,
+      expectedQuantity: expectedQuantity == const $CopyWithPlaceholder()
+          ? _value.expectedQuantity
           // ignore: cast_nullable_to_non_nullable
-          : quantity as int?,
+          : expectedQuantity as int?,
       unitPrice: unitPrice == const $CopyWithPlaceholder()
           ? _value.unitPrice
           // ignore: cast_nullable_to_non_nullable
@@ -102,10 +103,14 @@ extension $UpdateImportDetailRequestCopyWith on UpdateImportDetailRequest {
 UpdateImportDetailRequest _$UpdateImportDetailRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateImportDetailRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['variantId']);
   final val = UpdateImportDetailRequest(
     id: $checkedConvert('id', (v) => v as String?),
-    variantId: $checkedConvert('variantId', (v) => v as String?),
-    quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
+    variantId: $checkedConvert('variantId', (v) => v as String),
+    expectedQuantity: $checkedConvert(
+      'expectedQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
     unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
   );
   return val;
@@ -115,7 +120,7 @@ Map<String, dynamic> _$UpdateImportDetailRequestToJson(
   UpdateImportDetailRequest instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'variantId': ?instance.variantId,
-  'quantity': ?instance.quantity,
+  'variantId': instance.variantId,
+  'expectedQuantity': ?instance.expectedQuantity,
   'unitPrice': ?instance.unitPrice,
 };

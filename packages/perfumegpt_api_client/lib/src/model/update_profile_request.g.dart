@@ -7,15 +7,21 @@ part of 'update_profile_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateProfileRequestCWProxy {
-  UpdateProfileRequest scentPreference(String? scentPreference);
+  UpdateProfileRequest dateOfBirth(DateTime? dateOfBirth);
 
   UpdateProfileRequest minBudget(num? minBudget);
 
   UpdateProfileRequest maxBudget(num? maxBudget);
 
-  UpdateProfileRequest preferredStyle(String? preferredStyle);
+  UpdateProfileRequest notePreferenceIds(
+    List<UpdateNotePreferenceRequest>? notePreferenceIds,
+  );
 
-  UpdateProfileRequest favoriteNotes(String? favoriteNotes);
+  UpdateProfileRequest familyPreferenceIds(List<int>? familyPreferenceIds);
+
+  UpdateProfileRequest attributePreferenceIds(
+    List<int>? attributePreferenceIds,
+  );
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProfileRequest(...).copyWith.fieldName(value)`.
@@ -25,11 +31,12 @@ abstract class _$UpdateProfileRequestCWProxy {
   /// UpdateProfileRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateProfileRequest call({
-    String? scentPreference,
+    DateTime? dateOfBirth,
     num? minBudget,
     num? maxBudget,
-    String? preferredStyle,
-    String? favoriteNotes,
+    List<UpdateNotePreferenceRequest>? notePreferenceIds,
+    List<int>? familyPreferenceIds,
+    List<int>? attributePreferenceIds,
   });
 }
 
@@ -42,8 +49,8 @@ class _$UpdateProfileRequestCWProxyImpl
   final UpdateProfileRequest _value;
 
   @override
-  UpdateProfileRequest scentPreference(String? scentPreference) =>
-      call(scentPreference: scentPreference);
+  UpdateProfileRequest dateOfBirth(DateTime? dateOfBirth) =>
+      call(dateOfBirth: dateOfBirth);
 
   @override
   UpdateProfileRequest minBudget(num? minBudget) => call(minBudget: minBudget);
@@ -52,12 +59,18 @@ class _$UpdateProfileRequestCWProxyImpl
   UpdateProfileRequest maxBudget(num? maxBudget) => call(maxBudget: maxBudget);
 
   @override
-  UpdateProfileRequest preferredStyle(String? preferredStyle) =>
-      call(preferredStyle: preferredStyle);
+  UpdateProfileRequest notePreferenceIds(
+    List<UpdateNotePreferenceRequest>? notePreferenceIds,
+  ) => call(notePreferenceIds: notePreferenceIds);
 
   @override
-  UpdateProfileRequest favoriteNotes(String? favoriteNotes) =>
-      call(favoriteNotes: favoriteNotes);
+  UpdateProfileRequest familyPreferenceIds(List<int>? familyPreferenceIds) =>
+      call(familyPreferenceIds: familyPreferenceIds);
+
+  @override
+  UpdateProfileRequest attributePreferenceIds(
+    List<int>? attributePreferenceIds,
+  ) => call(attributePreferenceIds: attributePreferenceIds);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -68,17 +81,18 @@ class _$UpdateProfileRequestCWProxyImpl
   /// UpdateProfileRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateProfileRequest call({
-    Object? scentPreference = const $CopyWithPlaceholder(),
+    Object? dateOfBirth = const $CopyWithPlaceholder(),
     Object? minBudget = const $CopyWithPlaceholder(),
     Object? maxBudget = const $CopyWithPlaceholder(),
-    Object? preferredStyle = const $CopyWithPlaceholder(),
-    Object? favoriteNotes = const $CopyWithPlaceholder(),
+    Object? notePreferenceIds = const $CopyWithPlaceholder(),
+    Object? familyPreferenceIds = const $CopyWithPlaceholder(),
+    Object? attributePreferenceIds = const $CopyWithPlaceholder(),
   }) {
     return UpdateProfileRequest(
-      scentPreference: scentPreference == const $CopyWithPlaceholder()
-          ? _value.scentPreference
+      dateOfBirth: dateOfBirth == const $CopyWithPlaceholder()
+          ? _value.dateOfBirth
           // ignore: cast_nullable_to_non_nullable
-          : scentPreference as String?,
+          : dateOfBirth as DateTime?,
       minBudget: minBudget == const $CopyWithPlaceholder()
           ? _value.minBudget
           // ignore: cast_nullable_to_non_nullable
@@ -87,14 +101,19 @@ class _$UpdateProfileRequestCWProxyImpl
           ? _value.maxBudget
           // ignore: cast_nullable_to_non_nullable
           : maxBudget as num?,
-      preferredStyle: preferredStyle == const $CopyWithPlaceholder()
-          ? _value.preferredStyle
+      notePreferenceIds: notePreferenceIds == const $CopyWithPlaceholder()
+          ? _value.notePreferenceIds
           // ignore: cast_nullable_to_non_nullable
-          : preferredStyle as String?,
-      favoriteNotes: favoriteNotes == const $CopyWithPlaceholder()
-          ? _value.favoriteNotes
+          : notePreferenceIds as List<UpdateNotePreferenceRequest>?,
+      familyPreferenceIds: familyPreferenceIds == const $CopyWithPlaceholder()
+          ? _value.familyPreferenceIds
           // ignore: cast_nullable_to_non_nullable
-          : favoriteNotes as String?,
+          : familyPreferenceIds as List<int>?,
+      attributePreferenceIds:
+          attributePreferenceIds == const $CopyWithPlaceholder()
+          ? _value.attributePreferenceIds
+          // ignore: cast_nullable_to_non_nullable
+          : attributePreferenceIds as List<int>?,
     );
   }
 }
@@ -115,11 +134,29 @@ UpdateProfileRequest _$UpdateProfileRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateProfileRequest', json, ($checkedConvert) {
   final val = UpdateProfileRequest(
-    scentPreference: $checkedConvert('scentPreference', (v) => v as String?),
+    dateOfBirth: $checkedConvert(
+      'dateOfBirth',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
     minBudget: $checkedConvert('minBudget', (v) => v as num?),
     maxBudget: $checkedConvert('maxBudget', (v) => v as num?),
-    preferredStyle: $checkedConvert('preferredStyle', (v) => v as String?),
-    favoriteNotes: $checkedConvert('favoriteNotes', (v) => v as String?),
+    notePreferenceIds: $checkedConvert(
+      'notePreferenceIds',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) =>
+                UpdateNotePreferenceRequest.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    familyPreferenceIds: $checkedConvert(
+      'familyPreferenceIds',
+      (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
+    ),
+    attributePreferenceIds: $checkedConvert(
+      'attributePreferenceIds',
+      (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
+    ),
   );
   return val;
 });
@@ -127,9 +164,12 @@ UpdateProfileRequest _$UpdateProfileRequestFromJson(
 Map<String, dynamic> _$UpdateProfileRequestToJson(
   UpdateProfileRequest instance,
 ) => <String, dynamic>{
-  'scentPreference': ?instance.scentPreference,
+  'dateOfBirth': ?instance.dateOfBirth?.toIso8601String(),
   'minBudget': ?instance.minBudget,
   'maxBudget': ?instance.maxBudget,
-  'preferredStyle': ?instance.preferredStyle,
-  'favoriteNotes': ?instance.favoriteNotes,
+  'notePreferenceIds': ?instance.notePreferenceIds
+      ?.map((e) => e.toJson())
+      .toList(),
+  'familyPreferenceIds': ?instance.familyPreferenceIds,
+  'attributePreferenceIds': ?instance.attributePreferenceIds,
 };

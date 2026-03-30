@@ -15,13 +15,15 @@ abstract class _$ProductInforResponseCWProxy {
 
   ProductInforResponse releaseYear(int? releaseYear);
 
+  ProductInforResponse gender(Gender? gender);
+
   ProductInforResponse scentGroup(String? scentGroup);
 
   ProductInforResponse style(String? style);
 
   ProductInforResponse topNotes(String? topNotes);
 
-  ProductInforResponse middleNotes(String? middleNotes);
+  ProductInforResponse heartNotes(String? heartNotes);
 
   ProductInforResponse baseNotes(String? baseNotes);
 
@@ -39,10 +41,11 @@ abstract class _$ProductInforResponseCWProxy {
     String? brandName,
     String? origin,
     int? releaseYear,
+    Gender? gender,
     String? scentGroup,
     String? style,
     String? topNotes,
-    String? middleNotes,
+    String? heartNotes,
     String? baseNotes,
     String? description,
   });
@@ -72,6 +75,9 @@ class _$ProductInforResponseCWProxyImpl
       call(releaseYear: releaseYear);
 
   @override
+  ProductInforResponse gender(Gender? gender) => call(gender: gender);
+
+  @override
   ProductInforResponse scentGroup(String? scentGroup) =>
       call(scentGroup: scentGroup);
 
@@ -82,8 +88,8 @@ class _$ProductInforResponseCWProxyImpl
   ProductInforResponse topNotes(String? topNotes) => call(topNotes: topNotes);
 
   @override
-  ProductInforResponse middleNotes(String? middleNotes) =>
-      call(middleNotes: middleNotes);
+  ProductInforResponse heartNotes(String? heartNotes) =>
+      call(heartNotes: heartNotes);
 
   @override
   ProductInforResponse baseNotes(String? baseNotes) =>
@@ -106,10 +112,11 @@ class _$ProductInforResponseCWProxyImpl
     Object? brandName = const $CopyWithPlaceholder(),
     Object? origin = const $CopyWithPlaceholder(),
     Object? releaseYear = const $CopyWithPlaceholder(),
+    Object? gender = const $CopyWithPlaceholder(),
     Object? scentGroup = const $CopyWithPlaceholder(),
     Object? style = const $CopyWithPlaceholder(),
     Object? topNotes = const $CopyWithPlaceholder(),
-    Object? middleNotes = const $CopyWithPlaceholder(),
+    Object? heartNotes = const $CopyWithPlaceholder(),
     Object? baseNotes = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
   }) {
@@ -130,6 +137,10 @@ class _$ProductInforResponseCWProxyImpl
           ? _value.releaseYear
           // ignore: cast_nullable_to_non_nullable
           : releaseYear as int?,
+      gender: gender == const $CopyWithPlaceholder()
+          ? _value.gender
+          // ignore: cast_nullable_to_non_nullable
+          : gender as Gender?,
       scentGroup: scentGroup == const $CopyWithPlaceholder()
           ? _value.scentGroup
           // ignore: cast_nullable_to_non_nullable
@@ -142,10 +153,10 @@ class _$ProductInforResponseCWProxyImpl
           ? _value.topNotes
           // ignore: cast_nullable_to_non_nullable
           : topNotes as String?,
-      middleNotes: middleNotes == const $CopyWithPlaceholder()
-          ? _value.middleNotes
+      heartNotes: heartNotes == const $CopyWithPlaceholder()
+          ? _value.heartNotes
           // ignore: cast_nullable_to_non_nullable
-          : middleNotes as String?,
+          : heartNotes as String?,
       baseNotes: baseNotes == const $CopyWithPlaceholder()
           ? _value.baseNotes
           // ignore: cast_nullable_to_non_nullable
@@ -178,10 +189,14 @@ ProductInforResponse _$ProductInforResponseFromJson(
     brandName: $checkedConvert('brandName', (v) => v as String?),
     origin: $checkedConvert('origin', (v) => v as String?),
     releaseYear: $checkedConvert('releaseYear', (v) => (v as num?)?.toInt()),
+    gender: $checkedConvert(
+      'gender',
+      (v) => $enumDecodeNullable(_$GenderEnumMap, v),
+    ),
     scentGroup: $checkedConvert('scentGroup', (v) => v as String?),
     style: $checkedConvert('style', (v) => v as String?),
     topNotes: $checkedConvert('topNotes', (v) => v as String?),
-    middleNotes: $checkedConvert('middleNotes', (v) => v as String?),
+    heartNotes: $checkedConvert('heartNotes', (v) => v as String?),
     baseNotes: $checkedConvert('baseNotes', (v) => v as String?),
     description: $checkedConvert('description', (v) => v as String?),
   );
@@ -195,10 +210,17 @@ Map<String, dynamic> _$ProductInforResponseToJson(
   'brandName': ?instance.brandName,
   'origin': ?instance.origin,
   'releaseYear': ?instance.releaseYear,
+  'gender': ?_$GenderEnumMap[instance.gender],
   'scentGroup': ?instance.scentGroup,
   'style': ?instance.style,
   'topNotes': ?instance.topNotes,
-  'middleNotes': ?instance.middleNotes,
+  'heartNotes': ?instance.heartNotes,
   'baseNotes': ?instance.baseNotes,
   'description': ?instance.description,
+};
+
+const _$GenderEnumMap = {
+  Gender.male: 'Male',
+  Gender.female: 'Female',
+  Gender.unisex: 'Unisex',
 };

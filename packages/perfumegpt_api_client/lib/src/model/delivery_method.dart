@@ -5,11 +5,12 @@
 // ignore_for_file: unused_element
 import 'package:json_annotation/json_annotation.dart';
 
+
 enum DeliveryMethod {
-  @JsonValue(r'Delivery')
-  delivery(r'Delivery'),
-  @JsonValue(r'PickupInStore')
-  pickupInStore(r'PickupInStore');
+      @JsonValue(r'Delivery')
+      delivery(r'Delivery'),
+      @JsonValue(r'PickupInStore')
+      pickupInStore(r'PickupInStore');
 
   const DeliveryMethod(this.value);
 

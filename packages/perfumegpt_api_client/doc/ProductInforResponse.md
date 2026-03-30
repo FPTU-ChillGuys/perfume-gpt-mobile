@@ -12,10 +12,11 @@ Name | Type | Description | Notes
 **brandName** | **String** |  | [optional] 
 **origin** | **String** |  | [optional] 
 **releaseYear** | **int** |  | [optional] 
+**gender** | [**Gender**](Gender.md) |  | [optional] 
 **scentGroup** | **String** |  | [optional] 
 **style** | **String** |  | [optional] 
 **topNotes** | **String** |  | [optional] 
-**middleNotes** | **String** |  | [optional] 
+**heartNotes** | **String** |  | [optional] 
 **baseNotes** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
 

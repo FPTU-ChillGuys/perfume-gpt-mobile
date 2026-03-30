@@ -7,9 +7,9 @@ part of 'verify_import_detail_request.dart';
 // **************************************************************************
 
 abstract class _$VerifyImportDetailRequestCWProxy {
-  VerifyImportDetailRequest importDetailId(String? importDetailId);
+  VerifyImportDetailRequest importDetailId(String importDetailId);
 
-  VerifyImportDetailRequest rejectQuantity(int? rejectQuantity);
+  VerifyImportDetailRequest rejectedQuantity(int? rejectedQuantity);
 
   VerifyImportDetailRequest note(String? note);
 
@@ -23,8 +23,8 @@ abstract class _$VerifyImportDetailRequestCWProxy {
   /// VerifyImportDetailRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   VerifyImportDetailRequest call({
-    String? importDetailId,
-    int? rejectQuantity,
+    String importDetailId,
+    int? rejectedQuantity,
     String? note,
     List<CreateBatchRequest>? batches,
   });
@@ -39,12 +39,12 @@ class _$VerifyImportDetailRequestCWProxyImpl
   final VerifyImportDetailRequest _value;
 
   @override
-  VerifyImportDetailRequest importDetailId(String? importDetailId) =>
+  VerifyImportDetailRequest importDetailId(String importDetailId) =>
       call(importDetailId: importDetailId);
 
   @override
-  VerifyImportDetailRequest rejectQuantity(int? rejectQuantity) =>
-      call(rejectQuantity: rejectQuantity);
+  VerifyImportDetailRequest rejectedQuantity(int? rejectedQuantity) =>
+      call(rejectedQuantity: rejectedQuantity);
 
   @override
   VerifyImportDetailRequest note(String? note) => call(note: note);
@@ -63,19 +63,21 @@ class _$VerifyImportDetailRequestCWProxyImpl
   /// ```
   VerifyImportDetailRequest call({
     Object? importDetailId = const $CopyWithPlaceholder(),
-    Object? rejectQuantity = const $CopyWithPlaceholder(),
+    Object? rejectedQuantity = const $CopyWithPlaceholder(),
     Object? note = const $CopyWithPlaceholder(),
     Object? batches = const $CopyWithPlaceholder(),
   }) {
     return VerifyImportDetailRequest(
-      importDetailId: importDetailId == const $CopyWithPlaceholder()
+      importDetailId:
+          importDetailId == const $CopyWithPlaceholder() ||
+              importDetailId == null
           ? _value.importDetailId
           // ignore: cast_nullable_to_non_nullable
-          : importDetailId as String?,
-      rejectQuantity: rejectQuantity == const $CopyWithPlaceholder()
-          ? _value.rejectQuantity
+          : importDetailId as String,
+      rejectedQuantity: rejectedQuantity == const $CopyWithPlaceholder()
+          ? _value.rejectedQuantity
           // ignore: cast_nullable_to_non_nullable
-          : rejectQuantity as int?,
+          : rejectedQuantity as int?,
       note: note == const $CopyWithPlaceholder()
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
@@ -103,10 +105,11 @@ extension $VerifyImportDetailRequestCopyWith on VerifyImportDetailRequest {
 VerifyImportDetailRequest _$VerifyImportDetailRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('VerifyImportDetailRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['importDetailId']);
   final val = VerifyImportDetailRequest(
-    importDetailId: $checkedConvert('importDetailId', (v) => v as String?),
-    rejectQuantity: $checkedConvert(
-      'rejectQuantity',
+    importDetailId: $checkedConvert('importDetailId', (v) => v as String),
+    rejectedQuantity: $checkedConvert(
+      'rejectedQuantity',
       (v) => (v as num?)?.toInt(),
     ),
     note: $checkedConvert('note', (v) => v as String?),
@@ -123,8 +126,8 @@ VerifyImportDetailRequest _$VerifyImportDetailRequestFromJson(
 Map<String, dynamic> _$VerifyImportDetailRequestToJson(
   VerifyImportDetailRequest instance,
 ) => <String, dynamic>{
-  'importDetailId': ?instance.importDetailId,
-  'rejectQuantity': ?instance.rejectQuantity,
+  'importDetailId': instance.importDetailId,
+  'rejectedQuantity': ?instance.rejectedQuantity,
   'note': ?instance.note,
   'batches': ?instance.batches?.map((e) => e.toJson()).toList(),
 };

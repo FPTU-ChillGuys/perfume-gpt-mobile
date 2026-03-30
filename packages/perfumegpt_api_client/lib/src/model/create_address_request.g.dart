@@ -7,9 +7,9 @@ part of 'create_address_request.dart';
 // **************************************************************************
 
 abstract class _$CreateAddressRequestCWProxy {
-  CreateAddressRequest receiverName(String? receiverName);
+  CreateAddressRequest recipientName(String recipientName);
 
-  CreateAddressRequest phone(String? phone);
+  CreateAddressRequest recipientPhoneNumber(String recipientPhoneNumber);
 
   CreateAddressRequest street(String? street);
 
@@ -19,7 +19,9 @@ abstract class _$CreateAddressRequestCWProxy {
 
   CreateAddressRequest city(String? city);
 
-  CreateAddressRequest wardCode(String? wardCode);
+  CreateAddressRequest isDefault(bool? isDefault);
+
+  CreateAddressRequest wardCode(String wardCode);
 
   CreateAddressRequest districtId(int? districtId);
 
@@ -33,13 +35,14 @@ abstract class _$CreateAddressRequestCWProxy {
   /// CreateAddressRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateAddressRequest call({
-    String? receiverName,
-    String? phone,
+    String recipientName,
+    String recipientPhoneNumber,
     String? street,
     String? ward,
     String? district,
     String? city,
-    String? wardCode,
+    bool? isDefault,
+    String wardCode,
     int? districtId,
     int? provinceId,
   });
@@ -54,11 +57,12 @@ class _$CreateAddressRequestCWProxyImpl
   final CreateAddressRequest _value;
 
   @override
-  CreateAddressRequest receiverName(String? receiverName) =>
-      call(receiverName: receiverName);
+  CreateAddressRequest recipientName(String recipientName) =>
+      call(recipientName: recipientName);
 
   @override
-  CreateAddressRequest phone(String? phone) => call(phone: phone);
+  CreateAddressRequest recipientPhoneNumber(String recipientPhoneNumber) =>
+      call(recipientPhoneNumber: recipientPhoneNumber);
 
   @override
   CreateAddressRequest street(String? street) => call(street: street);
@@ -73,7 +77,10 @@ class _$CreateAddressRequestCWProxyImpl
   CreateAddressRequest city(String? city) => call(city: city);
 
   @override
-  CreateAddressRequest wardCode(String? wardCode) => call(wardCode: wardCode);
+  CreateAddressRequest isDefault(bool? isDefault) => call(isDefault: isDefault);
+
+  @override
+  CreateAddressRequest wardCode(String wardCode) => call(wardCode: wardCode);
 
   @override
   CreateAddressRequest districtId(int? districtId) =>
@@ -92,25 +99,29 @@ class _$CreateAddressRequestCWProxyImpl
   /// CreateAddressRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateAddressRequest call({
-    Object? receiverName = const $CopyWithPlaceholder(),
-    Object? phone = const $CopyWithPlaceholder(),
+    Object? recipientName = const $CopyWithPlaceholder(),
+    Object? recipientPhoneNumber = const $CopyWithPlaceholder(),
     Object? street = const $CopyWithPlaceholder(),
     Object? ward = const $CopyWithPlaceholder(),
     Object? district = const $CopyWithPlaceholder(),
     Object? city = const $CopyWithPlaceholder(),
+    Object? isDefault = const $CopyWithPlaceholder(),
     Object? wardCode = const $CopyWithPlaceholder(),
     Object? districtId = const $CopyWithPlaceholder(),
     Object? provinceId = const $CopyWithPlaceholder(),
   }) {
     return CreateAddressRequest(
-      receiverName: receiverName == const $CopyWithPlaceholder()
-          ? _value.receiverName
+      recipientName:
+          recipientName == const $CopyWithPlaceholder() || recipientName == null
+          ? _value.recipientName
           // ignore: cast_nullable_to_non_nullable
-          : receiverName as String?,
-      phone: phone == const $CopyWithPlaceholder()
-          ? _value.phone
+          : recipientName as String,
+      recipientPhoneNumber:
+          recipientPhoneNumber == const $CopyWithPlaceholder() ||
+              recipientPhoneNumber == null
+          ? _value.recipientPhoneNumber
           // ignore: cast_nullable_to_non_nullable
-          : phone as String?,
+          : recipientPhoneNumber as String,
       street: street == const $CopyWithPlaceholder()
           ? _value.street
           // ignore: cast_nullable_to_non_nullable
@@ -127,10 +138,14 @@ class _$CreateAddressRequestCWProxyImpl
           ? _value.city
           // ignore: cast_nullable_to_non_nullable
           : city as String?,
-      wardCode: wardCode == const $CopyWithPlaceholder()
+      isDefault: isDefault == const $CopyWithPlaceholder()
+          ? _value.isDefault
+          // ignore: cast_nullable_to_non_nullable
+          : isDefault as bool?,
+      wardCode: wardCode == const $CopyWithPlaceholder() || wardCode == null
           ? _value.wardCode
           // ignore: cast_nullable_to_non_nullable
-          : wardCode as String?,
+          : wardCode as String,
       districtId: districtId == const $CopyWithPlaceholder()
           ? _value.districtId
           // ignore: cast_nullable_to_non_nullable
@@ -158,14 +173,22 @@ extension $CreateAddressRequestCopyWith on CreateAddressRequest {
 CreateAddressRequest _$CreateAddressRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateAddressRequest', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['recipientName', 'recipientPhoneNumber', 'wardCode'],
+  );
   final val = CreateAddressRequest(
-    receiverName: $checkedConvert('receiverName', (v) => v as String?),
-    phone: $checkedConvert('phone', (v) => v as String?),
+    recipientName: $checkedConvert('recipientName', (v) => v as String),
+    recipientPhoneNumber: $checkedConvert(
+      'recipientPhoneNumber',
+      (v) => v as String,
+    ),
     street: $checkedConvert('street', (v) => v as String?),
     ward: $checkedConvert('ward', (v) => v as String?),
     district: $checkedConvert('district', (v) => v as String?),
     city: $checkedConvert('city', (v) => v as String?),
-    wardCode: $checkedConvert('wardCode', (v) => v as String?),
+    isDefault: $checkedConvert('isDefault', (v) => v as bool?),
+    wardCode: $checkedConvert('wardCode', (v) => v as String),
     districtId: $checkedConvert('districtId', (v) => (v as num?)?.toInt()),
     provinceId: $checkedConvert('provinceId', (v) => (v as num?)?.toInt()),
   );
@@ -175,13 +198,14 @@ CreateAddressRequest _$CreateAddressRequestFromJson(
 Map<String, dynamic> _$CreateAddressRequestToJson(
   CreateAddressRequest instance,
 ) => <String, dynamic>{
-  'receiverName': ?instance.receiverName,
-  'phone': ?instance.phone,
+  'recipientName': instance.recipientName,
+  'recipientPhoneNumber': instance.recipientPhoneNumber,
   'street': ?instance.street,
   'ward': ?instance.ward,
   'district': ?instance.district,
   'city': ?instance.city,
-  'wardCode': ?instance.wardCode,
+  'isDefault': ?instance.isDefault,
+  'wardCode': instance.wardCode,
   'districtId': ?instance.districtId,
   'provinceId': ?instance.provinceId,
 };

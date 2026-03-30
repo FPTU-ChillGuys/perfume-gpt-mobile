@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'order_detail_list_items.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,52 +19,97 @@ part 'order_detail_list_items.g.dart';
 class OrderDetailListItems {
   /// Returns a new [OrderDetailListItems] instance.
   OrderDetailListItems({
-    this.variantId,
 
-    this.variantName,
+     this.variantId,
 
-    this.imageUrl,
+     this.variantName,
 
-    this.quantity,
+     this.imageUrl,
 
-    this.total,
+     this.quantity,
+
+     this.total,
   });
 
-  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'variantId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantId;
 
-  @JsonKey(name: r'variantName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantName;
 
-  @JsonKey(name: r'imageUrl', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'imageUrl',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? imageUrl;
 
-  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'quantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? quantity;
 
-  @JsonKey(name: r'total', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'total',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? total;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is OrderDetailListItems &&
-          other.variantId == variantId &&
-          other.variantName == variantName &&
-          other.imageUrl == imageUrl &&
-          other.quantity == quantity &&
-          other.total == total;
 
-  @override
-  int get hashCode =>
-      variantId.hashCode +
-      variantName.hashCode +
-      imageUrl.hashCode +
-      quantity.hashCode +
-      total.hashCode;
 
-  factory OrderDetailListItems.fromJson(Map<String, dynamic> json) =>
-      _$OrderDetailListItemsFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is OrderDetailListItems &&
+      other.variantId == variantId &&
+      other.variantName == variantName &&
+      other.imageUrl == imageUrl &&
+      other.quantity == quantity &&
+      other.total == total;
+
+    @override
+    int get hashCode =>
+        variantId.hashCode +
+        variantName.hashCode +
+        imageUrl.hashCode +
+        quantity.hashCode +
+        total.hashCode;
+
+  factory OrderDetailListItems.fromJson(Map<String, dynamic> json) => _$OrderDetailListItemsFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderDetailListItemsToJson(this);
 
@@ -71,4 +117,6 @@ class OrderDetailListItems {
   String toString() {
     return toJson().toString();
   }
+
 }
+

@@ -3,10 +3,14 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/customer_family_preference_respone.dart';
+import 'package:perfumegpt_api_client/src/model/customer_note_preference_response.dart';
+import 'package:perfumegpt_api_client/src/model/customer_attribute_preference_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'profile_response.g.dart';
+
 
 @CopyWith()
 @JsonSerializable(
@@ -18,80 +22,113 @@ part 'profile_response.g.dart';
 class ProfileResponse {
   /// Returns a new [ProfileResponse] instance.
   ProfileResponse({
-    this.id,
 
-    this.userId,
+     this.dateOfBirth,
 
-    this.scentPreference,
+     this.minBudget,
 
-    this.minBudget,
+     this.maxBudget,
 
-    this.maxBudget,
+     this.notePreferences,
 
-    this.preferredStyle,
+     this.familyPreferences,
 
-    this.favoriteNotes,
-
-    this.updatedAt,
-
-    this.createdAt,
+     this.attributePreferences,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
-  final String? id;
+  @JsonKey(
+    
+    name: r'dateOfBirth',
+    required: false,
+    includeIfNull: false,
+  )
 
-  @JsonKey(name: r'userId', required: false, includeIfNull: false)
-  final String? userId;
 
-  @JsonKey(name: r'scentPreference', required: false, includeIfNull: false)
-  final String? scentPreference;
+  final DateTime? dateOfBirth;
 
-  @JsonKey(name: r'minBudget', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'minBudget',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? minBudget;
 
-  @JsonKey(name: r'maxBudget', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'maxBudget',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? maxBudget;
 
-  @JsonKey(name: r'preferredStyle', required: false, includeIfNull: false)
-  final String? preferredStyle;
 
-  @JsonKey(name: r'favoriteNotes', required: false, includeIfNull: false)
-  final String? favoriteNotes;
 
-  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
-  final DateTime? updatedAt;
+  @JsonKey(
+    
+    name: r'notePreferences',
+    required: false,
+    includeIfNull: false,
+  )
 
-  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
-  final DateTime? createdAt;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProfileResponse &&
-          other.id == id &&
-          other.userId == userId &&
-          other.scentPreference == scentPreference &&
-          other.minBudget == minBudget &&
-          other.maxBudget == maxBudget &&
-          other.preferredStyle == preferredStyle &&
-          other.favoriteNotes == favoriteNotes &&
-          other.updatedAt == updatedAt &&
-          other.createdAt == createdAt;
+  final List<CustomerNotePreferenceResponse>? notePreferences;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      userId.hashCode +
-      (scentPreference == null ? 0 : scentPreference.hashCode) +
-      (minBudget == null ? 0 : minBudget.hashCode) +
-      (maxBudget == null ? 0 : maxBudget.hashCode) +
-      (preferredStyle == null ? 0 : preferredStyle.hashCode) +
-      (favoriteNotes == null ? 0 : favoriteNotes.hashCode) +
-      (updatedAt == null ? 0 : updatedAt.hashCode) +
-      createdAt.hashCode;
 
-  factory ProfileResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProfileResponseFromJson(json);
+
+  @JsonKey(
+    
+    name: r'familyPreferences',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final List<CustomerFamilyPreferenceRespone>? familyPreferences;
+
+
+
+  @JsonKey(
+    
+    name: r'attributePreferences',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final List<CustomerAttributePreferenceResponse>? attributePreferences;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ProfileResponse &&
+      other.dateOfBirth == dateOfBirth &&
+      other.minBudget == minBudget &&
+      other.maxBudget == maxBudget &&
+      other.notePreferences == notePreferences &&
+      other.familyPreferences == familyPreferences &&
+      other.attributePreferences == attributePreferences;
+
+    @override
+    int get hashCode =>
+        (dateOfBirth == null ? 0 : dateOfBirth.hashCode) +
+        (minBudget == null ? 0 : minBudget.hashCode) +
+        (maxBudget == null ? 0 : maxBudget.hashCode) +
+        notePreferences.hashCode +
+        familyPreferences.hashCode +
+        attributePreferences.hashCode;
+
+  factory ProfileResponse.fromJson(Map<String, dynamic> json) => _$ProfileResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileResponseToJson(this);
 
@@ -99,4 +136,6 @@ class ProfileResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

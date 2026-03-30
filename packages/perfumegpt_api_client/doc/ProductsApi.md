@@ -10,6 +10,8 @@ All URIs are relative to *https://localhost:7011*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apiProductsBestSellersGet**](ProductsApi.md#apiproductsbestsellersget) | **GET** /api/products/best-sellers | 
+[**apiProductsCampaignsCampaignIdGet**](ProductsApi.md#apiproductscampaignscampaignidget) | **GET** /api/products/campaigns/{campaignId} | 
+[**apiProductsDailySaleFiguresGet**](ProductsApi.md#apiproductsdailysalefiguresget) | **GET** /api/products/daily-sale-figures | 
 [**apiProductsEmbeddingsUpdateAllsPost**](ProductsApi.md#apiproductsembeddingsupdateallspost) | **POST** /api/products/embeddings/update/alls | 
 [**apiProductsEmbeddingsUpdateProductIdPost**](ProductsApi.md#apiproductsembeddingsupdateproductidpost) | **POST** /api/products/embeddings/update/{productId} | 
 [**apiProductsGet**](ProductsApi.md#apiproductsget) | **GET** /api/products | 
@@ -29,7 +31,7 @@ Method | HTTP request | Description
 
 
 # **apiProductsBestSellersGet**
-> BaseResponseOfPagedResultOfProductListItem apiProductsBestSellersGet(genderValueId, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+> BaseResponseOfPagedResultOfProductListItem apiProductsBestSellersGet(gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -38,7 +40,12 @@ Method | HTTP request | Description
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getProductsApi();
-final int genderValueId = 56; // int | 
+final Gender gender = ; // Gender | 
+final int categoryId = 56; // int | 
+final int brandId = 56; // int | 
+final int volume = 56; // int | 
+final num fromPrice = 8.14; // num | 
+final num toPrice = 8.14; // num | 
 final bool isAvailable = true; // bool | 
 final int pageNumber = 56; // int | 
 final int pageSize = 56; // int | 
@@ -47,7 +54,7 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiProductsBestSellersGet(genderValueId, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiProductsBestSellersGet(gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ProductsApi->apiProductsBestSellersGet: $e\n');
@@ -58,7 +65,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **genderValueId** | **int**|  | [optional] 
+ **gender** | [**Gender**](.md)|  | [optional] 
+ **categoryId** | **int**|  | [optional] 
+ **brandId** | **int**|  | [optional] 
+ **volume** | **int**|  | [optional] 
+ **fromPrice** | **num**|  | [optional] 
+ **toPrice** | **num**|  | [optional] 
  **isAvailable** | **bool**|  | [optional] 
  **pageNumber** | **int**|  | [optional] 
  **pageSize** | **int**|  | [optional] 
@@ -69,6 +81,112 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BaseResponseOfPagedResultOfProductListItem**](BaseResponseOfPagedResultOfProductListItem.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiProductsCampaignsCampaignIdGet**
+> BaseResponseOfPagedResultOfProductListItem apiProductsCampaignsCampaignIdGet(campaignId, gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getProductsApi();
+final String campaignId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final Gender gender = ; // Gender | 
+final int categoryId = 56; // int | 
+final int brandId = 56; // int | 
+final int volume = 56; // int | 
+final num fromPrice = 8.14; // num | 
+final num toPrice = 8.14; // num | 
+final bool isAvailable = true; // bool | 
+final int pageNumber = 56; // int | 
+final int pageSize = 56; // int | 
+final String sortBy = sortBy_example; // String | 
+final String sortOrder = sortOrder_example; // String | 
+final bool isDescending = true; // bool | 
+
+try {
+    final response = api.apiProductsCampaignsCampaignIdGet(campaignId, gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ProductsApi->apiProductsCampaignsCampaignIdGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **campaignId** | **String**|  | 
+ **gender** | [**Gender**](.md)|  | [optional] 
+ **categoryId** | **int**|  | [optional] 
+ **brandId** | **int**|  | [optional] 
+ **volume** | **int**|  | [optional] 
+ **fromPrice** | **num**|  | [optional] 
+ **toPrice** | **num**|  | [optional] 
+ **isAvailable** | **bool**|  | [optional] 
+ **pageNumber** | **int**|  | [optional] 
+ **pageSize** | **int**|  | [optional] 
+ **sortBy** | **String**|  | [optional] 
+ **sortOrder** | **String**|  | [optional] 
+ **isDescending** | **bool**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfPagedResultOfProductListItem**](BaseResponseOfPagedResultOfProductListItem.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiProductsDailySaleFiguresGet**
+> BaseResponseOfListOfProductDailySaleFigureResponse apiProductsDailySaleFiguresGet(date)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getProductsApi();
+final DateTime date = 2013-10-20; // DateTime | 
+
+try {
+    final response = api.apiProductsDailySaleFiguresGet(date);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ProductsApi->apiProductsDailySaleFiguresGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **date** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfListOfProductDailySaleFigureResponse**](BaseResponseOfListOfProductDailySaleFigureResponse.md)
 
 ### Authorization
 
@@ -160,7 +278,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiProductsGet**
-> BaseResponseOfPagedResultOfProductListItem apiProductsGet(genderValueId, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+> BaseResponseOfPagedResultOfProductListItem apiProductsGet(gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -169,7 +287,12 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getProductsApi();
-final int genderValueId = 56; // int | 
+final Gender gender = ; // Gender | 
+final int categoryId = 56; // int | 
+final int brandId = 56; // int | 
+final int volume = 56; // int | 
+final num fromPrice = 8.14; // num | 
+final num toPrice = 8.14; // num | 
 final bool isAvailable = true; // bool | 
 final int pageNumber = 56; // int | 
 final int pageSize = 56; // int | 
@@ -178,7 +301,7 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiProductsGet(genderValueId, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiProductsGet(gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ProductsApi->apiProductsGet: $e\n');
@@ -189,7 +312,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **genderValueId** | **int**|  | [optional] 
+ **gender** | [**Gender**](.md)|  | [optional] 
+ **categoryId** | **int**|  | [optional] 
+ **brandId** | **int**|  | [optional] 
+ **volume** | **int**|  | [optional] 
+ **fromPrice** | **num**|  | [optional] 
+ **toPrice** | **num**|  | [optional] 
  **isAvailable** | **bool**|  | [optional] 
  **pageNumber** | **int**|  | [optional] 
  **pageSize** | **int**|  | [optional] 
@@ -332,7 +460,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiProductsNewArrivalsGet**
-> BaseResponseOfPagedResultOfProductListItem apiProductsNewArrivalsGet(genderValueId, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+> BaseResponseOfPagedResultOfProductListItem apiProductsNewArrivalsGet(gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -341,7 +469,12 @@ This endpoint does not need any parameter.
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getProductsApi();
-final int genderValueId = 56; // int | 
+final Gender gender = ; // Gender | 
+final int categoryId = 56; // int | 
+final int brandId = 56; // int | 
+final int volume = 56; // int | 
+final num fromPrice = 8.14; // num | 
+final num toPrice = 8.14; // num | 
 final bool isAvailable = true; // bool | 
 final int pageNumber = 56; // int | 
 final int pageSize = 56; // int | 
@@ -350,7 +483,7 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiProductsNewArrivalsGet(genderValueId, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiProductsNewArrivalsGet(gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ProductsApi->apiProductsNewArrivalsGet: $e\n');
@@ -361,7 +494,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **genderValueId** | **int**|  | [optional] 
+ **gender** | [**Gender**](.md)|  | [optional] 
+ **categoryId** | **int**|  | [optional] 
+ **brandId** | **int**|  | [optional] 
+ **volume** | **int**|  | [optional] 
+ **fromPrice** | **num**|  | [optional] 
+ **toPrice** | **num**|  | [optional] 
  **isAvailable** | **bool**|  | [optional] 
  **pageNumber** | **int**|  | [optional] 
  **pageSize** | **int**|  | [optional] 
@@ -715,7 +853,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiProductsSearchSemanticGet**
-> BaseResponseOfPagedResultOfProductListItemWithVariants apiProductsSearchSemanticGet(searchText, genderValueId, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+> BaseResponseOfPagedResultOfProductListItemWithVariants apiProductsSearchSemanticGet(searchText, gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -725,7 +863,12 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getProductsApi();
 final String searchText = searchText_example; // String | 
-final int genderValueId = 56; // int | 
+final Gender gender = ; // Gender | 
+final int categoryId = 56; // int | 
+final int brandId = 56; // int | 
+final int volume = 56; // int | 
+final num fromPrice = 8.14; // num | 
+final num toPrice = 8.14; // num | 
 final bool isAvailable = true; // bool | 
 final int pageNumber = 56; // int | 
 final int pageSize = 56; // int | 
@@ -734,7 +877,7 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiProductsSearchSemanticGet(searchText, genderValueId, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiProductsSearchSemanticGet(searchText, gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ProductsApi->apiProductsSearchSemanticGet: $e\n');
@@ -746,7 +889,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **searchText** | **String**|  | [optional] 
- **genderValueId** | **int**|  | [optional] 
+ **gender** | [**Gender**](.md)|  | [optional] 
+ **categoryId** | **int**|  | [optional] 
+ **brandId** | **int**|  | [optional] 
+ **volume** | **int**|  | [optional] 
+ **fromPrice** | **num**|  | [optional] 
+ **toPrice** | **num**|  | [optional] 
  **isAvailable** | **bool**|  | [optional] 
  **pageNumber** | **int**|  | [optional] 
  **pageSize** | **int**|  | [optional] 

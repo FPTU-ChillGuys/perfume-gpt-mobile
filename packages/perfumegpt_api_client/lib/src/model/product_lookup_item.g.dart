@@ -13,7 +13,7 @@ abstract class _$ProductLookupItemCWProxy {
 
   ProductLookupItem brandName(String? brandName);
 
-  ProductLookupItem primaryImage(MediaResponse? primaryImage);
+  ProductLookupItem primaryImageUrl(String? primaryImageUrl);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductLookupItem(...).copyWith.fieldName(value)`.
@@ -26,7 +26,7 @@ abstract class _$ProductLookupItemCWProxy {
     String? id,
     String? name,
     String? brandName,
-    MediaResponse? primaryImage,
+    String? primaryImageUrl,
   });
 }
 
@@ -47,8 +47,8 @@ class _$ProductLookupItemCWProxyImpl implements _$ProductLookupItemCWProxy {
   ProductLookupItem brandName(String? brandName) => call(brandName: brandName);
 
   @override
-  ProductLookupItem primaryImage(MediaResponse? primaryImage) =>
-      call(primaryImage: primaryImage);
+  ProductLookupItem primaryImageUrl(String? primaryImageUrl) =>
+      call(primaryImageUrl: primaryImageUrl);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -62,7 +62,7 @@ class _$ProductLookupItemCWProxyImpl implements _$ProductLookupItemCWProxy {
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? brandName = const $CopyWithPlaceholder(),
-    Object? primaryImage = const $CopyWithPlaceholder(),
+    Object? primaryImageUrl = const $CopyWithPlaceholder(),
   }) {
     return ProductLookupItem(
       id: id == const $CopyWithPlaceholder()
@@ -77,10 +77,10 @@ class _$ProductLookupItemCWProxyImpl implements _$ProductLookupItemCWProxy {
           ? _value.brandName
           // ignore: cast_nullable_to_non_nullable
           : brandName as String?,
-      primaryImage: primaryImage == const $CopyWithPlaceholder()
-          ? _value.primaryImage
+      primaryImageUrl: primaryImageUrl == const $CopyWithPlaceholder()
+          ? _value.primaryImageUrl
           // ignore: cast_nullable_to_non_nullable
-          : primaryImage as MediaResponse?,
+          : primaryImageUrl as String?,
     );
   }
 }
@@ -103,11 +103,9 @@ ProductLookupItem _$ProductLookupItemFromJson(Map<String, dynamic> json) =>
         id: $checkedConvert('id', (v) => v as String?),
         name: $checkedConvert('name', (v) => v as String?),
         brandName: $checkedConvert('brandName', (v) => v as String?),
-        primaryImage: $checkedConvert(
-          'primaryImage',
-          (v) => v == null
-              ? null
-              : MediaResponse.fromJson(v as Map<String, dynamic>),
+        primaryImageUrl: $checkedConvert(
+          'primaryImageUrl',
+          (v) => v as String?,
         ),
       );
       return val;
@@ -118,5 +116,5 @@ Map<String, dynamic> _$ProductLookupItemToJson(ProductLookupItem instance) =>
       'id': ?instance.id,
       'name': ?instance.name,
       'brandName': ?instance.brandName,
-      'primaryImage': ?instance.primaryImage?.toJson(),
+      'primaryImageUrl': ?instance.primaryImageUrl,
     };

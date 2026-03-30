@@ -7,7 +7,7 @@ part of 'fulfill_order_request.dart';
 // **************************************************************************
 
 abstract class _$FulfillOrderRequestCWProxy {
-  FulfillOrderRequest items(List<FulfillOrderItemRequest>? items);
+  FulfillOrderRequest items(List<FulfillOrderItemRequest> items);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FulfillOrderRequest(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$FulfillOrderRequestCWProxy {
   /// ```dart
   /// FulfillOrderRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  FulfillOrderRequest call({List<FulfillOrderItemRequest>? items});
+  FulfillOrderRequest call({List<FulfillOrderItemRequest> items});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -27,7 +27,7 @@ class _$FulfillOrderRequestCWProxyImpl implements _$FulfillOrderRequestCWProxy {
   final FulfillOrderRequest _value;
 
   @override
-  FulfillOrderRequest items(List<FulfillOrderItemRequest>? items) =>
+  FulfillOrderRequest items(List<FulfillOrderItemRequest> items) =>
       call(items: items);
 
   @override
@@ -40,10 +40,10 @@ class _$FulfillOrderRequestCWProxyImpl implements _$FulfillOrderRequestCWProxy {
   /// ```
   FulfillOrderRequest call({Object? items = const $CopyWithPlaceholder()}) {
     return FulfillOrderRequest(
-      items: items == const $CopyWithPlaceholder()
+      items: items == const $CopyWithPlaceholder() || items == null
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
-          : items as List<FulfillOrderItemRequest>?,
+          : items as List<FulfillOrderItemRequest>,
     );
   }
 }
@@ -62,11 +62,12 @@ extension $FulfillOrderRequestCopyWith on FulfillOrderRequest {
 
 FulfillOrderRequest _$FulfillOrderRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('FulfillOrderRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['items']);
       final val = FulfillOrderRequest(
         items: $checkedConvert(
           'items',
-          (v) => (v as List<dynamic>?)
-              ?.map(
+          (v) => (v as List<dynamic>)
+              .map(
                 (e) =>
                     FulfillOrderItemRequest.fromJson(e as Map<String, dynamic>),
               )
@@ -78,6 +79,4 @@ FulfillOrderRequest _$FulfillOrderRequestFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$FulfillOrderRequestToJson(
   FulfillOrderRequest instance,
-) => <String, dynamic>{
-  'items': ?instance.items?.map((e) => e.toJson()).toList(),
-};
+) => <String, dynamic>{'items': instance.items.map((e) => e.toJson()).toList()};

@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'register_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,52 +19,97 @@ part 'register_request.g.dart';
 class RegisterRequest {
   /// Returns a new [RegisterRequest] instance.
   RegisterRequest({
-    this.fullName,
 
-    this.phoneNumber,
+     this.fullName,
 
-    this.email,
+    required  this.phoneNumber,
 
-    this.password,
+    required  this.email,
 
-    this.clientUri,
+     this.password,
+
+     this.clientUri,
   });
 
-  @JsonKey(name: r'fullName', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'fullName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? fullName;
 
-  @JsonKey(name: r'phoneNumber', required: false, includeIfNull: false)
-  final String? phoneNumber;
 
-  @JsonKey(name: r'email', required: false, includeIfNull: false)
-  final String? email;
 
-  @JsonKey(name: r'password', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'phoneNumber',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String phoneNumber;
+
+
+
+  @JsonKey(
+    
+    name: r'email',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String email;
+
+
+
+  @JsonKey(
+    
+    name: r'password',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? password;
 
-  @JsonKey(name: r'clientUri', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'clientUri',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? clientUri;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is RegisterRequest &&
-          other.fullName == fullName &&
-          other.phoneNumber == phoneNumber &&
-          other.email == email &&
-          other.password == password &&
-          other.clientUri == clientUri;
 
-  @override
-  int get hashCode =>
-      fullName.hashCode +
-      phoneNumber.hashCode +
-      email.hashCode +
-      password.hashCode +
-      clientUri.hashCode;
 
-  factory RegisterRequest.fromJson(Map<String, dynamic> json) =>
-      _$RegisterRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is RegisterRequest &&
+      other.fullName == fullName &&
+      other.phoneNumber == phoneNumber &&
+      other.email == email &&
+      other.password == password &&
+      other.clientUri == clientUri;
+
+    @override
+    int get hashCode =>
+        fullName.hashCode +
+        phoneNumber.hashCode +
+        email.hashCode +
+        password.hashCode +
+        clientUri.hashCode;
+
+  factory RegisterRequest.fromJson(Map<String, dynamic> json) => _$RegisterRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$RegisterRequestToJson(this);
 
@@ -71,4 +117,6 @@ class RegisterRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

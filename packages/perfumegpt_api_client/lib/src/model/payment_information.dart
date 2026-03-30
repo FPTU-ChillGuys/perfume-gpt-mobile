@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'payment_information.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,21 +19,34 @@ part 'payment_information.g.dart';
 )
 class PaymentInformation {
   /// Returns a new [PaymentInformation] instance.
-  PaymentInformation({this.method});
+  PaymentInformation({
 
-  @JsonKey(name: r'method', required: false, includeIfNull: false)
+     this.method,
+  });
+
+  @JsonKey(
+    
+    name: r'method',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final PaymentMethod? method;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PaymentInformation && other.method == method;
 
-  @override
-  int get hashCode => method.hashCode;
 
-  factory PaymentInformation.fromJson(Map<String, dynamic> json) =>
-      _$PaymentInformationFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is PaymentInformation &&
+      other.method == method;
+
+    @override
+    int get hashCode =>
+        method.hashCode;
+
+  factory PaymentInformation.fromJson(Map<String, dynamic> json) => _$PaymentInformationFromJson(json);
 
   Map<String, dynamic> toJson() => _$PaymentInformationToJson(this);
 
@@ -40,4 +54,6 @@ class PaymentInformation {
   String toString() {
     return toJson().toString();
   }
+
 }
+

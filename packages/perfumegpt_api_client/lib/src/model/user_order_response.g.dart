@@ -305,7 +305,6 @@ Map<String, dynamic> _$UserOrderResponseToJson(UserOrderResponse instance) =>
 const _$OrderTypeEnumMap = {
   OrderType.online: 'Online',
   OrderType.offline: 'Offline',
-  OrderType.shoppe: 'Shoppe',
 };
 
 const _$OrderStatusEnumMap = {
@@ -313,7 +312,8 @@ const _$OrderStatusEnumMap = {
   OrderStatus.processing: 'Processing',
   OrderStatus.delivering: 'Delivering',
   OrderStatus.delivered: 'Delivered',
-  OrderStatus.canceled: 'Canceled',
+  OrderStatus.returning: 'Returning',
+  OrderStatus.cancelled: 'Cancelled',
   OrderStatus.returned: 'Returned',
 };
 

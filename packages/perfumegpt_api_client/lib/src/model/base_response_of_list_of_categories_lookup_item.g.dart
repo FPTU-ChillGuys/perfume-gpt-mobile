@@ -17,9 +17,7 @@ abstract class _$BaseResponseOfListOfCategoriesLookupItemCWProxy {
 
   BaseResponseOfListOfCategoriesLookupItem errors(List<String>? errors);
 
-  BaseResponseOfListOfCategoriesLookupItem errorType(
-    ResponseErrorType? errorType,
-  );
+  BaseResponseOfListOfCategoriesLookupItem errorType(int? errorType);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfCategoriesLookupItem(...).copyWith.fieldName(value)`.
@@ -33,7 +31,7 @@ abstract class _$BaseResponseOfListOfCategoriesLookupItemCWProxy {
     bool? success,
     String? message,
     List<String>? errors,
-    ResponseErrorType? errorType,
+    int? errorType,
   });
 }
 
@@ -63,9 +61,8 @@ class _$BaseResponseOfListOfCategoriesLookupItemCWProxyImpl
       call(errors: errors);
 
   @override
-  BaseResponseOfListOfCategoriesLookupItem errorType(
-    ResponseErrorType? errorType,
-  ) => call(errorType: errorType);
+  BaseResponseOfListOfCategoriesLookupItem errorType(int? errorType) =>
+      call(errorType: errorType);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -102,7 +99,7 @@ class _$BaseResponseOfListOfCategoriesLookupItemCWProxyImpl
       errorType: errorType == const $CopyWithPlaceholder()
           ? _value.errorType
           // ignore: cast_nullable_to_non_nullable
-          : errorType as ResponseErrorType?,
+          : errorType as int?,
     );
   }
 }
@@ -140,10 +137,7 @@ _$BaseResponseOfListOfCategoriesLookupItemFromJson(Map<String, dynamic> json) =>
           'errors',
           (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
         ),
-        errorType: $checkedConvert(
-          'errorType',
-          (v) => $enumDecodeNullable(_$ResponseErrorTypeEnumMap, v),
-        ),
+        errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
       );
       return val;
     });
@@ -155,15 +149,5 @@ Map<String, dynamic> _$BaseResponseOfListOfCategoriesLookupItemToJson(
   'success': ?instance.success,
   'message': ?instance.message,
   'errors': ?instance.errors,
-  'errorType': ?_$ResponseErrorTypeEnumMap[instance.errorType],
-};
-
-const _$ResponseErrorTypeEnumMap = {
-  ResponseErrorType.none: 'None',
-  ResponseErrorType.badRequest: 'BadRequest',
-  ResponseErrorType.unauthorized: 'Unauthorized',
-  ResponseErrorType.forbidden: 'Forbidden',
-  ResponseErrorType.notFound: 'NotFound',
-  ResponseErrorType.conflict: 'Conflict',
-  ResponseErrorType.internalError: 'InternalError',
+  'errorType': ?instance.errorType,
 };

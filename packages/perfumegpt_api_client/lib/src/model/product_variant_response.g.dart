@@ -9,12 +9,6 @@ part of 'product_variant_response.dart';
 abstract class _$ProductVariantResponseCWProxy {
   ProductVariantResponse id(String? id);
 
-  ProductVariantResponse productId(String? productId);
-
-  ProductVariantResponse productName(String? productName);
-
-  ProductVariantResponse media(List<MediaResponse>? media);
-
   ProductVariantResponse barcode(String? barcode);
 
   ProductVariantResponse sku(String? sku);
@@ -29,9 +23,27 @@ abstract class _$ProductVariantResponseCWProxy {
 
   ProductVariantResponse basePrice(num? basePrice);
 
+  ProductVariantResponse retailPrice(num? retailPrice);
+
   ProductVariantResponse status(VariantStatus? status);
 
   ProductVariantResponse stockQuantity(int? stockQuantity);
+
+  ProductVariantResponse sillage(int? sillage);
+
+  ProductVariantResponse longevity(int? longevity);
+
+  ProductVariantResponse productId(String? productId);
+
+  ProductVariantResponse productName(String? productName);
+
+  ProductVariantResponse media(List<MediaResponse>? media);
+
+  ProductVariantResponse campaignName(String? campaignName);
+
+  ProductVariantResponse voucherCode(String? voucherCode);
+
+  ProductVariantResponse discountedPrice(num? discountedPrice);
 
   ProductVariantResponse attributes(List<ProductAttributeResponse>? attributes);
 
@@ -44,9 +56,6 @@ abstract class _$ProductVariantResponseCWProxy {
   /// ```
   ProductVariantResponse call({
     String? id,
-    String? productId,
-    String? productName,
-    List<MediaResponse>? media,
     String? barcode,
     String? sku,
     int? volumeMl,
@@ -54,8 +63,17 @@ abstract class _$ProductVariantResponseCWProxy {
     String? concentrationName,
     VariantType? type,
     num? basePrice,
+    num? retailPrice,
     VariantStatus? status,
     int? stockQuantity,
+    int? sillage,
+    int? longevity,
+    String? productId,
+    String? productName,
+    List<MediaResponse>? media,
+    String? campaignName,
+    String? voucherCode,
+    num? discountedPrice,
     List<ProductAttributeResponse>? attributes,
   });
 }
@@ -70,18 +88,6 @@ class _$ProductVariantResponseCWProxyImpl
 
   @override
   ProductVariantResponse id(String? id) => call(id: id);
-
-  @override
-  ProductVariantResponse productId(String? productId) =>
-      call(productId: productId);
-
-  @override
-  ProductVariantResponse productName(String? productName) =>
-      call(productName: productName);
-
-  @override
-  ProductVariantResponse media(List<MediaResponse>? media) =>
-      call(media: media);
 
   @override
   ProductVariantResponse barcode(String? barcode) => call(barcode: barcode);
@@ -108,11 +114,46 @@ class _$ProductVariantResponseCWProxyImpl
       call(basePrice: basePrice);
 
   @override
+  ProductVariantResponse retailPrice(num? retailPrice) =>
+      call(retailPrice: retailPrice);
+
+  @override
   ProductVariantResponse status(VariantStatus? status) => call(status: status);
 
   @override
   ProductVariantResponse stockQuantity(int? stockQuantity) =>
       call(stockQuantity: stockQuantity);
+
+  @override
+  ProductVariantResponse sillage(int? sillage) => call(sillage: sillage);
+
+  @override
+  ProductVariantResponse longevity(int? longevity) =>
+      call(longevity: longevity);
+
+  @override
+  ProductVariantResponse productId(String? productId) =>
+      call(productId: productId);
+
+  @override
+  ProductVariantResponse productName(String? productName) =>
+      call(productName: productName);
+
+  @override
+  ProductVariantResponse media(List<MediaResponse>? media) =>
+      call(media: media);
+
+  @override
+  ProductVariantResponse campaignName(String? campaignName) =>
+      call(campaignName: campaignName);
+
+  @override
+  ProductVariantResponse voucherCode(String? voucherCode) =>
+      call(voucherCode: voucherCode);
+
+  @override
+  ProductVariantResponse discountedPrice(num? discountedPrice) =>
+      call(discountedPrice: discountedPrice);
 
   @override
   ProductVariantResponse attributes(
@@ -129,9 +170,6 @@ class _$ProductVariantResponseCWProxyImpl
   /// ```
   ProductVariantResponse call({
     Object? id = const $CopyWithPlaceholder(),
-    Object? productId = const $CopyWithPlaceholder(),
-    Object? productName = const $CopyWithPlaceholder(),
-    Object? media = const $CopyWithPlaceholder(),
     Object? barcode = const $CopyWithPlaceholder(),
     Object? sku = const $CopyWithPlaceholder(),
     Object? volumeMl = const $CopyWithPlaceholder(),
@@ -139,8 +177,17 @@ class _$ProductVariantResponseCWProxyImpl
     Object? concentrationName = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
     Object? basePrice = const $CopyWithPlaceholder(),
+    Object? retailPrice = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
     Object? stockQuantity = const $CopyWithPlaceholder(),
+    Object? sillage = const $CopyWithPlaceholder(),
+    Object? longevity = const $CopyWithPlaceholder(),
+    Object? productId = const $CopyWithPlaceholder(),
+    Object? productName = const $CopyWithPlaceholder(),
+    Object? media = const $CopyWithPlaceholder(),
+    Object? campaignName = const $CopyWithPlaceholder(),
+    Object? voucherCode = const $CopyWithPlaceholder(),
+    Object? discountedPrice = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
   }) {
     return ProductVariantResponse(
@@ -148,18 +195,6 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      productId: productId == const $CopyWithPlaceholder()
-          ? _value.productId
-          // ignore: cast_nullable_to_non_nullable
-          : productId as String?,
-      productName: productName == const $CopyWithPlaceholder()
-          ? _value.productName
-          // ignore: cast_nullable_to_non_nullable
-          : productName as String?,
-      media: media == const $CopyWithPlaceholder()
-          ? _value.media
-          // ignore: cast_nullable_to_non_nullable
-          : media as List<MediaResponse>?,
       barcode: barcode == const $CopyWithPlaceholder()
           ? _value.barcode
           // ignore: cast_nullable_to_non_nullable
@@ -188,6 +223,10 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.basePrice
           // ignore: cast_nullable_to_non_nullable
           : basePrice as num?,
+      retailPrice: retailPrice == const $CopyWithPlaceholder()
+          ? _value.retailPrice
+          // ignore: cast_nullable_to_non_nullable
+          : retailPrice as num?,
       status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
@@ -196,6 +235,38 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.stockQuantity
           // ignore: cast_nullable_to_non_nullable
           : stockQuantity as int?,
+      sillage: sillage == const $CopyWithPlaceholder()
+          ? _value.sillage
+          // ignore: cast_nullable_to_non_nullable
+          : sillage as int?,
+      longevity: longevity == const $CopyWithPlaceholder()
+          ? _value.longevity
+          // ignore: cast_nullable_to_non_nullable
+          : longevity as int?,
+      productId: productId == const $CopyWithPlaceholder()
+          ? _value.productId
+          // ignore: cast_nullable_to_non_nullable
+          : productId as String?,
+      productName: productName == const $CopyWithPlaceholder()
+          ? _value.productName
+          // ignore: cast_nullable_to_non_nullable
+          : productName as String?,
+      media: media == const $CopyWithPlaceholder()
+          ? _value.media
+          // ignore: cast_nullable_to_non_nullable
+          : media as List<MediaResponse>?,
+      campaignName: campaignName == const $CopyWithPlaceholder()
+          ? _value.campaignName
+          // ignore: cast_nullable_to_non_nullable
+          : campaignName as String?,
+      voucherCode: voucherCode == const $CopyWithPlaceholder()
+          ? _value.voucherCode
+          // ignore: cast_nullable_to_non_nullable
+          : voucherCode as String?,
+      discountedPrice: discountedPrice == const $CopyWithPlaceholder()
+          ? _value.discountedPrice
+          // ignore: cast_nullable_to_non_nullable
+          : discountedPrice as num?,
       attributes: attributes == const $CopyWithPlaceholder()
           ? _value.attributes
           // ignore: cast_nullable_to_non_nullable
@@ -221,14 +292,6 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
 ) => $checkedCreate('ProductVariantResponse', json, ($checkedConvert) {
   final val = ProductVariantResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    productId: $checkedConvert('productId', (v) => v as String?),
-    productName: $checkedConvert('productName', (v) => v as String?),
-    media: $checkedConvert(
-      'media',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
     barcode: $checkedConvert('barcode', (v) => v as String?),
     sku: $checkedConvert('sku', (v) => v as String?),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
@@ -245,6 +308,7 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
       (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
     ),
     basePrice: $checkedConvert('basePrice', (v) => v as num?),
+    retailPrice: $checkedConvert('retailPrice', (v) => v as num?),
     status: $checkedConvert(
       'status',
       (v) => $enumDecodeNullable(_$VariantStatusEnumMap, v),
@@ -253,6 +317,19 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
       'stockQuantity',
       (v) => (v as num?)?.toInt(),
     ),
+    sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
+    longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
+    productId: $checkedConvert('productId', (v) => v as String?),
+    productName: $checkedConvert('productName', (v) => v as String?),
+    media: $checkedConvert(
+      'media',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    campaignName: $checkedConvert('campaignName', (v) => v as String?),
+    voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
+    discountedPrice: $checkedConvert('discountedPrice', (v) => v as num?),
     attributes: $checkedConvert(
       'attributes',
       (v) => (v as List<dynamic>?)
@@ -269,9 +346,6 @@ Map<String, dynamic> _$ProductVariantResponseToJson(
   ProductVariantResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'productId': ?instance.productId,
-  'productName': ?instance.productName,
-  'media': ?instance.media?.map((e) => e.toJson()).toList(),
   'barcode': ?instance.barcode,
   'sku': ?instance.sku,
   'volumeMl': ?instance.volumeMl,
@@ -279,12 +353,22 @@ Map<String, dynamic> _$ProductVariantResponseToJson(
   'concentrationName': ?instance.concentrationName,
   'type': ?_$VariantTypeEnumMap[instance.type],
   'basePrice': ?instance.basePrice,
+  'retailPrice': ?instance.retailPrice,
   'status': ?_$VariantStatusEnumMap[instance.status],
   'stockQuantity': ?instance.stockQuantity,
+  'sillage': ?instance.sillage,
+  'longevity': ?instance.longevity,
+  'productId': ?instance.productId,
+  'productName': ?instance.productName,
+  'media': ?instance.media?.map((e) => e.toJson()).toList(),
+  'campaignName': ?instance.campaignName,
+  'voucherCode': ?instance.voucherCode,
+  'discountedPrice': ?instance.discountedPrice,
   'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
 };
 
 const _$VariantTypeEnumMap = {
+  VariantType.standard: 'Standard',
   VariantType.fullBox: 'FullBox',
   VariantType.tester: 'Tester',
   VariantType.mini: 'Mini',
@@ -294,5 +378,4 @@ const _$VariantStatusEnumMap = {
   VariantStatus.active: 'Active',
   VariantStatus.inactive: 'Inactive',
   VariantStatus.discontinued: 'Discontinued',
-  VariantStatus.outOfStock: 'out_of_stock',
 };

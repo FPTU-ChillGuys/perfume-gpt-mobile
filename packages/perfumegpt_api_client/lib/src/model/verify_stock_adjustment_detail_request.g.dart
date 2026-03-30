@@ -7,7 +7,7 @@ part of 'verify_stock_adjustment_detail_request.dart';
 // **************************************************************************
 
 abstract class _$VerifyStockAdjustmentDetailRequestCWProxy {
-  VerifyStockAdjustmentDetailRequest detailId(String? detailId);
+  VerifyStockAdjustmentDetailRequest detailId(String detailId);
 
   VerifyStockAdjustmentDetailRequest approvedQuantity(int? approvedQuantity);
 
@@ -21,7 +21,7 @@ abstract class _$VerifyStockAdjustmentDetailRequestCWProxy {
   /// VerifyStockAdjustmentDetailRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   VerifyStockAdjustmentDetailRequest call({
-    String? detailId,
+    String detailId,
     int? approvedQuantity,
     String? note,
   });
@@ -36,7 +36,7 @@ class _$VerifyStockAdjustmentDetailRequestCWProxyImpl
   final VerifyStockAdjustmentDetailRequest _value;
 
   @override
-  VerifyStockAdjustmentDetailRequest detailId(String? detailId) =>
+  VerifyStockAdjustmentDetailRequest detailId(String detailId) =>
       call(detailId: detailId);
 
   @override
@@ -60,10 +60,10 @@ class _$VerifyStockAdjustmentDetailRequestCWProxyImpl
     Object? note = const $CopyWithPlaceholder(),
   }) {
     return VerifyStockAdjustmentDetailRequest(
-      detailId: detailId == const $CopyWithPlaceholder()
+      detailId: detailId == const $CopyWithPlaceholder() || detailId == null
           ? _value.detailId
           // ignore: cast_nullable_to_non_nullable
-          : detailId as String?,
+          : detailId as String,
       approvedQuantity: approvedQuantity == const $CopyWithPlaceholder()
           ? _value.approvedQuantity
           // ignore: cast_nullable_to_non_nullable
@@ -94,8 +94,9 @@ VerifyStockAdjustmentDetailRequest _$VerifyStockAdjustmentDetailRequestFromJson(
 ) => $checkedCreate('VerifyStockAdjustmentDetailRequest', json, (
   $checkedConvert,
 ) {
+  $checkKeys(json, requiredKeys: const ['detailId']);
   final val = VerifyStockAdjustmentDetailRequest(
-    detailId: $checkedConvert('detailId', (v) => v as String?),
+    detailId: $checkedConvert('detailId', (v) => v as String),
     approvedQuantity: $checkedConvert(
       'approvedQuantity',
       (v) => (v as num?)?.toInt(),
@@ -108,7 +109,7 @@ VerifyStockAdjustmentDetailRequest _$VerifyStockAdjustmentDetailRequestFromJson(
 Map<String, dynamic> _$VerifyStockAdjustmentDetailRequestToJson(
   VerifyStockAdjustmentDetailRequest instance,
 ) => <String, dynamic>{
-  'detailId': ?instance.detailId,
+  'detailId': instance.detailId,
   'approvedQuantity': ?instance.approvedQuantity,
   'note': ?instance.note,
 };

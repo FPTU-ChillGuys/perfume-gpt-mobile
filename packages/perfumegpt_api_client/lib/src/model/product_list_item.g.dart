@@ -23,9 +23,11 @@ abstract class _$ProductListItemCWProxy {
 
   ProductListItem numberOfVariants(int? numberOfVariants);
 
-  ProductListItem primaryImage(MediaResponse? primaryImage);
+  ProductListItem variantPrices(List<num>? variantPrices);
 
-  ProductListItem attributes(List<ProductAttributeResponse>? attributes);
+  ProductListItem tags(List<String>? tags);
+
+  ProductListItem primaryImage(MediaResponse? primaryImage);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductListItem(...).copyWith.fieldName(value)`.
@@ -43,8 +45,9 @@ abstract class _$ProductListItemCWProxy {
     String? categoryName,
     String? description,
     int? numberOfVariants,
+    List<num>? variantPrices,
+    List<String>? tags,
     MediaResponse? primaryImage,
-    List<ProductAttributeResponse>? attributes,
   });
 }
 
@@ -83,12 +86,15 @@ class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
       call(numberOfVariants: numberOfVariants);
 
   @override
-  ProductListItem primaryImage(MediaResponse? primaryImage) =>
-      call(primaryImage: primaryImage);
+  ProductListItem variantPrices(List<num>? variantPrices) =>
+      call(variantPrices: variantPrices);
 
   @override
-  ProductListItem attributes(List<ProductAttributeResponse>? attributes) =>
-      call(attributes: attributes);
+  ProductListItem tags(List<String>? tags) => call(tags: tags);
+
+  @override
+  ProductListItem primaryImage(MediaResponse? primaryImage) =>
+      call(primaryImage: primaryImage);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -107,8 +113,9 @@ class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
     Object? categoryName = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
     Object? numberOfVariants = const $CopyWithPlaceholder(),
+    Object? variantPrices = const $CopyWithPlaceholder(),
+    Object? tags = const $CopyWithPlaceholder(),
     Object? primaryImage = const $CopyWithPlaceholder(),
-    Object? attributes = const $CopyWithPlaceholder(),
   }) {
     return ProductListItem(
       id: id == const $CopyWithPlaceholder()
@@ -143,14 +150,18 @@ class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
           ? _value.numberOfVariants
           // ignore: cast_nullable_to_non_nullable
           : numberOfVariants as int?,
+      variantPrices: variantPrices == const $CopyWithPlaceholder()
+          ? _value.variantPrices
+          // ignore: cast_nullable_to_non_nullable
+          : variantPrices as List<num>?,
+      tags: tags == const $CopyWithPlaceholder()
+          ? _value.tags
+          // ignore: cast_nullable_to_non_nullable
+          : tags as List<String>?,
       primaryImage: primaryImage == const $CopyWithPlaceholder()
           ? _value.primaryImage
           // ignore: cast_nullable_to_non_nullable
           : primaryImage as MediaResponse?,
-      attributes: attributes == const $CopyWithPlaceholder()
-          ? _value.attributes
-          // ignore: cast_nullable_to_non_nullable
-          : attributes as List<ProductAttributeResponse>?,
     );
   }
 }
@@ -166,37 +177,37 @@ extension $ProductListItemCopyWith on ProductListItem {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProductListItem _$ProductListItemFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('ProductListItem', json, ($checkedConvert) {
-  final val = ProductListItem(
-    id: $checkedConvert('id', (v) => v as String?),
-    name: $checkedConvert('name', (v) => v as String?),
-    brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
-    brandName: $checkedConvert('brandName', (v) => v as String?),
-    categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
-    categoryName: $checkedConvert('categoryName', (v) => v as String?),
-    description: $checkedConvert('description', (v) => v as String?),
-    numberOfVariants: $checkedConvert(
-      'numberOfVariants',
-      (v) => (v as num?)?.toInt(),
-    ),
-    primaryImage: $checkedConvert(
-      'primaryImage',
-      (v) =>
-          v == null ? null : MediaResponse.fromJson(v as Map<String, dynamic>),
-    ),
-    attributes: $checkedConvert(
-      'attributes',
-      (v) => (v as List<dynamic>?)
-          ?.map(
-            (e) => ProductAttributeResponse.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
-    ),
-  );
-  return val;
-});
+ProductListItem _$ProductListItemFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('ProductListItem', json, ($checkedConvert) {
+      final val = ProductListItem(
+        id: $checkedConvert('id', (v) => v as String?),
+        name: $checkedConvert('name', (v) => v as String?),
+        brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
+        brandName: $checkedConvert('brandName', (v) => v as String?),
+        categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
+        categoryName: $checkedConvert('categoryName', (v) => v as String?),
+        description: $checkedConvert('description', (v) => v as String?),
+        numberOfVariants: $checkedConvert(
+          'numberOfVariants',
+          (v) => (v as num?)?.toInt(),
+        ),
+        variantPrices: $checkedConvert(
+          'variantPrices',
+          (v) => (v as List<dynamic>?)?.map((e) => e as num).toList(),
+        ),
+        tags: $checkedConvert(
+          'tags',
+          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        ),
+        primaryImage: $checkedConvert(
+          'primaryImage',
+          (v) => v == null
+              ? null
+              : MediaResponse.fromJson(v as Map<String, dynamic>),
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$ProductListItemToJson(ProductListItem instance) =>
     <String, dynamic>{
@@ -208,6 +219,7 @@ Map<String, dynamic> _$ProductListItemToJson(ProductListItem instance) =>
       'categoryName': ?instance.categoryName,
       'description': ?instance.description,
       'numberOfVariants': ?instance.numberOfVariants,
+      'variantPrices': ?instance.variantPrices,
+      'tags': ?instance.tags,
       'primaryImage': ?instance.primaryImage?.toJson(),
-      'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
     };

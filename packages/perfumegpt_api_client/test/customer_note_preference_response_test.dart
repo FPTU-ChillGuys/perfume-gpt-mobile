@@ -1,0 +1,26 @@
+import 'package:test/test.dart';
+import 'package:openapi/openapi.dart';
+
+// tests for CustomerNotePreferenceResponse
+void main() {
+  final instance = CustomerNotePreferenceResponseBuilder();
+  // TODO add properties to the builder and call build()
+
+  group(CustomerNotePreferenceResponse, () {
+    // int noteId
+    test('to test the property `noteId`', () async {
+      // TODO
+    });
+
+    // String noteName
+    test('to test the property `noteName`', () async {
+      // TODO
+    });
+
+    // NoteType noteType
+    test('to test the property `noteType`', () async {
+      // TODO
+    });
+
+  });
+}

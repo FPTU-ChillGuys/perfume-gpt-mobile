@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_order_detail_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,26 +18,51 @@ part 'create_order_detail_request.g.dart';
 )
 class CreateOrderDetailRequest {
   /// Returns a new [CreateOrderDetailRequest] instance.
-  CreateOrderDetailRequest({this.variantId, this.quantity});
+  CreateOrderDetailRequest({
 
-  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
-  final String? variantId;
+    required  this.variantId,
 
-  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+     this.quantity,
+  });
+
+  @JsonKey(
+    
+    name: r'variantId',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String variantId;
+
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'quantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? quantity;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateOrderDetailRequest &&
-          other.variantId == variantId &&
-          other.quantity == quantity;
 
-  @override
-  int get hashCode => variantId.hashCode + quantity.hashCode;
 
-  factory CreateOrderDetailRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateOrderDetailRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateOrderDetailRequest &&
+      other.variantId == variantId &&
+      other.quantity == quantity;
+
+    @override
+    int get hashCode =>
+        variantId.hashCode +
+        quantity.hashCode;
+
+  factory CreateOrderDetailRequest.fromJson(Map<String, dynamic> json) => _$CreateOrderDetailRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateOrderDetailRequestToJson(this);
 
@@ -44,4 +70,6 @@ class CreateOrderDetailRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

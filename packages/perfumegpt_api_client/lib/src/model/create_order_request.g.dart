@@ -11,15 +11,15 @@ abstract class _$CreateOrderRequestCWProxy {
 
   CreateOrderRequest itemIds(List<String>? itemIds);
 
-  CreateOrderRequest deliveryMethod(DeliveryMethod? deliveryMethod);
+  CreateOrderRequest expectedTotalPrice(num? expectedTotalPrice);
 
-  CreateOrderRequest guestEmail(String? guestEmail);
+  CreateOrderRequest deliveryMethod(DeliveryMethod? deliveryMethod);
 
   CreateOrderRequest savedAddressId(String? savedAddressId);
 
   CreateOrderRequest recipient(RecipientInformation? recipient);
 
-  CreateOrderRequest payment(PaymentInformation? payment);
+  CreateOrderRequest payment(PaymentInformation payment);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateOrderRequest(...).copyWith.fieldName(value)`.
@@ -31,11 +31,11 @@ abstract class _$CreateOrderRequestCWProxy {
   CreateOrderRequest call({
     String? voucherCode,
     List<String>? itemIds,
+    num? expectedTotalPrice,
     DeliveryMethod? deliveryMethod,
-    String? guestEmail,
     String? savedAddressId,
     RecipientInformation? recipient,
-    PaymentInformation? payment,
+    PaymentInformation payment,
   });
 }
 
@@ -54,12 +54,12 @@ class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
   CreateOrderRequest itemIds(List<String>? itemIds) => call(itemIds: itemIds);
 
   @override
-  CreateOrderRequest deliveryMethod(DeliveryMethod? deliveryMethod) =>
-      call(deliveryMethod: deliveryMethod);
+  CreateOrderRequest expectedTotalPrice(num? expectedTotalPrice) =>
+      call(expectedTotalPrice: expectedTotalPrice);
 
   @override
-  CreateOrderRequest guestEmail(String? guestEmail) =>
-      call(guestEmail: guestEmail);
+  CreateOrderRequest deliveryMethod(DeliveryMethod? deliveryMethod) =>
+      call(deliveryMethod: deliveryMethod);
 
   @override
   CreateOrderRequest savedAddressId(String? savedAddressId) =>
@@ -70,7 +70,7 @@ class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
       call(recipient: recipient);
 
   @override
-  CreateOrderRequest payment(PaymentInformation? payment) =>
+  CreateOrderRequest payment(PaymentInformation payment) =>
       call(payment: payment);
 
   @override
@@ -84,8 +84,8 @@ class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
   CreateOrderRequest call({
     Object? voucherCode = const $CopyWithPlaceholder(),
     Object? itemIds = const $CopyWithPlaceholder(),
+    Object? expectedTotalPrice = const $CopyWithPlaceholder(),
     Object? deliveryMethod = const $CopyWithPlaceholder(),
-    Object? guestEmail = const $CopyWithPlaceholder(),
     Object? savedAddressId = const $CopyWithPlaceholder(),
     Object? recipient = const $CopyWithPlaceholder(),
     Object? payment = const $CopyWithPlaceholder(),
@@ -99,14 +99,14 @@ class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
           ? _value.itemIds
           // ignore: cast_nullable_to_non_nullable
           : itemIds as List<String>?,
+      expectedTotalPrice: expectedTotalPrice == const $CopyWithPlaceholder()
+          ? _value.expectedTotalPrice
+          // ignore: cast_nullable_to_non_nullable
+          : expectedTotalPrice as num?,
       deliveryMethod: deliveryMethod == const $CopyWithPlaceholder()
           ? _value.deliveryMethod
           // ignore: cast_nullable_to_non_nullable
           : deliveryMethod as DeliveryMethod?,
-      guestEmail: guestEmail == const $CopyWithPlaceholder()
-          ? _value.guestEmail
-          // ignore: cast_nullable_to_non_nullable
-          : guestEmail as String?,
       savedAddressId: savedAddressId == const $CopyWithPlaceholder()
           ? _value.savedAddressId
           // ignore: cast_nullable_to_non_nullable
@@ -115,10 +115,10 @@ class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
           ? _value.recipient
           // ignore: cast_nullable_to_non_nullable
           : recipient as RecipientInformation?,
-      payment: payment == const $CopyWithPlaceholder()
+      payment: payment == const $CopyWithPlaceholder() || payment == null
           ? _value.payment
           // ignore: cast_nullable_to_non_nullable
-          : payment as PaymentInformation?,
+          : payment as PaymentInformation,
     );
   }
 }
@@ -137,17 +137,21 @@ extension $CreateOrderRequestCopyWith on CreateOrderRequest {
 
 CreateOrderRequest _$CreateOrderRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('CreateOrderRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['payment']);
       final val = CreateOrderRequest(
         voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
         itemIds: $checkedConvert(
           'itemIds',
           (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
         ),
+        expectedTotalPrice: $checkedConvert(
+          'expectedTotalPrice',
+          (v) => v as num?,
+        ),
         deliveryMethod: $checkedConvert(
           'deliveryMethod',
           (v) => $enumDecodeNullable(_$DeliveryMethodEnumMap, v),
         ),
-        guestEmail: $checkedConvert('guestEmail', (v) => v as String?),
         savedAddressId: $checkedConvert('savedAddressId', (v) => v as String?),
         recipient: $checkedConvert(
           'recipient',
@@ -157,9 +161,7 @@ CreateOrderRequest _$CreateOrderRequestFromJson(Map<String, dynamic> json) =>
         ),
         payment: $checkedConvert(
           'payment',
-          (v) => v == null
-              ? null
-              : PaymentInformation.fromJson(v as Map<String, dynamic>),
+          (v) => PaymentInformation.fromJson(v as Map<String, dynamic>),
         ),
       );
       return val;
@@ -169,11 +171,11 @@ Map<String, dynamic> _$CreateOrderRequestToJson(CreateOrderRequest instance) =>
     <String, dynamic>{
       'voucherCode': ?instance.voucherCode,
       'itemIds': ?instance.itemIds,
+      'expectedTotalPrice': ?instance.expectedTotalPrice,
       'deliveryMethod': ?_$DeliveryMethodEnumMap[instance.deliveryMethod],
-      'guestEmail': ?instance.guestEmail,
       'savedAddressId': ?instance.savedAddressId,
       'recipient': ?instance.recipient?.toJson(),
-      'payment': ?instance.payment?.toJson(),
+      'payment': instance.payment.toJson(),
     };
 
 const _$DeliveryMethodEnumMap = {

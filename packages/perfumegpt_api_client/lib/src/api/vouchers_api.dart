@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_redeemable_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_available_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_user_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_voucher_response.dart';
@@ -20,19 +21,20 @@ import 'package:perfumegpt_api_client/src/model/redeem_voucher_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_voucher_request.dart';
 
 class VouchersApi {
+
   final Dio _dio;
 
   const VouchersApi(this._dio);
 
   /// apiVouchersAvailableGet
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [pageNumber]
-  /// * [pageSize]
-  /// * [sortBy]
-  /// * [sortOrder]
-  /// * [isDescending]
+  /// * [pageNumber] 
+  /// * [pageSize] 
+  /// * [sortBy] 
+  /// * [sortOrder] 
+  /// * [isDescending] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -42,8 +44,7 @@ class VouchersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfAvailableVoucherResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfAvailableVoucherResponse>>
-  apiVouchersAvailableGet({
+  Future<Response<BaseResponseOfPagedResultOfAvailableVoucherResponse>> apiVouchersAvailableGet({ 
     int? pageNumber,
     int? pageSize,
     String? sortBy,
@@ -59,10 +60,16 @@ class VouchersApi {
     final _path = r'/api/vouchers/available';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -89,17 +96,9 @@ class VouchersApi {
     BaseResponseOfPagedResultOfAvailableVoucherResponse? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfPagedResultOfAvailableVoucherResponse,
-              BaseResponseOfPagedResultOfAvailableVoucherResponse
-            >(
-              rawData,
-              'BaseResponseOfPagedResultOfAvailableVoucherResponse',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfAvailableVoucherResponse, BaseResponseOfPagedResultOfAvailableVoucherResponse>(rawData, 'BaseResponseOfPagedResultOfAvailableVoucherResponse', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -123,16 +122,16 @@ class VouchersApi {
   }
 
   /// apiVouchersGet
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [isExpired]
-  /// * [code]
-  /// * [pageNumber]
-  /// * [pageSize]
-  /// * [sortBy]
-  /// * [sortOrder]
-  /// * [isDescending]
+  /// * [isExpired] 
+  /// * [code] 
+  /// * [pageNumber] 
+  /// * [pageSize] 
+  /// * [sortBy] 
+  /// * [sortOrder] 
+  /// * [isDescending] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -142,7 +141,7 @@ class VouchersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfVoucherResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfVoucherResponse>> apiVouchersGet({
+  Future<Response<BaseResponseOfPagedResultOfVoucherResponse>> apiVouchersGet({ 
     bool? isExpired,
     String? code,
     int? pageNumber,
@@ -160,10 +159,16 @@ class VouchersApi {
     final _path = r'/api/vouchers';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -192,17 +197,9 @@ class VouchersApi {
     BaseResponseOfPagedResultOfVoucherResponse? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfPagedResultOfVoucherResponse,
-              BaseResponseOfPagedResultOfVoucherResponse
-            >(
-              rawData,
-              'BaseResponseOfPagedResultOfVoucherResponse',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfVoucherResponse, BaseResponseOfPagedResultOfVoucherResponse>(rawData, 'BaseResponseOfPagedResultOfVoucherResponse', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -225,20 +222,20 @@ class VouchersApi {
     );
   }
 
-  /// apiVouchersMyVouchersGet
-  ///
+  /// apiVouchersMeGet
+  /// 
   ///
   /// Parameters:
-  /// * [status]
-  /// * [isUsed]
-  /// * [isExpired]
-  /// * [code]
-  /// * [discountType]
-  /// * [pageNumber]
-  /// * [pageSize]
-  /// * [sortBy]
-  /// * [sortOrder]
-  /// * [isDescending]
+  /// * [status] 
+  /// * [isUsed] 
+  /// * [isExpired] 
+  /// * [code] 
+  /// * [discountType] 
+  /// * [pageNumber] 
+  /// * [pageSize] 
+  /// * [sortBy] 
+  /// * [sortOrder] 
+  /// * [isDescending] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -248,8 +245,7 @@ class VouchersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfUserVoucherResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfUserVoucherResponse>>
-  apiVouchersMyVouchersGet({
+  Future<Response<BaseResponseOfPagedResultOfUserVoucherResponse>> apiVouchersMeGet({ 
     int? status,
     bool? isUsed,
     bool? isExpired,
@@ -267,13 +263,19 @@ class VouchersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/vouchers/my-vouchers';
+    final _path = r'/api/vouchers/me';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -305,17 +307,9 @@ class VouchersApi {
     BaseResponseOfPagedResultOfUserVoucherResponse? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfPagedResultOfUserVoucherResponse,
-              BaseResponseOfPagedResultOfUserVoucherResponse
-            >(
-              rawData,
-              'BaseResponseOfPagedResultOfUserVoucherResponse',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfUserVoucherResponse, BaseResponseOfPagedResultOfUserVoucherResponse>(rawData, 'BaseResponseOfPagedResultOfUserVoucherResponse', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -339,10 +333,10 @@ class VouchersApi {
   }
 
   /// apiVouchersPost
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [createVoucherRequest]
+  /// * [createVoucherRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -352,7 +346,7 @@ class VouchersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiVouchersPost({
+  Future<Response<BaseResponseOfstring>> apiVouchersPost({ 
     required CreateVoucherRequest createVoucherRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -364,10 +358,16 @@ class VouchersApi {
     final _path = r'/api/vouchers';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -378,10 +378,13 @@ class VouchersApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(createVoucherRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(createVoucherRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -400,14 +403,9 @@ class VouchersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -431,10 +429,10 @@ class VouchersApi {
   }
 
   /// apiVouchersRedeemPost
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [redeemVoucherRequest]
+  /// * [redeemVoucherRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -444,7 +442,7 @@ class VouchersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiVouchersRedeemPost({
+  Future<Response<BaseResponseOfstring>> apiVouchersRedeemPost({ 
     required RedeemVoucherRequest redeemVoucherRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -456,10 +454,16 @@ class VouchersApi {
     final _path = r'/api/vouchers/redeem';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -470,10 +474,13 @@ class VouchersApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(redeemVoucherRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(redeemVoucherRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -492,14 +499,9 @@ class VouchersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -522,11 +524,106 @@ class VouchersApi {
     );
   }
 
-  /// apiVouchersVoucherIdDelete
-  ///
+  /// apiVouchersRedeemableListGet
+  /// 
   ///
   /// Parameters:
-  /// * [voucherId]
+  /// * [pageNumber] 
+  /// * [pageSize] 
+  /// * [sortBy] 
+  /// * [sortOrder] 
+  /// * [isDescending] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfRedeemableVoucherResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BaseResponseOfListOfRedeemableVoucherResponse>> apiVouchersRedeemableListGet({ 
+    int? pageNumber,
+    int? pageSize,
+    String? sortBy,
+    String? sortOrder,
+    bool? isDescending,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/vouchers/redeemable-list';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BaseResponseOfListOfRedeemableVoucherResponse? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfRedeemableVoucherResponse, BaseResponseOfListOfRedeemableVoucherResponse>(rawData, 'BaseResponseOfListOfRedeemableVoucherResponse', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BaseResponseOfListOfRedeemableVoucherResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiVouchersVoucherIdDelete
+  /// 
+  ///
+  /// Parameters:
+  /// * [voucherId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -536,7 +633,7 @@ class VouchersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiVouchersVoucherIdDelete({
+  Future<Response<BaseResponseOfstring>> apiVouchersVoucherIdDelete({ 
     required String voucherId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -545,18 +642,19 @@ class VouchersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/vouchers/{voucherId}'.replaceAll(
-      '{'
-      r'voucherId'
-      '}',
-      voucherId.toString(),
-    );
+    final _path = r'/api/vouchers/{voucherId}'.replaceAll('{' r'voucherId' '}', voucherId.toString());
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -574,14 +672,9 @@ class VouchersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -605,10 +698,10 @@ class VouchersApi {
   }
 
   /// apiVouchersVoucherIdGet
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [voucherId]
+  /// * [voucherId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -618,7 +711,7 @@ class VouchersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfVoucherResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfVoucherResponse>> apiVouchersVoucherIdGet({
+  Future<Response<BaseResponseOfVoucherResponse>> apiVouchersVoucherIdGet({ 
     required String voucherId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -627,18 +720,19 @@ class VouchersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/vouchers/{voucherId}'.replaceAll(
-      '{'
-      r'voucherId'
-      '}',
-      voucherId.toString(),
-    );
+    final _path = r'/api/vouchers/{voucherId}'.replaceAll('{' r'voucherId' '}', voucherId.toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -656,13 +750,9 @@ class VouchersApi {
     BaseResponseOfVoucherResponse? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfVoucherResponse,
-              BaseResponseOfVoucherResponse
-            >(rawData, 'BaseResponseOfVoucherResponse', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherResponse, BaseResponseOfVoucherResponse>(rawData, 'BaseResponseOfVoucherResponse', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -686,11 +776,11 @@ class VouchersApi {
   }
 
   /// apiVouchersVoucherIdPut
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [voucherId]
-  /// * [updateVoucherRequest]
+  /// * [voucherId] 
+  /// * [updateVoucherRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -700,7 +790,7 @@ class VouchersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiVouchersVoucherIdPut({
+  Future<Response<BaseResponseOfstring>> apiVouchersVoucherIdPut({ 
     required String voucherId,
     required UpdateVoucherRequest updateVoucherRequest,
     CancelToken? cancelToken,
@@ -710,18 +800,19 @@ class VouchersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/vouchers/{voucherId}'.replaceAll(
-      '{'
-      r'voucherId'
-      '}',
-      voucherId.toString(),
-    );
+    final _path = r'/api/vouchers/{voucherId}'.replaceAll('{' r'voucherId' '}', voucherId.toString());
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -732,10 +823,13 @@ class VouchersApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(updateVoucherRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(updateVoucherRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -754,14 +848,9 @@ class VouchersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -783,4 +872,5 @@ class VouchersApi {
       extra: _response.extra,
     );
   }
+
 }

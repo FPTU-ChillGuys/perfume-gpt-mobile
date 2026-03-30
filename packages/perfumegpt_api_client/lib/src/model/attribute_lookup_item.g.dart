@@ -9,6 +9,8 @@ part of 'attribute_lookup_item.dart';
 abstract class _$AttributeLookupItemCWProxy {
   AttributeLookupItem id(int? id);
 
+  AttributeLookupItem internalCode(String? internalCode);
+
   AttributeLookupItem name(String? name);
 
   AttributeLookupItem description(String? description);
@@ -24,6 +26,7 @@ abstract class _$AttributeLookupItemCWProxy {
   /// ```
   AttributeLookupItem call({
     int? id,
+    String? internalCode,
     String? name,
     String? description,
     bool? isVariantLevel,
@@ -39,6 +42,10 @@ class _$AttributeLookupItemCWProxyImpl implements _$AttributeLookupItemCWProxy {
 
   @override
   AttributeLookupItem id(int? id) => call(id: id);
+
+  @override
+  AttributeLookupItem internalCode(String? internalCode) =>
+      call(internalCode: internalCode);
 
   @override
   AttributeLookupItem name(String? name) => call(name: name);
@@ -61,6 +68,7 @@ class _$AttributeLookupItemCWProxyImpl implements _$AttributeLookupItemCWProxy {
   /// ```
   AttributeLookupItem call({
     Object? id = const $CopyWithPlaceholder(),
+    Object? internalCode = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
     Object? isVariantLevel = const $CopyWithPlaceholder(),
@@ -70,6 +78,10 @@ class _$AttributeLookupItemCWProxyImpl implements _$AttributeLookupItemCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as int?,
+      internalCode: internalCode == const $CopyWithPlaceholder()
+          ? _value.internalCode
+          // ignore: cast_nullable_to_non_nullable
+          : internalCode as String?,
       name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -102,6 +114,7 @@ AttributeLookupItem _$AttributeLookupItemFromJson(Map<String, dynamic> json) =>
     $checkedCreate('AttributeLookupItem', json, ($checkedConvert) {
       final val = AttributeLookupItem(
         id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        internalCode: $checkedConvert('internalCode', (v) => v as String?),
         name: $checkedConvert('name', (v) => v as String?),
         description: $checkedConvert('description', (v) => v as String?),
         isVariantLevel: $checkedConvert('isVariantLevel', (v) => v as bool?),
@@ -113,6 +126,7 @@ Map<String, dynamic> _$AttributeLookupItemToJson(
   AttributeLookupItem instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
+  'internalCode': ?instance.internalCode,
   'name': ?instance.name,
   'description': ?instance.description,
   'isVariantLevel': ?instance.isVariantLevel,

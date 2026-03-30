@@ -8,6 +8,8 @@ part 'product_model.g.dart';
 abstract class ProductModel with _$ProductModel {
   const factory ProductModel({
     required String id,
+    required String variantId,
+    required String batchId,
     required String sku,
     required String name,
     required String description,
@@ -25,6 +27,8 @@ abstract class ProductModel with _$ProductModel {
 
   factory ProductModel.fromEntity(Product product) => ProductModel(
     id: product.id,
+    variantId: product.variantId,
+    batchId: product.batchId,
     sku: product.sku,
     name: product.name,
     description: product.description,
@@ -41,6 +45,8 @@ abstract class ProductModel with _$ProductModel {
 extension ProductModelX on ProductModel {
   Product toEntity() => Product(
     id: id,
+    variantId: variantId,
+    batchId: batchId,
     sku: sku,
     name: name,
     description: description,

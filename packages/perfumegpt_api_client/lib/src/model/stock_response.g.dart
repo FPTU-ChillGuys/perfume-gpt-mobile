@@ -15,6 +15,8 @@ abstract class _$StockResponseCWProxy {
 
   StockResponse productName(String? productName);
 
+  StockResponse variantImageUrl(String? variantImageUrl);
+
   StockResponse volumeMl(int? volumeMl);
 
   StockResponse concentrationName(String? concentrationName);
@@ -25,7 +27,7 @@ abstract class _$StockResponseCWProxy {
 
   StockResponse lowStockThreshold(int? lowStockThreshold);
 
-  StockResponse isLowStock(bool? isLowStock);
+  StockResponse status(StockStatus? status);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockResponse(...).copyWith.fieldName(value)`.
@@ -39,12 +41,13 @@ abstract class _$StockResponseCWProxy {
     String? variantId,
     String? variantSku,
     String? productName,
+    String? variantImageUrl,
     int? volumeMl,
     String? concentrationName,
     int? totalQuantity,
     int? availableQuantity,
     int? lowStockThreshold,
-    bool? isLowStock,
+    StockStatus? status,
   });
 }
 
@@ -69,6 +72,10 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
       call(productName: productName);
 
   @override
+  StockResponse variantImageUrl(String? variantImageUrl) =>
+      call(variantImageUrl: variantImageUrl);
+
+  @override
   StockResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
@@ -88,7 +95,7 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
       call(lowStockThreshold: lowStockThreshold);
 
   @override
-  StockResponse isLowStock(bool? isLowStock) => call(isLowStock: isLowStock);
+  StockResponse status(StockStatus? status) => call(status: status);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -103,12 +110,13 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
     Object? variantId = const $CopyWithPlaceholder(),
     Object? variantSku = const $CopyWithPlaceholder(),
     Object? productName = const $CopyWithPlaceholder(),
+    Object? variantImageUrl = const $CopyWithPlaceholder(),
     Object? volumeMl = const $CopyWithPlaceholder(),
     Object? concentrationName = const $CopyWithPlaceholder(),
     Object? totalQuantity = const $CopyWithPlaceholder(),
     Object? availableQuantity = const $CopyWithPlaceholder(),
     Object? lowStockThreshold = const $CopyWithPlaceholder(),
-    Object? isLowStock = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
   }) {
     return StockResponse(
       id: id == const $CopyWithPlaceholder()
@@ -127,6 +135,10 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
           : productName as String?,
+      variantImageUrl: variantImageUrl == const $CopyWithPlaceholder()
+          ? _value.variantImageUrl
+          // ignore: cast_nullable_to_non_nullable
+          : variantImageUrl as String?,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
@@ -147,10 +159,10 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
           ? _value.lowStockThreshold
           // ignore: cast_nullable_to_non_nullable
           : lowStockThreshold as int?,
-      isLowStock: isLowStock == const $CopyWithPlaceholder()
-          ? _value.isLowStock
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
           // ignore: cast_nullable_to_non_nullable
-          : isLowStock as bool?,
+          : status as StockStatus?,
     );
   }
 }
@@ -173,6 +185,10 @@ StockResponse _$StockResponseFromJson(Map<String, dynamic> json) =>
         variantId: $checkedConvert('variantId', (v) => v as String?),
         variantSku: $checkedConvert('variantSku', (v) => v as String?),
         productName: $checkedConvert('productName', (v) => v as String?),
+        variantImageUrl: $checkedConvert(
+          'variantImageUrl',
+          (v) => v as String?,
+        ),
         volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
         concentrationName: $checkedConvert(
           'concentrationName',
@@ -190,7 +206,10 @@ StockResponse _$StockResponseFromJson(Map<String, dynamic> json) =>
           'lowStockThreshold',
           (v) => (v as num?)?.toInt(),
         ),
-        isLowStock: $checkedConvert('isLowStock', (v) => v as bool?),
+        status: $checkedConvert(
+          'status',
+          (v) => $enumDecodeNullable(_$StockStatusEnumMap, v),
+        ),
       );
       return val;
     });
@@ -201,10 +220,17 @@ Map<String, dynamic> _$StockResponseToJson(StockResponse instance) =>
       'variantId': ?instance.variantId,
       'variantSku': ?instance.variantSku,
       'productName': ?instance.productName,
+      'variantImageUrl': ?instance.variantImageUrl,
       'volumeMl': ?instance.volumeMl,
       'concentrationName': ?instance.concentrationName,
       'totalQuantity': ?instance.totalQuantity,
       'availableQuantity': ?instance.availableQuantity,
       'lowStockThreshold': ?instance.lowStockThreshold,
-      'isLowStock': ?instance.isLowStock,
+      'status': ?_$StockStatusEnumMap[instance.status],
     };
+
+const _$StockStatusEnumMap = {
+  StockStatus.outOfStock: 'OutOfStock',
+  StockStatus.lowStock: 'LowStock',
+  StockStatus.normal: 'Normal',
+};

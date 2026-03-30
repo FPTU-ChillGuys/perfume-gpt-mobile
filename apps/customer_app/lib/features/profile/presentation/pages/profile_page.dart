@@ -76,7 +76,7 @@ class ProfilePage extends ConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(radius: 50, child: Text(user.name?[0] ?? 'U')),
+                CircleAvatar(radius: 50, child: Text(user.name ?? 'U')),
                 const SizedBox(height: 16),
                 Text(
                   user.name ?? 'No Name',

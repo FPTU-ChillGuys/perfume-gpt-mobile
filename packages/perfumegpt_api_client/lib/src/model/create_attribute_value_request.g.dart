@@ -7,9 +7,7 @@ part of 'create_attribute_value_request.dart';
 // **************************************************************************
 
 abstract class _$CreateAttributeValueRequestCWProxy {
-  CreateAttributeValueRequest attributeId(int? attributeId);
-
-  CreateAttributeValueRequest value(String? value);
+  CreateAttributeValueRequest value(String value);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateAttributeValueRequest(...).copyWith.fieldName(value)`.
@@ -18,7 +16,7 @@ abstract class _$CreateAttributeValueRequestCWProxy {
   /// ```dart
   /// CreateAttributeValueRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  CreateAttributeValueRequest call({int? attributeId, String? value});
+  CreateAttributeValueRequest call({String value});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -30,11 +28,7 @@ class _$CreateAttributeValueRequestCWProxyImpl
   final CreateAttributeValueRequest _value;
 
   @override
-  CreateAttributeValueRequest attributeId(int? attributeId) =>
-      call(attributeId: attributeId);
-
-  @override
-  CreateAttributeValueRequest value(String? value) => call(value: value);
+  CreateAttributeValueRequest value(String value) => call(value: value);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -45,18 +39,13 @@ class _$CreateAttributeValueRequestCWProxyImpl
   /// CreateAttributeValueRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateAttributeValueRequest call({
-    Object? attributeId = const $CopyWithPlaceholder(),
     Object? value = const $CopyWithPlaceholder(),
   }) {
     return CreateAttributeValueRequest(
-      attributeId: attributeId == const $CopyWithPlaceholder()
-          ? _value.attributeId
-          // ignore: cast_nullable_to_non_nullable
-          : attributeId as int?,
-      value: value == const $CopyWithPlaceholder()
+      value: value == const $CopyWithPlaceholder() || value == null
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
-          : value as String?,
+          : value as String,
     );
   }
 }
@@ -76,16 +65,13 @@ extension $CreateAttributeValueRequestCopyWith on CreateAttributeValueRequest {
 CreateAttributeValueRequest _$CreateAttributeValueRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateAttributeValueRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['value']);
   final val = CreateAttributeValueRequest(
-    attributeId: $checkedConvert('attributeId', (v) => (v as num?)?.toInt()),
-    value: $checkedConvert('value', (v) => v as String?),
+    value: $checkedConvert('value', (v) => v as String),
   );
   return val;
 });
 
 Map<String, dynamic> _$CreateAttributeValueRequestToJson(
   CreateAttributeValueRequest instance,
-) => <String, dynamic>{
-  'attributeId': ?instance.attributeId,
-  'value': ?instance.value,
-};
+) => <String, dynamic>{'value': instance.value};

@@ -7,11 +7,11 @@ part of 'create_batch_request.dart';
 // **************************************************************************
 
 abstract class _$CreateBatchRequestCWProxy {
-  CreateBatchRequest batchCode(String? batchCode);
+  CreateBatchRequest batchCode(String batchCode);
 
-  CreateBatchRequest manufactureDate(DateTime? manufactureDate);
+  CreateBatchRequest manufactureDate(DateTime manufactureDate);
 
-  CreateBatchRequest expiryDate(DateTime? expiryDate);
+  CreateBatchRequest expiryDate(DateTime expiryDate);
 
   CreateBatchRequest quantity(int? quantity);
 
@@ -23,9 +23,9 @@ abstract class _$CreateBatchRequestCWProxy {
   /// CreateBatchRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateBatchRequest call({
-    String? batchCode,
-    DateTime? manufactureDate,
-    DateTime? expiryDate,
+    String batchCode,
+    DateTime manufactureDate,
+    DateTime expiryDate,
     int? quantity,
   });
 }
@@ -38,14 +38,14 @@ class _$CreateBatchRequestCWProxyImpl implements _$CreateBatchRequestCWProxy {
   final CreateBatchRequest _value;
 
   @override
-  CreateBatchRequest batchCode(String? batchCode) => call(batchCode: batchCode);
+  CreateBatchRequest batchCode(String batchCode) => call(batchCode: batchCode);
 
   @override
-  CreateBatchRequest manufactureDate(DateTime? manufactureDate) =>
+  CreateBatchRequest manufactureDate(DateTime manufactureDate) =>
       call(manufactureDate: manufactureDate);
 
   @override
-  CreateBatchRequest expiryDate(DateTime? expiryDate) =>
+  CreateBatchRequest expiryDate(DateTime expiryDate) =>
       call(expiryDate: expiryDate);
 
   @override
@@ -66,18 +66,21 @@ class _$CreateBatchRequestCWProxyImpl implements _$CreateBatchRequestCWProxy {
     Object? quantity = const $CopyWithPlaceholder(),
   }) {
     return CreateBatchRequest(
-      batchCode: batchCode == const $CopyWithPlaceholder()
+      batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
           ? _value.batchCode
           // ignore: cast_nullable_to_non_nullable
-          : batchCode as String?,
-      manufactureDate: manufactureDate == const $CopyWithPlaceholder()
+          : batchCode as String,
+      manufactureDate:
+          manufactureDate == const $CopyWithPlaceholder() ||
+              manufactureDate == null
           ? _value.manufactureDate
           // ignore: cast_nullable_to_non_nullable
-          : manufactureDate as DateTime?,
-      expiryDate: expiryDate == const $CopyWithPlaceholder()
+          : manufactureDate as DateTime,
+      expiryDate:
+          expiryDate == const $CopyWithPlaceholder() || expiryDate == null
           ? _value.expiryDate
           // ignore: cast_nullable_to_non_nullable
-          : expiryDate as DateTime?,
+          : expiryDate as DateTime,
       quantity: quantity == const $CopyWithPlaceholder()
           ? _value.quantity
           // ignore: cast_nullable_to_non_nullable
@@ -100,15 +103,19 @@ extension $CreateBatchRequestCopyWith on CreateBatchRequest {
 
 CreateBatchRequest _$CreateBatchRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('CreateBatchRequest', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const ['batchCode', 'manufactureDate', 'expiryDate'],
+      );
       final val = CreateBatchRequest(
-        batchCode: $checkedConvert('batchCode', (v) => v as String?),
+        batchCode: $checkedConvert('batchCode', (v) => v as String),
         manufactureDate: $checkedConvert(
           'manufactureDate',
-          (v) => v == null ? null : DateTime.parse(v as String),
+          (v) => DateTime.parse(v as String),
         ),
         expiryDate: $checkedConvert(
           'expiryDate',
-          (v) => v == null ? null : DateTime.parse(v as String),
+          (v) => DateTime.parse(v as String),
         ),
         quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
       );
@@ -117,8 +124,8 @@ CreateBatchRequest _$CreateBatchRequestFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$CreateBatchRequestToJson(CreateBatchRequest instance) =>
     <String, dynamic>{
-      'batchCode': ?instance.batchCode,
-      'manufactureDate': ?instance.manufactureDate?.toIso8601String(),
-      'expiryDate': ?instance.expiryDate?.toIso8601String(),
+      'batchCode': instance.batchCode,
+      'manufactureDate': instance.manufactureDate.toIso8601String(),
+      'expiryDate': instance.expiryDate.toIso8601String(),
       'quantity': ?instance.quantity,
     };

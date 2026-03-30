@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_category_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,21 +18,34 @@ part 'create_category_request.g.dart';
 )
 class CreateCategoryRequest {
   /// Returns a new [CreateCategoryRequest] instance.
-  CreateCategoryRequest({this.name});
+  CreateCategoryRequest({
 
-  @JsonKey(name: r'name', required: false, includeIfNull: false)
-  final String? name;
+    required  this.name,
+  });
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateCategoryRequest && other.name == name;
+  @JsonKey(
+    
+    name: r'name',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @override
-  int get hashCode => name.hashCode;
 
-  factory CreateCategoryRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateCategoryRequestFromJson(json);
+  final String name;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateCategoryRequest &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        name.hashCode;
+
+  factory CreateCategoryRequest.fromJson(Map<String, dynamic> json) => _$CreateCategoryRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateCategoryRequestToJson(this);
 
@@ -39,4 +53,6 @@ class CreateCategoryRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

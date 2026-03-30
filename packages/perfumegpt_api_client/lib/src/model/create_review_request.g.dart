@@ -7,11 +7,11 @@ part of 'create_review_request.dart';
 // **************************************************************************
 
 abstract class _$CreateReviewRequestCWProxy {
-  CreateReviewRequest orderDetailId(String? orderDetailId);
+  CreateReviewRequest orderDetailId(String orderDetailId);
 
   CreateReviewRequest rating(int? rating);
 
-  CreateReviewRequest comment(String? comment);
+  CreateReviewRequest comment(String comment);
 
   CreateReviewRequest temporaryMediaIds(List<String>? temporaryMediaIds);
 
@@ -23,9 +23,9 @@ abstract class _$CreateReviewRequestCWProxy {
   /// CreateReviewRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateReviewRequest call({
-    String? orderDetailId,
+    String orderDetailId,
     int? rating,
-    String? comment,
+    String comment,
     List<String>? temporaryMediaIds,
   });
 }
@@ -38,14 +38,14 @@ class _$CreateReviewRequestCWProxyImpl implements _$CreateReviewRequestCWProxy {
   final CreateReviewRequest _value;
 
   @override
-  CreateReviewRequest orderDetailId(String? orderDetailId) =>
+  CreateReviewRequest orderDetailId(String orderDetailId) =>
       call(orderDetailId: orderDetailId);
 
   @override
   CreateReviewRequest rating(int? rating) => call(rating: rating);
 
   @override
-  CreateReviewRequest comment(String? comment) => call(comment: comment);
+  CreateReviewRequest comment(String comment) => call(comment: comment);
 
   @override
   CreateReviewRequest temporaryMediaIds(List<String>? temporaryMediaIds) =>
@@ -66,18 +66,19 @@ class _$CreateReviewRequestCWProxyImpl implements _$CreateReviewRequestCWProxy {
     Object? temporaryMediaIds = const $CopyWithPlaceholder(),
   }) {
     return CreateReviewRequest(
-      orderDetailId: orderDetailId == const $CopyWithPlaceholder()
+      orderDetailId:
+          orderDetailId == const $CopyWithPlaceholder() || orderDetailId == null
           ? _value.orderDetailId
           // ignore: cast_nullable_to_non_nullable
-          : orderDetailId as String?,
+          : orderDetailId as String,
       rating: rating == const $CopyWithPlaceholder()
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
           : rating as int?,
-      comment: comment == const $CopyWithPlaceholder()
+      comment: comment == const $CopyWithPlaceholder() || comment == null
           ? _value.comment
           // ignore: cast_nullable_to_non_nullable
-          : comment as String?,
+          : comment as String,
       temporaryMediaIds: temporaryMediaIds == const $CopyWithPlaceholder()
           ? _value.temporaryMediaIds
           // ignore: cast_nullable_to_non_nullable
@@ -100,10 +101,11 @@ extension $CreateReviewRequestCopyWith on CreateReviewRequest {
 
 CreateReviewRequest _$CreateReviewRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('CreateReviewRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['orderDetailId', 'comment']);
       final val = CreateReviewRequest(
-        orderDetailId: $checkedConvert('orderDetailId', (v) => v as String?),
+        orderDetailId: $checkedConvert('orderDetailId', (v) => v as String),
         rating: $checkedConvert('rating', (v) => (v as num?)?.toInt()),
-        comment: $checkedConvert('comment', (v) => v as String?),
+        comment: $checkedConvert('comment', (v) => v as String),
         temporaryMediaIds: $checkedConvert(
           'temporaryMediaIds',
           (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -115,8 +117,8 @@ CreateReviewRequest _$CreateReviewRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$CreateReviewRequestToJson(
   CreateReviewRequest instance,
 ) => <String, dynamic>{
-  'orderDetailId': ?instance.orderDetailId,
+  'orderDetailId': instance.orderDetailId,
   'rating': ?instance.rating,
-  'comment': ?instance.comment,
+  'comment': instance.comment,
   'temporaryMediaIds': ?instance.temporaryMediaIds,
 };

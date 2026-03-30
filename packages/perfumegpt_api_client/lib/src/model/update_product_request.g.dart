@@ -15,13 +15,23 @@ abstract class _$UpdateProductRequestCWProxy {
 
   UpdateProductRequest description(String? description);
 
+  UpdateProductRequest gender(Gender? gender);
+
+  UpdateProductRequest origin(String origin);
+
+  UpdateProductRequest releaseYear(int? releaseYear);
+
+  UpdateProductRequest olfactoryFamilyIds(List<int>? olfactoryFamilyIds);
+
+  UpdateProductRequest scentNotes(List<ScentNoteDto>? scentNotes);
+
+  UpdateProductRequest attributes(List<ProductAttributeDto>? attributes);
+
   UpdateProductRequest temporaryMediaIdsToAdd(
     List<String>? temporaryMediaIdsToAdd,
   );
 
   UpdateProductRequest mediaIdsToDelete(List<String>? mediaIdsToDelete);
-
-  UpdateProductRequest attributes(List<ProductAttributeDto>? attributes);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProductRequest(...).copyWith.fieldName(value)`.
@@ -35,9 +45,14 @@ abstract class _$UpdateProductRequestCWProxy {
     int? brandId,
     int? categoryId,
     String? description,
+    Gender? gender,
+    String origin,
+    int? releaseYear,
+    List<int>? olfactoryFamilyIds,
+    List<ScentNoteDto>? scentNotes,
+    List<ProductAttributeDto>? attributes,
     List<String>? temporaryMediaIdsToAdd,
     List<String>? mediaIdsToDelete,
-    List<ProductAttributeDto>? attributes,
   });
 }
 
@@ -64,6 +79,28 @@ class _$UpdateProductRequestCWProxyImpl
       call(description: description);
 
   @override
+  UpdateProductRequest gender(Gender? gender) => call(gender: gender);
+
+  @override
+  UpdateProductRequest origin(String origin) => call(origin: origin);
+
+  @override
+  UpdateProductRequest releaseYear(int? releaseYear) =>
+      call(releaseYear: releaseYear);
+
+  @override
+  UpdateProductRequest olfactoryFamilyIds(List<int>? olfactoryFamilyIds) =>
+      call(olfactoryFamilyIds: olfactoryFamilyIds);
+
+  @override
+  UpdateProductRequest scentNotes(List<ScentNoteDto>? scentNotes) =>
+      call(scentNotes: scentNotes);
+
+  @override
+  UpdateProductRequest attributes(List<ProductAttributeDto>? attributes) =>
+      call(attributes: attributes);
+
+  @override
   UpdateProductRequest temporaryMediaIdsToAdd(
     List<String>? temporaryMediaIdsToAdd,
   ) => call(temporaryMediaIdsToAdd: temporaryMediaIdsToAdd);
@@ -71,10 +108,6 @@ class _$UpdateProductRequestCWProxyImpl
   @override
   UpdateProductRequest mediaIdsToDelete(List<String>? mediaIdsToDelete) =>
       call(mediaIdsToDelete: mediaIdsToDelete);
-
-  @override
-  UpdateProductRequest attributes(List<ProductAttributeDto>? attributes) =>
-      call(attributes: attributes);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -89,9 +122,14 @@ class _$UpdateProductRequestCWProxyImpl
     Object? brandId = const $CopyWithPlaceholder(),
     Object? categoryId = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
+    Object? gender = const $CopyWithPlaceholder(),
+    Object? origin = const $CopyWithPlaceholder(),
+    Object? releaseYear = const $CopyWithPlaceholder(),
+    Object? olfactoryFamilyIds = const $CopyWithPlaceholder(),
+    Object? scentNotes = const $CopyWithPlaceholder(),
+    Object? attributes = const $CopyWithPlaceholder(),
     Object? temporaryMediaIdsToAdd = const $CopyWithPlaceholder(),
     Object? mediaIdsToDelete = const $CopyWithPlaceholder(),
-    Object? attributes = const $CopyWithPlaceholder(),
   }) {
     return UpdateProductRequest(
       name: name == const $CopyWithPlaceholder()
@@ -110,6 +148,30 @@ class _$UpdateProductRequestCWProxyImpl
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
           : description as String?,
+      gender: gender == const $CopyWithPlaceholder()
+          ? _value.gender
+          // ignore: cast_nullable_to_non_nullable
+          : gender as Gender?,
+      origin: origin == const $CopyWithPlaceholder() || origin == null
+          ? _value.origin
+          // ignore: cast_nullable_to_non_nullable
+          : origin as String,
+      releaseYear: releaseYear == const $CopyWithPlaceholder()
+          ? _value.releaseYear
+          // ignore: cast_nullable_to_non_nullable
+          : releaseYear as int?,
+      olfactoryFamilyIds: olfactoryFamilyIds == const $CopyWithPlaceholder()
+          ? _value.olfactoryFamilyIds
+          // ignore: cast_nullable_to_non_nullable
+          : olfactoryFamilyIds as List<int>?,
+      scentNotes: scentNotes == const $CopyWithPlaceholder()
+          ? _value.scentNotes
+          // ignore: cast_nullable_to_non_nullable
+          : scentNotes as List<ScentNoteDto>?,
+      attributes: attributes == const $CopyWithPlaceholder()
+          ? _value.attributes
+          // ignore: cast_nullable_to_non_nullable
+          : attributes as List<ProductAttributeDto>?,
       temporaryMediaIdsToAdd:
           temporaryMediaIdsToAdd == const $CopyWithPlaceholder()
           ? _value.temporaryMediaIdsToAdd
@@ -119,10 +181,6 @@ class _$UpdateProductRequestCWProxyImpl
           ? _value.mediaIdsToDelete
           // ignore: cast_nullable_to_non_nullable
           : mediaIdsToDelete as List<String>?,
-      attributes: attributes == const $CopyWithPlaceholder()
-          ? _value.attributes
-          // ignore: cast_nullable_to_non_nullable
-          : attributes as List<ProductAttributeDto>?,
     );
   }
 }
@@ -142,11 +200,34 @@ extension $UpdateProductRequestCopyWith on UpdateProductRequest {
 UpdateProductRequest _$UpdateProductRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateProductRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['origin']);
   final val = UpdateProductRequest(
     name: $checkedConvert('name', (v) => v as String?),
     brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
     categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
     description: $checkedConvert('description', (v) => v as String?),
+    gender: $checkedConvert(
+      'gender',
+      (v) => $enumDecodeNullable(_$GenderEnumMap, v),
+    ),
+    origin: $checkedConvert('origin', (v) => v as String),
+    releaseYear: $checkedConvert('releaseYear', (v) => (v as num?)?.toInt()),
+    olfactoryFamilyIds: $checkedConvert(
+      'olfactoryFamilyIds',
+      (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
+    ),
+    scentNotes: $checkedConvert(
+      'scentNotes',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => ScentNoteDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    attributes: $checkedConvert(
+      'attributes',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => ProductAttributeDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
     temporaryMediaIdsToAdd: $checkedConvert(
       'temporaryMediaIdsToAdd',
       (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -154,12 +235,6 @@ UpdateProductRequest _$UpdateProductRequestFromJson(
     mediaIdsToDelete: $checkedConvert(
       'mediaIdsToDelete',
       (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    attributes: $checkedConvert(
-      'attributes',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => ProductAttributeDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
     ),
   );
   return val;
@@ -172,7 +247,18 @@ Map<String, dynamic> _$UpdateProductRequestToJson(
   'brandId': ?instance.brandId,
   'categoryId': ?instance.categoryId,
   'description': ?instance.description,
+  'gender': ?_$GenderEnumMap[instance.gender],
+  'origin': instance.origin,
+  'releaseYear': ?instance.releaseYear,
+  'olfactoryFamilyIds': ?instance.olfactoryFamilyIds,
+  'scentNotes': ?instance.scentNotes?.map((e) => e.toJson()).toList(),
+  'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
   'temporaryMediaIdsToAdd': ?instance.temporaryMediaIdsToAdd,
   'mediaIdsToDelete': ?instance.mediaIdsToDelete,
-  'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
+};
+
+const _$GenderEnumMap = {
+  Gender.male: 'Male',
+  Gender.female: 'Female',
+  Gender.unisex: 'Unisex',
 };

@@ -15,13 +15,13 @@ abstract class _$ImportDetailResponseCWProxy {
 
   ImportDetailResponse variantSku(String? variantSku);
 
-  ImportDetailResponse quantity(int? quantity);
+  ImportDetailResponse expectedQuantity(int? expectedQuantity);
 
   ImportDetailResponse unitPrice(num? unitPrice);
 
   ImportDetailResponse totalPrice(num? totalPrice);
 
-  ImportDetailResponse rejectQuantity(int? rejectQuantity);
+  ImportDetailResponse rejectedQuantity(int? rejectedQuantity);
 
   ImportDetailResponse note(String? note);
 
@@ -39,10 +39,10 @@ abstract class _$ImportDetailResponseCWProxy {
     String? variantId,
     String? variantName,
     String? variantSku,
-    int? quantity,
+    int? expectedQuantity,
     num? unitPrice,
     num? totalPrice,
-    int? rejectQuantity,
+    int? rejectedQuantity,
     String? note,
     List<BatchResponse>? batches,
   });
@@ -72,7 +72,8 @@ class _$ImportDetailResponseCWProxyImpl
       call(variantSku: variantSku);
 
   @override
-  ImportDetailResponse quantity(int? quantity) => call(quantity: quantity);
+  ImportDetailResponse expectedQuantity(int? expectedQuantity) =>
+      call(expectedQuantity: expectedQuantity);
 
   @override
   ImportDetailResponse unitPrice(num? unitPrice) => call(unitPrice: unitPrice);
@@ -82,8 +83,8 @@ class _$ImportDetailResponseCWProxyImpl
       call(totalPrice: totalPrice);
 
   @override
-  ImportDetailResponse rejectQuantity(int? rejectQuantity) =>
-      call(rejectQuantity: rejectQuantity);
+  ImportDetailResponse rejectedQuantity(int? rejectedQuantity) =>
+      call(rejectedQuantity: rejectedQuantity);
 
   @override
   ImportDetailResponse note(String? note) => call(note: note);
@@ -105,10 +106,10 @@ class _$ImportDetailResponseCWProxyImpl
     Object? variantId = const $CopyWithPlaceholder(),
     Object? variantName = const $CopyWithPlaceholder(),
     Object? variantSku = const $CopyWithPlaceholder(),
-    Object? quantity = const $CopyWithPlaceholder(),
+    Object? expectedQuantity = const $CopyWithPlaceholder(),
     Object? unitPrice = const $CopyWithPlaceholder(),
     Object? totalPrice = const $CopyWithPlaceholder(),
-    Object? rejectQuantity = const $CopyWithPlaceholder(),
+    Object? rejectedQuantity = const $CopyWithPlaceholder(),
     Object? note = const $CopyWithPlaceholder(),
     Object? batches = const $CopyWithPlaceholder(),
   }) {
@@ -129,10 +130,10 @@ class _$ImportDetailResponseCWProxyImpl
           ? _value.variantSku
           // ignore: cast_nullable_to_non_nullable
           : variantSku as String?,
-      quantity: quantity == const $CopyWithPlaceholder()
-          ? _value.quantity
+      expectedQuantity: expectedQuantity == const $CopyWithPlaceholder()
+          ? _value.expectedQuantity
           // ignore: cast_nullable_to_non_nullable
-          : quantity as int?,
+          : expectedQuantity as int?,
       unitPrice: unitPrice == const $CopyWithPlaceholder()
           ? _value.unitPrice
           // ignore: cast_nullable_to_non_nullable
@@ -141,10 +142,10 @@ class _$ImportDetailResponseCWProxyImpl
           ? _value.totalPrice
           // ignore: cast_nullable_to_non_nullable
           : totalPrice as num?,
-      rejectQuantity: rejectQuantity == const $CopyWithPlaceholder()
-          ? _value.rejectQuantity
+      rejectedQuantity: rejectedQuantity == const $CopyWithPlaceholder()
+          ? _value.rejectedQuantity
           // ignore: cast_nullable_to_non_nullable
-          : rejectQuantity as int?,
+          : rejectedQuantity as int?,
       note: note == const $CopyWithPlaceholder()
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
@@ -177,11 +178,14 @@ ImportDetailResponse _$ImportDetailResponseFromJson(
     variantId: $checkedConvert('variantId', (v) => v as String?),
     variantName: $checkedConvert('variantName', (v) => v as String?),
     variantSku: $checkedConvert('variantSku', (v) => v as String?),
-    quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
+    expectedQuantity: $checkedConvert(
+      'expectedQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
     unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
     totalPrice: $checkedConvert('totalPrice', (v) => v as num?),
-    rejectQuantity: $checkedConvert(
-      'rejectQuantity',
+    rejectedQuantity: $checkedConvert(
+      'rejectedQuantity',
       (v) => (v as num?)?.toInt(),
     ),
     note: $checkedConvert('note', (v) => v as String?),
@@ -202,10 +206,10 @@ Map<String, dynamic> _$ImportDetailResponseToJson(
   'variantId': ?instance.variantId,
   'variantName': ?instance.variantName,
   'variantSku': ?instance.variantSku,
-  'quantity': ?instance.quantity,
+  'expectedQuantity': ?instance.expectedQuantity,
   'unitPrice': ?instance.unitPrice,
   'totalPrice': ?instance.totalPrice,
-  'rejectQuantity': ?instance.rejectQuantity,
+  'rejectedQuantity': ?instance.rejectedQuantity,
   'note': ?instance.note,
   'batches': ?instance.batches?.map((e) => e.toJson()).toList(),
 };

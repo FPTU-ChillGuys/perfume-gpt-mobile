@@ -8,11 +8,12 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**scentPreference** | **String** |  | [optional] 
+**dateOfBirth** | [**DateTime**](DateTime.md) |  | [optional] 
 **minBudget** | **num** |  | [optional] 
 **maxBudget** | **num** |  | [optional] 
-**preferredStyle** | **String** |  | [optional] 
-**favoriteNotes** | **String** |  | [optional] 
+**notePreferenceIds** | [**List&lt;UpdateNotePreferenceRequest&gt;**](UpdateNotePreferenceRequest.md) |  | [optional] 
+**familyPreferenceIds** | **List&lt;int&gt;** |  | [optional] 
+**attributePreferenceIds** | **List&lt;int&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

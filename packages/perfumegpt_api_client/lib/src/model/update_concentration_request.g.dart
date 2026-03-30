@@ -7,7 +7,7 @@ part of 'update_concentration_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateConcentrationRequestCWProxy {
-  UpdateConcentrationRequest name(String? name);
+  UpdateConcentrationRequest name(String name);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateConcentrationRequest(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$UpdateConcentrationRequestCWProxy {
   /// ```dart
   /// UpdateConcentrationRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  UpdateConcentrationRequest call({String? name});
+  UpdateConcentrationRequest call({String name});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -28,7 +28,7 @@ class _$UpdateConcentrationRequestCWProxyImpl
   final UpdateConcentrationRequest _value;
 
   @override
-  UpdateConcentrationRequest name(String? name) => call(name: name);
+  UpdateConcentrationRequest name(String name) => call(name: name);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -42,10 +42,10 @@ class _$UpdateConcentrationRequestCWProxyImpl
     Object? name = const $CopyWithPlaceholder(),
   }) {
     return UpdateConcentrationRequest(
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
     );
   }
 }
@@ -65,12 +65,13 @@ extension $UpdateConcentrationRequestCopyWith on UpdateConcentrationRequest {
 UpdateConcentrationRequest _$UpdateConcentrationRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateConcentrationRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
   final val = UpdateConcentrationRequest(
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
   );
   return val;
 });
 
 Map<String, dynamic> _$UpdateConcentrationRequestToJson(
   UpdateConcentrationRequest instance,
-) => <String, dynamic>{'name': ?instance.name};
+) => <String, dynamic>{'name': instance.name};

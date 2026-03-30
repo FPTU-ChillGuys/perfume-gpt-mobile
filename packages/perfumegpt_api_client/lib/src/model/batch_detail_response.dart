@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'batch_detail_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,115 +19,241 @@ part 'batch_detail_response.g.dart';
 class BatchDetailResponse {
   /// Returns a new [BatchDetailResponse] instance.
   BatchDetailResponse({
-    this.variantId,
 
-    this.variantSku,
+     this.variantId,
 
-    this.productName,
+     this.variantSku,
 
-    this.volumeMl,
+     this.productName,
 
-    this.concentrationName,
+     this.volumeMl,
 
-    this.isExpired,
+     this.concentrationName,
 
-    this.daysUntilExpiry,
+     this.isExpired,
 
-    this.id,
+     this.daysUntilExpiry,
 
-    this.batchCode,
+     this.id,
 
-    this.manufactureDate,
+     this.batchCode,
 
-    this.expiryDate,
+     this.manufactureDate,
 
-    this.importQuantity,
+     this.expiryDate,
 
-    this.remainingQuantity,
+     this.importQuantity,
 
-    this.createdAt,
+     this.remainingQuantity,
+
+     this.createdAt,
   });
 
-  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'variantId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantId;
 
-  @JsonKey(name: r'variantSku', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantSku',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantSku;
 
-  @JsonKey(name: r'productName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'productName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? productName;
 
-  @JsonKey(name: r'volumeMl', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'volumeMl',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? volumeMl;
 
-  @JsonKey(name: r'concentrationName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'concentrationName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? concentrationName;
 
-  @JsonKey(name: r'isExpired', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'isExpired',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? isExpired;
 
-  @JsonKey(name: r'daysUntilExpiry', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'daysUntilExpiry',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? daysUntilExpiry;
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'batchCode', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'batchCode',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? batchCode;
 
-  @JsonKey(name: r'manufactureDate', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'manufactureDate',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? manufactureDate;
 
-  @JsonKey(name: r'expiryDate', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'expiryDate',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? expiryDate;
 
-  @JsonKey(name: r'importQuantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'importQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? importQuantity;
 
-  @JsonKey(name: r'remainingQuantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'remainingQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? remainingQuantity;
 
-  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'createdAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? createdAt;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BatchDetailResponse &&
-          other.variantId == variantId &&
-          other.variantSku == variantSku &&
-          other.productName == productName &&
-          other.volumeMl == volumeMl &&
-          other.concentrationName == concentrationName &&
-          other.isExpired == isExpired &&
-          other.daysUntilExpiry == daysUntilExpiry &&
-          other.id == id &&
-          other.batchCode == batchCode &&
-          other.manufactureDate == manufactureDate &&
-          other.expiryDate == expiryDate &&
-          other.importQuantity == importQuantity &&
-          other.remainingQuantity == remainingQuantity &&
-          other.createdAt == createdAt;
 
-  @override
-  int get hashCode =>
-      variantId.hashCode +
-      variantSku.hashCode +
-      productName.hashCode +
-      volumeMl.hashCode +
-      concentrationName.hashCode +
-      isExpired.hashCode +
-      daysUntilExpiry.hashCode +
-      id.hashCode +
-      batchCode.hashCode +
-      manufactureDate.hashCode +
-      expiryDate.hashCode +
-      importQuantity.hashCode +
-      remainingQuantity.hashCode +
-      createdAt.hashCode;
 
-  factory BatchDetailResponse.fromJson(Map<String, dynamic> json) =>
-      _$BatchDetailResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is BatchDetailResponse &&
+      other.variantId == variantId &&
+      other.variantSku == variantSku &&
+      other.productName == productName &&
+      other.volumeMl == volumeMl &&
+      other.concentrationName == concentrationName &&
+      other.isExpired == isExpired &&
+      other.daysUntilExpiry == daysUntilExpiry &&
+      other.id == id &&
+      other.batchCode == batchCode &&
+      other.manufactureDate == manufactureDate &&
+      other.expiryDate == expiryDate &&
+      other.importQuantity == importQuantity &&
+      other.remainingQuantity == remainingQuantity &&
+      other.createdAt == createdAt;
+
+    @override
+    int get hashCode =>
+        variantId.hashCode +
+        variantSku.hashCode +
+        productName.hashCode +
+        volumeMl.hashCode +
+        concentrationName.hashCode +
+        isExpired.hashCode +
+        daysUntilExpiry.hashCode +
+        id.hashCode +
+        batchCode.hashCode +
+        manufactureDate.hashCode +
+        expiryDate.hashCode +
+        importQuantity.hashCode +
+        remainingQuantity.hashCode +
+        createdAt.hashCode;
+
+  factory BatchDetailResponse.fromJson(Map<String, dynamic> json) => _$BatchDetailResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$BatchDetailResponseToJson(this);
 
@@ -134,4 +261,6 @@ class BatchDetailResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

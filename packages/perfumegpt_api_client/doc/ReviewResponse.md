@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **variantName** | **String** |  | [optional] 
 **rating** | **int** |  | [optional] 
 **comment** | **String** |  | [optional] 
+**staffFeedbackComment** | **String** |  | [optional] 
+**staffFeedbackAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **images** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 

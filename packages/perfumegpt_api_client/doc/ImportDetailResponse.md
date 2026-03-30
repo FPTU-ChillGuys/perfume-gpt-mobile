@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 **variantId** | **String** |  | [optional] 
 **variantName** | **String** |  | [optional] 
 **variantSku** | **String** |  | [optional] 
-**quantity** | **int** |  | [optional] 
+**expectedQuantity** | **int** |  | [optional] 
 **unitPrice** | **num** |  | [optional] 
 **totalPrice** | **num** |  | [optional] 
-**rejectQuantity** | **int** |  | [optional] 
+**rejectedQuantity** | **int** |  | [optional] 
 **note** | **String** |  | [optional] 
 **batches** | [**List&lt;BatchResponse&gt;**](BatchResponse.md) |  | [optional] 
 

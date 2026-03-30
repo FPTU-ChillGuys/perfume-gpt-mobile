@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apiBatchesGet**](BatchesApi.md#apibatchesget) | **GET** /api/batches | 
 [**apiBatchesIdGet**](BatchesApi.md#apibatchesidget) | **GET** /api/batches/{id} | 
-[**apiBatchesVariantVariantIdGet**](BatchesApi.md#apibatchesvariantvariantidget) | **GET** /api/batches/variant/{variantId} | 
+[**apiBatchesLookupGet**](BatchesApi.md#apibatcheslookupget) | **GET** /api/batches/lookup | 
 
 
 # **apiBatchesGet**
@@ -112,8 +112,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiBatchesVariantVariantIdGet**
-> BaseResponseOfListOfBatchDetailResponse apiBatchesVariantVariantIdGet(variantId)
+# **apiBatchesLookupGet**
+> BaseResponseOfListOfBatchLookupResponse apiBatchesLookupGet()
 
 
 
@@ -122,25 +122,21 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getBatchesApi();
-final String variantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 
 try {
-    final response = api.apiBatchesVariantVariantIdGet(variantId);
+    final response = api.apiBatchesLookupGet();
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling BatchesApi->apiBatchesVariantVariantIdGet: $e\n');
+    print('Exception when calling BatchesApi->apiBatchesLookupGet: $e\n');
 }
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **variantId** | **String**|  | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**BaseResponseOfListOfBatchDetailResponse**](BaseResponseOfListOfBatchDetailResponse.md)
+[**BaseResponseOfListOfBatchLookupResponse**](BaseResponseOfListOfBatchLookupResponse.md)
 
 ### Authorization
 

@@ -25,6 +25,10 @@ abstract class _$ReviewResponseCWProxy {
 
   ReviewResponse comment(String? comment);
 
+  ReviewResponse staffFeedbackComment(String? staffFeedbackComment);
+
+  ReviewResponse staffFeedbackAt(DateTime? staffFeedbackAt);
+
   ReviewResponse images(List<MediaResponse>? images);
 
   ReviewResponse createdAt(DateTime? createdAt);
@@ -48,6 +52,8 @@ abstract class _$ReviewResponseCWProxy {
     String? variantName,
     int? rating,
     String? comment,
+    String? staffFeedbackComment,
+    DateTime? staffFeedbackAt,
     List<MediaResponse>? images,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -93,6 +99,14 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
   ReviewResponse comment(String? comment) => call(comment: comment);
 
   @override
+  ReviewResponse staffFeedbackComment(String? staffFeedbackComment) =>
+      call(staffFeedbackComment: staffFeedbackComment);
+
+  @override
+  ReviewResponse staffFeedbackAt(DateTime? staffFeedbackAt) =>
+      call(staffFeedbackAt: staffFeedbackAt);
+
+  @override
   ReviewResponse images(List<MediaResponse>? images) => call(images: images);
 
   @override
@@ -119,6 +133,8 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
     Object? variantName = const $CopyWithPlaceholder(),
     Object? rating = const $CopyWithPlaceholder(),
     Object? comment = const $CopyWithPlaceholder(),
+    Object? staffFeedbackComment = const $CopyWithPlaceholder(),
+    Object? staffFeedbackAt = const $CopyWithPlaceholder(),
     Object? images = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? updatedAt = const $CopyWithPlaceholder(),
@@ -161,6 +177,14 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
           ? _value.comment
           // ignore: cast_nullable_to_non_nullable
           : comment as String?,
+      staffFeedbackComment: staffFeedbackComment == const $CopyWithPlaceholder()
+          ? _value.staffFeedbackComment
+          // ignore: cast_nullable_to_non_nullable
+          : staffFeedbackComment as String?,
+      staffFeedbackAt: staffFeedbackAt == const $CopyWithPlaceholder()
+          ? _value.staffFeedbackAt
+          // ignore: cast_nullable_to_non_nullable
+          : staffFeedbackAt as DateTime?,
       images: images == const $CopyWithPlaceholder()
           ? _value.images
           // ignore: cast_nullable_to_non_nullable
@@ -203,6 +227,14 @@ ReviewResponse _$ReviewResponseFromJson(Map<String, dynamic> json) =>
         variantName: $checkedConvert('variantName', (v) => v as String?),
         rating: $checkedConvert('rating', (v) => (v as num?)?.toInt()),
         comment: $checkedConvert('comment', (v) => v as String?),
+        staffFeedbackComment: $checkedConvert(
+          'staffFeedbackComment',
+          (v) => v as String?,
+        ),
+        staffFeedbackAt: $checkedConvert(
+          'staffFeedbackAt',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
         images: $checkedConvert(
           'images',
           (v) => (v as List<dynamic>?)
@@ -232,6 +264,8 @@ Map<String, dynamic> _$ReviewResponseToJson(ReviewResponse instance) =>
       'variantName': ?instance.variantName,
       'rating': ?instance.rating,
       'comment': ?instance.comment,
+      'staffFeedbackComment': ?instance.staffFeedbackComment,
+      'staffFeedbackAt': ?instance.staffFeedbackAt?.toIso8601String(),
       'images': ?instance.images?.map((e) => e.toJson()).toList(),
       'createdAt': ?instance.createdAt?.toIso8601String(),
       'updatedAt': ?instance.updatedAt?.toIso8601String(),

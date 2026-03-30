@@ -11,10 +11,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apiAttributesAttributeIdDelete**](AttributesApi.md#apiattributesattributeiddelete) | **DELETE** /api/attributes/{attributeId} | 
 [**apiAttributesAttributeIdPut**](AttributesApi.md#apiattributesattributeidput) | **PUT** /api/attributes/{attributeId} | 
+[**apiAttributesAttributeIdValuesLookupGet**](AttributesApi.md#apiattributesattributeidvalueslookupget) | **GET** /api/attributes/{attributeId}/values/lookup | 
+[**apiAttributesAttributeIdValuesPost**](AttributesApi.md#apiattributesattributeidvaluespost) | **POST** /api/attributes/{attributeId}/values | 
 [**apiAttributesLookupGet**](AttributesApi.md#apiattributeslookupget) | **GET** /api/attributes/lookup | 
 [**apiAttributesPost**](AttributesApi.md#apiattributespost) | **POST** /api/attributes | 
-[**apiAttributesValuesLookupAttributeIdGet**](AttributesApi.md#apiattributesvalueslookupattributeidget) | **GET** /api/attributes/values/lookup/{attributeId} | 
-[**apiAttributesValuesPost**](AttributesApi.md#apiattributesvaluespost) | **POST** /api/attributes/values | 
 [**apiAttributesValuesValueIdDelete**](AttributesApi.md#apiattributesvaluesvalueiddelete) | **DELETE** /api/attributes/values/{valueId} | 
 [**apiAttributesValuesValueIdPut**](AttributesApi.md#apiattributesvaluesvalueidput) | **PUT** /api/attributes/values/{valueId} | 
 
@@ -103,6 +103,90 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **apiAttributesAttributeIdValuesLookupGet**
+> BaseResponseOfListOfAttributeValueLookupItem apiAttributesAttributeIdValuesLookupGet(attributeId)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getAttributesApi();
+final int attributeId = 56; // int | 
+
+try {
+    final response = api.apiAttributesAttributeIdValuesLookupGet(attributeId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AttributesApi->apiAttributesAttributeIdValuesLookupGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **attributeId** | **int**|  | 
+
+### Return type
+
+[**BaseResponseOfListOfAttributeValueLookupItem**](BaseResponseOfListOfAttributeValueLookupItem.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiAttributesAttributeIdValuesPost**
+> BaseResponseOfstring apiAttributesAttributeIdValuesPost(attributeId, createAttributeValueRequest)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getAttributesApi();
+final int attributeId = 56; // int | 
+final CreateAttributeValueRequest createAttributeValueRequest = ; // CreateAttributeValueRequest | 
+
+try {
+    final response = api.apiAttributesAttributeIdValuesPost(attributeId, createAttributeValueRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AttributesApi->apiAttributesAttributeIdValuesPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **attributeId** | **int**|  | 
+ **createAttributeValueRequest** | [**CreateAttributeValueRequest**](CreateAttributeValueRequest.md)|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **apiAttributesLookupGet**
 > BaseResponseOfListOfAttributeLookupItem apiAttributesLookupGet(isVariantLevel)
 
@@ -169,88 +253,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **createAttributeRequest** | [**CreateAttributeRequest**](CreateAttributeRequest.md)|  | 
-
-### Return type
-
-[**BaseResponseOfstring**](BaseResponseOfstring.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiAttributesValuesLookupAttributeIdGet**
-> BaseResponseOfListOfAttributeValueLookupItem apiAttributesValuesLookupAttributeIdGet(attributeId)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getAttributesApi();
-final int attributeId = 56; // int | 
-
-try {
-    final response = api.apiAttributesValuesLookupAttributeIdGet(attributeId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling AttributesApi->apiAttributesValuesLookupAttributeIdGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **attributeId** | **int**|  | 
-
-### Return type
-
-[**BaseResponseOfListOfAttributeValueLookupItem**](BaseResponseOfListOfAttributeValueLookupItem.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiAttributesValuesPost**
-> BaseResponseOfstring apiAttributesValuesPost(createAttributeValueRequest)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getAttributesApi();
-final CreateAttributeValueRequest createAttributeValueRequest = ; // CreateAttributeValueRequest | 
-
-try {
-    final response = api.apiAttributesValuesPost(createAttributeValueRequest);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling AttributesApi->apiAttributesValuesPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createAttributeValueRequest** | [**CreateAttributeValueRequest**](CreateAttributeValueRequest.md)|  | 
 
 ### Return type
 
