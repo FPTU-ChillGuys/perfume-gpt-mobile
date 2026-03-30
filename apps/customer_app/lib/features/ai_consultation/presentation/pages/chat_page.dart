@@ -32,10 +32,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
       return const User(id: 'ai', name: 'PerfumeGPT');
     }
     final user = ref.read(authProvider).value;
-    return User(
-      id: userId,
-      name: user?.name ?? 'User',
-    );
+    return User(id: userId, name: user?.name ?? 'User');
   }
 
   @override
@@ -55,19 +52,20 @@ class _ChatPageState extends ConsumerState<ChatPage> {
         onMessageSend: (String text) {
           ref.read(chatSessionProvider.notifier).sendMessage(text);
         },
-        theme: ChatTheme.light(
-          fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
-        ).copyWith(
-          colors: ChatColors.light().copyWith(
-            primary: Theme.of(context).colorScheme.primary,
-            onPrimary: Theme.of(context).colorScheme.onPrimary,
-            surface: Theme.of(context).colorScheme.surface,
-            onSurface: Theme.of(context).colorScheme.onSurface,
-            surfaceContainer: Theme.of(
-              context,
-            ).colorScheme.surfaceContainerHighest,
-          ),
-        ),
+        theme:
+            ChatTheme.light(
+              fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
+            ).copyWith(
+              colors: ChatColors.light().copyWith(
+                primary: Theme.of(context).colorScheme.primary,
+                onPrimary: Theme.of(context).colorScheme.onPrimary,
+                surface: Theme.of(context).colorScheme.surface,
+                onSurface: Theme.of(context).colorScheme.onSurface,
+                surfaceContainer: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
+              ),
+            ),
       ),
     );
   }

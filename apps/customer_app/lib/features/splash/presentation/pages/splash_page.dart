@@ -21,14 +21,11 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
 
-    final user = await ref.read(authProvider.future);
+    // Wait for auth to initialize so the state is ready on Home page
+    await ref.read(authProvider.future);
     if (!mounted) return;
 
-    if (user != null) {
-      context.go('/');
-    } else {
-      context.go('/login');
-    }
+    context.go('/');
   }
 
   @override
