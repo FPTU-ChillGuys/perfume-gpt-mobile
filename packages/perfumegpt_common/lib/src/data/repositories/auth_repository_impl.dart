@@ -1,12 +1,16 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final PerfumegptApiClient _apiClient;
+  final FlutterSecureStorage _storage;
   User? _currentUser;
 
-  AuthRepositoryImpl(this._apiClient);
+  static const _tokenKey = 'auth_token';
+
+  AuthRepositoryImpl(this._apiClient, this._storage);
 
   @override
   Future<User?> login(String email, String password) async {
@@ -16,9 +20,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
     final token = response.data?.payload?.accessToken;
     if (token != null) {
-      // Set bearer token for subsequent calls
+      await _storage.write(key: _tokenKey, value: token);
       _apiClient.setBearerAuth('Bearer', token);
-
+      _currentUser = null; // Force refresh
       return await getCurrentUser();
     }
     return null;
@@ -31,21 +35,26 @@ class AuthRepositoryImpl implements AuthRepository {
         email: email,
         password: password,
         fullName: name,
-        phoneNumber: '', // Assuming not strictly req
+        phoneNumber: '',
       ),
     );
-    // Usually requires login afterwards or automatically logs in depending on API
   }
 
   @override
   Future<void> logout() async {
-    _apiClient.setBearerAuth('Bearer', ''); // Clear token
+    await _storage.delete(key: _tokenKey);
+    _apiClient.setBearerAuth('Bearer', '');
     _currentUser = null;
   }
 
   @override
   Future<User?> getCurrentUser() async {
     if (_currentUser != null) return _currentUser;
+
+    final token = await _storage.read(key: _tokenKey);
+    if (token == null) return null;
+
+    _apiClient.setBearerAuth('Bearer', token);
 
     try {
       final response = await _apiClient.getUsersApi().apiUsersMeGet();
@@ -56,11 +65,13 @@ class AuthRepositoryImpl implements AuthRepository {
           id: userResponse.id ?? '',
           email: userResponse.email ?? '',
           name: userResponse.fullName,
+          avatarUrl: userResponse.profilePictureUrl,
         );
         return _currentUser;
       }
     } catch (e) {
-      // Token might be invalid or not set
+      // Token might be invalid or expired
+      await logout();
     }
 
     return null;

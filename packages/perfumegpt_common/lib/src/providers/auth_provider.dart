@@ -1,15 +1,17 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../../../core/providers/api_client_provider.dart';
-import '../../../../data/repositories/auth_repository_impl.dart';
-import '../../../../domain/entities/user.dart';
-import '../../../../domain/repositories/auth_repository.dart';
+import '../data/repositories/auth_repository_impl.dart';
+import '../domain/entities/user.dart';
+import '../domain/repositories/auth_repository.dart';
+import 'api_client_provider.dart';
+import 'storage_provider.dart';
 
 part 'auth_provider.g.dart';
 
 @riverpod
 AuthRepository authRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return AuthRepositoryImpl(apiClient);
+  final storage = ref.watch(flutterSecureStorageProvider);
+  return AuthRepositoryImpl(apiClient, storage);
 }
 
 @riverpod

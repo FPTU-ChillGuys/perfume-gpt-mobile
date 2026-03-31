@@ -1,5 +1,5 @@
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../../../core/providers/api_client_provider.dart';
 import '../../../../data/repositories/product_repository_impl.dart';
 import '../../../../domain/entities/product.dart';
 import '../../../../domain/repositories/product_repository.dart';

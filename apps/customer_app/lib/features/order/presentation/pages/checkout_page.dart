@@ -1,7 +1,7 @@
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../auth/presentation/providers/auth_provider.dart';
 import '../providers/cart_provider.dart';
 
 class CheckoutPage extends ConsumerStatefulWidget {

@@ -1,6 +1,4 @@
-import 'package:customer_app/domain/entities/user.dart';
-import 'package:customer_app/domain/repositories/auth_repository.dart';
-import 'package:customer_app/features/auth/presentation/providers/auth_provider.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:customer_app/features/splash/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
