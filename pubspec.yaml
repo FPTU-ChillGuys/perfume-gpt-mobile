@@ -8,6 +8,7 @@ workspace:
   - apps/customer_app
   - apps/staff_app
   - packages/perfumegpt_api_client
+  - packages/perfumegpt_common
 
 dev_dependencies:
   melos: ^7.0.0
