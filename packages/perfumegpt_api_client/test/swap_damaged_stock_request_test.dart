@@ -8,11 +8,6 @@ void main() {
   // TODO add properties to the entity
 
   group(SwapDamagedStockRequest, () {
-    // String orderDetailId
-    test('to test the property `orderDetailId`', () async {
-      // TODO
-    });
-
     // String damagedReservationId
     test('to test the property `damagedReservationId`', () async {
       // TODO

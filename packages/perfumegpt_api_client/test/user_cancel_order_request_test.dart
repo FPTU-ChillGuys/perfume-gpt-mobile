@@ -1,16 +1,16 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UserCancelOrderRequest
 void main() {
-  final instance = UserCancelOrderRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final UserCancelOrderRequest? instance = /* UserCancelOrderRequest(...) */
+      null;
+  // TODO add properties to the entity
 
   group(UserCancelOrderRequest, () {
-    // String reason
+    // CancelOrderReason reason
     test('to test the property `reason`', () async {
       // TODO
     });
-
   });
 }

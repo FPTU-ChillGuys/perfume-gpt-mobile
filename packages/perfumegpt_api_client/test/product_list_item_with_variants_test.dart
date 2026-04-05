@@ -53,13 +53,18 @@ void main() {
       // TODO
     });
 
-    // MediaResponse primaryImage
-    test('to test the property `primaryImage`', () async {
+    // List<num> variantPrices
+    test('to test the property `variantPrices`', () async {
       // TODO
     });
 
-    // List<ProductAttributeResponse> attributes
-    test('to test the property `attributes`', () async {
+    // List<String> tags
+    test('to test the property `tags`', () async {
+      // TODO
+    });
+
+    // MediaResponse primaryImage
+    test('to test the property `primaryImage`', () async {
       // TODO
     });
   });

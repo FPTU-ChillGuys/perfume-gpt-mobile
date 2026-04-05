@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **orderDetailId** | **String** |  | [optional] 
 **variantId** | **String** |  | [optional] 
-**variantName** | **String** |  | [optional] 
+**variantName** | **String** |  | 
 **quantity** | **int** |  | [optional] 
-**batches** | [**List&lt;PickListBatchInfo&gt;**](PickListBatchInfo.md) |  | [optional] 
+**batches** | [**List&lt;PickListBatchInfo&gt;**](PickListBatchInfo.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

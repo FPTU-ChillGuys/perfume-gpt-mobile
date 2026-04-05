@@ -12,6 +12,11 @@ void main() {
       // TODO
     });
 
+    // String code
+    test('to test the property `code`', () async {
+      // TODO
+    });
+
     // String customerId
     test('to test the property `customerId`', () async {
       // TODO
@@ -57,7 +62,12 @@ void main() {
       // TODO
     });
 
-    // int shippingStatus
+    // bool isReturnalbe
+    test('to test the property `isReturnalbe`', () async {
+      // TODO
+    });
+
+    // ShippingStatus shippingStatus
     test('to test the property `shippingStatus`', () async {
       // TODO
     });
@@ -69,6 +79,11 @@ void main() {
 
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
+      // TODO
+    });
+
+    // List<OrderDetailListItem> orderDetails
+    test('to test the property `orderDetails`', () async {
       // TODO
     });
   });

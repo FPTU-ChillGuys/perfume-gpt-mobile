@@ -7,8 +7,8 @@ void main() {
   // TODO add properties to the entity
 
   group(UpdateProfileRequest, () {
-    // String scentPreference
-    test('to test the property `scentPreference`', () async {
+    // DateTime dateOfBirth
+    test('to test the property `dateOfBirth`', () async {
       // TODO
     });
 
@@ -22,13 +22,18 @@ void main() {
       // TODO
     });
 
-    // String preferredStyle
-    test('to test the property `preferredStyle`', () async {
+    // List<UpdateNotePreferenceRequest> notePreferenceIds
+    test('to test the property `notePreferenceIds`', () async {
       // TODO
     });
 
-    // String favoriteNotes
-    test('to test the property `favoriteNotes`', () async {
+    // List<int> familyPreferenceIds
+    test('to test the property `familyPreferenceIds`', () async {
+      // TODO
+    });
+
+    // List<int> attributePreferenceIds
+    test('to test the property `attributePreferenceIds`', () async {
       // TODO
     });
   });

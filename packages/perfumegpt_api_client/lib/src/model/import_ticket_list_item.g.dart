@@ -7,19 +7,19 @@ part of 'import_ticket_list_item.dart';
 // **************************************************************************
 
 abstract class _$ImportTicketListItemCWProxy {
-  ImportTicketListItem id(String id);
+  ImportTicketListItem id(String? id);
 
-  ImportTicketListItem createdByName(String? createdByName);
+  ImportTicketListItem createdByName(String createdByName);
 
   ImportTicketListItem verifiedByName(String? verifiedByName);
 
-  ImportTicketListItem supplierName(String? supplierName);
+  ImportTicketListItem supplierName(String supplierName);
 
-  ImportTicketListItem expectedArrivalDate(DateTime expectedArrivalDate);
+  ImportTicketListItem expectedArrivalDate(DateTime? expectedArrivalDate);
 
-  ImportTicketListItem actualImportDate(DateTime actualImportDate);
+  ImportTicketListItem actualImportDate(DateTime? actualImportDate);
 
-  ImportTicketListItem totalCost(num totalCost);
+  ImportTicketListItem totalCost(num? totalCost);
 
   ImportTicketListItem status(ImportStatus? status);
 
@@ -35,13 +35,13 @@ abstract class _$ImportTicketListItemCWProxy {
   /// ImportTicketListItem(...).copyWith(id: 12, name: "My name")
   /// ```
   ImportTicketListItem call({
-    String id,
-    String? createdByName,
+    String? id,
+    String createdByName,
     String? verifiedByName,
-    String? supplierName,
-    DateTime expectedArrivalDate,
-    DateTime actualImportDate,
-    num totalCost,
+    String supplierName,
+    DateTime? expectedArrivalDate,
+    DateTime? actualImportDate,
+    num? totalCost,
     ImportStatus? status,
     int? totalItems,
     DateTime? createdAt,
@@ -57,10 +57,10 @@ class _$ImportTicketListItemCWProxyImpl
   final ImportTicketListItem _value;
 
   @override
-  ImportTicketListItem id(String id) => call(id: id);
+  ImportTicketListItem id(String? id) => call(id: id);
 
   @override
-  ImportTicketListItem createdByName(String? createdByName) =>
+  ImportTicketListItem createdByName(String createdByName) =>
       call(createdByName: createdByName);
 
   @override
@@ -68,19 +68,19 @@ class _$ImportTicketListItemCWProxyImpl
       call(verifiedByName: verifiedByName);
 
   @override
-  ImportTicketListItem supplierName(String? supplierName) =>
+  ImportTicketListItem supplierName(String supplierName) =>
       call(supplierName: supplierName);
 
   @override
-  ImportTicketListItem expectedArrivalDate(DateTime expectedArrivalDate) =>
+  ImportTicketListItem expectedArrivalDate(DateTime? expectedArrivalDate) =>
       call(expectedArrivalDate: expectedArrivalDate);
 
   @override
-  ImportTicketListItem actualImportDate(DateTime actualImportDate) =>
+  ImportTicketListItem actualImportDate(DateTime? actualImportDate) =>
       call(actualImportDate: actualImportDate);
 
   @override
-  ImportTicketListItem totalCost(num totalCost) => call(totalCost: totalCost);
+  ImportTicketListItem totalCost(num? totalCost) => call(totalCost: totalCost);
 
   @override
   ImportTicketListItem status(ImportStatus? status) => call(status: status);
@@ -114,38 +114,36 @@ class _$ImportTicketListItemCWProxyImpl
     Object? createdAt = const $CopyWithPlaceholder(),
   }) {
     return ImportTicketListItem(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
-          : id as String,
-      createdByName: createdByName == const $CopyWithPlaceholder()
+          : id as String?,
+      createdByName:
+          createdByName == const $CopyWithPlaceholder() || createdByName == null
           ? _value.createdByName
           // ignore: cast_nullable_to_non_nullable
-          : createdByName as String?,
+          : createdByName as String,
       verifiedByName: verifiedByName == const $CopyWithPlaceholder()
           ? _value.verifiedByName
           // ignore: cast_nullable_to_non_nullable
           : verifiedByName as String?,
-      supplierName: supplierName == const $CopyWithPlaceholder()
+      supplierName:
+          supplierName == const $CopyWithPlaceholder() || supplierName == null
           ? _value.supplierName
           // ignore: cast_nullable_to_non_nullable
-          : supplierName as String?,
-      expectedArrivalDate:
-          expectedArrivalDate == const $CopyWithPlaceholder() ||
-              expectedArrivalDate == null
+          : supplierName as String,
+      expectedArrivalDate: expectedArrivalDate == const $CopyWithPlaceholder()
           ? _value.expectedArrivalDate
           // ignore: cast_nullable_to_non_nullable
-          : expectedArrivalDate as DateTime,
-      actualImportDate:
-          actualImportDate == const $CopyWithPlaceholder() ||
-              actualImportDate == null
+          : expectedArrivalDate as DateTime?,
+      actualImportDate: actualImportDate == const $CopyWithPlaceholder()
           ? _value.actualImportDate
           // ignore: cast_nullable_to_non_nullable
-          : actualImportDate as DateTime,
-      totalCost: totalCost == const $CopyWithPlaceholder() || totalCost == null
+          : actualImportDate as DateTime?,
+      totalCost: totalCost == const $CopyWithPlaceholder()
           ? _value.totalCost
           // ignore: cast_nullable_to_non_nullable
-          : totalCost as num,
+          : totalCost as num?,
       status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
@@ -177,29 +175,21 @@ extension $ImportTicketListItemCopyWith on ImportTicketListItem {
 ImportTicketListItem _$ImportTicketListItemFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ImportTicketListItem', json, ($checkedConvert) {
-  $checkKeys(
-    json,
-    requiredKeys: const [
-      'id',
-      'expectedArrivalDate',
-      'actualImportDate',
-      'totalCost',
-    ],
-  );
+  $checkKeys(json, requiredKeys: const ['createdByName', 'supplierName']);
   final val = ImportTicketListItem(
-    id: $checkedConvert('id', (v) => v as String),
-    createdByName: $checkedConvert('createdByName', (v) => v as String?),
+    id: $checkedConvert('id', (v) => v as String?),
+    createdByName: $checkedConvert('createdByName', (v) => v as String),
     verifiedByName: $checkedConvert('verifiedByName', (v) => v as String?),
-    supplierName: $checkedConvert('supplierName', (v) => v as String?),
+    supplierName: $checkedConvert('supplierName', (v) => v as String),
     expectedArrivalDate: $checkedConvert(
       'expectedArrivalDate',
-      (v) => DateTime.parse(v as String),
+      (v) => v == null ? null : DateTime.parse(v as String),
     ),
     actualImportDate: $checkedConvert(
       'actualImportDate',
-      (v) => DateTime.parse(v as String),
+      (v) => v == null ? null : DateTime.parse(v as String),
     ),
-    totalCost: $checkedConvert('totalCost', (v) => v as num),
+    totalCost: $checkedConvert('totalCost', (v) => v as num?),
     status: $checkedConvert(
       'status',
       (v) => $enumDecodeNullable(_$ImportStatusEnumMap, v),
@@ -216,13 +206,13 @@ ImportTicketListItem _$ImportTicketListItemFromJson(
 Map<String, dynamic> _$ImportTicketListItemToJson(
   ImportTicketListItem instance,
 ) => <String, dynamic>{
-  'id': instance.id,
-  'createdByName': ?instance.createdByName,
+  'id': ?instance.id,
+  'createdByName': instance.createdByName,
   'verifiedByName': ?instance.verifiedByName,
-  'supplierName': ?instance.supplierName,
-  'expectedArrivalDate': instance.expectedArrivalDate.toIso8601String(),
-  'actualImportDate': instance.actualImportDate.toIso8601String(),
-  'totalCost': instance.totalCost,
+  'supplierName': instance.supplierName,
+  'expectedArrivalDate': ?instance.expectedArrivalDate?.toIso8601String(),
+  'actualImportDate': ?instance.actualImportDate?.toIso8601String(),
+  'totalCost': ?instance.totalCost,
   'status': ?_$ImportStatusEnumMap[instance.status],
   'totalItems': ?instance.totalItems,
   'createdAt': ?instance.createdAt?.toIso8601String(),

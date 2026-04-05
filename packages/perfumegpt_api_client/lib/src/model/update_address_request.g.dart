@@ -11,13 +11,13 @@ abstract class _$UpdateAddressRequestCWProxy {
 
   UpdateAddressRequest recipientPhoneNumber(String recipientPhoneNumber);
 
-  UpdateAddressRequest street(String? street);
+  UpdateAddressRequest street(String street);
 
-  UpdateAddressRequest ward(String? ward);
+  UpdateAddressRequest ward(String ward);
 
-  UpdateAddressRequest district(String? district);
+  UpdateAddressRequest district(String district);
 
-  UpdateAddressRequest city(String? city);
+  UpdateAddressRequest city(String city);
 
   UpdateAddressRequest wardCode(String wardCode);
 
@@ -35,10 +35,10 @@ abstract class _$UpdateAddressRequestCWProxy {
   UpdateAddressRequest call({
     String recipientName,
     String recipientPhoneNumber,
-    String? street,
-    String? ward,
-    String? district,
-    String? city,
+    String street,
+    String ward,
+    String district,
+    String city,
     String wardCode,
     int? districtId,
     int? provinceId,
@@ -62,16 +62,16 @@ class _$UpdateAddressRequestCWProxyImpl
       call(recipientPhoneNumber: recipientPhoneNumber);
 
   @override
-  UpdateAddressRequest street(String? street) => call(street: street);
+  UpdateAddressRequest street(String street) => call(street: street);
 
   @override
-  UpdateAddressRequest ward(String? ward) => call(ward: ward);
+  UpdateAddressRequest ward(String ward) => call(ward: ward);
 
   @override
-  UpdateAddressRequest district(String? district) => call(district: district);
+  UpdateAddressRequest district(String district) => call(district: district);
 
   @override
-  UpdateAddressRequest city(String? city) => call(city: city);
+  UpdateAddressRequest city(String city) => call(city: city);
 
   @override
   UpdateAddressRequest wardCode(String wardCode) => call(wardCode: wardCode);
@@ -115,22 +115,22 @@ class _$UpdateAddressRequestCWProxyImpl
           ? _value.recipientPhoneNumber
           // ignore: cast_nullable_to_non_nullable
           : recipientPhoneNumber as String,
-      street: street == const $CopyWithPlaceholder()
+      street: street == const $CopyWithPlaceholder() || street == null
           ? _value.street
           // ignore: cast_nullable_to_non_nullable
-          : street as String?,
-      ward: ward == const $CopyWithPlaceholder()
+          : street as String,
+      ward: ward == const $CopyWithPlaceholder() || ward == null
           ? _value.ward
           // ignore: cast_nullable_to_non_nullable
-          : ward as String?,
-      district: district == const $CopyWithPlaceholder()
+          : ward as String,
+      district: district == const $CopyWithPlaceholder() || district == null
           ? _value.district
           // ignore: cast_nullable_to_non_nullable
-          : district as String?,
-      city: city == const $CopyWithPlaceholder()
+          : district as String,
+      city: city == const $CopyWithPlaceholder() || city == null
           ? _value.city
           // ignore: cast_nullable_to_non_nullable
-          : city as String?,
+          : city as String,
       wardCode: wardCode == const $CopyWithPlaceholder() || wardCode == null
           ? _value.wardCode
           // ignore: cast_nullable_to_non_nullable
@@ -164,7 +164,15 @@ UpdateAddressRequest _$UpdateAddressRequestFromJson(
 ) => $checkedCreate('UpdateAddressRequest', json, ($checkedConvert) {
   $checkKeys(
     json,
-    requiredKeys: const ['recipientName', 'recipientPhoneNumber', 'wardCode'],
+    requiredKeys: const [
+      'recipientName',
+      'recipientPhoneNumber',
+      'street',
+      'ward',
+      'district',
+      'city',
+      'wardCode',
+    ],
   );
   final val = UpdateAddressRequest(
     recipientName: $checkedConvert('recipientName', (v) => v as String),
@@ -172,10 +180,10 @@ UpdateAddressRequest _$UpdateAddressRequestFromJson(
       'recipientPhoneNumber',
       (v) => v as String,
     ),
-    street: $checkedConvert('street', (v) => v as String?),
-    ward: $checkedConvert('ward', (v) => v as String?),
-    district: $checkedConvert('district', (v) => v as String?),
-    city: $checkedConvert('city', (v) => v as String?),
+    street: $checkedConvert('street', (v) => v as String),
+    ward: $checkedConvert('ward', (v) => v as String),
+    district: $checkedConvert('district', (v) => v as String),
+    city: $checkedConvert('city', (v) => v as String),
     wardCode: $checkedConvert('wardCode', (v) => v as String),
     districtId: $checkedConvert('districtId', (v) => (v as num?)?.toInt()),
     provinceId: $checkedConvert('provinceId', (v) => (v as num?)?.toInt()),
@@ -188,10 +196,10 @@ Map<String, dynamic> _$UpdateAddressRequestToJson(
 ) => <String, dynamic>{
   'recipientName': instance.recipientName,
   'recipientPhoneNumber': instance.recipientPhoneNumber,
-  'street': ?instance.street,
-  'ward': ?instance.ward,
-  'district': ?instance.district,
-  'city': ?instance.city,
+  'street': instance.street,
+  'ward': instance.ward,
+  'district': instance.district,
+  'city': instance.city,
   'wardCode': instance.wardCode,
   'districtId': ?instance.districtId,
   'provinceId': ?instance.provinceId,

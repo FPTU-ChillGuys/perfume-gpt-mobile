@@ -13,17 +13,17 @@ abstract class _$ProductListItemCWProxy {
 
   ProductListItem brandId(int? brandId);
 
-  ProductListItem brandName(String? brandName);
+  ProductListItem brandName(String brandName);
 
   ProductListItem categoryId(int? categoryId);
 
-  ProductListItem categoryName(String? categoryName);
+  ProductListItem categoryName(String categoryName);
 
   ProductListItem description(String? description);
 
   ProductListItem numberOfVariants(int? numberOfVariants);
 
-  ProductListItem variantPrices(List<num>? variantPrices);
+  ProductListItem variantPrices(List<num> variantPrices);
 
   ProductListItem tags(List<String>? tags);
 
@@ -40,12 +40,12 @@ abstract class _$ProductListItemCWProxy {
     String? id,
     String? name,
     int? brandId,
-    String? brandName,
+    String brandName,
     int? categoryId,
-    String? categoryName,
+    String categoryName,
     String? description,
     int? numberOfVariants,
-    List<num>? variantPrices,
+    List<num> variantPrices,
     List<String>? tags,
     MediaResponse? primaryImage,
   });
@@ -68,13 +68,13 @@ class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
   ProductListItem brandId(int? brandId) => call(brandId: brandId);
 
   @override
-  ProductListItem brandName(String? brandName) => call(brandName: brandName);
+  ProductListItem brandName(String brandName) => call(brandName: brandName);
 
   @override
   ProductListItem categoryId(int? categoryId) => call(categoryId: categoryId);
 
   @override
-  ProductListItem categoryName(String? categoryName) =>
+  ProductListItem categoryName(String categoryName) =>
       call(categoryName: categoryName);
 
   @override
@@ -86,7 +86,7 @@ class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
       call(numberOfVariants: numberOfVariants);
 
   @override
-  ProductListItem variantPrices(List<num>? variantPrices) =>
+  ProductListItem variantPrices(List<num> variantPrices) =>
       call(variantPrices: variantPrices);
 
   @override
@@ -130,18 +130,19 @@ class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
           ? _value.brandId
           // ignore: cast_nullable_to_non_nullable
           : brandId as int?,
-      brandName: brandName == const $CopyWithPlaceholder()
+      brandName: brandName == const $CopyWithPlaceholder() || brandName == null
           ? _value.brandName
           // ignore: cast_nullable_to_non_nullable
-          : brandName as String?,
+          : brandName as String,
       categoryId: categoryId == const $CopyWithPlaceholder()
           ? _value.categoryId
           // ignore: cast_nullable_to_non_nullable
           : categoryId as int?,
-      categoryName: categoryName == const $CopyWithPlaceholder()
+      categoryName:
+          categoryName == const $CopyWithPlaceholder() || categoryName == null
           ? _value.categoryName
           // ignore: cast_nullable_to_non_nullable
-          : categoryName as String?,
+          : categoryName as String,
       description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
@@ -150,10 +151,11 @@ class _$ProductListItemCWProxyImpl implements _$ProductListItemCWProxy {
           ? _value.numberOfVariants
           // ignore: cast_nullable_to_non_nullable
           : numberOfVariants as int?,
-      variantPrices: variantPrices == const $CopyWithPlaceholder()
+      variantPrices:
+          variantPrices == const $CopyWithPlaceholder() || variantPrices == null
           ? _value.variantPrices
           // ignore: cast_nullable_to_non_nullable
-          : variantPrices as List<num>?,
+          : variantPrices as List<num>,
       tags: tags == const $CopyWithPlaceholder()
           ? _value.tags
           // ignore: cast_nullable_to_non_nullable
@@ -179,13 +181,17 @@ extension $ProductListItemCopyWith on ProductListItem {
 
 ProductListItem _$ProductListItemFromJson(Map<String, dynamic> json) =>
     $checkedCreate('ProductListItem', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const ['brandName', 'categoryName', 'variantPrices'],
+      );
       final val = ProductListItem(
         id: $checkedConvert('id', (v) => v as String?),
         name: $checkedConvert('name', (v) => v as String?),
         brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
-        brandName: $checkedConvert('brandName', (v) => v as String?),
+        brandName: $checkedConvert('brandName', (v) => v as String),
         categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
-        categoryName: $checkedConvert('categoryName', (v) => v as String?),
+        categoryName: $checkedConvert('categoryName', (v) => v as String),
         description: $checkedConvert('description', (v) => v as String?),
         numberOfVariants: $checkedConvert(
           'numberOfVariants',
@@ -193,7 +199,7 @@ ProductListItem _$ProductListItemFromJson(Map<String, dynamic> json) =>
         ),
         variantPrices: $checkedConvert(
           'variantPrices',
-          (v) => (v as List<dynamic>?)?.map((e) => e as num).toList(),
+          (v) => (v as List<dynamic>).map((e) => e as num).toList(),
         ),
         tags: $checkedConvert(
           'tags',
@@ -214,12 +220,12 @@ Map<String, dynamic> _$ProductListItemToJson(ProductListItem instance) =>
       'id': ?instance.id,
       'name': ?instance.name,
       'brandId': ?instance.brandId,
-      'brandName': ?instance.brandName,
+      'brandName': instance.brandName,
       'categoryId': ?instance.categoryId,
-      'categoryName': ?instance.categoryName,
+      'categoryName': instance.categoryName,
       'description': ?instance.description,
       'numberOfVariants': ?instance.numberOfVariants,
-      'variantPrices': ?instance.variantPrices,
+      'variantPrices': instance.variantPrices,
       'tags': ?instance.tags,
       'primaryImage': ?instance.primaryImage?.toJson(),
     };

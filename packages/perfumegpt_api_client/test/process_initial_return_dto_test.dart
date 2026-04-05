@@ -1,10 +1,11 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProcessInitialReturnDto
 void main() {
-  final instance = ProcessInitialReturnDtoBuilder();
-  // TODO add properties to the builder and call build()
+  final ProcessInitialReturnDto? instance = /* ProcessInitialReturnDto(...) */
+      null;
+  // TODO add properties to the entity
 
   group(ProcessInitialReturnDto, () {
     // bool isApproved
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `staffNote`', () async {
       // TODO
     });
-
   });
 }

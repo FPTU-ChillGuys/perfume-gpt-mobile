@@ -7,7 +7,7 @@ part of 'product_image_upload_item.dart';
 // **************************************************************************
 
 abstract class _$ProductImageUploadItemCWProxy {
-  ProductImageUploadItem imageFile(MultipartFile? imageFile);
+  ProductImageUploadItem imageFile(MultipartFile imageFile);
 
   ProductImageUploadItem altText(String? altText);
 
@@ -23,7 +23,7 @@ abstract class _$ProductImageUploadItemCWProxy {
   /// ProductImageUploadItem(...).copyWith(id: 12, name: "My name")
   /// ```
   ProductImageUploadItem call({
-    MultipartFile? imageFile,
+    MultipartFile imageFile,
     String? altText,
     int? displayOrder,
     bool? isPrimary,
@@ -39,7 +39,7 @@ class _$ProductImageUploadItemCWProxyImpl
   final ProductImageUploadItem _value;
 
   @override
-  ProductImageUploadItem imageFile(MultipartFile? imageFile) =>
+  ProductImageUploadItem imageFile(MultipartFile imageFile) =>
       call(imageFile: imageFile);
 
   @override
@@ -68,10 +68,10 @@ class _$ProductImageUploadItemCWProxyImpl
     Object? isPrimary = const $CopyWithPlaceholder(),
   }) {
     return ProductImageUploadItem(
-      imageFile: imageFile == const $CopyWithPlaceholder()
+      imageFile: imageFile == const $CopyWithPlaceholder() || imageFile == null
           ? _value.imageFile
           // ignore: cast_nullable_to_non_nullable
-          : imageFile as MultipartFile?,
+          : imageFile as MultipartFile,
       altText: altText == const $CopyWithPlaceholder()
           ? _value.altText
           // ignore: cast_nullable_to_non_nullable
@@ -100,21 +100,11 @@ extension $ProductImageUploadItemCopyWith on ProductImageUploadItem {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProductImageUploadItem _$ProductImageUploadItemFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('ProductImageUploadItem', json, ($checkedConvert) {
-  final val = ProductImageUploadItem(
-    altText: $checkedConvert('altText', (v) => v as String?),
-    displayOrder: $checkedConvert('displayOrder', (v) => (v as num?)?.toInt()),
-    isPrimary: $checkedConvert('isPrimary', (v) => v as bool?),
-  );
-  return val;
-});
-
 Map<String, dynamic> _$ProductImageUploadItemToJson(
   ProductImageUploadItem instance,
 ) => <String, dynamic>{
   'altText': ?instance.altText,
   'displayOrder': ?instance.displayOrder,
   'isPrimary': ?instance.isPrimary,
+  'hashCode': instance.hashCode,
 };

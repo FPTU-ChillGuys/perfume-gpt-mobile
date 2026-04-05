@@ -7,7 +7,7 @@ part of 'update_brand_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateBrandRequestCWProxy {
-  UpdateBrandRequest name(String? name);
+  UpdateBrandRequest name(String name);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateBrandRequest(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$UpdateBrandRequestCWProxy {
   /// ```dart
   /// UpdateBrandRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  UpdateBrandRequest call({String? name});
+  UpdateBrandRequest call({String name});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -27,7 +27,7 @@ class _$UpdateBrandRequestCWProxyImpl implements _$UpdateBrandRequestCWProxy {
   final UpdateBrandRequest _value;
 
   @override
-  UpdateBrandRequest name(String? name) => call(name: name);
+  UpdateBrandRequest name(String name) => call(name: name);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -39,10 +39,10 @@ class _$UpdateBrandRequestCWProxyImpl implements _$UpdateBrandRequestCWProxy {
   /// ```
   UpdateBrandRequest call({Object? name = const $CopyWithPlaceholder()}) {
     return UpdateBrandRequest(
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
     );
   }
 }
@@ -61,11 +61,12 @@ extension $UpdateBrandRequestCopyWith on UpdateBrandRequest {
 
 UpdateBrandRequest _$UpdateBrandRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('UpdateBrandRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['name']);
       final val = UpdateBrandRequest(
-        name: $checkedConvert('name', (v) => v as String?),
+        name: $checkedConvert('name', (v) => v as String),
       );
       return val;
     });
 
 Map<String, dynamic> _$UpdateBrandRequestToJson(UpdateBrandRequest instance) =>
-    <String, dynamic>{'name': ?instance.name};
+    <String, dynamic>{'name': instance.name};

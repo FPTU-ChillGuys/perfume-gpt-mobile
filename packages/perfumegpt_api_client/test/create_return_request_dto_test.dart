@@ -1,10 +1,11 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateReturnRequestDto
 void main() {
-  final instance = CreateReturnRequestDtoBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateReturnRequestDto? instance = /* CreateReturnRequestDto(...) */
+      null;
+  // TODO add properties to the entity
 
   group(CreateReturnRequestDto, () {
     // String orderId
@@ -12,13 +13,13 @@ void main() {
       // TODO
     });
 
-    // String reason
+    // ReturnOrderReason reason
     test('to test the property `reason`', () async {
       // TODO
     });
 
-    // num requestedRefundAmount
-    test('to test the property `requestedRefundAmount`', () async {
+    // List<ReturnItemDto> returnItems
+    test('to test the property `returnItems`', () async {
       // TODO
     });
 
@@ -27,15 +28,19 @@ void main() {
       // TODO
     });
 
-    // BuiltList<String> temporaryMediaIds
+    // String savedAddressId
+    test('to test the property `savedAddressId`', () async {
+      // TODO
+    });
+
+    // ContactAddressInformation recipient
+    test('to test the property `recipient`', () async {
+      // TODO
+    });
+
+    // List<String> temporaryMediaIds
     test('to test the property `temporaryMediaIds`', () async {
       // TODO
     });
-
-    // BuiltList<CreateReturnRequestDetailDto> returnItems
-    test('to test the property `returnItems`', () async {
-      // TODO
-    });
-
   });
 }

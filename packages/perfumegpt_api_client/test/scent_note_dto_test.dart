@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ScentNoteDto
 void main() {
-  final instance = ScentNoteDtoBuilder();
-  // TODO add properties to the builder and call build()
+  final ScentNoteDto? instance = /* ScentNoteDto(...) */ null;
+  // TODO add properties to the entity
 
   group(ScentNoteDto, () {
     // int noteId
@@ -16,6 +16,5 @@ void main() {
     test('to test the property `type`', () async {
       // TODO
     });
-
   });
 }

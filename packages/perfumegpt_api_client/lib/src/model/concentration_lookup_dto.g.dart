@@ -9,7 +9,7 @@ part of 'concentration_lookup_dto.dart';
 abstract class _$ConcentrationLookupDtoCWProxy {
   ConcentrationLookupDto id(int? id);
 
-  ConcentrationLookupDto name(String? name);
+  ConcentrationLookupDto name(String name);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConcentrationLookupDto(...).copyWith.fieldName(value)`.
@@ -18,7 +18,7 @@ abstract class _$ConcentrationLookupDtoCWProxy {
   /// ```dart
   /// ConcentrationLookupDto(...).copyWith(id: 12, name: "My name")
   /// ```
-  ConcentrationLookupDto call({int? id, String? name});
+  ConcentrationLookupDto call({int? id, String name});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -33,7 +33,7 @@ class _$ConcentrationLookupDtoCWProxyImpl
   ConcentrationLookupDto id(int? id) => call(id: id);
 
   @override
-  ConcentrationLookupDto name(String? name) => call(name: name);
+  ConcentrationLookupDto name(String name) => call(name: name);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -52,10 +52,10 @@ class _$ConcentrationLookupDtoCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as int?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
     );
   }
 }
@@ -75,13 +75,14 @@ extension $ConcentrationLookupDtoCopyWith on ConcentrationLookupDto {
 ConcentrationLookupDto _$ConcentrationLookupDtoFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ConcentrationLookupDto', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
   final val = ConcentrationLookupDto(
     id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
   );
   return val;
 });
 
 Map<String, dynamic> _$ConcentrationLookupDtoToJson(
   ConcentrationLookupDto instance,
-) => <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+) => <String, dynamic>{'id': ?instance.id, 'name': instance.name};

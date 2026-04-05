@@ -11,7 +11,7 @@ abstract class _$ReviewDetailResponseCWProxy {
 
   ReviewDetailResponse userId(String? userId);
 
-  ReviewDetailResponse userFullName(String? userFullName);
+  ReviewDetailResponse userFullName(String userFullName);
 
   ReviewDetailResponse userProfilePictureUrl(String? userProfilePictureUrl);
 
@@ -25,19 +25,19 @@ abstract class _$ReviewDetailResponseCWProxy {
 
   ReviewDetailResponse variantId(String? variantId);
 
-  ReviewDetailResponse variantName(String? variantName);
+  ReviewDetailResponse variantName(String variantName);
 
-  ReviewDetailResponse productName(String? productName);
+  ReviewDetailResponse productName(String productName);
 
   ReviewDetailResponse volumeMl(int? volumeMl);
 
-  ReviewDetailResponse concentrationName(String? concentrationName);
+  ReviewDetailResponse concentrationName(String concentrationName);
 
   ReviewDetailResponse rating(int? rating);
 
-  ReviewDetailResponse comment(String? comment);
+  ReviewDetailResponse comment(String comment);
 
-  ReviewDetailResponse images(List<MediaResponse>? images);
+  ReviewDetailResponse images(List<MediaResponse> images);
 
   ReviewDetailResponse staffFeedbackComment(String? staffFeedbackComment);
 
@@ -59,20 +59,20 @@ abstract class _$ReviewDetailResponseCWProxy {
   ReviewDetailResponse call({
     String? id,
     String? userId,
-    String? userFullName,
+    String userFullName,
     String? userProfilePictureUrl,
     String? orderDetailId,
     String? orderId,
     int? quantity,
     num? unitPrice,
     String? variantId,
-    String? variantName,
-    String? productName,
+    String variantName,
+    String productName,
     int? volumeMl,
-    String? concentrationName,
+    String concentrationName,
     int? rating,
-    String? comment,
-    List<MediaResponse>? images,
+    String comment,
+    List<MediaResponse> images,
     String? staffFeedbackComment,
     String? staffFeedbackByStaffId,
     DateTime? staffFeedbackAt,
@@ -96,7 +96,7 @@ class _$ReviewDetailResponseCWProxyImpl
   ReviewDetailResponse userId(String? userId) => call(userId: userId);
 
   @override
-  ReviewDetailResponse userFullName(String? userFullName) =>
+  ReviewDetailResponse userFullName(String userFullName) =>
       call(userFullName: userFullName);
 
   @override
@@ -121,28 +121,28 @@ class _$ReviewDetailResponseCWProxyImpl
       call(variantId: variantId);
 
   @override
-  ReviewDetailResponse variantName(String? variantName) =>
+  ReviewDetailResponse variantName(String variantName) =>
       call(variantName: variantName);
 
   @override
-  ReviewDetailResponse productName(String? productName) =>
+  ReviewDetailResponse productName(String productName) =>
       call(productName: productName);
 
   @override
   ReviewDetailResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
-  ReviewDetailResponse concentrationName(String? concentrationName) =>
+  ReviewDetailResponse concentrationName(String concentrationName) =>
       call(concentrationName: concentrationName);
 
   @override
   ReviewDetailResponse rating(int? rating) => call(rating: rating);
 
   @override
-  ReviewDetailResponse comment(String? comment) => call(comment: comment);
+  ReviewDetailResponse comment(String comment) => call(comment: comment);
 
   @override
-  ReviewDetailResponse images(List<MediaResponse>? images) =>
+  ReviewDetailResponse images(List<MediaResponse> images) =>
       call(images: images);
 
   @override
@@ -205,10 +205,11 @@ class _$ReviewDetailResponseCWProxyImpl
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable
           : userId as String?,
-      userFullName: userFullName == const $CopyWithPlaceholder()
+      userFullName:
+          userFullName == const $CopyWithPlaceholder() || userFullName == null
           ? _value.userFullName
           // ignore: cast_nullable_to_non_nullable
-          : userFullName as String?,
+          : userFullName as String,
       userProfilePictureUrl:
           userProfilePictureUrl == const $CopyWithPlaceholder()
           ? _value.userProfilePictureUrl
@@ -234,34 +235,38 @@ class _$ReviewDetailResponseCWProxyImpl
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
           ? _value.variantName
           // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
-      productName: productName == const $CopyWithPlaceholder()
+          : variantName as String,
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
-          : productName as String?,
+          : productName as String,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
           : volumeMl as int?,
-      concentrationName: concentrationName == const $CopyWithPlaceholder()
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
           ? _value.concentrationName
           // ignore: cast_nullable_to_non_nullable
-          : concentrationName as String?,
+          : concentrationName as String,
       rating: rating == const $CopyWithPlaceholder()
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
           : rating as int?,
-      comment: comment == const $CopyWithPlaceholder()
+      comment: comment == const $CopyWithPlaceholder() || comment == null
           ? _value.comment
           // ignore: cast_nullable_to_non_nullable
-          : comment as String?,
-      images: images == const $CopyWithPlaceholder()
+          : comment as String,
+      images: images == const $CopyWithPlaceholder() || images == null
           ? _value.images
           // ignore: cast_nullable_to_non_nullable
-          : images as List<MediaResponse>?,
+          : images as List<MediaResponse>,
       staffFeedbackComment: staffFeedbackComment == const $CopyWithPlaceholder()
           ? _value.staffFeedbackComment
           // ignore: cast_nullable_to_non_nullable
@@ -302,10 +307,21 @@ extension $ReviewDetailResponseCopyWith on ReviewDetailResponse {
 ReviewDetailResponse _$ReviewDetailResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ReviewDetailResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'userFullName',
+      'variantName',
+      'productName',
+      'concentrationName',
+      'comment',
+      'images',
+    ],
+  );
   final val = ReviewDetailResponse(
     id: $checkedConvert('id', (v) => v as String?),
     userId: $checkedConvert('userId', (v) => v as String?),
-    userFullName: $checkedConvert('userFullName', (v) => v as String?),
+    userFullName: $checkedConvert('userFullName', (v) => v as String),
     userProfilePictureUrl: $checkedConvert(
       'userProfilePictureUrl',
       (v) => v as String?,
@@ -315,19 +331,16 @@ ReviewDetailResponse _$ReviewDetailResponseFromJson(
     quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
     unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
     variantId: $checkedConvert('variantId', (v) => v as String?),
-    variantName: $checkedConvert('variantName', (v) => v as String?),
-    productName: $checkedConvert('productName', (v) => v as String?),
+    variantName: $checkedConvert('variantName', (v) => v as String),
+    productName: $checkedConvert('productName', (v) => v as String),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
-    concentrationName: $checkedConvert(
-      'concentrationName',
-      (v) => v as String?,
-    ),
+    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
     rating: $checkedConvert('rating', (v) => (v as num?)?.toInt()),
-    comment: $checkedConvert('comment', (v) => v as String?),
+    comment: $checkedConvert('comment', (v) => v as String),
     images: $checkedConvert(
       'images',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
     staffFeedbackComment: $checkedConvert(
@@ -359,20 +372,20 @@ Map<String, dynamic> _$ReviewDetailResponseToJson(
 ) => <String, dynamic>{
   'id': ?instance.id,
   'userId': ?instance.userId,
-  'userFullName': ?instance.userFullName,
+  'userFullName': instance.userFullName,
   'userProfilePictureUrl': ?instance.userProfilePictureUrl,
   'orderDetailId': ?instance.orderDetailId,
   'orderId': ?instance.orderId,
   'quantity': ?instance.quantity,
   'unitPrice': ?instance.unitPrice,
   'variantId': ?instance.variantId,
-  'variantName': ?instance.variantName,
-  'productName': ?instance.productName,
+  'variantName': instance.variantName,
+  'productName': instance.productName,
   'volumeMl': ?instance.volumeMl,
-  'concentrationName': ?instance.concentrationName,
+  'concentrationName': instance.concentrationName,
   'rating': ?instance.rating,
-  'comment': ?instance.comment,
-  'images': ?instance.images?.map((e) => e.toJson()).toList(),
+  'comment': instance.comment,
+  'images': instance.images.map((e) => e.toJson()).toList(),
   'staffFeedbackComment': ?instance.staffFeedbackComment,
   'staffFeedbackByStaffId': ?instance.staffFeedbackByStaffId,
   'staffFeedbackAt': ?instance.staffFeedbackAt?.toIso8601String(),

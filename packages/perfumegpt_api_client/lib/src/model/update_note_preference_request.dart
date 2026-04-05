@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_note_preference_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,50 +18,26 @@ part 'update_note_preference_request.g.dart';
 )
 class UpdateNotePreferenceRequest {
   /// Returns a new [UpdateNotePreferenceRequest] instance.
-  UpdateNotePreferenceRequest({
+  UpdateNotePreferenceRequest({this.noteId, this.noteType});
 
-     this.noteId,
-
-     this.noteType,
-  });
-
-  @JsonKey(
-    
-    name: r'noteId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'noteId', required: false, includeIfNull: false)
   final int? noteId;
 
-
-
-  @JsonKey(
-    
-    name: r'noteType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'noteType', required: false, includeIfNull: false)
   final NoteType? noteType;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateNotePreferenceRequest &&
+          other.noteId == noteId &&
+          other.noteType == noteType;
 
+  @override
+  int get hashCode => noteId.hashCode + noteType.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateNotePreferenceRequest &&
-      other.noteId == noteId &&
-      other.noteType == noteType;
-
-    @override
-    int get hashCode =>
-        noteId.hashCode +
-        noteType.hashCode;
-
-  factory UpdateNotePreferenceRequest.fromJson(Map<String, dynamic> json) => _$UpdateNotePreferenceRequestFromJson(json);
+  factory UpdateNotePreferenceRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateNotePreferenceRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateNotePreferenceRequestToJson(this);
 
@@ -70,6 +45,4 @@ class UpdateNotePreferenceRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

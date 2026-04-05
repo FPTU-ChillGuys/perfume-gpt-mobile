@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'answer_review_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,34 +17,22 @@ part 'answer_review_request.g.dart';
 )
 class AnswerReviewRequest {
   /// Returns a new [AnswerReviewRequest] instance.
-  AnswerReviewRequest({
+  AnswerReviewRequest({required this.staffFeedbackComment});
 
-    required  this.staffFeedbackComment,
-  });
-
-  @JsonKey(
-    
-    name: r'staffFeedbackComment',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'staffFeedbackComment', required: true, includeIfNull: false)
   final String staffFeedbackComment;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AnswerReviewRequest &&
+          other.staffFeedbackComment == staffFeedbackComment;
 
+  @override
+  int get hashCode => staffFeedbackComment.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is AnswerReviewRequest &&
-      other.staffFeedbackComment == staffFeedbackComment;
-
-    @override
-    int get hashCode =>
-        staffFeedbackComment.hashCode;
-
-  factory AnswerReviewRequest.fromJson(Map<String, dynamic> json) => _$AnswerReviewRequestFromJson(json);
+  factory AnswerReviewRequest.fromJson(Map<String, dynamic> json) =>
+      _$AnswerReviewRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$AnswerReviewRequestToJson(this);
 
@@ -53,6 +40,4 @@ class AnswerReviewRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

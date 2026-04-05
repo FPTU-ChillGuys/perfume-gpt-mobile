@@ -12,6 +12,11 @@ void main() {
       // TODO
     });
 
+    // String internalCode
+    test('to test the property `internalCode`', () async {
+      // TODO
+    });
+
     // String name
     test('to test the property `name`', () async {
       // TODO

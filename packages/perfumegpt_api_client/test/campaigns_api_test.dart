@@ -1,10 +1,9 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
-
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 /// tests for CampaignsApi
 void main() {
-  final instance = Openapi().getCampaignsApi();
+  final instance = PerfumegptApiClient().getCampaignsApi();
 
   group(CampaignsApi, () {
     //Future<BaseResponseOfstring> apiCampaignsCampaignIdDelete(String campaignId) async
@@ -76,6 +75,5 @@ void main() {
     test('test apiCampaignsPost', () async {
       // TODO
     });
-
   });
 }

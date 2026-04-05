@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'order_cancel_request_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,241 +19,115 @@ part 'order_cancel_request_response.g.dart';
 class OrderCancelRequestResponse {
   /// Returns a new [OrderCancelRequestResponse] instance.
   OrderCancelRequestResponse({
+    this.id,
 
-     this.id,
+    this.orderId,
 
-     this.orderId,
+    this.requestedById,
 
-     this.requestedById,
+    this.requestedByEmail,
 
-     this.requestedByEmail,
+    this.processedById,
 
-     this.processedById,
+    required this.reason,
 
-     this.reason,
+    this.staffNote,
 
-     this.staffNote,
+    this.status,
 
-     this.status,
+    this.isRefundRequired,
 
-     this.isRefundRequired,
+    this.refundAmount,
 
-     this.refundAmount,
+    this.isRefunded,
 
-     this.isRefunded,
+    this.vnpTransactionNo,
 
-     this.vnpTransactionNo,
+    this.createdAt,
 
-     this.createdAt,
-
-     this.updatedAt,
+    this.updatedAt,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'orderId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'orderId', required: false, includeIfNull: false)
   final String? orderId;
 
-
-
-  @JsonKey(
-    
-    name: r'requestedById',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'requestedById', required: false, includeIfNull: false)
   final String? requestedById;
 
-
-
-  @JsonKey(
-    
-    name: r'requestedByEmail',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'requestedByEmail', required: false, includeIfNull: false)
   final String? requestedByEmail;
 
-
-
-  @JsonKey(
-    
-    name: r'processedById',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'processedById', required: false, includeIfNull: false)
   final String? processedById;
 
+  @JsonKey(name: r'reason', required: true, includeIfNull: false)
+  final String reason;
 
-
-  @JsonKey(
-    
-    name: r'reason',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? reason;
-
-
-
-  @JsonKey(
-    
-    name: r'staffNote',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'staffNote', required: false, includeIfNull: false)
   final String? staffNote;
 
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final CancelRequestStatus? status;
 
-
-
-  @JsonKey(
-    
-    name: r'isRefundRequired',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isRefundRequired', required: false, includeIfNull: false)
   final bool? isRefundRequired;
 
-
-
-  @JsonKey(
-    
-    name: r'refundAmount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'refundAmount', required: false, includeIfNull: false)
   final num? refundAmount;
 
-
-
-  @JsonKey(
-    
-    name: r'isRefunded',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isRefunded', required: false, includeIfNull: false)
   final bool? isRefunded;
 
-
-
-  @JsonKey(
-    
-    name: r'vnpTransactionNo',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'vnpTransactionNo', required: false, includeIfNull: false)
   final String? vnpTransactionNo;
 
-
-
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
   final DateTime? createdAt;
 
-
-
-  @JsonKey(
-    
-    name: r'updatedAt',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
   final DateTime? updatedAt;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OrderCancelRequestResponse &&
+          other.id == id &&
+          other.orderId == orderId &&
+          other.requestedById == requestedById &&
+          other.requestedByEmail == requestedByEmail &&
+          other.processedById == processedById &&
+          other.reason == reason &&
+          other.staffNote == staffNote &&
+          other.status == status &&
+          other.isRefundRequired == isRefundRequired &&
+          other.refundAmount == refundAmount &&
+          other.isRefunded == isRefunded &&
+          other.vnpTransactionNo == vnpTransactionNo &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      orderId.hashCode +
+      requestedById.hashCode +
+      (requestedByEmail == null ? 0 : requestedByEmail.hashCode) +
+      (processedById == null ? 0 : processedById.hashCode) +
+      reason.hashCode +
+      (staffNote == null ? 0 : staffNote.hashCode) +
+      status.hashCode +
+      isRefundRequired.hashCode +
+      (refundAmount == null ? 0 : refundAmount.hashCode) +
+      isRefunded.hashCode +
+      (vnpTransactionNo == null ? 0 : vnpTransactionNo.hashCode) +
+      createdAt.hashCode +
+      (updatedAt == null ? 0 : updatedAt.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is OrderCancelRequestResponse &&
-      other.id == id &&
-      other.orderId == orderId &&
-      other.requestedById == requestedById &&
-      other.requestedByEmail == requestedByEmail &&
-      other.processedById == processedById &&
-      other.reason == reason &&
-      other.staffNote == staffNote &&
-      other.status == status &&
-      other.isRefundRequired == isRefundRequired &&
-      other.refundAmount == refundAmount &&
-      other.isRefunded == isRefunded &&
-      other.vnpTransactionNo == vnpTransactionNo &&
-      other.createdAt == createdAt &&
-      other.updatedAt == updatedAt;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        orderId.hashCode +
-        requestedById.hashCode +
-        (requestedByEmail == null ? 0 : requestedByEmail.hashCode) +
-        (processedById == null ? 0 : processedById.hashCode) +
-        reason.hashCode +
-        (staffNote == null ? 0 : staffNote.hashCode) +
-        status.hashCode +
-        isRefundRequired.hashCode +
-        (refundAmount == null ? 0 : refundAmount.hashCode) +
-        isRefunded.hashCode +
-        (vnpTransactionNo == null ? 0 : vnpTransactionNo.hashCode) +
-        createdAt.hashCode +
-        (updatedAt == null ? 0 : updatedAt.hashCode);
-
-  factory OrderCancelRequestResponse.fromJson(Map<String, dynamic> json) => _$OrderCancelRequestResponseFromJson(json);
+  factory OrderCancelRequestResponse.fromJson(Map<String, dynamic> json) =>
+      _$OrderCancelRequestResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderCancelRequestResponseToJson(this);
 
@@ -262,6 +135,4 @@ class OrderCancelRequestResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

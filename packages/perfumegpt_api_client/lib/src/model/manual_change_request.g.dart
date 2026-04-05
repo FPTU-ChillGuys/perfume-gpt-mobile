@@ -7,6 +7,8 @@ part of 'manual_change_request.dart';
 // **************************************************************************
 
 abstract class _$ManualChangeRequestCWProxy {
+  ManualChangeRequest userId(String? userId);
+
   ManualChangeRequest transactionType(LoyaltyTransactionType? transactionType);
 
   ManualChangeRequest points(int? points);
@@ -21,6 +23,7 @@ abstract class _$ManualChangeRequestCWProxy {
   /// ManualChangeRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   ManualChangeRequest call({
+    String? userId,
     LoyaltyTransactionType? transactionType,
     int? points,
     String reason,
@@ -33,6 +36,9 @@ class _$ManualChangeRequestCWProxyImpl implements _$ManualChangeRequestCWProxy {
   const _$ManualChangeRequestCWProxyImpl(this._value);
 
   final ManualChangeRequest _value;
+
+  @override
+  ManualChangeRequest userId(String? userId) => call(userId: userId);
 
   @override
   ManualChangeRequest transactionType(
@@ -54,11 +60,16 @@ class _$ManualChangeRequestCWProxyImpl implements _$ManualChangeRequestCWProxy {
   /// ManualChangeRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   ManualChangeRequest call({
+    Object? userId = const $CopyWithPlaceholder(),
     Object? transactionType = const $CopyWithPlaceholder(),
     Object? points = const $CopyWithPlaceholder(),
     Object? reason = const $CopyWithPlaceholder(),
   }) {
     return ManualChangeRequest(
+      userId: userId == const $CopyWithPlaceholder()
+          ? _value.userId
+          // ignore: cast_nullable_to_non_nullable
+          : userId as String?,
       transactionType: transactionType == const $CopyWithPlaceholder()
           ? _value.transactionType
           // ignore: cast_nullable_to_non_nullable
@@ -91,6 +102,7 @@ ManualChangeRequest _$ManualChangeRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('ManualChangeRequest', json, ($checkedConvert) {
       $checkKeys(json, requiredKeys: const ['reason']);
       final val = ManualChangeRequest(
+        userId: $checkedConvert('userId', (v) => v as String?),
         transactionType: $checkedConvert(
           'transactionType',
           (v) => $enumDecodeNullable(_$LoyaltyTransactionTypeEnumMap, v),
@@ -104,6 +116,7 @@ ManualChangeRequest _$ManualChangeRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ManualChangeRequestToJson(
   ManualChangeRequest instance,
 ) => <String, dynamic>{
+  'userId': ?instance.userId,
   'transactionType': ?_$LoyaltyTransactionTypeEnumMap[instance.transactionType],
   'points': ?instance.points,
   'reason': instance.reason,

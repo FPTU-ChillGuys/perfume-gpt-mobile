@@ -10,7 +10,7 @@ abstract class _$UpdateOrderAddressRequestCWProxy {
   UpdateOrderAddressRequest savedAddressId(String? savedAddressId);
 
   UpdateOrderAddressRequest recipientInformation(
-    RecipientInformation? recipientInformation,
+    ContactAddressInformation? recipientInformation,
   );
 
   /// Creates a new instance with the provided field values.
@@ -22,7 +22,7 @@ abstract class _$UpdateOrderAddressRequestCWProxy {
   /// ```
   UpdateOrderAddressRequest call({
     String? savedAddressId,
-    RecipientInformation? recipientInformation,
+    ContactAddressInformation? recipientInformation,
   });
 }
 
@@ -40,7 +40,7 @@ class _$UpdateOrderAddressRequestCWProxyImpl
 
   @override
   UpdateOrderAddressRequest recipientInformation(
-    RecipientInformation? recipientInformation,
+    ContactAddressInformation? recipientInformation,
   ) => call(recipientInformation: recipientInformation);
 
   @override
@@ -63,7 +63,7 @@ class _$UpdateOrderAddressRequestCWProxyImpl
       recipientInformation: recipientInformation == const $CopyWithPlaceholder()
           ? _value.recipientInformation
           // ignore: cast_nullable_to_non_nullable
-          : recipientInformation as RecipientInformation?,
+          : recipientInformation as ContactAddressInformation?,
     );
   }
 }
@@ -89,7 +89,7 @@ UpdateOrderAddressRequest _$UpdateOrderAddressRequestFromJson(
       'recipientInformation',
       (v) => v == null
           ? null
-          : RecipientInformation.fromJson(v as Map<String, dynamic>),
+          : ContactAddressInformation.fromJson(v as Map<String, dynamic>),
     ),
   );
   return val;

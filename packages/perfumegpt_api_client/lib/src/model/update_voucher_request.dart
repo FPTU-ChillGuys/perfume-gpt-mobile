@@ -10,7 +10,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_voucher_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,182 +20,92 @@ part 'update_voucher_request.g.dart';
 class UpdateVoucherRequest {
   /// Returns a new [UpdateVoucherRequest] instance.
   UpdateVoucherRequest({
+    required this.code,
 
-     this.code,
+    this.discountValue,
 
-     this.discountValue,
+    this.discountType,
 
-     this.discountType,
+    this.applyType,
 
-     this.applyType,
+    this.requiredPoints,
 
-     this.requiredPoints,
+    this.minOrderValue,
 
-     this.minOrderValue,
+    this.expiryDate,
 
-     this.expiryDate,
+    this.totalQuantity,
 
-     this.totalQuantity,
+    this.remainingQuantity,
 
-     this.remainingQuantity,
-
-     this.isPublic,
+    this.isPublic,
   });
 
-  @JsonKey(
-    
-    name: r'code',
-    required: false,
-    includeIfNull: false,
-  )
+  @JsonKey(name: r'code', required: true, includeIfNull: false)
+  final String code;
 
-
-  final String? code;
-
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'discountValue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'discountValue', required: false, includeIfNull: false)
   final num? discountValue;
 
-
-
-  @JsonKey(
-    
-    name: r'discountType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'discountType', required: false, includeIfNull: false)
   final DiscountType? discountType;
 
-
-
-  @JsonKey(
-    
-    name: r'applyType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'applyType', required: false, includeIfNull: false)
   final VoucherType? applyType;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'requiredPoints',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'requiredPoints', required: false, includeIfNull: false)
   final int? requiredPoints;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'minOrderValue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'minOrderValue', required: false, includeIfNull: false)
   final num? minOrderValue;
 
-
-
-  @JsonKey(
-    
-    name: r'expiryDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'expiryDate', required: false, includeIfNull: false)
   final DateTime? expiryDate;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'totalQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'totalQuantity', required: false, includeIfNull: false)
   final int? totalQuantity;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'remainingQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'remainingQuantity', required: false, includeIfNull: false)
   final int? remainingQuantity;
 
-
-
-  @JsonKey(
-    
-    name: r'isPublic',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isPublic', required: false, includeIfNull: false)
   final bool? isPublic;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateVoucherRequest &&
+          other.code == code &&
+          other.discountValue == discountValue &&
+          other.discountType == discountType &&
+          other.applyType == applyType &&
+          other.requiredPoints == requiredPoints &&
+          other.minOrderValue == minOrderValue &&
+          other.expiryDate == expiryDate &&
+          other.totalQuantity == totalQuantity &&
+          other.remainingQuantity == remainingQuantity &&
+          other.isPublic == isPublic;
 
+  @override
+  int get hashCode =>
+      code.hashCode +
+      discountValue.hashCode +
+      discountType.hashCode +
+      applyType.hashCode +
+      requiredPoints.hashCode +
+      minOrderValue.hashCode +
+      expiryDate.hashCode +
+      totalQuantity.hashCode +
+      remainingQuantity.hashCode +
+      isPublic.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateVoucherRequest &&
-      other.code == code &&
-      other.discountValue == discountValue &&
-      other.discountType == discountType &&
-      other.applyType == applyType &&
-      other.requiredPoints == requiredPoints &&
-      other.minOrderValue == minOrderValue &&
-      other.expiryDate == expiryDate &&
-      other.totalQuantity == totalQuantity &&
-      other.remainingQuantity == remainingQuantity &&
-      other.isPublic == isPublic;
-
-    @override
-    int get hashCode =>
-        code.hashCode +
-        discountValue.hashCode +
-        discountType.hashCode +
-        applyType.hashCode +
-        requiredPoints.hashCode +
-        minOrderValue.hashCode +
-        expiryDate.hashCode +
-        totalQuantity.hashCode +
-        remainingQuantity.hashCode +
-        isPublic.hashCode;
-
-  factory UpdateVoucherRequest.fromJson(Map<String, dynamic> json) => _$UpdateVoucherRequestFromJson(json);
+  factory UpdateVoucherRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateVoucherRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateVoucherRequestToJson(this);
 
@@ -204,6 +113,4 @@ class UpdateVoucherRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

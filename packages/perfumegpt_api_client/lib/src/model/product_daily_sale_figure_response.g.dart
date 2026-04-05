@@ -9,10 +9,10 @@ part of 'product_daily_sale_figure_response.dart';
 abstract class _$ProductDailySaleFigureResponseCWProxy {
   ProductDailySaleFigureResponse productId(String? productId);
 
-  ProductDailySaleFigureResponse productName(String? productName);
+  ProductDailySaleFigureResponse productName(String productName);
 
   ProductDailySaleFigureResponse dailySaleFigures(
-    List<VariantDailySaleFigure>? dailySaleFigures,
+    List<VariantDailySaleFigure> dailySaleFigures,
   );
 
   /// Creates a new instance with the provided field values.
@@ -24,8 +24,8 @@ abstract class _$ProductDailySaleFigureResponseCWProxy {
   /// ```
   ProductDailySaleFigureResponse call({
     String? productId,
-    String? productName,
-    List<VariantDailySaleFigure>? dailySaleFigures,
+    String productName,
+    List<VariantDailySaleFigure> dailySaleFigures,
   });
 }
 
@@ -42,12 +42,12 @@ class _$ProductDailySaleFigureResponseCWProxyImpl
       call(productId: productId);
 
   @override
-  ProductDailySaleFigureResponse productName(String? productName) =>
+  ProductDailySaleFigureResponse productName(String productName) =>
       call(productName: productName);
 
   @override
   ProductDailySaleFigureResponse dailySaleFigures(
-    List<VariantDailySaleFigure>? dailySaleFigures,
+    List<VariantDailySaleFigure> dailySaleFigures,
   ) => call(dailySaleFigures: dailySaleFigures);
 
   @override
@@ -68,14 +68,17 @@ class _$ProductDailySaleFigureResponseCWProxyImpl
           ? _value.productId
           // ignore: cast_nullable_to_non_nullable
           : productId as String?,
-      productName: productName == const $CopyWithPlaceholder()
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
-          : productName as String?,
-      dailySaleFigures: dailySaleFigures == const $CopyWithPlaceholder()
+          : productName as String,
+      dailySaleFigures:
+          dailySaleFigures == const $CopyWithPlaceholder() ||
+              dailySaleFigures == null
           ? _value.dailySaleFigures
           // ignore: cast_nullable_to_non_nullable
-          : dailySaleFigures as List<VariantDailySaleFigure>?,
+          : dailySaleFigures as List<VariantDailySaleFigure>,
     );
   }
 }
@@ -96,13 +99,14 @@ extension $ProductDailySaleFigureResponseCopyWith
 ProductDailySaleFigureResponse _$ProductDailySaleFigureResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProductDailySaleFigureResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['productName', 'dailySaleFigures']);
   final val = ProductDailySaleFigureResponse(
     productId: $checkedConvert('productId', (v) => v as String?),
-    productName: $checkedConvert('productName', (v) => v as String?),
+    productName: $checkedConvert('productName', (v) => v as String),
     dailySaleFigures: $checkedConvert(
       'dailySaleFigures',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => VariantDailySaleFigure.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
@@ -115,8 +119,6 @@ Map<String, dynamic> _$ProductDailySaleFigureResponseToJson(
   ProductDailySaleFigureResponse instance,
 ) => <String, dynamic>{
   'productId': ?instance.productId,
-  'productName': ?instance.productName,
-  'dailySaleFigures': ?instance.dailySaleFigures
-      ?.map((e) => e.toJson())
-      .toList(),
+  'productName': instance.productName,
+  'dailySaleFigures': instance.dailySaleFigures.map((e) => e.toJson()).toList(),
 };

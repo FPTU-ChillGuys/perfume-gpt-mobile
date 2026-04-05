@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'scent_note_dto.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,50 +18,24 @@ part 'scent_note_dto.g.dart';
 )
 class ScentNoteDto {
   /// Returns a new [ScentNoteDto] instance.
-  ScentNoteDto({
+  ScentNoteDto({this.noteId, this.type});
 
-     this.noteId,
-
-     this.type,
-  });
-
-  @JsonKey(
-    
-    name: r'noteId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'noteId', required: false, includeIfNull: false)
   final int? noteId;
 
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'type', required: false, includeIfNull: false)
   final NoteType? type;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ScentNoteDto && other.noteId == noteId && other.type == type;
 
+  @override
+  int get hashCode => noteId.hashCode + type.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ScentNoteDto &&
-      other.noteId == noteId &&
-      other.type == type;
-
-    @override
-    int get hashCode =>
-        noteId.hashCode +
-        type.hashCode;
-
-  factory ScentNoteDto.fromJson(Map<String, dynamic> json) => _$ScentNoteDtoFromJson(json);
+  factory ScentNoteDto.fromJson(Map<String, dynamic> json) =>
+      _$ScentNoteDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ScentNoteDtoToJson(this);
 
@@ -70,6 +43,4 @@ class ScentNoteDto {
   String toString() {
     return toJson().toString();
   }
-
 }
-

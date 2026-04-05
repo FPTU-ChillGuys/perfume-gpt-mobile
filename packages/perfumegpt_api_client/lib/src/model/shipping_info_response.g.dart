@@ -15,9 +15,9 @@ abstract class _$ShippingInfoResponseCWProxy {
 
   ShippingInfoResponse shippingFee(num? shippingFee);
 
-  ShippingInfoResponse status(int? status);
+  ShippingInfoResponse status(ShippingStatus? status);
 
-  ShippingInfoResponse leadTime(int? leadTime);
+  ShippingInfoResponse estimatedDeliveryDate(DateTime? estimatedDeliveryDate);
 
   ShippingInfoResponse shippedDate(DateTime? shippedDate);
 
@@ -33,8 +33,8 @@ abstract class _$ShippingInfoResponseCWProxy {
     CarrierName? carrierName,
     String? trackingNumber,
     num? shippingFee,
-    int? status,
-    int? leadTime,
+    ShippingStatus? status,
+    DateTime? estimatedDeliveryDate,
     DateTime? shippedDate,
   });
 }
@@ -63,10 +63,11 @@ class _$ShippingInfoResponseCWProxyImpl
       call(shippingFee: shippingFee);
 
   @override
-  ShippingInfoResponse status(int? status) => call(status: status);
+  ShippingInfoResponse status(ShippingStatus? status) => call(status: status);
 
   @override
-  ShippingInfoResponse leadTime(int? leadTime) => call(leadTime: leadTime);
+  ShippingInfoResponse estimatedDeliveryDate(DateTime? estimatedDeliveryDate) =>
+      call(estimatedDeliveryDate: estimatedDeliveryDate);
 
   @override
   ShippingInfoResponse shippedDate(DateTime? shippedDate) =>
@@ -86,7 +87,7 @@ class _$ShippingInfoResponseCWProxyImpl
     Object? trackingNumber = const $CopyWithPlaceholder(),
     Object? shippingFee = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
-    Object? leadTime = const $CopyWithPlaceholder(),
+    Object? estimatedDeliveryDate = const $CopyWithPlaceholder(),
     Object? shippedDate = const $CopyWithPlaceholder(),
   }) {
     return ShippingInfoResponse(
@@ -109,11 +110,12 @@ class _$ShippingInfoResponseCWProxyImpl
       status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
-          : status as int?,
-      leadTime: leadTime == const $CopyWithPlaceholder()
-          ? _value.leadTime
+          : status as ShippingStatus?,
+      estimatedDeliveryDate:
+          estimatedDeliveryDate == const $CopyWithPlaceholder()
+          ? _value.estimatedDeliveryDate
           // ignore: cast_nullable_to_non_nullable
-          : leadTime as int?,
+          : estimatedDeliveryDate as DateTime?,
       shippedDate: shippedDate == const $CopyWithPlaceholder()
           ? _value.shippedDate
           // ignore: cast_nullable_to_non_nullable
@@ -145,8 +147,14 @@ ShippingInfoResponse _$ShippingInfoResponseFromJson(
     ),
     trackingNumber: $checkedConvert('trackingNumber', (v) => v as String?),
     shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
-    status: $checkedConvert('status', (v) => (v as num?)?.toInt()),
-    leadTime: $checkedConvert('leadTime', (v) => (v as num?)?.toInt()),
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecodeNullable(_$ShippingStatusEnumMap, v),
+    ),
+    estimatedDeliveryDate: $checkedConvert(
+      'estimatedDeliveryDate',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
     shippedDate: $checkedConvert(
       'shippedDate',
       (v) => v == null ? null : DateTime.parse(v as String),
@@ -162,9 +170,18 @@ Map<String, dynamic> _$ShippingInfoResponseToJson(
   'carrierName': ?_$CarrierNameEnumMap[instance.carrierName],
   'trackingNumber': ?instance.trackingNumber,
   'shippingFee': ?instance.shippingFee,
-  'status': ?instance.status,
-  'leadTime': ?instance.leadTime,
+  'status': ?_$ShippingStatusEnumMap[instance.status],
+  'estimatedDeliveryDate': ?instance.estimatedDeliveryDate?.toIso8601String(),
   'shippedDate': ?instance.shippedDate?.toIso8601String(),
 };
 
 const _$CarrierNameEnumMap = {CarrierName.GHN: 'GHN', CarrierName.GHTK: 'GHTK'};
+
+const _$ShippingStatusEnumMap = {
+  ShippingStatus.pending: 'Pending',
+  ShippingStatus.delivering: 'Delivering',
+  ShippingStatus.delivered: 'Delivered',
+  ShippingStatus.cancelled: 'Cancelled',
+  ShippingStatus.returning: 'Returning',
+  ShippingStatus.returned: 'Returned',
+};

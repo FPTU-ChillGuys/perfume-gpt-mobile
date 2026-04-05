@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for SupplierResponse
 void main() {
-  final instance = SupplierResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final SupplierResponse? instance = /* SupplierResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(SupplierResponse, () {
     // int id
@@ -31,6 +31,5 @@ void main() {
     test('to test the property `address`', () async {
       // TODO
     });
-
   });
 }

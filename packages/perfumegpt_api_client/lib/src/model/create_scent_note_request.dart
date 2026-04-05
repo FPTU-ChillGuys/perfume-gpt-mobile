@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_scent_note_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,34 +17,21 @@ part 'create_scent_note_request.g.dart';
 )
 class CreateScentNoteRequest {
   /// Returns a new [CreateScentNoteRequest] instance.
-  CreateScentNoteRequest({
+  CreateScentNoteRequest({required this.name});
 
-    required  this.name,
-  });
-
-  @JsonKey(
-    
-    name: r'name',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
   final String name;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateScentNoteRequest && other.name == name;
 
+  @override
+  int get hashCode => name.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateScentNoteRequest &&
-      other.name == name;
-
-    @override
-    int get hashCode =>
-        name.hashCode;
-
-  factory CreateScentNoteRequest.fromJson(Map<String, dynamic> json) => _$CreateScentNoteRequestFromJson(json);
+  factory CreateScentNoteRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateScentNoteRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateScentNoteRequestToJson(this);
 
@@ -53,6 +39,4 @@ class CreateScentNoteRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

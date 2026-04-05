@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProcessCancelRequest
 void main() {
-  final instance = ProcessCancelRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final ProcessCancelRequest? instance = /* ProcessCancelRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(ProcessCancelRequest, () {
     // bool isApproved
@@ -17,5 +17,9 @@ void main() {
       // TODO
     });
 
+    // PaymentMethod refundMethod
+    test('to test the property `refundMethod`', () async {
+      // TODO
+    });
   });
 }

@@ -13,11 +13,11 @@ abstract class _$ProductAttributeResponseCWProxy {
 
   ProductAttributeResponse valueId(int? valueId);
 
-  ProductAttributeResponse attribute(String? attribute);
+  ProductAttributeResponse attribute(String attribute);
 
   ProductAttributeResponse description(String? description);
 
-  ProductAttributeResponse value(String? value);
+  ProductAttributeResponse value(String value);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductAttributeResponse(...).copyWith.fieldName(value)`.
@@ -30,9 +30,9 @@ abstract class _$ProductAttributeResponseCWProxy {
     String? id,
     int? attributeId,
     int? valueId,
-    String? attribute,
+    String attribute,
     String? description,
-    String? value,
+    String value,
   });
 }
 
@@ -55,7 +55,7 @@ class _$ProductAttributeResponseCWProxyImpl
   ProductAttributeResponse valueId(int? valueId) => call(valueId: valueId);
 
   @override
-  ProductAttributeResponse attribute(String? attribute) =>
+  ProductAttributeResponse attribute(String attribute) =>
       call(attribute: attribute);
 
   @override
@@ -63,7 +63,7 @@ class _$ProductAttributeResponseCWProxyImpl
       call(description: description);
 
   @override
-  ProductAttributeResponse value(String? value) => call(value: value);
+  ProductAttributeResponse value(String value) => call(value: value);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -94,18 +94,18 @@ class _$ProductAttributeResponseCWProxyImpl
           ? _value.valueId
           // ignore: cast_nullable_to_non_nullable
           : valueId as int?,
-      attribute: attribute == const $CopyWithPlaceholder()
+      attribute: attribute == const $CopyWithPlaceholder() || attribute == null
           ? _value.attribute
           // ignore: cast_nullable_to_non_nullable
-          : attribute as String?,
+          : attribute as String,
       description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
           : description as String?,
-      value: value == const $CopyWithPlaceholder()
+      value: value == const $CopyWithPlaceholder() || value == null
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
-          : value as String?,
+          : value as String,
     );
   }
 }
@@ -125,13 +125,14 @@ extension $ProductAttributeResponseCopyWith on ProductAttributeResponse {
 ProductAttributeResponse _$ProductAttributeResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProductAttributeResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['attribute', 'value']);
   final val = ProductAttributeResponse(
     id: $checkedConvert('id', (v) => v as String?),
     attributeId: $checkedConvert('attributeId', (v) => (v as num?)?.toInt()),
     valueId: $checkedConvert('valueId', (v) => (v as num?)?.toInt()),
-    attribute: $checkedConvert('attribute', (v) => v as String?),
+    attribute: $checkedConvert('attribute', (v) => v as String),
     description: $checkedConvert('description', (v) => v as String?),
-    value: $checkedConvert('value', (v) => v as String?),
+    value: $checkedConvert('value', (v) => v as String),
   );
   return val;
 });
@@ -142,7 +143,7 @@ Map<String, dynamic> _$ProductAttributeResponseToJson(
   'id': ?instance.id,
   'attributeId': ?instance.attributeId,
   'valueId': ?instance.valueId,
-  'attribute': ?instance.attribute,
+  'attribute': instance.attribute,
   'description': ?instance.description,
-  'value': ?instance.value,
+  'value': instance.value,
 };

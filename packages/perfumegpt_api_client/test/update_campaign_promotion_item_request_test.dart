@@ -1,10 +1,11 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateCampaignPromotionItemRequest
 void main() {
-  final instance = UpdateCampaignPromotionItemRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final UpdateCampaignPromotionItemRequest?
+  instance = /* UpdateCampaignPromotionItemRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(UpdateCampaignPromotionItemRequest, () {
     // String id
@@ -31,6 +32,5 @@ void main() {
     test('to test the property `maxUsage`', () async {
       // TODO
     });
-
   });
 }

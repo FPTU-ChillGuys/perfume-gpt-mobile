@@ -14,7 +14,7 @@ abstract class _$AdminDashboardOverviewResponseCWProxy {
   );
 
   AdminDashboardOverviewResponse topProducts(
-    List<TopProductResponse>? topProducts,
+    List<TopProductResponse> topProducts,
   );
 
   /// Creates a new instance with the provided field values.
@@ -27,7 +27,7 @@ abstract class _$AdminDashboardOverviewResponseCWProxy {
   AdminDashboardOverviewResponse call({
     RevenueSummaryResponse? revenue,
     InventoryLevelsResponse? inventoryLevels,
-    List<TopProductResponse>? topProducts,
+    List<TopProductResponse> topProducts,
   });
 }
 
@@ -50,7 +50,7 @@ class _$AdminDashboardOverviewResponseCWProxyImpl
 
   @override
   AdminDashboardOverviewResponse topProducts(
-    List<TopProductResponse>? topProducts,
+    List<TopProductResponse> topProducts,
   ) => call(topProducts: topProducts);
 
   @override
@@ -75,10 +75,11 @@ class _$AdminDashboardOverviewResponseCWProxyImpl
           ? _value.inventoryLevels
           // ignore: cast_nullable_to_non_nullable
           : inventoryLevels as InventoryLevelsResponse?,
-      topProducts: topProducts == const $CopyWithPlaceholder()
+      topProducts:
+          topProducts == const $CopyWithPlaceholder() || topProducts == null
           ? _value.topProducts
           // ignore: cast_nullable_to_non_nullable
-          : topProducts as List<TopProductResponse>?,
+          : topProducts as List<TopProductResponse>,
     );
   }
 }
@@ -99,6 +100,7 @@ extension $AdminDashboardOverviewResponseCopyWith
 AdminDashboardOverviewResponse _$AdminDashboardOverviewResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('AdminDashboardOverviewResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['topProducts']);
   final val = AdminDashboardOverviewResponse(
     revenue: $checkedConvert(
       'revenue',
@@ -114,8 +116,8 @@ AdminDashboardOverviewResponse _$AdminDashboardOverviewResponseFromJson(
     ),
     topProducts: $checkedConvert(
       'topProducts',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => TopProductResponse.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => TopProductResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
   );
@@ -127,5 +129,5 @@ Map<String, dynamic> _$AdminDashboardOverviewResponseToJson(
 ) => <String, dynamic>{
   'revenue': ?instance.revenue?.toJson(),
   'inventoryLevels': ?instance.inventoryLevels?.toJson(),
-  'topProducts': ?instance.topProducts?.map((e) => e.toJson()).toList(),
+  'topProducts': instance.topProducts.map((e) => e.toJson()).toList(),
 };

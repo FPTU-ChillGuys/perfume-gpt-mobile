@@ -27,6 +27,11 @@ void main() {
       // TODO
     });
 
+    // Gender gender
+    test('to test the property `gender`', () async {
+      // TODO
+    });
+
     // String scentGroup
     test('to test the property `scentGroup`', () async {
       // TODO
@@ -42,8 +47,8 @@ void main() {
       // TODO
     });
 
-    // String middleNotes
-    test('to test the property `middleNotes`', () async {
+    // String heartNotes
+    test('to test the property `heartNotes`', () async {
       // TODO
     });
 

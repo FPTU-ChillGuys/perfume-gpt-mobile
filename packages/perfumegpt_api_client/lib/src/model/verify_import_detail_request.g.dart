@@ -13,7 +13,7 @@ abstract class _$VerifyImportDetailRequestCWProxy {
 
   VerifyImportDetailRequest note(String? note);
 
-  VerifyImportDetailRequest batches(List<CreateBatchRequest>? batches);
+  VerifyImportDetailRequest batches(List<CreateBatchRequest> batches);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyImportDetailRequest(...).copyWith.fieldName(value)`.
@@ -26,7 +26,7 @@ abstract class _$VerifyImportDetailRequestCWProxy {
     String importDetailId,
     int? rejectedQuantity,
     String? note,
-    List<CreateBatchRequest>? batches,
+    List<CreateBatchRequest> batches,
   });
 }
 
@@ -50,7 +50,7 @@ class _$VerifyImportDetailRequestCWProxyImpl
   VerifyImportDetailRequest note(String? note) => call(note: note);
 
   @override
-  VerifyImportDetailRequest batches(List<CreateBatchRequest>? batches) =>
+  VerifyImportDetailRequest batches(List<CreateBatchRequest> batches) =>
       call(batches: batches);
 
   @override
@@ -82,10 +82,10 @@ class _$VerifyImportDetailRequestCWProxyImpl
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
           : note as String?,
-      batches: batches == const $CopyWithPlaceholder()
+      batches: batches == const $CopyWithPlaceholder() || batches == null
           ? _value.batches
           // ignore: cast_nullable_to_non_nullable
-          : batches as List<CreateBatchRequest>?,
+          : batches as List<CreateBatchRequest>,
     );
   }
 }
@@ -105,7 +105,7 @@ extension $VerifyImportDetailRequestCopyWith on VerifyImportDetailRequest {
 VerifyImportDetailRequest _$VerifyImportDetailRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('VerifyImportDetailRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['importDetailId']);
+  $checkKeys(json, requiredKeys: const ['importDetailId', 'batches']);
   final val = VerifyImportDetailRequest(
     importDetailId: $checkedConvert('importDetailId', (v) => v as String),
     rejectedQuantity: $checkedConvert(
@@ -115,8 +115,8 @@ VerifyImportDetailRequest _$VerifyImportDetailRequestFromJson(
     note: $checkedConvert('note', (v) => v as String?),
     batches: $checkedConvert(
       'batches',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => CreateBatchRequest.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => CreateBatchRequest.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
   );
@@ -129,5 +129,5 @@ Map<String, dynamic> _$VerifyImportDetailRequestToJson(
   'importDetailId': instance.importDetailId,
   'rejectedQuantity': ?instance.rejectedQuantity,
   'note': ?instance.note,
-  'batches': ?instance.batches?.map((e) => e.toJson()).toList(),
+  'batches': instance.batches.map((e) => e.toJson()).toList(),
 };

@@ -9,7 +9,9 @@ part of 'pick_list_response.dart';
 abstract class _$PickListResponseCWProxy {
   PickListResponse orderId(String? orderId);
 
-  PickListResponse items(List<PickListItemResponse>? items);
+  PickListResponse code(String code);
+
+  PickListResponse items(List<PickListItemResponse> items);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PickListResponse(...).copyWith.fieldName(value)`.
@@ -18,7 +20,11 @@ abstract class _$PickListResponseCWProxy {
   /// ```dart
   /// PickListResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  PickListResponse call({String? orderId, List<PickListItemResponse>? items});
+  PickListResponse call({
+    String? orderId,
+    String code,
+    List<PickListItemResponse> items,
+  });
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -32,7 +38,10 @@ class _$PickListResponseCWProxyImpl implements _$PickListResponseCWProxy {
   PickListResponse orderId(String? orderId) => call(orderId: orderId);
 
   @override
-  PickListResponse items(List<PickListItemResponse>? items) =>
+  PickListResponse code(String code) => call(code: code);
+
+  @override
+  PickListResponse items(List<PickListItemResponse> items) =>
       call(items: items);
 
   @override
@@ -45,6 +54,7 @@ class _$PickListResponseCWProxyImpl implements _$PickListResponseCWProxy {
   /// ```
   PickListResponse call({
     Object? orderId = const $CopyWithPlaceholder(),
+    Object? code = const $CopyWithPlaceholder(),
     Object? items = const $CopyWithPlaceholder(),
   }) {
     return PickListResponse(
@@ -52,10 +62,14 @@ class _$PickListResponseCWProxyImpl implements _$PickListResponseCWProxy {
           ? _value.orderId
           // ignore: cast_nullable_to_non_nullable
           : orderId as String?,
-      items: items == const $CopyWithPlaceholder()
+      code: code == const $CopyWithPlaceholder() || code == null
+          ? _value.code
+          // ignore: cast_nullable_to_non_nullable
+          : code as String,
+      items: items == const $CopyWithPlaceholder() || items == null
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
-          : items as List<PickListItemResponse>?,
+          : items as List<PickListItemResponse>,
     );
   }
 }
@@ -73,12 +87,14 @@ extension $PickListResponseCopyWith on PickListResponse {
 
 PickListResponse _$PickListResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('PickListResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['code', 'items']);
       final val = PickListResponse(
         orderId: $checkedConvert('orderId', (v) => v as String?),
+        code: $checkedConvert('code', (v) => v as String),
         items: $checkedConvert(
           'items',
-          (v) => (v as List<dynamic>?)
-              ?.map(
+          (v) => (v as List<dynamic>)
+              .map(
                 (e) => PickListItemResponse.fromJson(e as Map<String, dynamic>),
               )
               .toList(),
@@ -90,5 +106,6 @@ PickListResponse _$PickListResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PickListResponseToJson(PickListResponse instance) =>
     <String, dynamic>{
       'orderId': ?instance.orderId,
-      'items': ?instance.items?.map((e) => e.toJson()).toList(),
+      'code': instance.code,
+      'items': instance.items.map((e) => e.toJson()).toList(),
     };

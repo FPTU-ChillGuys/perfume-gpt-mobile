@@ -9,7 +9,7 @@ part of 'scent_note_lookup_response.dart';
 abstract class _$ScentNoteLookupResponseCWProxy {
   ScentNoteLookupResponse id(int? id);
 
-  ScentNoteLookupResponse name(String? name);
+  ScentNoteLookupResponse name(String name);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ScentNoteLookupResponse(...).copyWith.fieldName(value)`.
@@ -18,7 +18,7 @@ abstract class _$ScentNoteLookupResponseCWProxy {
   /// ```dart
   /// ScentNoteLookupResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  ScentNoteLookupResponse call({int? id, String? name});
+  ScentNoteLookupResponse call({int? id, String name});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -33,7 +33,7 @@ class _$ScentNoteLookupResponseCWProxyImpl
   ScentNoteLookupResponse id(int? id) => call(id: id);
 
   @override
-  ScentNoteLookupResponse name(String? name) => call(name: name);
+  ScentNoteLookupResponse name(String name) => call(name: name);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -52,10 +52,10 @@ class _$ScentNoteLookupResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as int?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
     );
   }
 }
@@ -75,13 +75,14 @@ extension $ScentNoteLookupResponseCopyWith on ScentNoteLookupResponse {
 ScentNoteLookupResponse _$ScentNoteLookupResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ScentNoteLookupResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
   final val = ScentNoteLookupResponse(
     id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
   );
   return val;
 });
 
 Map<String, dynamic> _$ScentNoteLookupResponseToJson(
   ScentNoteLookupResponse instance,
-) => <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+) => <String, dynamic>{'id': ?instance.id, 'name': instance.name};

@@ -16,6 +16,11 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfstring> apiAuthsForgotPasswordPost(ForgotPasswordRequest forgotPasswordRequest) async
+    test('test apiAuthsForgotPasswordPost', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfTokenResponse> apiAuthsGoogleLoginPost(GoogleLoginRequest googleLoginRequest) async
     test('test apiAuthsGoogleLoginPost', () async {
       // TODO
@@ -28,6 +33,11 @@ void main() {
 
     //Future<BaseResponseOfstring> apiAuthsRegisterPost(RegisterRequest registerRequest) async
     test('test apiAuthsRegisterPost', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfstring> apiAuthsResetPasswordPost(ResetPasswordRequest resetPasswordRequest) async
+    test('test apiAuthsResetPasswordPost', () async {
       // TODO
     });
 

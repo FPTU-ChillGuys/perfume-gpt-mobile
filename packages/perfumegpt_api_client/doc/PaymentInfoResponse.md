@@ -9,6 +9,7 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
+**transactionType** | [**TransactionType**](TransactionType.md) |  | [optional] 
 **status** | [**TransactionStatus**](TransactionStatus.md) |  | [optional] 
 **paymentMethod** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
 **failureReason** | **String** |  | [optional] 

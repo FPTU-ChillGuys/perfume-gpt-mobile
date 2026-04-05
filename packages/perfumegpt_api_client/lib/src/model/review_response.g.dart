@@ -11,7 +11,7 @@ abstract class _$ReviewResponseCWProxy {
 
   ReviewResponse userId(String? userId);
 
-  ReviewResponse userFullName(String? userFullName);
+  ReviewResponse userFullName(String userFullName);
 
   ReviewResponse userProfilePictureUrl(String? userProfilePictureUrl);
 
@@ -19,17 +19,17 @@ abstract class _$ReviewResponseCWProxy {
 
   ReviewResponse variantId(String? variantId);
 
-  ReviewResponse variantName(String? variantName);
+  ReviewResponse variantName(String variantName);
 
   ReviewResponse rating(int? rating);
 
-  ReviewResponse comment(String? comment);
+  ReviewResponse comment(String comment);
 
   ReviewResponse staffFeedbackComment(String? staffFeedbackComment);
 
   ReviewResponse staffFeedbackAt(DateTime? staffFeedbackAt);
 
-  ReviewResponse images(List<MediaResponse>? images);
+  ReviewResponse images(List<MediaResponse> images);
 
   ReviewResponse createdAt(DateTime? createdAt);
 
@@ -45,16 +45,16 @@ abstract class _$ReviewResponseCWProxy {
   ReviewResponse call({
     String? id,
     String? userId,
-    String? userFullName,
+    String userFullName,
     String? userProfilePictureUrl,
     String? orderDetailId,
     String? variantId,
-    String? variantName,
+    String variantName,
     int? rating,
-    String? comment,
+    String comment,
     String? staffFeedbackComment,
     DateTime? staffFeedbackAt,
-    List<MediaResponse>? images,
+    List<MediaResponse> images,
     DateTime? createdAt,
     DateTime? updatedAt,
   });
@@ -74,7 +74,7 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
   ReviewResponse userId(String? userId) => call(userId: userId);
 
   @override
-  ReviewResponse userFullName(String? userFullName) =>
+  ReviewResponse userFullName(String userFullName) =>
       call(userFullName: userFullName);
 
   @override
@@ -89,14 +89,14 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
   ReviewResponse variantId(String? variantId) => call(variantId: variantId);
 
   @override
-  ReviewResponse variantName(String? variantName) =>
+  ReviewResponse variantName(String variantName) =>
       call(variantName: variantName);
 
   @override
   ReviewResponse rating(int? rating) => call(rating: rating);
 
   @override
-  ReviewResponse comment(String? comment) => call(comment: comment);
+  ReviewResponse comment(String comment) => call(comment: comment);
 
   @override
   ReviewResponse staffFeedbackComment(String? staffFeedbackComment) =>
@@ -107,7 +107,7 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
       call(staffFeedbackAt: staffFeedbackAt);
 
   @override
-  ReviewResponse images(List<MediaResponse>? images) => call(images: images);
+  ReviewResponse images(List<MediaResponse> images) => call(images: images);
 
   @override
   ReviewResponse createdAt(DateTime? createdAt) => call(createdAt: createdAt);
@@ -148,10 +148,11 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable
           : userId as String?,
-      userFullName: userFullName == const $CopyWithPlaceholder()
+      userFullName:
+          userFullName == const $CopyWithPlaceholder() || userFullName == null
           ? _value.userFullName
           // ignore: cast_nullable_to_non_nullable
-          : userFullName as String?,
+          : userFullName as String,
       userProfilePictureUrl:
           userProfilePictureUrl == const $CopyWithPlaceholder()
           ? _value.userProfilePictureUrl
@@ -165,18 +166,19 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
           ? _value.variantName
           // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
+          : variantName as String,
       rating: rating == const $CopyWithPlaceholder()
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
           : rating as int?,
-      comment: comment == const $CopyWithPlaceholder()
+      comment: comment == const $CopyWithPlaceholder() || comment == null
           ? _value.comment
           // ignore: cast_nullable_to_non_nullable
-          : comment as String?,
+          : comment as String,
       staffFeedbackComment: staffFeedbackComment == const $CopyWithPlaceholder()
           ? _value.staffFeedbackComment
           // ignore: cast_nullable_to_non_nullable
@@ -185,10 +187,10 @@ class _$ReviewResponseCWProxyImpl implements _$ReviewResponseCWProxy {
           ? _value.staffFeedbackAt
           // ignore: cast_nullable_to_non_nullable
           : staffFeedbackAt as DateTime?,
-      images: images == const $CopyWithPlaceholder()
+      images: images == const $CopyWithPlaceholder() || images == null
           ? _value.images
           // ignore: cast_nullable_to_non_nullable
-          : images as List<MediaResponse>?,
+          : images as List<MediaResponse>,
       createdAt: createdAt == const $CopyWithPlaceholder()
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
@@ -214,19 +216,28 @@ extension $ReviewResponseCopyWith on ReviewResponse {
 
 ReviewResponse _$ReviewResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('ReviewResponse', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const [
+          'userFullName',
+          'variantName',
+          'comment',
+          'images',
+        ],
+      );
       final val = ReviewResponse(
         id: $checkedConvert('id', (v) => v as String?),
         userId: $checkedConvert('userId', (v) => v as String?),
-        userFullName: $checkedConvert('userFullName', (v) => v as String?),
+        userFullName: $checkedConvert('userFullName', (v) => v as String),
         userProfilePictureUrl: $checkedConvert(
           'userProfilePictureUrl',
           (v) => v as String?,
         ),
         orderDetailId: $checkedConvert('orderDetailId', (v) => v as String?),
         variantId: $checkedConvert('variantId', (v) => v as String?),
-        variantName: $checkedConvert('variantName', (v) => v as String?),
+        variantName: $checkedConvert('variantName', (v) => v as String),
         rating: $checkedConvert('rating', (v) => (v as num?)?.toInt()),
-        comment: $checkedConvert('comment', (v) => v as String?),
+        comment: $checkedConvert('comment', (v) => v as String),
         staffFeedbackComment: $checkedConvert(
           'staffFeedbackComment',
           (v) => v as String?,
@@ -237,8 +248,8 @@ ReviewResponse _$ReviewResponseFromJson(Map<String, dynamic> json) =>
         ),
         images: $checkedConvert(
           'images',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+          (v) => (v as List<dynamic>)
+              .map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
               .toList(),
         ),
         createdAt: $checkedConvert(
@@ -257,16 +268,16 @@ Map<String, dynamic> _$ReviewResponseToJson(ReviewResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
       'userId': ?instance.userId,
-      'userFullName': ?instance.userFullName,
+      'userFullName': instance.userFullName,
       'userProfilePictureUrl': ?instance.userProfilePictureUrl,
       'orderDetailId': ?instance.orderDetailId,
       'variantId': ?instance.variantId,
-      'variantName': ?instance.variantName,
+      'variantName': instance.variantName,
       'rating': ?instance.rating,
-      'comment': ?instance.comment,
+      'comment': instance.comment,
       'staffFeedbackComment': ?instance.staffFeedbackComment,
       'staffFeedbackAt': ?instance.staffFeedbackAt?.toIso8601String(),
-      'images': ?instance.images?.map((e) => e.toJson()).toList(),
+      'images': instance.images.map((e) => e.toJson()).toList(),
       'createdAt': ?instance.createdAt?.toIso8601String(),
       'updatedAt': ?instance.updatedAt?.toIso8601String(),
     };

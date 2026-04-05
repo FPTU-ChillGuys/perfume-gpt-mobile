@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **id** | **String** |  | [optional] 
 **attributeId** | **int** |  | [optional] 
 **valueId** | **int** |  | [optional] 
-**attribute** | **String** |  | [optional] 
+**attribute** | **String** |  | 
 **description** | **String** |  | [optional] 
-**value** | **String** |  | [optional] 
+**value** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

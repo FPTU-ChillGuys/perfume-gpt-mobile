@@ -12,5 +12,10 @@ void main() {
     test('to test the property `status`', () async {
       // TODO
     });
+
+    // String note
+    test('to test the property `note`', () async {
+      // TODO
+    });
   });
 }

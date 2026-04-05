@@ -9,7 +9,7 @@ part of 'update_campaign_voucher_request.dart';
 abstract class _$UpdateCampaignVoucherRequestCWProxy {
   UpdateCampaignVoucherRequest id(String? id);
 
-  UpdateCampaignVoucherRequest code(String? code);
+  UpdateCampaignVoucherRequest code(String code);
 
   UpdateCampaignVoucherRequest discountValue(num? discountValue);
 
@@ -28,7 +28,7 @@ abstract class _$UpdateCampaignVoucherRequestCWProxy {
   /// ```
   UpdateCampaignVoucherRequest call({
     String? id,
-    String? code,
+    String code,
     num? discountValue,
     PromotionType? targetItemType,
     DiscountType? discountType,
@@ -48,7 +48,7 @@ class _$UpdateCampaignVoucherRequestCWProxyImpl
   UpdateCampaignVoucherRequest id(String? id) => call(id: id);
 
   @override
-  UpdateCampaignVoucherRequest code(String? code) => call(code: code);
+  UpdateCampaignVoucherRequest code(String code) => call(code: code);
 
   @override
   UpdateCampaignVoucherRequest discountValue(num? discountValue) =>
@@ -87,10 +87,10 @@ class _$UpdateCampaignVoucherRequestCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      code: code == const $CopyWithPlaceholder()
+      code: code == const $CopyWithPlaceholder() || code == null
           ? _value.code
           // ignore: cast_nullable_to_non_nullable
-          : code as String?,
+          : code as String,
       discountValue: discountValue == const $CopyWithPlaceholder()
           ? _value.discountValue
           // ignore: cast_nullable_to_non_nullable
@@ -127,9 +127,10 @@ extension $UpdateCampaignVoucherRequestCopyWith
 UpdateCampaignVoucherRequest _$UpdateCampaignVoucherRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateCampaignVoucherRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code']);
   final val = UpdateCampaignVoucherRequest(
     id: $checkedConvert('id', (v) => v as String?),
-    code: $checkedConvert('code', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
     discountValue: $checkedConvert('discountValue', (v) => v as num?),
     targetItemType: $checkedConvert(
       'targetItemType',
@@ -151,7 +152,7 @@ Map<String, dynamic> _$UpdateCampaignVoucherRequestToJson(
   UpdateCampaignVoucherRequest instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'code': ?instance.code,
+  'code': instance.code,
   'discountValue': ?instance.discountValue,
   'targetItemType': ?_$PromotionTypeEnumMap[instance.targetItemType],
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],

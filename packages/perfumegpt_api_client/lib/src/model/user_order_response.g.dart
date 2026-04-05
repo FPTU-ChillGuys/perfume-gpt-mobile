@@ -9,9 +9,13 @@ part of 'user_order_response.dart';
 abstract class _$UserOrderResponseCWProxy {
   UserOrderResponse id(String? id);
 
+  UserOrderResponse code(String code);
+
   UserOrderResponse type(OrderType? type);
 
   UserOrderResponse status(OrderStatus? status);
+
+  UserOrderResponse isReturnable(bool? isReturnable);
 
   UserOrderResponse paymentStatus(PaymentStatus? paymentStatus);
 
@@ -35,7 +39,7 @@ abstract class _$UserOrderResponseCWProxy {
 
   UserOrderResponse recipientInfo(RecipientInfoResponse? recipientInfo);
 
-  UserOrderResponse orderDetails(List<OrderDetailResponse>? orderDetails);
+  UserOrderResponse orderDetails(List<OrderDetailResponse> orderDetails);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserOrderResponse(...).copyWith.fieldName(value)`.
@@ -46,8 +50,10 @@ abstract class _$UserOrderResponseCWProxy {
   /// ```
   UserOrderResponse call({
     String? id,
+    String code,
     OrderType? type,
     OrderStatus? status,
+    bool? isReturnable,
     PaymentStatus? paymentStatus,
     num? totalAmount,
     String? voucherCode,
@@ -58,7 +64,7 @@ abstract class _$UserOrderResponseCWProxy {
     List<PaymentInfoResponse>? paymentTransactions,
     ShippingInfoResponse? shippingInfo,
     RecipientInfoResponse? recipientInfo,
-    List<OrderDetailResponse>? orderDetails,
+    List<OrderDetailResponse> orderDetails,
   });
 }
 
@@ -73,10 +79,17 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
   UserOrderResponse id(String? id) => call(id: id);
 
   @override
+  UserOrderResponse code(String code) => call(code: code);
+
+  @override
   UserOrderResponse type(OrderType? type) => call(type: type);
 
   @override
   UserOrderResponse status(OrderStatus? status) => call(status: status);
+
+  @override
+  UserOrderResponse isReturnable(bool? isReturnable) =>
+      call(isReturnable: isReturnable);
 
   @override
   UserOrderResponse paymentStatus(PaymentStatus? paymentStatus) =>
@@ -119,7 +132,7 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
       call(recipientInfo: recipientInfo);
 
   @override
-  UserOrderResponse orderDetails(List<OrderDetailResponse>? orderDetails) =>
+  UserOrderResponse orderDetails(List<OrderDetailResponse> orderDetails) =>
       call(orderDetails: orderDetails);
 
   @override
@@ -132,8 +145,10 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
   /// ```
   UserOrderResponse call({
     Object? id = const $CopyWithPlaceholder(),
+    Object? code = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
+    Object? isReturnable = const $CopyWithPlaceholder(),
     Object? paymentStatus = const $CopyWithPlaceholder(),
     Object? totalAmount = const $CopyWithPlaceholder(),
     Object? voucherCode = const $CopyWithPlaceholder(),
@@ -151,6 +166,10 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
+      code: code == const $CopyWithPlaceholder() || code == null
+          ? _value.code
+          // ignore: cast_nullable_to_non_nullable
+          : code as String,
       type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
@@ -159,6 +178,10 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as OrderStatus?,
+      isReturnable: isReturnable == const $CopyWithPlaceholder()
+          ? _value.isReturnable
+          // ignore: cast_nullable_to_non_nullable
+          : isReturnable as bool?,
       paymentStatus: paymentStatus == const $CopyWithPlaceholder()
           ? _value.paymentStatus
           // ignore: cast_nullable_to_non_nullable
@@ -199,10 +222,11 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
           ? _value.recipientInfo
           // ignore: cast_nullable_to_non_nullable
           : recipientInfo as RecipientInfoResponse?,
-      orderDetails: orderDetails == const $CopyWithPlaceholder()
+      orderDetails:
+          orderDetails == const $CopyWithPlaceholder() || orderDetails == null
           ? _value.orderDetails
           // ignore: cast_nullable_to_non_nullable
-          : orderDetails as List<OrderDetailResponse>?,
+          : orderDetails as List<OrderDetailResponse>,
     );
   }
 }
@@ -222,8 +246,10 @@ extension $UserOrderResponseCopyWith on UserOrderResponse {
 UserOrderResponse _$UserOrderResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UserOrderResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code', 'orderDetails']);
   final val = UserOrderResponse(
     id: $checkedConvert('id', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
     type: $checkedConvert(
       'type',
       (v) => $enumDecodeNullable(_$OrderTypeEnumMap, v),
@@ -232,6 +258,7 @@ UserOrderResponse _$UserOrderResponseFromJson(
       'status',
       (v) => $enumDecodeNullable(_$OrderStatusEnumMap, v),
     ),
+    isReturnable: $checkedConvert('isReturnable', (v) => v as bool?),
     paymentStatus: $checkedConvert(
       'paymentStatus',
       (v) => $enumDecodeNullable(_$PaymentStatusEnumMap, v),
@@ -274,8 +301,8 @@ UserOrderResponse _$UserOrderResponseFromJson(
     ),
     orderDetails: $checkedConvert(
       'orderDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => OrderDetailResponse.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => OrderDetailResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
   );
@@ -285,8 +312,10 @@ UserOrderResponse _$UserOrderResponseFromJson(
 Map<String, dynamic> _$UserOrderResponseToJson(UserOrderResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
+      'code': instance.code,
       'type': ?_$OrderTypeEnumMap[instance.type],
       'status': ?_$OrderStatusEnumMap[instance.status],
+      'isReturnable': ?instance.isReturnable,
       'paymentStatus': ?_$PaymentStatusEnumMap[instance.paymentStatus],
       'totalAmount': ?instance.totalAmount,
       'voucherCode': ?instance.voucherCode,
@@ -299,7 +328,7 @@ Map<String, dynamic> _$UserOrderResponseToJson(UserOrderResponse instance) =>
           .toList(),
       'shippingInfo': ?instance.shippingInfo?.toJson(),
       'recipientInfo': ?instance.recipientInfo?.toJson(),
-      'orderDetails': ?instance.orderDetails?.map((e) => e.toJson()).toList(),
+      'orderDetails': instance.orderDetails.map((e) => e.toJson()).toList(),
     };
 
 const _$OrderTypeEnumMap = {
@@ -314,11 +343,13 @@ const _$OrderStatusEnumMap = {
   OrderStatus.delivered: 'Delivered',
   OrderStatus.returning: 'Returning',
   OrderStatus.cancelled: 'Cancelled',
+  OrderStatus.partialReturned: 'Partial_Returned',
   OrderStatus.returned: 'Returned',
 };
 
 const _$PaymentStatusEnumMap = {
   PaymentStatus.unpaid: 'Unpaid',
   PaymentStatus.paid: 'Paid',
+  PaymentStatus.partialRefunded: 'Partial_Refunded',
   PaymentStatus.refunded: 'Refunded',
 };

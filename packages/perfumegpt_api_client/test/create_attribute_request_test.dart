@@ -8,6 +8,11 @@ void main() {
   // TODO add properties to the entity
 
   group(CreateAttributeRequest, () {
+    // String internalCode
+    test('to test the property `internalCode`', () async {
+      // TODO
+    });
+
     // String name
     test('to test the property `name`', () async {
       // TODO

@@ -10,16 +10,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **districtID** | **int** |  | [optional] 
 **provinceID** | **int** |  | [optional] 
-**districtName** | **String** |  | [optional] 
+**districtName** | **String** |  | 
 **code** | **int** |  | [optional] 
 **type** | **int** |  | [optional] 
 **supportType** | **int** |  | [optional] 
-**nameExtension** | **List&lt;String&gt;** |  | [optional] 
+**nameExtension** | **List&lt;String&gt;** |  | 
 **isEnable** | **int** |  | [optional] 
 **canUpdateCOD** | **bool** |  | [optional] 
 **status** | **int** |  | [optional] 
 **createdDate** | **String** |  | [optional] 
-**updatedDate** | **String** |  | [optional] 
+**updatedDate** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

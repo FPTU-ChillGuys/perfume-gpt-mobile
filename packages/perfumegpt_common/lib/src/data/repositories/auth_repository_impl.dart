@@ -36,6 +36,7 @@ class AuthRepositoryImpl implements AuthRepository {
         password: password,
         fullName: name,
         phoneNumber: '',
+        clientUri: '', // Required by the new API
       ),
     );
   }
@@ -63,7 +64,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (userResponse != null) {
         _currentUser = User(
           id: userResponse.id ?? '',
-          email: userResponse.email ?? '',
+          email: userResponse.email,
           name: userResponse.fullName,
           avatarUrl: userResponse.profilePictureUrl,
         );

@@ -1,10 +1,11 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VariantDailySaleFigure
 void main() {
-  final instance = VariantDailySaleFigureBuilder();
-  // TODO add properties to the builder and call build()
+  final VariantDailySaleFigure? instance = /* VariantDailySaleFigure(...) */
+      null;
+  // TODO add properties to the entity
 
   group(VariantDailySaleFigure, () {
     // String variantId
@@ -17,7 +18,7 @@ void main() {
       // TODO
     });
 
-    // Date date
+    // DateTime date
     test('to test the property `date`', () async {
       // TODO
     });
@@ -26,6 +27,5 @@ void main() {
     test('to test the property `quantitySold`', () async {
       // TODO
     });
-
   });
 }

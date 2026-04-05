@@ -11,7 +11,7 @@ abstract class _$StockAdjustmentResponseCWProxy {
 
   StockAdjustmentResponse createdById(String? createdById);
 
-  StockAdjustmentResponse createdByName(String? createdByName);
+  StockAdjustmentResponse createdByName(String createdByName);
 
   StockAdjustmentResponse verifiedById(String? verifiedById);
 
@@ -26,7 +26,7 @@ abstract class _$StockAdjustmentResponseCWProxy {
   StockAdjustmentResponse status(StockAdjustmentStatus? status);
 
   StockAdjustmentResponse adjustmentDetails(
-    List<StockAdjustmentDetailResponse>? adjustmentDetails,
+    List<StockAdjustmentDetailResponse> adjustmentDetails,
   );
 
   StockAdjustmentResponse createdAt(DateTime? createdAt);
@@ -43,14 +43,14 @@ abstract class _$StockAdjustmentResponseCWProxy {
   StockAdjustmentResponse call({
     String? id,
     String? createdById,
-    String? createdByName,
+    String createdByName,
     String? verifiedById,
     String? verifiedByName,
     DateTime? adjustmentDate,
     StockAdjustmentReason? reason,
     String? note,
     StockAdjustmentStatus? status,
-    List<StockAdjustmentDetailResponse>? adjustmentDetails,
+    List<StockAdjustmentDetailResponse> adjustmentDetails,
     DateTime? createdAt,
     DateTime? updatedAt,
   });
@@ -72,7 +72,7 @@ class _$StockAdjustmentResponseCWProxyImpl
       call(createdById: createdById);
 
   @override
-  StockAdjustmentResponse createdByName(String? createdByName) =>
+  StockAdjustmentResponse createdByName(String createdByName) =>
       call(createdByName: createdByName);
 
   @override
@@ -100,7 +100,7 @@ class _$StockAdjustmentResponseCWProxyImpl
 
   @override
   StockAdjustmentResponse adjustmentDetails(
-    List<StockAdjustmentDetailResponse>? adjustmentDetails,
+    List<StockAdjustmentDetailResponse> adjustmentDetails,
   ) => call(adjustmentDetails: adjustmentDetails);
 
   @override
@@ -142,10 +142,11 @@ class _$StockAdjustmentResponseCWProxyImpl
           ? _value.createdById
           // ignore: cast_nullable_to_non_nullable
           : createdById as String?,
-      createdByName: createdByName == const $CopyWithPlaceholder()
+      createdByName:
+          createdByName == const $CopyWithPlaceholder() || createdByName == null
           ? _value.createdByName
           // ignore: cast_nullable_to_non_nullable
-          : createdByName as String?,
+          : createdByName as String,
       verifiedById: verifiedById == const $CopyWithPlaceholder()
           ? _value.verifiedById
           // ignore: cast_nullable_to_non_nullable
@@ -170,10 +171,12 @@ class _$StockAdjustmentResponseCWProxyImpl
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as StockAdjustmentStatus?,
-      adjustmentDetails: adjustmentDetails == const $CopyWithPlaceholder()
+      adjustmentDetails:
+          adjustmentDetails == const $CopyWithPlaceholder() ||
+              adjustmentDetails == null
           ? _value.adjustmentDetails
           // ignore: cast_nullable_to_non_nullable
-          : adjustmentDetails as List<StockAdjustmentDetailResponse>?,
+          : adjustmentDetails as List<StockAdjustmentDetailResponse>,
       createdAt: createdAt == const $CopyWithPlaceholder()
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
@@ -201,10 +204,11 @@ extension $StockAdjustmentResponseCopyWith on StockAdjustmentResponse {
 StockAdjustmentResponse _$StockAdjustmentResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('StockAdjustmentResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['createdByName', 'adjustmentDetails']);
   final val = StockAdjustmentResponse(
     id: $checkedConvert('id', (v) => v as String?),
     createdById: $checkedConvert('createdById', (v) => v as String?),
-    createdByName: $checkedConvert('createdByName', (v) => v as String?),
+    createdByName: $checkedConvert('createdByName', (v) => v as String),
     verifiedById: $checkedConvert('verifiedById', (v) => v as String?),
     verifiedByName: $checkedConvert('verifiedByName', (v) => v as String?),
     adjustmentDate: $checkedConvert(
@@ -222,8 +226,8 @@ StockAdjustmentResponse _$StockAdjustmentResponseFromJson(
     ),
     adjustmentDetails: $checkedConvert(
       'adjustmentDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => StockAdjustmentDetailResponse.fromJson(
               e as Map<String, dynamic>,
             ),
@@ -247,15 +251,15 @@ Map<String, dynamic> _$StockAdjustmentResponseToJson(
 ) => <String, dynamic>{
   'id': ?instance.id,
   'createdById': ?instance.createdById,
-  'createdByName': ?instance.createdByName,
+  'createdByName': instance.createdByName,
   'verifiedById': ?instance.verifiedById,
   'verifiedByName': ?instance.verifiedByName,
   'adjustmentDate': ?instance.adjustmentDate?.toIso8601String(),
   'reason': ?_$StockAdjustmentReasonEnumMap[instance.reason],
   'note': ?instance.note,
   'status': ?_$StockAdjustmentStatusEnumMap[instance.status],
-  'adjustmentDetails': ?instance.adjustmentDetails
-      ?.map((e) => e.toJson())
+  'adjustmentDetails': instance.adjustmentDetails
+      .map((e) => e.toJson())
       .toList(),
   'createdAt': ?instance.createdAt?.toIso8601String(),
   'updatedAt': ?instance.updatedAt?.toIso8601String(),

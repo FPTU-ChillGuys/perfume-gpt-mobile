@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_olfactory_family_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,50 +17,26 @@ part 'product_olfactory_family_response.g.dart';
 )
 class ProductOlfactoryFamilyResponse {
   /// Returns a new [ProductOlfactoryFamilyResponse] instance.
-  ProductOlfactoryFamilyResponse({
+  ProductOlfactoryFamilyResponse({this.olfactoryFamilyId, required this.name});
 
-     this.olfactoryFamilyId,
-
-     this.name,
-  });
-
-  @JsonKey(
-    
-    name: r'olfactoryFamilyId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'olfactoryFamilyId', required: false, includeIfNull: false)
   final int? olfactoryFamilyId;
 
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
+  final String name;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductOlfactoryFamilyResponse &&
+          other.olfactoryFamilyId == olfactoryFamilyId &&
+          other.name == name;
 
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
+  @override
+  int get hashCode => olfactoryFamilyId.hashCode + name.hashCode;
 
-
-  final String? name;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductOlfactoryFamilyResponse &&
-      other.olfactoryFamilyId == olfactoryFamilyId &&
-      other.name == name;
-
-    @override
-    int get hashCode =>
-        olfactoryFamilyId.hashCode +
-        name.hashCode;
-
-  factory ProductOlfactoryFamilyResponse.fromJson(Map<String, dynamic> json) => _$ProductOlfactoryFamilyResponseFromJson(json);
+  factory ProductOlfactoryFamilyResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductOlfactoryFamilyResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductOlfactoryFamilyResponseToJson(this);
 
@@ -69,6 +44,4 @@ class ProductOlfactoryFamilyResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

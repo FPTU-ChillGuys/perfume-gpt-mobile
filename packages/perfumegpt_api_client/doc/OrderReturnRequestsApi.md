@@ -9,15 +9,72 @@ All URIs are relative to *https://localhost:7011*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**apiOrderreturnrequestsGet**](OrderReturnRequestsApi.md#apiorderreturnrequestsget) | **GET** /api/orderreturnrequests | 
 [**apiOrderreturnrequestsIdCompleteInspectionPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidcompleteinspectionpost) | **POST** /api/orderreturnrequests/{id}/complete-inspection | 
 [**apiOrderreturnrequestsIdFailInspectionPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidfailinspectionpost) | **POST** /api/orderreturnrequests/{id}/fail-inspection | 
-[**apiOrderreturnrequestsIdImagesGet**](OrderReturnRequestsApi.md#apiorderreturnrequestsidimagesget) | **GET** /api/orderreturnrequests/{id}/images | 
+[**apiOrderreturnrequestsIdGet**](OrderReturnRequestsApi.md#apiorderreturnrequestsidget) | **GET** /api/orderreturnrequests/{id} | 
 [**apiOrderreturnrequestsIdRefundPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidrefundpost) | **POST** /api/orderreturnrequests/{id}/refund | 
 [**apiOrderreturnrequestsIdReviewPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidreviewpost) | **POST** /api/orderreturnrequests/{id}/review | 
 [**apiOrderreturnrequestsIdStartInspectionPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidstartinspectionpost) | **POST** /api/orderreturnrequests/{id}/start-inspection | 
-[**apiOrderreturnrequestsImagesTemporaryPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsimagestemporarypost) | **POST** /api/orderreturnrequests/images/temporary | 
+[**apiOrderreturnrequestsMyRequestsGet**](OrderReturnRequestsApi.md#apiorderreturnrequestsmyrequestsget) | **GET** /api/orderreturnrequests/my-requests | 
 [**apiOrderreturnrequestsPost**](OrderReturnRequestsApi.md#apiorderreturnrequestspost) | **POST** /api/orderreturnrequests | 
+[**apiOrderreturnrequestsVideosTemporaryPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsvideostemporarypost) | **POST** /api/orderreturnrequests/videos/temporary | 
 
+
+# **apiOrderreturnrequestsGet**
+> BaseResponseOfPagedResultOfOrderReturnRequestResponse apiOrderreturnrequestsGet(customerId, status, isRefunded, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrderReturnRequestsApi();
+final String customerId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final ReturnRequestStatus status = ; // ReturnRequestStatus | 
+final bool isRefunded = true; // bool | 
+final int pageNumber = 56; // int | 
+final int pageSize = 56; // int | 
+final String sortBy = sortBy_example; // String | 
+final String sortOrder = sortOrder_example; // String | 
+final bool isDescending = true; // bool | 
+
+try {
+    final response = api.apiOrderreturnrequestsGet(customerId, status, isRefunded, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customerId** | **String**|  | [optional] 
+ **status** | [**ReturnRequestStatus**](.md)|  | [optional] 
+ **isRefunded** | **bool**|  | [optional] 
+ **pageNumber** | **int**|  | [optional] 
+ **pageSize** | **int**|  | [optional] 
+ **sortBy** | **String**|  | [optional] 
+ **sortOrder** | **String**|  | [optional] 
+ **isDescending** | **bool**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfPagedResultOfOrderReturnRequestResponse**](BaseResponseOfPagedResultOfOrderReturnRequestResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiOrderreturnrequestsIdCompleteInspectionPost**
 > BaseResponseOfstring apiOrderreturnrequestsIdCompleteInspectionPost(id, recordInspectionDto)
@@ -105,8 +162,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiOrderreturnrequestsIdImagesGet**
-> BaseResponseOfListOfMediaResponse apiOrderreturnrequestsIdImagesGet(id)
+# **apiOrderreturnrequestsIdGet**
+> BaseResponseOfOrderReturnRequestResponse apiOrderreturnrequestsIdGet(id)
 
 
 
@@ -118,10 +175,10 @@ final api = PerfumegptApiClient().getOrderReturnRequestsApi();
 final String id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 
 try {
-    final response = api.apiOrderreturnrequestsIdImagesGet(id);
+    final response = api.apiOrderreturnrequestsIdGet(id);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsIdImagesGet: $e\n');
+    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsIdGet: $e\n');
 }
 ```
 
@@ -133,7 +190,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BaseResponseOfListOfMediaResponse**](BaseResponseOfListOfMediaResponse.md)
+[**BaseResponseOfOrderReturnRequestResponse**](BaseResponseOfOrderReturnRequestResponse.md)
 
 ### Authorization
 
@@ -147,7 +204,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiOrderreturnrequestsIdRefundPost**
-> BaseResponseOfstring apiOrderreturnrequestsIdRefundPost(id)
+> BaseResponseOfstring apiOrderreturnrequestsIdRefundPost(id, processRefundRequest)
 
 
 
@@ -157,9 +214,10 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrderReturnRequestsApi();
 final String id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final ProcessRefundRequest processRefundRequest = ; // ProcessRefundRequest | 
 
 try {
-    final response = api.apiOrderreturnrequestsIdRefundPost(id);
+    final response = api.apiOrderreturnrequestsIdRefundPost(id, processRefundRequest);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsIdRefundPost: $e\n');
@@ -171,6 +229,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  | 
+ **processRefundRequest** | [**ProcessRefundRequest**](ProcessRefundRequest.md)|  | 
 
 ### Return type
 
@@ -182,7 +241,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -273,8 +332,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiOrderreturnrequestsImagesTemporaryPost**
-> BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse apiOrderreturnrequestsImagesTemporaryPost(images)
+# **apiOrderreturnrequestsMyRequestsGet**
+> BaseResponseOfPagedResultOfOrderReturnRequestResponse apiOrderreturnrequestsMyRequestsGet(status, isRefunded, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -283,13 +342,19 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrderReturnRequestsApi();
-final List<MultipartFile> images = /path/to/file.txt; // List<MultipartFile> | 
+final ReturnRequestStatus status = ; // ReturnRequestStatus | 
+final bool isRefunded = true; // bool | 
+final int pageNumber = 56; // int | 
+final int pageSize = 56; // int | 
+final String sortBy = sortBy_example; // String | 
+final String sortOrder = sortOrder_example; // String | 
+final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiOrderreturnrequestsImagesTemporaryPost(images);
+    final response = api.apiOrderreturnrequestsMyRequestsGet(status, isRefunded, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsImagesTemporaryPost: $e\n');
+    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsMyRequestsGet: $e\n');
 }
 ```
 
@@ -297,11 +362,17 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **images** | [**List&lt;MultipartFile&gt;**](MultipartFile.md)|  | [optional] 
+ **status** | [**ReturnRequestStatus**](.md)|  | [optional] 
+ **isRefunded** | **bool**|  | [optional] 
+ **pageNumber** | **int**|  | [optional] 
+ **pageSize** | **int**|  | [optional] 
+ **sortBy** | **String**|  | [optional] 
+ **sortOrder** | **String**|  | [optional] 
+ **isDescending** | **bool**|  | [optional] 
 
 ### Return type
 
-[**BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse**](BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.md)
+[**BaseResponseOfPagedResultOfOrderReturnRequestResponse**](BaseResponseOfPagedResultOfOrderReturnRequestResponse.md)
 
 ### Authorization
 
@@ -309,7 +380,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -351,6 +422,49 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiOrderreturnrequestsVideosTemporaryPost**
+> BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse apiOrderreturnrequestsVideosTemporaryPost(videos, images)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrderReturnRequestsApi();
+final List<MultipartFile> videos = /path/to/file.txt; // List<MultipartFile> | 
+final List<MultipartFile> images = /path/to/file.txt; // List<MultipartFile> | 
+
+try {
+    final response = api.apiOrderreturnrequestsVideosTemporaryPost(videos, images);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsVideosTemporaryPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **videos** | [**List&lt;MultipartFile&gt;**](MultipartFile.md)|  | [optional] 
+ **images** | [**List&lt;MultipartFile&gt;**](MultipartFile.md)|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse**](BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

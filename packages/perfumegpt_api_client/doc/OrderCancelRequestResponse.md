@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **requestedById** | **String** |  | [optional] 
 **requestedByEmail** | **String** |  | [optional] 
 **processedById** | **String** |  | [optional] 
-**reason** | **String** |  | [optional] 
+**reason** | **String** |  | 
 **staffNote** | **String** |  | [optional] 
 **status** | [**CancelRequestStatus**](CancelRequestStatus.md) |  | [optional] 
 **isRefundRequired** | **bool** |  | [optional] 

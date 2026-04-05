@@ -13,15 +13,15 @@ abstract class _$VariantPagedItemCWProxy {
 
   VariantPagedItem primaryImageUrl(String? primaryImageUrl);
 
-  VariantPagedItem barcode(String? barcode);
+  VariantPagedItem barcode(String barcode);
 
-  VariantPagedItem sku(String? sku);
+  VariantPagedItem sku(String sku);
 
   VariantPagedItem volumeMl(int? volumeMl);
 
   VariantPagedItem concentrationId(int? concentrationId);
 
-  VariantPagedItem concentrationName(String? concentrationName);
+  VariantPagedItem concentrationName(String concentrationName);
 
   VariantPagedItem type(VariantType? type);
 
@@ -46,11 +46,11 @@ abstract class _$VariantPagedItemCWProxy {
     String? id,
     String? productId,
     String? primaryImageUrl,
-    String? barcode,
-    String? sku,
+    String barcode,
+    String sku,
     int? volumeMl,
     int? concentrationId,
-    String? concentrationName,
+    String concentrationName,
     VariantType? type,
     num? basePrice,
     num? retailPrice,
@@ -78,10 +78,10 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
       call(primaryImageUrl: primaryImageUrl);
 
   @override
-  VariantPagedItem barcode(String? barcode) => call(barcode: barcode);
+  VariantPagedItem barcode(String barcode) => call(barcode: barcode);
 
   @override
-  VariantPagedItem sku(String? sku) => call(sku: sku);
+  VariantPagedItem sku(String sku) => call(sku: sku);
 
   @override
   VariantPagedItem volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
@@ -91,7 +91,7 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
       call(concentrationId: concentrationId);
 
   @override
-  VariantPagedItem concentrationName(String? concentrationName) =>
+  VariantPagedItem concentrationName(String concentrationName) =>
       call(concentrationName: concentrationName);
 
   @override
@@ -152,14 +152,14 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
           ? _value.primaryImageUrl
           // ignore: cast_nullable_to_non_nullable
           : primaryImageUrl as String?,
-      barcode: barcode == const $CopyWithPlaceholder()
+      barcode: barcode == const $CopyWithPlaceholder() || barcode == null
           ? _value.barcode
           // ignore: cast_nullable_to_non_nullable
-          : barcode as String?,
-      sku: sku == const $CopyWithPlaceholder()
+          : barcode as String,
+      sku: sku == const $CopyWithPlaceholder() || sku == null
           ? _value.sku
           // ignore: cast_nullable_to_non_nullable
-          : sku as String?,
+          : sku as String,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
@@ -168,10 +168,12 @@ class _$VariantPagedItemCWProxyImpl implements _$VariantPagedItemCWProxy {
           ? _value.concentrationId
           // ignore: cast_nullable_to_non_nullable
           : concentrationId as int?,
-      concentrationName: concentrationName == const $CopyWithPlaceholder()
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
           ? _value.concentrationName
           // ignore: cast_nullable_to_non_nullable
-          : concentrationName as String?,
+          : concentrationName as String,
       type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
@@ -214,21 +216,19 @@ extension $VariantPagedItemCopyWith on VariantPagedItem {
 VariantPagedItem _$VariantPagedItemFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('VariantPagedItem', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['barcode', 'sku', 'concentrationName']);
   final val = VariantPagedItem(
     id: $checkedConvert('id', (v) => v as String?),
     productId: $checkedConvert('productId', (v) => v as String?),
     primaryImageUrl: $checkedConvert('primaryImageUrl', (v) => v as String?),
-    barcode: $checkedConvert('barcode', (v) => v as String?),
-    sku: $checkedConvert('sku', (v) => v as String?),
+    barcode: $checkedConvert('barcode', (v) => v as String),
+    sku: $checkedConvert('sku', (v) => v as String),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
     concentrationId: $checkedConvert(
       'concentrationId',
       (v) => (v as num?)?.toInt(),
     ),
-    concentrationName: $checkedConvert(
-      'concentrationName',
-      (v) => v as String?,
-    ),
+    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
     type: $checkedConvert(
       'type',
       (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
@@ -260,11 +260,11 @@ Map<String, dynamic> _$VariantPagedItemToJson(VariantPagedItem instance) =>
       'id': ?instance.id,
       'productId': ?instance.productId,
       'primaryImageUrl': ?instance.primaryImageUrl,
-      'barcode': ?instance.barcode,
-      'sku': ?instance.sku,
+      'barcode': instance.barcode,
+      'sku': instance.sku,
       'volumeMl': ?instance.volumeMl,
       'concentrationId': ?instance.concentrationId,
-      'concentrationName': ?instance.concentrationName,
+      'concentrationName': instance.concentrationName,
       'type': ?_$VariantTypeEnumMap[instance.type],
       'basePrice': ?instance.basePrice,
       'retailPrice': ?instance.retailPrice,

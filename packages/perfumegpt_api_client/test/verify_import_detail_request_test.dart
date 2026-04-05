@@ -13,8 +13,8 @@ void main() {
       // TODO
     });
 
-    // int rejectQuantity
-    test('to test the property `rejectQuantity`', () async {
+    // int rejectedQuantity
+    test('to test the property `rejectedQuantity`', () async {
       // TODO
     });
 

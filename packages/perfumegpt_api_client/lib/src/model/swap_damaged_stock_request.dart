@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'swap_damaged_stock_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,49 +18,31 @@ part 'swap_damaged_stock_request.g.dart';
 class SwapDamagedStockRequest {
   /// Returns a new [SwapDamagedStockRequest] instance.
   SwapDamagedStockRequest({
+    required this.damagedReservationId,
 
-    required  this.damagedReservationId,
-
-     this.damageNote,
+    this.damageNote,
   });
 
-  @JsonKey(
-    
-    name: r'damagedReservationId',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'damagedReservationId', required: true, includeIfNull: false)
   final String damagedReservationId;
 
-
-
-  @JsonKey(
-    
-    name: r'damageNote',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'damageNote', required: false, includeIfNull: false)
   final String? damageNote;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SwapDamagedStockRequest &&
+          other.damagedReservationId == damagedReservationId &&
+          other.damageNote == damageNote;
 
+  @override
+  int get hashCode =>
+      damagedReservationId.hashCode +
+      (damageNote == null ? 0 : damageNote.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is SwapDamagedStockRequest &&
-      other.damagedReservationId == damagedReservationId &&
-      other.damageNote == damageNote;
-
-    @override
-    int get hashCode =>
-        damagedReservationId.hashCode +
-        (damageNote == null ? 0 : damageNote.hashCode);
-
-  factory SwapDamagedStockRequest.fromJson(Map<String, dynamic> json) => _$SwapDamagedStockRequestFromJson(json);
+  factory SwapDamagedStockRequest.fromJson(Map<String, dynamic> json) =>
+      _$SwapDamagedStockRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$SwapDamagedStockRequestToJson(this);
 
@@ -69,6 +50,4 @@ class SwapDamagedStockRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

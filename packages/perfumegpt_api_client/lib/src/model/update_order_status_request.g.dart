@@ -99,5 +99,6 @@ const _$OrderStatusEnumMap = {
   OrderStatus.delivered: 'Delivered',
   OrderStatus.returning: 'Returning',
   OrderStatus.cancelled: 'Cancelled',
+  OrderStatus.partialReturned: 'Partial_Returned',
   OrderStatus.returned: 'Returned',
 };

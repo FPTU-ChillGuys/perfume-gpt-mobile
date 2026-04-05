@@ -12,13 +12,13 @@ void main() {
       // TODO
     });
 
-    // String fullName
-    test('to test the property `fullName`', () async {
+    // String recipientName
+    test('to test the property `recipientName`', () async {
       // TODO
     });
 
-    // String phone
-    test('to test the property `phone`', () async {
+    // String recipientPhoneNumber
+    test('to test the property `recipientPhoneNumber`', () async {
       // TODO
     });
 

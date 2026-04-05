@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_scent_note_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,66 +18,30 @@ part 'product_scent_note_response.g.dart';
 )
 class ProductScentNoteResponse {
   /// Returns a new [ProductScentNoteResponse] instance.
-  ProductScentNoteResponse({
+  ProductScentNoteResponse({this.noteId, required this.name, this.type});
 
-     this.noteId,
-
-     this.name,
-
-     this.type,
-  });
-
-  @JsonKey(
-    
-    name: r'noteId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'noteId', required: false, includeIfNull: false)
   final int? noteId;
 
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
+  final String name;
 
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? name;
-
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'type', required: false, includeIfNull: false)
   final NoteType? type;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductScentNoteResponse &&
+          other.noteId == noteId &&
+          other.name == name &&
+          other.type == type;
 
+  @override
+  int get hashCode => noteId.hashCode + name.hashCode + type.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductScentNoteResponse &&
-      other.noteId == noteId &&
-      other.name == name &&
-      other.type == type;
-
-    @override
-    int get hashCode =>
-        noteId.hashCode +
-        name.hashCode +
-        type.hashCode;
-
-  factory ProductScentNoteResponse.fromJson(Map<String, dynamic> json) => _$ProductScentNoteResponseFromJson(json);
+  factory ProductScentNoteResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductScentNoteResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductScentNoteResponseToJson(this);
 
@@ -86,6 +49,4 @@ class ProductScentNoteResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

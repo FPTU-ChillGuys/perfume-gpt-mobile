@@ -27,6 +27,11 @@ void main() {
       // TODO
     });
 
+    // String variantImageUrl
+    test('to test the property `variantImageUrl`', () async {
+      // TODO
+    });
+
     // int volumeMl
     test('to test the property `volumeMl`', () async {
       // TODO
@@ -52,8 +57,8 @@ void main() {
       // TODO
     });
 
-    // bool isLowStock
-    test('to test the property `isLowStock`', () async {
+    // StockStatus status
+    test('to test the property `status`', () async {
       // TODO
     });
   });

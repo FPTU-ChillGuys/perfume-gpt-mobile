@@ -8,17 +8,17 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**productCode** | **String** |  | [optional] 
-**brandName** | **String** |  | [optional] 
-**origin** | **String** |  | [optional] 
+**productCode** | **String** |  | 
+**brandName** | **String** |  | 
+**origin** | **String** |  | 
 **releaseYear** | **int** |  | [optional] 
 **gender** | [**Gender**](Gender.md) |  | [optional] 
-**scentGroup** | **String** |  | [optional] 
-**style** | **String** |  | [optional] 
-**topNotes** | **String** |  | [optional] 
-**heartNotes** | **String** |  | [optional] 
-**baseNotes** | **String** |  | [optional] 
-**description** | **String** |  | [optional] 
+**scentGroup** | **String** |  | 
+**style** | **String** |  | 
+**topNotes** | **String** |  | 
+**heartNotes** | **String** |  | 
+**baseNotes** | **String** |  | 
+**description** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

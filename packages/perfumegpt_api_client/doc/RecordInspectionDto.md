@@ -9,7 +9,8 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **approvedRefundAmount** | **num** |  | [optional] 
-**inspectionResults** | [**List&lt;RecordInspectionDetailDto&gt;**](RecordInspectionDetailDto.md) |  | 
+**isRestocked** | **bool** |  | [optional] 
+**inspectionNote** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

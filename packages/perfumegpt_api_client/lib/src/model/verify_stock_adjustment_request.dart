@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'verify_stock_adjustment_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,34 +18,22 @@ part 'verify_stock_adjustment_request.g.dart';
 )
 class VerifyStockAdjustmentRequest {
   /// Returns a new [VerifyStockAdjustmentRequest] instance.
-  VerifyStockAdjustmentRequest({
+  VerifyStockAdjustmentRequest({required this.adjustmentDetails});
 
-    required  this.adjustmentDetails,
-  });
-
-  @JsonKey(
-    
-    name: r'adjustmentDetails',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'adjustmentDetails', required: true, includeIfNull: false)
   final List<VerifyStockAdjustmentDetailRequest> adjustmentDetails;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VerifyStockAdjustmentRequest &&
+          other.adjustmentDetails == adjustmentDetails;
 
+  @override
+  int get hashCode => adjustmentDetails.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is VerifyStockAdjustmentRequest &&
-      other.adjustmentDetails == adjustmentDetails;
-
-    @override
-    int get hashCode =>
-        adjustmentDetails.hashCode;
-
-  factory VerifyStockAdjustmentRequest.fromJson(Map<String, dynamic> json) => _$VerifyStockAdjustmentRequestFromJson(json);
+  factory VerifyStockAdjustmentRequest.fromJson(Map<String, dynamic> json) =>
+      _$VerifyStockAdjustmentRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$VerifyStockAdjustmentRequestToJson(this);
 
@@ -54,6 +41,4 @@ class VerifyStockAdjustmentRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

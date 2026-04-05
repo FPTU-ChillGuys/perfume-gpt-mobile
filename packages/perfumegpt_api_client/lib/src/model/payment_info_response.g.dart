@@ -9,6 +9,8 @@ part of 'payment_info_response.dart';
 abstract class _$PaymentInfoResponseCWProxy {
   PaymentInfoResponse id(String? id);
 
+  PaymentInfoResponse transactionType(TransactionType? transactionType);
+
   PaymentInfoResponse status(TransactionStatus? status);
 
   PaymentInfoResponse paymentMethod(PaymentMethod? paymentMethod);
@@ -26,6 +28,7 @@ abstract class _$PaymentInfoResponseCWProxy {
   /// ```
   PaymentInfoResponse call({
     String? id,
+    TransactionType? transactionType,
     TransactionStatus? status,
     PaymentMethod? paymentMethod,
     String? failureReason,
@@ -42,6 +45,10 @@ class _$PaymentInfoResponseCWProxyImpl implements _$PaymentInfoResponseCWProxy {
 
   @override
   PaymentInfoResponse id(String? id) => call(id: id);
+
+  @override
+  PaymentInfoResponse transactionType(TransactionType? transactionType) =>
+      call(transactionType: transactionType);
 
   @override
   PaymentInfoResponse status(TransactionStatus? status) => call(status: status);
@@ -68,6 +75,7 @@ class _$PaymentInfoResponseCWProxyImpl implements _$PaymentInfoResponseCWProxy {
   /// ```
   PaymentInfoResponse call({
     Object? id = const $CopyWithPlaceholder(),
+    Object? transactionType = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
     Object? paymentMethod = const $CopyWithPlaceholder(),
     Object? failureReason = const $CopyWithPlaceholder(),
@@ -78,6 +86,10 @@ class _$PaymentInfoResponseCWProxyImpl implements _$PaymentInfoResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
+      transactionType: transactionType == const $CopyWithPlaceholder()
+          ? _value.transactionType
+          // ignore: cast_nullable_to_non_nullable
+          : transactionType as TransactionType?,
       status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
@@ -114,6 +126,10 @@ PaymentInfoResponse _$PaymentInfoResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('PaymentInfoResponse', json, ($checkedConvert) {
       final val = PaymentInfoResponse(
         id: $checkedConvert('id', (v) => v as String?),
+        transactionType: $checkedConvert(
+          'transactionType',
+          (v) => $enumDecodeNullable(_$TransactionTypeEnumMap, v),
+        ),
         status: $checkedConvert(
           'status',
           (v) => $enumDecodeNullable(_$TransactionStatusEnumMap, v),
@@ -132,10 +148,16 @@ Map<String, dynamic> _$PaymentInfoResponseToJson(
   PaymentInfoResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
+  'transactionType': ?_$TransactionTypeEnumMap[instance.transactionType],
   'status': ?_$TransactionStatusEnumMap[instance.status],
   'paymentMethod': ?_$PaymentMethodEnumMap[instance.paymentMethod],
   'failureReason': ?instance.failureReason,
   'totalAmount': ?instance.totalAmount,
+};
+
+const _$TransactionTypeEnumMap = {
+  TransactionType.payment: 'Payment',
+  TransactionType.refund: 'Refund',
 };
 
 const _$TransactionStatusEnumMap = {
@@ -143,7 +165,6 @@ const _$TransactionStatusEnumMap = {
   TransactionStatus.success: 'Success',
   TransactionStatus.failed: 'Failed',
   TransactionStatus.cancelled: 'Cancelled',
-  TransactionStatus.refunded: 'Refunded',
 };
 
 const _$PaymentMethodEnumMap = {

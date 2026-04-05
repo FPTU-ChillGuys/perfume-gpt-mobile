@@ -17,7 +17,7 @@ abstract class _$OrderCancelRequestResponseCWProxy {
 
   OrderCancelRequestResponse processedById(String? processedById);
 
-  OrderCancelRequestResponse reason(String? reason);
+  OrderCancelRequestResponse reason(String reason);
 
   OrderCancelRequestResponse staffNote(String? staffNote);
 
@@ -48,7 +48,7 @@ abstract class _$OrderCancelRequestResponseCWProxy {
     String? requestedById,
     String? requestedByEmail,
     String? processedById,
-    String? reason,
+    String reason,
     String? staffNote,
     CancelRequestStatus? status,
     bool? isRefundRequired,
@@ -87,7 +87,7 @@ class _$OrderCancelRequestResponseCWProxyImpl
       call(processedById: processedById);
 
   @override
-  OrderCancelRequestResponse reason(String? reason) => call(reason: reason);
+  OrderCancelRequestResponse reason(String reason) => call(reason: reason);
 
   @override
   OrderCancelRequestResponse staffNote(String? staffNote) =>
@@ -166,10 +166,10 @@ class _$OrderCancelRequestResponseCWProxyImpl
           ? _value.processedById
           // ignore: cast_nullable_to_non_nullable
           : processedById as String?,
-      reason: reason == const $CopyWithPlaceholder()
+      reason: reason == const $CopyWithPlaceholder() || reason == null
           ? _value.reason
           // ignore: cast_nullable_to_non_nullable
-          : reason as String?,
+          : reason as String,
       staffNote: staffNote == const $CopyWithPlaceholder()
           ? _value.staffNote
           // ignore: cast_nullable_to_non_nullable
@@ -221,13 +221,14 @@ extension $OrderCancelRequestResponseCopyWith on OrderCancelRequestResponse {
 OrderCancelRequestResponse _$OrderCancelRequestResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('OrderCancelRequestResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['reason']);
   final val = OrderCancelRequestResponse(
     id: $checkedConvert('id', (v) => v as String?),
     orderId: $checkedConvert('orderId', (v) => v as String?),
     requestedById: $checkedConvert('requestedById', (v) => v as String?),
     requestedByEmail: $checkedConvert('requestedByEmail', (v) => v as String?),
     processedById: $checkedConvert('processedById', (v) => v as String?),
-    reason: $checkedConvert('reason', (v) => v as String?),
+    reason: $checkedConvert('reason', (v) => v as String),
     staffNote: $checkedConvert('staffNote', (v) => v as String?),
     status: $checkedConvert(
       'status',
@@ -257,7 +258,7 @@ Map<String, dynamic> _$OrderCancelRequestResponseToJson(
   'requestedById': ?instance.requestedById,
   'requestedByEmail': ?instance.requestedByEmail,
   'processedById': ?instance.processedById,
-  'reason': ?instance.reason,
+  'reason': instance.reason,
   'staffNote': ?instance.staffNote,
   'status': ?_$CancelRequestStatusEnumMap[instance.status],
   'isRefundRequired': ?instance.isRefundRequired,

@@ -12,8 +12,8 @@ void main() {
       // TODO
     });
 
-    // String orderCode
-    test('to test the property `orderCode`', () async {
+    // String code
+    test('to test the property `code`', () async {
       // TODO
     });
 

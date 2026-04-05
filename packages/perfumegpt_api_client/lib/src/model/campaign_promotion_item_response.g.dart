@@ -15,7 +15,7 @@ abstract class _$CampaignPromotionItemResponseCWProxy {
 
   CampaignPromotionItemResponse batchId(String? batchId);
 
-  CampaignPromotionItemResponse name(String? name);
+  CampaignPromotionItemResponse name(String name);
 
   CampaignPromotionItemResponse itemType(PromotionType? itemType);
 
@@ -43,7 +43,7 @@ abstract class _$CampaignPromotionItemResponseCWProxy {
     String? campaignId,
     String? productVariantId,
     String? batchId,
-    String? name,
+    String name,
     PromotionType? itemType,
     DateTime? startDate,
     DateTime? endDate,
@@ -77,7 +77,7 @@ class _$CampaignPromotionItemResponseCWProxyImpl
       call(batchId: batchId);
 
   @override
-  CampaignPromotionItemResponse name(String? name) => call(name: name);
+  CampaignPromotionItemResponse name(String name) => call(name: name);
 
   @override
   CampaignPromotionItemResponse itemType(PromotionType? itemType) =>
@@ -142,10 +142,10 @@ class _$CampaignPromotionItemResponseCWProxyImpl
           ? _value.batchId
           // ignore: cast_nullable_to_non_nullable
           : batchId as String?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
       itemType: itemType == const $CopyWithPlaceholder()
           ? _value.itemType
           // ignore: cast_nullable_to_non_nullable
@@ -191,12 +191,13 @@ extension $CampaignPromotionItemResponseCopyWith
 CampaignPromotionItemResponse _$CampaignPromotionItemResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CampaignPromotionItemResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
   final val = CampaignPromotionItemResponse(
     id: $checkedConvert('id', (v) => v as String?),
     campaignId: $checkedConvert('campaignId', (v) => v as String?),
     productVariantId: $checkedConvert('productVariantId', (v) => v as String?),
     batchId: $checkedConvert('batchId', (v) => v as String?),
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
     itemType: $checkedConvert(
       'itemType',
       (v) => $enumDecodeNullable(_$PromotionTypeEnumMap, v),
@@ -226,7 +227,7 @@ Map<String, dynamic> _$CampaignPromotionItemResponseToJson(
   'campaignId': ?instance.campaignId,
   'productVariantId': ?instance.productVariantId,
   'batchId': ?instance.batchId,
-  'name': ?instance.name,
+  'name': instance.name,
   'itemType': ?_$PromotionTypeEnumMap[instance.itemType],
   'startDate': ?instance.startDate?.toIso8601String(),
   'endDate': ?instance.endDate?.toIso8601String(),

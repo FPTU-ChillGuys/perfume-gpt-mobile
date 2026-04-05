@@ -17,13 +17,12 @@ import 'package:perfumegpt_api_client/src/model/create_category_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_category_request.dart';
 
 class CategoriesApi {
-
   final Dio _dio;
 
   const CategoriesApi(this._dio);
 
   /// apiCategoriesGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -35,7 +34,7 @@ class CategoriesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfCategoryResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfCategoryResponse>> apiCategoriesGet({ 
+  Future<Response<BaseResponseOfListOfCategoryResponse>> apiCategoriesGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -46,16 +45,10 @@ class CategoriesApi {
     final _path = r'/api/categories';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -73,9 +66,13 @@ class CategoriesApi {
     BaseResponseOfListOfCategoryResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategoryResponse, BaseResponseOfListOfCategoryResponse>(rawData, 'BaseResponseOfListOfCategoryResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfCategoryResponse,
+              BaseResponseOfListOfCategoryResponse
+            >(rawData, 'BaseResponseOfListOfCategoryResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -99,10 +96,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategor
   }
 
   /// apiCategoriesIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -112,7 +109,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategor
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiCategoriesIdDelete({ 
+  Future<Response<BaseResponseOfboolean>> apiCategoriesIdDelete({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -121,19 +118,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategor
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/categories/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/categories/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -151,9 +147,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategor
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
+              rawData,
+              'BaseResponseOfboolean',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -177,10 +178,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   }
 
   /// apiCategoriesIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -190,7 +191,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfCategoryResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfCategoryResponse>> apiCategoriesIdGet({ 
+  Future<Response<BaseResponseOfCategoryResponse>> apiCategoriesIdGet({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -199,19 +200,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/categories/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/categories/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -229,9 +229,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfCategoryResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryResponse, BaseResponseOfCategoryResponse>(rawData, 'BaseResponseOfCategoryResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfCategoryResponse,
+              BaseResponseOfCategoryResponse
+            >(rawData, 'BaseResponseOfCategoryResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -255,11 +259,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryRespo
   }
 
   /// apiCategoriesIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [updateCategoryRequest] 
+  /// * [id]
+  /// * [updateCategoryRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -269,7 +273,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryRespo
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfCategoryResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfCategoryResponse>> apiCategoriesIdPut({ 
+  Future<Response<BaseResponseOfCategoryResponse>> apiCategoriesIdPut({
     required int id,
     required UpdateCategoryRequest updateCategoryRequest,
     CancelToken? cancelToken,
@@ -279,19 +283,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryRespo
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/categories/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/categories/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -302,13 +305,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryRespo
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCategoryRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateCategoryRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -327,9 +327,13 @@ _bodyData=jsonEncode(updateCategoryRequest);
     BaseResponseOfCategoryResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryResponse, BaseResponseOfCategoryResponse>(rawData, 'BaseResponseOfCategoryResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfCategoryResponse,
+              BaseResponseOfCategoryResponse
+            >(rawData, 'BaseResponseOfCategoryResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -353,7 +357,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryRespo
   }
 
   /// apiCategoriesLookupGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -365,7 +369,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryRespo
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfCategoriesLookupItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfCategoriesLookupItem>> apiCategoriesLookupGet({ 
+  Future<Response<BaseResponseOfListOfCategoriesLookupItem>>
+  apiCategoriesLookupGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -376,16 +381,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryRespo
     final _path = r'/api/categories/lookup';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -403,9 +402,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryRespo
     BaseResponseOfListOfCategoriesLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategoriesLookupItem, BaseResponseOfListOfCategoriesLookupItem>(rawData, 'BaseResponseOfListOfCategoriesLookupItem', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfCategoriesLookupItem,
+              BaseResponseOfListOfCategoriesLookupItem
+            >(
+              rawData,
+              'BaseResponseOfListOfCategoriesLookupItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -429,10 +436,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategor
   }
 
   /// apiCategoriesPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createCategoryRequest] 
+  /// * [createCategoryRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -442,7 +449,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategor
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfCategoryResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfCategoryResponse>> apiCategoriesPost({ 
+  Future<Response<BaseResponseOfCategoryResponse>> apiCategoriesPost({
     required CreateCategoryRequest createCategoryRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -454,16 +461,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategor
     final _path = r'/api/categories';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -474,13 +475,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCategor
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createCategoryRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createCategoryRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -499,9 +497,13 @@ _bodyData=jsonEncode(createCategoryRequest);
     BaseResponseOfCategoryResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryResponse, BaseResponseOfCategoryResponse>(rawData, 'BaseResponseOfCategoryResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfCategoryResponse,
+              BaseResponseOfCategoryResponse
+            >(rawData, 'BaseResponseOfCategoryResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -523,5 +525,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCategoryRespo
       extra: _response.extra,
     );
   }
-
 }

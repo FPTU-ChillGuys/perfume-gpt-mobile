@@ -9,7 +9,7 @@ part of 'media_response.dart';
 abstract class _$MediaResponseCWProxy {
   MediaResponse id(String? id);
 
-  MediaResponse url(String? url);
+  MediaResponse url(String url);
 
   MediaResponse altText(String? altText);
 
@@ -30,7 +30,7 @@ abstract class _$MediaResponseCWProxy {
   /// ```
   MediaResponse call({
     String? id,
-    String? url,
+    String url,
     String? altText,
     int? displayOrder,
     bool? isPrimary,
@@ -50,7 +50,7 @@ class _$MediaResponseCWProxyImpl implements _$MediaResponseCWProxy {
   MediaResponse id(String? id) => call(id: id);
 
   @override
-  MediaResponse url(String? url) => call(url: url);
+  MediaResponse url(String url) => call(url: url);
 
   @override
   MediaResponse altText(String? altText) => call(altText: altText);
@@ -90,10 +90,10 @@ class _$MediaResponseCWProxyImpl implements _$MediaResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      url: url == const $CopyWithPlaceholder()
+      url: url == const $CopyWithPlaceholder() || url == null
           ? _value.url
           // ignore: cast_nullable_to_non_nullable
-          : url as String?,
+          : url as String,
       altText: altText == const $CopyWithPlaceholder()
           ? _value.altText
           // ignore: cast_nullable_to_non_nullable
@@ -131,9 +131,10 @@ extension $MediaResponseCopyWith on MediaResponse {
 
 MediaResponse _$MediaResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('MediaResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['url']);
       final val = MediaResponse(
         id: $checkedConvert('id', (v) => v as String?),
-        url: $checkedConvert('url', (v) => v as String?),
+        url: $checkedConvert('url', (v) => v as String),
         altText: $checkedConvert('altText', (v) => v as String?),
         displayOrder: $checkedConvert(
           'displayOrder',
@@ -149,7 +150,7 @@ MediaResponse _$MediaResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$MediaResponseToJson(MediaResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'url': ?instance.url,
+      'url': instance.url,
       'altText': ?instance.altText,
       'displayOrder': ?instance.displayOrder,
       'isPrimary': ?instance.isPrimary,

@@ -10,12 +10,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **userId** | **String** |  | [optional] 
-**userFullName** | **String** |  | [optional] 
+**userFullName** | **String** |  | 
 **userProfilePictureUrl** | **String** |  | [optional] 
 **variantId** | **String** |  | [optional] 
-**variantName** | **String** |  | [optional] 
+**variantName** | **String** |  | 
 **rating** | **int** |  | [optional] 
-**commentPreview** | **String** |  | [optional] 
+**commentPreview** | **String** |  | 
 **imageCount** | **int** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

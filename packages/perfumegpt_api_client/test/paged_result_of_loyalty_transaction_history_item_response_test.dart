@@ -1,13 +1,14 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PagedResultOfLoyaltyTransactionHistoryItemResponse
 void main() {
-  final instance = PagedResultOfLoyaltyTransactionHistoryItemResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final PagedResultOfLoyaltyTransactionHistoryItemResponse?
+  instance = /* PagedResultOfLoyaltyTransactionHistoryItemResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(PagedResultOfLoyaltyTransactionHistoryItemResponse, () {
-    // BuiltList<LoyaltyTransactionHistoryItemResponse> items
+    // List<LoyaltyTransactionHistoryItemResponse> items
     test('to test the property `items`', () async {
       // TODO
     });
@@ -41,6 +42,5 @@ void main() {
     test('to test the property `hasNextPage`', () async {
       // TODO
     });
-
   });
 }

@@ -13,6 +13,11 @@ void main() {
       // TODO
     });
 
+    // String sku
+    test('to test the property `sku`', () async {
+      // TODO
+    });
+
     // String displayName
     test('to test the property `displayName`', () async {
       // TODO
@@ -20,6 +25,11 @@ void main() {
 
     // num price
     test('to test the property `price`', () async {
+      // TODO
+    });
+
+    // num retailPrice
+    test('to test the property `retailPrice`', () async {
       // TODO
     });
 

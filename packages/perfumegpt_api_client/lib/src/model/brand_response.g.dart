@@ -9,7 +9,7 @@ part of 'brand_response.dart';
 abstract class _$BrandResponseCWProxy {
   BrandResponse id(int? id);
 
-  BrandResponse name(String? name);
+  BrandResponse name(String name);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BrandResponse(...).copyWith.fieldName(value)`.
@@ -18,7 +18,7 @@ abstract class _$BrandResponseCWProxy {
   /// ```dart
   /// BrandResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  BrandResponse call({int? id, String? name});
+  BrandResponse call({int? id, String name});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -32,7 +32,7 @@ class _$BrandResponseCWProxyImpl implements _$BrandResponseCWProxy {
   BrandResponse id(int? id) => call(id: id);
 
   @override
-  BrandResponse name(String? name) => call(name: name);
+  BrandResponse name(String name) => call(name: name);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -51,10 +51,10 @@ class _$BrandResponseCWProxyImpl implements _$BrandResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as int?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
     );
   }
 }
@@ -72,12 +72,13 @@ extension $BrandResponseCopyWith on BrandResponse {
 
 BrandResponse _$BrandResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('BrandResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['name']);
       final val = BrandResponse(
         id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-        name: $checkedConvert('name', (v) => v as String?),
+        name: $checkedConvert('name', (v) => v as String),
       );
       return val;
     });
 
 Map<String, dynamic> _$BrandResponseToJson(BrandResponse instance) =>
-    <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+    <String, dynamic>{'id': ?instance.id, 'name': instance.name};

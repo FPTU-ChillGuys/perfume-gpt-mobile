@@ -7,7 +7,7 @@ part of 'address_level4_response.dart';
 // **************************************************************************
 
 abstract class _$AddressLevel4ResponseCWProxy {
-  AddressLevel4Response data(List<String>? data);
+  AddressLevel4Response data(List<String> data);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressLevel4Response(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$AddressLevel4ResponseCWProxy {
   /// ```dart
   /// AddressLevel4Response(...).copyWith(id: 12, name: "My name")
   /// ```
-  AddressLevel4Response call({List<String>? data});
+  AddressLevel4Response call({List<String> data});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -28,7 +28,7 @@ class _$AddressLevel4ResponseCWProxyImpl
   final AddressLevel4Response _value;
 
   @override
-  AddressLevel4Response data(List<String>? data) => call(data: data);
+  AddressLevel4Response data(List<String> data) => call(data: data);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -40,10 +40,10 @@ class _$AddressLevel4ResponseCWProxyImpl
   /// ```
   AddressLevel4Response call({Object? data = const $CopyWithPlaceholder()}) {
     return AddressLevel4Response(
-      data: data == const $CopyWithPlaceholder()
+      data: data == const $CopyWithPlaceholder() || data == null
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
-          : data as List<String>?,
+          : data as List<String>,
     );
   }
 }
@@ -63,10 +63,11 @@ extension $AddressLevel4ResponseCopyWith on AddressLevel4Response {
 AddressLevel4Response _$AddressLevel4ResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('AddressLevel4Response', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['data']);
   final val = AddressLevel4Response(
     data: $checkedConvert(
       'data',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
     ),
   );
   return val;
@@ -74,4 +75,4 @@ AddressLevel4Response _$AddressLevel4ResponseFromJson(
 
 Map<String, dynamic> _$AddressLevel4ResponseToJson(
   AddressLevel4Response instance,
-) => <String, dynamic>{'data': ?instance.data};
+) => <String, dynamic>{'data': instance.data};

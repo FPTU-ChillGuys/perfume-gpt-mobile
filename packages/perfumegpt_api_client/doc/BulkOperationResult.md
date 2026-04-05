@@ -8,10 +8,10 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**operationName** | **String** |  | [optional] 
+**operationName** | **String** |  | 
 **succeededCount** | **int** |  | [optional] 
 **failedCount** | **int** |  | [optional] 
-**errors** | [**List&lt;BulkActionError&gt;**](BulkActionError.md) |  | [optional] 
+**errors** | [**List&lt;BulkActionError&gt;**](BulkActionError.md) |  | 
 **totalProcessed** | **int** |  | [optional] 
 **hasError** | **bool** |  | [optional] 
 

@@ -14,15 +14,15 @@ abstract class _$ProfileResponseCWProxy {
   ProfileResponse maxBudget(num? maxBudget);
 
   ProfileResponse notePreferences(
-    List<CustomerNotePreferenceResponse>? notePreferences,
+    List<CustomerNotePreferenceResponse> notePreferences,
   );
 
   ProfileResponse familyPreferences(
-    List<CustomerFamilyPreferenceRespone>? familyPreferences,
+    List<CustomerFamilyPreferenceRespone> familyPreferences,
   );
 
   ProfileResponse attributePreferences(
-    List<CustomerAttributePreferenceResponse>? attributePreferences,
+    List<CustomerAttributePreferenceResponse> attributePreferences,
   );
 
   /// Creates a new instance with the provided field values.
@@ -36,9 +36,9 @@ abstract class _$ProfileResponseCWProxy {
     DateTime? dateOfBirth,
     num? minBudget,
     num? maxBudget,
-    List<CustomerNotePreferenceResponse>? notePreferences,
-    List<CustomerFamilyPreferenceRespone>? familyPreferences,
-    List<CustomerAttributePreferenceResponse>? attributePreferences,
+    List<CustomerNotePreferenceResponse> notePreferences,
+    List<CustomerFamilyPreferenceRespone> familyPreferences,
+    List<CustomerAttributePreferenceResponse> attributePreferences,
   });
 }
 
@@ -61,17 +61,17 @@ class _$ProfileResponseCWProxyImpl implements _$ProfileResponseCWProxy {
 
   @override
   ProfileResponse notePreferences(
-    List<CustomerNotePreferenceResponse>? notePreferences,
+    List<CustomerNotePreferenceResponse> notePreferences,
   ) => call(notePreferences: notePreferences);
 
   @override
   ProfileResponse familyPreferences(
-    List<CustomerFamilyPreferenceRespone>? familyPreferences,
+    List<CustomerFamilyPreferenceRespone> familyPreferences,
   ) => call(familyPreferences: familyPreferences);
 
   @override
   ProfileResponse attributePreferences(
-    List<CustomerAttributePreferenceResponse>? attributePreferences,
+    List<CustomerAttributePreferenceResponse> attributePreferences,
   ) => call(attributePreferences: attributePreferences);
 
   @override
@@ -103,18 +103,24 @@ class _$ProfileResponseCWProxyImpl implements _$ProfileResponseCWProxy {
           ? _value.maxBudget
           // ignore: cast_nullable_to_non_nullable
           : maxBudget as num?,
-      notePreferences: notePreferences == const $CopyWithPlaceholder()
+      notePreferences:
+          notePreferences == const $CopyWithPlaceholder() ||
+              notePreferences == null
           ? _value.notePreferences
           // ignore: cast_nullable_to_non_nullable
-          : notePreferences as List<CustomerNotePreferenceResponse>?,
-      familyPreferences: familyPreferences == const $CopyWithPlaceholder()
+          : notePreferences as List<CustomerNotePreferenceResponse>,
+      familyPreferences:
+          familyPreferences == const $CopyWithPlaceholder() ||
+              familyPreferences == null
           ? _value.familyPreferences
           // ignore: cast_nullable_to_non_nullable
-          : familyPreferences as List<CustomerFamilyPreferenceRespone>?,
-      attributePreferences: attributePreferences == const $CopyWithPlaceholder()
+          : familyPreferences as List<CustomerFamilyPreferenceRespone>,
+      attributePreferences:
+          attributePreferences == const $CopyWithPlaceholder() ||
+              attributePreferences == null
           ? _value.attributePreferences
           // ignore: cast_nullable_to_non_nullable
-          : attributePreferences as List<CustomerAttributePreferenceResponse>?,
+          : attributePreferences as List<CustomerAttributePreferenceResponse>,
     );
   }
 }
@@ -133,6 +139,14 @@ extension $ProfileResponseCopyWith on ProfileResponse {
 ProfileResponse _$ProfileResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProfileResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'notePreferences',
+      'familyPreferences',
+      'attributePreferences',
+    ],
+  );
   final val = ProfileResponse(
     dateOfBirth: $checkedConvert(
       'dateOfBirth',
@@ -142,8 +156,8 @@ ProfileResponse _$ProfileResponseFromJson(
     maxBudget: $checkedConvert('maxBudget', (v) => v as num?),
     notePreferences: $checkedConvert(
       'notePreferences',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => CustomerNotePreferenceResponse.fromJson(
               e as Map<String, dynamic>,
             ),
@@ -152,8 +166,8 @@ ProfileResponse _$ProfileResponseFromJson(
     ),
     familyPreferences: $checkedConvert(
       'familyPreferences',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => CustomerFamilyPreferenceRespone.fromJson(
               e as Map<String, dynamic>,
             ),
@@ -162,8 +176,8 @@ ProfileResponse _$ProfileResponseFromJson(
     ),
     attributePreferences: $checkedConvert(
       'attributePreferences',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => CustomerAttributePreferenceResponse.fromJson(
               e as Map<String, dynamic>,
             ),
@@ -180,11 +194,11 @@ Map<String, dynamic> _$ProfileResponseToJson(
   'dateOfBirth': ?instance.dateOfBirth?.toIso8601String(),
   'minBudget': ?instance.minBudget,
   'maxBudget': ?instance.maxBudget,
-  'notePreferences': ?instance.notePreferences?.map((e) => e.toJson()).toList(),
-  'familyPreferences': ?instance.familyPreferences
-      ?.map((e) => e.toJson())
+  'notePreferences': instance.notePreferences.map((e) => e.toJson()).toList(),
+  'familyPreferences': instance.familyPreferences
+      .map((e) => e.toJson())
       .toList(),
-  'attributePreferences': ?instance.attributePreferences
-      ?.map((e) => e.toJson())
+  'attributePreferences': instance.attributePreferences
+      .map((e) => e.toJson())
       .toList(),
 };

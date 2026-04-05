@@ -1,10 +1,11 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateCampaignVoucherRequest
 void main() {
-  final instance = CreateCampaignVoucherRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateCampaignVoucherRequest?
+  instance = /* CreateCampaignVoucherRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateCampaignVoucherRequest, () {
     // String code
@@ -31,6 +32,5 @@ void main() {
     test('to test the property `applyType`', () async {
       // TODO
     });
-
   });
 }

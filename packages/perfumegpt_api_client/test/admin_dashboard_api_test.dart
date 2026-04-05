@@ -1,10 +1,9 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
-
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 /// tests for AdminDashboardApi
 void main() {
-  final instance = Openapi().getAdminDashboardApi();
+  final instance = PerfumegptApiClient().getAdminDashboardApi();
 
   group(AdminDashboardApi, () {
     //Future<BaseResponseOfInventoryLevelsResponse> apiAdmindashboardInventoryLevelsGet({ int expiringWithinDays }) async
@@ -12,7 +11,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfAdminDashboardOverviewResponse> apiAdmindashboardOverviewGet({ int expiringWithinDays, int top, DateTime fromDate, DateTime toDate }) async
+    //Future<BaseResponseOfAdminDashboardOverviewResponse> apiAdmindashboardOverviewGet({ int topProductsCount, int expiringWithinDays, int top, DateTime fromDate, DateTime toDate }) async
     test('test apiAdmindashboardOverviewGet', () async {
       // TODO
     });
@@ -26,6 +25,5 @@ void main() {
     test('test apiAdmindashboardTopProductsGet', () async {
       // TODO
     });
-
   });
 }

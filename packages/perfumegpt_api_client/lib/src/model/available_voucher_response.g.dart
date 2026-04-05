@@ -9,7 +9,7 @@ part of 'available_voucher_response.dart';
 abstract class _$AvailableVoucherResponseCWProxy {
   AvailableVoucherResponse id(String? id);
 
-  AvailableVoucherResponse code(String? code);
+  AvailableVoucherResponse code(String code);
 
   AvailableVoucherResponse discountValue(num? discountValue);
 
@@ -30,7 +30,7 @@ abstract class _$AvailableVoucherResponseCWProxy {
   /// ```
   AvailableVoucherResponse call({
     String? id,
-    String? code,
+    String code,
     num? discountValue,
     DiscountType? discountType,
     num? minOrderValue,
@@ -51,7 +51,7 @@ class _$AvailableVoucherResponseCWProxyImpl
   AvailableVoucherResponse id(String? id) => call(id: id);
 
   @override
-  AvailableVoucherResponse code(String? code) => call(code: code);
+  AvailableVoucherResponse code(String code) => call(code: code);
 
   @override
   AvailableVoucherResponse discountValue(num? discountValue) =>
@@ -95,10 +95,10 @@ class _$AvailableVoucherResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      code: code == const $CopyWithPlaceholder()
+      code: code == const $CopyWithPlaceholder() || code == null
           ? _value.code
           // ignore: cast_nullable_to_non_nullable
-          : code as String?,
+          : code as String,
       discountValue: discountValue == const $CopyWithPlaceholder()
           ? _value.discountValue
           // ignore: cast_nullable_to_non_nullable
@@ -138,9 +138,10 @@ extension $AvailableVoucherResponseCopyWith on AvailableVoucherResponse {
 AvailableVoucherResponse _$AvailableVoucherResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('AvailableVoucherResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code']);
   final val = AvailableVoucherResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    code: $checkedConvert('code', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
     discountValue: $checkedConvert('discountValue', (v) => v as num?),
     discountType: $checkedConvert(
       'discountType',
@@ -163,7 +164,7 @@ Map<String, dynamic> _$AvailableVoucherResponseToJson(
   AvailableVoucherResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'code': ?instance.code,
+  'code': instance.code,
   'discountValue': ?instance.discountValue,
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
   'minOrderValue': ?instance.minOrderValue,

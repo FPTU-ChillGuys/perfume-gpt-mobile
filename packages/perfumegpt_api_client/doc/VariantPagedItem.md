@@ -11,11 +11,11 @@ Name | Type | Description | Notes
 **id** | **String** |  | [optional] 
 **productId** | **String** |  | [optional] 
 **primaryImageUrl** | **String** |  | [optional] 
-**barcode** | **String** |  | [optional] 
-**sku** | **String** |  | [optional] 
+**barcode** | **String** |  | 
+**sku** | **String** |  | 
 **volumeMl** | **int** |  | [optional] 
 **concentrationId** | **int** |  | [optional] 
-**concentrationName** | **String** |  | [optional] 
+**concentrationName** | **String** |  | 
 **type** | [**VariantType**](VariantType.md) |  | [optional] 
 **basePrice** | **num** |  | [optional] 
 **retailPrice** | **num** |  | [optional] 

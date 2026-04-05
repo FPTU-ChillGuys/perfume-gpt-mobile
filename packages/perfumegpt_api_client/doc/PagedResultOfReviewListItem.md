@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **pageNumber** | **int** |  | 
 **pageSize** | **int** |  | 
 **totalCount** | **int** |  | 
-**totalPages** | **int** |  | 
+**totalPages** | **int** |  | [optional] 
 **hasPreviousPage** | **bool** |  | [optional] 
 **hasNextPage** | **bool** |  | [optional] 
 

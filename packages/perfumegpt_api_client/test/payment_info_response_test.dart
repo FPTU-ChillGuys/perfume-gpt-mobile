@@ -12,6 +12,11 @@ void main() {
       // TODO
     });
 
+    // TransactionType transactionType
+    test('to test the property `transactionType`', () async {
+      // TODO
+    });
+
     // TransactionStatus status
     test('to test the property `status`', () async {
       // TODO

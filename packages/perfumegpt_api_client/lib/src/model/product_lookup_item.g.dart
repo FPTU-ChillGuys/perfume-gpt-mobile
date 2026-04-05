@@ -9,9 +9,9 @@ part of 'product_lookup_item.dart';
 abstract class _$ProductLookupItemCWProxy {
   ProductLookupItem id(String? id);
 
-  ProductLookupItem name(String? name);
+  ProductLookupItem name(String name);
 
-  ProductLookupItem brandName(String? brandName);
+  ProductLookupItem brandName(String brandName);
 
   ProductLookupItem primaryImageUrl(String? primaryImageUrl);
 
@@ -24,8 +24,8 @@ abstract class _$ProductLookupItemCWProxy {
   /// ```
   ProductLookupItem call({
     String? id,
-    String? name,
-    String? brandName,
+    String name,
+    String brandName,
     String? primaryImageUrl,
   });
 }
@@ -41,10 +41,10 @@ class _$ProductLookupItemCWProxyImpl implements _$ProductLookupItemCWProxy {
   ProductLookupItem id(String? id) => call(id: id);
 
   @override
-  ProductLookupItem name(String? name) => call(name: name);
+  ProductLookupItem name(String name) => call(name: name);
 
   @override
-  ProductLookupItem brandName(String? brandName) => call(brandName: brandName);
+  ProductLookupItem brandName(String brandName) => call(brandName: brandName);
 
   @override
   ProductLookupItem primaryImageUrl(String? primaryImageUrl) =>
@@ -69,14 +69,14 @@ class _$ProductLookupItemCWProxyImpl implements _$ProductLookupItemCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-      brandName: brandName == const $CopyWithPlaceholder()
+          : name as String,
+      brandName: brandName == const $CopyWithPlaceholder() || brandName == null
           ? _value.brandName
           // ignore: cast_nullable_to_non_nullable
-          : brandName as String?,
+          : brandName as String,
       primaryImageUrl: primaryImageUrl == const $CopyWithPlaceholder()
           ? _value.primaryImageUrl
           // ignore: cast_nullable_to_non_nullable
@@ -99,10 +99,11 @@ extension $ProductLookupItemCopyWith on ProductLookupItem {
 
 ProductLookupItem _$ProductLookupItemFromJson(Map<String, dynamic> json) =>
     $checkedCreate('ProductLookupItem', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['name', 'brandName']);
       final val = ProductLookupItem(
         id: $checkedConvert('id', (v) => v as String?),
-        name: $checkedConvert('name', (v) => v as String?),
-        brandName: $checkedConvert('brandName', (v) => v as String?),
+        name: $checkedConvert('name', (v) => v as String),
+        brandName: $checkedConvert('brandName', (v) => v as String),
         primaryImageUrl: $checkedConvert(
           'primaryImageUrl',
           (v) => v as String?,
@@ -114,7 +115,7 @@ ProductLookupItem _$ProductLookupItemFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ProductLookupItemToJson(ProductLookupItem instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'name': ?instance.name,
-      'brandName': ?instance.brandName,
+      'name': instance.name,
+      'brandName': instance.brandName,
       'primaryImageUrl': ?instance.primaryImageUrl,
     };

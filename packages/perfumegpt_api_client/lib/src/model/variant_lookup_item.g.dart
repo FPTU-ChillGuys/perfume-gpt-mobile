@@ -9,15 +9,15 @@ part of 'variant_lookup_item.dart';
 abstract class _$VariantLookupItemCWProxy {
   VariantLookupItem id(String? id);
 
-  VariantLookupItem barcode(String? barcode);
+  VariantLookupItem barcode(String barcode);
 
-  VariantLookupItem sku(String? sku);
+  VariantLookupItem sku(String sku);
 
-  VariantLookupItem displayName(String? displayName);
+  VariantLookupItem displayName(String displayName);
 
   VariantLookupItem volumeMl(int? volumeMl);
 
-  VariantLookupItem concentrationName(String? concentrationName);
+  VariantLookupItem concentrationName(String concentrationName);
 
   VariantLookupItem basePrice(num? basePrice);
 
@@ -32,11 +32,11 @@ abstract class _$VariantLookupItemCWProxy {
   /// ```
   VariantLookupItem call({
     String? id,
-    String? barcode,
-    String? sku,
-    String? displayName,
+    String barcode,
+    String sku,
+    String displayName,
     int? volumeMl,
-    String? concentrationName,
+    String concentrationName,
     num? basePrice,
     String? primaryImageUrl,
   });
@@ -53,20 +53,20 @@ class _$VariantLookupItemCWProxyImpl implements _$VariantLookupItemCWProxy {
   VariantLookupItem id(String? id) => call(id: id);
 
   @override
-  VariantLookupItem barcode(String? barcode) => call(barcode: barcode);
+  VariantLookupItem barcode(String barcode) => call(barcode: barcode);
 
   @override
-  VariantLookupItem sku(String? sku) => call(sku: sku);
+  VariantLookupItem sku(String sku) => call(sku: sku);
 
   @override
-  VariantLookupItem displayName(String? displayName) =>
+  VariantLookupItem displayName(String displayName) =>
       call(displayName: displayName);
 
   @override
   VariantLookupItem volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
-  VariantLookupItem concentrationName(String? concentrationName) =>
+  VariantLookupItem concentrationName(String concentrationName) =>
       call(concentrationName: concentrationName);
 
   @override
@@ -99,26 +99,29 @@ class _$VariantLookupItemCWProxyImpl implements _$VariantLookupItemCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      barcode: barcode == const $CopyWithPlaceholder()
+      barcode: barcode == const $CopyWithPlaceholder() || barcode == null
           ? _value.barcode
           // ignore: cast_nullable_to_non_nullable
-          : barcode as String?,
-      sku: sku == const $CopyWithPlaceholder()
+          : barcode as String,
+      sku: sku == const $CopyWithPlaceholder() || sku == null
           ? _value.sku
           // ignore: cast_nullable_to_non_nullable
-          : sku as String?,
-      displayName: displayName == const $CopyWithPlaceholder()
+          : sku as String,
+      displayName:
+          displayName == const $CopyWithPlaceholder() || displayName == null
           ? _value.displayName
           // ignore: cast_nullable_to_non_nullable
-          : displayName as String?,
+          : displayName as String,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
           : volumeMl as int?,
-      concentrationName: concentrationName == const $CopyWithPlaceholder()
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
           ? _value.concentrationName
           // ignore: cast_nullable_to_non_nullable
-          : concentrationName as String?,
+          : concentrationName as String,
       basePrice: basePrice == const $CopyWithPlaceholder()
           ? _value.basePrice
           // ignore: cast_nullable_to_non_nullable
@@ -143,35 +146,34 @@ extension $VariantLookupItemCopyWith on VariantLookupItem {
 // JsonSerializableGenerator
 // **************************************************************************
 
-VariantLookupItem _$VariantLookupItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('VariantLookupItem', json, ($checkedConvert) {
-      final val = VariantLookupItem(
-        id: $checkedConvert('id', (v) => v as String?),
-        barcode: $checkedConvert('barcode', (v) => v as String?),
-        sku: $checkedConvert('sku', (v) => v as String?),
-        displayName: $checkedConvert('displayName', (v) => v as String?),
-        volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
-        concentrationName: $checkedConvert(
-          'concentrationName',
-          (v) => v as String?,
-        ),
-        basePrice: $checkedConvert('basePrice', (v) => v as num?),
-        primaryImageUrl: $checkedConvert(
-          'primaryImageUrl',
-          (v) => v as String?,
-        ),
-      );
-      return val;
-    });
+VariantLookupItem _$VariantLookupItemFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('VariantLookupItem', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['barcode', 'sku', 'displayName', 'concentrationName'],
+  );
+  final val = VariantLookupItem(
+    id: $checkedConvert('id', (v) => v as String?),
+    barcode: $checkedConvert('barcode', (v) => v as String),
+    sku: $checkedConvert('sku', (v) => v as String),
+    displayName: $checkedConvert('displayName', (v) => v as String),
+    volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
+    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
+    basePrice: $checkedConvert('basePrice', (v) => v as num?),
+    primaryImageUrl: $checkedConvert('primaryImageUrl', (v) => v as String?),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$VariantLookupItemToJson(VariantLookupItem instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'barcode': ?instance.barcode,
-      'sku': ?instance.sku,
-      'displayName': ?instance.displayName,
+      'barcode': instance.barcode,
+      'sku': instance.sku,
+      'displayName': instance.displayName,
       'volumeMl': ?instance.volumeMl,
-      'concentrationName': ?instance.concentrationName,
+      'concentrationName': instance.concentrationName,
       'basePrice': ?instance.basePrice,
       'primaryImageUrl': ?instance.primaryImageUrl,
     };

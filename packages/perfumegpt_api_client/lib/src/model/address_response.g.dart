@@ -9,19 +9,19 @@ part of 'address_response.dart';
 abstract class _$AddressResponseCWProxy {
   AddressResponse id(String? id);
 
-  AddressResponse recipientName(String? recipientName);
+  AddressResponse recipientName(String recipientName);
 
-  AddressResponse recipientPhoneNumber(String? recipientPhoneNumber);
+  AddressResponse recipientPhoneNumber(String recipientPhoneNumber);
 
-  AddressResponse street(String? street);
+  AddressResponse street(String street);
 
-  AddressResponse ward(String? ward);
+  AddressResponse ward(String ward);
 
-  AddressResponse district(String? district);
+  AddressResponse district(String district);
 
-  AddressResponse city(String? city);
+  AddressResponse city(String city);
 
-  AddressResponse wardCode(String? wardCode);
+  AddressResponse wardCode(String wardCode);
 
   AddressResponse districtId(int? districtId);
 
@@ -38,13 +38,13 @@ abstract class _$AddressResponseCWProxy {
   /// ```
   AddressResponse call({
     String? id,
-    String? recipientName,
-    String? recipientPhoneNumber,
-    String? street,
-    String? ward,
-    String? district,
-    String? city,
-    String? wardCode,
+    String recipientName,
+    String recipientPhoneNumber,
+    String street,
+    String ward,
+    String district,
+    String city,
+    String wardCode,
     int? districtId,
     int? provinceId,
     bool? isDefault,
@@ -62,27 +62,27 @@ class _$AddressResponseCWProxyImpl implements _$AddressResponseCWProxy {
   AddressResponse id(String? id) => call(id: id);
 
   @override
-  AddressResponse recipientName(String? recipientName) =>
+  AddressResponse recipientName(String recipientName) =>
       call(recipientName: recipientName);
 
   @override
-  AddressResponse recipientPhoneNumber(String? recipientPhoneNumber) =>
+  AddressResponse recipientPhoneNumber(String recipientPhoneNumber) =>
       call(recipientPhoneNumber: recipientPhoneNumber);
 
   @override
-  AddressResponse street(String? street) => call(street: street);
+  AddressResponse street(String street) => call(street: street);
 
   @override
-  AddressResponse ward(String? ward) => call(ward: ward);
+  AddressResponse ward(String ward) => call(ward: ward);
 
   @override
-  AddressResponse district(String? district) => call(district: district);
+  AddressResponse district(String district) => call(district: district);
 
   @override
-  AddressResponse city(String? city) => call(city: city);
+  AddressResponse city(String city) => call(city: city);
 
   @override
-  AddressResponse wardCode(String? wardCode) => call(wardCode: wardCode);
+  AddressResponse wardCode(String wardCode) => call(wardCode: wardCode);
 
   @override
   AddressResponse districtId(int? districtId) => call(districtId: districtId);
@@ -119,34 +119,37 @@ class _$AddressResponseCWProxyImpl implements _$AddressResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      recipientName: recipientName == const $CopyWithPlaceholder()
+      recipientName:
+          recipientName == const $CopyWithPlaceholder() || recipientName == null
           ? _value.recipientName
           // ignore: cast_nullable_to_non_nullable
-          : recipientName as String?,
-      recipientPhoneNumber: recipientPhoneNumber == const $CopyWithPlaceholder()
+          : recipientName as String,
+      recipientPhoneNumber:
+          recipientPhoneNumber == const $CopyWithPlaceholder() ||
+              recipientPhoneNumber == null
           ? _value.recipientPhoneNumber
           // ignore: cast_nullable_to_non_nullable
-          : recipientPhoneNumber as String?,
-      street: street == const $CopyWithPlaceholder()
+          : recipientPhoneNumber as String,
+      street: street == const $CopyWithPlaceholder() || street == null
           ? _value.street
           // ignore: cast_nullable_to_non_nullable
-          : street as String?,
-      ward: ward == const $CopyWithPlaceholder()
+          : street as String,
+      ward: ward == const $CopyWithPlaceholder() || ward == null
           ? _value.ward
           // ignore: cast_nullable_to_non_nullable
-          : ward as String?,
-      district: district == const $CopyWithPlaceholder()
+          : ward as String,
+      district: district == const $CopyWithPlaceholder() || district == null
           ? _value.district
           // ignore: cast_nullable_to_non_nullable
-          : district as String?,
-      city: city == const $CopyWithPlaceholder()
+          : district as String,
+      city: city == const $CopyWithPlaceholder() || city == null
           ? _value.city
           // ignore: cast_nullable_to_non_nullable
-          : city as String?,
-      wardCode: wardCode == const $CopyWithPlaceholder()
+          : city as String,
+      wardCode: wardCode == const $CopyWithPlaceholder() || wardCode == null
           ? _value.wardCode
           // ignore: cast_nullable_to_non_nullable
-          : wardCode as String?,
+          : wardCode as String,
       districtId: districtId == const $CopyWithPlaceholder()
           ? _value.districtId
           // ignore: cast_nullable_to_non_nullable
@@ -176,18 +179,30 @@ extension $AddressResponseCopyWith on AddressResponse {
 
 AddressResponse _$AddressResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('AddressResponse', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const [
+          'recipientName',
+          'recipientPhoneNumber',
+          'street',
+          'ward',
+          'district',
+          'city',
+          'wardCode',
+        ],
+      );
       final val = AddressResponse(
         id: $checkedConvert('id', (v) => v as String?),
-        recipientName: $checkedConvert('recipientName', (v) => v as String?),
+        recipientName: $checkedConvert('recipientName', (v) => v as String),
         recipientPhoneNumber: $checkedConvert(
           'recipientPhoneNumber',
-          (v) => v as String?,
+          (v) => v as String,
         ),
-        street: $checkedConvert('street', (v) => v as String?),
-        ward: $checkedConvert('ward', (v) => v as String?),
-        district: $checkedConvert('district', (v) => v as String?),
-        city: $checkedConvert('city', (v) => v as String?),
-        wardCode: $checkedConvert('wardCode', (v) => v as String?),
+        street: $checkedConvert('street', (v) => v as String),
+        ward: $checkedConvert('ward', (v) => v as String),
+        district: $checkedConvert('district', (v) => v as String),
+        city: $checkedConvert('city', (v) => v as String),
+        wardCode: $checkedConvert('wardCode', (v) => v as String),
         districtId: $checkedConvert('districtId', (v) => (v as num?)?.toInt()),
         provinceId: $checkedConvert('provinceId', (v) => (v as num?)?.toInt()),
         isDefault: $checkedConvert('isDefault', (v) => v as bool?),
@@ -198,13 +213,13 @@ AddressResponse _$AddressResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$AddressResponseToJson(AddressResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'recipientName': ?instance.recipientName,
-      'recipientPhoneNumber': ?instance.recipientPhoneNumber,
-      'street': ?instance.street,
-      'ward': ?instance.ward,
-      'district': ?instance.district,
-      'city': ?instance.city,
-      'wardCode': ?instance.wardCode,
+      'recipientName': instance.recipientName,
+      'recipientPhoneNumber': instance.recipientPhoneNumber,
+      'street': instance.street,
+      'ward': instance.ward,
+      'district': instance.district,
+      'city': instance.city,
+      'wardCode': instance.wardCode,
       'districtId': ?instance.districtId,
       'provinceId': ?instance.provinceId,
       'isDefault': ?instance.isDefault,

@@ -11,9 +11,9 @@ abstract class _$GetCartItemResponseCWProxy {
 
   GetCartItemResponse variantId(String? variantId);
 
-  GetCartItemResponse variantName(String? variantName);
+  GetCartItemResponse variantName(String variantName);
 
-  GetCartItemResponse imageUrl(String? imageUrl);
+  GetCartItemResponse imageUrl(String imageUrl);
 
   GetCartItemResponse volumeMl(int? volumeMl);
 
@@ -37,8 +37,8 @@ abstract class _$GetCartItemResponseCWProxy {
   GetCartItemResponse call({
     String? cartItemId,
     String? variantId,
-    String? variantName,
-    String? imageUrl,
+    String variantName,
+    String imageUrl,
     int? volumeMl,
     VariantType? type,
     num? variantPrice,
@@ -64,11 +64,11 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
       call(variantId: variantId);
 
   @override
-  GetCartItemResponse variantName(String? variantName) =>
+  GetCartItemResponse variantName(String variantName) =>
       call(variantName: variantName);
 
   @override
-  GetCartItemResponse imageUrl(String? imageUrl) => call(imageUrl: imageUrl);
+  GetCartItemResponse imageUrl(String imageUrl) => call(imageUrl: imageUrl);
 
   @override
   GetCartItemResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
@@ -119,14 +119,15 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
           ? _value.variantName
           // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
-      imageUrl: imageUrl == const $CopyWithPlaceholder()
+          : variantName as String,
+      imageUrl: imageUrl == const $CopyWithPlaceholder() || imageUrl == null
           ? _value.imageUrl
           // ignore: cast_nullable_to_non_nullable
-          : imageUrl as String?,
+          : imageUrl as String,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
@@ -169,11 +170,12 @@ extension $GetCartItemResponseCopyWith on GetCartItemResponse {
 
 GetCartItemResponse _$GetCartItemResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('GetCartItemResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['variantName', 'imageUrl']);
       final val = GetCartItemResponse(
         cartItemId: $checkedConvert('cartItemId', (v) => v as String?),
         variantId: $checkedConvert('variantId', (v) => v as String?),
-        variantName: $checkedConvert('variantName', (v) => v as String?),
-        imageUrl: $checkedConvert('imageUrl', (v) => v as String?),
+        variantName: $checkedConvert('variantName', (v) => v as String),
+        imageUrl: $checkedConvert('imageUrl', (v) => v as String),
         volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
         type: $checkedConvert(
           'type',
@@ -192,8 +194,8 @@ Map<String, dynamic> _$GetCartItemResponseToJson(
 ) => <String, dynamic>{
   'cartItemId': ?instance.cartItemId,
   'variantId': ?instance.variantId,
-  'variantName': ?instance.variantName,
-  'imageUrl': ?instance.imageUrl,
+  'variantName': instance.variantName,
+  'imageUrl': instance.imageUrl,
   'volumeMl': ?instance.volumeMl,
   'type': ?_$VariantTypeEnumMap[instance.type],
   'variantPrice': ?instance.variantPrice,

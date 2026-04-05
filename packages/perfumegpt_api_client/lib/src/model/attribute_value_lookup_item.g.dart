@@ -9,7 +9,7 @@ part of 'attribute_value_lookup_item.dart';
 abstract class _$AttributeValueLookupItemCWProxy {
   AttributeValueLookupItem id(int? id);
 
-  AttributeValueLookupItem value(String? value);
+  AttributeValueLookupItem value(String value);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AttributeValueLookupItem(...).copyWith.fieldName(value)`.
@@ -18,7 +18,7 @@ abstract class _$AttributeValueLookupItemCWProxy {
   /// ```dart
   /// AttributeValueLookupItem(...).copyWith(id: 12, name: "My name")
   /// ```
-  AttributeValueLookupItem call({int? id, String? value});
+  AttributeValueLookupItem call({int? id, String value});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -33,7 +33,7 @@ class _$AttributeValueLookupItemCWProxyImpl
   AttributeValueLookupItem id(int? id) => call(id: id);
 
   @override
-  AttributeValueLookupItem value(String? value) => call(value: value);
+  AttributeValueLookupItem value(String value) => call(value: value);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -52,10 +52,10 @@ class _$AttributeValueLookupItemCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as int?,
-      value: value == const $CopyWithPlaceholder()
+      value: value == const $CopyWithPlaceholder() || value == null
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
-          : value as String?,
+          : value as String,
     );
   }
 }
@@ -75,13 +75,14 @@ extension $AttributeValueLookupItemCopyWith on AttributeValueLookupItem {
 AttributeValueLookupItem _$AttributeValueLookupItemFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('AttributeValueLookupItem', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['value']);
   final val = AttributeValueLookupItem(
     id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-    value: $checkedConvert('value', (v) => v as String?),
+    value: $checkedConvert('value', (v) => v as String),
   );
   return val;
 });
 
 Map<String, dynamic> _$AttributeValueLookupItemToJson(
   AttributeValueLookupItem instance,
-) => <String, dynamic>{'id': ?instance.id, 'value': ?instance.value};
+) => <String, dynamic>{'id': ?instance.id, 'value': instance.value};

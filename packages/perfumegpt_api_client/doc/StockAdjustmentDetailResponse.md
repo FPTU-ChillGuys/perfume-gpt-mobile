@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **productVariantId** | **String** |  | [optional] 
-**productName** | **String** |  | [optional] 
-**variantSku** | **String** |  | [optional] 
+**productName** | **String** |  | 
+**variantSku** | **String** |  | 
 **batchId** | **String** |  | [optional] 
-**batchCode** | **String** |  | [optional] 
+**batchCode** | **String** |  | 
 **adjustmentQuantity** | **int** |  | [optional] 
 **approvedQuantity** | **int** |  | [optional] 
 **note** | **String** |  | [optional] 

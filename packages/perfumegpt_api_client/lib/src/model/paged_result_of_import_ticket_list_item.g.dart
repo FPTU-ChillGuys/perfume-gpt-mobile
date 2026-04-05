@@ -15,7 +15,7 @@ abstract class _$PagedResultOfImportTicketListItemCWProxy {
 
   PagedResultOfImportTicketListItem totalCount(int totalCount);
 
-  PagedResultOfImportTicketListItem totalPages(int totalPages);
+  PagedResultOfImportTicketListItem totalPages(int? totalPages);
 
   PagedResultOfImportTicketListItem hasPreviousPage(bool? hasPreviousPage);
 
@@ -33,7 +33,7 @@ abstract class _$PagedResultOfImportTicketListItemCWProxy {
     int pageNumber,
     int pageSize,
     int totalCount,
-    int totalPages,
+    int? totalPages,
     bool? hasPreviousPage,
     bool? hasNextPage,
   });
@@ -64,7 +64,7 @@ class _$PagedResultOfImportTicketListItemCWProxyImpl
       call(totalCount: totalCount);
 
   @override
-  PagedResultOfImportTicketListItem totalPages(int totalPages) =>
+  PagedResultOfImportTicketListItem totalPages(int? totalPages) =>
       call(totalPages: totalPages);
 
   @override
@@ -111,11 +111,10 @@ class _$PagedResultOfImportTicketListItemCWProxyImpl
           ? _value.totalCount
           // ignore: cast_nullable_to_non_nullable
           : totalCount as int,
-      totalPages:
-          totalPages == const $CopyWithPlaceholder() || totalPages == null
+      totalPages: totalPages == const $CopyWithPlaceholder()
           ? _value.totalPages
           // ignore: cast_nullable_to_non_nullable
-          : totalPages as int,
+          : totalPages as int?,
       hasPreviousPage: hasPreviousPage == const $CopyWithPlaceholder()
           ? _value.hasPreviousPage
           // ignore: cast_nullable_to_non_nullable
@@ -148,13 +147,7 @@ PagedResultOfImportTicketListItem _$PagedResultOfImportTicketListItemFromJson(
 ) {
   $checkKeys(
     json,
-    requiredKeys: const [
-      'items',
-      'pageNumber',
-      'pageSize',
-      'totalCount',
-      'totalPages',
-    ],
+    requiredKeys: const ['items', 'pageNumber', 'pageSize', 'totalCount'],
   );
   final val = PagedResultOfImportTicketListItem(
     items: $checkedConvert(
@@ -166,7 +159,7 @@ PagedResultOfImportTicketListItem _$PagedResultOfImportTicketListItemFromJson(
     pageNumber: $checkedConvert('pageNumber', (v) => (v as num).toInt()),
     pageSize: $checkedConvert('pageSize', (v) => (v as num).toInt()),
     totalCount: $checkedConvert('totalCount', (v) => (v as num).toInt()),
-    totalPages: $checkedConvert('totalPages', (v) => (v as num).toInt()),
+    totalPages: $checkedConvert('totalPages', (v) => (v as num?)?.toInt()),
     hasPreviousPage: $checkedConvert('hasPreviousPage', (v) => v as bool?),
     hasNextPage: $checkedConvert('hasNextPage', (v) => v as bool?),
   );
@@ -180,7 +173,7 @@ Map<String, dynamic> _$PagedResultOfImportTicketListItemToJson(
   'pageNumber': instance.pageNumber,
   'pageSize': instance.pageSize,
   'totalCount': instance.totalCount,
-  'totalPages': instance.totalPages,
+  'totalPages': ?instance.totalPages,
   'hasPreviousPage': ?instance.hasPreviousPage,
   'hasNextPage': ?instance.hasNextPage,
 };

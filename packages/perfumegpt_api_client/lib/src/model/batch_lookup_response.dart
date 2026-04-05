@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'batch_lookup_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,81 +18,42 @@ part 'batch_lookup_response.g.dart';
 class BatchLookupResponse {
   /// Returns a new [BatchLookupResponse] instance.
   BatchLookupResponse({
+    this.id,
 
-     this.id,
+    required this.batchCode,
 
-     this.batchCode,
+    this.variantId,
 
-     this.variantId,
-
-     this.sku,
+    required this.sku,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
+  @JsonKey(name: r'batchCode', required: true, includeIfNull: false)
+  final String batchCode;
 
-
-  @JsonKey(
-    
-    name: r'batchCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? batchCode;
-
-
-
-  @JsonKey(
-    
-    name: r'variantId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
   final String? variantId;
 
+  @JsonKey(name: r'sku', required: true, includeIfNull: false)
+  final String sku;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BatchLookupResponse &&
+          other.id == id &&
+          other.batchCode == batchCode &&
+          other.variantId == variantId &&
+          other.sku == sku;
 
-  @JsonKey(
-    
-    name: r'sku',
-    required: false,
-    includeIfNull: false,
-  )
+  @override
+  int get hashCode =>
+      id.hashCode + batchCode.hashCode + variantId.hashCode + sku.hashCode;
 
-
-  final String? sku;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BatchLookupResponse &&
-      other.id == id &&
-      other.batchCode == batchCode &&
-      other.variantId == variantId &&
-      other.sku == sku;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        batchCode.hashCode +
-        variantId.hashCode +
-        sku.hashCode;
-
-  factory BatchLookupResponse.fromJson(Map<String, dynamic> json) => _$BatchLookupResponseFromJson(json);
+  factory BatchLookupResponse.fromJson(Map<String, dynamic> json) =>
+      _$BatchLookupResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$BatchLookupResponseToJson(this);
 
@@ -101,6 +61,4 @@ class BatchLookupResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

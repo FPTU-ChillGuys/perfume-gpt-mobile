@@ -7,7 +7,7 @@ part of 'preview_order_response.dart';
 // **************************************************************************
 
 abstract class _$PreviewOrderResponseCWProxy {
-  PreviewOrderResponse items(List<OrderDetailListItems>? items);
+  PreviewOrderResponse items(List<OrderDetailListItems> items);
 
   PreviewOrderResponse subTotal(num? subTotal);
 
@@ -25,7 +25,7 @@ abstract class _$PreviewOrderResponseCWProxy {
   /// PreviewOrderResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   PreviewOrderResponse call({
-    List<OrderDetailListItems>? items,
+    List<OrderDetailListItems> items,
     num? subTotal,
     num? shippingFee,
     num? discount,
@@ -42,7 +42,7 @@ class _$PreviewOrderResponseCWProxyImpl
   final PreviewOrderResponse _value;
 
   @override
-  PreviewOrderResponse items(List<OrderDetailListItems>? items) =>
+  PreviewOrderResponse items(List<OrderDetailListItems> items) =>
       call(items: items);
 
   @override
@@ -74,10 +74,10 @@ class _$PreviewOrderResponseCWProxyImpl
     Object? total = const $CopyWithPlaceholder(),
   }) {
     return PreviewOrderResponse(
-      items: items == const $CopyWithPlaceholder()
+      items: items == const $CopyWithPlaceholder() || items == null
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
-          : items as List<OrderDetailListItems>?,
+          : items as List<OrderDetailListItems>,
       subTotal: subTotal == const $CopyWithPlaceholder()
           ? _value.subTotal
           // ignore: cast_nullable_to_non_nullable
@@ -113,11 +113,12 @@ extension $PreviewOrderResponseCopyWith on PreviewOrderResponse {
 PreviewOrderResponse _$PreviewOrderResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('PreviewOrderResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['items']);
   final val = PreviewOrderResponse(
     items: $checkedConvert(
       'items',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => OrderDetailListItems.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => OrderDetailListItems.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
     subTotal: $checkedConvert('subTotal', (v) => v as num?),
@@ -131,7 +132,7 @@ PreviewOrderResponse _$PreviewOrderResponseFromJson(
 Map<String, dynamic> _$PreviewOrderResponseToJson(
   PreviewOrderResponse instance,
 ) => <String, dynamic>{
-  'items': ?instance.items?.map((e) => e.toJson()).toList(),
+  'items': instance.items.map((e) => e.toJson()).toList(),
   'subTotal': ?instance.subTotal,
   'shippingFee': ?instance.shippingFee,
   'discount': ?instance.discount,

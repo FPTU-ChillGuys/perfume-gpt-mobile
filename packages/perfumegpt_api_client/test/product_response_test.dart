@@ -17,6 +17,21 @@ void main() {
       // TODO
     });
 
+    // Gender gender
+    test('to test the property `gender`', () async {
+      // TODO
+    });
+
+    // String origin
+    test('to test the property `origin`', () async {
+      // TODO
+    });
+
+    // int releaseYear
+    test('to test the property `releaseYear`', () async {
+      // TODO
+    });
+
     // int brandId
     test('to test the property `brandId`', () async {
       // TODO
@@ -59,6 +74,16 @@ void main() {
 
     // List<ProductAttributeResponse> attributes
     test('to test the property `attributes`', () async {
+      // TODO
+    });
+
+    // List<ProductOlfactoryFamilyResponse> olfactoryFamilies
+    test('to test the property `olfactoryFamilies`', () async {
+      // TODO
+    });
+
+    // List<ProductScentNoteResponse> scentNotes
+    test('to test the property `scentNotes`', () async {
       // TODO
     });
   });

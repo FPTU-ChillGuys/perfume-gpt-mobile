@@ -11,11 +11,11 @@ abstract class _$UserCredentialsResponseCWProxy {
 
   UserCredentialsResponse loyaltyPoint(int? loyaltyPoint);
 
-  UserCredentialsResponse fullName(String? fullName);
+  UserCredentialsResponse fullName(String fullName);
 
-  UserCredentialsResponse phoneNumber(String? phoneNumber);
+  UserCredentialsResponse phoneNumber(String phoneNumber);
 
-  UserCredentialsResponse email(String? email);
+  UserCredentialsResponse email(String email);
 
   UserCredentialsResponse profilePictureUrl(String? profilePictureUrl);
 
@@ -29,9 +29,9 @@ abstract class _$UserCredentialsResponseCWProxy {
   UserCredentialsResponse call({
     String? id,
     int? loyaltyPoint,
-    String? fullName,
-    String? phoneNumber,
-    String? email,
+    String fullName,
+    String phoneNumber,
+    String email,
     String? profilePictureUrl,
   });
 }
@@ -52,15 +52,14 @@ class _$UserCredentialsResponseCWProxyImpl
       call(loyaltyPoint: loyaltyPoint);
 
   @override
-  UserCredentialsResponse fullName(String? fullName) =>
-      call(fullName: fullName);
+  UserCredentialsResponse fullName(String fullName) => call(fullName: fullName);
 
   @override
-  UserCredentialsResponse phoneNumber(String? phoneNumber) =>
+  UserCredentialsResponse phoneNumber(String phoneNumber) =>
       call(phoneNumber: phoneNumber);
 
   @override
-  UserCredentialsResponse email(String? email) => call(email: email);
+  UserCredentialsResponse email(String email) => call(email: email);
 
   @override
   UserCredentialsResponse profilePictureUrl(String? profilePictureUrl) =>
@@ -91,18 +90,19 @@ class _$UserCredentialsResponseCWProxyImpl
           ? _value.loyaltyPoint
           // ignore: cast_nullable_to_non_nullable
           : loyaltyPoint as int?,
-      fullName: fullName == const $CopyWithPlaceholder()
+      fullName: fullName == const $CopyWithPlaceholder() || fullName == null
           ? _value.fullName
           // ignore: cast_nullable_to_non_nullable
-          : fullName as String?,
-      phoneNumber: phoneNumber == const $CopyWithPlaceholder()
+          : fullName as String,
+      phoneNumber:
+          phoneNumber == const $CopyWithPlaceholder() || phoneNumber == null
           ? _value.phoneNumber
           // ignore: cast_nullable_to_non_nullable
-          : phoneNumber as String?,
-      email: email == const $CopyWithPlaceholder()
+          : phoneNumber as String,
+      email: email == const $CopyWithPlaceholder() || email == null
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
-          : email as String?,
+          : email as String,
       profilePictureUrl: profilePictureUrl == const $CopyWithPlaceholder()
           ? _value.profilePictureUrl
           // ignore: cast_nullable_to_non_nullable
@@ -126,12 +126,13 @@ extension $UserCredentialsResponseCopyWith on UserCredentialsResponse {
 UserCredentialsResponse _$UserCredentialsResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UserCredentialsResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['fullName', 'phoneNumber', 'email']);
   final val = UserCredentialsResponse(
     id: $checkedConvert('id', (v) => v as String?),
     loyaltyPoint: $checkedConvert('loyaltyPoint', (v) => (v as num?)?.toInt()),
-    fullName: $checkedConvert('fullName', (v) => v as String?),
-    phoneNumber: $checkedConvert('phoneNumber', (v) => v as String?),
-    email: $checkedConvert('email', (v) => v as String?),
+    fullName: $checkedConvert('fullName', (v) => v as String),
+    phoneNumber: $checkedConvert('phoneNumber', (v) => v as String),
+    email: $checkedConvert('email', (v) => v as String),
     profilePictureUrl: $checkedConvert(
       'profilePictureUrl',
       (v) => v as String?,
@@ -145,8 +146,8 @@ Map<String, dynamic> _$UserCredentialsResponseToJson(
 ) => <String, dynamic>{
   'id': ?instance.id,
   'loyaltyPoint': ?instance.loyaltyPoint,
-  'fullName': ?instance.fullName,
-  'phoneNumber': ?instance.phoneNumber,
-  'email': ?instance.email,
+  'fullName': instance.fullName,
+  'phoneNumber': instance.phoneNumber,
+  'email': instance.email,
   'profilePictureUrl': ?instance.profilePictureUrl,
 };

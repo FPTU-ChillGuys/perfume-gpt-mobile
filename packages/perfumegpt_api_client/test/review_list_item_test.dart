@@ -56,10 +56,5 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
-
-    // DateTime moderatedAt
-    test('to test the property `moderatedAt`', () async {
-      // TODO
-    });
   });
 }

@@ -9,9 +9,9 @@ part of 'order_detail_list_items.dart';
 abstract class _$OrderDetailListItemsCWProxy {
   OrderDetailListItems variantId(String? variantId);
 
-  OrderDetailListItems variantName(String? variantName);
+  OrderDetailListItems variantName(String variantName);
 
-  OrderDetailListItems imageUrl(String? imageUrl);
+  OrderDetailListItems imageUrl(String imageUrl);
 
   OrderDetailListItems quantity(int? quantity);
 
@@ -26,8 +26,8 @@ abstract class _$OrderDetailListItemsCWProxy {
   /// ```
   OrderDetailListItems call({
     String? variantId,
-    String? variantName,
-    String? imageUrl,
+    String variantName,
+    String imageUrl,
     int? quantity,
     int? total,
   });
@@ -46,11 +46,11 @@ class _$OrderDetailListItemsCWProxyImpl
       call(variantId: variantId);
 
   @override
-  OrderDetailListItems variantName(String? variantName) =>
+  OrderDetailListItems variantName(String variantName) =>
       call(variantName: variantName);
 
   @override
-  OrderDetailListItems imageUrl(String? imageUrl) => call(imageUrl: imageUrl);
+  OrderDetailListItems imageUrl(String imageUrl) => call(imageUrl: imageUrl);
 
   @override
   OrderDetailListItems quantity(int? quantity) => call(quantity: quantity);
@@ -78,14 +78,15 @@ class _$OrderDetailListItemsCWProxyImpl
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
           ? _value.variantName
           // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
-      imageUrl: imageUrl == const $CopyWithPlaceholder()
+          : variantName as String,
+      imageUrl: imageUrl == const $CopyWithPlaceholder() || imageUrl == null
           ? _value.imageUrl
           // ignore: cast_nullable_to_non_nullable
-          : imageUrl as String?,
+          : imageUrl as String,
       quantity: quantity == const $CopyWithPlaceholder()
           ? _value.quantity
           // ignore: cast_nullable_to_non_nullable
@@ -113,10 +114,11 @@ extension $OrderDetailListItemsCopyWith on OrderDetailListItems {
 OrderDetailListItems _$OrderDetailListItemsFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('OrderDetailListItems', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['variantName', 'imageUrl']);
   final val = OrderDetailListItems(
     variantId: $checkedConvert('variantId', (v) => v as String?),
-    variantName: $checkedConvert('variantName', (v) => v as String?),
-    imageUrl: $checkedConvert('imageUrl', (v) => v as String?),
+    variantName: $checkedConvert('variantName', (v) => v as String),
+    imageUrl: $checkedConvert('imageUrl', (v) => v as String),
     quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
     total: $checkedConvert('total', (v) => (v as num?)?.toInt()),
   );
@@ -127,8 +129,8 @@ Map<String, dynamic> _$OrderDetailListItemsToJson(
   OrderDetailListItems instance,
 ) => <String, dynamic>{
   'variantId': ?instance.variantId,
-  'variantName': ?instance.variantName,
-  'imageUrl': ?instance.imageUrl,
+  'variantName': instance.variantName,
+  'imageUrl': instance.imageUrl,
   'quantity': ?instance.quantity,
   'total': ?instance.total,
 };

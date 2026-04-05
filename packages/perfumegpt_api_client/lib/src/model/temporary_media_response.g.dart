@@ -9,7 +9,7 @@ part of 'temporary_media_response.dart';
 abstract class _$TemporaryMediaResponseCWProxy {
   TemporaryMediaResponse id(String? id);
 
-  TemporaryMediaResponse url(String? url);
+  TemporaryMediaResponse url(String url);
 
   TemporaryMediaResponse altText(String? altText);
 
@@ -32,7 +32,7 @@ abstract class _$TemporaryMediaResponseCWProxy {
   /// ```
   TemporaryMediaResponse call({
     String? id,
-    String? url,
+    String url,
     String? altText,
     int? displayOrder,
     int? fileSize,
@@ -54,7 +54,7 @@ class _$TemporaryMediaResponseCWProxyImpl
   TemporaryMediaResponse id(String? id) => call(id: id);
 
   @override
-  TemporaryMediaResponse url(String? url) => call(url: url);
+  TemporaryMediaResponse url(String url) => call(url: url);
 
   @override
   TemporaryMediaResponse altText(String? altText) => call(altText: altText);
@@ -100,10 +100,10 @@ class _$TemporaryMediaResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      url: url == const $CopyWithPlaceholder()
+      url: url == const $CopyWithPlaceholder() || url == null
           ? _value.url
           // ignore: cast_nullable_to_non_nullable
-          : url as String?,
+          : url as String,
       altText: altText == const $CopyWithPlaceholder()
           ? _value.altText
           // ignore: cast_nullable_to_non_nullable
@@ -147,9 +147,10 @@ extension $TemporaryMediaResponseCopyWith on TemporaryMediaResponse {
 TemporaryMediaResponse _$TemporaryMediaResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('TemporaryMediaResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['url']);
   final val = TemporaryMediaResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    url: $checkedConvert('url', (v) => v as String?),
+    url: $checkedConvert('url', (v) => v as String),
     altText: $checkedConvert('altText', (v) => v as String?),
     displayOrder: $checkedConvert('displayOrder', (v) => (v as num?)?.toInt()),
     fileSize: $checkedConvert('fileSize', (v) => (v as num?)?.toInt()),
@@ -170,7 +171,7 @@ Map<String, dynamic> _$TemporaryMediaResponseToJson(
   TemporaryMediaResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'url': ?instance.url,
+  'url': instance.url,
   'altText': ?instance.altText,
   'displayOrder': ?instance.displayOrder,
   'fileSize': ?instance.fileSize,

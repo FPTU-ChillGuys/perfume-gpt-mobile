@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'process_initial_return_dto.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,50 +17,27 @@ part 'process_initial_return_dto.g.dart';
 )
 class ProcessInitialReturnDto {
   /// Returns a new [ProcessInitialReturnDto] instance.
-  ProcessInitialReturnDto({
+  ProcessInitialReturnDto({this.isApproved, this.staffNote});
 
-     this.isApproved,
-
-     this.staffNote,
-  });
-
-  @JsonKey(
-    
-    name: r'isApproved',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isApproved', required: false, includeIfNull: false)
   final bool? isApproved;
 
-
-
-  @JsonKey(
-    
-    name: r'staffNote',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'staffNote', required: false, includeIfNull: false)
   final String? staffNote;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProcessInitialReturnDto &&
+          other.isApproved == isApproved &&
+          other.staffNote == staffNote;
 
+  @override
+  int get hashCode =>
+      isApproved.hashCode + (staffNote == null ? 0 : staffNote.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProcessInitialReturnDto &&
-      other.isApproved == isApproved &&
-      other.staffNote == staffNote;
-
-    @override
-    int get hashCode =>
-        isApproved.hashCode +
-        (staffNote == null ? 0 : staffNote.hashCode);
-
-  factory ProcessInitialReturnDto.fromJson(Map<String, dynamic> json) => _$ProcessInitialReturnDtoFromJson(json);
+  factory ProcessInitialReturnDto.fromJson(Map<String, dynamic> json) =>
+      _$ProcessInitialReturnDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProcessInitialReturnDtoToJson(this);
 
@@ -69,6 +45,4 @@ class ProcessInitialReturnDto {
   String toString() {
     return toJson().toString();
   }
-
 }
-

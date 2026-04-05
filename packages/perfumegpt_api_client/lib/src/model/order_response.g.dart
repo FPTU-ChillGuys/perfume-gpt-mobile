@@ -9,6 +9,8 @@ part of 'order_response.dart';
 abstract class _$OrderResponseCWProxy {
   OrderResponse id(String? id);
 
+  OrderResponse code(String code);
+
   OrderResponse customerId(String? customerId);
 
   OrderResponse customerName(String? customerName);
@@ -47,7 +49,7 @@ abstract class _$OrderResponseCWProxy {
 
   OrderResponse recipientInfo(RecipientInfoResponse? recipientInfo);
 
-  OrderResponse orderDetails(List<OrderDetailResponse>? orderDetails);
+  OrderResponse orderDetails(List<OrderDetailResponse> orderDetails);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderResponse(...).copyWith.fieldName(value)`.
@@ -58,6 +60,7 @@ abstract class _$OrderResponseCWProxy {
   /// ```
   OrderResponse call({
     String? id,
+    String code,
     String? customerId,
     String? customerName,
     String? customerEmail,
@@ -76,7 +79,7 @@ abstract class _$OrderResponseCWProxy {
     List<PaymentInfoResponse>? paymentTransactions,
     ShippingInfoResponse? shippingInfo,
     RecipientInfoResponse? recipientInfo,
-    List<OrderDetailResponse>? orderDetails,
+    List<OrderDetailResponse> orderDetails,
   });
 }
 
@@ -89,6 +92,9 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
 
   @override
   OrderResponse id(String? id) => call(id: id);
+
+  @override
+  OrderResponse code(String code) => call(code: code);
 
   @override
   OrderResponse customerId(String? customerId) => call(customerId: customerId);
@@ -154,7 +160,7 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
       call(recipientInfo: recipientInfo);
 
   @override
-  OrderResponse orderDetails(List<OrderDetailResponse>? orderDetails) =>
+  OrderResponse orderDetails(List<OrderDetailResponse> orderDetails) =>
       call(orderDetails: orderDetails);
 
   @override
@@ -167,6 +173,7 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
   /// ```
   OrderResponse call({
     Object? id = const $CopyWithPlaceholder(),
+    Object? code = const $CopyWithPlaceholder(),
     Object? customerId = const $CopyWithPlaceholder(),
     Object? customerName = const $CopyWithPlaceholder(),
     Object? customerEmail = const $CopyWithPlaceholder(),
@@ -192,6 +199,10 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
+      code: code == const $CopyWithPlaceholder() || code == null
+          ? _value.code
+          // ignore: cast_nullable_to_non_nullable
+          : code as String,
       customerId: customerId == const $CopyWithPlaceholder()
           ? _value.customerId
           // ignore: cast_nullable_to_non_nullable
@@ -264,10 +275,11 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
           ? _value.recipientInfo
           // ignore: cast_nullable_to_non_nullable
           : recipientInfo as RecipientInfoResponse?,
-      orderDetails: orderDetails == const $CopyWithPlaceholder()
+      orderDetails:
+          orderDetails == const $CopyWithPlaceholder() || orderDetails == null
           ? _value.orderDetails
           // ignore: cast_nullable_to_non_nullable
-          : orderDetails as List<OrderDetailResponse>?,
+          : orderDetails as List<OrderDetailResponse>,
     );
   }
 }
@@ -286,8 +298,10 @@ extension $OrderResponseCopyWith on OrderResponse {
 OrderResponse _$OrderResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('OrderResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code', 'orderDetails']);
   final val = OrderResponse(
     id: $checkedConvert('id', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
     customerId: $checkedConvert('customerId', (v) => v as String?),
     customerName: $checkedConvert('customerName', (v) => v as String?),
     customerEmail: $checkedConvert('customerEmail', (v) => v as String?),
@@ -344,8 +358,8 @@ OrderResponse _$OrderResponseFromJson(
     ),
     orderDetails: $checkedConvert(
       'orderDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => OrderDetailResponse.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => OrderDetailResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
   );
@@ -355,6 +369,7 @@ OrderResponse _$OrderResponseFromJson(
 Map<String, dynamic> _$OrderResponseToJson(OrderResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
+      'code': instance.code,
       'customerId': ?instance.customerId,
       'customerName': ?instance.customerName,
       'customerEmail': ?instance.customerEmail,
@@ -375,7 +390,7 @@ Map<String, dynamic> _$OrderResponseToJson(OrderResponse instance) =>
           .toList(),
       'shippingInfo': ?instance.shippingInfo?.toJson(),
       'recipientInfo': ?instance.recipientInfo?.toJson(),
-      'orderDetails': ?instance.orderDetails?.map((e) => e.toJson()).toList(),
+      'orderDetails': instance.orderDetails.map((e) => e.toJson()).toList(),
     };
 
 const _$OrderTypeEnumMap = {
@@ -390,11 +405,13 @@ const _$OrderStatusEnumMap = {
   OrderStatus.delivered: 'Delivered',
   OrderStatus.returning: 'Returning',
   OrderStatus.cancelled: 'Cancelled',
+  OrderStatus.partialReturned: 'Partial_Returned',
   OrderStatus.returned: 'Returned',
 };
 
 const _$PaymentStatusEnumMap = {
   PaymentStatus.unpaid: 'Unpaid',
   PaymentStatus.paid: 'Paid',
+  PaymentStatus.partialRefunded: 'Partial_Refunded',
   PaymentStatus.refunded: 'Refunded',
 };
