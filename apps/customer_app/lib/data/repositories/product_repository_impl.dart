@@ -29,8 +29,8 @@ class ProductRepositoryImpl implements ProductRepository {
     double minP = 0;
     double maxP = 0;
     List<double> variantPrices = [];
-    if (product.variants != null && product.variants!.isNotEmpty) {
-      variantPrices = product.variants!
+    if (product.variants.isNotEmpty) {
+      variantPrices = product.variants
           .map((v) => (v.basePrice ?? 0).toDouble())
           .toList();
       minP = variantPrices.reduce(min);
@@ -45,10 +45,10 @@ class ProductRepositoryImpl implements ProductRepository {
       minPrice: minP > 0 ? minP : null,
       maxPrice: maxP > 0 ? maxP : null,
       variantPrices: variantPrices,
-      imageUrl: product.media?.firstOrNull?.url ?? '',
+      imageUrl: product.media.firstOrNull?.url ?? '',
       scentNotes:
-          product.attributes?.map((a) => a.attribute ?? '').toList() ?? [],
-      brand: product.brandName ?? '',
+          product.attributes.map((a) => a.attribute).toList(),
+      brand: product.brandName,
       rating: 0,
       reviewCount: 0,
     );
@@ -79,8 +79,8 @@ class ProductRepositoryImpl implements ProductRepository {
     double minP = 0;
     double maxP = 0;
     List<double> variantPrices = [];
-    if (item.variantPrices != null && item.variantPrices!.isNotEmpty) {
-      variantPrices = item.variantPrices!.map((p) => p.toDouble()).toList();
+    if (item.variantPrices.isNotEmpty) {
+      variantPrices = item.variantPrices.map((p) => p.toDouble()).toList();
       minP = variantPrices.reduce(min);
       maxP = variantPrices.reduce(max);
     }
@@ -95,7 +95,7 @@ class ProductRepositoryImpl implements ProductRepository {
       variantPrices: variantPrices,
       imageUrl: item.primaryImage?.url ?? '',
       scentNotes: item.tags ?? [],
-      brand: item.brandName ?? '',
+      brand: item.brandName,
       rating: 0,
       reviewCount: 0,
     );
@@ -105,8 +105,8 @@ class ProductRepositoryImpl implements ProductRepository {
     double minP = 0;
     double maxP = 0;
     List<double> variantPrices = [];
-    if (item.variantPrices != null && item.variantPrices!.isNotEmpty) {
-      variantPrices = item.variantPrices!.map((p) => p.toDouble()).toList();
+    if (item.variantPrices.isNotEmpty) {
+      variantPrices = item.variantPrices.map((p) => p.toDouble()).toList();
       minP = variantPrices.reduce(min);
       maxP = variantPrices.reduce(max);
     }
@@ -121,7 +121,7 @@ class ProductRepositoryImpl implements ProductRepository {
       variantPrices: variantPrices,
       imageUrl: item.primaryImage?.url ?? '',
       scentNotes: item.tags ?? [],
-      brand: item.brandName ?? '',
+      brand: item.brandName,
       rating: 0,
       reviewCount: 0,
     );
