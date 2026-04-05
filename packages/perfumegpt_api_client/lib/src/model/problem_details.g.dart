@@ -3,140 +3,126 @@
 part of 'problem_details.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProblemDetails extends ProblemDetails {
-  @override
-  final String? type;
-  @override
-  final String? title;
-  @override
-  final int? status;
-  @override
-  final String? detail;
-  @override
-  final String? instance;
+abstract class _$ProblemDetailsCWProxy {
+  ProblemDetails type(String? type);
 
-  factory _$ProblemDetails([void Function(ProblemDetailsBuilder)? updates]) =>
-      (ProblemDetailsBuilder()..update(updates))._build();
+  ProblemDetails title(String? title);
 
-  _$ProblemDetails._({
-    this.type,
-    this.title,
-    this.status,
-    this.detail,
-    this.instance,
-  }) : super._();
-  @override
-  ProblemDetails rebuild(void Function(ProblemDetailsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  ProblemDetails status(int? status);
 
-  @override
-  ProblemDetailsBuilder toBuilder() => ProblemDetailsBuilder()..replace(this);
+  ProblemDetails detail(String? detail);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProblemDetails &&
-        type == other.type &&
-        title == other.title &&
-        status == other.status &&
-        detail == other.detail &&
-        instance == other.instance;
-  }
+  ProblemDetails instance(String? instance);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProblemDetails(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProblemDetails(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProblemDetails call({
+    String? type,
+    String? title,
+    int? status,
+    String? detail,
+    String? instance,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProblemDetails.copyWith(...)` or call `instanceOfProblemDetails.copyWith.fieldName(value)` for a single field.
+class _$ProblemDetailsCWProxyImpl implements _$ProblemDetailsCWProxy {
+  const _$ProblemDetailsCWProxyImpl(this._value);
+
+  final ProblemDetails _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, type.hashCode);
-    _$hash = $jc(_$hash, title.hashCode);
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, detail.hashCode);
-    _$hash = $jc(_$hash, instance.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProblemDetails type(String? type) => call(type: type);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ProblemDetails')
-          ..add('type', type)
-          ..add('title', title)
-          ..add('status', status)
-          ..add('detail', detail)
-          ..add('instance', instance))
-        .toString();
+  ProblemDetails title(String? title) => call(title: title);
+
+  @override
+  ProblemDetails status(int? status) => call(status: status);
+
+  @override
+  ProblemDetails detail(String? detail) => call(detail: detail);
+
+  @override
+  ProblemDetails instance(String? instance) => call(instance: instance);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProblemDetails(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProblemDetails(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProblemDetails call({
+    Object? type = const $CopyWithPlaceholder(),
+    Object? title = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? detail = const $CopyWithPlaceholder(),
+    Object? instance = const $CopyWithPlaceholder(),
+  }) {
+    return ProblemDetails(
+      type: type == const $CopyWithPlaceholder()
+          ? _value.type
+          // ignore: cast_nullable_to_non_nullable
+          : type as String?,
+      title: title == const $CopyWithPlaceholder()
+          ? _value.title
+          // ignore: cast_nullable_to_non_nullable
+          : title as String?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as int?,
+      detail: detail == const $CopyWithPlaceholder()
+          ? _value.detail
+          // ignore: cast_nullable_to_non_nullable
+          : detail as String?,
+      instance: instance == const $CopyWithPlaceholder()
+          ? _value.instance
+          // ignore: cast_nullable_to_non_nullable
+          : instance as String?,
+    );
   }
 }
 
-class ProblemDetailsBuilder
-    implements Builder<ProblemDetails, ProblemDetailsBuilder> {
-  _$ProblemDetails? _$v;
-
-  String? _type;
-  String? get type => _$this._type;
-  set type(String? type) => _$this._type = type;
-
-  String? _title;
-  String? get title => _$this._title;
-  set title(String? title) => _$this._title = title;
-
-  int? _status;
-  int? get status => _$this._status;
-  set status(int? status) => _$this._status = status;
-
-  String? _detail;
-  String? get detail => _$this._detail;
-  set detail(String? detail) => _$this._detail = detail;
-
-  String? _instance;
-  String? get instance => _$this._instance;
-  set instance(String? instance) => _$this._instance = instance;
-
-  ProblemDetailsBuilder() {
-    ProblemDetails._defaults(this);
-  }
-
-  ProblemDetailsBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _type = $v.type;
-      _title = $v.title;
-      _status = $v.status;
-      _detail = $v.detail;
-      _instance = $v.instance;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProblemDetails other) {
-    _$v = other as _$ProblemDetails;
-  }
-
-  @override
-  void update(void Function(ProblemDetailsBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProblemDetails build() => _build();
-
-  _$ProblemDetails _build() {
-    final _$result =
-        _$v ??
-        _$ProblemDetails._(
-          type: type,
-          title: title,
-          status: status,
-          detail: detail,
-          instance: instance,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ProblemDetailsCopyWith on ProblemDetails {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProblemDetails.copyWith(...)` or `instanceOfProblemDetails.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProblemDetailsCWProxy get copyWith => _$ProblemDetailsCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProblemDetails _$ProblemDetailsFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('ProblemDetails', json, ($checkedConvert) {
+      final val = ProblemDetails(
+        type: $checkedConvert('type', (v) => v as String?),
+        title: $checkedConvert('title', (v) => v as String?),
+        status: $checkedConvert('status', (v) => (v as num?)?.toInt()),
+        detail: $checkedConvert('detail', (v) => v as String?),
+        instance: $checkedConvert('instance', (v) => v as String?),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$ProblemDetailsToJson(ProblemDetails instance) =>
+    <String, dynamic>{
+      'type': ?instance.type,
+      'title': ?instance.title,
+      'status': ?instance.status,
+      'detail': ?instance.detail,
+      'instance': ?instance.instance,
+    };

@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for ReviewsApi
 void main() {
   final instance = PerfumegptApiClient().getReviewsApi();
@@ -12,7 +11,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiReviewsImagesTemporaryPost({ BuiltList<Uint8List> images }) async
+    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiReviewsImagesTemporaryPost({ List<MultipartFile> images }) async
     test('test apiReviewsImagesTemporaryPost', () async {
       // TODO
     });
@@ -56,6 +55,5 @@ void main() {
     test('test apiReviewsVariantVariantIdStatisticsGet', () async {
       // TODO
     });
-
   });
 }

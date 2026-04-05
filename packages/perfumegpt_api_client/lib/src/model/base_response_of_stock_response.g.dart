@@ -3,167 +3,141 @@
 part of 'base_response_of_stock_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BaseResponseOfStockResponse extends BaseResponseOfStockResponse {
-  @override
-  final StockResponse? payload;
-  @override
-  final bool? success;
-  @override
-  final String? message;
-  @override
-  final BuiltList<String>? errors;
-  @override
-  final int? errorType;
+abstract class _$BaseResponseOfStockResponseCWProxy {
+  BaseResponseOfStockResponse payload(StockResponse? payload);
 
-  factory _$BaseResponseOfStockResponse([
-    void Function(BaseResponseOfStockResponseBuilder)? updates,
-  ]) => (BaseResponseOfStockResponseBuilder()..update(updates))._build();
+  BaseResponseOfStockResponse success(bool? success);
 
-  _$BaseResponseOfStockResponse._({
-    this.payload,
-    this.success,
-    this.message,
-    this.errors,
-    this.errorType,
-  }) : super._();
-  @override
-  BaseResponseOfStockResponse rebuild(
-    void Function(BaseResponseOfStockResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  BaseResponseOfStockResponse message(String? message);
 
-  @override
-  BaseResponseOfStockResponseBuilder toBuilder() =>
-      BaseResponseOfStockResponseBuilder()..replace(this);
+  BaseResponseOfStockResponse errors(List<String>? errors);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BaseResponseOfStockResponse &&
-        payload == other.payload &&
-        success == other.success &&
-        message == other.message &&
-        errors == other.errors &&
-        errorType == other.errorType;
-  }
+  BaseResponseOfStockResponse errorType(int? errorType);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfStockResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfStockResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfStockResponse call({
+    StockResponse? payload,
+    bool? success,
+    String? message,
+    List<String>? errors,
+    int? errorType,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfStockResponse.copyWith(...)` or call `instanceOfBaseResponseOfStockResponse.copyWith.fieldName(value)` for a single field.
+class _$BaseResponseOfStockResponseCWProxyImpl
+    implements _$BaseResponseOfStockResponseCWProxy {
+  const _$BaseResponseOfStockResponseCWProxyImpl(this._value);
+
+  final BaseResponseOfStockResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, payload.hashCode);
-    _$hash = $jc(_$hash, success.hashCode);
-    _$hash = $jc(_$hash, message.hashCode);
-    _$hash = $jc(_$hash, errors.hashCode);
-    _$hash = $jc(_$hash, errorType.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  BaseResponseOfStockResponse payload(StockResponse? payload) =>
+      call(payload: payload);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'BaseResponseOfStockResponse')
-          ..add('payload', payload)
-          ..add('success', success)
-          ..add('message', message)
-          ..add('errors', errors)
-          ..add('errorType', errorType))
-        .toString();
+  BaseResponseOfStockResponse success(bool? success) => call(success: success);
+
+  @override
+  BaseResponseOfStockResponse message(String? message) =>
+      call(message: message);
+
+  @override
+  BaseResponseOfStockResponse errors(List<String>? errors) =>
+      call(errors: errors);
+
+  @override
+  BaseResponseOfStockResponse errorType(int? errorType) =>
+      call(errorType: errorType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfStockResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfStockResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfStockResponse call({
+    Object? payload = const $CopyWithPlaceholder(),
+    Object? success = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? errors = const $CopyWithPlaceholder(),
+    Object? errorType = const $CopyWithPlaceholder(),
+  }) {
+    return BaseResponseOfStockResponse(
+      payload: payload == const $CopyWithPlaceholder()
+          ? _value.payload
+          // ignore: cast_nullable_to_non_nullable
+          : payload as StockResponse?,
+      success: success == const $CopyWithPlaceholder()
+          ? _value.success
+          // ignore: cast_nullable_to_non_nullable
+          : success as bool?,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      errors: errors == const $CopyWithPlaceholder()
+          ? _value.errors
+          // ignore: cast_nullable_to_non_nullable
+          : errors as List<String>?,
+      errorType: errorType == const $CopyWithPlaceholder()
+          ? _value.errorType
+          // ignore: cast_nullable_to_non_nullable
+          : errorType as int?,
+    );
   }
 }
 
-class BaseResponseOfStockResponseBuilder
-    implements
-        Builder<
-          BaseResponseOfStockResponse,
-          BaseResponseOfStockResponseBuilder
-        > {
-  _$BaseResponseOfStockResponse? _$v;
-
-  StockResponseBuilder? _payload;
-  StockResponseBuilder get payload =>
-      _$this._payload ??= StockResponseBuilder();
-  set payload(StockResponseBuilder? payload) => _$this._payload = payload;
-
-  bool? _success;
-  bool? get success => _$this._success;
-  set success(bool? success) => _$this._success = success;
-
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
-  ListBuilder<String>? _errors;
-  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
-  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
-
-  int? _errorType;
-  int? get errorType => _$this._errorType;
-  set errorType(int? errorType) => _$this._errorType = errorType;
-
-  BaseResponseOfStockResponseBuilder() {
-    BaseResponseOfStockResponse._defaults(this);
-  }
-
-  BaseResponseOfStockResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _payload = $v.payload?.toBuilder();
-      _success = $v.success;
-      _message = $v.message;
-      _errors = $v.errors?.toBuilder();
-      _errorType = $v.errorType;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BaseResponseOfStockResponse other) {
-    _$v = other as _$BaseResponseOfStockResponse;
-  }
-
-  @override
-  void update(void Function(BaseResponseOfStockResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BaseResponseOfStockResponse build() => _build();
-
-  _$BaseResponseOfStockResponse _build() {
-    _$BaseResponseOfStockResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$BaseResponseOfStockResponse._(
-            payload: _payload?.build(),
-            success: success,
-            message: message,
-            errors: _errors?.build(),
-            errorType: errorType,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'payload';
-        _payload?.build();
-
-        _$failedField = 'errors';
-        _errors?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'BaseResponseOfStockResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $BaseResponseOfStockResponseCopyWith on BaseResponseOfStockResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfStockResponse.copyWith(...)` or `instanceOfBaseResponseOfStockResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BaseResponseOfStockResponseCWProxy get copyWith =>
+      _$BaseResponseOfStockResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BaseResponseOfStockResponse _$BaseResponseOfStockResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('BaseResponseOfStockResponse', json, ($checkedConvert) {
+  final val = BaseResponseOfStockResponse(
+    payload: $checkedConvert(
+      'payload',
+      (v) =>
+          v == null ? null : StockResponse.fromJson(v as Map<String, dynamic>),
+    ),
+    success: $checkedConvert('success', (v) => v as bool?),
+    message: $checkedConvert('message', (v) => v as String?),
+    errors: $checkedConvert(
+      'errors',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    ),
+    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$BaseResponseOfStockResponseToJson(
+  BaseResponseOfStockResponse instance,
+) => <String, dynamic>{
+  'payload': ?instance.payload?.toJson(),
+  'success': ?instance.success,
+  'message': ?instance.message,
+  'errors': ?instance.errors,
+  'errorType': ?instance.errorType,
+};

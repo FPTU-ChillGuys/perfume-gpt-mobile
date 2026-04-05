@@ -3,104 +3,40 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'update_brand_request.g.dart';
 
-/// UpdateBrandRequest
-///
-/// Properties:
-/// * [name] 
-@BuiltValue()
-abstract class UpdateBrandRequest implements Built<UpdateBrandRequest, UpdateBrandRequestBuilder> {
-  @BuiltValueField(wireName: r'name')
-  String get name;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class UpdateBrandRequest {
+  /// Returns a new [UpdateBrandRequest] instance.
+  UpdateBrandRequest({required this.name});
 
-  UpdateBrandRequest._();
-
-  factory UpdateBrandRequest([void updates(UpdateBrandRequestBuilder b)]) = _$UpdateBrandRequest;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(UpdateBrandRequestBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<UpdateBrandRequest> get serializer => _$UpdateBrandRequestSerializer();
-}
-
-class _$UpdateBrandRequestSerializer implements PrimitiveSerializer<UpdateBrandRequest> {
-  @override
-  final Iterable<Type> types = const [UpdateBrandRequest, _$UpdateBrandRequest];
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
+  final String name;
 
   @override
-  final String wireName = r'UpdateBrandRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    UpdateBrandRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'name';
-    yield serializers.serialize(
-      object.name,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateBrandRequest && other.name == name;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    UpdateBrandRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => name.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required UpdateBrandRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory UpdateBrandRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateBrandRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateBrandRequestToJson(this);
 
   @override
-  UpdateBrandRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = UpdateBrandRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

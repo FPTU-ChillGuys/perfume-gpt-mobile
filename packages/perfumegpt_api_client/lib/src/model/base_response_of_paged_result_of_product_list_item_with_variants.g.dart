@@ -3,184 +3,168 @@
 part of 'base_response_of_paged_result_of_product_list_item_with_variants.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BaseResponseOfPagedResultOfProductListItemWithVariants
-    extends BaseResponseOfPagedResultOfProductListItemWithVariants {
-  @override
-  final PagedResultOfProductListItemWithVariants? payload;
-  @override
-  final bool? success;
-  @override
-  final String? message;
-  @override
-  final BuiltList<String>? errors;
-  @override
-  final int? errorType;
+abstract class _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxy {
+  BaseResponseOfPagedResultOfProductListItemWithVariants payload(
+    PagedResultOfProductListItemWithVariants? payload,
+  );
 
-  factory _$BaseResponseOfPagedResultOfProductListItemWithVariants([
-    void Function(
-      BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder,
-    )?
-    updates,
-  ]) =>
-      (BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder()
-            ..update(updates))
-          ._build();
+  BaseResponseOfPagedResultOfProductListItemWithVariants success(bool? success);
 
-  _$BaseResponseOfPagedResultOfProductListItemWithVariants._({
-    this.payload,
-    this.success,
-    this.message,
-    this.errors,
-    this.errorType,
-  }) : super._();
-  @override
-  BaseResponseOfPagedResultOfProductListItemWithVariants rebuild(
-    void Function(BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder)
-    updates,
-  ) => (toBuilder()..update(updates)).build();
+  BaseResponseOfPagedResultOfProductListItemWithVariants message(
+    String? message,
+  );
 
-  @override
-  BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder toBuilder() =>
-      BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder()
-        ..replace(this);
+  BaseResponseOfPagedResultOfProductListItemWithVariants errors(
+    List<String>? errors,
+  );
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BaseResponseOfPagedResultOfProductListItemWithVariants &&
-        payload == other.payload &&
-        success == other.success &&
-        message == other.message &&
-        errors == other.errors &&
-        errorType == other.errorType;
-  }
+  BaseResponseOfPagedResultOfProductListItemWithVariants errorType(
+    int? errorType,
+  );
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfPagedResultOfProductListItemWithVariants call({
+    PagedResultOfProductListItemWithVariants? payload,
+    bool? success,
+    String? message,
+    List<String>? errors,
+    int? errorType,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith(...)` or call `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith.fieldName(value)` for a single field.
+class _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxyImpl
+    implements _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxy {
+  const _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxyImpl(
+    this._value,
+  );
+
+  final BaseResponseOfPagedResultOfProductListItemWithVariants _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, payload.hashCode);
-    _$hash = $jc(_$hash, success.hashCode);
-    _$hash = $jc(_$hash, message.hashCode);
-    _$hash = $jc(_$hash, errors.hashCode);
-    _$hash = $jc(_$hash, errorType.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  BaseResponseOfPagedResultOfProductListItemWithVariants payload(
+    PagedResultOfProductListItemWithVariants? payload,
+  ) => call(payload: payload);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'BaseResponseOfPagedResultOfProductListItemWithVariants',
-          )
-          ..add('payload', payload)
-          ..add('success', success)
-          ..add('message', message)
-          ..add('errors', errors)
-          ..add('errorType', errorType))
-        .toString();
+  BaseResponseOfPagedResultOfProductListItemWithVariants success(
+    bool? success,
+  ) => call(success: success);
+
+  @override
+  BaseResponseOfPagedResultOfProductListItemWithVariants message(
+    String? message,
+  ) => call(message: message);
+
+  @override
+  BaseResponseOfPagedResultOfProductListItemWithVariants errors(
+    List<String>? errors,
+  ) => call(errors: errors);
+
+  @override
+  BaseResponseOfPagedResultOfProductListItemWithVariants errorType(
+    int? errorType,
+  ) => call(errorType: errorType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfPagedResultOfProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfPagedResultOfProductListItemWithVariants call({
+    Object? payload = const $CopyWithPlaceholder(),
+    Object? success = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? errors = const $CopyWithPlaceholder(),
+    Object? errorType = const $CopyWithPlaceholder(),
+  }) {
+    return BaseResponseOfPagedResultOfProductListItemWithVariants(
+      payload: payload == const $CopyWithPlaceholder()
+          ? _value.payload
+          // ignore: cast_nullable_to_non_nullable
+          : payload as PagedResultOfProductListItemWithVariants?,
+      success: success == const $CopyWithPlaceholder()
+          ? _value.success
+          // ignore: cast_nullable_to_non_nullable
+          : success as bool?,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      errors: errors == const $CopyWithPlaceholder()
+          ? _value.errors
+          // ignore: cast_nullable_to_non_nullable
+          : errors as List<String>?,
+      errorType: errorType == const $CopyWithPlaceholder()
+          ? _value.errorType
+          // ignore: cast_nullable_to_non_nullable
+          : errorType as int?,
+    );
   }
 }
 
-class BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder
-    implements
-        Builder<
-          BaseResponseOfPagedResultOfProductListItemWithVariants,
-          BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder
-        > {
-  _$BaseResponseOfPagedResultOfProductListItemWithVariants? _$v;
-
-  PagedResultOfProductListItemWithVariantsBuilder? _payload;
-  PagedResultOfProductListItemWithVariantsBuilder get payload =>
-      _$this._payload ??= PagedResultOfProductListItemWithVariantsBuilder();
-  set payload(PagedResultOfProductListItemWithVariantsBuilder? payload) =>
-      _$this._payload = payload;
-
-  bool? _success;
-  bool? get success => _$this._success;
-  set success(bool? success) => _$this._success = success;
-
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
-  ListBuilder<String>? _errors;
-  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
-  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
-
-  int? _errorType;
-  int? get errorType => _$this._errorType;
-  set errorType(int? errorType) => _$this._errorType = errorType;
-
-  BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder() {
-    BaseResponseOfPagedResultOfProductListItemWithVariants._defaults(this);
-  }
-
-  BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _payload = $v.payload?.toBuilder();
-      _success = $v.success;
-      _message = $v.message;
-      _errors = $v.errors?.toBuilder();
-      _errorType = $v.errorType;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BaseResponseOfPagedResultOfProductListItemWithVariants other) {
-    _$v = other as _$BaseResponseOfPagedResultOfProductListItemWithVariants;
-  }
-
-  @override
-  void update(
-    void Function(
-      BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder,
-    )?
-    updates,
-  ) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BaseResponseOfPagedResultOfProductListItemWithVariants build() => _build();
-
-  _$BaseResponseOfPagedResultOfProductListItemWithVariants _build() {
-    _$BaseResponseOfPagedResultOfProductListItemWithVariants _$result;
-    try {
-      _$result =
-          _$v ??
-          _$BaseResponseOfPagedResultOfProductListItemWithVariants._(
-            payload: _payload?.build(),
-            success: success,
-            message: message,
-            errors: _errors?.build(),
-            errorType: errorType,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'payload';
-        _payload?.build();
-
-        _$failedField = 'errors';
-        _errors?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'BaseResponseOfPagedResultOfProductListItemWithVariants',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $BaseResponseOfPagedResultOfProductListItemWithVariantsCopyWith
+    on BaseResponseOfPagedResultOfProductListItemWithVariants {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith(...)` or `instanceOfBaseResponseOfPagedResultOfProductListItemWithVariants.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxy
+  get copyWith =>
+      _$BaseResponseOfPagedResultOfProductListItemWithVariantsCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BaseResponseOfPagedResultOfProductListItemWithVariants
+_$BaseResponseOfPagedResultOfProductListItemWithVariantsFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate(
+  'BaseResponseOfPagedResultOfProductListItemWithVariants',
+  json,
+  ($checkedConvert) {
+    final val = BaseResponseOfPagedResultOfProductListItemWithVariants(
+      payload: $checkedConvert(
+        'payload',
+        (v) => v == null
+            ? null
+            : PagedResultOfProductListItemWithVariants.fromJson(
+                v as Map<String, dynamic>,
+              ),
+      ),
+      success: $checkedConvert('success', (v) => v as bool?),
+      message: $checkedConvert('message', (v) => v as String?),
+      errors: $checkedConvert(
+        'errors',
+        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+      ),
+      errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+    );
+    return val;
+  },
+);
+
+Map<String, dynamic>
+_$BaseResponseOfPagedResultOfProductListItemWithVariantsToJson(
+  BaseResponseOfPagedResultOfProductListItemWithVariants instance,
+) => <String, dynamic>{
+  'payload': ?instance.payload?.toJson(),
+  'success': ?instance.success,
+  'message': ?instance.message,
+  'errors': ?instance.errors,
+  'errorType': ?instance.errorType,
+};

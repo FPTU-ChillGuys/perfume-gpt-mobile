@@ -3,114 +3,93 @@
 part of 'customer_family_preference_respone.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$CustomerFamilyPreferenceRespone
-    extends CustomerFamilyPreferenceRespone {
-  @override
-  final int? familyId;
-  @override
-  final String familyName;
+abstract class _$CustomerFamilyPreferenceResponeCWProxy {
+  CustomerFamilyPreferenceRespone familyId(int? familyId);
 
-  factory _$CustomerFamilyPreferenceRespone([
-    void Function(CustomerFamilyPreferenceResponeBuilder)? updates,
-  ]) => (CustomerFamilyPreferenceResponeBuilder()..update(updates))._build();
+  CustomerFamilyPreferenceRespone familyName(String familyName);
 
-  _$CustomerFamilyPreferenceRespone._({this.familyId, required this.familyName})
-    : super._();
-  @override
-  CustomerFamilyPreferenceRespone rebuild(
-    void Function(CustomerFamilyPreferenceResponeBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CustomerFamilyPreferenceRespone(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CustomerFamilyPreferenceRespone(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CustomerFamilyPreferenceRespone call({int? familyId, String familyName});
+}
 
-  @override
-  CustomerFamilyPreferenceResponeBuilder toBuilder() =>
-      CustomerFamilyPreferenceResponeBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCustomerFamilyPreferenceRespone.copyWith(...)` or call `instanceOfCustomerFamilyPreferenceRespone.copyWith.fieldName(value)` for a single field.
+class _$CustomerFamilyPreferenceResponeCWProxyImpl
+    implements _$CustomerFamilyPreferenceResponeCWProxy {
+  const _$CustomerFamilyPreferenceResponeCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is CustomerFamilyPreferenceRespone &&
-        familyId == other.familyId &&
-        familyName == other.familyName;
-  }
+  final CustomerFamilyPreferenceRespone _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, familyId.hashCode);
-    _$hash = $jc(_$hash, familyName.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  CustomerFamilyPreferenceRespone familyId(int? familyId) =>
+      call(familyId: familyId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'CustomerFamilyPreferenceRespone')
-          ..add('familyId', familyId)
-          ..add('familyName', familyName))
-        .toString();
+  CustomerFamilyPreferenceRespone familyName(String familyName) =>
+      call(familyName: familyName);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CustomerFamilyPreferenceRespone(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CustomerFamilyPreferenceRespone(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CustomerFamilyPreferenceRespone call({
+    Object? familyId = const $CopyWithPlaceholder(),
+    Object? familyName = const $CopyWithPlaceholder(),
+  }) {
+    return CustomerFamilyPreferenceRespone(
+      familyId: familyId == const $CopyWithPlaceholder()
+          ? _value.familyId
+          // ignore: cast_nullable_to_non_nullable
+          : familyId as int?,
+      familyName:
+          familyName == const $CopyWithPlaceholder() || familyName == null
+          ? _value.familyName
+          // ignore: cast_nullable_to_non_nullable
+          : familyName as String,
+    );
   }
 }
 
-class CustomerFamilyPreferenceResponeBuilder
-    implements
-        Builder<
-          CustomerFamilyPreferenceRespone,
-          CustomerFamilyPreferenceResponeBuilder
-        > {
-  _$CustomerFamilyPreferenceRespone? _$v;
-
-  int? _familyId;
-  int? get familyId => _$this._familyId;
-  set familyId(int? familyId) => _$this._familyId = familyId;
-
-  String? _familyName;
-  String? get familyName => _$this._familyName;
-  set familyName(String? familyName) => _$this._familyName = familyName;
-
-  CustomerFamilyPreferenceResponeBuilder() {
-    CustomerFamilyPreferenceRespone._defaults(this);
-  }
-
-  CustomerFamilyPreferenceResponeBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _familyId = $v.familyId;
-      _familyName = $v.familyName;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(CustomerFamilyPreferenceRespone other) {
-    _$v = other as _$CustomerFamilyPreferenceRespone;
-  }
-
-  @override
-  void update(void Function(CustomerFamilyPreferenceResponeBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  CustomerFamilyPreferenceRespone build() => _build();
-
-  _$CustomerFamilyPreferenceRespone _build() {
-    final _$result =
-        _$v ??
-        _$CustomerFamilyPreferenceRespone._(
-          familyId: familyId,
-          familyName: BuiltValueNullFieldError.checkNotNull(
-            familyName,
-            r'CustomerFamilyPreferenceRespone',
-            'familyName',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $CustomerFamilyPreferenceResponeCopyWith
+    on CustomerFamilyPreferenceRespone {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCustomerFamilyPreferenceRespone.copyWith(...)` or `instanceOfCustomerFamilyPreferenceRespone.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CustomerFamilyPreferenceResponeCWProxy get copyWith =>
+      _$CustomerFamilyPreferenceResponeCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CustomerFamilyPreferenceRespone _$CustomerFamilyPreferenceResponeFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CustomerFamilyPreferenceRespone', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['familyName']);
+  final val = CustomerFamilyPreferenceRespone(
+    familyId: $checkedConvert('familyId', (v) => (v as num?)?.toInt()),
+    familyName: $checkedConvert('familyName', (v) => v as String),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$CustomerFamilyPreferenceResponeToJson(
+  CustomerFamilyPreferenceRespone instance,
+) => <String, dynamic>{
+  'familyId': ?instance.familyId,
+  'familyName': instance.familyName,
+};

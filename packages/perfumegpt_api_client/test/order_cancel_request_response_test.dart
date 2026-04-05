@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for OrderCancelRequestResponse
 void main() {
-  final instance = OrderCancelRequestResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final OrderCancelRequestResponse?
+  instance = /* OrderCancelRequestResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(OrderCancelRequestResponse, () {
     // String id
@@ -76,6 +77,5 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
-
   });
 }

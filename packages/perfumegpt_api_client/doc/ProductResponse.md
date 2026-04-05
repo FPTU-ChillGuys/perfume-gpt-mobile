@@ -19,11 +19,11 @@ Name | Type | Description | Notes
 **categoryName** | **String** |  | 
 **description** | **String** |  | [optional] 
 **numberOfVariants** | **int** |  | [optional] 
-**media** | [**BuiltList&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
-**variants** | [**BuiltList&lt;ProductVariantResponse&gt;**](ProductVariantResponse.md) |  | 
-**attributes** | [**BuiltList&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | 
-**olfactoryFamilies** | [**BuiltList&lt;ProductOlfactoryFamilyResponse&gt;**](ProductOlfactoryFamilyResponse.md) |  | 
-**scentNotes** | [**BuiltList&lt;ProductScentNoteResponse&gt;**](ProductScentNoteResponse.md) |  | 
+**media** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
+**variants** | [**List&lt;ProductVariantResponse&gt;**](ProductVariantResponse.md) |  | 
+**attributes** | [**List&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | 
+**olfactoryFamilies** | [**List&lt;ProductOlfactoryFamilyResponse&gt;**](ProductOlfactoryFamilyResponse.md) |  | 
+**scentNotes** | [**List&lt;ProductScentNoteResponse&gt;**](ProductScentNoteResponse.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

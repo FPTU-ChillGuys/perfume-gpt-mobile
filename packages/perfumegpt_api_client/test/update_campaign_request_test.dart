@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateCampaignRequest
 void main() {
-  final instance = UpdateCampaignRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final UpdateCampaignRequest? instance = /* UpdateCampaignRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(UpdateCampaignRequest, () {
     // String name
@@ -32,15 +32,14 @@ void main() {
       // TODO
     });
 
-    // BuiltList<UpdateCampaignPromotionItemRequest> items
+    // List<UpdateCampaignPromotionItemRequest> items
     test('to test the property `items`', () async {
       // TODO
     });
 
-    // BuiltList<UpdateCampaignVoucherRequest> vouchers
+    // List<UpdateCampaignVoucherRequest> vouchers
     test('to test the property `vouchers`', () async {
       // TODO
     });
-
   });
 }

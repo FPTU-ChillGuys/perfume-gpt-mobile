@@ -3,158 +3,122 @@
 part of 'create_review_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$CreateReviewRequest extends CreateReviewRequest {
-  @override
-  final String orderDetailId;
-  @override
-  final int? rating;
-  @override
-  final String comment;
-  @override
-  final BuiltList<String>? temporaryMediaIds;
+abstract class _$CreateReviewRequestCWProxy {
+  CreateReviewRequest orderDetailId(String orderDetailId);
 
-  factory _$CreateReviewRequest([
-    void Function(CreateReviewRequestBuilder)? updates,
-  ]) => (CreateReviewRequestBuilder()..update(updates))._build();
+  CreateReviewRequest rating(int? rating);
 
-  _$CreateReviewRequest._({
-    required this.orderDetailId,
-    this.rating,
-    required this.comment,
-    this.temporaryMediaIds,
-  }) : super._();
-  @override
-  CreateReviewRequest rebuild(
-    void Function(CreateReviewRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  CreateReviewRequest comment(String comment);
 
-  @override
-  CreateReviewRequestBuilder toBuilder() =>
-      CreateReviewRequestBuilder()..replace(this);
+  CreateReviewRequest temporaryMediaIds(List<String>? temporaryMediaIds);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is CreateReviewRequest &&
-        orderDetailId == other.orderDetailId &&
-        rating == other.rating &&
-        comment == other.comment &&
-        temporaryMediaIds == other.temporaryMediaIds;
-  }
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateReviewRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateReviewRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateReviewRequest call({
+    String orderDetailId,
+    int? rating,
+    String comment,
+    List<String>? temporaryMediaIds,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateReviewRequest.copyWith(...)` or call `instanceOfCreateReviewRequest.copyWith.fieldName(value)` for a single field.
+class _$CreateReviewRequestCWProxyImpl implements _$CreateReviewRequestCWProxy {
+  const _$CreateReviewRequestCWProxyImpl(this._value);
+
+  final CreateReviewRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, orderDetailId.hashCode);
-    _$hash = $jc(_$hash, rating.hashCode);
-    _$hash = $jc(_$hash, comment.hashCode);
-    _$hash = $jc(_$hash, temporaryMediaIds.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  CreateReviewRequest orderDetailId(String orderDetailId) =>
+      call(orderDetailId: orderDetailId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'CreateReviewRequest')
-          ..add('orderDetailId', orderDetailId)
-          ..add('rating', rating)
-          ..add('comment', comment)
-          ..add('temporaryMediaIds', temporaryMediaIds))
-        .toString();
+  CreateReviewRequest rating(int? rating) => call(rating: rating);
+
+  @override
+  CreateReviewRequest comment(String comment) => call(comment: comment);
+
+  @override
+  CreateReviewRequest temporaryMediaIds(List<String>? temporaryMediaIds) =>
+      call(temporaryMediaIds: temporaryMediaIds);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateReviewRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateReviewRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateReviewRequest call({
+    Object? orderDetailId = const $CopyWithPlaceholder(),
+    Object? rating = const $CopyWithPlaceholder(),
+    Object? comment = const $CopyWithPlaceholder(),
+    Object? temporaryMediaIds = const $CopyWithPlaceholder(),
+  }) {
+    return CreateReviewRequest(
+      orderDetailId:
+          orderDetailId == const $CopyWithPlaceholder() || orderDetailId == null
+          ? _value.orderDetailId
+          // ignore: cast_nullable_to_non_nullable
+          : orderDetailId as String,
+      rating: rating == const $CopyWithPlaceholder()
+          ? _value.rating
+          // ignore: cast_nullable_to_non_nullable
+          : rating as int?,
+      comment: comment == const $CopyWithPlaceholder() || comment == null
+          ? _value.comment
+          // ignore: cast_nullable_to_non_nullable
+          : comment as String,
+      temporaryMediaIds: temporaryMediaIds == const $CopyWithPlaceholder()
+          ? _value.temporaryMediaIds
+          // ignore: cast_nullable_to_non_nullable
+          : temporaryMediaIds as List<String>?,
+    );
   }
 }
 
-class CreateReviewRequestBuilder
-    implements Builder<CreateReviewRequest, CreateReviewRequestBuilder> {
-  _$CreateReviewRequest? _$v;
-
-  String? _orderDetailId;
-  String? get orderDetailId => _$this._orderDetailId;
-  set orderDetailId(String? orderDetailId) =>
-      _$this._orderDetailId = orderDetailId;
-
-  int? _rating;
-  int? get rating => _$this._rating;
-  set rating(int? rating) => _$this._rating = rating;
-
-  String? _comment;
-  String? get comment => _$this._comment;
-  set comment(String? comment) => _$this._comment = comment;
-
-  ListBuilder<String>? _temporaryMediaIds;
-  ListBuilder<String> get temporaryMediaIds =>
-      _$this._temporaryMediaIds ??= ListBuilder<String>();
-  set temporaryMediaIds(ListBuilder<String>? temporaryMediaIds) =>
-      _$this._temporaryMediaIds = temporaryMediaIds;
-
-  CreateReviewRequestBuilder() {
-    CreateReviewRequest._defaults(this);
-  }
-
-  CreateReviewRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _orderDetailId = $v.orderDetailId;
-      _rating = $v.rating;
-      _comment = $v.comment;
-      _temporaryMediaIds = $v.temporaryMediaIds?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(CreateReviewRequest other) {
-    _$v = other as _$CreateReviewRequest;
-  }
-
-  @override
-  void update(void Function(CreateReviewRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  CreateReviewRequest build() => _build();
-
-  _$CreateReviewRequest _build() {
-    _$CreateReviewRequest _$result;
-    try {
-      _$result =
-          _$v ??
-          _$CreateReviewRequest._(
-            orderDetailId: BuiltValueNullFieldError.checkNotNull(
-              orderDetailId,
-              r'CreateReviewRequest',
-              'orderDetailId',
-            ),
-            rating: rating,
-            comment: BuiltValueNullFieldError.checkNotNull(
-              comment,
-              r'CreateReviewRequest',
-              'comment',
-            ),
-            temporaryMediaIds: _temporaryMediaIds?.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'temporaryMediaIds';
-        _temporaryMediaIds?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'CreateReviewRequest',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $CreateReviewRequestCopyWith on CreateReviewRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateReviewRequest.copyWith(...)` or `instanceOfCreateReviewRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CreateReviewRequestCWProxy get copyWith =>
+      _$CreateReviewRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CreateReviewRequest _$CreateReviewRequestFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('CreateReviewRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['orderDetailId', 'comment']);
+      final val = CreateReviewRequest(
+        orderDetailId: $checkedConvert('orderDetailId', (v) => v as String),
+        rating: $checkedConvert('rating', (v) => (v as num?)?.toInt()),
+        comment: $checkedConvert('comment', (v) => v as String),
+        temporaryMediaIds: $checkedConvert(
+          'temporaryMediaIds',
+          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        ),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$CreateReviewRequestToJson(
+  CreateReviewRequest instance,
+) => <String, dynamic>{
+  'orderDetailId': instance.orderDetailId,
+  'rating': ?instance.rating,
+  'comment': instance.comment,
+  'temporaryMediaIds': ?instance.temporaryMediaIds,
+};

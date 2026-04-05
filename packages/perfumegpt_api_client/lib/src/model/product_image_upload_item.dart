@@ -3,160 +3,64 @@
 //
 
 // ignore_for_file: unused_element
-import 'dart:typed_data';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:dio/dio.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'product_image_upload_item.g.dart';
 
-/// ProductImageUploadItem
-///
-/// Properties:
-/// * [imageFile] 
-/// * [altText] 
-/// * [displayOrder] 
-/// * [isPrimary] 
-@BuiltValue()
-abstract class ProductImageUploadItem implements Built<ProductImageUploadItem, ProductImageUploadItemBuilder> {
-  @BuiltValueField(wireName: r'imageFile')
-  Uint8List get imageFile;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  createFactory: false,
+  disallow_unrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ProductImageUploadItem {
+  /// Returns a new [ProductImageUploadItem] instance.
+  ProductImageUploadItem({
+    required this.imageFile,
 
-  @BuiltValueField(wireName: r'altText')
-  String? get altText;
+    this.altText,
 
-  @BuiltValueField(wireName: r'displayOrder')
-  int? get displayOrder;
+    this.displayOrder,
 
-  @BuiltValueField(wireName: r'isPrimary')
-  bool? get isPrimary;
+    this.isPrimary,
+  });
 
-  ProductImageUploadItem._();
+  @JsonKey(ignore: true)
+  final MultipartFile imageFile;
 
-  factory ProductImageUploadItem([void updates(ProductImageUploadItemBuilder b)]) = _$ProductImageUploadItem;
+  @JsonKey(name: r'altText', required: false, includeIfNull: false)
+  final String? altText;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ProductImageUploadItemBuilder b) => b;
+  @JsonKey(name: r'displayOrder', required: false, includeIfNull: false)
+  final int? displayOrder;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ProductImageUploadItem> get serializer => _$ProductImageUploadItemSerializer();
-}
-
-class _$ProductImageUploadItemSerializer implements PrimitiveSerializer<ProductImageUploadItem> {
-  @override
-  final Iterable<Type> types = const [ProductImageUploadItem, _$ProductImageUploadItem];
+  @JsonKey(name: r'isPrimary', required: false, includeIfNull: false)
+  final bool? isPrimary;
 
   @override
-  final String wireName = r'ProductImageUploadItem';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ProductImageUploadItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'imageFile';
-    yield serializers.serialize(
-      object.imageFile,
-      specifiedType: const FullType(Uint8List),
-    );
-    if (object.altText != null) {
-      yield r'altText';
-      yield serializers.serialize(
-        object.altText,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.displayOrder != null) {
-      yield r'displayOrder';
-      yield serializers.serialize(
-        object.displayOrder,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.isPrimary != null) {
-      yield r'isPrimary';
-      yield serializers.serialize(
-        object.isPrimary,
-        specifiedType: const FullType(bool),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductImageUploadItem &&
+          other.imageFile == imageFile &&
+          other.altText == altText &&
+          other.displayOrder == displayOrder &&
+          other.isPrimary == isPrimary;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ProductImageUploadItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      imageFile.hashCode +
+      (altText == null ? 0 : altText.hashCode) +
+      displayOrder.hashCode +
+      isPrimary.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ProductImageUploadItemBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'imageFile':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(Uint8List),
-          ) as Uint8List;
-          result.imageFile = valueDes;
-          break;
-        case r'altText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.altText = valueDes;
-          break;
-        case r'displayOrder':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.displayOrder = valueDes;
-          break;
-        case r'isPrimary':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isPrimary = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  Map<String, dynamic> toJson() => _$ProductImageUploadItemToJson(this);
 
   @override
-  ProductImageUploadItem deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ProductImageUploadItemBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

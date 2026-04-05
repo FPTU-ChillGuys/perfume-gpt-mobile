@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ExcelTemplateResponse
 void main() {
-  final instance = ExcelTemplateResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final ExcelTemplateResponse? instance = /* ExcelTemplateResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(ExcelTemplateResponse, () {
     // String fileContent
@@ -21,6 +21,5 @@ void main() {
     test('to test the property `contentType`', () async {
       // TODO
     });
-
   });
 }

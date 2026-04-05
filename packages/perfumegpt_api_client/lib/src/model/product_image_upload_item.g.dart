@@ -3,135 +3,108 @@
 part of 'product_image_upload_item.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProductImageUploadItem extends ProductImageUploadItem {
-  @override
-  final Uint8List imageFile;
-  @override
-  final String? altText;
-  @override
-  final int? displayOrder;
-  @override
-  final bool? isPrimary;
+abstract class _$ProductImageUploadItemCWProxy {
+  ProductImageUploadItem imageFile(MultipartFile imageFile);
 
-  factory _$ProductImageUploadItem([
-    void Function(ProductImageUploadItemBuilder)? updates,
-  ]) => (ProductImageUploadItemBuilder()..update(updates))._build();
+  ProductImageUploadItem altText(String? altText);
 
-  _$ProductImageUploadItem._({
-    required this.imageFile,
-    this.altText,
-    this.displayOrder,
-    this.isPrimary,
-  }) : super._();
-  @override
-  ProductImageUploadItem rebuild(
-    void Function(ProductImageUploadItemBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  ProductImageUploadItem displayOrder(int? displayOrder);
 
-  @override
-  ProductImageUploadItemBuilder toBuilder() =>
-      ProductImageUploadItemBuilder()..replace(this);
+  ProductImageUploadItem isPrimary(bool? isPrimary);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProductImageUploadItem &&
-        imageFile == other.imageFile &&
-        altText == other.altText &&
-        displayOrder == other.displayOrder &&
-        isPrimary == other.isPrimary;
-  }
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductImageUploadItem(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProductImageUploadItem(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProductImageUploadItem call({
+    MultipartFile imageFile,
+    String? altText,
+    int? displayOrder,
+    bool? isPrimary,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductImageUploadItem.copyWith(...)` or call `instanceOfProductImageUploadItem.copyWith.fieldName(value)` for a single field.
+class _$ProductImageUploadItemCWProxyImpl
+    implements _$ProductImageUploadItemCWProxy {
+  const _$ProductImageUploadItemCWProxyImpl(this._value);
+
+  final ProductImageUploadItem _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, imageFile.hashCode);
-    _$hash = $jc(_$hash, altText.hashCode);
-    _$hash = $jc(_$hash, displayOrder.hashCode);
-    _$hash = $jc(_$hash, isPrimary.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProductImageUploadItem imageFile(MultipartFile imageFile) =>
+      call(imageFile: imageFile);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ProductImageUploadItem')
-          ..add('imageFile', imageFile)
-          ..add('altText', altText)
-          ..add('displayOrder', displayOrder)
-          ..add('isPrimary', isPrimary))
-        .toString();
+  ProductImageUploadItem altText(String? altText) => call(altText: altText);
+
+  @override
+  ProductImageUploadItem displayOrder(int? displayOrder) =>
+      call(displayOrder: displayOrder);
+
+  @override
+  ProductImageUploadItem isPrimary(bool? isPrimary) =>
+      call(isPrimary: isPrimary);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductImageUploadItem(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProductImageUploadItem(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProductImageUploadItem call({
+    Object? imageFile = const $CopyWithPlaceholder(),
+    Object? altText = const $CopyWithPlaceholder(),
+    Object? displayOrder = const $CopyWithPlaceholder(),
+    Object? isPrimary = const $CopyWithPlaceholder(),
+  }) {
+    return ProductImageUploadItem(
+      imageFile: imageFile == const $CopyWithPlaceholder() || imageFile == null
+          ? _value.imageFile
+          // ignore: cast_nullable_to_non_nullable
+          : imageFile as MultipartFile,
+      altText: altText == const $CopyWithPlaceholder()
+          ? _value.altText
+          // ignore: cast_nullable_to_non_nullable
+          : altText as String?,
+      displayOrder: displayOrder == const $CopyWithPlaceholder()
+          ? _value.displayOrder
+          // ignore: cast_nullable_to_non_nullable
+          : displayOrder as int?,
+      isPrimary: isPrimary == const $CopyWithPlaceholder()
+          ? _value.isPrimary
+          // ignore: cast_nullable_to_non_nullable
+          : isPrimary as bool?,
+    );
   }
 }
 
-class ProductImageUploadItemBuilder
-    implements Builder<ProductImageUploadItem, ProductImageUploadItemBuilder> {
-  _$ProductImageUploadItem? _$v;
-
-  Uint8List? _imageFile;
-  Uint8List? get imageFile => _$this._imageFile;
-  set imageFile(Uint8List? imageFile) => _$this._imageFile = imageFile;
-
-  String? _altText;
-  String? get altText => _$this._altText;
-  set altText(String? altText) => _$this._altText = altText;
-
-  int? _displayOrder;
-  int? get displayOrder => _$this._displayOrder;
-  set displayOrder(int? displayOrder) => _$this._displayOrder = displayOrder;
-
-  bool? _isPrimary;
-  bool? get isPrimary => _$this._isPrimary;
-  set isPrimary(bool? isPrimary) => _$this._isPrimary = isPrimary;
-
-  ProductImageUploadItemBuilder() {
-    ProductImageUploadItem._defaults(this);
-  }
-
-  ProductImageUploadItemBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _imageFile = $v.imageFile;
-      _altText = $v.altText;
-      _displayOrder = $v.displayOrder;
-      _isPrimary = $v.isPrimary;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProductImageUploadItem other) {
-    _$v = other as _$ProductImageUploadItem;
-  }
-
-  @override
-  void update(void Function(ProductImageUploadItemBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProductImageUploadItem build() => _build();
-
-  _$ProductImageUploadItem _build() {
-    final _$result =
-        _$v ??
-        _$ProductImageUploadItem._(
-          imageFile: BuiltValueNullFieldError.checkNotNull(
-            imageFile,
-            r'ProductImageUploadItem',
-            'imageFile',
-          ),
-          altText: altText,
-          displayOrder: displayOrder,
-          isPrimary: isPrimary,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ProductImageUploadItemCopyWith on ProductImageUploadItem {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductImageUploadItem.copyWith(...)` or `instanceOfProductImageUploadItem.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductImageUploadItemCWProxy get copyWith =>
+      _$ProductImageUploadItemCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Map<String, dynamic> _$ProductImageUploadItemToJson(
+  ProductImageUploadItem instance,
+) => <String, dynamic>{
+  'altText': ?instance.altText,
+  'displayOrder': ?instance.displayOrder,
+  'isPrimary': ?instance.isPrimary,
+  'hashCode': instance.hashCode,
+};

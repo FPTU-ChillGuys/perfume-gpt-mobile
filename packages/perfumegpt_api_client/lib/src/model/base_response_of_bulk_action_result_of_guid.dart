@@ -3,183 +3,75 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/bulk_action_result_of_guid.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response_of_bulk_action_result_of_guid.g.dart';
 
-/// BaseResponseOfBulkActionResultOfGuid
-///
-/// Properties:
-/// * [payload] 
-/// * [success] 
-/// * [message] 
-/// * [errors] 
-/// * [errorType] 
-@BuiltValue()
-abstract class BaseResponseOfBulkActionResultOfGuid implements Built<BaseResponseOfBulkActionResultOfGuid, BaseResponseOfBulkActionResultOfGuidBuilder> {
-  @BuiltValueField(wireName: r'payload')
-  BulkActionResultOfGuid? get payload;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class BaseResponseOfBulkActionResultOfGuid {
+  /// Returns a new [BaseResponseOfBulkActionResultOfGuid] instance.
+  BaseResponseOfBulkActionResultOfGuid({
+    this.payload,
 
-  @BuiltValueField(wireName: r'success')
-  bool? get success;
+    this.success,
 
-  @BuiltValueField(wireName: r'message')
-  String? get message;
+    this.message,
 
-  @BuiltValueField(wireName: r'errors')
-  BuiltList<String>? get errors;
+    this.errors,
 
-  @BuiltValueField(wireName: r'errorType')
-  int? get errorType;
+    this.errorType,
+  });
 
-  BaseResponseOfBulkActionResultOfGuid._();
+  @JsonKey(name: r'payload', required: false, includeIfNull: false)
+  final BulkActionResultOfGuid? payload;
 
-  factory BaseResponseOfBulkActionResultOfGuid([void updates(BaseResponseOfBulkActionResultOfGuidBuilder b)]) = _$BaseResponseOfBulkActionResultOfGuid;
+  @JsonKey(name: r'success', required: false, includeIfNull: false)
+  final bool? success;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(BaseResponseOfBulkActionResultOfGuidBuilder b) => b;
+  @JsonKey(name: r'message', required: false, includeIfNull: false)
+  final String? message;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<BaseResponseOfBulkActionResultOfGuid> get serializer => _$BaseResponseOfBulkActionResultOfGuidSerializer();
-}
+  @JsonKey(name: r'errors', required: false, includeIfNull: false)
+  final List<String>? errors;
 
-class _$BaseResponseOfBulkActionResultOfGuidSerializer implements PrimitiveSerializer<BaseResponseOfBulkActionResultOfGuid> {
-  @override
-  final Iterable<Type> types = const [BaseResponseOfBulkActionResultOfGuid, _$BaseResponseOfBulkActionResultOfGuid];
+  @JsonKey(name: r'errorType', required: false, includeIfNull: false)
+  final int? errorType;
 
   @override
-  final String wireName = r'BaseResponseOfBulkActionResultOfGuid';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    BaseResponseOfBulkActionResultOfGuid object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.payload != null) {
-      yield r'payload';
-      yield serializers.serialize(
-        object.payload,
-        specifiedType: const FullType.nullable(BulkActionResultOfGuid),
-      );
-    }
-    if (object.success != null) {
-      yield r'success';
-      yield serializers.serialize(
-        object.success,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.message != null) {
-      yield r'message';
-      yield serializers.serialize(
-        object.message,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.errors != null) {
-      yield r'errors';
-      yield serializers.serialize(
-        object.errors,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.errorType != null) {
-      yield r'errorType';
-      yield serializers.serialize(
-        object.errorType,
-        specifiedType: const FullType.nullable(int),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BaseResponseOfBulkActionResultOfGuid &&
+          other.payload == payload &&
+          other.success == success &&
+          other.message == message &&
+          other.errors == errors &&
+          other.errorType == errorType;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    BaseResponseOfBulkActionResultOfGuid object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      (payload == null ? 0 : payload.hashCode) +
+      success.hashCode +
+      message.hashCode +
+      (errors == null ? 0 : errors.hashCode) +
+      (errorType == null ? 0 : errorType.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required BaseResponseOfBulkActionResultOfGuidBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'payload':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BulkActionResultOfGuid),
-          ) as BulkActionResultOfGuid?;
-          if (valueDes == null) continue;
-          result.payload.replace(valueDes);
-          break;
-        case r'success':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.success = valueDes;
-          break;
-        case r'message':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.message = valueDes;
-          break;
-        case r'errors':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>?;
-          if (valueDes == null) continue;
-          result.errors.replace(valueDes);
-          break;
-        case r'errorType':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.errorType = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory BaseResponseOfBulkActionResultOfGuid.fromJson(
+    Map<String, dynamic> json,
+  ) => _$BaseResponseOfBulkActionResultOfGuidFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$BaseResponseOfBulkActionResultOfGuidToJson(this);
 
   @override
-  BaseResponseOfBulkActionResultOfGuid deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = BaseResponseOfBulkActionResultOfGuidBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

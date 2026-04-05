@@ -3,32 +3,18 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'transaction_type.g.dart';
+enum TransactionType {
+  @JsonValue(r'Payment')
+  payment(r'Payment'),
+  @JsonValue(r'Refund')
+  refund(r'Refund');
 
-class TransactionType extends EnumClass {
+  const TransactionType(this.value);
 
-  @BuiltValueEnumConst(wireName: r'Payment')
-  static const TransactionType payment = _$payment;
-  @BuiltValueEnumConst(wireName: r'Refund')
-  static const TransactionType refund = _$refund;
+  final String value;
 
-  static Serializer<TransactionType> get serializer => _$transactionTypeSerializer;
-
-  const TransactionType._(String name): super(name);
-
-  static BuiltSet<TransactionType> get values => _$values;
-  static TransactionType valueOf(String name) => _$valueOf(name);
+  @override
+  String toString() => value;
 }
-
-/// Optionally, enum_class can generate a mixin to go with your enum for use
-/// with Angular. It exposes your enum constants as getters. So, if you mix it
-/// in to your Dart component class, the values become available to the
-/// corresponding Angular template.
-///
-/// Trigger mixin generation by writing a line like this one next to your enum.
-abstract class TransactionTypeMixin = Object with _$TransactionTypeMixin;
-

@@ -3,236 +3,102 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'update_address_request.g.dart';
 
-/// UpdateAddressRequest
-///
-/// Properties:
-/// * [recipientName] 
-/// * [recipientPhoneNumber] 
-/// * [street] 
-/// * [ward] 
-/// * [district] 
-/// * [city] 
-/// * [wardCode] 
-/// * [districtId] 
-/// * [provinceId] 
-@BuiltValue()
-abstract class UpdateAddressRequest implements Built<UpdateAddressRequest, UpdateAddressRequestBuilder> {
-  @BuiltValueField(wireName: r'recipientName')
-  String get recipientName;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class UpdateAddressRequest {
+  /// Returns a new [UpdateAddressRequest] instance.
+  UpdateAddressRequest({
+    required this.recipientName,
 
-  @BuiltValueField(wireName: r'recipientPhoneNumber')
-  String get recipientPhoneNumber;
+    required this.recipientPhoneNumber,
 
-  @BuiltValueField(wireName: r'street')
-  String get street;
+    required this.street,
 
-  @BuiltValueField(wireName: r'ward')
-  String get ward;
+    required this.ward,
 
-  @BuiltValueField(wireName: r'district')
-  String get district;
+    required this.district,
 
-  @BuiltValueField(wireName: r'city')
-  String get city;
+    required this.city,
 
-  @BuiltValueField(wireName: r'wardCode')
-  String get wardCode;
+    required this.wardCode,
 
-  @BuiltValueField(wireName: r'districtId')
-  int? get districtId;
+    this.districtId,
 
-  @BuiltValueField(wireName: r'provinceId')
-  int? get provinceId;
+    this.provinceId,
+  });
 
-  UpdateAddressRequest._();
+  @JsonKey(name: r'recipientName', required: true, includeIfNull: false)
+  final String recipientName;
 
-  factory UpdateAddressRequest([void updates(UpdateAddressRequestBuilder b)]) = _$UpdateAddressRequest;
+  @JsonKey(name: r'recipientPhoneNumber', required: true, includeIfNull: false)
+  final String recipientPhoneNumber;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(UpdateAddressRequestBuilder b) => b;
+  @JsonKey(name: r'street', required: true, includeIfNull: false)
+  final String street;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<UpdateAddressRequest> get serializer => _$UpdateAddressRequestSerializer();
-}
+  @JsonKey(name: r'ward', required: true, includeIfNull: false)
+  final String ward;
 
-class _$UpdateAddressRequestSerializer implements PrimitiveSerializer<UpdateAddressRequest> {
-  @override
-  final Iterable<Type> types = const [UpdateAddressRequest, _$UpdateAddressRequest];
+  @JsonKey(name: r'district', required: true, includeIfNull: false)
+  final String district;
 
-  @override
-  final String wireName = r'UpdateAddressRequest';
+  @JsonKey(name: r'city', required: true, includeIfNull: false)
+  final String city;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    UpdateAddressRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'recipientName';
-    yield serializers.serialize(
-      object.recipientName,
-      specifiedType: const FullType(String),
-    );
-    yield r'recipientPhoneNumber';
-    yield serializers.serialize(
-      object.recipientPhoneNumber,
-      specifiedType: const FullType(String),
-    );
-    yield r'street';
-    yield serializers.serialize(
-      object.street,
-      specifiedType: const FullType(String),
-    );
-    yield r'ward';
-    yield serializers.serialize(
-      object.ward,
-      specifiedType: const FullType(String),
-    );
-    yield r'district';
-    yield serializers.serialize(
-      object.district,
-      specifiedType: const FullType(String),
-    );
-    yield r'city';
-    yield serializers.serialize(
-      object.city,
-      specifiedType: const FullType(String),
-    );
-    yield r'wardCode';
-    yield serializers.serialize(
-      object.wardCode,
-      specifiedType: const FullType(String),
-    );
-    if (object.districtId != null) {
-      yield r'districtId';
-      yield serializers.serialize(
-        object.districtId,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.provinceId != null) {
-      yield r'provinceId';
-      yield serializers.serialize(
-        object.provinceId,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
+  @JsonKey(name: r'wardCode', required: true, includeIfNull: false)
+  final String wardCode;
+
+  // minimum: 0
+  @JsonKey(name: r'districtId', required: false, includeIfNull: false)
+  final int? districtId;
+
+  // minimum: 0
+  @JsonKey(name: r'provinceId', required: false, includeIfNull: false)
+  final int? provinceId;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    UpdateAddressRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required UpdateAddressRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'recipientName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.recipientName = valueDes;
-          break;
-        case r'recipientPhoneNumber':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.recipientPhoneNumber = valueDes;
-          break;
-        case r'street':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.street = valueDes;
-          break;
-        case r'ward':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.ward = valueDes;
-          break;
-        case r'district':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.district = valueDes;
-          break;
-        case r'city':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.city = valueDes;
-          break;
-        case r'wardCode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.wardCode = valueDes;
-          break;
-        case r'districtId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.districtId = valueDes;
-          break;
-        case r'provinceId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.provinceId = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateAddressRequest &&
+          other.recipientName == recipientName &&
+          other.recipientPhoneNumber == recipientPhoneNumber &&
+          other.street == street &&
+          other.ward == ward &&
+          other.district == district &&
+          other.city == city &&
+          other.wardCode == wardCode &&
+          other.districtId == districtId &&
+          other.provinceId == provinceId;
 
   @override
-  UpdateAddressRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = UpdateAddressRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      recipientName.hashCode +
+      recipientPhoneNumber.hashCode +
+      street.hashCode +
+      ward.hashCode +
+      district.hashCode +
+      city.hashCode +
+      wardCode.hashCode +
+      districtId.hashCode +
+      provinceId.hashCode;
+
+  factory UpdateAddressRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateAddressRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateAddressRequestToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

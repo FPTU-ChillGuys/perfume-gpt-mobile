@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UserCredentialsResponse
 void main() {
-  final instance = UserCredentialsResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final UserCredentialsResponse? instance = /* UserCredentialsResponse(...) */
+      null;
+  // TODO add properties to the entity
 
   group(UserCredentialsResponse, () {
     // String id
@@ -36,6 +37,5 @@ void main() {
     test('to test the property `profilePictureUrl`', () async {
       // TODO
     });
-
   });
 }

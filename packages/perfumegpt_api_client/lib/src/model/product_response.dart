@@ -4,369 +4,154 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/product_olfactory_family_response.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/product_scent_note_response.dart';
 import 'package:perfumegpt_api_client/src/model/product_variant_response.dart';
 import 'package:perfumegpt_api_client/src/model/gender.dart';
 import 'package:perfumegpt_api_client/src/model/media_response.dart';
 import 'package:perfumegpt_api_client/src/model/product_attribute_response.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'product_response.g.dart';
 
-/// ProductResponse
-///
-/// Properties:
-/// * [id] 
-/// * [name] 
-/// * [gender] 
-/// * [origin] 
-/// * [releaseYear] 
-/// * [brandId] 
-/// * [brandName] 
-/// * [categoryId] 
-/// * [categoryName] 
-/// * [description] 
-/// * [numberOfVariants] 
-/// * [media] 
-/// * [variants] 
-/// * [attributes] 
-/// * [olfactoryFamilies] 
-/// * [scentNotes] 
-@BuiltValue()
-abstract class ProductResponse implements Built<ProductResponse, ProductResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ProductResponse {
+  /// Returns a new [ProductResponse] instance.
+  ProductResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'name')
-  String? get name;
+    this.name,
 
-  @BuiltValueField(wireName: r'gender')
-  Gender? get gender;
-  // enum genderEnum {  Male,  Female,  Unisex,  };
+    this.gender,
 
-  @BuiltValueField(wireName: r'origin')
-  String get origin;
+    required this.origin,
 
-  @BuiltValueField(wireName: r'releaseYear')
-  int? get releaseYear;
+    this.releaseYear,
 
-  @BuiltValueField(wireName: r'brandId')
-  int? get brandId;
+    this.brandId,
 
-  @BuiltValueField(wireName: r'brandName')
-  String get brandName;
+    required this.brandName,
 
-  @BuiltValueField(wireName: r'categoryId')
-  int? get categoryId;
+    this.categoryId,
 
-  @BuiltValueField(wireName: r'categoryName')
-  String get categoryName;
+    required this.categoryName,
 
-  @BuiltValueField(wireName: r'description')
-  String? get description;
+    this.description,
 
-  @BuiltValueField(wireName: r'numberOfVariants')
-  int? get numberOfVariants;
+    this.numberOfVariants,
 
-  @BuiltValueField(wireName: r'media')
-  BuiltList<MediaResponse> get media;
+    required this.media,
 
-  @BuiltValueField(wireName: r'variants')
-  BuiltList<ProductVariantResponse> get variants;
+    required this.variants,
 
-  @BuiltValueField(wireName: r'attributes')
-  BuiltList<ProductAttributeResponse> get attributes;
+    required this.attributes,
 
-  @BuiltValueField(wireName: r'olfactoryFamilies')
-  BuiltList<ProductOlfactoryFamilyResponse> get olfactoryFamilies;
+    required this.olfactoryFamilies,
 
-  @BuiltValueField(wireName: r'scentNotes')
-  BuiltList<ProductScentNoteResponse> get scentNotes;
+    required this.scentNotes,
+  });
 
-  ProductResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory ProductResponse([void updates(ProductResponseBuilder b)]) = _$ProductResponse;
+  @JsonKey(name: r'name', required: false, includeIfNull: false)
+  final String? name;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ProductResponseBuilder b) => b;
+  @JsonKey(name: r'gender', required: false, includeIfNull: false)
+  final Gender? gender;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ProductResponse> get serializer => _$ProductResponseSerializer();
-}
+  @JsonKey(name: r'origin', required: true, includeIfNull: false)
+  final String origin;
 
-class _$ProductResponseSerializer implements PrimitiveSerializer<ProductResponse> {
-  @override
-  final Iterable<Type> types = const [ProductResponse, _$ProductResponse];
+  @JsonKey(name: r'releaseYear', required: false, includeIfNull: false)
+  final int? releaseYear;
 
-  @override
-  final String wireName = r'ProductResponse';
+  @JsonKey(name: r'brandId', required: false, includeIfNull: false)
+  final int? brandId;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ProductResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.gender != null) {
-      yield r'gender';
-      yield serializers.serialize(
-        object.gender,
-        specifiedType: const FullType(Gender),
-      );
-    }
-    yield r'origin';
-    yield serializers.serialize(
-      object.origin,
-      specifiedType: const FullType(String),
-    );
-    if (object.releaseYear != null) {
-      yield r'releaseYear';
-      yield serializers.serialize(
-        object.releaseYear,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.brandId != null) {
-      yield r'brandId';
-      yield serializers.serialize(
-        object.brandId,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'brandName';
-    yield serializers.serialize(
-      object.brandName,
-      specifiedType: const FullType(String),
-    );
-    if (object.categoryId != null) {
-      yield r'categoryId';
-      yield serializers.serialize(
-        object.categoryId,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'categoryName';
-    yield serializers.serialize(
-      object.categoryName,
-      specifiedType: const FullType(String),
-    );
-    if (object.description != null) {
-      yield r'description';
-      yield serializers.serialize(
-        object.description,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.numberOfVariants != null) {
-      yield r'numberOfVariants';
-      yield serializers.serialize(
-        object.numberOfVariants,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'media';
-    yield serializers.serialize(
-      object.media,
-      specifiedType: const FullType(BuiltList, [FullType(MediaResponse)]),
-    );
-    yield r'variants';
-    yield serializers.serialize(
-      object.variants,
-      specifiedType: const FullType(BuiltList, [FullType(ProductVariantResponse)]),
-    );
-    yield r'attributes';
-    yield serializers.serialize(
-      object.attributes,
-      specifiedType: const FullType(BuiltList, [FullType(ProductAttributeResponse)]),
-    );
-    yield r'olfactoryFamilies';
-    yield serializers.serialize(
-      object.olfactoryFamilies,
-      specifiedType: const FullType(BuiltList, [FullType(ProductOlfactoryFamilyResponse)]),
-    );
-    yield r'scentNotes';
-    yield serializers.serialize(
-      object.scentNotes,
-      specifiedType: const FullType(BuiltList, [FullType(ProductScentNoteResponse)]),
-    );
-  }
+  @JsonKey(name: r'brandName', required: true, includeIfNull: false)
+  final String brandName;
+
+  @JsonKey(name: r'categoryId', required: false, includeIfNull: false)
+  final int? categoryId;
+
+  @JsonKey(name: r'categoryName', required: true, includeIfNull: false)
+  final String categoryName;
+
+  @JsonKey(name: r'description', required: false, includeIfNull: false)
+  final String? description;
+
+  @JsonKey(name: r'numberOfVariants', required: false, includeIfNull: false)
+  final int? numberOfVariants;
+
+  @JsonKey(name: r'media', required: true, includeIfNull: false)
+  final List<MediaResponse> media;
+
+  @JsonKey(name: r'variants', required: true, includeIfNull: false)
+  final List<ProductVariantResponse> variants;
+
+  @JsonKey(name: r'attributes', required: true, includeIfNull: false)
+  final List<ProductAttributeResponse> attributes;
+
+  @JsonKey(name: r'olfactoryFamilies', required: true, includeIfNull: false)
+  final List<ProductOlfactoryFamilyResponse> olfactoryFamilies;
+
+  @JsonKey(name: r'scentNotes', required: true, includeIfNull: false)
+  final List<ProductScentNoteResponse> scentNotes;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ProductResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ProductResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.name = valueDes;
-          break;
-        case r'gender':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(Gender),
-          ) as Gender;
-          result.gender = valueDes;
-          break;
-        case r'origin':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.origin = valueDes;
-          break;
-        case r'releaseYear':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.releaseYear = valueDes;
-          break;
-        case r'brandId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.brandId = valueDes;
-          break;
-        case r'brandName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.brandName = valueDes;
-          break;
-        case r'categoryId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.categoryId = valueDes;
-          break;
-        case r'categoryName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.categoryName = valueDes;
-          break;
-        case r'description':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.description = valueDes;
-          break;
-        case r'numberOfVariants':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.numberOfVariants = valueDes;
-          break;
-        case r'media':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(MediaResponse)]),
-          ) as BuiltList<MediaResponse>;
-          result.media.replace(valueDes);
-          break;
-        case r'variants':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(ProductVariantResponse)]),
-          ) as BuiltList<ProductVariantResponse>;
-          result.variants.replace(valueDes);
-          break;
-        case r'attributes':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(ProductAttributeResponse)]),
-          ) as BuiltList<ProductAttributeResponse>;
-          result.attributes.replace(valueDes);
-          break;
-        case r'olfactoryFamilies':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(ProductOlfactoryFamilyResponse)]),
-          ) as BuiltList<ProductOlfactoryFamilyResponse>;
-          result.olfactoryFamilies.replace(valueDes);
-          break;
-        case r'scentNotes':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(ProductScentNoteResponse)]),
-          ) as BuiltList<ProductScentNoteResponse>;
-          result.scentNotes.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductResponse &&
+          other.id == id &&
+          other.name == name &&
+          other.gender == gender &&
+          other.origin == origin &&
+          other.releaseYear == releaseYear &&
+          other.brandId == brandId &&
+          other.brandName == brandName &&
+          other.categoryId == categoryId &&
+          other.categoryName == categoryName &&
+          other.description == description &&
+          other.numberOfVariants == numberOfVariants &&
+          other.media == media &&
+          other.variants == variants &&
+          other.attributes == attributes &&
+          other.olfactoryFamilies == olfactoryFamilies &&
+          other.scentNotes == scentNotes;
 
   @override
-  ProductResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ProductResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      id.hashCode +
+      (name == null ? 0 : name.hashCode) +
+      gender.hashCode +
+      origin.hashCode +
+      releaseYear.hashCode +
+      brandId.hashCode +
+      brandName.hashCode +
+      categoryId.hashCode +
+      categoryName.hashCode +
+      (description == null ? 0 : description.hashCode) +
+      numberOfVariants.hashCode +
+      media.hashCode +
+      variants.hashCode +
+      attributes.hashCode +
+      olfactoryFamilies.hashCode +
+      scentNotes.hashCode;
+
+  factory ProductResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

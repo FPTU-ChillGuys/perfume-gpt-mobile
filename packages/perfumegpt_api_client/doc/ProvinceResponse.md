@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **provinceName** | **String** |  | 
 **countryID** | **int** |  | [optional] 
 **code** | **int** |  | [optional] 
-**nameExtension** | **BuiltList&lt;String&gt;** |  | [optional] 
+**nameExtension** | **List&lt;String&gt;** |  | [optional] 
 **isEnable** | **int** |  | [optional] 
 **regionID** | **int** |  | [optional] 
 **updatedBy** | **int** |  | [optional] 

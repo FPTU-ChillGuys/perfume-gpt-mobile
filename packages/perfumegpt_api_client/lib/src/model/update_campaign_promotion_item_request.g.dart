@@ -3,156 +3,153 @@
 part of 'update_campaign_promotion_item_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UpdateCampaignPromotionItemRequest
-    extends UpdateCampaignPromotionItemRequest {
-  @override
-  final String? id;
-  @override
-  final String productVariantId;
-  @override
-  final String? batchId;
-  @override
-  final PromotionType? promotionType;
-  @override
-  final int? maxUsage;
+abstract class _$UpdateCampaignPromotionItemRequestCWProxy {
+  UpdateCampaignPromotionItemRequest id(String? id);
 
-  factory _$UpdateCampaignPromotionItemRequest([
-    void Function(UpdateCampaignPromotionItemRequestBuilder)? updates,
-  ]) => (UpdateCampaignPromotionItemRequestBuilder()..update(updates))._build();
+  UpdateCampaignPromotionItemRequest productVariantId(String productVariantId);
 
-  _$UpdateCampaignPromotionItemRequest._({
-    this.id,
-    required this.productVariantId,
-    this.batchId,
-    this.promotionType,
-    this.maxUsage,
-  }) : super._();
-  @override
-  UpdateCampaignPromotionItemRequest rebuild(
-    void Function(UpdateCampaignPromotionItemRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  UpdateCampaignPromotionItemRequest batchId(String? batchId);
 
-  @override
-  UpdateCampaignPromotionItemRequestBuilder toBuilder() =>
-      UpdateCampaignPromotionItemRequestBuilder()..replace(this);
+  UpdateCampaignPromotionItemRequest promotionType(
+    PromotionType? promotionType,
+  );
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UpdateCampaignPromotionItemRequest &&
-        id == other.id &&
-        productVariantId == other.productVariantId &&
-        batchId == other.batchId &&
-        promotionType == other.promotionType &&
-        maxUsage == other.maxUsage;
-  }
+  UpdateCampaignPromotionItemRequest maxUsage(int? maxUsage);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCampaignPromotionItemRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateCampaignPromotionItemRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateCampaignPromotionItemRequest call({
+    String? id,
+    String productVariantId,
+    String? batchId,
+    PromotionType? promotionType,
+    int? maxUsage,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateCampaignPromotionItemRequest.copyWith(...)` or call `instanceOfUpdateCampaignPromotionItemRequest.copyWith.fieldName(value)` for a single field.
+class _$UpdateCampaignPromotionItemRequestCWProxyImpl
+    implements _$UpdateCampaignPromotionItemRequestCWProxy {
+  const _$UpdateCampaignPromotionItemRequestCWProxyImpl(this._value);
+
+  final UpdateCampaignPromotionItemRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, productVariantId.hashCode);
-    _$hash = $jc(_$hash, batchId.hashCode);
-    _$hash = $jc(_$hash, promotionType.hashCode);
-    _$hash = $jc(_$hash, maxUsage.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UpdateCampaignPromotionItemRequest id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'UpdateCampaignPromotionItemRequest')
-          ..add('id', id)
-          ..add('productVariantId', productVariantId)
-          ..add('batchId', batchId)
-          ..add('promotionType', promotionType)
-          ..add('maxUsage', maxUsage))
-        .toString();
+  UpdateCampaignPromotionItemRequest productVariantId(
+    String productVariantId,
+  ) => call(productVariantId: productVariantId);
+
+  @override
+  UpdateCampaignPromotionItemRequest batchId(String? batchId) =>
+      call(batchId: batchId);
+
+  @override
+  UpdateCampaignPromotionItemRequest promotionType(
+    PromotionType? promotionType,
+  ) => call(promotionType: promotionType);
+
+  @override
+  UpdateCampaignPromotionItemRequest maxUsage(int? maxUsage) =>
+      call(maxUsage: maxUsage);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCampaignPromotionItemRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateCampaignPromotionItemRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateCampaignPromotionItemRequest call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? productVariantId = const $CopyWithPlaceholder(),
+    Object? batchId = const $CopyWithPlaceholder(),
+    Object? promotionType = const $CopyWithPlaceholder(),
+    Object? maxUsage = const $CopyWithPlaceholder(),
+  }) {
+    return UpdateCampaignPromotionItemRequest(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      productVariantId:
+          productVariantId == const $CopyWithPlaceholder() ||
+              productVariantId == null
+          ? _value.productVariantId
+          // ignore: cast_nullable_to_non_nullable
+          : productVariantId as String,
+      batchId: batchId == const $CopyWithPlaceholder()
+          ? _value.batchId
+          // ignore: cast_nullable_to_non_nullable
+          : batchId as String?,
+      promotionType: promotionType == const $CopyWithPlaceholder()
+          ? _value.promotionType
+          // ignore: cast_nullable_to_non_nullable
+          : promotionType as PromotionType?,
+      maxUsage: maxUsage == const $CopyWithPlaceholder()
+          ? _value.maxUsage
+          // ignore: cast_nullable_to_non_nullable
+          : maxUsage as int?,
+    );
   }
 }
 
-class UpdateCampaignPromotionItemRequestBuilder
-    implements
-        Builder<
-          UpdateCampaignPromotionItemRequest,
-          UpdateCampaignPromotionItemRequestBuilder
-        > {
-  _$UpdateCampaignPromotionItemRequest? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _productVariantId;
-  String? get productVariantId => _$this._productVariantId;
-  set productVariantId(String? productVariantId) =>
-      _$this._productVariantId = productVariantId;
-
-  String? _batchId;
-  String? get batchId => _$this._batchId;
-  set batchId(String? batchId) => _$this._batchId = batchId;
-
-  PromotionType? _promotionType;
-  PromotionType? get promotionType => _$this._promotionType;
-  set promotionType(PromotionType? promotionType) =>
-      _$this._promotionType = promotionType;
-
-  int? _maxUsage;
-  int? get maxUsage => _$this._maxUsage;
-  set maxUsage(int? maxUsage) => _$this._maxUsage = maxUsage;
-
-  UpdateCampaignPromotionItemRequestBuilder() {
-    UpdateCampaignPromotionItemRequest._defaults(this);
-  }
-
-  UpdateCampaignPromotionItemRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _productVariantId = $v.productVariantId;
-      _batchId = $v.batchId;
-      _promotionType = $v.promotionType;
-      _maxUsage = $v.maxUsage;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UpdateCampaignPromotionItemRequest other) {
-    _$v = other as _$UpdateCampaignPromotionItemRequest;
-  }
-
-  @override
-  void update(
-    void Function(UpdateCampaignPromotionItemRequestBuilder)? updates,
-  ) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UpdateCampaignPromotionItemRequest build() => _build();
-
-  _$UpdateCampaignPromotionItemRequest _build() {
-    final _$result =
-        _$v ??
-        _$UpdateCampaignPromotionItemRequest._(
-          id: id,
-          productVariantId: BuiltValueNullFieldError.checkNotNull(
-            productVariantId,
-            r'UpdateCampaignPromotionItemRequest',
-            'productVariantId',
-          ),
-          batchId: batchId,
-          promotionType: promotionType,
-          maxUsage: maxUsage,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $UpdateCampaignPromotionItemRequestCopyWith
+    on UpdateCampaignPromotionItemRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateCampaignPromotionItemRequest.copyWith(...)` or `instanceOfUpdateCampaignPromotionItemRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UpdateCampaignPromotionItemRequestCWProxy get copyWith =>
+      _$UpdateCampaignPromotionItemRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateCampaignPromotionItemRequest _$UpdateCampaignPromotionItemRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('UpdateCampaignPromotionItemRequest', json, (
+  $checkedConvert,
+) {
+  $checkKeys(json, requiredKeys: const ['productVariantId']);
+  final val = UpdateCampaignPromotionItemRequest(
+    id: $checkedConvert('id', (v) => v as String?),
+    productVariantId: $checkedConvert('productVariantId', (v) => v as String),
+    batchId: $checkedConvert('batchId', (v) => v as String?),
+    promotionType: $checkedConvert(
+      'promotionType',
+      (v) => $enumDecodeNullable(_$PromotionTypeEnumMap, v),
+    ),
+    maxUsage: $checkedConvert('maxUsage', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$UpdateCampaignPromotionItemRequestToJson(
+  UpdateCampaignPromotionItemRequest instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'productVariantId': instance.productVariantId,
+  'batchId': ?instance.batchId,
+  'promotionType': ?_$PromotionTypeEnumMap[instance.promotionType],
+  'maxUsage': ?instance.maxUsage,
+};
+
+const _$PromotionTypeEnumMap = {
+  PromotionType.clearance: 'Clearance',
+  PromotionType.newArrival: 'NewArrival',
+  PromotionType.regular: 'Regular',
+};

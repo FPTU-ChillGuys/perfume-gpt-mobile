@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CustomerFamilyPreferenceRespone
 void main() {
-  final instance = CustomerFamilyPreferenceResponeBuilder();
-  // TODO add properties to the builder and call build()
+  final CustomerFamilyPreferenceRespone?
+  instance = /* CustomerFamilyPreferenceRespone(...) */ null;
+  // TODO add properties to the entity
 
   group(CustomerFamilyPreferenceRespone, () {
     // int familyId
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `familyName`', () async {
       // TODO
     });
-
   });
 }

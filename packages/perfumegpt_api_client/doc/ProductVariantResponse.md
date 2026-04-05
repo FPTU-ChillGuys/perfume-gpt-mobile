@@ -23,11 +23,11 @@ Name | Type | Description | Notes
 **longevity** | **int** |  | [optional] 
 **productId** | **String** |  | [optional] 
 **productName** | **String** |  | 
-**media** | [**BuiltList&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
+**media** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
 **campaignName** | **String** |  | [optional] 
 **voucherCode** | **String** |  | [optional] 
 **discountedPrice** | **num** |  | [optional] 
-**attributes** | [**BuiltList&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | [optional] 
+**attributes** | [**List&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

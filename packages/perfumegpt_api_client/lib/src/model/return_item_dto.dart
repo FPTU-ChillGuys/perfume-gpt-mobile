@@ -3,124 +3,45 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'return_item_dto.g.dart';
 
-/// ReturnItemDto
-///
-/// Properties:
-/// * [orderDetailId] 
-/// * [quantity] 
-@BuiltValue()
-abstract class ReturnItemDto implements Built<ReturnItemDto, ReturnItemDtoBuilder> {
-  @BuiltValueField(wireName: r'orderDetailId')
-  String? get orderDetailId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ReturnItemDto {
+  /// Returns a new [ReturnItemDto] instance.
+  ReturnItemDto({this.orderDetailId, this.quantity});
 
-  @BuiltValueField(wireName: r'quantity')
-  int? get quantity;
+  @JsonKey(name: r'orderDetailId', required: false, includeIfNull: false)
+  final String? orderDetailId;
 
-  ReturnItemDto._();
-
-  factory ReturnItemDto([void updates(ReturnItemDtoBuilder b)]) = _$ReturnItemDto;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ReturnItemDtoBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ReturnItemDto> get serializer => _$ReturnItemDtoSerializer();
-}
-
-class _$ReturnItemDtoSerializer implements PrimitiveSerializer<ReturnItemDto> {
-  @override
-  final Iterable<Type> types = const [ReturnItemDto, _$ReturnItemDto];
+  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+  final int? quantity;
 
   @override
-  final String wireName = r'ReturnItemDto';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ReturnItemDto object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.orderDetailId != null) {
-      yield r'orderDetailId';
-      yield serializers.serialize(
-        object.orderDetailId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.quantity != null) {
-      yield r'quantity';
-      yield serializers.serialize(
-        object.quantity,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReturnItemDto &&
+          other.orderDetailId == orderDetailId &&
+          other.quantity == quantity;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ReturnItemDto object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => orderDetailId.hashCode + quantity.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ReturnItemDtoBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'orderDetailId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.orderDetailId = valueDes;
-          break;
-        case r'quantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.quantity = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ReturnItemDto.fromJson(Map<String, dynamic> json) =>
+      _$ReturnItemDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReturnItemDtoToJson(this);
 
   @override
-  ReturnItemDto deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ReturnItemDtoBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

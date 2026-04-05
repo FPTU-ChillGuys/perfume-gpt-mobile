@@ -3,158 +3,173 @@
 part of 'payment_info_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$PaymentInfoResponse extends PaymentInfoResponse {
-  @override
-  final String? id;
-  @override
-  final TransactionType? transactionType;
-  @override
-  final TransactionStatus? status;
-  @override
-  final PaymentMethod? paymentMethod;
-  @override
-  final String? failureReason;
-  @override
-  final num? totalAmount;
+abstract class _$PaymentInfoResponseCWProxy {
+  PaymentInfoResponse id(String? id);
 
-  factory _$PaymentInfoResponse([
-    void Function(PaymentInfoResponseBuilder)? updates,
-  ]) => (PaymentInfoResponseBuilder()..update(updates))._build();
+  PaymentInfoResponse transactionType(TransactionType? transactionType);
 
-  _$PaymentInfoResponse._({
-    this.id,
-    this.transactionType,
-    this.status,
-    this.paymentMethod,
-    this.failureReason,
-    this.totalAmount,
-  }) : super._();
-  @override
-  PaymentInfoResponse rebuild(
-    void Function(PaymentInfoResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  PaymentInfoResponse status(TransactionStatus? status);
 
-  @override
-  PaymentInfoResponseBuilder toBuilder() =>
-      PaymentInfoResponseBuilder()..replace(this);
+  PaymentInfoResponse paymentMethod(PaymentMethod? paymentMethod);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is PaymentInfoResponse &&
-        id == other.id &&
-        transactionType == other.transactionType &&
-        status == other.status &&
-        paymentMethod == other.paymentMethod &&
-        failureReason == other.failureReason &&
-        totalAmount == other.totalAmount;
-  }
+  PaymentInfoResponse failureReason(String? failureReason);
+
+  PaymentInfoResponse totalAmount(num? totalAmount);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInfoResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// PaymentInfoResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  PaymentInfoResponse call({
+    String? id,
+    TransactionType? transactionType,
+    TransactionStatus? status,
+    PaymentMethod? paymentMethod,
+    String? failureReason,
+    num? totalAmount,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPaymentInfoResponse.copyWith(...)` or call `instanceOfPaymentInfoResponse.copyWith.fieldName(value)` for a single field.
+class _$PaymentInfoResponseCWProxyImpl implements _$PaymentInfoResponseCWProxy {
+  const _$PaymentInfoResponseCWProxyImpl(this._value);
+
+  final PaymentInfoResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, transactionType.hashCode);
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, paymentMethod.hashCode);
-    _$hash = $jc(_$hash, failureReason.hashCode);
-    _$hash = $jc(_$hash, totalAmount.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  PaymentInfoResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'PaymentInfoResponse')
-          ..add('id', id)
-          ..add('transactionType', transactionType)
-          ..add('status', status)
-          ..add('paymentMethod', paymentMethod)
-          ..add('failureReason', failureReason)
-          ..add('totalAmount', totalAmount))
-        .toString();
+  PaymentInfoResponse transactionType(TransactionType? transactionType) =>
+      call(transactionType: transactionType);
+
+  @override
+  PaymentInfoResponse status(TransactionStatus? status) => call(status: status);
+
+  @override
+  PaymentInfoResponse paymentMethod(PaymentMethod? paymentMethod) =>
+      call(paymentMethod: paymentMethod);
+
+  @override
+  PaymentInfoResponse failureReason(String? failureReason) =>
+      call(failureReason: failureReason);
+
+  @override
+  PaymentInfoResponse totalAmount(num? totalAmount) =>
+      call(totalAmount: totalAmount);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInfoResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// PaymentInfoResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  PaymentInfoResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? transactionType = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? paymentMethod = const $CopyWithPlaceholder(),
+    Object? failureReason = const $CopyWithPlaceholder(),
+    Object? totalAmount = const $CopyWithPlaceholder(),
+  }) {
+    return PaymentInfoResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      transactionType: transactionType == const $CopyWithPlaceholder()
+          ? _value.transactionType
+          // ignore: cast_nullable_to_non_nullable
+          : transactionType as TransactionType?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as TransactionStatus?,
+      paymentMethod: paymentMethod == const $CopyWithPlaceholder()
+          ? _value.paymentMethod
+          // ignore: cast_nullable_to_non_nullable
+          : paymentMethod as PaymentMethod?,
+      failureReason: failureReason == const $CopyWithPlaceholder()
+          ? _value.failureReason
+          // ignore: cast_nullable_to_non_nullable
+          : failureReason as String?,
+      totalAmount: totalAmount == const $CopyWithPlaceholder()
+          ? _value.totalAmount
+          // ignore: cast_nullable_to_non_nullable
+          : totalAmount as num?,
+    );
   }
 }
 
-class PaymentInfoResponseBuilder
-    implements Builder<PaymentInfoResponse, PaymentInfoResponseBuilder> {
-  _$PaymentInfoResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  TransactionType? _transactionType;
-  TransactionType? get transactionType => _$this._transactionType;
-  set transactionType(TransactionType? transactionType) =>
-      _$this._transactionType = transactionType;
-
-  TransactionStatus? _status;
-  TransactionStatus? get status => _$this._status;
-  set status(TransactionStatus? status) => _$this._status = status;
-
-  PaymentMethod? _paymentMethod;
-  PaymentMethod? get paymentMethod => _$this._paymentMethod;
-  set paymentMethod(PaymentMethod? paymentMethod) =>
-      _$this._paymentMethod = paymentMethod;
-
-  String? _failureReason;
-  String? get failureReason => _$this._failureReason;
-  set failureReason(String? failureReason) =>
-      _$this._failureReason = failureReason;
-
-  num? _totalAmount;
-  num? get totalAmount => _$this._totalAmount;
-  set totalAmount(num? totalAmount) => _$this._totalAmount = totalAmount;
-
-  PaymentInfoResponseBuilder() {
-    PaymentInfoResponse._defaults(this);
-  }
-
-  PaymentInfoResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _transactionType = $v.transactionType;
-      _status = $v.status;
-      _paymentMethod = $v.paymentMethod;
-      _failureReason = $v.failureReason;
-      _totalAmount = $v.totalAmount;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(PaymentInfoResponse other) {
-    _$v = other as _$PaymentInfoResponse;
-  }
-
-  @override
-  void update(void Function(PaymentInfoResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  PaymentInfoResponse build() => _build();
-
-  _$PaymentInfoResponse _build() {
-    final _$result =
-        _$v ??
-        _$PaymentInfoResponse._(
-          id: id,
-          transactionType: transactionType,
-          status: status,
-          paymentMethod: paymentMethod,
-          failureReason: failureReason,
-          totalAmount: totalAmount,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $PaymentInfoResponseCopyWith on PaymentInfoResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPaymentInfoResponse.copyWith(...)` or `instanceOfPaymentInfoResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$PaymentInfoResponseCWProxy get copyWith =>
+      _$PaymentInfoResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+PaymentInfoResponse _$PaymentInfoResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('PaymentInfoResponse', json, ($checkedConvert) {
+      final val = PaymentInfoResponse(
+        id: $checkedConvert('id', (v) => v as String?),
+        transactionType: $checkedConvert(
+          'transactionType',
+          (v) => $enumDecodeNullable(_$TransactionTypeEnumMap, v),
+        ),
+        status: $checkedConvert(
+          'status',
+          (v) => $enumDecodeNullable(_$TransactionStatusEnumMap, v),
+        ),
+        paymentMethod: $checkedConvert(
+          'paymentMethod',
+          (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
+        ),
+        failureReason: $checkedConvert('failureReason', (v) => v as String?),
+        totalAmount: $checkedConvert('totalAmount', (v) => v as num?),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$PaymentInfoResponseToJson(
+  PaymentInfoResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'transactionType': ?_$TransactionTypeEnumMap[instance.transactionType],
+  'status': ?_$TransactionStatusEnumMap[instance.status],
+  'paymentMethod': ?_$PaymentMethodEnumMap[instance.paymentMethod],
+  'failureReason': ?instance.failureReason,
+  'totalAmount': ?instance.totalAmount,
+};
+
+const _$TransactionTypeEnumMap = {
+  TransactionType.payment: 'Payment',
+  TransactionType.refund: 'Refund',
+};
+
+const _$TransactionStatusEnumMap = {
+  TransactionStatus.pending: 'Pending',
+  TransactionStatus.success: 'Success',
+  TransactionStatus.failed: 'Failed',
+  TransactionStatus.cancelled: 'Cancelled',
+};
+
+const _$PaymentMethodEnumMap = {
+  PaymentMethod.cashOnDelivery: 'CashOnDelivery',
+  PaymentMethod.vnPay: 'VnPay',
+  PaymentMethod.momo: 'Momo',
+  PaymentMethod.cashInStore: 'CashInStore',
+};

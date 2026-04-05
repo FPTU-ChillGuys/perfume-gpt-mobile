@@ -3,106 +3,80 @@
 part of 'fulfill_order_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$FulfillOrderRequest extends FulfillOrderRequest {
-  @override
-  final BuiltList<FulfillOrderItemRequest> items;
+abstract class _$FulfillOrderRequestCWProxy {
+  FulfillOrderRequest items(List<FulfillOrderItemRequest> items);
 
-  factory _$FulfillOrderRequest([
-    void Function(FulfillOrderRequestBuilder)? updates,
-  ]) => (FulfillOrderRequestBuilder()..update(updates))._build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FulfillOrderRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// FulfillOrderRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  FulfillOrderRequest call({List<FulfillOrderItemRequest> items});
+}
 
-  _$FulfillOrderRequest._({required this.items}) : super._();
-  @override
-  FulfillOrderRequest rebuild(
-    void Function(FulfillOrderRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfFulfillOrderRequest.copyWith(...)` or call `instanceOfFulfillOrderRequest.copyWith.fieldName(value)` for a single field.
+class _$FulfillOrderRequestCWProxyImpl implements _$FulfillOrderRequestCWProxy {
+  const _$FulfillOrderRequestCWProxyImpl(this._value);
 
-  @override
-  FulfillOrderRequestBuilder toBuilder() =>
-      FulfillOrderRequestBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is FulfillOrderRequest && items == other.items;
-  }
+  final FulfillOrderRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, items.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  FulfillOrderRequest items(List<FulfillOrderItemRequest> items) =>
+      call(items: items);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-      r'FulfillOrderRequest',
-    )..add('items', items)).toString();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FulfillOrderRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// FulfillOrderRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  FulfillOrderRequest call({Object? items = const $CopyWithPlaceholder()}) {
+    return FulfillOrderRequest(
+      items: items == const $CopyWithPlaceholder() || items == null
+          ? _value.items
+          // ignore: cast_nullable_to_non_nullable
+          : items as List<FulfillOrderItemRequest>,
+    );
   }
 }
 
-class FulfillOrderRequestBuilder
-    implements Builder<FulfillOrderRequest, FulfillOrderRequestBuilder> {
-  _$FulfillOrderRequest? _$v;
-
-  ListBuilder<FulfillOrderItemRequest>? _items;
-  ListBuilder<FulfillOrderItemRequest> get items =>
-      _$this._items ??= ListBuilder<FulfillOrderItemRequest>();
-  set items(ListBuilder<FulfillOrderItemRequest>? items) =>
-      _$this._items = items;
-
-  FulfillOrderRequestBuilder() {
-    FulfillOrderRequest._defaults(this);
-  }
-
-  FulfillOrderRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _items = $v.items.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(FulfillOrderRequest other) {
-    _$v = other as _$FulfillOrderRequest;
-  }
-
-  @override
-  void update(void Function(FulfillOrderRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  FulfillOrderRequest build() => _build();
-
-  _$FulfillOrderRequest _build() {
-    _$FulfillOrderRequest _$result;
-    try {
-      _$result = _$v ?? _$FulfillOrderRequest._(items: items.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'items';
-        items.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'FulfillOrderRequest',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $FulfillOrderRequestCopyWith on FulfillOrderRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfFulfillOrderRequest.copyWith(...)` or `instanceOfFulfillOrderRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$FulfillOrderRequestCWProxy get copyWith =>
+      _$FulfillOrderRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+FulfillOrderRequest _$FulfillOrderRequestFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('FulfillOrderRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['items']);
+      final val = FulfillOrderRequest(
+        items: $checkedConvert(
+          'items',
+          (v) => (v as List<dynamic>)
+              .map(
+                (e) =>
+                    FulfillOrderItemRequest.fromJson(e as Map<String, dynamic>),
+              )
+              .toList(),
+        ),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$FulfillOrderRequestToJson(
+  FulfillOrderRequest instance,
+) => <String, dynamic>{'items': instance.items.map((e) => e.toJson()).toList()};

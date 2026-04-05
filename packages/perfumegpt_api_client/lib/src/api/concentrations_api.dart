@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_concentration_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_concentration_lookup_dto.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_concentration_response.dart';
@@ -17,15 +17,12 @@ import 'package:perfumegpt_api_client/src/model/create_concentration_request.dar
 import 'package:perfumegpt_api_client/src/model/update_concentration_request.dart';
 
 class ConcentrationsApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const ConcentrationsApi(this._dio, this._serializers);
+  const ConcentrationsApi(this._dio);
 
   /// apiConcentrationsGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -37,7 +34,8 @@ class ConcentrationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfConcentrationResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfConcentrationResponse>> apiConcentrationsGet({ 
+  Future<Response<BaseResponseOfListOfConcentrationResponse>>
+  apiConcentrationsGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -48,16 +46,10 @@ class ConcentrationsApi {
     final _path = r'/api/concentrations';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -75,12 +67,17 @@ class ConcentrationsApi {
     BaseResponseOfListOfConcentrationResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfListOfConcentrationResponse),
-      ) as BaseResponseOfListOfConcentrationResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfConcentrationResponse,
+              BaseResponseOfListOfConcentrationResponse
+            >(
+              rawData,
+              'BaseResponseOfListOfConcentrationResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -104,10 +101,10 @@ class ConcentrationsApi {
   }
 
   /// apiConcentrationsIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -117,7 +114,7 @@ class ConcentrationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiConcentrationsIdDelete({ 
+  Future<Response<BaseResponseOfboolean>> apiConcentrationsIdDelete({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -126,19 +123,18 @@ class ConcentrationsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/concentrations/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/concentrations/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -156,12 +152,14 @@ class ConcentrationsApi {
     BaseResponseOfboolean? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfboolean),
-      ) as BaseResponseOfboolean;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
+              rawData,
+              'BaseResponseOfboolean',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -185,10 +183,10 @@ class ConcentrationsApi {
   }
 
   /// apiConcentrationsIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -198,7 +196,7 @@ class ConcentrationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfConcentrationResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfConcentrationResponse>> apiConcentrationsIdGet({ 
+  Future<Response<BaseResponseOfConcentrationResponse>> apiConcentrationsIdGet({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -207,19 +205,18 @@ class ConcentrationsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/concentrations/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/concentrations/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -237,12 +234,13 @@ class ConcentrationsApi {
     BaseResponseOfConcentrationResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfConcentrationResponse),
-      ) as BaseResponseOfConcentrationResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfConcentrationResponse,
+              BaseResponseOfConcentrationResponse
+            >(rawData, 'BaseResponseOfConcentrationResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -266,11 +264,11 @@ class ConcentrationsApi {
   }
 
   /// apiConcentrationsIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [updateConcentrationRequest] 
+  /// * [id]
+  /// * [updateConcentrationRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -280,7 +278,7 @@ class ConcentrationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfConcentrationResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfConcentrationResponse>> apiConcentrationsIdPut({ 
+  Future<Response<BaseResponseOfConcentrationResponse>> apiConcentrationsIdPut({
     required int id,
     required UpdateConcentrationRequest updateConcentrationRequest,
     CancelToken? cancelToken,
@@ -290,19 +288,18 @@ class ConcentrationsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/concentrations/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/concentrations/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -313,15 +310,10 @@ class ConcentrationsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UpdateConcentrationRequest);
-      _bodyData = _serializers.serialize(updateConcentrationRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateConcentrationRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -340,12 +332,13 @@ class ConcentrationsApi {
     BaseResponseOfConcentrationResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfConcentrationResponse),
-      ) as BaseResponseOfConcentrationResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfConcentrationResponse,
+              BaseResponseOfConcentrationResponse
+            >(rawData, 'BaseResponseOfConcentrationResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -369,7 +362,7 @@ class ConcentrationsApi {
   }
 
   /// apiConcentrationsLookupGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -381,7 +374,8 @@ class ConcentrationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfConcentrationLookupDto] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfConcentrationLookupDto>> apiConcentrationsLookupGet({ 
+  Future<Response<BaseResponseOfListOfConcentrationLookupDto>>
+  apiConcentrationsLookupGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -392,16 +386,10 @@ class ConcentrationsApi {
     final _path = r'/api/concentrations/lookup';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -419,12 +407,17 @@ class ConcentrationsApi {
     BaseResponseOfListOfConcentrationLookupDto? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfListOfConcentrationLookupDto),
-      ) as BaseResponseOfListOfConcentrationLookupDto;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfConcentrationLookupDto,
+              BaseResponseOfListOfConcentrationLookupDto
+            >(
+              rawData,
+              'BaseResponseOfListOfConcentrationLookupDto',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -448,10 +441,10 @@ class ConcentrationsApi {
   }
 
   /// apiConcentrationsPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createConcentrationRequest] 
+  /// * [createConcentrationRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -461,7 +454,7 @@ class ConcentrationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfConcentrationResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfConcentrationResponse>> apiConcentrationsPost({ 
+  Future<Response<BaseResponseOfConcentrationResponse>> apiConcentrationsPost({
     required CreateConcentrationRequest createConcentrationRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -473,16 +466,10 @@ class ConcentrationsApi {
     final _path = r'/api/concentrations';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -493,15 +480,10 @@ class ConcentrationsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(CreateConcentrationRequest);
-      _bodyData = _serializers.serialize(createConcentrationRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createConcentrationRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -520,12 +502,13 @@ class ConcentrationsApi {
     BaseResponseOfConcentrationResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfConcentrationResponse),
-      ) as BaseResponseOfConcentrationResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfConcentrationResponse,
+              BaseResponseOfConcentrationResponse
+            >(rawData, 'BaseResponseOfConcentrationResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -547,5 +530,4 @@ class ConcentrationsApi {
       extra: _response.extra,
     );
   }
-
 }

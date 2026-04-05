@@ -3,103 +3,82 @@
 part of 'brand_lookup_item.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BrandLookupItem extends BrandLookupItem {
-  @override
-  final int? id;
-  @override
-  final String name;
+abstract class _$BrandLookupItemCWProxy {
+  BrandLookupItem id(int? id);
 
-  factory _$BrandLookupItem([void Function(BrandLookupItemBuilder)? updates]) =>
-      (BrandLookupItemBuilder()..update(updates))._build();
+  BrandLookupItem name(String name);
 
-  _$BrandLookupItem._({this.id, required this.name}) : super._();
-  @override
-  BrandLookupItem rebuild(void Function(BrandLookupItemBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BrandLookupItem(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BrandLookupItem(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BrandLookupItem call({int? id, String name});
+}
 
-  @override
-  BrandLookupItemBuilder toBuilder() => BrandLookupItemBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBrandLookupItem.copyWith(...)` or call `instanceOfBrandLookupItem.copyWith.fieldName(value)` for a single field.
+class _$BrandLookupItemCWProxyImpl implements _$BrandLookupItemCWProxy {
+  const _$BrandLookupItemCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BrandLookupItem && id == other.id && name == other.name;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  final BrandLookupItem _value;
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'BrandLookupItem')
-          ..add('id', id)
-          ..add('name', name))
-        .toString();
+  BrandLookupItem id(int? id) => call(id: id);
+
+  @override
+  BrandLookupItem name(String name) => call(name: name);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BrandLookupItem(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BrandLookupItem(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BrandLookupItem call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
+  }) {
+    return BrandLookupItem(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as int?,
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+    );
   }
 }
 
-class BrandLookupItemBuilder
-    implements Builder<BrandLookupItem, BrandLookupItemBuilder> {
-  _$BrandLookupItem? _$v;
-
-  int? _id;
-  int? get id => _$this._id;
-  set id(int? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  BrandLookupItemBuilder() {
-    BrandLookupItem._defaults(this);
-  }
-
-  BrandLookupItemBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _name = $v.name;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BrandLookupItem other) {
-    _$v = other as _$BrandLookupItem;
-  }
-
-  @override
-  void update(void Function(BrandLookupItemBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BrandLookupItem build() => _build();
-
-  _$BrandLookupItem _build() {
-    final _$result =
-        _$v ??
-        _$BrandLookupItem._(
-          id: id,
-          name: BuiltValueNullFieldError.checkNotNull(
-            name,
-            r'BrandLookupItem',
-            'name',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $BrandLookupItemCopyWith on BrandLookupItem {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBrandLookupItem.copyWith(...)` or `instanceOfBrandLookupItem.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BrandLookupItemCWProxy get copyWith => _$BrandLookupItemCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BrandLookupItem _$BrandLookupItemFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('BrandLookupItem', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['name']);
+      final val = BrandLookupItem(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        name: $checkedConvert('name', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$BrandLookupItemToJson(BrandLookupItem instance) =>
+    <String, dynamic>{'id': ?instance.id, 'name': instance.name};

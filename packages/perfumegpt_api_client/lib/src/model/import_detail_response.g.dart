@@ -3,230 +3,219 @@
 part of 'import_detail_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ImportDetailResponse extends ImportDetailResponse {
-  @override
-  final String? id;
-  @override
-  final String? variantId;
-  @override
-  final String variantName;
-  @override
-  final String variantSku;
-  @override
-  final int? expectedQuantity;
-  @override
-  final num? unitPrice;
-  @override
-  final num? totalPrice;
-  @override
-  final int? rejectedQuantity;
-  @override
-  final String? note;
-  @override
-  final BuiltList<BatchResponse> batches;
+abstract class _$ImportDetailResponseCWProxy {
+  ImportDetailResponse id(String? id);
 
-  factory _$ImportDetailResponse([
-    void Function(ImportDetailResponseBuilder)? updates,
-  ]) => (ImportDetailResponseBuilder()..update(updates))._build();
+  ImportDetailResponse variantId(String? variantId);
 
-  _$ImportDetailResponse._({
-    this.id,
-    this.variantId,
-    required this.variantName,
-    required this.variantSku,
-    this.expectedQuantity,
-    this.unitPrice,
-    this.totalPrice,
-    this.rejectedQuantity,
-    this.note,
-    required this.batches,
-  }) : super._();
-  @override
-  ImportDetailResponse rebuild(
-    void Function(ImportDetailResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  ImportDetailResponse variantName(String variantName);
 
-  @override
-  ImportDetailResponseBuilder toBuilder() =>
-      ImportDetailResponseBuilder()..replace(this);
+  ImportDetailResponse variantSku(String variantSku);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ImportDetailResponse &&
-        id == other.id &&
-        variantId == other.variantId &&
-        variantName == other.variantName &&
-        variantSku == other.variantSku &&
-        expectedQuantity == other.expectedQuantity &&
-        unitPrice == other.unitPrice &&
-        totalPrice == other.totalPrice &&
-        rejectedQuantity == other.rejectedQuantity &&
-        note == other.note &&
-        batches == other.batches;
-  }
+  ImportDetailResponse expectedQuantity(int? expectedQuantity);
+
+  ImportDetailResponse unitPrice(num? unitPrice);
+
+  ImportDetailResponse totalPrice(num? totalPrice);
+
+  ImportDetailResponse rejectedQuantity(int? rejectedQuantity);
+
+  ImportDetailResponse note(String? note);
+
+  ImportDetailResponse batches(List<BatchResponse> batches);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportDetailResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ImportDetailResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ImportDetailResponse call({
+    String? id,
+    String? variantId,
+    String variantName,
+    String variantSku,
+    int? expectedQuantity,
+    num? unitPrice,
+    num? totalPrice,
+    int? rejectedQuantity,
+    String? note,
+    List<BatchResponse> batches,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfImportDetailResponse.copyWith(...)` or call `instanceOfImportDetailResponse.copyWith.fieldName(value)` for a single field.
+class _$ImportDetailResponseCWProxyImpl
+    implements _$ImportDetailResponseCWProxy {
+  const _$ImportDetailResponseCWProxyImpl(this._value);
+
+  final ImportDetailResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, variantId.hashCode);
-    _$hash = $jc(_$hash, variantName.hashCode);
-    _$hash = $jc(_$hash, variantSku.hashCode);
-    _$hash = $jc(_$hash, expectedQuantity.hashCode);
-    _$hash = $jc(_$hash, unitPrice.hashCode);
-    _$hash = $jc(_$hash, totalPrice.hashCode);
-    _$hash = $jc(_$hash, rejectedQuantity.hashCode);
-    _$hash = $jc(_$hash, note.hashCode);
-    _$hash = $jc(_$hash, batches.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ImportDetailResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ImportDetailResponse')
-          ..add('id', id)
-          ..add('variantId', variantId)
-          ..add('variantName', variantName)
-          ..add('variantSku', variantSku)
-          ..add('expectedQuantity', expectedQuantity)
-          ..add('unitPrice', unitPrice)
-          ..add('totalPrice', totalPrice)
-          ..add('rejectedQuantity', rejectedQuantity)
-          ..add('note', note)
-          ..add('batches', batches))
-        .toString();
+  ImportDetailResponse variantId(String? variantId) =>
+      call(variantId: variantId);
+
+  @override
+  ImportDetailResponse variantName(String variantName) =>
+      call(variantName: variantName);
+
+  @override
+  ImportDetailResponse variantSku(String variantSku) =>
+      call(variantSku: variantSku);
+
+  @override
+  ImportDetailResponse expectedQuantity(int? expectedQuantity) =>
+      call(expectedQuantity: expectedQuantity);
+
+  @override
+  ImportDetailResponse unitPrice(num? unitPrice) => call(unitPrice: unitPrice);
+
+  @override
+  ImportDetailResponse totalPrice(num? totalPrice) =>
+      call(totalPrice: totalPrice);
+
+  @override
+  ImportDetailResponse rejectedQuantity(int? rejectedQuantity) =>
+      call(rejectedQuantity: rejectedQuantity);
+
+  @override
+  ImportDetailResponse note(String? note) => call(note: note);
+
+  @override
+  ImportDetailResponse batches(List<BatchResponse> batches) =>
+      call(batches: batches);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportDetailResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ImportDetailResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ImportDetailResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? variantId = const $CopyWithPlaceholder(),
+    Object? variantName = const $CopyWithPlaceholder(),
+    Object? variantSku = const $CopyWithPlaceholder(),
+    Object? expectedQuantity = const $CopyWithPlaceholder(),
+    Object? unitPrice = const $CopyWithPlaceholder(),
+    Object? totalPrice = const $CopyWithPlaceholder(),
+    Object? rejectedQuantity = const $CopyWithPlaceholder(),
+    Object? note = const $CopyWithPlaceholder(),
+    Object? batches = const $CopyWithPlaceholder(),
+  }) {
+    return ImportDetailResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      variantId: variantId == const $CopyWithPlaceholder()
+          ? _value.variantId
+          // ignore: cast_nullable_to_non_nullable
+          : variantId as String?,
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
+          ? _value.variantName
+          // ignore: cast_nullable_to_non_nullable
+          : variantName as String,
+      variantSku:
+          variantSku == const $CopyWithPlaceholder() || variantSku == null
+          ? _value.variantSku
+          // ignore: cast_nullable_to_non_nullable
+          : variantSku as String,
+      expectedQuantity: expectedQuantity == const $CopyWithPlaceholder()
+          ? _value.expectedQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : expectedQuantity as int?,
+      unitPrice: unitPrice == const $CopyWithPlaceholder()
+          ? _value.unitPrice
+          // ignore: cast_nullable_to_non_nullable
+          : unitPrice as num?,
+      totalPrice: totalPrice == const $CopyWithPlaceholder()
+          ? _value.totalPrice
+          // ignore: cast_nullable_to_non_nullable
+          : totalPrice as num?,
+      rejectedQuantity: rejectedQuantity == const $CopyWithPlaceholder()
+          ? _value.rejectedQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : rejectedQuantity as int?,
+      note: note == const $CopyWithPlaceholder()
+          ? _value.note
+          // ignore: cast_nullable_to_non_nullable
+          : note as String?,
+      batches: batches == const $CopyWithPlaceholder() || batches == null
+          ? _value.batches
+          // ignore: cast_nullable_to_non_nullable
+          : batches as List<BatchResponse>,
+    );
   }
 }
 
-class ImportDetailResponseBuilder
-    implements Builder<ImportDetailResponse, ImportDetailResponseBuilder> {
-  _$ImportDetailResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _variantId;
-  String? get variantId => _$this._variantId;
-  set variantId(String? variantId) => _$this._variantId = variantId;
-
-  String? _variantName;
-  String? get variantName => _$this._variantName;
-  set variantName(String? variantName) => _$this._variantName = variantName;
-
-  String? _variantSku;
-  String? get variantSku => _$this._variantSku;
-  set variantSku(String? variantSku) => _$this._variantSku = variantSku;
-
-  int? _expectedQuantity;
-  int? get expectedQuantity => _$this._expectedQuantity;
-  set expectedQuantity(int? expectedQuantity) =>
-      _$this._expectedQuantity = expectedQuantity;
-
-  num? _unitPrice;
-  num? get unitPrice => _$this._unitPrice;
-  set unitPrice(num? unitPrice) => _$this._unitPrice = unitPrice;
-
-  num? _totalPrice;
-  num? get totalPrice => _$this._totalPrice;
-  set totalPrice(num? totalPrice) => _$this._totalPrice = totalPrice;
-
-  int? _rejectedQuantity;
-  int? get rejectedQuantity => _$this._rejectedQuantity;
-  set rejectedQuantity(int? rejectedQuantity) =>
-      _$this._rejectedQuantity = rejectedQuantity;
-
-  String? _note;
-  String? get note => _$this._note;
-  set note(String? note) => _$this._note = note;
-
-  ListBuilder<BatchResponse>? _batches;
-  ListBuilder<BatchResponse> get batches =>
-      _$this._batches ??= ListBuilder<BatchResponse>();
-  set batches(ListBuilder<BatchResponse>? batches) => _$this._batches = batches;
-
-  ImportDetailResponseBuilder() {
-    ImportDetailResponse._defaults(this);
-  }
-
-  ImportDetailResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _variantId = $v.variantId;
-      _variantName = $v.variantName;
-      _variantSku = $v.variantSku;
-      _expectedQuantity = $v.expectedQuantity;
-      _unitPrice = $v.unitPrice;
-      _totalPrice = $v.totalPrice;
-      _rejectedQuantity = $v.rejectedQuantity;
-      _note = $v.note;
-      _batches = $v.batches.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ImportDetailResponse other) {
-    _$v = other as _$ImportDetailResponse;
-  }
-
-  @override
-  void update(void Function(ImportDetailResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ImportDetailResponse build() => _build();
-
-  _$ImportDetailResponse _build() {
-    _$ImportDetailResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$ImportDetailResponse._(
-            id: id,
-            variantId: variantId,
-            variantName: BuiltValueNullFieldError.checkNotNull(
-              variantName,
-              r'ImportDetailResponse',
-              'variantName',
-            ),
-            variantSku: BuiltValueNullFieldError.checkNotNull(
-              variantSku,
-              r'ImportDetailResponse',
-              'variantSku',
-            ),
-            expectedQuantity: expectedQuantity,
-            unitPrice: unitPrice,
-            totalPrice: totalPrice,
-            rejectedQuantity: rejectedQuantity,
-            note: note,
-            batches: batches.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'batches';
-        batches.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'ImportDetailResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $ImportDetailResponseCopyWith on ImportDetailResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfImportDetailResponse.copyWith(...)` or `instanceOfImportDetailResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ImportDetailResponseCWProxy get copyWith =>
+      _$ImportDetailResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ImportDetailResponse _$ImportDetailResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ImportDetailResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['variantName', 'variantSku', 'batches'],
+  );
+  final val = ImportDetailResponse(
+    id: $checkedConvert('id', (v) => v as String?),
+    variantId: $checkedConvert('variantId', (v) => v as String?),
+    variantName: $checkedConvert('variantName', (v) => v as String),
+    variantSku: $checkedConvert('variantSku', (v) => v as String),
+    expectedQuantity: $checkedConvert(
+      'expectedQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
+    totalPrice: $checkedConvert('totalPrice', (v) => v as num?),
+    rejectedQuantity: $checkedConvert(
+      'rejectedQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    note: $checkedConvert('note', (v) => v as String?),
+    batches: $checkedConvert(
+      'batches',
+      (v) => (v as List<dynamic>)
+          .map((e) => BatchResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ImportDetailResponseToJson(
+  ImportDetailResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'variantId': ?instance.variantId,
+  'variantName': instance.variantName,
+  'variantSku': instance.variantSku,
+  'expectedQuantity': ?instance.expectedQuantity,
+  'unitPrice': ?instance.unitPrice,
+  'totalPrice': ?instance.totalPrice,
+  'rejectedQuantity': ?instance.rejectedQuantity,
+  'note': ?instance.note,
+  'batches': instance.batches.map((e) => e.toJson()).toList(),
+};

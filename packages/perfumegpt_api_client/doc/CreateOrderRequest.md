@@ -9,7 +9,7 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **voucherCode** | **String** |  | [optional] 
-**itemIds** | **BuiltList&lt;String&gt;** |  | [optional] 
+**itemIds** | **List&lt;String&gt;** |  | [optional] 
 **expectedTotalPrice** | **num** |  | [optional] 
 **deliveryMethod** | [**DeliveryMethod**](DeliveryMethod.md) |  | [optional] 
 **savedAddressId** | **String** |  | [optional] 

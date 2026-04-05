@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateOrderStatusRequest
 void main() {
-  final instance = UpdateOrderStatusRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final UpdateOrderStatusRequest? instance = /* UpdateOrderStatusRequest(...) */
+      null;
+  // TODO add properties to the entity
 
   group(UpdateOrderStatusRequest, () {
     // OrderStatus status
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `note`', () async {
       // TODO
     });
-
   });
 }

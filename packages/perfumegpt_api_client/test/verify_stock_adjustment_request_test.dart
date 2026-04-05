@@ -3,14 +3,14 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VerifyStockAdjustmentRequest
 void main() {
-  final instance = VerifyStockAdjustmentRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final VerifyStockAdjustmentRequest?
+  instance = /* VerifyStockAdjustmentRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(VerifyStockAdjustmentRequest, () {
-    // BuiltList<VerifyStockAdjustmentDetailRequest> adjustmentDetails
+    // List<VerifyStockAdjustmentDetailRequest> adjustmentDetails
     test('to test the property `adjustmentDetails`', () async {
       // TODO
     });
-
   });
 }

@@ -3,140 +3,57 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/variant_daily_sale_figure.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'product_daily_sale_figure_response.g.dart';
 
-/// ProductDailySaleFigureResponse
-///
-/// Properties:
-/// * [productId] 
-/// * [productName] 
-/// * [dailySaleFigures] 
-@BuiltValue()
-abstract class ProductDailySaleFigureResponse implements Built<ProductDailySaleFigureResponse, ProductDailySaleFigureResponseBuilder> {
-  @BuiltValueField(wireName: r'productId')
-  String? get productId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ProductDailySaleFigureResponse {
+  /// Returns a new [ProductDailySaleFigureResponse] instance.
+  ProductDailySaleFigureResponse({
+    this.productId,
 
-  @BuiltValueField(wireName: r'productName')
-  String get productName;
+    required this.productName,
 
-  @BuiltValueField(wireName: r'dailySaleFigures')
-  BuiltList<VariantDailySaleFigure> get dailySaleFigures;
+    required this.dailySaleFigures,
+  });
 
-  ProductDailySaleFigureResponse._();
+  @JsonKey(name: r'productId', required: false, includeIfNull: false)
+  final String? productId;
 
-  factory ProductDailySaleFigureResponse([void updates(ProductDailySaleFigureResponseBuilder b)]) = _$ProductDailySaleFigureResponse;
+  @JsonKey(name: r'productName', required: true, includeIfNull: false)
+  final String productName;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ProductDailySaleFigureResponseBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ProductDailySaleFigureResponse> get serializer => _$ProductDailySaleFigureResponseSerializer();
-}
-
-class _$ProductDailySaleFigureResponseSerializer implements PrimitiveSerializer<ProductDailySaleFigureResponse> {
-  @override
-  final Iterable<Type> types = const [ProductDailySaleFigureResponse, _$ProductDailySaleFigureResponse];
+  @JsonKey(name: r'dailySaleFigures', required: true, includeIfNull: false)
+  final List<VariantDailySaleFigure> dailySaleFigures;
 
   @override
-  final String wireName = r'ProductDailySaleFigureResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ProductDailySaleFigureResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.productId != null) {
-      yield r'productId';
-      yield serializers.serialize(
-        object.productId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'productName';
-    yield serializers.serialize(
-      object.productName,
-      specifiedType: const FullType(String),
-    );
-    yield r'dailySaleFigures';
-    yield serializers.serialize(
-      object.dailySaleFigures,
-      specifiedType: const FullType(BuiltList, [FullType(VariantDailySaleFigure)]),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductDailySaleFigureResponse &&
+          other.productId == productId &&
+          other.productName == productName &&
+          other.dailySaleFigures == dailySaleFigures;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ProductDailySaleFigureResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      productId.hashCode + productName.hashCode + dailySaleFigures.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ProductDailySaleFigureResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'productId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.productId = valueDes;
-          break;
-        case r'productName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.productName = valueDes;
-          break;
-        case r'dailySaleFigures':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(VariantDailySaleFigure)]),
-          ) as BuiltList<VariantDailySaleFigure>;
-          result.dailySaleFigures.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ProductDailySaleFigureResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductDailySaleFigureResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductDailySaleFigureResponseToJson(this);
 
   @override
-  ProductDailySaleFigureResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ProductDailySaleFigureResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

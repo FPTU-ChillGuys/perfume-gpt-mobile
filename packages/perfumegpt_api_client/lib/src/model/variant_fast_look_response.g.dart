@@ -3,193 +3,168 @@
 part of 'variant_fast_look_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$VariantFastLookResponse extends VariantFastLookResponse {
-  @override
-  final String? id;
-  @override
-  final String sku;
-  @override
-  final String displayName;
-  @override
-  final num? price;
-  @override
-  final num? retailPrice;
-  @override
-  final int? stockQuantity;
-  @override
-  final MediaResponse? media;
+abstract class _$VariantFastLookResponseCWProxy {
+  VariantFastLookResponse id(String? id);
 
-  factory _$VariantFastLookResponse([
-    void Function(VariantFastLookResponseBuilder)? updates,
-  ]) => (VariantFastLookResponseBuilder()..update(updates))._build();
+  VariantFastLookResponse sku(String sku);
 
-  _$VariantFastLookResponse._({
-    this.id,
-    required this.sku,
-    required this.displayName,
-    this.price,
-    this.retailPrice,
-    this.stockQuantity,
-    this.media,
-  }) : super._();
-  @override
-  VariantFastLookResponse rebuild(
-    void Function(VariantFastLookResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  VariantFastLookResponse displayName(String displayName);
 
-  @override
-  VariantFastLookResponseBuilder toBuilder() =>
-      VariantFastLookResponseBuilder()..replace(this);
+  VariantFastLookResponse price(num? price);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is VariantFastLookResponse &&
-        id == other.id &&
-        sku == other.sku &&
-        displayName == other.displayName &&
-        price == other.price &&
-        retailPrice == other.retailPrice &&
-        stockQuantity == other.stockQuantity &&
-        media == other.media;
-  }
+  VariantFastLookResponse retailPrice(num? retailPrice);
+
+  VariantFastLookResponse stockQuantity(int? stockQuantity);
+
+  VariantFastLookResponse media(MediaResponse? media);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantFastLookResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VariantFastLookResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VariantFastLookResponse call({
+    String? id,
+    String sku,
+    String displayName,
+    num? price,
+    num? retailPrice,
+    int? stockQuantity,
+    MediaResponse? media,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVariantFastLookResponse.copyWith(...)` or call `instanceOfVariantFastLookResponse.copyWith.fieldName(value)` for a single field.
+class _$VariantFastLookResponseCWProxyImpl
+    implements _$VariantFastLookResponseCWProxy {
+  const _$VariantFastLookResponseCWProxyImpl(this._value);
+
+  final VariantFastLookResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, sku.hashCode);
-    _$hash = $jc(_$hash, displayName.hashCode);
-    _$hash = $jc(_$hash, price.hashCode);
-    _$hash = $jc(_$hash, retailPrice.hashCode);
-    _$hash = $jc(_$hash, stockQuantity.hashCode);
-    _$hash = $jc(_$hash, media.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  VariantFastLookResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'VariantFastLookResponse')
-          ..add('id', id)
-          ..add('sku', sku)
-          ..add('displayName', displayName)
-          ..add('price', price)
-          ..add('retailPrice', retailPrice)
-          ..add('stockQuantity', stockQuantity)
-          ..add('media', media))
-        .toString();
+  VariantFastLookResponse sku(String sku) => call(sku: sku);
+
+  @override
+  VariantFastLookResponse displayName(String displayName) =>
+      call(displayName: displayName);
+
+  @override
+  VariantFastLookResponse price(num? price) => call(price: price);
+
+  @override
+  VariantFastLookResponse retailPrice(num? retailPrice) =>
+      call(retailPrice: retailPrice);
+
+  @override
+  VariantFastLookResponse stockQuantity(int? stockQuantity) =>
+      call(stockQuantity: stockQuantity);
+
+  @override
+  VariantFastLookResponse media(MediaResponse? media) => call(media: media);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantFastLookResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VariantFastLookResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VariantFastLookResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? sku = const $CopyWithPlaceholder(),
+    Object? displayName = const $CopyWithPlaceholder(),
+    Object? price = const $CopyWithPlaceholder(),
+    Object? retailPrice = const $CopyWithPlaceholder(),
+    Object? stockQuantity = const $CopyWithPlaceholder(),
+    Object? media = const $CopyWithPlaceholder(),
+  }) {
+    return VariantFastLookResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      sku: sku == const $CopyWithPlaceholder() || sku == null
+          ? _value.sku
+          // ignore: cast_nullable_to_non_nullable
+          : sku as String,
+      displayName:
+          displayName == const $CopyWithPlaceholder() || displayName == null
+          ? _value.displayName
+          // ignore: cast_nullable_to_non_nullable
+          : displayName as String,
+      price: price == const $CopyWithPlaceholder()
+          ? _value.price
+          // ignore: cast_nullable_to_non_nullable
+          : price as num?,
+      retailPrice: retailPrice == const $CopyWithPlaceholder()
+          ? _value.retailPrice
+          // ignore: cast_nullable_to_non_nullable
+          : retailPrice as num?,
+      stockQuantity: stockQuantity == const $CopyWithPlaceholder()
+          ? _value.stockQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : stockQuantity as int?,
+      media: media == const $CopyWithPlaceholder()
+          ? _value.media
+          // ignore: cast_nullable_to_non_nullable
+          : media as MediaResponse?,
+    );
   }
 }
 
-class VariantFastLookResponseBuilder
-    implements
-        Builder<VariantFastLookResponse, VariantFastLookResponseBuilder> {
-  _$VariantFastLookResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _sku;
-  String? get sku => _$this._sku;
-  set sku(String? sku) => _$this._sku = sku;
-
-  String? _displayName;
-  String? get displayName => _$this._displayName;
-  set displayName(String? displayName) => _$this._displayName = displayName;
-
-  num? _price;
-  num? get price => _$this._price;
-  set price(num? price) => _$this._price = price;
-
-  num? _retailPrice;
-  num? get retailPrice => _$this._retailPrice;
-  set retailPrice(num? retailPrice) => _$this._retailPrice = retailPrice;
-
-  int? _stockQuantity;
-  int? get stockQuantity => _$this._stockQuantity;
-  set stockQuantity(int? stockQuantity) =>
-      _$this._stockQuantity = stockQuantity;
-
-  MediaResponseBuilder? _media;
-  MediaResponseBuilder get media => _$this._media ??= MediaResponseBuilder();
-  set media(MediaResponseBuilder? media) => _$this._media = media;
-
-  VariantFastLookResponseBuilder() {
-    VariantFastLookResponse._defaults(this);
-  }
-
-  VariantFastLookResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _sku = $v.sku;
-      _displayName = $v.displayName;
-      _price = $v.price;
-      _retailPrice = $v.retailPrice;
-      _stockQuantity = $v.stockQuantity;
-      _media = $v.media?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(VariantFastLookResponse other) {
-    _$v = other as _$VariantFastLookResponse;
-  }
-
-  @override
-  void update(void Function(VariantFastLookResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  VariantFastLookResponse build() => _build();
-
-  _$VariantFastLookResponse _build() {
-    _$VariantFastLookResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$VariantFastLookResponse._(
-            id: id,
-            sku: BuiltValueNullFieldError.checkNotNull(
-              sku,
-              r'VariantFastLookResponse',
-              'sku',
-            ),
-            displayName: BuiltValueNullFieldError.checkNotNull(
-              displayName,
-              r'VariantFastLookResponse',
-              'displayName',
-            ),
-            price: price,
-            retailPrice: retailPrice,
-            stockQuantity: stockQuantity,
-            media: _media?.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'media';
-        _media?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'VariantFastLookResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $VariantFastLookResponseCopyWith on VariantFastLookResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVariantFastLookResponse.copyWith(...)` or `instanceOfVariantFastLookResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$VariantFastLookResponseCWProxy get copyWith =>
+      _$VariantFastLookResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+VariantFastLookResponse _$VariantFastLookResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('VariantFastLookResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['sku', 'displayName']);
+  final val = VariantFastLookResponse(
+    id: $checkedConvert('id', (v) => v as String?),
+    sku: $checkedConvert('sku', (v) => v as String),
+    displayName: $checkedConvert('displayName', (v) => v as String),
+    price: $checkedConvert('price', (v) => v as num?),
+    retailPrice: $checkedConvert('retailPrice', (v) => v as num?),
+    stockQuantity: $checkedConvert(
+      'stockQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    media: $checkedConvert(
+      'media',
+      (v) =>
+          v == null ? null : MediaResponse.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$VariantFastLookResponseToJson(
+  VariantFastLookResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'sku': instance.sku,
+  'displayName': instance.displayName,
+  'price': ?instance.price,
+  'retailPrice': ?instance.retailPrice,
+  'stockQuantity': ?instance.stockQuantity,
+  'media': ?instance.media?.toJson(),
+};

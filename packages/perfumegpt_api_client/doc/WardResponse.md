@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **wardCode** | **String** |  | 
 **districtID** | **int** |  | [optional] 
 **wardName** | **String** |  | 
-**nameExtension** | **BuiltList&lt;String&gt;** |  | 
+**nameExtension** | **List&lt;String&gt;** |  | 
 **canUpdateCOD** | **bool** |  | [optional] 
 **supportType** | **int** |  | [optional] 
 **status** | **int** |  | [optional] 

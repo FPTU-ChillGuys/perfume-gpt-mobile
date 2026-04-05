@@ -4,36 +4,33 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_batch_detail_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_batch_lookup_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_batch_detail_response.dart';
 
 class BatchesApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const BatchesApi(this._dio, this._serializers);
+  const BatchesApi(this._dio);
 
   /// apiBatchesGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [variantId] 
-  /// * [searchTerm] 
-  /// * [isExpired] 
-  /// * [isExpiringSoon] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [variantId]
+  /// * [searchTerm]
+  /// * [isExpired]
+  /// * [isExpiringSoon]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -43,7 +40,8 @@ class BatchesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfBatchDetailResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfBatchDetailResponse>> apiBatchesGet({ 
+  Future<Response<BaseResponseOfPagedResultOfBatchDetailResponse>>
+  apiBatchesGet({
     String? variantId,
     String? searchTerm,
     bool? isExpired,
@@ -63,16 +61,10 @@ class BatchesApi {
     final _path = r'/api/batches';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -80,15 +72,15 @@ class BatchesApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (variantId != null) r'VariantId': encodeQueryParameter(_serializers, variantId, const FullType(String)),
-      if (searchTerm != null) r'SearchTerm': encodeQueryParameter(_serializers, searchTerm, const FullType(String)),
-      if (isExpired != null) r'IsExpired': encodeQueryParameter(_serializers, isExpired, const FullType(bool)),
-      if (isExpiringSoon != null) r'IsExpiringSoon': encodeQueryParameter(_serializers, isExpiringSoon, const FullType(bool)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (variantId != null) r'VariantId': variantId,
+      if (searchTerm != null) r'SearchTerm': searchTerm,
+      if (isExpired != null) r'IsExpired': isExpired,
+      if (isExpiringSoon != null) r'IsExpiringSoon': isExpiringSoon,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -103,12 +95,17 @@ class BatchesApi {
     BaseResponseOfPagedResultOfBatchDetailResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfBatchDetailResponse),
-      ) as BaseResponseOfPagedResultOfBatchDetailResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfBatchDetailResponse,
+              BaseResponseOfPagedResultOfBatchDetailResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfBatchDetailResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -132,10 +129,10 @@ class BatchesApi {
   }
 
   /// apiBatchesIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -145,7 +142,7 @@ class BatchesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBatchDetailResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBatchDetailResponse>> apiBatchesIdGet({ 
+  Future<Response<BaseResponseOfBatchDetailResponse>> apiBatchesIdGet({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -154,19 +151,18 @@ class BatchesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/batches/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
+    final _path = r'/api/batches/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -184,12 +180,13 @@ class BatchesApi {
     BaseResponseOfBatchDetailResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfBatchDetailResponse),
-      ) as BaseResponseOfBatchDetailResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBatchDetailResponse,
+              BaseResponseOfBatchDetailResponse
+            >(rawData, 'BaseResponseOfBatchDetailResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -213,7 +210,7 @@ class BatchesApi {
   }
 
   /// apiBatchesLookupGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -225,7 +222,8 @@ class BatchesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfBatchLookupResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfBatchLookupResponse>> apiBatchesLookupGet({ 
+  Future<Response<BaseResponseOfListOfBatchLookupResponse>>
+  apiBatchesLookupGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -236,16 +234,10 @@ class BatchesApi {
     final _path = r'/api/batches/lookup';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -263,12 +255,17 @@ class BatchesApi {
     BaseResponseOfListOfBatchLookupResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfListOfBatchLookupResponse),
-      ) as BaseResponseOfListOfBatchLookupResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfBatchLookupResponse,
+              BaseResponseOfListOfBatchLookupResponse
+            >(
+              rawData,
+              'BaseResponseOfListOfBatchLookupResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -290,5 +287,4 @@ class BatchesApi {
       extra: _response.extra,
     );
   }
-
 }

@@ -3,11 +3,11 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PreviewOrderResponse
 void main() {
-  final instance = PreviewOrderResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final PreviewOrderResponse? instance = /* PreviewOrderResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(PreviewOrderResponse, () {
-    // BuiltList<OrderDetailListItems> items
+    // List<OrderDetailListItems> items
     test('to test the property `items`', () async {
       // TODO
     });
@@ -31,6 +31,5 @@ void main() {
     test('to test the property `total`', () async {
       // TODO
     });
-
   });
 }

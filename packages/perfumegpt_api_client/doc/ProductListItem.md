@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 **categoryName** | **String** |  | 
 **description** | **String** |  | [optional] 
 **numberOfVariants** | **int** |  | [optional] 
-**variantPrices** | **BuiltList&lt;num&gt;** |  | 
-**tags** | **BuiltList&lt;String&gt;** |  | [optional] 
+**variantPrices** | **List&lt;num&gt;** |  | 
+**tags** | **List&lt;String&gt;** |  | [optional] 
 **primaryImage** | [**MediaResponse**](MediaResponse.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

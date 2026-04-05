@@ -3,122 +3,46 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'create_order_detail_request.g.dart';
 
-/// CreateOrderDetailRequest
-///
-/// Properties:
-/// * [variantId] 
-/// * [quantity] 
-@BuiltValue()
-abstract class CreateOrderDetailRequest implements Built<CreateOrderDetailRequest, CreateOrderDetailRequestBuilder> {
-  @BuiltValueField(wireName: r'variantId')
-  String get variantId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class CreateOrderDetailRequest {
+  /// Returns a new [CreateOrderDetailRequest] instance.
+  CreateOrderDetailRequest({required this.variantId, this.quantity});
 
-  @BuiltValueField(wireName: r'quantity')
-  int? get quantity;
+  @JsonKey(name: r'variantId', required: true, includeIfNull: false)
+  final String variantId;
 
-  CreateOrderDetailRequest._();
-
-  factory CreateOrderDetailRequest([void updates(CreateOrderDetailRequestBuilder b)]) = _$CreateOrderDetailRequest;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CreateOrderDetailRequestBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<CreateOrderDetailRequest> get serializer => _$CreateOrderDetailRequestSerializer();
-}
-
-class _$CreateOrderDetailRequestSerializer implements PrimitiveSerializer<CreateOrderDetailRequest> {
-  @override
-  final Iterable<Type> types = const [CreateOrderDetailRequest, _$CreateOrderDetailRequest];
+  // minimum: 0
+  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+  final int? quantity;
 
   @override
-  final String wireName = r'CreateOrderDetailRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    CreateOrderDetailRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'variantId';
-    yield serializers.serialize(
-      object.variantId,
-      specifiedType: const FullType(String),
-    );
-    if (object.quantity != null) {
-      yield r'quantity';
-      yield serializers.serialize(
-        object.quantity,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateOrderDetailRequest &&
+          other.variantId == variantId &&
+          other.quantity == quantity;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    CreateOrderDetailRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => variantId.hashCode + quantity.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required CreateOrderDetailRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'variantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantId = valueDes;
-          break;
-        case r'quantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.quantity = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory CreateOrderDetailRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateOrderDetailRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CreateOrderDetailRequestToJson(this);
 
   @override
-  CreateOrderDetailRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = CreateOrderDetailRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

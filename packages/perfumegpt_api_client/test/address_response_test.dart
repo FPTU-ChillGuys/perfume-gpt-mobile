@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for AddressResponse
 void main() {
-  final instance = AddressResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final AddressResponse? instance = /* AddressResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(AddressResponse, () {
     // String id
@@ -61,6 +61,5 @@ void main() {
     test('to test the property `isDefault`', () async {
       // TODO
     });
-
   });
 }

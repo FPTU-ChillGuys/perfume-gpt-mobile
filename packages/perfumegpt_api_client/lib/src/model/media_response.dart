@@ -3,215 +3,86 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'media_response.g.dart';
 
-/// MediaResponse
-///
-/// Properties:
-/// * [id] 
-/// * [url] 
-/// * [altText] 
-/// * [displayOrder] 
-/// * [isPrimary] 
-/// * [fileSize] 
-/// * [mimeType] 
-@BuiltValue()
-abstract class MediaResponse implements Built<MediaResponse, MediaResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class MediaResponse {
+  /// Returns a new [MediaResponse] instance.
+  MediaResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'url')
-  String get url;
+    required this.url,
 
-  @BuiltValueField(wireName: r'altText')
-  String? get altText;
+    this.altText,
 
-  @BuiltValueField(wireName: r'displayOrder')
-  int? get displayOrder;
+    this.displayOrder,
 
-  @BuiltValueField(wireName: r'isPrimary')
-  bool? get isPrimary;
+    this.isPrimary,
 
-  @BuiltValueField(wireName: r'fileSize')
-  int? get fileSize;
+    this.fileSize,
 
-  @BuiltValueField(wireName: r'mimeType')
-  String? get mimeType;
+    this.mimeType,
+  });
 
-  MediaResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory MediaResponse([void updates(MediaResponseBuilder b)]) = _$MediaResponse;
+  @JsonKey(name: r'url', required: true, includeIfNull: false)
+  final String url;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(MediaResponseBuilder b) => b;
+  @JsonKey(name: r'altText', required: false, includeIfNull: false)
+  final String? altText;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<MediaResponse> get serializer => _$MediaResponseSerializer();
-}
+  @JsonKey(name: r'displayOrder', required: false, includeIfNull: false)
+  final int? displayOrder;
 
-class _$MediaResponseSerializer implements PrimitiveSerializer<MediaResponse> {
-  @override
-  final Iterable<Type> types = const [MediaResponse, _$MediaResponse];
+  @JsonKey(name: r'isPrimary', required: false, includeIfNull: false)
+  final bool? isPrimary;
+
+  @JsonKey(name: r'fileSize', required: false, includeIfNull: false)
+  final int? fileSize;
+
+  @JsonKey(name: r'mimeType', required: false, includeIfNull: false)
+  final String? mimeType;
 
   @override
-  final String wireName = r'MediaResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    MediaResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'url';
-    yield serializers.serialize(
-      object.url,
-      specifiedType: const FullType(String),
-    );
-    if (object.altText != null) {
-      yield r'altText';
-      yield serializers.serialize(
-        object.altText,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.displayOrder != null) {
-      yield r'displayOrder';
-      yield serializers.serialize(
-        object.displayOrder,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.isPrimary != null) {
-      yield r'isPrimary';
-      yield serializers.serialize(
-        object.isPrimary,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.fileSize != null) {
-      yield r'fileSize';
-      yield serializers.serialize(
-        object.fileSize,
-        specifiedType: const FullType.nullable(int),
-      );
-    }
-    if (object.mimeType != null) {
-      yield r'mimeType';
-      yield serializers.serialize(
-        object.mimeType,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MediaResponse &&
+          other.id == id &&
+          other.url == url &&
+          other.altText == altText &&
+          other.displayOrder == displayOrder &&
+          other.isPrimary == isPrimary &&
+          other.fileSize == fileSize &&
+          other.mimeType == mimeType;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    MediaResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      id.hashCode +
+      url.hashCode +
+      (altText == null ? 0 : altText.hashCode) +
+      displayOrder.hashCode +
+      isPrimary.hashCode +
+      (fileSize == null ? 0 : fileSize.hashCode) +
+      (mimeType == null ? 0 : mimeType.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required MediaResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'url':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.url = valueDes;
-          break;
-        case r'altText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.altText = valueDes;
-          break;
-        case r'displayOrder':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.displayOrder = valueDes;
-          break;
-        case r'isPrimary':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isPrimary = valueDes;
-          break;
-        case r'fileSize':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.fileSize = valueDes;
-          break;
-        case r'mimeType':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.mimeType = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory MediaResponse.fromJson(Map<String, dynamic> json) =>
+      _$MediaResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MediaResponseToJson(this);
 
   @override
-  MediaResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = MediaResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

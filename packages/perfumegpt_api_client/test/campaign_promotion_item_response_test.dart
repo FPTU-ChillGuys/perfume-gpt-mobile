@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CampaignPromotionItemResponse
 void main() {
-  final instance = CampaignPromotionItemResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final CampaignPromotionItemResponse?
+  instance = /* CampaignPromotionItemResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(CampaignPromotionItemResponse, () {
     // String id
@@ -61,6 +62,5 @@ void main() {
     test('to test the property `currentUsage`', () async {
       // TODO
     });
-
   });
 }

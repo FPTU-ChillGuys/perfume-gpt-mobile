@@ -4,8 +4,9 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_api_client/src/model/base_response_of_profile_response.dart';
@@ -13,15 +14,12 @@ import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/update_profile_request.dart';
 
 class ProfilesApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const ProfilesApi(this._dio, this._serializers);
+  const ProfilesApi(this._dio);
 
   /// apiProfilesMeGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -33,7 +31,7 @@ class ProfilesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfProfileResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfProfileResponse>> apiProfilesMeGet({ 
+  Future<Response<BaseResponseOfProfileResponse>> apiProfilesMeGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -44,16 +42,10 @@ class ProfilesApi {
     final _path = r'/api/profiles/me';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -71,12 +63,13 @@ class ProfilesApi {
     BaseResponseOfProfileResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfProfileResponse),
-      ) as BaseResponseOfProfileResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfProfileResponse,
+              BaseResponseOfProfileResponse
+            >(rawData, 'BaseResponseOfProfileResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -100,10 +93,10 @@ class ProfilesApi {
   }
 
   /// apiProfilesPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [updateProfileRequest] 
+  /// * [updateProfileRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -113,7 +106,7 @@ class ProfilesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiProfilesPut({ 
+  Future<Response<BaseResponseOfstring>> apiProfilesPut({
     required UpdateProfileRequest updateProfileRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -125,16 +118,10 @@ class ProfilesApi {
     final _path = r'/api/profiles';
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -145,15 +132,10 @@ class ProfilesApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UpdateProfileRequest);
-      _bodyData = _serializers.serialize(updateProfileRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateProfileRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -172,12 +154,14 @@ class ProfilesApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -199,5 +183,4 @@ class ProfilesApi {
       extra: _response.extra,
     );
   }
-
 }

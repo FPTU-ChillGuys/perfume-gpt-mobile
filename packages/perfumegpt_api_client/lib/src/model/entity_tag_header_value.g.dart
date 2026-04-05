@@ -3,116 +3,92 @@
 part of 'entity_tag_header_value.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$EntityTagHeaderValue extends EntityTagHeaderValue {
-  @override
-  final StringSegment? tag;
-  @override
-  final bool? isWeak;
+abstract class _$EntityTagHeaderValueCWProxy {
+  EntityTagHeaderValue tag(StringSegment? tag);
 
-  factory _$EntityTagHeaderValue([
-    void Function(EntityTagHeaderValueBuilder)? updates,
-  ]) => (EntityTagHeaderValueBuilder()..update(updates))._build();
+  EntityTagHeaderValue isWeak(bool? isWeak);
 
-  _$EntityTagHeaderValue._({this.tag, this.isWeak}) : super._();
-  @override
-  EntityTagHeaderValue rebuild(
-    void Function(EntityTagHeaderValueBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EntityTagHeaderValue(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// EntityTagHeaderValue(...).copyWith(id: 12, name: "My name")
+  /// ```
+  EntityTagHeaderValue call({StringSegment? tag, bool? isWeak});
+}
 
-  @override
-  EntityTagHeaderValueBuilder toBuilder() =>
-      EntityTagHeaderValueBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfEntityTagHeaderValue.copyWith(...)` or call `instanceOfEntityTagHeaderValue.copyWith.fieldName(value)` for a single field.
+class _$EntityTagHeaderValueCWProxyImpl
+    implements _$EntityTagHeaderValueCWProxy {
+  const _$EntityTagHeaderValueCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is EntityTagHeaderValue &&
-        tag == other.tag &&
-        isWeak == other.isWeak;
-  }
+  final EntityTagHeaderValue _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, tag.hashCode);
-    _$hash = $jc(_$hash, isWeak.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  EntityTagHeaderValue tag(StringSegment? tag) => call(tag: tag);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'EntityTagHeaderValue')
-          ..add('tag', tag)
-          ..add('isWeak', isWeak))
-        .toString();
+  EntityTagHeaderValue isWeak(bool? isWeak) => call(isWeak: isWeak);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EntityTagHeaderValue(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// EntityTagHeaderValue(...).copyWith(id: 12, name: "My name")
+  /// ```
+  EntityTagHeaderValue call({
+    Object? tag = const $CopyWithPlaceholder(),
+    Object? isWeak = const $CopyWithPlaceholder(),
+  }) {
+    return EntityTagHeaderValue(
+      tag: tag == const $CopyWithPlaceholder()
+          ? _value.tag
+          // ignore: cast_nullable_to_non_nullable
+          : tag as StringSegment?,
+      isWeak: isWeak == const $CopyWithPlaceholder()
+          ? _value.isWeak
+          // ignore: cast_nullable_to_non_nullable
+          : isWeak as bool?,
+    );
   }
 }
 
-class EntityTagHeaderValueBuilder
-    implements Builder<EntityTagHeaderValue, EntityTagHeaderValueBuilder> {
-  _$EntityTagHeaderValue? _$v;
-
-  StringSegmentBuilder? _tag;
-  StringSegmentBuilder get tag => _$this._tag ??= StringSegmentBuilder();
-  set tag(StringSegmentBuilder? tag) => _$this._tag = tag;
-
-  bool? _isWeak;
-  bool? get isWeak => _$this._isWeak;
-  set isWeak(bool? isWeak) => _$this._isWeak = isWeak;
-
-  EntityTagHeaderValueBuilder() {
-    EntityTagHeaderValue._defaults(this);
-  }
-
-  EntityTagHeaderValueBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _tag = $v.tag?.toBuilder();
-      _isWeak = $v.isWeak;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(EntityTagHeaderValue other) {
-    _$v = other as _$EntityTagHeaderValue;
-  }
-
-  @override
-  void update(void Function(EntityTagHeaderValueBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  EntityTagHeaderValue build() => _build();
-
-  _$EntityTagHeaderValue _build() {
-    _$EntityTagHeaderValue _$result;
-    try {
-      _$result =
-          _$v ?? _$EntityTagHeaderValue._(tag: _tag?.build(), isWeak: isWeak);
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'tag';
-        _tag?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'EntityTagHeaderValue',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $EntityTagHeaderValueCopyWith on EntityTagHeaderValue {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfEntityTagHeaderValue.copyWith(...)` or `instanceOfEntityTagHeaderValue.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$EntityTagHeaderValueCWProxy get copyWith =>
+      _$EntityTagHeaderValueCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+EntityTagHeaderValue _$EntityTagHeaderValueFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('EntityTagHeaderValue', json, ($checkedConvert) {
+  final val = EntityTagHeaderValue(
+    tag: $checkedConvert(
+      'tag',
+      (v) =>
+          v == null ? null : StringSegment.fromJson(v as Map<String, dynamic>),
+    ),
+    isWeak: $checkedConvert('isWeak', (v) => v as bool?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$EntityTagHeaderValueToJson(
+  EntityTagHeaderValue instance,
+) => <String, dynamic>{
+  'tag': ?instance.tag?.toJson(),
+  'isWeak': ?instance.isWeak,
+};

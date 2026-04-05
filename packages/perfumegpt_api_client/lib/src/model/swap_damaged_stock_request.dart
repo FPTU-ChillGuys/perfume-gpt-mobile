@@ -3,123 +3,51 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'swap_damaged_stock_request.g.dart';
 
-/// SwapDamagedStockRequest
-///
-/// Properties:
-/// * [damagedReservationId] 
-/// * [damageNote] 
-@BuiltValue()
-abstract class SwapDamagedStockRequest implements Built<SwapDamagedStockRequest, SwapDamagedStockRequestBuilder> {
-  @BuiltValueField(wireName: r'damagedReservationId')
-  String get damagedReservationId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class SwapDamagedStockRequest {
+  /// Returns a new [SwapDamagedStockRequest] instance.
+  SwapDamagedStockRequest({
+    required this.damagedReservationId,
 
-  @BuiltValueField(wireName: r'damageNote')
-  String? get damageNote;
+    this.damageNote,
+  });
 
-  SwapDamagedStockRequest._();
+  @JsonKey(name: r'damagedReservationId', required: true, includeIfNull: false)
+  final String damagedReservationId;
 
-  factory SwapDamagedStockRequest([void updates(SwapDamagedStockRequestBuilder b)]) = _$SwapDamagedStockRequest;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(SwapDamagedStockRequestBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<SwapDamagedStockRequest> get serializer => _$SwapDamagedStockRequestSerializer();
-}
-
-class _$SwapDamagedStockRequestSerializer implements PrimitiveSerializer<SwapDamagedStockRequest> {
-  @override
-  final Iterable<Type> types = const [SwapDamagedStockRequest, _$SwapDamagedStockRequest];
+  @JsonKey(name: r'damageNote', required: false, includeIfNull: false)
+  final String? damageNote;
 
   @override
-  final String wireName = r'SwapDamagedStockRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    SwapDamagedStockRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'damagedReservationId';
-    yield serializers.serialize(
-      object.damagedReservationId,
-      specifiedType: const FullType(String),
-    );
-    if (object.damageNote != null) {
-      yield r'damageNote';
-      yield serializers.serialize(
-        object.damageNote,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SwapDamagedStockRequest &&
+          other.damagedReservationId == damagedReservationId &&
+          other.damageNote == damageNote;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    SwapDamagedStockRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      damagedReservationId.hashCode +
+      (damageNote == null ? 0 : damageNote.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required SwapDamagedStockRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'damagedReservationId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.damagedReservationId = valueDes;
-          break;
-        case r'damageNote':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.damageNote = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory SwapDamagedStockRequest.fromJson(Map<String, dynamic> json) =>
+      _$SwapDamagedStockRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SwapDamagedStockRequestToJson(this);
 
   @override
-  SwapDamagedStockRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = SwapDamagedStockRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

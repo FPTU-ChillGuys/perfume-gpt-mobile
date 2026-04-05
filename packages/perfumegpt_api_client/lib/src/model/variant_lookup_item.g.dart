@@ -3,196 +3,177 @@
 part of 'variant_lookup_item.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$VariantLookupItem extends VariantLookupItem {
-  @override
-  final String? id;
-  @override
-  final String barcode;
-  @override
-  final String sku;
-  @override
-  final String displayName;
-  @override
-  final int? volumeMl;
-  @override
-  final String concentrationName;
-  @override
-  final num? basePrice;
-  @override
-  final String? primaryImageUrl;
+abstract class _$VariantLookupItemCWProxy {
+  VariantLookupItem id(String? id);
 
-  factory _$VariantLookupItem([
-    void Function(VariantLookupItemBuilder)? updates,
-  ]) => (VariantLookupItemBuilder()..update(updates))._build();
+  VariantLookupItem barcode(String barcode);
 
-  _$VariantLookupItem._({
-    this.id,
-    required this.barcode,
-    required this.sku,
-    required this.displayName,
-    this.volumeMl,
-    required this.concentrationName,
-    this.basePrice,
-    this.primaryImageUrl,
-  }) : super._();
-  @override
-  VariantLookupItem rebuild(void Function(VariantLookupItemBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  VariantLookupItem sku(String sku);
 
-  @override
-  VariantLookupItemBuilder toBuilder() =>
-      VariantLookupItemBuilder()..replace(this);
+  VariantLookupItem displayName(String displayName);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is VariantLookupItem &&
-        id == other.id &&
-        barcode == other.barcode &&
-        sku == other.sku &&
-        displayName == other.displayName &&
-        volumeMl == other.volumeMl &&
-        concentrationName == other.concentrationName &&
-        basePrice == other.basePrice &&
-        primaryImageUrl == other.primaryImageUrl;
-  }
+  VariantLookupItem volumeMl(int? volumeMl);
+
+  VariantLookupItem concentrationName(String concentrationName);
+
+  VariantLookupItem basePrice(num? basePrice);
+
+  VariantLookupItem primaryImageUrl(String? primaryImageUrl);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantLookupItem(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VariantLookupItem(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VariantLookupItem call({
+    String? id,
+    String barcode,
+    String sku,
+    String displayName,
+    int? volumeMl,
+    String concentrationName,
+    num? basePrice,
+    String? primaryImageUrl,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVariantLookupItem.copyWith(...)` or call `instanceOfVariantLookupItem.copyWith.fieldName(value)` for a single field.
+class _$VariantLookupItemCWProxyImpl implements _$VariantLookupItemCWProxy {
+  const _$VariantLookupItemCWProxyImpl(this._value);
+
+  final VariantLookupItem _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, barcode.hashCode);
-    _$hash = $jc(_$hash, sku.hashCode);
-    _$hash = $jc(_$hash, displayName.hashCode);
-    _$hash = $jc(_$hash, volumeMl.hashCode);
-    _$hash = $jc(_$hash, concentrationName.hashCode);
-    _$hash = $jc(_$hash, basePrice.hashCode);
-    _$hash = $jc(_$hash, primaryImageUrl.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  VariantLookupItem id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'VariantLookupItem')
-          ..add('id', id)
-          ..add('barcode', barcode)
-          ..add('sku', sku)
-          ..add('displayName', displayName)
-          ..add('volumeMl', volumeMl)
-          ..add('concentrationName', concentrationName)
-          ..add('basePrice', basePrice)
-          ..add('primaryImageUrl', primaryImageUrl))
-        .toString();
+  VariantLookupItem barcode(String barcode) => call(barcode: barcode);
+
+  @override
+  VariantLookupItem sku(String sku) => call(sku: sku);
+
+  @override
+  VariantLookupItem displayName(String displayName) =>
+      call(displayName: displayName);
+
+  @override
+  VariantLookupItem volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
+
+  @override
+  VariantLookupItem concentrationName(String concentrationName) =>
+      call(concentrationName: concentrationName);
+
+  @override
+  VariantLookupItem basePrice(num? basePrice) => call(basePrice: basePrice);
+
+  @override
+  VariantLookupItem primaryImageUrl(String? primaryImageUrl) =>
+      call(primaryImageUrl: primaryImageUrl);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantLookupItem(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VariantLookupItem(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VariantLookupItem call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? barcode = const $CopyWithPlaceholder(),
+    Object? sku = const $CopyWithPlaceholder(),
+    Object? displayName = const $CopyWithPlaceholder(),
+    Object? volumeMl = const $CopyWithPlaceholder(),
+    Object? concentrationName = const $CopyWithPlaceholder(),
+    Object? basePrice = const $CopyWithPlaceholder(),
+    Object? primaryImageUrl = const $CopyWithPlaceholder(),
+  }) {
+    return VariantLookupItem(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      barcode: barcode == const $CopyWithPlaceholder() || barcode == null
+          ? _value.barcode
+          // ignore: cast_nullable_to_non_nullable
+          : barcode as String,
+      sku: sku == const $CopyWithPlaceholder() || sku == null
+          ? _value.sku
+          // ignore: cast_nullable_to_non_nullable
+          : sku as String,
+      displayName:
+          displayName == const $CopyWithPlaceholder() || displayName == null
+          ? _value.displayName
+          // ignore: cast_nullable_to_non_nullable
+          : displayName as String,
+      volumeMl: volumeMl == const $CopyWithPlaceholder()
+          ? _value.volumeMl
+          // ignore: cast_nullable_to_non_nullable
+          : volumeMl as int?,
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
+          ? _value.concentrationName
+          // ignore: cast_nullable_to_non_nullable
+          : concentrationName as String,
+      basePrice: basePrice == const $CopyWithPlaceholder()
+          ? _value.basePrice
+          // ignore: cast_nullable_to_non_nullable
+          : basePrice as num?,
+      primaryImageUrl: primaryImageUrl == const $CopyWithPlaceholder()
+          ? _value.primaryImageUrl
+          // ignore: cast_nullable_to_non_nullable
+          : primaryImageUrl as String?,
+    );
   }
 }
 
-class VariantLookupItemBuilder
-    implements Builder<VariantLookupItem, VariantLookupItemBuilder> {
-  _$VariantLookupItem? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _barcode;
-  String? get barcode => _$this._barcode;
-  set barcode(String? barcode) => _$this._barcode = barcode;
-
-  String? _sku;
-  String? get sku => _$this._sku;
-  set sku(String? sku) => _$this._sku = sku;
-
-  String? _displayName;
-  String? get displayName => _$this._displayName;
-  set displayName(String? displayName) => _$this._displayName = displayName;
-
-  int? _volumeMl;
-  int? get volumeMl => _$this._volumeMl;
-  set volumeMl(int? volumeMl) => _$this._volumeMl = volumeMl;
-
-  String? _concentrationName;
-  String? get concentrationName => _$this._concentrationName;
-  set concentrationName(String? concentrationName) =>
-      _$this._concentrationName = concentrationName;
-
-  num? _basePrice;
-  num? get basePrice => _$this._basePrice;
-  set basePrice(num? basePrice) => _$this._basePrice = basePrice;
-
-  String? _primaryImageUrl;
-  String? get primaryImageUrl => _$this._primaryImageUrl;
-  set primaryImageUrl(String? primaryImageUrl) =>
-      _$this._primaryImageUrl = primaryImageUrl;
-
-  VariantLookupItemBuilder() {
-    VariantLookupItem._defaults(this);
-  }
-
-  VariantLookupItemBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _barcode = $v.barcode;
-      _sku = $v.sku;
-      _displayName = $v.displayName;
-      _volumeMl = $v.volumeMl;
-      _concentrationName = $v.concentrationName;
-      _basePrice = $v.basePrice;
-      _primaryImageUrl = $v.primaryImageUrl;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(VariantLookupItem other) {
-    _$v = other as _$VariantLookupItem;
-  }
-
-  @override
-  void update(void Function(VariantLookupItemBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  VariantLookupItem build() => _build();
-
-  _$VariantLookupItem _build() {
-    final _$result =
-        _$v ??
-        _$VariantLookupItem._(
-          id: id,
-          barcode: BuiltValueNullFieldError.checkNotNull(
-            barcode,
-            r'VariantLookupItem',
-            'barcode',
-          ),
-          sku: BuiltValueNullFieldError.checkNotNull(
-            sku,
-            r'VariantLookupItem',
-            'sku',
-          ),
-          displayName: BuiltValueNullFieldError.checkNotNull(
-            displayName,
-            r'VariantLookupItem',
-            'displayName',
-          ),
-          volumeMl: volumeMl,
-          concentrationName: BuiltValueNullFieldError.checkNotNull(
-            concentrationName,
-            r'VariantLookupItem',
-            'concentrationName',
-          ),
-          basePrice: basePrice,
-          primaryImageUrl: primaryImageUrl,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $VariantLookupItemCopyWith on VariantLookupItem {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVariantLookupItem.copyWith(...)` or `instanceOfVariantLookupItem.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$VariantLookupItemCWProxy get copyWith =>
+      _$VariantLookupItemCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+VariantLookupItem _$VariantLookupItemFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('VariantLookupItem', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['barcode', 'sku', 'displayName', 'concentrationName'],
+  );
+  final val = VariantLookupItem(
+    id: $checkedConvert('id', (v) => v as String?),
+    barcode: $checkedConvert('barcode', (v) => v as String),
+    sku: $checkedConvert('sku', (v) => v as String),
+    displayName: $checkedConvert('displayName', (v) => v as String),
+    volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
+    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
+    basePrice: $checkedConvert('basePrice', (v) => v as num?),
+    primaryImageUrl: $checkedConvert('primaryImageUrl', (v) => v as String?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$VariantLookupItemToJson(VariantLookupItem instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'barcode': instance.barcode,
+      'sku': instance.sku,
+      'displayName': instance.displayName,
+      'volumeMl': ?instance.volumeMl,
+      'concentrationName': instance.concentrationName,
+      'basePrice': ?instance.basePrice,
+      'primaryImageUrl': ?instance.primaryImageUrl,
+    };

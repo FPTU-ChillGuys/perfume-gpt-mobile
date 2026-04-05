@@ -3,242 +3,224 @@
 part of 'address_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$AddressResponse extends AddressResponse {
-  @override
-  final String? id;
-  @override
-  final String recipientName;
-  @override
-  final String recipientPhoneNumber;
-  @override
-  final String street;
-  @override
-  final String ward;
-  @override
-  final String district;
-  @override
-  final String city;
-  @override
-  final String wardCode;
-  @override
-  final int? districtId;
-  @override
-  final int? provinceId;
-  @override
-  final bool? isDefault;
+abstract class _$AddressResponseCWProxy {
+  AddressResponse id(String? id);
 
-  factory _$AddressResponse([void Function(AddressResponseBuilder)? updates]) =>
-      (AddressResponseBuilder()..update(updates))._build();
+  AddressResponse recipientName(String recipientName);
 
-  _$AddressResponse._({
-    this.id,
-    required this.recipientName,
-    required this.recipientPhoneNumber,
-    required this.street,
-    required this.ward,
-    required this.district,
-    required this.city,
-    required this.wardCode,
-    this.districtId,
-    this.provinceId,
-    this.isDefault,
-  }) : super._();
-  @override
-  AddressResponse rebuild(void Function(AddressResponseBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  AddressResponse recipientPhoneNumber(String recipientPhoneNumber);
 
-  @override
-  AddressResponseBuilder toBuilder() => AddressResponseBuilder()..replace(this);
+  AddressResponse street(String street);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is AddressResponse &&
-        id == other.id &&
-        recipientName == other.recipientName &&
-        recipientPhoneNumber == other.recipientPhoneNumber &&
-        street == other.street &&
-        ward == other.ward &&
-        district == other.district &&
-        city == other.city &&
-        wardCode == other.wardCode &&
-        districtId == other.districtId &&
-        provinceId == other.provinceId &&
-        isDefault == other.isDefault;
-  }
+  AddressResponse ward(String ward);
+
+  AddressResponse district(String district);
+
+  AddressResponse city(String city);
+
+  AddressResponse wardCode(String wardCode);
+
+  AddressResponse districtId(int? districtId);
+
+  AddressResponse provinceId(int? provinceId);
+
+  AddressResponse isDefault(bool? isDefault);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// AddressResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  AddressResponse call({
+    String? id,
+    String recipientName,
+    String recipientPhoneNumber,
+    String street,
+    String ward,
+    String district,
+    String city,
+    String wardCode,
+    int? districtId,
+    int? provinceId,
+    bool? isDefault,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAddressResponse.copyWith(...)` or call `instanceOfAddressResponse.copyWith.fieldName(value)` for a single field.
+class _$AddressResponseCWProxyImpl implements _$AddressResponseCWProxy {
+  const _$AddressResponseCWProxyImpl(this._value);
+
+  final AddressResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, recipientName.hashCode);
-    _$hash = $jc(_$hash, recipientPhoneNumber.hashCode);
-    _$hash = $jc(_$hash, street.hashCode);
-    _$hash = $jc(_$hash, ward.hashCode);
-    _$hash = $jc(_$hash, district.hashCode);
-    _$hash = $jc(_$hash, city.hashCode);
-    _$hash = $jc(_$hash, wardCode.hashCode);
-    _$hash = $jc(_$hash, districtId.hashCode);
-    _$hash = $jc(_$hash, provinceId.hashCode);
-    _$hash = $jc(_$hash, isDefault.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  AddressResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'AddressResponse')
-          ..add('id', id)
-          ..add('recipientName', recipientName)
-          ..add('recipientPhoneNumber', recipientPhoneNumber)
-          ..add('street', street)
-          ..add('ward', ward)
-          ..add('district', district)
-          ..add('city', city)
-          ..add('wardCode', wardCode)
-          ..add('districtId', districtId)
-          ..add('provinceId', provinceId)
-          ..add('isDefault', isDefault))
-        .toString();
+  AddressResponse recipientName(String recipientName) =>
+      call(recipientName: recipientName);
+
+  @override
+  AddressResponse recipientPhoneNumber(String recipientPhoneNumber) =>
+      call(recipientPhoneNumber: recipientPhoneNumber);
+
+  @override
+  AddressResponse street(String street) => call(street: street);
+
+  @override
+  AddressResponse ward(String ward) => call(ward: ward);
+
+  @override
+  AddressResponse district(String district) => call(district: district);
+
+  @override
+  AddressResponse city(String city) => call(city: city);
+
+  @override
+  AddressResponse wardCode(String wardCode) => call(wardCode: wardCode);
+
+  @override
+  AddressResponse districtId(int? districtId) => call(districtId: districtId);
+
+  @override
+  AddressResponse provinceId(int? provinceId) => call(provinceId: provinceId);
+
+  @override
+  AddressResponse isDefault(bool? isDefault) => call(isDefault: isDefault);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// AddressResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  AddressResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? recipientName = const $CopyWithPlaceholder(),
+    Object? recipientPhoneNumber = const $CopyWithPlaceholder(),
+    Object? street = const $CopyWithPlaceholder(),
+    Object? ward = const $CopyWithPlaceholder(),
+    Object? district = const $CopyWithPlaceholder(),
+    Object? city = const $CopyWithPlaceholder(),
+    Object? wardCode = const $CopyWithPlaceholder(),
+    Object? districtId = const $CopyWithPlaceholder(),
+    Object? provinceId = const $CopyWithPlaceholder(),
+    Object? isDefault = const $CopyWithPlaceholder(),
+  }) {
+    return AddressResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      recipientName:
+          recipientName == const $CopyWithPlaceholder() || recipientName == null
+          ? _value.recipientName
+          // ignore: cast_nullable_to_non_nullable
+          : recipientName as String,
+      recipientPhoneNumber:
+          recipientPhoneNumber == const $CopyWithPlaceholder() ||
+              recipientPhoneNumber == null
+          ? _value.recipientPhoneNumber
+          // ignore: cast_nullable_to_non_nullable
+          : recipientPhoneNumber as String,
+      street: street == const $CopyWithPlaceholder() || street == null
+          ? _value.street
+          // ignore: cast_nullable_to_non_nullable
+          : street as String,
+      ward: ward == const $CopyWithPlaceholder() || ward == null
+          ? _value.ward
+          // ignore: cast_nullable_to_non_nullable
+          : ward as String,
+      district: district == const $CopyWithPlaceholder() || district == null
+          ? _value.district
+          // ignore: cast_nullable_to_non_nullable
+          : district as String,
+      city: city == const $CopyWithPlaceholder() || city == null
+          ? _value.city
+          // ignore: cast_nullable_to_non_nullable
+          : city as String,
+      wardCode: wardCode == const $CopyWithPlaceholder() || wardCode == null
+          ? _value.wardCode
+          // ignore: cast_nullable_to_non_nullable
+          : wardCode as String,
+      districtId: districtId == const $CopyWithPlaceholder()
+          ? _value.districtId
+          // ignore: cast_nullable_to_non_nullable
+          : districtId as int?,
+      provinceId: provinceId == const $CopyWithPlaceholder()
+          ? _value.provinceId
+          // ignore: cast_nullable_to_non_nullable
+          : provinceId as int?,
+      isDefault: isDefault == const $CopyWithPlaceholder()
+          ? _value.isDefault
+          // ignore: cast_nullable_to_non_nullable
+          : isDefault as bool?,
+    );
   }
 }
 
-class AddressResponseBuilder
-    implements Builder<AddressResponse, AddressResponseBuilder> {
-  _$AddressResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _recipientName;
-  String? get recipientName => _$this._recipientName;
-  set recipientName(String? recipientName) =>
-      _$this._recipientName = recipientName;
-
-  String? _recipientPhoneNumber;
-  String? get recipientPhoneNumber => _$this._recipientPhoneNumber;
-  set recipientPhoneNumber(String? recipientPhoneNumber) =>
-      _$this._recipientPhoneNumber = recipientPhoneNumber;
-
-  String? _street;
-  String? get street => _$this._street;
-  set street(String? street) => _$this._street = street;
-
-  String? _ward;
-  String? get ward => _$this._ward;
-  set ward(String? ward) => _$this._ward = ward;
-
-  String? _district;
-  String? get district => _$this._district;
-  set district(String? district) => _$this._district = district;
-
-  String? _city;
-  String? get city => _$this._city;
-  set city(String? city) => _$this._city = city;
-
-  String? _wardCode;
-  String? get wardCode => _$this._wardCode;
-  set wardCode(String? wardCode) => _$this._wardCode = wardCode;
-
-  int? _districtId;
-  int? get districtId => _$this._districtId;
-  set districtId(int? districtId) => _$this._districtId = districtId;
-
-  int? _provinceId;
-  int? get provinceId => _$this._provinceId;
-  set provinceId(int? provinceId) => _$this._provinceId = provinceId;
-
-  bool? _isDefault;
-  bool? get isDefault => _$this._isDefault;
-  set isDefault(bool? isDefault) => _$this._isDefault = isDefault;
-
-  AddressResponseBuilder() {
-    AddressResponse._defaults(this);
-  }
-
-  AddressResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _recipientName = $v.recipientName;
-      _recipientPhoneNumber = $v.recipientPhoneNumber;
-      _street = $v.street;
-      _ward = $v.ward;
-      _district = $v.district;
-      _city = $v.city;
-      _wardCode = $v.wardCode;
-      _districtId = $v.districtId;
-      _provinceId = $v.provinceId;
-      _isDefault = $v.isDefault;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(AddressResponse other) {
-    _$v = other as _$AddressResponse;
-  }
-
-  @override
-  void update(void Function(AddressResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  AddressResponse build() => _build();
-
-  _$AddressResponse _build() {
-    final _$result =
-        _$v ??
-        _$AddressResponse._(
-          id: id,
-          recipientName: BuiltValueNullFieldError.checkNotNull(
-            recipientName,
-            r'AddressResponse',
-            'recipientName',
-          ),
-          recipientPhoneNumber: BuiltValueNullFieldError.checkNotNull(
-            recipientPhoneNumber,
-            r'AddressResponse',
-            'recipientPhoneNumber',
-          ),
-          street: BuiltValueNullFieldError.checkNotNull(
-            street,
-            r'AddressResponse',
-            'street',
-          ),
-          ward: BuiltValueNullFieldError.checkNotNull(
-            ward,
-            r'AddressResponse',
-            'ward',
-          ),
-          district: BuiltValueNullFieldError.checkNotNull(
-            district,
-            r'AddressResponse',
-            'district',
-          ),
-          city: BuiltValueNullFieldError.checkNotNull(
-            city,
-            r'AddressResponse',
-            'city',
-          ),
-          wardCode: BuiltValueNullFieldError.checkNotNull(
-            wardCode,
-            r'AddressResponse',
-            'wardCode',
-          ),
-          districtId: districtId,
-          provinceId: provinceId,
-          isDefault: isDefault,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $AddressResponseCopyWith on AddressResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAddressResponse.copyWith(...)` or `instanceOfAddressResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$AddressResponseCWProxy get copyWith => _$AddressResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+AddressResponse _$AddressResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('AddressResponse', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const [
+          'recipientName',
+          'recipientPhoneNumber',
+          'street',
+          'ward',
+          'district',
+          'city',
+          'wardCode',
+        ],
+      );
+      final val = AddressResponse(
+        id: $checkedConvert('id', (v) => v as String?),
+        recipientName: $checkedConvert('recipientName', (v) => v as String),
+        recipientPhoneNumber: $checkedConvert(
+          'recipientPhoneNumber',
+          (v) => v as String,
+        ),
+        street: $checkedConvert('street', (v) => v as String),
+        ward: $checkedConvert('ward', (v) => v as String),
+        district: $checkedConvert('district', (v) => v as String),
+        city: $checkedConvert('city', (v) => v as String),
+        wardCode: $checkedConvert('wardCode', (v) => v as String),
+        districtId: $checkedConvert('districtId', (v) => (v as num?)?.toInt()),
+        provinceId: $checkedConvert('provinceId', (v) => (v as num?)?.toInt()),
+        isDefault: $checkedConvert('isDefault', (v) => v as bool?),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$AddressResponseToJson(AddressResponse instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'recipientName': instance.recipientName,
+      'recipientPhoneNumber': instance.recipientPhoneNumber,
+      'street': instance.street,
+      'ward': instance.ward,
+      'district': instance.district,
+      'city': instance.city,
+      'wardCode': instance.wardCode,
+      'districtId': ?instance.districtId,
+      'provinceId': ?instance.provinceId,
+      'isDefault': ?instance.isDefault,
+    };

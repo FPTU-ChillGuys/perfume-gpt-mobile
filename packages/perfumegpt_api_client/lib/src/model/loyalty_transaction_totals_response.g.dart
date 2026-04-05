@@ -3,151 +3,147 @@
 part of 'loyalty_transaction_totals_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$LoyaltyTransactionTotalsResponse
-    extends LoyaltyTransactionTotalsResponse {
-  @override
-  final String? userId;
-  @override
-  final int? totalEarnedPoints;
-  @override
-  final int? totalSpentPoints;
-  @override
-  final int? pointBalance;
-  @override
-  final int? totalTransactions;
+abstract class _$LoyaltyTransactionTotalsResponseCWProxy {
+  LoyaltyTransactionTotalsResponse userId(String? userId);
 
-  factory _$LoyaltyTransactionTotalsResponse([
-    void Function(LoyaltyTransactionTotalsResponseBuilder)? updates,
-  ]) => (LoyaltyTransactionTotalsResponseBuilder()..update(updates))._build();
+  LoyaltyTransactionTotalsResponse totalEarnedPoints(int? totalEarnedPoints);
 
-  _$LoyaltyTransactionTotalsResponse._({
-    this.userId,
-    this.totalEarnedPoints,
-    this.totalSpentPoints,
-    this.pointBalance,
-    this.totalTransactions,
-  }) : super._();
-  @override
-  LoyaltyTransactionTotalsResponse rebuild(
-    void Function(LoyaltyTransactionTotalsResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  LoyaltyTransactionTotalsResponse totalSpentPoints(int? totalSpentPoints);
 
-  @override
-  LoyaltyTransactionTotalsResponseBuilder toBuilder() =>
-      LoyaltyTransactionTotalsResponseBuilder()..replace(this);
+  LoyaltyTransactionTotalsResponse pointBalance(int? pointBalance);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is LoyaltyTransactionTotalsResponse &&
-        userId == other.userId &&
-        totalEarnedPoints == other.totalEarnedPoints &&
-        totalSpentPoints == other.totalSpentPoints &&
-        pointBalance == other.pointBalance &&
-        totalTransactions == other.totalTransactions;
-  }
+  LoyaltyTransactionTotalsResponse totalTransactions(int? totalTransactions);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoyaltyTransactionTotalsResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// LoyaltyTransactionTotalsResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  LoyaltyTransactionTotalsResponse call({
+    String? userId,
+    int? totalEarnedPoints,
+    int? totalSpentPoints,
+    int? pointBalance,
+    int? totalTransactions,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfLoyaltyTransactionTotalsResponse.copyWith(...)` or call `instanceOfLoyaltyTransactionTotalsResponse.copyWith.fieldName(value)` for a single field.
+class _$LoyaltyTransactionTotalsResponseCWProxyImpl
+    implements _$LoyaltyTransactionTotalsResponseCWProxy {
+  const _$LoyaltyTransactionTotalsResponseCWProxyImpl(this._value);
+
+  final LoyaltyTransactionTotalsResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, userId.hashCode);
-    _$hash = $jc(_$hash, totalEarnedPoints.hashCode);
-    _$hash = $jc(_$hash, totalSpentPoints.hashCode);
-    _$hash = $jc(_$hash, pointBalance.hashCode);
-    _$hash = $jc(_$hash, totalTransactions.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  LoyaltyTransactionTotalsResponse userId(String? userId) =>
+      call(userId: userId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'LoyaltyTransactionTotalsResponse')
-          ..add('userId', userId)
-          ..add('totalEarnedPoints', totalEarnedPoints)
-          ..add('totalSpentPoints', totalSpentPoints)
-          ..add('pointBalance', pointBalance)
-          ..add('totalTransactions', totalTransactions))
-        .toString();
+  LoyaltyTransactionTotalsResponse totalEarnedPoints(int? totalEarnedPoints) =>
+      call(totalEarnedPoints: totalEarnedPoints);
+
+  @override
+  LoyaltyTransactionTotalsResponse totalSpentPoints(int? totalSpentPoints) =>
+      call(totalSpentPoints: totalSpentPoints);
+
+  @override
+  LoyaltyTransactionTotalsResponse pointBalance(int? pointBalance) =>
+      call(pointBalance: pointBalance);
+
+  @override
+  LoyaltyTransactionTotalsResponse totalTransactions(int? totalTransactions) =>
+      call(totalTransactions: totalTransactions);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoyaltyTransactionTotalsResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// LoyaltyTransactionTotalsResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  LoyaltyTransactionTotalsResponse call({
+    Object? userId = const $CopyWithPlaceholder(),
+    Object? totalEarnedPoints = const $CopyWithPlaceholder(),
+    Object? totalSpentPoints = const $CopyWithPlaceholder(),
+    Object? pointBalance = const $CopyWithPlaceholder(),
+    Object? totalTransactions = const $CopyWithPlaceholder(),
+  }) {
+    return LoyaltyTransactionTotalsResponse(
+      userId: userId == const $CopyWithPlaceholder()
+          ? _value.userId
+          // ignore: cast_nullable_to_non_nullable
+          : userId as String?,
+      totalEarnedPoints: totalEarnedPoints == const $CopyWithPlaceholder()
+          ? _value.totalEarnedPoints
+          // ignore: cast_nullable_to_non_nullable
+          : totalEarnedPoints as int?,
+      totalSpentPoints: totalSpentPoints == const $CopyWithPlaceholder()
+          ? _value.totalSpentPoints
+          // ignore: cast_nullable_to_non_nullable
+          : totalSpentPoints as int?,
+      pointBalance: pointBalance == const $CopyWithPlaceholder()
+          ? _value.pointBalance
+          // ignore: cast_nullable_to_non_nullable
+          : pointBalance as int?,
+      totalTransactions: totalTransactions == const $CopyWithPlaceholder()
+          ? _value.totalTransactions
+          // ignore: cast_nullable_to_non_nullable
+          : totalTransactions as int?,
+    );
   }
 }
 
-class LoyaltyTransactionTotalsResponseBuilder
-    implements
-        Builder<
-          LoyaltyTransactionTotalsResponse,
-          LoyaltyTransactionTotalsResponseBuilder
-        > {
-  _$LoyaltyTransactionTotalsResponse? _$v;
-
-  String? _userId;
-  String? get userId => _$this._userId;
-  set userId(String? userId) => _$this._userId = userId;
-
-  int? _totalEarnedPoints;
-  int? get totalEarnedPoints => _$this._totalEarnedPoints;
-  set totalEarnedPoints(int? totalEarnedPoints) =>
-      _$this._totalEarnedPoints = totalEarnedPoints;
-
-  int? _totalSpentPoints;
-  int? get totalSpentPoints => _$this._totalSpentPoints;
-  set totalSpentPoints(int? totalSpentPoints) =>
-      _$this._totalSpentPoints = totalSpentPoints;
-
-  int? _pointBalance;
-  int? get pointBalance => _$this._pointBalance;
-  set pointBalance(int? pointBalance) => _$this._pointBalance = pointBalance;
-
-  int? _totalTransactions;
-  int? get totalTransactions => _$this._totalTransactions;
-  set totalTransactions(int? totalTransactions) =>
-      _$this._totalTransactions = totalTransactions;
-
-  LoyaltyTransactionTotalsResponseBuilder() {
-    LoyaltyTransactionTotalsResponse._defaults(this);
-  }
-
-  LoyaltyTransactionTotalsResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _userId = $v.userId;
-      _totalEarnedPoints = $v.totalEarnedPoints;
-      _totalSpentPoints = $v.totalSpentPoints;
-      _pointBalance = $v.pointBalance;
-      _totalTransactions = $v.totalTransactions;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(LoyaltyTransactionTotalsResponse other) {
-    _$v = other as _$LoyaltyTransactionTotalsResponse;
-  }
-
-  @override
-  void update(void Function(LoyaltyTransactionTotalsResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  LoyaltyTransactionTotalsResponse build() => _build();
-
-  _$LoyaltyTransactionTotalsResponse _build() {
-    final _$result =
-        _$v ??
-        _$LoyaltyTransactionTotalsResponse._(
-          userId: userId,
-          totalEarnedPoints: totalEarnedPoints,
-          totalSpentPoints: totalSpentPoints,
-          pointBalance: pointBalance,
-          totalTransactions: totalTransactions,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $LoyaltyTransactionTotalsResponseCopyWith
+    on LoyaltyTransactionTotalsResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfLoyaltyTransactionTotalsResponse.copyWith(...)` or `instanceOfLoyaltyTransactionTotalsResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$LoyaltyTransactionTotalsResponseCWProxy get copyWith =>
+      _$LoyaltyTransactionTotalsResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+LoyaltyTransactionTotalsResponse _$LoyaltyTransactionTotalsResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('LoyaltyTransactionTotalsResponse', json, (
+  $checkedConvert,
+) {
+  final val = LoyaltyTransactionTotalsResponse(
+    userId: $checkedConvert('userId', (v) => v as String?),
+    totalEarnedPoints: $checkedConvert(
+      'totalEarnedPoints',
+      (v) => (v as num?)?.toInt(),
+    ),
+    totalSpentPoints: $checkedConvert(
+      'totalSpentPoints',
+      (v) => (v as num?)?.toInt(),
+    ),
+    pointBalance: $checkedConvert('pointBalance', (v) => (v as num?)?.toInt()),
+    totalTransactions: $checkedConvert(
+      'totalTransactions',
+      (v) => (v as num?)?.toInt(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$LoyaltyTransactionTotalsResponseToJson(
+  LoyaltyTransactionTotalsResponse instance,
+) => <String, dynamic>{
+  'userId': ?instance.userId,
+  'totalEarnedPoints': ?instance.totalEarnedPoints,
+  'totalSpentPoints': ?instance.totalSpentPoints,
+  'pointBalance': ?instance.pointBalance,
+  'totalTransactions': ?instance.totalTransactions,
+};

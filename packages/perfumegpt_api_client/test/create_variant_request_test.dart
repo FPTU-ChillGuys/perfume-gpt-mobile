@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateVariantRequest
 void main() {
-  final instance = CreateVariantRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateVariantRequest? instance = /* CreateVariantRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateVariantRequest, () {
     // String productId
@@ -67,15 +67,14 @@ void main() {
       // TODO
     });
 
-    // BuiltList<ProductAttributeDto> attributes
+    // List<ProductAttributeDto> attributes
     test('to test the property `attributes`', () async {
       // TODO
     });
 
-    // BuiltList<String> temporaryMediaIds
+    // List<String> temporaryMediaIds
     test('to test the property `temporaryMediaIds`', () async {
       // TODO
     });
-
   });
 }

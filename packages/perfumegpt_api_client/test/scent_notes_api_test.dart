@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for ScentNotesApi
 void main() {
   final instance = PerfumegptApiClient().getScentNotesApi();
@@ -36,6 +35,5 @@ void main() {
     test('test apiScentnotesPost', () async {
       // TODO
     });
-
   });
 }

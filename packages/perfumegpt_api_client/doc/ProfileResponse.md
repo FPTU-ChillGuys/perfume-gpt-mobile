@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **dateOfBirth** | [**DateTime**](DateTime.md) |  | [optional] 
 **minBudget** | **num** |  | [optional] 
 **maxBudget** | **num** |  | [optional] 
-**notePreferences** | [**BuiltList&lt;CustomerNotePreferenceResponse&gt;**](CustomerNotePreferenceResponse.md) |  | 
-**familyPreferences** | [**BuiltList&lt;CustomerFamilyPreferenceRespone&gt;**](CustomerFamilyPreferenceRespone.md) |  | 
-**attributePreferences** | [**BuiltList&lt;CustomerAttributePreferenceResponse&gt;**](CustomerAttributePreferenceResponse.md) |  | 
+**notePreferences** | [**List&lt;CustomerNotePreferenceResponse&gt;**](CustomerNotePreferenceResponse.md) |  | 
+**familyPreferences** | [**List&lt;CustomerFamilyPreferenceRespone&gt;**](CustomerFamilyPreferenceRespone.md) |  | 
+**attributePreferences** | [**List&lt;CustomerAttributePreferenceResponse&gt;**](CustomerAttributePreferenceResponse.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

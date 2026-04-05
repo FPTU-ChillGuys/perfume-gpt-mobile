@@ -8,7 +8,7 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**BuiltList&lt;VariantPagedItem&gt;**](VariantPagedItem.md) |  | 
+**items** | [**List&lt;VariantPagedItem&gt;**](VariantPagedItem.md) |  | 
 **pageNumber** | **int** |  | 
 **pageSize** | **int** |  | 
 **totalCount** | **int** |  | 

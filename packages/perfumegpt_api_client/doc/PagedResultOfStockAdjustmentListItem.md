@@ -8,7 +8,7 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**BuiltList&lt;StockAdjustmentListItem&gt;**](StockAdjustmentListItem.md) |  | 
+**items** | [**List&lt;StockAdjustmentListItem&gt;**](StockAdjustmentListItem.md) |  | 
 **pageNumber** | **int** |  | 
 **pageSize** | **int** |  | 
 **totalCount** | **int** |  | 

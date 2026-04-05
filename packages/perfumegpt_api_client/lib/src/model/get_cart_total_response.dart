@@ -3,160 +3,65 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'get_cart_total_response.g.dart';
 
-/// GetCartTotalResponse
-///
-/// Properties:
-/// * [subtotal] 
-/// * [shippingFee] 
-/// * [discount] 
-/// * [totalPrice] 
-@BuiltValue()
-abstract class GetCartTotalResponse implements Built<GetCartTotalResponse, GetCartTotalResponseBuilder> {
-  @BuiltValueField(wireName: r'subtotal')
-  num? get subtotal;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class GetCartTotalResponse {
+  /// Returns a new [GetCartTotalResponse] instance.
+  GetCartTotalResponse({
+    this.subtotal,
 
-  @BuiltValueField(wireName: r'shippingFee')
-  num? get shippingFee;
+    this.shippingFee,
 
-  @BuiltValueField(wireName: r'discount')
-  num? get discount;
+    this.discount,
 
-  @BuiltValueField(wireName: r'totalPrice')
-  num? get totalPrice;
+    this.totalPrice,
+  });
 
-  GetCartTotalResponse._();
+  @JsonKey(name: r'subtotal', required: false, includeIfNull: false)
+  final num? subtotal;
 
-  factory GetCartTotalResponse([void updates(GetCartTotalResponseBuilder b)]) = _$GetCartTotalResponse;
+  @JsonKey(name: r'shippingFee', required: false, includeIfNull: false)
+  final num? shippingFee;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(GetCartTotalResponseBuilder b) => b;
+  @JsonKey(name: r'discount', required: false, includeIfNull: false)
+  final num? discount;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<GetCartTotalResponse> get serializer => _$GetCartTotalResponseSerializer();
-}
-
-class _$GetCartTotalResponseSerializer implements PrimitiveSerializer<GetCartTotalResponse> {
-  @override
-  final Iterable<Type> types = const [GetCartTotalResponse, _$GetCartTotalResponse];
+  @JsonKey(name: r'totalPrice', required: false, includeIfNull: false)
+  final num? totalPrice;
 
   @override
-  final String wireName = r'GetCartTotalResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    GetCartTotalResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.subtotal != null) {
-      yield r'subtotal';
-      yield serializers.serialize(
-        object.subtotal,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.shippingFee != null) {
-      yield r'shippingFee';
-      yield serializers.serialize(
-        object.shippingFee,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.discount != null) {
-      yield r'discount';
-      yield serializers.serialize(
-        object.discount,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.totalPrice != null) {
-      yield r'totalPrice';
-      yield serializers.serialize(
-        object.totalPrice,
-        specifiedType: const FullType(num),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GetCartTotalResponse &&
+          other.subtotal == subtotal &&
+          other.shippingFee == shippingFee &&
+          other.discount == discount &&
+          other.totalPrice == totalPrice;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    GetCartTotalResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      subtotal.hashCode +
+      shippingFee.hashCode +
+      discount.hashCode +
+      totalPrice.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required GetCartTotalResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'subtotal':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.subtotal = valueDes;
-          break;
-        case r'shippingFee':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.shippingFee = valueDes;
-          break;
-        case r'discount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.discount = valueDes;
-          break;
-        case r'totalPrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.totalPrice = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory GetCartTotalResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetCartTotalResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GetCartTotalResponseToJson(this);
 
   @override
-  GetCartTotalResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = GetCartTotalResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

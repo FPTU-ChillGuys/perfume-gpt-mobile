@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ShippingInfoListItem
 void main() {
-  final instance = ShippingInfoListItemBuilder();
-  // TODO add properties to the builder and call build()
+  final ShippingInfoListItem? instance = /* ShippingInfoListItem(...) */ null;
+  // TODO add properties to the entity
 
   group(ShippingInfoListItem, () {
     // String id
@@ -51,6 +51,5 @@ void main() {
     test('to test the property `shippedDate`', () async {
       // TODO
     });
-
   });
 }

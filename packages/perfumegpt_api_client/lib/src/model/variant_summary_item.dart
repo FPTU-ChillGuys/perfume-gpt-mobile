@@ -3,138 +3,56 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'variant_summary_item.g.dart';
 
-/// VariantSummaryItem
-///
-/// Properties:
-/// * [id] 
-/// * [displayName] 
-/// * [concentrationName] 
-@BuiltValue()
-abstract class VariantSummaryItem implements Built<VariantSummaryItem, VariantSummaryItemBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class VariantSummaryItem {
+  /// Returns a new [VariantSummaryItem] instance.
+  VariantSummaryItem({
+    this.id,
 
-  @BuiltValueField(wireName: r'displayName')
-  String get displayName;
+    required this.displayName,
 
-  @BuiltValueField(wireName: r'concentrationName')
-  String get concentrationName;
+    required this.concentrationName,
+  });
 
-  VariantSummaryItem._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory VariantSummaryItem([void updates(VariantSummaryItemBuilder b)]) = _$VariantSummaryItem;
+  @JsonKey(name: r'displayName', required: true, includeIfNull: false)
+  final String displayName;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(VariantSummaryItemBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<VariantSummaryItem> get serializer => _$VariantSummaryItemSerializer();
-}
-
-class _$VariantSummaryItemSerializer implements PrimitiveSerializer<VariantSummaryItem> {
-  @override
-  final Iterable<Type> types = const [VariantSummaryItem, _$VariantSummaryItem];
+  @JsonKey(name: r'concentrationName', required: true, includeIfNull: false)
+  final String concentrationName;
 
   @override
-  final String wireName = r'VariantSummaryItem';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    VariantSummaryItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'displayName';
-    yield serializers.serialize(
-      object.displayName,
-      specifiedType: const FullType(String),
-    );
-    yield r'concentrationName';
-    yield serializers.serialize(
-      object.concentrationName,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VariantSummaryItem &&
+          other.id == id &&
+          other.displayName == displayName &&
+          other.concentrationName == concentrationName;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    VariantSummaryItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      id.hashCode + displayName.hashCode + concentrationName.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required VariantSummaryItemBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'displayName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.displayName = valueDes;
-          break;
-        case r'concentrationName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.concentrationName = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory VariantSummaryItem.fromJson(Map<String, dynamic> json) =>
+      _$VariantSummaryItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VariantSummaryItemToJson(this);
 
   @override
-  VariantSummaryItem deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = VariantSummaryItemBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

@@ -3,143 +3,59 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'record_inspection_dto.g.dart';
 
-/// RecordInspectionDto
-///
-/// Properties:
-/// * [approvedRefundAmount] 
-/// * [isRestocked] 
-/// * [inspectionNote] 
-@BuiltValue()
-abstract class RecordInspectionDto implements Built<RecordInspectionDto, RecordInspectionDtoBuilder> {
-  @BuiltValueField(wireName: r'approvedRefundAmount')
-  num? get approvedRefundAmount;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class RecordInspectionDto {
+  /// Returns a new [RecordInspectionDto] instance.
+  RecordInspectionDto({
+    this.approvedRefundAmount,
 
-  @BuiltValueField(wireName: r'isRestocked')
-  bool? get isRestocked;
+    this.isRestocked,
 
-  @BuiltValueField(wireName: r'inspectionNote')
-  String? get inspectionNote;
+    this.inspectionNote,
+  });
 
-  RecordInspectionDto._();
+  // minimum: 0
+  @JsonKey(name: r'approvedRefundAmount', required: false, includeIfNull: false)
+  final num? approvedRefundAmount;
 
-  factory RecordInspectionDto([void updates(RecordInspectionDtoBuilder b)]) = _$RecordInspectionDto;
+  @JsonKey(name: r'isRestocked', required: false, includeIfNull: false)
+  final bool? isRestocked;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(RecordInspectionDtoBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<RecordInspectionDto> get serializer => _$RecordInspectionDtoSerializer();
-}
-
-class _$RecordInspectionDtoSerializer implements PrimitiveSerializer<RecordInspectionDto> {
-  @override
-  final Iterable<Type> types = const [RecordInspectionDto, _$RecordInspectionDto];
+  @JsonKey(name: r'inspectionNote', required: false, includeIfNull: false)
+  final String? inspectionNote;
 
   @override
-  final String wireName = r'RecordInspectionDto';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    RecordInspectionDto object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.approvedRefundAmount != null) {
-      yield r'approvedRefundAmount';
-      yield serializers.serialize(
-        object.approvedRefundAmount,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.isRestocked != null) {
-      yield r'isRestocked';
-      yield serializers.serialize(
-        object.isRestocked,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.inspectionNote != null) {
-      yield r'inspectionNote';
-      yield serializers.serialize(
-        object.inspectionNote,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RecordInspectionDto &&
+          other.approvedRefundAmount == approvedRefundAmount &&
+          other.isRestocked == isRestocked &&
+          other.inspectionNote == inspectionNote;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    RecordInspectionDto object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      approvedRefundAmount.hashCode +
+      isRestocked.hashCode +
+      (inspectionNote == null ? 0 : inspectionNote.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required RecordInspectionDtoBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'approvedRefundAmount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.approvedRefundAmount = valueDes;
-          break;
-        case r'isRestocked':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isRestocked = valueDes;
-          break;
-        case r'inspectionNote':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.inspectionNote = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory RecordInspectionDto.fromJson(Map<String, dynamic> json) =>
+      _$RecordInspectionDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecordInspectionDtoToJson(this);
 
   @override
-  RecordInspectionDto deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = RecordInspectionDtoBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

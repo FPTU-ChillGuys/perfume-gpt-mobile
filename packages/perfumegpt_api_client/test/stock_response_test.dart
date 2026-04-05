@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for StockResponse
 void main() {
-  final instance = StockResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final StockResponse? instance = /* StockResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(StockResponse, () {
     // String id
@@ -61,6 +61,5 @@ void main() {
     test('to test the property `status`', () async {
       // TODO
     });
-
   });
 }

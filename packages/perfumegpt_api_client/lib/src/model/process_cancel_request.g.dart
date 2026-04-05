@@ -3,117 +3,117 @@
 part of 'process_cancel_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProcessCancelRequest extends ProcessCancelRequest {
-  @override
-  final bool? isApproved;
-  @override
-  final String? staffNote;
-  @override
-  final PaymentMethod? refundMethod;
+abstract class _$ProcessCancelRequestCWProxy {
+  ProcessCancelRequest isApproved(bool? isApproved);
 
-  factory _$ProcessCancelRequest([
-    void Function(ProcessCancelRequestBuilder)? updates,
-  ]) => (ProcessCancelRequestBuilder()..update(updates))._build();
+  ProcessCancelRequest staffNote(String? staffNote);
 
-  _$ProcessCancelRequest._({this.isApproved, this.staffNote, this.refundMethod})
-    : super._();
-  @override
-  ProcessCancelRequest rebuild(
-    void Function(ProcessCancelRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  ProcessCancelRequest refundMethod(PaymentMethod? refundMethod);
 
-  @override
-  ProcessCancelRequestBuilder toBuilder() =>
-      ProcessCancelRequestBuilder()..replace(this);
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessCancelRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProcessCancelRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProcessCancelRequest call({
+    bool? isApproved,
+    String? staffNote,
+    PaymentMethod? refundMethod,
+  });
+}
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProcessCancelRequest &&
-        isApproved == other.isApproved &&
-        staffNote == other.staffNote &&
-        refundMethod == other.refundMethod;
-  }
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProcessCancelRequest.copyWith(...)` or call `instanceOfProcessCancelRequest.copyWith.fieldName(value)` for a single field.
+class _$ProcessCancelRequestCWProxyImpl
+    implements _$ProcessCancelRequestCWProxy {
+  const _$ProcessCancelRequestCWProxyImpl(this._value);
+
+  final ProcessCancelRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, isApproved.hashCode);
-    _$hash = $jc(_$hash, staffNote.hashCode);
-    _$hash = $jc(_$hash, refundMethod.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProcessCancelRequest isApproved(bool? isApproved) =>
+      call(isApproved: isApproved);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ProcessCancelRequest')
-          ..add('isApproved', isApproved)
-          ..add('staffNote', staffNote)
-          ..add('refundMethod', refundMethod))
-        .toString();
+  ProcessCancelRequest staffNote(String? staffNote) =>
+      call(staffNote: staffNote);
+
+  @override
+  ProcessCancelRequest refundMethod(PaymentMethod? refundMethod) =>
+      call(refundMethod: refundMethod);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessCancelRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProcessCancelRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProcessCancelRequest call({
+    Object? isApproved = const $CopyWithPlaceholder(),
+    Object? staffNote = const $CopyWithPlaceholder(),
+    Object? refundMethod = const $CopyWithPlaceholder(),
+  }) {
+    return ProcessCancelRequest(
+      isApproved: isApproved == const $CopyWithPlaceholder()
+          ? _value.isApproved
+          // ignore: cast_nullable_to_non_nullable
+          : isApproved as bool?,
+      staffNote: staffNote == const $CopyWithPlaceholder()
+          ? _value.staffNote
+          // ignore: cast_nullable_to_non_nullable
+          : staffNote as String?,
+      refundMethod: refundMethod == const $CopyWithPlaceholder()
+          ? _value.refundMethod
+          // ignore: cast_nullable_to_non_nullable
+          : refundMethod as PaymentMethod?,
+    );
   }
 }
 
-class ProcessCancelRequestBuilder
-    implements Builder<ProcessCancelRequest, ProcessCancelRequestBuilder> {
-  _$ProcessCancelRequest? _$v;
-
-  bool? _isApproved;
-  bool? get isApproved => _$this._isApproved;
-  set isApproved(bool? isApproved) => _$this._isApproved = isApproved;
-
-  String? _staffNote;
-  String? get staffNote => _$this._staffNote;
-  set staffNote(String? staffNote) => _$this._staffNote = staffNote;
-
-  PaymentMethod? _refundMethod;
-  PaymentMethod? get refundMethod => _$this._refundMethod;
-  set refundMethod(PaymentMethod? refundMethod) =>
-      _$this._refundMethod = refundMethod;
-
-  ProcessCancelRequestBuilder() {
-    ProcessCancelRequest._defaults(this);
-  }
-
-  ProcessCancelRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _isApproved = $v.isApproved;
-      _staffNote = $v.staffNote;
-      _refundMethod = $v.refundMethod;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProcessCancelRequest other) {
-    _$v = other as _$ProcessCancelRequest;
-  }
-
-  @override
-  void update(void Function(ProcessCancelRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProcessCancelRequest build() => _build();
-
-  _$ProcessCancelRequest _build() {
-    final _$result =
-        _$v ??
-        _$ProcessCancelRequest._(
-          isApproved: isApproved,
-          staffNote: staffNote,
-          refundMethod: refundMethod,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ProcessCancelRequestCopyWith on ProcessCancelRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProcessCancelRequest.copyWith(...)` or `instanceOfProcessCancelRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProcessCancelRequestCWProxy get copyWith =>
+      _$ProcessCancelRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProcessCancelRequest _$ProcessCancelRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ProcessCancelRequest', json, ($checkedConvert) {
+  final val = ProcessCancelRequest(
+    isApproved: $checkedConvert('isApproved', (v) => v as bool?),
+    staffNote: $checkedConvert('staffNote', (v) => v as String?),
+    refundMethod: $checkedConvert(
+      'refundMethod',
+      (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ProcessCancelRequestToJson(
+  ProcessCancelRequest instance,
+) => <String, dynamic>{
+  'isApproved': ?instance.isApproved,
+  'staffNote': ?instance.staffNote,
+  'refundMethod': ?_$PaymentMethodEnumMap[instance.refundMethod],
+};
+
+const _$PaymentMethodEnumMap = {
+  PaymentMethod.cashOnDelivery: 'CashOnDelivery',
+  PaymentMethod.vnPay: 'VnPay',
+  PaymentMethod.momo: 'Momo',
+  PaymentMethod.cashInStore: 'CashInStore',
+};

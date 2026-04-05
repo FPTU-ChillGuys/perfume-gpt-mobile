@@ -5,250 +5,104 @@
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/discount_type.dart';
 import 'package:perfumegpt_api_client/src/model/voucher_type.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'create_voucher_request.g.dart';
 
-/// CreateVoucherRequest
-///
-/// Properties:
-/// * [code] 
-/// * [discountValue] 
-/// * [discountType] 
-/// * [applyType] 
-/// * [requiredPoints] 
-/// * [minOrderValue] 
-/// * [expiryDate] 
-/// * [totalQuantity] 
-/// * [isPublic] 
-@BuiltValue()
-abstract class CreateVoucherRequest implements Built<CreateVoucherRequest, CreateVoucherRequestBuilder> {
-  @BuiltValueField(wireName: r'code')
-  String get code;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class CreateVoucherRequest {
+  /// Returns a new [CreateVoucherRequest] instance.
+  CreateVoucherRequest({
+    required this.code,
 
-  @BuiltValueField(wireName: r'discountValue')
-  num? get discountValue;
+    this.discountValue,
 
-  @BuiltValueField(wireName: r'discountType')
-  DiscountType? get discountType;
-  // enum discountTypeEnum {  Percentage,  FixedAmount,  };
+    this.discountType,
 
-  @BuiltValueField(wireName: r'applyType')
-  VoucherType? get applyType;
-  // enum applyTypeEnum {  Order,  Product,  };
+    this.applyType,
 
-  @BuiltValueField(wireName: r'requiredPoints')
-  int? get requiredPoints;
+    this.requiredPoints,
 
-  @BuiltValueField(wireName: r'minOrderValue')
-  num? get minOrderValue;
+    this.minOrderValue,
 
-  @BuiltValueField(wireName: r'expiryDate')
-  DateTime? get expiryDate;
+    this.expiryDate,
 
-  @BuiltValueField(wireName: r'totalQuantity')
-  int? get totalQuantity;
+    this.totalQuantity,
 
-  @BuiltValueField(wireName: r'isPublic')
-  bool? get isPublic;
+    this.isPublic,
+  });
 
-  CreateVoucherRequest._();
+  @JsonKey(name: r'code', required: true, includeIfNull: false)
+  final String code;
 
-  factory CreateVoucherRequest([void updates(CreateVoucherRequestBuilder b)]) = _$CreateVoucherRequest;
+  // minimum: 0
+  @JsonKey(name: r'discountValue', required: false, includeIfNull: false)
+  final num? discountValue;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CreateVoucherRequestBuilder b) => b;
+  @JsonKey(name: r'discountType', required: false, includeIfNull: false)
+  final DiscountType? discountType;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<CreateVoucherRequest> get serializer => _$CreateVoucherRequestSerializer();
-}
+  @JsonKey(name: r'applyType', required: false, includeIfNull: false)
+  final VoucherType? applyType;
 
-class _$CreateVoucherRequestSerializer implements PrimitiveSerializer<CreateVoucherRequest> {
-  @override
-  final Iterable<Type> types = const [CreateVoucherRequest, _$CreateVoucherRequest];
+  // minimum: 0
+  @JsonKey(name: r'requiredPoints', required: false, includeIfNull: false)
+  final int? requiredPoints;
 
-  @override
-  final String wireName = r'CreateVoucherRequest';
+  // minimum: 0
+  @JsonKey(name: r'minOrderValue', required: false, includeIfNull: false)
+  final num? minOrderValue;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    CreateVoucherRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'code';
-    yield serializers.serialize(
-      object.code,
-      specifiedType: const FullType(String),
-    );
-    if (object.discountValue != null) {
-      yield r'discountValue';
-      yield serializers.serialize(
-        object.discountValue,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.discountType != null) {
-      yield r'discountType';
-      yield serializers.serialize(
-        object.discountType,
-        specifiedType: const FullType(DiscountType),
-      );
-    }
-    if (object.applyType != null) {
-      yield r'applyType';
-      yield serializers.serialize(
-        object.applyType,
-        specifiedType: const FullType(VoucherType),
-      );
-    }
-    if (object.requiredPoints != null) {
-      yield r'requiredPoints';
-      yield serializers.serialize(
-        object.requiredPoints,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.minOrderValue != null) {
-      yield r'minOrderValue';
-      yield serializers.serialize(
-        object.minOrderValue,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.expiryDate != null) {
-      yield r'expiryDate';
-      yield serializers.serialize(
-        object.expiryDate,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.totalQuantity != null) {
-      yield r'totalQuantity';
-      yield serializers.serialize(
-        object.totalQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.isPublic != null) {
-      yield r'isPublic';
-      yield serializers.serialize(
-        object.isPublic,
-        specifiedType: const FullType(bool),
-      );
-    }
-  }
+  @JsonKey(name: r'expiryDate', required: false, includeIfNull: false)
+  final DateTime? expiryDate;
+
+  // minimum: 0
+  @JsonKey(name: r'totalQuantity', required: false, includeIfNull: false)
+  final int? totalQuantity;
+
+  @JsonKey(name: r'isPublic', required: false, includeIfNull: false)
+  final bool? isPublic;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    CreateVoucherRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required CreateVoucherRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'code':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.code = valueDes;
-          break;
-        case r'discountValue':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.discountValue = valueDes;
-          break;
-        case r'discountType':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DiscountType),
-          ) as DiscountType;
-          result.discountType = valueDes;
-          break;
-        case r'applyType':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(VoucherType),
-          ) as VoucherType;
-          result.applyType = valueDes;
-          break;
-        case r'requiredPoints':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.requiredPoints = valueDes;
-          break;
-        case r'minOrderValue':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.minOrderValue = valueDes;
-          break;
-        case r'expiryDate':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.expiryDate = valueDes;
-          break;
-        case r'totalQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalQuantity = valueDes;
-          break;
-        case r'isPublic':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isPublic = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateVoucherRequest &&
+          other.code == code &&
+          other.discountValue == discountValue &&
+          other.discountType == discountType &&
+          other.applyType == applyType &&
+          other.requiredPoints == requiredPoints &&
+          other.minOrderValue == minOrderValue &&
+          other.expiryDate == expiryDate &&
+          other.totalQuantity == totalQuantity &&
+          other.isPublic == isPublic;
 
   @override
-  CreateVoucherRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = CreateVoucherRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      code.hashCode +
+      discountValue.hashCode +
+      discountType.hashCode +
+      applyType.hashCode +
+      requiredPoints.hashCode +
+      minOrderValue.hashCode +
+      expiryDate.hashCode +
+      totalQuantity.hashCode +
+      isPublic.hashCode;
+
+  factory CreateVoucherRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateVoucherRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CreateVoucherRequestToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

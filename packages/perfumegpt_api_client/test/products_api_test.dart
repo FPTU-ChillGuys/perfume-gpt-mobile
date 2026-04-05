@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for ProductsApi
 void main() {
   final instance = PerfumegptApiClient().getProductsApi();
@@ -17,7 +16,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfListOfProductDailySaleFigureResponse> apiProductsDailySaleFiguresGet({ Date date }) async
+    //Future<BaseResponseOfListOfProductDailySaleFigureResponse> apiProductsDailySaleFiguresGet({ DateTime date }) async
     test('test apiProductsDailySaleFiguresGet', () async {
       // TODO
     });
@@ -42,7 +41,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiProductsImagesTemporaryPost({ BuiltList<ProductImageUploadItem> images }) async
+    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiProductsImagesTemporaryPost({ List<ProductImageUploadItem> images }) async
     test('test apiProductsImagesTemporaryPost', () async {
       // TODO
     });
@@ -101,6 +100,5 @@ void main() {
     test('test apiProductsSearchSemanticGet', () async {
       // TODO
     });
-
   });
 }

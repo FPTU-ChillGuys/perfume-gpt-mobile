@@ -4,123 +4,46 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/bulk_action_metadata.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'bulk_action_result_of_guid.g.dart';
 
-/// BulkActionResultOfGuid
-///
-/// Properties:
-/// * [data] 
-/// * [metadata] 
-@BuiltValue()
-abstract class BulkActionResultOfGuid implements Built<BulkActionResultOfGuid, BulkActionResultOfGuidBuilder> {
-  @BuiltValueField(wireName: r'data')
-  String get data;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class BulkActionResultOfGuid {
+  /// Returns a new [BulkActionResultOfGuid] instance.
+  BulkActionResultOfGuid({required this.data, this.metadata});
 
-  @BuiltValueField(wireName: r'metadata')
-  BulkActionMetadata? get metadata;
+  @JsonKey(name: r'data', required: true, includeIfNull: false)
+  final String data;
 
-  BulkActionResultOfGuid._();
-
-  factory BulkActionResultOfGuid([void updates(BulkActionResultOfGuidBuilder b)]) = _$BulkActionResultOfGuid;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(BulkActionResultOfGuidBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<BulkActionResultOfGuid> get serializer => _$BulkActionResultOfGuidSerializer();
-}
-
-class _$BulkActionResultOfGuidSerializer implements PrimitiveSerializer<BulkActionResultOfGuid> {
-  @override
-  final Iterable<Type> types = const [BulkActionResultOfGuid, _$BulkActionResultOfGuid];
+  @JsonKey(name: r'metadata', required: false, includeIfNull: false)
+  final BulkActionMetadata? metadata;
 
   @override
-  final String wireName = r'BulkActionResultOfGuid';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    BulkActionResultOfGuid object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'data';
-    yield serializers.serialize(
-      object.data,
-      specifiedType: const FullType(String),
-    );
-    if (object.metadata != null) {
-      yield r'metadata';
-      yield serializers.serialize(
-        object.metadata,
-        specifiedType: const FullType.nullable(BulkActionMetadata),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BulkActionResultOfGuid &&
+          other.data == data &&
+          other.metadata == metadata;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    BulkActionResultOfGuid object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      data.hashCode + (metadata == null ? 0 : metadata.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required BulkActionResultOfGuidBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'data':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.data = valueDes;
-          break;
-        case r'metadata':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BulkActionMetadata),
-          ) as BulkActionMetadata?;
-          if (valueDes == null) continue;
-          result.metadata.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory BulkActionResultOfGuid.fromJson(Map<String, dynamic> json) =>
+      _$BulkActionResultOfGuidFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BulkActionResultOfGuidToJson(this);
 
   @override
-  BulkActionResultOfGuid deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = BulkActionResultOfGuidBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

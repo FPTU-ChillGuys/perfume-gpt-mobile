@@ -3,221 +3,204 @@
 part of 'update_address_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UpdateAddressRequest extends UpdateAddressRequest {
-  @override
-  final String recipientName;
-  @override
-  final String recipientPhoneNumber;
-  @override
-  final String street;
-  @override
-  final String ward;
-  @override
-  final String district;
-  @override
-  final String city;
-  @override
-  final String wardCode;
-  @override
-  final int? districtId;
-  @override
-  final int? provinceId;
+abstract class _$UpdateAddressRequestCWProxy {
+  UpdateAddressRequest recipientName(String recipientName);
 
-  factory _$UpdateAddressRequest([
-    void Function(UpdateAddressRequestBuilder)? updates,
-  ]) => (UpdateAddressRequestBuilder()..update(updates))._build();
+  UpdateAddressRequest recipientPhoneNumber(String recipientPhoneNumber);
 
-  _$UpdateAddressRequest._({
-    required this.recipientName,
-    required this.recipientPhoneNumber,
-    required this.street,
-    required this.ward,
-    required this.district,
-    required this.city,
-    required this.wardCode,
-    this.districtId,
-    this.provinceId,
-  }) : super._();
-  @override
-  UpdateAddressRequest rebuild(
-    void Function(UpdateAddressRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  UpdateAddressRequest street(String street);
 
-  @override
-  UpdateAddressRequestBuilder toBuilder() =>
-      UpdateAddressRequestBuilder()..replace(this);
+  UpdateAddressRequest ward(String ward);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UpdateAddressRequest &&
-        recipientName == other.recipientName &&
-        recipientPhoneNumber == other.recipientPhoneNumber &&
-        street == other.street &&
-        ward == other.ward &&
-        district == other.district &&
-        city == other.city &&
-        wardCode == other.wardCode &&
-        districtId == other.districtId &&
-        provinceId == other.provinceId;
-  }
+  UpdateAddressRequest district(String district);
+
+  UpdateAddressRequest city(String city);
+
+  UpdateAddressRequest wardCode(String wardCode);
+
+  UpdateAddressRequest districtId(int? districtId);
+
+  UpdateAddressRequest provinceId(int? provinceId);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateAddressRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateAddressRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateAddressRequest call({
+    String recipientName,
+    String recipientPhoneNumber,
+    String street,
+    String ward,
+    String district,
+    String city,
+    String wardCode,
+    int? districtId,
+    int? provinceId,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateAddressRequest.copyWith(...)` or call `instanceOfUpdateAddressRequest.copyWith.fieldName(value)` for a single field.
+class _$UpdateAddressRequestCWProxyImpl
+    implements _$UpdateAddressRequestCWProxy {
+  const _$UpdateAddressRequestCWProxyImpl(this._value);
+
+  final UpdateAddressRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, recipientName.hashCode);
-    _$hash = $jc(_$hash, recipientPhoneNumber.hashCode);
-    _$hash = $jc(_$hash, street.hashCode);
-    _$hash = $jc(_$hash, ward.hashCode);
-    _$hash = $jc(_$hash, district.hashCode);
-    _$hash = $jc(_$hash, city.hashCode);
-    _$hash = $jc(_$hash, wardCode.hashCode);
-    _$hash = $jc(_$hash, districtId.hashCode);
-    _$hash = $jc(_$hash, provinceId.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UpdateAddressRequest recipientName(String recipientName) =>
+      call(recipientName: recipientName);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'UpdateAddressRequest')
-          ..add('recipientName', recipientName)
-          ..add('recipientPhoneNumber', recipientPhoneNumber)
-          ..add('street', street)
-          ..add('ward', ward)
-          ..add('district', district)
-          ..add('city', city)
-          ..add('wardCode', wardCode)
-          ..add('districtId', districtId)
-          ..add('provinceId', provinceId))
-        .toString();
+  UpdateAddressRequest recipientPhoneNumber(String recipientPhoneNumber) =>
+      call(recipientPhoneNumber: recipientPhoneNumber);
+
+  @override
+  UpdateAddressRequest street(String street) => call(street: street);
+
+  @override
+  UpdateAddressRequest ward(String ward) => call(ward: ward);
+
+  @override
+  UpdateAddressRequest district(String district) => call(district: district);
+
+  @override
+  UpdateAddressRequest city(String city) => call(city: city);
+
+  @override
+  UpdateAddressRequest wardCode(String wardCode) => call(wardCode: wardCode);
+
+  @override
+  UpdateAddressRequest districtId(int? districtId) =>
+      call(districtId: districtId);
+
+  @override
+  UpdateAddressRequest provinceId(int? provinceId) =>
+      call(provinceId: provinceId);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateAddressRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateAddressRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateAddressRequest call({
+    Object? recipientName = const $CopyWithPlaceholder(),
+    Object? recipientPhoneNumber = const $CopyWithPlaceholder(),
+    Object? street = const $CopyWithPlaceholder(),
+    Object? ward = const $CopyWithPlaceholder(),
+    Object? district = const $CopyWithPlaceholder(),
+    Object? city = const $CopyWithPlaceholder(),
+    Object? wardCode = const $CopyWithPlaceholder(),
+    Object? districtId = const $CopyWithPlaceholder(),
+    Object? provinceId = const $CopyWithPlaceholder(),
+  }) {
+    return UpdateAddressRequest(
+      recipientName:
+          recipientName == const $CopyWithPlaceholder() || recipientName == null
+          ? _value.recipientName
+          // ignore: cast_nullable_to_non_nullable
+          : recipientName as String,
+      recipientPhoneNumber:
+          recipientPhoneNumber == const $CopyWithPlaceholder() ||
+              recipientPhoneNumber == null
+          ? _value.recipientPhoneNumber
+          // ignore: cast_nullable_to_non_nullable
+          : recipientPhoneNumber as String,
+      street: street == const $CopyWithPlaceholder() || street == null
+          ? _value.street
+          // ignore: cast_nullable_to_non_nullable
+          : street as String,
+      ward: ward == const $CopyWithPlaceholder() || ward == null
+          ? _value.ward
+          // ignore: cast_nullable_to_non_nullable
+          : ward as String,
+      district: district == const $CopyWithPlaceholder() || district == null
+          ? _value.district
+          // ignore: cast_nullable_to_non_nullable
+          : district as String,
+      city: city == const $CopyWithPlaceholder() || city == null
+          ? _value.city
+          // ignore: cast_nullable_to_non_nullable
+          : city as String,
+      wardCode: wardCode == const $CopyWithPlaceholder() || wardCode == null
+          ? _value.wardCode
+          // ignore: cast_nullable_to_non_nullable
+          : wardCode as String,
+      districtId: districtId == const $CopyWithPlaceholder()
+          ? _value.districtId
+          // ignore: cast_nullable_to_non_nullable
+          : districtId as int?,
+      provinceId: provinceId == const $CopyWithPlaceholder()
+          ? _value.provinceId
+          // ignore: cast_nullable_to_non_nullable
+          : provinceId as int?,
+    );
   }
 }
 
-class UpdateAddressRequestBuilder
-    implements Builder<UpdateAddressRequest, UpdateAddressRequestBuilder> {
-  _$UpdateAddressRequest? _$v;
-
-  String? _recipientName;
-  String? get recipientName => _$this._recipientName;
-  set recipientName(String? recipientName) =>
-      _$this._recipientName = recipientName;
-
-  String? _recipientPhoneNumber;
-  String? get recipientPhoneNumber => _$this._recipientPhoneNumber;
-  set recipientPhoneNumber(String? recipientPhoneNumber) =>
-      _$this._recipientPhoneNumber = recipientPhoneNumber;
-
-  String? _street;
-  String? get street => _$this._street;
-  set street(String? street) => _$this._street = street;
-
-  String? _ward;
-  String? get ward => _$this._ward;
-  set ward(String? ward) => _$this._ward = ward;
-
-  String? _district;
-  String? get district => _$this._district;
-  set district(String? district) => _$this._district = district;
-
-  String? _city;
-  String? get city => _$this._city;
-  set city(String? city) => _$this._city = city;
-
-  String? _wardCode;
-  String? get wardCode => _$this._wardCode;
-  set wardCode(String? wardCode) => _$this._wardCode = wardCode;
-
-  int? _districtId;
-  int? get districtId => _$this._districtId;
-  set districtId(int? districtId) => _$this._districtId = districtId;
-
-  int? _provinceId;
-  int? get provinceId => _$this._provinceId;
-  set provinceId(int? provinceId) => _$this._provinceId = provinceId;
-
-  UpdateAddressRequestBuilder() {
-    UpdateAddressRequest._defaults(this);
-  }
-
-  UpdateAddressRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _recipientName = $v.recipientName;
-      _recipientPhoneNumber = $v.recipientPhoneNumber;
-      _street = $v.street;
-      _ward = $v.ward;
-      _district = $v.district;
-      _city = $v.city;
-      _wardCode = $v.wardCode;
-      _districtId = $v.districtId;
-      _provinceId = $v.provinceId;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UpdateAddressRequest other) {
-    _$v = other as _$UpdateAddressRequest;
-  }
-
-  @override
-  void update(void Function(UpdateAddressRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UpdateAddressRequest build() => _build();
-
-  _$UpdateAddressRequest _build() {
-    final _$result =
-        _$v ??
-        _$UpdateAddressRequest._(
-          recipientName: BuiltValueNullFieldError.checkNotNull(
-            recipientName,
-            r'UpdateAddressRequest',
-            'recipientName',
-          ),
-          recipientPhoneNumber: BuiltValueNullFieldError.checkNotNull(
-            recipientPhoneNumber,
-            r'UpdateAddressRequest',
-            'recipientPhoneNumber',
-          ),
-          street: BuiltValueNullFieldError.checkNotNull(
-            street,
-            r'UpdateAddressRequest',
-            'street',
-          ),
-          ward: BuiltValueNullFieldError.checkNotNull(
-            ward,
-            r'UpdateAddressRequest',
-            'ward',
-          ),
-          district: BuiltValueNullFieldError.checkNotNull(
-            district,
-            r'UpdateAddressRequest',
-            'district',
-          ),
-          city: BuiltValueNullFieldError.checkNotNull(
-            city,
-            r'UpdateAddressRequest',
-            'city',
-          ),
-          wardCode: BuiltValueNullFieldError.checkNotNull(
-            wardCode,
-            r'UpdateAddressRequest',
-            'wardCode',
-          ),
-          districtId: districtId,
-          provinceId: provinceId,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $UpdateAddressRequestCopyWith on UpdateAddressRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateAddressRequest.copyWith(...)` or `instanceOfUpdateAddressRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UpdateAddressRequestCWProxy get copyWith =>
+      _$UpdateAddressRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateAddressRequest _$UpdateAddressRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('UpdateAddressRequest', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'recipientName',
+      'recipientPhoneNumber',
+      'street',
+      'ward',
+      'district',
+      'city',
+      'wardCode',
+    ],
+  );
+  final val = UpdateAddressRequest(
+    recipientName: $checkedConvert('recipientName', (v) => v as String),
+    recipientPhoneNumber: $checkedConvert(
+      'recipientPhoneNumber',
+      (v) => v as String,
+    ),
+    street: $checkedConvert('street', (v) => v as String),
+    ward: $checkedConvert('ward', (v) => v as String),
+    district: $checkedConvert('district', (v) => v as String),
+    city: $checkedConvert('city', (v) => v as String),
+    wardCode: $checkedConvert('wardCode', (v) => v as String),
+    districtId: $checkedConvert('districtId', (v) => (v as num?)?.toInt()),
+    provinceId: $checkedConvert('provinceId', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$UpdateAddressRequestToJson(
+  UpdateAddressRequest instance,
+) => <String, dynamic>{
+  'recipientName': instance.recipientName,
+  'recipientPhoneNumber': instance.recipientPhoneNumber,
+  'street': instance.street,
+  'ward': instance.ward,
+  'district': instance.district,
+  'city': instance.city,
+  'wardCode': instance.wardCode,
+  'districtId': ?instance.districtId,
+  'provinceId': ?instance.provinceId,
+};

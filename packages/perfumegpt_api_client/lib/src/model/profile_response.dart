@@ -5,195 +5,80 @@
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/customer_family_preference_respone.dart';
 import 'package:perfumegpt_api_client/src/model/customer_note_preference_response.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/customer_attribute_preference_response.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'profile_response.g.dart';
 
-/// ProfileResponse
-///
-/// Properties:
-/// * [dateOfBirth] 
-/// * [minBudget] 
-/// * [maxBudget] 
-/// * [notePreferences] 
-/// * [familyPreferences] 
-/// * [attributePreferences] 
-@BuiltValue()
-abstract class ProfileResponse implements Built<ProfileResponse, ProfileResponseBuilder> {
-  @BuiltValueField(wireName: r'dateOfBirth')
-  DateTime? get dateOfBirth;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ProfileResponse {
+  /// Returns a new [ProfileResponse] instance.
+  ProfileResponse({
+    this.dateOfBirth,
 
-  @BuiltValueField(wireName: r'minBudget')
-  num? get minBudget;
+    this.minBudget,
 
-  @BuiltValueField(wireName: r'maxBudget')
-  num? get maxBudget;
+    this.maxBudget,
 
-  @BuiltValueField(wireName: r'notePreferences')
-  BuiltList<CustomerNotePreferenceResponse> get notePreferences;
+    required this.notePreferences,
 
-  @BuiltValueField(wireName: r'familyPreferences')
-  BuiltList<CustomerFamilyPreferenceRespone> get familyPreferences;
+    required this.familyPreferences,
 
-  @BuiltValueField(wireName: r'attributePreferences')
-  BuiltList<CustomerAttributePreferenceResponse> get attributePreferences;
+    required this.attributePreferences,
+  });
 
-  ProfileResponse._();
+  @JsonKey(name: r'dateOfBirth', required: false, includeIfNull: false)
+  final DateTime? dateOfBirth;
 
-  factory ProfileResponse([void updates(ProfileResponseBuilder b)]) = _$ProfileResponse;
+  @JsonKey(name: r'minBudget', required: false, includeIfNull: false)
+  final num? minBudget;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ProfileResponseBuilder b) => b;
+  @JsonKey(name: r'maxBudget', required: false, includeIfNull: false)
+  final num? maxBudget;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ProfileResponse> get serializer => _$ProfileResponseSerializer();
-}
+  @JsonKey(name: r'notePreferences', required: true, includeIfNull: false)
+  final List<CustomerNotePreferenceResponse> notePreferences;
 
-class _$ProfileResponseSerializer implements PrimitiveSerializer<ProfileResponse> {
-  @override
-  final Iterable<Type> types = const [ProfileResponse, _$ProfileResponse];
+  @JsonKey(name: r'familyPreferences', required: true, includeIfNull: false)
+  final List<CustomerFamilyPreferenceRespone> familyPreferences;
+
+  @JsonKey(name: r'attributePreferences', required: true, includeIfNull: false)
+  final List<CustomerAttributePreferenceResponse> attributePreferences;
 
   @override
-  final String wireName = r'ProfileResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ProfileResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.dateOfBirth != null) {
-      yield r'dateOfBirth';
-      yield serializers.serialize(
-        object.dateOfBirth,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-    if (object.minBudget != null) {
-      yield r'minBudget';
-      yield serializers.serialize(
-        object.minBudget,
-        specifiedType: const FullType.nullable(num),
-      );
-    }
-    if (object.maxBudget != null) {
-      yield r'maxBudget';
-      yield serializers.serialize(
-        object.maxBudget,
-        specifiedType: const FullType.nullable(num),
-      );
-    }
-    yield r'notePreferences';
-    yield serializers.serialize(
-      object.notePreferences,
-      specifiedType: const FullType(BuiltList, [FullType(CustomerNotePreferenceResponse)]),
-    );
-    yield r'familyPreferences';
-    yield serializers.serialize(
-      object.familyPreferences,
-      specifiedType: const FullType(BuiltList, [FullType(CustomerFamilyPreferenceRespone)]),
-    );
-    yield r'attributePreferences';
-    yield serializers.serialize(
-      object.attributePreferences,
-      specifiedType: const FullType(BuiltList, [FullType(CustomerAttributePreferenceResponse)]),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProfileResponse &&
+          other.dateOfBirth == dateOfBirth &&
+          other.minBudget == minBudget &&
+          other.maxBudget == maxBudget &&
+          other.notePreferences == notePreferences &&
+          other.familyPreferences == familyPreferences &&
+          other.attributePreferences == attributePreferences;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ProfileResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      (dateOfBirth == null ? 0 : dateOfBirth.hashCode) +
+      (minBudget == null ? 0 : minBudget.hashCode) +
+      (maxBudget == null ? 0 : maxBudget.hashCode) +
+      notePreferences.hashCode +
+      familyPreferences.hashCode +
+      attributePreferences.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ProfileResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'dateOfBirth':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.dateOfBirth = valueDes;
-          break;
-        case r'minBudget':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(num),
-          ) as num?;
-          if (valueDes == null) continue;
-          result.minBudget = valueDes;
-          break;
-        case r'maxBudget':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(num),
-          ) as num?;
-          if (valueDes == null) continue;
-          result.maxBudget = valueDes;
-          break;
-        case r'notePreferences':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(CustomerNotePreferenceResponse)]),
-          ) as BuiltList<CustomerNotePreferenceResponse>;
-          result.notePreferences.replace(valueDes);
-          break;
-        case r'familyPreferences':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(CustomerFamilyPreferenceRespone)]),
-          ) as BuiltList<CustomerFamilyPreferenceRespone>;
-          result.familyPreferences.replace(valueDes);
-          break;
-        case r'attributePreferences':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(CustomerAttributePreferenceResponse)]),
-          ) as BuiltList<CustomerAttributePreferenceResponse>;
-          result.attributePreferences.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ProfileResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProfileResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProfileResponseToJson(this);
 
   @override
-  ProfileResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ProfileResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

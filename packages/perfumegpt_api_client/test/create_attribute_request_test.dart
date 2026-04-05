@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateAttributeRequest
 void main() {
-  final instance = CreateAttributeRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateAttributeRequest? instance = /* CreateAttributeRequest(...) */
+      null;
+  // TODO add properties to the entity
 
   group(CreateAttributeRequest, () {
     // String internalCode
@@ -26,6 +27,5 @@ void main() {
     test('to test the property `isVariantLevel`', () async {
       // TODO
     });
-
   });
 }

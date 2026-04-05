@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **productId** | **String** |  | [optional] 
 **productName** | **String** |  | 
-**dailySaleFigures** | [**BuiltList&lt;VariantDailySaleFigure&gt;**](VariantDailySaleFigure.md) |  | 
+**dailySaleFigures** | [**List&lt;VariantDailySaleFigure&gt;**](VariantDailySaleFigure.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

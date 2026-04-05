@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for OrderReturnRequestsApi
 void main() {
   final instance = PerfumegptApiClient().getOrderReturnRequestsApi();
@@ -52,10 +51,9 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiOrderreturnrequestsVideosTemporaryPost({ BuiltList<Uint8List> videos, BuiltList<Uint8List> images }) async
+    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiOrderreturnrequestsVideosTemporaryPost({ List<MultipartFile> videos, List<MultipartFile> images }) async
     test('test apiOrderreturnrequestsVideosTemporaryPost', () async {
       // TODO
     });
-
   });
 }

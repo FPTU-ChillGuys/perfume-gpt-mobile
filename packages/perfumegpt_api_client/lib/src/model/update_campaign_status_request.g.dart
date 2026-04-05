@@ -3,92 +3,86 @@
 part of 'update_campaign_status_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UpdateCampaignStatusRequest extends UpdateCampaignStatusRequest {
-  @override
-  final CampaignStatus? status;
+abstract class _$UpdateCampaignStatusRequestCWProxy {
+  UpdateCampaignStatusRequest status(CampaignStatus? status);
 
-  factory _$UpdateCampaignStatusRequest([
-    void Function(UpdateCampaignStatusRequestBuilder)? updates,
-  ]) => (UpdateCampaignStatusRequestBuilder()..update(updates))._build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCampaignStatusRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateCampaignStatusRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateCampaignStatusRequest call({CampaignStatus? status});
+}
 
-  _$UpdateCampaignStatusRequest._({this.status}) : super._();
-  @override
-  UpdateCampaignStatusRequest rebuild(
-    void Function(UpdateCampaignStatusRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateCampaignStatusRequest.copyWith(...)` or call `instanceOfUpdateCampaignStatusRequest.copyWith.fieldName(value)` for a single field.
+class _$UpdateCampaignStatusRequestCWProxyImpl
+    implements _$UpdateCampaignStatusRequestCWProxy {
+  const _$UpdateCampaignStatusRequestCWProxyImpl(this._value);
 
-  @override
-  UpdateCampaignStatusRequestBuilder toBuilder() =>
-      UpdateCampaignStatusRequestBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UpdateCampaignStatusRequest && status == other.status;
-  }
+  final UpdateCampaignStatusRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UpdateCampaignStatusRequest status(CampaignStatus? status) =>
+      call(status: status);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-      r'UpdateCampaignStatusRequest',
-    )..add('status', status)).toString();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCampaignStatusRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateCampaignStatusRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateCampaignStatusRequest call({
+    Object? status = const $CopyWithPlaceholder(),
+  }) {
+    return UpdateCampaignStatusRequest(
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as CampaignStatus?,
+    );
   }
 }
 
-class UpdateCampaignStatusRequestBuilder
-    implements
-        Builder<
-          UpdateCampaignStatusRequest,
-          UpdateCampaignStatusRequestBuilder
-        > {
-  _$UpdateCampaignStatusRequest? _$v;
-
-  CampaignStatus? _status;
-  CampaignStatus? get status => _$this._status;
-  set status(CampaignStatus? status) => _$this._status = status;
-
-  UpdateCampaignStatusRequestBuilder() {
-    UpdateCampaignStatusRequest._defaults(this);
-  }
-
-  UpdateCampaignStatusRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _status = $v.status;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UpdateCampaignStatusRequest other) {
-    _$v = other as _$UpdateCampaignStatusRequest;
-  }
-
-  @override
-  void update(void Function(UpdateCampaignStatusRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UpdateCampaignStatusRequest build() => _build();
-
-  _$UpdateCampaignStatusRequest _build() {
-    final _$result = _$v ?? _$UpdateCampaignStatusRequest._(status: status);
-    replace(_$result);
-    return _$result;
-  }
+extension $UpdateCampaignStatusRequestCopyWith on UpdateCampaignStatusRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateCampaignStatusRequest.copyWith(...)` or `instanceOfUpdateCampaignStatusRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UpdateCampaignStatusRequestCWProxy get copyWith =>
+      _$UpdateCampaignStatusRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateCampaignStatusRequest _$UpdateCampaignStatusRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('UpdateCampaignStatusRequest', json, ($checkedConvert) {
+  final val = UpdateCampaignStatusRequest(
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecodeNullable(_$CampaignStatusEnumMap, v),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$UpdateCampaignStatusRequestToJson(
+  UpdateCampaignStatusRequest instance,
+) => <String, dynamic>{'status': ?_$CampaignStatusEnumMap[instance.status]};
+
+const _$CampaignStatusEnumMap = {
+  CampaignStatus.upcoming: 'Upcoming',
+  CampaignStatus.active: 'Active',
+  CampaignStatus.paused: 'Paused',
+  CampaignStatus.completed: 'Completed',
+  CampaignStatus.cancelled: 'Cancelled',
+};

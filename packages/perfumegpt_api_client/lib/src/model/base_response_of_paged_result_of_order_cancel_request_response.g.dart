@@ -3,180 +3,167 @@
 part of 'base_response_of_paged_result_of_order_cancel_request_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BaseResponseOfPagedResultOfOrderCancelRequestResponse
-    extends BaseResponseOfPagedResultOfOrderCancelRequestResponse {
-  @override
-  final PagedResultOfOrderCancelRequestResponse? payload;
-  @override
-  final bool? success;
-  @override
-  final String? message;
-  @override
-  final BuiltList<String>? errors;
-  @override
-  final int? errorType;
+abstract class _$BaseResponseOfPagedResultOfOrderCancelRequestResponseCWProxy {
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse payload(
+    PagedResultOfOrderCancelRequestResponse? payload,
+  );
 
-  factory _$BaseResponseOfPagedResultOfOrderCancelRequestResponse([
-    void Function(BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder)?
-    updates,
-  ]) =>
-      (BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder()
-            ..update(updates))
-          ._build();
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse success(bool? success);
 
-  _$BaseResponseOfPagedResultOfOrderCancelRequestResponse._({
-    this.payload,
-    this.success,
-    this.message,
-    this.errors,
-    this.errorType,
-  }) : super._();
-  @override
-  BaseResponseOfPagedResultOfOrderCancelRequestResponse rebuild(
-    void Function(BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder)
-    updates,
-  ) => (toBuilder()..update(updates)).build();
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse message(
+    String? message,
+  );
 
-  @override
-  BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder toBuilder() =>
-      BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder()
-        ..replace(this);
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse errors(
+    List<String>? errors,
+  );
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BaseResponseOfPagedResultOfOrderCancelRequestResponse &&
-        payload == other.payload &&
-        success == other.success &&
-        message == other.message &&
-        errors == other.errors &&
-        errorType == other.errorType;
-  }
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse errorType(
+    int? errorType,
+  );
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfOrderCancelRequestResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfPagedResultOfOrderCancelRequestResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse call({
+    PagedResultOfOrderCancelRequestResponse? payload,
+    bool? success,
+    String? message,
+    List<String>? errors,
+    int? errorType,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfPagedResultOfOrderCancelRequestResponse.copyWith(...)` or call `instanceOfBaseResponseOfPagedResultOfOrderCancelRequestResponse.copyWith.fieldName(value)` for a single field.
+class _$BaseResponseOfPagedResultOfOrderCancelRequestResponseCWProxyImpl
+    implements _$BaseResponseOfPagedResultOfOrderCancelRequestResponseCWProxy {
+  const _$BaseResponseOfPagedResultOfOrderCancelRequestResponseCWProxyImpl(
+    this._value,
+  );
+
+  final BaseResponseOfPagedResultOfOrderCancelRequestResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, payload.hashCode);
-    _$hash = $jc(_$hash, success.hashCode);
-    _$hash = $jc(_$hash, message.hashCode);
-    _$hash = $jc(_$hash, errors.hashCode);
-    _$hash = $jc(_$hash, errorType.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse payload(
+    PagedResultOfOrderCancelRequestResponse? payload,
+  ) => call(payload: payload);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'BaseResponseOfPagedResultOfOrderCancelRequestResponse',
-          )
-          ..add('payload', payload)
-          ..add('success', success)
-          ..add('message', message)
-          ..add('errors', errors)
-          ..add('errorType', errorType))
-        .toString();
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse success(
+    bool? success,
+  ) => call(success: success);
+
+  @override
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse message(
+    String? message,
+  ) => call(message: message);
+
+  @override
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse errors(
+    List<String>? errors,
+  ) => call(errors: errors);
+
+  @override
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse errorType(
+    int? errorType,
+  ) => call(errorType: errorType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfOrderCancelRequestResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfPagedResultOfOrderCancelRequestResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse call({
+    Object? payload = const $CopyWithPlaceholder(),
+    Object? success = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? errors = const $CopyWithPlaceholder(),
+    Object? errorType = const $CopyWithPlaceholder(),
+  }) {
+    return BaseResponseOfPagedResultOfOrderCancelRequestResponse(
+      payload: payload == const $CopyWithPlaceholder()
+          ? _value.payload
+          // ignore: cast_nullable_to_non_nullable
+          : payload as PagedResultOfOrderCancelRequestResponse?,
+      success: success == const $CopyWithPlaceholder()
+          ? _value.success
+          // ignore: cast_nullable_to_non_nullable
+          : success as bool?,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      errors: errors == const $CopyWithPlaceholder()
+          ? _value.errors
+          // ignore: cast_nullable_to_non_nullable
+          : errors as List<String>?,
+      errorType: errorType == const $CopyWithPlaceholder()
+          ? _value.errorType
+          // ignore: cast_nullable_to_non_nullable
+          : errorType as int?,
+    );
   }
 }
 
-class BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder
-    implements
-        Builder<
-          BaseResponseOfPagedResultOfOrderCancelRequestResponse,
-          BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder
-        > {
-  _$BaseResponseOfPagedResultOfOrderCancelRequestResponse? _$v;
-
-  PagedResultOfOrderCancelRequestResponseBuilder? _payload;
-  PagedResultOfOrderCancelRequestResponseBuilder get payload =>
-      _$this._payload ??= PagedResultOfOrderCancelRequestResponseBuilder();
-  set payload(PagedResultOfOrderCancelRequestResponseBuilder? payload) =>
-      _$this._payload = payload;
-
-  bool? _success;
-  bool? get success => _$this._success;
-  set success(bool? success) => _$this._success = success;
-
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
-  ListBuilder<String>? _errors;
-  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
-  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
-
-  int? _errorType;
-  int? get errorType => _$this._errorType;
-  set errorType(int? errorType) => _$this._errorType = errorType;
-
-  BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder() {
-    BaseResponseOfPagedResultOfOrderCancelRequestResponse._defaults(this);
-  }
-
-  BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _payload = $v.payload?.toBuilder();
-      _success = $v.success;
-      _message = $v.message;
-      _errors = $v.errors?.toBuilder();
-      _errorType = $v.errorType;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BaseResponseOfPagedResultOfOrderCancelRequestResponse other) {
-    _$v = other as _$BaseResponseOfPagedResultOfOrderCancelRequestResponse;
-  }
-
-  @override
-  void update(
-    void Function(BaseResponseOfPagedResultOfOrderCancelRequestResponseBuilder)?
-    updates,
-  ) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BaseResponseOfPagedResultOfOrderCancelRequestResponse build() => _build();
-
-  _$BaseResponseOfPagedResultOfOrderCancelRequestResponse _build() {
-    _$BaseResponseOfPagedResultOfOrderCancelRequestResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$BaseResponseOfPagedResultOfOrderCancelRequestResponse._(
-            payload: _payload?.build(),
-            success: success,
-            message: message,
-            errors: _errors?.build(),
-            errorType: errorType,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'payload';
-        _payload?.build();
-
-        _$failedField = 'errors';
-        _errors?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'BaseResponseOfPagedResultOfOrderCancelRequestResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $BaseResponseOfPagedResultOfOrderCancelRequestResponseCopyWith
+    on BaseResponseOfPagedResultOfOrderCancelRequestResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfPagedResultOfOrderCancelRequestResponse.copyWith(...)` or `instanceOfBaseResponseOfPagedResultOfOrderCancelRequestResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BaseResponseOfPagedResultOfOrderCancelRequestResponseCWProxy get copyWith =>
+      _$BaseResponseOfPagedResultOfOrderCancelRequestResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BaseResponseOfPagedResultOfOrderCancelRequestResponse
+_$BaseResponseOfPagedResultOfOrderCancelRequestResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate(
+  'BaseResponseOfPagedResultOfOrderCancelRequestResponse',
+  json,
+  ($checkedConvert) {
+    final val = BaseResponseOfPagedResultOfOrderCancelRequestResponse(
+      payload: $checkedConvert(
+        'payload',
+        (v) => v == null
+            ? null
+            : PagedResultOfOrderCancelRequestResponse.fromJson(
+                v as Map<String, dynamic>,
+              ),
+      ),
+      success: $checkedConvert('success', (v) => v as bool?),
+      message: $checkedConvert('message', (v) => v as String?),
+      errors: $checkedConvert(
+        'errors',
+        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+      ),
+      errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+    );
+    return val;
+  },
+);
+
+Map<String, dynamic>
+_$BaseResponseOfPagedResultOfOrderCancelRequestResponseToJson(
+  BaseResponseOfPagedResultOfOrderCancelRequestResponse instance,
+) => <String, dynamic>{
+  'payload': ?instance.payload?.toJson(),
+  'success': ?instance.success,
+  'message': ?instance.message,
+  'errors': ?instance.errors,
+  'errorType': ?instance.errorType,
+};

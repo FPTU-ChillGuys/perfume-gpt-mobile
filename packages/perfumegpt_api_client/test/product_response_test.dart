@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductResponse
 void main() {
-  final instance = ProductResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final ProductResponse? instance = /* ProductResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(ProductResponse, () {
     // String id
@@ -62,30 +62,29 @@ void main() {
       // TODO
     });
 
-    // BuiltList<MediaResponse> media
+    // List<MediaResponse> media
     test('to test the property `media`', () async {
       // TODO
     });
 
-    // BuiltList<ProductVariantResponse> variants
+    // List<ProductVariantResponse> variants
     test('to test the property `variants`', () async {
       // TODO
     });
 
-    // BuiltList<ProductAttributeResponse> attributes
+    // List<ProductAttributeResponse> attributes
     test('to test the property `attributes`', () async {
       // TODO
     });
 
-    // BuiltList<ProductOlfactoryFamilyResponse> olfactoryFamilies
+    // List<ProductOlfactoryFamilyResponse> olfactoryFamilies
     test('to test the property `olfactoryFamilies`', () async {
       // TODO
     });
 
-    // BuiltList<ProductScentNoteResponse> scentNotes
+    // List<ProductScentNoteResponse> scentNotes
     test('to test the property `scentNotes`', () async {
       // TODO
     });
-
   });
 }

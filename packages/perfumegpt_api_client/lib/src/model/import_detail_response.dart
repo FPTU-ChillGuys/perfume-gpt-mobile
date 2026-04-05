@@ -3,265 +3,108 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/batch_response.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'import_detail_response.g.dart';
 
-/// ImportDetailResponse
-///
-/// Properties:
-/// * [id] 
-/// * [variantId] 
-/// * [variantName] 
-/// * [variantSku] 
-/// * [expectedQuantity] 
-/// * [unitPrice] 
-/// * [totalPrice] 
-/// * [rejectedQuantity] 
-/// * [note] 
-/// * [batches] 
-@BuiltValue()
-abstract class ImportDetailResponse implements Built<ImportDetailResponse, ImportDetailResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ImportDetailResponse {
+  /// Returns a new [ImportDetailResponse] instance.
+  ImportDetailResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'variantId')
-  String? get variantId;
+    this.variantId,
 
-  @BuiltValueField(wireName: r'variantName')
-  String get variantName;
+    required this.variantName,
 
-  @BuiltValueField(wireName: r'variantSku')
-  String get variantSku;
+    required this.variantSku,
 
-  @BuiltValueField(wireName: r'expectedQuantity')
-  int? get expectedQuantity;
+    this.expectedQuantity,
 
-  @BuiltValueField(wireName: r'unitPrice')
-  num? get unitPrice;
+    this.unitPrice,
 
-  @BuiltValueField(wireName: r'totalPrice')
-  num? get totalPrice;
+    this.totalPrice,
 
-  @BuiltValueField(wireName: r'rejectedQuantity')
-  int? get rejectedQuantity;
+    this.rejectedQuantity,
 
-  @BuiltValueField(wireName: r'note')
-  String? get note;
+    this.note,
 
-  @BuiltValueField(wireName: r'batches')
-  BuiltList<BatchResponse> get batches;
+    required this.batches,
+  });
 
-  ImportDetailResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory ImportDetailResponse([void updates(ImportDetailResponseBuilder b)]) = _$ImportDetailResponse;
+  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+  final String? variantId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ImportDetailResponseBuilder b) => b;
+  @JsonKey(name: r'variantName', required: true, includeIfNull: false)
+  final String variantName;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ImportDetailResponse> get serializer => _$ImportDetailResponseSerializer();
-}
+  @JsonKey(name: r'variantSku', required: true, includeIfNull: false)
+  final String variantSku;
 
-class _$ImportDetailResponseSerializer implements PrimitiveSerializer<ImportDetailResponse> {
-  @override
-  final Iterable<Type> types = const [ImportDetailResponse, _$ImportDetailResponse];
+  @JsonKey(name: r'expectedQuantity', required: false, includeIfNull: false)
+  final int? expectedQuantity;
 
-  @override
-  final String wireName = r'ImportDetailResponse';
+  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
+  final num? unitPrice;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ImportDetailResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.variantId != null) {
-      yield r'variantId';
-      yield serializers.serialize(
-        object.variantId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'variantName';
-    yield serializers.serialize(
-      object.variantName,
-      specifiedType: const FullType(String),
-    );
-    yield r'variantSku';
-    yield serializers.serialize(
-      object.variantSku,
-      specifiedType: const FullType(String),
-    );
-    if (object.expectedQuantity != null) {
-      yield r'expectedQuantity';
-      yield serializers.serialize(
-        object.expectedQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.unitPrice != null) {
-      yield r'unitPrice';
-      yield serializers.serialize(
-        object.unitPrice,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.totalPrice != null) {
-      yield r'totalPrice';
-      yield serializers.serialize(
-        object.totalPrice,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.rejectedQuantity != null) {
-      yield r'rejectedQuantity';
-      yield serializers.serialize(
-        object.rejectedQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.note != null) {
-      yield r'note';
-      yield serializers.serialize(
-        object.note,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    yield r'batches';
-    yield serializers.serialize(
-      object.batches,
-      specifiedType: const FullType(BuiltList, [FullType(BatchResponse)]),
-    );
-  }
+  @JsonKey(name: r'totalPrice', required: false, includeIfNull: false)
+  final num? totalPrice;
+
+  @JsonKey(name: r'rejectedQuantity', required: false, includeIfNull: false)
+  final int? rejectedQuantity;
+
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
+  final String? note;
+
+  @JsonKey(name: r'batches', required: true, includeIfNull: false)
+  final List<BatchResponse> batches;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ImportDetailResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ImportDetailResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'variantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantId = valueDes;
-          break;
-        case r'variantName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantName = valueDes;
-          break;
-        case r'variantSku':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantSku = valueDes;
-          break;
-        case r'expectedQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.expectedQuantity = valueDes;
-          break;
-        case r'unitPrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.unitPrice = valueDes;
-          break;
-        case r'totalPrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.totalPrice = valueDes;
-          break;
-        case r'rejectedQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.rejectedQuantity = valueDes;
-          break;
-        case r'note':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.note = valueDes;
-          break;
-        case r'batches':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(BatchResponse)]),
-          ) as BuiltList<BatchResponse>;
-          result.batches.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ImportDetailResponse &&
+          other.id == id &&
+          other.variantId == variantId &&
+          other.variantName == variantName &&
+          other.variantSku == variantSku &&
+          other.expectedQuantity == expectedQuantity &&
+          other.unitPrice == unitPrice &&
+          other.totalPrice == totalPrice &&
+          other.rejectedQuantity == rejectedQuantity &&
+          other.note == note &&
+          other.batches == batches;
 
   @override
-  ImportDetailResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ImportDetailResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      id.hashCode +
+      variantId.hashCode +
+      variantName.hashCode +
+      variantSku.hashCode +
+      expectedQuantity.hashCode +
+      unitPrice.hashCode +
+      totalPrice.hashCode +
+      rejectedQuantity.hashCode +
+      (note == null ? 0 : note.hashCode) +
+      batches.hashCode;
+
+  factory ImportDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$ImportDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ImportDetailResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

@@ -3,306 +3,121 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'province_response.g.dart';
 
-/// ProvinceResponse
-///
-/// Properties:
-/// * [provinceID] 
-/// * [provinceName] 
-/// * [countryID] 
-/// * [code] 
-/// * [nameExtension] 
-/// * [isEnable] 
-/// * [regionID] 
-/// * [updatedBy] 
-/// * [createdAt] 
-/// * [updatedAt] 
-/// * [canUpdateCOD] 
-/// * [status] 
-@BuiltValue()
-abstract class ProvinceResponse implements Built<ProvinceResponse, ProvinceResponseBuilder> {
-  @BuiltValueField(wireName: r'ProvinceID')
-  int? get provinceID;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ProvinceResponse {
+  /// Returns a new [ProvinceResponse] instance.
+  ProvinceResponse({
+    this.provinceID,
 
-  @BuiltValueField(wireName: r'ProvinceName')
-  String get provinceName;
+    required this.provinceName,
 
-  @BuiltValueField(wireName: r'CountryID')
-  int? get countryID;
+    this.countryID,
 
-  @BuiltValueField(wireName: r'Code')
-  int? get code;
+    this.code,
 
-  @BuiltValueField(wireName: r'NameExtension')
-  BuiltList<String>? get nameExtension;
+    this.nameExtension,
 
-  @BuiltValueField(wireName: r'IsEnable')
-  int? get isEnable;
+    this.isEnable,
 
-  @BuiltValueField(wireName: r'RegionID')
-  int? get regionID;
+    this.regionID,
 
-  @BuiltValueField(wireName: r'UpdatedBy')
-  int? get updatedBy;
+    this.updatedBy,
 
-  @BuiltValueField(wireName: r'CreatedAt')
-  String? get createdAt;
+    this.createdAt,
 
-  @BuiltValueField(wireName: r'UpdatedAt')
-  String? get updatedAt;
+    this.updatedAt,
 
-  @BuiltValueField(wireName: r'CanUpdateCOD')
-  bool? get canUpdateCOD;
+    this.canUpdateCOD,
 
-  @BuiltValueField(wireName: r'Status')
-  int? get status;
+    this.status,
+  });
 
-  ProvinceResponse._();
+  @JsonKey(name: r'ProvinceID', required: false, includeIfNull: false)
+  final int? provinceID;
 
-  factory ProvinceResponse([void updates(ProvinceResponseBuilder b)]) = _$ProvinceResponse;
+  @JsonKey(name: r'ProvinceName', required: true, includeIfNull: false)
+  final String provinceName;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ProvinceResponseBuilder b) => b;
+  @JsonKey(name: r'CountryID', required: false, includeIfNull: false)
+  final int? countryID;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ProvinceResponse> get serializer => _$ProvinceResponseSerializer();
-}
+  @JsonKey(name: r'Code', required: false, includeIfNull: false)
+  final int? code;
 
-class _$ProvinceResponseSerializer implements PrimitiveSerializer<ProvinceResponse> {
-  @override
-  final Iterable<Type> types = const [ProvinceResponse, _$ProvinceResponse];
+  @JsonKey(name: r'NameExtension', required: false, includeIfNull: false)
+  final List<String>? nameExtension;
 
-  @override
-  final String wireName = r'ProvinceResponse';
+  @JsonKey(name: r'IsEnable', required: false, includeIfNull: false)
+  final int? isEnable;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ProvinceResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.provinceID != null) {
-      yield r'ProvinceID';
-      yield serializers.serialize(
-        object.provinceID,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'ProvinceName';
-    yield serializers.serialize(
-      object.provinceName,
-      specifiedType: const FullType(String),
-    );
-    if (object.countryID != null) {
-      yield r'CountryID';
-      yield serializers.serialize(
-        object.countryID,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.code != null) {
-      yield r'Code';
-      yield serializers.serialize(
-        object.code,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.nameExtension != null) {
-      yield r'NameExtension';
-      yield serializers.serialize(
-        object.nameExtension,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.isEnable != null) {
-      yield r'IsEnable';
-      yield serializers.serialize(
-        object.isEnable,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.regionID != null) {
-      yield r'RegionID';
-      yield serializers.serialize(
-        object.regionID,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.updatedBy != null) {
-      yield r'UpdatedBy';
-      yield serializers.serialize(
-        object.updatedBy,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.createdAt != null) {
-      yield r'CreatedAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.updatedAt != null) {
-      yield r'UpdatedAt';
-      yield serializers.serialize(
-        object.updatedAt,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.canUpdateCOD != null) {
-      yield r'CanUpdateCOD';
-      yield serializers.serialize(
-        object.canUpdateCOD,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.status != null) {
-      yield r'Status';
-      yield serializers.serialize(
-        object.status,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
+  @JsonKey(name: r'RegionID', required: false, includeIfNull: false)
+  final int? regionID;
+
+  @JsonKey(name: r'UpdatedBy', required: false, includeIfNull: false)
+  final int? updatedBy;
+
+  @JsonKey(name: r'CreatedAt', required: false, includeIfNull: false)
+  final String? createdAt;
+
+  @JsonKey(name: r'UpdatedAt', required: false, includeIfNull: false)
+  final String? updatedAt;
+
+  @JsonKey(name: r'CanUpdateCOD', required: false, includeIfNull: false)
+  final bool? canUpdateCOD;
+
+  @JsonKey(name: r'Status', required: false, includeIfNull: false)
+  final int? status;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ProvinceResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ProvinceResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'ProvinceID':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.provinceID = valueDes;
-          break;
-        case r'ProvinceName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.provinceName = valueDes;
-          break;
-        case r'CountryID':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.countryID = valueDes;
-          break;
-        case r'Code':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.code = valueDes;
-          break;
-        case r'NameExtension':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>?;
-          if (valueDes == null) continue;
-          result.nameExtension.replace(valueDes);
-          break;
-        case r'IsEnable':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.isEnable = valueDes;
-          break;
-        case r'RegionID':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.regionID = valueDes;
-          break;
-        case r'UpdatedBy':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.updatedBy = valueDes;
-          break;
-        case r'CreatedAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.createdAt = valueDes;
-          break;
-        case r'UpdatedAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.updatedAt = valueDes;
-          break;
-        case r'CanUpdateCOD':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.canUpdateCOD = valueDes;
-          break;
-        case r'Status':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.status = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProvinceResponse &&
+          other.provinceID == provinceID &&
+          other.provinceName == provinceName &&
+          other.countryID == countryID &&
+          other.code == code &&
+          other.nameExtension == nameExtension &&
+          other.isEnable == isEnable &&
+          other.regionID == regionID &&
+          other.updatedBy == updatedBy &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt &&
+          other.canUpdateCOD == canUpdateCOD &&
+          other.status == status;
 
   @override
-  ProvinceResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ProvinceResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      provinceID.hashCode +
+      provinceName.hashCode +
+      countryID.hashCode +
+      code.hashCode +
+      (nameExtension == null ? 0 : nameExtension.hashCode) +
+      isEnable.hashCode +
+      regionID.hashCode +
+      updatedBy.hashCode +
+      (createdAt == null ? 0 : createdAt.hashCode) +
+      (updatedAt == null ? 0 : updatedAt.hashCode) +
+      canUpdateCOD.hashCode +
+      status.hashCode;
+
+  factory ProvinceResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProvinceResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProvinceResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

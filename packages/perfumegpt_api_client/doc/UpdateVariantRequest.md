@@ -18,9 +18,9 @@ Name | Type | Description | Notes
 **status** | [**VariantStatus**](VariantStatus.md) |  | [optional] 
 **sillage** | **int** |  | [optional] 
 **longevity** | **int** |  | [optional] 
-**mediaIdsToDelete** | **BuiltList&lt;String&gt;** |  | [optional] 
-**temporaryMediaIdsToAdd** | **BuiltList&lt;String&gt;** |  | [optional] 
-**attributes** | [**BuiltList&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 
+**mediaIdsToDelete** | **List&lt;String&gt;** |  | [optional] 
+**temporaryMediaIdsToAdd** | **List&lt;String&gt;** |  | [optional] 
+**attributes** | [**List&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

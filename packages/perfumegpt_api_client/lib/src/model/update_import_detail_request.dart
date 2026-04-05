@@ -3,159 +3,67 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'update_import_detail_request.g.dart';
 
-/// UpdateImportDetailRequest
-///
-/// Properties:
-/// * [id] 
-/// * [variantId] 
-/// * [expectedQuantity] 
-/// * [unitPrice] 
-@BuiltValue()
-abstract class UpdateImportDetailRequest implements Built<UpdateImportDetailRequest, UpdateImportDetailRequestBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class UpdateImportDetailRequest {
+  /// Returns a new [UpdateImportDetailRequest] instance.
+  UpdateImportDetailRequest({
+    this.id,
 
-  @BuiltValueField(wireName: r'variantId')
-  String get variantId;
+    required this.variantId,
 
-  @BuiltValueField(wireName: r'expectedQuantity')
-  int? get expectedQuantity;
+    this.expectedQuantity,
 
-  @BuiltValueField(wireName: r'unitPrice')
-  num? get unitPrice;
+    this.unitPrice,
+  });
 
-  UpdateImportDetailRequest._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory UpdateImportDetailRequest([void updates(UpdateImportDetailRequestBuilder b)]) = _$UpdateImportDetailRequest;
+  @JsonKey(name: r'variantId', required: true, includeIfNull: false)
+  final String variantId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(UpdateImportDetailRequestBuilder b) => b;
+  // minimum: 0
+  @JsonKey(name: r'expectedQuantity', required: false, includeIfNull: false)
+  final int? expectedQuantity;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<UpdateImportDetailRequest> get serializer => _$UpdateImportDetailRequestSerializer();
-}
-
-class _$UpdateImportDetailRequestSerializer implements PrimitiveSerializer<UpdateImportDetailRequest> {
-  @override
-  final Iterable<Type> types = const [UpdateImportDetailRequest, _$UpdateImportDetailRequest];
+  // minimum: 0
+  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
+  final num? unitPrice;
 
   @override
-  final String wireName = r'UpdateImportDetailRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    UpdateImportDetailRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    yield r'variantId';
-    yield serializers.serialize(
-      object.variantId,
-      specifiedType: const FullType(String),
-    );
-    if (object.expectedQuantity != null) {
-      yield r'expectedQuantity';
-      yield serializers.serialize(
-        object.expectedQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.unitPrice != null) {
-      yield r'unitPrice';
-      yield serializers.serialize(
-        object.unitPrice,
-        specifiedType: const FullType(num),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateImportDetailRequest &&
+          other.id == id &&
+          other.variantId == variantId &&
+          other.expectedQuantity == expectedQuantity &&
+          other.unitPrice == unitPrice;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    UpdateImportDetailRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      (id == null ? 0 : id.hashCode) +
+      variantId.hashCode +
+      expectedQuantity.hashCode +
+      unitPrice.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required UpdateImportDetailRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.id = valueDes;
-          break;
-        case r'variantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantId = valueDes;
-          break;
-        case r'expectedQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.expectedQuantity = valueDes;
-          break;
-        case r'unitPrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.unitPrice = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory UpdateImportDetailRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateImportDetailRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateImportDetailRequestToJson(this);
 
   @override
-  UpdateImportDetailRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = UpdateImportDetailRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

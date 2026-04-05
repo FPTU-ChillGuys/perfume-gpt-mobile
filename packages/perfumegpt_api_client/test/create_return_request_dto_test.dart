@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateReturnRequestDto
 void main() {
-  final instance = CreateReturnRequestDtoBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateReturnRequestDto? instance = /* CreateReturnRequestDto(...) */
+      null;
+  // TODO add properties to the entity
 
   group(CreateReturnRequestDto, () {
     // String orderId
@@ -17,7 +18,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<ReturnItemDto> returnItems
+    // List<ReturnItemDto> returnItems
     test('to test the property `returnItems`', () async {
       // TODO
     });
@@ -37,10 +38,9 @@ void main() {
       // TODO
     });
 
-    // BuiltList<String> temporaryMediaIds
+    // List<String> temporaryMediaIds
     test('to test the property `temporaryMediaIds`', () async {
       // TODO
     });
-
   });
 }

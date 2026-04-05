@@ -3,14 +3,13 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateBrandRequest
 void main() {
-  final instance = CreateBrandRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateBrandRequest? instance = /* CreateBrandRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateBrandRequest, () {
     // String name
     test('to test the property `name`', () async {
       // TODO
     });
-
   });
 }

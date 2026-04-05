@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for SwapDamagedStockResponse
 void main() {
-  final instance = SwapDamagedStockResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final SwapDamagedStockResponse? instance = /* SwapDamagedStockResponse(...) */
+      null;
+  // TODO add properties to the entity
 
   group(SwapDamagedStockResponse, () {
     // String newReservationId
@@ -41,6 +42,5 @@ void main() {
     test('to test the property `message`', () async {
       // TODO
     });
-
   });
 }

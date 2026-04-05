@@ -3,32 +3,18 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'discount_type.g.dart';
+enum DiscountType {
+  @JsonValue(r'Percentage')
+  percentage(r'Percentage'),
+  @JsonValue(r'FixedAmount')
+  fixedAmount(r'FixedAmount');
 
-class DiscountType extends EnumClass {
+  const DiscountType(this.value);
 
-  @BuiltValueEnumConst(wireName: r'Percentage')
-  static const DiscountType percentage = _$percentage;
-  @BuiltValueEnumConst(wireName: r'FixedAmount')
-  static const DiscountType fixedAmount = _$fixedAmount;
+  final String value;
 
-  static Serializer<DiscountType> get serializer => _$discountTypeSerializer;
-
-  const DiscountType._(String name): super(name);
-
-  static BuiltSet<DiscountType> get values => _$values;
-  static DiscountType valueOf(String name) => _$valueOf(name);
+  @override
+  String toString() => value;
 }
-
-/// Optionally, enum_class can generate a mixin to go with your enum for use
-/// with Angular. It exposes your enum constants as getters. So, if you mix it
-/// in to your Dart component class, the values become available to the
-/// corresponding Angular template.
-///
-/// Trigger mixin generation by writing a line like this one next to your enum.
-abstract class DiscountTypeMixin = Object with _$DiscountTypeMixin;
-

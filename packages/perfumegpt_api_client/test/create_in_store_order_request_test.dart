@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateInStoreOrderRequest
 void main() {
-  final instance = CreateInStoreOrderRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateInStoreOrderRequest?
+  instance = /* CreateInStoreOrderRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateInStoreOrderRequest, () {
     // String voucherCode
@@ -17,7 +18,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<CreateOrderDetailRequest> orderDetails
+    // List<CreateOrderDetailRequest> orderDetails
     test('to test the property `orderDetails`', () async {
       // TODO
     });
@@ -31,6 +32,5 @@ void main() {
     test('to test the property `payment`', () async {
       // TODO
     });
-
   });
 }

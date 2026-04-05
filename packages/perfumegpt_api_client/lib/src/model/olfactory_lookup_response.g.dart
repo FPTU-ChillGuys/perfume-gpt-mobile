@@ -3,109 +3,86 @@
 part of 'olfactory_lookup_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$OlfactoryLookupResponse extends OlfactoryLookupResponse {
-  @override
-  final int? id;
-  @override
-  final String name;
+abstract class _$OlfactoryLookupResponseCWProxy {
+  OlfactoryLookupResponse id(int? id);
 
-  factory _$OlfactoryLookupResponse([
-    void Function(OlfactoryLookupResponseBuilder)? updates,
-  ]) => (OlfactoryLookupResponseBuilder()..update(updates))._build();
+  OlfactoryLookupResponse name(String name);
 
-  _$OlfactoryLookupResponse._({this.id, required this.name}) : super._();
-  @override
-  OlfactoryLookupResponse rebuild(
-    void Function(OlfactoryLookupResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OlfactoryLookupResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OlfactoryLookupResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OlfactoryLookupResponse call({int? id, String name});
+}
 
-  @override
-  OlfactoryLookupResponseBuilder toBuilder() =>
-      OlfactoryLookupResponseBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfOlfactoryLookupResponse.copyWith(...)` or call `instanceOfOlfactoryLookupResponse.copyWith.fieldName(value)` for a single field.
+class _$OlfactoryLookupResponseCWProxyImpl
+    implements _$OlfactoryLookupResponseCWProxy {
+  const _$OlfactoryLookupResponseCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is OlfactoryLookupResponse &&
-        id == other.id &&
-        name == other.name;
-  }
+  final OlfactoryLookupResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  OlfactoryLookupResponse id(int? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'OlfactoryLookupResponse')
-          ..add('id', id)
-          ..add('name', name))
-        .toString();
+  OlfactoryLookupResponse name(String name) => call(name: name);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OlfactoryLookupResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OlfactoryLookupResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OlfactoryLookupResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
+  }) {
+    return OlfactoryLookupResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as int?,
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+    );
   }
 }
 
-class OlfactoryLookupResponseBuilder
-    implements
-        Builder<OlfactoryLookupResponse, OlfactoryLookupResponseBuilder> {
-  _$OlfactoryLookupResponse? _$v;
-
-  int? _id;
-  int? get id => _$this._id;
-  set id(int? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  OlfactoryLookupResponseBuilder() {
-    OlfactoryLookupResponse._defaults(this);
-  }
-
-  OlfactoryLookupResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _name = $v.name;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(OlfactoryLookupResponse other) {
-    _$v = other as _$OlfactoryLookupResponse;
-  }
-
-  @override
-  void update(void Function(OlfactoryLookupResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  OlfactoryLookupResponse build() => _build();
-
-  _$OlfactoryLookupResponse _build() {
-    final _$result =
-        _$v ??
-        _$OlfactoryLookupResponse._(
-          id: id,
-          name: BuiltValueNullFieldError.checkNotNull(
-            name,
-            r'OlfactoryLookupResponse',
-            'name',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $OlfactoryLookupResponseCopyWith on OlfactoryLookupResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfOlfactoryLookupResponse.copyWith(...)` or `instanceOfOlfactoryLookupResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$OlfactoryLookupResponseCWProxy get copyWith =>
+      _$OlfactoryLookupResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+OlfactoryLookupResponse _$OlfactoryLookupResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('OlfactoryLookupResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
+  final val = OlfactoryLookupResponse(
+    id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+    name: $checkedConvert('name', (v) => v as String),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$OlfactoryLookupResponseToJson(
+  OlfactoryLookupResponse instance,
+) => <String, dynamic>{'id': ?instance.id, 'name': instance.name};

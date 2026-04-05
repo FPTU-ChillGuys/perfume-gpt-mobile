@@ -3,11 +3,12 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateImportTicketRequest
 void main() {
-  final instance = CreateImportTicketRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateImportTicketRequest?
+  instance = /* CreateImportTicketRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateImportTicketRequest, () {
-    // BuiltList<CreateImportDetailRequest> importDetails
+    // List<CreateImportDetailRequest> importDetails
     test('to test the property `importDetails`', () async {
       // TODO
     });
@@ -21,6 +22,5 @@ void main() {
     test('to test the property `expectedArrivalDate`', () async {
       // TODO
     });
-
   });
 }

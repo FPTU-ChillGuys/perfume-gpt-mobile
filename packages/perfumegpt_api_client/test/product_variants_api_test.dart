@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for ProductVariantsApi
 void main() {
   final instance = PerfumegptApiClient().getProductVariantsApi();
@@ -17,7 +16,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiProductvariantsImagesTemporaryPost({ BuiltList<VariantImageUploadItem> images }) async
+    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiProductvariantsImagesTemporaryPost({ List<VariantImageUploadItem> images }) async
     test('test apiProductvariantsImagesTemporaryPost', () async {
       // TODO
     });
@@ -56,6 +55,5 @@ void main() {
     test('test apiProductvariantsVariantIdPut', () async {
       // TODO
     });
-
   });
 }

@@ -3,154 +3,161 @@
 part of 'create_campaign_voucher_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$CreateCampaignVoucherRequest extends CreateCampaignVoucherRequest {
-  @override
-  final String code;
-  @override
-  final num? discountValue;
-  @override
-  final PromotionType? targetItemType;
-  @override
-  final DiscountType? discountType;
-  @override
-  final VoucherType? applyType;
+abstract class _$CreateCampaignVoucherRequestCWProxy {
+  CreateCampaignVoucherRequest code(String code);
 
-  factory _$CreateCampaignVoucherRequest([
-    void Function(CreateCampaignVoucherRequestBuilder)? updates,
-  ]) => (CreateCampaignVoucherRequestBuilder()..update(updates))._build();
+  CreateCampaignVoucherRequest discountValue(num? discountValue);
 
-  _$CreateCampaignVoucherRequest._({
-    required this.code,
-    this.discountValue,
-    this.targetItemType,
-    this.discountType,
-    this.applyType,
-  }) : super._();
-  @override
-  CreateCampaignVoucherRequest rebuild(
-    void Function(CreateCampaignVoucherRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  CreateCampaignVoucherRequest targetItemType(PromotionType? targetItemType);
 
-  @override
-  CreateCampaignVoucherRequestBuilder toBuilder() =>
-      CreateCampaignVoucherRequestBuilder()..replace(this);
+  CreateCampaignVoucherRequest discountType(DiscountType? discountType);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is CreateCampaignVoucherRequest &&
-        code == other.code &&
-        discountValue == other.discountValue &&
-        targetItemType == other.targetItemType &&
-        discountType == other.discountType &&
-        applyType == other.applyType;
-  }
+  CreateCampaignVoucherRequest applyType(VoucherType? applyType);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateCampaignVoucherRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateCampaignVoucherRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateCampaignVoucherRequest call({
+    String code,
+    num? discountValue,
+    PromotionType? targetItemType,
+    DiscountType? discountType,
+    VoucherType? applyType,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateCampaignVoucherRequest.copyWith(...)` or call `instanceOfCreateCampaignVoucherRequest.copyWith.fieldName(value)` for a single field.
+class _$CreateCampaignVoucherRequestCWProxyImpl
+    implements _$CreateCampaignVoucherRequestCWProxy {
+  const _$CreateCampaignVoucherRequestCWProxyImpl(this._value);
+
+  final CreateCampaignVoucherRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, code.hashCode);
-    _$hash = $jc(_$hash, discountValue.hashCode);
-    _$hash = $jc(_$hash, targetItemType.hashCode);
-    _$hash = $jc(_$hash, discountType.hashCode);
-    _$hash = $jc(_$hash, applyType.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  CreateCampaignVoucherRequest code(String code) => call(code: code);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'CreateCampaignVoucherRequest')
-          ..add('code', code)
-          ..add('discountValue', discountValue)
-          ..add('targetItemType', targetItemType)
-          ..add('discountType', discountType)
-          ..add('applyType', applyType))
-        .toString();
+  CreateCampaignVoucherRequest discountValue(num? discountValue) =>
+      call(discountValue: discountValue);
+
+  @override
+  CreateCampaignVoucherRequest targetItemType(PromotionType? targetItemType) =>
+      call(targetItemType: targetItemType);
+
+  @override
+  CreateCampaignVoucherRequest discountType(DiscountType? discountType) =>
+      call(discountType: discountType);
+
+  @override
+  CreateCampaignVoucherRequest applyType(VoucherType? applyType) =>
+      call(applyType: applyType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateCampaignVoucherRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateCampaignVoucherRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateCampaignVoucherRequest call({
+    Object? code = const $CopyWithPlaceholder(),
+    Object? discountValue = const $CopyWithPlaceholder(),
+    Object? targetItemType = const $CopyWithPlaceholder(),
+    Object? discountType = const $CopyWithPlaceholder(),
+    Object? applyType = const $CopyWithPlaceholder(),
+  }) {
+    return CreateCampaignVoucherRequest(
+      code: code == const $CopyWithPlaceholder() || code == null
+          ? _value.code
+          // ignore: cast_nullable_to_non_nullable
+          : code as String,
+      discountValue: discountValue == const $CopyWithPlaceholder()
+          ? _value.discountValue
+          // ignore: cast_nullable_to_non_nullable
+          : discountValue as num?,
+      targetItemType: targetItemType == const $CopyWithPlaceholder()
+          ? _value.targetItemType
+          // ignore: cast_nullable_to_non_nullable
+          : targetItemType as PromotionType?,
+      discountType: discountType == const $CopyWithPlaceholder()
+          ? _value.discountType
+          // ignore: cast_nullable_to_non_nullable
+          : discountType as DiscountType?,
+      applyType: applyType == const $CopyWithPlaceholder()
+          ? _value.applyType
+          // ignore: cast_nullable_to_non_nullable
+          : applyType as VoucherType?,
+    );
   }
 }
 
-class CreateCampaignVoucherRequestBuilder
-    implements
-        Builder<
-          CreateCampaignVoucherRequest,
-          CreateCampaignVoucherRequestBuilder
-        > {
-  _$CreateCampaignVoucherRequest? _$v;
-
-  String? _code;
-  String? get code => _$this._code;
-  set code(String? code) => _$this._code = code;
-
-  num? _discountValue;
-  num? get discountValue => _$this._discountValue;
-  set discountValue(num? discountValue) =>
-      _$this._discountValue = discountValue;
-
-  PromotionType? _targetItemType;
-  PromotionType? get targetItemType => _$this._targetItemType;
-  set targetItemType(PromotionType? targetItemType) =>
-      _$this._targetItemType = targetItemType;
-
-  DiscountType? _discountType;
-  DiscountType? get discountType => _$this._discountType;
-  set discountType(DiscountType? discountType) =>
-      _$this._discountType = discountType;
-
-  VoucherType? _applyType;
-  VoucherType? get applyType => _$this._applyType;
-  set applyType(VoucherType? applyType) => _$this._applyType = applyType;
-
-  CreateCampaignVoucherRequestBuilder() {
-    CreateCampaignVoucherRequest._defaults(this);
-  }
-
-  CreateCampaignVoucherRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _code = $v.code;
-      _discountValue = $v.discountValue;
-      _targetItemType = $v.targetItemType;
-      _discountType = $v.discountType;
-      _applyType = $v.applyType;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(CreateCampaignVoucherRequest other) {
-    _$v = other as _$CreateCampaignVoucherRequest;
-  }
-
-  @override
-  void update(void Function(CreateCampaignVoucherRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  CreateCampaignVoucherRequest build() => _build();
-
-  _$CreateCampaignVoucherRequest _build() {
-    final _$result =
-        _$v ??
-        _$CreateCampaignVoucherRequest._(
-          code: BuiltValueNullFieldError.checkNotNull(
-            code,
-            r'CreateCampaignVoucherRequest',
-            'code',
-          ),
-          discountValue: discountValue,
-          targetItemType: targetItemType,
-          discountType: discountType,
-          applyType: applyType,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $CreateCampaignVoucherRequestCopyWith
+    on CreateCampaignVoucherRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateCampaignVoucherRequest.copyWith(...)` or `instanceOfCreateCampaignVoucherRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CreateCampaignVoucherRequestCWProxy get copyWith =>
+      _$CreateCampaignVoucherRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CreateCampaignVoucherRequest _$CreateCampaignVoucherRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CreateCampaignVoucherRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code']);
+  final val = CreateCampaignVoucherRequest(
+    code: $checkedConvert('code', (v) => v as String),
+    discountValue: $checkedConvert('discountValue', (v) => v as num?),
+    targetItemType: $checkedConvert(
+      'targetItemType',
+      (v) => $enumDecodeNullable(_$PromotionTypeEnumMap, v),
+    ),
+    discountType: $checkedConvert(
+      'discountType',
+      (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
+    ),
+    applyType: $checkedConvert(
+      'applyType',
+      (v) => $enumDecodeNullable(_$VoucherTypeEnumMap, v),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$CreateCampaignVoucherRequestToJson(
+  CreateCampaignVoucherRequest instance,
+) => <String, dynamic>{
+  'code': instance.code,
+  'discountValue': ?instance.discountValue,
+  'targetItemType': ?_$PromotionTypeEnumMap[instance.targetItemType],
+  'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
+  'applyType': ?_$VoucherTypeEnumMap[instance.applyType],
+};
+
+const _$PromotionTypeEnumMap = {
+  PromotionType.clearance: 'Clearance',
+  PromotionType.newArrival: 'NewArrival',
+  PromotionType.regular: 'Regular',
+};
+
+const _$DiscountTypeEnumMap = {
+  DiscountType.percentage: 'Percentage',
+  DiscountType.fixedAmount: 'FixedAmount',
+};
+
+const _$VoucherTypeEnumMap = {
+  VoucherType.order: 'Order',
+  VoucherType.product: 'Product',
+};

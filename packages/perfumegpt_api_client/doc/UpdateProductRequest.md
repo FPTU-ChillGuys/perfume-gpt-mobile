@@ -15,11 +15,11 @@ Name | Type | Description | Notes
 **gender** | [**Gender**](Gender.md) |  | [optional] 
 **origin** | **String** |  | 
 **releaseYear** | **int** |  | [optional] 
-**olfactoryFamilyIds** | **BuiltList&lt;int&gt;** |  | 
-**scentNotes** | [**BuiltList&lt;ScentNoteDto&gt;**](ScentNoteDto.md) |  | 
-**attributes** | [**BuiltList&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 
-**temporaryMediaIdsToAdd** | **BuiltList&lt;String&gt;** |  | [optional] 
-**mediaIdsToDelete** | **BuiltList&lt;String&gt;** |  | [optional] 
+**olfactoryFamilyIds** | **List&lt;int&gt;** |  | 
+**scentNotes** | [**List&lt;ScentNoteDto&gt;**](ScentNoteDto.md) |  | 
+**attributes** | [**List&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 
+**temporaryMediaIdsToAdd** | **List&lt;String&gt;** |  | [optional] 
+**mediaIdsToDelete** | **List&lt;String&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReservedBatchResponse
 void main() {
-  final instance = ReservedBatchResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final ReservedBatchResponse? instance = /* ReservedBatchResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(ReservedBatchResponse, () {
     // String batchId
@@ -26,6 +26,5 @@ void main() {
     test('to test the property `expiryDate`', () async {
       // TODO
     });
-
   });
 }

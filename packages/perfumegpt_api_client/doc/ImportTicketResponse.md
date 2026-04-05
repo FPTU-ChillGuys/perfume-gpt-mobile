@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **totalCost** | **num** |  | [optional] 
 **status** | [**ImportStatus**](ImportStatus.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**importDetails** | [**BuiltList&lt;ImportDetailResponse&gt;**](ImportDetailResponse.md) |  | 
+**importDetails** | [**List&lt;ImportDetailResponse&gt;**](ImportDetailResponse.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

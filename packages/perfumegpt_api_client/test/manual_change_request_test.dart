@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ManualChangeRequest
 void main() {
-  final instance = ManualChangeRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final ManualChangeRequest? instance = /* ManualChangeRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(ManualChangeRequest, () {
     // String userId
@@ -26,6 +26,5 @@ void main() {
     test('to test the property `reason`', () async {
       // TODO
     });
-
   });
 }

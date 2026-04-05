@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for GetCartTotalResponse
 void main() {
-  final instance = GetCartTotalResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final GetCartTotalResponse? instance = /* GetCartTotalResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(GetCartTotalResponse, () {
     // num subtotal
@@ -26,6 +26,5 @@ void main() {
     test('to test the property `totalPrice`', () async {
       // TODO
     });
-
   });
 }

@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateAddressRequest
 void main() {
-  final instance = UpdateAddressRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final UpdateAddressRequest? instance = /* UpdateAddressRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(UpdateAddressRequest, () {
     // String recipientName
@@ -51,6 +51,5 @@ void main() {
     test('to test the property `provinceId`', () async {
       // TODO
     });
-
   });
 }

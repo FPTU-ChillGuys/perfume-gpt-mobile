@@ -3,36 +3,22 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'payment_status.g.dart';
+enum PaymentStatus {
+  @JsonValue(r'Unpaid')
+  unpaid(r'Unpaid'),
+  @JsonValue(r'Paid')
+  paid(r'Paid'),
+  @JsonValue(r'Partial_Refunded')
+  partialRefunded(r'Partial_Refunded'),
+  @JsonValue(r'Refunded')
+  refunded(r'Refunded');
 
-class PaymentStatus extends EnumClass {
+  const PaymentStatus(this.value);
 
-  @BuiltValueEnumConst(wireName: r'Unpaid')
-  static const PaymentStatus unpaid = _$unpaid;
-  @BuiltValueEnumConst(wireName: r'Paid')
-  static const PaymentStatus paid = _$paid;
-  @BuiltValueEnumConst(wireName: r'Partial_Refunded')
-  static const PaymentStatus partialRefunded = _$partialRefunded;
-  @BuiltValueEnumConst(wireName: r'Refunded')
-  static const PaymentStatus refunded = _$refunded;
+  final String value;
 
-  static Serializer<PaymentStatus> get serializer => _$paymentStatusSerializer;
-
-  const PaymentStatus._(String name): super(name);
-
-  static BuiltSet<PaymentStatus> get values => _$values;
-  static PaymentStatus valueOf(String name) => _$valueOf(name);
+  @override
+  String toString() => value;
 }
-
-/// Optionally, enum_class can generate a mixin to go with your enum for use
-/// with Angular. It exposes your enum constants as getters. So, if you mix it
-/// in to your Dart component class, the values become available to the
-/// corresponding Angular template.
-///
-/// Trigger mixin generation by writing a line like this one next to your enum.
-abstract class PaymentStatusMixin = Object with _$PaymentStatusMixin;
-

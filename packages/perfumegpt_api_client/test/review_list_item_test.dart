@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReviewListItem
 void main() {
-  final instance = ReviewListItemBuilder();
-  // TODO add properties to the builder and call build()
+  final ReviewListItem? instance = /* ReviewListItem(...) */ null;
+  // TODO add properties to the entity
 
   group(ReviewListItem, () {
     // String id
@@ -56,6 +56,5 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
-
   });
 }

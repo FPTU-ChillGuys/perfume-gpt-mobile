@@ -3,108 +3,86 @@
 part of 'concentration_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ConcentrationResponse extends ConcentrationResponse {
-  @override
-  final int? id;
-  @override
-  final String name;
+abstract class _$ConcentrationResponseCWProxy {
+  ConcentrationResponse id(int? id);
 
-  factory _$ConcentrationResponse([
-    void Function(ConcentrationResponseBuilder)? updates,
-  ]) => (ConcentrationResponseBuilder()..update(updates))._build();
+  ConcentrationResponse name(String name);
 
-  _$ConcentrationResponse._({this.id, required this.name}) : super._();
-  @override
-  ConcentrationResponse rebuild(
-    void Function(ConcentrationResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConcentrationResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ConcentrationResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ConcentrationResponse call({int? id, String name});
+}
 
-  @override
-  ConcentrationResponseBuilder toBuilder() =>
-      ConcentrationResponseBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfConcentrationResponse.copyWith(...)` or call `instanceOfConcentrationResponse.copyWith.fieldName(value)` for a single field.
+class _$ConcentrationResponseCWProxyImpl
+    implements _$ConcentrationResponseCWProxy {
+  const _$ConcentrationResponseCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ConcentrationResponse &&
-        id == other.id &&
-        name == other.name;
-  }
+  final ConcentrationResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ConcentrationResponse id(int? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ConcentrationResponse')
-          ..add('id', id)
-          ..add('name', name))
-        .toString();
+  ConcentrationResponse name(String name) => call(name: name);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConcentrationResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ConcentrationResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ConcentrationResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
+  }) {
+    return ConcentrationResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as int?,
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+    );
   }
 }
 
-class ConcentrationResponseBuilder
-    implements Builder<ConcentrationResponse, ConcentrationResponseBuilder> {
-  _$ConcentrationResponse? _$v;
-
-  int? _id;
-  int? get id => _$this._id;
-  set id(int? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  ConcentrationResponseBuilder() {
-    ConcentrationResponse._defaults(this);
-  }
-
-  ConcentrationResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _name = $v.name;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ConcentrationResponse other) {
-    _$v = other as _$ConcentrationResponse;
-  }
-
-  @override
-  void update(void Function(ConcentrationResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ConcentrationResponse build() => _build();
-
-  _$ConcentrationResponse _build() {
-    final _$result =
-        _$v ??
-        _$ConcentrationResponse._(
-          id: id,
-          name: BuiltValueNullFieldError.checkNotNull(
-            name,
-            r'ConcentrationResponse',
-            'name',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ConcentrationResponseCopyWith on ConcentrationResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfConcentrationResponse.copyWith(...)` or `instanceOfConcentrationResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ConcentrationResponseCWProxy get copyWith =>
+      _$ConcentrationResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ConcentrationResponse _$ConcentrationResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ConcentrationResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
+  final val = ConcentrationResponse(
+    id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+    name: $checkedConvert('name', (v) => v as String),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ConcentrationResponseToJson(
+  ConcentrationResponse instance,
+) => <String, dynamic>{'id': ?instance.id, 'name': instance.name};

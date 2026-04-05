@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateSupplierRequest
 void main() {
-  final instance = CreateSupplierRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateSupplierRequest? instance = /* CreateSupplierRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateSupplierRequest, () {
     // String name
@@ -26,6 +26,5 @@ void main() {
     test('to test the property `address`', () async {
       // TODO
     });
-
   });
 }

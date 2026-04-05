@@ -4,265 +4,107 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/variant_type.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'get_cart_item_response.g.dart';
 
-/// GetCartItemResponse
-///
-/// Properties:
-/// * [cartItemId] 
-/// * [variantId] 
-/// * [variantName] 
-/// * [imageUrl] 
-/// * [volumeMl] 
-/// * [type] 
-/// * [variantPrice] 
-/// * [quantity] 
-/// * [isAvailable] 
-/// * [subTotal] 
-@BuiltValue()
-abstract class GetCartItemResponse implements Built<GetCartItemResponse, GetCartItemResponseBuilder> {
-  @BuiltValueField(wireName: r'cartItemId')
-  String? get cartItemId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class GetCartItemResponse {
+  /// Returns a new [GetCartItemResponse] instance.
+  GetCartItemResponse({
+    this.cartItemId,
 
-  @BuiltValueField(wireName: r'variantId')
-  String? get variantId;
+    this.variantId,
 
-  @BuiltValueField(wireName: r'variantName')
-  String get variantName;
+    required this.variantName,
 
-  @BuiltValueField(wireName: r'imageUrl')
-  String get imageUrl;
+    required this.imageUrl,
 
-  @BuiltValueField(wireName: r'volumeMl')
-  int? get volumeMl;
+    this.volumeMl,
 
-  @BuiltValueField(wireName: r'type')
-  VariantType? get type;
-  // enum typeEnum {  Standard,  FullBox,  Tester,  Mini,  };
+    this.type,
 
-  @BuiltValueField(wireName: r'variantPrice')
-  num? get variantPrice;
+    this.variantPrice,
 
-  @BuiltValueField(wireName: r'quantity')
-  int? get quantity;
+    this.quantity,
 
-  @BuiltValueField(wireName: r'isAvailable')
-  bool? get isAvailable;
+    this.isAvailable,
 
-  @BuiltValueField(wireName: r'subTotal')
-  num? get subTotal;
+    this.subTotal,
+  });
 
-  GetCartItemResponse._();
+  @JsonKey(name: r'cartItemId', required: false, includeIfNull: false)
+  final String? cartItemId;
 
-  factory GetCartItemResponse([void updates(GetCartItemResponseBuilder b)]) = _$GetCartItemResponse;
+  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+  final String? variantId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(GetCartItemResponseBuilder b) => b;
+  @JsonKey(name: r'variantName', required: true, includeIfNull: false)
+  final String variantName;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<GetCartItemResponse> get serializer => _$GetCartItemResponseSerializer();
-}
+  @JsonKey(name: r'imageUrl', required: true, includeIfNull: false)
+  final String imageUrl;
 
-class _$GetCartItemResponseSerializer implements PrimitiveSerializer<GetCartItemResponse> {
-  @override
-  final Iterable<Type> types = const [GetCartItemResponse, _$GetCartItemResponse];
+  @JsonKey(name: r'volumeMl', required: false, includeIfNull: false)
+  final int? volumeMl;
 
-  @override
-  final String wireName = r'GetCartItemResponse';
+  @JsonKey(name: r'type', required: false, includeIfNull: false)
+  final VariantType? type;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    GetCartItemResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.cartItemId != null) {
-      yield r'cartItemId';
-      yield serializers.serialize(
-        object.cartItemId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.variantId != null) {
-      yield r'variantId';
-      yield serializers.serialize(
-        object.variantId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'variantName';
-    yield serializers.serialize(
-      object.variantName,
-      specifiedType: const FullType(String),
-    );
-    yield r'imageUrl';
-    yield serializers.serialize(
-      object.imageUrl,
-      specifiedType: const FullType(String),
-    );
-    if (object.volumeMl != null) {
-      yield r'volumeMl';
-      yield serializers.serialize(
-        object.volumeMl,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(VariantType),
-      );
-    }
-    if (object.variantPrice != null) {
-      yield r'variantPrice';
-      yield serializers.serialize(
-        object.variantPrice,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.quantity != null) {
-      yield r'quantity';
-      yield serializers.serialize(
-        object.quantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.isAvailable != null) {
-      yield r'isAvailable';
-      yield serializers.serialize(
-        object.isAvailable,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.subTotal != null) {
-      yield r'subTotal';
-      yield serializers.serialize(
-        object.subTotal,
-        specifiedType: const FullType(num),
-      );
-    }
-  }
+  @JsonKey(name: r'variantPrice', required: false, includeIfNull: false)
+  final num? variantPrice;
+
+  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+  final int? quantity;
+
+  @JsonKey(name: r'isAvailable', required: false, includeIfNull: false)
+  final bool? isAvailable;
+
+  @JsonKey(name: r'subTotal', required: false, includeIfNull: false)
+  final num? subTotal;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    GetCartItemResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required GetCartItemResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'cartItemId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.cartItemId = valueDes;
-          break;
-        case r'variantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantId = valueDes;
-          break;
-        case r'variantName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantName = valueDes;
-          break;
-        case r'imageUrl':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.imageUrl = valueDes;
-          break;
-        case r'volumeMl':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.volumeMl = valueDes;
-          break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(VariantType),
-          ) as VariantType;
-          result.type = valueDes;
-          break;
-        case r'variantPrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.variantPrice = valueDes;
-          break;
-        case r'quantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.quantity = valueDes;
-          break;
-        case r'isAvailable':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isAvailable = valueDes;
-          break;
-        case r'subTotal':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.subTotal = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GetCartItemResponse &&
+          other.cartItemId == cartItemId &&
+          other.variantId == variantId &&
+          other.variantName == variantName &&
+          other.imageUrl == imageUrl &&
+          other.volumeMl == volumeMl &&
+          other.type == type &&
+          other.variantPrice == variantPrice &&
+          other.quantity == quantity &&
+          other.isAvailable == isAvailable &&
+          other.subTotal == subTotal;
 
   @override
-  GetCartItemResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = GetCartItemResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      cartItemId.hashCode +
+      variantId.hashCode +
+      variantName.hashCode +
+      imageUrl.hashCode +
+      volumeMl.hashCode +
+      type.hashCode +
+      variantPrice.hashCode +
+      quantity.hashCode +
+      isAvailable.hashCode +
+      subTotal.hashCode;
+
+  factory GetCartItemResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetCartItemResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GetCartItemResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

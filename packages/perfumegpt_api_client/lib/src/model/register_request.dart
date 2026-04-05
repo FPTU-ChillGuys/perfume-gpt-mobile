@@ -3,168 +3,72 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'register_request.g.dart';
 
-/// RegisterRequest
-///
-/// Properties:
-/// * [fullName] 
-/// * [phoneNumber] 
-/// * [email] 
-/// * [password] 
-/// * [clientUri] 
-@BuiltValue()
-abstract class RegisterRequest implements Built<RegisterRequest, RegisterRequestBuilder> {
-  @BuiltValueField(wireName: r'fullName')
-  String get fullName;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class RegisterRequest {
+  /// Returns a new [RegisterRequest] instance.
+  RegisterRequest({
+    required this.fullName,
 
-  @BuiltValueField(wireName: r'phoneNumber')
-  String get phoneNumber;
+    required this.phoneNumber,
 
-  @BuiltValueField(wireName: r'email')
-  String get email;
+    required this.email,
 
-  @BuiltValueField(wireName: r'password')
-  String get password;
+    required this.password,
 
-  @BuiltValueField(wireName: r'clientUri')
-  String get clientUri;
+    required this.clientUri,
+  });
 
-  RegisterRequest._();
+  @JsonKey(name: r'fullName', required: true, includeIfNull: false)
+  final String fullName;
 
-  factory RegisterRequest([void updates(RegisterRequestBuilder b)]) = _$RegisterRequest;
+  @JsonKey(name: r'phoneNumber', required: true, includeIfNull: false)
+  final String phoneNumber;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(RegisterRequestBuilder b) => b;
+  @JsonKey(name: r'email', required: true, includeIfNull: false)
+  final String email;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<RegisterRequest> get serializer => _$RegisterRequestSerializer();
-}
+  @JsonKey(name: r'password', required: true, includeIfNull: false)
+  final String password;
 
-class _$RegisterRequestSerializer implements PrimitiveSerializer<RegisterRequest> {
-  @override
-  final Iterable<Type> types = const [RegisterRequest, _$RegisterRequest];
+  @JsonKey(name: r'clientUri', required: true, includeIfNull: false)
+  final String clientUri;
 
   @override
-  final String wireName = r'RegisterRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    RegisterRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'fullName';
-    yield serializers.serialize(
-      object.fullName,
-      specifiedType: const FullType(String),
-    );
-    yield r'phoneNumber';
-    yield serializers.serialize(
-      object.phoneNumber,
-      specifiedType: const FullType(String),
-    );
-    yield r'email';
-    yield serializers.serialize(
-      object.email,
-      specifiedType: const FullType(String),
-    );
-    yield r'password';
-    yield serializers.serialize(
-      object.password,
-      specifiedType: const FullType(String),
-    );
-    yield r'clientUri';
-    yield serializers.serialize(
-      object.clientUri,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RegisterRequest &&
+          other.fullName == fullName &&
+          other.phoneNumber == phoneNumber &&
+          other.email == email &&
+          other.password == password &&
+          other.clientUri == clientUri;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    RegisterRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      fullName.hashCode +
+      phoneNumber.hashCode +
+      email.hashCode +
+      password.hashCode +
+      clientUri.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required RegisterRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'fullName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.fullName = valueDes;
-          break;
-        case r'phoneNumber':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.phoneNumber = valueDes;
-          break;
-        case r'email':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.email = valueDes;
-          break;
-        case r'password':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.password = valueDes;
-          break;
-        case r'clientUri':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.clientUri = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory RegisterRequest.fromJson(Map<String, dynamic> json) =>
+      _$RegisterRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RegisterRequestToJson(this);
 
   @override
-  RegisterRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = RegisterRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

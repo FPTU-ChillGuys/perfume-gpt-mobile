@@ -3,184 +3,189 @@
 part of 'review_statistics_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ReviewStatisticsResponse extends ReviewStatisticsResponse {
-  @override
-  final String? variantId;
-  @override
-  final int? totalReviews;
-  @override
-  final double? averageRating;
-  @override
-  final int? fiveStarCount;
-  @override
-  final int? fourStarCount;
-  @override
-  final int? threeStarCount;
-  @override
-  final int? twoStarCount;
-  @override
-  final int? oneStarCount;
+abstract class _$ReviewStatisticsResponseCWProxy {
+  ReviewStatisticsResponse variantId(String? variantId);
 
-  factory _$ReviewStatisticsResponse([
-    void Function(ReviewStatisticsResponseBuilder)? updates,
-  ]) => (ReviewStatisticsResponseBuilder()..update(updates))._build();
+  ReviewStatisticsResponse totalReviews(int? totalReviews);
 
-  _$ReviewStatisticsResponse._({
-    this.variantId,
-    this.totalReviews,
-    this.averageRating,
-    this.fiveStarCount,
-    this.fourStarCount,
-    this.threeStarCount,
-    this.twoStarCount,
-    this.oneStarCount,
-  }) : super._();
-  @override
-  ReviewStatisticsResponse rebuild(
-    void Function(ReviewStatisticsResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  ReviewStatisticsResponse averageRating(double? averageRating);
 
-  @override
-  ReviewStatisticsResponseBuilder toBuilder() =>
-      ReviewStatisticsResponseBuilder()..replace(this);
+  ReviewStatisticsResponse fiveStarCount(int? fiveStarCount);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ReviewStatisticsResponse &&
-        variantId == other.variantId &&
-        totalReviews == other.totalReviews &&
-        averageRating == other.averageRating &&
-        fiveStarCount == other.fiveStarCount &&
-        fourStarCount == other.fourStarCount &&
-        threeStarCount == other.threeStarCount &&
-        twoStarCount == other.twoStarCount &&
-        oneStarCount == other.oneStarCount;
-  }
+  ReviewStatisticsResponse fourStarCount(int? fourStarCount);
+
+  ReviewStatisticsResponse threeStarCount(int? threeStarCount);
+
+  ReviewStatisticsResponse twoStarCount(int? twoStarCount);
+
+  ReviewStatisticsResponse oneStarCount(int? oneStarCount);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewStatisticsResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ReviewStatisticsResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ReviewStatisticsResponse call({
+    String? variantId,
+    int? totalReviews,
+    double? averageRating,
+    int? fiveStarCount,
+    int? fourStarCount,
+    int? threeStarCount,
+    int? twoStarCount,
+    int? oneStarCount,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfReviewStatisticsResponse.copyWith(...)` or call `instanceOfReviewStatisticsResponse.copyWith.fieldName(value)` for a single field.
+class _$ReviewStatisticsResponseCWProxyImpl
+    implements _$ReviewStatisticsResponseCWProxy {
+  const _$ReviewStatisticsResponseCWProxyImpl(this._value);
+
+  final ReviewStatisticsResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, variantId.hashCode);
-    _$hash = $jc(_$hash, totalReviews.hashCode);
-    _$hash = $jc(_$hash, averageRating.hashCode);
-    _$hash = $jc(_$hash, fiveStarCount.hashCode);
-    _$hash = $jc(_$hash, fourStarCount.hashCode);
-    _$hash = $jc(_$hash, threeStarCount.hashCode);
-    _$hash = $jc(_$hash, twoStarCount.hashCode);
-    _$hash = $jc(_$hash, oneStarCount.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ReviewStatisticsResponse variantId(String? variantId) =>
+      call(variantId: variantId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ReviewStatisticsResponse')
-          ..add('variantId', variantId)
-          ..add('totalReviews', totalReviews)
-          ..add('averageRating', averageRating)
-          ..add('fiveStarCount', fiveStarCount)
-          ..add('fourStarCount', fourStarCount)
-          ..add('threeStarCount', threeStarCount)
-          ..add('twoStarCount', twoStarCount)
-          ..add('oneStarCount', oneStarCount))
-        .toString();
+  ReviewStatisticsResponse totalReviews(int? totalReviews) =>
+      call(totalReviews: totalReviews);
+
+  @override
+  ReviewStatisticsResponse averageRating(double? averageRating) =>
+      call(averageRating: averageRating);
+
+  @override
+  ReviewStatisticsResponse fiveStarCount(int? fiveStarCount) =>
+      call(fiveStarCount: fiveStarCount);
+
+  @override
+  ReviewStatisticsResponse fourStarCount(int? fourStarCount) =>
+      call(fourStarCount: fourStarCount);
+
+  @override
+  ReviewStatisticsResponse threeStarCount(int? threeStarCount) =>
+      call(threeStarCount: threeStarCount);
+
+  @override
+  ReviewStatisticsResponse twoStarCount(int? twoStarCount) =>
+      call(twoStarCount: twoStarCount);
+
+  @override
+  ReviewStatisticsResponse oneStarCount(int? oneStarCount) =>
+      call(oneStarCount: oneStarCount);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReviewStatisticsResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ReviewStatisticsResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ReviewStatisticsResponse call({
+    Object? variantId = const $CopyWithPlaceholder(),
+    Object? totalReviews = const $CopyWithPlaceholder(),
+    Object? averageRating = const $CopyWithPlaceholder(),
+    Object? fiveStarCount = const $CopyWithPlaceholder(),
+    Object? fourStarCount = const $CopyWithPlaceholder(),
+    Object? threeStarCount = const $CopyWithPlaceholder(),
+    Object? twoStarCount = const $CopyWithPlaceholder(),
+    Object? oneStarCount = const $CopyWithPlaceholder(),
+  }) {
+    return ReviewStatisticsResponse(
+      variantId: variantId == const $CopyWithPlaceholder()
+          ? _value.variantId
+          // ignore: cast_nullable_to_non_nullable
+          : variantId as String?,
+      totalReviews: totalReviews == const $CopyWithPlaceholder()
+          ? _value.totalReviews
+          // ignore: cast_nullable_to_non_nullable
+          : totalReviews as int?,
+      averageRating: averageRating == const $CopyWithPlaceholder()
+          ? _value.averageRating
+          // ignore: cast_nullable_to_non_nullable
+          : averageRating as double?,
+      fiveStarCount: fiveStarCount == const $CopyWithPlaceholder()
+          ? _value.fiveStarCount
+          // ignore: cast_nullable_to_non_nullable
+          : fiveStarCount as int?,
+      fourStarCount: fourStarCount == const $CopyWithPlaceholder()
+          ? _value.fourStarCount
+          // ignore: cast_nullable_to_non_nullable
+          : fourStarCount as int?,
+      threeStarCount: threeStarCount == const $CopyWithPlaceholder()
+          ? _value.threeStarCount
+          // ignore: cast_nullable_to_non_nullable
+          : threeStarCount as int?,
+      twoStarCount: twoStarCount == const $CopyWithPlaceholder()
+          ? _value.twoStarCount
+          // ignore: cast_nullable_to_non_nullable
+          : twoStarCount as int?,
+      oneStarCount: oneStarCount == const $CopyWithPlaceholder()
+          ? _value.oneStarCount
+          // ignore: cast_nullable_to_non_nullable
+          : oneStarCount as int?,
+    );
   }
 }
 
-class ReviewStatisticsResponseBuilder
-    implements
-        Builder<ReviewStatisticsResponse, ReviewStatisticsResponseBuilder> {
-  _$ReviewStatisticsResponse? _$v;
-
-  String? _variantId;
-  String? get variantId => _$this._variantId;
-  set variantId(String? variantId) => _$this._variantId = variantId;
-
-  int? _totalReviews;
-  int? get totalReviews => _$this._totalReviews;
-  set totalReviews(int? totalReviews) => _$this._totalReviews = totalReviews;
-
-  double? _averageRating;
-  double? get averageRating => _$this._averageRating;
-  set averageRating(double? averageRating) =>
-      _$this._averageRating = averageRating;
-
-  int? _fiveStarCount;
-  int? get fiveStarCount => _$this._fiveStarCount;
-  set fiveStarCount(int? fiveStarCount) =>
-      _$this._fiveStarCount = fiveStarCount;
-
-  int? _fourStarCount;
-  int? get fourStarCount => _$this._fourStarCount;
-  set fourStarCount(int? fourStarCount) =>
-      _$this._fourStarCount = fourStarCount;
-
-  int? _threeStarCount;
-  int? get threeStarCount => _$this._threeStarCount;
-  set threeStarCount(int? threeStarCount) =>
-      _$this._threeStarCount = threeStarCount;
-
-  int? _twoStarCount;
-  int? get twoStarCount => _$this._twoStarCount;
-  set twoStarCount(int? twoStarCount) => _$this._twoStarCount = twoStarCount;
-
-  int? _oneStarCount;
-  int? get oneStarCount => _$this._oneStarCount;
-  set oneStarCount(int? oneStarCount) => _$this._oneStarCount = oneStarCount;
-
-  ReviewStatisticsResponseBuilder() {
-    ReviewStatisticsResponse._defaults(this);
-  }
-
-  ReviewStatisticsResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _variantId = $v.variantId;
-      _totalReviews = $v.totalReviews;
-      _averageRating = $v.averageRating;
-      _fiveStarCount = $v.fiveStarCount;
-      _fourStarCount = $v.fourStarCount;
-      _threeStarCount = $v.threeStarCount;
-      _twoStarCount = $v.twoStarCount;
-      _oneStarCount = $v.oneStarCount;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ReviewStatisticsResponse other) {
-    _$v = other as _$ReviewStatisticsResponse;
-  }
-
-  @override
-  void update(void Function(ReviewStatisticsResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ReviewStatisticsResponse build() => _build();
-
-  _$ReviewStatisticsResponse _build() {
-    final _$result =
-        _$v ??
-        _$ReviewStatisticsResponse._(
-          variantId: variantId,
-          totalReviews: totalReviews,
-          averageRating: averageRating,
-          fiveStarCount: fiveStarCount,
-          fourStarCount: fourStarCount,
-          threeStarCount: threeStarCount,
-          twoStarCount: twoStarCount,
-          oneStarCount: oneStarCount,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ReviewStatisticsResponseCopyWith on ReviewStatisticsResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfReviewStatisticsResponse.copyWith(...)` or `instanceOfReviewStatisticsResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ReviewStatisticsResponseCWProxy get copyWith =>
+      _$ReviewStatisticsResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ReviewStatisticsResponse _$ReviewStatisticsResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ReviewStatisticsResponse', json, ($checkedConvert) {
+  final val = ReviewStatisticsResponse(
+    variantId: $checkedConvert('variantId', (v) => v as String?),
+    totalReviews: $checkedConvert('totalReviews', (v) => (v as num?)?.toInt()),
+    averageRating: $checkedConvert(
+      'averageRating',
+      (v) => (v as num?)?.toDouble(),
+    ),
+    fiveStarCount: $checkedConvert(
+      'fiveStarCount',
+      (v) => (v as num?)?.toInt(),
+    ),
+    fourStarCount: $checkedConvert(
+      'fourStarCount',
+      (v) => (v as num?)?.toInt(),
+    ),
+    threeStarCount: $checkedConvert(
+      'threeStarCount',
+      (v) => (v as num?)?.toInt(),
+    ),
+    twoStarCount: $checkedConvert('twoStarCount', (v) => (v as num?)?.toInt()),
+    oneStarCount: $checkedConvert('oneStarCount', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ReviewStatisticsResponseToJson(
+  ReviewStatisticsResponse instance,
+) => <String, dynamic>{
+  'variantId': ?instance.variantId,
+  'totalReviews': ?instance.totalReviews,
+  'averageRating': ?instance.averageRating,
+  'fiveStarCount': ?instance.fiveStarCount,
+  'fourStarCount': ?instance.fourStarCount,
+  'threeStarCount': ?instance.threeStarCount,
+  'twoStarCount': ?instance.twoStarCount,
+  'oneStarCount': ?instance.oneStarCount,
+};

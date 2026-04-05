@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReceiptResponse
 void main() {
-  final instance = ReceiptResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final ReceiptResponse? instance = /* ReceiptResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(ReceiptResponse, () {
     // String orderId
@@ -47,7 +47,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<ReceiptItemDto> items
+    // List<ReceiptItemDto> items
     test('to test the property `items`', () async {
       // TODO
     });
@@ -81,6 +81,5 @@ void main() {
     test('to test the property `note`', () async {
       // TODO
     });
-
   });
 }

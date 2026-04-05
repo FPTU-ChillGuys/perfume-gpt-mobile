@@ -27,7 +27,7 @@ Method | HTTP request | Description
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getCartApi();
-final BuiltList<String> itemIds = ; // BuiltList<String> | 
+final List<String> itemIds = ; // List<String> | 
 
 try {
     final response = api.apiCartClearDelete(itemIds);
@@ -41,7 +41,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemIds** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
+ **itemIds** | [**List&lt;String&gt;**](String.md)|  | [optional] 
 
 ### Return type
 
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getCartApi();
-final BuiltList<String> itemIds = ; // BuiltList<String> | 
+final List<String> itemIds = ; // List<String> | 
 final int pageNumber = 56; // int | 
 final int pageSize = 56; // int | 
 final String sortBy = sortBy_example; // String | 
@@ -87,7 +87,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemIds** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
+ **itemIds** | [**List&lt;String&gt;**](String.md)|  | [optional] 
  **pageNumber** | **int**|  | [optional] 
  **pageSize** | **int**|  | [optional] 
  **sortBy** | **String**|  | [optional] 
@@ -245,7 +245,7 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getCartApi();
 final String voucherCode = voucherCode_example; // String | 
-final BuiltList<String> itemIds = ; // BuiltList<String> | 
+final List<String> itemIds = ; // List<String> | 
 final String savedAddressId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final String recipientPeriodContactName = recipientPeriodContactName_example; // String | 
 final String recipientPeriodContactPhoneNumber = recipientPeriodContactPhoneNumber_example; // String | 
@@ -270,7 +270,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **voucherCode** | **String**|  | [optional] 
- **itemIds** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
+ **itemIds** | [**List&lt;String&gt;**](String.md)|  | [optional] 
  **savedAddressId** | **String**|  | [optional] 
  **recipientPeriodContactName** | **String**|  | [optional] 
  **recipientPeriodContactPhoneNumber** | **String**|  | [optional] 

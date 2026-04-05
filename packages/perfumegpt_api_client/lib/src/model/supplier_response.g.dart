@@ -3,158 +3,132 @@
 part of 'supplier_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$SupplierResponse extends SupplierResponse {
-  @override
-  final int? id;
-  @override
-  final String name;
-  @override
-  final String contactEmail;
-  @override
-  final String phone;
-  @override
-  final String address;
+abstract class _$SupplierResponseCWProxy {
+  SupplierResponse id(int? id);
 
-  factory _$SupplierResponse([
-    void Function(SupplierResponseBuilder)? updates,
-  ]) => (SupplierResponseBuilder()..update(updates))._build();
+  SupplierResponse name(String name);
 
-  _$SupplierResponse._({
-    this.id,
-    required this.name,
-    required this.contactEmail,
-    required this.phone,
-    required this.address,
-  }) : super._();
-  @override
-  SupplierResponse rebuild(void Function(SupplierResponseBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  SupplierResponse contactEmail(String contactEmail);
 
-  @override
-  SupplierResponseBuilder toBuilder() =>
-      SupplierResponseBuilder()..replace(this);
+  SupplierResponse phone(String phone);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is SupplierResponse &&
-        id == other.id &&
-        name == other.name &&
-        contactEmail == other.contactEmail &&
-        phone == other.phone &&
-        address == other.address;
-  }
+  SupplierResponse address(String address);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SupplierResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// SupplierResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  SupplierResponse call({
+    int? id,
+    String name,
+    String contactEmail,
+    String phone,
+    String address,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfSupplierResponse.copyWith(...)` or call `instanceOfSupplierResponse.copyWith.fieldName(value)` for a single field.
+class _$SupplierResponseCWProxyImpl implements _$SupplierResponseCWProxy {
+  const _$SupplierResponseCWProxyImpl(this._value);
+
+  final SupplierResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, contactEmail.hashCode);
-    _$hash = $jc(_$hash, phone.hashCode);
-    _$hash = $jc(_$hash, address.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  SupplierResponse id(int? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'SupplierResponse')
-          ..add('id', id)
-          ..add('name', name)
-          ..add('contactEmail', contactEmail)
-          ..add('phone', phone)
-          ..add('address', address))
-        .toString();
+  SupplierResponse name(String name) => call(name: name);
+
+  @override
+  SupplierResponse contactEmail(String contactEmail) =>
+      call(contactEmail: contactEmail);
+
+  @override
+  SupplierResponse phone(String phone) => call(phone: phone);
+
+  @override
+  SupplierResponse address(String address) => call(address: address);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SupplierResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// SupplierResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  SupplierResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
+    Object? contactEmail = const $CopyWithPlaceholder(),
+    Object? phone = const $CopyWithPlaceholder(),
+    Object? address = const $CopyWithPlaceholder(),
+  }) {
+    return SupplierResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as int?,
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+      contactEmail:
+          contactEmail == const $CopyWithPlaceholder() || contactEmail == null
+          ? _value.contactEmail
+          // ignore: cast_nullable_to_non_nullable
+          : contactEmail as String,
+      phone: phone == const $CopyWithPlaceholder() || phone == null
+          ? _value.phone
+          // ignore: cast_nullable_to_non_nullable
+          : phone as String,
+      address: address == const $CopyWithPlaceholder() || address == null
+          ? _value.address
+          // ignore: cast_nullable_to_non_nullable
+          : address as String,
+    );
   }
 }
 
-class SupplierResponseBuilder
-    implements Builder<SupplierResponse, SupplierResponseBuilder> {
-  _$SupplierResponse? _$v;
-
-  int? _id;
-  int? get id => _$this._id;
-  set id(int? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  String? _contactEmail;
-  String? get contactEmail => _$this._contactEmail;
-  set contactEmail(String? contactEmail) => _$this._contactEmail = contactEmail;
-
-  String? _phone;
-  String? get phone => _$this._phone;
-  set phone(String? phone) => _$this._phone = phone;
-
-  String? _address;
-  String? get address => _$this._address;
-  set address(String? address) => _$this._address = address;
-
-  SupplierResponseBuilder() {
-    SupplierResponse._defaults(this);
-  }
-
-  SupplierResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _name = $v.name;
-      _contactEmail = $v.contactEmail;
-      _phone = $v.phone;
-      _address = $v.address;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(SupplierResponse other) {
-    _$v = other as _$SupplierResponse;
-  }
-
-  @override
-  void update(void Function(SupplierResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  SupplierResponse build() => _build();
-
-  _$SupplierResponse _build() {
-    final _$result =
-        _$v ??
-        _$SupplierResponse._(
-          id: id,
-          name: BuiltValueNullFieldError.checkNotNull(
-            name,
-            r'SupplierResponse',
-            'name',
-          ),
-          contactEmail: BuiltValueNullFieldError.checkNotNull(
-            contactEmail,
-            r'SupplierResponse',
-            'contactEmail',
-          ),
-          phone: BuiltValueNullFieldError.checkNotNull(
-            phone,
-            r'SupplierResponse',
-            'phone',
-          ),
-          address: BuiltValueNullFieldError.checkNotNull(
-            address,
-            r'SupplierResponse',
-            'address',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $SupplierResponseCopyWith on SupplierResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfSupplierResponse.copyWith(...)` or `instanceOfSupplierResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$SupplierResponseCWProxy get copyWith => _$SupplierResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+SupplierResponse _$SupplierResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('SupplierResponse', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const ['name', 'contactEmail', 'phone', 'address'],
+      );
+      final val = SupplierResponse(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        name: $checkedConvert('name', (v) => v as String),
+        contactEmail: $checkedConvert('contactEmail', (v) => v as String),
+        phone: $checkedConvert('phone', (v) => v as String),
+        address: $checkedConvert('address', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$SupplierResponseToJson(SupplierResponse instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'name': instance.name,
+      'contactEmail': instance.contactEmail,
+      'phone': instance.phone,
+      'address': instance.address,
+    };

@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for LoyaltyTransactionTotalsResponse
 void main() {
-  final instance = LoyaltyTransactionTotalsResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final LoyaltyTransactionTotalsResponse?
+  instance = /* LoyaltyTransactionTotalsResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(LoyaltyTransactionTotalsResponse, () {
     // String userId
@@ -31,6 +32,5 @@ void main() {
     test('to test the property `totalTransactions`', () async {
       // TODO
     });
-
   });
 }

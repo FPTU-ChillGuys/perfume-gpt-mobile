@@ -4,12 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:built_collection/built_collection.dart';
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_bulk_action_result_of_list_of_temporary_media_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_bulk_action_result_ofstring.dart';
@@ -24,35 +23,31 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_product_infor_r
 import 'package:perfumegpt_api_client/src/model/base_response_of_product_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/create_product_request.dart';
-import 'package:perfumegpt_api_client/src/model/date.dart';
 import 'package:perfumegpt_api_client/src/model/gender.dart';
 import 'package:perfumegpt_api_client/src/model/product_image_upload_item.dart';
 import 'package:perfumegpt_api_client/src/model/update_product_request.dart';
 
 class ProductsApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const ProductsApi(this._dio, this._serializers);
+  const ProductsApi(this._dio);
 
   /// apiProductsBestSellersGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [gender] 
-  /// * [categoryId] 
-  /// * [brandId] 
-  /// * [volume] 
-  /// * [fromPrice] 
-  /// * [toPrice] 
-  /// * [isAvailable] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [gender]
+  /// * [categoryId]
+  /// * [brandId]
+  /// * [volume]
+  /// * [fromPrice]
+  /// * [toPrice]
+  /// * [isAvailable]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -62,7 +57,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfProductListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfProductListItem>> apiProductsBestSellersGet({ 
+  Future<Response<BaseResponseOfPagedResultOfProductListItem>>
+  apiProductsBestSellersGet({
     Gender? gender,
     int? categoryId,
     int? brandId,
@@ -85,16 +81,10 @@ class ProductsApi {
     final _path = r'/api/products/best-sellers';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -102,18 +92,18 @@ class ProductsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
-      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
-      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
-      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
-      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
-      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
-      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (gender != null) r'Gender': gender,
+      r'CategoryId': categoryId,
+      r'BrandId': brandId,
+      r'Volume': volume,
+      r'FromPrice': fromPrice,
+      r'ToPrice': toPrice,
+      if (isAvailable != null) r'IsAvailable': isAvailable,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -128,12 +118,17 @@ class ProductsApi {
     BaseResponseOfPagedResultOfProductListItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItem),
-      ) as BaseResponseOfPagedResultOfProductListItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfProductListItem,
+              BaseResponseOfPagedResultOfProductListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfProductListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -157,22 +152,22 @@ class ProductsApi {
   }
 
   /// apiProductsCampaignsCampaignIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [campaignId] 
-  /// * [gender] 
-  /// * [categoryId] 
-  /// * [brandId] 
-  /// * [volume] 
-  /// * [fromPrice] 
-  /// * [toPrice] 
-  /// * [isAvailable] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [campaignId]
+  /// * [gender]
+  /// * [categoryId]
+  /// * [brandId]
+  /// * [volume]
+  /// * [fromPrice]
+  /// * [toPrice]
+  /// * [isAvailable]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -182,7 +177,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfProductListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfProductListItem>> apiProductsCampaignsCampaignIdGet({ 
+  Future<Response<BaseResponseOfPagedResultOfProductListItem>>
+  apiProductsCampaignsCampaignIdGet({
     required String campaignId,
     Gender? gender,
     int? categoryId,
@@ -203,19 +199,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', encodeQueryParameter(_serializers, campaignId, const FullType(String)).toString());
+    final _path = r'/api/products/campaigns/{campaignId}'.replaceAll(
+      '{'
+      r'campaignId'
+      '}',
+      campaignId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -223,18 +218,18 @@ class ProductsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
-      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
-      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
-      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
-      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
-      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
-      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (gender != null) r'Gender': gender,
+      r'CategoryId': categoryId,
+      r'BrandId': brandId,
+      r'Volume': volume,
+      r'FromPrice': fromPrice,
+      r'ToPrice': toPrice,
+      if (isAvailable != null) r'IsAvailable': isAvailable,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -249,12 +244,17 @@ class ProductsApi {
     BaseResponseOfPagedResultOfProductListItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItem),
-      ) as BaseResponseOfPagedResultOfProductListItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfProductListItem,
+              BaseResponseOfPagedResultOfProductListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfProductListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -278,10 +278,10 @@ class ProductsApi {
   }
 
   /// apiProductsDailySaleFiguresGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [date] 
+  /// * [date]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -291,8 +291,9 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfProductDailySaleFigureResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfProductDailySaleFigureResponse>> apiProductsDailySaleFiguresGet({ 
-    Date? date,
+  Future<Response<BaseResponseOfListOfProductDailySaleFigureResponse>>
+  apiProductsDailySaleFiguresGet({
+    DateTime? date,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -303,25 +304,17 @@ class ProductsApi {
     final _path = r'/api/products/daily-sale-figures';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-      if (date != null) r'date': encodeQueryParameter(_serializers, date, const FullType(Date)),
-    };
+    final _queryParameters = <String, dynamic>{if (date != null) r'date': date};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -335,12 +328,17 @@ class ProductsApi {
     BaseResponseOfListOfProductDailySaleFigureResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfListOfProductDailySaleFigureResponse),
-      ) as BaseResponseOfListOfProductDailySaleFigureResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfProductDailySaleFigureResponse,
+              BaseResponseOfListOfProductDailySaleFigureResponse
+            >(
+              rawData,
+              'BaseResponseOfListOfProductDailySaleFigureResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -364,7 +362,7 @@ class ProductsApi {
   }
 
   /// apiProductsEmbeddingsUpdateAllsPost
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -376,7 +374,7 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponse>> apiProductsEmbeddingsUpdateAllsPost({ 
+  Future<Response<BaseResponse>> apiProductsEmbeddingsUpdateAllsPost({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -387,16 +385,10 @@ class ProductsApi {
     final _path = r'/api/products/embeddings/update/alls';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -414,12 +406,14 @@ class ProductsApi {
     BaseResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponse),
-      ) as BaseResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponse, BaseResponse>(
+              rawData,
+              'BaseResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -443,10 +437,10 @@ class ProductsApi {
   }
 
   /// apiProductsEmbeddingsUpdateProductIdPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
+  /// * [productId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -456,7 +450,7 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponse>> apiProductsEmbeddingsUpdateProductIdPost({ 
+  Future<Response<BaseResponse>> apiProductsEmbeddingsUpdateProductIdPost({
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -465,19 +459,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/embeddings/update/{productId}'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
+    final _path = r'/api/products/embeddings/update/{productId}'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -495,12 +488,14 @@ class ProductsApi {
     BaseResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponse),
-      ) as BaseResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponse, BaseResponse>(
+              rawData,
+              'BaseResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -524,21 +519,21 @@ class ProductsApi {
   }
 
   /// apiProductsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [gender] 
-  /// * [categoryId] 
-  /// * [brandId] 
-  /// * [volume] 
-  /// * [fromPrice] 
-  /// * [toPrice] 
-  /// * [isAvailable] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [gender]
+  /// * [categoryId]
+  /// * [brandId]
+  /// * [volume]
+  /// * [fromPrice]
+  /// * [toPrice]
+  /// * [isAvailable]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -548,7 +543,7 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfProductListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfProductListItem>> apiProductsGet({ 
+  Future<Response<BaseResponseOfPagedResultOfProductListItem>> apiProductsGet({
     Gender? gender,
     int? categoryId,
     int? brandId,
@@ -571,16 +566,10 @@ class ProductsApi {
     final _path = r'/api/products';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -588,18 +577,18 @@ class ProductsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
-      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
-      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
-      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
-      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
-      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
-      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (gender != null) r'Gender': gender,
+      r'CategoryId': categoryId,
+      r'BrandId': brandId,
+      r'Volume': volume,
+      r'FromPrice': fromPrice,
+      r'ToPrice': toPrice,
+      if (isAvailable != null) r'IsAvailable': isAvailable,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -614,12 +603,17 @@ class ProductsApi {
     BaseResponseOfPagedResultOfProductListItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItem),
-      ) as BaseResponseOfPagedResultOfProductListItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfProductListItem,
+              BaseResponseOfPagedResultOfProductListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfProductListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -643,10 +637,10 @@ class ProductsApi {
   }
 
   /// apiProductsImagesMediaIdSetPrimaryPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [mediaId] 
+  /// * [mediaId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -656,7 +650,7 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiProductsImagesMediaIdSetPrimaryPut({ 
+  Future<Response<BaseResponseOfstring>> apiProductsImagesMediaIdSetPrimaryPut({
     required String mediaId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -665,19 +659,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/images/{mediaId}/set-primary'.replaceAll('{' r'mediaId' '}', encodeQueryParameter(_serializers, mediaId, const FullType(String)).toString());
+    final _path = r'/api/products/images/{mediaId}/set-primary'.replaceAll(
+      '{'
+      r'mediaId'
+      '}',
+      mediaId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -695,12 +688,14 @@ class ProductsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -724,10 +719,10 @@ class ProductsApi {
   }
 
   /// apiProductsImagesTemporaryPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [images] 
+  /// * [images]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -737,8 +732,9 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>> apiProductsImagesTemporaryPost({ 
-    BuiltList<ProductImageUploadItem>? images,
+  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>>
+  apiProductsImagesTemporaryPost({
+    List<ProductImageUploadItem>? images,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -749,16 +745,10 @@ class ProductsApi {
     final _path = r'/api/products/images/temporary';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -768,17 +758,9 @@ class ProductsApi {
 
     dynamic _bodyData;
 
-    try {
-      _bodyData = <String, dynamic>{
-        if (images != null) r'Images': encodeCollectionQueryParameter<ProductImageUploadItem>(_serializers, images, const FullType(BuiltList, [FullType(ProductImageUploadItem)]), format: ListFormat.csv,),
-      };
-
-    } catch(error, stackTrace) {
+    try {} catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -797,12 +779,17 @@ class ProductsApi {
     BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse),
-      ) as BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse,
+              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
+            >(
+              rawData,
+              'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -813,7 +800,9 @@ class ProductsApi {
       );
     }
 
-    return Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(
+    return Response<
+      BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -826,7 +815,7 @@ class ProductsApi {
   }
 
   /// apiProductsLookupGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -838,7 +827,7 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfProductLookupItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfProductLookupItem>> apiProductsLookupGet({ 
+  Future<Response<BaseResponseOfListOfProductLookupItem>> apiProductsLookupGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -849,16 +838,10 @@ class ProductsApi {
     final _path = r'/api/products/lookup';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -876,12 +859,13 @@ class ProductsApi {
     BaseResponseOfListOfProductLookupItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfListOfProductLookupItem),
-      ) as BaseResponseOfListOfProductLookupItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfProductLookupItem,
+              BaseResponseOfListOfProductLookupItem
+            >(rawData, 'BaseResponseOfListOfProductLookupItem', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -905,21 +889,21 @@ class ProductsApi {
   }
 
   /// apiProductsNewArrivalsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [gender] 
-  /// * [categoryId] 
-  /// * [brandId] 
-  /// * [volume] 
-  /// * [fromPrice] 
-  /// * [toPrice] 
-  /// * [isAvailable] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [gender]
+  /// * [categoryId]
+  /// * [brandId]
+  /// * [volume]
+  /// * [fromPrice]
+  /// * [toPrice]
+  /// * [isAvailable]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -929,7 +913,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfProductListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfProductListItem>> apiProductsNewArrivalsGet({ 
+  Future<Response<BaseResponseOfPagedResultOfProductListItem>>
+  apiProductsNewArrivalsGet({
     Gender? gender,
     int? categoryId,
     int? brandId,
@@ -952,16 +937,10 @@ class ProductsApi {
     final _path = r'/api/products/new-arrivals';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -969,18 +948,18 @@ class ProductsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
-      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
-      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
-      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
-      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
-      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
-      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (gender != null) r'Gender': gender,
+      r'CategoryId': categoryId,
+      r'BrandId': brandId,
+      r'Volume': volume,
+      r'FromPrice': fromPrice,
+      r'ToPrice': toPrice,
+      if (isAvailable != null) r'IsAvailable': isAvailable,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -995,12 +974,17 @@ class ProductsApi {
     BaseResponseOfPagedResultOfProductListItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItem),
-      ) as BaseResponseOfPagedResultOfProductListItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfProductListItem,
+              BaseResponseOfPagedResultOfProductListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfProductListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1024,10 +1008,10 @@ class ProductsApi {
   }
 
   /// apiProductsPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createProductRequest] 
+  /// * [createProductRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1037,7 +1021,7 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfstring>> apiProductsPost({ 
+  Future<Response<BaseResponseOfBulkActionResultOfstring>> apiProductsPost({
     required CreateProductRequest createProductRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1049,16 +1033,10 @@ class ProductsApi {
     final _path = r'/api/products';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1069,15 +1047,10 @@ class ProductsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(CreateProductRequest);
-      _bodyData = _serializers.serialize(createProductRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createProductRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -1096,12 +1069,17 @@ class ProductsApi {
     BaseResponseOfBulkActionResultOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfBulkActionResultOfstring),
-      ) as BaseResponseOfBulkActionResultOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBulkActionResultOfstring,
+              BaseResponseOfBulkActionResultOfstring
+            >(
+              rawData,
+              'BaseResponseOfBulkActionResultOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1125,10 +1103,10 @@ class ProductsApi {
   }
 
   /// apiProductsProductIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
+  /// * [productId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1138,7 +1116,7 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiProductsProductIdDelete({ 
+  Future<Response<BaseResponseOfstring>> apiProductsProductIdDelete({
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1147,19 +1125,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
+    final _path = r'/api/products/{productId}'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1177,12 +1154,14 @@ class ProductsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1206,10 +1185,10 @@ class ProductsApi {
   }
 
   /// apiProductsProductIdFastLookGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
+  /// * [productId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1219,7 +1198,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfProductFastLookResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfProductFastLookResponse>> apiProductsProductIdFastLookGet({ 
+  Future<Response<BaseResponseOfProductFastLookResponse>>
+  apiProductsProductIdFastLookGet({
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1228,19 +1208,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}/fast-look'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
+    final _path = r'/api/products/{productId}/fast-look'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1258,12 +1237,13 @@ class ProductsApi {
     BaseResponseOfProductFastLookResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfProductFastLookResponse),
-      ) as BaseResponseOfProductFastLookResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfProductFastLookResponse,
+              BaseResponseOfProductFastLookResponse
+            >(rawData, 'BaseResponseOfProductFastLookResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1287,10 +1267,10 @@ class ProductsApi {
   }
 
   /// apiProductsProductIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
+  /// * [productId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1300,7 +1280,7 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfProductResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfProductResponse>> apiProductsProductIdGet({ 
+  Future<Response<BaseResponseOfProductResponse>> apiProductsProductIdGet({
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1309,19 +1289,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
+    final _path = r'/api/products/{productId}'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1339,12 +1318,13 @@ class ProductsApi {
     BaseResponseOfProductResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfProductResponse),
-      ) as BaseResponseOfProductResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfProductResponse,
+              BaseResponseOfProductResponse
+            >(rawData, 'BaseResponseOfProductResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1368,10 +1348,10 @@ class ProductsApi {
   }
 
   /// apiProductsProductIdImagesGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
+  /// * [productId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1381,7 +1361,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfMediaResponse>> apiProductsProductIdImagesGet({ 
+  Future<Response<BaseResponseOfListOfMediaResponse>>
+  apiProductsProductIdImagesGet({
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1390,19 +1371,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}/images'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
+    final _path = r'/api/products/{productId}/images'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1420,12 +1400,13 @@ class ProductsApi {
     BaseResponseOfListOfMediaResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfListOfMediaResponse),
-      ) as BaseResponseOfListOfMediaResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfMediaResponse,
+              BaseResponseOfListOfMediaResponse
+            >(rawData, 'BaseResponseOfListOfMediaResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1449,10 +1430,10 @@ class ProductsApi {
   }
 
   /// apiProductsProductIdImagesPrimaryGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
+  /// * [productId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1462,7 +1443,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfMediaResponse>> apiProductsProductIdImagesPrimaryGet({ 
+  Future<Response<BaseResponseOfMediaResponse>>
+  apiProductsProductIdImagesPrimaryGet({
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1471,19 +1453,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}/images/primary'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
+    final _path = r'/api/products/{productId}/images/primary'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1501,12 +1482,13 @@ class ProductsApi {
     BaseResponseOfMediaResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfMediaResponse),
-      ) as BaseResponseOfMediaResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfMediaResponse,
+              BaseResponseOfMediaResponse
+            >(rawData, 'BaseResponseOfMediaResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1530,10 +1512,10 @@ class ProductsApi {
   }
 
   /// apiProductsProductIdInformationGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
+  /// * [productId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1543,7 +1525,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfProductInforResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfProductInforResponse>> apiProductsProductIdInformationGet({ 
+  Future<Response<BaseResponseOfProductInforResponse>>
+  apiProductsProductIdInformationGet({
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1552,19 +1535,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}/information'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
+    final _path = r'/api/products/{productId}/information'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1582,12 +1564,13 @@ class ProductsApi {
     BaseResponseOfProductInforResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfProductInforResponse),
-      ) as BaseResponseOfProductInforResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfProductInforResponse,
+              BaseResponseOfProductInforResponse
+            >(rawData, 'BaseResponseOfProductInforResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1611,11 +1594,11 @@ class ProductsApi {
   }
 
   /// apiProductsProductIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
-  /// * [updateProductRequest] 
+  /// * [productId]
+  /// * [updateProductRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1625,7 +1608,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfstring>> apiProductsProductIdPut({ 
+  Future<Response<BaseResponseOfBulkActionResultOfstring>>
+  apiProductsProductIdPut({
     required String productId,
     required UpdateProductRequest updateProductRequest,
     CancelToken? cancelToken,
@@ -1635,19 +1619,18 @@ class ProductsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
+    final _path = r'/api/products/{productId}'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1658,15 +1641,10 @@ class ProductsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UpdateProductRequest);
-      _bodyData = _serializers.serialize(updateProductRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateProductRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -1685,12 +1663,17 @@ class ProductsApi {
     BaseResponseOfBulkActionResultOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfBulkActionResultOfstring),
-      ) as BaseResponseOfBulkActionResultOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBulkActionResultOfstring,
+              BaseResponseOfBulkActionResultOfstring
+            >(
+              rawData,
+              'BaseResponseOfBulkActionResultOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1714,22 +1697,22 @@ class ProductsApi {
   }
 
   /// apiProductsSearchSemanticGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [searchText] 
-  /// * [gender] 
-  /// * [categoryId] 
-  /// * [brandId] 
-  /// * [volume] 
-  /// * [fromPrice] 
-  /// * [toPrice] 
-  /// * [isAvailable] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [searchText]
+  /// * [gender]
+  /// * [categoryId]
+  /// * [brandId]
+  /// * [volume]
+  /// * [fromPrice]
+  /// * [toPrice]
+  /// * [isAvailable]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1739,7 +1722,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfProductListItemWithVariants] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfProductListItemWithVariants>> apiProductsSearchSemanticGet({ 
+  Future<Response<BaseResponseOfPagedResultOfProductListItemWithVariants>>
+  apiProductsSearchSemanticGet({
     String? searchText,
     Gender? gender,
     int? categoryId,
@@ -1763,16 +1747,10 @@ class ProductsApi {
     final _path = r'/api/products/search/semantic';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1780,19 +1758,19 @@ class ProductsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (searchText != null) r'searchText': encodeQueryParameter(_serializers, searchText, const FullType(String)),
-      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
-      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
-      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
-      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
-      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
-      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
-      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (searchText != null) r'searchText': searchText,
+      if (gender != null) r'Gender': gender,
+      r'CategoryId': categoryId,
+      r'BrandId': brandId,
+      r'Volume': volume,
+      r'FromPrice': fromPrice,
+      r'ToPrice': toPrice,
+      if (isAvailable != null) r'IsAvailable': isAvailable,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -1807,12 +1785,17 @@ class ProductsApi {
     BaseResponseOfPagedResultOfProductListItemWithVariants? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItemWithVariants),
-      ) as BaseResponseOfPagedResultOfProductListItemWithVariants;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfProductListItemWithVariants,
+              BaseResponseOfPagedResultOfProductListItemWithVariants
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfProductListItemWithVariants',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1834,5 +1817,4 @@ class ProductsApi {
       extra: _response.extra,
     );
   }
-
 }

@@ -3,196 +3,83 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'inventory_summary_response.g.dart';
 
-/// InventorySummaryResponse
-///
-/// Properties:
-/// * [totalVariants] 
-/// * [totalStockQuantity] 
-/// * [lowStockVariantsCount] 
-/// * [totalBatches] 
-/// * [expiredBatchesCount] 
-/// * [expiringSoonCount] 
-@BuiltValue()
-abstract class InventorySummaryResponse implements Built<InventorySummaryResponse, InventorySummaryResponseBuilder> {
-  @BuiltValueField(wireName: r'totalVariants')
-  int? get totalVariants;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class InventorySummaryResponse {
+  /// Returns a new [InventorySummaryResponse] instance.
+  InventorySummaryResponse({
+    this.totalVariants,
 
-  @BuiltValueField(wireName: r'totalStockQuantity')
-  int? get totalStockQuantity;
+    this.totalStockQuantity,
 
-  @BuiltValueField(wireName: r'lowStockVariantsCount')
-  int? get lowStockVariantsCount;
+    this.lowStockVariantsCount,
 
-  @BuiltValueField(wireName: r'totalBatches')
-  int? get totalBatches;
+    this.totalBatches,
 
-  @BuiltValueField(wireName: r'expiredBatchesCount')
-  int? get expiredBatchesCount;
+    this.expiredBatchesCount,
 
-  @BuiltValueField(wireName: r'expiringSoonCount')
-  int? get expiringSoonCount;
+    this.expiringSoonCount,
+  });
 
-  InventorySummaryResponse._();
+  @JsonKey(name: r'totalVariants', required: false, includeIfNull: false)
+  final int? totalVariants;
 
-  factory InventorySummaryResponse([void updates(InventorySummaryResponseBuilder b)]) = _$InventorySummaryResponse;
+  @JsonKey(name: r'totalStockQuantity', required: false, includeIfNull: false)
+  final int? totalStockQuantity;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(InventorySummaryResponseBuilder b) => b;
+  @JsonKey(
+    name: r'lowStockVariantsCount',
+    required: false,
+    includeIfNull: false,
+  )
+  final int? lowStockVariantsCount;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<InventorySummaryResponse> get serializer => _$InventorySummaryResponseSerializer();
-}
+  @JsonKey(name: r'totalBatches', required: false, includeIfNull: false)
+  final int? totalBatches;
 
-class _$InventorySummaryResponseSerializer implements PrimitiveSerializer<InventorySummaryResponse> {
-  @override
-  final Iterable<Type> types = const [InventorySummaryResponse, _$InventorySummaryResponse];
+  @JsonKey(name: r'expiredBatchesCount', required: false, includeIfNull: false)
+  final int? expiredBatchesCount;
 
-  @override
-  final String wireName = r'InventorySummaryResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    InventorySummaryResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.totalVariants != null) {
-      yield r'totalVariants';
-      yield serializers.serialize(
-        object.totalVariants,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.totalStockQuantity != null) {
-      yield r'totalStockQuantity';
-      yield serializers.serialize(
-        object.totalStockQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.lowStockVariantsCount != null) {
-      yield r'lowStockVariantsCount';
-      yield serializers.serialize(
-        object.lowStockVariantsCount,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.totalBatches != null) {
-      yield r'totalBatches';
-      yield serializers.serialize(
-        object.totalBatches,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.expiredBatchesCount != null) {
-      yield r'expiredBatchesCount';
-      yield serializers.serialize(
-        object.expiredBatchesCount,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.expiringSoonCount != null) {
-      yield r'expiringSoonCount';
-      yield serializers.serialize(
-        object.expiringSoonCount,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
+  @JsonKey(name: r'expiringSoonCount', required: false, includeIfNull: false)
+  final int? expiringSoonCount;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    InventorySummaryResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required InventorySummaryResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'totalVariants':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalVariants = valueDes;
-          break;
-        case r'totalStockQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalStockQuantity = valueDes;
-          break;
-        case r'lowStockVariantsCount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.lowStockVariantsCount = valueDes;
-          break;
-        case r'totalBatches':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalBatches = valueDes;
-          break;
-        case r'expiredBatchesCount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.expiredBatchesCount = valueDes;
-          break;
-        case r'expiringSoonCount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.expiringSoonCount = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is InventorySummaryResponse &&
+          other.totalVariants == totalVariants &&
+          other.totalStockQuantity == totalStockQuantity &&
+          other.lowStockVariantsCount == lowStockVariantsCount &&
+          other.totalBatches == totalBatches &&
+          other.expiredBatchesCount == expiredBatchesCount &&
+          other.expiringSoonCount == expiringSoonCount;
 
   @override
-  InventorySummaryResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = InventorySummaryResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      totalVariants.hashCode +
+      totalStockQuantity.hashCode +
+      lowStockVariantsCount.hashCode +
+      totalBatches.hashCode +
+      expiredBatchesCount.hashCode +
+      expiringSoonCount.hashCode;
+
+  factory InventorySummaryResponse.fromJson(Map<String, dynamic> json) =>
+      _$InventorySummaryResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$InventorySummaryResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

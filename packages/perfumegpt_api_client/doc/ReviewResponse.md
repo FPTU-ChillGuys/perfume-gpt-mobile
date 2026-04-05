@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **comment** | **String** |  | 
 **staffFeedbackComment** | **String** |  | [optional] 
 **staffFeedbackAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**images** | [**BuiltList&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
+**images** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

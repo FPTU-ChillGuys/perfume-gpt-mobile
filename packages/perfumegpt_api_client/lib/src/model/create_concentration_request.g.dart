@@ -3,97 +3,75 @@
 part of 'create_concentration_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$CreateConcentrationRequest extends CreateConcentrationRequest {
-  @override
-  final String name;
+abstract class _$CreateConcentrationRequestCWProxy {
+  CreateConcentrationRequest name(String name);
 
-  factory _$CreateConcentrationRequest([
-    void Function(CreateConcentrationRequestBuilder)? updates,
-  ]) => (CreateConcentrationRequestBuilder()..update(updates))._build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateConcentrationRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateConcentrationRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateConcentrationRequest call({String name});
+}
 
-  _$CreateConcentrationRequest._({required this.name}) : super._();
-  @override
-  CreateConcentrationRequest rebuild(
-    void Function(CreateConcentrationRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateConcentrationRequest.copyWith(...)` or call `instanceOfCreateConcentrationRequest.copyWith.fieldName(value)` for a single field.
+class _$CreateConcentrationRequestCWProxyImpl
+    implements _$CreateConcentrationRequestCWProxy {
+  const _$CreateConcentrationRequestCWProxyImpl(this._value);
 
-  @override
-  CreateConcentrationRequestBuilder toBuilder() =>
-      CreateConcentrationRequestBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is CreateConcentrationRequest && name == other.name;
-  }
+  final CreateConcentrationRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  CreateConcentrationRequest name(String name) => call(name: name);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-      r'CreateConcentrationRequest',
-    )..add('name', name)).toString();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateConcentrationRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateConcentrationRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateConcentrationRequest call({
+    Object? name = const $CopyWithPlaceholder(),
+  }) {
+    return CreateConcentrationRequest(
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+    );
   }
 }
 
-class CreateConcentrationRequestBuilder
-    implements
-        Builder<CreateConcentrationRequest, CreateConcentrationRequestBuilder> {
-  _$CreateConcentrationRequest? _$v;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  CreateConcentrationRequestBuilder() {
-    CreateConcentrationRequest._defaults(this);
-  }
-
-  CreateConcentrationRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _name = $v.name;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(CreateConcentrationRequest other) {
-    _$v = other as _$CreateConcentrationRequest;
-  }
-
-  @override
-  void update(void Function(CreateConcentrationRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  CreateConcentrationRequest build() => _build();
-
-  _$CreateConcentrationRequest _build() {
-    final _$result =
-        _$v ??
-        _$CreateConcentrationRequest._(
-          name: BuiltValueNullFieldError.checkNotNull(
-            name,
-            r'CreateConcentrationRequest',
-            'name',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $CreateConcentrationRequestCopyWith on CreateConcentrationRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateConcentrationRequest.copyWith(...)` or `instanceOfCreateConcentrationRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CreateConcentrationRequestCWProxy get copyWith =>
+      _$CreateConcentrationRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CreateConcentrationRequest _$CreateConcentrationRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CreateConcentrationRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
+  final val = CreateConcentrationRequest(
+    name: $checkedConvert('name', (v) => v as String),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$CreateConcentrationRequestToJson(
+  CreateConcentrationRequest instance,
+) => <String, dynamic>{'name': instance.name};

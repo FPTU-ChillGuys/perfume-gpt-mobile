@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **startDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **endDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **type** | [**CampaignType**](CampaignType.md) |  | [optional] 
-**items** | [**BuiltList&lt;UpdateCampaignPromotionItemRequest&gt;**](UpdateCampaignPromotionItemRequest.md) |  | 
-**vouchers** | [**BuiltList&lt;UpdateCampaignVoucherRequest&gt;**](UpdateCampaignVoucherRequest.md) |  | 
+**items** | [**List&lt;UpdateCampaignPromotionItemRequest&gt;**](UpdateCampaignPromotionItemRequest.md) |  | 
+**vouchers** | [**List&lt;UpdateCampaignVoucherRequest&gt;**](UpdateCampaignVoucherRequest.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

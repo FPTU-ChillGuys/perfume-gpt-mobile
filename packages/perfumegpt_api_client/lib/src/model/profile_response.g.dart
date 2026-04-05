@@ -3,183 +3,202 @@
 part of 'profile_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProfileResponse extends ProfileResponse {
-  @override
-  final DateTime? dateOfBirth;
-  @override
-  final num? minBudget;
-  @override
-  final num? maxBudget;
-  @override
-  final BuiltList<CustomerNotePreferenceResponse> notePreferences;
-  @override
-  final BuiltList<CustomerFamilyPreferenceRespone> familyPreferences;
-  @override
-  final BuiltList<CustomerAttributePreferenceResponse> attributePreferences;
+abstract class _$ProfileResponseCWProxy {
+  ProfileResponse dateOfBirth(DateTime? dateOfBirth);
 
-  factory _$ProfileResponse([void Function(ProfileResponseBuilder)? updates]) =>
-      (ProfileResponseBuilder()..update(updates))._build();
+  ProfileResponse minBudget(num? minBudget);
 
-  _$ProfileResponse._({
-    this.dateOfBirth,
-    this.minBudget,
-    this.maxBudget,
-    required this.notePreferences,
-    required this.familyPreferences,
-    required this.attributePreferences,
-  }) : super._();
-  @override
-  ProfileResponse rebuild(void Function(ProfileResponseBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  ProfileResponse maxBudget(num? maxBudget);
 
-  @override
-  ProfileResponseBuilder toBuilder() => ProfileResponseBuilder()..replace(this);
+  ProfileResponse notePreferences(
+    List<CustomerNotePreferenceResponse> notePreferences,
+  );
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProfileResponse &&
-        dateOfBirth == other.dateOfBirth &&
-        minBudget == other.minBudget &&
-        maxBudget == other.maxBudget &&
-        notePreferences == other.notePreferences &&
-        familyPreferences == other.familyPreferences &&
-        attributePreferences == other.attributePreferences;
-  }
+  ProfileResponse familyPreferences(
+    List<CustomerFamilyPreferenceRespone> familyPreferences,
+  );
 
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, dateOfBirth.hashCode);
-    _$hash = $jc(_$hash, minBudget.hashCode);
-    _$hash = $jc(_$hash, maxBudget.hashCode);
-    _$hash = $jc(_$hash, notePreferences.hashCode);
-    _$hash = $jc(_$hash, familyPreferences.hashCode);
-    _$hash = $jc(_$hash, attributePreferences.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProfileResponse attributePreferences(
+    List<CustomerAttributePreferenceResponse> attributePreferences,
+  );
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProfileResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProfileResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProfileResponse call({
+    DateTime? dateOfBirth,
+    num? minBudget,
+    num? maxBudget,
+    List<CustomerNotePreferenceResponse> notePreferences,
+    List<CustomerFamilyPreferenceRespone> familyPreferences,
+    List<CustomerAttributePreferenceResponse> attributePreferences,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProfileResponse.copyWith(...)` or call `instanceOfProfileResponse.copyWith.fieldName(value)` for a single field.
+class _$ProfileResponseCWProxyImpl implements _$ProfileResponseCWProxy {
+  const _$ProfileResponseCWProxyImpl(this._value);
+
+  final ProfileResponse _value;
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ProfileResponse')
-          ..add('dateOfBirth', dateOfBirth)
-          ..add('minBudget', minBudget)
-          ..add('maxBudget', maxBudget)
-          ..add('notePreferences', notePreferences)
-          ..add('familyPreferences', familyPreferences)
-          ..add('attributePreferences', attributePreferences))
-        .toString();
+  ProfileResponse dateOfBirth(DateTime? dateOfBirth) =>
+      call(dateOfBirth: dateOfBirth);
+
+  @override
+  ProfileResponse minBudget(num? minBudget) => call(minBudget: minBudget);
+
+  @override
+  ProfileResponse maxBudget(num? maxBudget) => call(maxBudget: maxBudget);
+
+  @override
+  ProfileResponse notePreferences(
+    List<CustomerNotePreferenceResponse> notePreferences,
+  ) => call(notePreferences: notePreferences);
+
+  @override
+  ProfileResponse familyPreferences(
+    List<CustomerFamilyPreferenceRespone> familyPreferences,
+  ) => call(familyPreferences: familyPreferences);
+
+  @override
+  ProfileResponse attributePreferences(
+    List<CustomerAttributePreferenceResponse> attributePreferences,
+  ) => call(attributePreferences: attributePreferences);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProfileResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProfileResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProfileResponse call({
+    Object? dateOfBirth = const $CopyWithPlaceholder(),
+    Object? minBudget = const $CopyWithPlaceholder(),
+    Object? maxBudget = const $CopyWithPlaceholder(),
+    Object? notePreferences = const $CopyWithPlaceholder(),
+    Object? familyPreferences = const $CopyWithPlaceholder(),
+    Object? attributePreferences = const $CopyWithPlaceholder(),
+  }) {
+    return ProfileResponse(
+      dateOfBirth: dateOfBirth == const $CopyWithPlaceholder()
+          ? _value.dateOfBirth
+          // ignore: cast_nullable_to_non_nullable
+          : dateOfBirth as DateTime?,
+      minBudget: minBudget == const $CopyWithPlaceholder()
+          ? _value.minBudget
+          // ignore: cast_nullable_to_non_nullable
+          : minBudget as num?,
+      maxBudget: maxBudget == const $CopyWithPlaceholder()
+          ? _value.maxBudget
+          // ignore: cast_nullable_to_non_nullable
+          : maxBudget as num?,
+      notePreferences:
+          notePreferences == const $CopyWithPlaceholder() ||
+              notePreferences == null
+          ? _value.notePreferences
+          // ignore: cast_nullable_to_non_nullable
+          : notePreferences as List<CustomerNotePreferenceResponse>,
+      familyPreferences:
+          familyPreferences == const $CopyWithPlaceholder() ||
+              familyPreferences == null
+          ? _value.familyPreferences
+          // ignore: cast_nullable_to_non_nullable
+          : familyPreferences as List<CustomerFamilyPreferenceRespone>,
+      attributePreferences:
+          attributePreferences == const $CopyWithPlaceholder() ||
+              attributePreferences == null
+          ? _value.attributePreferences
+          // ignore: cast_nullable_to_non_nullable
+          : attributePreferences as List<CustomerAttributePreferenceResponse>,
+    );
   }
 }
 
-class ProfileResponseBuilder
-    implements Builder<ProfileResponse, ProfileResponseBuilder> {
-  _$ProfileResponse? _$v;
-
-  DateTime? _dateOfBirth;
-  DateTime? get dateOfBirth => _$this._dateOfBirth;
-  set dateOfBirth(DateTime? dateOfBirth) => _$this._dateOfBirth = dateOfBirth;
-
-  num? _minBudget;
-  num? get minBudget => _$this._minBudget;
-  set minBudget(num? minBudget) => _$this._minBudget = minBudget;
-
-  num? _maxBudget;
-  num? get maxBudget => _$this._maxBudget;
-  set maxBudget(num? maxBudget) => _$this._maxBudget = maxBudget;
-
-  ListBuilder<CustomerNotePreferenceResponse>? _notePreferences;
-  ListBuilder<CustomerNotePreferenceResponse> get notePreferences =>
-      _$this._notePreferences ??= ListBuilder<CustomerNotePreferenceResponse>();
-  set notePreferences(
-    ListBuilder<CustomerNotePreferenceResponse>? notePreferences,
-  ) => _$this._notePreferences = notePreferences;
-
-  ListBuilder<CustomerFamilyPreferenceRespone>? _familyPreferences;
-  ListBuilder<CustomerFamilyPreferenceRespone> get familyPreferences =>
-      _$this._familyPreferences ??=
-          ListBuilder<CustomerFamilyPreferenceRespone>();
-  set familyPreferences(
-    ListBuilder<CustomerFamilyPreferenceRespone>? familyPreferences,
-  ) => _$this._familyPreferences = familyPreferences;
-
-  ListBuilder<CustomerAttributePreferenceResponse>? _attributePreferences;
-  ListBuilder<CustomerAttributePreferenceResponse> get attributePreferences =>
-      _$this._attributePreferences ??=
-          ListBuilder<CustomerAttributePreferenceResponse>();
-  set attributePreferences(
-    ListBuilder<CustomerAttributePreferenceResponse>? attributePreferences,
-  ) => _$this._attributePreferences = attributePreferences;
-
-  ProfileResponseBuilder() {
-    ProfileResponse._defaults(this);
-  }
-
-  ProfileResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _dateOfBirth = $v.dateOfBirth;
-      _minBudget = $v.minBudget;
-      _maxBudget = $v.maxBudget;
-      _notePreferences = $v.notePreferences.toBuilder();
-      _familyPreferences = $v.familyPreferences.toBuilder();
-      _attributePreferences = $v.attributePreferences.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProfileResponse other) {
-    _$v = other as _$ProfileResponse;
-  }
-
-  @override
-  void update(void Function(ProfileResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProfileResponse build() => _build();
-
-  _$ProfileResponse _build() {
-    _$ProfileResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$ProfileResponse._(
-            dateOfBirth: dateOfBirth,
-            minBudget: minBudget,
-            maxBudget: maxBudget,
-            notePreferences: notePreferences.build(),
-            familyPreferences: familyPreferences.build(),
-            attributePreferences: attributePreferences.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'notePreferences';
-        notePreferences.build();
-        _$failedField = 'familyPreferences';
-        familyPreferences.build();
-        _$failedField = 'attributePreferences';
-        attributePreferences.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'ProfileResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $ProfileResponseCopyWith on ProfileResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProfileResponse.copyWith(...)` or `instanceOfProfileResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProfileResponseCWProxy get copyWith => _$ProfileResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProfileResponse _$ProfileResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ProfileResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'notePreferences',
+      'familyPreferences',
+      'attributePreferences',
+    ],
+  );
+  final val = ProfileResponse(
+    dateOfBirth: $checkedConvert(
+      'dateOfBirth',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    minBudget: $checkedConvert('minBudget', (v) => v as num?),
+    maxBudget: $checkedConvert('maxBudget', (v) => v as num?),
+    notePreferences: $checkedConvert(
+      'notePreferences',
+      (v) => (v as List<dynamic>)
+          .map(
+            (e) => CustomerNotePreferenceResponse.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+    ),
+    familyPreferences: $checkedConvert(
+      'familyPreferences',
+      (v) => (v as List<dynamic>)
+          .map(
+            (e) => CustomerFamilyPreferenceRespone.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+    ),
+    attributePreferences: $checkedConvert(
+      'attributePreferences',
+      (v) => (v as List<dynamic>)
+          .map(
+            (e) => CustomerAttributePreferenceResponse.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ProfileResponseToJson(
+  ProfileResponse instance,
+) => <String, dynamic>{
+  'dateOfBirth': ?instance.dateOfBirth?.toIso8601String(),
+  'minBudget': ?instance.minBudget,
+  'maxBudget': ?instance.maxBudget,
+  'notePreferences': instance.notePreferences.map((e) => e.toJson()).toList(),
+  'familyPreferences': instance.familyPreferences
+      .map((e) => e.toJson())
+      .toList(),
+  'attributePreferences': instance.attributePreferences
+      .map((e) => e.toJson())
+      .toList(),
+};

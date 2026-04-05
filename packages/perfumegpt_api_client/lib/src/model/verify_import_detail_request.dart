@@ -3,159 +3,67 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/create_batch_request.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'verify_import_detail_request.g.dart';
 
-/// VerifyImportDetailRequest
-///
-/// Properties:
-/// * [importDetailId] 
-/// * [rejectedQuantity] 
-/// * [note] 
-/// * [batches] 
-@BuiltValue()
-abstract class VerifyImportDetailRequest implements Built<VerifyImportDetailRequest, VerifyImportDetailRequestBuilder> {
-  @BuiltValueField(wireName: r'importDetailId')
-  String get importDetailId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class VerifyImportDetailRequest {
+  /// Returns a new [VerifyImportDetailRequest] instance.
+  VerifyImportDetailRequest({
+    required this.importDetailId,
 
-  @BuiltValueField(wireName: r'rejectedQuantity')
-  int? get rejectedQuantity;
+    this.rejectedQuantity,
 
-  @BuiltValueField(wireName: r'note')
-  String? get note;
+    this.note,
 
-  @BuiltValueField(wireName: r'batches')
-  BuiltList<CreateBatchRequest> get batches;
+    required this.batches,
+  });
 
-  VerifyImportDetailRequest._();
+  @JsonKey(name: r'importDetailId', required: true, includeIfNull: false)
+  final String importDetailId;
 
-  factory VerifyImportDetailRequest([void updates(VerifyImportDetailRequestBuilder b)]) = _$VerifyImportDetailRequest;
+  // minimum: 0
+  @JsonKey(name: r'rejectedQuantity', required: false, includeIfNull: false)
+  final int? rejectedQuantity;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(VerifyImportDetailRequestBuilder b) => b;
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
+  final String? note;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<VerifyImportDetailRequest> get serializer => _$VerifyImportDetailRequestSerializer();
-}
-
-class _$VerifyImportDetailRequestSerializer implements PrimitiveSerializer<VerifyImportDetailRequest> {
-  @override
-  final Iterable<Type> types = const [VerifyImportDetailRequest, _$VerifyImportDetailRequest];
+  @JsonKey(name: r'batches', required: true, includeIfNull: false)
+  final List<CreateBatchRequest> batches;
 
   @override
-  final String wireName = r'VerifyImportDetailRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    VerifyImportDetailRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'importDetailId';
-    yield serializers.serialize(
-      object.importDetailId,
-      specifiedType: const FullType(String),
-    );
-    if (object.rejectedQuantity != null) {
-      yield r'rejectedQuantity';
-      yield serializers.serialize(
-        object.rejectedQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.note != null) {
-      yield r'note';
-      yield serializers.serialize(
-        object.note,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    yield r'batches';
-    yield serializers.serialize(
-      object.batches,
-      specifiedType: const FullType(BuiltList, [FullType(CreateBatchRequest)]),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VerifyImportDetailRequest &&
+          other.importDetailId == importDetailId &&
+          other.rejectedQuantity == rejectedQuantity &&
+          other.note == note &&
+          other.batches == batches;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    VerifyImportDetailRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      importDetailId.hashCode +
+      rejectedQuantity.hashCode +
+      (note == null ? 0 : note.hashCode) +
+      batches.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required VerifyImportDetailRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'importDetailId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.importDetailId = valueDes;
-          break;
-        case r'rejectedQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.rejectedQuantity = valueDes;
-          break;
-        case r'note':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.note = valueDes;
-          break;
-        case r'batches':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(CreateBatchRequest)]),
-          ) as BuiltList<CreateBatchRequest>;
-          result.batches.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory VerifyImportDetailRequest.fromJson(Map<String, dynamic> json) =>
+      _$VerifyImportDetailRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VerifyImportDetailRequestToJson(this);
 
   @override
-  VerifyImportDetailRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = VerifyImportDetailRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

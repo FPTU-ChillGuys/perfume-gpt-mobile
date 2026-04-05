@@ -3,157 +3,65 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'product_lookup_item.g.dart';
 
-/// ProductLookupItem
-///
-/// Properties:
-/// * [id] 
-/// * [name] 
-/// * [brandName] 
-/// * [primaryImageUrl] 
-@BuiltValue()
-abstract class ProductLookupItem implements Built<ProductLookupItem, ProductLookupItemBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ProductLookupItem {
+  /// Returns a new [ProductLookupItem] instance.
+  ProductLookupItem({
+    this.id,
 
-  @BuiltValueField(wireName: r'name')
-  String get name;
+    required this.name,
 
-  @BuiltValueField(wireName: r'brandName')
-  String get brandName;
+    required this.brandName,
 
-  @BuiltValueField(wireName: r'primaryImageUrl')
-  String? get primaryImageUrl;
+    this.primaryImageUrl,
+  });
 
-  ProductLookupItem._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory ProductLookupItem([void updates(ProductLookupItemBuilder b)]) = _$ProductLookupItem;
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
+  final String name;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ProductLookupItemBuilder b) => b;
+  @JsonKey(name: r'brandName', required: true, includeIfNull: false)
+  final String brandName;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ProductLookupItem> get serializer => _$ProductLookupItemSerializer();
-}
-
-class _$ProductLookupItemSerializer implements PrimitiveSerializer<ProductLookupItem> {
-  @override
-  final Iterable<Type> types = const [ProductLookupItem, _$ProductLookupItem];
+  @JsonKey(name: r'primaryImageUrl', required: false, includeIfNull: false)
+  final String? primaryImageUrl;
 
   @override
-  final String wireName = r'ProductLookupItem';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ProductLookupItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'name';
-    yield serializers.serialize(
-      object.name,
-      specifiedType: const FullType(String),
-    );
-    yield r'brandName';
-    yield serializers.serialize(
-      object.brandName,
-      specifiedType: const FullType(String),
-    );
-    if (object.primaryImageUrl != null) {
-      yield r'primaryImageUrl';
-      yield serializers.serialize(
-        object.primaryImageUrl,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductLookupItem &&
+          other.id == id &&
+          other.name == name &&
+          other.brandName == brandName &&
+          other.primaryImageUrl == primaryImageUrl;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ProductLookupItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      id.hashCode +
+      name.hashCode +
+      brandName.hashCode +
+      (primaryImageUrl == null ? 0 : primaryImageUrl.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ProductLookupItemBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
-        case r'brandName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.brandName = valueDes;
-          break;
-        case r'primaryImageUrl':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.primaryImageUrl = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ProductLookupItem.fromJson(Map<String, dynamic> json) =>
+      _$ProductLookupItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductLookupItemToJson(this);
 
   @override
-  ProductLookupItem deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ProductLookupItemBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

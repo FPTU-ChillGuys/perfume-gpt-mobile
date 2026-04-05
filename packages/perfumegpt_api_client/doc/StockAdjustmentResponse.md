@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **reason** | [**StockAdjustmentReason**](StockAdjustmentReason.md) |  | [optional] 
 **note** | **String** |  | [optional] 
 **status** | [**StockAdjustmentStatus**](StockAdjustmentStatus.md) |  | [optional] 
-**adjustmentDetails** | [**BuiltList&lt;StockAdjustmentDetailResponse&gt;**](StockAdjustmentDetailResponse.md) |  | 
+**adjustmentDetails** | [**List&lt;StockAdjustmentDetailResponse&gt;**](StockAdjustmentDetailResponse.md) |  | 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

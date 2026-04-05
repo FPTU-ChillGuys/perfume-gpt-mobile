@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for RecordInspectionDto
 void main() {
-  final instance = RecordInspectionDtoBuilder();
-  // TODO add properties to the builder and call build()
+  final RecordInspectionDto? instance = /* RecordInspectionDto(...) */ null;
+  // TODO add properties to the entity
 
   group(RecordInspectionDto, () {
     // num approvedRefundAmount
@@ -21,6 +21,5 @@ void main() {
     test('to test the property `inspectionNote`', () async {
       // TODO
     });
-
   });
 }

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **variantId** | **String** |  | [optional] 
 **variantName** | **String** |  | 
-**date** | [**Date**](Date.md) |  | [optional] 
+**date** | [**DateTime**](DateTime.md) |  | [optional] 
 **quantitySold** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

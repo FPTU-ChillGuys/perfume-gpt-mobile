@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_attribute_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_attribute_value_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
@@ -18,18 +18,15 @@ import 'package:perfumegpt_api_client/src/model/update_attribute_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_attribute_value_request.dart';
 
 class AttributesApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const AttributesApi(this._dio, this._serializers);
+  const AttributesApi(this._dio);
 
   /// apiAttributesAttributeIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [attributeId] 
+  /// * [attributeId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -39,7 +36,7 @@ class AttributesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAttributesAttributeIdDelete({ 
+  Future<Response<BaseResponseOfstring>> apiAttributesAttributeIdDelete({
     required int attributeId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -48,19 +45,18 @@ class AttributesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/{attributeId}'.replaceAll('{' r'attributeId' '}', encodeQueryParameter(_serializers, attributeId, const FullType(int)).toString());
+    final _path = r'/api/attributes/{attributeId}'.replaceAll(
+      '{'
+      r'attributeId'
+      '}',
+      attributeId.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -78,12 +74,14 @@ class AttributesApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -107,11 +105,11 @@ class AttributesApi {
   }
 
   /// apiAttributesAttributeIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [attributeId] 
-  /// * [updateAttributeRequest] 
+  /// * [attributeId]
+  /// * [updateAttributeRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -121,7 +119,7 @@ class AttributesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAttributesAttributeIdPut({ 
+  Future<Response<BaseResponseOfstring>> apiAttributesAttributeIdPut({
     required int attributeId,
     required UpdateAttributeRequest updateAttributeRequest,
     CancelToken? cancelToken,
@@ -131,19 +129,18 @@ class AttributesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/{attributeId}'.replaceAll('{' r'attributeId' '}', encodeQueryParameter(_serializers, attributeId, const FullType(int)).toString());
+    final _path = r'/api/attributes/{attributeId}'.replaceAll(
+      '{'
+      r'attributeId'
+      '}',
+      attributeId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -154,15 +151,10 @@ class AttributesApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UpdateAttributeRequest);
-      _bodyData = _serializers.serialize(updateAttributeRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateAttributeRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -181,12 +173,14 @@ class AttributesApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -210,10 +204,10 @@ class AttributesApi {
   }
 
   /// apiAttributesAttributeIdValuesLookupGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [attributeId] 
+  /// * [attributeId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -223,7 +217,8 @@ class AttributesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfAttributeValueLookupItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfAttributeValueLookupItem>> apiAttributesAttributeIdValuesLookupGet({ 
+  Future<Response<BaseResponseOfListOfAttributeValueLookupItem>>
+  apiAttributesAttributeIdValuesLookupGet({
     required int attributeId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -232,19 +227,18 @@ class AttributesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/{attributeId}/values/lookup'.replaceAll('{' r'attributeId' '}', encodeQueryParameter(_serializers, attributeId, const FullType(int)).toString());
+    final _path = r'/api/attributes/{attributeId}/values/lookup'.replaceAll(
+      '{'
+      r'attributeId'
+      '}',
+      attributeId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -262,12 +256,17 @@ class AttributesApi {
     BaseResponseOfListOfAttributeValueLookupItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfListOfAttributeValueLookupItem),
-      ) as BaseResponseOfListOfAttributeValueLookupItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfAttributeValueLookupItem,
+              BaseResponseOfListOfAttributeValueLookupItem
+            >(
+              rawData,
+              'BaseResponseOfListOfAttributeValueLookupItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -291,11 +290,11 @@ class AttributesApi {
   }
 
   /// apiAttributesAttributeIdValuesPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [attributeId] 
-  /// * [createAttributeValueRequest] 
+  /// * [attributeId]
+  /// * [createAttributeValueRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -305,7 +304,7 @@ class AttributesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAttributesAttributeIdValuesPost({ 
+  Future<Response<BaseResponseOfstring>> apiAttributesAttributeIdValuesPost({
     required int attributeId,
     required CreateAttributeValueRequest createAttributeValueRequest,
     CancelToken? cancelToken,
@@ -315,19 +314,18 @@ class AttributesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/{attributeId}/values'.replaceAll('{' r'attributeId' '}', encodeQueryParameter(_serializers, attributeId, const FullType(int)).toString());
+    final _path = r'/api/attributes/{attributeId}/values'.replaceAll(
+      '{'
+      r'attributeId'
+      '}',
+      attributeId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -338,15 +336,10 @@ class AttributesApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(CreateAttributeValueRequest);
-      _bodyData = _serializers.serialize(createAttributeValueRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createAttributeValueRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -365,12 +358,14 @@ class AttributesApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -394,10 +389,10 @@ class AttributesApi {
   }
 
   /// apiAttributesLookupGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [isVariantLevel] 
+  /// * [isVariantLevel]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -407,7 +402,8 @@ class AttributesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfAttributeLookupItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfAttributeLookupItem>> apiAttributesLookupGet({ 
+  Future<Response<BaseResponseOfListOfAttributeLookupItem>>
+  apiAttributesLookupGet({
     bool? isVariantLevel,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -419,16 +415,10 @@ class AttributesApi {
     final _path = r'/api/attributes/lookup';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -436,7 +426,7 @@ class AttributesApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (isVariantLevel != null) r'isVariantLevel': encodeQueryParameter(_serializers, isVariantLevel, const FullType(bool)),
+      if (isVariantLevel != null) r'isVariantLevel': isVariantLevel,
     };
 
     final _response = await _dio.request<Object>(
@@ -451,12 +441,17 @@ class AttributesApi {
     BaseResponseOfListOfAttributeLookupItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfListOfAttributeLookupItem),
-      ) as BaseResponseOfListOfAttributeLookupItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfAttributeLookupItem,
+              BaseResponseOfListOfAttributeLookupItem
+            >(
+              rawData,
+              'BaseResponseOfListOfAttributeLookupItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -480,10 +475,10 @@ class AttributesApi {
   }
 
   /// apiAttributesPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createAttributeRequest] 
+  /// * [createAttributeRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -493,7 +488,7 @@ class AttributesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAttributesPost({ 
+  Future<Response<BaseResponseOfstring>> apiAttributesPost({
     required CreateAttributeRequest createAttributeRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -505,16 +500,10 @@ class AttributesApi {
     final _path = r'/api/attributes';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -525,15 +514,10 @@ class AttributesApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(CreateAttributeRequest);
-      _bodyData = _serializers.serialize(createAttributeRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createAttributeRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -552,12 +536,14 @@ class AttributesApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -581,10 +567,10 @@ class AttributesApi {
   }
 
   /// apiAttributesValuesValueIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [valueId] 
+  /// * [valueId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -594,7 +580,7 @@ class AttributesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAttributesValuesValueIdDelete({ 
+  Future<Response<BaseResponseOfstring>> apiAttributesValuesValueIdDelete({
     required int valueId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -603,19 +589,18 @@ class AttributesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/values/{valueId}'.replaceAll('{' r'valueId' '}', encodeQueryParameter(_serializers, valueId, const FullType(int)).toString());
+    final _path = r'/api/attributes/values/{valueId}'.replaceAll(
+      '{'
+      r'valueId'
+      '}',
+      valueId.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -633,12 +618,14 @@ class AttributesApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -662,11 +649,11 @@ class AttributesApi {
   }
 
   /// apiAttributesValuesValueIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [valueId] 
-  /// * [updateAttributeValueRequest] 
+  /// * [valueId]
+  /// * [updateAttributeValueRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -676,7 +663,7 @@ class AttributesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiAttributesValuesValueIdPut({ 
+  Future<Response<BaseResponseOfstring>> apiAttributesValuesValueIdPut({
     required int valueId,
     required UpdateAttributeValueRequest updateAttributeValueRequest,
     CancelToken? cancelToken,
@@ -686,19 +673,18 @@ class AttributesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/values/{valueId}'.replaceAll('{' r'valueId' '}', encodeQueryParameter(_serializers, valueId, const FullType(int)).toString());
+    final _path = r'/api/attributes/values/{valueId}'.replaceAll(
+      '{'
+      r'valueId'
+      '}',
+      valueId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -709,15 +695,10 @@ class AttributesApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UpdateAttributeValueRequest);
-      _bodyData = _serializers.serialize(updateAttributeValueRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateAttributeValueRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -736,12 +717,14 @@ class AttributesApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -763,5 +746,4 @@ class AttributesApi {
       extra: _response.extra,
     );
   }
-
 }

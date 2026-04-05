@@ -3,210 +3,202 @@
 part of 'stock_adjustment_detail_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$StockAdjustmentDetailResponse extends StockAdjustmentDetailResponse {
-  @override
-  final String? id;
-  @override
-  final String? productVariantId;
-  @override
-  final String productName;
-  @override
-  final String variantSku;
-  @override
-  final String? batchId;
-  @override
-  final String batchCode;
-  @override
-  final int? adjustmentQuantity;
-  @override
-  final int? approvedQuantity;
-  @override
-  final String? note;
+abstract class _$StockAdjustmentDetailResponseCWProxy {
+  StockAdjustmentDetailResponse id(String? id);
 
-  factory _$StockAdjustmentDetailResponse([
-    void Function(StockAdjustmentDetailResponseBuilder)? updates,
-  ]) => (StockAdjustmentDetailResponseBuilder()..update(updates))._build();
+  StockAdjustmentDetailResponse productVariantId(String? productVariantId);
 
-  _$StockAdjustmentDetailResponse._({
-    this.id,
-    this.productVariantId,
-    required this.productName,
-    required this.variantSku,
-    this.batchId,
-    required this.batchCode,
-    this.adjustmentQuantity,
-    this.approvedQuantity,
-    this.note,
-  }) : super._();
-  @override
-  StockAdjustmentDetailResponse rebuild(
-    void Function(StockAdjustmentDetailResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  StockAdjustmentDetailResponse productName(String productName);
 
-  @override
-  StockAdjustmentDetailResponseBuilder toBuilder() =>
-      StockAdjustmentDetailResponseBuilder()..replace(this);
+  StockAdjustmentDetailResponse variantSku(String variantSku);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is StockAdjustmentDetailResponse &&
-        id == other.id &&
-        productVariantId == other.productVariantId &&
-        productName == other.productName &&
-        variantSku == other.variantSku &&
-        batchId == other.batchId &&
-        batchCode == other.batchCode &&
-        adjustmentQuantity == other.adjustmentQuantity &&
-        approvedQuantity == other.approvedQuantity &&
-        note == other.note;
-  }
+  StockAdjustmentDetailResponse batchId(String? batchId);
+
+  StockAdjustmentDetailResponse batchCode(String batchCode);
+
+  StockAdjustmentDetailResponse adjustmentQuantity(int? adjustmentQuantity);
+
+  StockAdjustmentDetailResponse approvedQuantity(int? approvedQuantity);
+
+  StockAdjustmentDetailResponse note(String? note);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockAdjustmentDetailResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// StockAdjustmentDetailResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  StockAdjustmentDetailResponse call({
+    String? id,
+    String? productVariantId,
+    String productName,
+    String variantSku,
+    String? batchId,
+    String batchCode,
+    int? adjustmentQuantity,
+    int? approvedQuantity,
+    String? note,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfStockAdjustmentDetailResponse.copyWith(...)` or call `instanceOfStockAdjustmentDetailResponse.copyWith.fieldName(value)` for a single field.
+class _$StockAdjustmentDetailResponseCWProxyImpl
+    implements _$StockAdjustmentDetailResponseCWProxy {
+  const _$StockAdjustmentDetailResponseCWProxyImpl(this._value);
+
+  final StockAdjustmentDetailResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, productVariantId.hashCode);
-    _$hash = $jc(_$hash, productName.hashCode);
-    _$hash = $jc(_$hash, variantSku.hashCode);
-    _$hash = $jc(_$hash, batchId.hashCode);
-    _$hash = $jc(_$hash, batchCode.hashCode);
-    _$hash = $jc(_$hash, adjustmentQuantity.hashCode);
-    _$hash = $jc(_$hash, approvedQuantity.hashCode);
-    _$hash = $jc(_$hash, note.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  StockAdjustmentDetailResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'StockAdjustmentDetailResponse')
-          ..add('id', id)
-          ..add('productVariantId', productVariantId)
-          ..add('productName', productName)
-          ..add('variantSku', variantSku)
-          ..add('batchId', batchId)
-          ..add('batchCode', batchCode)
-          ..add('adjustmentQuantity', adjustmentQuantity)
-          ..add('approvedQuantity', approvedQuantity)
-          ..add('note', note))
-        .toString();
+  StockAdjustmentDetailResponse productVariantId(String? productVariantId) =>
+      call(productVariantId: productVariantId);
+
+  @override
+  StockAdjustmentDetailResponse productName(String productName) =>
+      call(productName: productName);
+
+  @override
+  StockAdjustmentDetailResponse variantSku(String variantSku) =>
+      call(variantSku: variantSku);
+
+  @override
+  StockAdjustmentDetailResponse batchId(String? batchId) =>
+      call(batchId: batchId);
+
+  @override
+  StockAdjustmentDetailResponse batchCode(String batchCode) =>
+      call(batchCode: batchCode);
+
+  @override
+  StockAdjustmentDetailResponse adjustmentQuantity(int? adjustmentQuantity) =>
+      call(adjustmentQuantity: adjustmentQuantity);
+
+  @override
+  StockAdjustmentDetailResponse approvedQuantity(int? approvedQuantity) =>
+      call(approvedQuantity: approvedQuantity);
+
+  @override
+  StockAdjustmentDetailResponse note(String? note) => call(note: note);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockAdjustmentDetailResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// StockAdjustmentDetailResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  StockAdjustmentDetailResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? productVariantId = const $CopyWithPlaceholder(),
+    Object? productName = const $CopyWithPlaceholder(),
+    Object? variantSku = const $CopyWithPlaceholder(),
+    Object? batchId = const $CopyWithPlaceholder(),
+    Object? batchCode = const $CopyWithPlaceholder(),
+    Object? adjustmentQuantity = const $CopyWithPlaceholder(),
+    Object? approvedQuantity = const $CopyWithPlaceholder(),
+    Object? note = const $CopyWithPlaceholder(),
+  }) {
+    return StockAdjustmentDetailResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      productVariantId: productVariantId == const $CopyWithPlaceholder()
+          ? _value.productVariantId
+          // ignore: cast_nullable_to_non_nullable
+          : productVariantId as String?,
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
+          ? _value.productName
+          // ignore: cast_nullable_to_non_nullable
+          : productName as String,
+      variantSku:
+          variantSku == const $CopyWithPlaceholder() || variantSku == null
+          ? _value.variantSku
+          // ignore: cast_nullable_to_non_nullable
+          : variantSku as String,
+      batchId: batchId == const $CopyWithPlaceholder()
+          ? _value.batchId
+          // ignore: cast_nullable_to_non_nullable
+          : batchId as String?,
+      batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
+          ? _value.batchCode
+          // ignore: cast_nullable_to_non_nullable
+          : batchCode as String,
+      adjustmentQuantity: adjustmentQuantity == const $CopyWithPlaceholder()
+          ? _value.adjustmentQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : adjustmentQuantity as int?,
+      approvedQuantity: approvedQuantity == const $CopyWithPlaceholder()
+          ? _value.approvedQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : approvedQuantity as int?,
+      note: note == const $CopyWithPlaceholder()
+          ? _value.note
+          // ignore: cast_nullable_to_non_nullable
+          : note as String?,
+    );
   }
 }
 
-class StockAdjustmentDetailResponseBuilder
-    implements
-        Builder<
-          StockAdjustmentDetailResponse,
-          StockAdjustmentDetailResponseBuilder
-        > {
-  _$StockAdjustmentDetailResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _productVariantId;
-  String? get productVariantId => _$this._productVariantId;
-  set productVariantId(String? productVariantId) =>
-      _$this._productVariantId = productVariantId;
-
-  String? _productName;
-  String? get productName => _$this._productName;
-  set productName(String? productName) => _$this._productName = productName;
-
-  String? _variantSku;
-  String? get variantSku => _$this._variantSku;
-  set variantSku(String? variantSku) => _$this._variantSku = variantSku;
-
-  String? _batchId;
-  String? get batchId => _$this._batchId;
-  set batchId(String? batchId) => _$this._batchId = batchId;
-
-  String? _batchCode;
-  String? get batchCode => _$this._batchCode;
-  set batchCode(String? batchCode) => _$this._batchCode = batchCode;
-
-  int? _adjustmentQuantity;
-  int? get adjustmentQuantity => _$this._adjustmentQuantity;
-  set adjustmentQuantity(int? adjustmentQuantity) =>
-      _$this._adjustmentQuantity = adjustmentQuantity;
-
-  int? _approvedQuantity;
-  int? get approvedQuantity => _$this._approvedQuantity;
-  set approvedQuantity(int? approvedQuantity) =>
-      _$this._approvedQuantity = approvedQuantity;
-
-  String? _note;
-  String? get note => _$this._note;
-  set note(String? note) => _$this._note = note;
-
-  StockAdjustmentDetailResponseBuilder() {
-    StockAdjustmentDetailResponse._defaults(this);
-  }
-
-  StockAdjustmentDetailResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _productVariantId = $v.productVariantId;
-      _productName = $v.productName;
-      _variantSku = $v.variantSku;
-      _batchId = $v.batchId;
-      _batchCode = $v.batchCode;
-      _adjustmentQuantity = $v.adjustmentQuantity;
-      _approvedQuantity = $v.approvedQuantity;
-      _note = $v.note;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(StockAdjustmentDetailResponse other) {
-    _$v = other as _$StockAdjustmentDetailResponse;
-  }
-
-  @override
-  void update(void Function(StockAdjustmentDetailResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  StockAdjustmentDetailResponse build() => _build();
-
-  _$StockAdjustmentDetailResponse _build() {
-    final _$result =
-        _$v ??
-        _$StockAdjustmentDetailResponse._(
-          id: id,
-          productVariantId: productVariantId,
-          productName: BuiltValueNullFieldError.checkNotNull(
-            productName,
-            r'StockAdjustmentDetailResponse',
-            'productName',
-          ),
-          variantSku: BuiltValueNullFieldError.checkNotNull(
-            variantSku,
-            r'StockAdjustmentDetailResponse',
-            'variantSku',
-          ),
-          batchId: batchId,
-          batchCode: BuiltValueNullFieldError.checkNotNull(
-            batchCode,
-            r'StockAdjustmentDetailResponse',
-            'batchCode',
-          ),
-          adjustmentQuantity: adjustmentQuantity,
-          approvedQuantity: approvedQuantity,
-          note: note,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $StockAdjustmentDetailResponseCopyWith
+    on StockAdjustmentDetailResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfStockAdjustmentDetailResponse.copyWith(...)` or `instanceOfStockAdjustmentDetailResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$StockAdjustmentDetailResponseCWProxy get copyWith =>
+      _$StockAdjustmentDetailResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+StockAdjustmentDetailResponse _$StockAdjustmentDetailResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('StockAdjustmentDetailResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['productName', 'variantSku', 'batchCode'],
+  );
+  final val = StockAdjustmentDetailResponse(
+    id: $checkedConvert('id', (v) => v as String?),
+    productVariantId: $checkedConvert('productVariantId', (v) => v as String?),
+    productName: $checkedConvert('productName', (v) => v as String),
+    variantSku: $checkedConvert('variantSku', (v) => v as String),
+    batchId: $checkedConvert('batchId', (v) => v as String?),
+    batchCode: $checkedConvert('batchCode', (v) => v as String),
+    adjustmentQuantity: $checkedConvert(
+      'adjustmentQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    approvedQuantity: $checkedConvert(
+      'approvedQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    note: $checkedConvert('note', (v) => v as String?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$StockAdjustmentDetailResponseToJson(
+  StockAdjustmentDetailResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'productVariantId': ?instance.productVariantId,
+  'productName': instance.productName,
+  'variantSku': instance.variantSku,
+  'batchId': ?instance.batchId,
+  'batchCode': instance.batchCode,
+  'adjustmentQuantity': ?instance.adjustmentQuantity,
+  'approvedQuantity': ?instance.approvedQuantity,
+  'note': ?instance.note,
+};

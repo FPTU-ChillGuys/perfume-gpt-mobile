@@ -3,269 +3,268 @@
 part of 'update_product_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UpdateProductRequest extends UpdateProductRequest {
-  @override
-  final String name;
-  @override
-  final int? brandId;
-  @override
-  final int? categoryId;
-  @override
-  final String? description;
-  @override
-  final Gender? gender;
-  @override
-  final String origin;
-  @override
-  final int? releaseYear;
-  @override
-  final BuiltList<int> olfactoryFamilyIds;
-  @override
-  final BuiltList<ScentNoteDto> scentNotes;
-  @override
-  final BuiltList<ProductAttributeDto>? attributes;
-  @override
-  final BuiltList<String>? temporaryMediaIdsToAdd;
-  @override
-  final BuiltList<String>? mediaIdsToDelete;
+abstract class _$UpdateProductRequestCWProxy {
+  UpdateProductRequest name(String name);
 
-  factory _$UpdateProductRequest([
-    void Function(UpdateProductRequestBuilder)? updates,
-  ]) => (UpdateProductRequestBuilder()..update(updates))._build();
+  UpdateProductRequest brandId(int? brandId);
 
-  _$UpdateProductRequest._({
-    required this.name,
-    this.brandId,
-    this.categoryId,
-    this.description,
-    this.gender,
-    required this.origin,
-    this.releaseYear,
-    required this.olfactoryFamilyIds,
-    required this.scentNotes,
-    this.attributes,
-    this.temporaryMediaIdsToAdd,
-    this.mediaIdsToDelete,
-  }) : super._();
-  @override
-  UpdateProductRequest rebuild(
-    void Function(UpdateProductRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  UpdateProductRequest categoryId(int? categoryId);
 
-  @override
-  UpdateProductRequestBuilder toBuilder() =>
-      UpdateProductRequestBuilder()..replace(this);
+  UpdateProductRequest description(String? description);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UpdateProductRequest &&
-        name == other.name &&
-        brandId == other.brandId &&
-        categoryId == other.categoryId &&
-        description == other.description &&
-        gender == other.gender &&
-        origin == other.origin &&
-        releaseYear == other.releaseYear &&
-        olfactoryFamilyIds == other.olfactoryFamilyIds &&
-        scentNotes == other.scentNotes &&
-        attributes == other.attributes &&
-        temporaryMediaIdsToAdd == other.temporaryMediaIdsToAdd &&
-        mediaIdsToDelete == other.mediaIdsToDelete;
-  }
+  UpdateProductRequest gender(Gender? gender);
+
+  UpdateProductRequest origin(String origin);
+
+  UpdateProductRequest releaseYear(int? releaseYear);
+
+  UpdateProductRequest olfactoryFamilyIds(List<int> olfactoryFamilyIds);
+
+  UpdateProductRequest scentNotes(List<ScentNoteDto> scentNotes);
+
+  UpdateProductRequest attributes(List<ProductAttributeDto>? attributes);
+
+  UpdateProductRequest temporaryMediaIdsToAdd(
+    List<String>? temporaryMediaIdsToAdd,
+  );
+
+  UpdateProductRequest mediaIdsToDelete(List<String>? mediaIdsToDelete);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProductRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateProductRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateProductRequest call({
+    String name,
+    int? brandId,
+    int? categoryId,
+    String? description,
+    Gender? gender,
+    String origin,
+    int? releaseYear,
+    List<int> olfactoryFamilyIds,
+    List<ScentNoteDto> scentNotes,
+    List<ProductAttributeDto>? attributes,
+    List<String>? temporaryMediaIdsToAdd,
+    List<String>? mediaIdsToDelete,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateProductRequest.copyWith(...)` or call `instanceOfUpdateProductRequest.copyWith.fieldName(value)` for a single field.
+class _$UpdateProductRequestCWProxyImpl
+    implements _$UpdateProductRequestCWProxy {
+  const _$UpdateProductRequestCWProxyImpl(this._value);
+
+  final UpdateProductRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, brandId.hashCode);
-    _$hash = $jc(_$hash, categoryId.hashCode);
-    _$hash = $jc(_$hash, description.hashCode);
-    _$hash = $jc(_$hash, gender.hashCode);
-    _$hash = $jc(_$hash, origin.hashCode);
-    _$hash = $jc(_$hash, releaseYear.hashCode);
-    _$hash = $jc(_$hash, olfactoryFamilyIds.hashCode);
-    _$hash = $jc(_$hash, scentNotes.hashCode);
-    _$hash = $jc(_$hash, attributes.hashCode);
-    _$hash = $jc(_$hash, temporaryMediaIdsToAdd.hashCode);
-    _$hash = $jc(_$hash, mediaIdsToDelete.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UpdateProductRequest name(String name) => call(name: name);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'UpdateProductRequest')
-          ..add('name', name)
-          ..add('brandId', brandId)
-          ..add('categoryId', categoryId)
-          ..add('description', description)
-          ..add('gender', gender)
-          ..add('origin', origin)
-          ..add('releaseYear', releaseYear)
-          ..add('olfactoryFamilyIds', olfactoryFamilyIds)
-          ..add('scentNotes', scentNotes)
-          ..add('attributes', attributes)
-          ..add('temporaryMediaIdsToAdd', temporaryMediaIdsToAdd)
-          ..add('mediaIdsToDelete', mediaIdsToDelete))
-        .toString();
+  UpdateProductRequest brandId(int? brandId) => call(brandId: brandId);
+
+  @override
+  UpdateProductRequest categoryId(int? categoryId) =>
+      call(categoryId: categoryId);
+
+  @override
+  UpdateProductRequest description(String? description) =>
+      call(description: description);
+
+  @override
+  UpdateProductRequest gender(Gender? gender) => call(gender: gender);
+
+  @override
+  UpdateProductRequest origin(String origin) => call(origin: origin);
+
+  @override
+  UpdateProductRequest releaseYear(int? releaseYear) =>
+      call(releaseYear: releaseYear);
+
+  @override
+  UpdateProductRequest olfactoryFamilyIds(List<int> olfactoryFamilyIds) =>
+      call(olfactoryFamilyIds: olfactoryFamilyIds);
+
+  @override
+  UpdateProductRequest scentNotes(List<ScentNoteDto> scentNotes) =>
+      call(scentNotes: scentNotes);
+
+  @override
+  UpdateProductRequest attributes(List<ProductAttributeDto>? attributes) =>
+      call(attributes: attributes);
+
+  @override
+  UpdateProductRequest temporaryMediaIdsToAdd(
+    List<String>? temporaryMediaIdsToAdd,
+  ) => call(temporaryMediaIdsToAdd: temporaryMediaIdsToAdd);
+
+  @override
+  UpdateProductRequest mediaIdsToDelete(List<String>? mediaIdsToDelete) =>
+      call(mediaIdsToDelete: mediaIdsToDelete);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProductRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateProductRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateProductRequest call({
+    Object? name = const $CopyWithPlaceholder(),
+    Object? brandId = const $CopyWithPlaceholder(),
+    Object? categoryId = const $CopyWithPlaceholder(),
+    Object? description = const $CopyWithPlaceholder(),
+    Object? gender = const $CopyWithPlaceholder(),
+    Object? origin = const $CopyWithPlaceholder(),
+    Object? releaseYear = const $CopyWithPlaceholder(),
+    Object? olfactoryFamilyIds = const $CopyWithPlaceholder(),
+    Object? scentNotes = const $CopyWithPlaceholder(),
+    Object? attributes = const $CopyWithPlaceholder(),
+    Object? temporaryMediaIdsToAdd = const $CopyWithPlaceholder(),
+    Object? mediaIdsToDelete = const $CopyWithPlaceholder(),
+  }) {
+    return UpdateProductRequest(
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+      brandId: brandId == const $CopyWithPlaceholder()
+          ? _value.brandId
+          // ignore: cast_nullable_to_non_nullable
+          : brandId as int?,
+      categoryId: categoryId == const $CopyWithPlaceholder()
+          ? _value.categoryId
+          // ignore: cast_nullable_to_non_nullable
+          : categoryId as int?,
+      description: description == const $CopyWithPlaceholder()
+          ? _value.description
+          // ignore: cast_nullable_to_non_nullable
+          : description as String?,
+      gender: gender == const $CopyWithPlaceholder()
+          ? _value.gender
+          // ignore: cast_nullable_to_non_nullable
+          : gender as Gender?,
+      origin: origin == const $CopyWithPlaceholder() || origin == null
+          ? _value.origin
+          // ignore: cast_nullable_to_non_nullable
+          : origin as String,
+      releaseYear: releaseYear == const $CopyWithPlaceholder()
+          ? _value.releaseYear
+          // ignore: cast_nullable_to_non_nullable
+          : releaseYear as int?,
+      olfactoryFamilyIds:
+          olfactoryFamilyIds == const $CopyWithPlaceholder() ||
+              olfactoryFamilyIds == null
+          ? _value.olfactoryFamilyIds
+          // ignore: cast_nullable_to_non_nullable
+          : olfactoryFamilyIds as List<int>,
+      scentNotes:
+          scentNotes == const $CopyWithPlaceholder() || scentNotes == null
+          ? _value.scentNotes
+          // ignore: cast_nullable_to_non_nullable
+          : scentNotes as List<ScentNoteDto>,
+      attributes: attributes == const $CopyWithPlaceholder()
+          ? _value.attributes
+          // ignore: cast_nullable_to_non_nullable
+          : attributes as List<ProductAttributeDto>?,
+      temporaryMediaIdsToAdd:
+          temporaryMediaIdsToAdd == const $CopyWithPlaceholder()
+          ? _value.temporaryMediaIdsToAdd
+          // ignore: cast_nullable_to_non_nullable
+          : temporaryMediaIdsToAdd as List<String>?,
+      mediaIdsToDelete: mediaIdsToDelete == const $CopyWithPlaceholder()
+          ? _value.mediaIdsToDelete
+          // ignore: cast_nullable_to_non_nullable
+          : mediaIdsToDelete as List<String>?,
+    );
   }
 }
 
-class UpdateProductRequestBuilder
-    implements Builder<UpdateProductRequest, UpdateProductRequestBuilder> {
-  _$UpdateProductRequest? _$v;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  int? _brandId;
-  int? get brandId => _$this._brandId;
-  set brandId(int? brandId) => _$this._brandId = brandId;
-
-  int? _categoryId;
-  int? get categoryId => _$this._categoryId;
-  set categoryId(int? categoryId) => _$this._categoryId = categoryId;
-
-  String? _description;
-  String? get description => _$this._description;
-  set description(String? description) => _$this._description = description;
-
-  Gender? _gender;
-  Gender? get gender => _$this._gender;
-  set gender(Gender? gender) => _$this._gender = gender;
-
-  String? _origin;
-  String? get origin => _$this._origin;
-  set origin(String? origin) => _$this._origin = origin;
-
-  int? _releaseYear;
-  int? get releaseYear => _$this._releaseYear;
-  set releaseYear(int? releaseYear) => _$this._releaseYear = releaseYear;
-
-  ListBuilder<int>? _olfactoryFamilyIds;
-  ListBuilder<int> get olfactoryFamilyIds =>
-      _$this._olfactoryFamilyIds ??= ListBuilder<int>();
-  set olfactoryFamilyIds(ListBuilder<int>? olfactoryFamilyIds) =>
-      _$this._olfactoryFamilyIds = olfactoryFamilyIds;
-
-  ListBuilder<ScentNoteDto>? _scentNotes;
-  ListBuilder<ScentNoteDto> get scentNotes =>
-      _$this._scentNotes ??= ListBuilder<ScentNoteDto>();
-  set scentNotes(ListBuilder<ScentNoteDto>? scentNotes) =>
-      _$this._scentNotes = scentNotes;
-
-  ListBuilder<ProductAttributeDto>? _attributes;
-  ListBuilder<ProductAttributeDto> get attributes =>
-      _$this._attributes ??= ListBuilder<ProductAttributeDto>();
-  set attributes(ListBuilder<ProductAttributeDto>? attributes) =>
-      _$this._attributes = attributes;
-
-  ListBuilder<String>? _temporaryMediaIdsToAdd;
-  ListBuilder<String> get temporaryMediaIdsToAdd =>
-      _$this._temporaryMediaIdsToAdd ??= ListBuilder<String>();
-  set temporaryMediaIdsToAdd(ListBuilder<String>? temporaryMediaIdsToAdd) =>
-      _$this._temporaryMediaIdsToAdd = temporaryMediaIdsToAdd;
-
-  ListBuilder<String>? _mediaIdsToDelete;
-  ListBuilder<String> get mediaIdsToDelete =>
-      _$this._mediaIdsToDelete ??= ListBuilder<String>();
-  set mediaIdsToDelete(ListBuilder<String>? mediaIdsToDelete) =>
-      _$this._mediaIdsToDelete = mediaIdsToDelete;
-
-  UpdateProductRequestBuilder() {
-    UpdateProductRequest._defaults(this);
-  }
-
-  UpdateProductRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _name = $v.name;
-      _brandId = $v.brandId;
-      _categoryId = $v.categoryId;
-      _description = $v.description;
-      _gender = $v.gender;
-      _origin = $v.origin;
-      _releaseYear = $v.releaseYear;
-      _olfactoryFamilyIds = $v.olfactoryFamilyIds.toBuilder();
-      _scentNotes = $v.scentNotes.toBuilder();
-      _attributes = $v.attributes?.toBuilder();
-      _temporaryMediaIdsToAdd = $v.temporaryMediaIdsToAdd?.toBuilder();
-      _mediaIdsToDelete = $v.mediaIdsToDelete?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UpdateProductRequest other) {
-    _$v = other as _$UpdateProductRequest;
-  }
-
-  @override
-  void update(void Function(UpdateProductRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UpdateProductRequest build() => _build();
-
-  _$UpdateProductRequest _build() {
-    _$UpdateProductRequest _$result;
-    try {
-      _$result =
-          _$v ??
-          _$UpdateProductRequest._(
-            name: BuiltValueNullFieldError.checkNotNull(
-              name,
-              r'UpdateProductRequest',
-              'name',
-            ),
-            brandId: brandId,
-            categoryId: categoryId,
-            description: description,
-            gender: gender,
-            origin: BuiltValueNullFieldError.checkNotNull(
-              origin,
-              r'UpdateProductRequest',
-              'origin',
-            ),
-            releaseYear: releaseYear,
-            olfactoryFamilyIds: olfactoryFamilyIds.build(),
-            scentNotes: scentNotes.build(),
-            attributes: _attributes?.build(),
-            temporaryMediaIdsToAdd: _temporaryMediaIdsToAdd?.build(),
-            mediaIdsToDelete: _mediaIdsToDelete?.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'olfactoryFamilyIds';
-        olfactoryFamilyIds.build();
-        _$failedField = 'scentNotes';
-        scentNotes.build();
-        _$failedField = 'attributes';
-        _attributes?.build();
-        _$failedField = 'temporaryMediaIdsToAdd';
-        _temporaryMediaIdsToAdd?.build();
-        _$failedField = 'mediaIdsToDelete';
-        _mediaIdsToDelete?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'UpdateProductRequest',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $UpdateProductRequestCopyWith on UpdateProductRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateProductRequest.copyWith(...)` or `instanceOfUpdateProductRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UpdateProductRequestCWProxy get copyWith =>
+      _$UpdateProductRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateProductRequest _$UpdateProductRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('UpdateProductRequest', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['name', 'origin', 'olfactoryFamilyIds', 'scentNotes'],
+  );
+  final val = UpdateProductRequest(
+    name: $checkedConvert('name', (v) => v as String),
+    brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
+    categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
+    description: $checkedConvert('description', (v) => v as String?),
+    gender: $checkedConvert(
+      'gender',
+      (v) => $enumDecodeNullable(_$GenderEnumMap, v),
+    ),
+    origin: $checkedConvert('origin', (v) => v as String),
+    releaseYear: $checkedConvert('releaseYear', (v) => (v as num?)?.toInt()),
+    olfactoryFamilyIds: $checkedConvert(
+      'olfactoryFamilyIds',
+      (v) => (v as List<dynamic>).map((e) => (e as num).toInt()).toList(),
+    ),
+    scentNotes: $checkedConvert(
+      'scentNotes',
+      (v) => (v as List<dynamic>)
+          .map((e) => ScentNoteDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    attributes: $checkedConvert(
+      'attributes',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => ProductAttributeDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    temporaryMediaIdsToAdd: $checkedConvert(
+      'temporaryMediaIdsToAdd',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    ),
+    mediaIdsToDelete: $checkedConvert(
+      'mediaIdsToDelete',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$UpdateProductRequestToJson(
+  UpdateProductRequest instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'brandId': ?instance.brandId,
+  'categoryId': ?instance.categoryId,
+  'description': ?instance.description,
+  'gender': ?_$GenderEnumMap[instance.gender],
+  'origin': instance.origin,
+  'releaseYear': ?instance.releaseYear,
+  'olfactoryFamilyIds': instance.olfactoryFamilyIds,
+  'scentNotes': instance.scentNotes.map((e) => e.toJson()).toList(),
+  'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
+  'temporaryMediaIdsToAdd': ?instance.temporaryMediaIdsToAdd,
+  'mediaIdsToDelete': ?instance.mediaIdsToDelete,
+};
+
+const _$GenderEnumMap = {
+  Gender.male: 'Male',
+  Gender.female: 'Female',
+  Gender.unisex: 'Unisex',
+};

@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for StockAdjustmentResponse
 void main() {
-  final instance = StockAdjustmentResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final StockAdjustmentResponse? instance = /* StockAdjustmentResponse(...) */
+      null;
+  // TODO add properties to the entity
 
   group(StockAdjustmentResponse, () {
     // String id
@@ -52,7 +53,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<StockAdjustmentDetailResponse> adjustmentDetails
+    // List<StockAdjustmentDetailResponse> adjustmentDetails
     test('to test the property `adjustmentDetails`', () async {
       // TODO
     });
@@ -66,6 +67,5 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
-
   });
 }

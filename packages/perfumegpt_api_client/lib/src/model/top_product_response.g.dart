@@ -3,136 +3,121 @@
 part of 'top_product_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$TopProductResponse extends TopProductResponse {
-  @override
-  final String? productId;
-  @override
-  final String productName;
-  @override
-  final int? totalUnitsSold;
-  @override
-  final num? revenue;
+abstract class _$TopProductResponseCWProxy {
+  TopProductResponse productId(String? productId);
 
-  factory _$TopProductResponse([
-    void Function(TopProductResponseBuilder)? updates,
-  ]) => (TopProductResponseBuilder()..update(updates))._build();
+  TopProductResponse productName(String productName);
 
-  _$TopProductResponse._({
-    this.productId,
-    required this.productName,
-    this.totalUnitsSold,
-    this.revenue,
-  }) : super._();
-  @override
-  TopProductResponse rebuild(
-    void Function(TopProductResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  TopProductResponse totalUnitsSold(int? totalUnitsSold);
 
-  @override
-  TopProductResponseBuilder toBuilder() =>
-      TopProductResponseBuilder()..replace(this);
+  TopProductResponse revenue(num? revenue);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is TopProductResponse &&
-        productId == other.productId &&
-        productName == other.productName &&
-        totalUnitsSold == other.totalUnitsSold &&
-        revenue == other.revenue;
-  }
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TopProductResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// TopProductResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  TopProductResponse call({
+    String? productId,
+    String productName,
+    int? totalUnitsSold,
+    num? revenue,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfTopProductResponse.copyWith(...)` or call `instanceOfTopProductResponse.copyWith.fieldName(value)` for a single field.
+class _$TopProductResponseCWProxyImpl implements _$TopProductResponseCWProxy {
+  const _$TopProductResponseCWProxyImpl(this._value);
+
+  final TopProductResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, productId.hashCode);
-    _$hash = $jc(_$hash, productName.hashCode);
-    _$hash = $jc(_$hash, totalUnitsSold.hashCode);
-    _$hash = $jc(_$hash, revenue.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  TopProductResponse productId(String? productId) => call(productId: productId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'TopProductResponse')
-          ..add('productId', productId)
-          ..add('productName', productName)
-          ..add('totalUnitsSold', totalUnitsSold)
-          ..add('revenue', revenue))
-        .toString();
+  TopProductResponse productName(String productName) =>
+      call(productName: productName);
+
+  @override
+  TopProductResponse totalUnitsSold(int? totalUnitsSold) =>
+      call(totalUnitsSold: totalUnitsSold);
+
+  @override
+  TopProductResponse revenue(num? revenue) => call(revenue: revenue);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TopProductResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// TopProductResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  TopProductResponse call({
+    Object? productId = const $CopyWithPlaceholder(),
+    Object? productName = const $CopyWithPlaceholder(),
+    Object? totalUnitsSold = const $CopyWithPlaceholder(),
+    Object? revenue = const $CopyWithPlaceholder(),
+  }) {
+    return TopProductResponse(
+      productId: productId == const $CopyWithPlaceholder()
+          ? _value.productId
+          // ignore: cast_nullable_to_non_nullable
+          : productId as String?,
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
+          ? _value.productName
+          // ignore: cast_nullable_to_non_nullable
+          : productName as String,
+      totalUnitsSold: totalUnitsSold == const $CopyWithPlaceholder()
+          ? _value.totalUnitsSold
+          // ignore: cast_nullable_to_non_nullable
+          : totalUnitsSold as int?,
+      revenue: revenue == const $CopyWithPlaceholder()
+          ? _value.revenue
+          // ignore: cast_nullable_to_non_nullable
+          : revenue as num?,
+    );
   }
 }
 
-class TopProductResponseBuilder
-    implements Builder<TopProductResponse, TopProductResponseBuilder> {
-  _$TopProductResponse? _$v;
-
-  String? _productId;
-  String? get productId => _$this._productId;
-  set productId(String? productId) => _$this._productId = productId;
-
-  String? _productName;
-  String? get productName => _$this._productName;
-  set productName(String? productName) => _$this._productName = productName;
-
-  int? _totalUnitsSold;
-  int? get totalUnitsSold => _$this._totalUnitsSold;
-  set totalUnitsSold(int? totalUnitsSold) =>
-      _$this._totalUnitsSold = totalUnitsSold;
-
-  num? _revenue;
-  num? get revenue => _$this._revenue;
-  set revenue(num? revenue) => _$this._revenue = revenue;
-
-  TopProductResponseBuilder() {
-    TopProductResponse._defaults(this);
-  }
-
-  TopProductResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _productId = $v.productId;
-      _productName = $v.productName;
-      _totalUnitsSold = $v.totalUnitsSold;
-      _revenue = $v.revenue;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(TopProductResponse other) {
-    _$v = other as _$TopProductResponse;
-  }
-
-  @override
-  void update(void Function(TopProductResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  TopProductResponse build() => _build();
-
-  _$TopProductResponse _build() {
-    final _$result =
-        _$v ??
-        _$TopProductResponse._(
-          productId: productId,
-          productName: BuiltValueNullFieldError.checkNotNull(
-            productName,
-            r'TopProductResponse',
-            'productName',
-          ),
-          totalUnitsSold: totalUnitsSold,
-          revenue: revenue,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $TopProductResponseCopyWith on TopProductResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfTopProductResponse.copyWith(...)` or `instanceOfTopProductResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$TopProductResponseCWProxy get copyWith =>
+      _$TopProductResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+TopProductResponse _$TopProductResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('TopProductResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['productName']);
+      final val = TopProductResponse(
+        productId: $checkedConvert('productId', (v) => v as String?),
+        productName: $checkedConvert('productName', (v) => v as String),
+        totalUnitsSold: $checkedConvert(
+          'totalUnitsSold',
+          (v) => (v as num?)?.toInt(),
+        ),
+        revenue: $checkedConvert('revenue', (v) => v as num?),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$TopProductResponseToJson(TopProductResponse instance) =>
+    <String, dynamic>{
+      'productId': ?instance.productId,
+      'productName': instance.productName,
+      'totalUnitsSold': ?instance.totalUnitsSold,
+      'revenue': ?instance.revenue,
+    };

@@ -3,103 +3,82 @@
 part of 'brand_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BrandResponse extends BrandResponse {
-  @override
-  final int? id;
-  @override
-  final String name;
+abstract class _$BrandResponseCWProxy {
+  BrandResponse id(int? id);
 
-  factory _$BrandResponse([void Function(BrandResponseBuilder)? updates]) =>
-      (BrandResponseBuilder()..update(updates))._build();
+  BrandResponse name(String name);
 
-  _$BrandResponse._({this.id, required this.name}) : super._();
-  @override
-  BrandResponse rebuild(void Function(BrandResponseBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BrandResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BrandResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BrandResponse call({int? id, String name});
+}
 
-  @override
-  BrandResponseBuilder toBuilder() => BrandResponseBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBrandResponse.copyWith(...)` or call `instanceOfBrandResponse.copyWith.fieldName(value)` for a single field.
+class _$BrandResponseCWProxyImpl implements _$BrandResponseCWProxy {
+  const _$BrandResponseCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BrandResponse && id == other.id && name == other.name;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  final BrandResponse _value;
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'BrandResponse')
-          ..add('id', id)
-          ..add('name', name))
-        .toString();
+  BrandResponse id(int? id) => call(id: id);
+
+  @override
+  BrandResponse name(String name) => call(name: name);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BrandResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BrandResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BrandResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
+  }) {
+    return BrandResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as int?,
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+    );
   }
 }
 
-class BrandResponseBuilder
-    implements Builder<BrandResponse, BrandResponseBuilder> {
-  _$BrandResponse? _$v;
-
-  int? _id;
-  int? get id => _$this._id;
-  set id(int? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  BrandResponseBuilder() {
-    BrandResponse._defaults(this);
-  }
-
-  BrandResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _name = $v.name;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BrandResponse other) {
-    _$v = other as _$BrandResponse;
-  }
-
-  @override
-  void update(void Function(BrandResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BrandResponse build() => _build();
-
-  _$BrandResponse _build() {
-    final _$result =
-        _$v ??
-        _$BrandResponse._(
-          id: id,
-          name: BuiltValueNullFieldError.checkNotNull(
-            name,
-            r'BrandResponse',
-            'name',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $BrandResponseCopyWith on BrandResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBrandResponse.copyWith(...)` or `instanceOfBrandResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BrandResponseCWProxy get copyWith => _$BrandResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BrandResponse _$BrandResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('BrandResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['name']);
+      final val = BrandResponse(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        name: $checkedConvert('name', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$BrandResponseToJson(BrandResponse instance) =>
+    <String, dynamic>{'id': ?instance.id, 'name': instance.name};

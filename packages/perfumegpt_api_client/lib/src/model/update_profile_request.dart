@@ -4,203 +4,84 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/update_note_preference_request.dart';
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'update_profile_request.g.dart';
 
-/// UpdateProfileRequest
-///
-/// Properties:
-/// * [dateOfBirth] 
-/// * [minBudget] 
-/// * [maxBudget] 
-/// * [notePreferenceIds] 
-/// * [familyPreferenceIds] 
-/// * [attributePreferenceIds] 
-@BuiltValue()
-abstract class UpdateProfileRequest implements Built<UpdateProfileRequest, UpdateProfileRequestBuilder> {
-  @BuiltValueField(wireName: r'dateOfBirth')
-  DateTime? get dateOfBirth;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class UpdateProfileRequest {
+  /// Returns a new [UpdateProfileRequest] instance.
+  UpdateProfileRequest({
+    this.dateOfBirth,
 
-  @BuiltValueField(wireName: r'minBudget')
-  num? get minBudget;
+    this.minBudget,
 
-  @BuiltValueField(wireName: r'maxBudget')
-  num? get maxBudget;
+    this.maxBudget,
 
-  @BuiltValueField(wireName: r'notePreferenceIds')
-  BuiltList<UpdateNotePreferenceRequest>? get notePreferenceIds;
+    this.notePreferenceIds,
 
-  @BuiltValueField(wireName: r'familyPreferenceIds')
-  BuiltList<int>? get familyPreferenceIds;
+    this.familyPreferenceIds,
 
-  @BuiltValueField(wireName: r'attributePreferenceIds')
-  BuiltList<int>? get attributePreferenceIds;
+    this.attributePreferenceIds,
+  });
 
-  UpdateProfileRequest._();
+  @JsonKey(name: r'dateOfBirth', required: false, includeIfNull: false)
+  final DateTime? dateOfBirth;
 
-  factory UpdateProfileRequest([void updates(UpdateProfileRequestBuilder b)]) = _$UpdateProfileRequest;
+  @JsonKey(name: r'minBudget', required: false, includeIfNull: false)
+  final num? minBudget;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(UpdateProfileRequestBuilder b) => b;
+  // minimum: 0
+  @JsonKey(name: r'maxBudget', required: false, includeIfNull: false)
+  final num? maxBudget;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<UpdateProfileRequest> get serializer => _$UpdateProfileRequestSerializer();
-}
+  @JsonKey(name: r'notePreferenceIds', required: false, includeIfNull: false)
+  final List<UpdateNotePreferenceRequest>? notePreferenceIds;
 
-class _$UpdateProfileRequestSerializer implements PrimitiveSerializer<UpdateProfileRequest> {
-  @override
-  final Iterable<Type> types = const [UpdateProfileRequest, _$UpdateProfileRequest];
+  @JsonKey(name: r'familyPreferenceIds', required: false, includeIfNull: false)
+  final List<int>? familyPreferenceIds;
 
-  @override
-  final String wireName = r'UpdateProfileRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    UpdateProfileRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.dateOfBirth != null) {
-      yield r'dateOfBirth';
-      yield serializers.serialize(
-        object.dateOfBirth,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-    if (object.minBudget != null) {
-      yield r'minBudget';
-      yield serializers.serialize(
-        object.minBudget,
-        specifiedType: const FullType.nullable(num),
-      );
-    }
-    if (object.maxBudget != null) {
-      yield r'maxBudget';
-      yield serializers.serialize(
-        object.maxBudget,
-        specifiedType: const FullType.nullable(num),
-      );
-    }
-    if (object.notePreferenceIds != null) {
-      yield r'notePreferenceIds';
-      yield serializers.serialize(
-        object.notePreferenceIds,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(UpdateNotePreferenceRequest)]),
-      );
-    }
-    if (object.familyPreferenceIds != null) {
-      yield r'familyPreferenceIds';
-      yield serializers.serialize(
-        object.familyPreferenceIds,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(int)]),
-      );
-    }
-    if (object.attributePreferenceIds != null) {
-      yield r'attributePreferenceIds';
-      yield serializers.serialize(
-        object.attributePreferenceIds,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(int)]),
-      );
-    }
-  }
+  @JsonKey(
+    name: r'attributePreferenceIds',
+    required: false,
+    includeIfNull: false,
+  )
+  final List<int>? attributePreferenceIds;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    UpdateProfileRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required UpdateProfileRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'dateOfBirth':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.dateOfBirth = valueDes;
-          break;
-        case r'minBudget':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(num),
-          ) as num?;
-          if (valueDes == null) continue;
-          result.minBudget = valueDes;
-          break;
-        case r'maxBudget':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(num),
-          ) as num?;
-          if (valueDes == null) continue;
-          result.maxBudget = valueDes;
-          break;
-        case r'notePreferenceIds':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(UpdateNotePreferenceRequest)]),
-          ) as BuiltList<UpdateNotePreferenceRequest>?;
-          if (valueDes == null) continue;
-          result.notePreferenceIds.replace(valueDes);
-          break;
-        case r'familyPreferenceIds':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(int)]),
-          ) as BuiltList<int>?;
-          if (valueDes == null) continue;
-          result.familyPreferenceIds.replace(valueDes);
-          break;
-        case r'attributePreferenceIds':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(int)]),
-          ) as BuiltList<int>?;
-          if (valueDes == null) continue;
-          result.attributePreferenceIds.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateProfileRequest &&
+          other.dateOfBirth == dateOfBirth &&
+          other.minBudget == minBudget &&
+          other.maxBudget == maxBudget &&
+          other.notePreferenceIds == notePreferenceIds &&
+          other.familyPreferenceIds == familyPreferenceIds &&
+          other.attributePreferenceIds == attributePreferenceIds;
 
   @override
-  UpdateProfileRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = UpdateProfileRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      (dateOfBirth == null ? 0 : dateOfBirth.hashCode) +
+      (minBudget == null ? 0 : minBudget.hashCode) +
+      (maxBudget == null ? 0 : maxBudget.hashCode) +
+      (notePreferenceIds == null ? 0 : notePreferenceIds.hashCode) +
+      (familyPreferenceIds == null ? 0 : familyPreferenceIds.hashCode) +
+      (attributePreferenceIds == null ? 0 : attributePreferenceIds.hashCode);
+
+  factory UpdateProfileRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateProfileRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateProfileRequestToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

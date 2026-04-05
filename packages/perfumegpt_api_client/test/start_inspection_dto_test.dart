@@ -3,14 +3,13 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for StartInspectionDto
 void main() {
-  final instance = StartInspectionDtoBuilder();
-  // TODO add properties to the builder and call build()
+  final StartInspectionDto? instance = /* StartInspectionDto(...) */ null;
+  // TODO add properties to the entity
 
   group(StartInspectionDto, () {
     // String inspectionNote
     test('to test the property `inspectionNote`', () async {
       // TODO
     });
-
   });
 }

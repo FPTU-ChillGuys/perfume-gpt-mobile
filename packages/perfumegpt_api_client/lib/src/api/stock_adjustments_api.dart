@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_stock_adjustment_list_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_stock_adjustment_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofboolean.dart';
@@ -20,19 +20,16 @@ import 'package:perfumegpt_api_client/src/model/update_stock_adjustment_status_r
 import 'package:perfumegpt_api_client/src/model/verify_stock_adjustment_request.dart';
 
 class StockAdjustmentsApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const StockAdjustmentsApi(this._dio, this._serializers);
+  const StockAdjustmentsApi(this._dio);
 
   /// apiStockadjustmentsAdjustmentIdVerifyPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [adjustmentId] 
-  /// * [verifyStockAdjustmentRequest] 
+  /// * [adjustmentId]
+  /// * [verifyStockAdjustmentRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -42,7 +39,8 @@ class StockAdjustmentsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiStockadjustmentsAdjustmentIdVerifyPost({ 
+  Future<Response<BaseResponseOfstring>>
+  apiStockadjustmentsAdjustmentIdVerifyPost({
     required String adjustmentId,
     required VerifyStockAdjustmentRequest verifyStockAdjustmentRequest,
     CancelToken? cancelToken,
@@ -52,19 +50,18 @@ class StockAdjustmentsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/stockadjustments/{adjustmentId}/verify'.replaceAll('{' r'adjustmentId' '}', encodeQueryParameter(_serializers, adjustmentId, const FullType(String)).toString());
+    final _path = r'/api/stockadjustments/{adjustmentId}/verify'.replaceAll(
+      '{'
+      r'adjustmentId'
+      '}',
+      adjustmentId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -75,15 +72,10 @@ class StockAdjustmentsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(VerifyStockAdjustmentRequest);
-      _bodyData = _serializers.serialize(verifyStockAdjustmentRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(verifyStockAdjustmentRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -102,12 +94,14 @@ class StockAdjustmentsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -131,18 +125,18 @@ class StockAdjustmentsApi {
   }
 
   /// apiStockadjustmentsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [reason] 
-  /// * [status] 
-  /// * [fromDate] 
-  /// * [toDate] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [reason]
+  /// * [status]
+  /// * [fromDate]
+  /// * [toDate]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -152,7 +146,8 @@ class StockAdjustmentsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfStockAdjustmentListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfStockAdjustmentListItem>> apiStockadjustmentsGet({ 
+  Future<Response<BaseResponseOfPagedResultOfStockAdjustmentListItem>>
+  apiStockadjustmentsGet({
     StockAdjustmentReason? reason,
     StockAdjustmentStatus? status,
     DateTime? fromDate,
@@ -172,16 +167,10 @@ class StockAdjustmentsApi {
     final _path = r'/api/stockadjustments';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -189,15 +178,15 @@ class StockAdjustmentsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (reason != null) r'Reason': encodeQueryParameter(_serializers, reason, const FullType(StockAdjustmentReason)),
-      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(StockAdjustmentStatus)),
-      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
-      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (reason != null) r'Reason': reason,
+      if (status != null) r'Status': status,
+      if (fromDate != null) r'FromDate': fromDate,
+      if (toDate != null) r'ToDate': toDate,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -212,12 +201,17 @@ class StockAdjustmentsApi {
     BaseResponseOfPagedResultOfStockAdjustmentListItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfStockAdjustmentListItem),
-      ) as BaseResponseOfPagedResultOfStockAdjustmentListItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfStockAdjustmentListItem,
+              BaseResponseOfPagedResultOfStockAdjustmentListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfStockAdjustmentListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -241,10 +235,10 @@ class StockAdjustmentsApi {
   }
 
   /// apiStockadjustmentsIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -254,7 +248,7 @@ class StockAdjustmentsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiStockadjustmentsIdDelete({ 
+  Future<Response<BaseResponseOfboolean>> apiStockadjustmentsIdDelete({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -263,19 +257,18 @@ class StockAdjustmentsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/stockadjustments/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
+    final _path = r'/api/stockadjustments/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -293,12 +286,14 @@ class StockAdjustmentsApi {
     BaseResponseOfboolean? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfboolean),
-      ) as BaseResponseOfboolean;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
+              rawData,
+              'BaseResponseOfboolean',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -322,10 +317,10 @@ class StockAdjustmentsApi {
   }
 
   /// apiStockadjustmentsIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -335,7 +330,8 @@ class StockAdjustmentsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfStockAdjustmentResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfStockAdjustmentResponse>> apiStockadjustmentsIdGet({ 
+  Future<Response<BaseResponseOfStockAdjustmentResponse>>
+  apiStockadjustmentsIdGet({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -344,19 +340,18 @@ class StockAdjustmentsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/stockadjustments/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
+    final _path = r'/api/stockadjustments/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -374,12 +369,13 @@ class StockAdjustmentsApi {
     BaseResponseOfStockAdjustmentResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfStockAdjustmentResponse),
-      ) as BaseResponseOfStockAdjustmentResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfStockAdjustmentResponse,
+              BaseResponseOfStockAdjustmentResponse
+            >(rawData, 'BaseResponseOfStockAdjustmentResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -403,11 +399,11 @@ class StockAdjustmentsApi {
   }
 
   /// apiStockadjustmentsIdStatusPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [updateStockAdjustmentStatusRequest] 
+  /// * [id]
+  /// * [updateStockAdjustmentStatusRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -417,9 +413,10 @@ class StockAdjustmentsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiStockadjustmentsIdStatusPut({ 
+  Future<Response<BaseResponseOfstring>> apiStockadjustmentsIdStatusPut({
     required String id,
-    required UpdateStockAdjustmentStatusRequest updateStockAdjustmentStatusRequest,
+    required UpdateStockAdjustmentStatusRequest
+    updateStockAdjustmentStatusRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -427,19 +424,18 @@ class StockAdjustmentsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/stockadjustments/{id}/status'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
+    final _path = r'/api/stockadjustments/{id}/status'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -450,15 +446,10 @@ class StockAdjustmentsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UpdateStockAdjustmentStatusRequest);
-      _bodyData = _serializers.serialize(updateStockAdjustmentStatusRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateStockAdjustmentStatusRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -477,12 +468,14 @@ class StockAdjustmentsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -506,10 +499,10 @@ class StockAdjustmentsApi {
   }
 
   /// apiStockadjustmentsPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createStockAdjustmentRequest] 
+  /// * [createStockAdjustmentRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -519,7 +512,7 @@ class StockAdjustmentsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiStockadjustmentsPost({ 
+  Future<Response<BaseResponseOfstring>> apiStockadjustmentsPost({
     required CreateStockAdjustmentRequest createStockAdjustmentRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -531,16 +524,10 @@ class StockAdjustmentsApi {
     final _path = r'/api/stockadjustments';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -551,15 +538,10 @@ class StockAdjustmentsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(CreateStockAdjustmentRequest);
-      _bodyData = _serializers.serialize(createStockAdjustmentRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createStockAdjustmentRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -578,12 +560,14 @@ class StockAdjustmentsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -605,5 +589,4 @@ class StockAdjustmentsApi {
       extra: _response.extra,
     );
   }
-
 }

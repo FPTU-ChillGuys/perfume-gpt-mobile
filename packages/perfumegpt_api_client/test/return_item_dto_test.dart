@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReturnItemDto
 void main() {
-  final instance = ReturnItemDtoBuilder();
-  // TODO add properties to the builder and call build()
+  final ReturnItemDto? instance = /* ReturnItemDto(...) */ null;
+  // TODO add properties to the entity
 
   group(ReturnItemDto, () {
     // String orderDetailId
@@ -16,6 +16,5 @@ void main() {
     test('to test the property `quantity`', () async {
       // TODO
     });
-
   });
 }

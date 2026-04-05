@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for AvailableVoucherResponse
 void main() {
-  final instance = AvailableVoucherResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final AvailableVoucherResponse? instance = /* AvailableVoucherResponse(...) */
+      null;
+  // TODO add properties to the entity
 
   group(AvailableVoucherResponse, () {
     // String id
@@ -41,6 +42,5 @@ void main() {
     test('to test the property `remainingQuantity`', () async {
       // TODO
     });
-
   });
 }

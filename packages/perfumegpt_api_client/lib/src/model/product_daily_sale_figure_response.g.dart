@@ -3,145 +3,122 @@
 part of 'product_daily_sale_figure_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProductDailySaleFigureResponse extends ProductDailySaleFigureResponse {
-  @override
-  final String? productId;
-  @override
-  final String productName;
-  @override
-  final BuiltList<VariantDailySaleFigure> dailySaleFigures;
+abstract class _$ProductDailySaleFigureResponseCWProxy {
+  ProductDailySaleFigureResponse productId(String? productId);
 
-  factory _$ProductDailySaleFigureResponse([
-    void Function(ProductDailySaleFigureResponseBuilder)? updates,
-  ]) => (ProductDailySaleFigureResponseBuilder()..update(updates))._build();
+  ProductDailySaleFigureResponse productName(String productName);
 
-  _$ProductDailySaleFigureResponse._({
-    this.productId,
-    required this.productName,
-    required this.dailySaleFigures,
-  }) : super._();
-  @override
-  ProductDailySaleFigureResponse rebuild(
-    void Function(ProductDailySaleFigureResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  ProductDailySaleFigureResponse dailySaleFigures(
+    List<VariantDailySaleFigure> dailySaleFigures,
+  );
 
-  @override
-  ProductDailySaleFigureResponseBuilder toBuilder() =>
-      ProductDailySaleFigureResponseBuilder()..replace(this);
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductDailySaleFigureResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProductDailySaleFigureResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProductDailySaleFigureResponse call({
+    String? productId,
+    String productName,
+    List<VariantDailySaleFigure> dailySaleFigures,
+  });
+}
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProductDailySaleFigureResponse &&
-        productId == other.productId &&
-        productName == other.productName &&
-        dailySaleFigures == other.dailySaleFigures;
-  }
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductDailySaleFigureResponse.copyWith(...)` or call `instanceOfProductDailySaleFigureResponse.copyWith.fieldName(value)` for a single field.
+class _$ProductDailySaleFigureResponseCWProxyImpl
+    implements _$ProductDailySaleFigureResponseCWProxy {
+  const _$ProductDailySaleFigureResponseCWProxyImpl(this._value);
+
+  final ProductDailySaleFigureResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, productId.hashCode);
-    _$hash = $jc(_$hash, productName.hashCode);
-    _$hash = $jc(_$hash, dailySaleFigures.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProductDailySaleFigureResponse productId(String? productId) =>
+      call(productId: productId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ProductDailySaleFigureResponse')
-          ..add('productId', productId)
-          ..add('productName', productName)
-          ..add('dailySaleFigures', dailySaleFigures))
-        .toString();
+  ProductDailySaleFigureResponse productName(String productName) =>
+      call(productName: productName);
+
+  @override
+  ProductDailySaleFigureResponse dailySaleFigures(
+    List<VariantDailySaleFigure> dailySaleFigures,
+  ) => call(dailySaleFigures: dailySaleFigures);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductDailySaleFigureResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProductDailySaleFigureResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProductDailySaleFigureResponse call({
+    Object? productId = const $CopyWithPlaceholder(),
+    Object? productName = const $CopyWithPlaceholder(),
+    Object? dailySaleFigures = const $CopyWithPlaceholder(),
+  }) {
+    return ProductDailySaleFigureResponse(
+      productId: productId == const $CopyWithPlaceholder()
+          ? _value.productId
+          // ignore: cast_nullable_to_non_nullable
+          : productId as String?,
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
+          ? _value.productName
+          // ignore: cast_nullable_to_non_nullable
+          : productName as String,
+      dailySaleFigures:
+          dailySaleFigures == const $CopyWithPlaceholder() ||
+              dailySaleFigures == null
+          ? _value.dailySaleFigures
+          // ignore: cast_nullable_to_non_nullable
+          : dailySaleFigures as List<VariantDailySaleFigure>,
+    );
   }
 }
 
-class ProductDailySaleFigureResponseBuilder
-    implements
-        Builder<
-          ProductDailySaleFigureResponse,
-          ProductDailySaleFigureResponseBuilder
-        > {
-  _$ProductDailySaleFigureResponse? _$v;
-
-  String? _productId;
-  String? get productId => _$this._productId;
-  set productId(String? productId) => _$this._productId = productId;
-
-  String? _productName;
-  String? get productName => _$this._productName;
-  set productName(String? productName) => _$this._productName = productName;
-
-  ListBuilder<VariantDailySaleFigure>? _dailySaleFigures;
-  ListBuilder<VariantDailySaleFigure> get dailySaleFigures =>
-      _$this._dailySaleFigures ??= ListBuilder<VariantDailySaleFigure>();
-  set dailySaleFigures(ListBuilder<VariantDailySaleFigure>? dailySaleFigures) =>
-      _$this._dailySaleFigures = dailySaleFigures;
-
-  ProductDailySaleFigureResponseBuilder() {
-    ProductDailySaleFigureResponse._defaults(this);
-  }
-
-  ProductDailySaleFigureResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _productId = $v.productId;
-      _productName = $v.productName;
-      _dailySaleFigures = $v.dailySaleFigures.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProductDailySaleFigureResponse other) {
-    _$v = other as _$ProductDailySaleFigureResponse;
-  }
-
-  @override
-  void update(void Function(ProductDailySaleFigureResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProductDailySaleFigureResponse build() => _build();
-
-  _$ProductDailySaleFigureResponse _build() {
-    _$ProductDailySaleFigureResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$ProductDailySaleFigureResponse._(
-            productId: productId,
-            productName: BuiltValueNullFieldError.checkNotNull(
-              productName,
-              r'ProductDailySaleFigureResponse',
-              'productName',
-            ),
-            dailySaleFigures: dailySaleFigures.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'dailySaleFigures';
-        dailySaleFigures.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'ProductDailySaleFigureResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $ProductDailySaleFigureResponseCopyWith
+    on ProductDailySaleFigureResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductDailySaleFigureResponse.copyWith(...)` or `instanceOfProductDailySaleFigureResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductDailySaleFigureResponseCWProxy get copyWith =>
+      _$ProductDailySaleFigureResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProductDailySaleFigureResponse _$ProductDailySaleFigureResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ProductDailySaleFigureResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['productName', 'dailySaleFigures']);
+  final val = ProductDailySaleFigureResponse(
+    productId: $checkedConvert('productId', (v) => v as String?),
+    productName: $checkedConvert('productName', (v) => v as String),
+    dailySaleFigures: $checkedConvert(
+      'dailySaleFigures',
+      (v) => (v as List<dynamic>)
+          .map(
+            (e) => VariantDailySaleFigure.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ProductDailySaleFigureResponseToJson(
+  ProductDailySaleFigureResponse instance,
+) => <String, dynamic>{
+  'productId': ?instance.productId,
+  'productName': instance.productName,
+  'dailySaleFigures': instance.dailySaleFigures.map((e) => e.toJson()).toList(),
+};

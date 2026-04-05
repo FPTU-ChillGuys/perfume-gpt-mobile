@@ -3,105 +3,90 @@
 part of 'process_initial_return_dto.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProcessInitialReturnDto extends ProcessInitialReturnDto {
-  @override
-  final bool? isApproved;
-  @override
-  final String? staffNote;
+abstract class _$ProcessInitialReturnDtoCWProxy {
+  ProcessInitialReturnDto isApproved(bool? isApproved);
 
-  factory _$ProcessInitialReturnDto([
-    void Function(ProcessInitialReturnDtoBuilder)? updates,
-  ]) => (ProcessInitialReturnDtoBuilder()..update(updates))._build();
+  ProcessInitialReturnDto staffNote(String? staffNote);
 
-  _$ProcessInitialReturnDto._({this.isApproved, this.staffNote}) : super._();
-  @override
-  ProcessInitialReturnDto rebuild(
-    void Function(ProcessInitialReturnDtoBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessInitialReturnDto(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProcessInitialReturnDto(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProcessInitialReturnDto call({bool? isApproved, String? staffNote});
+}
 
-  @override
-  ProcessInitialReturnDtoBuilder toBuilder() =>
-      ProcessInitialReturnDtoBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProcessInitialReturnDto.copyWith(...)` or call `instanceOfProcessInitialReturnDto.copyWith.fieldName(value)` for a single field.
+class _$ProcessInitialReturnDtoCWProxyImpl
+    implements _$ProcessInitialReturnDtoCWProxy {
+  const _$ProcessInitialReturnDtoCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProcessInitialReturnDto &&
-        isApproved == other.isApproved &&
-        staffNote == other.staffNote;
-  }
+  final ProcessInitialReturnDto _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, isApproved.hashCode);
-    _$hash = $jc(_$hash, staffNote.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProcessInitialReturnDto isApproved(bool? isApproved) =>
+      call(isApproved: isApproved);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ProcessInitialReturnDto')
-          ..add('isApproved', isApproved)
-          ..add('staffNote', staffNote))
-        .toString();
+  ProcessInitialReturnDto staffNote(String? staffNote) =>
+      call(staffNote: staffNote);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessInitialReturnDto(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProcessInitialReturnDto(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProcessInitialReturnDto call({
+    Object? isApproved = const $CopyWithPlaceholder(),
+    Object? staffNote = const $CopyWithPlaceholder(),
+  }) {
+    return ProcessInitialReturnDto(
+      isApproved: isApproved == const $CopyWithPlaceholder()
+          ? _value.isApproved
+          // ignore: cast_nullable_to_non_nullable
+          : isApproved as bool?,
+      staffNote: staffNote == const $CopyWithPlaceholder()
+          ? _value.staffNote
+          // ignore: cast_nullable_to_non_nullable
+          : staffNote as String?,
+    );
   }
 }
 
-class ProcessInitialReturnDtoBuilder
-    implements
-        Builder<ProcessInitialReturnDto, ProcessInitialReturnDtoBuilder> {
-  _$ProcessInitialReturnDto? _$v;
-
-  bool? _isApproved;
-  bool? get isApproved => _$this._isApproved;
-  set isApproved(bool? isApproved) => _$this._isApproved = isApproved;
-
-  String? _staffNote;
-  String? get staffNote => _$this._staffNote;
-  set staffNote(String? staffNote) => _$this._staffNote = staffNote;
-
-  ProcessInitialReturnDtoBuilder() {
-    ProcessInitialReturnDto._defaults(this);
-  }
-
-  ProcessInitialReturnDtoBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _isApproved = $v.isApproved;
-      _staffNote = $v.staffNote;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProcessInitialReturnDto other) {
-    _$v = other as _$ProcessInitialReturnDto;
-  }
-
-  @override
-  void update(void Function(ProcessInitialReturnDtoBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProcessInitialReturnDto build() => _build();
-
-  _$ProcessInitialReturnDto _build() {
-    final _$result =
-        _$v ??
-        _$ProcessInitialReturnDto._(
-          isApproved: isApproved,
-          staffNote: staffNote,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ProcessInitialReturnDtoCopyWith on ProcessInitialReturnDto {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProcessInitialReturnDto.copyWith(...)` or `instanceOfProcessInitialReturnDto.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProcessInitialReturnDtoCWProxy get copyWith =>
+      _$ProcessInitialReturnDtoCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProcessInitialReturnDto _$ProcessInitialReturnDtoFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ProcessInitialReturnDto', json, ($checkedConvert) {
+  final val = ProcessInitialReturnDto(
+    isApproved: $checkedConvert('isApproved', (v) => v as bool?),
+    staffNote: $checkedConvert('staffNote', (v) => v as String?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ProcessInitialReturnDtoToJson(
+  ProcessInitialReturnDto instance,
+) => <String, dynamic>{
+  'isApproved': ?instance.isApproved,
+  'staffNote': ?instance.staffNote,
+};

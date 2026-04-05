@@ -4,12 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:built_collection/built_collection.dart';
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_order_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_order_list_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_pick_list_response.dart';
@@ -30,18 +29,15 @@ import 'package:perfumegpt_api_client/src/model/update_order_status_request.dart
 import 'package:perfumegpt_api_client/src/model/user_cancel_order_request.dart';
 
 class OrdersApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const OrdersApi(this._dio, this._serializers);
+  const OrdersApi(this._dio);
 
   /// apiOrdersCheckoutInStorePost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createInStoreOrderRequest] 
+  /// * [createInStoreOrderRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -51,7 +47,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiOrdersCheckoutInStorePost({ 
+  Future<Response<BaseResponseOfstring>> apiOrdersCheckoutInStorePost({
     required CreateInStoreOrderRequest createInStoreOrderRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -63,16 +59,10 @@ class OrdersApi {
     final _path = r'/api/orders/checkout-in-store';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -83,15 +73,10 @@ class OrdersApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(CreateInStoreOrderRequest);
-      _bodyData = _serializers.serialize(createInStoreOrderRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createInStoreOrderRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -110,12 +95,14 @@ class OrdersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -139,10 +126,10 @@ class OrdersApi {
   }
 
   /// apiOrdersCheckoutPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createOrderRequest] 
+  /// * [createOrderRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -152,7 +139,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiOrdersCheckoutPost({ 
+  Future<Response<BaseResponseOfstring>> apiOrdersCheckoutPost({
     required CreateOrderRequest createOrderRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -164,16 +151,10 @@ class OrdersApi {
     final _path = r'/api/orders/checkout';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -184,15 +165,10 @@ class OrdersApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(CreateOrderRequest);
-      _bodyData = _serializers.serialize(createOrderRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createOrderRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -211,12 +187,14 @@ class OrdersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -240,20 +218,20 @@ class OrdersApi {
   }
 
   /// apiOrdersGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [status] 
-  /// * [type] 
-  /// * [paymentStatus] 
-  /// * [fromDate] 
-  /// * [toDate] 
-  /// * [searchTerm] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [status]
+  /// * [type]
+  /// * [paymentStatus]
+  /// * [fromDate]
+  /// * [toDate]
+  /// * [searchTerm]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -263,7 +241,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfOrderListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfOrderListItem>> apiOrdersGet({ 
+  Future<Response<BaseResponseOfPagedResultOfOrderListItem>> apiOrdersGet({
     OrderStatus? status,
     OrderType? type,
     PaymentStatus? paymentStatus,
@@ -285,16 +263,10 @@ class OrdersApi {
     final _path = r'/api/orders';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -302,17 +274,17 @@ class OrdersApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(OrderStatus)),
-      if (type != null) r'Type': encodeQueryParameter(_serializers, type, const FullType(OrderType)),
-      if (paymentStatus != null) r'PaymentStatus': encodeQueryParameter(_serializers, paymentStatus, const FullType(PaymentStatus)),
-      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
-      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
-      if (searchTerm != null) r'SearchTerm': encodeQueryParameter(_serializers, searchTerm, const FullType(String)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (status != null) r'Status': status,
+      if (type != null) r'Type': type,
+      if (paymentStatus != null) r'PaymentStatus': paymentStatus,
+      if (fromDate != null) r'FromDate': fromDate,
+      if (toDate != null) r'ToDate': toDate,
+      if (searchTerm != null) r'SearchTerm': searchTerm,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -327,12 +299,17 @@ class OrdersApi {
     BaseResponseOfPagedResultOfOrderListItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfOrderListItem),
-      ) as BaseResponseOfPagedResultOfOrderListItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfOrderListItem,
+              BaseResponseOfPagedResultOfOrderListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfOrderListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -356,20 +333,20 @@ class OrdersApi {
   }
 
   /// apiOrdersMyOrdersGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [status] 
-  /// * [type] 
-  /// * [paymentStatus] 
-  /// * [fromDate] 
-  /// * [toDate] 
-  /// * [searchTerm] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [status]
+  /// * [type]
+  /// * [paymentStatus]
+  /// * [fromDate]
+  /// * [toDate]
+  /// * [searchTerm]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -379,7 +356,8 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfOrderListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfOrderListItem>> apiOrdersMyOrdersGet({ 
+  Future<Response<BaseResponseOfPagedResultOfOrderListItem>>
+  apiOrdersMyOrdersGet({
     OrderStatus? status,
     OrderType? type,
     PaymentStatus? paymentStatus,
@@ -401,16 +379,10 @@ class OrdersApi {
     final _path = r'/api/orders/my-orders';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -418,17 +390,17 @@ class OrdersApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(OrderStatus)),
-      if (type != null) r'Type': encodeQueryParameter(_serializers, type, const FullType(OrderType)),
-      if (paymentStatus != null) r'PaymentStatus': encodeQueryParameter(_serializers, paymentStatus, const FullType(PaymentStatus)),
-      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
-      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
-      if (searchTerm != null) r'SearchTerm': encodeQueryParameter(_serializers, searchTerm, const FullType(String)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (status != null) r'Status': status,
+      if (type != null) r'Type': type,
+      if (paymentStatus != null) r'PaymentStatus': paymentStatus,
+      if (fromDate != null) r'FromDate': fromDate,
+      if (toDate != null) r'ToDate': toDate,
+      if (searchTerm != null) r'SearchTerm': searchTerm,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -443,12 +415,17 @@ class OrdersApi {
     BaseResponseOfPagedResultOfOrderListItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfOrderListItem),
-      ) as BaseResponseOfPagedResultOfOrderListItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfOrderListItem,
+              BaseResponseOfPagedResultOfOrderListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfOrderListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -472,10 +449,10 @@ class OrdersApi {
   }
 
   /// apiOrdersMyOrdersOrderIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
+  /// * [orderId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -485,7 +462,8 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfUserOrderResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfUserOrderResponse>> apiOrdersMyOrdersOrderIdGet({ 
+  Future<Response<BaseResponseOfUserOrderResponse>>
+  apiOrdersMyOrdersOrderIdGet({
     required String orderId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -494,19 +472,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/my-orders/{orderId}'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/my-orders/{orderId}'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -524,12 +501,13 @@ class OrdersApi {
     BaseResponseOfUserOrderResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfUserOrderResponse),
-      ) as BaseResponseOfUserOrderResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfUserOrderResponse,
+              BaseResponseOfUserOrderResponse
+            >(rawData, 'BaseResponseOfUserOrderResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -553,10 +531,10 @@ class OrdersApi {
   }
 
   /// apiOrdersMyOrdersOrderIdInvoiceGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
+  /// * [orderId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -566,7 +544,8 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfReceiptResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfReceiptResponse>> apiOrdersMyOrdersOrderIdInvoiceGet({ 
+  Future<Response<BaseResponseOfReceiptResponse>>
+  apiOrdersMyOrdersOrderIdInvoiceGet({
     required String orderId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -575,19 +554,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/my-orders/{orderId}/invoice'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/my-orders/{orderId}/invoice'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -605,12 +583,13 @@ class OrdersApi {
     BaseResponseOfReceiptResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfReceiptResponse),
-      ) as BaseResponseOfReceiptResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfReceiptResponse,
+              BaseResponseOfReceiptResponse
+            >(rawData, 'BaseResponseOfReceiptResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -634,11 +613,11 @@ class OrdersApi {
   }
 
   /// apiOrdersOrderIdAddressPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
-  /// * [updateOrderAddressRequest] 
+  /// * [orderId]
+  /// * [updateOrderAddressRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -648,7 +627,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiOrdersOrderIdAddressPut({ 
+  Future<Response<BaseResponseOfstring>> apiOrdersOrderIdAddressPut({
     required String orderId,
     required UpdateOrderAddressRequest updateOrderAddressRequest,
     CancelToken? cancelToken,
@@ -658,19 +637,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/{orderId}/address'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/{orderId}/address'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -681,15 +659,10 @@ class OrdersApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UpdateOrderAddressRequest);
-      _bodyData = _serializers.serialize(updateOrderAddressRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateOrderAddressRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -708,12 +681,14 @@ class OrdersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -737,11 +712,11 @@ class OrdersApi {
   }
 
   /// apiOrdersOrderIdCancelPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
-  /// * [userCancelOrderRequest] 
+  /// * [orderId]
+  /// * [userCancelOrderRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -751,7 +726,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiOrdersOrderIdCancelPost({ 
+  Future<Response<BaseResponseOfstring>> apiOrdersOrderIdCancelPost({
     required String orderId,
     required UserCancelOrderRequest userCancelOrderRequest,
     CancelToken? cancelToken,
@@ -761,19 +736,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/{orderId}/cancel'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/{orderId}/cancel'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -784,15 +758,10 @@ class OrdersApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UserCancelOrderRequest);
-      _bodyData = _serializers.serialize(userCancelOrderRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(userCancelOrderRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -811,12 +780,14 @@ class OrdersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -840,11 +811,11 @@ class OrdersApi {
   }
 
   /// apiOrdersOrderIdFulfillPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
-  /// * [fulfillOrderRequest] 
+  /// * [orderId]
+  /// * [fulfillOrderRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -854,7 +825,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiOrdersOrderIdFulfillPost({ 
+  Future<Response<BaseResponseOfstring>> apiOrdersOrderIdFulfillPost({
     required String orderId,
     required FulfillOrderRequest fulfillOrderRequest,
     CancelToken? cancelToken,
@@ -864,19 +835,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/{orderId}/fulfill'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/{orderId}/fulfill'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -887,15 +857,10 @@ class OrdersApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(FulfillOrderRequest);
-      _bodyData = _serializers.serialize(fulfillOrderRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(fulfillOrderRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -914,12 +879,14 @@ class OrdersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -943,10 +910,10 @@ class OrdersApi {
   }
 
   /// apiOrdersOrderIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
+  /// * [orderId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -956,7 +923,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfOrderResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfOrderResponse>> apiOrdersOrderIdGet({ 
+  Future<Response<BaseResponseOfOrderResponse>> apiOrdersOrderIdGet({
     required String orderId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -965,19 +932,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/{orderId}'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/{orderId}'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -995,12 +961,13 @@ class OrdersApi {
     BaseResponseOfOrderResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfOrderResponse),
-      ) as BaseResponseOfOrderResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfOrderResponse,
+              BaseResponseOfOrderResponse
+            >(rawData, 'BaseResponseOfOrderResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1024,10 +991,10 @@ class OrdersApi {
   }
 
   /// apiOrdersOrderIdInvoiceGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
+  /// * [orderId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1037,7 +1004,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfReceiptResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfReceiptResponse>> apiOrdersOrderIdInvoiceGet({ 
+  Future<Response<BaseResponseOfReceiptResponse>> apiOrdersOrderIdInvoiceGet({
     required String orderId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1046,19 +1013,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/{orderId}/invoice'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/{orderId}/invoice'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1076,12 +1042,13 @@ class OrdersApi {
     BaseResponseOfReceiptResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfReceiptResponse),
-      ) as BaseResponseOfReceiptResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfReceiptResponse,
+              BaseResponseOfReceiptResponse
+            >(rawData, 'BaseResponseOfReceiptResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1105,10 +1072,10 @@ class OrdersApi {
   }
 
   /// apiOrdersOrderIdPicklistGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
+  /// * [orderId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1118,7 +1085,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPickListResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPickListResponse>> apiOrdersOrderIdPicklistGet({ 
+  Future<Response<BaseResponseOfPickListResponse>> apiOrdersOrderIdPicklistGet({
     required String orderId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1127,19 +1094,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/{orderId}/picklist'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/{orderId}/picklist'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1157,12 +1123,13 @@ class OrdersApi {
     BaseResponseOfPickListResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPickListResponse),
-      ) as BaseResponseOfPickListResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPickListResponse,
+              BaseResponseOfPickListResponse
+            >(rawData, 'BaseResponseOfPickListResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1186,11 +1153,11 @@ class OrdersApi {
   }
 
   /// apiOrdersOrderIdStatusPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
-  /// * [updateOrderStatusRequest] 
+  /// * [orderId]
+  /// * [updateOrderStatusRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1200,7 +1167,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPickListResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPickListResponse>> apiOrdersOrderIdStatusPut({ 
+  Future<Response<BaseResponseOfPickListResponse>> apiOrdersOrderIdStatusPut({
     required String orderId,
     required UpdateOrderStatusRequest updateOrderStatusRequest,
     CancelToken? cancelToken,
@@ -1210,19 +1177,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/{orderId}/status'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/{orderId}/status'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1233,15 +1199,10 @@ class OrdersApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UpdateOrderStatusRequest);
-      _bodyData = _serializers.serialize(updateOrderStatusRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateOrderStatusRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -1260,12 +1221,13 @@ class OrdersApi {
     BaseResponseOfPickListResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPickListResponse),
-      ) as BaseResponseOfPickListResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPickListResponse,
+              BaseResponseOfPickListResponse
+            >(rawData, 'BaseResponseOfPickListResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1289,11 +1251,11 @@ class OrdersApi {
   }
 
   /// apiOrdersOrderIdSwapDamagedPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
-  /// * [swapDamagedStockRequest] 
+  /// * [orderId]
+  /// * [swapDamagedStockRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1303,7 +1265,8 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfSwapDamagedStockResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfSwapDamagedStockResponse>> apiOrdersOrderIdSwapDamagedPost({ 
+  Future<Response<BaseResponseOfSwapDamagedStockResponse>>
+  apiOrdersOrderIdSwapDamagedPost({
     required String orderId,
     required SwapDamagedStockRequest swapDamagedStockRequest,
     CancelToken? cancelToken,
@@ -1313,19 +1276,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/{orderId}/swap-damaged'.replaceAll('{' r'orderId' '}', encodeQueryParameter(_serializers, orderId, const FullType(String)).toString());
+    final _path = r'/api/orders/{orderId}/swap-damaged'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1336,15 +1298,10 @@ class OrdersApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(SwapDamagedStockRequest);
-      _bodyData = _serializers.serialize(swapDamagedStockRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(swapDamagedStockRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -1363,12 +1320,17 @@ class OrdersApi {
     BaseResponseOfSwapDamagedStockResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfSwapDamagedStockResponse),
-      ) as BaseResponseOfSwapDamagedStockResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfSwapDamagedStockResponse,
+              BaseResponseOfSwapDamagedStockResponse
+            >(
+              rawData,
+              'BaseResponseOfSwapDamagedStockResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1392,13 +1354,13 @@ class OrdersApi {
   }
 
   /// apiOrdersPreviewGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [barCodes] 
-  /// * [wardCode] 
-  /// * [districtId] 
-  /// * [voucherCode] 
+  /// * [barCodes]
+  /// * [wardCode]
+  /// * [districtId]
+  /// * [voucherCode]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1408,8 +1370,8 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPreviewOrderResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPreviewOrderResponse>> apiOrdersPreviewGet({ 
-    BuiltList<String>? barCodes,
+  Future<Response<BaseResponseOfPreviewOrderResponse>> apiOrdersPreviewGet({
+    List<String>? barCodes,
     String? wardCode,
     int? districtId,
     String? voucherCode,
@@ -1423,16 +1385,10 @@ class OrdersApi {
     final _path = r'/api/orders/preview';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1440,10 +1396,10 @@ class OrdersApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (barCodes != null) r'BarCodes': encodeCollectionQueryParameter<String>(_serializers, barCodes, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
-      if (wardCode != null) r'WardCode': encodeQueryParameter(_serializers, wardCode, const FullType(String)),
-      if (districtId != null) r'DistrictId': encodeQueryParameter(_serializers, districtId, const FullType(int)),
-      if (voucherCode != null) r'VoucherCode': encodeQueryParameter(_serializers, voucherCode, const FullType(String)),
+      if (barCodes != null) r'BarCodes': barCodes,
+      if (wardCode != null) r'WardCode': wardCode,
+      if (districtId != null) r'DistrictId': districtId,
+      if (voucherCode != null) r'VoucherCode': voucherCode,
     };
 
     final _response = await _dio.request<Object>(
@@ -1458,12 +1414,13 @@ class OrdersApi {
     BaseResponseOfPreviewOrderResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPreviewOrderResponse),
-      ) as BaseResponseOfPreviewOrderResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPreviewOrderResponse,
+              BaseResponseOfPreviewOrderResponse
+            >(rawData, 'BaseResponseOfPreviewOrderResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1487,21 +1444,21 @@ class OrdersApi {
   }
 
   /// apiOrdersStaffStaffIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [staffId] 
-  /// * [status] 
-  /// * [type] 
-  /// * [paymentStatus] 
-  /// * [fromDate] 
-  /// * [toDate] 
-  /// * [searchTerm] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [staffId]
+  /// * [status]
+  /// * [type]
+  /// * [paymentStatus]
+  /// * [fromDate]
+  /// * [toDate]
+  /// * [searchTerm]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1511,7 +1468,8 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfOrderListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfOrderListItem>> apiOrdersStaffStaffIdGet({ 
+  Future<Response<BaseResponseOfPagedResultOfOrderListItem>>
+  apiOrdersStaffStaffIdGet({
     required String staffId,
     OrderStatus? status,
     OrderType? type,
@@ -1531,19 +1489,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/staff/{staffId}'.replaceAll('{' r'staffId' '}', encodeQueryParameter(_serializers, staffId, const FullType(String)).toString());
+    final _path = r'/api/orders/staff/{staffId}'.replaceAll(
+      '{'
+      r'staffId'
+      '}',
+      staffId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1551,17 +1508,17 @@ class OrdersApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(OrderStatus)),
-      if (type != null) r'Type': encodeQueryParameter(_serializers, type, const FullType(OrderType)),
-      if (paymentStatus != null) r'PaymentStatus': encodeQueryParameter(_serializers, paymentStatus, const FullType(PaymentStatus)),
-      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
-      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
-      if (searchTerm != null) r'SearchTerm': encodeQueryParameter(_serializers, searchTerm, const FullType(String)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (status != null) r'Status': status,
+      if (type != null) r'Type': type,
+      if (paymentStatus != null) r'PaymentStatus': paymentStatus,
+      if (fromDate != null) r'FromDate': fromDate,
+      if (toDate != null) r'ToDate': toDate,
+      if (searchTerm != null) r'SearchTerm': searchTerm,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -1576,12 +1533,17 @@ class OrdersApi {
     BaseResponseOfPagedResultOfOrderListItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfOrderListItem),
-      ) as BaseResponseOfPagedResultOfOrderListItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfOrderListItem,
+              BaseResponseOfPagedResultOfOrderListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfOrderListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1605,21 +1567,21 @@ class OrdersApi {
   }
 
   /// apiOrdersUserUserIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [userId] 
-  /// * [status] 
-  /// * [type] 
-  /// * [paymentStatus] 
-  /// * [fromDate] 
-  /// * [toDate] 
-  /// * [searchTerm] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [userId]
+  /// * [status]
+  /// * [type]
+  /// * [paymentStatus]
+  /// * [fromDate]
+  /// * [toDate]
+  /// * [searchTerm]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1629,7 +1591,8 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfOrderListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfOrderListItem>> apiOrdersUserUserIdGet({ 
+  Future<Response<BaseResponseOfPagedResultOfOrderListItem>>
+  apiOrdersUserUserIdGet({
     required String userId,
     OrderStatus? status,
     OrderType? type,
@@ -1649,19 +1612,18 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/orders/user/{userId}'.replaceAll('{' r'userId' '}', encodeQueryParameter(_serializers, userId, const FullType(String)).toString());
+    final _path = r'/api/orders/user/{userId}'.replaceAll(
+      '{'
+      r'userId'
+      '}',
+      userId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1669,17 +1631,17 @@ class OrdersApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(OrderStatus)),
-      if (type != null) r'Type': encodeQueryParameter(_serializers, type, const FullType(OrderType)),
-      if (paymentStatus != null) r'PaymentStatus': encodeQueryParameter(_serializers, paymentStatus, const FullType(PaymentStatus)),
-      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
-      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
-      if (searchTerm != null) r'SearchTerm': encodeQueryParameter(_serializers, searchTerm, const FullType(String)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (status != null) r'Status': status,
+      if (type != null) r'Type': type,
+      if (paymentStatus != null) r'PaymentStatus': paymentStatus,
+      if (fromDate != null) r'FromDate': fromDate,
+      if (toDate != null) r'ToDate': toDate,
+      if (searchTerm != null) r'SearchTerm': searchTerm,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -1694,12 +1656,17 @@ class OrdersApi {
     BaseResponseOfPagedResultOfOrderListItem? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfOrderListItem),
-      ) as BaseResponseOfPagedResultOfOrderListItem;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfOrderListItem,
+              BaseResponseOfPagedResultOfOrderListItem
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfOrderListItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1721,5 +1688,4 @@ class OrdersApi {
       extra: _response.extra,
     );
   }
-
 }

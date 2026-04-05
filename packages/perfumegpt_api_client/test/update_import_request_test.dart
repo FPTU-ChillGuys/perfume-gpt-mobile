@@ -3,11 +3,11 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateImportRequest
 void main() {
-  final instance = UpdateImportRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final UpdateImportRequest? instance = /* UpdateImportRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(UpdateImportRequest, () {
-    // BuiltList<UpdateImportDetailRequest> importDetails
+    // List<UpdateImportDetailRequest> importDetails
     test('to test the property `importDetails`', () async {
       // TODO
     });
@@ -21,6 +21,5 @@ void main() {
     test('to test the property `expectedArrivalDate`', () async {
       // TODO
     });
-
   });
 }

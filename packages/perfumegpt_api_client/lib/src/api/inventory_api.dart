@@ -4,38 +4,35 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_inventory_summary_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_stock_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_stock_response.dart';
 import 'package:perfumegpt_api_client/src/model/stock_status.dart';
 
 class InventoryApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const InventoryApi(this._dio, this._serializers);
+  const InventoryApi(this._dio);
 
   /// apiInventoryStockGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [categoryId] 
-  /// * [batchCode] 
-  /// * [SKU] 
-  /// * [daysUntilExpiry] 
-  /// * [stockStatus] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [categoryId]
+  /// * [batchCode]
+  /// * [SKU]
+  /// * [daysUntilExpiry]
+  /// * [stockStatus]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -45,7 +42,8 @@ class InventoryApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfStockResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfStockResponse>> apiInventoryStockGet({ 
+  Future<Response<BaseResponseOfPagedResultOfStockResponse>>
+  apiInventoryStockGet({
     int? categoryId,
     String? batchCode,
     String? SKU,
@@ -66,16 +64,10 @@ class InventoryApi {
     final _path = r'/api/inventory/stock';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -83,16 +75,16 @@ class InventoryApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
-      if (batchCode != null) r'BatchCode': encodeQueryParameter(_serializers, batchCode, const FullType(String)),
-      if (SKU != null) r'SKU': encodeQueryParameter(_serializers, SKU, const FullType(String)),
-      r'DaysUntilExpiry': encodeQueryParameter(_serializers, daysUntilExpiry, const FullType(int)),
-      if (stockStatus != null) r'StockStatus': encodeQueryParameter(_serializers, stockStatus, const FullType(StockStatus)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      r'CategoryId': categoryId,
+      if (batchCode != null) r'BatchCode': batchCode,
+      if (SKU != null) r'SKU': SKU,
+      r'DaysUntilExpiry': daysUntilExpiry,
+      if (stockStatus != null) r'StockStatus': stockStatus,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -107,12 +99,17 @@ class InventoryApi {
     BaseResponseOfPagedResultOfStockResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfStockResponse),
-      ) as BaseResponseOfPagedResultOfStockResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfStockResponse,
+              BaseResponseOfPagedResultOfStockResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfStockResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -136,10 +133,10 @@ class InventoryApi {
   }
 
   /// apiInventoryStockVariantVariantIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [variantId] 
+  /// * [variantId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -149,7 +146,8 @@ class InventoryApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfStockResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfStockResponse>> apiInventoryStockVariantVariantIdGet({ 
+  Future<Response<BaseResponseOfStockResponse>>
+  apiInventoryStockVariantVariantIdGet({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -158,19 +156,18 @@ class InventoryApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/inventory/stock/variant/{variantId}'.replaceAll('{' r'variantId' '}', encodeQueryParameter(_serializers, variantId, const FullType(String)).toString());
+    final _path = r'/api/inventory/stock/variant/{variantId}'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -188,12 +185,13 @@ class InventoryApi {
     BaseResponseOfStockResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfStockResponse),
-      ) as BaseResponseOfStockResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfStockResponse,
+              BaseResponseOfStockResponse
+            >(rawData, 'BaseResponseOfStockResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -217,7 +215,7 @@ class InventoryApi {
   }
 
   /// apiInventorySummaryGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -229,7 +227,8 @@ class InventoryApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfInventorySummaryResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfInventorySummaryResponse>> apiInventorySummaryGet({ 
+  Future<Response<BaseResponseOfInventorySummaryResponse>>
+  apiInventorySummaryGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -240,16 +239,10 @@ class InventoryApi {
     final _path = r'/api/inventory/summary';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -267,12 +260,17 @@ class InventoryApi {
     BaseResponseOfInventorySummaryResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfInventorySummaryResponse),
-      ) as BaseResponseOfInventorySummaryResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfInventorySummaryResponse,
+              BaseResponseOfInventorySummaryResponse
+            >(
+              rawData,
+              'BaseResponseOfInventorySummaryResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -294,5 +292,4 @@ class InventoryApi {
       extra: _response.extra,
     );
   }
-
 }

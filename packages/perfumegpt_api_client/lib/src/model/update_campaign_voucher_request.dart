@@ -6,198 +6,80 @@
 import 'package:perfumegpt_api_client/src/model/discount_type.dart';
 import 'package:perfumegpt_api_client/src/model/voucher_type.dart';
 import 'package:perfumegpt_api_client/src/model/promotion_type.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'update_campaign_voucher_request.g.dart';
 
-/// UpdateCampaignVoucherRequest
-///
-/// Properties:
-/// * [id] 
-/// * [code] 
-/// * [discountValue] 
-/// * [targetItemType] 
-/// * [discountType] 
-/// * [applyType] 
-@BuiltValue()
-abstract class UpdateCampaignVoucherRequest implements Built<UpdateCampaignVoucherRequest, UpdateCampaignVoucherRequestBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class UpdateCampaignVoucherRequest {
+  /// Returns a new [UpdateCampaignVoucherRequest] instance.
+  UpdateCampaignVoucherRequest({
+    this.id,
 
-  @BuiltValueField(wireName: r'code')
-  String get code;
+    required this.code,
 
-  @BuiltValueField(wireName: r'discountValue')
-  num? get discountValue;
+    this.discountValue,
 
-  @BuiltValueField(wireName: r'targetItemType')
-  PromotionType? get targetItemType;
-  // enum targetItemTypeEnum {  Clearance,  NewArrival,  Regular,  };
+    this.targetItemType,
 
-  @BuiltValueField(wireName: r'discountType')
-  DiscountType? get discountType;
-  // enum discountTypeEnum {  Percentage,  FixedAmount,  };
+    this.discountType,
 
-  @BuiltValueField(wireName: r'applyType')
-  VoucherType? get applyType;
-  // enum applyTypeEnum {  Order,  Product,  };
+    this.applyType,
+  });
 
-  UpdateCampaignVoucherRequest._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory UpdateCampaignVoucherRequest([void updates(UpdateCampaignVoucherRequestBuilder b)]) = _$UpdateCampaignVoucherRequest;
+  @JsonKey(name: r'code', required: true, includeIfNull: false)
+  final String code;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(UpdateCampaignVoucherRequestBuilder b) => b;
+  // minimum: 0
+  @JsonKey(name: r'discountValue', required: false, includeIfNull: false)
+  final num? discountValue;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<UpdateCampaignVoucherRequest> get serializer => _$UpdateCampaignVoucherRequestSerializer();
-}
+  @JsonKey(name: r'targetItemType', required: false, includeIfNull: false)
+  final PromotionType? targetItemType;
 
-class _$UpdateCampaignVoucherRequestSerializer implements PrimitiveSerializer<UpdateCampaignVoucherRequest> {
-  @override
-  final Iterable<Type> types = const [UpdateCampaignVoucherRequest, _$UpdateCampaignVoucherRequest];
+  @JsonKey(name: r'discountType', required: false, includeIfNull: false)
+  final DiscountType? discountType;
+
+  @JsonKey(name: r'applyType', required: false, includeIfNull: false)
+  final VoucherType? applyType;
 
   @override
-  final String wireName = r'UpdateCampaignVoucherRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    UpdateCampaignVoucherRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    yield r'code';
-    yield serializers.serialize(
-      object.code,
-      specifiedType: const FullType(String),
-    );
-    if (object.discountValue != null) {
-      yield r'discountValue';
-      yield serializers.serialize(
-        object.discountValue,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.targetItemType != null) {
-      yield r'targetItemType';
-      yield serializers.serialize(
-        object.targetItemType,
-        specifiedType: const FullType(PromotionType),
-      );
-    }
-    if (object.discountType != null) {
-      yield r'discountType';
-      yield serializers.serialize(
-        object.discountType,
-        specifiedType: const FullType(DiscountType),
-      );
-    }
-    if (object.applyType != null) {
-      yield r'applyType';
-      yield serializers.serialize(
-        object.applyType,
-        specifiedType: const FullType(VoucherType),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateCampaignVoucherRequest &&
+          other.id == id &&
+          other.code == code &&
+          other.discountValue == discountValue &&
+          other.targetItemType == targetItemType &&
+          other.discountType == discountType &&
+          other.applyType == applyType;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    UpdateCampaignVoucherRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      (id == null ? 0 : id.hashCode) +
+      code.hashCode +
+      discountValue.hashCode +
+      targetItemType.hashCode +
+      discountType.hashCode +
+      applyType.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required UpdateCampaignVoucherRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.id = valueDes;
-          break;
-        case r'code':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.code = valueDes;
-          break;
-        case r'discountValue':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.discountValue = valueDes;
-          break;
-        case r'targetItemType':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(PromotionType),
-          ) as PromotionType;
-          result.targetItemType = valueDes;
-          break;
-        case r'discountType':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DiscountType),
-          ) as DiscountType;
-          result.discountType = valueDes;
-          break;
-        case r'applyType':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(VoucherType),
-          ) as VoucherType;
-          result.applyType = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory UpdateCampaignVoucherRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateCampaignVoucherRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateCampaignVoucherRequestToJson(this);
 
   @override
-  UpdateCampaignVoucherRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = UpdateCampaignVoucherRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

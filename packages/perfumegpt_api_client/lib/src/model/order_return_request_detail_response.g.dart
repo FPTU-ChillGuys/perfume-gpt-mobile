@@ -3,163 +3,153 @@
 part of 'order_return_request_detail_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$OrderReturnRequestDetailResponse
-    extends OrderReturnRequestDetailResponse {
-  @override
-  final String? id;
-  @override
-  final String? orderDetailId;
-  @override
-  final String? variantId;
-  @override
-  final int? requestedQuantity;
-  @override
-  final num? unitPrice;
-  @override
-  final num? refundableAmount;
+abstract class _$OrderReturnRequestDetailResponseCWProxy {
+  OrderReturnRequestDetailResponse id(String? id);
 
-  factory _$OrderReturnRequestDetailResponse([
-    void Function(OrderReturnRequestDetailResponseBuilder)? updates,
-  ]) => (OrderReturnRequestDetailResponseBuilder()..update(updates))._build();
+  OrderReturnRequestDetailResponse orderDetailId(String? orderDetailId);
 
-  _$OrderReturnRequestDetailResponse._({
-    this.id,
-    this.orderDetailId,
-    this.variantId,
-    this.requestedQuantity,
-    this.unitPrice,
-    this.refundableAmount,
-  }) : super._();
-  @override
-  OrderReturnRequestDetailResponse rebuild(
-    void Function(OrderReturnRequestDetailResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  OrderReturnRequestDetailResponse variantId(String? variantId);
 
-  @override
-  OrderReturnRequestDetailResponseBuilder toBuilder() =>
-      OrderReturnRequestDetailResponseBuilder()..replace(this);
+  OrderReturnRequestDetailResponse requestedQuantity(int? requestedQuantity);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is OrderReturnRequestDetailResponse &&
-        id == other.id &&
-        orderDetailId == other.orderDetailId &&
-        variantId == other.variantId &&
-        requestedQuantity == other.requestedQuantity &&
-        unitPrice == other.unitPrice &&
-        refundableAmount == other.refundableAmount;
-  }
+  OrderReturnRequestDetailResponse unitPrice(num? unitPrice);
+
+  OrderReturnRequestDetailResponse refundableAmount(num? refundableAmount);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderReturnRequestDetailResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OrderReturnRequestDetailResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OrderReturnRequestDetailResponse call({
+    String? id,
+    String? orderDetailId,
+    String? variantId,
+    int? requestedQuantity,
+    num? unitPrice,
+    num? refundableAmount,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfOrderReturnRequestDetailResponse.copyWith(...)` or call `instanceOfOrderReturnRequestDetailResponse.copyWith.fieldName(value)` for a single field.
+class _$OrderReturnRequestDetailResponseCWProxyImpl
+    implements _$OrderReturnRequestDetailResponseCWProxy {
+  const _$OrderReturnRequestDetailResponseCWProxyImpl(this._value);
+
+  final OrderReturnRequestDetailResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, orderDetailId.hashCode);
-    _$hash = $jc(_$hash, variantId.hashCode);
-    _$hash = $jc(_$hash, requestedQuantity.hashCode);
-    _$hash = $jc(_$hash, unitPrice.hashCode);
-    _$hash = $jc(_$hash, refundableAmount.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  OrderReturnRequestDetailResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'OrderReturnRequestDetailResponse')
-          ..add('id', id)
-          ..add('orderDetailId', orderDetailId)
-          ..add('variantId', variantId)
-          ..add('requestedQuantity', requestedQuantity)
-          ..add('unitPrice', unitPrice)
-          ..add('refundableAmount', refundableAmount))
-        .toString();
+  OrderReturnRequestDetailResponse orderDetailId(String? orderDetailId) =>
+      call(orderDetailId: orderDetailId);
+
+  @override
+  OrderReturnRequestDetailResponse variantId(String? variantId) =>
+      call(variantId: variantId);
+
+  @override
+  OrderReturnRequestDetailResponse requestedQuantity(int? requestedQuantity) =>
+      call(requestedQuantity: requestedQuantity);
+
+  @override
+  OrderReturnRequestDetailResponse unitPrice(num? unitPrice) =>
+      call(unitPrice: unitPrice);
+
+  @override
+  OrderReturnRequestDetailResponse refundableAmount(num? refundableAmount) =>
+      call(refundableAmount: refundableAmount);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderReturnRequestDetailResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OrderReturnRequestDetailResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OrderReturnRequestDetailResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? orderDetailId = const $CopyWithPlaceholder(),
+    Object? variantId = const $CopyWithPlaceholder(),
+    Object? requestedQuantity = const $CopyWithPlaceholder(),
+    Object? unitPrice = const $CopyWithPlaceholder(),
+    Object? refundableAmount = const $CopyWithPlaceholder(),
+  }) {
+    return OrderReturnRequestDetailResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      orderDetailId: orderDetailId == const $CopyWithPlaceholder()
+          ? _value.orderDetailId
+          // ignore: cast_nullable_to_non_nullable
+          : orderDetailId as String?,
+      variantId: variantId == const $CopyWithPlaceholder()
+          ? _value.variantId
+          // ignore: cast_nullable_to_non_nullable
+          : variantId as String?,
+      requestedQuantity: requestedQuantity == const $CopyWithPlaceholder()
+          ? _value.requestedQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : requestedQuantity as int?,
+      unitPrice: unitPrice == const $CopyWithPlaceholder()
+          ? _value.unitPrice
+          // ignore: cast_nullable_to_non_nullable
+          : unitPrice as num?,
+      refundableAmount: refundableAmount == const $CopyWithPlaceholder()
+          ? _value.refundableAmount
+          // ignore: cast_nullable_to_non_nullable
+          : refundableAmount as num?,
+    );
   }
 }
 
-class OrderReturnRequestDetailResponseBuilder
-    implements
-        Builder<
-          OrderReturnRequestDetailResponse,
-          OrderReturnRequestDetailResponseBuilder
-        > {
-  _$OrderReturnRequestDetailResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _orderDetailId;
-  String? get orderDetailId => _$this._orderDetailId;
-  set orderDetailId(String? orderDetailId) =>
-      _$this._orderDetailId = orderDetailId;
-
-  String? _variantId;
-  String? get variantId => _$this._variantId;
-  set variantId(String? variantId) => _$this._variantId = variantId;
-
-  int? _requestedQuantity;
-  int? get requestedQuantity => _$this._requestedQuantity;
-  set requestedQuantity(int? requestedQuantity) =>
-      _$this._requestedQuantity = requestedQuantity;
-
-  num? _unitPrice;
-  num? get unitPrice => _$this._unitPrice;
-  set unitPrice(num? unitPrice) => _$this._unitPrice = unitPrice;
-
-  num? _refundableAmount;
-  num? get refundableAmount => _$this._refundableAmount;
-  set refundableAmount(num? refundableAmount) =>
-      _$this._refundableAmount = refundableAmount;
-
-  OrderReturnRequestDetailResponseBuilder() {
-    OrderReturnRequestDetailResponse._defaults(this);
-  }
-
-  OrderReturnRequestDetailResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _orderDetailId = $v.orderDetailId;
-      _variantId = $v.variantId;
-      _requestedQuantity = $v.requestedQuantity;
-      _unitPrice = $v.unitPrice;
-      _refundableAmount = $v.refundableAmount;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(OrderReturnRequestDetailResponse other) {
-    _$v = other as _$OrderReturnRequestDetailResponse;
-  }
-
-  @override
-  void update(void Function(OrderReturnRequestDetailResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  OrderReturnRequestDetailResponse build() => _build();
-
-  _$OrderReturnRequestDetailResponse _build() {
-    final _$result =
-        _$v ??
-        _$OrderReturnRequestDetailResponse._(
-          id: id,
-          orderDetailId: orderDetailId,
-          variantId: variantId,
-          requestedQuantity: requestedQuantity,
-          unitPrice: unitPrice,
-          refundableAmount: refundableAmount,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $OrderReturnRequestDetailResponseCopyWith
+    on OrderReturnRequestDetailResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfOrderReturnRequestDetailResponse.copyWith(...)` or `instanceOfOrderReturnRequestDetailResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$OrderReturnRequestDetailResponseCWProxy get copyWith =>
+      _$OrderReturnRequestDetailResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+OrderReturnRequestDetailResponse _$OrderReturnRequestDetailResponseFromJson(
+  Map<String, dynamic> json,
+) =>
+    $checkedCreate('OrderReturnRequestDetailResponse', json, ($checkedConvert) {
+      final val = OrderReturnRequestDetailResponse(
+        id: $checkedConvert('id', (v) => v as String?),
+        orderDetailId: $checkedConvert('orderDetailId', (v) => v as String?),
+        variantId: $checkedConvert('variantId', (v) => v as String?),
+        requestedQuantity: $checkedConvert(
+          'requestedQuantity',
+          (v) => (v as num?)?.toInt(),
+        ),
+        unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
+        refundableAmount: $checkedConvert('refundableAmount', (v) => v as num?),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$OrderReturnRequestDetailResponseToJson(
+  OrderReturnRequestDetailResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'orderDetailId': ?instance.orderDetailId,
+  'variantId': ?instance.variantId,
+  'requestedQuantity': ?instance.requestedQuantity,
+  'unitPrice': ?instance.unitPrice,
+  'refundableAmount': ?instance.refundableAmount,
+};

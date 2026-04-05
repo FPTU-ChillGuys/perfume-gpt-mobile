@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **concentrationName** | **String** |  | 
 **rating** | **int** |  | [optional] 
 **comment** | **String** |  | 
-**images** | [**BuiltList&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
+**images** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
 **staffFeedbackComment** | **String** |  | [optional] 
 **staffFeedbackByStaffId** | **String** |  | [optional] 
 **staffFeedbackAt** | [**DateTime**](DateTime.md) |  | [optional] 

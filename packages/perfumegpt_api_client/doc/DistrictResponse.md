@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **code** | **int** |  | [optional] 
 **type** | **int** |  | [optional] 
 **supportType** | **int** |  | [optional] 
-**nameExtension** | **BuiltList&lt;String&gt;** |  | 
+**nameExtension** | **List&lt;String&gt;** |  | 
 **isEnable** | **int** |  | [optional] 
 **canUpdateCOD** | **bool** |  | [optional] 
 **status** | **int** |  | [optional] 

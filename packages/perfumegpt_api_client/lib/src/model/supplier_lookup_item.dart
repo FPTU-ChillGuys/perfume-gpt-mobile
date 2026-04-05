@@ -3,160 +3,65 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'supplier_lookup_item.g.dart';
 
-/// SupplierLookupItem
-///
-/// Properties:
-/// * [id] 
-/// * [name] 
-/// * [phone] 
-/// * [contactEmail] 
-@BuiltValue()
-abstract class SupplierLookupItem implements Built<SupplierLookupItem, SupplierLookupItemBuilder> {
-  @BuiltValueField(wireName: r'id')
-  int? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class SupplierLookupItem {
+  /// Returns a new [SupplierLookupItem] instance.
+  SupplierLookupItem({
+    this.id,
 
-  @BuiltValueField(wireName: r'name')
-  String get name;
+    required this.name,
 
-  @BuiltValueField(wireName: r'phone')
-  String? get phone;
+    this.phone,
 
-  @BuiltValueField(wireName: r'contactEmail')
-  String? get contactEmail;
+    this.contactEmail,
+  });
 
-  SupplierLookupItem._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final int? id;
 
-  factory SupplierLookupItem([void updates(SupplierLookupItemBuilder b)]) = _$SupplierLookupItem;
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
+  final String name;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(SupplierLookupItemBuilder b) => b;
+  @JsonKey(name: r'phone', required: false, includeIfNull: false)
+  final String? phone;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<SupplierLookupItem> get serializer => _$SupplierLookupItemSerializer();
-}
-
-class _$SupplierLookupItemSerializer implements PrimitiveSerializer<SupplierLookupItem> {
-  @override
-  final Iterable<Type> types = const [SupplierLookupItem, _$SupplierLookupItem];
+  @JsonKey(name: r'contactEmail', required: false, includeIfNull: false)
+  final String? contactEmail;
 
   @override
-  final String wireName = r'SupplierLookupItem';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    SupplierLookupItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'name';
-    yield serializers.serialize(
-      object.name,
-      specifiedType: const FullType(String),
-    );
-    if (object.phone != null) {
-      yield r'phone';
-      yield serializers.serialize(
-        object.phone,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.contactEmail != null) {
-      yield r'contactEmail';
-      yield serializers.serialize(
-        object.contactEmail,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SupplierLookupItem &&
+          other.id == id &&
+          other.name == name &&
+          other.phone == phone &&
+          other.contactEmail == contactEmail;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    SupplierLookupItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      id.hashCode +
+      name.hashCode +
+      (phone == null ? 0 : phone.hashCode) +
+      (contactEmail == null ? 0 : contactEmail.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required SupplierLookupItemBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.id = valueDes;
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
-        case r'phone':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.phone = valueDes;
-          break;
-        case r'contactEmail':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.contactEmail = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory SupplierLookupItem.fromJson(Map<String, dynamic> json) =>
+      _$SupplierLookupItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SupplierLookupItemToJson(this);
 
   @override
-  SupplierLookupItem deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = SupplierLookupItemBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

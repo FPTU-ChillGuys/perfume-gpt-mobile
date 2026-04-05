@@ -8,7 +8,7 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**BuiltList&lt;LoyaltyTransactionHistoryItemResponse&gt;**](LoyaltyTransactionHistoryItemResponse.md) |  | 
+**items** | [**List&lt;LoyaltyTransactionHistoryItemResponse&gt;**](LoyaltyTransactionHistoryItemResponse.md) |  | 
 **pageNumber** | **int** |  | 
 **pageSize** | **int** |  | 
 **totalCount** | **int** |  | 

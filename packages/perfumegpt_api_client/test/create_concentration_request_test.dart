@@ -3,14 +3,14 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateConcentrationRequest
 void main() {
-  final instance = CreateConcentrationRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateConcentrationRequest?
+  instance = /* CreateConcentrationRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateConcentrationRequest, () {
     // String name
     test('to test the property `name`', () async {
       // TODO
     });
-
   });
 }

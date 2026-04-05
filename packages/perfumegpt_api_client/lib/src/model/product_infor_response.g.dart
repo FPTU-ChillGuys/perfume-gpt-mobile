@@ -3,251 +3,242 @@
 part of 'product_infor_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProductInforResponse extends ProductInforResponse {
-  @override
-  final String productCode;
-  @override
-  final String brandName;
-  @override
-  final String origin;
-  @override
-  final int? releaseYear;
-  @override
-  final Gender? gender;
-  @override
-  final String scentGroup;
-  @override
-  final String style;
-  @override
-  final String topNotes;
-  @override
-  final String heartNotes;
-  @override
-  final String baseNotes;
-  @override
-  final String description;
+abstract class _$ProductInforResponseCWProxy {
+  ProductInforResponse productCode(String productCode);
 
-  factory _$ProductInforResponse([
-    void Function(ProductInforResponseBuilder)? updates,
-  ]) => (ProductInforResponseBuilder()..update(updates))._build();
+  ProductInforResponse brandName(String brandName);
 
-  _$ProductInforResponse._({
-    required this.productCode,
-    required this.brandName,
-    required this.origin,
-    this.releaseYear,
-    this.gender,
-    required this.scentGroup,
-    required this.style,
-    required this.topNotes,
-    required this.heartNotes,
-    required this.baseNotes,
-    required this.description,
-  }) : super._();
-  @override
-  ProductInforResponse rebuild(
-    void Function(ProductInforResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  ProductInforResponse origin(String origin);
 
-  @override
-  ProductInforResponseBuilder toBuilder() =>
-      ProductInforResponseBuilder()..replace(this);
+  ProductInforResponse releaseYear(int? releaseYear);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProductInforResponse &&
-        productCode == other.productCode &&
-        brandName == other.brandName &&
-        origin == other.origin &&
-        releaseYear == other.releaseYear &&
-        gender == other.gender &&
-        scentGroup == other.scentGroup &&
-        style == other.style &&
-        topNotes == other.topNotes &&
-        heartNotes == other.heartNotes &&
-        baseNotes == other.baseNotes &&
-        description == other.description;
-  }
+  ProductInforResponse gender(Gender? gender);
+
+  ProductInforResponse scentGroup(String scentGroup);
+
+  ProductInforResponse style(String style);
+
+  ProductInforResponse topNotes(String topNotes);
+
+  ProductInforResponse heartNotes(String heartNotes);
+
+  ProductInforResponse baseNotes(String baseNotes);
+
+  ProductInforResponse description(String description);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductInforResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProductInforResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProductInforResponse call({
+    String productCode,
+    String brandName,
+    String origin,
+    int? releaseYear,
+    Gender? gender,
+    String scentGroup,
+    String style,
+    String topNotes,
+    String heartNotes,
+    String baseNotes,
+    String description,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductInforResponse.copyWith(...)` or call `instanceOfProductInforResponse.copyWith.fieldName(value)` for a single field.
+class _$ProductInforResponseCWProxyImpl
+    implements _$ProductInforResponseCWProxy {
+  const _$ProductInforResponseCWProxyImpl(this._value);
+
+  final ProductInforResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, productCode.hashCode);
-    _$hash = $jc(_$hash, brandName.hashCode);
-    _$hash = $jc(_$hash, origin.hashCode);
-    _$hash = $jc(_$hash, releaseYear.hashCode);
-    _$hash = $jc(_$hash, gender.hashCode);
-    _$hash = $jc(_$hash, scentGroup.hashCode);
-    _$hash = $jc(_$hash, style.hashCode);
-    _$hash = $jc(_$hash, topNotes.hashCode);
-    _$hash = $jc(_$hash, heartNotes.hashCode);
-    _$hash = $jc(_$hash, baseNotes.hashCode);
-    _$hash = $jc(_$hash, description.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProductInforResponse productCode(String productCode) =>
+      call(productCode: productCode);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ProductInforResponse')
-          ..add('productCode', productCode)
-          ..add('brandName', brandName)
-          ..add('origin', origin)
-          ..add('releaseYear', releaseYear)
-          ..add('gender', gender)
-          ..add('scentGroup', scentGroup)
-          ..add('style', style)
-          ..add('topNotes', topNotes)
-          ..add('heartNotes', heartNotes)
-          ..add('baseNotes', baseNotes)
-          ..add('description', description))
-        .toString();
+  ProductInforResponse brandName(String brandName) =>
+      call(brandName: brandName);
+
+  @override
+  ProductInforResponse origin(String origin) => call(origin: origin);
+
+  @override
+  ProductInforResponse releaseYear(int? releaseYear) =>
+      call(releaseYear: releaseYear);
+
+  @override
+  ProductInforResponse gender(Gender? gender) => call(gender: gender);
+
+  @override
+  ProductInforResponse scentGroup(String scentGroup) =>
+      call(scentGroup: scentGroup);
+
+  @override
+  ProductInforResponse style(String style) => call(style: style);
+
+  @override
+  ProductInforResponse topNotes(String topNotes) => call(topNotes: topNotes);
+
+  @override
+  ProductInforResponse heartNotes(String heartNotes) =>
+      call(heartNotes: heartNotes);
+
+  @override
+  ProductInforResponse baseNotes(String baseNotes) =>
+      call(baseNotes: baseNotes);
+
+  @override
+  ProductInforResponse description(String description) =>
+      call(description: description);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductInforResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProductInforResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProductInforResponse call({
+    Object? productCode = const $CopyWithPlaceholder(),
+    Object? brandName = const $CopyWithPlaceholder(),
+    Object? origin = const $CopyWithPlaceholder(),
+    Object? releaseYear = const $CopyWithPlaceholder(),
+    Object? gender = const $CopyWithPlaceholder(),
+    Object? scentGroup = const $CopyWithPlaceholder(),
+    Object? style = const $CopyWithPlaceholder(),
+    Object? topNotes = const $CopyWithPlaceholder(),
+    Object? heartNotes = const $CopyWithPlaceholder(),
+    Object? baseNotes = const $CopyWithPlaceholder(),
+    Object? description = const $CopyWithPlaceholder(),
+  }) {
+    return ProductInforResponse(
+      productCode:
+          productCode == const $CopyWithPlaceholder() || productCode == null
+          ? _value.productCode
+          // ignore: cast_nullable_to_non_nullable
+          : productCode as String,
+      brandName: brandName == const $CopyWithPlaceholder() || brandName == null
+          ? _value.brandName
+          // ignore: cast_nullable_to_non_nullable
+          : brandName as String,
+      origin: origin == const $CopyWithPlaceholder() || origin == null
+          ? _value.origin
+          // ignore: cast_nullable_to_non_nullable
+          : origin as String,
+      releaseYear: releaseYear == const $CopyWithPlaceholder()
+          ? _value.releaseYear
+          // ignore: cast_nullable_to_non_nullable
+          : releaseYear as int?,
+      gender: gender == const $CopyWithPlaceholder()
+          ? _value.gender
+          // ignore: cast_nullable_to_non_nullable
+          : gender as Gender?,
+      scentGroup:
+          scentGroup == const $CopyWithPlaceholder() || scentGroup == null
+          ? _value.scentGroup
+          // ignore: cast_nullable_to_non_nullable
+          : scentGroup as String,
+      style: style == const $CopyWithPlaceholder() || style == null
+          ? _value.style
+          // ignore: cast_nullable_to_non_nullable
+          : style as String,
+      topNotes: topNotes == const $CopyWithPlaceholder() || topNotes == null
+          ? _value.topNotes
+          // ignore: cast_nullable_to_non_nullable
+          : topNotes as String,
+      heartNotes:
+          heartNotes == const $CopyWithPlaceholder() || heartNotes == null
+          ? _value.heartNotes
+          // ignore: cast_nullable_to_non_nullable
+          : heartNotes as String,
+      baseNotes: baseNotes == const $CopyWithPlaceholder() || baseNotes == null
+          ? _value.baseNotes
+          // ignore: cast_nullable_to_non_nullable
+          : baseNotes as String,
+      description:
+          description == const $CopyWithPlaceholder() || description == null
+          ? _value.description
+          // ignore: cast_nullable_to_non_nullable
+          : description as String,
+    );
   }
 }
 
-class ProductInforResponseBuilder
-    implements Builder<ProductInforResponse, ProductInforResponseBuilder> {
-  _$ProductInforResponse? _$v;
-
-  String? _productCode;
-  String? get productCode => _$this._productCode;
-  set productCode(String? productCode) => _$this._productCode = productCode;
-
-  String? _brandName;
-  String? get brandName => _$this._brandName;
-  set brandName(String? brandName) => _$this._brandName = brandName;
-
-  String? _origin;
-  String? get origin => _$this._origin;
-  set origin(String? origin) => _$this._origin = origin;
-
-  int? _releaseYear;
-  int? get releaseYear => _$this._releaseYear;
-  set releaseYear(int? releaseYear) => _$this._releaseYear = releaseYear;
-
-  Gender? _gender;
-  Gender? get gender => _$this._gender;
-  set gender(Gender? gender) => _$this._gender = gender;
-
-  String? _scentGroup;
-  String? get scentGroup => _$this._scentGroup;
-  set scentGroup(String? scentGroup) => _$this._scentGroup = scentGroup;
-
-  String? _style;
-  String? get style => _$this._style;
-  set style(String? style) => _$this._style = style;
-
-  String? _topNotes;
-  String? get topNotes => _$this._topNotes;
-  set topNotes(String? topNotes) => _$this._topNotes = topNotes;
-
-  String? _heartNotes;
-  String? get heartNotes => _$this._heartNotes;
-  set heartNotes(String? heartNotes) => _$this._heartNotes = heartNotes;
-
-  String? _baseNotes;
-  String? get baseNotes => _$this._baseNotes;
-  set baseNotes(String? baseNotes) => _$this._baseNotes = baseNotes;
-
-  String? _description;
-  String? get description => _$this._description;
-  set description(String? description) => _$this._description = description;
-
-  ProductInforResponseBuilder() {
-    ProductInforResponse._defaults(this);
-  }
-
-  ProductInforResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _productCode = $v.productCode;
-      _brandName = $v.brandName;
-      _origin = $v.origin;
-      _releaseYear = $v.releaseYear;
-      _gender = $v.gender;
-      _scentGroup = $v.scentGroup;
-      _style = $v.style;
-      _topNotes = $v.topNotes;
-      _heartNotes = $v.heartNotes;
-      _baseNotes = $v.baseNotes;
-      _description = $v.description;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProductInforResponse other) {
-    _$v = other as _$ProductInforResponse;
-  }
-
-  @override
-  void update(void Function(ProductInforResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProductInforResponse build() => _build();
-
-  _$ProductInforResponse _build() {
-    final _$result =
-        _$v ??
-        _$ProductInforResponse._(
-          productCode: BuiltValueNullFieldError.checkNotNull(
-            productCode,
-            r'ProductInforResponse',
-            'productCode',
-          ),
-          brandName: BuiltValueNullFieldError.checkNotNull(
-            brandName,
-            r'ProductInforResponse',
-            'brandName',
-          ),
-          origin: BuiltValueNullFieldError.checkNotNull(
-            origin,
-            r'ProductInforResponse',
-            'origin',
-          ),
-          releaseYear: releaseYear,
-          gender: gender,
-          scentGroup: BuiltValueNullFieldError.checkNotNull(
-            scentGroup,
-            r'ProductInforResponse',
-            'scentGroup',
-          ),
-          style: BuiltValueNullFieldError.checkNotNull(
-            style,
-            r'ProductInforResponse',
-            'style',
-          ),
-          topNotes: BuiltValueNullFieldError.checkNotNull(
-            topNotes,
-            r'ProductInforResponse',
-            'topNotes',
-          ),
-          heartNotes: BuiltValueNullFieldError.checkNotNull(
-            heartNotes,
-            r'ProductInforResponse',
-            'heartNotes',
-          ),
-          baseNotes: BuiltValueNullFieldError.checkNotNull(
-            baseNotes,
-            r'ProductInforResponse',
-            'baseNotes',
-          ),
-          description: BuiltValueNullFieldError.checkNotNull(
-            description,
-            r'ProductInforResponse',
-            'description',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ProductInforResponseCopyWith on ProductInforResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductInforResponse.copyWith(...)` or `instanceOfProductInforResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductInforResponseCWProxy get copyWith =>
+      _$ProductInforResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProductInforResponse _$ProductInforResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ProductInforResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'productCode',
+      'brandName',
+      'origin',
+      'scentGroup',
+      'style',
+      'topNotes',
+      'heartNotes',
+      'baseNotes',
+      'description',
+    ],
+  );
+  final val = ProductInforResponse(
+    productCode: $checkedConvert('productCode', (v) => v as String),
+    brandName: $checkedConvert('brandName', (v) => v as String),
+    origin: $checkedConvert('origin', (v) => v as String),
+    releaseYear: $checkedConvert('releaseYear', (v) => (v as num?)?.toInt()),
+    gender: $checkedConvert(
+      'gender',
+      (v) => $enumDecodeNullable(_$GenderEnumMap, v),
+    ),
+    scentGroup: $checkedConvert('scentGroup', (v) => v as String),
+    style: $checkedConvert('style', (v) => v as String),
+    topNotes: $checkedConvert('topNotes', (v) => v as String),
+    heartNotes: $checkedConvert('heartNotes', (v) => v as String),
+    baseNotes: $checkedConvert('baseNotes', (v) => v as String),
+    description: $checkedConvert('description', (v) => v as String),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ProductInforResponseToJson(
+  ProductInforResponse instance,
+) => <String, dynamic>{
+  'productCode': instance.productCode,
+  'brandName': instance.brandName,
+  'origin': instance.origin,
+  'releaseYear': ?instance.releaseYear,
+  'gender': ?_$GenderEnumMap[instance.gender],
+  'scentGroup': instance.scentGroup,
+  'style': instance.style,
+  'topNotes': instance.topNotes,
+  'heartNotes': instance.heartNotes,
+  'baseNotes': instance.baseNotes,
+  'description': instance.description,
+};
+
+const _$GenderEnumMap = {
+  Gender.male: 'Male',
+  Gender.female: 'Female',
+  Gender.unisex: 'Unisex',
+};

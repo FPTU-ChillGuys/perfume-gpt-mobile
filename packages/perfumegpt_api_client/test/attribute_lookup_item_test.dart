@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for AttributeLookupItem
 void main() {
-  final instance = AttributeLookupItemBuilder();
-  // TODO add properties to the builder and call build()
+  final AttributeLookupItem? instance = /* AttributeLookupItem(...) */ null;
+  // TODO add properties to the entity
 
   group(AttributeLookupItem, () {
     // int id
@@ -31,6 +31,5 @@ void main() {
     test('to test the property `isVariantLevel`', () async {
       // TODO
     });
-
   });
 }

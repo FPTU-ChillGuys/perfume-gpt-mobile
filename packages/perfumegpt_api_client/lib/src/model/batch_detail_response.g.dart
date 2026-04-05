@@ -3,272 +3,289 @@
 part of 'batch_detail_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BatchDetailResponse extends BatchDetailResponse {
-  @override
-  final String? variantId;
-  @override
-  final String variantSku;
-  @override
-  final String productName;
-  @override
-  final int? volumeMl;
-  @override
-  final String concentrationName;
-  @override
-  final bool? isExpired;
-  @override
-  final int? daysUntilExpiry;
-  @override
-  final String? id;
-  @override
-  final String batchCode;
-  @override
-  final DateTime? manufactureDate;
-  @override
-  final DateTime? expiryDate;
-  @override
-  final int? importQuantity;
-  @override
-  final int? remainingQuantity;
-  @override
-  final DateTime? createdAt;
+abstract class _$BatchDetailResponseCWProxy {
+  BatchDetailResponse variantId(String? variantId);
 
-  factory _$BatchDetailResponse([
-    void Function(BatchDetailResponseBuilder)? updates,
-  ]) => (BatchDetailResponseBuilder()..update(updates))._build();
+  BatchDetailResponse variantSku(String variantSku);
 
-  _$BatchDetailResponse._({
-    this.variantId,
-    required this.variantSku,
-    required this.productName,
-    this.volumeMl,
-    required this.concentrationName,
-    this.isExpired,
-    this.daysUntilExpiry,
-    this.id,
-    required this.batchCode,
-    this.manufactureDate,
-    this.expiryDate,
-    this.importQuantity,
-    this.remainingQuantity,
-    this.createdAt,
-  }) : super._();
-  @override
-  BatchDetailResponse rebuild(
-    void Function(BatchDetailResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  BatchDetailResponse productName(String productName);
 
-  @override
-  BatchDetailResponseBuilder toBuilder() =>
-      BatchDetailResponseBuilder()..replace(this);
+  BatchDetailResponse volumeMl(int? volumeMl);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BatchDetailResponse &&
-        variantId == other.variantId &&
-        variantSku == other.variantSku &&
-        productName == other.productName &&
-        volumeMl == other.volumeMl &&
-        concentrationName == other.concentrationName &&
-        isExpired == other.isExpired &&
-        daysUntilExpiry == other.daysUntilExpiry &&
-        id == other.id &&
-        batchCode == other.batchCode &&
-        manufactureDate == other.manufactureDate &&
-        expiryDate == other.expiryDate &&
-        importQuantity == other.importQuantity &&
-        remainingQuantity == other.remainingQuantity &&
-        createdAt == other.createdAt;
-  }
+  BatchDetailResponse concentrationName(String concentrationName);
+
+  BatchDetailResponse isExpired(bool? isExpired);
+
+  BatchDetailResponse daysUntilExpiry(int? daysUntilExpiry);
+
+  BatchDetailResponse id(String? id);
+
+  BatchDetailResponse batchCode(String batchCode);
+
+  BatchDetailResponse manufactureDate(DateTime? manufactureDate);
+
+  BatchDetailResponse expiryDate(DateTime? expiryDate);
+
+  BatchDetailResponse importQuantity(int? importQuantity);
+
+  BatchDetailResponse remainingQuantity(int? remainingQuantity);
+
+  BatchDetailResponse createdAt(DateTime? createdAt);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BatchDetailResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BatchDetailResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BatchDetailResponse call({
+    String? variantId,
+    String variantSku,
+    String productName,
+    int? volumeMl,
+    String concentrationName,
+    bool? isExpired,
+    int? daysUntilExpiry,
+    String? id,
+    String batchCode,
+    DateTime? manufactureDate,
+    DateTime? expiryDate,
+    int? importQuantity,
+    int? remainingQuantity,
+    DateTime? createdAt,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBatchDetailResponse.copyWith(...)` or call `instanceOfBatchDetailResponse.copyWith.fieldName(value)` for a single field.
+class _$BatchDetailResponseCWProxyImpl implements _$BatchDetailResponseCWProxy {
+  const _$BatchDetailResponseCWProxyImpl(this._value);
+
+  final BatchDetailResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, variantId.hashCode);
-    _$hash = $jc(_$hash, variantSku.hashCode);
-    _$hash = $jc(_$hash, productName.hashCode);
-    _$hash = $jc(_$hash, volumeMl.hashCode);
-    _$hash = $jc(_$hash, concentrationName.hashCode);
-    _$hash = $jc(_$hash, isExpired.hashCode);
-    _$hash = $jc(_$hash, daysUntilExpiry.hashCode);
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, batchCode.hashCode);
-    _$hash = $jc(_$hash, manufactureDate.hashCode);
-    _$hash = $jc(_$hash, expiryDate.hashCode);
-    _$hash = $jc(_$hash, importQuantity.hashCode);
-    _$hash = $jc(_$hash, remainingQuantity.hashCode);
-    _$hash = $jc(_$hash, createdAt.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  BatchDetailResponse variantId(String? variantId) =>
+      call(variantId: variantId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'BatchDetailResponse')
-          ..add('variantId', variantId)
-          ..add('variantSku', variantSku)
-          ..add('productName', productName)
-          ..add('volumeMl', volumeMl)
-          ..add('concentrationName', concentrationName)
-          ..add('isExpired', isExpired)
-          ..add('daysUntilExpiry', daysUntilExpiry)
-          ..add('id', id)
-          ..add('batchCode', batchCode)
-          ..add('manufactureDate', manufactureDate)
-          ..add('expiryDate', expiryDate)
-          ..add('importQuantity', importQuantity)
-          ..add('remainingQuantity', remainingQuantity)
-          ..add('createdAt', createdAt))
-        .toString();
+  BatchDetailResponse variantSku(String variantSku) =>
+      call(variantSku: variantSku);
+
+  @override
+  BatchDetailResponse productName(String productName) =>
+      call(productName: productName);
+
+  @override
+  BatchDetailResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
+
+  @override
+  BatchDetailResponse concentrationName(String concentrationName) =>
+      call(concentrationName: concentrationName);
+
+  @override
+  BatchDetailResponse isExpired(bool? isExpired) => call(isExpired: isExpired);
+
+  @override
+  BatchDetailResponse daysUntilExpiry(int? daysUntilExpiry) =>
+      call(daysUntilExpiry: daysUntilExpiry);
+
+  @override
+  BatchDetailResponse id(String? id) => call(id: id);
+
+  @override
+  BatchDetailResponse batchCode(String batchCode) => call(batchCode: batchCode);
+
+  @override
+  BatchDetailResponse manufactureDate(DateTime? manufactureDate) =>
+      call(manufactureDate: manufactureDate);
+
+  @override
+  BatchDetailResponse expiryDate(DateTime? expiryDate) =>
+      call(expiryDate: expiryDate);
+
+  @override
+  BatchDetailResponse importQuantity(int? importQuantity) =>
+      call(importQuantity: importQuantity);
+
+  @override
+  BatchDetailResponse remainingQuantity(int? remainingQuantity) =>
+      call(remainingQuantity: remainingQuantity);
+
+  @override
+  BatchDetailResponse createdAt(DateTime? createdAt) =>
+      call(createdAt: createdAt);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BatchDetailResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BatchDetailResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BatchDetailResponse call({
+    Object? variantId = const $CopyWithPlaceholder(),
+    Object? variantSku = const $CopyWithPlaceholder(),
+    Object? productName = const $CopyWithPlaceholder(),
+    Object? volumeMl = const $CopyWithPlaceholder(),
+    Object? concentrationName = const $CopyWithPlaceholder(),
+    Object? isExpired = const $CopyWithPlaceholder(),
+    Object? daysUntilExpiry = const $CopyWithPlaceholder(),
+    Object? id = const $CopyWithPlaceholder(),
+    Object? batchCode = const $CopyWithPlaceholder(),
+    Object? manufactureDate = const $CopyWithPlaceholder(),
+    Object? expiryDate = const $CopyWithPlaceholder(),
+    Object? importQuantity = const $CopyWithPlaceholder(),
+    Object? remainingQuantity = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
+  }) {
+    return BatchDetailResponse(
+      variantId: variantId == const $CopyWithPlaceholder()
+          ? _value.variantId
+          // ignore: cast_nullable_to_non_nullable
+          : variantId as String?,
+      variantSku:
+          variantSku == const $CopyWithPlaceholder() || variantSku == null
+          ? _value.variantSku
+          // ignore: cast_nullable_to_non_nullable
+          : variantSku as String,
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
+          ? _value.productName
+          // ignore: cast_nullable_to_non_nullable
+          : productName as String,
+      volumeMl: volumeMl == const $CopyWithPlaceholder()
+          ? _value.volumeMl
+          // ignore: cast_nullable_to_non_nullable
+          : volumeMl as int?,
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
+          ? _value.concentrationName
+          // ignore: cast_nullable_to_non_nullable
+          : concentrationName as String,
+      isExpired: isExpired == const $CopyWithPlaceholder()
+          ? _value.isExpired
+          // ignore: cast_nullable_to_non_nullable
+          : isExpired as bool?,
+      daysUntilExpiry: daysUntilExpiry == const $CopyWithPlaceholder()
+          ? _value.daysUntilExpiry
+          // ignore: cast_nullable_to_non_nullable
+          : daysUntilExpiry as int?,
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
+          ? _value.batchCode
+          // ignore: cast_nullable_to_non_nullable
+          : batchCode as String,
+      manufactureDate: manufactureDate == const $CopyWithPlaceholder()
+          ? _value.manufactureDate
+          // ignore: cast_nullable_to_non_nullable
+          : manufactureDate as DateTime?,
+      expiryDate: expiryDate == const $CopyWithPlaceholder()
+          ? _value.expiryDate
+          // ignore: cast_nullable_to_non_nullable
+          : expiryDate as DateTime?,
+      importQuantity: importQuantity == const $CopyWithPlaceholder()
+          ? _value.importQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : importQuantity as int?,
+      remainingQuantity: remainingQuantity == const $CopyWithPlaceholder()
+          ? _value.remainingQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : remainingQuantity as int?,
+      createdAt: createdAt == const $CopyWithPlaceholder()
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as DateTime?,
+    );
   }
 }
 
-class BatchDetailResponseBuilder
-    implements Builder<BatchDetailResponse, BatchDetailResponseBuilder> {
-  _$BatchDetailResponse? _$v;
-
-  String? _variantId;
-  String? get variantId => _$this._variantId;
-  set variantId(String? variantId) => _$this._variantId = variantId;
-
-  String? _variantSku;
-  String? get variantSku => _$this._variantSku;
-  set variantSku(String? variantSku) => _$this._variantSku = variantSku;
-
-  String? _productName;
-  String? get productName => _$this._productName;
-  set productName(String? productName) => _$this._productName = productName;
-
-  int? _volumeMl;
-  int? get volumeMl => _$this._volumeMl;
-  set volumeMl(int? volumeMl) => _$this._volumeMl = volumeMl;
-
-  String? _concentrationName;
-  String? get concentrationName => _$this._concentrationName;
-  set concentrationName(String? concentrationName) =>
-      _$this._concentrationName = concentrationName;
-
-  bool? _isExpired;
-  bool? get isExpired => _$this._isExpired;
-  set isExpired(bool? isExpired) => _$this._isExpired = isExpired;
-
-  int? _daysUntilExpiry;
-  int? get daysUntilExpiry => _$this._daysUntilExpiry;
-  set daysUntilExpiry(int? daysUntilExpiry) =>
-      _$this._daysUntilExpiry = daysUntilExpiry;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _batchCode;
-  String? get batchCode => _$this._batchCode;
-  set batchCode(String? batchCode) => _$this._batchCode = batchCode;
-
-  DateTime? _manufactureDate;
-  DateTime? get manufactureDate => _$this._manufactureDate;
-  set manufactureDate(DateTime? manufactureDate) =>
-      _$this._manufactureDate = manufactureDate;
-
-  DateTime? _expiryDate;
-  DateTime? get expiryDate => _$this._expiryDate;
-  set expiryDate(DateTime? expiryDate) => _$this._expiryDate = expiryDate;
-
-  int? _importQuantity;
-  int? get importQuantity => _$this._importQuantity;
-  set importQuantity(int? importQuantity) =>
-      _$this._importQuantity = importQuantity;
-
-  int? _remainingQuantity;
-  int? get remainingQuantity => _$this._remainingQuantity;
-  set remainingQuantity(int? remainingQuantity) =>
-      _$this._remainingQuantity = remainingQuantity;
-
-  DateTime? _createdAt;
-  DateTime? get createdAt => _$this._createdAt;
-  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
-
-  BatchDetailResponseBuilder() {
-    BatchDetailResponse._defaults(this);
-  }
-
-  BatchDetailResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _variantId = $v.variantId;
-      _variantSku = $v.variantSku;
-      _productName = $v.productName;
-      _volumeMl = $v.volumeMl;
-      _concentrationName = $v.concentrationName;
-      _isExpired = $v.isExpired;
-      _daysUntilExpiry = $v.daysUntilExpiry;
-      _id = $v.id;
-      _batchCode = $v.batchCode;
-      _manufactureDate = $v.manufactureDate;
-      _expiryDate = $v.expiryDate;
-      _importQuantity = $v.importQuantity;
-      _remainingQuantity = $v.remainingQuantity;
-      _createdAt = $v.createdAt;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BatchDetailResponse other) {
-    _$v = other as _$BatchDetailResponse;
-  }
-
-  @override
-  void update(void Function(BatchDetailResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BatchDetailResponse build() => _build();
-
-  _$BatchDetailResponse _build() {
-    final _$result =
-        _$v ??
-        _$BatchDetailResponse._(
-          variantId: variantId,
-          variantSku: BuiltValueNullFieldError.checkNotNull(
-            variantSku,
-            r'BatchDetailResponse',
-            'variantSku',
-          ),
-          productName: BuiltValueNullFieldError.checkNotNull(
-            productName,
-            r'BatchDetailResponse',
-            'productName',
-          ),
-          volumeMl: volumeMl,
-          concentrationName: BuiltValueNullFieldError.checkNotNull(
-            concentrationName,
-            r'BatchDetailResponse',
-            'concentrationName',
-          ),
-          isExpired: isExpired,
-          daysUntilExpiry: daysUntilExpiry,
-          id: id,
-          batchCode: BuiltValueNullFieldError.checkNotNull(
-            batchCode,
-            r'BatchDetailResponse',
-            'batchCode',
-          ),
-          manufactureDate: manufactureDate,
-          expiryDate: expiryDate,
-          importQuantity: importQuantity,
-          remainingQuantity: remainingQuantity,
-          createdAt: createdAt,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $BatchDetailResponseCopyWith on BatchDetailResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBatchDetailResponse.copyWith(...)` or `instanceOfBatchDetailResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BatchDetailResponseCWProxy get copyWith =>
+      _$BatchDetailResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BatchDetailResponse _$BatchDetailResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('BatchDetailResponse', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const [
+          'variantSku',
+          'productName',
+          'concentrationName',
+          'batchCode',
+        ],
+      );
+      final val = BatchDetailResponse(
+        variantId: $checkedConvert('variantId', (v) => v as String?),
+        variantSku: $checkedConvert('variantSku', (v) => v as String),
+        productName: $checkedConvert('productName', (v) => v as String),
+        volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
+        concentrationName: $checkedConvert(
+          'concentrationName',
+          (v) => v as String,
+        ),
+        isExpired: $checkedConvert('isExpired', (v) => v as bool?),
+        daysUntilExpiry: $checkedConvert(
+          'daysUntilExpiry',
+          (v) => (v as num?)?.toInt(),
+        ),
+        id: $checkedConvert('id', (v) => v as String?),
+        batchCode: $checkedConvert('batchCode', (v) => v as String),
+        manufactureDate: $checkedConvert(
+          'manufactureDate',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        expiryDate: $checkedConvert(
+          'expiryDate',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        importQuantity: $checkedConvert(
+          'importQuantity',
+          (v) => (v as num?)?.toInt(),
+        ),
+        remainingQuantity: $checkedConvert(
+          'remainingQuantity',
+          (v) => (v as num?)?.toInt(),
+        ),
+        createdAt: $checkedConvert(
+          'createdAt',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$BatchDetailResponseToJson(
+  BatchDetailResponse instance,
+) => <String, dynamic>{
+  'variantId': ?instance.variantId,
+  'variantSku': instance.variantSku,
+  'productName': instance.productName,
+  'volumeMl': ?instance.volumeMl,
+  'concentrationName': instance.concentrationName,
+  'isExpired': ?instance.isExpired,
+  'daysUntilExpiry': ?instance.daysUntilExpiry,
+  'id': ?instance.id,
+  'batchCode': instance.batchCode,
+  'manufactureDate': ?instance.manufactureDate?.toIso8601String(),
+  'expiryDate': ?instance.expiryDate?.toIso8601String(),
+  'importQuantity': ?instance.importQuantity,
+  'remainingQuantity': ?instance.remainingQuantity,
+  'createdAt': ?instance.createdAt?.toIso8601String(),
+};

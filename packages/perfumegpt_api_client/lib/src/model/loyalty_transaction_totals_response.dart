@@ -3,178 +3,74 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'loyalty_transaction_totals_response.g.dart';
 
-/// LoyaltyTransactionTotalsResponse
-///
-/// Properties:
-/// * [userId] 
-/// * [totalEarnedPoints] 
-/// * [totalSpentPoints] 
-/// * [pointBalance] 
-/// * [totalTransactions] 
-@BuiltValue()
-abstract class LoyaltyTransactionTotalsResponse implements Built<LoyaltyTransactionTotalsResponse, LoyaltyTransactionTotalsResponseBuilder> {
-  @BuiltValueField(wireName: r'userId')
-  String? get userId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class LoyaltyTransactionTotalsResponse {
+  /// Returns a new [LoyaltyTransactionTotalsResponse] instance.
+  LoyaltyTransactionTotalsResponse({
+    this.userId,
 
-  @BuiltValueField(wireName: r'totalEarnedPoints')
-  int? get totalEarnedPoints;
+    this.totalEarnedPoints,
 
-  @BuiltValueField(wireName: r'totalSpentPoints')
-  int? get totalSpentPoints;
+    this.totalSpentPoints,
 
-  @BuiltValueField(wireName: r'pointBalance')
-  int? get pointBalance;
+    this.pointBalance,
 
-  @BuiltValueField(wireName: r'totalTransactions')
-  int? get totalTransactions;
+    this.totalTransactions,
+  });
 
-  LoyaltyTransactionTotalsResponse._();
+  @JsonKey(name: r'userId', required: false, includeIfNull: false)
+  final String? userId;
 
-  factory LoyaltyTransactionTotalsResponse([void updates(LoyaltyTransactionTotalsResponseBuilder b)]) = _$LoyaltyTransactionTotalsResponse;
+  @JsonKey(name: r'totalEarnedPoints', required: false, includeIfNull: false)
+  final int? totalEarnedPoints;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(LoyaltyTransactionTotalsResponseBuilder b) => b;
+  @JsonKey(name: r'totalSpentPoints', required: false, includeIfNull: false)
+  final int? totalSpentPoints;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<LoyaltyTransactionTotalsResponse> get serializer => _$LoyaltyTransactionTotalsResponseSerializer();
-}
+  @JsonKey(name: r'pointBalance', required: false, includeIfNull: false)
+  final int? pointBalance;
 
-class _$LoyaltyTransactionTotalsResponseSerializer implements PrimitiveSerializer<LoyaltyTransactionTotalsResponse> {
-  @override
-  final Iterable<Type> types = const [LoyaltyTransactionTotalsResponse, _$LoyaltyTransactionTotalsResponse];
+  @JsonKey(name: r'totalTransactions', required: false, includeIfNull: false)
+  final int? totalTransactions;
 
   @override
-  final String wireName = r'LoyaltyTransactionTotalsResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    LoyaltyTransactionTotalsResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.userId != null) {
-      yield r'userId';
-      yield serializers.serialize(
-        object.userId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.totalEarnedPoints != null) {
-      yield r'totalEarnedPoints';
-      yield serializers.serialize(
-        object.totalEarnedPoints,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.totalSpentPoints != null) {
-      yield r'totalSpentPoints';
-      yield serializers.serialize(
-        object.totalSpentPoints,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.pointBalance != null) {
-      yield r'pointBalance';
-      yield serializers.serialize(
-        object.pointBalance,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.totalTransactions != null) {
-      yield r'totalTransactions';
-      yield serializers.serialize(
-        object.totalTransactions,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LoyaltyTransactionTotalsResponse &&
+          other.userId == userId &&
+          other.totalEarnedPoints == totalEarnedPoints &&
+          other.totalSpentPoints == totalSpentPoints &&
+          other.pointBalance == pointBalance &&
+          other.totalTransactions == totalTransactions;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    LoyaltyTransactionTotalsResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      userId.hashCode +
+      totalEarnedPoints.hashCode +
+      totalSpentPoints.hashCode +
+      pointBalance.hashCode +
+      totalTransactions.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required LoyaltyTransactionTotalsResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'userId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.userId = valueDes;
-          break;
-        case r'totalEarnedPoints':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalEarnedPoints = valueDes;
-          break;
-        case r'totalSpentPoints':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalSpentPoints = valueDes;
-          break;
-        case r'pointBalance':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.pointBalance = valueDes;
-          break;
-        case r'totalTransactions':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalTransactions = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory LoyaltyTransactionTotalsResponse.fromJson(
+    Map<String, dynamic> json,
+  ) => _$LoyaltyTransactionTotalsResponseFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$LoyaltyTransactionTotalsResponseToJson(this);
 
   @override
-  LoyaltyTransactionTotalsResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = LoyaltyTransactionTotalsResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

@@ -3,120 +3,45 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'forgot_password_request.g.dart';
 
-/// ForgotPasswordRequest
-///
-/// Properties:
-/// * [email] 
-/// * [clientUri] 
-@BuiltValue()
-abstract class ForgotPasswordRequest implements Built<ForgotPasswordRequest, ForgotPasswordRequestBuilder> {
-  @BuiltValueField(wireName: r'email')
-  String get email;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ForgotPasswordRequest {
+  /// Returns a new [ForgotPasswordRequest] instance.
+  ForgotPasswordRequest({required this.email, required this.clientUri});
 
-  @BuiltValueField(wireName: r'clientUri')
-  String get clientUri;
+  @JsonKey(name: r'email', required: true, includeIfNull: false)
+  final String email;
 
-  ForgotPasswordRequest._();
-
-  factory ForgotPasswordRequest([void updates(ForgotPasswordRequestBuilder b)]) = _$ForgotPasswordRequest;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ForgotPasswordRequestBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ForgotPasswordRequest> get serializer => _$ForgotPasswordRequestSerializer();
-}
-
-class _$ForgotPasswordRequestSerializer implements PrimitiveSerializer<ForgotPasswordRequest> {
-  @override
-  final Iterable<Type> types = const [ForgotPasswordRequest, _$ForgotPasswordRequest];
+  @JsonKey(name: r'clientUri', required: true, includeIfNull: false)
+  final String clientUri;
 
   @override
-  final String wireName = r'ForgotPasswordRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ForgotPasswordRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'email';
-    yield serializers.serialize(
-      object.email,
-      specifiedType: const FullType(String),
-    );
-    yield r'clientUri';
-    yield serializers.serialize(
-      object.clientUri,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ForgotPasswordRequest &&
+          other.email == email &&
+          other.clientUri == clientUri;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ForgotPasswordRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => email.hashCode + clientUri.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ForgotPasswordRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'email':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.email = valueDes;
-          break;
-        case r'clientUri':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.clientUri = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ForgotPasswordRequest.fromJson(Map<String, dynamic> json) =>
+      _$ForgotPasswordRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ForgotPasswordRequestToJson(this);
 
   @override
-  ForgotPasswordRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ForgotPasswordRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

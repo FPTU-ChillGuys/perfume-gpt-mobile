@@ -3,137 +3,124 @@
 part of 'update_import_detail_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UpdateImportDetailRequest extends UpdateImportDetailRequest {
-  @override
-  final String? id;
-  @override
-  final String variantId;
-  @override
-  final int? expectedQuantity;
-  @override
-  final num? unitPrice;
+abstract class _$UpdateImportDetailRequestCWProxy {
+  UpdateImportDetailRequest id(String? id);
 
-  factory _$UpdateImportDetailRequest([
-    void Function(UpdateImportDetailRequestBuilder)? updates,
-  ]) => (UpdateImportDetailRequestBuilder()..update(updates))._build();
+  UpdateImportDetailRequest variantId(String variantId);
 
-  _$UpdateImportDetailRequest._({
-    this.id,
-    required this.variantId,
-    this.expectedQuantity,
-    this.unitPrice,
-  }) : super._();
-  @override
-  UpdateImportDetailRequest rebuild(
-    void Function(UpdateImportDetailRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  UpdateImportDetailRequest expectedQuantity(int? expectedQuantity);
 
-  @override
-  UpdateImportDetailRequestBuilder toBuilder() =>
-      UpdateImportDetailRequestBuilder()..replace(this);
+  UpdateImportDetailRequest unitPrice(num? unitPrice);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UpdateImportDetailRequest &&
-        id == other.id &&
-        variantId == other.variantId &&
-        expectedQuantity == other.expectedQuantity &&
-        unitPrice == other.unitPrice;
-  }
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateImportDetailRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateImportDetailRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateImportDetailRequest call({
+    String? id,
+    String variantId,
+    int? expectedQuantity,
+    num? unitPrice,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateImportDetailRequest.copyWith(...)` or call `instanceOfUpdateImportDetailRequest.copyWith.fieldName(value)` for a single field.
+class _$UpdateImportDetailRequestCWProxyImpl
+    implements _$UpdateImportDetailRequestCWProxy {
+  const _$UpdateImportDetailRequestCWProxyImpl(this._value);
+
+  final UpdateImportDetailRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, variantId.hashCode);
-    _$hash = $jc(_$hash, expectedQuantity.hashCode);
-    _$hash = $jc(_$hash, unitPrice.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UpdateImportDetailRequest id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'UpdateImportDetailRequest')
-          ..add('id', id)
-          ..add('variantId', variantId)
-          ..add('expectedQuantity', expectedQuantity)
-          ..add('unitPrice', unitPrice))
-        .toString();
+  UpdateImportDetailRequest variantId(String variantId) =>
+      call(variantId: variantId);
+
+  @override
+  UpdateImportDetailRequest expectedQuantity(int? expectedQuantity) =>
+      call(expectedQuantity: expectedQuantity);
+
+  @override
+  UpdateImportDetailRequest unitPrice(num? unitPrice) =>
+      call(unitPrice: unitPrice);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateImportDetailRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateImportDetailRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateImportDetailRequest call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? variantId = const $CopyWithPlaceholder(),
+    Object? expectedQuantity = const $CopyWithPlaceholder(),
+    Object? unitPrice = const $CopyWithPlaceholder(),
+  }) {
+    return UpdateImportDetailRequest(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      variantId: variantId == const $CopyWithPlaceholder() || variantId == null
+          ? _value.variantId
+          // ignore: cast_nullable_to_non_nullable
+          : variantId as String,
+      expectedQuantity: expectedQuantity == const $CopyWithPlaceholder()
+          ? _value.expectedQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : expectedQuantity as int?,
+      unitPrice: unitPrice == const $CopyWithPlaceholder()
+          ? _value.unitPrice
+          // ignore: cast_nullable_to_non_nullable
+          : unitPrice as num?,
+    );
   }
 }
 
-class UpdateImportDetailRequestBuilder
-    implements
-        Builder<UpdateImportDetailRequest, UpdateImportDetailRequestBuilder> {
-  _$UpdateImportDetailRequest? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _variantId;
-  String? get variantId => _$this._variantId;
-  set variantId(String? variantId) => _$this._variantId = variantId;
-
-  int? _expectedQuantity;
-  int? get expectedQuantity => _$this._expectedQuantity;
-  set expectedQuantity(int? expectedQuantity) =>
-      _$this._expectedQuantity = expectedQuantity;
-
-  num? _unitPrice;
-  num? get unitPrice => _$this._unitPrice;
-  set unitPrice(num? unitPrice) => _$this._unitPrice = unitPrice;
-
-  UpdateImportDetailRequestBuilder() {
-    UpdateImportDetailRequest._defaults(this);
-  }
-
-  UpdateImportDetailRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _variantId = $v.variantId;
-      _expectedQuantity = $v.expectedQuantity;
-      _unitPrice = $v.unitPrice;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UpdateImportDetailRequest other) {
-    _$v = other as _$UpdateImportDetailRequest;
-  }
-
-  @override
-  void update(void Function(UpdateImportDetailRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UpdateImportDetailRequest build() => _build();
-
-  _$UpdateImportDetailRequest _build() {
-    final _$result =
-        _$v ??
-        _$UpdateImportDetailRequest._(
-          id: id,
-          variantId: BuiltValueNullFieldError.checkNotNull(
-            variantId,
-            r'UpdateImportDetailRequest',
-            'variantId',
-          ),
-          expectedQuantity: expectedQuantity,
-          unitPrice: unitPrice,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $UpdateImportDetailRequestCopyWith on UpdateImportDetailRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateImportDetailRequest.copyWith(...)` or `instanceOfUpdateImportDetailRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UpdateImportDetailRequestCWProxy get copyWith =>
+      _$UpdateImportDetailRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateImportDetailRequest _$UpdateImportDetailRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('UpdateImportDetailRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['variantId']);
+  final val = UpdateImportDetailRequest(
+    id: $checkedConvert('id', (v) => v as String?),
+    variantId: $checkedConvert('variantId', (v) => v as String),
+    expectedQuantity: $checkedConvert(
+      'expectedQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$UpdateImportDetailRequestToJson(
+  UpdateImportDetailRequest instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'variantId': instance.variantId,
+  'expectedQuantity': ?instance.expectedQuantity,
+  'unitPrice': ?instance.unitPrice,
+};

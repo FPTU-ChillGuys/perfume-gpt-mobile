@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for DistrictResponse
 void main() {
-  final instance = DistrictResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final DistrictResponse? instance = /* DistrictResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(DistrictResponse, () {
     // int districtID
@@ -37,7 +37,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<String> nameExtension
+    // List<String> nameExtension
     test('to test the property `nameExtension`', () async {
       // TODO
     });
@@ -66,6 +66,5 @@ void main() {
     test('to test the property `updatedDate`', () async {
       // TODO
     });
-
   });
 }

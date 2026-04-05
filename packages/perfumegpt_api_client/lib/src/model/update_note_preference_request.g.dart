@@ -3,105 +3,98 @@
 part of 'update_note_preference_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UpdateNotePreferenceRequest extends UpdateNotePreferenceRequest {
-  @override
-  final int? noteId;
-  @override
-  final NoteType? noteType;
+abstract class _$UpdateNotePreferenceRequestCWProxy {
+  UpdateNotePreferenceRequest noteId(int? noteId);
 
-  factory _$UpdateNotePreferenceRequest([
-    void Function(UpdateNotePreferenceRequestBuilder)? updates,
-  ]) => (UpdateNotePreferenceRequestBuilder()..update(updates))._build();
+  UpdateNotePreferenceRequest noteType(NoteType? noteType);
 
-  _$UpdateNotePreferenceRequest._({this.noteId, this.noteType}) : super._();
-  @override
-  UpdateNotePreferenceRequest rebuild(
-    void Function(UpdateNotePreferenceRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateNotePreferenceRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateNotePreferenceRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateNotePreferenceRequest call({int? noteId, NoteType? noteType});
+}
 
-  @override
-  UpdateNotePreferenceRequestBuilder toBuilder() =>
-      UpdateNotePreferenceRequestBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateNotePreferenceRequest.copyWith(...)` or call `instanceOfUpdateNotePreferenceRequest.copyWith.fieldName(value)` for a single field.
+class _$UpdateNotePreferenceRequestCWProxyImpl
+    implements _$UpdateNotePreferenceRequestCWProxy {
+  const _$UpdateNotePreferenceRequestCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UpdateNotePreferenceRequest &&
-        noteId == other.noteId &&
-        noteType == other.noteType;
-  }
+  final UpdateNotePreferenceRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, noteId.hashCode);
-    _$hash = $jc(_$hash, noteType.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UpdateNotePreferenceRequest noteId(int? noteId) => call(noteId: noteId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'UpdateNotePreferenceRequest')
-          ..add('noteId', noteId)
-          ..add('noteType', noteType))
-        .toString();
+  UpdateNotePreferenceRequest noteType(NoteType? noteType) =>
+      call(noteType: noteType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateNotePreferenceRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateNotePreferenceRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateNotePreferenceRequest call({
+    Object? noteId = const $CopyWithPlaceholder(),
+    Object? noteType = const $CopyWithPlaceholder(),
+  }) {
+    return UpdateNotePreferenceRequest(
+      noteId: noteId == const $CopyWithPlaceholder()
+          ? _value.noteId
+          // ignore: cast_nullable_to_non_nullable
+          : noteId as int?,
+      noteType: noteType == const $CopyWithPlaceholder()
+          ? _value.noteType
+          // ignore: cast_nullable_to_non_nullable
+          : noteType as NoteType?,
+    );
   }
 }
 
-class UpdateNotePreferenceRequestBuilder
-    implements
-        Builder<
-          UpdateNotePreferenceRequest,
-          UpdateNotePreferenceRequestBuilder
-        > {
-  _$UpdateNotePreferenceRequest? _$v;
-
-  int? _noteId;
-  int? get noteId => _$this._noteId;
-  set noteId(int? noteId) => _$this._noteId = noteId;
-
-  NoteType? _noteType;
-  NoteType? get noteType => _$this._noteType;
-  set noteType(NoteType? noteType) => _$this._noteType = noteType;
-
-  UpdateNotePreferenceRequestBuilder() {
-    UpdateNotePreferenceRequest._defaults(this);
-  }
-
-  UpdateNotePreferenceRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _noteId = $v.noteId;
-      _noteType = $v.noteType;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UpdateNotePreferenceRequest other) {
-    _$v = other as _$UpdateNotePreferenceRequest;
-  }
-
-  @override
-  void update(void Function(UpdateNotePreferenceRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UpdateNotePreferenceRequest build() => _build();
-
-  _$UpdateNotePreferenceRequest _build() {
-    final _$result =
-        _$v ??
-        _$UpdateNotePreferenceRequest._(noteId: noteId, noteType: noteType);
-    replace(_$result);
-    return _$result;
-  }
+extension $UpdateNotePreferenceRequestCopyWith on UpdateNotePreferenceRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateNotePreferenceRequest.copyWith(...)` or `instanceOfUpdateNotePreferenceRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UpdateNotePreferenceRequestCWProxy get copyWith =>
+      _$UpdateNotePreferenceRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateNotePreferenceRequest _$UpdateNotePreferenceRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('UpdateNotePreferenceRequest', json, ($checkedConvert) {
+  final val = UpdateNotePreferenceRequest(
+    noteId: $checkedConvert('noteId', (v) => (v as num?)?.toInt()),
+    noteType: $checkedConvert(
+      'noteType',
+      (v) => $enumDecodeNullable(_$NoteTypeEnumMap, v),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$UpdateNotePreferenceRequestToJson(
+  UpdateNotePreferenceRequest instance,
+) => <String, dynamic>{
+  'noteId': ?instance.noteId,
+  'noteType': ?_$NoteTypeEnumMap[instance.noteType],
+};
+
+const _$NoteTypeEnumMap = {
+  NoteType.top: 'Top',
+  NoteType.heart: 'Heart',
+  NoteType.base_: 'Base',
+};

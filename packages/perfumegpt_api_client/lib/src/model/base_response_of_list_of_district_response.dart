@@ -4,182 +4,74 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/district_response.dart';
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response_of_list_of_district_response.g.dart';
 
-/// BaseResponseOfListOfDistrictResponse
-///
-/// Properties:
-/// * [payload] 
-/// * [success] 
-/// * [message] 
-/// * [errors] 
-/// * [errorType] 
-@BuiltValue()
-abstract class BaseResponseOfListOfDistrictResponse implements Built<BaseResponseOfListOfDistrictResponse, BaseResponseOfListOfDistrictResponseBuilder> {
-  @BuiltValueField(wireName: r'payload')
-  BuiltList<DistrictResponse>? get payload;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class BaseResponseOfListOfDistrictResponse {
+  /// Returns a new [BaseResponseOfListOfDistrictResponse] instance.
+  BaseResponseOfListOfDistrictResponse({
+    this.payload,
 
-  @BuiltValueField(wireName: r'success')
-  bool? get success;
+    this.success,
 
-  @BuiltValueField(wireName: r'message')
-  String? get message;
+    this.message,
 
-  @BuiltValueField(wireName: r'errors')
-  BuiltList<String>? get errors;
+    this.errors,
 
-  @BuiltValueField(wireName: r'errorType')
-  int? get errorType;
+    this.errorType,
+  });
 
-  BaseResponseOfListOfDistrictResponse._();
+  @JsonKey(name: r'payload', required: false, includeIfNull: false)
+  final List<DistrictResponse>? payload;
 
-  factory BaseResponseOfListOfDistrictResponse([void updates(BaseResponseOfListOfDistrictResponseBuilder b)]) = _$BaseResponseOfListOfDistrictResponse;
+  @JsonKey(name: r'success', required: false, includeIfNull: false)
+  final bool? success;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(BaseResponseOfListOfDistrictResponseBuilder b) => b;
+  @JsonKey(name: r'message', required: false, includeIfNull: false)
+  final String? message;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<BaseResponseOfListOfDistrictResponse> get serializer => _$BaseResponseOfListOfDistrictResponseSerializer();
-}
+  @JsonKey(name: r'errors', required: false, includeIfNull: false)
+  final List<String>? errors;
 
-class _$BaseResponseOfListOfDistrictResponseSerializer implements PrimitiveSerializer<BaseResponseOfListOfDistrictResponse> {
-  @override
-  final Iterable<Type> types = const [BaseResponseOfListOfDistrictResponse, _$BaseResponseOfListOfDistrictResponse];
+  @JsonKey(name: r'errorType', required: false, includeIfNull: false)
+  final int? errorType;
 
   @override
-  final String wireName = r'BaseResponseOfListOfDistrictResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    BaseResponseOfListOfDistrictResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.payload != null) {
-      yield r'payload';
-      yield serializers.serialize(
-        object.payload,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(DistrictResponse)]),
-      );
-    }
-    if (object.success != null) {
-      yield r'success';
-      yield serializers.serialize(
-        object.success,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.message != null) {
-      yield r'message';
-      yield serializers.serialize(
-        object.message,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.errors != null) {
-      yield r'errors';
-      yield serializers.serialize(
-        object.errors,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.errorType != null) {
-      yield r'errorType';
-      yield serializers.serialize(
-        object.errorType,
-        specifiedType: const FullType.nullable(int),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BaseResponseOfListOfDistrictResponse &&
+          other.payload == payload &&
+          other.success == success &&
+          other.message == message &&
+          other.errors == errors &&
+          other.errorType == errorType;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    BaseResponseOfListOfDistrictResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      (payload == null ? 0 : payload.hashCode) +
+      success.hashCode +
+      message.hashCode +
+      (errors == null ? 0 : errors.hashCode) +
+      (errorType == null ? 0 : errorType.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required BaseResponseOfListOfDistrictResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'payload':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(DistrictResponse)]),
-          ) as BuiltList<DistrictResponse>?;
-          if (valueDes == null) continue;
-          result.payload.replace(valueDes);
-          break;
-        case r'success':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.success = valueDes;
-          break;
-        case r'message':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.message = valueDes;
-          break;
-        case r'errors':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>?;
-          if (valueDes == null) continue;
-          result.errors.replace(valueDes);
-          break;
-        case r'errorType':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.errorType = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory BaseResponseOfListOfDistrictResponse.fromJson(
+    Map<String, dynamic> json,
+  ) => _$BaseResponseOfListOfDistrictResponseFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$BaseResponseOfListOfDistrictResponseToJson(this);
 
   @override
-  BaseResponseOfListOfDistrictResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = BaseResponseOfListOfDistrictResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

@@ -3,417 +3,450 @@
 part of 'order_return_request_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$OrderReturnRequestResponse extends OrderReturnRequestResponse {
-  @override
-  final String? id;
-  @override
-  final String? orderId;
-  @override
-  final String orderCode;
-  @override
-  final String? customerId;
-  @override
-  final String? customerEmail;
-  @override
-  final String? processedById;
-  @override
-  final String? processedByName;
-  @override
-  final String? inspectedById;
-  @override
-  final String? inspectedByName;
-  @override
-  final String reason;
-  @override
-  final String? customerNote;
-  @override
-  final String? staffNote;
-  @override
-  final String? inspectionNote;
-  @override
-  final ReturnRequestStatus? status;
-  @override
-  final num? requestedRefundAmount;
-  @override
-  final num? approvedRefundAmount;
-  @override
-  final bool? isRefunded;
-  @override
-  final String? vnpTransactionNo;
-  @override
-  final bool? isRestocked;
-  @override
-  final ReturnShippingInfoResponse? returnShippingInfo;
-  @override
-  final BuiltList<OrderReturnRequestDetailResponse>? returnDetails;
-  @override
-  final BuiltList<MediaResponse>? proofImages;
-  @override
-  final DateTime? createdAt;
-  @override
-  final DateTime? updatedAt;
+abstract class _$OrderReturnRequestResponseCWProxy {
+  OrderReturnRequestResponse id(String? id);
 
-  factory _$OrderReturnRequestResponse([
-    void Function(OrderReturnRequestResponseBuilder)? updates,
-  ]) => (OrderReturnRequestResponseBuilder()..update(updates))._build();
+  OrderReturnRequestResponse orderId(String? orderId);
 
-  _$OrderReturnRequestResponse._({
-    this.id,
-    this.orderId,
-    required this.orderCode,
-    this.customerId,
-    this.customerEmail,
-    this.processedById,
-    this.processedByName,
-    this.inspectedById,
-    this.inspectedByName,
-    required this.reason,
-    this.customerNote,
-    this.staffNote,
-    this.inspectionNote,
-    this.status,
-    this.requestedRefundAmount,
-    this.approvedRefundAmount,
-    this.isRefunded,
-    this.vnpTransactionNo,
-    this.isRestocked,
-    this.returnShippingInfo,
-    this.returnDetails,
-    this.proofImages,
-    this.createdAt,
-    this.updatedAt,
-  }) : super._();
-  @override
-  OrderReturnRequestResponse rebuild(
-    void Function(OrderReturnRequestResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  OrderReturnRequestResponse orderCode(String orderCode);
 
-  @override
-  OrderReturnRequestResponseBuilder toBuilder() =>
-      OrderReturnRequestResponseBuilder()..replace(this);
+  OrderReturnRequestResponse customerId(String? customerId);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is OrderReturnRequestResponse &&
-        id == other.id &&
-        orderId == other.orderId &&
-        orderCode == other.orderCode &&
-        customerId == other.customerId &&
-        customerEmail == other.customerEmail &&
-        processedById == other.processedById &&
-        processedByName == other.processedByName &&
-        inspectedById == other.inspectedById &&
-        inspectedByName == other.inspectedByName &&
-        reason == other.reason &&
-        customerNote == other.customerNote &&
-        staffNote == other.staffNote &&
-        inspectionNote == other.inspectionNote &&
-        status == other.status &&
-        requestedRefundAmount == other.requestedRefundAmount &&
-        approvedRefundAmount == other.approvedRefundAmount &&
-        isRefunded == other.isRefunded &&
-        vnpTransactionNo == other.vnpTransactionNo &&
-        isRestocked == other.isRestocked &&
-        returnShippingInfo == other.returnShippingInfo &&
-        returnDetails == other.returnDetails &&
-        proofImages == other.proofImages &&
-        createdAt == other.createdAt &&
-        updatedAt == other.updatedAt;
-  }
+  OrderReturnRequestResponse customerEmail(String? customerEmail);
+
+  OrderReturnRequestResponse processedById(String? processedById);
+
+  OrderReturnRequestResponse processedByName(String? processedByName);
+
+  OrderReturnRequestResponse inspectedById(String? inspectedById);
+
+  OrderReturnRequestResponse inspectedByName(String? inspectedByName);
+
+  OrderReturnRequestResponse reason(String reason);
+
+  OrderReturnRequestResponse customerNote(String? customerNote);
+
+  OrderReturnRequestResponse staffNote(String? staffNote);
+
+  OrderReturnRequestResponse inspectionNote(String? inspectionNote);
+
+  OrderReturnRequestResponse status(ReturnRequestStatus? status);
+
+  OrderReturnRequestResponse requestedRefundAmount(num? requestedRefundAmount);
+
+  OrderReturnRequestResponse approvedRefundAmount(num? approvedRefundAmount);
+
+  OrderReturnRequestResponse isRefunded(bool? isRefunded);
+
+  OrderReturnRequestResponse vnpTransactionNo(String? vnpTransactionNo);
+
+  OrderReturnRequestResponse isRestocked(bool? isRestocked);
+
+  OrderReturnRequestResponse returnShippingInfo(
+    ReturnShippingInfoResponse? returnShippingInfo,
+  );
+
+  OrderReturnRequestResponse returnDetails(
+    List<OrderReturnRequestDetailResponse>? returnDetails,
+  );
+
+  OrderReturnRequestResponse proofImages(List<MediaResponse>? proofImages);
+
+  OrderReturnRequestResponse createdAt(DateTime? createdAt);
+
+  OrderReturnRequestResponse updatedAt(DateTime? updatedAt);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderReturnRequestResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OrderReturnRequestResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OrderReturnRequestResponse call({
+    String? id,
+    String? orderId,
+    String orderCode,
+    String? customerId,
+    String? customerEmail,
+    String? processedById,
+    String? processedByName,
+    String? inspectedById,
+    String? inspectedByName,
+    String reason,
+    String? customerNote,
+    String? staffNote,
+    String? inspectionNote,
+    ReturnRequestStatus? status,
+    num? requestedRefundAmount,
+    num? approvedRefundAmount,
+    bool? isRefunded,
+    String? vnpTransactionNo,
+    bool? isRestocked,
+    ReturnShippingInfoResponse? returnShippingInfo,
+    List<OrderReturnRequestDetailResponse>? returnDetails,
+    List<MediaResponse>? proofImages,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfOrderReturnRequestResponse.copyWith(...)` or call `instanceOfOrderReturnRequestResponse.copyWith.fieldName(value)` for a single field.
+class _$OrderReturnRequestResponseCWProxyImpl
+    implements _$OrderReturnRequestResponseCWProxy {
+  const _$OrderReturnRequestResponseCWProxyImpl(this._value);
+
+  final OrderReturnRequestResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, orderId.hashCode);
-    _$hash = $jc(_$hash, orderCode.hashCode);
-    _$hash = $jc(_$hash, customerId.hashCode);
-    _$hash = $jc(_$hash, customerEmail.hashCode);
-    _$hash = $jc(_$hash, processedById.hashCode);
-    _$hash = $jc(_$hash, processedByName.hashCode);
-    _$hash = $jc(_$hash, inspectedById.hashCode);
-    _$hash = $jc(_$hash, inspectedByName.hashCode);
-    _$hash = $jc(_$hash, reason.hashCode);
-    _$hash = $jc(_$hash, customerNote.hashCode);
-    _$hash = $jc(_$hash, staffNote.hashCode);
-    _$hash = $jc(_$hash, inspectionNote.hashCode);
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, requestedRefundAmount.hashCode);
-    _$hash = $jc(_$hash, approvedRefundAmount.hashCode);
-    _$hash = $jc(_$hash, isRefunded.hashCode);
-    _$hash = $jc(_$hash, vnpTransactionNo.hashCode);
-    _$hash = $jc(_$hash, isRestocked.hashCode);
-    _$hash = $jc(_$hash, returnShippingInfo.hashCode);
-    _$hash = $jc(_$hash, returnDetails.hashCode);
-    _$hash = $jc(_$hash, proofImages.hashCode);
-    _$hash = $jc(_$hash, createdAt.hashCode);
-    _$hash = $jc(_$hash, updatedAt.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  OrderReturnRequestResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'OrderReturnRequestResponse')
-          ..add('id', id)
-          ..add('orderId', orderId)
-          ..add('orderCode', orderCode)
-          ..add('customerId', customerId)
-          ..add('customerEmail', customerEmail)
-          ..add('processedById', processedById)
-          ..add('processedByName', processedByName)
-          ..add('inspectedById', inspectedById)
-          ..add('inspectedByName', inspectedByName)
-          ..add('reason', reason)
-          ..add('customerNote', customerNote)
-          ..add('staffNote', staffNote)
-          ..add('inspectionNote', inspectionNote)
-          ..add('status', status)
-          ..add('requestedRefundAmount', requestedRefundAmount)
-          ..add('approvedRefundAmount', approvedRefundAmount)
-          ..add('isRefunded', isRefunded)
-          ..add('vnpTransactionNo', vnpTransactionNo)
-          ..add('isRestocked', isRestocked)
-          ..add('returnShippingInfo', returnShippingInfo)
-          ..add('returnDetails', returnDetails)
-          ..add('proofImages', proofImages)
-          ..add('createdAt', createdAt)
-          ..add('updatedAt', updatedAt))
-        .toString();
+  OrderReturnRequestResponse orderId(String? orderId) => call(orderId: orderId);
+
+  @override
+  OrderReturnRequestResponse orderCode(String orderCode) =>
+      call(orderCode: orderCode);
+
+  @override
+  OrderReturnRequestResponse customerId(String? customerId) =>
+      call(customerId: customerId);
+
+  @override
+  OrderReturnRequestResponse customerEmail(String? customerEmail) =>
+      call(customerEmail: customerEmail);
+
+  @override
+  OrderReturnRequestResponse processedById(String? processedById) =>
+      call(processedById: processedById);
+
+  @override
+  OrderReturnRequestResponse processedByName(String? processedByName) =>
+      call(processedByName: processedByName);
+
+  @override
+  OrderReturnRequestResponse inspectedById(String? inspectedById) =>
+      call(inspectedById: inspectedById);
+
+  @override
+  OrderReturnRequestResponse inspectedByName(String? inspectedByName) =>
+      call(inspectedByName: inspectedByName);
+
+  @override
+  OrderReturnRequestResponse reason(String reason) => call(reason: reason);
+
+  @override
+  OrderReturnRequestResponse customerNote(String? customerNote) =>
+      call(customerNote: customerNote);
+
+  @override
+  OrderReturnRequestResponse staffNote(String? staffNote) =>
+      call(staffNote: staffNote);
+
+  @override
+  OrderReturnRequestResponse inspectionNote(String? inspectionNote) =>
+      call(inspectionNote: inspectionNote);
+
+  @override
+  OrderReturnRequestResponse status(ReturnRequestStatus? status) =>
+      call(status: status);
+
+  @override
+  OrderReturnRequestResponse requestedRefundAmount(
+    num? requestedRefundAmount,
+  ) => call(requestedRefundAmount: requestedRefundAmount);
+
+  @override
+  OrderReturnRequestResponse approvedRefundAmount(num? approvedRefundAmount) =>
+      call(approvedRefundAmount: approvedRefundAmount);
+
+  @override
+  OrderReturnRequestResponse isRefunded(bool? isRefunded) =>
+      call(isRefunded: isRefunded);
+
+  @override
+  OrderReturnRequestResponse vnpTransactionNo(String? vnpTransactionNo) =>
+      call(vnpTransactionNo: vnpTransactionNo);
+
+  @override
+  OrderReturnRequestResponse isRestocked(bool? isRestocked) =>
+      call(isRestocked: isRestocked);
+
+  @override
+  OrderReturnRequestResponse returnShippingInfo(
+    ReturnShippingInfoResponse? returnShippingInfo,
+  ) => call(returnShippingInfo: returnShippingInfo);
+
+  @override
+  OrderReturnRequestResponse returnDetails(
+    List<OrderReturnRequestDetailResponse>? returnDetails,
+  ) => call(returnDetails: returnDetails);
+
+  @override
+  OrderReturnRequestResponse proofImages(List<MediaResponse>? proofImages) =>
+      call(proofImages: proofImages);
+
+  @override
+  OrderReturnRequestResponse createdAt(DateTime? createdAt) =>
+      call(createdAt: createdAt);
+
+  @override
+  OrderReturnRequestResponse updatedAt(DateTime? updatedAt) =>
+      call(updatedAt: updatedAt);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderReturnRequestResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OrderReturnRequestResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OrderReturnRequestResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? orderId = const $CopyWithPlaceholder(),
+    Object? orderCode = const $CopyWithPlaceholder(),
+    Object? customerId = const $CopyWithPlaceholder(),
+    Object? customerEmail = const $CopyWithPlaceholder(),
+    Object? processedById = const $CopyWithPlaceholder(),
+    Object? processedByName = const $CopyWithPlaceholder(),
+    Object? inspectedById = const $CopyWithPlaceholder(),
+    Object? inspectedByName = const $CopyWithPlaceholder(),
+    Object? reason = const $CopyWithPlaceholder(),
+    Object? customerNote = const $CopyWithPlaceholder(),
+    Object? staffNote = const $CopyWithPlaceholder(),
+    Object? inspectionNote = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? requestedRefundAmount = const $CopyWithPlaceholder(),
+    Object? approvedRefundAmount = const $CopyWithPlaceholder(),
+    Object? isRefunded = const $CopyWithPlaceholder(),
+    Object? vnpTransactionNo = const $CopyWithPlaceholder(),
+    Object? isRestocked = const $CopyWithPlaceholder(),
+    Object? returnShippingInfo = const $CopyWithPlaceholder(),
+    Object? returnDetails = const $CopyWithPlaceholder(),
+    Object? proofImages = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
+    Object? updatedAt = const $CopyWithPlaceholder(),
+  }) {
+    return OrderReturnRequestResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      orderId: orderId == const $CopyWithPlaceholder()
+          ? _value.orderId
+          // ignore: cast_nullable_to_non_nullable
+          : orderId as String?,
+      orderCode: orderCode == const $CopyWithPlaceholder() || orderCode == null
+          ? _value.orderCode
+          // ignore: cast_nullable_to_non_nullable
+          : orderCode as String,
+      customerId: customerId == const $CopyWithPlaceholder()
+          ? _value.customerId
+          // ignore: cast_nullable_to_non_nullable
+          : customerId as String?,
+      customerEmail: customerEmail == const $CopyWithPlaceholder()
+          ? _value.customerEmail
+          // ignore: cast_nullable_to_non_nullable
+          : customerEmail as String?,
+      processedById: processedById == const $CopyWithPlaceholder()
+          ? _value.processedById
+          // ignore: cast_nullable_to_non_nullable
+          : processedById as String?,
+      processedByName: processedByName == const $CopyWithPlaceholder()
+          ? _value.processedByName
+          // ignore: cast_nullable_to_non_nullable
+          : processedByName as String?,
+      inspectedById: inspectedById == const $CopyWithPlaceholder()
+          ? _value.inspectedById
+          // ignore: cast_nullable_to_non_nullable
+          : inspectedById as String?,
+      inspectedByName: inspectedByName == const $CopyWithPlaceholder()
+          ? _value.inspectedByName
+          // ignore: cast_nullable_to_non_nullable
+          : inspectedByName as String?,
+      reason: reason == const $CopyWithPlaceholder() || reason == null
+          ? _value.reason
+          // ignore: cast_nullable_to_non_nullable
+          : reason as String,
+      customerNote: customerNote == const $CopyWithPlaceholder()
+          ? _value.customerNote
+          // ignore: cast_nullable_to_non_nullable
+          : customerNote as String?,
+      staffNote: staffNote == const $CopyWithPlaceholder()
+          ? _value.staffNote
+          // ignore: cast_nullable_to_non_nullable
+          : staffNote as String?,
+      inspectionNote: inspectionNote == const $CopyWithPlaceholder()
+          ? _value.inspectionNote
+          // ignore: cast_nullable_to_non_nullable
+          : inspectionNote as String?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ReturnRequestStatus?,
+      requestedRefundAmount:
+          requestedRefundAmount == const $CopyWithPlaceholder()
+          ? _value.requestedRefundAmount
+          // ignore: cast_nullable_to_non_nullable
+          : requestedRefundAmount as num?,
+      approvedRefundAmount: approvedRefundAmount == const $CopyWithPlaceholder()
+          ? _value.approvedRefundAmount
+          // ignore: cast_nullable_to_non_nullable
+          : approvedRefundAmount as num?,
+      isRefunded: isRefunded == const $CopyWithPlaceholder()
+          ? _value.isRefunded
+          // ignore: cast_nullable_to_non_nullable
+          : isRefunded as bool?,
+      vnpTransactionNo: vnpTransactionNo == const $CopyWithPlaceholder()
+          ? _value.vnpTransactionNo
+          // ignore: cast_nullable_to_non_nullable
+          : vnpTransactionNo as String?,
+      isRestocked: isRestocked == const $CopyWithPlaceholder()
+          ? _value.isRestocked
+          // ignore: cast_nullable_to_non_nullable
+          : isRestocked as bool?,
+      returnShippingInfo: returnShippingInfo == const $CopyWithPlaceholder()
+          ? _value.returnShippingInfo
+          // ignore: cast_nullable_to_non_nullable
+          : returnShippingInfo as ReturnShippingInfoResponse?,
+      returnDetails: returnDetails == const $CopyWithPlaceholder()
+          ? _value.returnDetails
+          // ignore: cast_nullable_to_non_nullable
+          : returnDetails as List<OrderReturnRequestDetailResponse>?,
+      proofImages: proofImages == const $CopyWithPlaceholder()
+          ? _value.proofImages
+          // ignore: cast_nullable_to_non_nullable
+          : proofImages as List<MediaResponse>?,
+      createdAt: createdAt == const $CopyWithPlaceholder()
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as DateTime?,
+      updatedAt: updatedAt == const $CopyWithPlaceholder()
+          ? _value.updatedAt
+          // ignore: cast_nullable_to_non_nullable
+          : updatedAt as DateTime?,
+    );
   }
 }
 
-class OrderReturnRequestResponseBuilder
-    implements
-        Builder<OrderReturnRequestResponse, OrderReturnRequestResponseBuilder> {
-  _$OrderReturnRequestResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _orderId;
-  String? get orderId => _$this._orderId;
-  set orderId(String? orderId) => _$this._orderId = orderId;
-
-  String? _orderCode;
-  String? get orderCode => _$this._orderCode;
-  set orderCode(String? orderCode) => _$this._orderCode = orderCode;
-
-  String? _customerId;
-  String? get customerId => _$this._customerId;
-  set customerId(String? customerId) => _$this._customerId = customerId;
-
-  String? _customerEmail;
-  String? get customerEmail => _$this._customerEmail;
-  set customerEmail(String? customerEmail) =>
-      _$this._customerEmail = customerEmail;
-
-  String? _processedById;
-  String? get processedById => _$this._processedById;
-  set processedById(String? processedById) =>
-      _$this._processedById = processedById;
-
-  String? _processedByName;
-  String? get processedByName => _$this._processedByName;
-  set processedByName(String? processedByName) =>
-      _$this._processedByName = processedByName;
-
-  String? _inspectedById;
-  String? get inspectedById => _$this._inspectedById;
-  set inspectedById(String? inspectedById) =>
-      _$this._inspectedById = inspectedById;
-
-  String? _inspectedByName;
-  String? get inspectedByName => _$this._inspectedByName;
-  set inspectedByName(String? inspectedByName) =>
-      _$this._inspectedByName = inspectedByName;
-
-  String? _reason;
-  String? get reason => _$this._reason;
-  set reason(String? reason) => _$this._reason = reason;
-
-  String? _customerNote;
-  String? get customerNote => _$this._customerNote;
-  set customerNote(String? customerNote) => _$this._customerNote = customerNote;
-
-  String? _staffNote;
-  String? get staffNote => _$this._staffNote;
-  set staffNote(String? staffNote) => _$this._staffNote = staffNote;
-
-  String? _inspectionNote;
-  String? get inspectionNote => _$this._inspectionNote;
-  set inspectionNote(String? inspectionNote) =>
-      _$this._inspectionNote = inspectionNote;
-
-  ReturnRequestStatus? _status;
-  ReturnRequestStatus? get status => _$this._status;
-  set status(ReturnRequestStatus? status) => _$this._status = status;
-
-  num? _requestedRefundAmount;
-  num? get requestedRefundAmount => _$this._requestedRefundAmount;
-  set requestedRefundAmount(num? requestedRefundAmount) =>
-      _$this._requestedRefundAmount = requestedRefundAmount;
-
-  num? _approvedRefundAmount;
-  num? get approvedRefundAmount => _$this._approvedRefundAmount;
-  set approvedRefundAmount(num? approvedRefundAmount) =>
-      _$this._approvedRefundAmount = approvedRefundAmount;
-
-  bool? _isRefunded;
-  bool? get isRefunded => _$this._isRefunded;
-  set isRefunded(bool? isRefunded) => _$this._isRefunded = isRefunded;
-
-  String? _vnpTransactionNo;
-  String? get vnpTransactionNo => _$this._vnpTransactionNo;
-  set vnpTransactionNo(String? vnpTransactionNo) =>
-      _$this._vnpTransactionNo = vnpTransactionNo;
-
-  bool? _isRestocked;
-  bool? get isRestocked => _$this._isRestocked;
-  set isRestocked(bool? isRestocked) => _$this._isRestocked = isRestocked;
-
-  ReturnShippingInfoResponseBuilder? _returnShippingInfo;
-  ReturnShippingInfoResponseBuilder get returnShippingInfo =>
-      _$this._returnShippingInfo ??= ReturnShippingInfoResponseBuilder();
-  set returnShippingInfo(
-    ReturnShippingInfoResponseBuilder? returnShippingInfo,
-  ) => _$this._returnShippingInfo = returnShippingInfo;
-
-  ListBuilder<OrderReturnRequestDetailResponse>? _returnDetails;
-  ListBuilder<OrderReturnRequestDetailResponse> get returnDetails =>
-      _$this._returnDetails ??= ListBuilder<OrderReturnRequestDetailResponse>();
-  set returnDetails(
-    ListBuilder<OrderReturnRequestDetailResponse>? returnDetails,
-  ) => _$this._returnDetails = returnDetails;
-
-  ListBuilder<MediaResponse>? _proofImages;
-  ListBuilder<MediaResponse> get proofImages =>
-      _$this._proofImages ??= ListBuilder<MediaResponse>();
-  set proofImages(ListBuilder<MediaResponse>? proofImages) =>
-      _$this._proofImages = proofImages;
-
-  DateTime? _createdAt;
-  DateTime? get createdAt => _$this._createdAt;
-  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
-
-  DateTime? _updatedAt;
-  DateTime? get updatedAt => _$this._updatedAt;
-  set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
-
-  OrderReturnRequestResponseBuilder() {
-    OrderReturnRequestResponse._defaults(this);
-  }
-
-  OrderReturnRequestResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _orderId = $v.orderId;
-      _orderCode = $v.orderCode;
-      _customerId = $v.customerId;
-      _customerEmail = $v.customerEmail;
-      _processedById = $v.processedById;
-      _processedByName = $v.processedByName;
-      _inspectedById = $v.inspectedById;
-      _inspectedByName = $v.inspectedByName;
-      _reason = $v.reason;
-      _customerNote = $v.customerNote;
-      _staffNote = $v.staffNote;
-      _inspectionNote = $v.inspectionNote;
-      _status = $v.status;
-      _requestedRefundAmount = $v.requestedRefundAmount;
-      _approvedRefundAmount = $v.approvedRefundAmount;
-      _isRefunded = $v.isRefunded;
-      _vnpTransactionNo = $v.vnpTransactionNo;
-      _isRestocked = $v.isRestocked;
-      _returnShippingInfo = $v.returnShippingInfo?.toBuilder();
-      _returnDetails = $v.returnDetails?.toBuilder();
-      _proofImages = $v.proofImages?.toBuilder();
-      _createdAt = $v.createdAt;
-      _updatedAt = $v.updatedAt;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(OrderReturnRequestResponse other) {
-    _$v = other as _$OrderReturnRequestResponse;
-  }
-
-  @override
-  void update(void Function(OrderReturnRequestResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  OrderReturnRequestResponse build() => _build();
-
-  _$OrderReturnRequestResponse _build() {
-    _$OrderReturnRequestResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$OrderReturnRequestResponse._(
-            id: id,
-            orderId: orderId,
-            orderCode: BuiltValueNullFieldError.checkNotNull(
-              orderCode,
-              r'OrderReturnRequestResponse',
-              'orderCode',
-            ),
-            customerId: customerId,
-            customerEmail: customerEmail,
-            processedById: processedById,
-            processedByName: processedByName,
-            inspectedById: inspectedById,
-            inspectedByName: inspectedByName,
-            reason: BuiltValueNullFieldError.checkNotNull(
-              reason,
-              r'OrderReturnRequestResponse',
-              'reason',
-            ),
-            customerNote: customerNote,
-            staffNote: staffNote,
-            inspectionNote: inspectionNote,
-            status: status,
-            requestedRefundAmount: requestedRefundAmount,
-            approvedRefundAmount: approvedRefundAmount,
-            isRefunded: isRefunded,
-            vnpTransactionNo: vnpTransactionNo,
-            isRestocked: isRestocked,
-            returnShippingInfo: _returnShippingInfo?.build(),
-            returnDetails: _returnDetails?.build(),
-            proofImages: _proofImages?.build(),
-            createdAt: createdAt,
-            updatedAt: updatedAt,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'returnShippingInfo';
-        _returnShippingInfo?.build();
-        _$failedField = 'returnDetails';
-        _returnDetails?.build();
-        _$failedField = 'proofImages';
-        _proofImages?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'OrderReturnRequestResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $OrderReturnRequestResponseCopyWith on OrderReturnRequestResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfOrderReturnRequestResponse.copyWith(...)` or `instanceOfOrderReturnRequestResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$OrderReturnRequestResponseCWProxy get copyWith =>
+      _$OrderReturnRequestResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+OrderReturnRequestResponse _$OrderReturnRequestResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('OrderReturnRequestResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['orderCode', 'reason']);
+  final val = OrderReturnRequestResponse(
+    id: $checkedConvert('id', (v) => v as String?),
+    orderId: $checkedConvert('orderId', (v) => v as String?),
+    orderCode: $checkedConvert('orderCode', (v) => v as String),
+    customerId: $checkedConvert('customerId', (v) => v as String?),
+    customerEmail: $checkedConvert('customerEmail', (v) => v as String?),
+    processedById: $checkedConvert('processedById', (v) => v as String?),
+    processedByName: $checkedConvert('processedByName', (v) => v as String?),
+    inspectedById: $checkedConvert('inspectedById', (v) => v as String?),
+    inspectedByName: $checkedConvert('inspectedByName', (v) => v as String?),
+    reason: $checkedConvert('reason', (v) => v as String),
+    customerNote: $checkedConvert('customerNote', (v) => v as String?),
+    staffNote: $checkedConvert('staffNote', (v) => v as String?),
+    inspectionNote: $checkedConvert('inspectionNote', (v) => v as String?),
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecodeNullable(_$ReturnRequestStatusEnumMap, v),
+    ),
+    requestedRefundAmount: $checkedConvert(
+      'requestedRefundAmount',
+      (v) => v as num?,
+    ),
+    approvedRefundAmount: $checkedConvert(
+      'approvedRefundAmount',
+      (v) => v as num?,
+    ),
+    isRefunded: $checkedConvert('isRefunded', (v) => v as bool?),
+    vnpTransactionNo: $checkedConvert('vnpTransactionNo', (v) => v as String?),
+    isRestocked: $checkedConvert('isRestocked', (v) => v as bool?),
+    returnShippingInfo: $checkedConvert(
+      'returnShippingInfo',
+      (v) => v == null
+          ? null
+          : ReturnShippingInfoResponse.fromJson(v as Map<String, dynamic>),
+    ),
+    returnDetails: $checkedConvert(
+      'returnDetails',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => OrderReturnRequestDetailResponse.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+    ),
+    proofImages: $checkedConvert(
+      'proofImages',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    createdAt: $checkedConvert(
+      'createdAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    updatedAt: $checkedConvert(
+      'updatedAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$OrderReturnRequestResponseToJson(
+  OrderReturnRequestResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'orderId': ?instance.orderId,
+  'orderCode': instance.orderCode,
+  'customerId': ?instance.customerId,
+  'customerEmail': ?instance.customerEmail,
+  'processedById': ?instance.processedById,
+  'processedByName': ?instance.processedByName,
+  'inspectedById': ?instance.inspectedById,
+  'inspectedByName': ?instance.inspectedByName,
+  'reason': instance.reason,
+  'customerNote': ?instance.customerNote,
+  'staffNote': ?instance.staffNote,
+  'inspectionNote': ?instance.inspectionNote,
+  'status': ?_$ReturnRequestStatusEnumMap[instance.status],
+  'requestedRefundAmount': ?instance.requestedRefundAmount,
+  'approvedRefundAmount': ?instance.approvedRefundAmount,
+  'isRefunded': ?instance.isRefunded,
+  'vnpTransactionNo': ?instance.vnpTransactionNo,
+  'isRestocked': ?instance.isRestocked,
+  'returnShippingInfo': ?instance.returnShippingInfo?.toJson(),
+  'returnDetails': ?instance.returnDetails?.map((e) => e.toJson()).toList(),
+  'proofImages': ?instance.proofImages?.map((e) => e.toJson()).toList(),
+  'createdAt': ?instance.createdAt?.toIso8601String(),
+  'updatedAt': ?instance.updatedAt?.toIso8601String(),
+};
+
+const _$ReturnRequestStatusEnumMap = {
+  ReturnRequestStatus.pending: 'Pending',
+  ReturnRequestStatus.approvedForReturn: 'ApprovedForReturn',
+  ReturnRequestStatus.inspecting: 'Inspecting',
+  ReturnRequestStatus.readyForRefund: 'ReadyForRefund',
+  ReturnRequestStatus.completed: 'Completed',
+  ReturnRequestStatus.rejected: 'Rejected',
+};

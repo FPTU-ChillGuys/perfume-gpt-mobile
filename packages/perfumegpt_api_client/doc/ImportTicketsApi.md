@@ -30,7 +30,7 @@ Method | HTTP request | Description
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getImportTicketsApi();
-final Uint8List excelFile = BINARY_DATA_HERE; // Uint8List | 
+final MultipartFile excelFile = BINARY_DATA_HERE; // MultipartFile | 
 final int supplierId = 56; // int | 
 final DateTime expectedArrivalDate = 2013-10-20T19:20:30+01:00; // DateTime | 
 
@@ -46,7 +46,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **excelFile** | **Uint8List**|  | [optional] 
+ **excelFile** | **MultipartFile**|  | [optional] 
  **supplierId** | **int**|  | [optional] 
  **expectedArrivalDate** | **DateTime**|  | [optional] 
 

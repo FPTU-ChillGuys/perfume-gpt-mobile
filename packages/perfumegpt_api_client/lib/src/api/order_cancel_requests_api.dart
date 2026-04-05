@@ -4,35 +4,32 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_order_cancel_request_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/cancel_request_status.dart';
 import 'package:perfumegpt_api_client/src/model/process_cancel_request.dart';
 
 class OrderCancelRequestsApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const OrderCancelRequestsApi(this._dio, this._serializers);
+  const OrderCancelRequestsApi(this._dio);
 
   /// apiOrdercancelrequestsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [status] 
-  /// * [isRefundRequired] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [status]
+  /// * [isRefundRequired]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -42,7 +39,8 @@ class OrderCancelRequestsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfOrderCancelRequestResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfOrderCancelRequestResponse>> apiOrdercancelrequestsGet({ 
+  Future<Response<BaseResponseOfPagedResultOfOrderCancelRequestResponse>>
+  apiOrdercancelrequestsGet({
     CancelRequestStatus? status,
     bool? isRefundRequired,
     int? pageNumber,
@@ -60,16 +58,10 @@ class OrderCancelRequestsApi {
     final _path = r'/api/ordercancelrequests';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -77,13 +69,13 @@ class OrderCancelRequestsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(CancelRequestStatus)),
-      if (isRefundRequired != null) r'IsRefundRequired': encodeQueryParameter(_serializers, isRefundRequired, const FullType(bool)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (status != null) r'Status': status,
+      if (isRefundRequired != null) r'IsRefundRequired': isRefundRequired,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -98,12 +90,17 @@ class OrderCancelRequestsApi {
     BaseResponseOfPagedResultOfOrderCancelRequestResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfOrderCancelRequestResponse),
-      ) as BaseResponseOfPagedResultOfOrderCancelRequestResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfOrderCancelRequestResponse,
+              BaseResponseOfPagedResultOfOrderCancelRequestResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfOrderCancelRequestResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -127,11 +124,11 @@ class OrderCancelRequestsApi {
   }
 
   /// apiOrdercancelrequestsIdProcessPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [processCancelRequest] 
+  /// * [id]
+  /// * [processCancelRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -141,7 +138,7 @@ class OrderCancelRequestsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiOrdercancelrequestsIdProcessPost({ 
+  Future<Response<BaseResponseOfstring>> apiOrdercancelrequestsIdProcessPost({
     required String id,
     required ProcessCancelRequest processCancelRequest,
     CancelToken? cancelToken,
@@ -151,19 +148,18 @@ class OrderCancelRequestsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/ordercancelrequests/{id}/process'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
+    final _path = r'/api/ordercancelrequests/{id}/process'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -174,15 +170,10 @@ class OrderCancelRequestsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(ProcessCancelRequest);
-      _bodyData = _serializers.serialize(processCancelRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(processCancelRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -201,12 +192,14 @@ class OrderCancelRequestsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -228,5 +221,4 @@ class OrderCancelRequestsApi {
       extra: _response.extra,
     );
   }
-
 }

@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfInventorySummaryResponse
 void main() {
-  final instance = BaseResponseOfInventorySummaryResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final BaseResponseOfInventorySummaryResponse?
+  instance = /* BaseResponseOfInventorySummaryResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(BaseResponseOfInventorySummaryResponse, () {
     // InventorySummaryResponse payload
@@ -22,7 +23,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<String> errors
+    // List<String> errors
     test('to test the property `errors`', () async {
       // TODO
     });
@@ -31,6 +32,5 @@ void main() {
     test('to test the property `errorType`', () async {
       // TODO
     });
-
   });
 }

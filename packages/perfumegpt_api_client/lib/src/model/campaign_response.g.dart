@@ -3,170 +3,179 @@
 part of 'campaign_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$CampaignResponse extends CampaignResponse {
-  @override
-  final String? id;
-  @override
-  final String name;
-  @override
-  final String? description;
-  @override
-  final DateTime? startDate;
-  @override
-  final DateTime? endDate;
-  @override
-  final CampaignType? type;
-  @override
-  final CampaignStatus? status;
+abstract class _$CampaignResponseCWProxy {
+  CampaignResponse id(String? id);
 
-  factory _$CampaignResponse([
-    void Function(CampaignResponseBuilder)? updates,
-  ]) => (CampaignResponseBuilder()..update(updates))._build();
+  CampaignResponse name(String name);
 
-  _$CampaignResponse._({
-    this.id,
-    required this.name,
-    this.description,
-    this.startDate,
-    this.endDate,
-    this.type,
-    this.status,
-  }) : super._();
-  @override
-  CampaignResponse rebuild(void Function(CampaignResponseBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  CampaignResponse description(String? description);
 
-  @override
-  CampaignResponseBuilder toBuilder() =>
-      CampaignResponseBuilder()..replace(this);
+  CampaignResponse startDate(DateTime? startDate);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is CampaignResponse &&
-        id == other.id &&
-        name == other.name &&
-        description == other.description &&
-        startDate == other.startDate &&
-        endDate == other.endDate &&
-        type == other.type &&
-        status == other.status;
-  }
+  CampaignResponse endDate(DateTime? endDate);
+
+  CampaignResponse type(CampaignType? type);
+
+  CampaignResponse status(CampaignStatus? status);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CampaignResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CampaignResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CampaignResponse call({
+    String? id,
+    String name,
+    String? description,
+    DateTime? startDate,
+    DateTime? endDate,
+    CampaignType? type,
+    CampaignStatus? status,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCampaignResponse.copyWith(...)` or call `instanceOfCampaignResponse.copyWith.fieldName(value)` for a single field.
+class _$CampaignResponseCWProxyImpl implements _$CampaignResponseCWProxy {
+  const _$CampaignResponseCWProxyImpl(this._value);
+
+  final CampaignResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, description.hashCode);
-    _$hash = $jc(_$hash, startDate.hashCode);
-    _$hash = $jc(_$hash, endDate.hashCode);
-    _$hash = $jc(_$hash, type.hashCode);
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  CampaignResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'CampaignResponse')
-          ..add('id', id)
-          ..add('name', name)
-          ..add('description', description)
-          ..add('startDate', startDate)
-          ..add('endDate', endDate)
-          ..add('type', type)
-          ..add('status', status))
-        .toString();
+  CampaignResponse name(String name) => call(name: name);
+
+  @override
+  CampaignResponse description(String? description) =>
+      call(description: description);
+
+  @override
+  CampaignResponse startDate(DateTime? startDate) => call(startDate: startDate);
+
+  @override
+  CampaignResponse endDate(DateTime? endDate) => call(endDate: endDate);
+
+  @override
+  CampaignResponse type(CampaignType? type) => call(type: type);
+
+  @override
+  CampaignResponse status(CampaignStatus? status) => call(status: status);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CampaignResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CampaignResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CampaignResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
+    Object? description = const $CopyWithPlaceholder(),
+    Object? startDate = const $CopyWithPlaceholder(),
+    Object? endDate = const $CopyWithPlaceholder(),
+    Object? type = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+  }) {
+    return CampaignResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+      description: description == const $CopyWithPlaceholder()
+          ? _value.description
+          // ignore: cast_nullable_to_non_nullable
+          : description as String?,
+      startDate: startDate == const $CopyWithPlaceholder()
+          ? _value.startDate
+          // ignore: cast_nullable_to_non_nullable
+          : startDate as DateTime?,
+      endDate: endDate == const $CopyWithPlaceholder()
+          ? _value.endDate
+          // ignore: cast_nullable_to_non_nullable
+          : endDate as DateTime?,
+      type: type == const $CopyWithPlaceholder()
+          ? _value.type
+          // ignore: cast_nullable_to_non_nullable
+          : type as CampaignType?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as CampaignStatus?,
+    );
   }
 }
 
-class CampaignResponseBuilder
-    implements Builder<CampaignResponse, CampaignResponseBuilder> {
-  _$CampaignResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  String? _description;
-  String? get description => _$this._description;
-  set description(String? description) => _$this._description = description;
-
-  DateTime? _startDate;
-  DateTime? get startDate => _$this._startDate;
-  set startDate(DateTime? startDate) => _$this._startDate = startDate;
-
-  DateTime? _endDate;
-  DateTime? get endDate => _$this._endDate;
-  set endDate(DateTime? endDate) => _$this._endDate = endDate;
-
-  CampaignType? _type;
-  CampaignType? get type => _$this._type;
-  set type(CampaignType? type) => _$this._type = type;
-
-  CampaignStatus? _status;
-  CampaignStatus? get status => _$this._status;
-  set status(CampaignStatus? status) => _$this._status = status;
-
-  CampaignResponseBuilder() {
-    CampaignResponse._defaults(this);
-  }
-
-  CampaignResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _name = $v.name;
-      _description = $v.description;
-      _startDate = $v.startDate;
-      _endDate = $v.endDate;
-      _type = $v.type;
-      _status = $v.status;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(CampaignResponse other) {
-    _$v = other as _$CampaignResponse;
-  }
-
-  @override
-  void update(void Function(CampaignResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  CampaignResponse build() => _build();
-
-  _$CampaignResponse _build() {
-    final _$result =
-        _$v ??
-        _$CampaignResponse._(
-          id: id,
-          name: BuiltValueNullFieldError.checkNotNull(
-            name,
-            r'CampaignResponse',
-            'name',
-          ),
-          description: description,
-          startDate: startDate,
-          endDate: endDate,
-          type: type,
-          status: status,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $CampaignResponseCopyWith on CampaignResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCampaignResponse.copyWith(...)` or `instanceOfCampaignResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CampaignResponseCWProxy get copyWith => _$CampaignResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CampaignResponse _$CampaignResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('CampaignResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['name']);
+      final val = CampaignResponse(
+        id: $checkedConvert('id', (v) => v as String?),
+        name: $checkedConvert('name', (v) => v as String),
+        description: $checkedConvert('description', (v) => v as String?),
+        startDate: $checkedConvert(
+          'startDate',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        endDate: $checkedConvert(
+          'endDate',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        type: $checkedConvert(
+          'type',
+          (v) => $enumDecodeNullable(_$CampaignTypeEnumMap, v),
+        ),
+        status: $checkedConvert(
+          'status',
+          (v) => $enumDecodeNullable(_$CampaignStatusEnumMap, v),
+        ),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$CampaignResponseToJson(CampaignResponse instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'name': instance.name,
+      'description': ?instance.description,
+      'startDate': ?instance.startDate?.toIso8601String(),
+      'endDate': ?instance.endDate?.toIso8601String(),
+      'type': ?_$CampaignTypeEnumMap[instance.type],
+      'status': ?_$CampaignStatusEnumMap[instance.status],
+    };
+
+const _$CampaignTypeEnumMap = {
+  CampaignType.flashSale: 'FlashSale',
+  CampaignType.clearance: 'Clearance',
+};
+
+const _$CampaignStatusEnumMap = {
+  CampaignStatus.upcoming: 'Upcoming',
+  CampaignStatus.active: 'Active',
+  CampaignStatus.paused: 'Paused',
+  CampaignStatus.completed: 'Completed',
+  CampaignStatus.cancelled: 'Cancelled',
+};

@@ -3,152 +3,65 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'reset_password_request.g.dart';
 
-/// ResetPasswordRequest
-///
-/// Properties:
-/// * [password] 
-/// * [confirmPassword] 
-/// * [email] 
-/// * [token] 
-@BuiltValue()
-abstract class ResetPasswordRequest implements Built<ResetPasswordRequest, ResetPasswordRequestBuilder> {
-  @BuiltValueField(wireName: r'password')
-  String get password;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ResetPasswordRequest {
+  /// Returns a new [ResetPasswordRequest] instance.
+  ResetPasswordRequest({
+    required this.password,
 
-  @BuiltValueField(wireName: r'confirmPassword')
-  String get confirmPassword;
+    required this.confirmPassword,
 
-  @BuiltValueField(wireName: r'email')
-  String get email;
+    required this.email,
 
-  @BuiltValueField(wireName: r'token')
-  String get token;
+    required this.token,
+  });
 
-  ResetPasswordRequest._();
+  @JsonKey(name: r'password', required: true, includeIfNull: false)
+  final String password;
 
-  factory ResetPasswordRequest([void updates(ResetPasswordRequestBuilder b)]) = _$ResetPasswordRequest;
+  @JsonKey(name: r'confirmPassword', required: true, includeIfNull: false)
+  final String confirmPassword;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ResetPasswordRequestBuilder b) => b;
+  @JsonKey(name: r'email', required: true, includeIfNull: false)
+  final String email;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ResetPasswordRequest> get serializer => _$ResetPasswordRequestSerializer();
-}
-
-class _$ResetPasswordRequestSerializer implements PrimitiveSerializer<ResetPasswordRequest> {
-  @override
-  final Iterable<Type> types = const [ResetPasswordRequest, _$ResetPasswordRequest];
+  @JsonKey(name: r'token', required: true, includeIfNull: false)
+  final String token;
 
   @override
-  final String wireName = r'ResetPasswordRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ResetPasswordRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'password';
-    yield serializers.serialize(
-      object.password,
-      specifiedType: const FullType(String),
-    );
-    yield r'confirmPassword';
-    yield serializers.serialize(
-      object.confirmPassword,
-      specifiedType: const FullType(String),
-    );
-    yield r'email';
-    yield serializers.serialize(
-      object.email,
-      specifiedType: const FullType(String),
-    );
-    yield r'token';
-    yield serializers.serialize(
-      object.token,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ResetPasswordRequest &&
+          other.password == password &&
+          other.confirmPassword == confirmPassword &&
+          other.email == email &&
+          other.token == token;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ResetPasswordRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      password.hashCode +
+      confirmPassword.hashCode +
+      email.hashCode +
+      token.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ResetPasswordRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'password':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.password = valueDes;
-          break;
-        case r'confirmPassword':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.confirmPassword = valueDes;
-          break;
-        case r'email':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.email = valueDes;
-          break;
-        case r'token':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.token = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>
+      _$ResetPasswordRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ResetPasswordRequestToJson(this);
 
   @override
-  ResetPasswordRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ResetPasswordRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

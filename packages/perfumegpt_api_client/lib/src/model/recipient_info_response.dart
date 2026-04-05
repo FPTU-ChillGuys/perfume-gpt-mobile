@@ -3,208 +3,86 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'recipient_info_response.g.dart';
 
-/// RecipientInfoResponse
-///
-/// Properties:
-/// * [id] 
-/// * [recipientName] 
-/// * [recipientPhoneNumber] 
-/// * [districtName] 
-/// * [wardName] 
-/// * [provinceName] 
-/// * [fullAddress] 
-@BuiltValue()
-abstract class RecipientInfoResponse implements Built<RecipientInfoResponse, RecipientInfoResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class RecipientInfoResponse {
+  /// Returns a new [RecipientInfoResponse] instance.
+  RecipientInfoResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'recipientName')
-  String? get recipientName;
+    this.recipientName,
 
-  @BuiltValueField(wireName: r'recipientPhoneNumber')
-  String? get recipientPhoneNumber;
+    this.recipientPhoneNumber,
 
-  @BuiltValueField(wireName: r'districtName')
-  String get districtName;
+    required this.districtName,
 
-  @BuiltValueField(wireName: r'wardName')
-  String get wardName;
+    required this.wardName,
 
-  @BuiltValueField(wireName: r'provinceName')
-  String get provinceName;
+    required this.provinceName,
 
-  @BuiltValueField(wireName: r'fullAddress')
-  String get fullAddress;
+    required this.fullAddress,
+  });
 
-  RecipientInfoResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory RecipientInfoResponse([void updates(RecipientInfoResponseBuilder b)]) = _$RecipientInfoResponse;
+  @JsonKey(name: r'recipientName', required: false, includeIfNull: false)
+  final String? recipientName;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(RecipientInfoResponseBuilder b) => b;
+  @JsonKey(name: r'recipientPhoneNumber', required: false, includeIfNull: false)
+  final String? recipientPhoneNumber;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<RecipientInfoResponse> get serializer => _$RecipientInfoResponseSerializer();
-}
+  @JsonKey(name: r'districtName', required: true, includeIfNull: false)
+  final String districtName;
 
-class _$RecipientInfoResponseSerializer implements PrimitiveSerializer<RecipientInfoResponse> {
-  @override
-  final Iterable<Type> types = const [RecipientInfoResponse, _$RecipientInfoResponse];
+  @JsonKey(name: r'wardName', required: true, includeIfNull: false)
+  final String wardName;
+
+  @JsonKey(name: r'provinceName', required: true, includeIfNull: false)
+  final String provinceName;
+
+  @JsonKey(name: r'fullAddress', required: true, includeIfNull: false)
+  final String fullAddress;
 
   @override
-  final String wireName = r'RecipientInfoResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    RecipientInfoResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.recipientName != null) {
-      yield r'recipientName';
-      yield serializers.serialize(
-        object.recipientName,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.recipientPhoneNumber != null) {
-      yield r'recipientPhoneNumber';
-      yield serializers.serialize(
-        object.recipientPhoneNumber,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    yield r'districtName';
-    yield serializers.serialize(
-      object.districtName,
-      specifiedType: const FullType(String),
-    );
-    yield r'wardName';
-    yield serializers.serialize(
-      object.wardName,
-      specifiedType: const FullType(String),
-    );
-    yield r'provinceName';
-    yield serializers.serialize(
-      object.provinceName,
-      specifiedType: const FullType(String),
-    );
-    yield r'fullAddress';
-    yield serializers.serialize(
-      object.fullAddress,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RecipientInfoResponse &&
+          other.id == id &&
+          other.recipientName == recipientName &&
+          other.recipientPhoneNumber == recipientPhoneNumber &&
+          other.districtName == districtName &&
+          other.wardName == wardName &&
+          other.provinceName == provinceName &&
+          other.fullAddress == fullAddress;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    RecipientInfoResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      id.hashCode +
+      (recipientName == null ? 0 : recipientName.hashCode) +
+      (recipientPhoneNumber == null ? 0 : recipientPhoneNumber.hashCode) +
+      districtName.hashCode +
+      wardName.hashCode +
+      provinceName.hashCode +
+      fullAddress.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required RecipientInfoResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'recipientName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.recipientName = valueDes;
-          break;
-        case r'recipientPhoneNumber':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.recipientPhoneNumber = valueDes;
-          break;
-        case r'districtName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.districtName = valueDes;
-          break;
-        case r'wardName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.wardName = valueDes;
-          break;
-        case r'provinceName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.provinceName = valueDes;
-          break;
-        case r'fullAddress':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.fullAddress = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory RecipientInfoResponse.fromJson(Map<String, dynamic> json) =>
+      _$RecipientInfoResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecipientInfoResponseToJson(this);
 
   @override
-  RecipientInfoResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = RecipientInfoResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

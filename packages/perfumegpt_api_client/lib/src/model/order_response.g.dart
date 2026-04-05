@@ -3,370 +3,415 @@
 part of 'order_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$OrderResponse extends OrderResponse {
-  @override
-  final String? id;
-  @override
-  final String code;
-  @override
-  final String? customerId;
-  @override
-  final String? customerName;
-  @override
-  final String? customerEmail;
-  @override
-  final String? staffId;
-  @override
-  final String? staffName;
-  @override
-  final OrderType? type;
-  @override
-  final OrderStatus? status;
-  @override
-  final PaymentStatus? paymentStatus;
-  @override
-  final num? totalAmount;
-  @override
-  final String? voucherId;
-  @override
-  final String? voucherCode;
-  @override
-  final DateTime? paymentExpiresAt;
-  @override
-  final DateTime? paidAt;
-  @override
-  final DateTime? createdAt;
-  @override
-  final DateTime? updatedAt;
-  @override
-  final BuiltList<PaymentInfoResponse>? paymentTransactions;
-  @override
-  final ShippingInfoResponse? shippingInfo;
-  @override
-  final RecipientInfoResponse? recipientInfo;
-  @override
-  final BuiltList<OrderDetailResponse> orderDetails;
+abstract class _$OrderResponseCWProxy {
+  OrderResponse id(String? id);
 
-  factory _$OrderResponse([void Function(OrderResponseBuilder)? updates]) =>
-      (OrderResponseBuilder()..update(updates))._build();
+  OrderResponse code(String code);
 
-  _$OrderResponse._({
-    this.id,
-    required this.code,
-    this.customerId,
-    this.customerName,
-    this.customerEmail,
-    this.staffId,
-    this.staffName,
-    this.type,
-    this.status,
-    this.paymentStatus,
-    this.totalAmount,
-    this.voucherId,
-    this.voucherCode,
-    this.paymentExpiresAt,
-    this.paidAt,
-    this.createdAt,
-    this.updatedAt,
-    this.paymentTransactions,
-    this.shippingInfo,
-    this.recipientInfo,
-    required this.orderDetails,
-  }) : super._();
-  @override
-  OrderResponse rebuild(void Function(OrderResponseBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  OrderResponse customerId(String? customerId);
 
-  @override
-  OrderResponseBuilder toBuilder() => OrderResponseBuilder()..replace(this);
+  OrderResponse customerName(String? customerName);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is OrderResponse &&
-        id == other.id &&
-        code == other.code &&
-        customerId == other.customerId &&
-        customerName == other.customerName &&
-        customerEmail == other.customerEmail &&
-        staffId == other.staffId &&
-        staffName == other.staffName &&
-        type == other.type &&
-        status == other.status &&
-        paymentStatus == other.paymentStatus &&
-        totalAmount == other.totalAmount &&
-        voucherId == other.voucherId &&
-        voucherCode == other.voucherCode &&
-        paymentExpiresAt == other.paymentExpiresAt &&
-        paidAt == other.paidAt &&
-        createdAt == other.createdAt &&
-        updatedAt == other.updatedAt &&
-        paymentTransactions == other.paymentTransactions &&
-        shippingInfo == other.shippingInfo &&
-        recipientInfo == other.recipientInfo &&
-        orderDetails == other.orderDetails;
-  }
+  OrderResponse customerEmail(String? customerEmail);
+
+  OrderResponse staffId(String? staffId);
+
+  OrderResponse staffName(String? staffName);
+
+  OrderResponse type(OrderType? type);
+
+  OrderResponse status(OrderStatus? status);
+
+  OrderResponse paymentStatus(PaymentStatus? paymentStatus);
+
+  OrderResponse totalAmount(num? totalAmount);
+
+  OrderResponse voucherId(String? voucherId);
+
+  OrderResponse voucherCode(String? voucherCode);
+
+  OrderResponse paymentExpiresAt(DateTime? paymentExpiresAt);
+
+  OrderResponse paidAt(DateTime? paidAt);
+
+  OrderResponse createdAt(DateTime? createdAt);
+
+  OrderResponse updatedAt(DateTime? updatedAt);
+
+  OrderResponse paymentTransactions(
+    List<PaymentInfoResponse>? paymentTransactions,
+  );
+
+  OrderResponse shippingInfo(ShippingInfoResponse? shippingInfo);
+
+  OrderResponse recipientInfo(RecipientInfoResponse? recipientInfo);
+
+  OrderResponse orderDetails(List<OrderDetailResponse> orderDetails);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OrderResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OrderResponse call({
+    String? id,
+    String code,
+    String? customerId,
+    String? customerName,
+    String? customerEmail,
+    String? staffId,
+    String? staffName,
+    OrderType? type,
+    OrderStatus? status,
+    PaymentStatus? paymentStatus,
+    num? totalAmount,
+    String? voucherId,
+    String? voucherCode,
+    DateTime? paymentExpiresAt,
+    DateTime? paidAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    List<PaymentInfoResponse>? paymentTransactions,
+    ShippingInfoResponse? shippingInfo,
+    RecipientInfoResponse? recipientInfo,
+    List<OrderDetailResponse> orderDetails,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfOrderResponse.copyWith(...)` or call `instanceOfOrderResponse.copyWith.fieldName(value)` for a single field.
+class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
+  const _$OrderResponseCWProxyImpl(this._value);
+
+  final OrderResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, code.hashCode);
-    _$hash = $jc(_$hash, customerId.hashCode);
-    _$hash = $jc(_$hash, customerName.hashCode);
-    _$hash = $jc(_$hash, customerEmail.hashCode);
-    _$hash = $jc(_$hash, staffId.hashCode);
-    _$hash = $jc(_$hash, staffName.hashCode);
-    _$hash = $jc(_$hash, type.hashCode);
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, paymentStatus.hashCode);
-    _$hash = $jc(_$hash, totalAmount.hashCode);
-    _$hash = $jc(_$hash, voucherId.hashCode);
-    _$hash = $jc(_$hash, voucherCode.hashCode);
-    _$hash = $jc(_$hash, paymentExpiresAt.hashCode);
-    _$hash = $jc(_$hash, paidAt.hashCode);
-    _$hash = $jc(_$hash, createdAt.hashCode);
-    _$hash = $jc(_$hash, updatedAt.hashCode);
-    _$hash = $jc(_$hash, paymentTransactions.hashCode);
-    _$hash = $jc(_$hash, shippingInfo.hashCode);
-    _$hash = $jc(_$hash, recipientInfo.hashCode);
-    _$hash = $jc(_$hash, orderDetails.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  OrderResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'OrderResponse')
-          ..add('id', id)
-          ..add('code', code)
-          ..add('customerId', customerId)
-          ..add('customerName', customerName)
-          ..add('customerEmail', customerEmail)
-          ..add('staffId', staffId)
-          ..add('staffName', staffName)
-          ..add('type', type)
-          ..add('status', status)
-          ..add('paymentStatus', paymentStatus)
-          ..add('totalAmount', totalAmount)
-          ..add('voucherId', voucherId)
-          ..add('voucherCode', voucherCode)
-          ..add('paymentExpiresAt', paymentExpiresAt)
-          ..add('paidAt', paidAt)
-          ..add('createdAt', createdAt)
-          ..add('updatedAt', updatedAt)
-          ..add('paymentTransactions', paymentTransactions)
-          ..add('shippingInfo', shippingInfo)
-          ..add('recipientInfo', recipientInfo)
-          ..add('orderDetails', orderDetails))
-        .toString();
+  OrderResponse code(String code) => call(code: code);
+
+  @override
+  OrderResponse customerId(String? customerId) => call(customerId: customerId);
+
+  @override
+  OrderResponse customerName(String? customerName) =>
+      call(customerName: customerName);
+
+  @override
+  OrderResponse customerEmail(String? customerEmail) =>
+      call(customerEmail: customerEmail);
+
+  @override
+  OrderResponse staffId(String? staffId) => call(staffId: staffId);
+
+  @override
+  OrderResponse staffName(String? staffName) => call(staffName: staffName);
+
+  @override
+  OrderResponse type(OrderType? type) => call(type: type);
+
+  @override
+  OrderResponse status(OrderStatus? status) => call(status: status);
+
+  @override
+  OrderResponse paymentStatus(PaymentStatus? paymentStatus) =>
+      call(paymentStatus: paymentStatus);
+
+  @override
+  OrderResponse totalAmount(num? totalAmount) => call(totalAmount: totalAmount);
+
+  @override
+  OrderResponse voucherId(String? voucherId) => call(voucherId: voucherId);
+
+  @override
+  OrderResponse voucherCode(String? voucherCode) =>
+      call(voucherCode: voucherCode);
+
+  @override
+  OrderResponse paymentExpiresAt(DateTime? paymentExpiresAt) =>
+      call(paymentExpiresAt: paymentExpiresAt);
+
+  @override
+  OrderResponse paidAt(DateTime? paidAt) => call(paidAt: paidAt);
+
+  @override
+  OrderResponse createdAt(DateTime? createdAt) => call(createdAt: createdAt);
+
+  @override
+  OrderResponse updatedAt(DateTime? updatedAt) => call(updatedAt: updatedAt);
+
+  @override
+  OrderResponse paymentTransactions(
+    List<PaymentInfoResponse>? paymentTransactions,
+  ) => call(paymentTransactions: paymentTransactions);
+
+  @override
+  OrderResponse shippingInfo(ShippingInfoResponse? shippingInfo) =>
+      call(shippingInfo: shippingInfo);
+
+  @override
+  OrderResponse recipientInfo(RecipientInfoResponse? recipientInfo) =>
+      call(recipientInfo: recipientInfo);
+
+  @override
+  OrderResponse orderDetails(List<OrderDetailResponse> orderDetails) =>
+      call(orderDetails: orderDetails);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OrderResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OrderResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? code = const $CopyWithPlaceholder(),
+    Object? customerId = const $CopyWithPlaceholder(),
+    Object? customerName = const $CopyWithPlaceholder(),
+    Object? customerEmail = const $CopyWithPlaceholder(),
+    Object? staffId = const $CopyWithPlaceholder(),
+    Object? staffName = const $CopyWithPlaceholder(),
+    Object? type = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? paymentStatus = const $CopyWithPlaceholder(),
+    Object? totalAmount = const $CopyWithPlaceholder(),
+    Object? voucherId = const $CopyWithPlaceholder(),
+    Object? voucherCode = const $CopyWithPlaceholder(),
+    Object? paymentExpiresAt = const $CopyWithPlaceholder(),
+    Object? paidAt = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
+    Object? updatedAt = const $CopyWithPlaceholder(),
+    Object? paymentTransactions = const $CopyWithPlaceholder(),
+    Object? shippingInfo = const $CopyWithPlaceholder(),
+    Object? recipientInfo = const $CopyWithPlaceholder(),
+    Object? orderDetails = const $CopyWithPlaceholder(),
+  }) {
+    return OrderResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      code: code == const $CopyWithPlaceholder() || code == null
+          ? _value.code
+          // ignore: cast_nullable_to_non_nullable
+          : code as String,
+      customerId: customerId == const $CopyWithPlaceholder()
+          ? _value.customerId
+          // ignore: cast_nullable_to_non_nullable
+          : customerId as String?,
+      customerName: customerName == const $CopyWithPlaceholder()
+          ? _value.customerName
+          // ignore: cast_nullable_to_non_nullable
+          : customerName as String?,
+      customerEmail: customerEmail == const $CopyWithPlaceholder()
+          ? _value.customerEmail
+          // ignore: cast_nullable_to_non_nullable
+          : customerEmail as String?,
+      staffId: staffId == const $CopyWithPlaceholder()
+          ? _value.staffId
+          // ignore: cast_nullable_to_non_nullable
+          : staffId as String?,
+      staffName: staffName == const $CopyWithPlaceholder()
+          ? _value.staffName
+          // ignore: cast_nullable_to_non_nullable
+          : staffName as String?,
+      type: type == const $CopyWithPlaceholder()
+          ? _value.type
+          // ignore: cast_nullable_to_non_nullable
+          : type as OrderType?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as OrderStatus?,
+      paymentStatus: paymentStatus == const $CopyWithPlaceholder()
+          ? _value.paymentStatus
+          // ignore: cast_nullable_to_non_nullable
+          : paymentStatus as PaymentStatus?,
+      totalAmount: totalAmount == const $CopyWithPlaceholder()
+          ? _value.totalAmount
+          // ignore: cast_nullable_to_non_nullable
+          : totalAmount as num?,
+      voucherId: voucherId == const $CopyWithPlaceholder()
+          ? _value.voucherId
+          // ignore: cast_nullable_to_non_nullable
+          : voucherId as String?,
+      voucherCode: voucherCode == const $CopyWithPlaceholder()
+          ? _value.voucherCode
+          // ignore: cast_nullable_to_non_nullable
+          : voucherCode as String?,
+      paymentExpiresAt: paymentExpiresAt == const $CopyWithPlaceholder()
+          ? _value.paymentExpiresAt
+          // ignore: cast_nullable_to_non_nullable
+          : paymentExpiresAt as DateTime?,
+      paidAt: paidAt == const $CopyWithPlaceholder()
+          ? _value.paidAt
+          // ignore: cast_nullable_to_non_nullable
+          : paidAt as DateTime?,
+      createdAt: createdAt == const $CopyWithPlaceholder()
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as DateTime?,
+      updatedAt: updatedAt == const $CopyWithPlaceholder()
+          ? _value.updatedAt
+          // ignore: cast_nullable_to_non_nullable
+          : updatedAt as DateTime?,
+      paymentTransactions: paymentTransactions == const $CopyWithPlaceholder()
+          ? _value.paymentTransactions
+          // ignore: cast_nullable_to_non_nullable
+          : paymentTransactions as List<PaymentInfoResponse>?,
+      shippingInfo: shippingInfo == const $CopyWithPlaceholder()
+          ? _value.shippingInfo
+          // ignore: cast_nullable_to_non_nullable
+          : shippingInfo as ShippingInfoResponse?,
+      recipientInfo: recipientInfo == const $CopyWithPlaceholder()
+          ? _value.recipientInfo
+          // ignore: cast_nullable_to_non_nullable
+          : recipientInfo as RecipientInfoResponse?,
+      orderDetails:
+          orderDetails == const $CopyWithPlaceholder() || orderDetails == null
+          ? _value.orderDetails
+          // ignore: cast_nullable_to_non_nullable
+          : orderDetails as List<OrderDetailResponse>,
+    );
   }
 }
 
-class OrderResponseBuilder
-    implements Builder<OrderResponse, OrderResponseBuilder> {
-  _$OrderResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _code;
-  String? get code => _$this._code;
-  set code(String? code) => _$this._code = code;
-
-  String? _customerId;
-  String? get customerId => _$this._customerId;
-  set customerId(String? customerId) => _$this._customerId = customerId;
-
-  String? _customerName;
-  String? get customerName => _$this._customerName;
-  set customerName(String? customerName) => _$this._customerName = customerName;
-
-  String? _customerEmail;
-  String? get customerEmail => _$this._customerEmail;
-  set customerEmail(String? customerEmail) =>
-      _$this._customerEmail = customerEmail;
-
-  String? _staffId;
-  String? get staffId => _$this._staffId;
-  set staffId(String? staffId) => _$this._staffId = staffId;
-
-  String? _staffName;
-  String? get staffName => _$this._staffName;
-  set staffName(String? staffName) => _$this._staffName = staffName;
-
-  OrderType? _type;
-  OrderType? get type => _$this._type;
-  set type(OrderType? type) => _$this._type = type;
-
-  OrderStatus? _status;
-  OrderStatus? get status => _$this._status;
-  set status(OrderStatus? status) => _$this._status = status;
-
-  PaymentStatus? _paymentStatus;
-  PaymentStatus? get paymentStatus => _$this._paymentStatus;
-  set paymentStatus(PaymentStatus? paymentStatus) =>
-      _$this._paymentStatus = paymentStatus;
-
-  num? _totalAmount;
-  num? get totalAmount => _$this._totalAmount;
-  set totalAmount(num? totalAmount) => _$this._totalAmount = totalAmount;
-
-  String? _voucherId;
-  String? get voucherId => _$this._voucherId;
-  set voucherId(String? voucherId) => _$this._voucherId = voucherId;
-
-  String? _voucherCode;
-  String? get voucherCode => _$this._voucherCode;
-  set voucherCode(String? voucherCode) => _$this._voucherCode = voucherCode;
-
-  DateTime? _paymentExpiresAt;
-  DateTime? get paymentExpiresAt => _$this._paymentExpiresAt;
-  set paymentExpiresAt(DateTime? paymentExpiresAt) =>
-      _$this._paymentExpiresAt = paymentExpiresAt;
-
-  DateTime? _paidAt;
-  DateTime? get paidAt => _$this._paidAt;
-  set paidAt(DateTime? paidAt) => _$this._paidAt = paidAt;
-
-  DateTime? _createdAt;
-  DateTime? get createdAt => _$this._createdAt;
-  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
-
-  DateTime? _updatedAt;
-  DateTime? get updatedAt => _$this._updatedAt;
-  set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
-
-  ListBuilder<PaymentInfoResponse>? _paymentTransactions;
-  ListBuilder<PaymentInfoResponse> get paymentTransactions =>
-      _$this._paymentTransactions ??= ListBuilder<PaymentInfoResponse>();
-  set paymentTransactions(
-    ListBuilder<PaymentInfoResponse>? paymentTransactions,
-  ) => _$this._paymentTransactions = paymentTransactions;
-
-  ShippingInfoResponseBuilder? _shippingInfo;
-  ShippingInfoResponseBuilder get shippingInfo =>
-      _$this._shippingInfo ??= ShippingInfoResponseBuilder();
-  set shippingInfo(ShippingInfoResponseBuilder? shippingInfo) =>
-      _$this._shippingInfo = shippingInfo;
-
-  RecipientInfoResponseBuilder? _recipientInfo;
-  RecipientInfoResponseBuilder get recipientInfo =>
-      _$this._recipientInfo ??= RecipientInfoResponseBuilder();
-  set recipientInfo(RecipientInfoResponseBuilder? recipientInfo) =>
-      _$this._recipientInfo = recipientInfo;
-
-  ListBuilder<OrderDetailResponse>? _orderDetails;
-  ListBuilder<OrderDetailResponse> get orderDetails =>
-      _$this._orderDetails ??= ListBuilder<OrderDetailResponse>();
-  set orderDetails(ListBuilder<OrderDetailResponse>? orderDetails) =>
-      _$this._orderDetails = orderDetails;
-
-  OrderResponseBuilder() {
-    OrderResponse._defaults(this);
-  }
-
-  OrderResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _code = $v.code;
-      _customerId = $v.customerId;
-      _customerName = $v.customerName;
-      _customerEmail = $v.customerEmail;
-      _staffId = $v.staffId;
-      _staffName = $v.staffName;
-      _type = $v.type;
-      _status = $v.status;
-      _paymentStatus = $v.paymentStatus;
-      _totalAmount = $v.totalAmount;
-      _voucherId = $v.voucherId;
-      _voucherCode = $v.voucherCode;
-      _paymentExpiresAt = $v.paymentExpiresAt;
-      _paidAt = $v.paidAt;
-      _createdAt = $v.createdAt;
-      _updatedAt = $v.updatedAt;
-      _paymentTransactions = $v.paymentTransactions?.toBuilder();
-      _shippingInfo = $v.shippingInfo?.toBuilder();
-      _recipientInfo = $v.recipientInfo?.toBuilder();
-      _orderDetails = $v.orderDetails.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(OrderResponse other) {
-    _$v = other as _$OrderResponse;
-  }
-
-  @override
-  void update(void Function(OrderResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  OrderResponse build() => _build();
-
-  _$OrderResponse _build() {
-    _$OrderResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$OrderResponse._(
-            id: id,
-            code: BuiltValueNullFieldError.checkNotNull(
-              code,
-              r'OrderResponse',
-              'code',
-            ),
-            customerId: customerId,
-            customerName: customerName,
-            customerEmail: customerEmail,
-            staffId: staffId,
-            staffName: staffName,
-            type: type,
-            status: status,
-            paymentStatus: paymentStatus,
-            totalAmount: totalAmount,
-            voucherId: voucherId,
-            voucherCode: voucherCode,
-            paymentExpiresAt: paymentExpiresAt,
-            paidAt: paidAt,
-            createdAt: createdAt,
-            updatedAt: updatedAt,
-            paymentTransactions: _paymentTransactions?.build(),
-            shippingInfo: _shippingInfo?.build(),
-            recipientInfo: _recipientInfo?.build(),
-            orderDetails: orderDetails.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'paymentTransactions';
-        _paymentTransactions?.build();
-        _$failedField = 'shippingInfo';
-        _shippingInfo?.build();
-        _$failedField = 'recipientInfo';
-        _recipientInfo?.build();
-        _$failedField = 'orderDetails';
-        orderDetails.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'OrderResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $OrderResponseCopyWith on OrderResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfOrderResponse.copyWith(...)` or `instanceOfOrderResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$OrderResponseCWProxy get copyWith => _$OrderResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+OrderResponse _$OrderResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('OrderResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code', 'orderDetails']);
+  final val = OrderResponse(
+    id: $checkedConvert('id', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
+    customerId: $checkedConvert('customerId', (v) => v as String?),
+    customerName: $checkedConvert('customerName', (v) => v as String?),
+    customerEmail: $checkedConvert('customerEmail', (v) => v as String?),
+    staffId: $checkedConvert('staffId', (v) => v as String?),
+    staffName: $checkedConvert('staffName', (v) => v as String?),
+    type: $checkedConvert(
+      'type',
+      (v) => $enumDecodeNullable(_$OrderTypeEnumMap, v),
+    ),
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecodeNullable(_$OrderStatusEnumMap, v),
+    ),
+    paymentStatus: $checkedConvert(
+      'paymentStatus',
+      (v) => $enumDecodeNullable(_$PaymentStatusEnumMap, v),
+    ),
+    totalAmount: $checkedConvert('totalAmount', (v) => v as num?),
+    voucherId: $checkedConvert('voucherId', (v) => v as String?),
+    voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
+    paymentExpiresAt: $checkedConvert(
+      'paymentExpiresAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    paidAt: $checkedConvert(
+      'paidAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    createdAt: $checkedConvert(
+      'createdAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    updatedAt: $checkedConvert(
+      'updatedAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    paymentTransactions: $checkedConvert(
+      'paymentTransactions',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => PaymentInfoResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    shippingInfo: $checkedConvert(
+      'shippingInfo',
+      (v) => v == null
+          ? null
+          : ShippingInfoResponse.fromJson(v as Map<String, dynamic>),
+    ),
+    recipientInfo: $checkedConvert(
+      'recipientInfo',
+      (v) => v == null
+          ? null
+          : RecipientInfoResponse.fromJson(v as Map<String, dynamic>),
+    ),
+    orderDetails: $checkedConvert(
+      'orderDetails',
+      (v) => (v as List<dynamic>)
+          .map((e) => OrderDetailResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$OrderResponseToJson(OrderResponse instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'code': instance.code,
+      'customerId': ?instance.customerId,
+      'customerName': ?instance.customerName,
+      'customerEmail': ?instance.customerEmail,
+      'staffId': ?instance.staffId,
+      'staffName': ?instance.staffName,
+      'type': ?_$OrderTypeEnumMap[instance.type],
+      'status': ?_$OrderStatusEnumMap[instance.status],
+      'paymentStatus': ?_$PaymentStatusEnumMap[instance.paymentStatus],
+      'totalAmount': ?instance.totalAmount,
+      'voucherId': ?instance.voucherId,
+      'voucherCode': ?instance.voucherCode,
+      'paymentExpiresAt': ?instance.paymentExpiresAt?.toIso8601String(),
+      'paidAt': ?instance.paidAt?.toIso8601String(),
+      'createdAt': ?instance.createdAt?.toIso8601String(),
+      'updatedAt': ?instance.updatedAt?.toIso8601String(),
+      'paymentTransactions': ?instance.paymentTransactions
+          ?.map((e) => e.toJson())
+          .toList(),
+      'shippingInfo': ?instance.shippingInfo?.toJson(),
+      'recipientInfo': ?instance.recipientInfo?.toJson(),
+      'orderDetails': instance.orderDetails.map((e) => e.toJson()).toList(),
+    };
+
+const _$OrderTypeEnumMap = {
+  OrderType.online: 'Online',
+  OrderType.offline: 'Offline',
+};
+
+const _$OrderStatusEnumMap = {
+  OrderStatus.pending: 'Pending',
+  OrderStatus.processing: 'Processing',
+  OrderStatus.delivering: 'Delivering',
+  OrderStatus.delivered: 'Delivered',
+  OrderStatus.returning: 'Returning',
+  OrderStatus.cancelled: 'Cancelled',
+  OrderStatus.partialReturned: 'Partial_Returned',
+  OrderStatus.returned: 'Returned',
+};
+
+const _$PaymentStatusEnumMap = {
+  PaymentStatus.unpaid: 'Unpaid',
+  PaymentStatus.paid: 'Paid',
+  PaymentStatus.partialRefunded: 'Partial_Refunded',
+  PaymentStatus.refunded: 'Refunded',
+};

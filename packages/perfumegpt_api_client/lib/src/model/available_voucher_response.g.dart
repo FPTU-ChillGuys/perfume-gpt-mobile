@@ -3,176 +3,176 @@
 part of 'available_voucher_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$AvailableVoucherResponse extends AvailableVoucherResponse {
-  @override
-  final String? id;
-  @override
-  final String code;
-  @override
-  final num? discountValue;
-  @override
-  final DiscountType? discountType;
-  @override
-  final num? minOrderValue;
-  @override
-  final DateTime? expiryDate;
-  @override
-  final int? remainingQuantity;
+abstract class _$AvailableVoucherResponseCWProxy {
+  AvailableVoucherResponse id(String? id);
 
-  factory _$AvailableVoucherResponse([
-    void Function(AvailableVoucherResponseBuilder)? updates,
-  ]) => (AvailableVoucherResponseBuilder()..update(updates))._build();
+  AvailableVoucherResponse code(String code);
 
-  _$AvailableVoucherResponse._({
-    this.id,
-    required this.code,
-    this.discountValue,
-    this.discountType,
-    this.minOrderValue,
-    this.expiryDate,
-    this.remainingQuantity,
-  }) : super._();
-  @override
-  AvailableVoucherResponse rebuild(
-    void Function(AvailableVoucherResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  AvailableVoucherResponse discountValue(num? discountValue);
 
-  @override
-  AvailableVoucherResponseBuilder toBuilder() =>
-      AvailableVoucherResponseBuilder()..replace(this);
+  AvailableVoucherResponse discountType(DiscountType? discountType);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is AvailableVoucherResponse &&
-        id == other.id &&
-        code == other.code &&
-        discountValue == other.discountValue &&
-        discountType == other.discountType &&
-        minOrderValue == other.minOrderValue &&
-        expiryDate == other.expiryDate &&
-        remainingQuantity == other.remainingQuantity;
-  }
+  AvailableVoucherResponse minOrderValue(num? minOrderValue);
+
+  AvailableVoucherResponse expiryDate(DateTime? expiryDate);
+
+  AvailableVoucherResponse remainingQuantity(int? remainingQuantity);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AvailableVoucherResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// AvailableVoucherResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  AvailableVoucherResponse call({
+    String? id,
+    String code,
+    num? discountValue,
+    DiscountType? discountType,
+    num? minOrderValue,
+    DateTime? expiryDate,
+    int? remainingQuantity,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAvailableVoucherResponse.copyWith(...)` or call `instanceOfAvailableVoucherResponse.copyWith.fieldName(value)` for a single field.
+class _$AvailableVoucherResponseCWProxyImpl
+    implements _$AvailableVoucherResponseCWProxy {
+  const _$AvailableVoucherResponseCWProxyImpl(this._value);
+
+  final AvailableVoucherResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, code.hashCode);
-    _$hash = $jc(_$hash, discountValue.hashCode);
-    _$hash = $jc(_$hash, discountType.hashCode);
-    _$hash = $jc(_$hash, minOrderValue.hashCode);
-    _$hash = $jc(_$hash, expiryDate.hashCode);
-    _$hash = $jc(_$hash, remainingQuantity.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  AvailableVoucherResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'AvailableVoucherResponse')
-          ..add('id', id)
-          ..add('code', code)
-          ..add('discountValue', discountValue)
-          ..add('discountType', discountType)
-          ..add('minOrderValue', minOrderValue)
-          ..add('expiryDate', expiryDate)
-          ..add('remainingQuantity', remainingQuantity))
-        .toString();
+  AvailableVoucherResponse code(String code) => call(code: code);
+
+  @override
+  AvailableVoucherResponse discountValue(num? discountValue) =>
+      call(discountValue: discountValue);
+
+  @override
+  AvailableVoucherResponse discountType(DiscountType? discountType) =>
+      call(discountType: discountType);
+
+  @override
+  AvailableVoucherResponse minOrderValue(num? minOrderValue) =>
+      call(minOrderValue: minOrderValue);
+
+  @override
+  AvailableVoucherResponse expiryDate(DateTime? expiryDate) =>
+      call(expiryDate: expiryDate);
+
+  @override
+  AvailableVoucherResponse remainingQuantity(int? remainingQuantity) =>
+      call(remainingQuantity: remainingQuantity);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AvailableVoucherResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// AvailableVoucherResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  AvailableVoucherResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? code = const $CopyWithPlaceholder(),
+    Object? discountValue = const $CopyWithPlaceholder(),
+    Object? discountType = const $CopyWithPlaceholder(),
+    Object? minOrderValue = const $CopyWithPlaceholder(),
+    Object? expiryDate = const $CopyWithPlaceholder(),
+    Object? remainingQuantity = const $CopyWithPlaceholder(),
+  }) {
+    return AvailableVoucherResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      code: code == const $CopyWithPlaceholder() || code == null
+          ? _value.code
+          // ignore: cast_nullable_to_non_nullable
+          : code as String,
+      discountValue: discountValue == const $CopyWithPlaceholder()
+          ? _value.discountValue
+          // ignore: cast_nullable_to_non_nullable
+          : discountValue as num?,
+      discountType: discountType == const $CopyWithPlaceholder()
+          ? _value.discountType
+          // ignore: cast_nullable_to_non_nullable
+          : discountType as DiscountType?,
+      minOrderValue: minOrderValue == const $CopyWithPlaceholder()
+          ? _value.minOrderValue
+          // ignore: cast_nullable_to_non_nullable
+          : minOrderValue as num?,
+      expiryDate: expiryDate == const $CopyWithPlaceholder()
+          ? _value.expiryDate
+          // ignore: cast_nullable_to_non_nullable
+          : expiryDate as DateTime?,
+      remainingQuantity: remainingQuantity == const $CopyWithPlaceholder()
+          ? _value.remainingQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : remainingQuantity as int?,
+    );
   }
 }
 
-class AvailableVoucherResponseBuilder
-    implements
-        Builder<AvailableVoucherResponse, AvailableVoucherResponseBuilder> {
-  _$AvailableVoucherResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _code;
-  String? get code => _$this._code;
-  set code(String? code) => _$this._code = code;
-
-  num? _discountValue;
-  num? get discountValue => _$this._discountValue;
-  set discountValue(num? discountValue) =>
-      _$this._discountValue = discountValue;
-
-  DiscountType? _discountType;
-  DiscountType? get discountType => _$this._discountType;
-  set discountType(DiscountType? discountType) =>
-      _$this._discountType = discountType;
-
-  num? _minOrderValue;
-  num? get minOrderValue => _$this._minOrderValue;
-  set minOrderValue(num? minOrderValue) =>
-      _$this._minOrderValue = minOrderValue;
-
-  DateTime? _expiryDate;
-  DateTime? get expiryDate => _$this._expiryDate;
-  set expiryDate(DateTime? expiryDate) => _$this._expiryDate = expiryDate;
-
-  int? _remainingQuantity;
-  int? get remainingQuantity => _$this._remainingQuantity;
-  set remainingQuantity(int? remainingQuantity) =>
-      _$this._remainingQuantity = remainingQuantity;
-
-  AvailableVoucherResponseBuilder() {
-    AvailableVoucherResponse._defaults(this);
-  }
-
-  AvailableVoucherResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _code = $v.code;
-      _discountValue = $v.discountValue;
-      _discountType = $v.discountType;
-      _minOrderValue = $v.minOrderValue;
-      _expiryDate = $v.expiryDate;
-      _remainingQuantity = $v.remainingQuantity;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(AvailableVoucherResponse other) {
-    _$v = other as _$AvailableVoucherResponse;
-  }
-
-  @override
-  void update(void Function(AvailableVoucherResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  AvailableVoucherResponse build() => _build();
-
-  _$AvailableVoucherResponse _build() {
-    final _$result =
-        _$v ??
-        _$AvailableVoucherResponse._(
-          id: id,
-          code: BuiltValueNullFieldError.checkNotNull(
-            code,
-            r'AvailableVoucherResponse',
-            'code',
-          ),
-          discountValue: discountValue,
-          discountType: discountType,
-          minOrderValue: minOrderValue,
-          expiryDate: expiryDate,
-          remainingQuantity: remainingQuantity,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $AvailableVoucherResponseCopyWith on AvailableVoucherResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAvailableVoucherResponse.copyWith(...)` or `instanceOfAvailableVoucherResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$AvailableVoucherResponseCWProxy get copyWith =>
+      _$AvailableVoucherResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+AvailableVoucherResponse _$AvailableVoucherResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('AvailableVoucherResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code']);
+  final val = AvailableVoucherResponse(
+    id: $checkedConvert('id', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
+    discountValue: $checkedConvert('discountValue', (v) => v as num?),
+    discountType: $checkedConvert(
+      'discountType',
+      (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
+    ),
+    minOrderValue: $checkedConvert('minOrderValue', (v) => v as num?),
+    expiryDate: $checkedConvert(
+      'expiryDate',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    remainingQuantity: $checkedConvert(
+      'remainingQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$AvailableVoucherResponseToJson(
+  AvailableVoucherResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'code': instance.code,
+  'discountValue': ?instance.discountValue,
+  'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
+  'minOrderValue': ?instance.minOrderValue,
+  'expiryDate': ?instance.expiryDate?.toIso8601String(),
+  'remainingQuantity': ?instance.remainingQuantity,
+};
+
+const _$DiscountTypeEnumMap = {
+  DiscountType.percentage: 'Percentage',
+  DiscountType.fixedAmount: 'FixedAmount',
+};

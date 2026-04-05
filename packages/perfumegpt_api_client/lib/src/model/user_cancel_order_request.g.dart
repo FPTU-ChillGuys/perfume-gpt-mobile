@@ -3,88 +3,85 @@
 part of 'user_cancel_order_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UserCancelOrderRequest extends UserCancelOrderRequest {
-  @override
-  final CancelOrderReason? reason;
+abstract class _$UserCancelOrderRequestCWProxy {
+  UserCancelOrderRequest reason(CancelOrderReason? reason);
 
-  factory _$UserCancelOrderRequest([
-    void Function(UserCancelOrderRequestBuilder)? updates,
-  ]) => (UserCancelOrderRequestBuilder()..update(updates))._build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserCancelOrderRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UserCancelOrderRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UserCancelOrderRequest call({CancelOrderReason? reason});
+}
 
-  _$UserCancelOrderRequest._({this.reason}) : super._();
-  @override
-  UserCancelOrderRequest rebuild(
-    void Function(UserCancelOrderRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUserCancelOrderRequest.copyWith(...)` or call `instanceOfUserCancelOrderRequest.copyWith.fieldName(value)` for a single field.
+class _$UserCancelOrderRequestCWProxyImpl
+    implements _$UserCancelOrderRequestCWProxy {
+  const _$UserCancelOrderRequestCWProxyImpl(this._value);
 
-  @override
-  UserCancelOrderRequestBuilder toBuilder() =>
-      UserCancelOrderRequestBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UserCancelOrderRequest && reason == other.reason;
-  }
+  final UserCancelOrderRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, reason.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UserCancelOrderRequest reason(CancelOrderReason? reason) =>
+      call(reason: reason);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-      r'UserCancelOrderRequest',
-    )..add('reason', reason)).toString();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserCancelOrderRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UserCancelOrderRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UserCancelOrderRequest call({Object? reason = const $CopyWithPlaceholder()}) {
+    return UserCancelOrderRequest(
+      reason: reason == const $CopyWithPlaceholder()
+          ? _value.reason
+          // ignore: cast_nullable_to_non_nullable
+          : reason as CancelOrderReason?,
+    );
   }
 }
 
-class UserCancelOrderRequestBuilder
-    implements Builder<UserCancelOrderRequest, UserCancelOrderRequestBuilder> {
-  _$UserCancelOrderRequest? _$v;
-
-  CancelOrderReason? _reason;
-  CancelOrderReason? get reason => _$this._reason;
-  set reason(CancelOrderReason? reason) => _$this._reason = reason;
-
-  UserCancelOrderRequestBuilder() {
-    UserCancelOrderRequest._defaults(this);
-  }
-
-  UserCancelOrderRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _reason = $v.reason;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UserCancelOrderRequest other) {
-    _$v = other as _$UserCancelOrderRequest;
-  }
-
-  @override
-  void update(void Function(UserCancelOrderRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UserCancelOrderRequest build() => _build();
-
-  _$UserCancelOrderRequest _build() {
-    final _$result = _$v ?? _$UserCancelOrderRequest._(reason: reason);
-    replace(_$result);
-    return _$result;
-  }
+extension $UserCancelOrderRequestCopyWith on UserCancelOrderRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUserCancelOrderRequest.copyWith(...)` or `instanceOfUserCancelOrderRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UserCancelOrderRequestCWProxy get copyWith =>
+      _$UserCancelOrderRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserCancelOrderRequest _$UserCancelOrderRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('UserCancelOrderRequest', json, ($checkedConvert) {
+  final val = UserCancelOrderRequest(
+    reason: $checkedConvert(
+      'reason',
+      (v) => $enumDecodeNullable(_$CancelOrderReasonEnumMap, v),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$UserCancelOrderRequestToJson(
+  UserCancelOrderRequest instance,
+) => <String, dynamic>{'reason': ?_$CancelOrderReasonEnumMap[instance.reason]};
+
+const _$CancelOrderReasonEnumMap = {
+  CancelOrderReason.changedMind: 'ChangedMind',
+  CancelOrderReason.foundBetterPrice: 'FoundBetterPrice',
+  CancelOrderReason.wrongShippingInformation: 'WrongShippingInformation',
+  CancelOrderReason.paymentIssue: 'PaymentIssue',
+  CancelOrderReason.deliveryTooLate: 'DeliveryTooLate',
+  CancelOrderReason.insufficientStock: 'InsufficientStock',
+};

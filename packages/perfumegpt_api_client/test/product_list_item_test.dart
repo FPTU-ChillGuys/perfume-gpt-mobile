@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductListItem
 void main() {
-  final instance = ProductListItemBuilder();
-  // TODO add properties to the builder and call build()
+  final ProductListItem? instance = /* ProductListItem(...) */ null;
+  // TODO add properties to the entity
 
   group(ProductListItem, () {
     // String id
@@ -47,12 +47,12 @@ void main() {
       // TODO
     });
 
-    // BuiltList<num> variantPrices
+    // List<num> variantPrices
     test('to test the property `variantPrices`', () async {
       // TODO
     });
 
-    // BuiltList<String> tags
+    // List<String> tags
     test('to test the property `tags`', () async {
       // TODO
     });
@@ -61,6 +61,5 @@ void main() {
     test('to test the property `primaryImage`', () async {
       // TODO
     });
-
   });
 }

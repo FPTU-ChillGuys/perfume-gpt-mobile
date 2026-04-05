@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **importDetailId** | **String** |  | 
 **rejectedQuantity** | **int** |  | [optional] 
 **note** | **String** |  | [optional] 
-**batches** | [**BuiltList&lt;CreateBatchRequest&gt;**](CreateBatchRequest.md) |  | 
+**batches** | [**List&lt;CreateBatchRequest&gt;**](CreateBatchRequest.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

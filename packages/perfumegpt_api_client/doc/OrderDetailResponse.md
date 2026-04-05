@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **unitPrice** | **num** |  | [optional] 
 **refunablePrice** | **num** |  | [optional] 
 **total** | **num** |  | [optional] 
-**reservedBatches** | [**BuiltList&lt;ReservedBatchResponse&gt;**](ReservedBatchResponse.md) |  | 
+**reservedBatches** | [**List&lt;ReservedBatchResponse&gt;**](ReservedBatchResponse.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,303 +3,123 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/media_response.dart';
 import 'package:perfumegpt_api_client/src/model/variant_summary_item.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'product_list_item_with_variants.g.dart';
 
-/// ProductListItemWithVariants
-///
-/// Properties:
-/// * [variants] 
-/// * [id] 
-/// * [name] 
-/// * [brandId] 
-/// * [brandName] 
-/// * [categoryId] 
-/// * [categoryName] 
-/// * [description] 
-/// * [numberOfVariants] 
-/// * [variantPrices] 
-/// * [tags] 
-/// * [primaryImage] 
-@BuiltValue()
-abstract class ProductListItemWithVariants implements Built<ProductListItemWithVariants, ProductListItemWithVariantsBuilder> {
-  @BuiltValueField(wireName: r'variants')
-  BuiltList<VariantSummaryItem> get variants;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ProductListItemWithVariants {
+  /// Returns a new [ProductListItemWithVariants] instance.
+  ProductListItemWithVariants({
+    required this.variants,
 
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+    this.id,
 
-  @BuiltValueField(wireName: r'name')
-  String? get name;
+    this.name,
 
-  @BuiltValueField(wireName: r'brandId')
-  int? get brandId;
+    this.brandId,
 
-  @BuiltValueField(wireName: r'brandName')
-  String get brandName;
+    required this.brandName,
 
-  @BuiltValueField(wireName: r'categoryId')
-  int? get categoryId;
+    this.categoryId,
 
-  @BuiltValueField(wireName: r'categoryName')
-  String get categoryName;
+    required this.categoryName,
 
-  @BuiltValueField(wireName: r'description')
-  String? get description;
+    this.description,
 
-  @BuiltValueField(wireName: r'numberOfVariants')
-  int? get numberOfVariants;
+    this.numberOfVariants,
 
-  @BuiltValueField(wireName: r'variantPrices')
-  BuiltList<num> get variantPrices;
+    required this.variantPrices,
 
-  @BuiltValueField(wireName: r'tags')
-  BuiltList<String>? get tags;
+    this.tags,
 
-  @BuiltValueField(wireName: r'primaryImage')
-  MediaResponse? get primaryImage;
+    this.primaryImage,
+  });
 
-  ProductListItemWithVariants._();
+  @JsonKey(name: r'variants', required: true, includeIfNull: false)
+  final List<VariantSummaryItem> variants;
 
-  factory ProductListItemWithVariants([void updates(ProductListItemWithVariantsBuilder b)]) = _$ProductListItemWithVariants;
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ProductListItemWithVariantsBuilder b) => b;
+  @JsonKey(name: r'name', required: false, includeIfNull: false)
+  final String? name;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ProductListItemWithVariants> get serializer => _$ProductListItemWithVariantsSerializer();
-}
+  @JsonKey(name: r'brandId', required: false, includeIfNull: false)
+  final int? brandId;
 
-class _$ProductListItemWithVariantsSerializer implements PrimitiveSerializer<ProductListItemWithVariants> {
-  @override
-  final Iterable<Type> types = const [ProductListItemWithVariants, _$ProductListItemWithVariants];
+  @JsonKey(name: r'brandName', required: true, includeIfNull: false)
+  final String brandName;
 
-  @override
-  final String wireName = r'ProductListItemWithVariants';
+  @JsonKey(name: r'categoryId', required: false, includeIfNull: false)
+  final int? categoryId;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ProductListItemWithVariants object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'variants';
-    yield serializers.serialize(
-      object.variants,
-      specifiedType: const FullType(BuiltList, [FullType(VariantSummaryItem)]),
-    );
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.brandId != null) {
-      yield r'brandId';
-      yield serializers.serialize(
-        object.brandId,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'brandName';
-    yield serializers.serialize(
-      object.brandName,
-      specifiedType: const FullType(String),
-    );
-    if (object.categoryId != null) {
-      yield r'categoryId';
-      yield serializers.serialize(
-        object.categoryId,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'categoryName';
-    yield serializers.serialize(
-      object.categoryName,
-      specifiedType: const FullType(String),
-    );
-    if (object.description != null) {
-      yield r'description';
-      yield serializers.serialize(
-        object.description,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.numberOfVariants != null) {
-      yield r'numberOfVariants';
-      yield serializers.serialize(
-        object.numberOfVariants,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'variantPrices';
-    yield serializers.serialize(
-      object.variantPrices,
-      specifiedType: const FullType(BuiltList, [FullType(num)]),
-    );
-    if (object.tags != null) {
-      yield r'tags';
-      yield serializers.serialize(
-        object.tags,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.primaryImage != null) {
-      yield r'primaryImage';
-      yield serializers.serialize(
-        object.primaryImage,
-        specifiedType: const FullType.nullable(MediaResponse),
-      );
-    }
-  }
+  @JsonKey(name: r'categoryName', required: true, includeIfNull: false)
+  final String categoryName;
+
+  @JsonKey(name: r'description', required: false, includeIfNull: false)
+  final String? description;
+
+  @JsonKey(name: r'numberOfVariants', required: false, includeIfNull: false)
+  final int? numberOfVariants;
+
+  @JsonKey(name: r'variantPrices', required: true, includeIfNull: false)
+  final List<num> variantPrices;
+
+  @JsonKey(name: r'tags', required: false, includeIfNull: false)
+  final List<String>? tags;
+
+  @JsonKey(name: r'primaryImage', required: false, includeIfNull: false)
+  final MediaResponse? primaryImage;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ProductListItemWithVariants object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ProductListItemWithVariantsBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'variants':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(VariantSummaryItem)]),
-          ) as BuiltList<VariantSummaryItem>;
-          result.variants.replace(valueDes);
-          break;
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.name = valueDes;
-          break;
-        case r'brandId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.brandId = valueDes;
-          break;
-        case r'brandName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.brandName = valueDes;
-          break;
-        case r'categoryId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.categoryId = valueDes;
-          break;
-        case r'categoryName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.categoryName = valueDes;
-          break;
-        case r'description':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.description = valueDes;
-          break;
-        case r'numberOfVariants':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.numberOfVariants = valueDes;
-          break;
-        case r'variantPrices':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(num)]),
-          ) as BuiltList<num>;
-          result.variantPrices.replace(valueDes);
-          break;
-        case r'tags':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>?;
-          if (valueDes == null) continue;
-          result.tags.replace(valueDes);
-          break;
-        case r'primaryImage':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(MediaResponse),
-          ) as MediaResponse?;
-          if (valueDes == null) continue;
-          result.primaryImage.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductListItemWithVariants &&
+          other.variants == variants &&
+          other.id == id &&
+          other.name == name &&
+          other.brandId == brandId &&
+          other.brandName == brandName &&
+          other.categoryId == categoryId &&
+          other.categoryName == categoryName &&
+          other.description == description &&
+          other.numberOfVariants == numberOfVariants &&
+          other.variantPrices == variantPrices &&
+          other.tags == tags &&
+          other.primaryImage == primaryImage;
 
   @override
-  ProductListItemWithVariants deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ProductListItemWithVariantsBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      variants.hashCode +
+      id.hashCode +
+      (name == null ? 0 : name.hashCode) +
+      brandId.hashCode +
+      brandName.hashCode +
+      categoryId.hashCode +
+      categoryName.hashCode +
+      (description == null ? 0 : description.hashCode) +
+      numberOfVariants.hashCode +
+      variantPrices.hashCode +
+      (tags == null ? 0 : tags.hashCode) +
+      (primaryImage == null ? 0 : primaryImage.hashCode);
+
+  factory ProductListItemWithVariants.fromJson(Map<String, dynamic> json) =>
+      _$ProductListItemWithVariantsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductListItemWithVariantsToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

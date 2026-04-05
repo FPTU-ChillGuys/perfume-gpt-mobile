@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_loyalty_transaction_totals_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_loyalty_transaction_history_item_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
@@ -16,24 +16,21 @@ import 'package:perfumegpt_api_client/src/model/loyalty_transaction_type.dart';
 import 'package:perfumegpt_api_client/src/model/manual_change_request.dart';
 
 class LoyaltyTransactionsApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const LoyaltyTransactionsApi(this._dio, this._serializers);
+  const LoyaltyTransactionsApi(this._dio);
 
   /// apiLoyaltytransactionsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [userId] 
-  /// * [transactionType] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [userId]
+  /// * [transactionType]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -43,7 +40,10 @@ class LoyaltyTransactionsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>> apiLoyaltytransactionsGet({ 
+  Future<
+    Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>
+  >
+  apiLoyaltytransactionsGet({
     String? userId,
     LoyaltyTransactionType? transactionType,
     int? pageNumber,
@@ -61,16 +61,10 @@ class LoyaltyTransactionsApi {
     final _path = r'/api/loyaltytransactions';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -78,13 +72,13 @@ class LoyaltyTransactionsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (userId != null) r'UserId': encodeQueryParameter(_serializers, userId, const FullType(String)),
-      if (transactionType != null) r'TransactionType': encodeQueryParameter(_serializers, transactionType, const FullType(LoyaltyTransactionType)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (userId != null) r'UserId': userId,
+      if (transactionType != null) r'TransactionType': transactionType,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -96,15 +90,21 @@ class LoyaltyTransactionsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse? _responseData;
+    BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse?
+    _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse),
-      ) as BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse,
+              BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -115,7 +115,9 @@ class LoyaltyTransactionsApi {
       );
     }
 
-    return Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>(
+    return Response<
+      BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -128,15 +130,15 @@ class LoyaltyTransactionsApi {
   }
 
   /// apiLoyaltytransactionsMeHistoryGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [transactionType] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [transactionType]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -146,7 +148,10 @@ class LoyaltyTransactionsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>> apiLoyaltytransactionsMeHistoryGet({ 
+  Future<
+    Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>
+  >
+  apiLoyaltytransactionsMeHistoryGet({
     LoyaltyTransactionType? transactionType,
     int? pageNumber,
     int? pageSize,
@@ -163,16 +168,10 @@ class LoyaltyTransactionsApi {
     final _path = r'/api/loyaltytransactions/me/history';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -180,12 +179,12 @@ class LoyaltyTransactionsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (transactionType != null) r'TransactionType': encodeQueryParameter(_serializers, transactionType, const FullType(LoyaltyTransactionType)),
-      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
-      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
-      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
-      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
+      if (transactionType != null) r'TransactionType': transactionType,
+      if (pageNumber != null) r'PageNumber': pageNumber,
+      if (pageSize != null) r'PageSize': pageSize,
+      if (sortBy != null) r'SortBy': sortBy,
+      if (sortOrder != null) r'SortOrder': sortOrder,
+      if (isDescending != null) r'IsDescending': isDescending,
     };
 
     final _response = await _dio.request<Object>(
@@ -197,15 +196,21 @@ class LoyaltyTransactionsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse? _responseData;
+    BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse?
+    _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse),
-      ) as BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse,
+              BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -216,7 +221,9 @@ class LoyaltyTransactionsApi {
       );
     }
 
-    return Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>(
+    return Response<
+      BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -229,7 +236,7 @@ class LoyaltyTransactionsApi {
   }
 
   /// apiLoyaltytransactionsMeTotalGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -241,7 +248,8 @@ class LoyaltyTransactionsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfLoyaltyTransactionTotalsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfLoyaltyTransactionTotalsResponse>> apiLoyaltytransactionsMeTotalGet({ 
+  Future<Response<BaseResponseOfLoyaltyTransactionTotalsResponse>>
+  apiLoyaltytransactionsMeTotalGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -252,16 +260,10 @@ class LoyaltyTransactionsApi {
     final _path = r'/api/loyaltytransactions/me/total';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -279,12 +281,17 @@ class LoyaltyTransactionsApi {
     BaseResponseOfLoyaltyTransactionTotalsResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfLoyaltyTransactionTotalsResponse),
-      ) as BaseResponseOfLoyaltyTransactionTotalsResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfLoyaltyTransactionTotalsResponse,
+              BaseResponseOfLoyaltyTransactionTotalsResponse
+            >(
+              rawData,
+              'BaseResponseOfLoyaltyTransactionTotalsResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -308,11 +315,11 @@ class LoyaltyTransactionsApi {
   }
 
   /// apiLoyaltytransactionsUserIdManualChangePost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [userId] 
-  /// * [manualChangeRequest] 
+  /// * [userId]
+  /// * [manualChangeRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -322,7 +329,8 @@ class LoyaltyTransactionsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiLoyaltytransactionsUserIdManualChangePost({ 
+  Future<Response<BaseResponseOfstring>>
+  apiLoyaltytransactionsUserIdManualChangePost({
     required String userId,
     required ManualChangeRequest manualChangeRequest,
     CancelToken? cancelToken,
@@ -332,19 +340,18 @@ class LoyaltyTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/loyaltytransactions/{userId}/manual-change'.replaceAll('{' r'userId' '}', encodeQueryParameter(_serializers, userId, const FullType(String)).toString());
+    final _path = r'/api/loyaltytransactions/{userId}/manual-change'.replaceAll(
+      '{'
+      r'userId'
+      '}',
+      userId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -355,15 +362,10 @@ class LoyaltyTransactionsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(ManualChangeRequest);
-      _bodyData = _serializers.serialize(manualChangeRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(manualChangeRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -382,12 +384,14 @@ class LoyaltyTransactionsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfstring),
-      ) as BaseResponseOfstring;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -409,5 +413,4 @@ class LoyaltyTransactionsApi {
       extra: _response.extra,
     );
   }
-
 }

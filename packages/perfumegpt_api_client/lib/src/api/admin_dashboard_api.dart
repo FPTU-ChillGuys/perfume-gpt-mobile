@@ -4,29 +4,26 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_admin_dashboard_overview_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_inventory_levels_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_top_product_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_revenue_summary_response.dart';
 
 class AdminDashboardApi {
-
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const AdminDashboardApi(this._dio, this._serializers);
+  const AdminDashboardApi(this._dio);
 
   /// apiAdmindashboardInventoryLevelsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [expiringWithinDays] 
+  /// * [expiringWithinDays]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -36,7 +33,8 @@ class AdminDashboardApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfInventoryLevelsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfInventoryLevelsResponse>> apiAdmindashboardInventoryLevelsGet({ 
+  Future<Response<BaseResponseOfInventoryLevelsResponse>>
+  apiAdmindashboardInventoryLevelsGet({
     int? expiringWithinDays,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -48,16 +46,10 @@ class AdminDashboardApi {
     final _path = r'/api/admindashboard/inventory-levels';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -65,7 +57,7 @@ class AdminDashboardApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (expiringWithinDays != null) r'ExpiringWithinDays': encodeQueryParameter(_serializers, expiringWithinDays, const FullType(int)),
+      if (expiringWithinDays != null) r'ExpiringWithinDays': expiringWithinDays,
     };
 
     final _response = await _dio.request<Object>(
@@ -80,12 +72,13 @@ class AdminDashboardApi {
     BaseResponseOfInventoryLevelsResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfInventoryLevelsResponse),
-      ) as BaseResponseOfInventoryLevelsResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfInventoryLevelsResponse,
+              BaseResponseOfInventoryLevelsResponse
+            >(rawData, 'BaseResponseOfInventoryLevelsResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -109,14 +102,14 @@ class AdminDashboardApi {
   }
 
   /// apiAdmindashboardOverviewGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [topProductsCount] 
-  /// * [expiringWithinDays] 
-  /// * [top] 
-  /// * [fromDate] 
-  /// * [toDate] 
+  /// * [topProductsCount]
+  /// * [expiringWithinDays]
+  /// * [top]
+  /// * [fromDate]
+  /// * [toDate]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -126,7 +119,8 @@ class AdminDashboardApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfAdminDashboardOverviewResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfAdminDashboardOverviewResponse>> apiAdmindashboardOverviewGet({ 
+  Future<Response<BaseResponseOfAdminDashboardOverviewResponse>>
+  apiAdmindashboardOverviewGet({
     int? topProductsCount,
     int? expiringWithinDays,
     int? top,
@@ -142,16 +136,10 @@ class AdminDashboardApi {
     final _path = r'/api/admindashboard/overview';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -159,11 +147,11 @@ class AdminDashboardApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (topProductsCount != null) r'TopProductsCount': encodeQueryParameter(_serializers, topProductsCount, const FullType(int)),
-      if (expiringWithinDays != null) r'ExpiringWithinDays': encodeQueryParameter(_serializers, expiringWithinDays, const FullType(int)),
-      if (top != null) r'Top': encodeQueryParameter(_serializers, top, const FullType(int)),
-      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
-      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
+      if (topProductsCount != null) r'TopProductsCount': topProductsCount,
+      if (expiringWithinDays != null) r'ExpiringWithinDays': expiringWithinDays,
+      if (top != null) r'Top': top,
+      if (fromDate != null) r'FromDate': fromDate,
+      if (toDate != null) r'ToDate': toDate,
     };
 
     final _response = await _dio.request<Object>(
@@ -178,12 +166,17 @@ class AdminDashboardApi {
     BaseResponseOfAdminDashboardOverviewResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfAdminDashboardOverviewResponse),
-      ) as BaseResponseOfAdminDashboardOverviewResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfAdminDashboardOverviewResponse,
+              BaseResponseOfAdminDashboardOverviewResponse
+            >(
+              rawData,
+              'BaseResponseOfAdminDashboardOverviewResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -207,11 +200,11 @@ class AdminDashboardApi {
   }
 
   /// apiAdmindashboardRevenueGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [fromDate] 
-  /// * [toDate] 
+  /// * [fromDate]
+  /// * [toDate]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -221,7 +214,8 @@ class AdminDashboardApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfRevenueSummaryResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfRevenueSummaryResponse>> apiAdmindashboardRevenueGet({ 
+  Future<Response<BaseResponseOfRevenueSummaryResponse>>
+  apiAdmindashboardRevenueGet({
     DateTime? fromDate,
     DateTime? toDate,
     CancelToken? cancelToken,
@@ -234,16 +228,10 @@ class AdminDashboardApi {
     final _path = r'/api/admindashboard/revenue';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -251,8 +239,8 @@ class AdminDashboardApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
-      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
+      if (fromDate != null) r'FromDate': fromDate,
+      if (toDate != null) r'ToDate': toDate,
     };
 
     final _response = await _dio.request<Object>(
@@ -267,12 +255,13 @@ class AdminDashboardApi {
     BaseResponseOfRevenueSummaryResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfRevenueSummaryResponse),
-      ) as BaseResponseOfRevenueSummaryResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfRevenueSummaryResponse,
+              BaseResponseOfRevenueSummaryResponse
+            >(rawData, 'BaseResponseOfRevenueSummaryResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -296,12 +285,12 @@ class AdminDashboardApi {
   }
 
   /// apiAdmindashboardTopProductsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [top] 
-  /// * [fromDate] 
-  /// * [toDate] 
+  /// * [top]
+  /// * [fromDate]
+  /// * [toDate]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -311,7 +300,8 @@ class AdminDashboardApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfTopProductResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfTopProductResponse>> apiAdmindashboardTopProductsGet({ 
+  Future<Response<BaseResponseOfListOfTopProductResponse>>
+  apiAdmindashboardTopProductsGet({
     int? top,
     DateTime? fromDate,
     DateTime? toDate,
@@ -325,16 +315,10 @@ class AdminDashboardApi {
     final _path = r'/api/admindashboard/top-products';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -342,9 +326,9 @@ class AdminDashboardApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (top != null) r'Top': encodeQueryParameter(_serializers, top, const FullType(int)),
-      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
-      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
+      if (top != null) r'Top': top,
+      if (fromDate != null) r'FromDate': fromDate,
+      if (toDate != null) r'ToDate': toDate,
     };
 
     final _response = await _dio.request<Object>(
@@ -359,12 +343,17 @@ class AdminDashboardApi {
     BaseResponseOfListOfTopProductResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BaseResponseOfListOfTopProductResponse),
-      ) as BaseResponseOfListOfTopProductResponse;
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfTopProductResponse,
+              BaseResponseOfListOfTopProductResponse
+            >(
+              rawData,
+              'BaseResponseOfListOfTopProductResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -386,5 +375,4 @@ class AdminDashboardApi {
       extra: _response.extra,
     );
   }
-
 }

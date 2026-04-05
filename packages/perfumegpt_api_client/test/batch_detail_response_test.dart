@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BatchDetailResponse
 void main() {
-  final instance = BatchDetailResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final BatchDetailResponse? instance = /* BatchDetailResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(BatchDetailResponse, () {
     // String variantId
@@ -76,6 +76,5 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
-
   });
 }

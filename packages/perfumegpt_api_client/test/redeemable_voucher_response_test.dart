@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for RedeemableVoucherResponse
 void main() {
-  final instance = RedeemableVoucherResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final RedeemableVoucherResponse?
+  instance = /* RedeemableVoucherResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(RedeemableVoucherResponse, () {
     // String id
@@ -56,6 +57,5 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
-
   });
 }

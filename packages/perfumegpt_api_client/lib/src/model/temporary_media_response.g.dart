@@ -3,183 +3,179 @@
 part of 'temporary_media_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$TemporaryMediaResponse extends TemporaryMediaResponse {
-  @override
-  final String? id;
-  @override
-  final String url;
-  @override
-  final String? altText;
-  @override
-  final int? displayOrder;
-  @override
-  final int? fileSize;
-  @override
-  final String? mimeType;
-  @override
-  final DateTime? expiresAt;
-  @override
-  final DateTime? createdAt;
+abstract class _$TemporaryMediaResponseCWProxy {
+  TemporaryMediaResponse id(String? id);
 
-  factory _$TemporaryMediaResponse([
-    void Function(TemporaryMediaResponseBuilder)? updates,
-  ]) => (TemporaryMediaResponseBuilder()..update(updates))._build();
+  TemporaryMediaResponse url(String url);
 
-  _$TemporaryMediaResponse._({
-    this.id,
-    required this.url,
-    this.altText,
-    this.displayOrder,
-    this.fileSize,
-    this.mimeType,
-    this.expiresAt,
-    this.createdAt,
-  }) : super._();
-  @override
-  TemporaryMediaResponse rebuild(
-    void Function(TemporaryMediaResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  TemporaryMediaResponse altText(String? altText);
 
-  @override
-  TemporaryMediaResponseBuilder toBuilder() =>
-      TemporaryMediaResponseBuilder()..replace(this);
+  TemporaryMediaResponse displayOrder(int? displayOrder);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is TemporaryMediaResponse &&
-        id == other.id &&
-        url == other.url &&
-        altText == other.altText &&
-        displayOrder == other.displayOrder &&
-        fileSize == other.fileSize &&
-        mimeType == other.mimeType &&
-        expiresAt == other.expiresAt &&
-        createdAt == other.createdAt;
-  }
+  TemporaryMediaResponse fileSize(int? fileSize);
+
+  TemporaryMediaResponse mimeType(String? mimeType);
+
+  TemporaryMediaResponse expiresAt(DateTime? expiresAt);
+
+  TemporaryMediaResponse createdAt(DateTime? createdAt);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TemporaryMediaResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// TemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  TemporaryMediaResponse call({
+    String? id,
+    String url,
+    String? altText,
+    int? displayOrder,
+    int? fileSize,
+    String? mimeType,
+    DateTime? expiresAt,
+    DateTime? createdAt,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfTemporaryMediaResponse.copyWith(...)` or call `instanceOfTemporaryMediaResponse.copyWith.fieldName(value)` for a single field.
+class _$TemporaryMediaResponseCWProxyImpl
+    implements _$TemporaryMediaResponseCWProxy {
+  const _$TemporaryMediaResponseCWProxyImpl(this._value);
+
+  final TemporaryMediaResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, url.hashCode);
-    _$hash = $jc(_$hash, altText.hashCode);
-    _$hash = $jc(_$hash, displayOrder.hashCode);
-    _$hash = $jc(_$hash, fileSize.hashCode);
-    _$hash = $jc(_$hash, mimeType.hashCode);
-    _$hash = $jc(_$hash, expiresAt.hashCode);
-    _$hash = $jc(_$hash, createdAt.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  TemporaryMediaResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'TemporaryMediaResponse')
-          ..add('id', id)
-          ..add('url', url)
-          ..add('altText', altText)
-          ..add('displayOrder', displayOrder)
-          ..add('fileSize', fileSize)
-          ..add('mimeType', mimeType)
-          ..add('expiresAt', expiresAt)
-          ..add('createdAt', createdAt))
-        .toString();
+  TemporaryMediaResponse url(String url) => call(url: url);
+
+  @override
+  TemporaryMediaResponse altText(String? altText) => call(altText: altText);
+
+  @override
+  TemporaryMediaResponse displayOrder(int? displayOrder) =>
+      call(displayOrder: displayOrder);
+
+  @override
+  TemporaryMediaResponse fileSize(int? fileSize) => call(fileSize: fileSize);
+
+  @override
+  TemporaryMediaResponse mimeType(String? mimeType) => call(mimeType: mimeType);
+
+  @override
+  TemporaryMediaResponse expiresAt(DateTime? expiresAt) =>
+      call(expiresAt: expiresAt);
+
+  @override
+  TemporaryMediaResponse createdAt(DateTime? createdAt) =>
+      call(createdAt: createdAt);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TemporaryMediaResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// TemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  TemporaryMediaResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? url = const $CopyWithPlaceholder(),
+    Object? altText = const $CopyWithPlaceholder(),
+    Object? displayOrder = const $CopyWithPlaceholder(),
+    Object? fileSize = const $CopyWithPlaceholder(),
+    Object? mimeType = const $CopyWithPlaceholder(),
+    Object? expiresAt = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
+  }) {
+    return TemporaryMediaResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      url: url == const $CopyWithPlaceholder() || url == null
+          ? _value.url
+          // ignore: cast_nullable_to_non_nullable
+          : url as String,
+      altText: altText == const $CopyWithPlaceholder()
+          ? _value.altText
+          // ignore: cast_nullable_to_non_nullable
+          : altText as String?,
+      displayOrder: displayOrder == const $CopyWithPlaceholder()
+          ? _value.displayOrder
+          // ignore: cast_nullable_to_non_nullable
+          : displayOrder as int?,
+      fileSize: fileSize == const $CopyWithPlaceholder()
+          ? _value.fileSize
+          // ignore: cast_nullable_to_non_nullable
+          : fileSize as int?,
+      mimeType: mimeType == const $CopyWithPlaceholder()
+          ? _value.mimeType
+          // ignore: cast_nullable_to_non_nullable
+          : mimeType as String?,
+      expiresAt: expiresAt == const $CopyWithPlaceholder()
+          ? _value.expiresAt
+          // ignore: cast_nullable_to_non_nullable
+          : expiresAt as DateTime?,
+      createdAt: createdAt == const $CopyWithPlaceholder()
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as DateTime?,
+    );
   }
 }
 
-class TemporaryMediaResponseBuilder
-    implements Builder<TemporaryMediaResponse, TemporaryMediaResponseBuilder> {
-  _$TemporaryMediaResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _url;
-  String? get url => _$this._url;
-  set url(String? url) => _$this._url = url;
-
-  String? _altText;
-  String? get altText => _$this._altText;
-  set altText(String? altText) => _$this._altText = altText;
-
-  int? _displayOrder;
-  int? get displayOrder => _$this._displayOrder;
-  set displayOrder(int? displayOrder) => _$this._displayOrder = displayOrder;
-
-  int? _fileSize;
-  int? get fileSize => _$this._fileSize;
-  set fileSize(int? fileSize) => _$this._fileSize = fileSize;
-
-  String? _mimeType;
-  String? get mimeType => _$this._mimeType;
-  set mimeType(String? mimeType) => _$this._mimeType = mimeType;
-
-  DateTime? _expiresAt;
-  DateTime? get expiresAt => _$this._expiresAt;
-  set expiresAt(DateTime? expiresAt) => _$this._expiresAt = expiresAt;
-
-  DateTime? _createdAt;
-  DateTime? get createdAt => _$this._createdAt;
-  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
-
-  TemporaryMediaResponseBuilder() {
-    TemporaryMediaResponse._defaults(this);
-  }
-
-  TemporaryMediaResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _url = $v.url;
-      _altText = $v.altText;
-      _displayOrder = $v.displayOrder;
-      _fileSize = $v.fileSize;
-      _mimeType = $v.mimeType;
-      _expiresAt = $v.expiresAt;
-      _createdAt = $v.createdAt;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(TemporaryMediaResponse other) {
-    _$v = other as _$TemporaryMediaResponse;
-  }
-
-  @override
-  void update(void Function(TemporaryMediaResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  TemporaryMediaResponse build() => _build();
-
-  _$TemporaryMediaResponse _build() {
-    final _$result =
-        _$v ??
-        _$TemporaryMediaResponse._(
-          id: id,
-          url: BuiltValueNullFieldError.checkNotNull(
-            url,
-            r'TemporaryMediaResponse',
-            'url',
-          ),
-          altText: altText,
-          displayOrder: displayOrder,
-          fileSize: fileSize,
-          mimeType: mimeType,
-          expiresAt: expiresAt,
-          createdAt: createdAt,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $TemporaryMediaResponseCopyWith on TemporaryMediaResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfTemporaryMediaResponse.copyWith(...)` or `instanceOfTemporaryMediaResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$TemporaryMediaResponseCWProxy get copyWith =>
+      _$TemporaryMediaResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+TemporaryMediaResponse _$TemporaryMediaResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('TemporaryMediaResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['url']);
+  final val = TemporaryMediaResponse(
+    id: $checkedConvert('id', (v) => v as String?),
+    url: $checkedConvert('url', (v) => v as String),
+    altText: $checkedConvert('altText', (v) => v as String?),
+    displayOrder: $checkedConvert('displayOrder', (v) => (v as num?)?.toInt()),
+    fileSize: $checkedConvert('fileSize', (v) => (v as num?)?.toInt()),
+    mimeType: $checkedConvert('mimeType', (v) => v as String?),
+    expiresAt: $checkedConvert(
+      'expiresAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    createdAt: $checkedConvert(
+      'createdAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$TemporaryMediaResponseToJson(
+  TemporaryMediaResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'url': instance.url,
+  'altText': ?instance.altText,
+  'displayOrder': ?instance.displayOrder,
+  'fileSize': ?instance.fileSize,
+  'mimeType': ?instance.mimeType,
+  'expiresAt': ?instance.expiresAt?.toIso8601String(),
+  'createdAt': ?instance.createdAt?.toIso8601String(),
+};

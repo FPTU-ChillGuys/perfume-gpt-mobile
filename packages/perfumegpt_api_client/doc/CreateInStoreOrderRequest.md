@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **voucherCode** | **String** |  | [optional] 
 **isPickupInStore** | **bool** |  | [optional] 
-**orderDetails** | [**BuiltList&lt;CreateOrderDetailRequest&gt;**](CreateOrderDetailRequest.md) |  | 
+**orderDetails** | [**List&lt;CreateOrderDetailRequest&gt;**](CreateOrderDetailRequest.md) |  | 
 **recipient** | [**ContactAddressInformation**](ContactAddressInformation.md) |  | [optional] 
 **payment** | [**PaymentInformation**](PaymentInformation.md) |  | 
 

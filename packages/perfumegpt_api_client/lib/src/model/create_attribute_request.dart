@@ -3,158 +3,65 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'create_attribute_request.g.dart';
 
-/// CreateAttributeRequest
-///
-/// Properties:
-/// * [internalCode] 
-/// * [name] 
-/// * [description] 
-/// * [isVariantLevel] 
-@BuiltValue()
-abstract class CreateAttributeRequest implements Built<CreateAttributeRequest, CreateAttributeRequestBuilder> {
-  @BuiltValueField(wireName: r'internalCode')
-  String? get internalCode;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class CreateAttributeRequest {
+  /// Returns a new [CreateAttributeRequest] instance.
+  CreateAttributeRequest({
+    this.internalCode,
 
-  @BuiltValueField(wireName: r'name')
-  String get name;
+    required this.name,
 
-  @BuiltValueField(wireName: r'description')
-  String? get description;
+    this.description,
 
-  @BuiltValueField(wireName: r'isVariantLevel')
-  bool get isVariantLevel;
+    required this.isVariantLevel,
+  });
 
-  CreateAttributeRequest._();
+  @JsonKey(name: r'internalCode', required: false, includeIfNull: false)
+  final String? internalCode;
 
-  factory CreateAttributeRequest([void updates(CreateAttributeRequestBuilder b)]) = _$CreateAttributeRequest;
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
+  final String name;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CreateAttributeRequestBuilder b) => b;
+  @JsonKey(name: r'description', required: false, includeIfNull: false)
+  final String? description;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<CreateAttributeRequest> get serializer => _$CreateAttributeRequestSerializer();
-}
-
-class _$CreateAttributeRequestSerializer implements PrimitiveSerializer<CreateAttributeRequest> {
-  @override
-  final Iterable<Type> types = const [CreateAttributeRequest, _$CreateAttributeRequest];
+  @JsonKey(name: r'isVariantLevel', required: true, includeIfNull: false)
+  final bool isVariantLevel;
 
   @override
-  final String wireName = r'CreateAttributeRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    CreateAttributeRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.internalCode != null) {
-      yield r'internalCode';
-      yield serializers.serialize(
-        object.internalCode,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    yield r'name';
-    yield serializers.serialize(
-      object.name,
-      specifiedType: const FullType(String),
-    );
-    if (object.description != null) {
-      yield r'description';
-      yield serializers.serialize(
-        object.description,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    yield r'isVariantLevel';
-    yield serializers.serialize(
-      object.isVariantLevel,
-      specifiedType: const FullType(bool),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateAttributeRequest &&
+          other.internalCode == internalCode &&
+          other.name == name &&
+          other.description == description &&
+          other.isVariantLevel == isVariantLevel;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    CreateAttributeRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      (internalCode == null ? 0 : internalCode.hashCode) +
+      name.hashCode +
+      (description == null ? 0 : description.hashCode) +
+      isVariantLevel.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required CreateAttributeRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'internalCode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.internalCode = valueDes;
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
-        case r'description':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.description = valueDes;
-          break;
-        case r'isVariantLevel':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isVariantLevel = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory CreateAttributeRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateAttributeRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CreateAttributeRequestToJson(this);
 
   @override
-  CreateAttributeRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = CreateAttributeRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

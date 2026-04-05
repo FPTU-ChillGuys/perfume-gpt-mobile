@@ -3,287 +3,287 @@
 part of 'create_variant_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$CreateVariantRequest extends CreateVariantRequest {
-  @override
-  final String productId;
-  @override
-  final String barcode;
-  @override
-  final String sku;
-  @override
-  final int? volumeMl;
-  @override
-  final int? concentrationId;
-  @override
-  final int? sillage;
-  @override
-  final int? longevity;
-  @override
-  final VariantType? type;
-  @override
-  final num? basePrice;
-  @override
-  final num? retailPrice;
-  @override
-  final VariantStatus? status;
-  @override
-  final int? lowStockThreshold;
-  @override
-  final BuiltList<ProductAttributeDto>? attributes;
-  @override
-  final BuiltList<String>? temporaryMediaIds;
+abstract class _$CreateVariantRequestCWProxy {
+  CreateVariantRequest productId(String productId);
 
-  factory _$CreateVariantRequest([
-    void Function(CreateVariantRequestBuilder)? updates,
-  ]) => (CreateVariantRequestBuilder()..update(updates))._build();
+  CreateVariantRequest barcode(String barcode);
 
-  _$CreateVariantRequest._({
-    required this.productId,
-    required this.barcode,
-    required this.sku,
-    this.volumeMl,
-    this.concentrationId,
-    this.sillage,
-    this.longevity,
-    this.type,
-    this.basePrice,
-    this.retailPrice,
-    this.status,
-    this.lowStockThreshold,
-    this.attributes,
-    this.temporaryMediaIds,
-  }) : super._();
-  @override
-  CreateVariantRequest rebuild(
-    void Function(CreateVariantRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  CreateVariantRequest sku(String sku);
 
-  @override
-  CreateVariantRequestBuilder toBuilder() =>
-      CreateVariantRequestBuilder()..replace(this);
+  CreateVariantRequest volumeMl(int? volumeMl);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is CreateVariantRequest &&
-        productId == other.productId &&
-        barcode == other.barcode &&
-        sku == other.sku &&
-        volumeMl == other.volumeMl &&
-        concentrationId == other.concentrationId &&
-        sillage == other.sillage &&
-        longevity == other.longevity &&
-        type == other.type &&
-        basePrice == other.basePrice &&
-        retailPrice == other.retailPrice &&
-        status == other.status &&
-        lowStockThreshold == other.lowStockThreshold &&
-        attributes == other.attributes &&
-        temporaryMediaIds == other.temporaryMediaIds;
-  }
+  CreateVariantRequest concentrationId(int? concentrationId);
+
+  CreateVariantRequest sillage(int? sillage);
+
+  CreateVariantRequest longevity(int? longevity);
+
+  CreateVariantRequest type(VariantType? type);
+
+  CreateVariantRequest basePrice(num? basePrice);
+
+  CreateVariantRequest retailPrice(num? retailPrice);
+
+  CreateVariantRequest status(VariantStatus? status);
+
+  CreateVariantRequest lowStockThreshold(int? lowStockThreshold);
+
+  CreateVariantRequest attributes(List<ProductAttributeDto>? attributes);
+
+  CreateVariantRequest temporaryMediaIds(List<String>? temporaryMediaIds);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateVariantRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateVariantRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateVariantRequest call({
+    String productId,
+    String barcode,
+    String sku,
+    int? volumeMl,
+    int? concentrationId,
+    int? sillage,
+    int? longevity,
+    VariantType? type,
+    num? basePrice,
+    num? retailPrice,
+    VariantStatus? status,
+    int? lowStockThreshold,
+    List<ProductAttributeDto>? attributes,
+    List<String>? temporaryMediaIds,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateVariantRequest.copyWith(...)` or call `instanceOfCreateVariantRequest.copyWith.fieldName(value)` for a single field.
+class _$CreateVariantRequestCWProxyImpl
+    implements _$CreateVariantRequestCWProxy {
+  const _$CreateVariantRequestCWProxyImpl(this._value);
+
+  final CreateVariantRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, productId.hashCode);
-    _$hash = $jc(_$hash, barcode.hashCode);
-    _$hash = $jc(_$hash, sku.hashCode);
-    _$hash = $jc(_$hash, volumeMl.hashCode);
-    _$hash = $jc(_$hash, concentrationId.hashCode);
-    _$hash = $jc(_$hash, sillage.hashCode);
-    _$hash = $jc(_$hash, longevity.hashCode);
-    _$hash = $jc(_$hash, type.hashCode);
-    _$hash = $jc(_$hash, basePrice.hashCode);
-    _$hash = $jc(_$hash, retailPrice.hashCode);
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, lowStockThreshold.hashCode);
-    _$hash = $jc(_$hash, attributes.hashCode);
-    _$hash = $jc(_$hash, temporaryMediaIds.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  CreateVariantRequest productId(String productId) =>
+      call(productId: productId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'CreateVariantRequest')
-          ..add('productId', productId)
-          ..add('barcode', barcode)
-          ..add('sku', sku)
-          ..add('volumeMl', volumeMl)
-          ..add('concentrationId', concentrationId)
-          ..add('sillage', sillage)
-          ..add('longevity', longevity)
-          ..add('type', type)
-          ..add('basePrice', basePrice)
-          ..add('retailPrice', retailPrice)
-          ..add('status', status)
-          ..add('lowStockThreshold', lowStockThreshold)
-          ..add('attributes', attributes)
-          ..add('temporaryMediaIds', temporaryMediaIds))
-        .toString();
+  CreateVariantRequest barcode(String barcode) => call(barcode: barcode);
+
+  @override
+  CreateVariantRequest sku(String sku) => call(sku: sku);
+
+  @override
+  CreateVariantRequest volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
+
+  @override
+  CreateVariantRequest concentrationId(int? concentrationId) =>
+      call(concentrationId: concentrationId);
+
+  @override
+  CreateVariantRequest sillage(int? sillage) => call(sillage: sillage);
+
+  @override
+  CreateVariantRequest longevity(int? longevity) => call(longevity: longevity);
+
+  @override
+  CreateVariantRequest type(VariantType? type) => call(type: type);
+
+  @override
+  CreateVariantRequest basePrice(num? basePrice) => call(basePrice: basePrice);
+
+  @override
+  CreateVariantRequest retailPrice(num? retailPrice) =>
+      call(retailPrice: retailPrice);
+
+  @override
+  CreateVariantRequest status(VariantStatus? status) => call(status: status);
+
+  @override
+  CreateVariantRequest lowStockThreshold(int? lowStockThreshold) =>
+      call(lowStockThreshold: lowStockThreshold);
+
+  @override
+  CreateVariantRequest attributes(List<ProductAttributeDto>? attributes) =>
+      call(attributes: attributes);
+
+  @override
+  CreateVariantRequest temporaryMediaIds(List<String>? temporaryMediaIds) =>
+      call(temporaryMediaIds: temporaryMediaIds);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateVariantRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateVariantRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateVariantRequest call({
+    Object? productId = const $CopyWithPlaceholder(),
+    Object? barcode = const $CopyWithPlaceholder(),
+    Object? sku = const $CopyWithPlaceholder(),
+    Object? volumeMl = const $CopyWithPlaceholder(),
+    Object? concentrationId = const $CopyWithPlaceholder(),
+    Object? sillage = const $CopyWithPlaceholder(),
+    Object? longevity = const $CopyWithPlaceholder(),
+    Object? type = const $CopyWithPlaceholder(),
+    Object? basePrice = const $CopyWithPlaceholder(),
+    Object? retailPrice = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? lowStockThreshold = const $CopyWithPlaceholder(),
+    Object? attributes = const $CopyWithPlaceholder(),
+    Object? temporaryMediaIds = const $CopyWithPlaceholder(),
+  }) {
+    return CreateVariantRequest(
+      productId: productId == const $CopyWithPlaceholder() || productId == null
+          ? _value.productId
+          // ignore: cast_nullable_to_non_nullable
+          : productId as String,
+      barcode: barcode == const $CopyWithPlaceholder() || barcode == null
+          ? _value.barcode
+          // ignore: cast_nullable_to_non_nullable
+          : barcode as String,
+      sku: sku == const $CopyWithPlaceholder() || sku == null
+          ? _value.sku
+          // ignore: cast_nullable_to_non_nullable
+          : sku as String,
+      volumeMl: volumeMl == const $CopyWithPlaceholder()
+          ? _value.volumeMl
+          // ignore: cast_nullable_to_non_nullable
+          : volumeMl as int?,
+      concentrationId: concentrationId == const $CopyWithPlaceholder()
+          ? _value.concentrationId
+          // ignore: cast_nullable_to_non_nullable
+          : concentrationId as int?,
+      sillage: sillage == const $CopyWithPlaceholder()
+          ? _value.sillage
+          // ignore: cast_nullable_to_non_nullable
+          : sillage as int?,
+      longevity: longevity == const $CopyWithPlaceholder()
+          ? _value.longevity
+          // ignore: cast_nullable_to_non_nullable
+          : longevity as int?,
+      type: type == const $CopyWithPlaceholder()
+          ? _value.type
+          // ignore: cast_nullable_to_non_nullable
+          : type as VariantType?,
+      basePrice: basePrice == const $CopyWithPlaceholder()
+          ? _value.basePrice
+          // ignore: cast_nullable_to_non_nullable
+          : basePrice as num?,
+      retailPrice: retailPrice == const $CopyWithPlaceholder()
+          ? _value.retailPrice
+          // ignore: cast_nullable_to_non_nullable
+          : retailPrice as num?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as VariantStatus?,
+      lowStockThreshold: lowStockThreshold == const $CopyWithPlaceholder()
+          ? _value.lowStockThreshold
+          // ignore: cast_nullable_to_non_nullable
+          : lowStockThreshold as int?,
+      attributes: attributes == const $CopyWithPlaceholder()
+          ? _value.attributes
+          // ignore: cast_nullable_to_non_nullable
+          : attributes as List<ProductAttributeDto>?,
+      temporaryMediaIds: temporaryMediaIds == const $CopyWithPlaceholder()
+          ? _value.temporaryMediaIds
+          // ignore: cast_nullable_to_non_nullable
+          : temporaryMediaIds as List<String>?,
+    );
   }
 }
 
-class CreateVariantRequestBuilder
-    implements Builder<CreateVariantRequest, CreateVariantRequestBuilder> {
-  _$CreateVariantRequest? _$v;
-
-  String? _productId;
-  String? get productId => _$this._productId;
-  set productId(String? productId) => _$this._productId = productId;
-
-  String? _barcode;
-  String? get barcode => _$this._barcode;
-  set barcode(String? barcode) => _$this._barcode = barcode;
-
-  String? _sku;
-  String? get sku => _$this._sku;
-  set sku(String? sku) => _$this._sku = sku;
-
-  int? _volumeMl;
-  int? get volumeMl => _$this._volumeMl;
-  set volumeMl(int? volumeMl) => _$this._volumeMl = volumeMl;
-
-  int? _concentrationId;
-  int? get concentrationId => _$this._concentrationId;
-  set concentrationId(int? concentrationId) =>
-      _$this._concentrationId = concentrationId;
-
-  int? _sillage;
-  int? get sillage => _$this._sillage;
-  set sillage(int? sillage) => _$this._sillage = sillage;
-
-  int? _longevity;
-  int? get longevity => _$this._longevity;
-  set longevity(int? longevity) => _$this._longevity = longevity;
-
-  VariantType? _type;
-  VariantType? get type => _$this._type;
-  set type(VariantType? type) => _$this._type = type;
-
-  num? _basePrice;
-  num? get basePrice => _$this._basePrice;
-  set basePrice(num? basePrice) => _$this._basePrice = basePrice;
-
-  num? _retailPrice;
-  num? get retailPrice => _$this._retailPrice;
-  set retailPrice(num? retailPrice) => _$this._retailPrice = retailPrice;
-
-  VariantStatus? _status;
-  VariantStatus? get status => _$this._status;
-  set status(VariantStatus? status) => _$this._status = status;
-
-  int? _lowStockThreshold;
-  int? get lowStockThreshold => _$this._lowStockThreshold;
-  set lowStockThreshold(int? lowStockThreshold) =>
-      _$this._lowStockThreshold = lowStockThreshold;
-
-  ListBuilder<ProductAttributeDto>? _attributes;
-  ListBuilder<ProductAttributeDto> get attributes =>
-      _$this._attributes ??= ListBuilder<ProductAttributeDto>();
-  set attributes(ListBuilder<ProductAttributeDto>? attributes) =>
-      _$this._attributes = attributes;
-
-  ListBuilder<String>? _temporaryMediaIds;
-  ListBuilder<String> get temporaryMediaIds =>
-      _$this._temporaryMediaIds ??= ListBuilder<String>();
-  set temporaryMediaIds(ListBuilder<String>? temporaryMediaIds) =>
-      _$this._temporaryMediaIds = temporaryMediaIds;
-
-  CreateVariantRequestBuilder() {
-    CreateVariantRequest._defaults(this);
-  }
-
-  CreateVariantRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _productId = $v.productId;
-      _barcode = $v.barcode;
-      _sku = $v.sku;
-      _volumeMl = $v.volumeMl;
-      _concentrationId = $v.concentrationId;
-      _sillage = $v.sillage;
-      _longevity = $v.longevity;
-      _type = $v.type;
-      _basePrice = $v.basePrice;
-      _retailPrice = $v.retailPrice;
-      _status = $v.status;
-      _lowStockThreshold = $v.lowStockThreshold;
-      _attributes = $v.attributes?.toBuilder();
-      _temporaryMediaIds = $v.temporaryMediaIds?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(CreateVariantRequest other) {
-    _$v = other as _$CreateVariantRequest;
-  }
-
-  @override
-  void update(void Function(CreateVariantRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  CreateVariantRequest build() => _build();
-
-  _$CreateVariantRequest _build() {
-    _$CreateVariantRequest _$result;
-    try {
-      _$result =
-          _$v ??
-          _$CreateVariantRequest._(
-            productId: BuiltValueNullFieldError.checkNotNull(
-              productId,
-              r'CreateVariantRequest',
-              'productId',
-            ),
-            barcode: BuiltValueNullFieldError.checkNotNull(
-              barcode,
-              r'CreateVariantRequest',
-              'barcode',
-            ),
-            sku: BuiltValueNullFieldError.checkNotNull(
-              sku,
-              r'CreateVariantRequest',
-              'sku',
-            ),
-            volumeMl: volumeMl,
-            concentrationId: concentrationId,
-            sillage: sillage,
-            longevity: longevity,
-            type: type,
-            basePrice: basePrice,
-            retailPrice: retailPrice,
-            status: status,
-            lowStockThreshold: lowStockThreshold,
-            attributes: _attributes?.build(),
-            temporaryMediaIds: _temporaryMediaIds?.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'attributes';
-        _attributes?.build();
-        _$failedField = 'temporaryMediaIds';
-        _temporaryMediaIds?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'CreateVariantRequest',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $CreateVariantRequestCopyWith on CreateVariantRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateVariantRequest.copyWith(...)` or `instanceOfCreateVariantRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CreateVariantRequestCWProxy get copyWith =>
+      _$CreateVariantRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CreateVariantRequest _$CreateVariantRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CreateVariantRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['productId', 'barcode', 'sku']);
+  final val = CreateVariantRequest(
+    productId: $checkedConvert('productId', (v) => v as String),
+    barcode: $checkedConvert('barcode', (v) => v as String),
+    sku: $checkedConvert('sku', (v) => v as String),
+    volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
+    concentrationId: $checkedConvert(
+      'concentrationId',
+      (v) => (v as num?)?.toInt(),
+    ),
+    sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
+    longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
+    type: $checkedConvert(
+      'type',
+      (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
+    ),
+    basePrice: $checkedConvert('basePrice', (v) => v as num?),
+    retailPrice: $checkedConvert('retailPrice', (v) => v as num?),
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecodeNullable(_$VariantStatusEnumMap, v),
+    ),
+    lowStockThreshold: $checkedConvert(
+      'lowStockThreshold',
+      (v) => (v as num?)?.toInt(),
+    ),
+    attributes: $checkedConvert(
+      'attributes',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => ProductAttributeDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    temporaryMediaIds: $checkedConvert(
+      'temporaryMediaIds',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$CreateVariantRequestToJson(
+  CreateVariantRequest instance,
+) => <String, dynamic>{
+  'productId': instance.productId,
+  'barcode': instance.barcode,
+  'sku': instance.sku,
+  'volumeMl': ?instance.volumeMl,
+  'concentrationId': ?instance.concentrationId,
+  'sillage': ?instance.sillage,
+  'longevity': ?instance.longevity,
+  'type': ?_$VariantTypeEnumMap[instance.type],
+  'basePrice': ?instance.basePrice,
+  'retailPrice': ?instance.retailPrice,
+  'status': ?_$VariantStatusEnumMap[instance.status],
+  'lowStockThreshold': ?instance.lowStockThreshold,
+  'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
+  'temporaryMediaIds': ?instance.temporaryMediaIds,
+};
+
+const _$VariantTypeEnumMap = {
+  VariantType.standard: 'Standard',
+  VariantType.fullBox: 'FullBox',
+  VariantType.tester: 'Tester',
+  VariantType.mini: 'Mini',
+};
+
+const _$VariantStatusEnumMap = {
+  VariantStatus.active: 'Active',
+  VariantStatus.inactive: 'Inactive',
+  VariantStatus.discontinued: 'Discontinued',
+};

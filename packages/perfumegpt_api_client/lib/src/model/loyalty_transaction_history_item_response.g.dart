@@ -3,196 +3,197 @@
 part of 'loyalty_transaction_history_item_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$LoyaltyTransactionHistoryItemResponse
-    extends LoyaltyTransactionHistoryItemResponse {
-  @override
-  final String? id;
-  @override
-  final String? userId;
-  @override
-  final String? voucherId;
-  @override
-  final String? orderId;
-  @override
-  final LoyaltyTransactionType? transactionType;
-  @override
-  final int? pointsChanged;
-  @override
-  final int? absolutePoints;
-  @override
-  final String reason;
+abstract class _$LoyaltyTransactionHistoryItemResponseCWProxy {
+  LoyaltyTransactionHistoryItemResponse id(String? id);
 
-  factory _$LoyaltyTransactionHistoryItemResponse([
-    void Function(LoyaltyTransactionHistoryItemResponseBuilder)? updates,
-  ]) => (LoyaltyTransactionHistoryItemResponseBuilder()..update(updates))
-      ._build();
+  LoyaltyTransactionHistoryItemResponse userId(String? userId);
 
-  _$LoyaltyTransactionHistoryItemResponse._({
-    this.id,
-    this.userId,
-    this.voucherId,
-    this.orderId,
-    this.transactionType,
-    this.pointsChanged,
-    this.absolutePoints,
-    required this.reason,
-  }) : super._();
-  @override
-  LoyaltyTransactionHistoryItemResponse rebuild(
-    void Function(LoyaltyTransactionHistoryItemResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  LoyaltyTransactionHistoryItemResponse voucherId(String? voucherId);
 
-  @override
-  LoyaltyTransactionHistoryItemResponseBuilder toBuilder() =>
-      LoyaltyTransactionHistoryItemResponseBuilder()..replace(this);
+  LoyaltyTransactionHistoryItemResponse orderId(String? orderId);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is LoyaltyTransactionHistoryItemResponse &&
-        id == other.id &&
-        userId == other.userId &&
-        voucherId == other.voucherId &&
-        orderId == other.orderId &&
-        transactionType == other.transactionType &&
-        pointsChanged == other.pointsChanged &&
-        absolutePoints == other.absolutePoints &&
-        reason == other.reason;
-  }
+  LoyaltyTransactionHistoryItemResponse transactionType(
+    LoyaltyTransactionType? transactionType,
+  );
+
+  LoyaltyTransactionHistoryItemResponse pointsChanged(int? pointsChanged);
+
+  LoyaltyTransactionHistoryItemResponse absolutePoints(int? absolutePoints);
+
+  LoyaltyTransactionHistoryItemResponse reason(String reason);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoyaltyTransactionHistoryItemResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// LoyaltyTransactionHistoryItemResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  LoyaltyTransactionHistoryItemResponse call({
+    String? id,
+    String? userId,
+    String? voucherId,
+    String? orderId,
+    LoyaltyTransactionType? transactionType,
+    int? pointsChanged,
+    int? absolutePoints,
+    String reason,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfLoyaltyTransactionHistoryItemResponse.copyWith(...)` or call `instanceOfLoyaltyTransactionHistoryItemResponse.copyWith.fieldName(value)` for a single field.
+class _$LoyaltyTransactionHistoryItemResponseCWProxyImpl
+    implements _$LoyaltyTransactionHistoryItemResponseCWProxy {
+  const _$LoyaltyTransactionHistoryItemResponseCWProxyImpl(this._value);
+
+  final LoyaltyTransactionHistoryItemResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, userId.hashCode);
-    _$hash = $jc(_$hash, voucherId.hashCode);
-    _$hash = $jc(_$hash, orderId.hashCode);
-    _$hash = $jc(_$hash, transactionType.hashCode);
-    _$hash = $jc(_$hash, pointsChanged.hashCode);
-    _$hash = $jc(_$hash, absolutePoints.hashCode);
-    _$hash = $jc(_$hash, reason.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  LoyaltyTransactionHistoryItemResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'LoyaltyTransactionHistoryItemResponse',
-          )
-          ..add('id', id)
-          ..add('userId', userId)
-          ..add('voucherId', voucherId)
-          ..add('orderId', orderId)
-          ..add('transactionType', transactionType)
-          ..add('pointsChanged', pointsChanged)
-          ..add('absolutePoints', absolutePoints)
-          ..add('reason', reason))
-        .toString();
+  LoyaltyTransactionHistoryItemResponse userId(String? userId) =>
+      call(userId: userId);
+
+  @override
+  LoyaltyTransactionHistoryItemResponse voucherId(String? voucherId) =>
+      call(voucherId: voucherId);
+
+  @override
+  LoyaltyTransactionHistoryItemResponse orderId(String? orderId) =>
+      call(orderId: orderId);
+
+  @override
+  LoyaltyTransactionHistoryItemResponse transactionType(
+    LoyaltyTransactionType? transactionType,
+  ) => call(transactionType: transactionType);
+
+  @override
+  LoyaltyTransactionHistoryItemResponse pointsChanged(int? pointsChanged) =>
+      call(pointsChanged: pointsChanged);
+
+  @override
+  LoyaltyTransactionHistoryItemResponse absolutePoints(int? absolutePoints) =>
+      call(absolutePoints: absolutePoints);
+
+  @override
+  LoyaltyTransactionHistoryItemResponse reason(String reason) =>
+      call(reason: reason);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoyaltyTransactionHistoryItemResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// LoyaltyTransactionHistoryItemResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  LoyaltyTransactionHistoryItemResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? userId = const $CopyWithPlaceholder(),
+    Object? voucherId = const $CopyWithPlaceholder(),
+    Object? orderId = const $CopyWithPlaceholder(),
+    Object? transactionType = const $CopyWithPlaceholder(),
+    Object? pointsChanged = const $CopyWithPlaceholder(),
+    Object? absolutePoints = const $CopyWithPlaceholder(),
+    Object? reason = const $CopyWithPlaceholder(),
+  }) {
+    return LoyaltyTransactionHistoryItemResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      userId: userId == const $CopyWithPlaceholder()
+          ? _value.userId
+          // ignore: cast_nullable_to_non_nullable
+          : userId as String?,
+      voucherId: voucherId == const $CopyWithPlaceholder()
+          ? _value.voucherId
+          // ignore: cast_nullable_to_non_nullable
+          : voucherId as String?,
+      orderId: orderId == const $CopyWithPlaceholder()
+          ? _value.orderId
+          // ignore: cast_nullable_to_non_nullable
+          : orderId as String?,
+      transactionType: transactionType == const $CopyWithPlaceholder()
+          ? _value.transactionType
+          // ignore: cast_nullable_to_non_nullable
+          : transactionType as LoyaltyTransactionType?,
+      pointsChanged: pointsChanged == const $CopyWithPlaceholder()
+          ? _value.pointsChanged
+          // ignore: cast_nullable_to_non_nullable
+          : pointsChanged as int?,
+      absolutePoints: absolutePoints == const $CopyWithPlaceholder()
+          ? _value.absolutePoints
+          // ignore: cast_nullable_to_non_nullable
+          : absolutePoints as int?,
+      reason: reason == const $CopyWithPlaceholder() || reason == null
+          ? _value.reason
+          // ignore: cast_nullable_to_non_nullable
+          : reason as String,
+    );
   }
 }
 
-class LoyaltyTransactionHistoryItemResponseBuilder
-    implements
-        Builder<
-          LoyaltyTransactionHistoryItemResponse,
-          LoyaltyTransactionHistoryItemResponseBuilder
-        > {
-  _$LoyaltyTransactionHistoryItemResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _userId;
-  String? get userId => _$this._userId;
-  set userId(String? userId) => _$this._userId = userId;
-
-  String? _voucherId;
-  String? get voucherId => _$this._voucherId;
-  set voucherId(String? voucherId) => _$this._voucherId = voucherId;
-
-  String? _orderId;
-  String? get orderId => _$this._orderId;
-  set orderId(String? orderId) => _$this._orderId = orderId;
-
-  LoyaltyTransactionType? _transactionType;
-  LoyaltyTransactionType? get transactionType => _$this._transactionType;
-  set transactionType(LoyaltyTransactionType? transactionType) =>
-      _$this._transactionType = transactionType;
-
-  int? _pointsChanged;
-  int? get pointsChanged => _$this._pointsChanged;
-  set pointsChanged(int? pointsChanged) =>
-      _$this._pointsChanged = pointsChanged;
-
-  int? _absolutePoints;
-  int? get absolutePoints => _$this._absolutePoints;
-  set absolutePoints(int? absolutePoints) =>
-      _$this._absolutePoints = absolutePoints;
-
-  String? _reason;
-  String? get reason => _$this._reason;
-  set reason(String? reason) => _$this._reason = reason;
-
-  LoyaltyTransactionHistoryItemResponseBuilder() {
-    LoyaltyTransactionHistoryItemResponse._defaults(this);
-  }
-
-  LoyaltyTransactionHistoryItemResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _userId = $v.userId;
-      _voucherId = $v.voucherId;
-      _orderId = $v.orderId;
-      _transactionType = $v.transactionType;
-      _pointsChanged = $v.pointsChanged;
-      _absolutePoints = $v.absolutePoints;
-      _reason = $v.reason;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(LoyaltyTransactionHistoryItemResponse other) {
-    _$v = other as _$LoyaltyTransactionHistoryItemResponse;
-  }
-
-  @override
-  void update(
-    void Function(LoyaltyTransactionHistoryItemResponseBuilder)? updates,
-  ) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  LoyaltyTransactionHistoryItemResponse build() => _build();
-
-  _$LoyaltyTransactionHistoryItemResponse _build() {
-    final _$result =
-        _$v ??
-        _$LoyaltyTransactionHistoryItemResponse._(
-          id: id,
-          userId: userId,
-          voucherId: voucherId,
-          orderId: orderId,
-          transactionType: transactionType,
-          pointsChanged: pointsChanged,
-          absolutePoints: absolutePoints,
-          reason: BuiltValueNullFieldError.checkNotNull(
-            reason,
-            r'LoyaltyTransactionHistoryItemResponse',
-            'reason',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $LoyaltyTransactionHistoryItemResponseCopyWith
+    on LoyaltyTransactionHistoryItemResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfLoyaltyTransactionHistoryItemResponse.copyWith(...)` or `instanceOfLoyaltyTransactionHistoryItemResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$LoyaltyTransactionHistoryItemResponseCWProxy get copyWith =>
+      _$LoyaltyTransactionHistoryItemResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+LoyaltyTransactionHistoryItemResponse
+_$LoyaltyTransactionHistoryItemResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('LoyaltyTransactionHistoryItemResponse', json, (
+      $checkedConvert,
+    ) {
+      $checkKeys(json, requiredKeys: const ['reason']);
+      final val = LoyaltyTransactionHistoryItemResponse(
+        id: $checkedConvert('id', (v) => v as String?),
+        userId: $checkedConvert('userId', (v) => v as String?),
+        voucherId: $checkedConvert('voucherId', (v) => v as String?),
+        orderId: $checkedConvert('orderId', (v) => v as String?),
+        transactionType: $checkedConvert(
+          'transactionType',
+          (v) => $enumDecodeNullable(_$LoyaltyTransactionTypeEnumMap, v),
+        ),
+        pointsChanged: $checkedConvert(
+          'pointsChanged',
+          (v) => (v as num?)?.toInt(),
+        ),
+        absolutePoints: $checkedConvert(
+          'absolutePoints',
+          (v) => (v as num?)?.toInt(),
+        ),
+        reason: $checkedConvert('reason', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$LoyaltyTransactionHistoryItemResponseToJson(
+  LoyaltyTransactionHistoryItemResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'userId': ?instance.userId,
+  'voucherId': ?instance.voucherId,
+  'orderId': ?instance.orderId,
+  'transactionType': ?_$LoyaltyTransactionTypeEnumMap[instance.transactionType],
+  'pointsChanged': ?instance.pointsChanged,
+  'absolutePoints': ?instance.absolutePoints,
+  'reason': instance.reason,
+};
+
+const _$LoyaltyTransactionTypeEnumMap = {
+  LoyaltyTransactionType.spend: 'Spend',
+  LoyaltyTransactionType.earn: 'Earn',
+};

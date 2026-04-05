@@ -3,14 +3,14 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateAttributeValueRequest
 void main() {
-  final instance = CreateAttributeValueRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateAttributeValueRequest?
+  instance = /* CreateAttributeValueRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateAttributeValueRequest, () {
     // String value
     test('to test the property `value`', () async {
       // TODO
     });
-
   });
 }

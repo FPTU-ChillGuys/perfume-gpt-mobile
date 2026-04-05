@@ -3,96 +3,70 @@
 part of 'update_brand_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UpdateBrandRequest extends UpdateBrandRequest {
-  @override
-  final String name;
+abstract class _$UpdateBrandRequestCWProxy {
+  UpdateBrandRequest name(String name);
 
-  factory _$UpdateBrandRequest([
-    void Function(UpdateBrandRequestBuilder)? updates,
-  ]) => (UpdateBrandRequestBuilder()..update(updates))._build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateBrandRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateBrandRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateBrandRequest call({String name});
+}
 
-  _$UpdateBrandRequest._({required this.name}) : super._();
-  @override
-  UpdateBrandRequest rebuild(
-    void Function(UpdateBrandRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateBrandRequest.copyWith(...)` or call `instanceOfUpdateBrandRequest.copyWith.fieldName(value)` for a single field.
+class _$UpdateBrandRequestCWProxyImpl implements _$UpdateBrandRequestCWProxy {
+  const _$UpdateBrandRequestCWProxyImpl(this._value);
 
-  @override
-  UpdateBrandRequestBuilder toBuilder() =>
-      UpdateBrandRequestBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UpdateBrandRequest && name == other.name;
-  }
+  final UpdateBrandRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UpdateBrandRequest name(String name) => call(name: name);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-      r'UpdateBrandRequest',
-    )..add('name', name)).toString();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateBrandRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateBrandRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateBrandRequest call({Object? name = const $CopyWithPlaceholder()}) {
+    return UpdateBrandRequest(
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+    );
   }
 }
 
-class UpdateBrandRequestBuilder
-    implements Builder<UpdateBrandRequest, UpdateBrandRequestBuilder> {
-  _$UpdateBrandRequest? _$v;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  UpdateBrandRequestBuilder() {
-    UpdateBrandRequest._defaults(this);
-  }
-
-  UpdateBrandRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _name = $v.name;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UpdateBrandRequest other) {
-    _$v = other as _$UpdateBrandRequest;
-  }
-
-  @override
-  void update(void Function(UpdateBrandRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UpdateBrandRequest build() => _build();
-
-  _$UpdateBrandRequest _build() {
-    final _$result =
-        _$v ??
-        _$UpdateBrandRequest._(
-          name: BuiltValueNullFieldError.checkNotNull(
-            name,
-            r'UpdateBrandRequest',
-            'name',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $UpdateBrandRequestCopyWith on UpdateBrandRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateBrandRequest.copyWith(...)` or `instanceOfUpdateBrandRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UpdateBrandRequestCWProxy get copyWith =>
+      _$UpdateBrandRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateBrandRequest _$UpdateBrandRequestFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('UpdateBrandRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['name']);
+      final val = UpdateBrandRequest(
+        name: $checkedConvert('name', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$UpdateBrandRequestToJson(UpdateBrandRequest instance) =>
+    <String, dynamic>{'name': instance.name};

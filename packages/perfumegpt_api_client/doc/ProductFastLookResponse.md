@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] 
 **brandName** | **String** |  | 
 **gender** | [**Gender**](Gender.md) |  | [optional] 
-**variants** | [**BuiltList&lt;VariantFastLookResponse&gt;**](VariantFastLookResponse.md) |  | 
+**variants** | [**List&lt;VariantFastLookResponse&gt;**](VariantFastLookResponse.md) |  | 
 **rating** | **int** |  | [optional] 
 **reviewCount** | **int** |  | [optional] 
 

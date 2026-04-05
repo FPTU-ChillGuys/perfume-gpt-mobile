@@ -436,8 +436,8 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrderReturnRequestsApi();
-final BuiltList<Uint8List> videos = /path/to/file.txt; // BuiltList<Uint8List> | 
-final BuiltList<Uint8List> images = /path/to/file.txt; // BuiltList<Uint8List> | 
+final List<MultipartFile> videos = /path/to/file.txt; // List<MultipartFile> | 
+final List<MultipartFile> images = /path/to/file.txt; // List<MultipartFile> | 
 
 try {
     final response = api.apiOrderreturnrequestsVideosTemporaryPost(videos, images);
@@ -451,8 +451,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **videos** | [**BuiltList&lt;Uint8List&gt;**](Uint8List.md)|  | [optional] 
- **images** | [**BuiltList&lt;Uint8List&gt;**](Uint8List.md)|  | [optional] 
+ **videos** | [**List&lt;MultipartFile&gt;**](MultipartFile.md)|  | [optional] 
+ **images** | [**List&lt;MultipartFile&gt;**](MultipartFile.md)|  | [optional] 
 
 ### Return type
 

@@ -3,248 +3,246 @@
 part of 'province_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProvinceResponse extends ProvinceResponse {
-  @override
-  final int? provinceID;
-  @override
-  final String provinceName;
-  @override
-  final int? countryID;
-  @override
-  final int? code;
-  @override
-  final BuiltList<String>? nameExtension;
-  @override
-  final int? isEnable;
-  @override
-  final int? regionID;
-  @override
-  final int? updatedBy;
-  @override
-  final String? createdAt;
-  @override
-  final String? updatedAt;
-  @override
-  final bool? canUpdateCOD;
-  @override
-  final int? status;
+abstract class _$ProvinceResponseCWProxy {
+  ProvinceResponse provinceID(int? provinceID);
 
-  factory _$ProvinceResponse([
-    void Function(ProvinceResponseBuilder)? updates,
-  ]) => (ProvinceResponseBuilder()..update(updates))._build();
+  ProvinceResponse provinceName(String provinceName);
 
-  _$ProvinceResponse._({
-    this.provinceID,
-    required this.provinceName,
-    this.countryID,
-    this.code,
-    this.nameExtension,
-    this.isEnable,
-    this.regionID,
-    this.updatedBy,
-    this.createdAt,
-    this.updatedAt,
-    this.canUpdateCOD,
-    this.status,
-  }) : super._();
-  @override
-  ProvinceResponse rebuild(void Function(ProvinceResponseBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  ProvinceResponse countryID(int? countryID);
 
-  @override
-  ProvinceResponseBuilder toBuilder() =>
-      ProvinceResponseBuilder()..replace(this);
+  ProvinceResponse code(int? code);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProvinceResponse &&
-        provinceID == other.provinceID &&
-        provinceName == other.provinceName &&
-        countryID == other.countryID &&
-        code == other.code &&
-        nameExtension == other.nameExtension &&
-        isEnable == other.isEnable &&
-        regionID == other.regionID &&
-        updatedBy == other.updatedBy &&
-        createdAt == other.createdAt &&
-        updatedAt == other.updatedAt &&
-        canUpdateCOD == other.canUpdateCOD &&
-        status == other.status;
-  }
+  ProvinceResponse nameExtension(List<String>? nameExtension);
+
+  ProvinceResponse isEnable(int? isEnable);
+
+  ProvinceResponse regionID(int? regionID);
+
+  ProvinceResponse updatedBy(int? updatedBy);
+
+  ProvinceResponse createdAt(String? createdAt);
+
+  ProvinceResponse updatedAt(String? updatedAt);
+
+  ProvinceResponse canUpdateCOD(bool? canUpdateCOD);
+
+  ProvinceResponse status(int? status);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProvinceResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProvinceResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProvinceResponse call({
+    int? provinceID,
+    String provinceName,
+    int? countryID,
+    int? code,
+    List<String>? nameExtension,
+    int? isEnable,
+    int? regionID,
+    int? updatedBy,
+    String? createdAt,
+    String? updatedAt,
+    bool? canUpdateCOD,
+    int? status,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProvinceResponse.copyWith(...)` or call `instanceOfProvinceResponse.copyWith.fieldName(value)` for a single field.
+class _$ProvinceResponseCWProxyImpl implements _$ProvinceResponseCWProxy {
+  const _$ProvinceResponseCWProxyImpl(this._value);
+
+  final ProvinceResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, provinceID.hashCode);
-    _$hash = $jc(_$hash, provinceName.hashCode);
-    _$hash = $jc(_$hash, countryID.hashCode);
-    _$hash = $jc(_$hash, code.hashCode);
-    _$hash = $jc(_$hash, nameExtension.hashCode);
-    _$hash = $jc(_$hash, isEnable.hashCode);
-    _$hash = $jc(_$hash, regionID.hashCode);
-    _$hash = $jc(_$hash, updatedBy.hashCode);
-    _$hash = $jc(_$hash, createdAt.hashCode);
-    _$hash = $jc(_$hash, updatedAt.hashCode);
-    _$hash = $jc(_$hash, canUpdateCOD.hashCode);
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProvinceResponse provinceID(int? provinceID) => call(provinceID: provinceID);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ProvinceResponse')
-          ..add('provinceID', provinceID)
-          ..add('provinceName', provinceName)
-          ..add('countryID', countryID)
-          ..add('code', code)
-          ..add('nameExtension', nameExtension)
-          ..add('isEnable', isEnable)
-          ..add('regionID', regionID)
-          ..add('updatedBy', updatedBy)
-          ..add('createdAt', createdAt)
-          ..add('updatedAt', updatedAt)
-          ..add('canUpdateCOD', canUpdateCOD)
-          ..add('status', status))
-        .toString();
+  ProvinceResponse provinceName(String provinceName) =>
+      call(provinceName: provinceName);
+
+  @override
+  ProvinceResponse countryID(int? countryID) => call(countryID: countryID);
+
+  @override
+  ProvinceResponse code(int? code) => call(code: code);
+
+  @override
+  ProvinceResponse nameExtension(List<String>? nameExtension) =>
+      call(nameExtension: nameExtension);
+
+  @override
+  ProvinceResponse isEnable(int? isEnable) => call(isEnable: isEnable);
+
+  @override
+  ProvinceResponse regionID(int? regionID) => call(regionID: regionID);
+
+  @override
+  ProvinceResponse updatedBy(int? updatedBy) => call(updatedBy: updatedBy);
+
+  @override
+  ProvinceResponse createdAt(String? createdAt) => call(createdAt: createdAt);
+
+  @override
+  ProvinceResponse updatedAt(String? updatedAt) => call(updatedAt: updatedAt);
+
+  @override
+  ProvinceResponse canUpdateCOD(bool? canUpdateCOD) =>
+      call(canUpdateCOD: canUpdateCOD);
+
+  @override
+  ProvinceResponse status(int? status) => call(status: status);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProvinceResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProvinceResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProvinceResponse call({
+    Object? provinceID = const $CopyWithPlaceholder(),
+    Object? provinceName = const $CopyWithPlaceholder(),
+    Object? countryID = const $CopyWithPlaceholder(),
+    Object? code = const $CopyWithPlaceholder(),
+    Object? nameExtension = const $CopyWithPlaceholder(),
+    Object? isEnable = const $CopyWithPlaceholder(),
+    Object? regionID = const $CopyWithPlaceholder(),
+    Object? updatedBy = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
+    Object? updatedAt = const $CopyWithPlaceholder(),
+    Object? canUpdateCOD = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+  }) {
+    return ProvinceResponse(
+      provinceID: provinceID == const $CopyWithPlaceholder()
+          ? _value.provinceID
+          // ignore: cast_nullable_to_non_nullable
+          : provinceID as int?,
+      provinceName:
+          provinceName == const $CopyWithPlaceholder() || provinceName == null
+          ? _value.provinceName
+          // ignore: cast_nullable_to_non_nullable
+          : provinceName as String,
+      countryID: countryID == const $CopyWithPlaceholder()
+          ? _value.countryID
+          // ignore: cast_nullable_to_non_nullable
+          : countryID as int?,
+      code: code == const $CopyWithPlaceholder()
+          ? _value.code
+          // ignore: cast_nullable_to_non_nullable
+          : code as int?,
+      nameExtension: nameExtension == const $CopyWithPlaceholder()
+          ? _value.nameExtension
+          // ignore: cast_nullable_to_non_nullable
+          : nameExtension as List<String>?,
+      isEnable: isEnable == const $CopyWithPlaceholder()
+          ? _value.isEnable
+          // ignore: cast_nullable_to_non_nullable
+          : isEnable as int?,
+      regionID: regionID == const $CopyWithPlaceholder()
+          ? _value.regionID
+          // ignore: cast_nullable_to_non_nullable
+          : regionID as int?,
+      updatedBy: updatedBy == const $CopyWithPlaceholder()
+          ? _value.updatedBy
+          // ignore: cast_nullable_to_non_nullable
+          : updatedBy as int?,
+      createdAt: createdAt == const $CopyWithPlaceholder()
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as String?,
+      updatedAt: updatedAt == const $CopyWithPlaceholder()
+          ? _value.updatedAt
+          // ignore: cast_nullable_to_non_nullable
+          : updatedAt as String?,
+      canUpdateCOD: canUpdateCOD == const $CopyWithPlaceholder()
+          ? _value.canUpdateCOD
+          // ignore: cast_nullable_to_non_nullable
+          : canUpdateCOD as bool?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as int?,
+    );
   }
 }
 
-class ProvinceResponseBuilder
-    implements Builder<ProvinceResponse, ProvinceResponseBuilder> {
-  _$ProvinceResponse? _$v;
+extension $ProvinceResponseCopyWith on ProvinceResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProvinceResponse.copyWith(...)` or `instanceOfProvinceResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProvinceResponseCWProxy get copyWith => _$ProvinceResponseCWProxyImpl(this);
+}
 
-  int? _provinceID;
-  int? get provinceID => _$this._provinceID;
-  set provinceID(int? provinceID) => _$this._provinceID = provinceID;
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
 
-  String? _provinceName;
-  String? get provinceName => _$this._provinceName;
-  set provinceName(String? provinceName) => _$this._provinceName = provinceName;
-
-  int? _countryID;
-  int? get countryID => _$this._countryID;
-  set countryID(int? countryID) => _$this._countryID = countryID;
-
-  int? _code;
-  int? get code => _$this._code;
-  set code(int? code) => _$this._code = code;
-
-  ListBuilder<String>? _nameExtension;
-  ListBuilder<String> get nameExtension =>
-      _$this._nameExtension ??= ListBuilder<String>();
-  set nameExtension(ListBuilder<String>? nameExtension) =>
-      _$this._nameExtension = nameExtension;
-
-  int? _isEnable;
-  int? get isEnable => _$this._isEnable;
-  set isEnable(int? isEnable) => _$this._isEnable = isEnable;
-
-  int? _regionID;
-  int? get regionID => _$this._regionID;
-  set regionID(int? regionID) => _$this._regionID = regionID;
-
-  int? _updatedBy;
-  int? get updatedBy => _$this._updatedBy;
-  set updatedBy(int? updatedBy) => _$this._updatedBy = updatedBy;
-
-  String? _createdAt;
-  String? get createdAt => _$this._createdAt;
-  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
-
-  String? _updatedAt;
-  String? get updatedAt => _$this._updatedAt;
-  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
-
-  bool? _canUpdateCOD;
-  bool? get canUpdateCOD => _$this._canUpdateCOD;
-  set canUpdateCOD(bool? canUpdateCOD) => _$this._canUpdateCOD = canUpdateCOD;
-
-  int? _status;
-  int? get status => _$this._status;
-  set status(int? status) => _$this._status = status;
-
-  ProvinceResponseBuilder() {
-    ProvinceResponse._defaults(this);
-  }
-
-  ProvinceResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _provinceID = $v.provinceID;
-      _provinceName = $v.provinceName;
-      _countryID = $v.countryID;
-      _code = $v.code;
-      _nameExtension = $v.nameExtension?.toBuilder();
-      _isEnable = $v.isEnable;
-      _regionID = $v.regionID;
-      _updatedBy = $v.updatedBy;
-      _createdAt = $v.createdAt;
-      _updatedAt = $v.updatedAt;
-      _canUpdateCOD = $v.canUpdateCOD;
-      _status = $v.status;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProvinceResponse other) {
-    _$v = other as _$ProvinceResponse;
-  }
-
-  @override
-  void update(void Function(ProvinceResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProvinceResponse build() => _build();
-
-  _$ProvinceResponse _build() {
-    _$ProvinceResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$ProvinceResponse._(
-            provinceID: provinceID,
-            provinceName: BuiltValueNullFieldError.checkNotNull(
-              provinceName,
-              r'ProvinceResponse',
-              'provinceName',
-            ),
-            countryID: countryID,
-            code: code,
-            nameExtension: _nameExtension?.build(),
-            isEnable: isEnable,
-            regionID: regionID,
-            updatedBy: updatedBy,
-            createdAt: createdAt,
-            updatedAt: updatedAt,
-            canUpdateCOD: canUpdateCOD,
-            status: status,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'nameExtension';
-        _nameExtension?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'ProvinceResponse',
-          _$failedField,
-          e.toString(),
+ProvinceResponse _$ProvinceResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'ProvinceResponse',
+      json,
+      ($checkedConvert) {
+        $checkKeys(json, requiredKeys: const ['ProvinceName']);
+        final val = ProvinceResponse(
+          provinceID: $checkedConvert(
+            'ProvinceID',
+            (v) => (v as num?)?.toInt(),
+          ),
+          provinceName: $checkedConvert('ProvinceName', (v) => v as String),
+          countryID: $checkedConvert('CountryID', (v) => (v as num?)?.toInt()),
+          code: $checkedConvert('Code', (v) => (v as num?)?.toInt()),
+          nameExtension: $checkedConvert(
+            'NameExtension',
+            (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+          ),
+          isEnable: $checkedConvert('IsEnable', (v) => (v as num?)?.toInt()),
+          regionID: $checkedConvert('RegionID', (v) => (v as num?)?.toInt()),
+          updatedBy: $checkedConvert('UpdatedBy', (v) => (v as num?)?.toInt()),
+          createdAt: $checkedConvert('CreatedAt', (v) => v as String?),
+          updatedAt: $checkedConvert('UpdatedAt', (v) => v as String?),
+          canUpdateCOD: $checkedConvert('CanUpdateCOD', (v) => v as bool?),
+          status: $checkedConvert('Status', (v) => (v as num?)?.toInt()),
         );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
+        return val;
+      },
+      fieldKeyMap: const {
+        'provinceID': 'ProvinceID',
+        'provinceName': 'ProvinceName',
+        'countryID': 'CountryID',
+        'code': 'Code',
+        'nameExtension': 'NameExtension',
+        'isEnable': 'IsEnable',
+        'regionID': 'RegionID',
+        'updatedBy': 'UpdatedBy',
+        'createdAt': 'CreatedAt',
+        'updatedAt': 'UpdatedAt',
+        'canUpdateCOD': 'CanUpdateCOD',
+        'status': 'Status',
+      },
+    );
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+Map<String, dynamic> _$ProvinceResponseToJson(ProvinceResponse instance) =>
+    <String, dynamic>{
+      'ProvinceID': ?instance.provinceID,
+      'ProvinceName': instance.provinceName,
+      'CountryID': ?instance.countryID,
+      'Code': ?instance.code,
+      'NameExtension': ?instance.nameExtension,
+      'IsEnable': ?instance.isEnable,
+      'RegionID': ?instance.regionID,
+      'UpdatedBy': ?instance.updatedBy,
+      'CreatedAt': ?instance.createdAt,
+      'UpdatedAt': ?instance.updatedAt,
+      'CanUpdateCOD': ?instance.canUpdateCOD,
+      'Status': ?instance.status,
+    };

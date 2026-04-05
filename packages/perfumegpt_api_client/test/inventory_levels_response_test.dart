@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for InventoryLevelsResponse
 void main() {
-  final instance = InventoryLevelsResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final InventoryLevelsResponse? instance = /* InventoryLevelsResponse(...) */
+      null;
+  // TODO add properties to the entity
 
   group(InventoryLevelsResponse, () {
     // int totalVariants
@@ -46,6 +47,5 @@ void main() {
     test('to test the property `expiringSoonCount`', () async {
       // TODO
     });
-
   });
 }

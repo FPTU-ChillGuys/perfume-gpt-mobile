@@ -3,128 +3,108 @@
 part of 'variant_summary_item.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$VariantSummaryItem extends VariantSummaryItem {
-  @override
-  final String? id;
-  @override
-  final String displayName;
-  @override
-  final String concentrationName;
+abstract class _$VariantSummaryItemCWProxy {
+  VariantSummaryItem id(String? id);
 
-  factory _$VariantSummaryItem([
-    void Function(VariantSummaryItemBuilder)? updates,
-  ]) => (VariantSummaryItemBuilder()..update(updates))._build();
+  VariantSummaryItem displayName(String displayName);
 
-  _$VariantSummaryItem._({
-    this.id,
-    required this.displayName,
-    required this.concentrationName,
-  }) : super._();
-  @override
-  VariantSummaryItem rebuild(
-    void Function(VariantSummaryItemBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  VariantSummaryItem concentrationName(String concentrationName);
 
-  @override
-  VariantSummaryItemBuilder toBuilder() =>
-      VariantSummaryItemBuilder()..replace(this);
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantSummaryItem(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VariantSummaryItem(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VariantSummaryItem call({
+    String? id,
+    String displayName,
+    String concentrationName,
+  });
+}
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is VariantSummaryItem &&
-        id == other.id &&
-        displayName == other.displayName &&
-        concentrationName == other.concentrationName;
-  }
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVariantSummaryItem.copyWith(...)` or call `instanceOfVariantSummaryItem.copyWith.fieldName(value)` for a single field.
+class _$VariantSummaryItemCWProxyImpl implements _$VariantSummaryItemCWProxy {
+  const _$VariantSummaryItemCWProxyImpl(this._value);
+
+  final VariantSummaryItem _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, displayName.hashCode);
-    _$hash = $jc(_$hash, concentrationName.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  VariantSummaryItem id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'VariantSummaryItem')
-          ..add('id', id)
-          ..add('displayName', displayName)
-          ..add('concentrationName', concentrationName))
-        .toString();
+  VariantSummaryItem displayName(String displayName) =>
+      call(displayName: displayName);
+
+  @override
+  VariantSummaryItem concentrationName(String concentrationName) =>
+      call(concentrationName: concentrationName);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantSummaryItem(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VariantSummaryItem(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VariantSummaryItem call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? displayName = const $CopyWithPlaceholder(),
+    Object? concentrationName = const $CopyWithPlaceholder(),
+  }) {
+    return VariantSummaryItem(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      displayName:
+          displayName == const $CopyWithPlaceholder() || displayName == null
+          ? _value.displayName
+          // ignore: cast_nullable_to_non_nullable
+          : displayName as String,
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
+          ? _value.concentrationName
+          // ignore: cast_nullable_to_non_nullable
+          : concentrationName as String,
+    );
   }
 }
 
-class VariantSummaryItemBuilder
-    implements Builder<VariantSummaryItem, VariantSummaryItemBuilder> {
-  _$VariantSummaryItem? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _displayName;
-  String? get displayName => _$this._displayName;
-  set displayName(String? displayName) => _$this._displayName = displayName;
-
-  String? _concentrationName;
-  String? get concentrationName => _$this._concentrationName;
-  set concentrationName(String? concentrationName) =>
-      _$this._concentrationName = concentrationName;
-
-  VariantSummaryItemBuilder() {
-    VariantSummaryItem._defaults(this);
-  }
-
-  VariantSummaryItemBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _displayName = $v.displayName;
-      _concentrationName = $v.concentrationName;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(VariantSummaryItem other) {
-    _$v = other as _$VariantSummaryItem;
-  }
-
-  @override
-  void update(void Function(VariantSummaryItemBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  VariantSummaryItem build() => _build();
-
-  _$VariantSummaryItem _build() {
-    final _$result =
-        _$v ??
-        _$VariantSummaryItem._(
-          id: id,
-          displayName: BuiltValueNullFieldError.checkNotNull(
-            displayName,
-            r'VariantSummaryItem',
-            'displayName',
-          ),
-          concentrationName: BuiltValueNullFieldError.checkNotNull(
-            concentrationName,
-            r'VariantSummaryItem',
-            'concentrationName',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $VariantSummaryItemCopyWith on VariantSummaryItem {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVariantSummaryItem.copyWith(...)` or `instanceOfVariantSummaryItem.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$VariantSummaryItemCWProxy get copyWith =>
+      _$VariantSummaryItemCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+VariantSummaryItem _$VariantSummaryItemFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('VariantSummaryItem', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['displayName', 'concentrationName']);
+  final val = VariantSummaryItem(
+    id: $checkedConvert('id', (v) => v as String?),
+    displayName: $checkedConvert('displayName', (v) => v as String),
+    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$VariantSummaryItemToJson(VariantSummaryItem instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'displayName': instance.displayName,
+      'concentrationName': instance.concentrationName,
+    };

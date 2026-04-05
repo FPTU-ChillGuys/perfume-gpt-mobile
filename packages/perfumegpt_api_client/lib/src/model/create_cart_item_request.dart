@@ -3,122 +3,46 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'create_cart_item_request.g.dart';
 
-/// CreateCartItemRequest
-///
-/// Properties:
-/// * [variantId] 
-/// * [quantity] 
-@BuiltValue()
-abstract class CreateCartItemRequest implements Built<CreateCartItemRequest, CreateCartItemRequestBuilder> {
-  @BuiltValueField(wireName: r'variantId')
-  String get variantId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class CreateCartItemRequest {
+  /// Returns a new [CreateCartItemRequest] instance.
+  CreateCartItemRequest({required this.variantId, this.quantity});
 
-  @BuiltValueField(wireName: r'quantity')
-  int? get quantity;
+  @JsonKey(name: r'variantId', required: true, includeIfNull: false)
+  final String variantId;
 
-  CreateCartItemRequest._();
-
-  factory CreateCartItemRequest([void updates(CreateCartItemRequestBuilder b)]) = _$CreateCartItemRequest;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CreateCartItemRequestBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<CreateCartItemRequest> get serializer => _$CreateCartItemRequestSerializer();
-}
-
-class _$CreateCartItemRequestSerializer implements PrimitiveSerializer<CreateCartItemRequest> {
-  @override
-  final Iterable<Type> types = const [CreateCartItemRequest, _$CreateCartItemRequest];
+  // minimum: 0
+  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+  final int? quantity;
 
   @override
-  final String wireName = r'CreateCartItemRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    CreateCartItemRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'variantId';
-    yield serializers.serialize(
-      object.variantId,
-      specifiedType: const FullType(String),
-    );
-    if (object.quantity != null) {
-      yield r'quantity';
-      yield serializers.serialize(
-        object.quantity,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateCartItemRequest &&
+          other.variantId == variantId &&
+          other.quantity == quantity;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    CreateCartItemRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => variantId.hashCode + quantity.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required CreateCartItemRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'variantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantId = valueDes;
-          break;
-        case r'quantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.quantity = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory CreateCartItemRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateCartItemRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CreateCartItemRequestToJson(this);
 
   @override
-  CreateCartItemRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = CreateCartItemRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

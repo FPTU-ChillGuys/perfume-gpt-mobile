@@ -3,14 +3,13 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for GetOrderInfoRequest
 void main() {
-  final instance = GetOrderInfoRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final GetOrderInfoRequest? instance = /* GetOrderInfoRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(GetOrderInfoRequest, () {
-    // BuiltList<String> trackingNumbers
+    // List<String> trackingNumbers
     test('to test the property `trackingNumbers`', () async {
       // TODO
     });
-
   });
 }

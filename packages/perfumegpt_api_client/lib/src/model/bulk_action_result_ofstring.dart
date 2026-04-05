@@ -4,124 +4,47 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/bulk_action_metadata.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'bulk_action_result_ofstring.g.dart';
 
-/// BulkActionResultOfstring
-///
-/// Properties:
-/// * [data] 
-/// * [metadata] 
-@BuiltValue()
-abstract class BulkActionResultOfstring implements Built<BulkActionResultOfstring, BulkActionResultOfstringBuilder> {
-  @BuiltValueField(wireName: r'data')
-  String? get data;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class BulkActionResultOfstring {
+  /// Returns a new [BulkActionResultOfstring] instance.
+  BulkActionResultOfstring({required this.data, this.metadata});
 
-  @BuiltValueField(wireName: r'metadata')
-  BulkActionMetadata? get metadata;
+  @JsonKey(name: r'data', required: true, includeIfNull: true)
+  final String? data;
 
-  BulkActionResultOfstring._();
-
-  factory BulkActionResultOfstring([void updates(BulkActionResultOfstringBuilder b)]) = _$BulkActionResultOfstring;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(BulkActionResultOfstringBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<BulkActionResultOfstring> get serializer => _$BulkActionResultOfstringSerializer();
-}
-
-class _$BulkActionResultOfstringSerializer implements PrimitiveSerializer<BulkActionResultOfstring> {
-  @override
-  final Iterable<Type> types = const [BulkActionResultOfstring, _$BulkActionResultOfstring];
+  @JsonKey(name: r'metadata', required: false, includeIfNull: false)
+  final BulkActionMetadata? metadata;
 
   @override
-  final String wireName = r'BulkActionResultOfstring';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    BulkActionResultOfstring object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'data';
-    yield object.data == null ? null : serializers.serialize(
-      object.data,
-      specifiedType: const FullType.nullable(String),
-    );
-    if (object.metadata != null) {
-      yield r'metadata';
-      yield serializers.serialize(
-        object.metadata,
-        specifiedType: const FullType.nullable(BulkActionMetadata),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BulkActionResultOfstring &&
+          other.data == data &&
+          other.metadata == metadata;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    BulkActionResultOfstring object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      (data == null ? 0 : data.hashCode) +
+      (metadata == null ? 0 : metadata.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required BulkActionResultOfstringBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'data':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.data = valueDes;
-          break;
-        case r'metadata':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BulkActionMetadata),
-          ) as BulkActionMetadata?;
-          if (valueDes == null) continue;
-          result.metadata.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory BulkActionResultOfstring.fromJson(Map<String, dynamic> json) =>
+      _$BulkActionResultOfstringFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BulkActionResultOfstringToJson(this);
 
   @override
-  BulkActionResultOfstring deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = BulkActionResultOfstringBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

@@ -101,7 +101,7 @@ This endpoint does not need any parameter.
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getUsersApi();
-final Uint8List avatar = BINARY_DATA_HERE; // Uint8List | 
+final MultipartFile avatar = BINARY_DATA_HERE; // MultipartFile | 
 final String altText = altText_example; // String | 
 
 try {
@@ -116,7 +116,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **avatar** | **Uint8List**|  | [optional] 
+ **avatar** | **MultipartFile**|  | [optional] 
  **altText** | **String**|  | [optional] 
 
 ### Return type

@@ -3,106 +3,93 @@
 part of 'redeem_voucher_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$RedeemVoucherRequest extends RedeemVoucherRequest {
-  @override
-  final String? voucherId;
-  @override
-  final String? receiverEmailOrPhone;
+abstract class _$RedeemVoucherRequestCWProxy {
+  RedeemVoucherRequest voucherId(String? voucherId);
 
-  factory _$RedeemVoucherRequest([
-    void Function(RedeemVoucherRequestBuilder)? updates,
-  ]) => (RedeemVoucherRequestBuilder()..update(updates))._build();
+  RedeemVoucherRequest receiverEmailOrPhone(String? receiverEmailOrPhone);
 
-  _$RedeemVoucherRequest._({this.voucherId, this.receiverEmailOrPhone})
-    : super._();
-  @override
-  RedeemVoucherRequest rebuild(
-    void Function(RedeemVoucherRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RedeemVoucherRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// RedeemVoucherRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  RedeemVoucherRequest call({String? voucherId, String? receiverEmailOrPhone});
+}
 
-  @override
-  RedeemVoucherRequestBuilder toBuilder() =>
-      RedeemVoucherRequestBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfRedeemVoucherRequest.copyWith(...)` or call `instanceOfRedeemVoucherRequest.copyWith.fieldName(value)` for a single field.
+class _$RedeemVoucherRequestCWProxyImpl
+    implements _$RedeemVoucherRequestCWProxy {
+  const _$RedeemVoucherRequestCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is RedeemVoucherRequest &&
-        voucherId == other.voucherId &&
-        receiverEmailOrPhone == other.receiverEmailOrPhone;
-  }
+  final RedeemVoucherRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, voucherId.hashCode);
-    _$hash = $jc(_$hash, receiverEmailOrPhone.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  RedeemVoucherRequest voucherId(String? voucherId) =>
+      call(voucherId: voucherId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'RedeemVoucherRequest')
-          ..add('voucherId', voucherId)
-          ..add('receiverEmailOrPhone', receiverEmailOrPhone))
-        .toString();
+  RedeemVoucherRequest receiverEmailOrPhone(String? receiverEmailOrPhone) =>
+      call(receiverEmailOrPhone: receiverEmailOrPhone);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RedeemVoucherRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// RedeemVoucherRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  RedeemVoucherRequest call({
+    Object? voucherId = const $CopyWithPlaceholder(),
+    Object? receiverEmailOrPhone = const $CopyWithPlaceholder(),
+  }) {
+    return RedeemVoucherRequest(
+      voucherId: voucherId == const $CopyWithPlaceholder()
+          ? _value.voucherId
+          // ignore: cast_nullable_to_non_nullable
+          : voucherId as String?,
+      receiverEmailOrPhone: receiverEmailOrPhone == const $CopyWithPlaceholder()
+          ? _value.receiverEmailOrPhone
+          // ignore: cast_nullable_to_non_nullable
+          : receiverEmailOrPhone as String?,
+    );
   }
 }
 
-class RedeemVoucherRequestBuilder
-    implements Builder<RedeemVoucherRequest, RedeemVoucherRequestBuilder> {
-  _$RedeemVoucherRequest? _$v;
-
-  String? _voucherId;
-  String? get voucherId => _$this._voucherId;
-  set voucherId(String? voucherId) => _$this._voucherId = voucherId;
-
-  String? _receiverEmailOrPhone;
-  String? get receiverEmailOrPhone => _$this._receiverEmailOrPhone;
-  set receiverEmailOrPhone(String? receiverEmailOrPhone) =>
-      _$this._receiverEmailOrPhone = receiverEmailOrPhone;
-
-  RedeemVoucherRequestBuilder() {
-    RedeemVoucherRequest._defaults(this);
-  }
-
-  RedeemVoucherRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _voucherId = $v.voucherId;
-      _receiverEmailOrPhone = $v.receiverEmailOrPhone;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(RedeemVoucherRequest other) {
-    _$v = other as _$RedeemVoucherRequest;
-  }
-
-  @override
-  void update(void Function(RedeemVoucherRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  RedeemVoucherRequest build() => _build();
-
-  _$RedeemVoucherRequest _build() {
-    final _$result =
-        _$v ??
-        _$RedeemVoucherRequest._(
-          voucherId: voucherId,
-          receiverEmailOrPhone: receiverEmailOrPhone,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $RedeemVoucherRequestCopyWith on RedeemVoucherRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfRedeemVoucherRequest.copyWith(...)` or `instanceOfRedeemVoucherRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$RedeemVoucherRequestCWProxy get copyWith =>
+      _$RedeemVoucherRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+RedeemVoucherRequest _$RedeemVoucherRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('RedeemVoucherRequest', json, ($checkedConvert) {
+  final val = RedeemVoucherRequest(
+    voucherId: $checkedConvert('voucherId', (v) => v as String?),
+    receiverEmailOrPhone: $checkedConvert(
+      'receiverEmailOrPhone',
+      (v) => v as String?,
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$RedeemVoucherRequestToJson(
+  RedeemVoucherRequest instance,
+) => <String, dynamic>{
+  'voucherId': ?instance.voucherId,
+  'receiverEmailOrPhone': ?instance.receiverEmailOrPhone,
+};

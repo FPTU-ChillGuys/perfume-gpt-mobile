@@ -3,180 +3,72 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'string_segment.g.dart';
 
-/// StringSegment
-///
-/// Properties:
-/// * [buffer] 
-/// * [offset] 
-/// * [length] 
-/// * [value] 
-/// * [hasValue] 
-@BuiltValue()
-abstract class StringSegment implements Built<StringSegment, StringSegmentBuilder> {
-  @BuiltValueField(wireName: r'buffer')
-  String? get buffer;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class StringSegment {
+  /// Returns a new [StringSegment] instance.
+  StringSegment({
+    this.buffer,
 
-  @BuiltValueField(wireName: r'offset')
-  int? get offset;
+    this.offset,
 
-  @BuiltValueField(wireName: r'length')
-  int? get length;
+    this.length,
 
-  @BuiltValueField(wireName: r'value')
-  String? get value;
+    this.value,
 
-  @BuiltValueField(wireName: r'hasValue')
-  bool? get hasValue;
+    this.hasValue,
+  });
 
-  StringSegment._();
+  @JsonKey(name: r'buffer', required: false, includeIfNull: false)
+  final String? buffer;
 
-  factory StringSegment([void updates(StringSegmentBuilder b)]) = _$StringSegment;
+  @JsonKey(name: r'offset', required: false, includeIfNull: false)
+  final int? offset;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(StringSegmentBuilder b) => b;
+  @JsonKey(name: r'length', required: false, includeIfNull: false)
+  final int? length;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<StringSegment> get serializer => _$StringSegmentSerializer();
-}
+  @JsonKey(name: r'value', required: false, includeIfNull: false)
+  final String? value;
 
-class _$StringSegmentSerializer implements PrimitiveSerializer<StringSegment> {
-  @override
-  final Iterable<Type> types = const [StringSegment, _$StringSegment];
+  @JsonKey(name: r'hasValue', required: false, includeIfNull: false)
+  final bool? hasValue;
 
   @override
-  final String wireName = r'StringSegment';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    StringSegment object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.buffer != null) {
-      yield r'buffer';
-      yield serializers.serialize(
-        object.buffer,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.offset != null) {
-      yield r'offset';
-      yield serializers.serialize(
-        object.offset,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.length != null) {
-      yield r'length';
-      yield serializers.serialize(
-        object.length,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.value != null) {
-      yield r'value';
-      yield serializers.serialize(
-        object.value,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.hasValue != null) {
-      yield r'hasValue';
-      yield serializers.serialize(
-        object.hasValue,
-        specifiedType: const FullType(bool),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StringSegment &&
+          other.buffer == buffer &&
+          other.offset == offset &&
+          other.length == length &&
+          other.value == value &&
+          other.hasValue == hasValue;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    StringSegment object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      (buffer == null ? 0 : buffer.hashCode) +
+      offset.hashCode +
+      length.hashCode +
+      (value == null ? 0 : value.hashCode) +
+      hasValue.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required StringSegmentBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'buffer':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.buffer = valueDes;
-          break;
-        case r'offset':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.offset = valueDes;
-          break;
-        case r'length':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.length = valueDes;
-          break;
-        case r'value':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.value = valueDes;
-          break;
-        case r'hasValue':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.hasValue = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory StringSegment.fromJson(Map<String, dynamic> json) =>
+      _$StringSegmentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StringSegmentToJson(this);
 
   @override
-  StringSegment deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = StringSegmentBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

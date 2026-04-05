@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **customerName** | **String** |  | 
 **recipientPhone** | **String** |  | 
 **recipientAddress** | **String** |  | 
-**items** | [**BuiltList&lt;ReceiptItemDto&gt;**](ReceiptItemDto.md) |  | 
+**items** | [**List&lt;ReceiptItemDto&gt;**](ReceiptItemDto.md) |  | 
 **subtotal** | **num** |  | [optional] 
 **discount** | **num** |  | [optional] 
 **tax** | **num** |  | [optional] 

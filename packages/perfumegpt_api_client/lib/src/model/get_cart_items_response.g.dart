@@ -3,105 +3,79 @@
 part of 'get_cart_items_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$GetCartItemsResponse extends GetCartItemsResponse {
-  @override
-  final BuiltList<GetCartItemResponse> items;
+abstract class _$GetCartItemsResponseCWProxy {
+  GetCartItemsResponse items(List<GetCartItemResponse> items);
 
-  factory _$GetCartItemsResponse([
-    void Function(GetCartItemsResponseBuilder)? updates,
-  ]) => (GetCartItemsResponseBuilder()..update(updates))._build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemsResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GetCartItemsResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  GetCartItemsResponse call({List<GetCartItemResponse> items});
+}
 
-  _$GetCartItemsResponse._({required this.items}) : super._();
-  @override
-  GetCartItemsResponse rebuild(
-    void Function(GetCartItemsResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfGetCartItemsResponse.copyWith(...)` or call `instanceOfGetCartItemsResponse.copyWith.fieldName(value)` for a single field.
+class _$GetCartItemsResponseCWProxyImpl
+    implements _$GetCartItemsResponseCWProxy {
+  const _$GetCartItemsResponseCWProxyImpl(this._value);
 
-  @override
-  GetCartItemsResponseBuilder toBuilder() =>
-      GetCartItemsResponseBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GetCartItemsResponse && items == other.items;
-  }
+  final GetCartItemsResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, items.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  GetCartItemsResponse items(List<GetCartItemResponse> items) =>
+      call(items: items);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-      r'GetCartItemsResponse',
-    )..add('items', items)).toString();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemsResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GetCartItemsResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  GetCartItemsResponse call({Object? items = const $CopyWithPlaceholder()}) {
+    return GetCartItemsResponse(
+      items: items == const $CopyWithPlaceholder() || items == null
+          ? _value.items
+          // ignore: cast_nullable_to_non_nullable
+          : items as List<GetCartItemResponse>,
+    );
   }
 }
 
-class GetCartItemsResponseBuilder
-    implements Builder<GetCartItemsResponse, GetCartItemsResponseBuilder> {
-  _$GetCartItemsResponse? _$v;
-
-  ListBuilder<GetCartItemResponse>? _items;
-  ListBuilder<GetCartItemResponse> get items =>
-      _$this._items ??= ListBuilder<GetCartItemResponse>();
-  set items(ListBuilder<GetCartItemResponse>? items) => _$this._items = items;
-
-  GetCartItemsResponseBuilder() {
-    GetCartItemsResponse._defaults(this);
-  }
-
-  GetCartItemsResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _items = $v.items.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GetCartItemsResponse other) {
-    _$v = other as _$GetCartItemsResponse;
-  }
-
-  @override
-  void update(void Function(GetCartItemsResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GetCartItemsResponse build() => _build();
-
-  _$GetCartItemsResponse _build() {
-    _$GetCartItemsResponse _$result;
-    try {
-      _$result = _$v ?? _$GetCartItemsResponse._(items: items.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'items';
-        items.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'GetCartItemsResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $GetCartItemsResponseCopyWith on GetCartItemsResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfGetCartItemsResponse.copyWith(...)` or `instanceOfGetCartItemsResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$GetCartItemsResponseCWProxy get copyWith =>
+      _$GetCartItemsResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+GetCartItemsResponse _$GetCartItemsResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('GetCartItemsResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['items']);
+  final val = GetCartItemsResponse(
+    items: $checkedConvert(
+      'items',
+      (v) => (v as List<dynamic>)
+          .map((e) => GetCartItemResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$GetCartItemsResponseToJson(
+  GetCartItemsResponse instance,
+) => <String, dynamic>{'items': instance.items.map((e) => e.toJson()).toList()};

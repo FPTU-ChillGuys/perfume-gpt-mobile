@@ -3,182 +3,173 @@
 part of 'update_profile_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UpdateProfileRequest extends UpdateProfileRequest {
-  @override
-  final DateTime? dateOfBirth;
-  @override
-  final num? minBudget;
-  @override
-  final num? maxBudget;
-  @override
-  final BuiltList<UpdateNotePreferenceRequest>? notePreferenceIds;
-  @override
-  final BuiltList<int>? familyPreferenceIds;
-  @override
-  final BuiltList<int>? attributePreferenceIds;
+abstract class _$UpdateProfileRequestCWProxy {
+  UpdateProfileRequest dateOfBirth(DateTime? dateOfBirth);
 
-  factory _$UpdateProfileRequest([
-    void Function(UpdateProfileRequestBuilder)? updates,
-  ]) => (UpdateProfileRequestBuilder()..update(updates))._build();
+  UpdateProfileRequest minBudget(num? minBudget);
 
-  _$UpdateProfileRequest._({
-    this.dateOfBirth,
-    this.minBudget,
-    this.maxBudget,
-    this.notePreferenceIds,
-    this.familyPreferenceIds,
-    this.attributePreferenceIds,
-  }) : super._();
-  @override
-  UpdateProfileRequest rebuild(
-    void Function(UpdateProfileRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  UpdateProfileRequest maxBudget(num? maxBudget);
 
-  @override
-  UpdateProfileRequestBuilder toBuilder() =>
-      UpdateProfileRequestBuilder()..replace(this);
+  UpdateProfileRequest notePreferenceIds(
+    List<UpdateNotePreferenceRequest>? notePreferenceIds,
+  );
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UpdateProfileRequest &&
-        dateOfBirth == other.dateOfBirth &&
-        minBudget == other.minBudget &&
-        maxBudget == other.maxBudget &&
-        notePreferenceIds == other.notePreferenceIds &&
-        familyPreferenceIds == other.familyPreferenceIds &&
-        attributePreferenceIds == other.attributePreferenceIds;
-  }
+  UpdateProfileRequest familyPreferenceIds(List<int>? familyPreferenceIds);
+
+  UpdateProfileRequest attributePreferenceIds(
+    List<int>? attributePreferenceIds,
+  );
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProfileRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateProfileRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateProfileRequest call({
+    DateTime? dateOfBirth,
+    num? minBudget,
+    num? maxBudget,
+    List<UpdateNotePreferenceRequest>? notePreferenceIds,
+    List<int>? familyPreferenceIds,
+    List<int>? attributePreferenceIds,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateProfileRequest.copyWith(...)` or call `instanceOfUpdateProfileRequest.copyWith.fieldName(value)` for a single field.
+class _$UpdateProfileRequestCWProxyImpl
+    implements _$UpdateProfileRequestCWProxy {
+  const _$UpdateProfileRequestCWProxyImpl(this._value);
+
+  final UpdateProfileRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, dateOfBirth.hashCode);
-    _$hash = $jc(_$hash, minBudget.hashCode);
-    _$hash = $jc(_$hash, maxBudget.hashCode);
-    _$hash = $jc(_$hash, notePreferenceIds.hashCode);
-    _$hash = $jc(_$hash, familyPreferenceIds.hashCode);
-    _$hash = $jc(_$hash, attributePreferenceIds.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UpdateProfileRequest dateOfBirth(DateTime? dateOfBirth) =>
+      call(dateOfBirth: dateOfBirth);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'UpdateProfileRequest')
-          ..add('dateOfBirth', dateOfBirth)
-          ..add('minBudget', minBudget)
-          ..add('maxBudget', maxBudget)
-          ..add('notePreferenceIds', notePreferenceIds)
-          ..add('familyPreferenceIds', familyPreferenceIds)
-          ..add('attributePreferenceIds', attributePreferenceIds))
-        .toString();
+  UpdateProfileRequest minBudget(num? minBudget) => call(minBudget: minBudget);
+
+  @override
+  UpdateProfileRequest maxBudget(num? maxBudget) => call(maxBudget: maxBudget);
+
+  @override
+  UpdateProfileRequest notePreferenceIds(
+    List<UpdateNotePreferenceRequest>? notePreferenceIds,
+  ) => call(notePreferenceIds: notePreferenceIds);
+
+  @override
+  UpdateProfileRequest familyPreferenceIds(List<int>? familyPreferenceIds) =>
+      call(familyPreferenceIds: familyPreferenceIds);
+
+  @override
+  UpdateProfileRequest attributePreferenceIds(
+    List<int>? attributePreferenceIds,
+  ) => call(attributePreferenceIds: attributePreferenceIds);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateProfileRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateProfileRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateProfileRequest call({
+    Object? dateOfBirth = const $CopyWithPlaceholder(),
+    Object? minBudget = const $CopyWithPlaceholder(),
+    Object? maxBudget = const $CopyWithPlaceholder(),
+    Object? notePreferenceIds = const $CopyWithPlaceholder(),
+    Object? familyPreferenceIds = const $CopyWithPlaceholder(),
+    Object? attributePreferenceIds = const $CopyWithPlaceholder(),
+  }) {
+    return UpdateProfileRequest(
+      dateOfBirth: dateOfBirth == const $CopyWithPlaceholder()
+          ? _value.dateOfBirth
+          // ignore: cast_nullable_to_non_nullable
+          : dateOfBirth as DateTime?,
+      minBudget: minBudget == const $CopyWithPlaceholder()
+          ? _value.minBudget
+          // ignore: cast_nullable_to_non_nullable
+          : minBudget as num?,
+      maxBudget: maxBudget == const $CopyWithPlaceholder()
+          ? _value.maxBudget
+          // ignore: cast_nullable_to_non_nullable
+          : maxBudget as num?,
+      notePreferenceIds: notePreferenceIds == const $CopyWithPlaceholder()
+          ? _value.notePreferenceIds
+          // ignore: cast_nullable_to_non_nullable
+          : notePreferenceIds as List<UpdateNotePreferenceRequest>?,
+      familyPreferenceIds: familyPreferenceIds == const $CopyWithPlaceholder()
+          ? _value.familyPreferenceIds
+          // ignore: cast_nullable_to_non_nullable
+          : familyPreferenceIds as List<int>?,
+      attributePreferenceIds:
+          attributePreferenceIds == const $CopyWithPlaceholder()
+          ? _value.attributePreferenceIds
+          // ignore: cast_nullable_to_non_nullable
+          : attributePreferenceIds as List<int>?,
+    );
   }
 }
 
-class UpdateProfileRequestBuilder
-    implements Builder<UpdateProfileRequest, UpdateProfileRequestBuilder> {
-  _$UpdateProfileRequest? _$v;
-
-  DateTime? _dateOfBirth;
-  DateTime? get dateOfBirth => _$this._dateOfBirth;
-  set dateOfBirth(DateTime? dateOfBirth) => _$this._dateOfBirth = dateOfBirth;
-
-  num? _minBudget;
-  num? get minBudget => _$this._minBudget;
-  set minBudget(num? minBudget) => _$this._minBudget = minBudget;
-
-  num? _maxBudget;
-  num? get maxBudget => _$this._maxBudget;
-  set maxBudget(num? maxBudget) => _$this._maxBudget = maxBudget;
-
-  ListBuilder<UpdateNotePreferenceRequest>? _notePreferenceIds;
-  ListBuilder<UpdateNotePreferenceRequest> get notePreferenceIds =>
-      _$this._notePreferenceIds ??= ListBuilder<UpdateNotePreferenceRequest>();
-  set notePreferenceIds(
-    ListBuilder<UpdateNotePreferenceRequest>? notePreferenceIds,
-  ) => _$this._notePreferenceIds = notePreferenceIds;
-
-  ListBuilder<int>? _familyPreferenceIds;
-  ListBuilder<int> get familyPreferenceIds =>
-      _$this._familyPreferenceIds ??= ListBuilder<int>();
-  set familyPreferenceIds(ListBuilder<int>? familyPreferenceIds) =>
-      _$this._familyPreferenceIds = familyPreferenceIds;
-
-  ListBuilder<int>? _attributePreferenceIds;
-  ListBuilder<int> get attributePreferenceIds =>
-      _$this._attributePreferenceIds ??= ListBuilder<int>();
-  set attributePreferenceIds(ListBuilder<int>? attributePreferenceIds) =>
-      _$this._attributePreferenceIds = attributePreferenceIds;
-
-  UpdateProfileRequestBuilder() {
-    UpdateProfileRequest._defaults(this);
-  }
-
-  UpdateProfileRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _dateOfBirth = $v.dateOfBirth;
-      _minBudget = $v.minBudget;
-      _maxBudget = $v.maxBudget;
-      _notePreferenceIds = $v.notePreferenceIds?.toBuilder();
-      _familyPreferenceIds = $v.familyPreferenceIds?.toBuilder();
-      _attributePreferenceIds = $v.attributePreferenceIds?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UpdateProfileRequest other) {
-    _$v = other as _$UpdateProfileRequest;
-  }
-
-  @override
-  void update(void Function(UpdateProfileRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UpdateProfileRequest build() => _build();
-
-  _$UpdateProfileRequest _build() {
-    _$UpdateProfileRequest _$result;
-    try {
-      _$result =
-          _$v ??
-          _$UpdateProfileRequest._(
-            dateOfBirth: dateOfBirth,
-            minBudget: minBudget,
-            maxBudget: maxBudget,
-            notePreferenceIds: _notePreferenceIds?.build(),
-            familyPreferenceIds: _familyPreferenceIds?.build(),
-            attributePreferenceIds: _attributePreferenceIds?.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'notePreferenceIds';
-        _notePreferenceIds?.build();
-        _$failedField = 'familyPreferenceIds';
-        _familyPreferenceIds?.build();
-        _$failedField = 'attributePreferenceIds';
-        _attributePreferenceIds?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'UpdateProfileRequest',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $UpdateProfileRequestCopyWith on UpdateProfileRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateProfileRequest.copyWith(...)` or `instanceOfUpdateProfileRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UpdateProfileRequestCWProxy get copyWith =>
+      _$UpdateProfileRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateProfileRequest _$UpdateProfileRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('UpdateProfileRequest', json, ($checkedConvert) {
+  final val = UpdateProfileRequest(
+    dateOfBirth: $checkedConvert(
+      'dateOfBirth',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    minBudget: $checkedConvert('minBudget', (v) => v as num?),
+    maxBudget: $checkedConvert('maxBudget', (v) => v as num?),
+    notePreferenceIds: $checkedConvert(
+      'notePreferenceIds',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) =>
+                UpdateNotePreferenceRequest.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    familyPreferenceIds: $checkedConvert(
+      'familyPreferenceIds',
+      (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
+    ),
+    attributePreferenceIds: $checkedConvert(
+      'attributePreferenceIds',
+      (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$UpdateProfileRequestToJson(
+  UpdateProfileRequest instance,
+) => <String, dynamic>{
+  'dateOfBirth': ?instance.dateOfBirth?.toIso8601String(),
+  'minBudget': ?instance.minBudget,
+  'maxBudget': ?instance.maxBudget,
+  'notePreferenceIds': ?instance.notePreferenceIds
+      ?.map((e) => e.toJson())
+      .toList(),
+  'familyPreferenceIds': ?instance.familyPreferenceIds,
+  'attributePreferenceIds': ?instance.attributePreferenceIds,
+};

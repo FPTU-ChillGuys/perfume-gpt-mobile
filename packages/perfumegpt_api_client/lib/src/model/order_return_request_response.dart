@@ -4,535 +4,212 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/return_shipping_info_response.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/order_return_request_detail_response.dart';
 import 'package:perfumegpt_api_client/src/model/return_request_status.dart';
 import 'package:perfumegpt_api_client/src/model/media_response.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'order_return_request_response.g.dart';
 
-/// OrderReturnRequestResponse
-///
-/// Properties:
-/// * [id] 
-/// * [orderId] 
-/// * [orderCode] 
-/// * [customerId] 
-/// * [customerEmail] 
-/// * [processedById] 
-/// * [processedByName] 
-/// * [inspectedById] 
-/// * [inspectedByName] 
-/// * [reason] 
-/// * [customerNote] 
-/// * [staffNote] 
-/// * [inspectionNote] 
-/// * [status] 
-/// * [requestedRefundAmount] 
-/// * [approvedRefundAmount] 
-/// * [isRefunded] 
-/// * [vnpTransactionNo] 
-/// * [isRestocked] 
-/// * [returnShippingInfo] 
-/// * [returnDetails] 
-/// * [proofImages] 
-/// * [createdAt] 
-/// * [updatedAt] 
-@BuiltValue()
-abstract class OrderReturnRequestResponse implements Built<OrderReturnRequestResponse, OrderReturnRequestResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class OrderReturnRequestResponse {
+  /// Returns a new [OrderReturnRequestResponse] instance.
+  OrderReturnRequestResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'orderId')
-  String? get orderId;
+    this.orderId,
 
-  @BuiltValueField(wireName: r'orderCode')
-  String get orderCode;
+    required this.orderCode,
 
-  @BuiltValueField(wireName: r'customerId')
-  String? get customerId;
+    this.customerId,
 
-  @BuiltValueField(wireName: r'customerEmail')
-  String? get customerEmail;
+    this.customerEmail,
 
-  @BuiltValueField(wireName: r'processedById')
-  String? get processedById;
+    this.processedById,
 
-  @BuiltValueField(wireName: r'processedByName')
-  String? get processedByName;
+    this.processedByName,
 
-  @BuiltValueField(wireName: r'inspectedById')
-  String? get inspectedById;
+    this.inspectedById,
 
-  @BuiltValueField(wireName: r'inspectedByName')
-  String? get inspectedByName;
+    this.inspectedByName,
 
-  @BuiltValueField(wireName: r'reason')
-  String get reason;
+    required this.reason,
 
-  @BuiltValueField(wireName: r'customerNote')
-  String? get customerNote;
+    this.customerNote,
 
-  @BuiltValueField(wireName: r'staffNote')
-  String? get staffNote;
+    this.staffNote,
 
-  @BuiltValueField(wireName: r'inspectionNote')
-  String? get inspectionNote;
+    this.inspectionNote,
 
-  @BuiltValueField(wireName: r'status')
-  ReturnRequestStatus? get status;
-  // enum statusEnum {  Pending,  ApprovedForReturn,  Inspecting,  ReadyForRefund,  Completed,  Rejected,  };
+    this.status,
 
-  @BuiltValueField(wireName: r'requestedRefundAmount')
-  num? get requestedRefundAmount;
+    this.requestedRefundAmount,
 
-  @BuiltValueField(wireName: r'approvedRefundAmount')
-  num? get approvedRefundAmount;
+    this.approvedRefundAmount,
 
-  @BuiltValueField(wireName: r'isRefunded')
-  bool? get isRefunded;
+    this.isRefunded,
 
-  @BuiltValueField(wireName: r'vnpTransactionNo')
-  String? get vnpTransactionNo;
+    this.vnpTransactionNo,
 
-  @BuiltValueField(wireName: r'isRestocked')
-  bool? get isRestocked;
+    this.isRestocked,
 
-  @BuiltValueField(wireName: r'returnShippingInfo')
-  ReturnShippingInfoResponse? get returnShippingInfo;
+    this.returnShippingInfo,
 
-  @BuiltValueField(wireName: r'returnDetails')
-  BuiltList<OrderReturnRequestDetailResponse>? get returnDetails;
+    this.returnDetails,
 
-  @BuiltValueField(wireName: r'proofImages')
-  BuiltList<MediaResponse>? get proofImages;
+    this.proofImages,
 
-  @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+    this.createdAt,
 
-  @BuiltValueField(wireName: r'updatedAt')
-  DateTime? get updatedAt;
+    this.updatedAt,
+  });
 
-  OrderReturnRequestResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory OrderReturnRequestResponse([void updates(OrderReturnRequestResponseBuilder b)]) = _$OrderReturnRequestResponse;
+  @JsonKey(name: r'orderId', required: false, includeIfNull: false)
+  final String? orderId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(OrderReturnRequestResponseBuilder b) => b;
+  @JsonKey(name: r'orderCode', required: true, includeIfNull: false)
+  final String orderCode;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<OrderReturnRequestResponse> get serializer => _$OrderReturnRequestResponseSerializer();
-}
+  @JsonKey(name: r'customerId', required: false, includeIfNull: false)
+  final String? customerId;
 
-class _$OrderReturnRequestResponseSerializer implements PrimitiveSerializer<OrderReturnRequestResponse> {
-  @override
-  final Iterable<Type> types = const [OrderReturnRequestResponse, _$OrderReturnRequestResponse];
+  @JsonKey(name: r'customerEmail', required: false, includeIfNull: false)
+  final String? customerEmail;
 
-  @override
-  final String wireName = r'OrderReturnRequestResponse';
+  @JsonKey(name: r'processedById', required: false, includeIfNull: false)
+  final String? processedById;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    OrderReturnRequestResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.orderId != null) {
-      yield r'orderId';
-      yield serializers.serialize(
-        object.orderId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'orderCode';
-    yield serializers.serialize(
-      object.orderCode,
-      specifiedType: const FullType(String),
-    );
-    if (object.customerId != null) {
-      yield r'customerId';
-      yield serializers.serialize(
-        object.customerId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.customerEmail != null) {
-      yield r'customerEmail';
-      yield serializers.serialize(
-        object.customerEmail,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.processedById != null) {
-      yield r'processedById';
-      yield serializers.serialize(
-        object.processedById,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.processedByName != null) {
-      yield r'processedByName';
-      yield serializers.serialize(
-        object.processedByName,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.inspectedById != null) {
-      yield r'inspectedById';
-      yield serializers.serialize(
-        object.inspectedById,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.inspectedByName != null) {
-      yield r'inspectedByName';
-      yield serializers.serialize(
-        object.inspectedByName,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    yield r'reason';
-    yield serializers.serialize(
-      object.reason,
-      specifiedType: const FullType(String),
-    );
-    if (object.customerNote != null) {
-      yield r'customerNote';
-      yield serializers.serialize(
-        object.customerNote,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.staffNote != null) {
-      yield r'staffNote';
-      yield serializers.serialize(
-        object.staffNote,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.inspectionNote != null) {
-      yield r'inspectionNote';
-      yield serializers.serialize(
-        object.inspectionNote,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.status != null) {
-      yield r'status';
-      yield serializers.serialize(
-        object.status,
-        specifiedType: const FullType(ReturnRequestStatus),
-      );
-    }
-    if (object.requestedRefundAmount != null) {
-      yield r'requestedRefundAmount';
-      yield serializers.serialize(
-        object.requestedRefundAmount,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.approvedRefundAmount != null) {
-      yield r'approvedRefundAmount';
-      yield serializers.serialize(
-        object.approvedRefundAmount,
-        specifiedType: const FullType.nullable(num),
-      );
-    }
-    if (object.isRefunded != null) {
-      yield r'isRefunded';
-      yield serializers.serialize(
-        object.isRefunded,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.vnpTransactionNo != null) {
-      yield r'vnpTransactionNo';
-      yield serializers.serialize(
-        object.vnpTransactionNo,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.isRestocked != null) {
-      yield r'isRestocked';
-      yield serializers.serialize(
-        object.isRestocked,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.returnShippingInfo != null) {
-      yield r'returnShippingInfo';
-      yield serializers.serialize(
-        object.returnShippingInfo,
-        specifiedType: const FullType.nullable(ReturnShippingInfoResponse),
-      );
-    }
-    if (object.returnDetails != null) {
-      yield r'returnDetails';
-      yield serializers.serialize(
-        object.returnDetails,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(OrderReturnRequestDetailResponse)]),
-      );
-    }
-    if (object.proofImages != null) {
-      yield r'proofImages';
-      yield serializers.serialize(
-        object.proofImages,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(MediaResponse)]),
-      );
-    }
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.updatedAt != null) {
-      yield r'updatedAt';
-      yield serializers.serialize(
-        object.updatedAt,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-  }
+  @JsonKey(name: r'processedByName', required: false, includeIfNull: false)
+  final String? processedByName;
+
+  @JsonKey(name: r'inspectedById', required: false, includeIfNull: false)
+  final String? inspectedById;
+
+  @JsonKey(name: r'inspectedByName', required: false, includeIfNull: false)
+  final String? inspectedByName;
+
+  @JsonKey(name: r'reason', required: true, includeIfNull: false)
+  final String reason;
+
+  @JsonKey(name: r'customerNote', required: false, includeIfNull: false)
+  final String? customerNote;
+
+  @JsonKey(name: r'staffNote', required: false, includeIfNull: false)
+  final String? staffNote;
+
+  @JsonKey(name: r'inspectionNote', required: false, includeIfNull: false)
+  final String? inspectionNote;
+
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
+  final ReturnRequestStatus? status;
+
+  @JsonKey(
+    name: r'requestedRefundAmount',
+    required: false,
+    includeIfNull: false,
+  )
+  final num? requestedRefundAmount;
+
+  @JsonKey(name: r'approvedRefundAmount', required: false, includeIfNull: false)
+  final num? approvedRefundAmount;
+
+  @JsonKey(name: r'isRefunded', required: false, includeIfNull: false)
+  final bool? isRefunded;
+
+  @JsonKey(name: r'vnpTransactionNo', required: false, includeIfNull: false)
+  final String? vnpTransactionNo;
+
+  @JsonKey(name: r'isRestocked', required: false, includeIfNull: false)
+  final bool? isRestocked;
+
+  @JsonKey(name: r'returnShippingInfo', required: false, includeIfNull: false)
+  final ReturnShippingInfoResponse? returnShippingInfo;
+
+  @JsonKey(name: r'returnDetails', required: false, includeIfNull: false)
+  final List<OrderReturnRequestDetailResponse>? returnDetails;
+
+  @JsonKey(name: r'proofImages', required: false, includeIfNull: false)
+  final List<MediaResponse>? proofImages;
+
+  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+  final DateTime? createdAt;
+
+  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
+  final DateTime? updatedAt;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    OrderReturnRequestResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required OrderReturnRequestResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'orderId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.orderId = valueDes;
-          break;
-        case r'orderCode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.orderCode = valueDes;
-          break;
-        case r'customerId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.customerId = valueDes;
-          break;
-        case r'customerEmail':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.customerEmail = valueDes;
-          break;
-        case r'processedById':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.processedById = valueDes;
-          break;
-        case r'processedByName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.processedByName = valueDes;
-          break;
-        case r'inspectedById':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.inspectedById = valueDes;
-          break;
-        case r'inspectedByName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.inspectedByName = valueDes;
-          break;
-        case r'reason':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.reason = valueDes;
-          break;
-        case r'customerNote':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.customerNote = valueDes;
-          break;
-        case r'staffNote':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.staffNote = valueDes;
-          break;
-        case r'inspectionNote':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.inspectionNote = valueDes;
-          break;
-        case r'status':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(ReturnRequestStatus),
-          ) as ReturnRequestStatus;
-          result.status = valueDes;
-          break;
-        case r'requestedRefundAmount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.requestedRefundAmount = valueDes;
-          break;
-        case r'approvedRefundAmount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(num),
-          ) as num?;
-          if (valueDes == null) continue;
-          result.approvedRefundAmount = valueDes;
-          break;
-        case r'isRefunded':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isRefunded = valueDes;
-          break;
-        case r'vnpTransactionNo':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.vnpTransactionNo = valueDes;
-          break;
-        case r'isRestocked':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isRestocked = valueDes;
-          break;
-        case r'returnShippingInfo':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(ReturnShippingInfoResponse),
-          ) as ReturnShippingInfoResponse?;
-          if (valueDes == null) continue;
-          result.returnShippingInfo.replace(valueDes);
-          break;
-        case r'returnDetails':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(OrderReturnRequestDetailResponse)]),
-          ) as BuiltList<OrderReturnRequestDetailResponse>?;
-          if (valueDes == null) continue;
-          result.returnDetails.replace(valueDes);
-          break;
-        case r'proofImages':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(MediaResponse)]),
-          ) as BuiltList<MediaResponse>?;
-          if (valueDes == null) continue;
-          result.proofImages.replace(valueDes);
-          break;
-        case r'createdAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.createdAt = valueDes;
-          break;
-        case r'updatedAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.updatedAt = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OrderReturnRequestResponse &&
+          other.id == id &&
+          other.orderId == orderId &&
+          other.orderCode == orderCode &&
+          other.customerId == customerId &&
+          other.customerEmail == customerEmail &&
+          other.processedById == processedById &&
+          other.processedByName == processedByName &&
+          other.inspectedById == inspectedById &&
+          other.inspectedByName == inspectedByName &&
+          other.reason == reason &&
+          other.customerNote == customerNote &&
+          other.staffNote == staffNote &&
+          other.inspectionNote == inspectionNote &&
+          other.status == status &&
+          other.requestedRefundAmount == requestedRefundAmount &&
+          other.approvedRefundAmount == approvedRefundAmount &&
+          other.isRefunded == isRefunded &&
+          other.vnpTransactionNo == vnpTransactionNo &&
+          other.isRestocked == isRestocked &&
+          other.returnShippingInfo == returnShippingInfo &&
+          other.returnDetails == returnDetails &&
+          other.proofImages == proofImages &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt;
 
   @override
-  OrderReturnRequestResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = OrderReturnRequestResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      id.hashCode +
+      orderId.hashCode +
+      orderCode.hashCode +
+      customerId.hashCode +
+      (customerEmail == null ? 0 : customerEmail.hashCode) +
+      (processedById == null ? 0 : processedById.hashCode) +
+      (processedByName == null ? 0 : processedByName.hashCode) +
+      (inspectedById == null ? 0 : inspectedById.hashCode) +
+      (inspectedByName == null ? 0 : inspectedByName.hashCode) +
+      reason.hashCode +
+      (customerNote == null ? 0 : customerNote.hashCode) +
+      (staffNote == null ? 0 : staffNote.hashCode) +
+      (inspectionNote == null ? 0 : inspectionNote.hashCode) +
+      status.hashCode +
+      requestedRefundAmount.hashCode +
+      (approvedRefundAmount == null ? 0 : approvedRefundAmount.hashCode) +
+      isRefunded.hashCode +
+      (vnpTransactionNo == null ? 0 : vnpTransactionNo.hashCode) +
+      isRestocked.hashCode +
+      (returnShippingInfo == null ? 0 : returnShippingInfo.hashCode) +
+      (returnDetails == null ? 0 : returnDetails.hashCode) +
+      (proofImages == null ? 0 : proofImages.hashCode) +
+      createdAt.hashCode +
+      (updatedAt == null ? 0 : updatedAt.hashCode);
+
+  factory OrderReturnRequestResponse.fromJson(Map<String, dynamic> json) =>
+      _$OrderReturnRequestResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrderReturnRequestResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

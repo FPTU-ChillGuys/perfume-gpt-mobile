@@ -3,148 +3,124 @@
 part of 'reset_password_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ResetPasswordRequest extends ResetPasswordRequest {
-  @override
-  final String password;
-  @override
-  final String confirmPassword;
-  @override
-  final String email;
-  @override
-  final String token;
+abstract class _$ResetPasswordRequestCWProxy {
+  ResetPasswordRequest password(String password);
 
-  factory _$ResetPasswordRequest([
-    void Function(ResetPasswordRequestBuilder)? updates,
-  ]) => (ResetPasswordRequestBuilder()..update(updates))._build();
+  ResetPasswordRequest confirmPassword(String confirmPassword);
 
-  _$ResetPasswordRequest._({
-    required this.password,
-    required this.confirmPassword,
-    required this.email,
-    required this.token,
-  }) : super._();
-  @override
-  ResetPasswordRequest rebuild(
-    void Function(ResetPasswordRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  ResetPasswordRequest email(String email);
 
-  @override
-  ResetPasswordRequestBuilder toBuilder() =>
-      ResetPasswordRequestBuilder()..replace(this);
+  ResetPasswordRequest token(String token);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ResetPasswordRequest &&
-        password == other.password &&
-        confirmPassword == other.confirmPassword &&
-        email == other.email &&
-        token == other.token;
-  }
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ResetPasswordRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ResetPasswordRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ResetPasswordRequest call({
+    String password,
+    String confirmPassword,
+    String email,
+    String token,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfResetPasswordRequest.copyWith(...)` or call `instanceOfResetPasswordRequest.copyWith.fieldName(value)` for a single field.
+class _$ResetPasswordRequestCWProxyImpl
+    implements _$ResetPasswordRequestCWProxy {
+  const _$ResetPasswordRequestCWProxyImpl(this._value);
+
+  final ResetPasswordRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, password.hashCode);
-    _$hash = $jc(_$hash, confirmPassword.hashCode);
-    _$hash = $jc(_$hash, email.hashCode);
-    _$hash = $jc(_$hash, token.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ResetPasswordRequest password(String password) => call(password: password);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ResetPasswordRequest')
-          ..add('password', password)
-          ..add('confirmPassword', confirmPassword)
-          ..add('email', email)
-          ..add('token', token))
-        .toString();
+  ResetPasswordRequest confirmPassword(String confirmPassword) =>
+      call(confirmPassword: confirmPassword);
+
+  @override
+  ResetPasswordRequest email(String email) => call(email: email);
+
+  @override
+  ResetPasswordRequest token(String token) => call(token: token);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ResetPasswordRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ResetPasswordRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ResetPasswordRequest call({
+    Object? password = const $CopyWithPlaceholder(),
+    Object? confirmPassword = const $CopyWithPlaceholder(),
+    Object? email = const $CopyWithPlaceholder(),
+    Object? token = const $CopyWithPlaceholder(),
+  }) {
+    return ResetPasswordRequest(
+      password: password == const $CopyWithPlaceholder() || password == null
+          ? _value.password
+          // ignore: cast_nullable_to_non_nullable
+          : password as String,
+      confirmPassword:
+          confirmPassword == const $CopyWithPlaceholder() ||
+              confirmPassword == null
+          ? _value.confirmPassword
+          // ignore: cast_nullable_to_non_nullable
+          : confirmPassword as String,
+      email: email == const $CopyWithPlaceholder() || email == null
+          ? _value.email
+          // ignore: cast_nullable_to_non_nullable
+          : email as String,
+      token: token == const $CopyWithPlaceholder() || token == null
+          ? _value.token
+          // ignore: cast_nullable_to_non_nullable
+          : token as String,
+    );
   }
 }
 
-class ResetPasswordRequestBuilder
-    implements Builder<ResetPasswordRequest, ResetPasswordRequestBuilder> {
-  _$ResetPasswordRequest? _$v;
-
-  String? _password;
-  String? get password => _$this._password;
-  set password(String? password) => _$this._password = password;
-
-  String? _confirmPassword;
-  String? get confirmPassword => _$this._confirmPassword;
-  set confirmPassword(String? confirmPassword) =>
-      _$this._confirmPassword = confirmPassword;
-
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
-
-  String? _token;
-  String? get token => _$this._token;
-  set token(String? token) => _$this._token = token;
-
-  ResetPasswordRequestBuilder() {
-    ResetPasswordRequest._defaults(this);
-  }
-
-  ResetPasswordRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _password = $v.password;
-      _confirmPassword = $v.confirmPassword;
-      _email = $v.email;
-      _token = $v.token;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ResetPasswordRequest other) {
-    _$v = other as _$ResetPasswordRequest;
-  }
-
-  @override
-  void update(void Function(ResetPasswordRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ResetPasswordRequest build() => _build();
-
-  _$ResetPasswordRequest _build() {
-    final _$result =
-        _$v ??
-        _$ResetPasswordRequest._(
-          password: BuiltValueNullFieldError.checkNotNull(
-            password,
-            r'ResetPasswordRequest',
-            'password',
-          ),
-          confirmPassword: BuiltValueNullFieldError.checkNotNull(
-            confirmPassword,
-            r'ResetPasswordRequest',
-            'confirmPassword',
-          ),
-          email: BuiltValueNullFieldError.checkNotNull(
-            email,
-            r'ResetPasswordRequest',
-            'email',
-          ),
-          token: BuiltValueNullFieldError.checkNotNull(
-            token,
-            r'ResetPasswordRequest',
-            'token',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ResetPasswordRequestCopyWith on ResetPasswordRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfResetPasswordRequest.copyWith(...)` or `instanceOfResetPasswordRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ResetPasswordRequestCWProxy get copyWith =>
+      _$ResetPasswordRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ResetPasswordRequest _$ResetPasswordRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ResetPasswordRequest', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['password', 'confirmPassword', 'email', 'token'],
+  );
+  final val = ResetPasswordRequest(
+    password: $checkedConvert('password', (v) => v as String),
+    confirmPassword: $checkedConvert('confirmPassword', (v) => v as String),
+    email: $checkedConvert('email', (v) => v as String),
+    token: $checkedConvert('token', (v) => v as String),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ResetPasswordRequestToJson(
+  ResetPasswordRequest instance,
+) => <String, dynamic>{
+  'password': instance.password,
+  'confirmPassword': instance.confirmPassword,
+  'email': instance.email,
+  'token': instance.token,
+};

@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateBatchRequest
 void main() {
-  final instance = CreateBatchRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateBatchRequest? instance = /* CreateBatchRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateBatchRequest, () {
     // String batchCode
@@ -26,6 +26,5 @@ void main() {
     test('to test the property `quantity`', () async {
       // TODO
     });
-
   });
 }

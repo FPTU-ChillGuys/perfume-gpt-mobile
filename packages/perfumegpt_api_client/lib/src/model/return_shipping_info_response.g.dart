@@ -3,183 +3,210 @@
 part of 'return_shipping_info_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ReturnShippingInfoResponse extends ReturnShippingInfoResponse {
-  @override
-  final String? id;
-  @override
-  final CarrierName? carrierName;
-  @override
-  final String? trackingNumber;
-  @override
-  final ShippingType? type;
-  @override
-  final num? shippingFee;
-  @override
-  final ShippingStatus? status;
-  @override
-  final DateTime? estimatedDeliveryDate;
-  @override
-  final DateTime? shippedDate;
+abstract class _$ReturnShippingInfoResponseCWProxy {
+  ReturnShippingInfoResponse id(String? id);
 
-  factory _$ReturnShippingInfoResponse([
-    void Function(ReturnShippingInfoResponseBuilder)? updates,
-  ]) => (ReturnShippingInfoResponseBuilder()..update(updates))._build();
+  ReturnShippingInfoResponse carrierName(CarrierName? carrierName);
 
-  _$ReturnShippingInfoResponse._({
-    this.id,
-    this.carrierName,
-    this.trackingNumber,
-    this.type,
-    this.shippingFee,
-    this.status,
-    this.estimatedDeliveryDate,
-    this.shippedDate,
-  }) : super._();
-  @override
-  ReturnShippingInfoResponse rebuild(
-    void Function(ReturnShippingInfoResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  ReturnShippingInfoResponse trackingNumber(String? trackingNumber);
 
-  @override
-  ReturnShippingInfoResponseBuilder toBuilder() =>
-      ReturnShippingInfoResponseBuilder()..replace(this);
+  ReturnShippingInfoResponse type(ShippingType? type);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ReturnShippingInfoResponse &&
-        id == other.id &&
-        carrierName == other.carrierName &&
-        trackingNumber == other.trackingNumber &&
-        type == other.type &&
-        shippingFee == other.shippingFee &&
-        status == other.status &&
-        estimatedDeliveryDate == other.estimatedDeliveryDate &&
-        shippedDate == other.shippedDate;
-  }
+  ReturnShippingInfoResponse shippingFee(num? shippingFee);
+
+  ReturnShippingInfoResponse status(ShippingStatus? status);
+
+  ReturnShippingInfoResponse estimatedDeliveryDate(
+    DateTime? estimatedDeliveryDate,
+  );
+
+  ReturnShippingInfoResponse shippedDate(DateTime? shippedDate);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReturnShippingInfoResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ReturnShippingInfoResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ReturnShippingInfoResponse call({
+    String? id,
+    CarrierName? carrierName,
+    String? trackingNumber,
+    ShippingType? type,
+    num? shippingFee,
+    ShippingStatus? status,
+    DateTime? estimatedDeliveryDate,
+    DateTime? shippedDate,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfReturnShippingInfoResponse.copyWith(...)` or call `instanceOfReturnShippingInfoResponse.copyWith.fieldName(value)` for a single field.
+class _$ReturnShippingInfoResponseCWProxyImpl
+    implements _$ReturnShippingInfoResponseCWProxy {
+  const _$ReturnShippingInfoResponseCWProxyImpl(this._value);
+
+  final ReturnShippingInfoResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, carrierName.hashCode);
-    _$hash = $jc(_$hash, trackingNumber.hashCode);
-    _$hash = $jc(_$hash, type.hashCode);
-    _$hash = $jc(_$hash, shippingFee.hashCode);
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, estimatedDeliveryDate.hashCode);
-    _$hash = $jc(_$hash, shippedDate.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ReturnShippingInfoResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ReturnShippingInfoResponse')
-          ..add('id', id)
-          ..add('carrierName', carrierName)
-          ..add('trackingNumber', trackingNumber)
-          ..add('type', type)
-          ..add('shippingFee', shippingFee)
-          ..add('status', status)
-          ..add('estimatedDeliveryDate', estimatedDeliveryDate)
-          ..add('shippedDate', shippedDate))
-        .toString();
+  ReturnShippingInfoResponse carrierName(CarrierName? carrierName) =>
+      call(carrierName: carrierName);
+
+  @override
+  ReturnShippingInfoResponse trackingNumber(String? trackingNumber) =>
+      call(trackingNumber: trackingNumber);
+
+  @override
+  ReturnShippingInfoResponse type(ShippingType? type) => call(type: type);
+
+  @override
+  ReturnShippingInfoResponse shippingFee(num? shippingFee) =>
+      call(shippingFee: shippingFee);
+
+  @override
+  ReturnShippingInfoResponse status(ShippingStatus? status) =>
+      call(status: status);
+
+  @override
+  ReturnShippingInfoResponse estimatedDeliveryDate(
+    DateTime? estimatedDeliveryDate,
+  ) => call(estimatedDeliveryDate: estimatedDeliveryDate);
+
+  @override
+  ReturnShippingInfoResponse shippedDate(DateTime? shippedDate) =>
+      call(shippedDate: shippedDate);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReturnShippingInfoResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ReturnShippingInfoResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ReturnShippingInfoResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? carrierName = const $CopyWithPlaceholder(),
+    Object? trackingNumber = const $CopyWithPlaceholder(),
+    Object? type = const $CopyWithPlaceholder(),
+    Object? shippingFee = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? estimatedDeliveryDate = const $CopyWithPlaceholder(),
+    Object? shippedDate = const $CopyWithPlaceholder(),
+  }) {
+    return ReturnShippingInfoResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      carrierName: carrierName == const $CopyWithPlaceholder()
+          ? _value.carrierName
+          // ignore: cast_nullable_to_non_nullable
+          : carrierName as CarrierName?,
+      trackingNumber: trackingNumber == const $CopyWithPlaceholder()
+          ? _value.trackingNumber
+          // ignore: cast_nullable_to_non_nullable
+          : trackingNumber as String?,
+      type: type == const $CopyWithPlaceholder()
+          ? _value.type
+          // ignore: cast_nullable_to_non_nullable
+          : type as ShippingType?,
+      shippingFee: shippingFee == const $CopyWithPlaceholder()
+          ? _value.shippingFee
+          // ignore: cast_nullable_to_non_nullable
+          : shippingFee as num?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as ShippingStatus?,
+      estimatedDeliveryDate:
+          estimatedDeliveryDate == const $CopyWithPlaceholder()
+          ? _value.estimatedDeliveryDate
+          // ignore: cast_nullable_to_non_nullable
+          : estimatedDeliveryDate as DateTime?,
+      shippedDate: shippedDate == const $CopyWithPlaceholder()
+          ? _value.shippedDate
+          // ignore: cast_nullable_to_non_nullable
+          : shippedDate as DateTime?,
+    );
   }
 }
 
-class ReturnShippingInfoResponseBuilder
-    implements
-        Builder<ReturnShippingInfoResponse, ReturnShippingInfoResponseBuilder> {
-  _$ReturnShippingInfoResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  CarrierName? _carrierName;
-  CarrierName? get carrierName => _$this._carrierName;
-  set carrierName(CarrierName? carrierName) =>
-      _$this._carrierName = carrierName;
-
-  String? _trackingNumber;
-  String? get trackingNumber => _$this._trackingNumber;
-  set trackingNumber(String? trackingNumber) =>
-      _$this._trackingNumber = trackingNumber;
-
-  ShippingType? _type;
-  ShippingType? get type => _$this._type;
-  set type(ShippingType? type) => _$this._type = type;
-
-  num? _shippingFee;
-  num? get shippingFee => _$this._shippingFee;
-  set shippingFee(num? shippingFee) => _$this._shippingFee = shippingFee;
-
-  ShippingStatus? _status;
-  ShippingStatus? get status => _$this._status;
-  set status(ShippingStatus? status) => _$this._status = status;
-
-  DateTime? _estimatedDeliveryDate;
-  DateTime? get estimatedDeliveryDate => _$this._estimatedDeliveryDate;
-  set estimatedDeliveryDate(DateTime? estimatedDeliveryDate) =>
-      _$this._estimatedDeliveryDate = estimatedDeliveryDate;
-
-  DateTime? _shippedDate;
-  DateTime? get shippedDate => _$this._shippedDate;
-  set shippedDate(DateTime? shippedDate) => _$this._shippedDate = shippedDate;
-
-  ReturnShippingInfoResponseBuilder() {
-    ReturnShippingInfoResponse._defaults(this);
-  }
-
-  ReturnShippingInfoResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _carrierName = $v.carrierName;
-      _trackingNumber = $v.trackingNumber;
-      _type = $v.type;
-      _shippingFee = $v.shippingFee;
-      _status = $v.status;
-      _estimatedDeliveryDate = $v.estimatedDeliveryDate;
-      _shippedDate = $v.shippedDate;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ReturnShippingInfoResponse other) {
-    _$v = other as _$ReturnShippingInfoResponse;
-  }
-
-  @override
-  void update(void Function(ReturnShippingInfoResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ReturnShippingInfoResponse build() => _build();
-
-  _$ReturnShippingInfoResponse _build() {
-    final _$result =
-        _$v ??
-        _$ReturnShippingInfoResponse._(
-          id: id,
-          carrierName: carrierName,
-          trackingNumber: trackingNumber,
-          type: type,
-          shippingFee: shippingFee,
-          status: status,
-          estimatedDeliveryDate: estimatedDeliveryDate,
-          shippedDate: shippedDate,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ReturnShippingInfoResponseCopyWith on ReturnShippingInfoResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfReturnShippingInfoResponse.copyWith(...)` or `instanceOfReturnShippingInfoResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ReturnShippingInfoResponseCWProxy get copyWith =>
+      _$ReturnShippingInfoResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ReturnShippingInfoResponse _$ReturnShippingInfoResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ReturnShippingInfoResponse', json, ($checkedConvert) {
+  final val = ReturnShippingInfoResponse(
+    id: $checkedConvert('id', (v) => v as String?),
+    carrierName: $checkedConvert(
+      'carrierName',
+      (v) => $enumDecodeNullable(_$CarrierNameEnumMap, v),
+    ),
+    trackingNumber: $checkedConvert('trackingNumber', (v) => v as String?),
+    type: $checkedConvert(
+      'type',
+      (v) => $enumDecodeNullable(_$ShippingTypeEnumMap, v),
+    ),
+    shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecodeNullable(_$ShippingStatusEnumMap, v),
+    ),
+    estimatedDeliveryDate: $checkedConvert(
+      'estimatedDeliveryDate',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    shippedDate: $checkedConvert(
+      'shippedDate',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ReturnShippingInfoResponseToJson(
+  ReturnShippingInfoResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'carrierName': ?_$CarrierNameEnumMap[instance.carrierName],
+  'trackingNumber': ?instance.trackingNumber,
+  'type': ?_$ShippingTypeEnumMap[instance.type],
+  'shippingFee': ?instance.shippingFee,
+  'status': ?_$ShippingStatusEnumMap[instance.status],
+  'estimatedDeliveryDate': ?instance.estimatedDeliveryDate?.toIso8601String(),
+  'shippedDate': ?instance.shippedDate?.toIso8601String(),
+};
+
+const _$CarrierNameEnumMap = {CarrierName.GHN: 'GHN', CarrierName.GHTK: 'GHTK'};
+
+const _$ShippingTypeEnumMap = {
+  ShippingType.forward: 'Forward',
+  ShippingType.return_: 'Return',
+};
+
+const _$ShippingStatusEnumMap = {
+  ShippingStatus.pending: 'Pending',
+  ShippingStatus.delivering: 'Delivering',
+  ShippingStatus.delivered: 'Delivered',
+  ShippingStatus.cancelled: 'Cancelled',
+  ShippingStatus.returning: 'Returning',
+  ShippingStatus.returned: 'Returned',
+};

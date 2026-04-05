@@ -3,222 +3,214 @@
 part of 'ward_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$WardResponse extends WardResponse {
-  @override
-  final String wardCode;
-  @override
-  final int? districtID;
-  @override
-  final String wardName;
-  @override
-  final BuiltList<String> nameExtension;
-  @override
-  final bool? canUpdateCOD;
-  @override
-  final int? supportType;
-  @override
-  final int? status;
-  @override
-  final String createdDate;
-  @override
-  final String updatedDate;
+abstract class _$WardResponseCWProxy {
+  WardResponse wardCode(String wardCode);
 
-  factory _$WardResponse([void Function(WardResponseBuilder)? updates]) =>
-      (WardResponseBuilder()..update(updates))._build();
+  WardResponse districtID(int? districtID);
 
-  _$WardResponse._({
-    required this.wardCode,
-    this.districtID,
-    required this.wardName,
-    required this.nameExtension,
-    this.canUpdateCOD,
-    this.supportType,
-    this.status,
-    required this.createdDate,
-    required this.updatedDate,
-  }) : super._();
-  @override
-  WardResponse rebuild(void Function(WardResponseBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  WardResponse wardName(String wardName);
 
-  @override
-  WardResponseBuilder toBuilder() => WardResponseBuilder()..replace(this);
+  WardResponse nameExtension(List<String> nameExtension);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is WardResponse &&
-        wardCode == other.wardCode &&
-        districtID == other.districtID &&
-        wardName == other.wardName &&
-        nameExtension == other.nameExtension &&
-        canUpdateCOD == other.canUpdateCOD &&
-        supportType == other.supportType &&
-        status == other.status &&
-        createdDate == other.createdDate &&
-        updatedDate == other.updatedDate;
-  }
+  WardResponse canUpdateCOD(bool? canUpdateCOD);
+
+  WardResponse supportType(int? supportType);
+
+  WardResponse status(int? status);
+
+  WardResponse createdDate(String createdDate);
+
+  WardResponse updatedDate(String updatedDate);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `WardResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// WardResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  WardResponse call({
+    String wardCode,
+    int? districtID,
+    String wardName,
+    List<String> nameExtension,
+    bool? canUpdateCOD,
+    int? supportType,
+    int? status,
+    String createdDate,
+    String updatedDate,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfWardResponse.copyWith(...)` or call `instanceOfWardResponse.copyWith.fieldName(value)` for a single field.
+class _$WardResponseCWProxyImpl implements _$WardResponseCWProxy {
+  const _$WardResponseCWProxyImpl(this._value);
+
+  final WardResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, wardCode.hashCode);
-    _$hash = $jc(_$hash, districtID.hashCode);
-    _$hash = $jc(_$hash, wardName.hashCode);
-    _$hash = $jc(_$hash, nameExtension.hashCode);
-    _$hash = $jc(_$hash, canUpdateCOD.hashCode);
-    _$hash = $jc(_$hash, supportType.hashCode);
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, createdDate.hashCode);
-    _$hash = $jc(_$hash, updatedDate.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  WardResponse wardCode(String wardCode) => call(wardCode: wardCode);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'WardResponse')
-          ..add('wardCode', wardCode)
-          ..add('districtID', districtID)
-          ..add('wardName', wardName)
-          ..add('nameExtension', nameExtension)
-          ..add('canUpdateCOD', canUpdateCOD)
-          ..add('supportType', supportType)
-          ..add('status', status)
-          ..add('createdDate', createdDate)
-          ..add('updatedDate', updatedDate))
-        .toString();
+  WardResponse districtID(int? districtID) => call(districtID: districtID);
+
+  @override
+  WardResponse wardName(String wardName) => call(wardName: wardName);
+
+  @override
+  WardResponse nameExtension(List<String> nameExtension) =>
+      call(nameExtension: nameExtension);
+
+  @override
+  WardResponse canUpdateCOD(bool? canUpdateCOD) =>
+      call(canUpdateCOD: canUpdateCOD);
+
+  @override
+  WardResponse supportType(int? supportType) => call(supportType: supportType);
+
+  @override
+  WardResponse status(int? status) => call(status: status);
+
+  @override
+  WardResponse createdDate(String createdDate) =>
+      call(createdDate: createdDate);
+
+  @override
+  WardResponse updatedDate(String updatedDate) =>
+      call(updatedDate: updatedDate);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `WardResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// WardResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  WardResponse call({
+    Object? wardCode = const $CopyWithPlaceholder(),
+    Object? districtID = const $CopyWithPlaceholder(),
+    Object? wardName = const $CopyWithPlaceholder(),
+    Object? nameExtension = const $CopyWithPlaceholder(),
+    Object? canUpdateCOD = const $CopyWithPlaceholder(),
+    Object? supportType = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? createdDate = const $CopyWithPlaceholder(),
+    Object? updatedDate = const $CopyWithPlaceholder(),
+  }) {
+    return WardResponse(
+      wardCode: wardCode == const $CopyWithPlaceholder() || wardCode == null
+          ? _value.wardCode
+          // ignore: cast_nullable_to_non_nullable
+          : wardCode as String,
+      districtID: districtID == const $CopyWithPlaceholder()
+          ? _value.districtID
+          // ignore: cast_nullable_to_non_nullable
+          : districtID as int?,
+      wardName: wardName == const $CopyWithPlaceholder() || wardName == null
+          ? _value.wardName
+          // ignore: cast_nullable_to_non_nullable
+          : wardName as String,
+      nameExtension:
+          nameExtension == const $CopyWithPlaceholder() || nameExtension == null
+          ? _value.nameExtension
+          // ignore: cast_nullable_to_non_nullable
+          : nameExtension as List<String>,
+      canUpdateCOD: canUpdateCOD == const $CopyWithPlaceholder()
+          ? _value.canUpdateCOD
+          // ignore: cast_nullable_to_non_nullable
+          : canUpdateCOD as bool?,
+      supportType: supportType == const $CopyWithPlaceholder()
+          ? _value.supportType
+          // ignore: cast_nullable_to_non_nullable
+          : supportType as int?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as int?,
+      createdDate:
+          createdDate == const $CopyWithPlaceholder() || createdDate == null
+          ? _value.createdDate
+          // ignore: cast_nullable_to_non_nullable
+          : createdDate as String,
+      updatedDate:
+          updatedDate == const $CopyWithPlaceholder() || updatedDate == null
+          ? _value.updatedDate
+          // ignore: cast_nullable_to_non_nullable
+          : updatedDate as String,
+    );
   }
 }
 
-class WardResponseBuilder
-    implements Builder<WardResponse, WardResponseBuilder> {
-  _$WardResponse? _$v;
-
-  String? _wardCode;
-  String? get wardCode => _$this._wardCode;
-  set wardCode(String? wardCode) => _$this._wardCode = wardCode;
-
-  int? _districtID;
-  int? get districtID => _$this._districtID;
-  set districtID(int? districtID) => _$this._districtID = districtID;
-
-  String? _wardName;
-  String? get wardName => _$this._wardName;
-  set wardName(String? wardName) => _$this._wardName = wardName;
-
-  ListBuilder<String>? _nameExtension;
-  ListBuilder<String> get nameExtension =>
-      _$this._nameExtension ??= ListBuilder<String>();
-  set nameExtension(ListBuilder<String>? nameExtension) =>
-      _$this._nameExtension = nameExtension;
-
-  bool? _canUpdateCOD;
-  bool? get canUpdateCOD => _$this._canUpdateCOD;
-  set canUpdateCOD(bool? canUpdateCOD) => _$this._canUpdateCOD = canUpdateCOD;
-
-  int? _supportType;
-  int? get supportType => _$this._supportType;
-  set supportType(int? supportType) => _$this._supportType = supportType;
-
-  int? _status;
-  int? get status => _$this._status;
-  set status(int? status) => _$this._status = status;
-
-  String? _createdDate;
-  String? get createdDate => _$this._createdDate;
-  set createdDate(String? createdDate) => _$this._createdDate = createdDate;
-
-  String? _updatedDate;
-  String? get updatedDate => _$this._updatedDate;
-  set updatedDate(String? updatedDate) => _$this._updatedDate = updatedDate;
-
-  WardResponseBuilder() {
-    WardResponse._defaults(this);
-  }
-
-  WardResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _wardCode = $v.wardCode;
-      _districtID = $v.districtID;
-      _wardName = $v.wardName;
-      _nameExtension = $v.nameExtension.toBuilder();
-      _canUpdateCOD = $v.canUpdateCOD;
-      _supportType = $v.supportType;
-      _status = $v.status;
-      _createdDate = $v.createdDate;
-      _updatedDate = $v.updatedDate;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(WardResponse other) {
-    _$v = other as _$WardResponse;
-  }
-
-  @override
-  void update(void Function(WardResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  WardResponse build() => _build();
-
-  _$WardResponse _build() {
-    _$WardResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$WardResponse._(
-            wardCode: BuiltValueNullFieldError.checkNotNull(
-              wardCode,
-              r'WardResponse',
-              'wardCode',
-            ),
-            districtID: districtID,
-            wardName: BuiltValueNullFieldError.checkNotNull(
-              wardName,
-              r'WardResponse',
-              'wardName',
-            ),
-            nameExtension: nameExtension.build(),
-            canUpdateCOD: canUpdateCOD,
-            supportType: supportType,
-            status: status,
-            createdDate: BuiltValueNullFieldError.checkNotNull(
-              createdDate,
-              r'WardResponse',
-              'createdDate',
-            ),
-            updatedDate: BuiltValueNullFieldError.checkNotNull(
-              updatedDate,
-              r'WardResponse',
-              'updatedDate',
-            ),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'nameExtension';
-        nameExtension.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'WardResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $WardResponseCopyWith on WardResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfWardResponse.copyWith(...)` or `instanceOfWardResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$WardResponseCWProxy get copyWith => _$WardResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+WardResponse _$WardResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate(
+  'WardResponse',
+  json,
+  ($checkedConvert) {
+    $checkKeys(
+      json,
+      requiredKeys: const [
+        'WardCode',
+        'WardName',
+        'NameExtension',
+        'CreatedDate',
+        'UpdatedDate',
+      ],
+    );
+    final val = WardResponse(
+      wardCode: $checkedConvert('WardCode', (v) => v as String),
+      districtID: $checkedConvert('DistrictID', (v) => (v as num?)?.toInt()),
+      wardName: $checkedConvert('WardName', (v) => v as String),
+      nameExtension: $checkedConvert(
+        'NameExtension',
+        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+      ),
+      canUpdateCOD: $checkedConvert('CanUpdateCOD', (v) => v as bool?),
+      supportType: $checkedConvert('SupportType', (v) => (v as num?)?.toInt()),
+      status: $checkedConvert('Status', (v) => (v as num?)?.toInt()),
+      createdDate: $checkedConvert('CreatedDate', (v) => v as String),
+      updatedDate: $checkedConvert('UpdatedDate', (v) => v as String),
+    );
+    return val;
+  },
+  fieldKeyMap: const {
+    'wardCode': 'WardCode',
+    'districtID': 'DistrictID',
+    'wardName': 'WardName',
+    'nameExtension': 'NameExtension',
+    'canUpdateCOD': 'CanUpdateCOD',
+    'supportType': 'SupportType',
+    'status': 'Status',
+    'createdDate': 'CreatedDate',
+    'updatedDate': 'UpdatedDate',
+  },
+);
+
+Map<String, dynamic> _$WardResponseToJson(WardResponse instance) =>
+    <String, dynamic>{
+      'WardCode': instance.wardCode,
+      'DistrictID': ?instance.districtID,
+      'WardName': instance.wardName,
+      'NameExtension': instance.nameExtension,
+      'CanUpdateCOD': ?instance.canUpdateCOD,
+      'SupportType': ?instance.supportType,
+      'Status': ?instance.status,
+      'CreatedDate': instance.createdDate,
+      'UpdatedDate': instance.updatedDate,
+    };

@@ -3,174 +3,149 @@
 part of 'base_response_of_order_return_request_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BaseResponseOfOrderReturnRequestResponse
-    extends BaseResponseOfOrderReturnRequestResponse {
-  @override
-  final OrderReturnRequestResponse? payload;
-  @override
-  final bool? success;
-  @override
-  final String? message;
-  @override
-  final BuiltList<String>? errors;
-  @override
-  final int? errorType;
+abstract class _$BaseResponseOfOrderReturnRequestResponseCWProxy {
+  BaseResponseOfOrderReturnRequestResponse payload(
+    OrderReturnRequestResponse? payload,
+  );
 
-  factory _$BaseResponseOfOrderReturnRequestResponse([
-    void Function(BaseResponseOfOrderReturnRequestResponseBuilder)? updates,
-  ]) => (BaseResponseOfOrderReturnRequestResponseBuilder()..update(updates))
-      ._build();
+  BaseResponseOfOrderReturnRequestResponse success(bool? success);
 
-  _$BaseResponseOfOrderReturnRequestResponse._({
-    this.payload,
-    this.success,
-    this.message,
-    this.errors,
-    this.errorType,
-  }) : super._();
-  @override
-  BaseResponseOfOrderReturnRequestResponse rebuild(
-    void Function(BaseResponseOfOrderReturnRequestResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  BaseResponseOfOrderReturnRequestResponse message(String? message);
 
-  @override
-  BaseResponseOfOrderReturnRequestResponseBuilder toBuilder() =>
-      BaseResponseOfOrderReturnRequestResponseBuilder()..replace(this);
+  BaseResponseOfOrderReturnRequestResponse errors(List<String>? errors);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BaseResponseOfOrderReturnRequestResponse &&
-        payload == other.payload &&
-        success == other.success &&
-        message == other.message &&
-        errors == other.errors &&
-        errorType == other.errorType;
-  }
+  BaseResponseOfOrderReturnRequestResponse errorType(int? errorType);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfOrderReturnRequestResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfOrderReturnRequestResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfOrderReturnRequestResponse call({
+    OrderReturnRequestResponse? payload,
+    bool? success,
+    String? message,
+    List<String>? errors,
+    int? errorType,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfOrderReturnRequestResponse.copyWith(...)` or call `instanceOfBaseResponseOfOrderReturnRequestResponse.copyWith.fieldName(value)` for a single field.
+class _$BaseResponseOfOrderReturnRequestResponseCWProxyImpl
+    implements _$BaseResponseOfOrderReturnRequestResponseCWProxy {
+  const _$BaseResponseOfOrderReturnRequestResponseCWProxyImpl(this._value);
+
+  final BaseResponseOfOrderReturnRequestResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, payload.hashCode);
-    _$hash = $jc(_$hash, success.hashCode);
-    _$hash = $jc(_$hash, message.hashCode);
-    _$hash = $jc(_$hash, errors.hashCode);
-    _$hash = $jc(_$hash, errorType.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  BaseResponseOfOrderReturnRequestResponse payload(
+    OrderReturnRequestResponse? payload,
+  ) => call(payload: payload);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'BaseResponseOfOrderReturnRequestResponse',
-          )
-          ..add('payload', payload)
-          ..add('success', success)
-          ..add('message', message)
-          ..add('errors', errors)
-          ..add('errorType', errorType))
-        .toString();
+  BaseResponseOfOrderReturnRequestResponse success(bool? success) =>
+      call(success: success);
+
+  @override
+  BaseResponseOfOrderReturnRequestResponse message(String? message) =>
+      call(message: message);
+
+  @override
+  BaseResponseOfOrderReturnRequestResponse errors(List<String>? errors) =>
+      call(errors: errors);
+
+  @override
+  BaseResponseOfOrderReturnRequestResponse errorType(int? errorType) =>
+      call(errorType: errorType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfOrderReturnRequestResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfOrderReturnRequestResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfOrderReturnRequestResponse call({
+    Object? payload = const $CopyWithPlaceholder(),
+    Object? success = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? errors = const $CopyWithPlaceholder(),
+    Object? errorType = const $CopyWithPlaceholder(),
+  }) {
+    return BaseResponseOfOrderReturnRequestResponse(
+      payload: payload == const $CopyWithPlaceholder()
+          ? _value.payload
+          // ignore: cast_nullable_to_non_nullable
+          : payload as OrderReturnRequestResponse?,
+      success: success == const $CopyWithPlaceholder()
+          ? _value.success
+          // ignore: cast_nullable_to_non_nullable
+          : success as bool?,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      errors: errors == const $CopyWithPlaceholder()
+          ? _value.errors
+          // ignore: cast_nullable_to_non_nullable
+          : errors as List<String>?,
+      errorType: errorType == const $CopyWithPlaceholder()
+          ? _value.errorType
+          // ignore: cast_nullable_to_non_nullable
+          : errorType as int?,
+    );
   }
 }
 
-class BaseResponseOfOrderReturnRequestResponseBuilder
-    implements
-        Builder<
-          BaseResponseOfOrderReturnRequestResponse,
-          BaseResponseOfOrderReturnRequestResponseBuilder
-        > {
-  _$BaseResponseOfOrderReturnRequestResponse? _$v;
-
-  OrderReturnRequestResponseBuilder? _payload;
-  OrderReturnRequestResponseBuilder get payload =>
-      _$this._payload ??= OrderReturnRequestResponseBuilder();
-  set payload(OrderReturnRequestResponseBuilder? payload) =>
-      _$this._payload = payload;
-
-  bool? _success;
-  bool? get success => _$this._success;
-  set success(bool? success) => _$this._success = success;
-
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
-  ListBuilder<String>? _errors;
-  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
-  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
-
-  int? _errorType;
-  int? get errorType => _$this._errorType;
-  set errorType(int? errorType) => _$this._errorType = errorType;
-
-  BaseResponseOfOrderReturnRequestResponseBuilder() {
-    BaseResponseOfOrderReturnRequestResponse._defaults(this);
-  }
-
-  BaseResponseOfOrderReturnRequestResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _payload = $v.payload?.toBuilder();
-      _success = $v.success;
-      _message = $v.message;
-      _errors = $v.errors?.toBuilder();
-      _errorType = $v.errorType;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BaseResponseOfOrderReturnRequestResponse other) {
-    _$v = other as _$BaseResponseOfOrderReturnRequestResponse;
-  }
-
-  @override
-  void update(
-    void Function(BaseResponseOfOrderReturnRequestResponseBuilder)? updates,
-  ) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BaseResponseOfOrderReturnRequestResponse build() => _build();
-
-  _$BaseResponseOfOrderReturnRequestResponse _build() {
-    _$BaseResponseOfOrderReturnRequestResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$BaseResponseOfOrderReturnRequestResponse._(
-            payload: _payload?.build(),
-            success: success,
-            message: message,
-            errors: _errors?.build(),
-            errorType: errorType,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'payload';
-        _payload?.build();
-
-        _$failedField = 'errors';
-        _errors?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'BaseResponseOfOrderReturnRequestResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $BaseResponseOfOrderReturnRequestResponseCopyWith
+    on BaseResponseOfOrderReturnRequestResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfOrderReturnRequestResponse.copyWith(...)` or `instanceOfBaseResponseOfOrderReturnRequestResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BaseResponseOfOrderReturnRequestResponseCWProxy get copyWith =>
+      _$BaseResponseOfOrderReturnRequestResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BaseResponseOfOrderReturnRequestResponse
+_$BaseResponseOfOrderReturnRequestResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('BaseResponseOfOrderReturnRequestResponse', json, (
+      $checkedConvert,
+    ) {
+      final val = BaseResponseOfOrderReturnRequestResponse(
+        payload: $checkedConvert(
+          'payload',
+          (v) => v == null
+              ? null
+              : OrderReturnRequestResponse.fromJson(v as Map<String, dynamic>),
+        ),
+        success: $checkedConvert('success', (v) => v as bool?),
+        message: $checkedConvert('message', (v) => v as String?),
+        errors: $checkedConvert(
+          'errors',
+          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        ),
+        errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$BaseResponseOfOrderReturnRequestResponseToJson(
+  BaseResponseOfOrderReturnRequestResponse instance,
+) => <String, dynamic>{
+  'payload': ?instance.payload?.toJson(),
+  'success': ?instance.success,
+  'message': ?instance.message,
+  'errors': ?instance.errors,
+  'errorType': ?instance.errorType,
+};

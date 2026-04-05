@@ -3,96 +3,70 @@
 part of 'google_login_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$GoogleLoginRequest extends GoogleLoginRequest {
-  @override
-  final String idToken;
+abstract class _$GoogleLoginRequestCWProxy {
+  GoogleLoginRequest idToken(String idToken);
 
-  factory _$GoogleLoginRequest([
-    void Function(GoogleLoginRequestBuilder)? updates,
-  ]) => (GoogleLoginRequestBuilder()..update(updates))._build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleLoginRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleLoginRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  GoogleLoginRequest call({String idToken});
+}
 
-  _$GoogleLoginRequest._({required this.idToken}) : super._();
-  @override
-  GoogleLoginRequest rebuild(
-    void Function(GoogleLoginRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfGoogleLoginRequest.copyWith(...)` or call `instanceOfGoogleLoginRequest.copyWith.fieldName(value)` for a single field.
+class _$GoogleLoginRequestCWProxyImpl implements _$GoogleLoginRequestCWProxy {
+  const _$GoogleLoginRequestCWProxyImpl(this._value);
 
-  @override
-  GoogleLoginRequestBuilder toBuilder() =>
-      GoogleLoginRequestBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GoogleLoginRequest && idToken == other.idToken;
-  }
+  final GoogleLoginRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, idToken.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  GoogleLoginRequest idToken(String idToken) => call(idToken: idToken);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-      r'GoogleLoginRequest',
-    )..add('idToken', idToken)).toString();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleLoginRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleLoginRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  GoogleLoginRequest call({Object? idToken = const $CopyWithPlaceholder()}) {
+    return GoogleLoginRequest(
+      idToken: idToken == const $CopyWithPlaceholder() || idToken == null
+          ? _value.idToken
+          // ignore: cast_nullable_to_non_nullable
+          : idToken as String,
+    );
   }
 }
 
-class GoogleLoginRequestBuilder
-    implements Builder<GoogleLoginRequest, GoogleLoginRequestBuilder> {
-  _$GoogleLoginRequest? _$v;
-
-  String? _idToken;
-  String? get idToken => _$this._idToken;
-  set idToken(String? idToken) => _$this._idToken = idToken;
-
-  GoogleLoginRequestBuilder() {
-    GoogleLoginRequest._defaults(this);
-  }
-
-  GoogleLoginRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _idToken = $v.idToken;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GoogleLoginRequest other) {
-    _$v = other as _$GoogleLoginRequest;
-  }
-
-  @override
-  void update(void Function(GoogleLoginRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GoogleLoginRequest build() => _build();
-
-  _$GoogleLoginRequest _build() {
-    final _$result =
-        _$v ??
-        _$GoogleLoginRequest._(
-          idToken: BuiltValueNullFieldError.checkNotNull(
-            idToken,
-            r'GoogleLoginRequest',
-            'idToken',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $GoogleLoginRequestCopyWith on GoogleLoginRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfGoogleLoginRequest.copyWith(...)` or `instanceOfGoogleLoginRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$GoogleLoginRequestCWProxy get copyWith =>
+      _$GoogleLoginRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+GoogleLoginRequest _$GoogleLoginRequestFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('GoogleLoginRequest', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['idToken']);
+      final val = GoogleLoginRequest(
+        idToken: $checkedConvert('idToken', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$GoogleLoginRequestToJson(GoogleLoginRequest instance) =>
+    <String, dynamic>{'idToken': instance.idToken};

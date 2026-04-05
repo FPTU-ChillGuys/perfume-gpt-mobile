@@ -3,90 +3,87 @@
 part of 'process_refund_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProcessRefundRequest extends ProcessRefundRequest {
-  @override
-  final PaymentMethod? refundMethod;
+abstract class _$ProcessRefundRequestCWProxy {
+  ProcessRefundRequest refundMethod(PaymentMethod? refundMethod);
 
-  factory _$ProcessRefundRequest([
-    void Function(ProcessRefundRequestBuilder)? updates,
-  ]) => (ProcessRefundRequestBuilder()..update(updates))._build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessRefundRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProcessRefundRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProcessRefundRequest call({PaymentMethod? refundMethod});
+}
 
-  _$ProcessRefundRequest._({this.refundMethod}) : super._();
-  @override
-  ProcessRefundRequest rebuild(
-    void Function(ProcessRefundRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProcessRefundRequest.copyWith(...)` or call `instanceOfProcessRefundRequest.copyWith.fieldName(value)` for a single field.
+class _$ProcessRefundRequestCWProxyImpl
+    implements _$ProcessRefundRequestCWProxy {
+  const _$ProcessRefundRequestCWProxyImpl(this._value);
 
-  @override
-  ProcessRefundRequestBuilder toBuilder() =>
-      ProcessRefundRequestBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProcessRefundRequest && refundMethod == other.refundMethod;
-  }
+  final ProcessRefundRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, refundMethod.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProcessRefundRequest refundMethod(PaymentMethod? refundMethod) =>
+      call(refundMethod: refundMethod);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-      r'ProcessRefundRequest',
-    )..add('refundMethod', refundMethod)).toString();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessRefundRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProcessRefundRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProcessRefundRequest call({
+    Object? refundMethod = const $CopyWithPlaceholder(),
+  }) {
+    return ProcessRefundRequest(
+      refundMethod: refundMethod == const $CopyWithPlaceholder()
+          ? _value.refundMethod
+          // ignore: cast_nullable_to_non_nullable
+          : refundMethod as PaymentMethod?,
+    );
   }
 }
 
-class ProcessRefundRequestBuilder
-    implements Builder<ProcessRefundRequest, ProcessRefundRequestBuilder> {
-  _$ProcessRefundRequest? _$v;
-
-  PaymentMethod? _refundMethod;
-  PaymentMethod? get refundMethod => _$this._refundMethod;
-  set refundMethod(PaymentMethod? refundMethod) =>
-      _$this._refundMethod = refundMethod;
-
-  ProcessRefundRequestBuilder() {
-    ProcessRefundRequest._defaults(this);
-  }
-
-  ProcessRefundRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _refundMethod = $v.refundMethod;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProcessRefundRequest other) {
-    _$v = other as _$ProcessRefundRequest;
-  }
-
-  @override
-  void update(void Function(ProcessRefundRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProcessRefundRequest build() => _build();
-
-  _$ProcessRefundRequest _build() {
-    final _$result =
-        _$v ?? _$ProcessRefundRequest._(refundMethod: refundMethod);
-    replace(_$result);
-    return _$result;
-  }
+extension $ProcessRefundRequestCopyWith on ProcessRefundRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProcessRefundRequest.copyWith(...)` or `instanceOfProcessRefundRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProcessRefundRequestCWProxy get copyWith =>
+      _$ProcessRefundRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProcessRefundRequest _$ProcessRefundRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ProcessRefundRequest', json, ($checkedConvert) {
+  final val = ProcessRefundRequest(
+    refundMethod: $checkedConvert(
+      'refundMethod',
+      (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ProcessRefundRequestToJson(
+  ProcessRefundRequest instance,
+) => <String, dynamic>{
+  'refundMethod': ?_$PaymentMethodEnumMap[instance.refundMethod],
+};
+
+const _$PaymentMethodEnumMap = {
+  PaymentMethod.cashOnDelivery: 'CashOnDelivery',
+  PaymentMethod.vnPay: 'VnPay',
+  PaymentMethod.momo: 'Momo',
+  PaymentMethod.cashInStore: 'CashInStore',
+};

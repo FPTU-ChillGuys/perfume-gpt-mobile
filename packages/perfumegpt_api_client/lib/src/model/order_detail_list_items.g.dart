@@ -3,151 +3,134 @@
 part of 'order_detail_list_items.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$OrderDetailListItems extends OrderDetailListItems {
-  @override
-  final String? variantId;
-  @override
-  final String variantName;
-  @override
-  final String imageUrl;
-  @override
-  final int? quantity;
-  @override
-  final int? total;
+abstract class _$OrderDetailListItemsCWProxy {
+  OrderDetailListItems variantId(String? variantId);
 
-  factory _$OrderDetailListItems([
-    void Function(OrderDetailListItemsBuilder)? updates,
-  ]) => (OrderDetailListItemsBuilder()..update(updates))._build();
+  OrderDetailListItems variantName(String variantName);
 
-  _$OrderDetailListItems._({
-    this.variantId,
-    required this.variantName,
-    required this.imageUrl,
-    this.quantity,
-    this.total,
-  }) : super._();
-  @override
-  OrderDetailListItems rebuild(
-    void Function(OrderDetailListItemsBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  OrderDetailListItems imageUrl(String imageUrl);
 
-  @override
-  OrderDetailListItemsBuilder toBuilder() =>
-      OrderDetailListItemsBuilder()..replace(this);
+  OrderDetailListItems quantity(int? quantity);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is OrderDetailListItems &&
-        variantId == other.variantId &&
-        variantName == other.variantName &&
-        imageUrl == other.imageUrl &&
-        quantity == other.quantity &&
-        total == other.total;
-  }
+  OrderDetailListItems total(int? total);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderDetailListItems(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OrderDetailListItems(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OrderDetailListItems call({
+    String? variantId,
+    String variantName,
+    String imageUrl,
+    int? quantity,
+    int? total,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfOrderDetailListItems.copyWith(...)` or call `instanceOfOrderDetailListItems.copyWith.fieldName(value)` for a single field.
+class _$OrderDetailListItemsCWProxyImpl
+    implements _$OrderDetailListItemsCWProxy {
+  const _$OrderDetailListItemsCWProxyImpl(this._value);
+
+  final OrderDetailListItems _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, variantId.hashCode);
-    _$hash = $jc(_$hash, variantName.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
-    _$hash = $jc(_$hash, quantity.hashCode);
-    _$hash = $jc(_$hash, total.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  OrderDetailListItems variantId(String? variantId) =>
+      call(variantId: variantId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'OrderDetailListItems')
-          ..add('variantId', variantId)
-          ..add('variantName', variantName)
-          ..add('imageUrl', imageUrl)
-          ..add('quantity', quantity)
-          ..add('total', total))
-        .toString();
+  OrderDetailListItems variantName(String variantName) =>
+      call(variantName: variantName);
+
+  @override
+  OrderDetailListItems imageUrl(String imageUrl) => call(imageUrl: imageUrl);
+
+  @override
+  OrderDetailListItems quantity(int? quantity) => call(quantity: quantity);
+
+  @override
+  OrderDetailListItems total(int? total) => call(total: total);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderDetailListItems(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// OrderDetailListItems(...).copyWith(id: 12, name: "My name")
+  /// ```
+  OrderDetailListItems call({
+    Object? variantId = const $CopyWithPlaceholder(),
+    Object? variantName = const $CopyWithPlaceholder(),
+    Object? imageUrl = const $CopyWithPlaceholder(),
+    Object? quantity = const $CopyWithPlaceholder(),
+    Object? total = const $CopyWithPlaceholder(),
+  }) {
+    return OrderDetailListItems(
+      variantId: variantId == const $CopyWithPlaceholder()
+          ? _value.variantId
+          // ignore: cast_nullable_to_non_nullable
+          : variantId as String?,
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
+          ? _value.variantName
+          // ignore: cast_nullable_to_non_nullable
+          : variantName as String,
+      imageUrl: imageUrl == const $CopyWithPlaceholder() || imageUrl == null
+          ? _value.imageUrl
+          // ignore: cast_nullable_to_non_nullable
+          : imageUrl as String,
+      quantity: quantity == const $CopyWithPlaceholder()
+          ? _value.quantity
+          // ignore: cast_nullable_to_non_nullable
+          : quantity as int?,
+      total: total == const $CopyWithPlaceholder()
+          ? _value.total
+          // ignore: cast_nullable_to_non_nullable
+          : total as int?,
+    );
   }
 }
 
-class OrderDetailListItemsBuilder
-    implements Builder<OrderDetailListItems, OrderDetailListItemsBuilder> {
-  _$OrderDetailListItems? _$v;
-
-  String? _variantId;
-  String? get variantId => _$this._variantId;
-  set variantId(String? variantId) => _$this._variantId = variantId;
-
-  String? _variantName;
-  String? get variantName => _$this._variantName;
-  set variantName(String? variantName) => _$this._variantName = variantName;
-
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
-  int? _quantity;
-  int? get quantity => _$this._quantity;
-  set quantity(int? quantity) => _$this._quantity = quantity;
-
-  int? _total;
-  int? get total => _$this._total;
-  set total(int? total) => _$this._total = total;
-
-  OrderDetailListItemsBuilder() {
-    OrderDetailListItems._defaults(this);
-  }
-
-  OrderDetailListItemsBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _variantId = $v.variantId;
-      _variantName = $v.variantName;
-      _imageUrl = $v.imageUrl;
-      _quantity = $v.quantity;
-      _total = $v.total;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(OrderDetailListItems other) {
-    _$v = other as _$OrderDetailListItems;
-  }
-
-  @override
-  void update(void Function(OrderDetailListItemsBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  OrderDetailListItems build() => _build();
-
-  _$OrderDetailListItems _build() {
-    final _$result =
-        _$v ??
-        _$OrderDetailListItems._(
-          variantId: variantId,
-          variantName: BuiltValueNullFieldError.checkNotNull(
-            variantName,
-            r'OrderDetailListItems',
-            'variantName',
-          ),
-          imageUrl: BuiltValueNullFieldError.checkNotNull(
-            imageUrl,
-            r'OrderDetailListItems',
-            'imageUrl',
-          ),
-          quantity: quantity,
-          total: total,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $OrderDetailListItemsCopyWith on OrderDetailListItems {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfOrderDetailListItems.copyWith(...)` or `instanceOfOrderDetailListItems.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$OrderDetailListItemsCWProxy get copyWith =>
+      _$OrderDetailListItemsCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+OrderDetailListItems _$OrderDetailListItemsFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('OrderDetailListItems', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['variantName', 'imageUrl']);
+  final val = OrderDetailListItems(
+    variantId: $checkedConvert('variantId', (v) => v as String?),
+    variantName: $checkedConvert('variantName', (v) => v as String),
+    imageUrl: $checkedConvert('imageUrl', (v) => v as String),
+    quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
+    total: $checkedConvert('total', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$OrderDetailListItemsToJson(
+  OrderDetailListItems instance,
+) => <String, dynamic>{
+  'variantId': ?instance.variantId,
+  'variantName': instance.variantName,
+  'imageUrl': instance.imageUrl,
+  'quantity': ?instance.quantity,
+  'total': ?instance.total,
+};

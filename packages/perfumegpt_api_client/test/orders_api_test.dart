@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for OrdersApi
 void main() {
   final instance = PerfumegptApiClient().getOrdersApi();
@@ -77,7 +76,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPreviewOrderResponse> apiOrdersPreviewGet({ BuiltList<String> barCodes, String wardCode, int districtId, String voucherCode }) async
+    //Future<BaseResponseOfPreviewOrderResponse> apiOrdersPreviewGet({ List<String> barCodes, String wardCode, int districtId, String voucherCode }) async
     test('test apiOrdersPreviewGet', () async {
       // TODO
     });
@@ -91,6 +90,5 @@ void main() {
     test('test apiOrdersUserUserIdGet', () async {
       // TODO
     });
-
   });
 }

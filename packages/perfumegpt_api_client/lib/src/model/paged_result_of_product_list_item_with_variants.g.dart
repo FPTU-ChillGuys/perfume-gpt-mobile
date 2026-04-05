@@ -3,208 +3,187 @@
 part of 'paged_result_of_product_list_item_with_variants.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$PagedResultOfProductListItemWithVariants
-    extends PagedResultOfProductListItemWithVariants {
-  @override
-  final BuiltList<ProductListItemWithVariants> items;
-  @override
-  final int pageNumber;
-  @override
-  final int pageSize;
-  @override
-  final int totalCount;
-  @override
-  final int? totalPages;
-  @override
-  final bool? hasPreviousPage;
-  @override
-  final bool? hasNextPage;
+abstract class _$PagedResultOfProductListItemWithVariantsCWProxy {
+  PagedResultOfProductListItemWithVariants items(
+    List<ProductListItemWithVariants> items,
+  );
 
-  factory _$PagedResultOfProductListItemWithVariants([
-    void Function(PagedResultOfProductListItemWithVariantsBuilder)? updates,
-  ]) => (PagedResultOfProductListItemWithVariantsBuilder()..update(updates))
-      ._build();
+  PagedResultOfProductListItemWithVariants pageNumber(int pageNumber);
 
-  _$PagedResultOfProductListItemWithVariants._({
-    required this.items,
-    required this.pageNumber,
-    required this.pageSize,
-    required this.totalCount,
-    this.totalPages,
-    this.hasPreviousPage,
-    this.hasNextPage,
-  }) : super._();
-  @override
-  PagedResultOfProductListItemWithVariants rebuild(
-    void Function(PagedResultOfProductListItemWithVariantsBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  PagedResultOfProductListItemWithVariants pageSize(int pageSize);
 
-  @override
-  PagedResultOfProductListItemWithVariantsBuilder toBuilder() =>
-      PagedResultOfProductListItemWithVariantsBuilder()..replace(this);
+  PagedResultOfProductListItemWithVariants totalCount(int totalCount);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is PagedResultOfProductListItemWithVariants &&
-        items == other.items &&
-        pageNumber == other.pageNumber &&
-        pageSize == other.pageSize &&
-        totalCount == other.totalCount &&
-        totalPages == other.totalPages &&
-        hasPreviousPage == other.hasPreviousPage &&
-        hasNextPage == other.hasNextPage;
-  }
+  PagedResultOfProductListItemWithVariants totalPages(int? totalPages);
+
+  PagedResultOfProductListItemWithVariants hasPreviousPage(
+    bool? hasPreviousPage,
+  );
+
+  PagedResultOfProductListItemWithVariants hasNextPage(bool? hasNextPage);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfProductListItemWithVariants(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// PagedResultOfProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
+  /// ```
+  PagedResultOfProductListItemWithVariants call({
+    List<ProductListItemWithVariants> items,
+    int pageNumber,
+    int pageSize,
+    int totalCount,
+    int? totalPages,
+    bool? hasPreviousPage,
+    bool? hasNextPage,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPagedResultOfProductListItemWithVariants.copyWith(...)` or call `instanceOfPagedResultOfProductListItemWithVariants.copyWith.fieldName(value)` for a single field.
+class _$PagedResultOfProductListItemWithVariantsCWProxyImpl
+    implements _$PagedResultOfProductListItemWithVariantsCWProxy {
+  const _$PagedResultOfProductListItemWithVariantsCWProxyImpl(this._value);
+
+  final PagedResultOfProductListItemWithVariants _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, items.hashCode);
-    _$hash = $jc(_$hash, pageNumber.hashCode);
-    _$hash = $jc(_$hash, pageSize.hashCode);
-    _$hash = $jc(_$hash, totalCount.hashCode);
-    _$hash = $jc(_$hash, totalPages.hashCode);
-    _$hash = $jc(_$hash, hasPreviousPage.hashCode);
-    _$hash = $jc(_$hash, hasNextPage.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  PagedResultOfProductListItemWithVariants items(
+    List<ProductListItemWithVariants> items,
+  ) => call(items: items);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'PagedResultOfProductListItemWithVariants',
-          )
-          ..add('items', items)
-          ..add('pageNumber', pageNumber)
-          ..add('pageSize', pageSize)
-          ..add('totalCount', totalCount)
-          ..add('totalPages', totalPages)
-          ..add('hasPreviousPage', hasPreviousPage)
-          ..add('hasNextPage', hasNextPage))
-        .toString();
+  PagedResultOfProductListItemWithVariants pageNumber(int pageNumber) =>
+      call(pageNumber: pageNumber);
+
+  @override
+  PagedResultOfProductListItemWithVariants pageSize(int pageSize) =>
+      call(pageSize: pageSize);
+
+  @override
+  PagedResultOfProductListItemWithVariants totalCount(int totalCount) =>
+      call(totalCount: totalCount);
+
+  @override
+  PagedResultOfProductListItemWithVariants totalPages(int? totalPages) =>
+      call(totalPages: totalPages);
+
+  @override
+  PagedResultOfProductListItemWithVariants hasPreviousPage(
+    bool? hasPreviousPage,
+  ) => call(hasPreviousPage: hasPreviousPage);
+
+  @override
+  PagedResultOfProductListItemWithVariants hasNextPage(bool? hasNextPage) =>
+      call(hasNextPage: hasNextPage);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfProductListItemWithVariants(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// PagedResultOfProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
+  /// ```
+  PagedResultOfProductListItemWithVariants call({
+    Object? items = const $CopyWithPlaceholder(),
+    Object? pageNumber = const $CopyWithPlaceholder(),
+    Object? pageSize = const $CopyWithPlaceholder(),
+    Object? totalCount = const $CopyWithPlaceholder(),
+    Object? totalPages = const $CopyWithPlaceholder(),
+    Object? hasPreviousPage = const $CopyWithPlaceholder(),
+    Object? hasNextPage = const $CopyWithPlaceholder(),
+  }) {
+    return PagedResultOfProductListItemWithVariants(
+      items: items == const $CopyWithPlaceholder() || items == null
+          ? _value.items
+          // ignore: cast_nullable_to_non_nullable
+          : items as List<ProductListItemWithVariants>,
+      pageNumber:
+          pageNumber == const $CopyWithPlaceholder() || pageNumber == null
+          ? _value.pageNumber
+          // ignore: cast_nullable_to_non_nullable
+          : pageNumber as int,
+      pageSize: pageSize == const $CopyWithPlaceholder() || pageSize == null
+          ? _value.pageSize
+          // ignore: cast_nullable_to_non_nullable
+          : pageSize as int,
+      totalCount:
+          totalCount == const $CopyWithPlaceholder() || totalCount == null
+          ? _value.totalCount
+          // ignore: cast_nullable_to_non_nullable
+          : totalCount as int,
+      totalPages: totalPages == const $CopyWithPlaceholder()
+          ? _value.totalPages
+          // ignore: cast_nullable_to_non_nullable
+          : totalPages as int?,
+      hasPreviousPage: hasPreviousPage == const $CopyWithPlaceholder()
+          ? _value.hasPreviousPage
+          // ignore: cast_nullable_to_non_nullable
+          : hasPreviousPage as bool?,
+      hasNextPage: hasNextPage == const $CopyWithPlaceholder()
+          ? _value.hasNextPage
+          // ignore: cast_nullable_to_non_nullable
+          : hasNextPage as bool?,
+    );
   }
 }
 
-class PagedResultOfProductListItemWithVariantsBuilder
-    implements
-        Builder<
-          PagedResultOfProductListItemWithVariants,
-          PagedResultOfProductListItemWithVariantsBuilder
-        > {
-  _$PagedResultOfProductListItemWithVariants? _$v;
-
-  ListBuilder<ProductListItemWithVariants>? _items;
-  ListBuilder<ProductListItemWithVariants> get items =>
-      _$this._items ??= ListBuilder<ProductListItemWithVariants>();
-  set items(ListBuilder<ProductListItemWithVariants>? items) =>
-      _$this._items = items;
-
-  int? _pageNumber;
-  int? get pageNumber => _$this._pageNumber;
-  set pageNumber(int? pageNumber) => _$this._pageNumber = pageNumber;
-
-  int? _pageSize;
-  int? get pageSize => _$this._pageSize;
-  set pageSize(int? pageSize) => _$this._pageSize = pageSize;
-
-  int? _totalCount;
-  int? get totalCount => _$this._totalCount;
-  set totalCount(int? totalCount) => _$this._totalCount = totalCount;
-
-  int? _totalPages;
-  int? get totalPages => _$this._totalPages;
-  set totalPages(int? totalPages) => _$this._totalPages = totalPages;
-
-  bool? _hasPreviousPage;
-  bool? get hasPreviousPage => _$this._hasPreviousPage;
-  set hasPreviousPage(bool? hasPreviousPage) =>
-      _$this._hasPreviousPage = hasPreviousPage;
-
-  bool? _hasNextPage;
-  bool? get hasNextPage => _$this._hasNextPage;
-  set hasNextPage(bool? hasNextPage) => _$this._hasNextPage = hasNextPage;
-
-  PagedResultOfProductListItemWithVariantsBuilder() {
-    PagedResultOfProductListItemWithVariants._defaults(this);
-  }
-
-  PagedResultOfProductListItemWithVariantsBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _items = $v.items.toBuilder();
-      _pageNumber = $v.pageNumber;
-      _pageSize = $v.pageSize;
-      _totalCount = $v.totalCount;
-      _totalPages = $v.totalPages;
-      _hasPreviousPage = $v.hasPreviousPage;
-      _hasNextPage = $v.hasNextPage;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(PagedResultOfProductListItemWithVariants other) {
-    _$v = other as _$PagedResultOfProductListItemWithVariants;
-  }
-
-  @override
-  void update(
-    void Function(PagedResultOfProductListItemWithVariantsBuilder)? updates,
-  ) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  PagedResultOfProductListItemWithVariants build() => _build();
-
-  _$PagedResultOfProductListItemWithVariants _build() {
-    _$PagedResultOfProductListItemWithVariants _$result;
-    try {
-      _$result =
-          _$v ??
-          _$PagedResultOfProductListItemWithVariants._(
-            items: items.build(),
-            pageNumber: BuiltValueNullFieldError.checkNotNull(
-              pageNumber,
-              r'PagedResultOfProductListItemWithVariants',
-              'pageNumber',
-            ),
-            pageSize: BuiltValueNullFieldError.checkNotNull(
-              pageSize,
-              r'PagedResultOfProductListItemWithVariants',
-              'pageSize',
-            ),
-            totalCount: BuiltValueNullFieldError.checkNotNull(
-              totalCount,
-              r'PagedResultOfProductListItemWithVariants',
-              'totalCount',
-            ),
-            totalPages: totalPages,
-            hasPreviousPage: hasPreviousPage,
-            hasNextPage: hasNextPage,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'items';
-        items.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'PagedResultOfProductListItemWithVariants',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $PagedResultOfProductListItemWithVariantsCopyWith
+    on PagedResultOfProductListItemWithVariants {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPagedResultOfProductListItemWithVariants.copyWith(...)` or `instanceOfPagedResultOfProductListItemWithVariants.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$PagedResultOfProductListItemWithVariantsCWProxy get copyWith =>
+      _$PagedResultOfProductListItemWithVariantsCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+PagedResultOfProductListItemWithVariants
+_$PagedResultOfProductListItemWithVariantsFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('PagedResultOfProductListItemWithVariants', json, (
+      $checkedConvert,
+    ) {
+      $checkKeys(
+        json,
+        requiredKeys: const ['items', 'pageNumber', 'pageSize', 'totalCount'],
+      );
+      final val = PagedResultOfProductListItemWithVariants(
+        items: $checkedConvert(
+          'items',
+          (v) => (v as List<dynamic>)
+              .map(
+                (e) => ProductListItemWithVariants.fromJson(
+                  e as Map<String, dynamic>,
+                ),
+              )
+              .toList(),
+        ),
+        pageNumber: $checkedConvert('pageNumber', (v) => (v as num).toInt()),
+        pageSize: $checkedConvert('pageSize', (v) => (v as num).toInt()),
+        totalCount: $checkedConvert('totalCount', (v) => (v as num).toInt()),
+        totalPages: $checkedConvert('totalPages', (v) => (v as num?)?.toInt()),
+        hasPreviousPage: $checkedConvert('hasPreviousPage', (v) => v as bool?),
+        hasNextPage: $checkedConvert('hasNextPage', (v) => v as bool?),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$PagedResultOfProductListItemWithVariantsToJson(
+  PagedResultOfProductListItemWithVariants instance,
+) => <String, dynamic>{
+  'items': instance.items.map((e) => e.toJson()).toList(),
+  'pageNumber': instance.pageNumber,
+  'pageSize': instance.pageSize,
+  'totalCount': instance.totalCount,
+  'totalPages': ?instance.totalPages,
+  'hasPreviousPage': ?instance.hasPreviousPage,
+  'hasNextPage': ?instance.hasNextPage,
+};

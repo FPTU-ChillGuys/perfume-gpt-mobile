@@ -3,101 +3,102 @@
 part of 'update_order_status_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$UpdateOrderStatusRequest extends UpdateOrderStatusRequest {
-  @override
-  final OrderStatus? status;
-  @override
-  final String? note;
+abstract class _$UpdateOrderStatusRequestCWProxy {
+  UpdateOrderStatusRequest status(OrderStatus? status);
 
-  factory _$UpdateOrderStatusRequest([
-    void Function(UpdateOrderStatusRequestBuilder)? updates,
-  ]) => (UpdateOrderStatusRequestBuilder()..update(updates))._build();
+  UpdateOrderStatusRequest note(String? note);
 
-  _$UpdateOrderStatusRequest._({this.status, this.note}) : super._();
-  @override
-  UpdateOrderStatusRequest rebuild(
-    void Function(UpdateOrderStatusRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOrderStatusRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateOrderStatusRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateOrderStatusRequest call({OrderStatus? status, String? note});
+}
 
-  @override
-  UpdateOrderStatusRequestBuilder toBuilder() =>
-      UpdateOrderStatusRequestBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfUpdateOrderStatusRequest.copyWith(...)` or call `instanceOfUpdateOrderStatusRequest.copyWith.fieldName(value)` for a single field.
+class _$UpdateOrderStatusRequestCWProxyImpl
+    implements _$UpdateOrderStatusRequestCWProxy {
+  const _$UpdateOrderStatusRequestCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is UpdateOrderStatusRequest &&
-        status == other.status &&
-        note == other.note;
-  }
+  final UpdateOrderStatusRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, note.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  UpdateOrderStatusRequest status(OrderStatus? status) => call(status: status);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'UpdateOrderStatusRequest')
-          ..add('status', status)
-          ..add('note', note))
-        .toString();
+  UpdateOrderStatusRequest note(String? note) => call(note: note);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOrderStatusRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// UpdateOrderStatusRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  UpdateOrderStatusRequest call({
+    Object? status = const $CopyWithPlaceholder(),
+    Object? note = const $CopyWithPlaceholder(),
+  }) {
+    return UpdateOrderStatusRequest(
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as OrderStatus?,
+      note: note == const $CopyWithPlaceholder()
+          ? _value.note
+          // ignore: cast_nullable_to_non_nullable
+          : note as String?,
+    );
   }
 }
 
-class UpdateOrderStatusRequestBuilder
-    implements
-        Builder<UpdateOrderStatusRequest, UpdateOrderStatusRequestBuilder> {
-  _$UpdateOrderStatusRequest? _$v;
-
-  OrderStatus? _status;
-  OrderStatus? get status => _$this._status;
-  set status(OrderStatus? status) => _$this._status = status;
-
-  String? _note;
-  String? get note => _$this._note;
-  set note(String? note) => _$this._note = note;
-
-  UpdateOrderStatusRequestBuilder() {
-    UpdateOrderStatusRequest._defaults(this);
-  }
-
-  UpdateOrderStatusRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _status = $v.status;
-      _note = $v.note;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(UpdateOrderStatusRequest other) {
-    _$v = other as _$UpdateOrderStatusRequest;
-  }
-
-  @override
-  void update(void Function(UpdateOrderStatusRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  UpdateOrderStatusRequest build() => _build();
-
-  _$UpdateOrderStatusRequest _build() {
-    final _$result =
-        _$v ?? _$UpdateOrderStatusRequest._(status: status, note: note);
-    replace(_$result);
-    return _$result;
-  }
+extension $UpdateOrderStatusRequestCopyWith on UpdateOrderStatusRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfUpdateOrderStatusRequest.copyWith(...)` or `instanceOfUpdateOrderStatusRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$UpdateOrderStatusRequestCWProxy get copyWith =>
+      _$UpdateOrderStatusRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateOrderStatusRequest _$UpdateOrderStatusRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('UpdateOrderStatusRequest', json, ($checkedConvert) {
+  final val = UpdateOrderStatusRequest(
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecodeNullable(_$OrderStatusEnumMap, v),
+    ),
+    note: $checkedConvert('note', (v) => v as String?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$UpdateOrderStatusRequestToJson(
+  UpdateOrderStatusRequest instance,
+) => <String, dynamic>{
+  'status': ?_$OrderStatusEnumMap[instance.status],
+  'note': ?instance.note,
+};
+
+const _$OrderStatusEnumMap = {
+  OrderStatus.pending: 'Pending',
+  OrderStatus.processing: 'Processing',
+  OrderStatus.delivering: 'Delivering',
+  OrderStatus.delivered: 'Delivered',
+  OrderStatus.returning: 'Returning',
+  OrderStatus.cancelled: 'Cancelled',
+  OrderStatus.partialReturned: 'Partial_Returned',
+  OrderStatus.returned: 'Returned',
+};

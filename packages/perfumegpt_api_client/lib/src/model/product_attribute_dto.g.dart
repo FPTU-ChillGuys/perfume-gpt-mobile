@@ -3,101 +3,90 @@
 part of 'product_attribute_dto.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ProductAttributeDto extends ProductAttributeDto {
-  @override
-  final int? attributeId;
-  @override
-  final int? valueId;
+abstract class _$ProductAttributeDtoCWProxy {
+  ProductAttributeDto attributeId(int? attributeId);
 
-  factory _$ProductAttributeDto([
-    void Function(ProductAttributeDtoBuilder)? updates,
-  ]) => (ProductAttributeDtoBuilder()..update(updates))._build();
+  ProductAttributeDto valueId(int? valueId);
 
-  _$ProductAttributeDto._({this.attributeId, this.valueId}) : super._();
-  @override
-  ProductAttributeDto rebuild(
-    void Function(ProductAttributeDtoBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductAttributeDto(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProductAttributeDto(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProductAttributeDto call({int? attributeId, int? valueId});
+}
 
-  @override
-  ProductAttributeDtoBuilder toBuilder() =>
-      ProductAttributeDtoBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfProductAttributeDto.copyWith(...)` or call `instanceOfProductAttributeDto.copyWith.fieldName(value)` for a single field.
+class _$ProductAttributeDtoCWProxyImpl implements _$ProductAttributeDtoCWProxy {
+  const _$ProductAttributeDtoCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ProductAttributeDto &&
-        attributeId == other.attributeId &&
-        valueId == other.valueId;
-  }
+  final ProductAttributeDto _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, attributeId.hashCode);
-    _$hash = $jc(_$hash, valueId.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ProductAttributeDto attributeId(int? attributeId) =>
+      call(attributeId: attributeId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ProductAttributeDto')
-          ..add('attributeId', attributeId)
-          ..add('valueId', valueId))
-        .toString();
+  ProductAttributeDto valueId(int? valueId) => call(valueId: valueId);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductAttributeDto(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ProductAttributeDto(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ProductAttributeDto call({
+    Object? attributeId = const $CopyWithPlaceholder(),
+    Object? valueId = const $CopyWithPlaceholder(),
+  }) {
+    return ProductAttributeDto(
+      attributeId: attributeId == const $CopyWithPlaceholder()
+          ? _value.attributeId
+          // ignore: cast_nullable_to_non_nullable
+          : attributeId as int?,
+      valueId: valueId == const $CopyWithPlaceholder()
+          ? _value.valueId
+          // ignore: cast_nullable_to_non_nullable
+          : valueId as int?,
+    );
   }
 }
 
-class ProductAttributeDtoBuilder
-    implements Builder<ProductAttributeDto, ProductAttributeDtoBuilder> {
-  _$ProductAttributeDto? _$v;
-
-  int? _attributeId;
-  int? get attributeId => _$this._attributeId;
-  set attributeId(int? attributeId) => _$this._attributeId = attributeId;
-
-  int? _valueId;
-  int? get valueId => _$this._valueId;
-  set valueId(int? valueId) => _$this._valueId = valueId;
-
-  ProductAttributeDtoBuilder() {
-    ProductAttributeDto._defaults(this);
-  }
-
-  ProductAttributeDtoBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _attributeId = $v.attributeId;
-      _valueId = $v.valueId;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ProductAttributeDto other) {
-    _$v = other as _$ProductAttributeDto;
-  }
-
-  @override
-  void update(void Function(ProductAttributeDtoBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ProductAttributeDto build() => _build();
-
-  _$ProductAttributeDto _build() {
-    final _$result =
-        _$v ??
-        _$ProductAttributeDto._(attributeId: attributeId, valueId: valueId);
-    replace(_$result);
-    return _$result;
-  }
+extension $ProductAttributeDtoCopyWith on ProductAttributeDto {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfProductAttributeDto.copyWith(...)` or `instanceOfProductAttributeDto.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductAttributeDtoCWProxy get copyWith =>
+      _$ProductAttributeDtoCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProductAttributeDto _$ProductAttributeDtoFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('ProductAttributeDto', json, ($checkedConvert) {
+      final val = ProductAttributeDto(
+        attributeId: $checkedConvert(
+          'attributeId',
+          (v) => (v as num?)?.toInt(),
+        ),
+        valueId: $checkedConvert('valueId', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$ProductAttributeDtoToJson(
+  ProductAttributeDto instance,
+) => <String, dynamic>{
+  'attributeId': ?instance.attributeId,
+  'valueId': ?instance.valueId,
+};

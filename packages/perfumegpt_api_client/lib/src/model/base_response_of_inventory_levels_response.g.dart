@@ -3,174 +3,149 @@
 part of 'base_response_of_inventory_levels_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BaseResponseOfInventoryLevelsResponse
-    extends BaseResponseOfInventoryLevelsResponse {
-  @override
-  final InventoryLevelsResponse? payload;
-  @override
-  final bool? success;
-  @override
-  final String? message;
-  @override
-  final BuiltList<String>? errors;
-  @override
-  final int? errorType;
+abstract class _$BaseResponseOfInventoryLevelsResponseCWProxy {
+  BaseResponseOfInventoryLevelsResponse payload(
+    InventoryLevelsResponse? payload,
+  );
 
-  factory _$BaseResponseOfInventoryLevelsResponse([
-    void Function(BaseResponseOfInventoryLevelsResponseBuilder)? updates,
-  ]) => (BaseResponseOfInventoryLevelsResponseBuilder()..update(updates))
-      ._build();
+  BaseResponseOfInventoryLevelsResponse success(bool? success);
 
-  _$BaseResponseOfInventoryLevelsResponse._({
-    this.payload,
-    this.success,
-    this.message,
-    this.errors,
-    this.errorType,
-  }) : super._();
-  @override
-  BaseResponseOfInventoryLevelsResponse rebuild(
-    void Function(BaseResponseOfInventoryLevelsResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  BaseResponseOfInventoryLevelsResponse message(String? message);
 
-  @override
-  BaseResponseOfInventoryLevelsResponseBuilder toBuilder() =>
-      BaseResponseOfInventoryLevelsResponseBuilder()..replace(this);
+  BaseResponseOfInventoryLevelsResponse errors(List<String>? errors);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BaseResponseOfInventoryLevelsResponse &&
-        payload == other.payload &&
-        success == other.success &&
-        message == other.message &&
-        errors == other.errors &&
-        errorType == other.errorType;
-  }
+  BaseResponseOfInventoryLevelsResponse errorType(int? errorType);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfInventoryLevelsResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfInventoryLevelsResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfInventoryLevelsResponse call({
+    InventoryLevelsResponse? payload,
+    bool? success,
+    String? message,
+    List<String>? errors,
+    int? errorType,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfInventoryLevelsResponse.copyWith(...)` or call `instanceOfBaseResponseOfInventoryLevelsResponse.copyWith.fieldName(value)` for a single field.
+class _$BaseResponseOfInventoryLevelsResponseCWProxyImpl
+    implements _$BaseResponseOfInventoryLevelsResponseCWProxy {
+  const _$BaseResponseOfInventoryLevelsResponseCWProxyImpl(this._value);
+
+  final BaseResponseOfInventoryLevelsResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, payload.hashCode);
-    _$hash = $jc(_$hash, success.hashCode);
-    _$hash = $jc(_$hash, message.hashCode);
-    _$hash = $jc(_$hash, errors.hashCode);
-    _$hash = $jc(_$hash, errorType.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  BaseResponseOfInventoryLevelsResponse payload(
+    InventoryLevelsResponse? payload,
+  ) => call(payload: payload);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'BaseResponseOfInventoryLevelsResponse',
-          )
-          ..add('payload', payload)
-          ..add('success', success)
-          ..add('message', message)
-          ..add('errors', errors)
-          ..add('errorType', errorType))
-        .toString();
+  BaseResponseOfInventoryLevelsResponse success(bool? success) =>
+      call(success: success);
+
+  @override
+  BaseResponseOfInventoryLevelsResponse message(String? message) =>
+      call(message: message);
+
+  @override
+  BaseResponseOfInventoryLevelsResponse errors(List<String>? errors) =>
+      call(errors: errors);
+
+  @override
+  BaseResponseOfInventoryLevelsResponse errorType(int? errorType) =>
+      call(errorType: errorType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfInventoryLevelsResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfInventoryLevelsResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfInventoryLevelsResponse call({
+    Object? payload = const $CopyWithPlaceholder(),
+    Object? success = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? errors = const $CopyWithPlaceholder(),
+    Object? errorType = const $CopyWithPlaceholder(),
+  }) {
+    return BaseResponseOfInventoryLevelsResponse(
+      payload: payload == const $CopyWithPlaceholder()
+          ? _value.payload
+          // ignore: cast_nullable_to_non_nullable
+          : payload as InventoryLevelsResponse?,
+      success: success == const $CopyWithPlaceholder()
+          ? _value.success
+          // ignore: cast_nullable_to_non_nullable
+          : success as bool?,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      errors: errors == const $CopyWithPlaceholder()
+          ? _value.errors
+          // ignore: cast_nullable_to_non_nullable
+          : errors as List<String>?,
+      errorType: errorType == const $CopyWithPlaceholder()
+          ? _value.errorType
+          // ignore: cast_nullable_to_non_nullable
+          : errorType as int?,
+    );
   }
 }
 
-class BaseResponseOfInventoryLevelsResponseBuilder
-    implements
-        Builder<
-          BaseResponseOfInventoryLevelsResponse,
-          BaseResponseOfInventoryLevelsResponseBuilder
-        > {
-  _$BaseResponseOfInventoryLevelsResponse? _$v;
-
-  InventoryLevelsResponseBuilder? _payload;
-  InventoryLevelsResponseBuilder get payload =>
-      _$this._payload ??= InventoryLevelsResponseBuilder();
-  set payload(InventoryLevelsResponseBuilder? payload) =>
-      _$this._payload = payload;
-
-  bool? _success;
-  bool? get success => _$this._success;
-  set success(bool? success) => _$this._success = success;
-
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
-  ListBuilder<String>? _errors;
-  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
-  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
-
-  int? _errorType;
-  int? get errorType => _$this._errorType;
-  set errorType(int? errorType) => _$this._errorType = errorType;
-
-  BaseResponseOfInventoryLevelsResponseBuilder() {
-    BaseResponseOfInventoryLevelsResponse._defaults(this);
-  }
-
-  BaseResponseOfInventoryLevelsResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _payload = $v.payload?.toBuilder();
-      _success = $v.success;
-      _message = $v.message;
-      _errors = $v.errors?.toBuilder();
-      _errorType = $v.errorType;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BaseResponseOfInventoryLevelsResponse other) {
-    _$v = other as _$BaseResponseOfInventoryLevelsResponse;
-  }
-
-  @override
-  void update(
-    void Function(BaseResponseOfInventoryLevelsResponseBuilder)? updates,
-  ) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BaseResponseOfInventoryLevelsResponse build() => _build();
-
-  _$BaseResponseOfInventoryLevelsResponse _build() {
-    _$BaseResponseOfInventoryLevelsResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$BaseResponseOfInventoryLevelsResponse._(
-            payload: _payload?.build(),
-            success: success,
-            message: message,
-            errors: _errors?.build(),
-            errorType: errorType,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'payload';
-        _payload?.build();
-
-        _$failedField = 'errors';
-        _errors?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'BaseResponseOfInventoryLevelsResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $BaseResponseOfInventoryLevelsResponseCopyWith
+    on BaseResponseOfInventoryLevelsResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfInventoryLevelsResponse.copyWith(...)` or `instanceOfBaseResponseOfInventoryLevelsResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BaseResponseOfInventoryLevelsResponseCWProxy get copyWith =>
+      _$BaseResponseOfInventoryLevelsResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BaseResponseOfInventoryLevelsResponse
+_$BaseResponseOfInventoryLevelsResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('BaseResponseOfInventoryLevelsResponse', json, (
+      $checkedConvert,
+    ) {
+      final val = BaseResponseOfInventoryLevelsResponse(
+        payload: $checkedConvert(
+          'payload',
+          (v) => v == null
+              ? null
+              : InventoryLevelsResponse.fromJson(v as Map<String, dynamic>),
+        ),
+        success: $checkedConvert('success', (v) => v as bool?),
+        message: $checkedConvert('message', (v) => v as String?),
+        errors: $checkedConvert(
+          'errors',
+          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        ),
+        errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$BaseResponseOfInventoryLevelsResponseToJson(
+  BaseResponseOfInventoryLevelsResponse instance,
+) => <String, dynamic>{
+  'payload': ?instance.payload?.toJson(),
+  'success': ?instance.success,
+  'message': ?instance.message,
+  'errors': ?instance.errors,
+  'errorType': ?instance.errorType,
+};

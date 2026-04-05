@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateVoucherRequest
 void main() {
-  final instance = CreateVoucherRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateVoucherRequest? instance = /* CreateVoucherRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateVoucherRequest, () {
     // String code
@@ -51,6 +51,5 @@ void main() {
     test('to test the property `isPublic`', () async {
       // TODO
     });
-
   });
 }

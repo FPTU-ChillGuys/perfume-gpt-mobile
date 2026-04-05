@@ -3,139 +3,117 @@
 part of 'batch_lookup_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BatchLookupResponse extends BatchLookupResponse {
-  @override
-  final String? id;
-  @override
-  final String batchCode;
-  @override
-  final String? variantId;
-  @override
-  final String sku;
+abstract class _$BatchLookupResponseCWProxy {
+  BatchLookupResponse id(String? id);
 
-  factory _$BatchLookupResponse([
-    void Function(BatchLookupResponseBuilder)? updates,
-  ]) => (BatchLookupResponseBuilder()..update(updates))._build();
+  BatchLookupResponse batchCode(String batchCode);
 
-  _$BatchLookupResponse._({
-    this.id,
-    required this.batchCode,
-    this.variantId,
-    required this.sku,
-  }) : super._();
-  @override
-  BatchLookupResponse rebuild(
-    void Function(BatchLookupResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  BatchLookupResponse variantId(String? variantId);
 
-  @override
-  BatchLookupResponseBuilder toBuilder() =>
-      BatchLookupResponseBuilder()..replace(this);
+  BatchLookupResponse sku(String sku);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BatchLookupResponse &&
-        id == other.id &&
-        batchCode == other.batchCode &&
-        variantId == other.variantId &&
-        sku == other.sku;
-  }
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BatchLookupResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BatchLookupResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BatchLookupResponse call({
+    String? id,
+    String batchCode,
+    String? variantId,
+    String sku,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBatchLookupResponse.copyWith(...)` or call `instanceOfBatchLookupResponse.copyWith.fieldName(value)` for a single field.
+class _$BatchLookupResponseCWProxyImpl implements _$BatchLookupResponseCWProxy {
+  const _$BatchLookupResponseCWProxyImpl(this._value);
+
+  final BatchLookupResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, batchCode.hashCode);
-    _$hash = $jc(_$hash, variantId.hashCode);
-    _$hash = $jc(_$hash, sku.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  BatchLookupResponse id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'BatchLookupResponse')
-          ..add('id', id)
-          ..add('batchCode', batchCode)
-          ..add('variantId', variantId)
-          ..add('sku', sku))
-        .toString();
+  BatchLookupResponse batchCode(String batchCode) => call(batchCode: batchCode);
+
+  @override
+  BatchLookupResponse variantId(String? variantId) =>
+      call(variantId: variantId);
+
+  @override
+  BatchLookupResponse sku(String sku) => call(sku: sku);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BatchLookupResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BatchLookupResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BatchLookupResponse call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? batchCode = const $CopyWithPlaceholder(),
+    Object? variantId = const $CopyWithPlaceholder(),
+    Object? sku = const $CopyWithPlaceholder(),
+  }) {
+    return BatchLookupResponse(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
+          ? _value.batchCode
+          // ignore: cast_nullable_to_non_nullable
+          : batchCode as String,
+      variantId: variantId == const $CopyWithPlaceholder()
+          ? _value.variantId
+          // ignore: cast_nullable_to_non_nullable
+          : variantId as String?,
+      sku: sku == const $CopyWithPlaceholder() || sku == null
+          ? _value.sku
+          // ignore: cast_nullable_to_non_nullable
+          : sku as String,
+    );
   }
 }
 
-class BatchLookupResponseBuilder
-    implements Builder<BatchLookupResponse, BatchLookupResponseBuilder> {
-  _$BatchLookupResponse? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _batchCode;
-  String? get batchCode => _$this._batchCode;
-  set batchCode(String? batchCode) => _$this._batchCode = batchCode;
-
-  String? _variantId;
-  String? get variantId => _$this._variantId;
-  set variantId(String? variantId) => _$this._variantId = variantId;
-
-  String? _sku;
-  String? get sku => _$this._sku;
-  set sku(String? sku) => _$this._sku = sku;
-
-  BatchLookupResponseBuilder() {
-    BatchLookupResponse._defaults(this);
-  }
-
-  BatchLookupResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _batchCode = $v.batchCode;
-      _variantId = $v.variantId;
-      _sku = $v.sku;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BatchLookupResponse other) {
-    _$v = other as _$BatchLookupResponse;
-  }
-
-  @override
-  void update(void Function(BatchLookupResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BatchLookupResponse build() => _build();
-
-  _$BatchLookupResponse _build() {
-    final _$result =
-        _$v ??
-        _$BatchLookupResponse._(
-          id: id,
-          batchCode: BuiltValueNullFieldError.checkNotNull(
-            batchCode,
-            r'BatchLookupResponse',
-            'batchCode',
-          ),
-          variantId: variantId,
-          sku: BuiltValueNullFieldError.checkNotNull(
-            sku,
-            r'BatchLookupResponse',
-            'sku',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $BatchLookupResponseCopyWith on BatchLookupResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBatchLookupResponse.copyWith(...)` or `instanceOfBatchLookupResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BatchLookupResponseCWProxy get copyWith =>
+      _$BatchLookupResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BatchLookupResponse _$BatchLookupResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('BatchLookupResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['batchCode', 'sku']);
+      final val = BatchLookupResponse(
+        id: $checkedConvert('id', (v) => v as String?),
+        batchCode: $checkedConvert('batchCode', (v) => v as String),
+        variantId: $checkedConvert('variantId', (v) => v as String?),
+        sku: $checkedConvert('sku', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$BatchLookupResponseToJson(
+  BatchLookupResponse instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'batchCode': instance.batchCode,
+  'variantId': ?instance.variantId,
+  'sku': instance.sku,
+};

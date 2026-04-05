@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getProductsApi();
-final Date date = 2013-10-20; // Date | 
+final DateTime date = 2013-10-20; // DateTime | 
 
 try {
     final response = api.apiProductsDailySaleFiguresGet(date);
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **date** | **Date**|  | [optional] 
+ **date** | **DateTime**|  | [optional] 
 
 ### Return type
 
@@ -391,7 +391,7 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getProductsApi();
-final BuiltList<ProductImageUploadItem> images = ; // BuiltList<ProductImageUploadItem> | 
+final List<ProductImageUploadItem> images = ; // List<ProductImageUploadItem> | 
 
 try {
     final response = api.apiProductsImagesTemporaryPost(images);
@@ -405,7 +405,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **images** | [**BuiltList&lt;ProductImageUploadItem&gt;**](ProductImageUploadItem.md)|  | [optional] 
+ **images** | [**List&lt;ProductImageUploadItem&gt;**](ProductImageUploadItem.md)|  | [optional] 
 
 ### Return type
 

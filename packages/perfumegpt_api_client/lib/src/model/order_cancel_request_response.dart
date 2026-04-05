@@ -4,345 +4,135 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/cancel_request_status.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'order_cancel_request_response.g.dart';
 
-/// OrderCancelRequestResponse
-///
-/// Properties:
-/// * [id] 
-/// * [orderId] 
-/// * [requestedById] 
-/// * [requestedByEmail] 
-/// * [processedById] 
-/// * [reason] 
-/// * [staffNote] 
-/// * [status] 
-/// * [isRefundRequired] 
-/// * [refundAmount] 
-/// * [isRefunded] 
-/// * [vnpTransactionNo] 
-/// * [createdAt] 
-/// * [updatedAt] 
-@BuiltValue()
-abstract class OrderCancelRequestResponse implements Built<OrderCancelRequestResponse, OrderCancelRequestResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class OrderCancelRequestResponse {
+  /// Returns a new [OrderCancelRequestResponse] instance.
+  OrderCancelRequestResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'orderId')
-  String? get orderId;
+    this.orderId,
 
-  @BuiltValueField(wireName: r'requestedById')
-  String? get requestedById;
+    this.requestedById,
 
-  @BuiltValueField(wireName: r'requestedByEmail')
-  String? get requestedByEmail;
+    this.requestedByEmail,
 
-  @BuiltValueField(wireName: r'processedById')
-  String? get processedById;
+    this.processedById,
 
-  @BuiltValueField(wireName: r'reason')
-  String get reason;
+    required this.reason,
 
-  @BuiltValueField(wireName: r'staffNote')
-  String? get staffNote;
+    this.staffNote,
 
-  @BuiltValueField(wireName: r'status')
-  CancelRequestStatus? get status;
-  // enum statusEnum {  Pending,  Approved,  Rejected,  };
+    this.status,
 
-  @BuiltValueField(wireName: r'isRefundRequired')
-  bool? get isRefundRequired;
+    this.isRefundRequired,
 
-  @BuiltValueField(wireName: r'refundAmount')
-  num? get refundAmount;
+    this.refundAmount,
 
-  @BuiltValueField(wireName: r'isRefunded')
-  bool? get isRefunded;
+    this.isRefunded,
 
-  @BuiltValueField(wireName: r'vnpTransactionNo')
-  String? get vnpTransactionNo;
+    this.vnpTransactionNo,
 
-  @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+    this.createdAt,
 
-  @BuiltValueField(wireName: r'updatedAt')
-  DateTime? get updatedAt;
+    this.updatedAt,
+  });
 
-  OrderCancelRequestResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory OrderCancelRequestResponse([void updates(OrderCancelRequestResponseBuilder b)]) = _$OrderCancelRequestResponse;
+  @JsonKey(name: r'orderId', required: false, includeIfNull: false)
+  final String? orderId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(OrderCancelRequestResponseBuilder b) => b;
+  @JsonKey(name: r'requestedById', required: false, includeIfNull: false)
+  final String? requestedById;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<OrderCancelRequestResponse> get serializer => _$OrderCancelRequestResponseSerializer();
-}
+  @JsonKey(name: r'requestedByEmail', required: false, includeIfNull: false)
+  final String? requestedByEmail;
 
-class _$OrderCancelRequestResponseSerializer implements PrimitiveSerializer<OrderCancelRequestResponse> {
-  @override
-  final Iterable<Type> types = const [OrderCancelRequestResponse, _$OrderCancelRequestResponse];
+  @JsonKey(name: r'processedById', required: false, includeIfNull: false)
+  final String? processedById;
 
-  @override
-  final String wireName = r'OrderCancelRequestResponse';
+  @JsonKey(name: r'reason', required: true, includeIfNull: false)
+  final String reason;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    OrderCancelRequestResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.orderId != null) {
-      yield r'orderId';
-      yield serializers.serialize(
-        object.orderId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.requestedById != null) {
-      yield r'requestedById';
-      yield serializers.serialize(
-        object.requestedById,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.requestedByEmail != null) {
-      yield r'requestedByEmail';
-      yield serializers.serialize(
-        object.requestedByEmail,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.processedById != null) {
-      yield r'processedById';
-      yield serializers.serialize(
-        object.processedById,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    yield r'reason';
-    yield serializers.serialize(
-      object.reason,
-      specifiedType: const FullType(String),
-    );
-    if (object.staffNote != null) {
-      yield r'staffNote';
-      yield serializers.serialize(
-        object.staffNote,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.status != null) {
-      yield r'status';
-      yield serializers.serialize(
-        object.status,
-        specifiedType: const FullType(CancelRequestStatus),
-      );
-    }
-    if (object.isRefundRequired != null) {
-      yield r'isRefundRequired';
-      yield serializers.serialize(
-        object.isRefundRequired,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.refundAmount != null) {
-      yield r'refundAmount';
-      yield serializers.serialize(
-        object.refundAmount,
-        specifiedType: const FullType.nullable(num),
-      );
-    }
-    if (object.isRefunded != null) {
-      yield r'isRefunded';
-      yield serializers.serialize(
-        object.isRefunded,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.vnpTransactionNo != null) {
-      yield r'vnpTransactionNo';
-      yield serializers.serialize(
-        object.vnpTransactionNo,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.updatedAt != null) {
-      yield r'updatedAt';
-      yield serializers.serialize(
-        object.updatedAt,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-  }
+  @JsonKey(name: r'staffNote', required: false, includeIfNull: false)
+  final String? staffNote;
+
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
+  final CancelRequestStatus? status;
+
+  @JsonKey(name: r'isRefundRequired', required: false, includeIfNull: false)
+  final bool? isRefundRequired;
+
+  @JsonKey(name: r'refundAmount', required: false, includeIfNull: false)
+  final num? refundAmount;
+
+  @JsonKey(name: r'isRefunded', required: false, includeIfNull: false)
+  final bool? isRefunded;
+
+  @JsonKey(name: r'vnpTransactionNo', required: false, includeIfNull: false)
+  final String? vnpTransactionNo;
+
+  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+  final DateTime? createdAt;
+
+  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
+  final DateTime? updatedAt;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    OrderCancelRequestResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required OrderCancelRequestResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'orderId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.orderId = valueDes;
-          break;
-        case r'requestedById':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requestedById = valueDes;
-          break;
-        case r'requestedByEmail':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.requestedByEmail = valueDes;
-          break;
-        case r'processedById':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.processedById = valueDes;
-          break;
-        case r'reason':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.reason = valueDes;
-          break;
-        case r'staffNote':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.staffNote = valueDes;
-          break;
-        case r'status':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(CancelRequestStatus),
-          ) as CancelRequestStatus;
-          result.status = valueDes;
-          break;
-        case r'isRefundRequired':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isRefundRequired = valueDes;
-          break;
-        case r'refundAmount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(num),
-          ) as num?;
-          if (valueDes == null) continue;
-          result.refundAmount = valueDes;
-          break;
-        case r'isRefunded':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isRefunded = valueDes;
-          break;
-        case r'vnpTransactionNo':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.vnpTransactionNo = valueDes;
-          break;
-        case r'createdAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.createdAt = valueDes;
-          break;
-        case r'updatedAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.updatedAt = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OrderCancelRequestResponse &&
+          other.id == id &&
+          other.orderId == orderId &&
+          other.requestedById == requestedById &&
+          other.requestedByEmail == requestedByEmail &&
+          other.processedById == processedById &&
+          other.reason == reason &&
+          other.staffNote == staffNote &&
+          other.status == status &&
+          other.isRefundRequired == isRefundRequired &&
+          other.refundAmount == refundAmount &&
+          other.isRefunded == isRefunded &&
+          other.vnpTransactionNo == vnpTransactionNo &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt;
 
   @override
-  OrderCancelRequestResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = OrderCancelRequestResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      id.hashCode +
+      orderId.hashCode +
+      requestedById.hashCode +
+      (requestedByEmail == null ? 0 : requestedByEmail.hashCode) +
+      (processedById == null ? 0 : processedById.hashCode) +
+      reason.hashCode +
+      (staffNote == null ? 0 : staffNote.hashCode) +
+      status.hashCode +
+      isRefundRequired.hashCode +
+      (refundAmount == null ? 0 : refundAmount.hashCode) +
+      isRefunded.hashCode +
+      (vnpTransactionNo == null ? 0 : vnpTransactionNo.hashCode) +
+      createdAt.hashCode +
+      (updatedAt == null ? 0 : updatedAt.hashCode);
+
+  factory OrderCancelRequestResponse.fromJson(Map<String, dynamic> json) =>
+      _$OrderCancelRequestResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrderCancelRequestResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

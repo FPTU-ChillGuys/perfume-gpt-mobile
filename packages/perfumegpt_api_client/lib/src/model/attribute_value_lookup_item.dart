@@ -3,122 +3,45 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'attribute_value_lookup_item.g.dart';
 
-/// AttributeValueLookupItem
-///
-/// Properties:
-/// * [id] 
-/// * [value] 
-@BuiltValue()
-abstract class AttributeValueLookupItem implements Built<AttributeValueLookupItem, AttributeValueLookupItemBuilder> {
-  @BuiltValueField(wireName: r'id')
-  int? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class AttributeValueLookupItem {
+  /// Returns a new [AttributeValueLookupItem] instance.
+  AttributeValueLookupItem({this.id, required this.value});
 
-  @BuiltValueField(wireName: r'value')
-  String get value;
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final int? id;
 
-  AttributeValueLookupItem._();
-
-  factory AttributeValueLookupItem([void updates(AttributeValueLookupItemBuilder b)]) = _$AttributeValueLookupItem;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(AttributeValueLookupItemBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<AttributeValueLookupItem> get serializer => _$AttributeValueLookupItemSerializer();
-}
-
-class _$AttributeValueLookupItemSerializer implements PrimitiveSerializer<AttributeValueLookupItem> {
-  @override
-  final Iterable<Type> types = const [AttributeValueLookupItem, _$AttributeValueLookupItem];
+  @JsonKey(name: r'value', required: true, includeIfNull: false)
+  final String value;
 
   @override
-  final String wireName = r'AttributeValueLookupItem';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    AttributeValueLookupItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'value';
-    yield serializers.serialize(
-      object.value,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AttributeValueLookupItem &&
+          other.id == id &&
+          other.value == value;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    AttributeValueLookupItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => id.hashCode + value.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required AttributeValueLookupItemBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.id = valueDes;
-          break;
-        case r'value':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.value = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory AttributeValueLookupItem.fromJson(Map<String, dynamic> json) =>
+      _$AttributeValueLookupItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AttributeValueLookupItemToJson(this);
 
   @override
-  AttributeValueLookupItem deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = AttributeValueLookupItemBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

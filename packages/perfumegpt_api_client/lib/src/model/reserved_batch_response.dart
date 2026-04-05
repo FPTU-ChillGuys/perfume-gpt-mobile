@@ -3,158 +3,65 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'reserved_batch_response.g.dart';
 
-/// ReservedBatchResponse
-///
-/// Properties:
-/// * [batchId] 
-/// * [batchCode] 
-/// * [reservedQuantity] 
-/// * [expiryDate] 
-@BuiltValue()
-abstract class ReservedBatchResponse implements Built<ReservedBatchResponse, ReservedBatchResponseBuilder> {
-  @BuiltValueField(wireName: r'batchId')
-  String? get batchId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ReservedBatchResponse {
+  /// Returns a new [ReservedBatchResponse] instance.
+  ReservedBatchResponse({
+    this.batchId,
 
-  @BuiltValueField(wireName: r'batchCode')
-  String get batchCode;
+    required this.batchCode,
 
-  @BuiltValueField(wireName: r'reservedQuantity')
-  int? get reservedQuantity;
+    this.reservedQuantity,
 
-  @BuiltValueField(wireName: r'expiryDate')
-  DateTime? get expiryDate;
+    this.expiryDate,
+  });
 
-  ReservedBatchResponse._();
+  @JsonKey(name: r'batchId', required: false, includeIfNull: false)
+  final String? batchId;
 
-  factory ReservedBatchResponse([void updates(ReservedBatchResponseBuilder b)]) = _$ReservedBatchResponse;
+  @JsonKey(name: r'batchCode', required: true, includeIfNull: false)
+  final String batchCode;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ReservedBatchResponseBuilder b) => b;
+  @JsonKey(name: r'reservedQuantity', required: false, includeIfNull: false)
+  final int? reservedQuantity;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ReservedBatchResponse> get serializer => _$ReservedBatchResponseSerializer();
-}
-
-class _$ReservedBatchResponseSerializer implements PrimitiveSerializer<ReservedBatchResponse> {
-  @override
-  final Iterable<Type> types = const [ReservedBatchResponse, _$ReservedBatchResponse];
+  @JsonKey(name: r'expiryDate', required: false, includeIfNull: false)
+  final DateTime? expiryDate;
 
   @override
-  final String wireName = r'ReservedBatchResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ReservedBatchResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.batchId != null) {
-      yield r'batchId';
-      yield serializers.serialize(
-        object.batchId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'batchCode';
-    yield serializers.serialize(
-      object.batchCode,
-      specifiedType: const FullType(String),
-    );
-    if (object.reservedQuantity != null) {
-      yield r'reservedQuantity';
-      yield serializers.serialize(
-        object.reservedQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.expiryDate != null) {
-      yield r'expiryDate';
-      yield serializers.serialize(
-        object.expiryDate,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReservedBatchResponse &&
+          other.batchId == batchId &&
+          other.batchCode == batchCode &&
+          other.reservedQuantity == reservedQuantity &&
+          other.expiryDate == expiryDate;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ReservedBatchResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      batchId.hashCode +
+      batchCode.hashCode +
+      reservedQuantity.hashCode +
+      expiryDate.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ReservedBatchResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'batchId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.batchId = valueDes;
-          break;
-        case r'batchCode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.batchCode = valueDes;
-          break;
-        case r'reservedQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.reservedQuantity = valueDes;
-          break;
-        case r'expiryDate':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.expiryDate = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ReservedBatchResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReservedBatchResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReservedBatchResponseToJson(this);
 
   @override
-  ReservedBatchResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ReservedBatchResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

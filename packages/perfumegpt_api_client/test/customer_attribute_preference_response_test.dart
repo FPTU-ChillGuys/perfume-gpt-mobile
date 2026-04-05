@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CustomerAttributePreferenceResponse
 void main() {
-  final instance = CustomerAttributePreferenceResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final CustomerAttributePreferenceResponse?
+  instance = /* CustomerAttributePreferenceResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(CustomerAttributePreferenceResponse, () {
     // int attributeValueId
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `attributeValueName`', () async {
       // TODO
     });
-
   });
 }

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **operationName** | **String** |  | 
 **succeededCount** | **int** |  | [optional] 
 **failedCount** | **int** |  | [optional] 
-**errors** | [**BuiltList&lt;BulkActionError&gt;**](BulkActionError.md) |  | 
+**errors** | [**List&lt;BulkActionError&gt;**](BulkActionError.md) |  | 
 **totalProcessed** | **int** |  | [optional] 
 **hasError** | **bool** |  | [optional] 
 

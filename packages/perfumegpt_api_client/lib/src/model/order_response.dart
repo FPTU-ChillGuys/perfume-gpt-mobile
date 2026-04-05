@@ -4,485 +4,190 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/payment_info_response.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/order_detail_response.dart';
 import 'package:perfumegpt_api_client/src/model/shipping_info_response.dart';
 import 'package:perfumegpt_api_client/src/model/payment_status.dart';
 import 'package:perfumegpt_api_client/src/model/recipient_info_response.dart';
 import 'package:perfumegpt_api_client/src/model/order_status.dart';
 import 'package:perfumegpt_api_client/src/model/order_type.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'order_response.g.dart';
 
-/// OrderResponse
-///
-/// Properties:
-/// * [id] 
-/// * [code] 
-/// * [customerId] 
-/// * [customerName] 
-/// * [customerEmail] 
-/// * [staffId] 
-/// * [staffName] 
-/// * [type] 
-/// * [status] 
-/// * [paymentStatus] 
-/// * [totalAmount] 
-/// * [voucherId] 
-/// * [voucherCode] 
-/// * [paymentExpiresAt] 
-/// * [paidAt] 
-/// * [createdAt] 
-/// * [updatedAt] 
-/// * [paymentTransactions] 
-/// * [shippingInfo] 
-/// * [recipientInfo] 
-/// * [orderDetails] 
-@BuiltValue()
-abstract class OrderResponse implements Built<OrderResponse, OrderResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class OrderResponse {
+  /// Returns a new [OrderResponse] instance.
+  OrderResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'code')
-  String get code;
+    required this.code,
 
-  @BuiltValueField(wireName: r'customerId')
-  String? get customerId;
+    this.customerId,
 
-  @BuiltValueField(wireName: r'customerName')
-  String? get customerName;
+    this.customerName,
 
-  @BuiltValueField(wireName: r'customerEmail')
-  String? get customerEmail;
+    this.customerEmail,
 
-  @BuiltValueField(wireName: r'staffId')
-  String? get staffId;
+    this.staffId,
 
-  @BuiltValueField(wireName: r'staffName')
-  String? get staffName;
+    this.staffName,
 
-  @BuiltValueField(wireName: r'type')
-  OrderType? get type;
-  // enum typeEnum {  Online,  Offline,  };
+    this.type,
 
-  @BuiltValueField(wireName: r'status')
-  OrderStatus? get status;
-  // enum statusEnum {  Pending,  Processing,  Delivering,  Delivered,  Returning,  Cancelled,  Partial_Returned,  Returned,  };
+    this.status,
 
-  @BuiltValueField(wireName: r'paymentStatus')
-  PaymentStatus? get paymentStatus;
-  // enum paymentStatusEnum {  Unpaid,  Paid,  Partial_Refunded,  Refunded,  };
+    this.paymentStatus,
 
-  @BuiltValueField(wireName: r'totalAmount')
-  num? get totalAmount;
+    this.totalAmount,
 
-  @BuiltValueField(wireName: r'voucherId')
-  String? get voucherId;
+    this.voucherId,
 
-  @BuiltValueField(wireName: r'voucherCode')
-  String? get voucherCode;
+    this.voucherCode,
 
-  @BuiltValueField(wireName: r'paymentExpiresAt')
-  DateTime? get paymentExpiresAt;
+    this.paymentExpiresAt,
 
-  @BuiltValueField(wireName: r'paidAt')
-  DateTime? get paidAt;
+    this.paidAt,
 
-  @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+    this.createdAt,
 
-  @BuiltValueField(wireName: r'updatedAt')
-  DateTime? get updatedAt;
+    this.updatedAt,
 
-  @BuiltValueField(wireName: r'paymentTransactions')
-  BuiltList<PaymentInfoResponse>? get paymentTransactions;
+    this.paymentTransactions,
 
-  @BuiltValueField(wireName: r'shippingInfo')
-  ShippingInfoResponse? get shippingInfo;
+    this.shippingInfo,
 
-  @BuiltValueField(wireName: r'recipientInfo')
-  RecipientInfoResponse? get recipientInfo;
+    this.recipientInfo,
 
-  @BuiltValueField(wireName: r'orderDetails')
-  BuiltList<OrderDetailResponse> get orderDetails;
+    required this.orderDetails,
+  });
 
-  OrderResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory OrderResponse([void updates(OrderResponseBuilder b)]) = _$OrderResponse;
+  @JsonKey(name: r'code', required: true, includeIfNull: false)
+  final String code;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(OrderResponseBuilder b) => b;
+  @JsonKey(name: r'customerId', required: false, includeIfNull: false)
+  final String? customerId;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<OrderResponse> get serializer => _$OrderResponseSerializer();
-}
+  @JsonKey(name: r'customerName', required: false, includeIfNull: false)
+  final String? customerName;
 
-class _$OrderResponseSerializer implements PrimitiveSerializer<OrderResponse> {
-  @override
-  final Iterable<Type> types = const [OrderResponse, _$OrderResponse];
+  @JsonKey(name: r'customerEmail', required: false, includeIfNull: false)
+  final String? customerEmail;
 
-  @override
-  final String wireName = r'OrderResponse';
+  @JsonKey(name: r'staffId', required: false, includeIfNull: false)
+  final String? staffId;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    OrderResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'code';
-    yield serializers.serialize(
-      object.code,
-      specifiedType: const FullType(String),
-    );
-    if (object.customerId != null) {
-      yield r'customerId';
-      yield serializers.serialize(
-        object.customerId,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.customerName != null) {
-      yield r'customerName';
-      yield serializers.serialize(
-        object.customerName,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.customerEmail != null) {
-      yield r'customerEmail';
-      yield serializers.serialize(
-        object.customerEmail,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.staffId != null) {
-      yield r'staffId';
-      yield serializers.serialize(
-        object.staffId,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.staffName != null) {
-      yield r'staffName';
-      yield serializers.serialize(
-        object.staffName,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(OrderType),
-      );
-    }
-    if (object.status != null) {
-      yield r'status';
-      yield serializers.serialize(
-        object.status,
-        specifiedType: const FullType(OrderStatus),
-      );
-    }
-    if (object.paymentStatus != null) {
-      yield r'paymentStatus';
-      yield serializers.serialize(
-        object.paymentStatus,
-        specifiedType: const FullType(PaymentStatus),
-      );
-    }
-    if (object.totalAmount != null) {
-      yield r'totalAmount';
-      yield serializers.serialize(
-        object.totalAmount,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.voucherId != null) {
-      yield r'voucherId';
-      yield serializers.serialize(
-        object.voucherId,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.voucherCode != null) {
-      yield r'voucherCode';
-      yield serializers.serialize(
-        object.voucherCode,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.paymentExpiresAt != null) {
-      yield r'paymentExpiresAt';
-      yield serializers.serialize(
-        object.paymentExpiresAt,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-    if (object.paidAt != null) {
-      yield r'paidAt';
-      yield serializers.serialize(
-        object.paidAt,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.updatedAt != null) {
-      yield r'updatedAt';
-      yield serializers.serialize(
-        object.updatedAt,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-    if (object.paymentTransactions != null) {
-      yield r'paymentTransactions';
-      yield serializers.serialize(
-        object.paymentTransactions,
-        specifiedType: const FullType.nullable(BuiltList, [FullType(PaymentInfoResponse)]),
-      );
-    }
-    if (object.shippingInfo != null) {
-      yield r'shippingInfo';
-      yield serializers.serialize(
-        object.shippingInfo,
-        specifiedType: const FullType.nullable(ShippingInfoResponse),
-      );
-    }
-    if (object.recipientInfo != null) {
-      yield r'recipientInfo';
-      yield serializers.serialize(
-        object.recipientInfo,
-        specifiedType: const FullType.nullable(RecipientInfoResponse),
-      );
-    }
-    yield r'orderDetails';
-    yield serializers.serialize(
-      object.orderDetails,
-      specifiedType: const FullType(BuiltList, [FullType(OrderDetailResponse)]),
-    );
-  }
+  @JsonKey(name: r'staffName', required: false, includeIfNull: false)
+  final String? staffName;
+
+  @JsonKey(name: r'type', required: false, includeIfNull: false)
+  final OrderType? type;
+
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
+  final OrderStatus? status;
+
+  @JsonKey(name: r'paymentStatus', required: false, includeIfNull: false)
+  final PaymentStatus? paymentStatus;
+
+  @JsonKey(name: r'totalAmount', required: false, includeIfNull: false)
+  final num? totalAmount;
+
+  @JsonKey(name: r'voucherId', required: false, includeIfNull: false)
+  final String? voucherId;
+
+  @JsonKey(name: r'voucherCode', required: false, includeIfNull: false)
+  final String? voucherCode;
+
+  @JsonKey(name: r'paymentExpiresAt', required: false, includeIfNull: false)
+  final DateTime? paymentExpiresAt;
+
+  @JsonKey(name: r'paidAt', required: false, includeIfNull: false)
+  final DateTime? paidAt;
+
+  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+  final DateTime? createdAt;
+
+  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
+  final DateTime? updatedAt;
+
+  @JsonKey(name: r'paymentTransactions', required: false, includeIfNull: false)
+  final List<PaymentInfoResponse>? paymentTransactions;
+
+  @JsonKey(name: r'shippingInfo', required: false, includeIfNull: false)
+  final ShippingInfoResponse? shippingInfo;
+
+  @JsonKey(name: r'recipientInfo', required: false, includeIfNull: false)
+  final RecipientInfoResponse? recipientInfo;
+
+  @JsonKey(name: r'orderDetails', required: true, includeIfNull: false)
+  final List<OrderDetailResponse> orderDetails;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    OrderResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required OrderResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'code':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.code = valueDes;
-          break;
-        case r'customerId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.customerId = valueDes;
-          break;
-        case r'customerName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.customerName = valueDes;
-          break;
-        case r'customerEmail':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.customerEmail = valueDes;
-          break;
-        case r'staffId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.staffId = valueDes;
-          break;
-        case r'staffName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.staffName = valueDes;
-          break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(OrderType),
-          ) as OrderType;
-          result.type = valueDes;
-          break;
-        case r'status':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(OrderStatus),
-          ) as OrderStatus;
-          result.status = valueDes;
-          break;
-        case r'paymentStatus':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(PaymentStatus),
-          ) as PaymentStatus;
-          result.paymentStatus = valueDes;
-          break;
-        case r'totalAmount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.totalAmount = valueDes;
-          break;
-        case r'voucherId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.voucherId = valueDes;
-          break;
-        case r'voucherCode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.voucherCode = valueDes;
-          break;
-        case r'paymentExpiresAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.paymentExpiresAt = valueDes;
-          break;
-        case r'paidAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.paidAt = valueDes;
-          break;
-        case r'createdAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.createdAt = valueDes;
-          break;
-        case r'updatedAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.updatedAt = valueDes;
-          break;
-        case r'paymentTransactions':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(PaymentInfoResponse)]),
-          ) as BuiltList<PaymentInfoResponse>?;
-          if (valueDes == null) continue;
-          result.paymentTransactions.replace(valueDes);
-          break;
-        case r'shippingInfo':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(ShippingInfoResponse),
-          ) as ShippingInfoResponse?;
-          if (valueDes == null) continue;
-          result.shippingInfo.replace(valueDes);
-          break;
-        case r'recipientInfo':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(RecipientInfoResponse),
-          ) as RecipientInfoResponse?;
-          if (valueDes == null) continue;
-          result.recipientInfo.replace(valueDes);
-          break;
-        case r'orderDetails':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(OrderDetailResponse)]),
-          ) as BuiltList<OrderDetailResponse>;
-          result.orderDetails.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OrderResponse &&
+          other.id == id &&
+          other.code == code &&
+          other.customerId == customerId &&
+          other.customerName == customerName &&
+          other.customerEmail == customerEmail &&
+          other.staffId == staffId &&
+          other.staffName == staffName &&
+          other.type == type &&
+          other.status == status &&
+          other.paymentStatus == paymentStatus &&
+          other.totalAmount == totalAmount &&
+          other.voucherId == voucherId &&
+          other.voucherCode == voucherCode &&
+          other.paymentExpiresAt == paymentExpiresAt &&
+          other.paidAt == paidAt &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt &&
+          other.paymentTransactions == paymentTransactions &&
+          other.shippingInfo == shippingInfo &&
+          other.recipientInfo == recipientInfo &&
+          other.orderDetails == orderDetails;
 
   @override
-  OrderResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = OrderResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      id.hashCode +
+      code.hashCode +
+      (customerId == null ? 0 : customerId.hashCode) +
+      (customerName == null ? 0 : customerName.hashCode) +
+      (customerEmail == null ? 0 : customerEmail.hashCode) +
+      (staffId == null ? 0 : staffId.hashCode) +
+      (staffName == null ? 0 : staffName.hashCode) +
+      type.hashCode +
+      status.hashCode +
+      paymentStatus.hashCode +
+      totalAmount.hashCode +
+      (voucherId == null ? 0 : voucherId.hashCode) +
+      (voucherCode == null ? 0 : voucherCode.hashCode) +
+      (paymentExpiresAt == null ? 0 : paymentExpiresAt.hashCode) +
+      (paidAt == null ? 0 : paidAt.hashCode) +
+      createdAt.hashCode +
+      (updatedAt == null ? 0 : updatedAt.hashCode) +
+      (paymentTransactions == null ? 0 : paymentTransactions.hashCode) +
+      (shippingInfo == null ? 0 : shippingInfo.hashCode) +
+      (recipientInfo == null ? 0 : recipientInfo.hashCode) +
+      orderDetails.hashCode;
+
+  factory OrderResponse.fromJson(Map<String, dynamic> json) =>
+      _$OrderResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrderResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

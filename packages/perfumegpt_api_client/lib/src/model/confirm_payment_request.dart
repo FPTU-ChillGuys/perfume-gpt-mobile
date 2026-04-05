@@ -3,123 +3,46 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'confirm_payment_request.g.dart';
 
-/// ConfirmPaymentRequest
-///
-/// Properties:
-/// * [isSuccess] 
-/// * [failureReason] 
-@BuiltValue()
-abstract class ConfirmPaymentRequest implements Built<ConfirmPaymentRequest, ConfirmPaymentRequestBuilder> {
-  @BuiltValueField(wireName: r'isSuccess')
-  bool get isSuccess;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ConfirmPaymentRequest {
+  /// Returns a new [ConfirmPaymentRequest] instance.
+  ConfirmPaymentRequest({required this.isSuccess, this.failureReason});
 
-  @BuiltValueField(wireName: r'failureReason')
-  String? get failureReason;
+  @JsonKey(name: r'isSuccess', required: true, includeIfNull: false)
+  final bool isSuccess;
 
-  ConfirmPaymentRequest._();
-
-  factory ConfirmPaymentRequest([void updates(ConfirmPaymentRequestBuilder b)]) = _$ConfirmPaymentRequest;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ConfirmPaymentRequestBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ConfirmPaymentRequest> get serializer => _$ConfirmPaymentRequestSerializer();
-}
-
-class _$ConfirmPaymentRequestSerializer implements PrimitiveSerializer<ConfirmPaymentRequest> {
-  @override
-  final Iterable<Type> types = const [ConfirmPaymentRequest, _$ConfirmPaymentRequest];
+  @JsonKey(name: r'failureReason', required: false, includeIfNull: false)
+  final String? failureReason;
 
   @override
-  final String wireName = r'ConfirmPaymentRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ConfirmPaymentRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'isSuccess';
-    yield serializers.serialize(
-      object.isSuccess,
-      specifiedType: const FullType(bool),
-    );
-    if (object.failureReason != null) {
-      yield r'failureReason';
-      yield serializers.serialize(
-        object.failureReason,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ConfirmPaymentRequest &&
+          other.isSuccess == isSuccess &&
+          other.failureReason == failureReason;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ConfirmPaymentRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      isSuccess.hashCode + (failureReason == null ? 0 : failureReason.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ConfirmPaymentRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'isSuccess':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.isSuccess = valueDes;
-          break;
-        case r'failureReason':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.failureReason = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ConfirmPaymentRequest.fromJson(Map<String, dynamic> json) =>
+      _$ConfirmPaymentRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ConfirmPaymentRequestToJson(this);
 
   @override
-  ConfirmPaymentRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ConfirmPaymentRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

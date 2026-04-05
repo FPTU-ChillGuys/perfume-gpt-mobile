@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **totalPrice** | **num** |  | [optional] 
 **rejectedQuantity** | **int** |  | [optional] 
 **note** | **String** |  | [optional] 
-**batches** | [**BuiltList&lt;BatchResponse&gt;**](BatchResponse.md) |  | 
+**batches** | [**List&lt;BatchResponse&gt;**](BatchResponse.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

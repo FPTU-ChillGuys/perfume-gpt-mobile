@@ -3,122 +3,43 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'scent_note_lookup_response.g.dart';
 
-/// ScentNoteLookupResponse
-///
-/// Properties:
-/// * [id] 
-/// * [name] 
-@BuiltValue()
-abstract class ScentNoteLookupResponse implements Built<ScentNoteLookupResponse, ScentNoteLookupResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  int? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ScentNoteLookupResponse {
+  /// Returns a new [ScentNoteLookupResponse] instance.
+  ScentNoteLookupResponse({this.id, required this.name});
 
-  @BuiltValueField(wireName: r'name')
-  String get name;
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final int? id;
 
-  ScentNoteLookupResponse._();
-
-  factory ScentNoteLookupResponse([void updates(ScentNoteLookupResponseBuilder b)]) = _$ScentNoteLookupResponse;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ScentNoteLookupResponseBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ScentNoteLookupResponse> get serializer => _$ScentNoteLookupResponseSerializer();
-}
-
-class _$ScentNoteLookupResponseSerializer implements PrimitiveSerializer<ScentNoteLookupResponse> {
-  @override
-  final Iterable<Type> types = const [ScentNoteLookupResponse, _$ScentNoteLookupResponse];
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
+  final String name;
 
   @override
-  final String wireName = r'ScentNoteLookupResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ScentNoteLookupResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'name';
-    yield serializers.serialize(
-      object.name,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ScentNoteLookupResponse && other.id == id && other.name == name;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ScentNoteLookupResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => id.hashCode + name.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ScentNoteLookupResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.id = valueDes;
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ScentNoteLookupResponse.fromJson(Map<String, dynamic> json) =>
+      _$ScentNoteLookupResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ScentNoteLookupResponseToJson(this);
 
   @override
-  ScentNoteLookupResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ScentNoteLookupResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

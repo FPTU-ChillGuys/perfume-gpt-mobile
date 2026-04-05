@@ -3,130 +3,110 @@
 part of 'fulfill_order_item_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$FulfillOrderItemRequest extends FulfillOrderItemRequest {
-  @override
-  final String orderDetailId;
-  @override
-  final String scannedBatchCode;
-  @override
-  final int? quantity;
+abstract class _$FulfillOrderItemRequestCWProxy {
+  FulfillOrderItemRequest orderDetailId(String orderDetailId);
 
-  factory _$FulfillOrderItemRequest([
-    void Function(FulfillOrderItemRequestBuilder)? updates,
-  ]) => (FulfillOrderItemRequestBuilder()..update(updates))._build();
+  FulfillOrderItemRequest scannedBatchCode(String scannedBatchCode);
 
-  _$FulfillOrderItemRequest._({
-    required this.orderDetailId,
-    required this.scannedBatchCode,
-    this.quantity,
-  }) : super._();
-  @override
-  FulfillOrderItemRequest rebuild(
-    void Function(FulfillOrderItemRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  FulfillOrderItemRequest quantity(int? quantity);
 
-  @override
-  FulfillOrderItemRequestBuilder toBuilder() =>
-      FulfillOrderItemRequestBuilder()..replace(this);
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FulfillOrderItemRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// FulfillOrderItemRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  FulfillOrderItemRequest call({
+    String orderDetailId,
+    String scannedBatchCode,
+    int? quantity,
+  });
+}
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is FulfillOrderItemRequest &&
-        orderDetailId == other.orderDetailId &&
-        scannedBatchCode == other.scannedBatchCode &&
-        quantity == other.quantity;
-  }
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfFulfillOrderItemRequest.copyWith(...)` or call `instanceOfFulfillOrderItemRequest.copyWith.fieldName(value)` for a single field.
+class _$FulfillOrderItemRequestCWProxyImpl
+    implements _$FulfillOrderItemRequestCWProxy {
+  const _$FulfillOrderItemRequestCWProxyImpl(this._value);
+
+  final FulfillOrderItemRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, orderDetailId.hashCode);
-    _$hash = $jc(_$hash, scannedBatchCode.hashCode);
-    _$hash = $jc(_$hash, quantity.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  FulfillOrderItemRequest orderDetailId(String orderDetailId) =>
+      call(orderDetailId: orderDetailId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'FulfillOrderItemRequest')
-          ..add('orderDetailId', orderDetailId)
-          ..add('scannedBatchCode', scannedBatchCode)
-          ..add('quantity', quantity))
-        .toString();
+  FulfillOrderItemRequest scannedBatchCode(String scannedBatchCode) =>
+      call(scannedBatchCode: scannedBatchCode);
+
+  @override
+  FulfillOrderItemRequest quantity(int? quantity) => call(quantity: quantity);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FulfillOrderItemRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// FulfillOrderItemRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  FulfillOrderItemRequest call({
+    Object? orderDetailId = const $CopyWithPlaceholder(),
+    Object? scannedBatchCode = const $CopyWithPlaceholder(),
+    Object? quantity = const $CopyWithPlaceholder(),
+  }) {
+    return FulfillOrderItemRequest(
+      orderDetailId:
+          orderDetailId == const $CopyWithPlaceholder() || orderDetailId == null
+          ? _value.orderDetailId
+          // ignore: cast_nullable_to_non_nullable
+          : orderDetailId as String,
+      scannedBatchCode:
+          scannedBatchCode == const $CopyWithPlaceholder() ||
+              scannedBatchCode == null
+          ? _value.scannedBatchCode
+          // ignore: cast_nullable_to_non_nullable
+          : scannedBatchCode as String,
+      quantity: quantity == const $CopyWithPlaceholder()
+          ? _value.quantity
+          // ignore: cast_nullable_to_non_nullable
+          : quantity as int?,
+    );
   }
 }
 
-class FulfillOrderItemRequestBuilder
-    implements
-        Builder<FulfillOrderItemRequest, FulfillOrderItemRequestBuilder> {
-  _$FulfillOrderItemRequest? _$v;
-
-  String? _orderDetailId;
-  String? get orderDetailId => _$this._orderDetailId;
-  set orderDetailId(String? orderDetailId) =>
-      _$this._orderDetailId = orderDetailId;
-
-  String? _scannedBatchCode;
-  String? get scannedBatchCode => _$this._scannedBatchCode;
-  set scannedBatchCode(String? scannedBatchCode) =>
-      _$this._scannedBatchCode = scannedBatchCode;
-
-  int? _quantity;
-  int? get quantity => _$this._quantity;
-  set quantity(int? quantity) => _$this._quantity = quantity;
-
-  FulfillOrderItemRequestBuilder() {
-    FulfillOrderItemRequest._defaults(this);
-  }
-
-  FulfillOrderItemRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _orderDetailId = $v.orderDetailId;
-      _scannedBatchCode = $v.scannedBatchCode;
-      _quantity = $v.quantity;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(FulfillOrderItemRequest other) {
-    _$v = other as _$FulfillOrderItemRequest;
-  }
-
-  @override
-  void update(void Function(FulfillOrderItemRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  FulfillOrderItemRequest build() => _build();
-
-  _$FulfillOrderItemRequest _build() {
-    final _$result =
-        _$v ??
-        _$FulfillOrderItemRequest._(
-          orderDetailId: BuiltValueNullFieldError.checkNotNull(
-            orderDetailId,
-            r'FulfillOrderItemRequest',
-            'orderDetailId',
-          ),
-          scannedBatchCode: BuiltValueNullFieldError.checkNotNull(
-            scannedBatchCode,
-            r'FulfillOrderItemRequest',
-            'scannedBatchCode',
-          ),
-          quantity: quantity,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $FulfillOrderItemRequestCopyWith on FulfillOrderItemRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfFulfillOrderItemRequest.copyWith(...)` or `instanceOfFulfillOrderItemRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$FulfillOrderItemRequestCWProxy get copyWith =>
+      _$FulfillOrderItemRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+FulfillOrderItemRequest _$FulfillOrderItemRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('FulfillOrderItemRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['orderDetailId', 'scannedBatchCode']);
+  final val = FulfillOrderItemRequest(
+    orderDetailId: $checkedConvert('orderDetailId', (v) => v as String),
+    scannedBatchCode: $checkedConvert('scannedBatchCode', (v) => v as String),
+    quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$FulfillOrderItemRequestToJson(
+  FulfillOrderItemRequest instance,
+) => <String, dynamic>{
+  'orderDetailId': instance.orderDetailId,
+  'scannedBatchCode': instance.scannedBatchCode,
+  'quantity': ?instance.quantity,
+};

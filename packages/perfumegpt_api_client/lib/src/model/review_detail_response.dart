@@ -3,461 +3,193 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/media_response.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'review_detail_response.g.dart';
 
-/// ReviewDetailResponse
-///
-/// Properties:
-/// * [id] 
-/// * [userId] 
-/// * [userFullName] 
-/// * [userProfilePictureUrl] 
-/// * [orderDetailId] 
-/// * [orderId] 
-/// * [quantity] 
-/// * [unitPrice] 
-/// * [variantId] 
-/// * [variantName] 
-/// * [productName] 
-/// * [volumeMl] 
-/// * [concentrationName] 
-/// * [rating] 
-/// * [comment] 
-/// * [images] 
-/// * [staffFeedbackComment] 
-/// * [staffFeedbackByStaffId] 
-/// * [staffFeedbackAt] 
-/// * [createdAt] 
-/// * [updatedAt] 
-@BuiltValue()
-abstract class ReviewDetailResponse implements Built<ReviewDetailResponse, ReviewDetailResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ReviewDetailResponse {
+  /// Returns a new [ReviewDetailResponse] instance.
+  ReviewDetailResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'userId')
-  String? get userId;
+    this.userId,
 
-  @BuiltValueField(wireName: r'userFullName')
-  String get userFullName;
+    required this.userFullName,
 
-  @BuiltValueField(wireName: r'userProfilePictureUrl')
-  String? get userProfilePictureUrl;
+    this.userProfilePictureUrl,
 
-  @BuiltValueField(wireName: r'orderDetailId')
-  String? get orderDetailId;
+    this.orderDetailId,
 
-  @BuiltValueField(wireName: r'orderId')
-  String? get orderId;
+    this.orderId,
 
-  @BuiltValueField(wireName: r'quantity')
-  int? get quantity;
+    this.quantity,
 
-  @BuiltValueField(wireName: r'unitPrice')
-  num? get unitPrice;
+    this.unitPrice,
 
-  @BuiltValueField(wireName: r'variantId')
-  String? get variantId;
+    this.variantId,
 
-  @BuiltValueField(wireName: r'variantName')
-  String get variantName;
+    required this.variantName,
 
-  @BuiltValueField(wireName: r'productName')
-  String get productName;
+    required this.productName,
 
-  @BuiltValueField(wireName: r'volumeMl')
-  int? get volumeMl;
+    this.volumeMl,
 
-  @BuiltValueField(wireName: r'concentrationName')
-  String get concentrationName;
+    required this.concentrationName,
 
-  @BuiltValueField(wireName: r'rating')
-  int? get rating;
+    this.rating,
 
-  @BuiltValueField(wireName: r'comment')
-  String get comment;
+    required this.comment,
 
-  @BuiltValueField(wireName: r'images')
-  BuiltList<MediaResponse> get images;
+    required this.images,
 
-  @BuiltValueField(wireName: r'staffFeedbackComment')
-  String? get staffFeedbackComment;
+    this.staffFeedbackComment,
 
-  @BuiltValueField(wireName: r'staffFeedbackByStaffId')
-  String? get staffFeedbackByStaffId;
+    this.staffFeedbackByStaffId,
 
-  @BuiltValueField(wireName: r'staffFeedbackAt')
-  DateTime? get staffFeedbackAt;
+    this.staffFeedbackAt,
 
-  @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+    this.createdAt,
 
-  @BuiltValueField(wireName: r'updatedAt')
-  DateTime? get updatedAt;
+    this.updatedAt,
+  });
 
-  ReviewDetailResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory ReviewDetailResponse([void updates(ReviewDetailResponseBuilder b)]) = _$ReviewDetailResponse;
+  @JsonKey(name: r'userId', required: false, includeIfNull: false)
+  final String? userId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ReviewDetailResponseBuilder b) => b;
+  @JsonKey(name: r'userFullName', required: true, includeIfNull: false)
+  final String userFullName;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ReviewDetailResponse> get serializer => _$ReviewDetailResponseSerializer();
-}
+  @JsonKey(
+    name: r'userProfilePictureUrl',
+    required: false,
+    includeIfNull: false,
+  )
+  final String? userProfilePictureUrl;
 
-class _$ReviewDetailResponseSerializer implements PrimitiveSerializer<ReviewDetailResponse> {
-  @override
-  final Iterable<Type> types = const [ReviewDetailResponse, _$ReviewDetailResponse];
+  @JsonKey(name: r'orderDetailId', required: false, includeIfNull: false)
+  final String? orderDetailId;
 
-  @override
-  final String wireName = r'ReviewDetailResponse';
+  @JsonKey(name: r'orderId', required: false, includeIfNull: false)
+  final String? orderId;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ReviewDetailResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.userId != null) {
-      yield r'userId';
-      yield serializers.serialize(
-        object.userId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'userFullName';
-    yield serializers.serialize(
-      object.userFullName,
-      specifiedType: const FullType(String),
-    );
-    if (object.userProfilePictureUrl != null) {
-      yield r'userProfilePictureUrl';
-      yield serializers.serialize(
-        object.userProfilePictureUrl,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.orderDetailId != null) {
-      yield r'orderDetailId';
-      yield serializers.serialize(
-        object.orderDetailId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.orderId != null) {
-      yield r'orderId';
-      yield serializers.serialize(
-        object.orderId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.quantity != null) {
-      yield r'quantity';
-      yield serializers.serialize(
-        object.quantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.unitPrice != null) {
-      yield r'unitPrice';
-      yield serializers.serialize(
-        object.unitPrice,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.variantId != null) {
-      yield r'variantId';
-      yield serializers.serialize(
-        object.variantId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'variantName';
-    yield serializers.serialize(
-      object.variantName,
-      specifiedType: const FullType(String),
-    );
-    yield r'productName';
-    yield serializers.serialize(
-      object.productName,
-      specifiedType: const FullType(String),
-    );
-    if (object.volumeMl != null) {
-      yield r'volumeMl';
-      yield serializers.serialize(
-        object.volumeMl,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'concentrationName';
-    yield serializers.serialize(
-      object.concentrationName,
-      specifiedType: const FullType(String),
-    );
-    if (object.rating != null) {
-      yield r'rating';
-      yield serializers.serialize(
-        object.rating,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'comment';
-    yield serializers.serialize(
-      object.comment,
-      specifiedType: const FullType(String),
-    );
-    yield r'images';
-    yield serializers.serialize(
-      object.images,
-      specifiedType: const FullType(BuiltList, [FullType(MediaResponse)]),
-    );
-    if (object.staffFeedbackComment != null) {
-      yield r'staffFeedbackComment';
-      yield serializers.serialize(
-        object.staffFeedbackComment,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.staffFeedbackByStaffId != null) {
-      yield r'staffFeedbackByStaffId';
-      yield serializers.serialize(
-        object.staffFeedbackByStaffId,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.staffFeedbackAt != null) {
-      yield r'staffFeedbackAt';
-      yield serializers.serialize(
-        object.staffFeedbackAt,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.updatedAt != null) {
-      yield r'updatedAt';
-      yield serializers.serialize(
-        object.updatedAt,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-  }
+  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+  final int? quantity;
+
+  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
+  final num? unitPrice;
+
+  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+  final String? variantId;
+
+  @JsonKey(name: r'variantName', required: true, includeIfNull: false)
+  final String variantName;
+
+  @JsonKey(name: r'productName', required: true, includeIfNull: false)
+  final String productName;
+
+  @JsonKey(name: r'volumeMl', required: false, includeIfNull: false)
+  final int? volumeMl;
+
+  @JsonKey(name: r'concentrationName', required: true, includeIfNull: false)
+  final String concentrationName;
+
+  @JsonKey(name: r'rating', required: false, includeIfNull: false)
+  final int? rating;
+
+  @JsonKey(name: r'comment', required: true, includeIfNull: false)
+  final String comment;
+
+  @JsonKey(name: r'images', required: true, includeIfNull: false)
+  final List<MediaResponse> images;
+
+  @JsonKey(name: r'staffFeedbackComment', required: false, includeIfNull: false)
+  final String? staffFeedbackComment;
+
+  @JsonKey(
+    name: r'staffFeedbackByStaffId',
+    required: false,
+    includeIfNull: false,
+  )
+  final String? staffFeedbackByStaffId;
+
+  @JsonKey(name: r'staffFeedbackAt', required: false, includeIfNull: false)
+  final DateTime? staffFeedbackAt;
+
+  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+  final DateTime? createdAt;
+
+  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
+  final DateTime? updatedAt;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ReviewDetailResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ReviewDetailResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'userId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.userId = valueDes;
-          break;
-        case r'userFullName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.userFullName = valueDes;
-          break;
-        case r'userProfilePictureUrl':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.userProfilePictureUrl = valueDes;
-          break;
-        case r'orderDetailId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.orderDetailId = valueDes;
-          break;
-        case r'orderId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.orderId = valueDes;
-          break;
-        case r'quantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.quantity = valueDes;
-          break;
-        case r'unitPrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.unitPrice = valueDes;
-          break;
-        case r'variantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantId = valueDes;
-          break;
-        case r'variantName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantName = valueDes;
-          break;
-        case r'productName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.productName = valueDes;
-          break;
-        case r'volumeMl':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.volumeMl = valueDes;
-          break;
-        case r'concentrationName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.concentrationName = valueDes;
-          break;
-        case r'rating':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.rating = valueDes;
-          break;
-        case r'comment':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.comment = valueDes;
-          break;
-        case r'images':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(MediaResponse)]),
-          ) as BuiltList<MediaResponse>;
-          result.images.replace(valueDes);
-          break;
-        case r'staffFeedbackComment':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.staffFeedbackComment = valueDes;
-          break;
-        case r'staffFeedbackByStaffId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.staffFeedbackByStaffId = valueDes;
-          break;
-        case r'staffFeedbackAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.staffFeedbackAt = valueDes;
-          break;
-        case r'createdAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.createdAt = valueDes;
-          break;
-        case r'updatedAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.updatedAt = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReviewDetailResponse &&
+          other.id == id &&
+          other.userId == userId &&
+          other.userFullName == userFullName &&
+          other.userProfilePictureUrl == userProfilePictureUrl &&
+          other.orderDetailId == orderDetailId &&
+          other.orderId == orderId &&
+          other.quantity == quantity &&
+          other.unitPrice == unitPrice &&
+          other.variantId == variantId &&
+          other.variantName == variantName &&
+          other.productName == productName &&
+          other.volumeMl == volumeMl &&
+          other.concentrationName == concentrationName &&
+          other.rating == rating &&
+          other.comment == comment &&
+          other.images == images &&
+          other.staffFeedbackComment == staffFeedbackComment &&
+          other.staffFeedbackByStaffId == staffFeedbackByStaffId &&
+          other.staffFeedbackAt == staffFeedbackAt &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt;
 
   @override
-  ReviewDetailResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ReviewDetailResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      id.hashCode +
+      userId.hashCode +
+      userFullName.hashCode +
+      (userProfilePictureUrl == null ? 0 : userProfilePictureUrl.hashCode) +
+      orderDetailId.hashCode +
+      orderId.hashCode +
+      quantity.hashCode +
+      unitPrice.hashCode +
+      variantId.hashCode +
+      variantName.hashCode +
+      productName.hashCode +
+      volumeMl.hashCode +
+      concentrationName.hashCode +
+      rating.hashCode +
+      comment.hashCode +
+      images.hashCode +
+      (staffFeedbackComment == null ? 0 : staffFeedbackComment.hashCode) +
+      (staffFeedbackByStaffId == null ? 0 : staffFeedbackByStaffId.hashCode) +
+      (staffFeedbackAt == null ? 0 : staffFeedbackAt.hashCode) +
+      createdAt.hashCode +
+      (updatedAt == null ? 0 : updatedAt.hashCode);
+
+  factory ReviewDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReviewDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReviewDetailResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

@@ -28,8 +28,8 @@ Name | Type | Description | Notes
 **vnpTransactionNo** | **String** |  | [optional] 
 **isRestocked** | **bool** |  | [optional] 
 **returnShippingInfo** | [**ReturnShippingInfoResponse**](ReturnShippingInfoResponse.md) |  | [optional] 
-**returnDetails** | [**BuiltList&lt;OrderReturnRequestDetailResponse&gt;**](OrderReturnRequestDetailResponse.md) |  | [optional] 
-**proofImages** | [**BuiltList&lt;MediaResponse&gt;**](MediaResponse.md) |  | [optional] 
+**returnDetails** | [**List&lt;OrderReturnRequestDetailResponse&gt;**](OrderReturnRequestDetailResponse.md) |  | [optional] 
+**proofImages** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

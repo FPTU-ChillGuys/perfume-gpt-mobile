@@ -3,135 +3,125 @@
 part of 'variant_daily_sale_figure.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$VariantDailySaleFigure extends VariantDailySaleFigure {
-  @override
-  final String? variantId;
-  @override
-  final String variantName;
-  @override
-  final Date? date;
-  @override
-  final int? quantitySold;
+abstract class _$VariantDailySaleFigureCWProxy {
+  VariantDailySaleFigure variantId(String? variantId);
 
-  factory _$VariantDailySaleFigure([
-    void Function(VariantDailySaleFigureBuilder)? updates,
-  ]) => (VariantDailySaleFigureBuilder()..update(updates))._build();
+  VariantDailySaleFigure variantName(String variantName);
 
-  _$VariantDailySaleFigure._({
-    this.variantId,
-    required this.variantName,
-    this.date,
-    this.quantitySold,
-  }) : super._();
-  @override
-  VariantDailySaleFigure rebuild(
-    void Function(VariantDailySaleFigureBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  VariantDailySaleFigure date(DateTime? date);
 
-  @override
-  VariantDailySaleFigureBuilder toBuilder() =>
-      VariantDailySaleFigureBuilder()..replace(this);
+  VariantDailySaleFigure quantitySold(int? quantitySold);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is VariantDailySaleFigure &&
-        variantId == other.variantId &&
-        variantName == other.variantName &&
-        date == other.date &&
-        quantitySold == other.quantitySold;
-  }
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantDailySaleFigure(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VariantDailySaleFigure(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VariantDailySaleFigure call({
+    String? variantId,
+    String variantName,
+    DateTime? date,
+    int? quantitySold,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVariantDailySaleFigure.copyWith(...)` or call `instanceOfVariantDailySaleFigure.copyWith.fieldName(value)` for a single field.
+class _$VariantDailySaleFigureCWProxyImpl
+    implements _$VariantDailySaleFigureCWProxy {
+  const _$VariantDailySaleFigureCWProxyImpl(this._value);
+
+  final VariantDailySaleFigure _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, variantId.hashCode);
-    _$hash = $jc(_$hash, variantName.hashCode);
-    _$hash = $jc(_$hash, date.hashCode);
-    _$hash = $jc(_$hash, quantitySold.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  VariantDailySaleFigure variantId(String? variantId) =>
+      call(variantId: variantId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'VariantDailySaleFigure')
-          ..add('variantId', variantId)
-          ..add('variantName', variantName)
-          ..add('date', date)
-          ..add('quantitySold', quantitySold))
-        .toString();
+  VariantDailySaleFigure variantName(String variantName) =>
+      call(variantName: variantName);
+
+  @override
+  VariantDailySaleFigure date(DateTime? date) => call(date: date);
+
+  @override
+  VariantDailySaleFigure quantitySold(int? quantitySold) =>
+      call(quantitySold: quantitySold);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantDailySaleFigure(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VariantDailySaleFigure(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VariantDailySaleFigure call({
+    Object? variantId = const $CopyWithPlaceholder(),
+    Object? variantName = const $CopyWithPlaceholder(),
+    Object? date = const $CopyWithPlaceholder(),
+    Object? quantitySold = const $CopyWithPlaceholder(),
+  }) {
+    return VariantDailySaleFigure(
+      variantId: variantId == const $CopyWithPlaceholder()
+          ? _value.variantId
+          // ignore: cast_nullable_to_non_nullable
+          : variantId as String?,
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
+          ? _value.variantName
+          // ignore: cast_nullable_to_non_nullable
+          : variantName as String,
+      date: date == const $CopyWithPlaceholder()
+          ? _value.date
+          // ignore: cast_nullable_to_non_nullable
+          : date as DateTime?,
+      quantitySold: quantitySold == const $CopyWithPlaceholder()
+          ? _value.quantitySold
+          // ignore: cast_nullable_to_non_nullable
+          : quantitySold as int?,
+    );
   }
 }
 
-class VariantDailySaleFigureBuilder
-    implements Builder<VariantDailySaleFigure, VariantDailySaleFigureBuilder> {
-  _$VariantDailySaleFigure? _$v;
-
-  String? _variantId;
-  String? get variantId => _$this._variantId;
-  set variantId(String? variantId) => _$this._variantId = variantId;
-
-  String? _variantName;
-  String? get variantName => _$this._variantName;
-  set variantName(String? variantName) => _$this._variantName = variantName;
-
-  Date? _date;
-  Date? get date => _$this._date;
-  set date(Date? date) => _$this._date = date;
-
-  int? _quantitySold;
-  int? get quantitySold => _$this._quantitySold;
-  set quantitySold(int? quantitySold) => _$this._quantitySold = quantitySold;
-
-  VariantDailySaleFigureBuilder() {
-    VariantDailySaleFigure._defaults(this);
-  }
-
-  VariantDailySaleFigureBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _variantId = $v.variantId;
-      _variantName = $v.variantName;
-      _date = $v.date;
-      _quantitySold = $v.quantitySold;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(VariantDailySaleFigure other) {
-    _$v = other as _$VariantDailySaleFigure;
-  }
-
-  @override
-  void update(void Function(VariantDailySaleFigureBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  VariantDailySaleFigure build() => _build();
-
-  _$VariantDailySaleFigure _build() {
-    final _$result =
-        _$v ??
-        _$VariantDailySaleFigure._(
-          variantId: variantId,
-          variantName: BuiltValueNullFieldError.checkNotNull(
-            variantName,
-            r'VariantDailySaleFigure',
-            'variantName',
-          ),
-          date: date,
-          quantitySold: quantitySold,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $VariantDailySaleFigureCopyWith on VariantDailySaleFigure {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVariantDailySaleFigure.copyWith(...)` or `instanceOfVariantDailySaleFigure.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$VariantDailySaleFigureCWProxy get copyWith =>
+      _$VariantDailySaleFigureCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+VariantDailySaleFigure _$VariantDailySaleFigureFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('VariantDailySaleFigure', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['variantName']);
+  final val = VariantDailySaleFigure(
+    variantId: $checkedConvert('variantId', (v) => v as String?),
+    variantName: $checkedConvert('variantName', (v) => v as String),
+    date: $checkedConvert(
+      'date',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    quantitySold: $checkedConvert('quantitySold', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$VariantDailySaleFigureToJson(
+  VariantDailySaleFigure instance,
+) => <String, dynamic>{
+  'variantId': ?instance.variantId,
+  'variantName': instance.variantName,
+  'date': ?instance.date?.toIso8601String(),
+  'quantitySold': ?instance.quantitySold,
+};

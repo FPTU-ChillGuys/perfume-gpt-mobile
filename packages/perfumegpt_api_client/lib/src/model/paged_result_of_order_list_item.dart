@@ -3,208 +3,87 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/order_list_item.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'paged_result_of_order_list_item.g.dart';
 
-/// PagedResultOfOrderListItem
-///
-/// Properties:
-/// * [items] 
-/// * [pageNumber] 
-/// * [pageSize] 
-/// * [totalCount] 
-/// * [totalPages] 
-/// * [hasPreviousPage] 
-/// * [hasNextPage] 
-@BuiltValue()
-abstract class PagedResultOfOrderListItem implements Built<PagedResultOfOrderListItem, PagedResultOfOrderListItemBuilder> {
-  @BuiltValueField(wireName: r'items')
-  BuiltList<OrderListItem> get items;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class PagedResultOfOrderListItem {
+  /// Returns a new [PagedResultOfOrderListItem] instance.
+  PagedResultOfOrderListItem({
+    required this.items,
 
-  @BuiltValueField(wireName: r'pageNumber')
-  int get pageNumber;
+    required this.pageNumber,
 
-  @BuiltValueField(wireName: r'pageSize')
-  int get pageSize;
+    required this.pageSize,
 
-  @BuiltValueField(wireName: r'totalCount')
-  int get totalCount;
+    required this.totalCount,
 
-  @BuiltValueField(wireName: r'totalPages')
-  int? get totalPages;
+    this.totalPages,
 
-  @BuiltValueField(wireName: r'hasPreviousPage')
-  bool? get hasPreviousPage;
+    this.hasPreviousPage,
 
-  @BuiltValueField(wireName: r'hasNextPage')
-  bool? get hasNextPage;
+    this.hasNextPage,
+  });
 
-  PagedResultOfOrderListItem._();
+  @JsonKey(name: r'items', required: true, includeIfNull: false)
+  final List<OrderListItem> items;
 
-  factory PagedResultOfOrderListItem([void updates(PagedResultOfOrderListItemBuilder b)]) = _$PagedResultOfOrderListItem;
+  @JsonKey(name: r'pageNumber', required: true, includeIfNull: false)
+  final int pageNumber;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(PagedResultOfOrderListItemBuilder b) => b;
+  @JsonKey(name: r'pageSize', required: true, includeIfNull: false)
+  final int pageSize;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<PagedResultOfOrderListItem> get serializer => _$PagedResultOfOrderListItemSerializer();
-}
+  @JsonKey(name: r'totalCount', required: true, includeIfNull: false)
+  final int totalCount;
 
-class _$PagedResultOfOrderListItemSerializer implements PrimitiveSerializer<PagedResultOfOrderListItem> {
-  @override
-  final Iterable<Type> types = const [PagedResultOfOrderListItem, _$PagedResultOfOrderListItem];
+  @JsonKey(name: r'totalPages', required: false, includeIfNull: false)
+  final int? totalPages;
+
+  @JsonKey(name: r'hasPreviousPage', required: false, includeIfNull: false)
+  final bool? hasPreviousPage;
+
+  @JsonKey(name: r'hasNextPage', required: false, includeIfNull: false)
+  final bool? hasNextPage;
 
   @override
-  final String wireName = r'PagedResultOfOrderListItem';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    PagedResultOfOrderListItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'items';
-    yield serializers.serialize(
-      object.items,
-      specifiedType: const FullType(BuiltList, [FullType(OrderListItem)]),
-    );
-    yield r'pageNumber';
-    yield serializers.serialize(
-      object.pageNumber,
-      specifiedType: const FullType(int),
-    );
-    yield r'pageSize';
-    yield serializers.serialize(
-      object.pageSize,
-      specifiedType: const FullType(int),
-    );
-    yield r'totalCount';
-    yield serializers.serialize(
-      object.totalCount,
-      specifiedType: const FullType(int),
-    );
-    if (object.totalPages != null) {
-      yield r'totalPages';
-      yield serializers.serialize(
-        object.totalPages,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.hasPreviousPage != null) {
-      yield r'hasPreviousPage';
-      yield serializers.serialize(
-        object.hasPreviousPage,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.hasNextPage != null) {
-      yield r'hasNextPage';
-      yield serializers.serialize(
-        object.hasNextPage,
-        specifiedType: const FullType(bool),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PagedResultOfOrderListItem &&
+          other.items == items &&
+          other.pageNumber == pageNumber &&
+          other.pageSize == pageSize &&
+          other.totalCount == totalCount &&
+          other.totalPages == totalPages &&
+          other.hasPreviousPage == hasPreviousPage &&
+          other.hasNextPage == hasNextPage;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    PagedResultOfOrderListItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      items.hashCode +
+      pageNumber.hashCode +
+      pageSize.hashCode +
+      totalCount.hashCode +
+      totalPages.hashCode +
+      hasPreviousPage.hashCode +
+      hasNextPage.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required PagedResultOfOrderListItemBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'items':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(OrderListItem)]),
-          ) as BuiltList<OrderListItem>;
-          result.items.replace(valueDes);
-          break;
-        case r'pageNumber':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.pageNumber = valueDes;
-          break;
-        case r'pageSize':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.pageSize = valueDes;
-          break;
-        case r'totalCount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalCount = valueDes;
-          break;
-        case r'totalPages':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalPages = valueDes;
-          break;
-        case r'hasPreviousPage':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.hasPreviousPage = valueDes;
-          break;
-        case r'hasNextPage':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.hasNextPage = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory PagedResultOfOrderListItem.fromJson(Map<String, dynamic> json) =>
+      _$PagedResultOfOrderListItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PagedResultOfOrderListItemToJson(this);
 
   @override
-  PagedResultOfOrderListItem deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = PagedResultOfOrderListItemBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

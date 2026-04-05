@@ -3,131 +3,113 @@
 part of 'verify_stock_adjustment_detail_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$VerifyStockAdjustmentDetailRequest
-    extends VerifyStockAdjustmentDetailRequest {
-  @override
-  final String detailId;
-  @override
-  final int? approvedQuantity;
-  @override
-  final String? note;
+abstract class _$VerifyStockAdjustmentDetailRequestCWProxy {
+  VerifyStockAdjustmentDetailRequest detailId(String detailId);
 
-  factory _$VerifyStockAdjustmentDetailRequest([
-    void Function(VerifyStockAdjustmentDetailRequestBuilder)? updates,
-  ]) => (VerifyStockAdjustmentDetailRequestBuilder()..update(updates))._build();
+  VerifyStockAdjustmentDetailRequest approvedQuantity(int? approvedQuantity);
 
-  _$VerifyStockAdjustmentDetailRequest._({
-    required this.detailId,
-    this.approvedQuantity,
-    this.note,
-  }) : super._();
-  @override
-  VerifyStockAdjustmentDetailRequest rebuild(
-    void Function(VerifyStockAdjustmentDetailRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  VerifyStockAdjustmentDetailRequest note(String? note);
 
-  @override
-  VerifyStockAdjustmentDetailRequestBuilder toBuilder() =>
-      VerifyStockAdjustmentDetailRequestBuilder()..replace(this);
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyStockAdjustmentDetailRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VerifyStockAdjustmentDetailRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VerifyStockAdjustmentDetailRequest call({
+    String detailId,
+    int? approvedQuantity,
+    String? note,
+  });
+}
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is VerifyStockAdjustmentDetailRequest &&
-        detailId == other.detailId &&
-        approvedQuantity == other.approvedQuantity &&
-        note == other.note;
-  }
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfVerifyStockAdjustmentDetailRequest.copyWith(...)` or call `instanceOfVerifyStockAdjustmentDetailRequest.copyWith.fieldName(value)` for a single field.
+class _$VerifyStockAdjustmentDetailRequestCWProxyImpl
+    implements _$VerifyStockAdjustmentDetailRequestCWProxy {
+  const _$VerifyStockAdjustmentDetailRequestCWProxyImpl(this._value);
+
+  final VerifyStockAdjustmentDetailRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, detailId.hashCode);
-    _$hash = $jc(_$hash, approvedQuantity.hashCode);
-    _$hash = $jc(_$hash, note.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  VerifyStockAdjustmentDetailRequest detailId(String detailId) =>
+      call(detailId: detailId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'VerifyStockAdjustmentDetailRequest')
-          ..add('detailId', detailId)
-          ..add('approvedQuantity', approvedQuantity)
-          ..add('note', note))
-        .toString();
+  VerifyStockAdjustmentDetailRequest approvedQuantity(int? approvedQuantity) =>
+      call(approvedQuantity: approvedQuantity);
+
+  @override
+  VerifyStockAdjustmentDetailRequest note(String? note) => call(note: note);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyStockAdjustmentDetailRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// VerifyStockAdjustmentDetailRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  VerifyStockAdjustmentDetailRequest call({
+    Object? detailId = const $CopyWithPlaceholder(),
+    Object? approvedQuantity = const $CopyWithPlaceholder(),
+    Object? note = const $CopyWithPlaceholder(),
+  }) {
+    return VerifyStockAdjustmentDetailRequest(
+      detailId: detailId == const $CopyWithPlaceholder() || detailId == null
+          ? _value.detailId
+          // ignore: cast_nullable_to_non_nullable
+          : detailId as String,
+      approvedQuantity: approvedQuantity == const $CopyWithPlaceholder()
+          ? _value.approvedQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : approvedQuantity as int?,
+      note: note == const $CopyWithPlaceholder()
+          ? _value.note
+          // ignore: cast_nullable_to_non_nullable
+          : note as String?,
+    );
   }
 }
 
-class VerifyStockAdjustmentDetailRequestBuilder
-    implements
-        Builder<
-          VerifyStockAdjustmentDetailRequest,
-          VerifyStockAdjustmentDetailRequestBuilder
-        > {
-  _$VerifyStockAdjustmentDetailRequest? _$v;
-
-  String? _detailId;
-  String? get detailId => _$this._detailId;
-  set detailId(String? detailId) => _$this._detailId = detailId;
-
-  int? _approvedQuantity;
-  int? get approvedQuantity => _$this._approvedQuantity;
-  set approvedQuantity(int? approvedQuantity) =>
-      _$this._approvedQuantity = approvedQuantity;
-
-  String? _note;
-  String? get note => _$this._note;
-  set note(String? note) => _$this._note = note;
-
-  VerifyStockAdjustmentDetailRequestBuilder() {
-    VerifyStockAdjustmentDetailRequest._defaults(this);
-  }
-
-  VerifyStockAdjustmentDetailRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _detailId = $v.detailId;
-      _approvedQuantity = $v.approvedQuantity;
-      _note = $v.note;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(VerifyStockAdjustmentDetailRequest other) {
-    _$v = other as _$VerifyStockAdjustmentDetailRequest;
-  }
-
-  @override
-  void update(
-    void Function(VerifyStockAdjustmentDetailRequestBuilder)? updates,
-  ) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  VerifyStockAdjustmentDetailRequest build() => _build();
-
-  _$VerifyStockAdjustmentDetailRequest _build() {
-    final _$result =
-        _$v ??
-        _$VerifyStockAdjustmentDetailRequest._(
-          detailId: BuiltValueNullFieldError.checkNotNull(
-            detailId,
-            r'VerifyStockAdjustmentDetailRequest',
-            'detailId',
-          ),
-          approvedQuantity: approvedQuantity,
-          note: note,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $VerifyStockAdjustmentDetailRequestCopyWith
+    on VerifyStockAdjustmentDetailRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfVerifyStockAdjustmentDetailRequest.copyWith(...)` or `instanceOfVerifyStockAdjustmentDetailRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$VerifyStockAdjustmentDetailRequestCWProxy get copyWith =>
+      _$VerifyStockAdjustmentDetailRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+VerifyStockAdjustmentDetailRequest _$VerifyStockAdjustmentDetailRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('VerifyStockAdjustmentDetailRequest', json, (
+  $checkedConvert,
+) {
+  $checkKeys(json, requiredKeys: const ['detailId']);
+  final val = VerifyStockAdjustmentDetailRequest(
+    detailId: $checkedConvert('detailId', (v) => v as String),
+    approvedQuantity: $checkedConvert(
+      'approvedQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    note: $checkedConvert('note', (v) => v as String?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$VerifyStockAdjustmentDetailRequestToJson(
+  VerifyStockAdjustmentDetailRequest instance,
+) => <String, dynamic>{
+  'detailId': instance.detailId,
+  'approvedQuantity': ?instance.approvedQuantity,
+  'note': ?instance.note,
+};

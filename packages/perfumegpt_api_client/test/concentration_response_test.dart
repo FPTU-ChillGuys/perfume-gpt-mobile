@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ConcentrationResponse
 void main() {
-  final instance = ConcentrationResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final ConcentrationResponse? instance = /* ConcentrationResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(ConcentrationResponse, () {
     // int id
@@ -16,6 +16,5 @@ void main() {
     test('to test the property `name`', () async {
       // TODO
     });
-
   });
 }

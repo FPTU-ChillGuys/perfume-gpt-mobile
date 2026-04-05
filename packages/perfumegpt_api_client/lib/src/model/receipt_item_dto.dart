@@ -3,174 +3,72 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'receipt_item_dto.g.dart';
 
-/// ReceiptItemDto
-///
-/// Properties:
-/// * [productName] 
-/// * [variantInfo] 
-/// * [quantity] 
-/// * [unitPrice] 
-/// * [subtotal] 
-@BuiltValue()
-abstract class ReceiptItemDto implements Built<ReceiptItemDto, ReceiptItemDtoBuilder> {
-  @BuiltValueField(wireName: r'productName')
-  String get productName;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ReceiptItemDto {
+  /// Returns a new [ReceiptItemDto] instance.
+  ReceiptItemDto({
+    required this.productName,
 
-  @BuiltValueField(wireName: r'variantInfo')
-  String get variantInfo;
+    required this.variantInfo,
 
-  @BuiltValueField(wireName: r'quantity')
-  int? get quantity;
+    this.quantity,
 
-  @BuiltValueField(wireName: r'unitPrice')
-  num? get unitPrice;
+    this.unitPrice,
 
-  @BuiltValueField(wireName: r'subtotal')
-  num? get subtotal;
+    this.subtotal,
+  });
 
-  ReceiptItemDto._();
+  @JsonKey(name: r'productName', required: true, includeIfNull: false)
+  final String productName;
 
-  factory ReceiptItemDto([void updates(ReceiptItemDtoBuilder b)]) = _$ReceiptItemDto;
+  @JsonKey(name: r'variantInfo', required: true, includeIfNull: false)
+  final String variantInfo;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ReceiptItemDtoBuilder b) => b;
+  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+  final int? quantity;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ReceiptItemDto> get serializer => _$ReceiptItemDtoSerializer();
-}
+  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
+  final num? unitPrice;
 
-class _$ReceiptItemDtoSerializer implements PrimitiveSerializer<ReceiptItemDto> {
-  @override
-  final Iterable<Type> types = const [ReceiptItemDto, _$ReceiptItemDto];
+  @JsonKey(name: r'subtotal', required: false, includeIfNull: false)
+  final num? subtotal;
 
   @override
-  final String wireName = r'ReceiptItemDto';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ReceiptItemDto object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'productName';
-    yield serializers.serialize(
-      object.productName,
-      specifiedType: const FullType(String),
-    );
-    yield r'variantInfo';
-    yield serializers.serialize(
-      object.variantInfo,
-      specifiedType: const FullType(String),
-    );
-    if (object.quantity != null) {
-      yield r'quantity';
-      yield serializers.serialize(
-        object.quantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.unitPrice != null) {
-      yield r'unitPrice';
-      yield serializers.serialize(
-        object.unitPrice,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.subtotal != null) {
-      yield r'subtotal';
-      yield serializers.serialize(
-        object.subtotal,
-        specifiedType: const FullType(num),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReceiptItemDto &&
+          other.productName == productName &&
+          other.variantInfo == variantInfo &&
+          other.quantity == quantity &&
+          other.unitPrice == unitPrice &&
+          other.subtotal == subtotal;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ReceiptItemDto object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      productName.hashCode +
+      variantInfo.hashCode +
+      quantity.hashCode +
+      unitPrice.hashCode +
+      subtotal.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ReceiptItemDtoBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'productName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.productName = valueDes;
-          break;
-        case r'variantInfo':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantInfo = valueDes;
-          break;
-        case r'quantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.quantity = valueDes;
-          break;
-        case r'unitPrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.unitPrice = valueDes;
-          break;
-        case r'subtotal':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.subtotal = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory ReceiptItemDto.fromJson(Map<String, dynamic> json) =>
+      _$ReceiptItemDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiptItemDtoToJson(this);
 
   @override
-  ReceiptItemDto deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ReceiptItemDtoBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

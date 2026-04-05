@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateStockAdjustmentRequest
 void main() {
-  final instance = CreateStockAdjustmentRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateStockAdjustmentRequest?
+  instance = /* CreateStockAdjustmentRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateStockAdjustmentRequest, () {
     // DateTime adjustmentDate
@@ -22,10 +23,9 @@ void main() {
       // TODO
     });
 
-    // BuiltList<CreateStockAdjustmentDetailRequest> adjustmentDetails
+    // List<CreateStockAdjustmentDetailRequest> adjustmentDetails
     test('to test the property `adjustmentDetails`', () async {
       // TODO
     });
-
   });
 }

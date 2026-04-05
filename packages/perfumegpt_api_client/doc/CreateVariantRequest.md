@@ -20,8 +20,8 @@ Name | Type | Description | Notes
 **retailPrice** | **num** |  | [optional] 
 **status** | [**VariantStatus**](VariantStatus.md) |  | [optional] 
 **lowStockThreshold** | **int** |  | [optional] 
-**attributes** | [**BuiltList&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 
-**temporaryMediaIds** | **BuiltList&lt;String&gt;** |  | [optional] 
+**attributes** | [**List&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 
+**temporaryMediaIds** | **List&lt;String&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

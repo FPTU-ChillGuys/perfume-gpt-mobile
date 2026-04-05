@@ -3,177 +3,153 @@
 part of 'base_response_of_list_of_redeemable_voucher_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BaseResponseOfListOfRedeemableVoucherResponse
-    extends BaseResponseOfListOfRedeemableVoucherResponse {
-  @override
-  final BuiltList<RedeemableVoucherResponse>? payload;
-  @override
-  final bool? success;
-  @override
-  final String? message;
-  @override
-  final BuiltList<String>? errors;
-  @override
-  final int? errorType;
+abstract class _$BaseResponseOfListOfRedeemableVoucherResponseCWProxy {
+  BaseResponseOfListOfRedeemableVoucherResponse payload(
+    List<RedeemableVoucherResponse>? payload,
+  );
 
-  factory _$BaseResponseOfListOfRedeemableVoucherResponse([
-    void Function(BaseResponseOfListOfRedeemableVoucherResponseBuilder)?
-    updates,
-  ]) =>
-      (BaseResponseOfListOfRedeemableVoucherResponseBuilder()..update(updates))
-          ._build();
+  BaseResponseOfListOfRedeemableVoucherResponse success(bool? success);
 
-  _$BaseResponseOfListOfRedeemableVoucherResponse._({
-    this.payload,
-    this.success,
-    this.message,
-    this.errors,
-    this.errorType,
-  }) : super._();
-  @override
-  BaseResponseOfListOfRedeemableVoucherResponse rebuild(
-    void Function(BaseResponseOfListOfRedeemableVoucherResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  BaseResponseOfListOfRedeemableVoucherResponse message(String? message);
+
+  BaseResponseOfListOfRedeemableVoucherResponse errors(List<String>? errors);
+
+  BaseResponseOfListOfRedeemableVoucherResponse errorType(int? errorType);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfRedeemableVoucherResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfListOfRedeemableVoucherResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfListOfRedeemableVoucherResponse call({
+    List<RedeemableVoucherResponse>? payload,
+    bool? success,
+    String? message,
+    List<String>? errors,
+    int? errorType,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfListOfRedeemableVoucherResponse.copyWith(...)` or call `instanceOfBaseResponseOfListOfRedeemableVoucherResponse.copyWith.fieldName(value)` for a single field.
+class _$BaseResponseOfListOfRedeemableVoucherResponseCWProxyImpl
+    implements _$BaseResponseOfListOfRedeemableVoucherResponseCWProxy {
+  const _$BaseResponseOfListOfRedeemableVoucherResponseCWProxyImpl(this._value);
+
+  final BaseResponseOfListOfRedeemableVoucherResponse _value;
 
   @override
-  BaseResponseOfListOfRedeemableVoucherResponseBuilder toBuilder() =>
-      BaseResponseOfListOfRedeemableVoucherResponseBuilder()..replace(this);
+  BaseResponseOfListOfRedeemableVoucherResponse payload(
+    List<RedeemableVoucherResponse>? payload,
+  ) => call(payload: payload);
 
   @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BaseResponseOfListOfRedeemableVoucherResponse &&
-        payload == other.payload &&
-        success == other.success &&
-        message == other.message &&
-        errors == other.errors &&
-        errorType == other.errorType;
+  BaseResponseOfListOfRedeemableVoucherResponse success(bool? success) =>
+      call(success: success);
+
+  @override
+  BaseResponseOfListOfRedeemableVoucherResponse message(String? message) =>
+      call(message: message);
+
+  @override
+  BaseResponseOfListOfRedeemableVoucherResponse errors(List<String>? errors) =>
+      call(errors: errors);
+
+  @override
+  BaseResponseOfListOfRedeemableVoucherResponse errorType(int? errorType) =>
+      call(errorType: errorType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfRedeemableVoucherResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfListOfRedeemableVoucherResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfListOfRedeemableVoucherResponse call({
+    Object? payload = const $CopyWithPlaceholder(),
+    Object? success = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? errors = const $CopyWithPlaceholder(),
+    Object? errorType = const $CopyWithPlaceholder(),
+  }) {
+    return BaseResponseOfListOfRedeemableVoucherResponse(
+      payload: payload == const $CopyWithPlaceholder()
+          ? _value.payload
+          // ignore: cast_nullable_to_non_nullable
+          : payload as List<RedeemableVoucherResponse>?,
+      success: success == const $CopyWithPlaceholder()
+          ? _value.success
+          // ignore: cast_nullable_to_non_nullable
+          : success as bool?,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      errors: errors == const $CopyWithPlaceholder()
+          ? _value.errors
+          // ignore: cast_nullable_to_non_nullable
+          : errors as List<String>?,
+      errorType: errorType == const $CopyWithPlaceholder()
+          ? _value.errorType
+          // ignore: cast_nullable_to_non_nullable
+          : errorType as int?,
+    );
   }
+}
 
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, payload.hashCode);
-    _$hash = $jc(_$hash, success.hashCode);
-    _$hash = $jc(_$hash, message.hashCode);
-    _$hash = $jc(_$hash, errors.hashCode);
-    _$hash = $jc(_$hash, errorType.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+extension $BaseResponseOfListOfRedeemableVoucherResponseCopyWith
+    on BaseResponseOfListOfRedeemableVoucherResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfListOfRedeemableVoucherResponse.copyWith(...)` or `instanceOfBaseResponseOfListOfRedeemableVoucherResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BaseResponseOfListOfRedeemableVoucherResponseCWProxy get copyWith =>
+      _$BaseResponseOfListOfRedeemableVoucherResponseCWProxyImpl(this);
+}
 
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'BaseResponseOfListOfRedeemableVoucherResponse',
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BaseResponseOfListOfRedeemableVoucherResponse
+_$BaseResponseOfListOfRedeemableVoucherResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('BaseResponseOfListOfRedeemableVoucherResponse', json, (
+  $checkedConvert,
+) {
+  final val = BaseResponseOfListOfRedeemableVoucherResponse(
+    payload: $checkedConvert(
+      'payload',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) =>
+                RedeemableVoucherResponse.fromJson(e as Map<String, dynamic>),
           )
-          ..add('payload', payload)
-          ..add('success', success)
-          ..add('message', message)
-          ..add('errors', errors)
-          ..add('errorType', errorType))
-        .toString();
-  }
-}
+          .toList(),
+    ),
+    success: $checkedConvert('success', (v) => v as bool?),
+    message: $checkedConvert('message', (v) => v as String?),
+    errors: $checkedConvert(
+      'errors',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    ),
+    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
 
-class BaseResponseOfListOfRedeemableVoucherResponseBuilder
-    implements
-        Builder<
-          BaseResponseOfListOfRedeemableVoucherResponse,
-          BaseResponseOfListOfRedeemableVoucherResponseBuilder
-        > {
-  _$BaseResponseOfListOfRedeemableVoucherResponse? _$v;
-
-  ListBuilder<RedeemableVoucherResponse>? _payload;
-  ListBuilder<RedeemableVoucherResponse> get payload =>
-      _$this._payload ??= ListBuilder<RedeemableVoucherResponse>();
-  set payload(ListBuilder<RedeemableVoucherResponse>? payload) =>
-      _$this._payload = payload;
-
-  bool? _success;
-  bool? get success => _$this._success;
-  set success(bool? success) => _$this._success = success;
-
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
-
-  ListBuilder<String>? _errors;
-  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
-  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
-
-  int? _errorType;
-  int? get errorType => _$this._errorType;
-  set errorType(int? errorType) => _$this._errorType = errorType;
-
-  BaseResponseOfListOfRedeemableVoucherResponseBuilder() {
-    BaseResponseOfListOfRedeemableVoucherResponse._defaults(this);
-  }
-
-  BaseResponseOfListOfRedeemableVoucherResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _payload = $v.payload?.toBuilder();
-      _success = $v.success;
-      _message = $v.message;
-      _errors = $v.errors?.toBuilder();
-      _errorType = $v.errorType;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BaseResponseOfListOfRedeemableVoucherResponse other) {
-    _$v = other as _$BaseResponseOfListOfRedeemableVoucherResponse;
-  }
-
-  @override
-  void update(
-    void Function(BaseResponseOfListOfRedeemableVoucherResponseBuilder)?
-    updates,
-  ) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BaseResponseOfListOfRedeemableVoucherResponse build() => _build();
-
-  _$BaseResponseOfListOfRedeemableVoucherResponse _build() {
-    _$BaseResponseOfListOfRedeemableVoucherResponse _$result;
-    try {
-      _$result =
-          _$v ??
-          _$BaseResponseOfListOfRedeemableVoucherResponse._(
-            payload: _payload?.build(),
-            success: success,
-            message: message,
-            errors: _errors?.build(),
-            errorType: errorType,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'payload';
-        _payload?.build();
-
-        _$failedField = 'errors';
-        _errors?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'BaseResponseOfListOfRedeemableVoucherResponse',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+Map<String, dynamic> _$BaseResponseOfListOfRedeemableVoucherResponseToJson(
+  BaseResponseOfListOfRedeemableVoucherResponse instance,
+) => <String, dynamic>{
+  'payload': ?instance.payload?.map((e) => e.toJson()).toList(),
+  'success': ?instance.success,
+  'message': ?instance.message,
+  'errors': ?instance.errors,
+  'errorType': ?instance.errorType,
+};

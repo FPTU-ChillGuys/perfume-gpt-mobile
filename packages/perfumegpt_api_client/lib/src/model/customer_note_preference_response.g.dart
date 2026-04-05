@@ -3,127 +3,117 @@
 part of 'customer_note_preference_response.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$CustomerNotePreferenceResponse extends CustomerNotePreferenceResponse {
-  @override
-  final int? noteId;
-  @override
-  final String noteName;
-  @override
-  final NoteType? noteType;
+abstract class _$CustomerNotePreferenceResponseCWProxy {
+  CustomerNotePreferenceResponse noteId(int? noteId);
 
-  factory _$CustomerNotePreferenceResponse([
-    void Function(CustomerNotePreferenceResponseBuilder)? updates,
-  ]) => (CustomerNotePreferenceResponseBuilder()..update(updates))._build();
+  CustomerNotePreferenceResponse noteName(String noteName);
 
-  _$CustomerNotePreferenceResponse._({
-    this.noteId,
-    required this.noteName,
-    this.noteType,
-  }) : super._();
-  @override
-  CustomerNotePreferenceResponse rebuild(
-    void Function(CustomerNotePreferenceResponseBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  CustomerNotePreferenceResponse noteType(NoteType? noteType);
 
-  @override
-  CustomerNotePreferenceResponseBuilder toBuilder() =>
-      CustomerNotePreferenceResponseBuilder()..replace(this);
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CustomerNotePreferenceResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CustomerNotePreferenceResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CustomerNotePreferenceResponse call({
+    int? noteId,
+    String noteName,
+    NoteType? noteType,
+  });
+}
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is CustomerNotePreferenceResponse &&
-        noteId == other.noteId &&
-        noteName == other.noteName &&
-        noteType == other.noteType;
-  }
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCustomerNotePreferenceResponse.copyWith(...)` or call `instanceOfCustomerNotePreferenceResponse.copyWith.fieldName(value)` for a single field.
+class _$CustomerNotePreferenceResponseCWProxyImpl
+    implements _$CustomerNotePreferenceResponseCWProxy {
+  const _$CustomerNotePreferenceResponseCWProxyImpl(this._value);
+
+  final CustomerNotePreferenceResponse _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, noteId.hashCode);
-    _$hash = $jc(_$hash, noteName.hashCode);
-    _$hash = $jc(_$hash, noteType.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  CustomerNotePreferenceResponse noteId(int? noteId) => call(noteId: noteId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'CustomerNotePreferenceResponse')
-          ..add('noteId', noteId)
-          ..add('noteName', noteName)
-          ..add('noteType', noteType))
-        .toString();
+  CustomerNotePreferenceResponse noteName(String noteName) =>
+      call(noteName: noteName);
+
+  @override
+  CustomerNotePreferenceResponse noteType(NoteType? noteType) =>
+      call(noteType: noteType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CustomerNotePreferenceResponse(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CustomerNotePreferenceResponse(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CustomerNotePreferenceResponse call({
+    Object? noteId = const $CopyWithPlaceholder(),
+    Object? noteName = const $CopyWithPlaceholder(),
+    Object? noteType = const $CopyWithPlaceholder(),
+  }) {
+    return CustomerNotePreferenceResponse(
+      noteId: noteId == const $CopyWithPlaceholder()
+          ? _value.noteId
+          // ignore: cast_nullable_to_non_nullable
+          : noteId as int?,
+      noteName: noteName == const $CopyWithPlaceholder() || noteName == null
+          ? _value.noteName
+          // ignore: cast_nullable_to_non_nullable
+          : noteName as String,
+      noteType: noteType == const $CopyWithPlaceholder()
+          ? _value.noteType
+          // ignore: cast_nullable_to_non_nullable
+          : noteType as NoteType?,
+    );
   }
 }
 
-class CustomerNotePreferenceResponseBuilder
-    implements
-        Builder<
-          CustomerNotePreferenceResponse,
-          CustomerNotePreferenceResponseBuilder
-        > {
-  _$CustomerNotePreferenceResponse? _$v;
-
-  int? _noteId;
-  int? get noteId => _$this._noteId;
-  set noteId(int? noteId) => _$this._noteId = noteId;
-
-  String? _noteName;
-  String? get noteName => _$this._noteName;
-  set noteName(String? noteName) => _$this._noteName = noteName;
-
-  NoteType? _noteType;
-  NoteType? get noteType => _$this._noteType;
-  set noteType(NoteType? noteType) => _$this._noteType = noteType;
-
-  CustomerNotePreferenceResponseBuilder() {
-    CustomerNotePreferenceResponse._defaults(this);
-  }
-
-  CustomerNotePreferenceResponseBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _noteId = $v.noteId;
-      _noteName = $v.noteName;
-      _noteType = $v.noteType;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(CustomerNotePreferenceResponse other) {
-    _$v = other as _$CustomerNotePreferenceResponse;
-  }
-
-  @override
-  void update(void Function(CustomerNotePreferenceResponseBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  CustomerNotePreferenceResponse build() => _build();
-
-  _$CustomerNotePreferenceResponse _build() {
-    final _$result =
-        _$v ??
-        _$CustomerNotePreferenceResponse._(
-          noteId: noteId,
-          noteName: BuiltValueNullFieldError.checkNotNull(
-            noteName,
-            r'CustomerNotePreferenceResponse',
-            'noteName',
-          ),
-          noteType: noteType,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $CustomerNotePreferenceResponseCopyWith
+    on CustomerNotePreferenceResponse {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCustomerNotePreferenceResponse.copyWith(...)` or `instanceOfCustomerNotePreferenceResponse.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CustomerNotePreferenceResponseCWProxy get copyWith =>
+      _$CustomerNotePreferenceResponseCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CustomerNotePreferenceResponse _$CustomerNotePreferenceResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CustomerNotePreferenceResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['noteName']);
+  final val = CustomerNotePreferenceResponse(
+    noteId: $checkedConvert('noteId', (v) => (v as num?)?.toInt()),
+    noteName: $checkedConvert('noteName', (v) => v as String),
+    noteType: $checkedConvert(
+      'noteType',
+      (v) => $enumDecodeNullable(_$NoteTypeEnumMap, v),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$CustomerNotePreferenceResponseToJson(
+  CustomerNotePreferenceResponse instance,
+) => <String, dynamic>{
+  'noteId': ?instance.noteId,
+  'noteName': instance.noteName,
+  'noteType': ?_$NoteTypeEnumMap[instance.noteType],
+};
+
+const _$NoteTypeEnumMap = {
+  NoteType.top: 'Top',
+  NoteType.heart: 'Heart',
+  NoteType.base_: 'Base',
+};

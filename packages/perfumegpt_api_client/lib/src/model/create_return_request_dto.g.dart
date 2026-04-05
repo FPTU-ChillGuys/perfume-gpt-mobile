@@ -3,203 +3,188 @@
 part of 'create_return_request_dto.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$CreateReturnRequestDto extends CreateReturnRequestDto {
-  @override
-  final String orderId;
-  @override
-  final ReturnOrderReason reason;
-  @override
-  final BuiltList<ReturnItemDto> returnItems;
-  @override
-  final String? customerNote;
-  @override
-  final String? savedAddressId;
-  @override
-  final ContactAddressInformation? recipient;
-  @override
-  final BuiltList<String>? temporaryMediaIds;
+abstract class _$CreateReturnRequestDtoCWProxy {
+  CreateReturnRequestDto orderId(String orderId);
 
-  factory _$CreateReturnRequestDto([
-    void Function(CreateReturnRequestDtoBuilder)? updates,
-  ]) => (CreateReturnRequestDtoBuilder()..update(updates))._build();
+  CreateReturnRequestDto reason(ReturnOrderReason reason);
 
-  _$CreateReturnRequestDto._({
-    required this.orderId,
-    required this.reason,
-    required this.returnItems,
-    this.customerNote,
-    this.savedAddressId,
-    this.recipient,
-    this.temporaryMediaIds,
-  }) : super._();
-  @override
-  CreateReturnRequestDto rebuild(
-    void Function(CreateReturnRequestDtoBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  CreateReturnRequestDto returnItems(List<ReturnItemDto> returnItems);
 
-  @override
-  CreateReturnRequestDtoBuilder toBuilder() =>
-      CreateReturnRequestDtoBuilder()..replace(this);
+  CreateReturnRequestDto customerNote(String? customerNote);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is CreateReturnRequestDto &&
-        orderId == other.orderId &&
-        reason == other.reason &&
-        returnItems == other.returnItems &&
-        customerNote == other.customerNote &&
-        savedAddressId == other.savedAddressId &&
-        recipient == other.recipient &&
-        temporaryMediaIds == other.temporaryMediaIds;
-  }
+  CreateReturnRequestDto savedAddressId(String? savedAddressId);
+
+  CreateReturnRequestDto recipient(ContactAddressInformation? recipient);
+
+  CreateReturnRequestDto temporaryMediaIds(List<String>? temporaryMediaIds);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateReturnRequestDto(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateReturnRequestDto(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateReturnRequestDto call({
+    String orderId,
+    ReturnOrderReason reason,
+    List<ReturnItemDto> returnItems,
+    String? customerNote,
+    String? savedAddressId,
+    ContactAddressInformation? recipient,
+    List<String>? temporaryMediaIds,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateReturnRequestDto.copyWith(...)` or call `instanceOfCreateReturnRequestDto.copyWith.fieldName(value)` for a single field.
+class _$CreateReturnRequestDtoCWProxyImpl
+    implements _$CreateReturnRequestDtoCWProxy {
+  const _$CreateReturnRequestDtoCWProxyImpl(this._value);
+
+  final CreateReturnRequestDto _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, orderId.hashCode);
-    _$hash = $jc(_$hash, reason.hashCode);
-    _$hash = $jc(_$hash, returnItems.hashCode);
-    _$hash = $jc(_$hash, customerNote.hashCode);
-    _$hash = $jc(_$hash, savedAddressId.hashCode);
-    _$hash = $jc(_$hash, recipient.hashCode);
-    _$hash = $jc(_$hash, temporaryMediaIds.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  CreateReturnRequestDto orderId(String orderId) => call(orderId: orderId);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'CreateReturnRequestDto')
-          ..add('orderId', orderId)
-          ..add('reason', reason)
-          ..add('returnItems', returnItems)
-          ..add('customerNote', customerNote)
-          ..add('savedAddressId', savedAddressId)
-          ..add('recipient', recipient)
-          ..add('temporaryMediaIds', temporaryMediaIds))
-        .toString();
+  CreateReturnRequestDto reason(ReturnOrderReason reason) =>
+      call(reason: reason);
+
+  @override
+  CreateReturnRequestDto returnItems(List<ReturnItemDto> returnItems) =>
+      call(returnItems: returnItems);
+
+  @override
+  CreateReturnRequestDto customerNote(String? customerNote) =>
+      call(customerNote: customerNote);
+
+  @override
+  CreateReturnRequestDto savedAddressId(String? savedAddressId) =>
+      call(savedAddressId: savedAddressId);
+
+  @override
+  CreateReturnRequestDto recipient(ContactAddressInformation? recipient) =>
+      call(recipient: recipient);
+
+  @override
+  CreateReturnRequestDto temporaryMediaIds(List<String>? temporaryMediaIds) =>
+      call(temporaryMediaIds: temporaryMediaIds);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateReturnRequestDto(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateReturnRequestDto(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateReturnRequestDto call({
+    Object? orderId = const $CopyWithPlaceholder(),
+    Object? reason = const $CopyWithPlaceholder(),
+    Object? returnItems = const $CopyWithPlaceholder(),
+    Object? customerNote = const $CopyWithPlaceholder(),
+    Object? savedAddressId = const $CopyWithPlaceholder(),
+    Object? recipient = const $CopyWithPlaceholder(),
+    Object? temporaryMediaIds = const $CopyWithPlaceholder(),
+  }) {
+    return CreateReturnRequestDto(
+      orderId: orderId == const $CopyWithPlaceholder() || orderId == null
+          ? _value.orderId
+          // ignore: cast_nullable_to_non_nullable
+          : orderId as String,
+      reason: reason == const $CopyWithPlaceholder() || reason == null
+          ? _value.reason
+          // ignore: cast_nullable_to_non_nullable
+          : reason as ReturnOrderReason,
+      returnItems:
+          returnItems == const $CopyWithPlaceholder() || returnItems == null
+          ? _value.returnItems
+          // ignore: cast_nullable_to_non_nullable
+          : returnItems as List<ReturnItemDto>,
+      customerNote: customerNote == const $CopyWithPlaceholder()
+          ? _value.customerNote
+          // ignore: cast_nullable_to_non_nullable
+          : customerNote as String?,
+      savedAddressId: savedAddressId == const $CopyWithPlaceholder()
+          ? _value.savedAddressId
+          // ignore: cast_nullable_to_non_nullable
+          : savedAddressId as String?,
+      recipient: recipient == const $CopyWithPlaceholder()
+          ? _value.recipient
+          // ignore: cast_nullable_to_non_nullable
+          : recipient as ContactAddressInformation?,
+      temporaryMediaIds: temporaryMediaIds == const $CopyWithPlaceholder()
+          ? _value.temporaryMediaIds
+          // ignore: cast_nullable_to_non_nullable
+          : temporaryMediaIds as List<String>?,
+    );
   }
 }
 
-class CreateReturnRequestDtoBuilder
-    implements Builder<CreateReturnRequestDto, CreateReturnRequestDtoBuilder> {
-  _$CreateReturnRequestDto? _$v;
-
-  String? _orderId;
-  String? get orderId => _$this._orderId;
-  set orderId(String? orderId) => _$this._orderId = orderId;
-
-  ReturnOrderReason? _reason;
-  ReturnOrderReason? get reason => _$this._reason;
-  set reason(ReturnOrderReason? reason) => _$this._reason = reason;
-
-  ListBuilder<ReturnItemDto>? _returnItems;
-  ListBuilder<ReturnItemDto> get returnItems =>
-      _$this._returnItems ??= ListBuilder<ReturnItemDto>();
-  set returnItems(ListBuilder<ReturnItemDto>? returnItems) =>
-      _$this._returnItems = returnItems;
-
-  String? _customerNote;
-  String? get customerNote => _$this._customerNote;
-  set customerNote(String? customerNote) => _$this._customerNote = customerNote;
-
-  String? _savedAddressId;
-  String? get savedAddressId => _$this._savedAddressId;
-  set savedAddressId(String? savedAddressId) =>
-      _$this._savedAddressId = savedAddressId;
-
-  ContactAddressInformationBuilder? _recipient;
-  ContactAddressInformationBuilder get recipient =>
-      _$this._recipient ??= ContactAddressInformationBuilder();
-  set recipient(ContactAddressInformationBuilder? recipient) =>
-      _$this._recipient = recipient;
-
-  ListBuilder<String>? _temporaryMediaIds;
-  ListBuilder<String> get temporaryMediaIds =>
-      _$this._temporaryMediaIds ??= ListBuilder<String>();
-  set temporaryMediaIds(ListBuilder<String>? temporaryMediaIds) =>
-      _$this._temporaryMediaIds = temporaryMediaIds;
-
-  CreateReturnRequestDtoBuilder() {
-    CreateReturnRequestDto._defaults(this);
-  }
-
-  CreateReturnRequestDtoBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _orderId = $v.orderId;
-      _reason = $v.reason;
-      _returnItems = $v.returnItems.toBuilder();
-      _customerNote = $v.customerNote;
-      _savedAddressId = $v.savedAddressId;
-      _recipient = $v.recipient?.toBuilder();
-      _temporaryMediaIds = $v.temporaryMediaIds?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(CreateReturnRequestDto other) {
-    _$v = other as _$CreateReturnRequestDto;
-  }
-
-  @override
-  void update(void Function(CreateReturnRequestDtoBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  CreateReturnRequestDto build() => _build();
-
-  _$CreateReturnRequestDto _build() {
-    _$CreateReturnRequestDto _$result;
-    try {
-      _$result =
-          _$v ??
-          _$CreateReturnRequestDto._(
-            orderId: BuiltValueNullFieldError.checkNotNull(
-              orderId,
-              r'CreateReturnRequestDto',
-              'orderId',
-            ),
-            reason: BuiltValueNullFieldError.checkNotNull(
-              reason,
-              r'CreateReturnRequestDto',
-              'reason',
-            ),
-            returnItems: returnItems.build(),
-            customerNote: customerNote,
-            savedAddressId: savedAddressId,
-            recipient: _recipient?.build(),
-            temporaryMediaIds: _temporaryMediaIds?.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'returnItems';
-        returnItems.build();
-
-        _$failedField = 'recipient';
-        _recipient?.build();
-        _$failedField = 'temporaryMediaIds';
-        _temporaryMediaIds?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'CreateReturnRequestDto',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $CreateReturnRequestDtoCopyWith on CreateReturnRequestDto {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateReturnRequestDto.copyWith(...)` or `instanceOfCreateReturnRequestDto.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CreateReturnRequestDtoCWProxy get copyWith =>
+      _$CreateReturnRequestDtoCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CreateReturnRequestDto _$CreateReturnRequestDtoFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CreateReturnRequestDto', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['orderId', 'reason', 'returnItems']);
+  final val = CreateReturnRequestDto(
+    orderId: $checkedConvert('orderId', (v) => v as String),
+    reason: $checkedConvert(
+      'reason',
+      (v) => $enumDecode(_$ReturnOrderReasonEnumMap, v),
+    ),
+    returnItems: $checkedConvert(
+      'returnItems',
+      (v) => (v as List<dynamic>)
+          .map((e) => ReturnItemDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    customerNote: $checkedConvert('customerNote', (v) => v as String?),
+    savedAddressId: $checkedConvert('savedAddressId', (v) => v as String?),
+    recipient: $checkedConvert(
+      'recipient',
+      (v) => v == null
+          ? null
+          : ContactAddressInformation.fromJson(v as Map<String, dynamic>),
+    ),
+    temporaryMediaIds: $checkedConvert(
+      'temporaryMediaIds',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$CreateReturnRequestDtoToJson(
+  CreateReturnRequestDto instance,
+) => <String, dynamic>{
+  'orderId': instance.orderId,
+  'reason': _$ReturnOrderReasonEnumMap[instance.reason]!,
+  'returnItems': instance.returnItems.map((e) => e.toJson()).toList(),
+  'customerNote': ?instance.customerNote,
+  'savedAddressId': ?instance.savedAddressId,
+  'recipient': ?instance.recipient?.toJson(),
+  'temporaryMediaIds': ?instance.temporaryMediaIds,
+};
+
+const _$ReturnOrderReasonEnumMap = {
+  ReturnOrderReason.damagedProduct: 'DamagedProduct',
+  ReturnOrderReason.wrongItemReceived: 'WrongItemReceived',
+  ReturnOrderReason.itemNotAsDescribed: 'ItemNotAsDescribed',
+  ReturnOrderReason.changedMind: 'ChangedMind',
+  ReturnOrderReason.allergicReaction: 'AllergicReaction',
+};

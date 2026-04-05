@@ -3,170 +3,155 @@
 part of 'create_in_store_order_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$CreateInStoreOrderRequest extends CreateInStoreOrderRequest {
-  @override
-  final String? voucherCode;
-  @override
-  final bool? isPickupInStore;
-  @override
-  final BuiltList<CreateOrderDetailRequest> orderDetails;
-  @override
-  final ContactAddressInformation? recipient;
-  @override
-  final PaymentInformation payment;
+abstract class _$CreateInStoreOrderRequestCWProxy {
+  CreateInStoreOrderRequest voucherCode(String? voucherCode);
 
-  factory _$CreateInStoreOrderRequest([
-    void Function(CreateInStoreOrderRequestBuilder)? updates,
-  ]) => (CreateInStoreOrderRequestBuilder()..update(updates))._build();
+  CreateInStoreOrderRequest isPickupInStore(bool? isPickupInStore);
 
-  _$CreateInStoreOrderRequest._({
-    this.voucherCode,
-    this.isPickupInStore,
-    required this.orderDetails,
-    this.recipient,
-    required this.payment,
-  }) : super._();
-  @override
-  CreateInStoreOrderRequest rebuild(
-    void Function(CreateInStoreOrderRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  CreateInStoreOrderRequest orderDetails(
+    List<CreateOrderDetailRequest> orderDetails,
+  );
 
-  @override
-  CreateInStoreOrderRequestBuilder toBuilder() =>
-      CreateInStoreOrderRequestBuilder()..replace(this);
+  CreateInStoreOrderRequest recipient(ContactAddressInformation? recipient);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is CreateInStoreOrderRequest &&
-        voucherCode == other.voucherCode &&
-        isPickupInStore == other.isPickupInStore &&
-        orderDetails == other.orderDetails &&
-        recipient == other.recipient &&
-        payment == other.payment;
-  }
+  CreateInStoreOrderRequest payment(PaymentInformation payment);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateInStoreOrderRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateInStoreOrderRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateInStoreOrderRequest call({
+    String? voucherCode,
+    bool? isPickupInStore,
+    List<CreateOrderDetailRequest> orderDetails,
+    ContactAddressInformation? recipient,
+    PaymentInformation payment,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfCreateInStoreOrderRequest.copyWith(...)` or call `instanceOfCreateInStoreOrderRequest.copyWith.fieldName(value)` for a single field.
+class _$CreateInStoreOrderRequestCWProxyImpl
+    implements _$CreateInStoreOrderRequestCWProxy {
+  const _$CreateInStoreOrderRequestCWProxyImpl(this._value);
+
+  final CreateInStoreOrderRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, voucherCode.hashCode);
-    _$hash = $jc(_$hash, isPickupInStore.hashCode);
-    _$hash = $jc(_$hash, orderDetails.hashCode);
-    _$hash = $jc(_$hash, recipient.hashCode);
-    _$hash = $jc(_$hash, payment.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  CreateInStoreOrderRequest voucherCode(String? voucherCode) =>
+      call(voucherCode: voucherCode);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'CreateInStoreOrderRequest')
-          ..add('voucherCode', voucherCode)
-          ..add('isPickupInStore', isPickupInStore)
-          ..add('orderDetails', orderDetails)
-          ..add('recipient', recipient)
-          ..add('payment', payment))
-        .toString();
+  CreateInStoreOrderRequest isPickupInStore(bool? isPickupInStore) =>
+      call(isPickupInStore: isPickupInStore);
+
+  @override
+  CreateInStoreOrderRequest orderDetails(
+    List<CreateOrderDetailRequest> orderDetails,
+  ) => call(orderDetails: orderDetails);
+
+  @override
+  CreateInStoreOrderRequest recipient(ContactAddressInformation? recipient) =>
+      call(recipient: recipient);
+
+  @override
+  CreateInStoreOrderRequest payment(PaymentInformation payment) =>
+      call(payment: payment);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateInStoreOrderRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// CreateInStoreOrderRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  CreateInStoreOrderRequest call({
+    Object? voucherCode = const $CopyWithPlaceholder(),
+    Object? isPickupInStore = const $CopyWithPlaceholder(),
+    Object? orderDetails = const $CopyWithPlaceholder(),
+    Object? recipient = const $CopyWithPlaceholder(),
+    Object? payment = const $CopyWithPlaceholder(),
+  }) {
+    return CreateInStoreOrderRequest(
+      voucherCode: voucherCode == const $CopyWithPlaceholder()
+          ? _value.voucherCode
+          // ignore: cast_nullable_to_non_nullable
+          : voucherCode as String?,
+      isPickupInStore: isPickupInStore == const $CopyWithPlaceholder()
+          ? _value.isPickupInStore
+          // ignore: cast_nullable_to_non_nullable
+          : isPickupInStore as bool?,
+      orderDetails:
+          orderDetails == const $CopyWithPlaceholder() || orderDetails == null
+          ? _value.orderDetails
+          // ignore: cast_nullable_to_non_nullable
+          : orderDetails as List<CreateOrderDetailRequest>,
+      recipient: recipient == const $CopyWithPlaceholder()
+          ? _value.recipient
+          // ignore: cast_nullable_to_non_nullable
+          : recipient as ContactAddressInformation?,
+      payment: payment == const $CopyWithPlaceholder() || payment == null
+          ? _value.payment
+          // ignore: cast_nullable_to_non_nullable
+          : payment as PaymentInformation,
+    );
   }
 }
 
-class CreateInStoreOrderRequestBuilder
-    implements
-        Builder<CreateInStoreOrderRequest, CreateInStoreOrderRequestBuilder> {
-  _$CreateInStoreOrderRequest? _$v;
-
-  String? _voucherCode;
-  String? get voucherCode => _$this._voucherCode;
-  set voucherCode(String? voucherCode) => _$this._voucherCode = voucherCode;
-
-  bool? _isPickupInStore;
-  bool? get isPickupInStore => _$this._isPickupInStore;
-  set isPickupInStore(bool? isPickupInStore) =>
-      _$this._isPickupInStore = isPickupInStore;
-
-  ListBuilder<CreateOrderDetailRequest>? _orderDetails;
-  ListBuilder<CreateOrderDetailRequest> get orderDetails =>
-      _$this._orderDetails ??= ListBuilder<CreateOrderDetailRequest>();
-  set orderDetails(ListBuilder<CreateOrderDetailRequest>? orderDetails) =>
-      _$this._orderDetails = orderDetails;
-
-  ContactAddressInformationBuilder? _recipient;
-  ContactAddressInformationBuilder get recipient =>
-      _$this._recipient ??= ContactAddressInformationBuilder();
-  set recipient(ContactAddressInformationBuilder? recipient) =>
-      _$this._recipient = recipient;
-
-  PaymentInformationBuilder? _payment;
-  PaymentInformationBuilder get payment =>
-      _$this._payment ??= PaymentInformationBuilder();
-  set payment(PaymentInformationBuilder? payment) => _$this._payment = payment;
-
-  CreateInStoreOrderRequestBuilder() {
-    CreateInStoreOrderRequest._defaults(this);
-  }
-
-  CreateInStoreOrderRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _voucherCode = $v.voucherCode;
-      _isPickupInStore = $v.isPickupInStore;
-      _orderDetails = $v.orderDetails.toBuilder();
-      _recipient = $v.recipient?.toBuilder();
-      _payment = $v.payment.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(CreateInStoreOrderRequest other) {
-    _$v = other as _$CreateInStoreOrderRequest;
-  }
-
-  @override
-  void update(void Function(CreateInStoreOrderRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  CreateInStoreOrderRequest build() => _build();
-
-  _$CreateInStoreOrderRequest _build() {
-    _$CreateInStoreOrderRequest _$result;
-    try {
-      _$result =
-          _$v ??
-          _$CreateInStoreOrderRequest._(
-            voucherCode: voucherCode,
-            isPickupInStore: isPickupInStore,
-            orderDetails: orderDetails.build(),
-            recipient: _recipient?.build(),
-            payment: payment.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'orderDetails';
-        orderDetails.build();
-        _$failedField = 'recipient';
-        _recipient?.build();
-        _$failedField = 'payment';
-        payment.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'CreateInStoreOrderRequest',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
+extension $CreateInStoreOrderRequestCopyWith on CreateInStoreOrderRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfCreateInStoreOrderRequest.copyWith(...)` or `instanceOfCreateInStoreOrderRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CreateInStoreOrderRequestCWProxy get copyWith =>
+      _$CreateInStoreOrderRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CreateInStoreOrderRequest _$CreateInStoreOrderRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('CreateInStoreOrderRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['orderDetails', 'payment']);
+  final val = CreateInStoreOrderRequest(
+    voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
+    isPickupInStore: $checkedConvert('isPickupInStore', (v) => v as bool?),
+    orderDetails: $checkedConvert(
+      'orderDetails',
+      (v) => (v as List<dynamic>)
+          .map(
+            (e) => CreateOrderDetailRequest.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    recipient: $checkedConvert(
+      'recipient',
+      (v) => v == null
+          ? null
+          : ContactAddressInformation.fromJson(v as Map<String, dynamic>),
+    ),
+    payment: $checkedConvert(
+      'payment',
+      (v) => PaymentInformation.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$CreateInStoreOrderRequestToJson(
+  CreateInStoreOrderRequest instance,
+) => <String, dynamic>{
+  'voucherCode': ?instance.voucherCode,
+  'isPickupInStore': ?instance.isPickupInStore,
+  'orderDetails': instance.orderDetails.map((e) => e.toJson()).toList(),
+  'recipient': ?instance.recipient?.toJson(),
+  'payment': instance.payment.toJson(),
+};

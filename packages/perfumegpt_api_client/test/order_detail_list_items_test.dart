@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for OrderDetailListItems
 void main() {
-  final instance = OrderDetailListItemsBuilder();
-  // TODO add properties to the builder and call build()
+  final OrderDetailListItems? instance = /* OrderDetailListItems(...) */ null;
+  // TODO add properties to the entity
 
   group(OrderDetailListItems, () {
     // String variantId
@@ -31,6 +31,5 @@ void main() {
     test('to test the property `total`', () async {
       // TODO
     });
-
   });
 }

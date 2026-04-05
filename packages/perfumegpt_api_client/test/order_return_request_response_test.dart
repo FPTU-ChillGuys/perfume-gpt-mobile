@@ -3,8 +3,9 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for OrderReturnRequestResponse
 void main() {
-  final instance = OrderReturnRequestResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final OrderReturnRequestResponse?
+  instance = /* OrderReturnRequestResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(OrderReturnRequestResponse, () {
     // String id
@@ -107,12 +108,12 @@ void main() {
       // TODO
     });
 
-    // BuiltList<OrderReturnRequestDetailResponse> returnDetails
+    // List<OrderReturnRequestDetailResponse> returnDetails
     test('to test the property `returnDetails`', () async {
       // TODO
     });
 
-    // BuiltList<MediaResponse> proofImages
+    // List<MediaResponse> proofImages
     test('to test the property `proofImages`', () async {
       // TODO
     });
@@ -126,6 +127,5 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
-
   });
 }

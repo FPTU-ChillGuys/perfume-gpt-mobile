@@ -3,104 +3,40 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'update_scent_note_request.g.dart';
 
-/// UpdateScentNoteRequest
-///
-/// Properties:
-/// * [name] 
-@BuiltValue()
-abstract class UpdateScentNoteRequest implements Built<UpdateScentNoteRequest, UpdateScentNoteRequestBuilder> {
-  @BuiltValueField(wireName: r'name')
-  String get name;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class UpdateScentNoteRequest {
+  /// Returns a new [UpdateScentNoteRequest] instance.
+  UpdateScentNoteRequest({required this.name});
 
-  UpdateScentNoteRequest._();
-
-  factory UpdateScentNoteRequest([void updates(UpdateScentNoteRequestBuilder b)]) = _$UpdateScentNoteRequest;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(UpdateScentNoteRequestBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<UpdateScentNoteRequest> get serializer => _$UpdateScentNoteRequestSerializer();
-}
-
-class _$UpdateScentNoteRequestSerializer implements PrimitiveSerializer<UpdateScentNoteRequest> {
-  @override
-  final Iterable<Type> types = const [UpdateScentNoteRequest, _$UpdateScentNoteRequest];
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
+  final String name;
 
   @override
-  final String wireName = r'UpdateScentNoteRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    UpdateScentNoteRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'name';
-    yield serializers.serialize(
-      object.name,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateScentNoteRequest && other.name == name;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    UpdateScentNoteRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => name.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required UpdateScentNoteRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory UpdateScentNoteRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateScentNoteRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateScentNoteRequestToJson(this);
 
   @override
-  UpdateScentNoteRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = UpdateScentNoteRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

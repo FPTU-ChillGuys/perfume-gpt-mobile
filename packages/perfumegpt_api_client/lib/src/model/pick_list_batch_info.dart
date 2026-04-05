@@ -3,195 +3,79 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'pick_list_batch_info.g.dart';
 
-/// PickListBatchInfo
-///
-/// Properties:
-/// * [reservationId] 
-/// * [batchId] 
-/// * [batchCode] 
-/// * [note] 
-/// * [reservedQuantity] 
-/// * [expiryDate] 
-@BuiltValue()
-abstract class PickListBatchInfo implements Built<PickListBatchInfo, PickListBatchInfoBuilder> {
-  @BuiltValueField(wireName: r'reservationId')
-  String? get reservationId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class PickListBatchInfo {
+  /// Returns a new [PickListBatchInfo] instance.
+  PickListBatchInfo({
+    this.reservationId,
 
-  @BuiltValueField(wireName: r'batchId')
-  String? get batchId;
+    this.batchId,
 
-  @BuiltValueField(wireName: r'batchCode')
-  String get batchCode;
+    required this.batchCode,
 
-  @BuiltValueField(wireName: r'note')
-  String? get note;
+    this.note,
 
-  @BuiltValueField(wireName: r'reservedQuantity')
-  int? get reservedQuantity;
+    this.reservedQuantity,
 
-  @BuiltValueField(wireName: r'expiryDate')
-  DateTime? get expiryDate;
+    this.expiryDate,
+  });
 
-  PickListBatchInfo._();
+  @JsonKey(name: r'reservationId', required: false, includeIfNull: false)
+  final String? reservationId;
 
-  factory PickListBatchInfo([void updates(PickListBatchInfoBuilder b)]) = _$PickListBatchInfo;
+  @JsonKey(name: r'batchId', required: false, includeIfNull: false)
+  final String? batchId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(PickListBatchInfoBuilder b) => b;
+  @JsonKey(name: r'batchCode', required: true, includeIfNull: false)
+  final String batchCode;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<PickListBatchInfo> get serializer => _$PickListBatchInfoSerializer();
-}
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
+  final String? note;
 
-class _$PickListBatchInfoSerializer implements PrimitiveSerializer<PickListBatchInfo> {
-  @override
-  final Iterable<Type> types = const [PickListBatchInfo, _$PickListBatchInfo];
+  @JsonKey(name: r'reservedQuantity', required: false, includeIfNull: false)
+  final int? reservedQuantity;
+
+  @JsonKey(name: r'expiryDate', required: false, includeIfNull: false)
+  final DateTime? expiryDate;
 
   @override
-  final String wireName = r'PickListBatchInfo';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    PickListBatchInfo object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.reservationId != null) {
-      yield r'reservationId';
-      yield serializers.serialize(
-        object.reservationId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.batchId != null) {
-      yield r'batchId';
-      yield serializers.serialize(
-        object.batchId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'batchCode';
-    yield serializers.serialize(
-      object.batchCode,
-      specifiedType: const FullType(String),
-    );
-    if (object.note != null) {
-      yield r'note';
-      yield serializers.serialize(
-        object.note,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.reservedQuantity != null) {
-      yield r'reservedQuantity';
-      yield serializers.serialize(
-        object.reservedQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.expiryDate != null) {
-      yield r'expiryDate';
-      yield serializers.serialize(
-        object.expiryDate,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickListBatchInfo &&
+          other.reservationId == reservationId &&
+          other.batchId == batchId &&
+          other.batchCode == batchCode &&
+          other.note == note &&
+          other.reservedQuantity == reservedQuantity &&
+          other.expiryDate == expiryDate;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    PickListBatchInfo object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      reservationId.hashCode +
+      batchId.hashCode +
+      batchCode.hashCode +
+      (note == null ? 0 : note.hashCode) +
+      reservedQuantity.hashCode +
+      expiryDate.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required PickListBatchInfoBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'reservationId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.reservationId = valueDes;
-          break;
-        case r'batchId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.batchId = valueDes;
-          break;
-        case r'batchCode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.batchCode = valueDes;
-          break;
-        case r'note':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.note = valueDes;
-          break;
-        case r'reservedQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.reservedQuantity = valueDes;
-          break;
-        case r'expiryDate':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.expiryDate = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory PickListBatchInfo.fromJson(Map<String, dynamic> json) =>
+      _$PickListBatchInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PickListBatchInfoToJson(this);
 
   @override
-  PickListBatchInfo deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = PickListBatchInfoBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

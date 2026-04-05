@@ -3,104 +3,40 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'token_response.g.dart';
 
-/// TokenResponse
-///
-/// Properties:
-/// * [accessToken] 
-@BuiltValue()
-abstract class TokenResponse implements Built<TokenResponse, TokenResponseBuilder> {
-  @BuiltValueField(wireName: r'accessToken')
-  String get accessToken;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class TokenResponse {
+  /// Returns a new [TokenResponse] instance.
+  TokenResponse({required this.accessToken});
 
-  TokenResponse._();
-
-  factory TokenResponse([void updates(TokenResponseBuilder b)]) = _$TokenResponse;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(TokenResponseBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<TokenResponse> get serializer => _$TokenResponseSerializer();
-}
-
-class _$TokenResponseSerializer implements PrimitiveSerializer<TokenResponse> {
-  @override
-  final Iterable<Type> types = const [TokenResponse, _$TokenResponse];
+  @JsonKey(name: r'accessToken', required: true, includeIfNull: false)
+  final String accessToken;
 
   @override
-  final String wireName = r'TokenResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    TokenResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'accessToken';
-    yield serializers.serialize(
-      object.accessToken,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TokenResponse && other.accessToken == accessToken;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    TokenResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => accessToken.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required TokenResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'accessToken':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.accessToken = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory TokenResponse.fromJson(Map<String, dynamic> json) =>
+      _$TokenResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TokenResponseToJson(this);
 
   @override
-  TokenResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = TokenResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

@@ -3,105 +3,87 @@
 part of 'bulk_action_error.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$BulkActionError extends BulkActionError {
-  @override
-  final String? id;
-  @override
-  final String errorMessage;
+abstract class _$BulkActionErrorCWProxy {
+  BulkActionError id(String? id);
 
-  factory _$BulkActionError([void Function(BulkActionErrorBuilder)? updates]) =>
-      (BulkActionErrorBuilder()..update(updates))._build();
+  BulkActionError errorMessage(String errorMessage);
 
-  _$BulkActionError._({this.id, required this.errorMessage}) : super._();
-  @override
-  BulkActionError rebuild(void Function(BulkActionErrorBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionError(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BulkActionError(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BulkActionError call({String? id, String errorMessage});
+}
 
-  @override
-  BulkActionErrorBuilder toBuilder() => BulkActionErrorBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBulkActionError.copyWith(...)` or call `instanceOfBulkActionError.copyWith.fieldName(value)` for a single field.
+class _$BulkActionErrorCWProxyImpl implements _$BulkActionErrorCWProxy {
+  const _$BulkActionErrorCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is BulkActionError &&
-        id == other.id &&
-        errorMessage == other.errorMessage;
-  }
+  final BulkActionError _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, errorMessage.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  BulkActionError id(String? id) => call(id: id);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'BulkActionError')
-          ..add('id', id)
-          ..add('errorMessage', errorMessage))
-        .toString();
+  BulkActionError errorMessage(String errorMessage) =>
+      call(errorMessage: errorMessage);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionError(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BulkActionError(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BulkActionError call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? errorMessage = const $CopyWithPlaceholder(),
+  }) {
+    return BulkActionError(
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      errorMessage:
+          errorMessage == const $CopyWithPlaceholder() || errorMessage == null
+          ? _value.errorMessage
+          // ignore: cast_nullable_to_non_nullable
+          : errorMessage as String,
+    );
   }
 }
 
-class BulkActionErrorBuilder
-    implements Builder<BulkActionError, BulkActionErrorBuilder> {
-  _$BulkActionError? _$v;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _errorMessage;
-  String? get errorMessage => _$this._errorMessage;
-  set errorMessage(String? errorMessage) => _$this._errorMessage = errorMessage;
-
-  BulkActionErrorBuilder() {
-    BulkActionError._defaults(this);
-  }
-
-  BulkActionErrorBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _id = $v.id;
-      _errorMessage = $v.errorMessage;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(BulkActionError other) {
-    _$v = other as _$BulkActionError;
-  }
-
-  @override
-  void update(void Function(BulkActionErrorBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  BulkActionError build() => _build();
-
-  _$BulkActionError _build() {
-    final _$result =
-        _$v ??
-        _$BulkActionError._(
-          id: id,
-          errorMessage: BuiltValueNullFieldError.checkNotNull(
-            errorMessage,
-            r'BulkActionError',
-            'errorMessage',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $BulkActionErrorCopyWith on BulkActionError {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBulkActionError.copyWith(...)` or `instanceOfBulkActionError.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BulkActionErrorCWProxy get copyWith => _$BulkActionErrorCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BulkActionError _$BulkActionErrorFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('BulkActionError', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['errorMessage']);
+      final val = BulkActionError(
+        id: $checkedConvert('id', (v) => v as String?),
+        errorMessage: $checkedConvert('errorMessage', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$BulkActionErrorToJson(BulkActionError instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'errorMessage': instance.errorMessage,
+    };

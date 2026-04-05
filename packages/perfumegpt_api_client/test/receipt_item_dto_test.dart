@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReceiptItemDto
 void main() {
-  final instance = ReceiptItemDtoBuilder();
-  // TODO add properties to the builder and call build()
+  final ReceiptItemDto? instance = /* ReceiptItemDto(...) */ null;
+  // TODO add properties to the entity
 
   group(ReceiptItemDto, () {
     // String productName
@@ -31,6 +31,5 @@ void main() {
     test('to test the property `subtotal`', () async {
       // TODO
     });
-
   });
 }

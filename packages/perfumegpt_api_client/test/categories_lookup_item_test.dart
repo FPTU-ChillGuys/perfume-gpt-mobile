@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CategoriesLookupItem
 void main() {
-  final instance = CategoriesLookupItemBuilder();
-  // TODO add properties to the builder and call build()
+  final CategoriesLookupItem? instance = /* CategoriesLookupItem(...) */ null;
+  // TODO add properties to the entity
 
   group(CategoriesLookupItem, () {
     // int id
@@ -16,6 +16,5 @@ void main() {
     test('to test the property `name`', () async {
       // TODO
     });
-
   });
 }

@@ -4,126 +4,45 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/order_status.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'update_order_status_request.g.dart';
 
-/// UpdateOrderStatusRequest
-///
-/// Properties:
-/// * [status] 
-/// * [note] 
-@BuiltValue()
-abstract class UpdateOrderStatusRequest implements Built<UpdateOrderStatusRequest, UpdateOrderStatusRequestBuilder> {
-  @BuiltValueField(wireName: r'status')
-  OrderStatus? get status;
-  // enum statusEnum {  Pending,  Processing,  Delivering,  Delivered,  Returning,  Cancelled,  Partial_Returned,  Returned,  };
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class UpdateOrderStatusRequest {
+  /// Returns a new [UpdateOrderStatusRequest] instance.
+  UpdateOrderStatusRequest({this.status, this.note});
 
-  @BuiltValueField(wireName: r'note')
-  String? get note;
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
+  final OrderStatus? status;
 
-  UpdateOrderStatusRequest._();
-
-  factory UpdateOrderStatusRequest([void updates(UpdateOrderStatusRequestBuilder b)]) = _$UpdateOrderStatusRequest;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(UpdateOrderStatusRequestBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<UpdateOrderStatusRequest> get serializer => _$UpdateOrderStatusRequestSerializer();
-}
-
-class _$UpdateOrderStatusRequestSerializer implements PrimitiveSerializer<UpdateOrderStatusRequest> {
-  @override
-  final Iterable<Type> types = const [UpdateOrderStatusRequest, _$UpdateOrderStatusRequest];
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
+  final String? note;
 
   @override
-  final String wireName = r'UpdateOrderStatusRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    UpdateOrderStatusRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.status != null) {
-      yield r'status';
-      yield serializers.serialize(
-        object.status,
-        specifiedType: const FullType(OrderStatus),
-      );
-    }
-    if (object.note != null) {
-      yield r'note';
-      yield serializers.serialize(
-        object.note,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateOrderStatusRequest &&
+          other.status == status &&
+          other.note == note;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    UpdateOrderStatusRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => status.hashCode + (note == null ? 0 : note.hashCode);
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required UpdateOrderStatusRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'status':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(OrderStatus),
-          ) as OrderStatus;
-          result.status = valueDes;
-          break;
-        case r'note':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.note = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory UpdateOrderStatusRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateOrderStatusRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateOrderStatusRequestToJson(this);
 
   @override
-  UpdateOrderStatusRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = UpdateOrderStatusRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

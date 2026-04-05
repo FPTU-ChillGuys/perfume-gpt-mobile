@@ -8,7 +8,7 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**importDetails** | [**BuiltList&lt;CreateImportDetailRequest&gt;**](CreateImportDetailRequest.md) |  | 
+**importDetails** | [**List&lt;CreateImportDetailRequest&gt;**](CreateImportDetailRequest.md) |  | 
 **supplierId** | **int** |  | [optional] 
 **expectedArrivalDate** | [**DateTime**](DateTime.md) |  | 
 

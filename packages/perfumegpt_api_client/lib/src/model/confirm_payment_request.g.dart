@@ -3,110 +3,90 @@
 part of 'confirm_payment_request.dart';
 
 // **************************************************************************
-// BuiltValueGenerator
+// CopyWithGenerator
 // **************************************************************************
 
-class _$ConfirmPaymentRequest extends ConfirmPaymentRequest {
-  @override
-  final bool isSuccess;
-  @override
-  final String? failureReason;
+abstract class _$ConfirmPaymentRequestCWProxy {
+  ConfirmPaymentRequest isSuccess(bool isSuccess);
 
-  factory _$ConfirmPaymentRequest([
-    void Function(ConfirmPaymentRequestBuilder)? updates,
-  ]) => (ConfirmPaymentRequestBuilder()..update(updates))._build();
+  ConfirmPaymentRequest failureReason(String? failureReason);
 
-  _$ConfirmPaymentRequest._({required this.isSuccess, this.failureReason})
-    : super._();
-  @override
-  ConfirmPaymentRequest rebuild(
-    void Function(ConfirmPaymentRequestBuilder) updates,
-  ) => (toBuilder()..update(updates)).build();
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConfirmPaymentRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ConfirmPaymentRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ConfirmPaymentRequest call({bool isSuccess, String? failureReason});
+}
 
-  @override
-  ConfirmPaymentRequestBuilder toBuilder() =>
-      ConfirmPaymentRequestBuilder()..replace(this);
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfConfirmPaymentRequest.copyWith(...)` or call `instanceOfConfirmPaymentRequest.copyWith.fieldName(value)` for a single field.
+class _$ConfirmPaymentRequestCWProxyImpl
+    implements _$ConfirmPaymentRequestCWProxy {
+  const _$ConfirmPaymentRequestCWProxyImpl(this._value);
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is ConfirmPaymentRequest &&
-        isSuccess == other.isSuccess &&
-        failureReason == other.failureReason;
-  }
+  final ConfirmPaymentRequest _value;
 
   @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, isSuccess.hashCode);
-    _$hash = $jc(_$hash, failureReason.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
+  ConfirmPaymentRequest isSuccess(bool isSuccess) => call(isSuccess: isSuccess);
 
   @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'ConfirmPaymentRequest')
-          ..add('isSuccess', isSuccess)
-          ..add('failureReason', failureReason))
-        .toString();
+  ConfirmPaymentRequest failureReason(String? failureReason) =>
+      call(failureReason: failureReason);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConfirmPaymentRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// ConfirmPaymentRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  ConfirmPaymentRequest call({
+    Object? isSuccess = const $CopyWithPlaceholder(),
+    Object? failureReason = const $CopyWithPlaceholder(),
+  }) {
+    return ConfirmPaymentRequest(
+      isSuccess: isSuccess == const $CopyWithPlaceholder() || isSuccess == null
+          ? _value.isSuccess
+          // ignore: cast_nullable_to_non_nullable
+          : isSuccess as bool,
+      failureReason: failureReason == const $CopyWithPlaceholder()
+          ? _value.failureReason
+          // ignore: cast_nullable_to_non_nullable
+          : failureReason as String?,
+    );
   }
 }
 
-class ConfirmPaymentRequestBuilder
-    implements Builder<ConfirmPaymentRequest, ConfirmPaymentRequestBuilder> {
-  _$ConfirmPaymentRequest? _$v;
-
-  bool? _isSuccess;
-  bool? get isSuccess => _$this._isSuccess;
-  set isSuccess(bool? isSuccess) => _$this._isSuccess = isSuccess;
-
-  String? _failureReason;
-  String? get failureReason => _$this._failureReason;
-  set failureReason(String? failureReason) =>
-      _$this._failureReason = failureReason;
-
-  ConfirmPaymentRequestBuilder() {
-    ConfirmPaymentRequest._defaults(this);
-  }
-
-  ConfirmPaymentRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _isSuccess = $v.isSuccess;
-      _failureReason = $v.failureReason;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(ConfirmPaymentRequest other) {
-    _$v = other as _$ConfirmPaymentRequest;
-  }
-
-  @override
-  void update(void Function(ConfirmPaymentRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  ConfirmPaymentRequest build() => _build();
-
-  _$ConfirmPaymentRequest _build() {
-    final _$result =
-        _$v ??
-        _$ConfirmPaymentRequest._(
-          isSuccess: BuiltValueNullFieldError.checkNotNull(
-            isSuccess,
-            r'ConfirmPaymentRequest',
-            'isSuccess',
-          ),
-          failureReason: failureReason,
-        );
-    replace(_$result);
-    return _$result;
-  }
+extension $ConfirmPaymentRequestCopyWith on ConfirmPaymentRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfConfirmPaymentRequest.copyWith(...)` or `instanceOfConfirmPaymentRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ConfirmPaymentRequestCWProxy get copyWith =>
+      _$ConfirmPaymentRequestCWProxyImpl(this);
 }
 
-// ignore_for_file: deprecated_member_use_from_same_package,type=lint
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ConfirmPaymentRequest _$ConfirmPaymentRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ConfirmPaymentRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['isSuccess']);
+  final val = ConfirmPaymentRequest(
+    isSuccess: $checkedConvert('isSuccess', (v) => v as bool),
+    failureReason: $checkedConvert('failureReason', (v) => v as String?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$ConfirmPaymentRequestToJson(
+  ConfirmPaymentRequest instance,
+) => <String, dynamic>{
+  'isSuccess': instance.isSuccess,
+  'failureReason': ?instance.failureReason,
+};

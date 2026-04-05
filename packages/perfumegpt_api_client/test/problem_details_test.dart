@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProblemDetails
 void main() {
-  final instance = ProblemDetailsBuilder();
-  // TODO add properties to the builder and call build()
+  final ProblemDetails? instance = /* ProblemDetails(...) */ null;
+  // TODO add properties to the entity
 
   group(ProblemDetails, () {
     // String type
@@ -31,6 +31,5 @@ void main() {
     test('to test the property `instance`', () async {
       // TODO
     });
-
   });
 }

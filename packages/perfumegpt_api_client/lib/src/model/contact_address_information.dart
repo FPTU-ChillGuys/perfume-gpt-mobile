@@ -3,236 +3,100 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'contact_address_information.g.dart';
 
-/// ContactAddressInformation
-///
-/// Properties:
-/// * [contactName] 
-/// * [contactPhoneNumber] 
-/// * [districtId] 
-/// * [districtName] 
-/// * [wardCode] 
-/// * [wardName] 
-/// * [provinceId] 
-/// * [provinceName] 
-/// * [fullAddress] 
-@BuiltValue()
-abstract class ContactAddressInformation implements Built<ContactAddressInformation, ContactAddressInformationBuilder> {
-  @BuiltValueField(wireName: r'contactName')
-  String get contactName;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ContactAddressInformation {
+  /// Returns a new [ContactAddressInformation] instance.
+  ContactAddressInformation({
+    required this.contactName,
 
-  @BuiltValueField(wireName: r'contactPhoneNumber')
-  String get contactPhoneNumber;
+    required this.contactPhoneNumber,
 
-  @BuiltValueField(wireName: r'districtId')
-  int? get districtId;
+    this.districtId,
 
-  @BuiltValueField(wireName: r'districtName')
-  String get districtName;
+    required this.districtName,
 
-  @BuiltValueField(wireName: r'wardCode')
-  String get wardCode;
+    required this.wardCode,
 
-  @BuiltValueField(wireName: r'wardName')
-  String get wardName;
+    required this.wardName,
 
-  @BuiltValueField(wireName: r'provinceId')
-  int? get provinceId;
+    this.provinceId,
 
-  @BuiltValueField(wireName: r'provinceName')
-  String get provinceName;
+    required this.provinceName,
 
-  @BuiltValueField(wireName: r'fullAddress')
-  String get fullAddress;
+    required this.fullAddress,
+  });
 
-  ContactAddressInformation._();
+  @JsonKey(name: r'contactName', required: true, includeIfNull: false)
+  final String contactName;
 
-  factory ContactAddressInformation([void updates(ContactAddressInformationBuilder b)]) = _$ContactAddressInformation;
+  @JsonKey(name: r'contactPhoneNumber', required: true, includeIfNull: false)
+  final String contactPhoneNumber;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ContactAddressInformationBuilder b) => b;
+  @JsonKey(name: r'districtId', required: false, includeIfNull: false)
+  final int? districtId;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ContactAddressInformation> get serializer => _$ContactAddressInformationSerializer();
-}
+  @JsonKey(name: r'districtName', required: true, includeIfNull: false)
+  final String districtName;
 
-class _$ContactAddressInformationSerializer implements PrimitiveSerializer<ContactAddressInformation> {
-  @override
-  final Iterable<Type> types = const [ContactAddressInformation, _$ContactAddressInformation];
+  @JsonKey(name: r'wardCode', required: true, includeIfNull: false)
+  final String wardCode;
 
-  @override
-  final String wireName = r'ContactAddressInformation';
+  @JsonKey(name: r'wardName', required: true, includeIfNull: false)
+  final String wardName;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ContactAddressInformation object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'contactName';
-    yield serializers.serialize(
-      object.contactName,
-      specifiedType: const FullType(String),
-    );
-    yield r'contactPhoneNumber';
-    yield serializers.serialize(
-      object.contactPhoneNumber,
-      specifiedType: const FullType(String),
-    );
-    if (object.districtId != null) {
-      yield r'districtId';
-      yield serializers.serialize(
-        object.districtId,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'districtName';
-    yield serializers.serialize(
-      object.districtName,
-      specifiedType: const FullType(String),
-    );
-    yield r'wardCode';
-    yield serializers.serialize(
-      object.wardCode,
-      specifiedType: const FullType(String),
-    );
-    yield r'wardName';
-    yield serializers.serialize(
-      object.wardName,
-      specifiedType: const FullType(String),
-    );
-    if (object.provinceId != null) {
-      yield r'provinceId';
-      yield serializers.serialize(
-        object.provinceId,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'provinceName';
-    yield serializers.serialize(
-      object.provinceName,
-      specifiedType: const FullType(String),
-    );
-    yield r'fullAddress';
-    yield serializers.serialize(
-      object.fullAddress,
-      specifiedType: const FullType(String),
-    );
-  }
+  @JsonKey(name: r'provinceId', required: false, includeIfNull: false)
+  final int? provinceId;
+
+  @JsonKey(name: r'provinceName', required: true, includeIfNull: false)
+  final String provinceName;
+
+  @JsonKey(name: r'fullAddress', required: true, includeIfNull: false)
+  final String fullAddress;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ContactAddressInformation object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ContactAddressInformationBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'contactName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.contactName = valueDes;
-          break;
-        case r'contactPhoneNumber':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.contactPhoneNumber = valueDes;
-          break;
-        case r'districtId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.districtId = valueDes;
-          break;
-        case r'districtName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.districtName = valueDes;
-          break;
-        case r'wardCode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.wardCode = valueDes;
-          break;
-        case r'wardName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.wardName = valueDes;
-          break;
-        case r'provinceId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.provinceId = valueDes;
-          break;
-        case r'provinceName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.provinceName = valueDes;
-          break;
-        case r'fullAddress':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.fullAddress = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ContactAddressInformation &&
+          other.contactName == contactName &&
+          other.contactPhoneNumber == contactPhoneNumber &&
+          other.districtId == districtId &&
+          other.districtName == districtName &&
+          other.wardCode == wardCode &&
+          other.wardName == wardName &&
+          other.provinceId == provinceId &&
+          other.provinceName == provinceName &&
+          other.fullAddress == fullAddress;
 
   @override
-  ContactAddressInformation deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ContactAddressInformationBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      contactName.hashCode +
+      contactPhoneNumber.hashCode +
+      districtId.hashCode +
+      districtName.hashCode +
+      wardCode.hashCode +
+      wardName.hashCode +
+      provinceId.hashCode +
+      provinceName.hashCode +
+      fullAddress.hashCode;
+
+  factory ContactAddressInformation.fromJson(Map<String, dynamic> json) =>
+      _$ContactAddressInformationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ContactAddressInformationToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

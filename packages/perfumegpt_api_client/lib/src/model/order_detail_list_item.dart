@@ -3,231 +3,93 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'order_detail_list_item.g.dart';
 
-/// OrderDetailListItem
-///
-/// Properties:
-/// * [id] 
-/// * [variantId] 
-/// * [variantName] 
-/// * [imageUrl] 
-/// * [quantity] 
-/// * [unitPrice] 
-/// * [refunablePrice] 
-/// * [total] 
-@BuiltValue()
-abstract class OrderDetailListItem implements Built<OrderDetailListItem, OrderDetailListItemBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class OrderDetailListItem {
+  /// Returns a new [OrderDetailListItem] instance.
+  OrderDetailListItem({
+    this.id,
 
-  @BuiltValueField(wireName: r'variantId')
-  String? get variantId;
+    this.variantId,
 
-  @BuiltValueField(wireName: r'variantName')
-  String get variantName;
+    required this.variantName,
 
-  @BuiltValueField(wireName: r'imageUrl')
-  String? get imageUrl;
+    this.imageUrl,
 
-  @BuiltValueField(wireName: r'quantity')
-  int? get quantity;
+    this.quantity,
 
-  @BuiltValueField(wireName: r'unitPrice')
-  num? get unitPrice;
+    this.unitPrice,
 
-  @BuiltValueField(wireName: r'refunablePrice')
-  num? get refunablePrice;
+    this.refunablePrice,
 
-  @BuiltValueField(wireName: r'total')
-  num? get total;
+    this.total,
+  });
 
-  OrderDetailListItem._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory OrderDetailListItem([void updates(OrderDetailListItemBuilder b)]) = _$OrderDetailListItem;
+  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+  final String? variantId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(OrderDetailListItemBuilder b) => b;
+  @JsonKey(name: r'variantName', required: true, includeIfNull: false)
+  final String variantName;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<OrderDetailListItem> get serializer => _$OrderDetailListItemSerializer();
-}
+  @JsonKey(name: r'imageUrl', required: false, includeIfNull: false)
+  final String? imageUrl;
 
-class _$OrderDetailListItemSerializer implements PrimitiveSerializer<OrderDetailListItem> {
-  @override
-  final Iterable<Type> types = const [OrderDetailListItem, _$OrderDetailListItem];
+  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+  final int? quantity;
 
-  @override
-  final String wireName = r'OrderDetailListItem';
+  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
+  final num? unitPrice;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    OrderDetailListItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.variantId != null) {
-      yield r'variantId';
-      yield serializers.serialize(
-        object.variantId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'variantName';
-    yield serializers.serialize(
-      object.variantName,
-      specifiedType: const FullType(String),
-    );
-    if (object.imageUrl != null) {
-      yield r'imageUrl';
-      yield serializers.serialize(
-        object.imageUrl,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.quantity != null) {
-      yield r'quantity';
-      yield serializers.serialize(
-        object.quantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.unitPrice != null) {
-      yield r'unitPrice';
-      yield serializers.serialize(
-        object.unitPrice,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.refunablePrice != null) {
-      yield r'refunablePrice';
-      yield serializers.serialize(
-        object.refunablePrice,
-        specifiedType: const FullType(num),
-      );
-    }
-    if (object.total != null) {
-      yield r'total';
-      yield serializers.serialize(
-        object.total,
-        specifiedType: const FullType(num),
-      );
-    }
-  }
+  @JsonKey(name: r'refunablePrice', required: false, includeIfNull: false)
+  final num? refunablePrice;
+
+  @JsonKey(name: r'total', required: false, includeIfNull: false)
+  final num? total;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    OrderDetailListItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required OrderDetailListItemBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'variantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantId = valueDes;
-          break;
-        case r'variantName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantName = valueDes;
-          break;
-        case r'imageUrl':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.imageUrl = valueDes;
-          break;
-        case r'quantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.quantity = valueDes;
-          break;
-        case r'unitPrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.unitPrice = valueDes;
-          break;
-        case r'refunablePrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.refunablePrice = valueDes;
-          break;
-        case r'total':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.total = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OrderDetailListItem &&
+          other.id == id &&
+          other.variantId == variantId &&
+          other.variantName == variantName &&
+          other.imageUrl == imageUrl &&
+          other.quantity == quantity &&
+          other.unitPrice == unitPrice &&
+          other.refunablePrice == refunablePrice &&
+          other.total == total;
 
   @override
-  OrderDetailListItem deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = OrderDetailListItemBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      id.hashCode +
+      variantId.hashCode +
+      variantName.hashCode +
+      (imageUrl == null ? 0 : imageUrl.hashCode) +
+      quantity.hashCode +
+      unitPrice.hashCode +
+      refunablePrice.hashCode +
+      total.hashCode;
+
+  factory OrderDetailListItem.fromJson(Map<String, dynamic> json) =>
+      _$OrderDetailListItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrderDetailListItemToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

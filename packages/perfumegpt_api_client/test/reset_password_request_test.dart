@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ResetPasswordRequest
 void main() {
-  final instance = ResetPasswordRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final ResetPasswordRequest? instance = /* ResetPasswordRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(ResetPasswordRequest, () {
     // String password
@@ -26,6 +26,5 @@ void main() {
     test('to test the property `token`', () async {
       // TODO
     });
-
   });
 }

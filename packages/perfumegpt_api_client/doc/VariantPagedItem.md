@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **retailPrice** | **num** |  | [optional] 
 **status** | [**VariantStatus**](VariantStatus.md) |  | [optional] 
 **stockQuantity** | **int** |  | [optional] 
-**attributes** | [**BuiltList&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | [optional] 
+**attributes** | [**List&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **shippingStatus** | [**ShippingStatus**](ShippingStatus.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**orderDetails** | [**BuiltList&lt;OrderDetailListItem&gt;**](OrderDetailListItem.md) |  | 
+**orderDetails** | [**List&lt;OrderDetailListItem&gt;**](OrderDetailListItem.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

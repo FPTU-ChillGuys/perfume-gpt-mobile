@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **revenue** | [**RevenueSummaryResponse**](RevenueSummaryResponse.md) |  | [optional] 
 **inventoryLevels** | [**InventoryLevelsResponse**](InventoryLevelsResponse.md) |  | [optional] 
-**topProducts** | [**BuiltList&lt;TopProductResponse&gt;**](TopProductResponse.md) |  | 
+**topProducts** | [**List&lt;TopProductResponse&gt;**](TopProductResponse.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

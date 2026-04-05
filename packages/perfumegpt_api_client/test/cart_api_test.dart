@@ -1,18 +1,17 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for CartApi
 void main() {
   final instance = PerfumegptApiClient().getCartApi();
 
   group(CartApi, () {
-    //Future<BaseResponseOfstring> apiCartClearDelete({ BuiltList<String> itemIds }) async
+    //Future<BaseResponseOfstring> apiCartClearDelete({ List<String> itemIds }) async
     test('test apiCartClearDelete', () async {
       // TODO
     });
 
-    //Future<BaseResponseOfGetCartItemsResponse> apiCartItemsGet({ BuiltList<String> itemIds, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfGetCartItemsResponse> apiCartItemsGet({ List<String> itemIds, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiCartItemsGet', () async {
       // TODO
     });
@@ -32,10 +31,9 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfGetCartTotalResponse> apiCartTotalGet({ String voucherCode, BuiltList<String> itemIds, String savedAddressId, String recipientPeriodContactName, String recipientPeriodContactPhoneNumber, int recipientPeriodDistrictId, String recipientPeriodDistrictName, String recipientPeriodWardCode, String recipientPeriodWardName, int recipientPeriodProvinceId, String recipientPeriodProvinceName, String recipientPeriodFullAddress }) async
+    //Future<BaseResponseOfGetCartTotalResponse> apiCartTotalGet({ String voucherCode, List<String> itemIds, String savedAddressId, String recipientPeriodContactName, String recipientPeriodContactPhoneNumber, int recipientPeriodDistrictId, String recipientPeriodDistrictName, String recipientPeriodWardCode, String recipientPeriodWardName, int recipientPeriodProvinceId, String recipientPeriodProvinceName, String recipientPeriodFullAddress }) async
     test('test apiCartTotalGet', () async {
       // TODO
     });
-
   });
 }

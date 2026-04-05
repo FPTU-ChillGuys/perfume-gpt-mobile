@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for TopProductResponse
 void main() {
-  final instance = TopProductResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final TopProductResponse? instance = /* TopProductResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(TopProductResponse, () {
     // String productId
@@ -26,6 +26,5 @@ void main() {
     test('to test the property `revenue`', () async {
       // TODO
     });
-
   });
 }

@@ -3,104 +3,40 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'update_attribute_value_request.g.dart';
 
-/// UpdateAttributeValueRequest
-///
-/// Properties:
-/// * [value] 
-@BuiltValue()
-abstract class UpdateAttributeValueRequest implements Built<UpdateAttributeValueRequest, UpdateAttributeValueRequestBuilder> {
-  @BuiltValueField(wireName: r'value')
-  String get value;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class UpdateAttributeValueRequest {
+  /// Returns a new [UpdateAttributeValueRequest] instance.
+  UpdateAttributeValueRequest({required this.value});
 
-  UpdateAttributeValueRequest._();
-
-  factory UpdateAttributeValueRequest([void updates(UpdateAttributeValueRequestBuilder b)]) = _$UpdateAttributeValueRequest;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(UpdateAttributeValueRequestBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<UpdateAttributeValueRequest> get serializer => _$UpdateAttributeValueRequestSerializer();
-}
-
-class _$UpdateAttributeValueRequestSerializer implements PrimitiveSerializer<UpdateAttributeValueRequest> {
-  @override
-  final Iterable<Type> types = const [UpdateAttributeValueRequest, _$UpdateAttributeValueRequest];
+  @JsonKey(name: r'value', required: true, includeIfNull: false)
+  final String value;
 
   @override
-  final String wireName = r'UpdateAttributeValueRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    UpdateAttributeValueRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'value';
-    yield serializers.serialize(
-      object.value,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateAttributeValueRequest && other.value == value;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    UpdateAttributeValueRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode => value.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required UpdateAttributeValueRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'value':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.value = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory UpdateAttributeValueRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateAttributeValueRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateAttributeValueRequestToJson(this);
 
   @override
-  UpdateAttributeValueRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = UpdateAttributeValueRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

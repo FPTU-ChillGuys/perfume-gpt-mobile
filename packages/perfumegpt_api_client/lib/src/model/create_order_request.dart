@@ -3,221 +3,89 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/payment_information.dart';
 import 'package:perfumegpt_api_client/src/model/contact_address_information.dart';
 import 'package:perfumegpt_api_client/src/model/delivery_method.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'create_order_request.g.dart';
 
-/// CreateOrderRequest
-///
-/// Properties:
-/// * [voucherCode] 
-/// * [itemIds] 
-/// * [expectedTotalPrice] 
-/// * [deliveryMethod] 
-/// * [savedAddressId] 
-/// * [recipient] 
-/// * [payment] 
-@BuiltValue()
-abstract class CreateOrderRequest implements Built<CreateOrderRequest, CreateOrderRequestBuilder> {
-  @BuiltValueField(wireName: r'voucherCode')
-  String? get voucherCode;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class CreateOrderRequest {
+  /// Returns a new [CreateOrderRequest] instance.
+  CreateOrderRequest({
+    this.voucherCode,
 
-  @BuiltValueField(wireName: r'itemIds')
-  BuiltList<String>? get itemIds;
+    this.itemIds,
 
-  @BuiltValueField(wireName: r'expectedTotalPrice')
-  num? get expectedTotalPrice;
+    this.expectedTotalPrice,
 
-  @BuiltValueField(wireName: r'deliveryMethod')
-  DeliveryMethod? get deliveryMethod;
-  // enum deliveryMethodEnum {  Delivery,  PickupInStore,  };
+    this.deliveryMethod,
 
-  @BuiltValueField(wireName: r'savedAddressId')
-  String? get savedAddressId;
+    this.savedAddressId,
 
-  @BuiltValueField(wireName: r'recipient')
-  ContactAddressInformation? get recipient;
+    this.recipient,
 
-  @BuiltValueField(wireName: r'payment')
-  PaymentInformation get payment;
+    required this.payment,
+  });
 
-  CreateOrderRequest._();
+  @JsonKey(name: r'voucherCode', required: false, includeIfNull: false)
+  final String? voucherCode;
 
-  factory CreateOrderRequest([void updates(CreateOrderRequestBuilder b)]) = _$CreateOrderRequest;
+  @JsonKey(name: r'itemIds', required: false, includeIfNull: false)
+  final List<String>? itemIds;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CreateOrderRequestBuilder b) => b;
+  @JsonKey(name: r'expectedTotalPrice', required: false, includeIfNull: false)
+  final num? expectedTotalPrice;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<CreateOrderRequest> get serializer => _$CreateOrderRequestSerializer();
-}
+  @JsonKey(name: r'deliveryMethod', required: false, includeIfNull: false)
+  final DeliveryMethod? deliveryMethod;
 
-class _$CreateOrderRequestSerializer implements PrimitiveSerializer<CreateOrderRequest> {
-  @override
-  final Iterable<Type> types = const [CreateOrderRequest, _$CreateOrderRequest];
+  @JsonKey(name: r'savedAddressId', required: false, includeIfNull: false)
+  final String? savedAddressId;
+
+  @JsonKey(name: r'recipient', required: false, includeIfNull: false)
+  final ContactAddressInformation? recipient;
+
+  @JsonKey(name: r'payment', required: true, includeIfNull: false)
+  final PaymentInformation payment;
 
   @override
-  final String wireName = r'CreateOrderRequest';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    CreateOrderRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.voucherCode != null) {
-      yield r'voucherCode';
-      yield serializers.serialize(
-        object.voucherCode,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.itemIds != null) {
-      yield r'itemIds';
-      yield serializers.serialize(
-        object.itemIds,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.expectedTotalPrice != null) {
-      yield r'expectedTotalPrice';
-      yield serializers.serialize(
-        object.expectedTotalPrice,
-        specifiedType: const FullType.nullable(num),
-      );
-    }
-    if (object.deliveryMethod != null) {
-      yield r'deliveryMethod';
-      yield serializers.serialize(
-        object.deliveryMethod,
-        specifiedType: const FullType(DeliveryMethod),
-      );
-    }
-    if (object.savedAddressId != null) {
-      yield r'savedAddressId';
-      yield serializers.serialize(
-        object.savedAddressId,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.recipient != null) {
-      yield r'recipient';
-      yield serializers.serialize(
-        object.recipient,
-        specifiedType: const FullType.nullable(ContactAddressInformation),
-      );
-    }
-    yield r'payment';
-    yield serializers.serialize(
-      object.payment,
-      specifiedType: const FullType(PaymentInformation),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateOrderRequest &&
+          other.voucherCode == voucherCode &&
+          other.itemIds == itemIds &&
+          other.expectedTotalPrice == expectedTotalPrice &&
+          other.deliveryMethod == deliveryMethod &&
+          other.savedAddressId == savedAddressId &&
+          other.recipient == recipient &&
+          other.payment == payment;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    CreateOrderRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      (voucherCode == null ? 0 : voucherCode.hashCode) +
+      itemIds.hashCode +
+      (expectedTotalPrice == null ? 0 : expectedTotalPrice.hashCode) +
+      deliveryMethod.hashCode +
+      (savedAddressId == null ? 0 : savedAddressId.hashCode) +
+      (recipient == null ? 0 : recipient.hashCode) +
+      payment.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required CreateOrderRequestBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'voucherCode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.voucherCode = valueDes;
-          break;
-        case r'itemIds':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
-          result.itemIds.replace(valueDes);
-          break;
-        case r'expectedTotalPrice':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(num),
-          ) as num?;
-          if (valueDes == null) continue;
-          result.expectedTotalPrice = valueDes;
-          break;
-        case r'deliveryMethod':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DeliveryMethod),
-          ) as DeliveryMethod;
-          result.deliveryMethod = valueDes;
-          break;
-        case r'savedAddressId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.savedAddressId = valueDes;
-          break;
-        case r'recipient':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(ContactAddressInformation),
-          ) as ContactAddressInformation?;
-          if (valueDes == null) continue;
-          result.recipient.replace(valueDes);
-          break;
-        case r'payment':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(PaymentInformation),
-          ) as PaymentInformation;
-          result.payment.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory CreateOrderRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateOrderRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CreateOrderRequestToJson(this);
 
   @override
-  CreateOrderRequest deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = CreateOrderRequestBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

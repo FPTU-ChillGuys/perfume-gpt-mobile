@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ImportDetailResponse
 void main() {
-  final instance = ImportDetailResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final ImportDetailResponse? instance = /* ImportDetailResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(ImportDetailResponse, () {
     // String id
@@ -52,10 +52,9 @@ void main() {
       // TODO
     });
 
-    // BuiltList<BatchResponse> batches
+    // List<BatchResponse> batches
     test('to test the property `batches`', () async {
       // TODO
     });
-
   });
 }

@@ -3,154 +3,62 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'staff_lookup_item.g.dart';
 
-/// StaffLookupItem
-///
-/// Properties:
-/// * [id] 
-/// * [userName] 
-/// * [fullName] 
-/// * [email] 
-@BuiltValue()
-abstract class StaffLookupItem implements Built<StaffLookupItem, StaffLookupItemBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class StaffLookupItem {
+  /// Returns a new [StaffLookupItem] instance.
+  StaffLookupItem({
+    this.id,
 
-  @BuiltValueField(wireName: r'userName')
-  String get userName;
+    required this.userName,
 
-  @BuiltValueField(wireName: r'fullName')
-  String get fullName;
+    required this.fullName,
 
-  @BuiltValueField(wireName: r'email')
-  String get email;
+    required this.email,
+  });
 
-  StaffLookupItem._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory StaffLookupItem([void updates(StaffLookupItemBuilder b)]) = _$StaffLookupItem;
+  @JsonKey(name: r'userName', required: true, includeIfNull: false)
+  final String userName;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(StaffLookupItemBuilder b) => b;
+  @JsonKey(name: r'fullName', required: true, includeIfNull: false)
+  final String fullName;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<StaffLookupItem> get serializer => _$StaffLookupItemSerializer();
-}
-
-class _$StaffLookupItemSerializer implements PrimitiveSerializer<StaffLookupItem> {
-  @override
-  final Iterable<Type> types = const [StaffLookupItem, _$StaffLookupItem];
+  @JsonKey(name: r'email', required: true, includeIfNull: false)
+  final String email;
 
   @override
-  final String wireName = r'StaffLookupItem';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    StaffLookupItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'userName';
-    yield serializers.serialize(
-      object.userName,
-      specifiedType: const FullType(String),
-    );
-    yield r'fullName';
-    yield serializers.serialize(
-      object.fullName,
-      specifiedType: const FullType(String),
-    );
-    yield r'email';
-    yield serializers.serialize(
-      object.email,
-      specifiedType: const FullType(String),
-    );
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StaffLookupItem &&
+          other.id == id &&
+          other.userName == userName &&
+          other.fullName == fullName &&
+          other.email == email;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    StaffLookupItem object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
+  int get hashCode =>
+      id.hashCode + userName.hashCode + fullName.hashCode + email.hashCode;
 
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required StaffLookupItemBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'userName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.userName = valueDes;
-          break;
-        case r'fullName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.fullName = valueDes;
-          break;
-        case r'email':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.email = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  factory StaffLookupItem.fromJson(Map<String, dynamic> json) =>
+      _$StaffLookupItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StaffLookupItemToJson(this);
 
   @override
-  StaffLookupItem deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = StaffLookupItemBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  String toString() {
+    return toJson().toString();
   }
 }
-

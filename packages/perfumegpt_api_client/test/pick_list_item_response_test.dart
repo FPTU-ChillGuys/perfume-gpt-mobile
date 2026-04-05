@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PickListItemResponse
 void main() {
-  final instance = PickListItemResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final PickListItemResponse? instance = /* PickListItemResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(PickListItemResponse, () {
     // String orderDetailId
@@ -27,10 +27,9 @@ void main() {
       // TODO
     });
 
-    // BuiltList<PickListBatchInfo> batches
+    // List<PickListBatchInfo> batches
     test('to test the property `batches`', () async {
       // TODO
     });
-
   });
 }

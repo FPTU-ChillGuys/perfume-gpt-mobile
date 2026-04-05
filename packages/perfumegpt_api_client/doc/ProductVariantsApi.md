@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getProductVariantsApi();
-final BuiltList<VariantImageUploadItem> images = ; // BuiltList<VariantImageUploadItem> | 
+final List<VariantImageUploadItem> images = ; // List<VariantImageUploadItem> | 
 
 try {
     final response = api.apiProductvariantsImagesTemporaryPost(images);
@@ -135,7 +135,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **images** | [**BuiltList&lt;VariantImageUploadItem&gt;**](VariantImageUploadItem.md)|  | [optional] 
+ **images** | [**List&lt;VariantImageUploadItem&gt;**](VariantImageUploadItem.md)|  | [optional] 
 
 ### Return type
 

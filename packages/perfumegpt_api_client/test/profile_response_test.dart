@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProfileResponse
 void main() {
-  final instance = ProfileResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final ProfileResponse? instance = /* ProfileResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(ProfileResponse, () {
     // DateTime dateOfBirth
@@ -22,20 +22,19 @@ void main() {
       // TODO
     });
 
-    // BuiltList<CustomerNotePreferenceResponse> notePreferences
+    // List<CustomerNotePreferenceResponse> notePreferences
     test('to test the property `notePreferences`', () async {
       // TODO
     });
 
-    // BuiltList<CustomerFamilyPreferenceRespone> familyPreferences
+    // List<CustomerFamilyPreferenceRespone> familyPreferences
     test('to test the property `familyPreferences`', () async {
       // TODO
     });
 
-    // BuiltList<CustomerAttributePreferenceResponse> attributePreferences
+    // List<CustomerAttributePreferenceResponse> attributePreferences
     test('to test the property `attributePreferences`', () async {
       // TODO
     });
-
   });
 }

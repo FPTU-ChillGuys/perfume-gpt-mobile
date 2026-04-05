@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateAddressRequest
 void main() {
-  final instance = CreateAddressRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateAddressRequest? instance = /* CreateAddressRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateAddressRequest, () {
     // String recipientName
@@ -56,6 +56,5 @@ void main() {
     test('to test the property `isDefault`', () async {
       // TODO
     });
-
   });
 }

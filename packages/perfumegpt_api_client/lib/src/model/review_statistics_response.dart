@@ -3,232 +3,93 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'review_statistics_response.g.dart';
 
-/// ReviewStatisticsResponse
-///
-/// Properties:
-/// * [variantId] 
-/// * [totalReviews] 
-/// * [averageRating] 
-/// * [fiveStarCount] 
-/// * [fourStarCount] 
-/// * [threeStarCount] 
-/// * [twoStarCount] 
-/// * [oneStarCount] 
-@BuiltValue()
-abstract class ReviewStatisticsResponse implements Built<ReviewStatisticsResponse, ReviewStatisticsResponseBuilder> {
-  @BuiltValueField(wireName: r'variantId')
-  String? get variantId;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ReviewStatisticsResponse {
+  /// Returns a new [ReviewStatisticsResponse] instance.
+  ReviewStatisticsResponse({
+    this.variantId,
 
-  @BuiltValueField(wireName: r'totalReviews')
-  int? get totalReviews;
+    this.totalReviews,
 
-  @BuiltValueField(wireName: r'averageRating')
-  double? get averageRating;
+    this.averageRating,
 
-  @BuiltValueField(wireName: r'fiveStarCount')
-  int? get fiveStarCount;
+    this.fiveStarCount,
 
-  @BuiltValueField(wireName: r'fourStarCount')
-  int? get fourStarCount;
+    this.fourStarCount,
 
-  @BuiltValueField(wireName: r'threeStarCount')
-  int? get threeStarCount;
+    this.threeStarCount,
 
-  @BuiltValueField(wireName: r'twoStarCount')
-  int? get twoStarCount;
+    this.twoStarCount,
 
-  @BuiltValueField(wireName: r'oneStarCount')
-  int? get oneStarCount;
+    this.oneStarCount,
+  });
 
-  ReviewStatisticsResponse._();
+  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+  final String? variantId;
 
-  factory ReviewStatisticsResponse([void updates(ReviewStatisticsResponseBuilder b)]) = _$ReviewStatisticsResponse;
+  @JsonKey(name: r'totalReviews', required: false, includeIfNull: false)
+  final int? totalReviews;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ReviewStatisticsResponseBuilder b) => b;
+  @JsonKey(name: r'averageRating', required: false, includeIfNull: false)
+  final double? averageRating;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ReviewStatisticsResponse> get serializer => _$ReviewStatisticsResponseSerializer();
-}
+  @JsonKey(name: r'fiveStarCount', required: false, includeIfNull: false)
+  final int? fiveStarCount;
 
-class _$ReviewStatisticsResponseSerializer implements PrimitiveSerializer<ReviewStatisticsResponse> {
-  @override
-  final Iterable<Type> types = const [ReviewStatisticsResponse, _$ReviewStatisticsResponse];
+  @JsonKey(name: r'fourStarCount', required: false, includeIfNull: false)
+  final int? fourStarCount;
 
-  @override
-  final String wireName = r'ReviewStatisticsResponse';
+  @JsonKey(name: r'threeStarCount', required: false, includeIfNull: false)
+  final int? threeStarCount;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ReviewStatisticsResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.variantId != null) {
-      yield r'variantId';
-      yield serializers.serialize(
-        object.variantId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.totalReviews != null) {
-      yield r'totalReviews';
-      yield serializers.serialize(
-        object.totalReviews,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.averageRating != null) {
-      yield r'averageRating';
-      yield serializers.serialize(
-        object.averageRating,
-        specifiedType: const FullType(double),
-      );
-    }
-    if (object.fiveStarCount != null) {
-      yield r'fiveStarCount';
-      yield serializers.serialize(
-        object.fiveStarCount,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.fourStarCount != null) {
-      yield r'fourStarCount';
-      yield serializers.serialize(
-        object.fourStarCount,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.threeStarCount != null) {
-      yield r'threeStarCount';
-      yield serializers.serialize(
-        object.threeStarCount,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.twoStarCount != null) {
-      yield r'twoStarCount';
-      yield serializers.serialize(
-        object.twoStarCount,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.oneStarCount != null) {
-      yield r'oneStarCount';
-      yield serializers.serialize(
-        object.oneStarCount,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
+  @JsonKey(name: r'twoStarCount', required: false, includeIfNull: false)
+  final int? twoStarCount;
+
+  @JsonKey(name: r'oneStarCount', required: false, includeIfNull: false)
+  final int? oneStarCount;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ReviewStatisticsResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ReviewStatisticsResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'variantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantId = valueDes;
-          break;
-        case r'totalReviews':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalReviews = valueDes;
-          break;
-        case r'averageRating':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double;
-          result.averageRating = valueDes;
-          break;
-        case r'fiveStarCount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.fiveStarCount = valueDes;
-          break;
-        case r'fourStarCount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.fourStarCount = valueDes;
-          break;
-        case r'threeStarCount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.threeStarCount = valueDes;
-          break;
-        case r'twoStarCount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.twoStarCount = valueDes;
-          break;
-        case r'oneStarCount':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.oneStarCount = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReviewStatisticsResponse &&
+          other.variantId == variantId &&
+          other.totalReviews == totalReviews &&
+          other.averageRating == averageRating &&
+          other.fiveStarCount == fiveStarCount &&
+          other.fourStarCount == fourStarCount &&
+          other.threeStarCount == threeStarCount &&
+          other.twoStarCount == twoStarCount &&
+          other.oneStarCount == oneStarCount;
 
   @override
-  ReviewStatisticsResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ReviewStatisticsResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      variantId.hashCode +
+      totalReviews.hashCode +
+      averageRating.hashCode +
+      fiveStarCount.hashCode +
+      fourStarCount.hashCode +
+      threeStarCount.hashCode +
+      twoStarCount.hashCode +
+      oneStarCount.hashCode;
+
+  factory ReviewStatisticsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReviewStatisticsResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReviewStatisticsResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

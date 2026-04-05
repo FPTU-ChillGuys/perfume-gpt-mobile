@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VariantPagedItem
 void main() {
-  final instance = VariantPagedItemBuilder();
-  // TODO add properties to the builder and call build()
+  final VariantPagedItem? instance = /* VariantPagedItem(...) */ null;
+  // TODO add properties to the entity
 
   group(VariantPagedItem, () {
     // String id
@@ -72,10 +72,9 @@ void main() {
       // TODO
     });
 
-    // BuiltList<ProductAttributeResponse> attributes
+    // List<ProductAttributeResponse> attributes
     test('to test the property `attributes`', () async {
       // TODO
     });
-
   });
 }

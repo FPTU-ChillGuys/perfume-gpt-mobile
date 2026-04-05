@@ -3,245 +3,100 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'stock_adjustment_detail_response.g.dart';
 
-/// StockAdjustmentDetailResponse
-///
-/// Properties:
-/// * [id] 
-/// * [productVariantId] 
-/// * [productName] 
-/// * [variantSku] 
-/// * [batchId] 
-/// * [batchCode] 
-/// * [adjustmentQuantity] 
-/// * [approvedQuantity] 
-/// * [note] 
-@BuiltValue()
-abstract class StockAdjustmentDetailResponse implements Built<StockAdjustmentDetailResponse, StockAdjustmentDetailResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class StockAdjustmentDetailResponse {
+  /// Returns a new [StockAdjustmentDetailResponse] instance.
+  StockAdjustmentDetailResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'productVariantId')
-  String? get productVariantId;
+    this.productVariantId,
 
-  @BuiltValueField(wireName: r'productName')
-  String get productName;
+    required this.productName,
 
-  @BuiltValueField(wireName: r'variantSku')
-  String get variantSku;
+    required this.variantSku,
 
-  @BuiltValueField(wireName: r'batchId')
-  String? get batchId;
+    this.batchId,
 
-  @BuiltValueField(wireName: r'batchCode')
-  String get batchCode;
+    required this.batchCode,
 
-  @BuiltValueField(wireName: r'adjustmentQuantity')
-  int? get adjustmentQuantity;
+    this.adjustmentQuantity,
 
-  @BuiltValueField(wireName: r'approvedQuantity')
-  int? get approvedQuantity;
+    this.approvedQuantity,
 
-  @BuiltValueField(wireName: r'note')
-  String? get note;
+    this.note,
+  });
 
-  StockAdjustmentDetailResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory StockAdjustmentDetailResponse([void updates(StockAdjustmentDetailResponseBuilder b)]) = _$StockAdjustmentDetailResponse;
+  @JsonKey(name: r'productVariantId', required: false, includeIfNull: false)
+  final String? productVariantId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(StockAdjustmentDetailResponseBuilder b) => b;
+  @JsonKey(name: r'productName', required: true, includeIfNull: false)
+  final String productName;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<StockAdjustmentDetailResponse> get serializer => _$StockAdjustmentDetailResponseSerializer();
-}
+  @JsonKey(name: r'variantSku', required: true, includeIfNull: false)
+  final String variantSku;
 
-class _$StockAdjustmentDetailResponseSerializer implements PrimitiveSerializer<StockAdjustmentDetailResponse> {
-  @override
-  final Iterable<Type> types = const [StockAdjustmentDetailResponse, _$StockAdjustmentDetailResponse];
+  @JsonKey(name: r'batchId', required: false, includeIfNull: false)
+  final String? batchId;
 
-  @override
-  final String wireName = r'StockAdjustmentDetailResponse';
+  @JsonKey(name: r'batchCode', required: true, includeIfNull: false)
+  final String batchCode;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    StockAdjustmentDetailResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.productVariantId != null) {
-      yield r'productVariantId';
-      yield serializers.serialize(
-        object.productVariantId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'productName';
-    yield serializers.serialize(
-      object.productName,
-      specifiedType: const FullType(String),
-    );
-    yield r'variantSku';
-    yield serializers.serialize(
-      object.variantSku,
-      specifiedType: const FullType(String),
-    );
-    if (object.batchId != null) {
-      yield r'batchId';
-      yield serializers.serialize(
-        object.batchId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'batchCode';
-    yield serializers.serialize(
-      object.batchCode,
-      specifiedType: const FullType(String),
-    );
-    if (object.adjustmentQuantity != null) {
-      yield r'adjustmentQuantity';
-      yield serializers.serialize(
-        object.adjustmentQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.approvedQuantity != null) {
-      yield r'approvedQuantity';
-      yield serializers.serialize(
-        object.approvedQuantity,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.note != null) {
-      yield r'note';
-      yield serializers.serialize(
-        object.note,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-  }
+  @JsonKey(name: r'adjustmentQuantity', required: false, includeIfNull: false)
+  final int? adjustmentQuantity;
+
+  @JsonKey(name: r'approvedQuantity', required: false, includeIfNull: false)
+  final int? approvedQuantity;
+
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
+  final String? note;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    StockAdjustmentDetailResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required StockAdjustmentDetailResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'productVariantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.productVariantId = valueDes;
-          break;
-        case r'productName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.productName = valueDes;
-          break;
-        case r'variantSku':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantSku = valueDes;
-          break;
-        case r'batchId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.batchId = valueDes;
-          break;
-        case r'batchCode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.batchCode = valueDes;
-          break;
-        case r'adjustmentQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.adjustmentQuantity = valueDes;
-          break;
-        case r'approvedQuantity':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.approvedQuantity = valueDes;
-          break;
-        case r'note':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.note = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StockAdjustmentDetailResponse &&
+          other.id == id &&
+          other.productVariantId == productVariantId &&
+          other.productName == productName &&
+          other.variantSku == variantSku &&
+          other.batchId == batchId &&
+          other.batchCode == batchCode &&
+          other.adjustmentQuantity == adjustmentQuantity &&
+          other.approvedQuantity == approvedQuantity &&
+          other.note == note;
 
   @override
-  StockAdjustmentDetailResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = StockAdjustmentDetailResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      id.hashCode +
+      productVariantId.hashCode +
+      productName.hashCode +
+      variantSku.hashCode +
+      batchId.hashCode +
+      batchCode.hashCode +
+      adjustmentQuantity.hashCode +
+      approvedQuantity.hashCode +
+      (note == null ? 0 : note.hashCode);
+
+  factory StockAdjustmentDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$StockAdjustmentDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StockAdjustmentDetailResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-

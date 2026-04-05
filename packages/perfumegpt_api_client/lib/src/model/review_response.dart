@@ -3,338 +3,140 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/media_response.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'review_response.g.dart';
 
-/// ReviewResponse
-///
-/// Properties:
-/// * [id] 
-/// * [userId] 
-/// * [userFullName] 
-/// * [userProfilePictureUrl] 
-/// * [orderDetailId] 
-/// * [variantId] 
-/// * [variantName] 
-/// * [rating] 
-/// * [comment] 
-/// * [staffFeedbackComment] 
-/// * [staffFeedbackAt] 
-/// * [images] 
-/// * [createdAt] 
-/// * [updatedAt] 
-@BuiltValue()
-abstract class ReviewResponse implements Built<ReviewResponse, ReviewResponseBuilder> {
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ReviewResponse {
+  /// Returns a new [ReviewResponse] instance.
+  ReviewResponse({
+    this.id,
 
-  @BuiltValueField(wireName: r'userId')
-  String? get userId;
+    this.userId,
 
-  @BuiltValueField(wireName: r'userFullName')
-  String get userFullName;
+    required this.userFullName,
 
-  @BuiltValueField(wireName: r'userProfilePictureUrl')
-  String? get userProfilePictureUrl;
+    this.userProfilePictureUrl,
 
-  @BuiltValueField(wireName: r'orderDetailId')
-  String? get orderDetailId;
+    this.orderDetailId,
 
-  @BuiltValueField(wireName: r'variantId')
-  String? get variantId;
+    this.variantId,
 
-  @BuiltValueField(wireName: r'variantName')
-  String get variantName;
+    required this.variantName,
 
-  @BuiltValueField(wireName: r'rating')
-  int? get rating;
+    this.rating,
 
-  @BuiltValueField(wireName: r'comment')
-  String get comment;
+    required this.comment,
 
-  @BuiltValueField(wireName: r'staffFeedbackComment')
-  String? get staffFeedbackComment;
+    this.staffFeedbackComment,
 
-  @BuiltValueField(wireName: r'staffFeedbackAt')
-  DateTime? get staffFeedbackAt;
+    this.staffFeedbackAt,
 
-  @BuiltValueField(wireName: r'images')
-  BuiltList<MediaResponse> get images;
+    required this.images,
 
-  @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+    this.createdAt,
 
-  @BuiltValueField(wireName: r'updatedAt')
-  DateTime? get updatedAt;
+    this.updatedAt,
+  });
 
-  ReviewResponse._();
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  final String? id;
 
-  factory ReviewResponse([void updates(ReviewResponseBuilder b)]) = _$ReviewResponse;
+  @JsonKey(name: r'userId', required: false, includeIfNull: false)
+  final String? userId;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ReviewResponseBuilder b) => b;
+  @JsonKey(name: r'userFullName', required: true, includeIfNull: false)
+  final String userFullName;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ReviewResponse> get serializer => _$ReviewResponseSerializer();
-}
+  @JsonKey(
+    name: r'userProfilePictureUrl',
+    required: false,
+    includeIfNull: false,
+  )
+  final String? userProfilePictureUrl;
 
-class _$ReviewResponseSerializer implements PrimitiveSerializer<ReviewResponse> {
-  @override
-  final Iterable<Type> types = const [ReviewResponse, _$ReviewResponse];
+  @JsonKey(name: r'orderDetailId', required: false, includeIfNull: false)
+  final String? orderDetailId;
 
-  @override
-  final String wireName = r'ReviewResponse';
+  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+  final String? variantId;
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ReviewResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.userId != null) {
-      yield r'userId';
-      yield serializers.serialize(
-        object.userId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'userFullName';
-    yield serializers.serialize(
-      object.userFullName,
-      specifiedType: const FullType(String),
-    );
-    if (object.userProfilePictureUrl != null) {
-      yield r'userProfilePictureUrl';
-      yield serializers.serialize(
-        object.userProfilePictureUrl,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.orderDetailId != null) {
-      yield r'orderDetailId';
-      yield serializers.serialize(
-        object.orderDetailId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.variantId != null) {
-      yield r'variantId';
-      yield serializers.serialize(
-        object.variantId,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'variantName';
-    yield serializers.serialize(
-      object.variantName,
-      specifiedType: const FullType(String),
-    );
-    if (object.rating != null) {
-      yield r'rating';
-      yield serializers.serialize(
-        object.rating,
-        specifiedType: const FullType(int),
-      );
-    }
-    yield r'comment';
-    yield serializers.serialize(
-      object.comment,
-      specifiedType: const FullType(String),
-    );
-    if (object.staffFeedbackComment != null) {
-      yield r'staffFeedbackComment';
-      yield serializers.serialize(
-        object.staffFeedbackComment,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.staffFeedbackAt != null) {
-      yield r'staffFeedbackAt';
-      yield serializers.serialize(
-        object.staffFeedbackAt,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-    yield r'images';
-    yield serializers.serialize(
-      object.images,
-      specifiedType: const FullType(BuiltList, [FullType(MediaResponse)]),
-    );
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.updatedAt != null) {
-      yield r'updatedAt';
-      yield serializers.serialize(
-        object.updatedAt,
-        specifiedType: const FullType.nullable(DateTime),
-      );
-    }
-  }
+  @JsonKey(name: r'variantName', required: true, includeIfNull: false)
+  final String variantName;
+
+  @JsonKey(name: r'rating', required: false, includeIfNull: false)
+  final int? rating;
+
+  @JsonKey(name: r'comment', required: true, includeIfNull: false)
+  final String comment;
+
+  @JsonKey(name: r'staffFeedbackComment', required: false, includeIfNull: false)
+  final String? staffFeedbackComment;
+
+  @JsonKey(name: r'staffFeedbackAt', required: false, includeIfNull: false)
+  final DateTime? staffFeedbackAt;
+
+  @JsonKey(name: r'images', required: true, includeIfNull: false)
+  final List<MediaResponse> images;
+
+  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+  final DateTime? createdAt;
+
+  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
+  final DateTime? updatedAt;
 
   @override
-  Object serialize(
-    Serializers serializers,
-    ReviewResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ReviewResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'userId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.userId = valueDes;
-          break;
-        case r'userFullName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.userFullName = valueDes;
-          break;
-        case r'userProfilePictureUrl':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.userProfilePictureUrl = valueDes;
-          break;
-        case r'orderDetailId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.orderDetailId = valueDes;
-          break;
-        case r'variantId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantId = valueDes;
-          break;
-        case r'variantName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.variantName = valueDes;
-          break;
-        case r'rating':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.rating = valueDes;
-          break;
-        case r'comment':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.comment = valueDes;
-          break;
-        case r'staffFeedbackComment':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.staffFeedbackComment = valueDes;
-          break;
-        case r'staffFeedbackAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.staffFeedbackAt = valueDes;
-          break;
-        case r'images':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(MediaResponse)]),
-          ) as BuiltList<MediaResponse>;
-          result.images.replace(valueDes);
-          break;
-        case r'createdAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.createdAt = valueDes;
-          break;
-        case r'updatedAt':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.updatedAt = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReviewResponse &&
+          other.id == id &&
+          other.userId == userId &&
+          other.userFullName == userFullName &&
+          other.userProfilePictureUrl == userProfilePictureUrl &&
+          other.orderDetailId == orderDetailId &&
+          other.variantId == variantId &&
+          other.variantName == variantName &&
+          other.rating == rating &&
+          other.comment == comment &&
+          other.staffFeedbackComment == staffFeedbackComment &&
+          other.staffFeedbackAt == staffFeedbackAt &&
+          other.images == images &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt;
 
   @override
-  ReviewResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ReviewResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+  int get hashCode =>
+      id.hashCode +
+      userId.hashCode +
+      userFullName.hashCode +
+      (userProfilePictureUrl == null ? 0 : userProfilePictureUrl.hashCode) +
+      orderDetailId.hashCode +
+      variantId.hashCode +
+      variantName.hashCode +
+      rating.hashCode +
+      comment.hashCode +
+      (staffFeedbackComment == null ? 0 : staffFeedbackComment.hashCode) +
+      (staffFeedbackAt == null ? 0 : staffFeedbackAt.hashCode) +
+      images.hashCode +
+      createdAt.hashCode +
+      (updatedAt == null ? 0 : updatedAt.hashCode);
+
+  factory ReviewResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReviewResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReviewResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
   }
 }
-
