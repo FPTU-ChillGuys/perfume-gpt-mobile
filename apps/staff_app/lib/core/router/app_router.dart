@@ -1,17 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import '../../features/inventory/presentation/screens/inventory_screen.dart';
 import '../../features/inventory/presentation/screens/product_detail_screen.dart';
 import '../../features/pos/presentation/screens/pos_screen.dart';
+import '../../features/auth/presentation/screens/login_screen.dart';
 
 part 'app_router.g.dart';
 
 @riverpod
 GoRouter appRouter(Ref ref) {
+  final authState = ref.watch(authProvider);
+
   return GoRouter(
     initialLocation: '/pos',
+    redirect: (context, state) {
+      final isLoading = authState.isLoading;
+      final isAuth = authState.value != null;
+      final isLoggingIn = state.matchedLocation == '/login';
+
+      if (isLoading) return null;
+
+      if (!isAuth) {
+        return isLoggingIn ? null : '/login';
+      }
+
+      if (isLoggingIn) {
+        return '/pos';
+      }
+
+      return null;
+    },
     routes: [
+      GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return ScaffoldWithBottomNavBar(navigationShell: navigationShell);
