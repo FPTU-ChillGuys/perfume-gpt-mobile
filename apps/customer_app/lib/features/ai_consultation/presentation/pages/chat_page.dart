@@ -1,9 +1,9 @@
+import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/chat_provider.dart';
-import '../../../auth/presentation/providers/auth_provider.dart';
 
 class ChatPage extends ConsumerStatefulWidget {
   const ChatPage({super.key});
@@ -31,14 +31,14 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     if (userId == 'ai') {
       return const User(id: 'ai', name: 'PerfumeGPT');
     }
-    final user = ref.read(authProvider).value;
+    final user = ref.read(common.authProvider).value;
     return User(id: userId, name: user?.name ?? 'User');
   }
 
   @override
   Widget build(BuildContext context) {
     final messages = ref.watch(chatSessionProvider);
-    final user = ref.watch(authProvider).value;
+    final user = ref.watch(common.authProvider).value;
 
     // Sync messages with controller
     _chatController.setMessages(messages);

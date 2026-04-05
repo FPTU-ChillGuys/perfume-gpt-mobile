@@ -23,6 +23,8 @@ dependencies:
   perfumegpt_api_client: ^1.0.0
   flutter_chat_core: ^2.9.0
   intl: ^0.20.2
+  perfumegpt_common:
+    path: ../../packages/perfumegpt_common
 
 dev_dependencies:
   flutter_test:

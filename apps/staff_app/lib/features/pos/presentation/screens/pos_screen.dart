@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import '../../../../data/repositories/product_repository_impl.dart';
 import '../providers/cart_providers.dart';
 import '../../../../core/utils/price_formatter.dart';
@@ -19,7 +20,15 @@ class PosScreen extends ConsumerWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_sweep),
+            tooltip: 'Clear Cart',
             onPressed: () => ref.read(posCartProvider.notifier).clearCart(),
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+            onPressed: () {
+              ref.read(authProvider.notifier).logout();
+            },
           ),
         ],
       ),

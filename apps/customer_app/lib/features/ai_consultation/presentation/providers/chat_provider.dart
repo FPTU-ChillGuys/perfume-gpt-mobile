@@ -1,7 +1,7 @@
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
-import '../../../auth/presentation/providers/auth_provider.dart';
 
 part 'chat_provider.g.dart';
 

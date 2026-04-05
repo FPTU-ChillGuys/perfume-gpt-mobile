@@ -1,10 +1,10 @@
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'dart:developer' as developer;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/repositories/product_repository.dart';
 
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
-import '../../core/providers/api_client_provider.dart';
 
 part 'product_repository_impl.g.dart';
 
