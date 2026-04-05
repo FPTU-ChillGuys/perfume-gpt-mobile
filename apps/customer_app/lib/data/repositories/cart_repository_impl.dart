@@ -130,8 +130,8 @@ class CartRepositoryImpl implements CartRepository {
   CartItem _mapToEntity(GetCartItemResponse item) {
     return CartItem(
       id: item.cartItemId,
-      variantId: item.variantId,
-      quantity: item.quantity,
+      variantId: item.variantId!,
+      quantity: item.quantity!,
       product: Product(
         id: '', // Variant level doesn't always have product ID directly in this response
         name: item.variantName ?? '',

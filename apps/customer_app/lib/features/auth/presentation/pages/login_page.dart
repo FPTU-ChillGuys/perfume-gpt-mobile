@@ -2,6 +2,7 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../order/presentation/providers/cart_provider.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -27,9 +28,39 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
     ref.listen(authProvider, (previous, next) {
       next.whenOrNull(
-        data: (user) {
+        data: (user) async {
           if (user != null) {
-            context.go('/');
+            final cartItems = ref.read(cartProvider).asData?.value ?? [];
+            if (cartItems.isNotEmpty && context.mounted) {
+              final shouldMerge = await showDialog<bool>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Merge Cart?'),
+                  content: const Text(
+                    'You have items in your guest cart. Would you like to merge them with your account?',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, false),
+                      child: const Text('No, clear guest cart'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, true),
+                      child: const Text('Yes, merge'),
+                    ),
+                  ],
+                ),
+              );
+
+              if (shouldMerge == true) {
+                await ref.read(cartProvider.notifier).mergeCart();
+              } else if (shouldMerge == false) {
+                await ref.read(cartProvider.notifier).clear();
+              }
+            }
+            if (context.mounted) {
+              context.go('/');
+            }
           }
         },
         error: (error, stackTrace) {

@@ -41,7 +41,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
-    final cartItems = ref.watch(cartProvider);
+    final cartState = ref.watch(cartProvider);
     final totalAmount = ref.read(cartProvider.notifier).totalAmount;
 
     return Scaffold(
@@ -93,125 +93,120 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             );
           }
 
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Shipping Address',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                ),
-                Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  child: ListTile(
-                    leading: const Icon(Icons.location_on),
-                    title: Text(user.name ?? 'Valued Customer'),
-                    subtitle: const Text(
-                      '123 Le Loi St, District 1, High City',
-                    ),
-                    trailing: const Icon(Icons.chevron_right),
+          return cartState.when(
+            data: (cartItems) => SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Shipping Address',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'Order Summary',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: cartItems.length,
-                  itemBuilder: (context, index) {
-                    final item = cartItems[index];
-                    return ListTile(
-                      title: Text(item.product.name),
-                      trailing: Text(
-                        'x${item.quantity}  ${item.totalPrice.toStringAsFixed(0)} VND',
+                  Card(
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    child: ListTile(
+                      leading: const Icon(Icons.location_on),
+                      title: Text(user.name ?? 'Valued Customer'),
+                      subtitle: const Text(
+                        '123 Le Loi St, District 1, High City',
                       ),
-                    );
-                  },
-                ),
-                const Divider(),
-                ListTile(
-                  title: const Text(
-                    'Total',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  trailing: Text(
-                    '${totalAmount.toStringAsFixed(0)} VND',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Theme.of(context).colorScheme.primary,
+                      trailing: const Icon(Icons.chevron_right),
                     ),
                   ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'Payment Method',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8),
-                // ignore: deprecated_member_use
-                RadioListTile(
-                  title: const Text('Momo'),
-                  value: 'Momo',
-                  // ignore: deprecated_member_use
-                  groupValue: _selectedPayment,
-                  // ignore: deprecated_member_use
-                  onChanged: (value) =>
-                      setState(() => _selectedPayment = value as String),
-                  secondary: const Icon(
-                    Icons.account_balance_wallet,
-                    color: Colors.pink,
+                  const SizedBox(height: 24),
+                  Text(
+                    'Order Summary',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                ),
-                // ignore: deprecated_member_use
-                RadioListTile(
-                  title: const Text('VNPay'),
-                  value: 'VNPay',
-                  // ignore: deprecated_member_use
-                  groupValue: _selectedPayment,
-                  // ignore: deprecated_member_use
-                  onChanged: (value) =>
-                      setState(() => _selectedPayment = value as String),
-                  secondary: const Icon(Icons.payment, color: Colors.blue),
-                ),
-                // ignore: deprecated_member_use
-                RadioListTile(
-                  title: const Text('Cash on Delivery (COD)'),
-                  value: 'COD',
-                  // ignore: deprecated_member_use
-                  groupValue: _selectedPayment,
-                  // ignore: deprecated_member_use
-                  onChanged: (value) =>
-                      setState(() => _selectedPayment = value as String),
-                  secondary: const Icon(Icons.money, color: Colors.green),
-                ),
-                const SizedBox(height: 48),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: _placeOrder,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: cartItems.length,
+                    itemBuilder: (context, index) {
+                      final item = cartItems[index];
+                      return ListTile(
+                        title: Text(item.product.name),
+                        trailing: Text(
+                          'x${item.quantity}  ${item.totalPrice.toStringAsFixed(0)} VND',
+                        ),
+                      );
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    title: const Text(
+                      'Total',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
-                    child: Text(
-                      'Place Order - ${totalAmount.toStringAsFixed(0)} VND',
+                    trailing: Text(
+                      '${totalAmount.toStringAsFixed(0)} VND',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 24),
+                  Text(
+                    'Payment Method',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  RadioListTile(
+                    title: const Text('Momo'),
+                    value: 'Momo',
+                    groupValue: _selectedPayment,
+                    onChanged: (value) =>
+                        setState(() => _selectedPayment = value as String),
+                    secondary: const Icon(
+                      Icons.account_balance_wallet,
+                      color: Colors.pink,
+                    ),
+                  ),
+                  RadioListTile(
+                    title: const Text('VNPay'),
+                    value: 'VNPay',
+                    groupValue: _selectedPayment,
+                    onChanged: (value) =>
+                        setState(() => _selectedPayment = value as String),
+                    secondary: const Icon(Icons.payment, color: Colors.blue),
+                  ),
+                  RadioListTile(
+                    title: const Text('Cash on Delivery (COD)'),
+                    value: 'COD',
+                    groupValue: _selectedPayment,
+                    onChanged: (value) =>
+                        setState(() => _selectedPayment = value as String),
+                    secondary: const Icon(Icons.money, color: Colors.green),
+                  ),
+                  const SizedBox(height: 48),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: _placeOrder,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                      child: Text(
+                        'Place Order - ${totalAmount.toStringAsFixed(0)} VND',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (error, stack) => Center(child: Text('Error: $error')),
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
