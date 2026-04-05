@@ -3,194 +3,193 @@
 part of 'create_campaign_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CreateCampaignRequestCWProxy {
-  CreateCampaignRequest name(String name);
+class _$CreateCampaignRequest extends CreateCampaignRequest {
+  @override
+  final String name;
+  @override
+  final String? description;
+  @override
+  final DateTime? startDate;
+  @override
+  final DateTime? endDate;
+  @override
+  final CampaignType? type;
+  @override
+  final BuiltList<CreateCampaignPromotionItemRequest> items;
+  @override
+  final BuiltList<CreateCampaignVoucherRequest> vouchers;
 
-  CreateCampaignRequest description(String? description);
+  factory _$CreateCampaignRequest([
+    void Function(CreateCampaignRequestBuilder)? updates,
+  ]) => (CreateCampaignRequestBuilder()..update(updates))._build();
 
-  CreateCampaignRequest startDate(DateTime? startDate);
-
-  CreateCampaignRequest endDate(DateTime? endDate);
-
-  CreateCampaignRequest type(CampaignType? type);
-
-  CreateCampaignRequest items(List<CreateCampaignPromotionItemRequest> items);
-
-  CreateCampaignRequest vouchers(List<CreateCampaignVoucherRequest>? vouchers);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateCampaignRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateCampaignRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateCampaignRequest call({
-    String name,
-    String? description,
-    DateTime? startDate,
-    DateTime? endDate,
-    CampaignType? type,
-    List<CreateCampaignPromotionItemRequest> items,
-    List<CreateCampaignVoucherRequest>? vouchers,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCreateCampaignRequest.copyWith(...)` or call `instanceOfCreateCampaignRequest.copyWith.fieldName(value)` for a single field.
-class _$CreateCampaignRequestCWProxyImpl
-    implements _$CreateCampaignRequestCWProxy {
-  const _$CreateCampaignRequestCWProxyImpl(this._value);
-
-  final CreateCampaignRequest _value;
+  _$CreateCampaignRequest._({
+    required this.name,
+    this.description,
+    this.startDate,
+    this.endDate,
+    this.type,
+    required this.items,
+    required this.vouchers,
+  }) : super._();
+  @override
+  CreateCampaignRequest rebuild(
+    void Function(CreateCampaignRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  CreateCampaignRequest name(String name) => call(name: name);
+  CreateCampaignRequestBuilder toBuilder() =>
+      CreateCampaignRequestBuilder()..replace(this);
 
   @override
-  CreateCampaignRequest description(String? description) =>
-      call(description: description);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CreateCampaignRequest &&
+        name == other.name &&
+        description == other.description &&
+        startDate == other.startDate &&
+        endDate == other.endDate &&
+        type == other.type &&
+        items == other.items &&
+        vouchers == other.vouchers;
+  }
 
   @override
-  CreateCampaignRequest startDate(DateTime? startDate) =>
-      call(startDate: startDate);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, startDate.hashCode);
+    _$hash = $jc(_$hash, endDate.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
+    _$hash = $jc(_$hash, items.hashCode);
+    _$hash = $jc(_$hash, vouchers.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  CreateCampaignRequest endDate(DateTime? endDate) => call(endDate: endDate);
-
-  @override
-  CreateCampaignRequest type(CampaignType? type) => call(type: type);
-
-  @override
-  CreateCampaignRequest items(List<CreateCampaignPromotionItemRequest> items) =>
-      call(items: items);
-
-  @override
-  CreateCampaignRequest vouchers(
-    List<CreateCampaignVoucherRequest>? vouchers,
-  ) => call(vouchers: vouchers);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateCampaignRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateCampaignRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateCampaignRequest call({
-    Object? name = const $CopyWithPlaceholder(),
-    Object? description = const $CopyWithPlaceholder(),
-    Object? startDate = const $CopyWithPlaceholder(),
-    Object? endDate = const $CopyWithPlaceholder(),
-    Object? type = const $CopyWithPlaceholder(),
-    Object? items = const $CopyWithPlaceholder(),
-    Object? vouchers = const $CopyWithPlaceholder(),
-  }) {
-    return CreateCampaignRequest(
-      name: name == const $CopyWithPlaceholder() || name == null
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String,
-      description: description == const $CopyWithPlaceholder()
-          ? _value.description
-          // ignore: cast_nullable_to_non_nullable
-          : description as String?,
-      startDate: startDate == const $CopyWithPlaceholder()
-          ? _value.startDate
-          // ignore: cast_nullable_to_non_nullable
-          : startDate as DateTime?,
-      endDate: endDate == const $CopyWithPlaceholder()
-          ? _value.endDate
-          // ignore: cast_nullable_to_non_nullable
-          : endDate as DateTime?,
-      type: type == const $CopyWithPlaceholder()
-          ? _value.type
-          // ignore: cast_nullable_to_non_nullable
-          : type as CampaignType?,
-      items: items == const $CopyWithPlaceholder() || items == null
-          ? _value.items
-          // ignore: cast_nullable_to_non_nullable
-          : items as List<CreateCampaignPromotionItemRequest>,
-      vouchers: vouchers == const $CopyWithPlaceholder()
-          ? _value.vouchers
-          // ignore: cast_nullable_to_non_nullable
-          : vouchers as List<CreateCampaignVoucherRequest>?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'CreateCampaignRequest')
+          ..add('name', name)
+          ..add('description', description)
+          ..add('startDate', startDate)
+          ..add('endDate', endDate)
+          ..add('type', type)
+          ..add('items', items)
+          ..add('vouchers', vouchers))
+        .toString();
   }
 }
 
-extension $CreateCampaignRequestCopyWith on CreateCampaignRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCreateCampaignRequest.copyWith(...)` or `instanceOfCreateCampaignRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CreateCampaignRequestCWProxy get copyWith =>
-      _$CreateCampaignRequestCWProxyImpl(this);
+class CreateCampaignRequestBuilder
+    implements Builder<CreateCampaignRequest, CreateCampaignRequestBuilder> {
+  _$CreateCampaignRequest? _$v;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
+
+  DateTime? _startDate;
+  DateTime? get startDate => _$this._startDate;
+  set startDate(DateTime? startDate) => _$this._startDate = startDate;
+
+  DateTime? _endDate;
+  DateTime? get endDate => _$this._endDate;
+  set endDate(DateTime? endDate) => _$this._endDate = endDate;
+
+  CampaignType? _type;
+  CampaignType? get type => _$this._type;
+  set type(CampaignType? type) => _$this._type = type;
+
+  ListBuilder<CreateCampaignPromotionItemRequest>? _items;
+  ListBuilder<CreateCampaignPromotionItemRequest> get items =>
+      _$this._items ??= ListBuilder<CreateCampaignPromotionItemRequest>();
+  set items(ListBuilder<CreateCampaignPromotionItemRequest>? items) =>
+      _$this._items = items;
+
+  ListBuilder<CreateCampaignVoucherRequest>? _vouchers;
+  ListBuilder<CreateCampaignVoucherRequest> get vouchers =>
+      _$this._vouchers ??= ListBuilder<CreateCampaignVoucherRequest>();
+  set vouchers(ListBuilder<CreateCampaignVoucherRequest>? vouchers) =>
+      _$this._vouchers = vouchers;
+
+  CreateCampaignRequestBuilder() {
+    CreateCampaignRequest._defaults(this);
+  }
+
+  CreateCampaignRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _description = $v.description;
+      _startDate = $v.startDate;
+      _endDate = $v.endDate;
+      _type = $v.type;
+      _items = $v.items.toBuilder();
+      _vouchers = $v.vouchers.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CreateCampaignRequest other) {
+    _$v = other as _$CreateCampaignRequest;
+  }
+
+  @override
+  void update(void Function(CreateCampaignRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CreateCampaignRequest build() => _build();
+
+  _$CreateCampaignRequest _build() {
+    _$CreateCampaignRequest _$result;
+    try {
+      _$result =
+          _$v ??
+          _$CreateCampaignRequest._(
+            name: BuiltValueNullFieldError.checkNotNull(
+              name,
+              r'CreateCampaignRequest',
+              'name',
+            ),
+            description: description,
+            startDate: startDate,
+            endDate: endDate,
+            type: type,
+            items: items.build(),
+            vouchers: vouchers.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'items';
+        items.build();
+        _$failedField = 'vouchers';
+        vouchers.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'CreateCampaignRequest',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreateCampaignRequest _$CreateCampaignRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('CreateCampaignRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['name', 'items']);
-  final val = CreateCampaignRequest(
-    name: $checkedConvert('name', (v) => v as String),
-    description: $checkedConvert('description', (v) => v as String?),
-    startDate: $checkedConvert(
-      'startDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    endDate: $checkedConvert(
-      'endDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    type: $checkedConvert(
-      'type',
-      (v) => $enumDecodeNullable(_$CampaignTypeEnumMap, v),
-    ),
-    items: $checkedConvert(
-      'items',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => CreateCampaignPromotionItemRequest.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
-    vouchers: $checkedConvert(
-      'vouchers',
-      (v) => (v as List<dynamic>?)
-          ?.map(
-            (e) => CreateCampaignVoucherRequest.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$CreateCampaignRequestToJson(
-  CreateCampaignRequest instance,
-) => <String, dynamic>{
-  'name': instance.name,
-  'description': ?instance.description,
-  'startDate': ?instance.startDate?.toIso8601String(),
-  'endDate': ?instance.endDate?.toIso8601String(),
-  'type': ?_$CampaignTypeEnumMap[instance.type],
-  'items': instance.items.map((e) => e.toJson()).toList(),
-  'vouchers': ?instance.vouchers?.map((e) => e.toJson()).toList(),
-};
-
-const _$CampaignTypeEnumMap = {
-  CampaignType.flashSale: 'FlashSale',
-  CampaignType.clearance: 'Clearance',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

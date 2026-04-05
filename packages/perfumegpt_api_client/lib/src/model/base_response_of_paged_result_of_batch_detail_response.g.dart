@@ -3,154 +3,178 @@
 part of 'base_response_of_paged_result_of_batch_detail_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BaseResponseOfPagedResultOfBatchDetailResponseCWProxy {
-  BaseResponseOfPagedResultOfBatchDetailResponse payload(
-    PagedResultOfBatchDetailResponse? payload,
-  );
+class _$BaseResponseOfPagedResultOfBatchDetailResponse
+    extends BaseResponseOfPagedResultOfBatchDetailResponse {
+  @override
+  final PagedResultOfBatchDetailResponse? payload;
+  @override
+  final bool? success;
+  @override
+  final String? message;
+  @override
+  final BuiltList<String>? errors;
+  @override
+  final int? errorType;
 
-  BaseResponseOfPagedResultOfBatchDetailResponse success(bool? success);
+  factory _$BaseResponseOfPagedResultOfBatchDetailResponse([
+    void Function(BaseResponseOfPagedResultOfBatchDetailResponseBuilder)?
+    updates,
+  ]) =>
+      (BaseResponseOfPagedResultOfBatchDetailResponseBuilder()..update(updates))
+          ._build();
 
-  BaseResponseOfPagedResultOfBatchDetailResponse message(String? message);
-
-  BaseResponseOfPagedResultOfBatchDetailResponse errors(List<String>? errors);
-
-  BaseResponseOfPagedResultOfBatchDetailResponse errorType(int? errorType);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfBatchDetailResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfPagedResultOfBatchDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfPagedResultOfBatchDetailResponse call({
-    PagedResultOfBatchDetailResponse? payload,
-    bool? success,
-    String? message,
-    List<String>? errors,
-    int? errorType,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBaseResponseOfPagedResultOfBatchDetailResponse.copyWith(...)` or call `instanceOfBaseResponseOfPagedResultOfBatchDetailResponse.copyWith.fieldName(value)` for a single field.
-class _$BaseResponseOfPagedResultOfBatchDetailResponseCWProxyImpl
-    implements _$BaseResponseOfPagedResultOfBatchDetailResponseCWProxy {
-  const _$BaseResponseOfPagedResultOfBatchDetailResponseCWProxyImpl(
-    this._value,
-  );
-
-  final BaseResponseOfPagedResultOfBatchDetailResponse _value;
+  _$BaseResponseOfPagedResultOfBatchDetailResponse._({
+    this.payload,
+    this.success,
+    this.message,
+    this.errors,
+    this.errorType,
+  }) : super._();
+  @override
+  BaseResponseOfPagedResultOfBatchDetailResponse rebuild(
+    void Function(BaseResponseOfPagedResultOfBatchDetailResponseBuilder)
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BaseResponseOfPagedResultOfBatchDetailResponse payload(
-    PagedResultOfBatchDetailResponse? payload,
-  ) => call(payload: payload);
+  BaseResponseOfPagedResultOfBatchDetailResponseBuilder toBuilder() =>
+      BaseResponseOfPagedResultOfBatchDetailResponseBuilder()..replace(this);
 
   @override
-  BaseResponseOfPagedResultOfBatchDetailResponse success(bool? success) =>
-      call(success: success);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BaseResponseOfPagedResultOfBatchDetailResponse &&
+        payload == other.payload &&
+        success == other.success &&
+        message == other.message &&
+        errors == other.errors &&
+        errorType == other.errorType;
+  }
 
   @override
-  BaseResponseOfPagedResultOfBatchDetailResponse message(String? message) =>
-      call(message: message);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, payload.hashCode);
+    _$hash = $jc(_$hash, success.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, errors.hashCode);
+    _$hash = $jc(_$hash, errorType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  BaseResponseOfPagedResultOfBatchDetailResponse errors(List<String>? errors) =>
-      call(errors: errors);
-
-  @override
-  BaseResponseOfPagedResultOfBatchDetailResponse errorType(int? errorType) =>
-      call(errorType: errorType);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfBatchDetailResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfPagedResultOfBatchDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfPagedResultOfBatchDetailResponse call({
-    Object? payload = const $CopyWithPlaceholder(),
-    Object? success = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? errorType = const $CopyWithPlaceholder(),
-  }) {
-    return BaseResponseOfPagedResultOfBatchDetailResponse(
-      payload: payload == const $CopyWithPlaceholder()
-          ? _value.payload
-          // ignore: cast_nullable_to_non_nullable
-          : payload as PagedResultOfBatchDetailResponse?,
-      success: success == const $CopyWithPlaceholder()
-          ? _value.success
-          // ignore: cast_nullable_to_non_nullable
-          : success as bool?,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
-          // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
-          // ignore: cast_nullable_to_non_nullable
-          : errors as List<String>?,
-      errorType: errorType == const $CopyWithPlaceholder()
-          ? _value.errorType
-          // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'BaseResponseOfPagedResultOfBatchDetailResponse',
+          )
+          ..add('payload', payload)
+          ..add('success', success)
+          ..add('message', message)
+          ..add('errors', errors)
+          ..add('errorType', errorType))
+        .toString();
   }
 }
 
-extension $BaseResponseOfPagedResultOfBatchDetailResponseCopyWith
-    on BaseResponseOfPagedResultOfBatchDetailResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBaseResponseOfPagedResultOfBatchDetailResponse.copyWith(...)` or `instanceOfBaseResponseOfPagedResultOfBatchDetailResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BaseResponseOfPagedResultOfBatchDetailResponseCWProxy get copyWith =>
-      _$BaseResponseOfPagedResultOfBatchDetailResponseCWProxyImpl(this);
+class BaseResponseOfPagedResultOfBatchDetailResponseBuilder
+    implements
+        Builder<
+          BaseResponseOfPagedResultOfBatchDetailResponse,
+          BaseResponseOfPagedResultOfBatchDetailResponseBuilder
+        > {
+  _$BaseResponseOfPagedResultOfBatchDetailResponse? _$v;
+
+  PagedResultOfBatchDetailResponseBuilder? _payload;
+  PagedResultOfBatchDetailResponseBuilder get payload =>
+      _$this._payload ??= PagedResultOfBatchDetailResponseBuilder();
+  set payload(PagedResultOfBatchDetailResponseBuilder? payload) =>
+      _$this._payload = payload;
+
+  bool? _success;
+  bool? get success => _$this._success;
+  set success(bool? success) => _$this._success = success;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  ListBuilder<String>? _errors;
+  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
+  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
+
+  int? _errorType;
+  int? get errorType => _$this._errorType;
+  set errorType(int? errorType) => _$this._errorType = errorType;
+
+  BaseResponseOfPagedResultOfBatchDetailResponseBuilder() {
+    BaseResponseOfPagedResultOfBatchDetailResponse._defaults(this);
+  }
+
+  BaseResponseOfPagedResultOfBatchDetailResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _payload = $v.payload?.toBuilder();
+      _success = $v.success;
+      _message = $v.message;
+      _errors = $v.errors?.toBuilder();
+      _errorType = $v.errorType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BaseResponseOfPagedResultOfBatchDetailResponse other) {
+    _$v = other as _$BaseResponseOfPagedResultOfBatchDetailResponse;
+  }
+
+  @override
+  void update(
+    void Function(BaseResponseOfPagedResultOfBatchDetailResponseBuilder)?
+    updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BaseResponseOfPagedResultOfBatchDetailResponse build() => _build();
+
+  _$BaseResponseOfPagedResultOfBatchDetailResponse _build() {
+    _$BaseResponseOfPagedResultOfBatchDetailResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BaseResponseOfPagedResultOfBatchDetailResponse._(
+            payload: _payload?.build(),
+            success: success,
+            message: message,
+            errors: _errors?.build(),
+            errorType: errorType,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'payload';
+        _payload?.build();
+
+        _$failedField = 'errors';
+        _errors?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BaseResponseOfPagedResultOfBatchDetailResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BaseResponseOfPagedResultOfBatchDetailResponse
-_$BaseResponseOfPagedResultOfBatchDetailResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('BaseResponseOfPagedResultOfBatchDetailResponse', json, (
-  $checkedConvert,
-) {
-  final val = BaseResponseOfPagedResultOfBatchDetailResponse(
-    payload: $checkedConvert(
-      'payload',
-      (v) => v == null
-          ? null
-          : PagedResultOfBatchDetailResponse.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    success: $checkedConvert('success', (v) => v as bool?),
-    message: $checkedConvert('message', (v) => v as String?),
-    errors: $checkedConvert(
-      'errors',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$BaseResponseOfPagedResultOfBatchDetailResponseToJson(
-  BaseResponseOfPagedResultOfBatchDetailResponse instance,
-) => <String, dynamic>{
-  'payload': ?instance.payload?.toJson(),
-  'success': ?instance.success,
-  'message': ?instance.message,
-  'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

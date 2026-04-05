@@ -3,72 +3,120 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'login_request.g.dart';
 
+/// LoginRequest
+///
+/// Properties:
+/// * [credential] 
+/// * [password] 
+@BuiltValue()
+abstract class LoginRequest implements Built<LoginRequest, LoginRequestBuilder> {
+  @BuiltValueField(wireName: r'credential')
+  String get credential;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class LoginRequest {
-  /// Returns a new [LoginRequest] instance.
-  LoginRequest({
+  @BuiltValueField(wireName: r'password')
+  String get password;
 
-    required  this.credential,
+  LoginRequest._();
 
-    required  this.password,
-  });
+  factory LoginRequest([void updates(LoginRequestBuilder b)]) = _$LoginRequest;
 
-  @JsonKey(
-    
-    name: r'credential',
-    required: true,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(LoginRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<LoginRequest> get serializer => _$LoginRequestSerializer();
+}
 
-  final String credential;
-
-
-
-  @JsonKey(
-    
-    name: r'password',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final String password;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is LoginRequest &&
-      other.credential == credential &&
-      other.password == password;
-
-    @override
-    int get hashCode =>
-        credential.hashCode +
-        password.hashCode;
-
-  factory LoginRequest.fromJson(Map<String, dynamic> json) => _$LoginRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LoginRequestToJson(this);
+class _$LoginRequestSerializer implements PrimitiveSerializer<LoginRequest> {
+  @override
+  final Iterable<Type> types = const [LoginRequest, _$LoginRequest];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'LoginRequest';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    LoginRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'credential';
+    yield serializers.serialize(
+      object.credential,
+      specifiedType: const FullType(String),
+    );
+    yield r'password';
+    yield serializers.serialize(
+      object.password,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    LoginRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required LoginRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'credential':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.credential = valueDes;
+          break;
+        case r'password':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.password = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  LoginRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = LoginRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

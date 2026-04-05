@@ -3,56 +3,104 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'reject_inspection_dto.g.dart';
 
+/// RejectInspectionDto
+///
+/// Properties:
+/// * [note] 
+@BuiltValue()
+abstract class RejectInspectionDto implements Built<RejectInspectionDto, RejectInspectionDtoBuilder> {
+  @BuiltValueField(wireName: r'note')
+  String get note;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class RejectInspectionDto {
-  /// Returns a new [RejectInspectionDto] instance.
-  RejectInspectionDto({
+  RejectInspectionDto._();
 
-    required  this.note,
-  });
+  factory RejectInspectionDto([void updates(RejectInspectionDtoBuilder b)]) = _$RejectInspectionDto;
 
-  @JsonKey(
-    
-    name: r'note',
-    required: true,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(RejectInspectionDtoBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<RejectInspectionDto> get serializer => _$RejectInspectionDtoSerializer();
+}
 
-  final String note;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is RejectInspectionDto &&
-      other.note == note;
-
-    @override
-    int get hashCode =>
-        note.hashCode;
-
-  factory RejectInspectionDto.fromJson(Map<String, dynamic> json) => _$RejectInspectionDtoFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RejectInspectionDtoToJson(this);
+class _$RejectInspectionDtoSerializer implements PrimitiveSerializer<RejectInspectionDto> {
+  @override
+  final Iterable<Type> types = const [RejectInspectionDto, _$RejectInspectionDto];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'RejectInspectionDto';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    RejectInspectionDto object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'note';
+    yield serializers.serialize(
+      object.note,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    RejectInspectionDto object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required RejectInspectionDtoBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'note':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.note = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  RejectInspectionDto deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = RejectInspectionDtoBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

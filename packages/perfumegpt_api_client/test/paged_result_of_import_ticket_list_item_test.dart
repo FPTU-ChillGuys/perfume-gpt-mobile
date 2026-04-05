@@ -3,12 +3,11 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PagedResultOfImportTicketListItem
 void main() {
-  final PagedResultOfImportTicketListItem?
-  instance = /* PagedResultOfImportTicketListItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = PagedResultOfImportTicketListItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PagedResultOfImportTicketListItem, () {
-    // List<ImportTicketListItem> items
+    // BuiltList<ImportTicketListItem> items
     test('to test the property `items`', () async {
       // TODO
     });
@@ -42,5 +41,6 @@ void main() {
     test('to test the property `hasNextPage`', () async {
       // TODO
     });
+
   });
 }

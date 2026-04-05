@@ -3,97 +3,118 @@
 part of 'verify_stock_adjustment_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$VerifyStockAdjustmentRequestCWProxy {
-  VerifyStockAdjustmentRequest adjustmentDetails(
-    List<VerifyStockAdjustmentDetailRequest> adjustmentDetails,
-  );
+class _$VerifyStockAdjustmentRequest extends VerifyStockAdjustmentRequest {
+  @override
+  final BuiltList<VerifyStockAdjustmentDetailRequest> adjustmentDetails;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyStockAdjustmentRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VerifyStockAdjustmentRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VerifyStockAdjustmentRequest call({
-    List<VerifyStockAdjustmentDetailRequest> adjustmentDetails,
-  });
-}
+  factory _$VerifyStockAdjustmentRequest([
+    void Function(VerifyStockAdjustmentRequestBuilder)? updates,
+  ]) => (VerifyStockAdjustmentRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfVerifyStockAdjustmentRequest.copyWith(...)` or call `instanceOfVerifyStockAdjustmentRequest.copyWith.fieldName(value)` for a single field.
-class _$VerifyStockAdjustmentRequestCWProxyImpl
-    implements _$VerifyStockAdjustmentRequestCWProxy {
-  const _$VerifyStockAdjustmentRequestCWProxyImpl(this._value);
-
-  final VerifyStockAdjustmentRequest _value;
+  _$VerifyStockAdjustmentRequest._({required this.adjustmentDetails})
+    : super._();
+  @override
+  VerifyStockAdjustmentRequest rebuild(
+    void Function(VerifyStockAdjustmentRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  VerifyStockAdjustmentRequest adjustmentDetails(
-    List<VerifyStockAdjustmentDetailRequest> adjustmentDetails,
-  ) => call(adjustmentDetails: adjustmentDetails);
+  VerifyStockAdjustmentRequestBuilder toBuilder() =>
+      VerifyStockAdjustmentRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyStockAdjustmentRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VerifyStockAdjustmentRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VerifyStockAdjustmentRequest call({
-    Object? adjustmentDetails = const $CopyWithPlaceholder(),
-  }) {
-    return VerifyStockAdjustmentRequest(
-      adjustmentDetails:
-          adjustmentDetails == const $CopyWithPlaceholder() ||
-              adjustmentDetails == null
-          ? _value.adjustmentDetails
-          // ignore: cast_nullable_to_non_nullable
-          : adjustmentDetails as List<VerifyStockAdjustmentDetailRequest>,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is VerifyStockAdjustmentRequest &&
+        adjustmentDetails == other.adjustmentDetails;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, adjustmentDetails.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'VerifyStockAdjustmentRequest',
+    )..add('adjustmentDetails', adjustmentDetails)).toString();
   }
 }
 
-extension $VerifyStockAdjustmentRequestCopyWith
-    on VerifyStockAdjustmentRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfVerifyStockAdjustmentRequest.copyWith(...)` or `instanceOfVerifyStockAdjustmentRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$VerifyStockAdjustmentRequestCWProxy get copyWith =>
-      _$VerifyStockAdjustmentRequestCWProxyImpl(this);
+class VerifyStockAdjustmentRequestBuilder
+    implements
+        Builder<
+          VerifyStockAdjustmentRequest,
+          VerifyStockAdjustmentRequestBuilder
+        > {
+  _$VerifyStockAdjustmentRequest? _$v;
+
+  ListBuilder<VerifyStockAdjustmentDetailRequest>? _adjustmentDetails;
+  ListBuilder<VerifyStockAdjustmentDetailRequest> get adjustmentDetails =>
+      _$this._adjustmentDetails ??=
+          ListBuilder<VerifyStockAdjustmentDetailRequest>();
+  set adjustmentDetails(
+    ListBuilder<VerifyStockAdjustmentDetailRequest>? adjustmentDetails,
+  ) => _$this._adjustmentDetails = adjustmentDetails;
+
+  VerifyStockAdjustmentRequestBuilder() {
+    VerifyStockAdjustmentRequest._defaults(this);
+  }
+
+  VerifyStockAdjustmentRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _adjustmentDetails = $v.adjustmentDetails.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(VerifyStockAdjustmentRequest other) {
+    _$v = other as _$VerifyStockAdjustmentRequest;
+  }
+
+  @override
+  void update(void Function(VerifyStockAdjustmentRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  VerifyStockAdjustmentRequest build() => _build();
+
+  _$VerifyStockAdjustmentRequest _build() {
+    _$VerifyStockAdjustmentRequest _$result;
+    try {
+      _$result =
+          _$v ??
+          _$VerifyStockAdjustmentRequest._(
+            adjustmentDetails: adjustmentDetails.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'adjustmentDetails';
+        adjustmentDetails.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'VerifyStockAdjustmentRequest',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-VerifyStockAdjustmentRequest _$VerifyStockAdjustmentRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('VerifyStockAdjustmentRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['adjustmentDetails']);
-  final val = VerifyStockAdjustmentRequest(
-    adjustmentDetails: $checkedConvert(
-      'adjustmentDetails',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => VerifyStockAdjustmentDetailRequest.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$VerifyStockAdjustmentRequestToJson(
-  VerifyStockAdjustmentRequest instance,
-) => <String, dynamic>{
-  'adjustmentDetails': instance.adjustmentDetails
-      .map((e) => e.toJson())
-      .toList(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

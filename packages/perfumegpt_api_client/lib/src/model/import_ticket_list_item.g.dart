@@ -3,234 +3,215 @@
 part of 'import_ticket_list_item.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$ImportTicketListItemCWProxy {
-  ImportTicketListItem id(String id);
+class _$ImportTicketListItem extends ImportTicketListItem {
+  @override
+  final String? id;
+  @override
+  final String createdByName;
+  @override
+  final String? verifiedByName;
+  @override
+  final String supplierName;
+  @override
+  final DateTime? expectedArrivalDate;
+  @override
+  final DateTime? actualImportDate;
+  @override
+  final num? totalCost;
+  @override
+  final ImportStatus? status;
+  @override
+  final int? totalItems;
+  @override
+  final DateTime? createdAt;
 
-  ImportTicketListItem createdByName(String? createdByName);
+  factory _$ImportTicketListItem([
+    void Function(ImportTicketListItemBuilder)? updates,
+  ]) => (ImportTicketListItemBuilder()..update(updates))._build();
 
-  ImportTicketListItem verifiedByName(String? verifiedByName);
-
-  ImportTicketListItem supplierName(String? supplierName);
-
-  ImportTicketListItem expectedArrivalDate(DateTime expectedArrivalDate);
-
-  ImportTicketListItem actualImportDate(DateTime actualImportDate);
-
-  ImportTicketListItem totalCost(num totalCost);
-
-  ImportTicketListItem status(ImportStatus? status);
-
-  ImportTicketListItem totalItems(int? totalItems);
-
-  ImportTicketListItem createdAt(DateTime? createdAt);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportTicketListItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ImportTicketListItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ImportTicketListItem call({
-    String id,
-    String? createdByName,
-    String? verifiedByName,
-    String? supplierName,
-    DateTime expectedArrivalDate,
-    DateTime actualImportDate,
-    num totalCost,
-    ImportStatus? status,
-    int? totalItems,
-    DateTime? createdAt,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfImportTicketListItem.copyWith(...)` or call `instanceOfImportTicketListItem.copyWith.fieldName(value)` for a single field.
-class _$ImportTicketListItemCWProxyImpl
-    implements _$ImportTicketListItemCWProxy {
-  const _$ImportTicketListItemCWProxyImpl(this._value);
-
-  final ImportTicketListItem _value;
+  _$ImportTicketListItem._({
+    this.id,
+    required this.createdByName,
+    this.verifiedByName,
+    required this.supplierName,
+    this.expectedArrivalDate,
+    this.actualImportDate,
+    this.totalCost,
+    this.status,
+    this.totalItems,
+    this.createdAt,
+  }) : super._();
+  @override
+  ImportTicketListItem rebuild(
+    void Function(ImportTicketListItemBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  ImportTicketListItem id(String id) => call(id: id);
+  ImportTicketListItemBuilder toBuilder() =>
+      ImportTicketListItemBuilder()..replace(this);
 
   @override
-  ImportTicketListItem createdByName(String? createdByName) =>
-      call(createdByName: createdByName);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ImportTicketListItem &&
+        id == other.id &&
+        createdByName == other.createdByName &&
+        verifiedByName == other.verifiedByName &&
+        supplierName == other.supplierName &&
+        expectedArrivalDate == other.expectedArrivalDate &&
+        actualImportDate == other.actualImportDate &&
+        totalCost == other.totalCost &&
+        status == other.status &&
+        totalItems == other.totalItems &&
+        createdAt == other.createdAt;
+  }
 
   @override
-  ImportTicketListItem verifiedByName(String? verifiedByName) =>
-      call(verifiedByName: verifiedByName);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, createdByName.hashCode);
+    _$hash = $jc(_$hash, verifiedByName.hashCode);
+    _$hash = $jc(_$hash, supplierName.hashCode);
+    _$hash = $jc(_$hash, expectedArrivalDate.hashCode);
+    _$hash = $jc(_$hash, actualImportDate.hashCode);
+    _$hash = $jc(_$hash, totalCost.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, totalItems.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  ImportTicketListItem supplierName(String? supplierName) =>
-      call(supplierName: supplierName);
-
-  @override
-  ImportTicketListItem expectedArrivalDate(DateTime expectedArrivalDate) =>
-      call(expectedArrivalDate: expectedArrivalDate);
-
-  @override
-  ImportTicketListItem actualImportDate(DateTime actualImportDate) =>
-      call(actualImportDate: actualImportDate);
-
-  @override
-  ImportTicketListItem totalCost(num totalCost) => call(totalCost: totalCost);
-
-  @override
-  ImportTicketListItem status(ImportStatus? status) => call(status: status);
-
-  @override
-  ImportTicketListItem totalItems(int? totalItems) =>
-      call(totalItems: totalItems);
-
-  @override
-  ImportTicketListItem createdAt(DateTime? createdAt) =>
-      call(createdAt: createdAt);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportTicketListItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ImportTicketListItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ImportTicketListItem call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? createdByName = const $CopyWithPlaceholder(),
-    Object? verifiedByName = const $CopyWithPlaceholder(),
-    Object? supplierName = const $CopyWithPlaceholder(),
-    Object? expectedArrivalDate = const $CopyWithPlaceholder(),
-    Object? actualImportDate = const $CopyWithPlaceholder(),
-    Object? totalCost = const $CopyWithPlaceholder(),
-    Object? status = const $CopyWithPlaceholder(),
-    Object? totalItems = const $CopyWithPlaceholder(),
-    Object? createdAt = const $CopyWithPlaceholder(),
-  }) {
-    return ImportTicketListItem(
-      id: id == const $CopyWithPlaceholder() || id == null
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String,
-      createdByName: createdByName == const $CopyWithPlaceholder()
-          ? _value.createdByName
-          // ignore: cast_nullable_to_non_nullable
-          : createdByName as String?,
-      verifiedByName: verifiedByName == const $CopyWithPlaceholder()
-          ? _value.verifiedByName
-          // ignore: cast_nullable_to_non_nullable
-          : verifiedByName as String?,
-      supplierName: supplierName == const $CopyWithPlaceholder()
-          ? _value.supplierName
-          // ignore: cast_nullable_to_non_nullable
-          : supplierName as String?,
-      expectedArrivalDate:
-          expectedArrivalDate == const $CopyWithPlaceholder() ||
-              expectedArrivalDate == null
-          ? _value.expectedArrivalDate
-          // ignore: cast_nullable_to_non_nullable
-          : expectedArrivalDate as DateTime,
-      actualImportDate:
-          actualImportDate == const $CopyWithPlaceholder() ||
-              actualImportDate == null
-          ? _value.actualImportDate
-          // ignore: cast_nullable_to_non_nullable
-          : actualImportDate as DateTime,
-      totalCost: totalCost == const $CopyWithPlaceholder() || totalCost == null
-          ? _value.totalCost
-          // ignore: cast_nullable_to_non_nullable
-          : totalCost as num,
-      status: status == const $CopyWithPlaceholder()
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as ImportStatus?,
-      totalItems: totalItems == const $CopyWithPlaceholder()
-          ? _value.totalItems
-          // ignore: cast_nullable_to_non_nullable
-          : totalItems as int?,
-      createdAt: createdAt == const $CopyWithPlaceholder()
-          ? _value.createdAt
-          // ignore: cast_nullable_to_non_nullable
-          : createdAt as DateTime?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'ImportTicketListItem')
+          ..add('id', id)
+          ..add('createdByName', createdByName)
+          ..add('verifiedByName', verifiedByName)
+          ..add('supplierName', supplierName)
+          ..add('expectedArrivalDate', expectedArrivalDate)
+          ..add('actualImportDate', actualImportDate)
+          ..add('totalCost', totalCost)
+          ..add('status', status)
+          ..add('totalItems', totalItems)
+          ..add('createdAt', createdAt))
+        .toString();
   }
 }
 
-extension $ImportTicketListItemCopyWith on ImportTicketListItem {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfImportTicketListItem.copyWith(...)` or `instanceOfImportTicketListItem.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$ImportTicketListItemCWProxy get copyWith =>
-      _$ImportTicketListItemCWProxyImpl(this);
+class ImportTicketListItemBuilder
+    implements Builder<ImportTicketListItem, ImportTicketListItemBuilder> {
+  _$ImportTicketListItem? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _createdByName;
+  String? get createdByName => _$this._createdByName;
+  set createdByName(String? createdByName) =>
+      _$this._createdByName = createdByName;
+
+  String? _verifiedByName;
+  String? get verifiedByName => _$this._verifiedByName;
+  set verifiedByName(String? verifiedByName) =>
+      _$this._verifiedByName = verifiedByName;
+
+  String? _supplierName;
+  String? get supplierName => _$this._supplierName;
+  set supplierName(String? supplierName) => _$this._supplierName = supplierName;
+
+  DateTime? _expectedArrivalDate;
+  DateTime? get expectedArrivalDate => _$this._expectedArrivalDate;
+  set expectedArrivalDate(DateTime? expectedArrivalDate) =>
+      _$this._expectedArrivalDate = expectedArrivalDate;
+
+  DateTime? _actualImportDate;
+  DateTime? get actualImportDate => _$this._actualImportDate;
+  set actualImportDate(DateTime? actualImportDate) =>
+      _$this._actualImportDate = actualImportDate;
+
+  num? _totalCost;
+  num? get totalCost => _$this._totalCost;
+  set totalCost(num? totalCost) => _$this._totalCost = totalCost;
+
+  ImportStatus? _status;
+  ImportStatus? get status => _$this._status;
+  set status(ImportStatus? status) => _$this._status = status;
+
+  int? _totalItems;
+  int? get totalItems => _$this._totalItems;
+  set totalItems(int? totalItems) => _$this._totalItems = totalItems;
+
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  ImportTicketListItemBuilder() {
+    ImportTicketListItem._defaults(this);
+  }
+
+  ImportTicketListItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _createdByName = $v.createdByName;
+      _verifiedByName = $v.verifiedByName;
+      _supplierName = $v.supplierName;
+      _expectedArrivalDate = $v.expectedArrivalDate;
+      _actualImportDate = $v.actualImportDate;
+      _totalCost = $v.totalCost;
+      _status = $v.status;
+      _totalItems = $v.totalItems;
+      _createdAt = $v.createdAt;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ImportTicketListItem other) {
+    _$v = other as _$ImportTicketListItem;
+  }
+
+  @override
+  void update(void Function(ImportTicketListItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ImportTicketListItem build() => _build();
+
+  _$ImportTicketListItem _build() {
+    final _$result =
+        _$v ??
+        _$ImportTicketListItem._(
+          id: id,
+          createdByName: BuiltValueNullFieldError.checkNotNull(
+            createdByName,
+            r'ImportTicketListItem',
+            'createdByName',
+          ),
+          verifiedByName: verifiedByName,
+          supplierName: BuiltValueNullFieldError.checkNotNull(
+            supplierName,
+            r'ImportTicketListItem',
+            'supplierName',
+          ),
+          expectedArrivalDate: expectedArrivalDate,
+          actualImportDate: actualImportDate,
+          totalCost: totalCost,
+          status: status,
+          totalItems: totalItems,
+          createdAt: createdAt,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-ImportTicketListItem _$ImportTicketListItemFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('ImportTicketListItem', json, ($checkedConvert) {
-  $checkKeys(
-    json,
-    requiredKeys: const [
-      'id',
-      'expectedArrivalDate',
-      'actualImportDate',
-      'totalCost',
-    ],
-  );
-  final val = ImportTicketListItem(
-    id: $checkedConvert('id', (v) => v as String),
-    createdByName: $checkedConvert('createdByName', (v) => v as String?),
-    verifiedByName: $checkedConvert('verifiedByName', (v) => v as String?),
-    supplierName: $checkedConvert('supplierName', (v) => v as String?),
-    expectedArrivalDate: $checkedConvert(
-      'expectedArrivalDate',
-      (v) => DateTime.parse(v as String),
-    ),
-    actualImportDate: $checkedConvert(
-      'actualImportDate',
-      (v) => DateTime.parse(v as String),
-    ),
-    totalCost: $checkedConvert('totalCost', (v) => v as num),
-    status: $checkedConvert(
-      'status',
-      (v) => $enumDecodeNullable(_$ImportStatusEnumMap, v),
-    ),
-    totalItems: $checkedConvert('totalItems', (v) => (v as num?)?.toInt()),
-    createdAt: $checkedConvert(
-      'createdAt',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$ImportTicketListItemToJson(
-  ImportTicketListItem instance,
-) => <String, dynamic>{
-  'id': instance.id,
-  'createdByName': ?instance.createdByName,
-  'verifiedByName': ?instance.verifiedByName,
-  'supplierName': ?instance.supplierName,
-  'expectedArrivalDate': instance.expectedArrivalDate.toIso8601String(),
-  'actualImportDate': instance.actualImportDate.toIso8601String(),
-  'totalCost': instance.totalCost,
-  'status': ?_$ImportStatusEnumMap[instance.status],
-  'totalItems': ?instance.totalItems,
-  'createdAt': ?instance.createdAt?.toIso8601String(),
-};
-
-const _$ImportStatusEnumMap = {
-  ImportStatus.pending: 'Pending',
-  ImportStatus.inProgress: 'InProgress',
-  ImportStatus.completed: 'Completed',
-  ImportStatus.cancelled: 'Cancelled',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

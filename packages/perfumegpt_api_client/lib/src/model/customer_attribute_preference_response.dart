@@ -3,72 +3,122 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'customer_attribute_preference_response.g.dart';
 
+/// CustomerAttributePreferenceResponse
+///
+/// Properties:
+/// * [attributeValueId] 
+/// * [attributeValueName] 
+@BuiltValue()
+abstract class CustomerAttributePreferenceResponse implements Built<CustomerAttributePreferenceResponse, CustomerAttributePreferenceResponseBuilder> {
+  @BuiltValueField(wireName: r'attributeValueId')
+  int? get attributeValueId;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CustomerAttributePreferenceResponse {
-  /// Returns a new [CustomerAttributePreferenceResponse] instance.
-  CustomerAttributePreferenceResponse({
+  @BuiltValueField(wireName: r'attributeValueName')
+  String get attributeValueName;
 
-     this.attributeValueId,
+  CustomerAttributePreferenceResponse._();
 
-     this.attributeValueName,
-  });
+  factory CustomerAttributePreferenceResponse([void updates(CustomerAttributePreferenceResponseBuilder b)]) = _$CustomerAttributePreferenceResponse;
 
-  @JsonKey(
-    
-    name: r'attributeValueId',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CustomerAttributePreferenceResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CustomerAttributePreferenceResponse> get serializer => _$CustomerAttributePreferenceResponseSerializer();
+}
 
-  final int? attributeValueId;
-
-
-
-  @JsonKey(
-    
-    name: r'attributeValueName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? attributeValueName;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CustomerAttributePreferenceResponse &&
-      other.attributeValueId == attributeValueId &&
-      other.attributeValueName == attributeValueName;
-
-    @override
-    int get hashCode =>
-        attributeValueId.hashCode +
-        attributeValueName.hashCode;
-
-  factory CustomerAttributePreferenceResponse.fromJson(Map<String, dynamic> json) => _$CustomerAttributePreferenceResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CustomerAttributePreferenceResponseToJson(this);
+class _$CustomerAttributePreferenceResponseSerializer implements PrimitiveSerializer<CustomerAttributePreferenceResponse> {
+  @override
+  final Iterable<Type> types = const [CustomerAttributePreferenceResponse, _$CustomerAttributePreferenceResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'CustomerAttributePreferenceResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CustomerAttributePreferenceResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.attributeValueId != null) {
+      yield r'attributeValueId';
+      yield serializers.serialize(
+        object.attributeValueId,
+        specifiedType: const FullType(int),
+      );
+    }
+    yield r'attributeValueName';
+    yield serializers.serialize(
+      object.attributeValueName,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CustomerAttributePreferenceResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CustomerAttributePreferenceResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'attributeValueId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.attributeValueId = valueDes;
+          break;
+        case r'attributeValueName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.attributeValueName = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CustomerAttributePreferenceResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CustomerAttributePreferenceResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

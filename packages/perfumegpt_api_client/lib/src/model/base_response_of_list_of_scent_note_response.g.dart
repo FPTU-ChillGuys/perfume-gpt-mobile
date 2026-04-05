@@ -3,151 +3,174 @@
 part of 'base_response_of_list_of_scent_note_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BaseResponseOfListOfScentNoteResponseCWProxy {
-  BaseResponseOfListOfScentNoteResponse payload(
-    List<ScentNoteResponse>? payload,
-  );
+class _$BaseResponseOfListOfScentNoteResponse
+    extends BaseResponseOfListOfScentNoteResponse {
+  @override
+  final BuiltList<ScentNoteResponse>? payload;
+  @override
+  final bool? success;
+  @override
+  final String? message;
+  @override
+  final BuiltList<String>? errors;
+  @override
+  final int? errorType;
 
-  BaseResponseOfListOfScentNoteResponse success(bool? success);
+  factory _$BaseResponseOfListOfScentNoteResponse([
+    void Function(BaseResponseOfListOfScentNoteResponseBuilder)? updates,
+  ]) => (BaseResponseOfListOfScentNoteResponseBuilder()..update(updates))
+      ._build();
 
-  BaseResponseOfListOfScentNoteResponse message(String? message);
-
-  BaseResponseOfListOfScentNoteResponse errors(List<String>? errors);
-
-  BaseResponseOfListOfScentNoteResponse errorType(int? errorType);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfScentNoteResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfListOfScentNoteResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfListOfScentNoteResponse call({
-    List<ScentNoteResponse>? payload,
-    bool? success,
-    String? message,
-    List<String>? errors,
-    int? errorType,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBaseResponseOfListOfScentNoteResponse.copyWith(...)` or call `instanceOfBaseResponseOfListOfScentNoteResponse.copyWith.fieldName(value)` for a single field.
-class _$BaseResponseOfListOfScentNoteResponseCWProxyImpl
-    implements _$BaseResponseOfListOfScentNoteResponseCWProxy {
-  const _$BaseResponseOfListOfScentNoteResponseCWProxyImpl(this._value);
-
-  final BaseResponseOfListOfScentNoteResponse _value;
+  _$BaseResponseOfListOfScentNoteResponse._({
+    this.payload,
+    this.success,
+    this.message,
+    this.errors,
+    this.errorType,
+  }) : super._();
+  @override
+  BaseResponseOfListOfScentNoteResponse rebuild(
+    void Function(BaseResponseOfListOfScentNoteResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BaseResponseOfListOfScentNoteResponse payload(
-    List<ScentNoteResponse>? payload,
-  ) => call(payload: payload);
+  BaseResponseOfListOfScentNoteResponseBuilder toBuilder() =>
+      BaseResponseOfListOfScentNoteResponseBuilder()..replace(this);
 
   @override
-  BaseResponseOfListOfScentNoteResponse success(bool? success) =>
-      call(success: success);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BaseResponseOfListOfScentNoteResponse &&
+        payload == other.payload &&
+        success == other.success &&
+        message == other.message &&
+        errors == other.errors &&
+        errorType == other.errorType;
+  }
 
   @override
-  BaseResponseOfListOfScentNoteResponse message(String? message) =>
-      call(message: message);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, payload.hashCode);
+    _$hash = $jc(_$hash, success.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, errors.hashCode);
+    _$hash = $jc(_$hash, errorType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  BaseResponseOfListOfScentNoteResponse errors(List<String>? errors) =>
-      call(errors: errors);
-
-  @override
-  BaseResponseOfListOfScentNoteResponse errorType(int? errorType) =>
-      call(errorType: errorType);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfScentNoteResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfListOfScentNoteResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfListOfScentNoteResponse call({
-    Object? payload = const $CopyWithPlaceholder(),
-    Object? success = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? errorType = const $CopyWithPlaceholder(),
-  }) {
-    return BaseResponseOfListOfScentNoteResponse(
-      payload: payload == const $CopyWithPlaceholder()
-          ? _value.payload
-          // ignore: cast_nullable_to_non_nullable
-          : payload as List<ScentNoteResponse>?,
-      success: success == const $CopyWithPlaceholder()
-          ? _value.success
-          // ignore: cast_nullable_to_non_nullable
-          : success as bool?,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
-          // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
-          // ignore: cast_nullable_to_non_nullable
-          : errors as List<String>?,
-      errorType: errorType == const $CopyWithPlaceholder()
-          ? _value.errorType
-          // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'BaseResponseOfListOfScentNoteResponse',
+          )
+          ..add('payload', payload)
+          ..add('success', success)
+          ..add('message', message)
+          ..add('errors', errors)
+          ..add('errorType', errorType))
+        .toString();
   }
 }
 
-extension $BaseResponseOfListOfScentNoteResponseCopyWith
-    on BaseResponseOfListOfScentNoteResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBaseResponseOfListOfScentNoteResponse.copyWith(...)` or `instanceOfBaseResponseOfListOfScentNoteResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BaseResponseOfListOfScentNoteResponseCWProxy get copyWith =>
-      _$BaseResponseOfListOfScentNoteResponseCWProxyImpl(this);
+class BaseResponseOfListOfScentNoteResponseBuilder
+    implements
+        Builder<
+          BaseResponseOfListOfScentNoteResponse,
+          BaseResponseOfListOfScentNoteResponseBuilder
+        > {
+  _$BaseResponseOfListOfScentNoteResponse? _$v;
+
+  ListBuilder<ScentNoteResponse>? _payload;
+  ListBuilder<ScentNoteResponse> get payload =>
+      _$this._payload ??= ListBuilder<ScentNoteResponse>();
+  set payload(ListBuilder<ScentNoteResponse>? payload) =>
+      _$this._payload = payload;
+
+  bool? _success;
+  bool? get success => _$this._success;
+  set success(bool? success) => _$this._success = success;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  ListBuilder<String>? _errors;
+  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
+  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
+
+  int? _errorType;
+  int? get errorType => _$this._errorType;
+  set errorType(int? errorType) => _$this._errorType = errorType;
+
+  BaseResponseOfListOfScentNoteResponseBuilder() {
+    BaseResponseOfListOfScentNoteResponse._defaults(this);
+  }
+
+  BaseResponseOfListOfScentNoteResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _payload = $v.payload?.toBuilder();
+      _success = $v.success;
+      _message = $v.message;
+      _errors = $v.errors?.toBuilder();
+      _errorType = $v.errorType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BaseResponseOfListOfScentNoteResponse other) {
+    _$v = other as _$BaseResponseOfListOfScentNoteResponse;
+  }
+
+  @override
+  void update(
+    void Function(BaseResponseOfListOfScentNoteResponseBuilder)? updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BaseResponseOfListOfScentNoteResponse build() => _build();
+
+  _$BaseResponseOfListOfScentNoteResponse _build() {
+    _$BaseResponseOfListOfScentNoteResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BaseResponseOfListOfScentNoteResponse._(
+            payload: _payload?.build(),
+            success: success,
+            message: message,
+            errors: _errors?.build(),
+            errorType: errorType,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'payload';
+        _payload?.build();
+
+        _$failedField = 'errors';
+        _errors?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BaseResponseOfListOfScentNoteResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BaseResponseOfListOfScentNoteResponse
-_$BaseResponseOfListOfScentNoteResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('BaseResponseOfListOfScentNoteResponse', json, (
-      $checkedConvert,
-    ) {
-      final val = BaseResponseOfListOfScentNoteResponse(
-        payload: $checkedConvert(
-          'payload',
-          (v) => (v as List<dynamic>?)
-              ?.map(
-                (e) => ScentNoteResponse.fromJson(e as Map<String, dynamic>),
-              )
-              .toList(),
-        ),
-        success: $checkedConvert('success', (v) => v as bool?),
-        message: $checkedConvert('message', (v) => v as String?),
-        errors: $checkedConvert(
-          'errors',
-          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-        ),
-        errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$BaseResponseOfListOfScentNoteResponseToJson(
-  BaseResponseOfListOfScentNoteResponse instance,
-) => <String, dynamic>{
-  'payload': ?instance.payload?.map((e) => e.toJson()).toList(),
-  'success': ?instance.success,
-  'message': ?instance.message,
-  'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

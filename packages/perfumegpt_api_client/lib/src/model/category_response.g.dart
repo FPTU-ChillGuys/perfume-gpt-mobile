@@ -3,81 +3,105 @@
 part of 'category_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CategoryResponseCWProxy {
-  CategoryResponse id(int? id);
+class _$CategoryResponse extends CategoryResponse {
+  @override
+  final int? id;
+  @override
+  final String name;
 
-  CategoryResponse name(String? name);
+  factory _$CategoryResponse([
+    void Function(CategoryResponseBuilder)? updates,
+  ]) => (CategoryResponseBuilder()..update(updates))._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CategoryResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CategoryResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CategoryResponse call({int? id, String? name});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCategoryResponse.copyWith(...)` or call `instanceOfCategoryResponse.copyWith.fieldName(value)` for a single field.
-class _$CategoryResponseCWProxyImpl implements _$CategoryResponseCWProxy {
-  const _$CategoryResponseCWProxyImpl(this._value);
-
-  final CategoryResponse _value;
+  _$CategoryResponse._({this.id, required this.name}) : super._();
+  @override
+  CategoryResponse rebuild(void Function(CategoryResponseBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  CategoryResponse id(int? id) => call(id: id);
+  CategoryResponseBuilder toBuilder() =>
+      CategoryResponseBuilder()..replace(this);
 
   @override
-  CategoryResponse name(String? name) => call(name: name);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CategoryResponse && id == other.id && name == other.name;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CategoryResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CategoryResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CategoryResponse call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
-  }) {
-    return CategoryResponse(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as int?,
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'CategoryResponse')
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
   }
 }
 
-extension $CategoryResponseCopyWith on CategoryResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCategoryResponse.copyWith(...)` or `instanceOfCategoryResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CategoryResponseCWProxy get copyWith => _$CategoryResponseCWProxyImpl(this);
+class CategoryResponseBuilder
+    implements Builder<CategoryResponse, CategoryResponseBuilder> {
+  _$CategoryResponse? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  CategoryResponseBuilder() {
+    CategoryResponse._defaults(this);
+  }
+
+  CategoryResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CategoryResponse other) {
+    _$v = other as _$CategoryResponse;
+  }
+
+  @override
+  void update(void Function(CategoryResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CategoryResponse build() => _build();
+
+  _$CategoryResponse _build() {
+    final _$result =
+        _$v ??
+        _$CategoryResponse._(
+          id: id,
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'CategoryResponse',
+            'name',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CategoryResponse _$CategoryResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('CategoryResponse', json, ($checkedConvert) {
-      final val = CategoryResponse(
-        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-        name: $checkedConvert('name', (v) => v as String?),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$CategoryResponseToJson(CategoryResponse instance) =>
-    <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

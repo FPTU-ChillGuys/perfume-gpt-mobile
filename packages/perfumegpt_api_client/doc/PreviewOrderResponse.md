@@ -8,7 +8,7 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;OrderDetailListItems&gt;**](OrderDetailListItems.md) |  | [optional] 
+**items** | [**BuiltList&lt;OrderDetailListItems&gt;**](OrderDetailListItems.md) |  | 
 **subTotal** | **num** |  | [optional] 
 **shippingFee** | **num** |  | [optional] 
 **discount** | **num** |  | [optional] 

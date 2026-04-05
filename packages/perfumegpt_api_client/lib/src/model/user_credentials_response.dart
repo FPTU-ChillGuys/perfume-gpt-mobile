@@ -3,136 +3,191 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'user_credentials_response.g.dart';
 
+/// UserCredentialsResponse
+///
+/// Properties:
+/// * [id] 
+/// * [loyaltyPoint] 
+/// * [fullName] 
+/// * [phoneNumber] 
+/// * [email] 
+/// * [profilePictureUrl] 
+@BuiltValue()
+abstract class UserCredentialsResponse implements Built<UserCredentialsResponse, UserCredentialsResponseBuilder> {
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class UserCredentialsResponse {
-  /// Returns a new [UserCredentialsResponse] instance.
-  UserCredentialsResponse({
+  @BuiltValueField(wireName: r'loyaltyPoint')
+  int? get loyaltyPoint;
 
-     this.id,
+  @BuiltValueField(wireName: r'fullName')
+  String get fullName;
 
-     this.loyaltyPoint,
+  @BuiltValueField(wireName: r'phoneNumber')
+  String get phoneNumber;
 
-     this.fullName,
+  @BuiltValueField(wireName: r'email')
+  String get email;
 
-     this.phoneNumber,
+  @BuiltValueField(wireName: r'profilePictureUrl')
+  String? get profilePictureUrl;
 
-     this.email,
+  UserCredentialsResponse._();
 
-     this.profilePictureUrl,
-  });
+  factory UserCredentialsResponse([void updates(UserCredentialsResponseBuilder b)]) = _$UserCredentialsResponse;
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(UserCredentialsResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<UserCredentialsResponse> get serializer => _$UserCredentialsResponseSerializer();
+}
 
-  final String? id;
-
-
-
-  @JsonKey(
-    
-    name: r'loyaltyPoint',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? loyaltyPoint;
-
-
-
-  @JsonKey(
-    
-    name: r'fullName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? fullName;
-
-
-
-  @JsonKey(
-    
-    name: r'phoneNumber',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? phoneNumber;
-
-
-
-  @JsonKey(
-    
-    name: r'email',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? email;
-
-
-
-  @JsonKey(
-    
-    name: r'profilePictureUrl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? profilePictureUrl;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UserCredentialsResponse &&
-      other.id == id &&
-      other.loyaltyPoint == loyaltyPoint &&
-      other.fullName == fullName &&
-      other.phoneNumber == phoneNumber &&
-      other.email == email &&
-      other.profilePictureUrl == profilePictureUrl;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        loyaltyPoint.hashCode +
-        fullName.hashCode +
-        phoneNumber.hashCode +
-        email.hashCode +
-        (profilePictureUrl == null ? 0 : profilePictureUrl.hashCode);
-
-  factory UserCredentialsResponse.fromJson(Map<String, dynamic> json) => _$UserCredentialsResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UserCredentialsResponseToJson(this);
+class _$UserCredentialsResponseSerializer implements PrimitiveSerializer<UserCredentialsResponse> {
+  @override
+  final Iterable<Type> types = const [UserCredentialsResponse, _$UserCredentialsResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'UserCredentialsResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    UserCredentialsResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.loyaltyPoint != null) {
+      yield r'loyaltyPoint';
+      yield serializers.serialize(
+        object.loyaltyPoint,
+        specifiedType: const FullType(int),
+      );
+    }
+    yield r'fullName';
+    yield serializers.serialize(
+      object.fullName,
+      specifiedType: const FullType(String),
+    );
+    yield r'phoneNumber';
+    yield serializers.serialize(
+      object.phoneNumber,
+      specifiedType: const FullType(String),
+    );
+    yield r'email';
+    yield serializers.serialize(
+      object.email,
+      specifiedType: const FullType(String),
+    );
+    if (object.profilePictureUrl != null) {
+      yield r'profilePictureUrl';
+      yield serializers.serialize(
+        object.profilePictureUrl,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    UserCredentialsResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required UserCredentialsResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'loyaltyPoint':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.loyaltyPoint = valueDes;
+          break;
+        case r'fullName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.fullName = valueDes;
+          break;
+        case r'phoneNumber':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.phoneNumber = valueDes;
+          break;
+        case r'email':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.email = valueDes;
+          break;
+        case r'profilePictureUrl':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.profilePictureUrl = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  UserCredentialsResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = UserCredentialsResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

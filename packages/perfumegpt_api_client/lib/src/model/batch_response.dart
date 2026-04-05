@@ -3,152 +3,212 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'batch_response.g.dart';
 
+/// BatchResponse
+///
+/// Properties:
+/// * [id] 
+/// * [batchCode] 
+/// * [manufactureDate] 
+/// * [expiryDate] 
+/// * [importQuantity] 
+/// * [remainingQuantity] 
+/// * [createdAt] 
+@BuiltValue()
+abstract class BatchResponse implements Built<BatchResponse, BatchResponseBuilder> {
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class BatchResponse {
-  /// Returns a new [BatchResponse] instance.
-  BatchResponse({
+  @BuiltValueField(wireName: r'batchCode')
+  String get batchCode;
 
-     this.id,
+  @BuiltValueField(wireName: r'manufactureDate')
+  DateTime? get manufactureDate;
 
-     this.batchCode,
+  @BuiltValueField(wireName: r'expiryDate')
+  DateTime? get expiryDate;
 
-     this.manufactureDate,
+  @BuiltValueField(wireName: r'importQuantity')
+  int? get importQuantity;
 
-     this.expiryDate,
+  @BuiltValueField(wireName: r'remainingQuantity')
+  int? get remainingQuantity;
 
-     this.importQuantity,
+  @BuiltValueField(wireName: r'createdAt')
+  DateTime? get createdAt;
 
-     this.remainingQuantity,
+  BatchResponse._();
 
-     this.createdAt,
-  });
+  factory BatchResponse([void updates(BatchResponseBuilder b)]) = _$BatchResponse;
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(BatchResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<BatchResponse> get serializer => _$BatchResponseSerializer();
+}
 
-  final String? id;
-
-
-
-  @JsonKey(
-    
-    name: r'batchCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? batchCode;
-
-
-
-  @JsonKey(
-    
-    name: r'manufactureDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? manufactureDate;
-
-
-
-  @JsonKey(
-    
-    name: r'expiryDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? expiryDate;
-
-
-
-  @JsonKey(
-    
-    name: r'importQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? importQuantity;
-
-
-
-  @JsonKey(
-    
-    name: r'remainingQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? remainingQuantity;
-
-
-
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? createdAt;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BatchResponse &&
-      other.id == id &&
-      other.batchCode == batchCode &&
-      other.manufactureDate == manufactureDate &&
-      other.expiryDate == expiryDate &&
-      other.importQuantity == importQuantity &&
-      other.remainingQuantity == remainingQuantity &&
-      other.createdAt == createdAt;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        batchCode.hashCode +
-        manufactureDate.hashCode +
-        expiryDate.hashCode +
-        importQuantity.hashCode +
-        remainingQuantity.hashCode +
-        createdAt.hashCode;
-
-  factory BatchResponse.fromJson(Map<String, dynamic> json) => _$BatchResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BatchResponseToJson(this);
+class _$BatchResponseSerializer implements PrimitiveSerializer<BatchResponse> {
+  @override
+  final Iterable<Type> types = const [BatchResponse, _$BatchResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'BatchResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    BatchResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'batchCode';
+    yield serializers.serialize(
+      object.batchCode,
+      specifiedType: const FullType(String),
+    );
+    if (object.manufactureDate != null) {
+      yield r'manufactureDate';
+      yield serializers.serialize(
+        object.manufactureDate,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.expiryDate != null) {
+      yield r'expiryDate';
+      yield serializers.serialize(
+        object.expiryDate,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.importQuantity != null) {
+      yield r'importQuantity';
+      yield serializers.serialize(
+        object.importQuantity,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.remainingQuantity != null) {
+      yield r'remainingQuantity';
+      yield serializers.serialize(
+        object.remainingQuantity,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.createdAt != null) {
+      yield r'createdAt';
+      yield serializers.serialize(
+        object.createdAt,
+        specifiedType: const FullType(DateTime),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    BatchResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required BatchResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'batchCode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.batchCode = valueDes;
+          break;
+        case r'manufactureDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.manufactureDate = valueDes;
+          break;
+        case r'expiryDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.expiryDate = valueDes;
+          break;
+        case r'importQuantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.importQuantity = valueDes;
+          break;
+        case r'remainingQuantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.remainingQuantity = valueDes;
+          break;
+        case r'createdAt':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.createdAt = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  BatchResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = BatchResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

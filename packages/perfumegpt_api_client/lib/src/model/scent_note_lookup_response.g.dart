@@ -3,85 +3,109 @@
 part of 'scent_note_lookup_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$ScentNoteLookupResponseCWProxy {
-  ScentNoteLookupResponse id(int? id);
+class _$ScentNoteLookupResponse extends ScentNoteLookupResponse {
+  @override
+  final int? id;
+  @override
+  final String name;
 
-  ScentNoteLookupResponse name(String? name);
+  factory _$ScentNoteLookupResponse([
+    void Function(ScentNoteLookupResponseBuilder)? updates,
+  ]) => (ScentNoteLookupResponseBuilder()..update(updates))._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ScentNoteLookupResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ScentNoteLookupResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ScentNoteLookupResponse call({int? id, String? name});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfScentNoteLookupResponse.copyWith(...)` or call `instanceOfScentNoteLookupResponse.copyWith.fieldName(value)` for a single field.
-class _$ScentNoteLookupResponseCWProxyImpl
-    implements _$ScentNoteLookupResponseCWProxy {
-  const _$ScentNoteLookupResponseCWProxyImpl(this._value);
-
-  final ScentNoteLookupResponse _value;
+  _$ScentNoteLookupResponse._({this.id, required this.name}) : super._();
+  @override
+  ScentNoteLookupResponse rebuild(
+    void Function(ScentNoteLookupResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  ScentNoteLookupResponse id(int? id) => call(id: id);
+  ScentNoteLookupResponseBuilder toBuilder() =>
+      ScentNoteLookupResponseBuilder()..replace(this);
 
   @override
-  ScentNoteLookupResponse name(String? name) => call(name: name);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ScentNoteLookupResponse &&
+        id == other.id &&
+        name == other.name;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ScentNoteLookupResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ScentNoteLookupResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ScentNoteLookupResponse call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
-  }) {
-    return ScentNoteLookupResponse(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as int?,
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'ScentNoteLookupResponse')
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
   }
 }
 
-extension $ScentNoteLookupResponseCopyWith on ScentNoteLookupResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfScentNoteLookupResponse.copyWith(...)` or `instanceOfScentNoteLookupResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$ScentNoteLookupResponseCWProxy get copyWith =>
-      _$ScentNoteLookupResponseCWProxyImpl(this);
+class ScentNoteLookupResponseBuilder
+    implements
+        Builder<ScentNoteLookupResponse, ScentNoteLookupResponseBuilder> {
+  _$ScentNoteLookupResponse? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  ScentNoteLookupResponseBuilder() {
+    ScentNoteLookupResponse._defaults(this);
+  }
+
+  ScentNoteLookupResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ScentNoteLookupResponse other) {
+    _$v = other as _$ScentNoteLookupResponse;
+  }
+
+  @override
+  void update(void Function(ScentNoteLookupResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ScentNoteLookupResponse build() => _build();
+
+  _$ScentNoteLookupResponse _build() {
+    final _$result =
+        _$v ??
+        _$ScentNoteLookupResponse._(
+          id: id,
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'ScentNoteLookupResponse',
+            'name',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-ScentNoteLookupResponse _$ScentNoteLookupResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('ScentNoteLookupResponse', json, ($checkedConvert) {
-  final val = ScentNoteLookupResponse(
-    id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-    name: $checkedConvert('name', (v) => v as String?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$ScentNoteLookupResponseToJson(
-  ScentNoteLookupResponse instance,
-) => <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

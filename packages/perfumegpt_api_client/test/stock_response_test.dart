@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for StockResponse
 void main() {
-  final StockResponse? instance = /* StockResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = StockResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(StockResponse, () {
     // String id
@@ -24,6 +24,11 @@ void main() {
 
     // String productName
     test('to test the property `productName`', () async {
+      // TODO
+    });
+
+    // String variantImageUrl
+    test('to test the property `variantImageUrl`', () async {
       // TODO
     });
 
@@ -52,9 +57,10 @@ void main() {
       // TODO
     });
 
-    // bool isLowStock
-    test('to test the property `isLowStock`', () async {
+    // StockStatus status
+    test('to test the property `status`', () async {
       // TODO
     });
+
   });
 }

@@ -3,118 +3,140 @@
 part of 'bulk_action_result_of_list_of_temporary_media_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BulkActionResultOfListOfTemporaryMediaResponseCWProxy {
-  BulkActionResultOfListOfTemporaryMediaResponse data(
-    List<TemporaryMediaResponse>? data,
-  );
+class _$BulkActionResultOfListOfTemporaryMediaResponse
+    extends BulkActionResultOfListOfTemporaryMediaResponse {
+  @override
+  final BuiltList<TemporaryMediaResponse>? data;
+  @override
+  final BulkActionMetadata? metadata;
 
-  BulkActionResultOfListOfTemporaryMediaResponse metadata(
-    BulkActionMetadata? metadata,
-  );
+  factory _$BulkActionResultOfListOfTemporaryMediaResponse([
+    void Function(BulkActionResultOfListOfTemporaryMediaResponseBuilder)?
+    updates,
+  ]) =>
+      (BulkActionResultOfListOfTemporaryMediaResponseBuilder()..update(updates))
+          ._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BulkActionResultOfListOfTemporaryMediaResponse call({
-    List<TemporaryMediaResponse>? data,
-    BulkActionMetadata? metadata,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)` or call `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(value)` for a single field.
-class _$BulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl
-    implements _$BulkActionResultOfListOfTemporaryMediaResponseCWProxy {
-  const _$BulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl(
-    this._value,
-  );
-
-  final BulkActionResultOfListOfTemporaryMediaResponse _value;
+  _$BulkActionResultOfListOfTemporaryMediaResponse._({this.data, this.metadata})
+    : super._();
+  @override
+  BulkActionResultOfListOfTemporaryMediaResponse rebuild(
+    void Function(BulkActionResultOfListOfTemporaryMediaResponseBuilder)
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BulkActionResultOfListOfTemporaryMediaResponse data(
-    List<TemporaryMediaResponse>? data,
-  ) => call(data: data);
+  BulkActionResultOfListOfTemporaryMediaResponseBuilder toBuilder() =>
+      BulkActionResultOfListOfTemporaryMediaResponseBuilder()..replace(this);
 
   @override
-  BulkActionResultOfListOfTemporaryMediaResponse metadata(
-    BulkActionMetadata? metadata,
-  ) => call(metadata: metadata);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BulkActionResultOfListOfTemporaryMediaResponse &&
+        data == other.data &&
+        metadata == other.metadata;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BulkActionResultOfListOfTemporaryMediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BulkActionResultOfListOfTemporaryMediaResponse call({
-    Object? data = const $CopyWithPlaceholder(),
-    Object? metadata = const $CopyWithPlaceholder(),
-  }) {
-    return BulkActionResultOfListOfTemporaryMediaResponse(
-      data: data == const $CopyWithPlaceholder()
-          ? _value.data
-          // ignore: cast_nullable_to_non_nullable
-          : data as List<TemporaryMediaResponse>?,
-      metadata: metadata == const $CopyWithPlaceholder()
-          ? _value.metadata
-          // ignore: cast_nullable_to_non_nullable
-          : metadata as BulkActionMetadata?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, data.hashCode);
+    _$hash = $jc(_$hash, metadata.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'BulkActionResultOfListOfTemporaryMediaResponse',
+          )
+          ..add('data', data)
+          ..add('metadata', metadata))
+        .toString();
   }
 }
 
-extension $BulkActionResultOfListOfTemporaryMediaResponseCopyWith
-    on BulkActionResultOfListOfTemporaryMediaResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith(...)` or `instanceOfBulkActionResultOfListOfTemporaryMediaResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BulkActionResultOfListOfTemporaryMediaResponseCWProxy get copyWith =>
-      _$BulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl(this);
+class BulkActionResultOfListOfTemporaryMediaResponseBuilder
+    implements
+        Builder<
+          BulkActionResultOfListOfTemporaryMediaResponse,
+          BulkActionResultOfListOfTemporaryMediaResponseBuilder
+        > {
+  _$BulkActionResultOfListOfTemporaryMediaResponse? _$v;
+
+  ListBuilder<TemporaryMediaResponse>? _data;
+  ListBuilder<TemporaryMediaResponse> get data =>
+      _$this._data ??= ListBuilder<TemporaryMediaResponse>();
+  set data(ListBuilder<TemporaryMediaResponse>? data) => _$this._data = data;
+
+  BulkActionMetadataBuilder? _metadata;
+  BulkActionMetadataBuilder get metadata =>
+      _$this._metadata ??= BulkActionMetadataBuilder();
+  set metadata(BulkActionMetadataBuilder? metadata) =>
+      _$this._metadata = metadata;
+
+  BulkActionResultOfListOfTemporaryMediaResponseBuilder() {
+    BulkActionResultOfListOfTemporaryMediaResponse._defaults(this);
+  }
+
+  BulkActionResultOfListOfTemporaryMediaResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _data = $v.data?.toBuilder();
+      _metadata = $v.metadata?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BulkActionResultOfListOfTemporaryMediaResponse other) {
+    _$v = other as _$BulkActionResultOfListOfTemporaryMediaResponse;
+  }
+
+  @override
+  void update(
+    void Function(BulkActionResultOfListOfTemporaryMediaResponseBuilder)?
+    updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BulkActionResultOfListOfTemporaryMediaResponse build() => _build();
+
+  _$BulkActionResultOfListOfTemporaryMediaResponse _build() {
+    _$BulkActionResultOfListOfTemporaryMediaResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BulkActionResultOfListOfTemporaryMediaResponse._(
+            data: _data?.build(),
+            metadata: _metadata?.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'data';
+        _data?.build();
+        _$failedField = 'metadata';
+        _metadata?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BulkActionResultOfListOfTemporaryMediaResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BulkActionResultOfListOfTemporaryMediaResponse
-_$BulkActionResultOfListOfTemporaryMediaResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('BulkActionResultOfListOfTemporaryMediaResponse', json, (
-  $checkedConvert,
-) {
-  $checkKeys(json, requiredKeys: const ['data']);
-  final val = BulkActionResultOfListOfTemporaryMediaResponse(
-    data: $checkedConvert(
-      'data',
-      (v) => (v as List<dynamic>?)
-          ?.map(
-            (e) => TemporaryMediaResponse.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
-    ),
-    metadata: $checkedConvert(
-      'metadata',
-      (v) => v == null
-          ? null
-          : BulkActionMetadata.fromJson(v as Map<String, dynamic>),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$BulkActionResultOfListOfTemporaryMediaResponseToJson(
-  BulkActionResultOfListOfTemporaryMediaResponse instance,
-) => <String, dynamic>{
-  'data': instance.data?.map((e) => e.toJson()).toList(),
-  'metadata': ?instance.metadata?.toJson(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

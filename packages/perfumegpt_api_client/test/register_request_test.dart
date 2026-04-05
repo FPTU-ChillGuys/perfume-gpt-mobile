@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for RegisterRequest
 void main() {
-  final RegisterRequest? instance = /* RegisterRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = RegisterRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(RegisterRequest, () {
     // String fullName
@@ -31,5 +31,6 @@ void main() {
     test('to test the property `clientUri`', () async {
       // TODO
     });
+
   });
 }

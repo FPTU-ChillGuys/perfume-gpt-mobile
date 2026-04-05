@@ -3,73 +3,96 @@
 part of 'update_category_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$UpdateCategoryRequestCWProxy {
-  UpdateCategoryRequest name(String name);
+class _$UpdateCategoryRequest extends UpdateCategoryRequest {
+  @override
+  final String name;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCategoryRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateCategoryRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateCategoryRequest call({String name});
-}
+  factory _$UpdateCategoryRequest([
+    void Function(UpdateCategoryRequestBuilder)? updates,
+  ]) => (UpdateCategoryRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfUpdateCategoryRequest.copyWith(...)` or call `instanceOfUpdateCategoryRequest.copyWith.fieldName(value)` for a single field.
-class _$UpdateCategoryRequestCWProxyImpl
-    implements _$UpdateCategoryRequestCWProxy {
-  const _$UpdateCategoryRequestCWProxyImpl(this._value);
-
-  final UpdateCategoryRequest _value;
+  _$UpdateCategoryRequest._({required this.name}) : super._();
+  @override
+  UpdateCategoryRequest rebuild(
+    void Function(UpdateCategoryRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  UpdateCategoryRequest name(String name) => call(name: name);
+  UpdateCategoryRequestBuilder toBuilder() =>
+      UpdateCategoryRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCategoryRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateCategoryRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateCategoryRequest call({Object? name = const $CopyWithPlaceholder()}) {
-    return UpdateCategoryRequest(
-      name: name == const $CopyWithPlaceholder() || name == null
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is UpdateCategoryRequest && name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'UpdateCategoryRequest',
+    )..add('name', name)).toString();
   }
 }
 
-extension $UpdateCategoryRequestCopyWith on UpdateCategoryRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfUpdateCategoryRequest.copyWith(...)` or `instanceOfUpdateCategoryRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$UpdateCategoryRequestCWProxy get copyWith =>
-      _$UpdateCategoryRequestCWProxyImpl(this);
+class UpdateCategoryRequestBuilder
+    implements Builder<UpdateCategoryRequest, UpdateCategoryRequestBuilder> {
+  _$UpdateCategoryRequest? _$v;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  UpdateCategoryRequestBuilder() {
+    UpdateCategoryRequest._defaults(this);
+  }
+
+  UpdateCategoryRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(UpdateCategoryRequest other) {
+    _$v = other as _$UpdateCategoryRequest;
+  }
+
+  @override
+  void update(void Function(UpdateCategoryRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  UpdateCategoryRequest build() => _build();
+
+  _$UpdateCategoryRequest _build() {
+    final _$result =
+        _$v ??
+        _$UpdateCategoryRequest._(
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'UpdateCategoryRequest',
+            'name',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-UpdateCategoryRequest _$UpdateCategoryRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('UpdateCategoryRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['name']);
-  final val = UpdateCategoryRequest(
-    name: $checkedConvert('name', (v) => v as String),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$UpdateCategoryRequestToJson(
-  UpdateCategoryRequest instance,
-) => <String, dynamic>{'name': instance.name};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

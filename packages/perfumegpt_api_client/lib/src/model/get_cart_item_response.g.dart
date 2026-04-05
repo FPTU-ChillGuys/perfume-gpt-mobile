@@ -3,208 +3,211 @@
 part of 'get_cart_item_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$GetCartItemResponseCWProxy {
-  GetCartItemResponse cartItemId(String? cartItemId);
+class _$GetCartItemResponse extends GetCartItemResponse {
+  @override
+  final String? cartItemId;
+  @override
+  final String? variantId;
+  @override
+  final String variantName;
+  @override
+  final String imageUrl;
+  @override
+  final int? volumeMl;
+  @override
+  final VariantType? type;
+  @override
+  final num? variantPrice;
+  @override
+  final int? quantity;
+  @override
+  final bool? isAvailable;
+  @override
+  final num? subTotal;
 
-  GetCartItemResponse variantId(String? variantId);
+  factory _$GetCartItemResponse([
+    void Function(GetCartItemResponseBuilder)? updates,
+  ]) => (GetCartItemResponseBuilder()..update(updates))._build();
 
-  GetCartItemResponse variantName(String? variantName);
-
-  GetCartItemResponse imageUrl(String? imageUrl);
-
-  GetCartItemResponse volumeMl(int? volumeMl);
-
-  GetCartItemResponse type(VariantType? type);
-
-  GetCartItemResponse variantPrice(num? variantPrice);
-
-  GetCartItemResponse quantity(int? quantity);
-
-  GetCartItemResponse isAvailable(bool? isAvailable);
-
-  GetCartItemResponse subTotal(num? subTotal);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// GetCartItemResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  GetCartItemResponse call({
-    String? cartItemId,
-    String? variantId,
-    String? variantName,
-    String? imageUrl,
-    int? volumeMl,
-    VariantType? type,
-    num? variantPrice,
-    int? quantity,
-    bool? isAvailable,
-    num? subTotal,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfGetCartItemResponse.copyWith(...)` or call `instanceOfGetCartItemResponse.copyWith.fieldName(value)` for a single field.
-class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
-  const _$GetCartItemResponseCWProxyImpl(this._value);
-
-  final GetCartItemResponse _value;
+  _$GetCartItemResponse._({
+    this.cartItemId,
+    this.variantId,
+    required this.variantName,
+    required this.imageUrl,
+    this.volumeMl,
+    this.type,
+    this.variantPrice,
+    this.quantity,
+    this.isAvailable,
+    this.subTotal,
+  }) : super._();
+  @override
+  GetCartItemResponse rebuild(
+    void Function(GetCartItemResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  GetCartItemResponse cartItemId(String? cartItemId) =>
-      call(cartItemId: cartItemId);
+  GetCartItemResponseBuilder toBuilder() =>
+      GetCartItemResponseBuilder()..replace(this);
 
   @override
-  GetCartItemResponse variantId(String? variantId) =>
-      call(variantId: variantId);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetCartItemResponse &&
+        cartItemId == other.cartItemId &&
+        variantId == other.variantId &&
+        variantName == other.variantName &&
+        imageUrl == other.imageUrl &&
+        volumeMl == other.volumeMl &&
+        type == other.type &&
+        variantPrice == other.variantPrice &&
+        quantity == other.quantity &&
+        isAvailable == other.isAvailable &&
+        subTotal == other.subTotal;
+  }
 
   @override
-  GetCartItemResponse variantName(String? variantName) =>
-      call(variantName: variantName);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, cartItemId.hashCode);
+    _$hash = $jc(_$hash, variantId.hashCode);
+    _$hash = $jc(_$hash, variantName.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
+    _$hash = $jc(_$hash, volumeMl.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
+    _$hash = $jc(_$hash, variantPrice.hashCode);
+    _$hash = $jc(_$hash, quantity.hashCode);
+    _$hash = $jc(_$hash, isAvailable.hashCode);
+    _$hash = $jc(_$hash, subTotal.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  GetCartItemResponse imageUrl(String? imageUrl) => call(imageUrl: imageUrl);
-
-  @override
-  GetCartItemResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
-
-  @override
-  GetCartItemResponse type(VariantType? type) => call(type: type);
-
-  @override
-  GetCartItemResponse variantPrice(num? variantPrice) =>
-      call(variantPrice: variantPrice);
-
-  @override
-  GetCartItemResponse quantity(int? quantity) => call(quantity: quantity);
-
-  @override
-  GetCartItemResponse isAvailable(bool? isAvailable) =>
-      call(isAvailable: isAvailable);
-
-  @override
-  GetCartItemResponse subTotal(num? subTotal) => call(subTotal: subTotal);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// GetCartItemResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  GetCartItemResponse call({
-    Object? cartItemId = const $CopyWithPlaceholder(),
-    Object? variantId = const $CopyWithPlaceholder(),
-    Object? variantName = const $CopyWithPlaceholder(),
-    Object? imageUrl = const $CopyWithPlaceholder(),
-    Object? volumeMl = const $CopyWithPlaceholder(),
-    Object? type = const $CopyWithPlaceholder(),
-    Object? variantPrice = const $CopyWithPlaceholder(),
-    Object? quantity = const $CopyWithPlaceholder(),
-    Object? isAvailable = const $CopyWithPlaceholder(),
-    Object? subTotal = const $CopyWithPlaceholder(),
-  }) {
-    return GetCartItemResponse(
-      cartItemId: cartItemId == const $CopyWithPlaceholder()
-          ? _value.cartItemId
-          // ignore: cast_nullable_to_non_nullable
-          : cartItemId as String?,
-      variantId: variantId == const $CopyWithPlaceholder()
-          ? _value.variantId
-          // ignore: cast_nullable_to_non_nullable
-          : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
-          ? _value.variantName
-          // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
-      imageUrl: imageUrl == const $CopyWithPlaceholder()
-          ? _value.imageUrl
-          // ignore: cast_nullable_to_non_nullable
-          : imageUrl as String?,
-      volumeMl: volumeMl == const $CopyWithPlaceholder()
-          ? _value.volumeMl
-          // ignore: cast_nullable_to_non_nullable
-          : volumeMl as int?,
-      type: type == const $CopyWithPlaceholder()
-          ? _value.type
-          // ignore: cast_nullable_to_non_nullable
-          : type as VariantType?,
-      variantPrice: variantPrice == const $CopyWithPlaceholder()
-          ? _value.variantPrice
-          // ignore: cast_nullable_to_non_nullable
-          : variantPrice as num?,
-      quantity: quantity == const $CopyWithPlaceholder()
-          ? _value.quantity
-          // ignore: cast_nullable_to_non_nullable
-          : quantity as int?,
-      isAvailable: isAvailable == const $CopyWithPlaceholder()
-          ? _value.isAvailable
-          // ignore: cast_nullable_to_non_nullable
-          : isAvailable as bool?,
-      subTotal: subTotal == const $CopyWithPlaceholder()
-          ? _value.subTotal
-          // ignore: cast_nullable_to_non_nullable
-          : subTotal as num?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GetCartItemResponse')
+          ..add('cartItemId', cartItemId)
+          ..add('variantId', variantId)
+          ..add('variantName', variantName)
+          ..add('imageUrl', imageUrl)
+          ..add('volumeMl', volumeMl)
+          ..add('type', type)
+          ..add('variantPrice', variantPrice)
+          ..add('quantity', quantity)
+          ..add('isAvailable', isAvailable)
+          ..add('subTotal', subTotal))
+        .toString();
   }
 }
 
-extension $GetCartItemResponseCopyWith on GetCartItemResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfGetCartItemResponse.copyWith(...)` or `instanceOfGetCartItemResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$GetCartItemResponseCWProxy get copyWith =>
-      _$GetCartItemResponseCWProxyImpl(this);
+class GetCartItemResponseBuilder
+    implements Builder<GetCartItemResponse, GetCartItemResponseBuilder> {
+  _$GetCartItemResponse? _$v;
+
+  String? _cartItemId;
+  String? get cartItemId => _$this._cartItemId;
+  set cartItemId(String? cartItemId) => _$this._cartItemId = cartItemId;
+
+  String? _variantId;
+  String? get variantId => _$this._variantId;
+  set variantId(String? variantId) => _$this._variantId = variantId;
+
+  String? _variantName;
+  String? get variantName => _$this._variantName;
+  set variantName(String? variantName) => _$this._variantName = variantName;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
+  int? _volumeMl;
+  int? get volumeMl => _$this._volumeMl;
+  set volumeMl(int? volumeMl) => _$this._volumeMl = volumeMl;
+
+  VariantType? _type;
+  VariantType? get type => _$this._type;
+  set type(VariantType? type) => _$this._type = type;
+
+  num? _variantPrice;
+  num? get variantPrice => _$this._variantPrice;
+  set variantPrice(num? variantPrice) => _$this._variantPrice = variantPrice;
+
+  int? _quantity;
+  int? get quantity => _$this._quantity;
+  set quantity(int? quantity) => _$this._quantity = quantity;
+
+  bool? _isAvailable;
+  bool? get isAvailable => _$this._isAvailable;
+  set isAvailable(bool? isAvailable) => _$this._isAvailable = isAvailable;
+
+  num? _subTotal;
+  num? get subTotal => _$this._subTotal;
+  set subTotal(num? subTotal) => _$this._subTotal = subTotal;
+
+  GetCartItemResponseBuilder() {
+    GetCartItemResponse._defaults(this);
+  }
+
+  GetCartItemResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _cartItemId = $v.cartItemId;
+      _variantId = $v.variantId;
+      _variantName = $v.variantName;
+      _imageUrl = $v.imageUrl;
+      _volumeMl = $v.volumeMl;
+      _type = $v.type;
+      _variantPrice = $v.variantPrice;
+      _quantity = $v.quantity;
+      _isAvailable = $v.isAvailable;
+      _subTotal = $v.subTotal;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GetCartItemResponse other) {
+    _$v = other as _$GetCartItemResponse;
+  }
+
+  @override
+  void update(void Function(GetCartItemResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetCartItemResponse build() => _build();
+
+  _$GetCartItemResponse _build() {
+    final _$result =
+        _$v ??
+        _$GetCartItemResponse._(
+          cartItemId: cartItemId,
+          variantId: variantId,
+          variantName: BuiltValueNullFieldError.checkNotNull(
+            variantName,
+            r'GetCartItemResponse',
+            'variantName',
+          ),
+          imageUrl: BuiltValueNullFieldError.checkNotNull(
+            imageUrl,
+            r'GetCartItemResponse',
+            'imageUrl',
+          ),
+          volumeMl: volumeMl,
+          type: type,
+          variantPrice: variantPrice,
+          quantity: quantity,
+          isAvailable: isAvailable,
+          subTotal: subTotal,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-GetCartItemResponse _$GetCartItemResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('GetCartItemResponse', json, ($checkedConvert) {
-      final val = GetCartItemResponse(
-        cartItemId: $checkedConvert('cartItemId', (v) => v as String?),
-        variantId: $checkedConvert('variantId', (v) => v as String?),
-        variantName: $checkedConvert('variantName', (v) => v as String?),
-        imageUrl: $checkedConvert('imageUrl', (v) => v as String?),
-        volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
-        type: $checkedConvert(
-          'type',
-          (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
-        ),
-        variantPrice: $checkedConvert('variantPrice', (v) => v as num?),
-        quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
-        isAvailable: $checkedConvert('isAvailable', (v) => v as bool?),
-        subTotal: $checkedConvert('subTotal', (v) => v as num?),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$GetCartItemResponseToJson(
-  GetCartItemResponse instance,
-) => <String, dynamic>{
-  'cartItemId': ?instance.cartItemId,
-  'variantId': ?instance.variantId,
-  'variantName': ?instance.variantName,
-  'imageUrl': ?instance.imageUrl,
-  'volumeMl': ?instance.volumeMl,
-  'type': ?_$VariantTypeEnumMap[instance.type],
-  'variantPrice': ?instance.variantPrice,
-  'quantity': ?instance.quantity,
-  'isAvailable': ?instance.isAvailable,
-  'subTotal': ?instance.subTotal,
-};
-
-const _$VariantTypeEnumMap = {
-  VariantType.standard: 'Standard',
-  VariantType.fullBox: 'FullBox',
-  VariantType.tester: 'Tester',
-  VariantType.mini: 'Mini',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

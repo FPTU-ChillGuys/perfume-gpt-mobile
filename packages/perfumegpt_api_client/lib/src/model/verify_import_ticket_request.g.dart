@@ -3,92 +3,110 @@
 part of 'verify_import_ticket_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$VerifyImportTicketRequestCWProxy {
-  VerifyImportTicketRequest importDetails(
-    List<VerifyImportDetailRequest> importDetails,
-  );
+class _$VerifyImportTicketRequest extends VerifyImportTicketRequest {
+  @override
+  final BuiltList<VerifyImportDetailRequest> importDetails;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyImportTicketRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VerifyImportTicketRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VerifyImportTicketRequest call({
-    List<VerifyImportDetailRequest> importDetails,
-  });
-}
+  factory _$VerifyImportTicketRequest([
+    void Function(VerifyImportTicketRequestBuilder)? updates,
+  ]) => (VerifyImportTicketRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfVerifyImportTicketRequest.copyWith(...)` or call `instanceOfVerifyImportTicketRequest.copyWith.fieldName(value)` for a single field.
-class _$VerifyImportTicketRequestCWProxyImpl
-    implements _$VerifyImportTicketRequestCWProxy {
-  const _$VerifyImportTicketRequestCWProxyImpl(this._value);
-
-  final VerifyImportTicketRequest _value;
+  _$VerifyImportTicketRequest._({required this.importDetails}) : super._();
+  @override
+  VerifyImportTicketRequest rebuild(
+    void Function(VerifyImportTicketRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  VerifyImportTicketRequest importDetails(
-    List<VerifyImportDetailRequest> importDetails,
-  ) => call(importDetails: importDetails);
+  VerifyImportTicketRequestBuilder toBuilder() =>
+      VerifyImportTicketRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyImportTicketRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VerifyImportTicketRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VerifyImportTicketRequest call({
-    Object? importDetails = const $CopyWithPlaceholder(),
-  }) {
-    return VerifyImportTicketRequest(
-      importDetails:
-          importDetails == const $CopyWithPlaceholder() || importDetails == null
-          ? _value.importDetails
-          // ignore: cast_nullable_to_non_nullable
-          : importDetails as List<VerifyImportDetailRequest>,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is VerifyImportTicketRequest &&
+        importDetails == other.importDetails;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, importDetails.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'VerifyImportTicketRequest',
+    )..add('importDetails', importDetails)).toString();
   }
 }
 
-extension $VerifyImportTicketRequestCopyWith on VerifyImportTicketRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfVerifyImportTicketRequest.copyWith(...)` or `instanceOfVerifyImportTicketRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$VerifyImportTicketRequestCWProxy get copyWith =>
-      _$VerifyImportTicketRequestCWProxyImpl(this);
+class VerifyImportTicketRequestBuilder
+    implements
+        Builder<VerifyImportTicketRequest, VerifyImportTicketRequestBuilder> {
+  _$VerifyImportTicketRequest? _$v;
+
+  ListBuilder<VerifyImportDetailRequest>? _importDetails;
+  ListBuilder<VerifyImportDetailRequest> get importDetails =>
+      _$this._importDetails ??= ListBuilder<VerifyImportDetailRequest>();
+  set importDetails(ListBuilder<VerifyImportDetailRequest>? importDetails) =>
+      _$this._importDetails = importDetails;
+
+  VerifyImportTicketRequestBuilder() {
+    VerifyImportTicketRequest._defaults(this);
+  }
+
+  VerifyImportTicketRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _importDetails = $v.importDetails.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(VerifyImportTicketRequest other) {
+    _$v = other as _$VerifyImportTicketRequest;
+  }
+
+  @override
+  void update(void Function(VerifyImportTicketRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  VerifyImportTicketRequest build() => _build();
+
+  _$VerifyImportTicketRequest _build() {
+    _$VerifyImportTicketRequest _$result;
+    try {
+      _$result =
+          _$v ??
+          _$VerifyImportTicketRequest._(importDetails: importDetails.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'importDetails';
+        importDetails.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'VerifyImportTicketRequest',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-VerifyImportTicketRequest _$VerifyImportTicketRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('VerifyImportTicketRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['importDetails']);
-  final val = VerifyImportTicketRequest(
-    importDetails: $checkedConvert(
-      'importDetails',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) =>
-                VerifyImportDetailRequest.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$VerifyImportTicketRequestToJson(
-  VerifyImportTicketRequest instance,
-) => <String, dynamic>{
-  'importDetails': instance.importDetails.map((e) => e.toJson()).toList(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -3,106 +3,161 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/create_stock_adjustment_detail_request.dart';
 import 'package:perfumegpt_api_client/src/model/stock_adjustment_reason.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'create_stock_adjustment_request.g.dart';
 
+/// CreateStockAdjustmentRequest
+///
+/// Properties:
+/// * [adjustmentDate] 
+/// * [reason] 
+/// * [note] 
+/// * [adjustmentDetails] 
+@BuiltValue()
+abstract class CreateStockAdjustmentRequest implements Built<CreateStockAdjustmentRequest, CreateStockAdjustmentRequestBuilder> {
+  @BuiltValueField(wireName: r'adjustmentDate')
+  DateTime get adjustmentDate;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CreateStockAdjustmentRequest {
-  /// Returns a new [CreateStockAdjustmentRequest] instance.
-  CreateStockAdjustmentRequest({
+  @BuiltValueField(wireName: r'reason')
+  StockAdjustmentReason? get reason;
+  // enum reasonEnum {  Damage,  Expired,  Theft,  Loss,  Found,  Correction,  Return,  Other,  };
 
-    required  this.adjustmentDate,
+  @BuiltValueField(wireName: r'note')
+  String? get note;
 
-     this.reason,
+  @BuiltValueField(wireName: r'adjustmentDetails')
+  BuiltList<CreateStockAdjustmentDetailRequest> get adjustmentDetails;
 
-     this.note,
+  CreateStockAdjustmentRequest._();
 
-    required  this.adjustmentDetails,
-  });
+  factory CreateStockAdjustmentRequest([void updates(CreateStockAdjustmentRequestBuilder b)]) = _$CreateStockAdjustmentRequest;
 
-  @JsonKey(
-    
-    name: r'adjustmentDate',
-    required: true,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CreateStockAdjustmentRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CreateStockAdjustmentRequest> get serializer => _$CreateStockAdjustmentRequestSerializer();
+}
 
-  final DateTime adjustmentDate;
-
-
-
-  @JsonKey(
-    
-    name: r'reason',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final StockAdjustmentReason? reason;
-
-
-
-  @JsonKey(
-    
-    name: r'note',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? note;
-
-
-
-  @JsonKey(
-    
-    name: r'adjustmentDetails',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final List<CreateStockAdjustmentDetailRequest> adjustmentDetails;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateStockAdjustmentRequest &&
-      other.adjustmentDate == adjustmentDate &&
-      other.reason == reason &&
-      other.note == note &&
-      other.adjustmentDetails == adjustmentDetails;
-
-    @override
-    int get hashCode =>
-        adjustmentDate.hashCode +
-        reason.hashCode +
-        (note == null ? 0 : note.hashCode) +
-        adjustmentDetails.hashCode;
-
-  factory CreateStockAdjustmentRequest.fromJson(Map<String, dynamic> json) => _$CreateStockAdjustmentRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CreateStockAdjustmentRequestToJson(this);
+class _$CreateStockAdjustmentRequestSerializer implements PrimitiveSerializer<CreateStockAdjustmentRequest> {
+  @override
+  final Iterable<Type> types = const [CreateStockAdjustmentRequest, _$CreateStockAdjustmentRequest];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'CreateStockAdjustmentRequest';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CreateStockAdjustmentRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'adjustmentDate';
+    yield serializers.serialize(
+      object.adjustmentDate,
+      specifiedType: const FullType(DateTime),
+    );
+    if (object.reason != null) {
+      yield r'reason';
+      yield serializers.serialize(
+        object.reason,
+        specifiedType: const FullType(StockAdjustmentReason),
+      );
+    }
+    if (object.note != null) {
+      yield r'note';
+      yield serializers.serialize(
+        object.note,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    yield r'adjustmentDetails';
+    yield serializers.serialize(
+      object.adjustmentDetails,
+      specifiedType: const FullType(BuiltList, [FullType(CreateStockAdjustmentDetailRequest)]),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CreateStockAdjustmentRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CreateStockAdjustmentRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'adjustmentDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.adjustmentDate = valueDes;
+          break;
+        case r'reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(StockAdjustmentReason),
+          ) as StockAdjustmentReason;
+          result.reason = valueDes;
+          break;
+        case r'note':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.note = valueDes;
+          break;
+        case r'adjustmentDetails':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(CreateStockAdjustmentDetailRequest)]),
+          ) as BuiltList<CreateStockAdjustmentDetailRequest>;
+          result.adjustmentDetails.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CreateStockAdjustmentRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CreateStockAdjustmentRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateCartItemRequest
 void main() {
-  final CreateCartItemRequest? instance = /* CreateCartItemRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = CreateCartItemRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CreateCartItemRequest, () {
     // String variantId
@@ -16,5 +16,6 @@ void main() {
     test('to test the property `quantity`', () async {
       // TODO
     });
+
   });
 }

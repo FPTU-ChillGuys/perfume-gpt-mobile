@@ -3,152 +3,174 @@
 part of 'base_response_of_list_of_olfactory_lookup_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BaseResponseOfListOfOlfactoryLookupResponseCWProxy {
-  BaseResponseOfListOfOlfactoryLookupResponse payload(
-    List<OlfactoryLookupResponse>? payload,
-  );
+class _$BaseResponseOfListOfOlfactoryLookupResponse
+    extends BaseResponseOfListOfOlfactoryLookupResponse {
+  @override
+  final BuiltList<OlfactoryLookupResponse>? payload;
+  @override
+  final bool? success;
+  @override
+  final String? message;
+  @override
+  final BuiltList<String>? errors;
+  @override
+  final int? errorType;
 
-  BaseResponseOfListOfOlfactoryLookupResponse success(bool? success);
+  factory _$BaseResponseOfListOfOlfactoryLookupResponse([
+    void Function(BaseResponseOfListOfOlfactoryLookupResponseBuilder)? updates,
+  ]) => (BaseResponseOfListOfOlfactoryLookupResponseBuilder()..update(updates))
+      ._build();
 
-  BaseResponseOfListOfOlfactoryLookupResponse message(String? message);
-
-  BaseResponseOfListOfOlfactoryLookupResponse errors(List<String>? errors);
-
-  BaseResponseOfListOfOlfactoryLookupResponse errorType(int? errorType);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfOlfactoryLookupResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfListOfOlfactoryLookupResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfListOfOlfactoryLookupResponse call({
-    List<OlfactoryLookupResponse>? payload,
-    bool? success,
-    String? message,
-    List<String>? errors,
-    int? errorType,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBaseResponseOfListOfOlfactoryLookupResponse.copyWith(...)` or call `instanceOfBaseResponseOfListOfOlfactoryLookupResponse.copyWith.fieldName(value)` for a single field.
-class _$BaseResponseOfListOfOlfactoryLookupResponseCWProxyImpl
-    implements _$BaseResponseOfListOfOlfactoryLookupResponseCWProxy {
-  const _$BaseResponseOfListOfOlfactoryLookupResponseCWProxyImpl(this._value);
-
-  final BaseResponseOfListOfOlfactoryLookupResponse _value;
+  _$BaseResponseOfListOfOlfactoryLookupResponse._({
+    this.payload,
+    this.success,
+    this.message,
+    this.errors,
+    this.errorType,
+  }) : super._();
+  @override
+  BaseResponseOfListOfOlfactoryLookupResponse rebuild(
+    void Function(BaseResponseOfListOfOlfactoryLookupResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BaseResponseOfListOfOlfactoryLookupResponse payload(
-    List<OlfactoryLookupResponse>? payload,
-  ) => call(payload: payload);
+  BaseResponseOfListOfOlfactoryLookupResponseBuilder toBuilder() =>
+      BaseResponseOfListOfOlfactoryLookupResponseBuilder()..replace(this);
 
   @override
-  BaseResponseOfListOfOlfactoryLookupResponse success(bool? success) =>
-      call(success: success);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BaseResponseOfListOfOlfactoryLookupResponse &&
+        payload == other.payload &&
+        success == other.success &&
+        message == other.message &&
+        errors == other.errors &&
+        errorType == other.errorType;
+  }
 
   @override
-  BaseResponseOfListOfOlfactoryLookupResponse message(String? message) =>
-      call(message: message);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, payload.hashCode);
+    _$hash = $jc(_$hash, success.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, errors.hashCode);
+    _$hash = $jc(_$hash, errorType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  BaseResponseOfListOfOlfactoryLookupResponse errors(List<String>? errors) =>
-      call(errors: errors);
-
-  @override
-  BaseResponseOfListOfOlfactoryLookupResponse errorType(int? errorType) =>
-      call(errorType: errorType);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfOlfactoryLookupResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfListOfOlfactoryLookupResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfListOfOlfactoryLookupResponse call({
-    Object? payload = const $CopyWithPlaceholder(),
-    Object? success = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? errorType = const $CopyWithPlaceholder(),
-  }) {
-    return BaseResponseOfListOfOlfactoryLookupResponse(
-      payload: payload == const $CopyWithPlaceholder()
-          ? _value.payload
-          // ignore: cast_nullable_to_non_nullable
-          : payload as List<OlfactoryLookupResponse>?,
-      success: success == const $CopyWithPlaceholder()
-          ? _value.success
-          // ignore: cast_nullable_to_non_nullable
-          : success as bool?,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
-          // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
-          // ignore: cast_nullable_to_non_nullable
-          : errors as List<String>?,
-      errorType: errorType == const $CopyWithPlaceholder()
-          ? _value.errorType
-          // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'BaseResponseOfListOfOlfactoryLookupResponse',
+          )
+          ..add('payload', payload)
+          ..add('success', success)
+          ..add('message', message)
+          ..add('errors', errors)
+          ..add('errorType', errorType))
+        .toString();
   }
 }
 
-extension $BaseResponseOfListOfOlfactoryLookupResponseCopyWith
-    on BaseResponseOfListOfOlfactoryLookupResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBaseResponseOfListOfOlfactoryLookupResponse.copyWith(...)` or `instanceOfBaseResponseOfListOfOlfactoryLookupResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BaseResponseOfListOfOlfactoryLookupResponseCWProxy get copyWith =>
-      _$BaseResponseOfListOfOlfactoryLookupResponseCWProxyImpl(this);
+class BaseResponseOfListOfOlfactoryLookupResponseBuilder
+    implements
+        Builder<
+          BaseResponseOfListOfOlfactoryLookupResponse,
+          BaseResponseOfListOfOlfactoryLookupResponseBuilder
+        > {
+  _$BaseResponseOfListOfOlfactoryLookupResponse? _$v;
+
+  ListBuilder<OlfactoryLookupResponse>? _payload;
+  ListBuilder<OlfactoryLookupResponse> get payload =>
+      _$this._payload ??= ListBuilder<OlfactoryLookupResponse>();
+  set payload(ListBuilder<OlfactoryLookupResponse>? payload) =>
+      _$this._payload = payload;
+
+  bool? _success;
+  bool? get success => _$this._success;
+  set success(bool? success) => _$this._success = success;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  ListBuilder<String>? _errors;
+  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
+  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
+
+  int? _errorType;
+  int? get errorType => _$this._errorType;
+  set errorType(int? errorType) => _$this._errorType = errorType;
+
+  BaseResponseOfListOfOlfactoryLookupResponseBuilder() {
+    BaseResponseOfListOfOlfactoryLookupResponse._defaults(this);
+  }
+
+  BaseResponseOfListOfOlfactoryLookupResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _payload = $v.payload?.toBuilder();
+      _success = $v.success;
+      _message = $v.message;
+      _errors = $v.errors?.toBuilder();
+      _errorType = $v.errorType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BaseResponseOfListOfOlfactoryLookupResponse other) {
+    _$v = other as _$BaseResponseOfListOfOlfactoryLookupResponse;
+  }
+
+  @override
+  void update(
+    void Function(BaseResponseOfListOfOlfactoryLookupResponseBuilder)? updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BaseResponseOfListOfOlfactoryLookupResponse build() => _build();
+
+  _$BaseResponseOfListOfOlfactoryLookupResponse _build() {
+    _$BaseResponseOfListOfOlfactoryLookupResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BaseResponseOfListOfOlfactoryLookupResponse._(
+            payload: _payload?.build(),
+            success: success,
+            message: message,
+            errors: _errors?.build(),
+            errorType: errorType,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'payload';
+        _payload?.build();
+
+        _$failedField = 'errors';
+        _errors?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BaseResponseOfListOfOlfactoryLookupResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BaseResponseOfListOfOlfactoryLookupResponse
-_$BaseResponseOfListOfOlfactoryLookupResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('BaseResponseOfListOfOlfactoryLookupResponse', json, (
-  $checkedConvert,
-) {
-  final val = BaseResponseOfListOfOlfactoryLookupResponse(
-    payload: $checkedConvert(
-      'payload',
-      (v) => (v as List<dynamic>?)
-          ?.map(
-            (e) => OlfactoryLookupResponse.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
-    ),
-    success: $checkedConvert('success', (v) => v as bool?),
-    message: $checkedConvert('message', (v) => v as String?),
-    errors: $checkedConvert(
-      'errors',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$BaseResponseOfListOfOlfactoryLookupResponseToJson(
-  BaseResponseOfListOfOlfactoryLookupResponse instance,
-) => <String, dynamic>{
-  'payload': ?instance.payload?.map((e) => e.toJson()).toList(),
-  'success': ?instance.success,
-  'message': ?instance.message,
-  'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

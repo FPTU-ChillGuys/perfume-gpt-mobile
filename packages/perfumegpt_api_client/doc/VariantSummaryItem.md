@@ -9,8 +9,8 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
-**displayName** | **String** |  | [optional] 
-**concentrationName** | **String** |  | [optional] 
+**displayName** | **String** |  | 
+**concentrationName** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

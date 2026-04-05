@@ -3,130 +3,147 @@
 part of 'create_stock_adjustment_detail_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CreateStockAdjustmentDetailRequestCWProxy {
-  CreateStockAdjustmentDetailRequest variantId(String variantId);
+class _$CreateStockAdjustmentDetailRequest
+    extends CreateStockAdjustmentDetailRequest {
+  @override
+  final String variantId;
+  @override
+  final String batchId;
+  @override
+  final int? adjustmentQuantity;
+  @override
+  final String? note;
 
-  CreateStockAdjustmentDetailRequest batchId(String batchId);
+  factory _$CreateStockAdjustmentDetailRequest([
+    void Function(CreateStockAdjustmentDetailRequestBuilder)? updates,
+  ]) => (CreateStockAdjustmentDetailRequestBuilder()..update(updates))._build();
 
-  CreateStockAdjustmentDetailRequest adjustmentQuantity(
-    int? adjustmentQuantity,
-  );
-
-  CreateStockAdjustmentDetailRequest note(String? note);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateStockAdjustmentDetailRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateStockAdjustmentDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateStockAdjustmentDetailRequest call({
-    String variantId,
-    String batchId,
-    int? adjustmentQuantity,
-    String? note,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCreateStockAdjustmentDetailRequest.copyWith(...)` or call `instanceOfCreateStockAdjustmentDetailRequest.copyWith.fieldName(value)` for a single field.
-class _$CreateStockAdjustmentDetailRequestCWProxyImpl
-    implements _$CreateStockAdjustmentDetailRequestCWProxy {
-  const _$CreateStockAdjustmentDetailRequestCWProxyImpl(this._value);
-
-  final CreateStockAdjustmentDetailRequest _value;
+  _$CreateStockAdjustmentDetailRequest._({
+    required this.variantId,
+    required this.batchId,
+    this.adjustmentQuantity,
+    this.note,
+  }) : super._();
+  @override
+  CreateStockAdjustmentDetailRequest rebuild(
+    void Function(CreateStockAdjustmentDetailRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  CreateStockAdjustmentDetailRequest variantId(String variantId) =>
-      call(variantId: variantId);
+  CreateStockAdjustmentDetailRequestBuilder toBuilder() =>
+      CreateStockAdjustmentDetailRequestBuilder()..replace(this);
 
   @override
-  CreateStockAdjustmentDetailRequest batchId(String batchId) =>
-      call(batchId: batchId);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CreateStockAdjustmentDetailRequest &&
+        variantId == other.variantId &&
+        batchId == other.batchId &&
+        adjustmentQuantity == other.adjustmentQuantity &&
+        note == other.note;
+  }
 
   @override
-  CreateStockAdjustmentDetailRequest adjustmentQuantity(
-    int? adjustmentQuantity,
-  ) => call(adjustmentQuantity: adjustmentQuantity);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, variantId.hashCode);
+    _$hash = $jc(_$hash, batchId.hashCode);
+    _$hash = $jc(_$hash, adjustmentQuantity.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  CreateStockAdjustmentDetailRequest note(String? note) => call(note: note);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateStockAdjustmentDetailRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateStockAdjustmentDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateStockAdjustmentDetailRequest call({
-    Object? variantId = const $CopyWithPlaceholder(),
-    Object? batchId = const $CopyWithPlaceholder(),
-    Object? adjustmentQuantity = const $CopyWithPlaceholder(),
-    Object? note = const $CopyWithPlaceholder(),
-  }) {
-    return CreateStockAdjustmentDetailRequest(
-      variantId: variantId == const $CopyWithPlaceholder() || variantId == null
-          ? _value.variantId
-          // ignore: cast_nullable_to_non_nullable
-          : variantId as String,
-      batchId: batchId == const $CopyWithPlaceholder() || batchId == null
-          ? _value.batchId
-          // ignore: cast_nullable_to_non_nullable
-          : batchId as String,
-      adjustmentQuantity: adjustmentQuantity == const $CopyWithPlaceholder()
-          ? _value.adjustmentQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : adjustmentQuantity as int?,
-      note: note == const $CopyWithPlaceholder()
-          ? _value.note
-          // ignore: cast_nullable_to_non_nullable
-          : note as String?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'CreateStockAdjustmentDetailRequest')
+          ..add('variantId', variantId)
+          ..add('batchId', batchId)
+          ..add('adjustmentQuantity', adjustmentQuantity)
+          ..add('note', note))
+        .toString();
   }
 }
 
-extension $CreateStockAdjustmentDetailRequestCopyWith
-    on CreateStockAdjustmentDetailRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCreateStockAdjustmentDetailRequest.copyWith(...)` or `instanceOfCreateStockAdjustmentDetailRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CreateStockAdjustmentDetailRequestCWProxy get copyWith =>
-      _$CreateStockAdjustmentDetailRequestCWProxyImpl(this);
+class CreateStockAdjustmentDetailRequestBuilder
+    implements
+        Builder<
+          CreateStockAdjustmentDetailRequest,
+          CreateStockAdjustmentDetailRequestBuilder
+        > {
+  _$CreateStockAdjustmentDetailRequest? _$v;
+
+  String? _variantId;
+  String? get variantId => _$this._variantId;
+  set variantId(String? variantId) => _$this._variantId = variantId;
+
+  String? _batchId;
+  String? get batchId => _$this._batchId;
+  set batchId(String? batchId) => _$this._batchId = batchId;
+
+  int? _adjustmentQuantity;
+  int? get adjustmentQuantity => _$this._adjustmentQuantity;
+  set adjustmentQuantity(int? adjustmentQuantity) =>
+      _$this._adjustmentQuantity = adjustmentQuantity;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  CreateStockAdjustmentDetailRequestBuilder() {
+    CreateStockAdjustmentDetailRequest._defaults(this);
+  }
+
+  CreateStockAdjustmentDetailRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _variantId = $v.variantId;
+      _batchId = $v.batchId;
+      _adjustmentQuantity = $v.adjustmentQuantity;
+      _note = $v.note;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CreateStockAdjustmentDetailRequest other) {
+    _$v = other as _$CreateStockAdjustmentDetailRequest;
+  }
+
+  @override
+  void update(
+    void Function(CreateStockAdjustmentDetailRequestBuilder)? updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CreateStockAdjustmentDetailRequest build() => _build();
+
+  _$CreateStockAdjustmentDetailRequest _build() {
+    final _$result =
+        _$v ??
+        _$CreateStockAdjustmentDetailRequest._(
+          variantId: BuiltValueNullFieldError.checkNotNull(
+            variantId,
+            r'CreateStockAdjustmentDetailRequest',
+            'variantId',
+          ),
+          batchId: BuiltValueNullFieldError.checkNotNull(
+            batchId,
+            r'CreateStockAdjustmentDetailRequest',
+            'batchId',
+          ),
+          adjustmentQuantity: adjustmentQuantity,
+          note: note,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreateStockAdjustmentDetailRequest _$CreateStockAdjustmentDetailRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('CreateStockAdjustmentDetailRequest', json, (
-  $checkedConvert,
-) {
-  $checkKeys(json, requiredKeys: const ['variantId', 'batchId']);
-  final val = CreateStockAdjustmentDetailRequest(
-    variantId: $checkedConvert('variantId', (v) => v as String),
-    batchId: $checkedConvert('batchId', (v) => v as String),
-    adjustmentQuantity: $checkedConvert(
-      'adjustmentQuantity',
-      (v) => (v as num?)?.toInt(),
-    ),
-    note: $checkedConvert('note', (v) => v as String?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$CreateStockAdjustmentDetailRequestToJson(
-  CreateStockAdjustmentDetailRequest instance,
-) => <String, dynamic>{
-  'variantId': instance.variantId,
-  'batchId': instance.batchId,
-  'adjustmentQuantity': ?instance.adjustmentQuantity,
-  'note': ?instance.note,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

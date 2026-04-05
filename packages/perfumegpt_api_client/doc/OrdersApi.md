@@ -662,7 +662,7 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrdersApi();
-final List<String> barCodes = ; // List<String> | 
+final BuiltList<String> barCodes = ; // BuiltList<String> | 
 final String wardCode = wardCode_example; // String | 
 final int districtId = 56; // int | 
 final String voucherCode = voucherCode_example; // String | 
@@ -679,7 +679,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **barCodes** | [**List&lt;String&gt;**](String.md)|  | [optional] 
+ **barCodes** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
  **wardCode** | **String**|  | [optional] 
  **districtId** | **int**|  | [optional] 
  **voucherCode** | **String**|  | [optional] 

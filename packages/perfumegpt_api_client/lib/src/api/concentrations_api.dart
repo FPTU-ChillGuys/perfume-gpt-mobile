@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_concentration_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_concentration_lookup_dto.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_concentration_response.dart';
@@ -20,7 +20,9 @@ class ConcentrationsApi {
 
   final Dio _dio;
 
-  const ConcentrationsApi(this._dio);
+  final Serializers _serializers;
+
+  const ConcentrationsApi(this._dio, this._serializers);
 
   /// apiConcentrationsGet
   /// 
@@ -73,8 +75,11 @@ class ConcentrationsApi {
     BaseResponseOfListOfConcentrationResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfConcentrationResponse, BaseResponseOfListOfConcentrationResponse>(rawData, 'BaseResponseOfListOfConcentrationResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfConcentrationResponse),
+      ) as BaseResponseOfListOfConcentrationResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -121,7 +126,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfConcent
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/concentrations/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/concentrations/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -151,8 +156,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfConcent
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfboolean),
+      ) as BaseResponseOfboolean;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -199,7 +207,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/concentrations/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/concentrations/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -229,8 +237,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfConcentrationResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfConcentrationResponse, BaseResponseOfConcentrationResponse>(rawData, 'BaseResponseOfConcentrationResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfConcentrationResponse),
+      ) as BaseResponseOfConcentrationResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -279,7 +290,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfConcentration
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/concentrations/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/concentrations/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -302,7 +313,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfConcentration
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateConcentrationRequest);
+      const _type = FullType(UpdateConcentrationRequest);
+      _bodyData = _serializers.serialize(updateConcentrationRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -327,8 +340,11 @@ _bodyData=jsonEncode(updateConcentrationRequest);
     BaseResponseOfConcentrationResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfConcentrationResponse, BaseResponseOfConcentrationResponse>(rawData, 'BaseResponseOfConcentrationResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfConcentrationResponse),
+      ) as BaseResponseOfConcentrationResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -403,8 +419,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfConcentration
     BaseResponseOfListOfConcentrationLookupDto? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfConcentrationLookupDto, BaseResponseOfListOfConcentrationLookupDto>(rawData, 'BaseResponseOfListOfConcentrationLookupDto', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfConcentrationLookupDto),
+      ) as BaseResponseOfListOfConcentrationLookupDto;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -474,7 +493,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfConcent
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createConcentrationRequest);
+      const _type = FullType(CreateConcentrationRequest);
+      _bodyData = _serializers.serialize(createConcentrationRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -499,8 +520,11 @@ _bodyData=jsonEncode(createConcentrationRequest);
     BaseResponseOfConcentrationResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfConcentrationResponse, BaseResponseOfConcentrationResponse>(rawData, 'BaseResponseOfConcentrationResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfConcentrationResponse),
+      ) as BaseResponseOfConcentrationResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

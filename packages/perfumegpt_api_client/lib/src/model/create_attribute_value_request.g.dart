@@ -3,75 +3,100 @@
 part of 'create_attribute_value_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CreateAttributeValueRequestCWProxy {
-  CreateAttributeValueRequest value(String value);
+class _$CreateAttributeValueRequest extends CreateAttributeValueRequest {
+  @override
+  final String value;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateAttributeValueRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateAttributeValueRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateAttributeValueRequest call({String value});
-}
+  factory _$CreateAttributeValueRequest([
+    void Function(CreateAttributeValueRequestBuilder)? updates,
+  ]) => (CreateAttributeValueRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCreateAttributeValueRequest.copyWith(...)` or call `instanceOfCreateAttributeValueRequest.copyWith.fieldName(value)` for a single field.
-class _$CreateAttributeValueRequestCWProxyImpl
-    implements _$CreateAttributeValueRequestCWProxy {
-  const _$CreateAttributeValueRequestCWProxyImpl(this._value);
-
-  final CreateAttributeValueRequest _value;
+  _$CreateAttributeValueRequest._({required this.value}) : super._();
+  @override
+  CreateAttributeValueRequest rebuild(
+    void Function(CreateAttributeValueRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  CreateAttributeValueRequest value(String value) => call(value: value);
+  CreateAttributeValueRequestBuilder toBuilder() =>
+      CreateAttributeValueRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateAttributeValueRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateAttributeValueRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateAttributeValueRequest call({
-    Object? value = const $CopyWithPlaceholder(),
-  }) {
-    return CreateAttributeValueRequest(
-      value: value == const $CopyWithPlaceholder() || value == null
-          ? _value.value
-          // ignore: cast_nullable_to_non_nullable
-          : value as String,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CreateAttributeValueRequest && value == other.value;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, value.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'CreateAttributeValueRequest',
+    )..add('value', value)).toString();
   }
 }
 
-extension $CreateAttributeValueRequestCopyWith on CreateAttributeValueRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCreateAttributeValueRequest.copyWith(...)` or `instanceOfCreateAttributeValueRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CreateAttributeValueRequestCWProxy get copyWith =>
-      _$CreateAttributeValueRequestCWProxyImpl(this);
+class CreateAttributeValueRequestBuilder
+    implements
+        Builder<
+          CreateAttributeValueRequest,
+          CreateAttributeValueRequestBuilder
+        > {
+  _$CreateAttributeValueRequest? _$v;
+
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
+
+  CreateAttributeValueRequestBuilder() {
+    CreateAttributeValueRequest._defaults(this);
+  }
+
+  CreateAttributeValueRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CreateAttributeValueRequest other) {
+    _$v = other as _$CreateAttributeValueRequest;
+  }
+
+  @override
+  void update(void Function(CreateAttributeValueRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CreateAttributeValueRequest build() => _build();
+
+  _$CreateAttributeValueRequest _build() {
+    final _$result =
+        _$v ??
+        _$CreateAttributeValueRequest._(
+          value: BuiltValueNullFieldError.checkNotNull(
+            value,
+            r'CreateAttributeValueRequest',
+            'value',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreateAttributeValueRequest _$CreateAttributeValueRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('CreateAttributeValueRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['value']);
-  final val = CreateAttributeValueRequest(
-    value: $checkedConvert('value', (v) => v as String),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$CreateAttributeValueRequestToJson(
-  CreateAttributeValueRequest instance,
-) => <String, dynamic>{'value': instance.value};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -3,57 +3,106 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'update_cart_item_request.g.dart';
 
+/// UpdateCartItemRequest
+///
+/// Properties:
+/// * [quantity] 
+@BuiltValue()
+abstract class UpdateCartItemRequest implements Built<UpdateCartItemRequest, UpdateCartItemRequestBuilder> {
+  @BuiltValueField(wireName: r'quantity')
+  int? get quantity;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class UpdateCartItemRequest {
-  /// Returns a new [UpdateCartItemRequest] instance.
-  UpdateCartItemRequest({
+  UpdateCartItemRequest._();
 
-     this.quantity,
-  });
+  factory UpdateCartItemRequest([void updates(UpdateCartItemRequestBuilder b)]) = _$UpdateCartItemRequest;
 
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'quantity',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(UpdateCartItemRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<UpdateCartItemRequest> get serializer => _$UpdateCartItemRequestSerializer();
+}
 
-  final int? quantity;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateCartItemRequest &&
-      other.quantity == quantity;
-
-    @override
-    int get hashCode =>
-        quantity.hashCode;
-
-  factory UpdateCartItemRequest.fromJson(Map<String, dynamic> json) => _$UpdateCartItemRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UpdateCartItemRequestToJson(this);
+class _$UpdateCartItemRequestSerializer implements PrimitiveSerializer<UpdateCartItemRequest> {
+  @override
+  final Iterable<Type> types = const [UpdateCartItemRequest, _$UpdateCartItemRequest];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'UpdateCartItemRequest';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    UpdateCartItemRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.quantity != null) {
+      yield r'quantity';
+      yield serializers.serialize(
+        object.quantity,
+        specifiedType: const FullType(int),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    UpdateCartItemRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required UpdateCartItemRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'quantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.quantity = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  UpdateCartItemRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = UpdateCartItemRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

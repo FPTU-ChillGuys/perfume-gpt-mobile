@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for UsersApi
 void main() {
   final instance = PerfumegptApiClient().getUsersApi();
@@ -16,7 +17,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfstring> apiUsersAvatarPost({ MultipartFile avatar, String altText }) async
+    //Future<BaseResponseOfstring> apiUsersAvatarPost({ Uint8List avatar, String altText }) async
     test('test apiUsersAvatarPost', () async {
       // TODO
     });
@@ -35,5 +36,6 @@ void main() {
     test('test apiUsersStaffLookupGet', () async {
       // TODO
     });
+
   });
 }

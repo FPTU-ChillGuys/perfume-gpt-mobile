@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReviewResponse
 void main() {
-  final ReviewResponse? instance = /* ReviewResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = ReviewResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ReviewResponse, () {
     // String id
@@ -52,7 +52,17 @@ void main() {
       // TODO
     });
 
-    // List<MediaResponse> images
+    // String staffFeedbackComment
+    test('to test the property `staffFeedbackComment`', () async {
+      // TODO
+    });
+
+    // DateTime staffFeedbackAt
+    test('to test the property `staffFeedbackAt`', () async {
+      // TODO
+    });
+
+    // BuiltList<MediaResponse> images
     test('to test the property `images`', () async {
       // TODO
     });
@@ -66,5 +76,6 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
+
   });
 }

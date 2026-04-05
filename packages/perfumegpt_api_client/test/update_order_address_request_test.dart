@@ -3,9 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateOrderAddressRequest
 void main() {
-  final UpdateOrderAddressRequest?
-  instance = /* UpdateOrderAddressRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = UpdateOrderAddressRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(UpdateOrderAddressRequest, () {
     // String savedAddressId
@@ -13,9 +12,10 @@ void main() {
       // TODO
     });
 
-    // RecipientInformation recipientInformation
+    // ContactAddressInformation recipientInformation
     test('to test the property `recipientInformation`', () async {
       // TODO
     });
+
   });
 }

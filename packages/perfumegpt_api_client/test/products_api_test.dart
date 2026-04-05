@@ -1,13 +1,24 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for ProductsApi
 void main() {
   final instance = PerfumegptApiClient().getProductsApi();
 
   group(ProductsApi, () {
-    //Future<BaseResponseOfPagedResultOfProductListItem> apiProductsBestSellersGet({ int genderValueId, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfPagedResultOfProductListItem> apiProductsBestSellersGet({ Gender gender, int categoryId, int brandId, int volume, num fromPrice, num toPrice, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiProductsBestSellersGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfPagedResultOfProductListItem> apiProductsCampaignsCampaignIdGet(String campaignId, { Gender gender, int categoryId, int brandId, int volume, num fromPrice, num toPrice, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    test('test apiProductsCampaignsCampaignIdGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfListOfProductDailySaleFigureResponse> apiProductsDailySaleFiguresGet({ Date date }) async
+    test('test apiProductsDailySaleFiguresGet', () async {
       // TODO
     });
 
@@ -21,7 +32,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPagedResultOfProductListItem> apiProductsGet({ int genderValueId, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfPagedResultOfProductListItem> apiProductsGet({ Gender gender, int categoryId, int brandId, int volume, num fromPrice, num toPrice, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiProductsGet', () async {
       // TODO
     });
@@ -31,7 +42,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiProductsImagesTemporaryPost({ List<ProductImageUploadItem> images }) async
+    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiProductsImagesTemporaryPost({ BuiltList<ProductImageUploadItem> images }) async
     test('test apiProductsImagesTemporaryPost', () async {
       // TODO
     });
@@ -41,7 +52,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPagedResultOfProductListItem> apiProductsNewArrivalsGet({ int genderValueId, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfPagedResultOfProductListItem> apiProductsNewArrivalsGet({ Gender gender, int categoryId, int brandId, int volume, num fromPrice, num toPrice, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiProductsNewArrivalsGet', () async {
       // TODO
     });
@@ -86,9 +97,10 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPagedResultOfProductListItemWithVariants> apiProductsSearchSemanticGet({ String searchText, int genderValueId, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfPagedResultOfProductListItemWithVariants> apiProductsSearchSemanticGet({ String searchText, Gender gender, int categoryId, int brandId, int volume, num fromPrice, num toPrice, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiProductsSearchSemanticGet', () async {
       // TODO
     });
+
   });
 }

@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for LoginRequest
 void main() {
-  final LoginRequest? instance = /* LoginRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = LoginRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(LoginRequest, () {
     // String credential
@@ -16,5 +16,6 @@ void main() {
     test('to test the property `password`', () async {
       // TODO
     });
+
   });
 }

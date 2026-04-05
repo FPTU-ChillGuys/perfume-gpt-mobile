@@ -3,126 +3,136 @@
 part of 'reserved_batch_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$ReservedBatchResponseCWProxy {
-  ReservedBatchResponse batchId(String? batchId);
+class _$ReservedBatchResponse extends ReservedBatchResponse {
+  @override
+  final String? batchId;
+  @override
+  final String batchCode;
+  @override
+  final int? reservedQuantity;
+  @override
+  final DateTime? expiryDate;
 
-  ReservedBatchResponse batchCode(String? batchCode);
+  factory _$ReservedBatchResponse([
+    void Function(ReservedBatchResponseBuilder)? updates,
+  ]) => (ReservedBatchResponseBuilder()..update(updates))._build();
 
-  ReservedBatchResponse reservedQuantity(int? reservedQuantity);
-
-  ReservedBatchResponse expiryDate(DateTime? expiryDate);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReservedBatchResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ReservedBatchResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ReservedBatchResponse call({
-    String? batchId,
-    String? batchCode,
-    int? reservedQuantity,
-    DateTime? expiryDate,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfReservedBatchResponse.copyWith(...)` or call `instanceOfReservedBatchResponse.copyWith.fieldName(value)` for a single field.
-class _$ReservedBatchResponseCWProxyImpl
-    implements _$ReservedBatchResponseCWProxy {
-  const _$ReservedBatchResponseCWProxyImpl(this._value);
-
-  final ReservedBatchResponse _value;
+  _$ReservedBatchResponse._({
+    this.batchId,
+    required this.batchCode,
+    this.reservedQuantity,
+    this.expiryDate,
+  }) : super._();
+  @override
+  ReservedBatchResponse rebuild(
+    void Function(ReservedBatchResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  ReservedBatchResponse batchId(String? batchId) => call(batchId: batchId);
+  ReservedBatchResponseBuilder toBuilder() =>
+      ReservedBatchResponseBuilder()..replace(this);
 
   @override
-  ReservedBatchResponse batchCode(String? batchCode) =>
-      call(batchCode: batchCode);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ReservedBatchResponse &&
+        batchId == other.batchId &&
+        batchCode == other.batchCode &&
+        reservedQuantity == other.reservedQuantity &&
+        expiryDate == other.expiryDate;
+  }
 
   @override
-  ReservedBatchResponse reservedQuantity(int? reservedQuantity) =>
-      call(reservedQuantity: reservedQuantity);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, batchId.hashCode);
+    _$hash = $jc(_$hash, batchCode.hashCode);
+    _$hash = $jc(_$hash, reservedQuantity.hashCode);
+    _$hash = $jc(_$hash, expiryDate.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  ReservedBatchResponse expiryDate(DateTime? expiryDate) =>
-      call(expiryDate: expiryDate);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReservedBatchResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ReservedBatchResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ReservedBatchResponse call({
-    Object? batchId = const $CopyWithPlaceholder(),
-    Object? batchCode = const $CopyWithPlaceholder(),
-    Object? reservedQuantity = const $CopyWithPlaceholder(),
-    Object? expiryDate = const $CopyWithPlaceholder(),
-  }) {
-    return ReservedBatchResponse(
-      batchId: batchId == const $CopyWithPlaceholder()
-          ? _value.batchId
-          // ignore: cast_nullable_to_non_nullable
-          : batchId as String?,
-      batchCode: batchCode == const $CopyWithPlaceholder()
-          ? _value.batchCode
-          // ignore: cast_nullable_to_non_nullable
-          : batchCode as String?,
-      reservedQuantity: reservedQuantity == const $CopyWithPlaceholder()
-          ? _value.reservedQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : reservedQuantity as int?,
-      expiryDate: expiryDate == const $CopyWithPlaceholder()
-          ? _value.expiryDate
-          // ignore: cast_nullable_to_non_nullable
-          : expiryDate as DateTime?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'ReservedBatchResponse')
+          ..add('batchId', batchId)
+          ..add('batchCode', batchCode)
+          ..add('reservedQuantity', reservedQuantity)
+          ..add('expiryDate', expiryDate))
+        .toString();
   }
 }
 
-extension $ReservedBatchResponseCopyWith on ReservedBatchResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfReservedBatchResponse.copyWith(...)` or `instanceOfReservedBatchResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$ReservedBatchResponseCWProxy get copyWith =>
-      _$ReservedBatchResponseCWProxyImpl(this);
+class ReservedBatchResponseBuilder
+    implements Builder<ReservedBatchResponse, ReservedBatchResponseBuilder> {
+  _$ReservedBatchResponse? _$v;
+
+  String? _batchId;
+  String? get batchId => _$this._batchId;
+  set batchId(String? batchId) => _$this._batchId = batchId;
+
+  String? _batchCode;
+  String? get batchCode => _$this._batchCode;
+  set batchCode(String? batchCode) => _$this._batchCode = batchCode;
+
+  int? _reservedQuantity;
+  int? get reservedQuantity => _$this._reservedQuantity;
+  set reservedQuantity(int? reservedQuantity) =>
+      _$this._reservedQuantity = reservedQuantity;
+
+  DateTime? _expiryDate;
+  DateTime? get expiryDate => _$this._expiryDate;
+  set expiryDate(DateTime? expiryDate) => _$this._expiryDate = expiryDate;
+
+  ReservedBatchResponseBuilder() {
+    ReservedBatchResponse._defaults(this);
+  }
+
+  ReservedBatchResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _batchId = $v.batchId;
+      _batchCode = $v.batchCode;
+      _reservedQuantity = $v.reservedQuantity;
+      _expiryDate = $v.expiryDate;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ReservedBatchResponse other) {
+    _$v = other as _$ReservedBatchResponse;
+  }
+
+  @override
+  void update(void Function(ReservedBatchResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ReservedBatchResponse build() => _build();
+
+  _$ReservedBatchResponse _build() {
+    final _$result =
+        _$v ??
+        _$ReservedBatchResponse._(
+          batchId: batchId,
+          batchCode: BuiltValueNullFieldError.checkNotNull(
+            batchCode,
+            r'ReservedBatchResponse',
+            'batchCode',
+          ),
+          reservedQuantity: reservedQuantity,
+          expiryDate: expiryDate,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-ReservedBatchResponse _$ReservedBatchResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('ReservedBatchResponse', json, ($checkedConvert) {
-  final val = ReservedBatchResponse(
-    batchId: $checkedConvert('batchId', (v) => v as String?),
-    batchCode: $checkedConvert('batchCode', (v) => v as String?),
-    reservedQuantity: $checkedConvert(
-      'reservedQuantity',
-      (v) => (v as num?)?.toInt(),
-    ),
-    expiryDate: $checkedConvert(
-      'expiryDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$ReservedBatchResponseToJson(
-  ReservedBatchResponse instance,
-) => <String, dynamic>{
-  'batchId': ?instance.batchId,
-  'batchCode': ?instance.batchCode,
-  'reservedQuantity': ?instance.reservedQuantity,
-  'expiryDate': ?instance.expiryDate?.toIso8601String(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

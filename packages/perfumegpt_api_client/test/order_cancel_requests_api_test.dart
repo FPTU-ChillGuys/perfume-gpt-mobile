@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 
 /// tests for OrderCancelRequestsApi
 void main() {
-  final instance = Openapi().getOrderCancelRequestsApi();
+  final instance = PerfumegptApiClient().getOrderCancelRequestsApi();
 
   group(OrderCancelRequestsApi, () {
     //Future<BaseResponseOfPagedResultOfOrderCancelRequestResponse> apiOrdercancelrequestsGet({ CancelRequestStatus status, bool isRefundRequired, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async

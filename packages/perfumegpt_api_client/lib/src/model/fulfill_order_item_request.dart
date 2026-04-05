@@ -3,89 +3,138 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'fulfill_order_item_request.g.dart';
 
+/// FulfillOrderItemRequest
+///
+/// Properties:
+/// * [orderDetailId] 
+/// * [scannedBatchCode] 
+/// * [quantity] 
+@BuiltValue()
+abstract class FulfillOrderItemRequest implements Built<FulfillOrderItemRequest, FulfillOrderItemRequestBuilder> {
+  @BuiltValueField(wireName: r'orderDetailId')
+  String get orderDetailId;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class FulfillOrderItemRequest {
-  /// Returns a new [FulfillOrderItemRequest] instance.
-  FulfillOrderItemRequest({
+  @BuiltValueField(wireName: r'scannedBatchCode')
+  String get scannedBatchCode;
 
-    required  this.orderDetailId,
+  @BuiltValueField(wireName: r'quantity')
+  int? get quantity;
 
-    required  this.scannedBatchCode,
+  FulfillOrderItemRequest._();
 
-     this.quantity,
-  });
+  factory FulfillOrderItemRequest([void updates(FulfillOrderItemRequestBuilder b)]) = _$FulfillOrderItemRequest;
 
-  @JsonKey(
-    
-    name: r'orderDetailId',
-    required: true,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(FulfillOrderItemRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<FulfillOrderItemRequest> get serializer => _$FulfillOrderItemRequestSerializer();
+}
 
-  final String orderDetailId;
-
-
-
-  @JsonKey(
-    
-    name: r'scannedBatchCode',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final String scannedBatchCode;
-
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'quantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? quantity;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is FulfillOrderItemRequest &&
-      other.orderDetailId == orderDetailId &&
-      other.scannedBatchCode == scannedBatchCode &&
-      other.quantity == quantity;
-
-    @override
-    int get hashCode =>
-        orderDetailId.hashCode +
-        scannedBatchCode.hashCode +
-        quantity.hashCode;
-
-  factory FulfillOrderItemRequest.fromJson(Map<String, dynamic> json) => _$FulfillOrderItemRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$FulfillOrderItemRequestToJson(this);
+class _$FulfillOrderItemRequestSerializer implements PrimitiveSerializer<FulfillOrderItemRequest> {
+  @override
+  final Iterable<Type> types = const [FulfillOrderItemRequest, _$FulfillOrderItemRequest];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'FulfillOrderItemRequest';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    FulfillOrderItemRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'orderDetailId';
+    yield serializers.serialize(
+      object.orderDetailId,
+      specifiedType: const FullType(String),
+    );
+    yield r'scannedBatchCode';
+    yield serializers.serialize(
+      object.scannedBatchCode,
+      specifiedType: const FullType(String),
+    );
+    if (object.quantity != null) {
+      yield r'quantity';
+      yield serializers.serialize(
+        object.quantity,
+        specifiedType: const FullType(int),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    FulfillOrderItemRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required FulfillOrderItemRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'orderDetailId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.orderDetailId = valueDes;
+          break;
+        case r'scannedBatchCode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.scannedBatchCode = valueDes;
+          break;
+        case r'quantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.quantity = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  FulfillOrderItemRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = FulfillOrderItemRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

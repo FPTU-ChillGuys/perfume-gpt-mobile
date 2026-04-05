@@ -1,0 +1,56 @@
+import 'package:test/test.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+
+// tests for ContactAddressInformation
+void main() {
+  final instance = ContactAddressInformationBuilder();
+  // TODO add properties to the builder and call build()
+
+  group(ContactAddressInformation, () {
+    // String contactName
+    test('to test the property `contactName`', () async {
+      // TODO
+    });
+
+    // String contactPhoneNumber
+    test('to test the property `contactPhoneNumber`', () async {
+      // TODO
+    });
+
+    // int districtId
+    test('to test the property `districtId`', () async {
+      // TODO
+    });
+
+    // String districtName
+    test('to test the property `districtName`', () async {
+      // TODO
+    });
+
+    // String wardCode
+    test('to test the property `wardCode`', () async {
+      // TODO
+    });
+
+    // String wardName
+    test('to test the property `wardName`', () async {
+      // TODO
+    });
+
+    // int provinceId
+    test('to test the property `provinceId`', () async {
+      // TODO
+    });
+
+    // String provinceName
+    test('to test the property `provinceName`', () async {
+      // TODO
+    });
+
+    // String fullAddress
+    test('to test the property `fullAddress`', () async {
+      // TODO
+    });
+
+  });
+}

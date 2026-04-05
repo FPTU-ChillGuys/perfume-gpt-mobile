@@ -9,11 +9,48 @@ All URIs are relative to *https://localhost:7011*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**apiPaymentsMomoReturnGet**](PaymentsApi.md#apipaymentsmomoreturnget) | **GET** /api/payments/momo-return | 
 [**apiPaymentsPaymentIdConfirmPut**](PaymentsApi.md#apipaymentspaymentidconfirmput) | **PUT** /api/payments/{paymentId}/confirm | 
 [**apiPaymentsPaymentIdMethodPut**](PaymentsApi.md#apipaymentspaymentidmethodput) | **PUT** /api/payments/{paymentId}/method | 
 [**apiPaymentsPaymentIdRetryPost**](PaymentsApi.md#apipaymentspaymentidretrypost) | **POST** /api/payments/{paymentId}/retry | 
 [**apiPaymentsVnpayReturnGet**](PaymentsApi.md#apipaymentsvnpayreturnget) | **GET** /api/payments/vnpay-return | 
 
+
+# **apiPaymentsMomoReturnGet**
+> apiPaymentsMomoReturnGet()
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getPaymentsApi();
+
+try {
+    api.apiPaymentsMomoReturnGet();
+} on DioException catch (e) {
+    print('Exception when calling PaymentsApi->apiPaymentsMomoReturnGet: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiPaymentsPaymentIdConfirmPut**
 > BaseResponseOfboolean apiPaymentsPaymentIdConfirmPut(paymentId, confirmPaymentRequest)

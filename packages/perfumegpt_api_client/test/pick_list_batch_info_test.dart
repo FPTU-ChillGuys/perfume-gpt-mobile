@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PickListBatchInfo
 void main() {
-  final PickListBatchInfo? instance = /* PickListBatchInfo(...) */ null;
-  // TODO add properties to the entity
+  final instance = PickListBatchInfoBuilder();
+  // TODO add properties to the builder and call build()
 
   group(PickListBatchInfo, () {
     // String reservationId
@@ -36,5 +36,6 @@ void main() {
     test('to test the property `expiryDate`', () async {
       // TODO
     });
+
   });
 }

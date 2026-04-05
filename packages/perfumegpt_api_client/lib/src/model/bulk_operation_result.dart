@@ -3,137 +3,194 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/bulk_action_error.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'bulk_operation_result.g.dart';
 
+/// BulkOperationResult
+///
+/// Properties:
+/// * [operationName] 
+/// * [succeededCount] 
+/// * [failedCount] 
+/// * [errors] 
+/// * [totalProcessed] 
+/// * [hasError] 
+@BuiltValue()
+abstract class BulkOperationResult implements Built<BulkOperationResult, BulkOperationResultBuilder> {
+  @BuiltValueField(wireName: r'operationName')
+  String get operationName;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class BulkOperationResult {
-  /// Returns a new [BulkOperationResult] instance.
-  BulkOperationResult({
+  @BuiltValueField(wireName: r'succeededCount')
+  int? get succeededCount;
 
-     this.operationName,
+  @BuiltValueField(wireName: r'failedCount')
+  int? get failedCount;
 
-     this.succeededCount,
+  @BuiltValueField(wireName: r'errors')
+  BuiltList<BulkActionError> get errors;
 
-     this.failedCount,
+  @BuiltValueField(wireName: r'totalProcessed')
+  int? get totalProcessed;
 
-     this.errors,
+  @BuiltValueField(wireName: r'hasError')
+  bool? get hasError;
 
-     this.totalProcessed,
+  BulkOperationResult._();
 
-     this.hasError,
-  });
+  factory BulkOperationResult([void updates(BulkOperationResultBuilder b)]) = _$BulkOperationResult;
 
-  @JsonKey(
-    
-    name: r'operationName',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(BulkOperationResultBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<BulkOperationResult> get serializer => _$BulkOperationResultSerializer();
+}
 
-  final String? operationName;
-
-
-
-  @JsonKey(
-    
-    name: r'succeededCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? succeededCount;
-
-
-
-  @JsonKey(
-    
-    name: r'failedCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? failedCount;
-
-
-
-  @JsonKey(
-    
-    name: r'errors',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final List<BulkActionError>? errors;
-
-
-
-  @JsonKey(
-    
-    name: r'totalProcessed',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? totalProcessed;
-
-
-
-  @JsonKey(
-    
-    name: r'hasError',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final bool? hasError;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BulkOperationResult &&
-      other.operationName == operationName &&
-      other.succeededCount == succeededCount &&
-      other.failedCount == failedCount &&
-      other.errors == errors &&
-      other.totalProcessed == totalProcessed &&
-      other.hasError == hasError;
-
-    @override
-    int get hashCode =>
-        operationName.hashCode +
-        succeededCount.hashCode +
-        failedCount.hashCode +
-        errors.hashCode +
-        totalProcessed.hashCode +
-        hasError.hashCode;
-
-  factory BulkOperationResult.fromJson(Map<String, dynamic> json) => _$BulkOperationResultFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BulkOperationResultToJson(this);
+class _$BulkOperationResultSerializer implements PrimitiveSerializer<BulkOperationResult> {
+  @override
+  final Iterable<Type> types = const [BulkOperationResult, _$BulkOperationResult];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'BulkOperationResult';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    BulkOperationResult object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'operationName';
+    yield serializers.serialize(
+      object.operationName,
+      specifiedType: const FullType(String),
+    );
+    if (object.succeededCount != null) {
+      yield r'succeededCount';
+      yield serializers.serialize(
+        object.succeededCount,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.failedCount != null) {
+      yield r'failedCount';
+      yield serializers.serialize(
+        object.failedCount,
+        specifiedType: const FullType(int),
+      );
+    }
+    yield r'errors';
+    yield serializers.serialize(
+      object.errors,
+      specifiedType: const FullType(BuiltList, [FullType(BulkActionError)]),
+    );
+    if (object.totalProcessed != null) {
+      yield r'totalProcessed';
+      yield serializers.serialize(
+        object.totalProcessed,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.hasError != null) {
+      yield r'hasError';
+      yield serializers.serialize(
+        object.hasError,
+        specifiedType: const FullType(bool),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    BulkOperationResult object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required BulkOperationResultBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'operationName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.operationName = valueDes;
+          break;
+        case r'succeededCount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.succeededCount = valueDes;
+          break;
+        case r'failedCount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.failedCount = valueDes;
+          break;
+        case r'errors':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(BulkActionError)]),
+          ) as BuiltList<BulkActionError>;
+          result.errors.replace(valueDes);
+          break;
+        case r'totalProcessed':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalProcessed = valueDes;
+          break;
+        case r'hasError':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.hasError = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  BulkOperationResult deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = BulkOperationResultBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

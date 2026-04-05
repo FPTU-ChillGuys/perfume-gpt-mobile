@@ -3,131 +3,152 @@
 part of 'attribute_lookup_item.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$AttributeLookupItemCWProxy {
-  AttributeLookupItem id(int? id);
+class _$AttributeLookupItem extends AttributeLookupItem {
+  @override
+  final int? id;
+  @override
+  final String internalCode;
+  @override
+  final String name;
+  @override
+  final String? description;
+  @override
+  final bool? isVariantLevel;
 
-  AttributeLookupItem internalCode(String? internalCode);
+  factory _$AttributeLookupItem([
+    void Function(AttributeLookupItemBuilder)? updates,
+  ]) => (AttributeLookupItemBuilder()..update(updates))._build();
 
-  AttributeLookupItem name(String? name);
-
-  AttributeLookupItem description(String? description);
-
-  AttributeLookupItem isVariantLevel(bool? isVariantLevel);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AttributeLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AttributeLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AttributeLookupItem call({
-    int? id,
-    String? internalCode,
-    String? name,
-    String? description,
-    bool? isVariantLevel,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfAttributeLookupItem.copyWith(...)` or call `instanceOfAttributeLookupItem.copyWith.fieldName(value)` for a single field.
-class _$AttributeLookupItemCWProxyImpl implements _$AttributeLookupItemCWProxy {
-  const _$AttributeLookupItemCWProxyImpl(this._value);
-
-  final AttributeLookupItem _value;
+  _$AttributeLookupItem._({
+    this.id,
+    required this.internalCode,
+    required this.name,
+    this.description,
+    this.isVariantLevel,
+  }) : super._();
+  @override
+  AttributeLookupItem rebuild(
+    void Function(AttributeLookupItemBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  AttributeLookupItem id(int? id) => call(id: id);
+  AttributeLookupItemBuilder toBuilder() =>
+      AttributeLookupItemBuilder()..replace(this);
 
   @override
-  AttributeLookupItem internalCode(String? internalCode) =>
-      call(internalCode: internalCode);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AttributeLookupItem &&
+        id == other.id &&
+        internalCode == other.internalCode &&
+        name == other.name &&
+        description == other.description &&
+        isVariantLevel == other.isVariantLevel;
+  }
 
   @override
-  AttributeLookupItem name(String? name) => call(name: name);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, internalCode.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, isVariantLevel.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  AttributeLookupItem description(String? description) =>
-      call(description: description);
-
-  @override
-  AttributeLookupItem isVariantLevel(bool? isVariantLevel) =>
-      call(isVariantLevel: isVariantLevel);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AttributeLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AttributeLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AttributeLookupItem call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? internalCode = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
-    Object? description = const $CopyWithPlaceholder(),
-    Object? isVariantLevel = const $CopyWithPlaceholder(),
-  }) {
-    return AttributeLookupItem(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as int?,
-      internalCode: internalCode == const $CopyWithPlaceholder()
-          ? _value.internalCode
-          // ignore: cast_nullable_to_non_nullable
-          : internalCode as String?,
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-      description: description == const $CopyWithPlaceholder()
-          ? _value.description
-          // ignore: cast_nullable_to_non_nullable
-          : description as String?,
-      isVariantLevel: isVariantLevel == const $CopyWithPlaceholder()
-          ? _value.isVariantLevel
-          // ignore: cast_nullable_to_non_nullable
-          : isVariantLevel as bool?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'AttributeLookupItem')
+          ..add('id', id)
+          ..add('internalCode', internalCode)
+          ..add('name', name)
+          ..add('description', description)
+          ..add('isVariantLevel', isVariantLevel))
+        .toString();
   }
 }
 
-extension $AttributeLookupItemCopyWith on AttributeLookupItem {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfAttributeLookupItem.copyWith(...)` or `instanceOfAttributeLookupItem.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$AttributeLookupItemCWProxy get copyWith =>
-      _$AttributeLookupItemCWProxyImpl(this);
+class AttributeLookupItemBuilder
+    implements Builder<AttributeLookupItem, AttributeLookupItemBuilder> {
+  _$AttributeLookupItem? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _internalCode;
+  String? get internalCode => _$this._internalCode;
+  set internalCode(String? internalCode) => _$this._internalCode = internalCode;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
+
+  bool? _isVariantLevel;
+  bool? get isVariantLevel => _$this._isVariantLevel;
+  set isVariantLevel(bool? isVariantLevel) =>
+      _$this._isVariantLevel = isVariantLevel;
+
+  AttributeLookupItemBuilder() {
+    AttributeLookupItem._defaults(this);
+  }
+
+  AttributeLookupItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _internalCode = $v.internalCode;
+      _name = $v.name;
+      _description = $v.description;
+      _isVariantLevel = $v.isVariantLevel;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AttributeLookupItem other) {
+    _$v = other as _$AttributeLookupItem;
+  }
+
+  @override
+  void update(void Function(AttributeLookupItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  AttributeLookupItem build() => _build();
+
+  _$AttributeLookupItem _build() {
+    final _$result =
+        _$v ??
+        _$AttributeLookupItem._(
+          id: id,
+          internalCode: BuiltValueNullFieldError.checkNotNull(
+            internalCode,
+            r'AttributeLookupItem',
+            'internalCode',
+          ),
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'AttributeLookupItem',
+            'name',
+          ),
+          description: description,
+          isVariantLevel: isVariantLevel,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-AttributeLookupItem _$AttributeLookupItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('AttributeLookupItem', json, ($checkedConvert) {
-      final val = AttributeLookupItem(
-        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-        internalCode: $checkedConvert('internalCode', (v) => v as String?),
-        name: $checkedConvert('name', (v) => v as String?),
-        description: $checkedConvert('description', (v) => v as String?),
-        isVariantLevel: $checkedConvert('isVariantLevel', (v) => v as bool?),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$AttributeLookupItemToJson(
-  AttributeLookupItem instance,
-) => <String, dynamic>{
-  'id': ?instance.id,
-  'internalCode': ?instance.internalCode,
-  'name': ?instance.name,
-  'description': ?instance.description,
-  'isVariantLevel': ?instance.isVariantLevel,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_supplier_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_supplier_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_supplier_response.dart';
@@ -20,7 +20,9 @@ class SuppliersApi {
 
   final Dio _dio;
 
-  const SuppliersApi(this._dio);
+  final Serializers _serializers;
+
+  const SuppliersApi(this._dio, this._serializers);
 
   /// apiSuppliersGet
   /// 
@@ -73,8 +75,11 @@ class SuppliersApi {
     BaseResponseOfListOfSupplierResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfSupplierResponse, BaseResponseOfListOfSupplierResponse>(rawData, 'BaseResponseOfListOfSupplierResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfSupplierResponse),
+      ) as BaseResponseOfListOfSupplierResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -121,7 +126,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfSupplie
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/suppliers/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/suppliers/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -151,8 +156,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfSupplie
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfboolean),
+      ) as BaseResponseOfboolean;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -199,7 +207,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/suppliers/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/suppliers/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -229,8 +237,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfSupplierResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfSupplierResponse, BaseResponseOfSupplierResponse>(rawData, 'BaseResponseOfSupplierResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfSupplierResponse),
+      ) as BaseResponseOfSupplierResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -279,7 +290,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfSupplierRespo
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/suppliers/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/suppliers/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -302,7 +313,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfSupplierRespo
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateSupplierRequest);
+      const _type = FullType(UpdateSupplierRequest);
+      _bodyData = _serializers.serialize(updateSupplierRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -327,8 +340,11 @@ _bodyData=jsonEncode(updateSupplierRequest);
     BaseResponseOfSupplierResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfSupplierResponse, BaseResponseOfSupplierResponse>(rawData, 'BaseResponseOfSupplierResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfSupplierResponse),
+      ) as BaseResponseOfSupplierResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -403,8 +419,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfSupplierRespo
     BaseResponseOfListOfSupplierLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfSupplierLookupItem, BaseResponseOfListOfSupplierLookupItem>(rawData, 'BaseResponseOfListOfSupplierLookupItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfSupplierLookupItem),
+      ) as BaseResponseOfListOfSupplierLookupItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -474,7 +493,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfSupplie
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createSupplierRequest);
+      const _type = FullType(CreateSupplierRequest);
+      _bodyData = _serializers.serialize(createSupplierRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -499,8 +520,11 @@ _bodyData=jsonEncode(createSupplierRequest);
     BaseResponseOfSupplierResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfSupplierResponse, BaseResponseOfSupplierResponse>(rawData, 'BaseResponseOfSupplierResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfSupplierResponse),
+      ) as BaseResponseOfSupplierResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

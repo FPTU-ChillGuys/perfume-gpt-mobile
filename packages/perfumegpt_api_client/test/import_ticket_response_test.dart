@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ImportTicketResponse
 void main() {
-  final ImportTicketResponse? instance = /* ImportTicketResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = ImportTicketResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ImportTicketResponse, () {
     // String id
@@ -57,9 +57,10 @@ void main() {
       // TODO
     });
 
-    // List<ImportDetailResponse> importDetails
+    // BuiltList<ImportDetailResponse> importDetails
     test('to test the property `importDetails`', () async {
       // TODO
     });
+
   });
 }

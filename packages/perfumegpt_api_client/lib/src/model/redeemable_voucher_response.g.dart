@@ -3,223 +3,213 @@
 part of 'redeemable_voucher_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$RedeemableVoucherResponseCWProxy {
-  RedeemableVoucherResponse id(String? id);
+class _$RedeemableVoucherResponse extends RedeemableVoucherResponse {
+  @override
+  final String? id;
+  @override
+  final String code;
+  @override
+  final num? discountValue;
+  @override
+  final DiscountType? discountType;
+  @override
+  final int? requiredPoints;
+  @override
+  final num? minOrderValue;
+  @override
+  final DateTime? expiryDate;
+  @override
+  final bool? isExpired;
+  @override
+  final int? remainingQuantity;
+  @override
+  final DateTime? createdAt;
 
-  RedeemableVoucherResponse code(String? code);
+  factory _$RedeemableVoucherResponse([
+    void Function(RedeemableVoucherResponseBuilder)? updates,
+  ]) => (RedeemableVoucherResponseBuilder()..update(updates))._build();
 
-  RedeemableVoucherResponse discountValue(num? discountValue);
-
-  RedeemableVoucherResponse discountType(DiscountType? discountType);
-
-  RedeemableVoucherResponse requiredPoints(int? requiredPoints);
-
-  RedeemableVoucherResponse minOrderValue(num? minOrderValue);
-
-  RedeemableVoucherResponse expiryDate(DateTime? expiryDate);
-
-  RedeemableVoucherResponse isExpired(bool? isExpired);
-
-  RedeemableVoucherResponse remainingQuantity(int? remainingQuantity);
-
-  RedeemableVoucherResponse createdAt(DateTime? createdAt);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RedeemableVoucherResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// RedeemableVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  RedeemableVoucherResponse call({
-    String? id,
-    String? code,
-    num? discountValue,
-    DiscountType? discountType,
-    int? requiredPoints,
-    num? minOrderValue,
-    DateTime? expiryDate,
-    bool? isExpired,
-    int? remainingQuantity,
-    DateTime? createdAt,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfRedeemableVoucherResponse.copyWith(...)` or call `instanceOfRedeemableVoucherResponse.copyWith.fieldName(value)` for a single field.
-class _$RedeemableVoucherResponseCWProxyImpl
-    implements _$RedeemableVoucherResponseCWProxy {
-  const _$RedeemableVoucherResponseCWProxyImpl(this._value);
-
-  final RedeemableVoucherResponse _value;
+  _$RedeemableVoucherResponse._({
+    this.id,
+    required this.code,
+    this.discountValue,
+    this.discountType,
+    this.requiredPoints,
+    this.minOrderValue,
+    this.expiryDate,
+    this.isExpired,
+    this.remainingQuantity,
+    this.createdAt,
+  }) : super._();
+  @override
+  RedeemableVoucherResponse rebuild(
+    void Function(RedeemableVoucherResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  RedeemableVoucherResponse id(String? id) => call(id: id);
+  RedeemableVoucherResponseBuilder toBuilder() =>
+      RedeemableVoucherResponseBuilder()..replace(this);
 
   @override
-  RedeemableVoucherResponse code(String? code) => call(code: code);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is RedeemableVoucherResponse &&
+        id == other.id &&
+        code == other.code &&
+        discountValue == other.discountValue &&
+        discountType == other.discountType &&
+        requiredPoints == other.requiredPoints &&
+        minOrderValue == other.minOrderValue &&
+        expiryDate == other.expiryDate &&
+        isExpired == other.isExpired &&
+        remainingQuantity == other.remainingQuantity &&
+        createdAt == other.createdAt;
+  }
 
   @override
-  RedeemableVoucherResponse discountValue(num? discountValue) =>
-      call(discountValue: discountValue);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, discountValue.hashCode);
+    _$hash = $jc(_$hash, discountType.hashCode);
+    _$hash = $jc(_$hash, requiredPoints.hashCode);
+    _$hash = $jc(_$hash, minOrderValue.hashCode);
+    _$hash = $jc(_$hash, expiryDate.hashCode);
+    _$hash = $jc(_$hash, isExpired.hashCode);
+    _$hash = $jc(_$hash, remainingQuantity.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  RedeemableVoucherResponse discountType(DiscountType? discountType) =>
-      call(discountType: discountType);
-
-  @override
-  RedeemableVoucherResponse requiredPoints(int? requiredPoints) =>
-      call(requiredPoints: requiredPoints);
-
-  @override
-  RedeemableVoucherResponse minOrderValue(num? minOrderValue) =>
-      call(minOrderValue: minOrderValue);
-
-  @override
-  RedeemableVoucherResponse expiryDate(DateTime? expiryDate) =>
-      call(expiryDate: expiryDate);
-
-  @override
-  RedeemableVoucherResponse isExpired(bool? isExpired) =>
-      call(isExpired: isExpired);
-
-  @override
-  RedeemableVoucherResponse remainingQuantity(int? remainingQuantity) =>
-      call(remainingQuantity: remainingQuantity);
-
-  @override
-  RedeemableVoucherResponse createdAt(DateTime? createdAt) =>
-      call(createdAt: createdAt);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RedeemableVoucherResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// RedeemableVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  RedeemableVoucherResponse call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? code = const $CopyWithPlaceholder(),
-    Object? discountValue = const $CopyWithPlaceholder(),
-    Object? discountType = const $CopyWithPlaceholder(),
-    Object? requiredPoints = const $CopyWithPlaceholder(),
-    Object? minOrderValue = const $CopyWithPlaceholder(),
-    Object? expiryDate = const $CopyWithPlaceholder(),
-    Object? isExpired = const $CopyWithPlaceholder(),
-    Object? remainingQuantity = const $CopyWithPlaceholder(),
-    Object? createdAt = const $CopyWithPlaceholder(),
-  }) {
-    return RedeemableVoucherResponse(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      code: code == const $CopyWithPlaceholder()
-          ? _value.code
-          // ignore: cast_nullable_to_non_nullable
-          : code as String?,
-      discountValue: discountValue == const $CopyWithPlaceholder()
-          ? _value.discountValue
-          // ignore: cast_nullable_to_non_nullable
-          : discountValue as num?,
-      discountType: discountType == const $CopyWithPlaceholder()
-          ? _value.discountType
-          // ignore: cast_nullable_to_non_nullable
-          : discountType as DiscountType?,
-      requiredPoints: requiredPoints == const $CopyWithPlaceholder()
-          ? _value.requiredPoints
-          // ignore: cast_nullable_to_non_nullable
-          : requiredPoints as int?,
-      minOrderValue: minOrderValue == const $CopyWithPlaceholder()
-          ? _value.minOrderValue
-          // ignore: cast_nullable_to_non_nullable
-          : minOrderValue as num?,
-      expiryDate: expiryDate == const $CopyWithPlaceholder()
-          ? _value.expiryDate
-          // ignore: cast_nullable_to_non_nullable
-          : expiryDate as DateTime?,
-      isExpired: isExpired == const $CopyWithPlaceholder()
-          ? _value.isExpired
-          // ignore: cast_nullable_to_non_nullable
-          : isExpired as bool?,
-      remainingQuantity: remainingQuantity == const $CopyWithPlaceholder()
-          ? _value.remainingQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : remainingQuantity as int?,
-      createdAt: createdAt == const $CopyWithPlaceholder()
-          ? _value.createdAt
-          // ignore: cast_nullable_to_non_nullable
-          : createdAt as DateTime?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'RedeemableVoucherResponse')
+          ..add('id', id)
+          ..add('code', code)
+          ..add('discountValue', discountValue)
+          ..add('discountType', discountType)
+          ..add('requiredPoints', requiredPoints)
+          ..add('minOrderValue', minOrderValue)
+          ..add('expiryDate', expiryDate)
+          ..add('isExpired', isExpired)
+          ..add('remainingQuantity', remainingQuantity)
+          ..add('createdAt', createdAt))
+        .toString();
   }
 }
 
-extension $RedeemableVoucherResponseCopyWith on RedeemableVoucherResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfRedeemableVoucherResponse.copyWith(...)` or `instanceOfRedeemableVoucherResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$RedeemableVoucherResponseCWProxy get copyWith =>
-      _$RedeemableVoucherResponseCWProxyImpl(this);
+class RedeemableVoucherResponseBuilder
+    implements
+        Builder<RedeemableVoucherResponse, RedeemableVoucherResponseBuilder> {
+  _$RedeemableVoucherResponse? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _code;
+  String? get code => _$this._code;
+  set code(String? code) => _$this._code = code;
+
+  num? _discountValue;
+  num? get discountValue => _$this._discountValue;
+  set discountValue(num? discountValue) =>
+      _$this._discountValue = discountValue;
+
+  DiscountType? _discountType;
+  DiscountType? get discountType => _$this._discountType;
+  set discountType(DiscountType? discountType) =>
+      _$this._discountType = discountType;
+
+  int? _requiredPoints;
+  int? get requiredPoints => _$this._requiredPoints;
+  set requiredPoints(int? requiredPoints) =>
+      _$this._requiredPoints = requiredPoints;
+
+  num? _minOrderValue;
+  num? get minOrderValue => _$this._minOrderValue;
+  set minOrderValue(num? minOrderValue) =>
+      _$this._minOrderValue = minOrderValue;
+
+  DateTime? _expiryDate;
+  DateTime? get expiryDate => _$this._expiryDate;
+  set expiryDate(DateTime? expiryDate) => _$this._expiryDate = expiryDate;
+
+  bool? _isExpired;
+  bool? get isExpired => _$this._isExpired;
+  set isExpired(bool? isExpired) => _$this._isExpired = isExpired;
+
+  int? _remainingQuantity;
+  int? get remainingQuantity => _$this._remainingQuantity;
+  set remainingQuantity(int? remainingQuantity) =>
+      _$this._remainingQuantity = remainingQuantity;
+
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  RedeemableVoucherResponseBuilder() {
+    RedeemableVoucherResponse._defaults(this);
+  }
+
+  RedeemableVoucherResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _code = $v.code;
+      _discountValue = $v.discountValue;
+      _discountType = $v.discountType;
+      _requiredPoints = $v.requiredPoints;
+      _minOrderValue = $v.minOrderValue;
+      _expiryDate = $v.expiryDate;
+      _isExpired = $v.isExpired;
+      _remainingQuantity = $v.remainingQuantity;
+      _createdAt = $v.createdAt;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(RedeemableVoucherResponse other) {
+    _$v = other as _$RedeemableVoucherResponse;
+  }
+
+  @override
+  void update(void Function(RedeemableVoucherResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  RedeemableVoucherResponse build() => _build();
+
+  _$RedeemableVoucherResponse _build() {
+    final _$result =
+        _$v ??
+        _$RedeemableVoucherResponse._(
+          id: id,
+          code: BuiltValueNullFieldError.checkNotNull(
+            code,
+            r'RedeemableVoucherResponse',
+            'code',
+          ),
+          discountValue: discountValue,
+          discountType: discountType,
+          requiredPoints: requiredPoints,
+          minOrderValue: minOrderValue,
+          expiryDate: expiryDate,
+          isExpired: isExpired,
+          remainingQuantity: remainingQuantity,
+          createdAt: createdAt,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-RedeemableVoucherResponse _$RedeemableVoucherResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('RedeemableVoucherResponse', json, ($checkedConvert) {
-  final val = RedeemableVoucherResponse(
-    id: $checkedConvert('id', (v) => v as String?),
-    code: $checkedConvert('code', (v) => v as String?),
-    discountValue: $checkedConvert('discountValue', (v) => v as num?),
-    discountType: $checkedConvert(
-      'discountType',
-      (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
-    ),
-    requiredPoints: $checkedConvert(
-      'requiredPoints',
-      (v) => (v as num?)?.toInt(),
-    ),
-    minOrderValue: $checkedConvert('minOrderValue', (v) => v as num?),
-    expiryDate: $checkedConvert(
-      'expiryDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    isExpired: $checkedConvert('isExpired', (v) => v as bool?),
-    remainingQuantity: $checkedConvert(
-      'remainingQuantity',
-      (v) => (v as num?)?.toInt(),
-    ),
-    createdAt: $checkedConvert(
-      'createdAt',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$RedeemableVoucherResponseToJson(
-  RedeemableVoucherResponse instance,
-) => <String, dynamic>{
-  'id': ?instance.id,
-  'code': ?instance.code,
-  'discountValue': ?instance.discountValue,
-  'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
-  'requiredPoints': ?instance.requiredPoints,
-  'minOrderValue': ?instance.minOrderValue,
-  'expiryDate': ?instance.expiryDate?.toIso8601String(),
-  'isExpired': ?instance.isExpired,
-  'remainingQuantity': ?instance.remainingQuantity,
-  'createdAt': ?instance.createdAt?.toIso8601String(),
-};
-
-const _$DiscountTypeEnumMap = {
-  DiscountType.percentage: 'Percentage',
-  DiscountType.fixedAmount: 'FixedAmount',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

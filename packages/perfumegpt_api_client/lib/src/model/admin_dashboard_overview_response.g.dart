@@ -3,129 +3,149 @@
 part of 'admin_dashboard_overview_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$AdminDashboardOverviewResponseCWProxy {
-  AdminDashboardOverviewResponse revenue(RevenueSummaryResponse? revenue);
+class _$AdminDashboardOverviewResponse extends AdminDashboardOverviewResponse {
+  @override
+  final RevenueSummaryResponse? revenue;
+  @override
+  final InventoryLevelsResponse? inventoryLevels;
+  @override
+  final BuiltList<TopProductResponse> topProducts;
 
-  AdminDashboardOverviewResponse inventoryLevels(
-    InventoryLevelsResponse? inventoryLevels,
-  );
+  factory _$AdminDashboardOverviewResponse([
+    void Function(AdminDashboardOverviewResponseBuilder)? updates,
+  ]) => (AdminDashboardOverviewResponseBuilder()..update(updates))._build();
 
-  AdminDashboardOverviewResponse topProducts(
-    List<TopProductResponse>? topProducts,
-  );
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AdminDashboardOverviewResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AdminDashboardOverviewResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AdminDashboardOverviewResponse call({
-    RevenueSummaryResponse? revenue,
-    InventoryLevelsResponse? inventoryLevels,
-    List<TopProductResponse>? topProducts,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfAdminDashboardOverviewResponse.copyWith(...)` or call `instanceOfAdminDashboardOverviewResponse.copyWith.fieldName(value)` for a single field.
-class _$AdminDashboardOverviewResponseCWProxyImpl
-    implements _$AdminDashboardOverviewResponseCWProxy {
-  const _$AdminDashboardOverviewResponseCWProxyImpl(this._value);
-
-  final AdminDashboardOverviewResponse _value;
+  _$AdminDashboardOverviewResponse._({
+    this.revenue,
+    this.inventoryLevels,
+    required this.topProducts,
+  }) : super._();
+  @override
+  AdminDashboardOverviewResponse rebuild(
+    void Function(AdminDashboardOverviewResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  AdminDashboardOverviewResponse revenue(RevenueSummaryResponse? revenue) =>
-      call(revenue: revenue);
+  AdminDashboardOverviewResponseBuilder toBuilder() =>
+      AdminDashboardOverviewResponseBuilder()..replace(this);
 
   @override
-  AdminDashboardOverviewResponse inventoryLevels(
-    InventoryLevelsResponse? inventoryLevels,
-  ) => call(inventoryLevels: inventoryLevels);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AdminDashboardOverviewResponse &&
+        revenue == other.revenue &&
+        inventoryLevels == other.inventoryLevels &&
+        topProducts == other.topProducts;
+  }
 
   @override
-  AdminDashboardOverviewResponse topProducts(
-    List<TopProductResponse>? topProducts,
-  ) => call(topProducts: topProducts);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, revenue.hashCode);
+    _$hash = $jc(_$hash, inventoryLevels.hashCode);
+    _$hash = $jc(_$hash, topProducts.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AdminDashboardOverviewResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AdminDashboardOverviewResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AdminDashboardOverviewResponse call({
-    Object? revenue = const $CopyWithPlaceholder(),
-    Object? inventoryLevels = const $CopyWithPlaceholder(),
-    Object? topProducts = const $CopyWithPlaceholder(),
-  }) {
-    return AdminDashboardOverviewResponse(
-      revenue: revenue == const $CopyWithPlaceholder()
-          ? _value.revenue
-          // ignore: cast_nullable_to_non_nullable
-          : revenue as RevenueSummaryResponse?,
-      inventoryLevels: inventoryLevels == const $CopyWithPlaceholder()
-          ? _value.inventoryLevels
-          // ignore: cast_nullable_to_non_nullable
-          : inventoryLevels as InventoryLevelsResponse?,
-      topProducts: topProducts == const $CopyWithPlaceholder()
-          ? _value.topProducts
-          // ignore: cast_nullable_to_non_nullable
-          : topProducts as List<TopProductResponse>?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'AdminDashboardOverviewResponse')
+          ..add('revenue', revenue)
+          ..add('inventoryLevels', inventoryLevels)
+          ..add('topProducts', topProducts))
+        .toString();
   }
 }
 
-extension $AdminDashboardOverviewResponseCopyWith
-    on AdminDashboardOverviewResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfAdminDashboardOverviewResponse.copyWith(...)` or `instanceOfAdminDashboardOverviewResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$AdminDashboardOverviewResponseCWProxy get copyWith =>
-      _$AdminDashboardOverviewResponseCWProxyImpl(this);
+class AdminDashboardOverviewResponseBuilder
+    implements
+        Builder<
+          AdminDashboardOverviewResponse,
+          AdminDashboardOverviewResponseBuilder
+        > {
+  _$AdminDashboardOverviewResponse? _$v;
+
+  RevenueSummaryResponseBuilder? _revenue;
+  RevenueSummaryResponseBuilder get revenue =>
+      _$this._revenue ??= RevenueSummaryResponseBuilder();
+  set revenue(RevenueSummaryResponseBuilder? revenue) =>
+      _$this._revenue = revenue;
+
+  InventoryLevelsResponseBuilder? _inventoryLevels;
+  InventoryLevelsResponseBuilder get inventoryLevels =>
+      _$this._inventoryLevels ??= InventoryLevelsResponseBuilder();
+  set inventoryLevels(InventoryLevelsResponseBuilder? inventoryLevels) =>
+      _$this._inventoryLevels = inventoryLevels;
+
+  ListBuilder<TopProductResponse>? _topProducts;
+  ListBuilder<TopProductResponse> get topProducts =>
+      _$this._topProducts ??= ListBuilder<TopProductResponse>();
+  set topProducts(ListBuilder<TopProductResponse>? topProducts) =>
+      _$this._topProducts = topProducts;
+
+  AdminDashboardOverviewResponseBuilder() {
+    AdminDashboardOverviewResponse._defaults(this);
+  }
+
+  AdminDashboardOverviewResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _revenue = $v.revenue?.toBuilder();
+      _inventoryLevels = $v.inventoryLevels?.toBuilder();
+      _topProducts = $v.topProducts.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AdminDashboardOverviewResponse other) {
+    _$v = other as _$AdminDashboardOverviewResponse;
+  }
+
+  @override
+  void update(void Function(AdminDashboardOverviewResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  AdminDashboardOverviewResponse build() => _build();
+
+  _$AdminDashboardOverviewResponse _build() {
+    _$AdminDashboardOverviewResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$AdminDashboardOverviewResponse._(
+            revenue: _revenue?.build(),
+            inventoryLevels: _inventoryLevels?.build(),
+            topProducts: topProducts.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'revenue';
+        _revenue?.build();
+        _$failedField = 'inventoryLevels';
+        _inventoryLevels?.build();
+        _$failedField = 'topProducts';
+        topProducts.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'AdminDashboardOverviewResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-AdminDashboardOverviewResponse _$AdminDashboardOverviewResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('AdminDashboardOverviewResponse', json, ($checkedConvert) {
-  final val = AdminDashboardOverviewResponse(
-    revenue: $checkedConvert(
-      'revenue',
-      (v) => v == null
-          ? null
-          : RevenueSummaryResponse.fromJson(v as Map<String, dynamic>),
-    ),
-    inventoryLevels: $checkedConvert(
-      'inventoryLevels',
-      (v) => v == null
-          ? null
-          : InventoryLevelsResponse.fromJson(v as Map<String, dynamic>),
-    ),
-    topProducts: $checkedConvert(
-      'topProducts',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => TopProductResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$AdminDashboardOverviewResponseToJson(
-  AdminDashboardOverviewResponse instance,
-) => <String, dynamic>{
-  'revenue': ?instance.revenue?.toJson(),
-  'inventoryLevels': ?instance.inventoryLevels?.toJson(),
-  'topProducts': ?instance.topProducts?.map((e) => e.toJson()).toList(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

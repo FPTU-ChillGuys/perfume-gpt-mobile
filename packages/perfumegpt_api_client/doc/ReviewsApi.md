@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getReviewsApi();
-final List<MultipartFile> images = /path/to/file.txt; // List<MultipartFile> | 
+final BuiltList<Uint8List> images = /path/to/file.txt; // BuiltList<Uint8List> | 
 
 try {
     final response = api.apiReviewsImagesTemporaryPost(images);
@@ -104,7 +104,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **images** | [**List&lt;MultipartFile&gt;**](MultipartFile.md)|  | [optional] 
+ **images** | [**BuiltList&lt;Uint8List&gt;**](Uint8List.md)|  | [optional] 
 
 ### Return type
 

@@ -8,7 +8,7 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**imageFile** | [**MultipartFile**](MultipartFile.md) |  | [optional] 
+**imageFile** | [**Uint8List**](Uint8List.md) |  | 
 **altText** | **String** |  | [optional] 
 **displayOrder** | **int** |  | [optional] 
 **isPrimary** | **bool** |  | [optional] 

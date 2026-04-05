@@ -3,105 +3,108 @@
 part of 'update_stock_adjustment_status_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$UpdateStockAdjustmentStatusRequestCWProxy {
-  UpdateStockAdjustmentStatusRequest status(StockAdjustmentStatus? status);
+class _$UpdateStockAdjustmentStatusRequest
+    extends UpdateStockAdjustmentStatusRequest {
+  @override
+  final StockAdjustmentStatus? status;
+  @override
+  final String? note;
 
-  UpdateStockAdjustmentStatusRequest note(String? note);
+  factory _$UpdateStockAdjustmentStatusRequest([
+    void Function(UpdateStockAdjustmentStatusRequestBuilder)? updates,
+  ]) => (UpdateStockAdjustmentStatusRequestBuilder()..update(updates))._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateStockAdjustmentStatusRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateStockAdjustmentStatusRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateStockAdjustmentStatusRequest call({
-    StockAdjustmentStatus? status,
-    String? note,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfUpdateStockAdjustmentStatusRequest.copyWith(...)` or call `instanceOfUpdateStockAdjustmentStatusRequest.copyWith.fieldName(value)` for a single field.
-class _$UpdateStockAdjustmentStatusRequestCWProxyImpl
-    implements _$UpdateStockAdjustmentStatusRequestCWProxy {
-  const _$UpdateStockAdjustmentStatusRequestCWProxyImpl(this._value);
-
-  final UpdateStockAdjustmentStatusRequest _value;
+  _$UpdateStockAdjustmentStatusRequest._({this.status, this.note}) : super._();
+  @override
+  UpdateStockAdjustmentStatusRequest rebuild(
+    void Function(UpdateStockAdjustmentStatusRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  UpdateStockAdjustmentStatusRequest status(StockAdjustmentStatus? status) =>
-      call(status: status);
+  UpdateStockAdjustmentStatusRequestBuilder toBuilder() =>
+      UpdateStockAdjustmentStatusRequestBuilder()..replace(this);
 
   @override
-  UpdateStockAdjustmentStatusRequest note(String? note) => call(note: note);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is UpdateStockAdjustmentStatusRequest &&
+        status == other.status &&
+        note == other.note;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateStockAdjustmentStatusRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateStockAdjustmentStatusRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateStockAdjustmentStatusRequest call({
-    Object? status = const $CopyWithPlaceholder(),
-    Object? note = const $CopyWithPlaceholder(),
-  }) {
-    return UpdateStockAdjustmentStatusRequest(
-      status: status == const $CopyWithPlaceholder()
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as StockAdjustmentStatus?,
-      note: note == const $CopyWithPlaceholder()
-          ? _value.note
-          // ignore: cast_nullable_to_non_nullable
-          : note as String?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'UpdateStockAdjustmentStatusRequest')
+          ..add('status', status)
+          ..add('note', note))
+        .toString();
   }
 }
 
-extension $UpdateStockAdjustmentStatusRequestCopyWith
-    on UpdateStockAdjustmentStatusRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfUpdateStockAdjustmentStatusRequest.copyWith(...)` or `instanceOfUpdateStockAdjustmentStatusRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$UpdateStockAdjustmentStatusRequestCWProxy get copyWith =>
-      _$UpdateStockAdjustmentStatusRequestCWProxyImpl(this);
+class UpdateStockAdjustmentStatusRequestBuilder
+    implements
+        Builder<
+          UpdateStockAdjustmentStatusRequest,
+          UpdateStockAdjustmentStatusRequestBuilder
+        > {
+  _$UpdateStockAdjustmentStatusRequest? _$v;
+
+  StockAdjustmentStatus? _status;
+  StockAdjustmentStatus? get status => _$this._status;
+  set status(StockAdjustmentStatus? status) => _$this._status = status;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  UpdateStockAdjustmentStatusRequestBuilder() {
+    UpdateStockAdjustmentStatusRequest._defaults(this);
+  }
+
+  UpdateStockAdjustmentStatusRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _status = $v.status;
+      _note = $v.note;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(UpdateStockAdjustmentStatusRequest other) {
+    _$v = other as _$UpdateStockAdjustmentStatusRequest;
+  }
+
+  @override
+  void update(
+    void Function(UpdateStockAdjustmentStatusRequestBuilder)? updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  UpdateStockAdjustmentStatusRequest build() => _build();
+
+  _$UpdateStockAdjustmentStatusRequest _build() {
+    final _$result =
+        _$v ??
+        _$UpdateStockAdjustmentStatusRequest._(status: status, note: note);
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-UpdateStockAdjustmentStatusRequest _$UpdateStockAdjustmentStatusRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('UpdateStockAdjustmentStatusRequest', json, (
-  $checkedConvert,
-) {
-  final val = UpdateStockAdjustmentStatusRequest(
-    status: $checkedConvert(
-      'status',
-      (v) => $enumDecodeNullable(_$StockAdjustmentStatusEnumMap, v),
-    ),
-    note: $checkedConvert('note', (v) => v as String?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$UpdateStockAdjustmentStatusRequestToJson(
-  UpdateStockAdjustmentStatusRequest instance,
-) => <String, dynamic>{
-  'status': ?_$StockAdjustmentStatusEnumMap[instance.status],
-  'note': ?instance.note,
-};
-
-const _$StockAdjustmentStatusEnumMap = {
-  StockAdjustmentStatus.pending: 'Pending',
-  StockAdjustmentStatus.inProgress: 'InProgress',
-  StockAdjustmentStatus.completed: 'Completed',
-  StockAdjustmentStatus.cancelled: 'Cancelled',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

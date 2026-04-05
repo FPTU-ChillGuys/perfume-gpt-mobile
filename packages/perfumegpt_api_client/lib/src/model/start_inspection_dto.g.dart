@@ -3,72 +3,91 @@
 part of 'start_inspection_dto.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$StartInspectionDtoCWProxy {
-  StartInspectionDto inspectionNote(String? inspectionNote);
+class _$StartInspectionDto extends StartInspectionDto {
+  @override
+  final String? inspectionNote;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StartInspectionDto(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// StartInspectionDto(...).copyWith(id: 12, name: "My name")
-  /// ```
-  StartInspectionDto call({String? inspectionNote});
-}
+  factory _$StartInspectionDto([
+    void Function(StartInspectionDtoBuilder)? updates,
+  ]) => (StartInspectionDtoBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfStartInspectionDto.copyWith(...)` or call `instanceOfStartInspectionDto.copyWith.fieldName(value)` for a single field.
-class _$StartInspectionDtoCWProxyImpl implements _$StartInspectionDtoCWProxy {
-  const _$StartInspectionDtoCWProxyImpl(this._value);
-
-  final StartInspectionDto _value;
+  _$StartInspectionDto._({this.inspectionNote}) : super._();
+  @override
+  StartInspectionDto rebuild(
+    void Function(StartInspectionDtoBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  StartInspectionDto inspectionNote(String? inspectionNote) =>
-      call(inspectionNote: inspectionNote);
+  StartInspectionDtoBuilder toBuilder() =>
+      StartInspectionDtoBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StartInspectionDto(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// StartInspectionDto(...).copyWith(id: 12, name: "My name")
-  /// ```
-  StartInspectionDto call({
-    Object? inspectionNote = const $CopyWithPlaceholder(),
-  }) {
-    return StartInspectionDto(
-      inspectionNote: inspectionNote == const $CopyWithPlaceholder()
-          ? _value.inspectionNote
-          // ignore: cast_nullable_to_non_nullable
-          : inspectionNote as String?,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is StartInspectionDto &&
+        inspectionNote == other.inspectionNote;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, inspectionNote.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'StartInspectionDto',
+    )..add('inspectionNote', inspectionNote)).toString();
   }
 }
 
-extension $StartInspectionDtoCopyWith on StartInspectionDto {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfStartInspectionDto.copyWith(...)` or `instanceOfStartInspectionDto.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$StartInspectionDtoCWProxy get copyWith =>
-      _$StartInspectionDtoCWProxyImpl(this);
+class StartInspectionDtoBuilder
+    implements Builder<StartInspectionDto, StartInspectionDtoBuilder> {
+  _$StartInspectionDto? _$v;
+
+  String? _inspectionNote;
+  String? get inspectionNote => _$this._inspectionNote;
+  set inspectionNote(String? inspectionNote) =>
+      _$this._inspectionNote = inspectionNote;
+
+  StartInspectionDtoBuilder() {
+    StartInspectionDto._defaults(this);
+  }
+
+  StartInspectionDtoBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _inspectionNote = $v.inspectionNote;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(StartInspectionDto other) {
+    _$v = other as _$StartInspectionDto;
+  }
+
+  @override
+  void update(void Function(StartInspectionDtoBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  StartInspectionDto build() => _build();
+
+  _$StartInspectionDto _build() {
+    final _$result =
+        _$v ?? _$StartInspectionDto._(inspectionNote: inspectionNote);
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-StartInspectionDto _$StartInspectionDtoFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('StartInspectionDto', json, ($checkedConvert) {
-      final val = StartInspectionDto(
-        inspectionNote: $checkedConvert('inspectionNote', (v) => v as String?),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$StartInspectionDtoToJson(StartInspectionDto instance) =>
-    <String, dynamic>{'inspectionNote': ?instance.inspectionNote};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

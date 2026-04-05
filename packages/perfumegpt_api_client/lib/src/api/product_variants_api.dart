@@ -4,11 +4,12 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_bulk_action_result_of_list_of_temporary_media_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_bulk_action_result_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_media_response.dart';
@@ -25,7 +26,9 @@ class ProductVariantsApi {
 
   final Dio _dio;
 
-  const ProductVariantsApi(this._dio);
+  final Serializers _serializers;
+
+  const ProductVariantsApi(this._dio, this._serializers);
 
   /// apiProductvariantsGet
   /// 
@@ -78,11 +81,11 @@ class ProductVariantsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -97,8 +100,11 @@ class ProductVariantsApi {
     BaseResponseOfPagedResultOfVariantPagedItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfVariantPagedItem, BaseResponseOfPagedResultOfVariantPagedItem>(rawData, 'BaseResponseOfPagedResultOfVariantPagedItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfVariantPagedItem),
+      ) as BaseResponseOfPagedResultOfVariantPagedItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -145,7 +151,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/images/{mediaId}/set-primary'.replaceAll('{' r'mediaId' '}', mediaId.toString());
+    final _path = r'/api/productvariants/images/{mediaId}/set-primary'.replaceAll('{' r'mediaId' '}', encodeQueryParameter(_serializers, mediaId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -175,8 +181,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -215,7 +224,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>> apiProductvariantsImagesTemporaryPost({ 
-    List<VariantImageUploadItem>? images,
+    BuiltList<VariantImageUploadItem>? images,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -246,6 +255,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
+      _bodyData = <String, dynamic>{
+        if (images != null) r'Images': encodeCollectionQueryParameter<VariantImageUploadItem>(_serializers, images, const FullType(BuiltList, [FullType(VariantImageUploadItem)]), format: ListFormat.csv,),
+      };
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -271,8 +283,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse, BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(rawData, 'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse),
+      ) as BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -339,7 +354,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     );
 
     final _queryParameters = <String, dynamic>{
-      if (productId != null) r'productId': productId,
+      if (productId != null) r'productId': encodeQueryParameter(_serializers, productId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -354,8 +369,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     BaseResponseOfListOfVariantLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfVariantLookupItem, BaseResponseOfListOfVariantLookupItem>(rawData, 'BaseResponseOfListOfVariantLookupItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfVariantLookupItem),
+      ) as BaseResponseOfListOfVariantLookupItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -425,7 +443,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfVariant
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createVariantRequest);
+      const _type = FullType(CreateVariantRequest);
+      _bodyData = _serializers.serialize(createVariantRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -450,8 +470,11 @@ _bodyData=jsonEncode(createVariantRequest);
     BaseResponseOfBulkActionResultOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfstring, BaseResponseOfBulkActionResultOfstring>(rawData, 'BaseResponseOfBulkActionResultOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBulkActionResultOfstring),
+      ) as BaseResponseOfBulkActionResultOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -498,7 +521,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/productvariants/{variantId}'.replaceAll('{' r'variantId' '}', encodeQueryParameter(_serializers, variantId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -528,8 +551,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -576,7 +602,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/productvariants/{variantId}'.replaceAll('{' r'variantId' '}', encodeQueryParameter(_serializers, variantId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -606,8 +632,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfProductVariantResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfProductVariantResponse, BaseResponseOfProductVariantResponse>(rawData, 'BaseResponseOfProductVariantResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfProductVariantResponse),
+      ) as BaseResponseOfProductVariantResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -654,7 +683,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductVarian
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}/images'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/productvariants/{variantId}/images'.replaceAll('{' r'variantId' '}', encodeQueryParameter(_serializers, variantId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -684,8 +713,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductVarian
     BaseResponseOfListOfMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaResponse, BaseResponseOfListOfMediaResponse>(rawData, 'BaseResponseOfListOfMediaResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfMediaResponse),
+      ) as BaseResponseOfListOfMediaResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -732,7 +764,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaRe
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}/images/primary'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/productvariants/{variantId}/images/primary'.replaceAll('{' r'variantId' '}', encodeQueryParameter(_serializers, variantId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -762,8 +794,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaRe
     BaseResponseOfMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse, BaseResponseOfMediaResponse>(rawData, 'BaseResponseOfMediaResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfMediaResponse),
+      ) as BaseResponseOfMediaResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -812,7 +847,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/productvariants/{variantId}'.replaceAll('{' r'variantId' '}', encodeQueryParameter(_serializers, variantId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -835,7 +870,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateVariantRequest);
+      const _type = FullType(UpdateVariantRequest);
+      _bodyData = _serializers.serialize(updateVariantRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -860,8 +897,11 @@ _bodyData=jsonEncode(updateVariantRequest);
     BaseResponseOfBulkActionResultOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfstring, BaseResponseOfBulkActionResultOfstring>(rawData, 'BaseResponseOfBulkActionResultOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBulkActionResultOfstring),
+      ) as BaseResponseOfBulkActionResultOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

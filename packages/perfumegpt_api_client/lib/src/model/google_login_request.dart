@@ -3,56 +3,104 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'google_login_request.g.dart';
 
+/// GoogleLoginRequest
+///
+/// Properties:
+/// * [idToken] 
+@BuiltValue()
+abstract class GoogleLoginRequest implements Built<GoogleLoginRequest, GoogleLoginRequestBuilder> {
+  @BuiltValueField(wireName: r'idToken')
+  String get idToken;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class GoogleLoginRequest {
-  /// Returns a new [GoogleLoginRequest] instance.
-  GoogleLoginRequest({
+  GoogleLoginRequest._();
 
-    required  this.idToken,
-  });
+  factory GoogleLoginRequest([void updates(GoogleLoginRequestBuilder b)]) = _$GoogleLoginRequest;
 
-  @JsonKey(
-    
-    name: r'idToken',
-    required: true,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(GoogleLoginRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<GoogleLoginRequest> get serializer => _$GoogleLoginRequestSerializer();
+}
 
-  final String idToken;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is GoogleLoginRequest &&
-      other.idToken == idToken;
-
-    @override
-    int get hashCode =>
-        idToken.hashCode;
-
-  factory GoogleLoginRequest.fromJson(Map<String, dynamic> json) => _$GoogleLoginRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$GoogleLoginRequestToJson(this);
+class _$GoogleLoginRequestSerializer implements PrimitiveSerializer<GoogleLoginRequest> {
+  @override
+  final Iterable<Type> types = const [GoogleLoginRequest, _$GoogleLoginRequest];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'GoogleLoginRequest';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    GoogleLoginRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'idToken';
+    yield serializers.serialize(
+      object.idToken,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    GoogleLoginRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required GoogleLoginRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'idToken':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.idToken = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  GoogleLoginRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GoogleLoginRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -3,241 +3,245 @@
 part of 'import_ticket_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$ImportTicketResponseCWProxy {
-  ImportTicketResponse id(String? id);
+class _$ImportTicketResponse extends ImportTicketResponse {
+  @override
+  final String? id;
+  @override
+  final String createdByName;
+  @override
+  final String? verifiedByName;
+  @override
+  final int? supplierId;
+  @override
+  final String supplierName;
+  @override
+  final DateTime? expectedArrivalDate;
+  @override
+  final DateTime? actualImportDate;
+  @override
+  final num? totalCost;
+  @override
+  final ImportStatus? status;
+  @override
+  final DateTime? createdAt;
+  @override
+  final BuiltList<ImportDetailResponse> importDetails;
 
-  ImportTicketResponse createdByName(String? createdByName);
+  factory _$ImportTicketResponse([
+    void Function(ImportTicketResponseBuilder)? updates,
+  ]) => (ImportTicketResponseBuilder()..update(updates))._build();
 
-  ImportTicketResponse verifiedByName(String? verifiedByName);
-
-  ImportTicketResponse supplierId(int? supplierId);
-
-  ImportTicketResponse supplierName(String? supplierName);
-
-  ImportTicketResponse expectedArrivalDate(DateTime? expectedArrivalDate);
-
-  ImportTicketResponse actualImportDate(DateTime? actualImportDate);
-
-  ImportTicketResponse totalCost(num? totalCost);
-
-  ImportTicketResponse status(ImportStatus? status);
-
-  ImportTicketResponse createdAt(DateTime? createdAt);
-
-  ImportTicketResponse importDetails(List<ImportDetailResponse>? importDetails);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportTicketResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ImportTicketResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ImportTicketResponse call({
-    String? id,
-    String? createdByName,
-    String? verifiedByName,
-    int? supplierId,
-    String? supplierName,
-    DateTime? expectedArrivalDate,
-    DateTime? actualImportDate,
-    num? totalCost,
-    ImportStatus? status,
-    DateTime? createdAt,
-    List<ImportDetailResponse>? importDetails,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfImportTicketResponse.copyWith(...)` or call `instanceOfImportTicketResponse.copyWith.fieldName(value)` for a single field.
-class _$ImportTicketResponseCWProxyImpl
-    implements _$ImportTicketResponseCWProxy {
-  const _$ImportTicketResponseCWProxyImpl(this._value);
-
-  final ImportTicketResponse _value;
+  _$ImportTicketResponse._({
+    this.id,
+    required this.createdByName,
+    this.verifiedByName,
+    this.supplierId,
+    required this.supplierName,
+    this.expectedArrivalDate,
+    this.actualImportDate,
+    this.totalCost,
+    this.status,
+    this.createdAt,
+    required this.importDetails,
+  }) : super._();
+  @override
+  ImportTicketResponse rebuild(
+    void Function(ImportTicketResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  ImportTicketResponse id(String? id) => call(id: id);
+  ImportTicketResponseBuilder toBuilder() =>
+      ImportTicketResponseBuilder()..replace(this);
 
   @override
-  ImportTicketResponse createdByName(String? createdByName) =>
-      call(createdByName: createdByName);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ImportTicketResponse &&
+        id == other.id &&
+        createdByName == other.createdByName &&
+        verifiedByName == other.verifiedByName &&
+        supplierId == other.supplierId &&
+        supplierName == other.supplierName &&
+        expectedArrivalDate == other.expectedArrivalDate &&
+        actualImportDate == other.actualImportDate &&
+        totalCost == other.totalCost &&
+        status == other.status &&
+        createdAt == other.createdAt &&
+        importDetails == other.importDetails;
+  }
 
   @override
-  ImportTicketResponse verifiedByName(String? verifiedByName) =>
-      call(verifiedByName: verifiedByName);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, createdByName.hashCode);
+    _$hash = $jc(_$hash, verifiedByName.hashCode);
+    _$hash = $jc(_$hash, supplierId.hashCode);
+    _$hash = $jc(_$hash, supplierName.hashCode);
+    _$hash = $jc(_$hash, expectedArrivalDate.hashCode);
+    _$hash = $jc(_$hash, actualImportDate.hashCode);
+    _$hash = $jc(_$hash, totalCost.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, importDetails.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  ImportTicketResponse supplierId(int? supplierId) =>
-      call(supplierId: supplierId);
-
-  @override
-  ImportTicketResponse supplierName(String? supplierName) =>
-      call(supplierName: supplierName);
-
-  @override
-  ImportTicketResponse expectedArrivalDate(DateTime? expectedArrivalDate) =>
-      call(expectedArrivalDate: expectedArrivalDate);
-
-  @override
-  ImportTicketResponse actualImportDate(DateTime? actualImportDate) =>
-      call(actualImportDate: actualImportDate);
-
-  @override
-  ImportTicketResponse totalCost(num? totalCost) => call(totalCost: totalCost);
-
-  @override
-  ImportTicketResponse status(ImportStatus? status) => call(status: status);
-
-  @override
-  ImportTicketResponse createdAt(DateTime? createdAt) =>
-      call(createdAt: createdAt);
-
-  @override
-  ImportTicketResponse importDetails(
-    List<ImportDetailResponse>? importDetails,
-  ) => call(importDetails: importDetails);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportTicketResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ImportTicketResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ImportTicketResponse call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? createdByName = const $CopyWithPlaceholder(),
-    Object? verifiedByName = const $CopyWithPlaceholder(),
-    Object? supplierId = const $CopyWithPlaceholder(),
-    Object? supplierName = const $CopyWithPlaceholder(),
-    Object? expectedArrivalDate = const $CopyWithPlaceholder(),
-    Object? actualImportDate = const $CopyWithPlaceholder(),
-    Object? totalCost = const $CopyWithPlaceholder(),
-    Object? status = const $CopyWithPlaceholder(),
-    Object? createdAt = const $CopyWithPlaceholder(),
-    Object? importDetails = const $CopyWithPlaceholder(),
-  }) {
-    return ImportTicketResponse(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      createdByName: createdByName == const $CopyWithPlaceholder()
-          ? _value.createdByName
-          // ignore: cast_nullable_to_non_nullable
-          : createdByName as String?,
-      verifiedByName: verifiedByName == const $CopyWithPlaceholder()
-          ? _value.verifiedByName
-          // ignore: cast_nullable_to_non_nullable
-          : verifiedByName as String?,
-      supplierId: supplierId == const $CopyWithPlaceholder()
-          ? _value.supplierId
-          // ignore: cast_nullable_to_non_nullable
-          : supplierId as int?,
-      supplierName: supplierName == const $CopyWithPlaceholder()
-          ? _value.supplierName
-          // ignore: cast_nullable_to_non_nullable
-          : supplierName as String?,
-      expectedArrivalDate: expectedArrivalDate == const $CopyWithPlaceholder()
-          ? _value.expectedArrivalDate
-          // ignore: cast_nullable_to_non_nullable
-          : expectedArrivalDate as DateTime?,
-      actualImportDate: actualImportDate == const $CopyWithPlaceholder()
-          ? _value.actualImportDate
-          // ignore: cast_nullable_to_non_nullable
-          : actualImportDate as DateTime?,
-      totalCost: totalCost == const $CopyWithPlaceholder()
-          ? _value.totalCost
-          // ignore: cast_nullable_to_non_nullable
-          : totalCost as num?,
-      status: status == const $CopyWithPlaceholder()
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as ImportStatus?,
-      createdAt: createdAt == const $CopyWithPlaceholder()
-          ? _value.createdAt
-          // ignore: cast_nullable_to_non_nullable
-          : createdAt as DateTime?,
-      importDetails: importDetails == const $CopyWithPlaceholder()
-          ? _value.importDetails
-          // ignore: cast_nullable_to_non_nullable
-          : importDetails as List<ImportDetailResponse>?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'ImportTicketResponse')
+          ..add('id', id)
+          ..add('createdByName', createdByName)
+          ..add('verifiedByName', verifiedByName)
+          ..add('supplierId', supplierId)
+          ..add('supplierName', supplierName)
+          ..add('expectedArrivalDate', expectedArrivalDate)
+          ..add('actualImportDate', actualImportDate)
+          ..add('totalCost', totalCost)
+          ..add('status', status)
+          ..add('createdAt', createdAt)
+          ..add('importDetails', importDetails))
+        .toString();
   }
 }
 
-extension $ImportTicketResponseCopyWith on ImportTicketResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfImportTicketResponse.copyWith(...)` or `instanceOfImportTicketResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$ImportTicketResponseCWProxy get copyWith =>
-      _$ImportTicketResponseCWProxyImpl(this);
+class ImportTicketResponseBuilder
+    implements Builder<ImportTicketResponse, ImportTicketResponseBuilder> {
+  _$ImportTicketResponse? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _createdByName;
+  String? get createdByName => _$this._createdByName;
+  set createdByName(String? createdByName) =>
+      _$this._createdByName = createdByName;
+
+  String? _verifiedByName;
+  String? get verifiedByName => _$this._verifiedByName;
+  set verifiedByName(String? verifiedByName) =>
+      _$this._verifiedByName = verifiedByName;
+
+  int? _supplierId;
+  int? get supplierId => _$this._supplierId;
+  set supplierId(int? supplierId) => _$this._supplierId = supplierId;
+
+  String? _supplierName;
+  String? get supplierName => _$this._supplierName;
+  set supplierName(String? supplierName) => _$this._supplierName = supplierName;
+
+  DateTime? _expectedArrivalDate;
+  DateTime? get expectedArrivalDate => _$this._expectedArrivalDate;
+  set expectedArrivalDate(DateTime? expectedArrivalDate) =>
+      _$this._expectedArrivalDate = expectedArrivalDate;
+
+  DateTime? _actualImportDate;
+  DateTime? get actualImportDate => _$this._actualImportDate;
+  set actualImportDate(DateTime? actualImportDate) =>
+      _$this._actualImportDate = actualImportDate;
+
+  num? _totalCost;
+  num? get totalCost => _$this._totalCost;
+  set totalCost(num? totalCost) => _$this._totalCost = totalCost;
+
+  ImportStatus? _status;
+  ImportStatus? get status => _$this._status;
+  set status(ImportStatus? status) => _$this._status = status;
+
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  ListBuilder<ImportDetailResponse>? _importDetails;
+  ListBuilder<ImportDetailResponse> get importDetails =>
+      _$this._importDetails ??= ListBuilder<ImportDetailResponse>();
+  set importDetails(ListBuilder<ImportDetailResponse>? importDetails) =>
+      _$this._importDetails = importDetails;
+
+  ImportTicketResponseBuilder() {
+    ImportTicketResponse._defaults(this);
+  }
+
+  ImportTicketResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _createdByName = $v.createdByName;
+      _verifiedByName = $v.verifiedByName;
+      _supplierId = $v.supplierId;
+      _supplierName = $v.supplierName;
+      _expectedArrivalDate = $v.expectedArrivalDate;
+      _actualImportDate = $v.actualImportDate;
+      _totalCost = $v.totalCost;
+      _status = $v.status;
+      _createdAt = $v.createdAt;
+      _importDetails = $v.importDetails.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ImportTicketResponse other) {
+    _$v = other as _$ImportTicketResponse;
+  }
+
+  @override
+  void update(void Function(ImportTicketResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ImportTicketResponse build() => _build();
+
+  _$ImportTicketResponse _build() {
+    _$ImportTicketResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$ImportTicketResponse._(
+            id: id,
+            createdByName: BuiltValueNullFieldError.checkNotNull(
+              createdByName,
+              r'ImportTicketResponse',
+              'createdByName',
+            ),
+            verifiedByName: verifiedByName,
+            supplierId: supplierId,
+            supplierName: BuiltValueNullFieldError.checkNotNull(
+              supplierName,
+              r'ImportTicketResponse',
+              'supplierName',
+            ),
+            expectedArrivalDate: expectedArrivalDate,
+            actualImportDate: actualImportDate,
+            totalCost: totalCost,
+            status: status,
+            createdAt: createdAt,
+            importDetails: importDetails.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'importDetails';
+        importDetails.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'ImportTicketResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-ImportTicketResponse _$ImportTicketResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('ImportTicketResponse', json, ($checkedConvert) {
-  final val = ImportTicketResponse(
-    id: $checkedConvert('id', (v) => v as String?),
-    createdByName: $checkedConvert('createdByName', (v) => v as String?),
-    verifiedByName: $checkedConvert('verifiedByName', (v) => v as String?),
-    supplierId: $checkedConvert('supplierId', (v) => (v as num?)?.toInt()),
-    supplierName: $checkedConvert('supplierName', (v) => v as String?),
-    expectedArrivalDate: $checkedConvert(
-      'expectedArrivalDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    actualImportDate: $checkedConvert(
-      'actualImportDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    totalCost: $checkedConvert('totalCost', (v) => v as num?),
-    status: $checkedConvert(
-      'status',
-      (v) => $enumDecodeNullable(_$ImportStatusEnumMap, v),
-    ),
-    createdAt: $checkedConvert(
-      'createdAt',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    importDetails: $checkedConvert(
-      'importDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => ImportDetailResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$ImportTicketResponseToJson(
-  ImportTicketResponse instance,
-) => <String, dynamic>{
-  'id': ?instance.id,
-  'createdByName': ?instance.createdByName,
-  'verifiedByName': ?instance.verifiedByName,
-  'supplierId': ?instance.supplierId,
-  'supplierName': ?instance.supplierName,
-  'expectedArrivalDate': ?instance.expectedArrivalDate?.toIso8601String(),
-  'actualImportDate': ?instance.actualImportDate?.toIso8601String(),
-  'totalCost': ?instance.totalCost,
-  'status': ?_$ImportStatusEnumMap[instance.status],
-  'createdAt': ?instance.createdAt?.toIso8601String(),
-  'importDetails': ?instance.importDetails?.map((e) => e.toJson()).toList(),
-};
-
-const _$ImportStatusEnumMap = {
-  ImportStatus.pending: 'Pending',
-  ImportStatus.inProgress: 'InProgress',
-  ImportStatus.completed: 'Completed',
-  ImportStatus.cancelled: 'Cancelled',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

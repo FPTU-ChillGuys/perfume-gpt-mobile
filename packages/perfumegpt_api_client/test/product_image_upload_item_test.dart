@@ -3,12 +3,11 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductImageUploadItem
 void main() {
-  final ProductImageUploadItem? instance = /* ProductImageUploadItem(...) */
-      null;
-  // TODO add properties to the entity
+  final instance = ProductImageUploadItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ProductImageUploadItem, () {
-    // MultipartFile imageFile
+    // Uint8List imageFile
     test('to test the property `imageFile`', () async {
       // TODO
     });
@@ -27,5 +26,6 @@ void main() {
     test('to test the property `isPrimary`', () async {
       // TODO
     });
+
   });
 }

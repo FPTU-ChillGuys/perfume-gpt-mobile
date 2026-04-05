@@ -10,16 +10,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **userId** | **String** |  | [optional] 
-**userFullName** | **String** |  | [optional] 
+**userFullName** | **String** |  | 
 **userProfilePictureUrl** | **String** |  | [optional] 
 **orderDetailId** | **String** |  | [optional] 
 **variantId** | **String** |  | [optional] 
-**variantName** | **String** |  | [optional] 
+**variantName** | **String** |  | 
 **rating** | **int** |  | [optional] 
-**comment** | **String** |  | [optional] 
+**comment** | **String** |  | 
 **staffFeedbackComment** | **String** |  | [optional] 
 **staffFeedbackAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**images** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | [optional] 
+**images** | [**BuiltList&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

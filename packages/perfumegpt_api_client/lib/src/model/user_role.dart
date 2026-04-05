@@ -3,21 +3,34 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
+part 'user_role.g.dart';
 
-enum UserRole {
-      @JsonValue(r'admin')
-      admin(r'admin'),
-      @JsonValue(r'user')
-      user(r'user'),
-      @JsonValue(r'staff')
-      staff(r'staff');
+class UserRole extends EnumClass {
 
-  const UserRole(this.value);
+  @BuiltValueEnumConst(wireName: r'admin')
+  static const UserRole admin = _$admin;
+  @BuiltValueEnumConst(wireName: r'user')
+  static const UserRole user = _$user;
+  @BuiltValueEnumConst(wireName: r'staff')
+  static const UserRole staff = _$staff;
 
-  final String value;
+  static Serializer<UserRole> get serializer => _$userRoleSerializer;
 
-  @override
-  String toString() => value;
+  const UserRole._(String name): super(name);
+
+  static BuiltSet<UserRole> get values => _$values;
+  static UserRole valueOf(String name) => _$valueOf(name);
 }
+
+/// Optionally, enum_class can generate a mixin to go with your enum for use
+/// with Angular. It exposes your enum constants as getters. So, if you mix it
+/// in to your Dart component class, the values become available to the
+/// corresponding Angular template.
+///
+/// Trigger mixin generation by writing a line like this one next to your enum.
+abstract class UserRoleMixin = Object with _$UserRoleMixin;
+

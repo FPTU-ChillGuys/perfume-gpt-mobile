@@ -3,9 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ConcentrationLookupDto
 void main() {
-  final ConcentrationLookupDto? instance = /* ConcentrationLookupDto(...) */
-      null;
-  // TODO add properties to the entity
+  final instance = ConcentrationLookupDtoBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ConcentrationLookupDto, () {
     // int id
@@ -17,5 +16,6 @@ void main() {
     test('to test the property `name`', () async {
       // TODO
     });
+
   });
 }

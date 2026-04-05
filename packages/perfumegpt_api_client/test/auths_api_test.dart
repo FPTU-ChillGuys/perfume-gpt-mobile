@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for AuthsApi
 void main() {
   final instance = PerfumegptApiClient().getAuthsApi();
@@ -13,6 +14,11 @@ void main() {
 
     //Future<BaseResponseOfTokenResponse> apiAuthsApiTokenPost() async
     test('test apiAuthsApiTokenPost', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfstring> apiAuthsForgotPasswordPost(ForgotPasswordRequest forgotPasswordRequest) async
+    test('test apiAuthsForgotPasswordPost', () async {
       // TODO
     });
 
@@ -31,9 +37,15 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfstring> apiAuthsResetPasswordPost(ResetPasswordRequest resetPasswordRequest) async
+    test('test apiAuthsResetPasswordPost', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiAuthsVerifyEmailGet({ String email, String token }) async
     test('test apiAuthsVerifyEmailGet', () async {
       // TODO
     });
+
   });
 }

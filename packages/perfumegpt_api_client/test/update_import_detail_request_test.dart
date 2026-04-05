@@ -3,9 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateImportDetailRequest
 void main() {
-  final UpdateImportDetailRequest?
-  instance = /* UpdateImportDetailRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = UpdateImportDetailRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(UpdateImportDetailRequest, () {
     // String id
@@ -18,8 +17,8 @@ void main() {
       // TODO
     });
 
-    // int quantity
-    test('to test the property `quantity`', () async {
+    // int expectedQuantity
+    test('to test the property `expectedQuantity`', () async {
       // TODO
     });
 
@@ -27,5 +26,6 @@ void main() {
     test('to test the property `unitPrice`', () async {
       // TODO
     });
+
   });
 }

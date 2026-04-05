@@ -3,13 +3,14 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for GetCartItemsResponse
 void main() {
-  final GetCartItemsResponse? instance = /* GetCartItemsResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = GetCartItemsResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(GetCartItemsResponse, () {
-    // List<GetCartItemResponse> items
+    // BuiltList<GetCartItemResponse> items
     test('to test the property `items`', () async {
       // TODO
     });
+
   });
 }

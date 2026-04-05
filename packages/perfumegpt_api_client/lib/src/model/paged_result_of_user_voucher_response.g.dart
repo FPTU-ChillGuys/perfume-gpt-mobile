@@ -3,184 +3,202 @@
 part of 'paged_result_of_user_voucher_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$PagedResultOfUserVoucherResponseCWProxy {
-  PagedResultOfUserVoucherResponse items(List<UserVoucherResponse> items);
+class _$PagedResultOfUserVoucherResponse
+    extends PagedResultOfUserVoucherResponse {
+  @override
+  final BuiltList<UserVoucherResponse> items;
+  @override
+  final int pageNumber;
+  @override
+  final int pageSize;
+  @override
+  final int totalCount;
+  @override
+  final int? totalPages;
+  @override
+  final bool? hasPreviousPage;
+  @override
+  final bool? hasNextPage;
 
-  PagedResultOfUserVoucherResponse pageNumber(int pageNumber);
+  factory _$PagedResultOfUserVoucherResponse([
+    void Function(PagedResultOfUserVoucherResponseBuilder)? updates,
+  ]) => (PagedResultOfUserVoucherResponseBuilder()..update(updates))._build();
 
-  PagedResultOfUserVoucherResponse pageSize(int pageSize);
-
-  PagedResultOfUserVoucherResponse totalCount(int totalCount);
-
-  PagedResultOfUserVoucherResponse totalPages(int totalPages);
-
-  PagedResultOfUserVoucherResponse hasPreviousPage(bool? hasPreviousPage);
-
-  PagedResultOfUserVoucherResponse hasNextPage(bool? hasNextPage);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfUserVoucherResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PagedResultOfUserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PagedResultOfUserVoucherResponse call({
-    List<UserVoucherResponse> items,
-    int pageNumber,
-    int pageSize,
-    int totalCount,
-    int totalPages,
-    bool? hasPreviousPage,
-    bool? hasNextPage,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfPagedResultOfUserVoucherResponse.copyWith(...)` or call `instanceOfPagedResultOfUserVoucherResponse.copyWith.fieldName(value)` for a single field.
-class _$PagedResultOfUserVoucherResponseCWProxyImpl
-    implements _$PagedResultOfUserVoucherResponseCWProxy {
-  const _$PagedResultOfUserVoucherResponseCWProxyImpl(this._value);
-
-  final PagedResultOfUserVoucherResponse _value;
+  _$PagedResultOfUserVoucherResponse._({
+    required this.items,
+    required this.pageNumber,
+    required this.pageSize,
+    required this.totalCount,
+    this.totalPages,
+    this.hasPreviousPage,
+    this.hasNextPage,
+  }) : super._();
+  @override
+  PagedResultOfUserVoucherResponse rebuild(
+    void Function(PagedResultOfUserVoucherResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  PagedResultOfUserVoucherResponse items(List<UserVoucherResponse> items) =>
-      call(items: items);
+  PagedResultOfUserVoucherResponseBuilder toBuilder() =>
+      PagedResultOfUserVoucherResponseBuilder()..replace(this);
 
   @override
-  PagedResultOfUserVoucherResponse pageNumber(int pageNumber) =>
-      call(pageNumber: pageNumber);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PagedResultOfUserVoucherResponse &&
+        items == other.items &&
+        pageNumber == other.pageNumber &&
+        pageSize == other.pageSize &&
+        totalCount == other.totalCount &&
+        totalPages == other.totalPages &&
+        hasPreviousPage == other.hasPreviousPage &&
+        hasNextPage == other.hasNextPage;
+  }
 
   @override
-  PagedResultOfUserVoucherResponse pageSize(int pageSize) =>
-      call(pageSize: pageSize);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, items.hashCode);
+    _$hash = $jc(_$hash, pageNumber.hashCode);
+    _$hash = $jc(_$hash, pageSize.hashCode);
+    _$hash = $jc(_$hash, totalCount.hashCode);
+    _$hash = $jc(_$hash, totalPages.hashCode);
+    _$hash = $jc(_$hash, hasPreviousPage.hashCode);
+    _$hash = $jc(_$hash, hasNextPage.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  PagedResultOfUserVoucherResponse totalCount(int totalCount) =>
-      call(totalCount: totalCount);
-
-  @override
-  PagedResultOfUserVoucherResponse totalPages(int totalPages) =>
-      call(totalPages: totalPages);
-
-  @override
-  PagedResultOfUserVoucherResponse hasPreviousPage(bool? hasPreviousPage) =>
-      call(hasPreviousPage: hasPreviousPage);
-
-  @override
-  PagedResultOfUserVoucherResponse hasNextPage(bool? hasNextPage) =>
-      call(hasNextPage: hasNextPage);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfUserVoucherResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PagedResultOfUserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PagedResultOfUserVoucherResponse call({
-    Object? items = const $CopyWithPlaceholder(),
-    Object? pageNumber = const $CopyWithPlaceholder(),
-    Object? pageSize = const $CopyWithPlaceholder(),
-    Object? totalCount = const $CopyWithPlaceholder(),
-    Object? totalPages = const $CopyWithPlaceholder(),
-    Object? hasPreviousPage = const $CopyWithPlaceholder(),
-    Object? hasNextPage = const $CopyWithPlaceholder(),
-  }) {
-    return PagedResultOfUserVoucherResponse(
-      items: items == const $CopyWithPlaceholder() || items == null
-          ? _value.items
-          // ignore: cast_nullable_to_non_nullable
-          : items as List<UserVoucherResponse>,
-      pageNumber:
-          pageNumber == const $CopyWithPlaceholder() || pageNumber == null
-          ? _value.pageNumber
-          // ignore: cast_nullable_to_non_nullable
-          : pageNumber as int,
-      pageSize: pageSize == const $CopyWithPlaceholder() || pageSize == null
-          ? _value.pageSize
-          // ignore: cast_nullable_to_non_nullable
-          : pageSize as int,
-      totalCount:
-          totalCount == const $CopyWithPlaceholder() || totalCount == null
-          ? _value.totalCount
-          // ignore: cast_nullable_to_non_nullable
-          : totalCount as int,
-      totalPages:
-          totalPages == const $CopyWithPlaceholder() || totalPages == null
-          ? _value.totalPages
-          // ignore: cast_nullable_to_non_nullable
-          : totalPages as int,
-      hasPreviousPage: hasPreviousPage == const $CopyWithPlaceholder()
-          ? _value.hasPreviousPage
-          // ignore: cast_nullable_to_non_nullable
-          : hasPreviousPage as bool?,
-      hasNextPage: hasNextPage == const $CopyWithPlaceholder()
-          ? _value.hasNextPage
-          // ignore: cast_nullable_to_non_nullable
-          : hasNextPage as bool?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'PagedResultOfUserVoucherResponse')
+          ..add('items', items)
+          ..add('pageNumber', pageNumber)
+          ..add('pageSize', pageSize)
+          ..add('totalCount', totalCount)
+          ..add('totalPages', totalPages)
+          ..add('hasPreviousPage', hasPreviousPage)
+          ..add('hasNextPage', hasNextPage))
+        .toString();
   }
 }
 
-extension $PagedResultOfUserVoucherResponseCopyWith
-    on PagedResultOfUserVoucherResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfPagedResultOfUserVoucherResponse.copyWith(...)` or `instanceOfPagedResultOfUserVoucherResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$PagedResultOfUserVoucherResponseCWProxy get copyWith =>
-      _$PagedResultOfUserVoucherResponseCWProxyImpl(this);
+class PagedResultOfUserVoucherResponseBuilder
+    implements
+        Builder<
+          PagedResultOfUserVoucherResponse,
+          PagedResultOfUserVoucherResponseBuilder
+        > {
+  _$PagedResultOfUserVoucherResponse? _$v;
+
+  ListBuilder<UserVoucherResponse>? _items;
+  ListBuilder<UserVoucherResponse> get items =>
+      _$this._items ??= ListBuilder<UserVoucherResponse>();
+  set items(ListBuilder<UserVoucherResponse>? items) => _$this._items = items;
+
+  int? _pageNumber;
+  int? get pageNumber => _$this._pageNumber;
+  set pageNumber(int? pageNumber) => _$this._pageNumber = pageNumber;
+
+  int? _pageSize;
+  int? get pageSize => _$this._pageSize;
+  set pageSize(int? pageSize) => _$this._pageSize = pageSize;
+
+  int? _totalCount;
+  int? get totalCount => _$this._totalCount;
+  set totalCount(int? totalCount) => _$this._totalCount = totalCount;
+
+  int? _totalPages;
+  int? get totalPages => _$this._totalPages;
+  set totalPages(int? totalPages) => _$this._totalPages = totalPages;
+
+  bool? _hasPreviousPage;
+  bool? get hasPreviousPage => _$this._hasPreviousPage;
+  set hasPreviousPage(bool? hasPreviousPage) =>
+      _$this._hasPreviousPage = hasPreviousPage;
+
+  bool? _hasNextPage;
+  bool? get hasNextPage => _$this._hasNextPage;
+  set hasNextPage(bool? hasNextPage) => _$this._hasNextPage = hasNextPage;
+
+  PagedResultOfUserVoucherResponseBuilder() {
+    PagedResultOfUserVoucherResponse._defaults(this);
+  }
+
+  PagedResultOfUserVoucherResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _items = $v.items.toBuilder();
+      _pageNumber = $v.pageNumber;
+      _pageSize = $v.pageSize;
+      _totalCount = $v.totalCount;
+      _totalPages = $v.totalPages;
+      _hasPreviousPage = $v.hasPreviousPage;
+      _hasNextPage = $v.hasNextPage;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PagedResultOfUserVoucherResponse other) {
+    _$v = other as _$PagedResultOfUserVoucherResponse;
+  }
+
+  @override
+  void update(void Function(PagedResultOfUserVoucherResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  PagedResultOfUserVoucherResponse build() => _build();
+
+  _$PagedResultOfUserVoucherResponse _build() {
+    _$PagedResultOfUserVoucherResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$PagedResultOfUserVoucherResponse._(
+            items: items.build(),
+            pageNumber: BuiltValueNullFieldError.checkNotNull(
+              pageNumber,
+              r'PagedResultOfUserVoucherResponse',
+              'pageNumber',
+            ),
+            pageSize: BuiltValueNullFieldError.checkNotNull(
+              pageSize,
+              r'PagedResultOfUserVoucherResponse',
+              'pageSize',
+            ),
+            totalCount: BuiltValueNullFieldError.checkNotNull(
+              totalCount,
+              r'PagedResultOfUserVoucherResponse',
+              'totalCount',
+            ),
+            totalPages: totalPages,
+            hasPreviousPage: hasPreviousPage,
+            hasNextPage: hasNextPage,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'items';
+        items.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'PagedResultOfUserVoucherResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-PagedResultOfUserVoucherResponse _$PagedResultOfUserVoucherResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('PagedResultOfUserVoucherResponse', json, (
-  $checkedConvert,
-) {
-  $checkKeys(
-    json,
-    requiredKeys: const [
-      'items',
-      'pageNumber',
-      'pageSize',
-      'totalCount',
-      'totalPages',
-    ],
-  );
-  final val = PagedResultOfUserVoucherResponse(
-    items: $checkedConvert(
-      'items',
-      (v) => (v as List<dynamic>)
-          .map((e) => UserVoucherResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    pageNumber: $checkedConvert('pageNumber', (v) => (v as num).toInt()),
-    pageSize: $checkedConvert('pageSize', (v) => (v as num).toInt()),
-    totalCount: $checkedConvert('totalCount', (v) => (v as num).toInt()),
-    totalPages: $checkedConvert('totalPages', (v) => (v as num).toInt()),
-    hasPreviousPage: $checkedConvert('hasPreviousPage', (v) => v as bool?),
-    hasNextPage: $checkedConvert('hasNextPage', (v) => v as bool?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$PagedResultOfUserVoucherResponseToJson(
-  PagedResultOfUserVoucherResponse instance,
-) => <String, dynamic>{
-  'items': instance.items.map((e) => e.toJson()).toList(),
-  'pageNumber': instance.pageNumber,
-  'pageSize': instance.pageSize,
-  'totalCount': instance.totalCount,
-  'totalPages': instance.totalPages,
-  'hasPreviousPage': ?instance.hasPreviousPage,
-  'hasNextPage': ?instance.hasNextPage,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

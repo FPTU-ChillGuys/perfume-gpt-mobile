@@ -9,11 +9,12 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **orderId** | **String** |  | 
-**reason** | **String** |  | 
-**requestedRefundAmount** | **num** |  | [optional] 
+**reason** | [**ReturnOrderReason**](ReturnOrderReason.md) |  | 
+**returnItems** | [**BuiltList&lt;ReturnItemDto&gt;**](ReturnItemDto.md) |  | 
 **customerNote** | **String** |  | [optional] 
-**temporaryMediaIds** | **List&lt;String&gt;** |  | [optional] 
-**returnItems** | [**List&lt;CreateReturnRequestDetailDto&gt;**](CreateReturnRequestDetailDto.md) |  | 
+**savedAddressId** | **String** |  | [optional] 
+**recipient** | [**ContactAddressInformation**](ContactAddressInformation.md) |  | [optional] 
+**temporaryMediaIds** | **BuiltList&lt;String&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

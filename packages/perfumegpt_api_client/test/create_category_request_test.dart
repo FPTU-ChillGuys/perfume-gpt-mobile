@@ -3,13 +3,14 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateCategoryRequest
 void main() {
-  final CreateCategoryRequest? instance = /* CreateCategoryRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = CreateCategoryRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CreateCategoryRequest, () {
     // String name
     test('to test the property `name`', () async {
       // TODO
     });
+
   });
 }

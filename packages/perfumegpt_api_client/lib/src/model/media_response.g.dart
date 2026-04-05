@@ -3,156 +3,168 @@
 part of 'media_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$MediaResponseCWProxy {
-  MediaResponse id(String? id);
+class _$MediaResponse extends MediaResponse {
+  @override
+  final String? id;
+  @override
+  final String url;
+  @override
+  final String? altText;
+  @override
+  final int? displayOrder;
+  @override
+  final bool? isPrimary;
+  @override
+  final int? fileSize;
+  @override
+  final String? mimeType;
 
-  MediaResponse url(String? url);
+  factory _$MediaResponse([void Function(MediaResponseBuilder)? updates]) =>
+      (MediaResponseBuilder()..update(updates))._build();
 
-  MediaResponse altText(String? altText);
-
-  MediaResponse displayOrder(int? displayOrder);
-
-  MediaResponse isPrimary(bool? isPrimary);
-
-  MediaResponse fileSize(int? fileSize);
-
-  MediaResponse mimeType(String? mimeType);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `MediaResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// MediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  MediaResponse call({
-    String? id,
-    String? url,
-    String? altText,
-    int? displayOrder,
-    bool? isPrimary,
-    int? fileSize,
-    String? mimeType,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfMediaResponse.copyWith(...)` or call `instanceOfMediaResponse.copyWith.fieldName(value)` for a single field.
-class _$MediaResponseCWProxyImpl implements _$MediaResponseCWProxy {
-  const _$MediaResponseCWProxyImpl(this._value);
-
-  final MediaResponse _value;
+  _$MediaResponse._({
+    this.id,
+    required this.url,
+    this.altText,
+    this.displayOrder,
+    this.isPrimary,
+    this.fileSize,
+    this.mimeType,
+  }) : super._();
+  @override
+  MediaResponse rebuild(void Function(MediaResponseBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  MediaResponse id(String? id) => call(id: id);
+  MediaResponseBuilder toBuilder() => MediaResponseBuilder()..replace(this);
 
   @override
-  MediaResponse url(String? url) => call(url: url);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MediaResponse &&
+        id == other.id &&
+        url == other.url &&
+        altText == other.altText &&
+        displayOrder == other.displayOrder &&
+        isPrimary == other.isPrimary &&
+        fileSize == other.fileSize &&
+        mimeType == other.mimeType;
+  }
 
   @override
-  MediaResponse altText(String? altText) => call(altText: altText);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, url.hashCode);
+    _$hash = $jc(_$hash, altText.hashCode);
+    _$hash = $jc(_$hash, displayOrder.hashCode);
+    _$hash = $jc(_$hash, isPrimary.hashCode);
+    _$hash = $jc(_$hash, fileSize.hashCode);
+    _$hash = $jc(_$hash, mimeType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  MediaResponse displayOrder(int? displayOrder) =>
-      call(displayOrder: displayOrder);
-
-  @override
-  MediaResponse isPrimary(bool? isPrimary) => call(isPrimary: isPrimary);
-
-  @override
-  MediaResponse fileSize(int? fileSize) => call(fileSize: fileSize);
-
-  @override
-  MediaResponse mimeType(String? mimeType) => call(mimeType: mimeType);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `MediaResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// MediaResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  MediaResponse call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? url = const $CopyWithPlaceholder(),
-    Object? altText = const $CopyWithPlaceholder(),
-    Object? displayOrder = const $CopyWithPlaceholder(),
-    Object? isPrimary = const $CopyWithPlaceholder(),
-    Object? fileSize = const $CopyWithPlaceholder(),
-    Object? mimeType = const $CopyWithPlaceholder(),
-  }) {
-    return MediaResponse(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      url: url == const $CopyWithPlaceholder()
-          ? _value.url
-          // ignore: cast_nullable_to_non_nullable
-          : url as String?,
-      altText: altText == const $CopyWithPlaceholder()
-          ? _value.altText
-          // ignore: cast_nullable_to_non_nullable
-          : altText as String?,
-      displayOrder: displayOrder == const $CopyWithPlaceholder()
-          ? _value.displayOrder
-          // ignore: cast_nullable_to_non_nullable
-          : displayOrder as int?,
-      isPrimary: isPrimary == const $CopyWithPlaceholder()
-          ? _value.isPrimary
-          // ignore: cast_nullable_to_non_nullable
-          : isPrimary as bool?,
-      fileSize: fileSize == const $CopyWithPlaceholder()
-          ? _value.fileSize
-          // ignore: cast_nullable_to_non_nullable
-          : fileSize as int?,
-      mimeType: mimeType == const $CopyWithPlaceholder()
-          ? _value.mimeType
-          // ignore: cast_nullable_to_non_nullable
-          : mimeType as String?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'MediaResponse')
+          ..add('id', id)
+          ..add('url', url)
+          ..add('altText', altText)
+          ..add('displayOrder', displayOrder)
+          ..add('isPrimary', isPrimary)
+          ..add('fileSize', fileSize)
+          ..add('mimeType', mimeType))
+        .toString();
   }
 }
 
-extension $MediaResponseCopyWith on MediaResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfMediaResponse.copyWith(...)` or `instanceOfMediaResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$MediaResponseCWProxy get copyWith => _$MediaResponseCWProxyImpl(this);
+class MediaResponseBuilder
+    implements Builder<MediaResponse, MediaResponseBuilder> {
+  _$MediaResponse? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _url;
+  String? get url => _$this._url;
+  set url(String? url) => _$this._url = url;
+
+  String? _altText;
+  String? get altText => _$this._altText;
+  set altText(String? altText) => _$this._altText = altText;
+
+  int? _displayOrder;
+  int? get displayOrder => _$this._displayOrder;
+  set displayOrder(int? displayOrder) => _$this._displayOrder = displayOrder;
+
+  bool? _isPrimary;
+  bool? get isPrimary => _$this._isPrimary;
+  set isPrimary(bool? isPrimary) => _$this._isPrimary = isPrimary;
+
+  int? _fileSize;
+  int? get fileSize => _$this._fileSize;
+  set fileSize(int? fileSize) => _$this._fileSize = fileSize;
+
+  String? _mimeType;
+  String? get mimeType => _$this._mimeType;
+  set mimeType(String? mimeType) => _$this._mimeType = mimeType;
+
+  MediaResponseBuilder() {
+    MediaResponse._defaults(this);
+  }
+
+  MediaResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _url = $v.url;
+      _altText = $v.altText;
+      _displayOrder = $v.displayOrder;
+      _isPrimary = $v.isPrimary;
+      _fileSize = $v.fileSize;
+      _mimeType = $v.mimeType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MediaResponse other) {
+    _$v = other as _$MediaResponse;
+  }
+
+  @override
+  void update(void Function(MediaResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  MediaResponse build() => _build();
+
+  _$MediaResponse _build() {
+    final _$result =
+        _$v ??
+        _$MediaResponse._(
+          id: id,
+          url: BuiltValueNullFieldError.checkNotNull(
+            url,
+            r'MediaResponse',
+            'url',
+          ),
+          altText: altText,
+          displayOrder: displayOrder,
+          isPrimary: isPrimary,
+          fileSize: fileSize,
+          mimeType: mimeType,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-MediaResponse _$MediaResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('MediaResponse', json, ($checkedConvert) {
-      final val = MediaResponse(
-        id: $checkedConvert('id', (v) => v as String?),
-        url: $checkedConvert('url', (v) => v as String?),
-        altText: $checkedConvert('altText', (v) => v as String?),
-        displayOrder: $checkedConvert(
-          'displayOrder',
-          (v) => (v as num?)?.toInt(),
-        ),
-        isPrimary: $checkedConvert('isPrimary', (v) => v as bool?),
-        fileSize: $checkedConvert('fileSize', (v) => (v as num?)?.toInt()),
-        mimeType: $checkedConvert('mimeType', (v) => v as String?),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$MediaResponseToJson(MediaResponse instance) =>
-    <String, dynamic>{
-      'id': ?instance.id,
-      'url': ?instance.url,
-      'altText': ?instance.altText,
-      'displayOrder': ?instance.displayOrder,
-      'isPrimary': ?instance.isPrimary,
-      'fileSize': ?instance.fileSize,
-      'mimeType': ?instance.mimeType,
-    };
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -3,9 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductFastLookResponse
 void main() {
-  final ProductFastLookResponse? instance = /* ProductFastLookResponse(...) */
-      null;
-  // TODO add properties to the entity
+  final instance = ProductFastLookResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ProductFastLookResponse, () {
     // String id
@@ -28,13 +27,13 @@ void main() {
       // TODO
     });
 
-    // List<VariantFastLookResponse> variants
-    test('to test the property `variants`', () async {
+    // Gender gender
+    test('to test the property `gender`', () async {
       // TODO
     });
 
-    // ProductAttributeResponse attribute
-    test('to test the property `attribute`', () async {
+    // BuiltList<VariantFastLookResponse> variants
+    test('to test the property `variants`', () async {
       // TODO
     });
 
@@ -47,5 +46,6 @@ void main() {
     test('to test the property `reviewCount`', () async {
       // TODO
     });
+
   });
 }

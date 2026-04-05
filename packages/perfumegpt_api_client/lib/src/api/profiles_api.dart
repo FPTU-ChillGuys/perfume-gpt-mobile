@@ -4,9 +4,8 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_api_client/src/model/base_response_of_profile_response.dart';
@@ -17,7 +16,9 @@ class ProfilesApi {
 
   final Dio _dio;
 
-  const ProfilesApi(this._dio);
+  final Serializers _serializers;
+
+  const ProfilesApi(this._dio, this._serializers);
 
   /// apiProfilesMeGet
   /// 
@@ -70,8 +71,11 @@ class ProfilesApi {
     BaseResponseOfProfileResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfProfileResponse, BaseResponseOfProfileResponse>(rawData, 'BaseResponseOfProfileResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfProfileResponse),
+      ) as BaseResponseOfProfileResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -141,7 +145,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProfileRespon
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateProfileRequest);
+      const _type = FullType(UpdateProfileRequest);
+      _bodyData = _serializers.serialize(updateProfileRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -166,8 +172,11 @@ _bodyData=jsonEncode(updateProfileRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

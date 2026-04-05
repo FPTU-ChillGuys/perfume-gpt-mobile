@@ -3,28 +3,12 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductVariantResponse
 void main() {
-  final ProductVariantResponse? instance = /* ProductVariantResponse(...) */
-      null;
-  // TODO add properties to the entity
+  final instance = ProductVariantResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ProductVariantResponse, () {
     // String id
     test('to test the property `id`', () async {
-      // TODO
-    });
-
-    // String productId
-    test('to test the property `productId`', () async {
-      // TODO
-    });
-
-    // String productName
-    test('to test the property `productName`', () async {
-      // TODO
-    });
-
-    // List<MediaResponse> media
-    test('to test the property `media`', () async {
       // TODO
     });
 
@@ -63,6 +47,11 @@ void main() {
       // TODO
     });
 
+    // num retailPrice
+    test('to test the property `retailPrice`', () async {
+      // TODO
+    });
+
     // VariantStatus status
     test('to test the property `status`', () async {
       // TODO
@@ -73,9 +62,50 @@ void main() {
       // TODO
     });
 
-    // List<ProductAttributeResponse> attributes
+    // int sillage
+    test('to test the property `sillage`', () async {
+      // TODO
+    });
+
+    // int longevity
+    test('to test the property `longevity`', () async {
+      // TODO
+    });
+
+    // String productId
+    test('to test the property `productId`', () async {
+      // TODO
+    });
+
+    // String productName
+    test('to test the property `productName`', () async {
+      // TODO
+    });
+
+    // BuiltList<MediaResponse> media
+    test('to test the property `media`', () async {
+      // TODO
+    });
+
+    // String campaignName
+    test('to test the property `campaignName`', () async {
+      // TODO
+    });
+
+    // String voucherCode
+    test('to test the property `voucherCode`', () async {
+      // TODO
+    });
+
+    // num discountedPrice
+    test('to test the property `discountedPrice`', () async {
+      // TODO
+    });
+
+    // BuiltList<ProductAttributeResponse> attributes
     test('to test the property `attributes`', () async {
       // TODO
     });
+
   });
 }

@@ -3,168 +3,232 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'inventory_levels_response.g.dart';
 
+/// InventoryLevelsResponse
+///
+/// Properties:
+/// * [totalVariants] 
+/// * [totalStockQuantity] 
+/// * [totalAvailableQuantity] 
+/// * [lowStockVariantsCount] 
+/// * [outOfStockVariantsCount] 
+/// * [totalBatches] 
+/// * [expiredBatchesCount] 
+/// * [expiringSoonCount] 
+@BuiltValue()
+abstract class InventoryLevelsResponse implements Built<InventoryLevelsResponse, InventoryLevelsResponseBuilder> {
+  @BuiltValueField(wireName: r'totalVariants')
+  int? get totalVariants;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class InventoryLevelsResponse {
-  /// Returns a new [InventoryLevelsResponse] instance.
-  InventoryLevelsResponse({
+  @BuiltValueField(wireName: r'totalStockQuantity')
+  int? get totalStockQuantity;
 
-     this.totalVariants,
+  @BuiltValueField(wireName: r'totalAvailableQuantity')
+  int? get totalAvailableQuantity;
 
-     this.totalStockQuantity,
+  @BuiltValueField(wireName: r'lowStockVariantsCount')
+  int? get lowStockVariantsCount;
 
-     this.totalAvailableQuantity,
+  @BuiltValueField(wireName: r'outOfStockVariantsCount')
+  int? get outOfStockVariantsCount;
 
-     this.lowStockVariantsCount,
+  @BuiltValueField(wireName: r'totalBatches')
+  int? get totalBatches;
 
-     this.outOfStockVariantsCount,
+  @BuiltValueField(wireName: r'expiredBatchesCount')
+  int? get expiredBatchesCount;
 
-     this.totalBatches,
+  @BuiltValueField(wireName: r'expiringSoonCount')
+  int? get expiringSoonCount;
 
-     this.expiredBatchesCount,
+  InventoryLevelsResponse._();
 
-     this.expiringSoonCount,
-  });
+  factory InventoryLevelsResponse([void updates(InventoryLevelsResponseBuilder b)]) = _$InventoryLevelsResponse;
 
-  @JsonKey(
-    
-    name: r'totalVariants',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(InventoryLevelsResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<InventoryLevelsResponse> get serializer => _$InventoryLevelsResponseSerializer();
+}
 
-  final int? totalVariants;
-
-
-
-  @JsonKey(
-    
-    name: r'totalStockQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? totalStockQuantity;
-
-
-
-  @JsonKey(
-    
-    name: r'totalAvailableQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? totalAvailableQuantity;
-
-
-
-  @JsonKey(
-    
-    name: r'lowStockVariantsCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? lowStockVariantsCount;
-
-
-
-  @JsonKey(
-    
-    name: r'outOfStockVariantsCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? outOfStockVariantsCount;
-
-
-
-  @JsonKey(
-    
-    name: r'totalBatches',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? totalBatches;
-
-
-
-  @JsonKey(
-    
-    name: r'expiredBatchesCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? expiredBatchesCount;
-
-
-
-  @JsonKey(
-    
-    name: r'expiringSoonCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? expiringSoonCount;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is InventoryLevelsResponse &&
-      other.totalVariants == totalVariants &&
-      other.totalStockQuantity == totalStockQuantity &&
-      other.totalAvailableQuantity == totalAvailableQuantity &&
-      other.lowStockVariantsCount == lowStockVariantsCount &&
-      other.outOfStockVariantsCount == outOfStockVariantsCount &&
-      other.totalBatches == totalBatches &&
-      other.expiredBatchesCount == expiredBatchesCount &&
-      other.expiringSoonCount == expiringSoonCount;
-
-    @override
-    int get hashCode =>
-        totalVariants.hashCode +
-        totalStockQuantity.hashCode +
-        totalAvailableQuantity.hashCode +
-        lowStockVariantsCount.hashCode +
-        outOfStockVariantsCount.hashCode +
-        totalBatches.hashCode +
-        expiredBatchesCount.hashCode +
-        expiringSoonCount.hashCode;
-
-  factory InventoryLevelsResponse.fromJson(Map<String, dynamic> json) => _$InventoryLevelsResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$InventoryLevelsResponseToJson(this);
+class _$InventoryLevelsResponseSerializer implements PrimitiveSerializer<InventoryLevelsResponse> {
+  @override
+  final Iterable<Type> types = const [InventoryLevelsResponse, _$InventoryLevelsResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'InventoryLevelsResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    InventoryLevelsResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.totalVariants != null) {
+      yield r'totalVariants';
+      yield serializers.serialize(
+        object.totalVariants,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.totalStockQuantity != null) {
+      yield r'totalStockQuantity';
+      yield serializers.serialize(
+        object.totalStockQuantity,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.totalAvailableQuantity != null) {
+      yield r'totalAvailableQuantity';
+      yield serializers.serialize(
+        object.totalAvailableQuantity,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.lowStockVariantsCount != null) {
+      yield r'lowStockVariantsCount';
+      yield serializers.serialize(
+        object.lowStockVariantsCount,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.outOfStockVariantsCount != null) {
+      yield r'outOfStockVariantsCount';
+      yield serializers.serialize(
+        object.outOfStockVariantsCount,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.totalBatches != null) {
+      yield r'totalBatches';
+      yield serializers.serialize(
+        object.totalBatches,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.expiredBatchesCount != null) {
+      yield r'expiredBatchesCount';
+      yield serializers.serialize(
+        object.expiredBatchesCount,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.expiringSoonCount != null) {
+      yield r'expiringSoonCount';
+      yield serializers.serialize(
+        object.expiringSoonCount,
+        specifiedType: const FullType(int),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    InventoryLevelsResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required InventoryLevelsResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'totalVariants':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalVariants = valueDes;
+          break;
+        case r'totalStockQuantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalStockQuantity = valueDes;
+          break;
+        case r'totalAvailableQuantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalAvailableQuantity = valueDes;
+          break;
+        case r'lowStockVariantsCount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.lowStockVariantsCount = valueDes;
+          break;
+        case r'outOfStockVariantsCount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.outOfStockVariantsCount = valueDes;
+          break;
+        case r'totalBatches':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalBatches = valueDes;
+          break;
+        case r'expiredBatchesCount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.expiredBatchesCount = valueDes;
+          break;
+        case r'expiringSoonCount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.expiringSoonCount = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  InventoryLevelsResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = InventoryLevelsResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

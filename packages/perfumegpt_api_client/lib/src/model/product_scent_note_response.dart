@@ -4,88 +4,141 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/note_type.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'product_scent_note_response.g.dart';
 
+/// ProductScentNoteResponse
+///
+/// Properties:
+/// * [noteId] 
+/// * [name] 
+/// * [type] 
+@BuiltValue()
+abstract class ProductScentNoteResponse implements Built<ProductScentNoteResponse, ProductScentNoteResponseBuilder> {
+  @BuiltValueField(wireName: r'noteId')
+  int? get noteId;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class ProductScentNoteResponse {
-  /// Returns a new [ProductScentNoteResponse] instance.
-  ProductScentNoteResponse({
+  @BuiltValueField(wireName: r'name')
+  String get name;
 
-     this.noteId,
+  @BuiltValueField(wireName: r'type')
+  NoteType? get type;
+  // enum typeEnum {  Top,  Heart,  Base,  };
 
-     this.name,
+  ProductScentNoteResponse._();
 
-     this.type,
-  });
+  factory ProductScentNoteResponse([void updates(ProductScentNoteResponseBuilder b)]) = _$ProductScentNoteResponse;
 
-  @JsonKey(
-    
-    name: r'noteId',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(ProductScentNoteResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<ProductScentNoteResponse> get serializer => _$ProductScentNoteResponseSerializer();
+}
 
-  final int? noteId;
-
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? name;
-
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final NoteType? type;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductScentNoteResponse &&
-      other.noteId == noteId &&
-      other.name == name &&
-      other.type == type;
-
-    @override
-    int get hashCode =>
-        noteId.hashCode +
-        name.hashCode +
-        type.hashCode;
-
-  factory ProductScentNoteResponse.fromJson(Map<String, dynamic> json) => _$ProductScentNoteResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProductScentNoteResponseToJson(this);
+class _$ProductScentNoteResponseSerializer implements PrimitiveSerializer<ProductScentNoteResponse> {
+  @override
+  final Iterable<Type> types = const [ProductScentNoteResponse, _$ProductScentNoteResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'ProductScentNoteResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    ProductScentNoteResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.noteId != null) {
+      yield r'noteId';
+      yield serializers.serialize(
+        object.noteId,
+        specifiedType: const FullType(int),
+      );
+    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(NoteType),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    ProductScentNoteResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required ProductScentNoteResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'noteId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.noteId = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(NoteType),
+          ) as NoteType;
+          result.type = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  ProductScentNoteResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = ProductScentNoteResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -3,75 +3,104 @@
 part of 'address_level4_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$AddressLevel4ResponseCWProxy {
-  AddressLevel4Response data(List<String>? data);
+class _$AddressLevel4Response extends AddressLevel4Response {
+  @override
+  final BuiltList<String> data;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressLevel4Response(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AddressLevel4Response(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AddressLevel4Response call({List<String>? data});
-}
+  factory _$AddressLevel4Response([
+    void Function(AddressLevel4ResponseBuilder)? updates,
+  ]) => (AddressLevel4ResponseBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfAddressLevel4Response.copyWith(...)` or call `instanceOfAddressLevel4Response.copyWith.fieldName(value)` for a single field.
-class _$AddressLevel4ResponseCWProxyImpl
-    implements _$AddressLevel4ResponseCWProxy {
-  const _$AddressLevel4ResponseCWProxyImpl(this._value);
-
-  final AddressLevel4Response _value;
+  _$AddressLevel4Response._({required this.data}) : super._();
+  @override
+  AddressLevel4Response rebuild(
+    void Function(AddressLevel4ResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  AddressLevel4Response data(List<String>? data) => call(data: data);
+  AddressLevel4ResponseBuilder toBuilder() =>
+      AddressLevel4ResponseBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressLevel4Response(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AddressLevel4Response(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AddressLevel4Response call({Object? data = const $CopyWithPlaceholder()}) {
-    return AddressLevel4Response(
-      data: data == const $CopyWithPlaceholder()
-          ? _value.data
-          // ignore: cast_nullable_to_non_nullable
-          : data as List<String>?,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AddressLevel4Response && data == other.data;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, data.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'AddressLevel4Response',
+    )..add('data', data)).toString();
   }
 }
 
-extension $AddressLevel4ResponseCopyWith on AddressLevel4Response {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfAddressLevel4Response.copyWith(...)` or `instanceOfAddressLevel4Response.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$AddressLevel4ResponseCWProxy get copyWith =>
-      _$AddressLevel4ResponseCWProxyImpl(this);
+class AddressLevel4ResponseBuilder
+    implements Builder<AddressLevel4Response, AddressLevel4ResponseBuilder> {
+  _$AddressLevel4Response? _$v;
+
+  ListBuilder<String>? _data;
+  ListBuilder<String> get data => _$this._data ??= ListBuilder<String>();
+  set data(ListBuilder<String>? data) => _$this._data = data;
+
+  AddressLevel4ResponseBuilder() {
+    AddressLevel4Response._defaults(this);
+  }
+
+  AddressLevel4ResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _data = $v.data.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AddressLevel4Response other) {
+    _$v = other as _$AddressLevel4Response;
+  }
+
+  @override
+  void update(void Function(AddressLevel4ResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  AddressLevel4Response build() => _build();
+
+  _$AddressLevel4Response _build() {
+    _$AddressLevel4Response _$result;
+    try {
+      _$result = _$v ?? _$AddressLevel4Response._(data: data.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'data';
+        data.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'AddressLevel4Response',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-AddressLevel4Response _$AddressLevel4ResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('AddressLevel4Response', json, ($checkedConvert) {
-  final val = AddressLevel4Response(
-    data: $checkedConvert(
-      'data',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$AddressLevel4ResponseToJson(
-  AddressLevel4Response instance,
-) => <String, dynamic>{'data': ?instance.data};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

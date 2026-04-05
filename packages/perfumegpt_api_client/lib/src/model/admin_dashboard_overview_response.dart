@@ -3,91 +3,144 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:perfumegpt_api_client/src/model/inventory_levels_response.dart';
 import 'package:perfumegpt_api_client/src/model/revenue_summary_response.dart';
 import 'package:perfumegpt_api_client/src/model/top_product_response.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'admin_dashboard_overview_response.g.dart';
 
+/// AdminDashboardOverviewResponse
+///
+/// Properties:
+/// * [revenue] 
+/// * [inventoryLevels] 
+/// * [topProducts] 
+@BuiltValue()
+abstract class AdminDashboardOverviewResponse implements Built<AdminDashboardOverviewResponse, AdminDashboardOverviewResponseBuilder> {
+  @BuiltValueField(wireName: r'revenue')
+  RevenueSummaryResponse? get revenue;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class AdminDashboardOverviewResponse {
-  /// Returns a new [AdminDashboardOverviewResponse] instance.
-  AdminDashboardOverviewResponse({
+  @BuiltValueField(wireName: r'inventoryLevels')
+  InventoryLevelsResponse? get inventoryLevels;
 
-     this.revenue,
+  @BuiltValueField(wireName: r'topProducts')
+  BuiltList<TopProductResponse> get topProducts;
 
-     this.inventoryLevels,
+  AdminDashboardOverviewResponse._();
 
-     this.topProducts,
-  });
+  factory AdminDashboardOverviewResponse([void updates(AdminDashboardOverviewResponseBuilder b)]) = _$AdminDashboardOverviewResponse;
 
-  @JsonKey(
-    
-    name: r'revenue',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(AdminDashboardOverviewResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<AdminDashboardOverviewResponse> get serializer => _$AdminDashboardOverviewResponseSerializer();
+}
 
-  final RevenueSummaryResponse? revenue;
-
-
-
-  @JsonKey(
-    
-    name: r'inventoryLevels',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final InventoryLevelsResponse? inventoryLevels;
-
-
-
-  @JsonKey(
-    
-    name: r'topProducts',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final List<TopProductResponse>? topProducts;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is AdminDashboardOverviewResponse &&
-      other.revenue == revenue &&
-      other.inventoryLevels == inventoryLevels &&
-      other.topProducts == topProducts;
-
-    @override
-    int get hashCode =>
-        revenue.hashCode +
-        inventoryLevels.hashCode +
-        topProducts.hashCode;
-
-  factory AdminDashboardOverviewResponse.fromJson(Map<String, dynamic> json) => _$AdminDashboardOverviewResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AdminDashboardOverviewResponseToJson(this);
+class _$AdminDashboardOverviewResponseSerializer implements PrimitiveSerializer<AdminDashboardOverviewResponse> {
+  @override
+  final Iterable<Type> types = const [AdminDashboardOverviewResponse, _$AdminDashboardOverviewResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'AdminDashboardOverviewResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    AdminDashboardOverviewResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.revenue != null) {
+      yield r'revenue';
+      yield serializers.serialize(
+        object.revenue,
+        specifiedType: const FullType(RevenueSummaryResponse),
+      );
+    }
+    if (object.inventoryLevels != null) {
+      yield r'inventoryLevels';
+      yield serializers.serialize(
+        object.inventoryLevels,
+        specifiedType: const FullType(InventoryLevelsResponse),
+      );
+    }
+    yield r'topProducts';
+    yield serializers.serialize(
+      object.topProducts,
+      specifiedType: const FullType(BuiltList, [FullType(TopProductResponse)]),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    AdminDashboardOverviewResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required AdminDashboardOverviewResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'revenue':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RevenueSummaryResponse),
+          ) as RevenueSummaryResponse;
+          result.revenue.replace(valueDes);
+          break;
+        case r'inventoryLevels':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(InventoryLevelsResponse),
+          ) as InventoryLevelsResponse;
+          result.inventoryLevels.replace(valueDes);
+          break;
+        case r'topProducts':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(TopProductResponse)]),
+          ) as BuiltList<TopProductResponse>;
+          result.topProducts.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  AdminDashboardOverviewResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = AdminDashboardOverviewResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

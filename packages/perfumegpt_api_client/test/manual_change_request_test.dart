@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ManualChangeRequest
 void main() {
@@ -7,6 +7,11 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ManualChangeRequest, () {
+    // String userId
+    test('to test the property `userId`', () async {
+      // TODO
+    });
+
     // LoyaltyTransactionType transactionType
     test('to test the property `transactionType`', () async {
       // TODO

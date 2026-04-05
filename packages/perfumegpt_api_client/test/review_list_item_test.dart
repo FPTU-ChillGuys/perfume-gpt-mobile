@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReviewListItem
 void main() {
-  final ReviewListItem? instance = /* ReviewListItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = ReviewListItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ReviewListItem, () {
     // String id
@@ -57,9 +57,5 @@ void main() {
       // TODO
     });
 
-    // DateTime moderatedAt
-    test('to test the property `moderatedAt`', () async {
-      // TODO
-    });
   });
 }

@@ -4,11 +4,12 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_get_cart_items_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_get_cart_total_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
@@ -19,7 +20,9 @@ class CartApi {
 
   final Dio _dio;
 
-  const CartApi(this._dio);
+  final Serializers _serializers;
+
+  const CartApi(this._dio, this._serializers);
 
   /// apiCartClearDelete
   /// 
@@ -36,7 +39,7 @@ class CartApi {
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfstring>> apiCartClearDelete({ 
-    List<String>? itemIds,
+    BuiltList<String>? itemIds,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -64,7 +67,7 @@ class CartApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (itemIds != null) r'itemIds': itemIds,
+      if (itemIds != null) r'itemIds': encodeCollectionQueryParameter<String>(_serializers, itemIds, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
     };
 
     final _response = await _dio.request<Object>(
@@ -79,8 +82,11 @@ class CartApi {
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -109,6 +115,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Parameters:
   /// * [itemIds] 
+  /// * [pageNumber] 
+  /// * [pageSize] 
+  /// * [sortBy] 
+  /// * [sortOrder] 
+  /// * [isDescending] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -119,7 +130,12 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfGetCartItemsResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfGetCartItemsResponse>> apiCartItemsGet({ 
-    List<String>? itemIds,
+    BuiltList<String>? itemIds,
+    int? pageNumber,
+    int? pageSize,
+    String? sortBy,
+    String? sortOrder,
+    bool? isDescending,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -147,7 +163,12 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     );
 
     final _queryParameters = <String, dynamic>{
-      if (itemIds != null) r'itemIds': itemIds,
+      if (itemIds != null) r'ItemIds': encodeCollectionQueryParameter<String>(_serializers, itemIds, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -162,8 +183,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfGetCartItemsResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartItemsResponse, BaseResponseOfGetCartItemsResponse>(rawData, 'BaseResponseOfGetCartItemsResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfGetCartItemsResponse),
+      ) as BaseResponseOfGetCartItemsResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -210,7 +234,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartItemsR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/cart/items/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/cart/items/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -240,8 +264,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartItemsR
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -290,7 +317,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/cart/items/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/cart/items/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -313,7 +340,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCartItemRequest);
+      const _type = FullType(UpdateCartItemRequest);
+      _bodyData = _serializers.serialize(updateCartItemRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -338,8 +367,11 @@ _bodyData=jsonEncode(updateCartItemRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -409,7 +441,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createCartItemRequest);
+      const _type = FullType(CreateCartItemRequest);
+      _bodyData = _serializers.serialize(createCartItemRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -434,8 +468,11 @@ _bodyData=jsonEncode(createCartItemRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -466,8 +503,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   /// * [voucherCode] 
   /// * [itemIds] 
   /// * [savedAddressId] 
-  /// * [recipientPeriodRecipientName] 
-  /// * [recipientPeriodRecipientPhoneNumber] 
+  /// * [recipientPeriodContactName] 
+  /// * [recipientPeriodContactPhoneNumber] 
   /// * [recipientPeriodDistrictId] 
   /// * [recipientPeriodDistrictName] 
   /// * [recipientPeriodWardCode] 
@@ -486,10 +523,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfGetCartTotalResponse>> apiCartTotalGet({ 
     String? voucherCode,
-    List<String>? itemIds,
+    BuiltList<String>? itemIds,
     String? savedAddressId,
-    String? recipientPeriodRecipientName,
-    String? recipientPeriodRecipientPhoneNumber,
+    String? recipientPeriodContactName,
+    String? recipientPeriodContactPhoneNumber,
     int? recipientPeriodDistrictId,
     String? recipientPeriodDistrictName,
     String? recipientPeriodWardCode,
@@ -524,18 +561,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     );
 
     final _queryParameters = <String, dynamic>{
-      if (voucherCode != null) r'VoucherCode': voucherCode,
-      if (itemIds != null) r'ItemIds': itemIds,
-      if (savedAddressId != null) r'SavedAddressId': savedAddressId,
-      if (recipientPeriodRecipientName != null) r'Recipient.RecipientName': recipientPeriodRecipientName,
-      if (recipientPeriodRecipientPhoneNumber != null) r'Recipient.RecipientPhoneNumber': recipientPeriodRecipientPhoneNumber,
-      if (recipientPeriodDistrictId != null) r'Recipient.DistrictId': recipientPeriodDistrictId,
-      if (recipientPeriodDistrictName != null) r'Recipient.DistrictName': recipientPeriodDistrictName,
-      if (recipientPeriodWardCode != null) r'Recipient.WardCode': recipientPeriodWardCode,
-      if (recipientPeriodWardName != null) r'Recipient.WardName': recipientPeriodWardName,
-      if (recipientPeriodProvinceId != null) r'Recipient.ProvinceId': recipientPeriodProvinceId,
-      if (recipientPeriodProvinceName != null) r'Recipient.ProvinceName': recipientPeriodProvinceName,
-      if (recipientPeriodFullAddress != null) r'Recipient.FullAddress': recipientPeriodFullAddress,
+      if (voucherCode != null) r'VoucherCode': encodeQueryParameter(_serializers, voucherCode, const FullType(String)),
+      if (itemIds != null) r'ItemIds': encodeCollectionQueryParameter<String>(_serializers, itemIds, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      if (savedAddressId != null) r'SavedAddressId': encodeQueryParameter(_serializers, savedAddressId, const FullType(String)),
+      if (recipientPeriodContactName != null) r'Recipient.ContactName': encodeQueryParameter(_serializers, recipientPeriodContactName, const FullType(String)),
+      if (recipientPeriodContactPhoneNumber != null) r'Recipient.ContactPhoneNumber': encodeQueryParameter(_serializers, recipientPeriodContactPhoneNumber, const FullType(String)),
+      if (recipientPeriodDistrictId != null) r'Recipient.DistrictId': encodeQueryParameter(_serializers, recipientPeriodDistrictId, const FullType(int)),
+      if (recipientPeriodDistrictName != null) r'Recipient.DistrictName': encodeQueryParameter(_serializers, recipientPeriodDistrictName, const FullType(String)),
+      if (recipientPeriodWardCode != null) r'Recipient.WardCode': encodeQueryParameter(_serializers, recipientPeriodWardCode, const FullType(String)),
+      if (recipientPeriodWardName != null) r'Recipient.WardName': encodeQueryParameter(_serializers, recipientPeriodWardName, const FullType(String)),
+      if (recipientPeriodProvinceId != null) r'Recipient.ProvinceId': encodeQueryParameter(_serializers, recipientPeriodProvinceId, const FullType(int)),
+      if (recipientPeriodProvinceName != null) r'Recipient.ProvinceName': encodeQueryParameter(_serializers, recipientPeriodProvinceName, const FullType(String)),
+      if (recipientPeriodFullAddress != null) r'Recipient.FullAddress': encodeQueryParameter(_serializers, recipientPeriodFullAddress, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -550,8 +587,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfGetCartTotalResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfGetCartTotalResponse, BaseResponseOfGetCartTotalResponse>(rawData, 'BaseResponseOfGetCartTotalResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfGetCartTotalResponse),
+      ) as BaseResponseOfGetCartTotalResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

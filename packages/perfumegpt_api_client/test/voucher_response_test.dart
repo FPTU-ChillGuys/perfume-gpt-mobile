@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VoucherResponse
 void main() {
-  final VoucherResponse? instance = /* VoucherResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = VoucherResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(VoucherResponse, () {
     // String id
@@ -24,6 +24,21 @@ void main() {
 
     // DiscountType discountType
     test('to test the property `discountType`', () async {
+      // TODO
+    });
+
+    // String campaignId
+    test('to test the property `campaignId`', () async {
+      // TODO
+    });
+
+    // VoucherType applyType
+    test('to test the property `applyType`', () async {
+      // TODO
+    });
+
+    // PromotionType targetItemType
+    test('to test the property `targetItemType`', () async {
       // TODO
     });
 
@@ -66,5 +81,6 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
+
   });
 }

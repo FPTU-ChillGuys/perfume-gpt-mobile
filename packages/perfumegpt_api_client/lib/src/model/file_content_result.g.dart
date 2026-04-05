@@ -3,161 +3,175 @@
 part of 'file_content_result.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$FileContentResultCWProxy {
-  FileContentResult fileContents(String? fileContents);
+class _$FileContentResult extends FileContentResult {
+  @override
+  final String? fileContents;
+  @override
+  final String? contentType;
+  @override
+  final String? fileDownloadName;
+  @override
+  final DateTime? lastModified;
+  @override
+  final EntityTagHeaderValue? entityTag;
+  @override
+  final bool? enableRangeProcessing;
 
-  FileContentResult contentType(String? contentType);
+  factory _$FileContentResult([
+    void Function(FileContentResultBuilder)? updates,
+  ]) => (FileContentResultBuilder()..update(updates))._build();
 
-  FileContentResult fileDownloadName(String? fileDownloadName);
-
-  FileContentResult lastModified(DateTime? lastModified);
-
-  FileContentResult entityTag(EntityTagHeaderValue? entityTag);
-
-  FileContentResult enableRangeProcessing(bool? enableRangeProcessing);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FileContentResult(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// FileContentResult(...).copyWith(id: 12, name: "My name")
-  /// ```
-  FileContentResult call({
-    String? fileContents,
-    String? contentType,
-    String? fileDownloadName,
-    DateTime? lastModified,
-    EntityTagHeaderValue? entityTag,
-    bool? enableRangeProcessing,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfFileContentResult.copyWith(...)` or call `instanceOfFileContentResult.copyWith.fieldName(value)` for a single field.
-class _$FileContentResultCWProxyImpl implements _$FileContentResultCWProxy {
-  const _$FileContentResultCWProxyImpl(this._value);
-
-  final FileContentResult _value;
+  _$FileContentResult._({
+    this.fileContents,
+    this.contentType,
+    this.fileDownloadName,
+    this.lastModified,
+    this.entityTag,
+    this.enableRangeProcessing,
+  }) : super._();
+  @override
+  FileContentResult rebuild(void Function(FileContentResultBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  FileContentResult fileContents(String? fileContents) =>
-      call(fileContents: fileContents);
+  FileContentResultBuilder toBuilder() =>
+      FileContentResultBuilder()..replace(this);
 
   @override
-  FileContentResult contentType(String? contentType) =>
-      call(contentType: contentType);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is FileContentResult &&
+        fileContents == other.fileContents &&
+        contentType == other.contentType &&
+        fileDownloadName == other.fileDownloadName &&
+        lastModified == other.lastModified &&
+        entityTag == other.entityTag &&
+        enableRangeProcessing == other.enableRangeProcessing;
+  }
 
   @override
-  FileContentResult fileDownloadName(String? fileDownloadName) =>
-      call(fileDownloadName: fileDownloadName);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, fileContents.hashCode);
+    _$hash = $jc(_$hash, contentType.hashCode);
+    _$hash = $jc(_$hash, fileDownloadName.hashCode);
+    _$hash = $jc(_$hash, lastModified.hashCode);
+    _$hash = $jc(_$hash, entityTag.hashCode);
+    _$hash = $jc(_$hash, enableRangeProcessing.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  FileContentResult lastModified(DateTime? lastModified) =>
-      call(lastModified: lastModified);
-
-  @override
-  FileContentResult entityTag(EntityTagHeaderValue? entityTag) =>
-      call(entityTag: entityTag);
-
-  @override
-  FileContentResult enableRangeProcessing(bool? enableRangeProcessing) =>
-      call(enableRangeProcessing: enableRangeProcessing);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FileContentResult(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// FileContentResult(...).copyWith(id: 12, name: "My name")
-  /// ```
-  FileContentResult call({
-    Object? fileContents = const $CopyWithPlaceholder(),
-    Object? contentType = const $CopyWithPlaceholder(),
-    Object? fileDownloadName = const $CopyWithPlaceholder(),
-    Object? lastModified = const $CopyWithPlaceholder(),
-    Object? entityTag = const $CopyWithPlaceholder(),
-    Object? enableRangeProcessing = const $CopyWithPlaceholder(),
-  }) {
-    return FileContentResult(
-      fileContents: fileContents == const $CopyWithPlaceholder()
-          ? _value.fileContents
-          // ignore: cast_nullable_to_non_nullable
-          : fileContents as String?,
-      contentType: contentType == const $CopyWithPlaceholder()
-          ? _value.contentType
-          // ignore: cast_nullable_to_non_nullable
-          : contentType as String?,
-      fileDownloadName: fileDownloadName == const $CopyWithPlaceholder()
-          ? _value.fileDownloadName
-          // ignore: cast_nullable_to_non_nullable
-          : fileDownloadName as String?,
-      lastModified: lastModified == const $CopyWithPlaceholder()
-          ? _value.lastModified
-          // ignore: cast_nullable_to_non_nullable
-          : lastModified as DateTime?,
-      entityTag: entityTag == const $CopyWithPlaceholder()
-          ? _value.entityTag
-          // ignore: cast_nullable_to_non_nullable
-          : entityTag as EntityTagHeaderValue?,
-      enableRangeProcessing:
-          enableRangeProcessing == const $CopyWithPlaceholder()
-          ? _value.enableRangeProcessing
-          // ignore: cast_nullable_to_non_nullable
-          : enableRangeProcessing as bool?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'FileContentResult')
+          ..add('fileContents', fileContents)
+          ..add('contentType', contentType)
+          ..add('fileDownloadName', fileDownloadName)
+          ..add('lastModified', lastModified)
+          ..add('entityTag', entityTag)
+          ..add('enableRangeProcessing', enableRangeProcessing))
+        .toString();
   }
 }
 
-extension $FileContentResultCopyWith on FileContentResult {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfFileContentResult.copyWith(...)` or `instanceOfFileContentResult.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$FileContentResultCWProxy get copyWith =>
-      _$FileContentResultCWProxyImpl(this);
+class FileContentResultBuilder
+    implements Builder<FileContentResult, FileContentResultBuilder> {
+  _$FileContentResult? _$v;
+
+  String? _fileContents;
+  String? get fileContents => _$this._fileContents;
+  set fileContents(String? fileContents) => _$this._fileContents = fileContents;
+
+  String? _contentType;
+  String? get contentType => _$this._contentType;
+  set contentType(String? contentType) => _$this._contentType = contentType;
+
+  String? _fileDownloadName;
+  String? get fileDownloadName => _$this._fileDownloadName;
+  set fileDownloadName(String? fileDownloadName) =>
+      _$this._fileDownloadName = fileDownloadName;
+
+  DateTime? _lastModified;
+  DateTime? get lastModified => _$this._lastModified;
+  set lastModified(DateTime? lastModified) =>
+      _$this._lastModified = lastModified;
+
+  EntityTagHeaderValueBuilder? _entityTag;
+  EntityTagHeaderValueBuilder get entityTag =>
+      _$this._entityTag ??= EntityTagHeaderValueBuilder();
+  set entityTag(EntityTagHeaderValueBuilder? entityTag) =>
+      _$this._entityTag = entityTag;
+
+  bool? _enableRangeProcessing;
+  bool? get enableRangeProcessing => _$this._enableRangeProcessing;
+  set enableRangeProcessing(bool? enableRangeProcessing) =>
+      _$this._enableRangeProcessing = enableRangeProcessing;
+
+  FileContentResultBuilder() {
+    FileContentResult._defaults(this);
+  }
+
+  FileContentResultBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _fileContents = $v.fileContents;
+      _contentType = $v.contentType;
+      _fileDownloadName = $v.fileDownloadName;
+      _lastModified = $v.lastModified;
+      _entityTag = $v.entityTag?.toBuilder();
+      _enableRangeProcessing = $v.enableRangeProcessing;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(FileContentResult other) {
+    _$v = other as _$FileContentResult;
+  }
+
+  @override
+  void update(void Function(FileContentResultBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  FileContentResult build() => _build();
+
+  _$FileContentResult _build() {
+    _$FileContentResult _$result;
+    try {
+      _$result =
+          _$v ??
+          _$FileContentResult._(
+            fileContents: fileContents,
+            contentType: contentType,
+            fileDownloadName: fileDownloadName,
+            lastModified: lastModified,
+            entityTag: _entityTag?.build(),
+            enableRangeProcessing: enableRangeProcessing,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'entityTag';
+        _entityTag?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'FileContentResult',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-FileContentResult _$FileContentResultFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('FileContentResult', json, ($checkedConvert) {
-      final val = FileContentResult(
-        fileContents: $checkedConvert('fileContents', (v) => v as String?),
-        contentType: $checkedConvert('contentType', (v) => v as String?),
-        fileDownloadName: $checkedConvert(
-          'fileDownloadName',
-          (v) => v as String?,
-        ),
-        lastModified: $checkedConvert(
-          'lastModified',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-        entityTag: $checkedConvert(
-          'entityTag',
-          (v) => v == null
-              ? null
-              : EntityTagHeaderValue.fromJson(v as Map<String, dynamic>),
-        ),
-        enableRangeProcessing: $checkedConvert(
-          'enableRangeProcessing',
-          (v) => v as bool?,
-        ),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$FileContentResultToJson(FileContentResult instance) =>
-    <String, dynamic>{
-      'fileContents': ?instance.fileContents,
-      'contentType': ?instance.contentType,
-      'fileDownloadName': ?instance.fileDownloadName,
-      'lastModified': ?instance.lastModified?.toIso8601String(),
-      'entityTag': ?instance.entityTag?.toJson(),
-      'enableRangeProcessing': ?instance.enableRangeProcessing,
-    };
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

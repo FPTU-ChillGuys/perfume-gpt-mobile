@@ -3,264 +3,332 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'batch_detail_response.g.dart';
 
-
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class BatchDetailResponse {
-  /// Returns a new [BatchDetailResponse] instance.
-  BatchDetailResponse({
-
-     this.variantId,
-
-     this.variantSku,
-
-     this.productName,
-
-     this.volumeMl,
-
-     this.concentrationName,
-
-     this.isExpired,
-
-     this.daysUntilExpiry,
-
-     this.id,
-
-     this.batchCode,
-
-     this.manufactureDate,
-
-     this.expiryDate,
-
-     this.importQuantity,
-
-     this.remainingQuantity,
-
-     this.createdAt,
-  });
-
-  @JsonKey(
-    
-    name: r'variantId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? variantId;
-
-
-
-  @JsonKey(
-    
-    name: r'variantSku',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? variantSku;
-
-
-
-  @JsonKey(
-    
-    name: r'productName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? productName;
-
-
-
-  @JsonKey(
-    
-    name: r'volumeMl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? volumeMl;
-
-
-
-  @JsonKey(
-    
-    name: r'concentrationName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? concentrationName;
-
-
-
-  @JsonKey(
-    
-    name: r'isExpired',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final bool? isExpired;
-
-
-
-  @JsonKey(
-    
-    name: r'daysUntilExpiry',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? daysUntilExpiry;
-
-
-
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? id;
-
-
-
-  @JsonKey(
-    
-    name: r'batchCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? batchCode;
-
-
-
-  @JsonKey(
-    
-    name: r'manufactureDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? manufactureDate;
-
-
-
-  @JsonKey(
-    
-    name: r'expiryDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? expiryDate;
-
-
-
-  @JsonKey(
-    
-    name: r'importQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? importQuantity;
-
-
-
-  @JsonKey(
-    
-    name: r'remainingQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? remainingQuantity;
-
-
-
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? createdAt;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BatchDetailResponse &&
-      other.variantId == variantId &&
-      other.variantSku == variantSku &&
-      other.productName == productName &&
-      other.volumeMl == volumeMl &&
-      other.concentrationName == concentrationName &&
-      other.isExpired == isExpired &&
-      other.daysUntilExpiry == daysUntilExpiry &&
-      other.id == id &&
-      other.batchCode == batchCode &&
-      other.manufactureDate == manufactureDate &&
-      other.expiryDate == expiryDate &&
-      other.importQuantity == importQuantity &&
-      other.remainingQuantity == remainingQuantity &&
-      other.createdAt == createdAt;
-
-    @override
-    int get hashCode =>
-        variantId.hashCode +
-        variantSku.hashCode +
-        productName.hashCode +
-        volumeMl.hashCode +
-        concentrationName.hashCode +
-        isExpired.hashCode +
-        daysUntilExpiry.hashCode +
-        id.hashCode +
-        batchCode.hashCode +
-        manufactureDate.hashCode +
-        expiryDate.hashCode +
-        importQuantity.hashCode +
-        remainingQuantity.hashCode +
-        createdAt.hashCode;
-
-  factory BatchDetailResponse.fromJson(Map<String, dynamic> json) => _$BatchDetailResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BatchDetailResponseToJson(this);
+/// BatchDetailResponse
+///
+/// Properties:
+/// * [variantId] 
+/// * [variantSku] 
+/// * [productName] 
+/// * [volumeMl] 
+/// * [concentrationName] 
+/// * [isExpired] 
+/// * [daysUntilExpiry] 
+/// * [id] 
+/// * [batchCode] 
+/// * [manufactureDate] 
+/// * [expiryDate] 
+/// * [importQuantity] 
+/// * [remainingQuantity] 
+/// * [createdAt] 
+@BuiltValue()
+abstract class BatchDetailResponse implements Built<BatchDetailResponse, BatchDetailResponseBuilder> {
+  @BuiltValueField(wireName: r'variantId')
+  String? get variantId;
+
+  @BuiltValueField(wireName: r'variantSku')
+  String get variantSku;
+
+  @BuiltValueField(wireName: r'productName')
+  String get productName;
+
+  @BuiltValueField(wireName: r'volumeMl')
+  int? get volumeMl;
+
+  @BuiltValueField(wireName: r'concentrationName')
+  String get concentrationName;
+
+  @BuiltValueField(wireName: r'isExpired')
+  bool? get isExpired;
+
+  @BuiltValueField(wireName: r'daysUntilExpiry')
+  int? get daysUntilExpiry;
+
+  @BuiltValueField(wireName: r'id')
+  String? get id;
+
+  @BuiltValueField(wireName: r'batchCode')
+  String get batchCode;
+
+  @BuiltValueField(wireName: r'manufactureDate')
+  DateTime? get manufactureDate;
+
+  @BuiltValueField(wireName: r'expiryDate')
+  DateTime? get expiryDate;
+
+  @BuiltValueField(wireName: r'importQuantity')
+  int? get importQuantity;
+
+  @BuiltValueField(wireName: r'remainingQuantity')
+  int? get remainingQuantity;
+
+  @BuiltValueField(wireName: r'createdAt')
+  DateTime? get createdAt;
+
+  BatchDetailResponse._();
+
+  factory BatchDetailResponse([void updates(BatchDetailResponseBuilder b)]) = _$BatchDetailResponse;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(BatchDetailResponseBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<BatchDetailResponse> get serializer => _$BatchDetailResponseSerializer();
+}
+
+class _$BatchDetailResponseSerializer implements PrimitiveSerializer<BatchDetailResponse> {
+  @override
+  final Iterable<Type> types = const [BatchDetailResponse, _$BatchDetailResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'BatchDetailResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    BatchDetailResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.variantId != null) {
+      yield r'variantId';
+      yield serializers.serialize(
+        object.variantId,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'variantSku';
+    yield serializers.serialize(
+      object.variantSku,
+      specifiedType: const FullType(String),
+    );
+    yield r'productName';
+    yield serializers.serialize(
+      object.productName,
+      specifiedType: const FullType(String),
+    );
+    if (object.volumeMl != null) {
+      yield r'volumeMl';
+      yield serializers.serialize(
+        object.volumeMl,
+        specifiedType: const FullType(int),
+      );
+    }
+    yield r'concentrationName';
+    yield serializers.serialize(
+      object.concentrationName,
+      specifiedType: const FullType(String),
+    );
+    if (object.isExpired != null) {
+      yield r'isExpired';
+      yield serializers.serialize(
+        object.isExpired,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.daysUntilExpiry != null) {
+      yield r'daysUntilExpiry';
+      yield serializers.serialize(
+        object.daysUntilExpiry,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'batchCode';
+    yield serializers.serialize(
+      object.batchCode,
+      specifiedType: const FullType(String),
+    );
+    if (object.manufactureDate != null) {
+      yield r'manufactureDate';
+      yield serializers.serialize(
+        object.manufactureDate,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.expiryDate != null) {
+      yield r'expiryDate';
+      yield serializers.serialize(
+        object.expiryDate,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.importQuantity != null) {
+      yield r'importQuantity';
+      yield serializers.serialize(
+        object.importQuantity,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.remainingQuantity != null) {
+      yield r'remainingQuantity';
+      yield serializers.serialize(
+        object.remainingQuantity,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.createdAt != null) {
+      yield r'createdAt';
+      yield serializers.serialize(
+        object.createdAt,
+        specifiedType: const FullType(DateTime),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    BatchDetailResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required BatchDetailResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'variantId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.variantId = valueDes;
+          break;
+        case r'variantSku':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.variantSku = valueDes;
+          break;
+        case r'productName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.productName = valueDes;
+          break;
+        case r'volumeMl':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.volumeMl = valueDes;
+          break;
+        case r'concentrationName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.concentrationName = valueDes;
+          break;
+        case r'isExpired':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.isExpired = valueDes;
+          break;
+        case r'daysUntilExpiry':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.daysUntilExpiry = valueDes;
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'batchCode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.batchCode = valueDes;
+          break;
+        case r'manufactureDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.manufactureDate = valueDes;
+          break;
+        case r'expiryDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.expiryDate = valueDes;
+          break;
+        case r'importQuantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.importQuantity = valueDes;
+          break;
+        case r'remainingQuantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.remainingQuantity = valueDes;
+          break;
+        case r'createdAt':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.createdAt = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  BatchDetailResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = BatchDetailResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

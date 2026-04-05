@@ -3,79 +3,98 @@
 part of 'answer_review_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$AnswerReviewRequestCWProxy {
-  AnswerReviewRequest staffFeedbackComment(String staffFeedbackComment);
+class _$AnswerReviewRequest extends AnswerReviewRequest {
+  @override
+  final String staffFeedbackComment;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AnswerReviewRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AnswerReviewRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AnswerReviewRequest call({String staffFeedbackComment});
-}
+  factory _$AnswerReviewRequest([
+    void Function(AnswerReviewRequestBuilder)? updates,
+  ]) => (AnswerReviewRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfAnswerReviewRequest.copyWith(...)` or call `instanceOfAnswerReviewRequest.copyWith.fieldName(value)` for a single field.
-class _$AnswerReviewRequestCWProxyImpl implements _$AnswerReviewRequestCWProxy {
-  const _$AnswerReviewRequestCWProxyImpl(this._value);
-
-  final AnswerReviewRequest _value;
+  _$AnswerReviewRequest._({required this.staffFeedbackComment}) : super._();
+  @override
+  AnswerReviewRequest rebuild(
+    void Function(AnswerReviewRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  AnswerReviewRequest staffFeedbackComment(String staffFeedbackComment) =>
-      call(staffFeedbackComment: staffFeedbackComment);
+  AnswerReviewRequestBuilder toBuilder() =>
+      AnswerReviewRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AnswerReviewRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AnswerReviewRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AnswerReviewRequest call({
-    Object? staffFeedbackComment = const $CopyWithPlaceholder(),
-  }) {
-    return AnswerReviewRequest(
-      staffFeedbackComment:
-          staffFeedbackComment == const $CopyWithPlaceholder() ||
-              staffFeedbackComment == null
-          ? _value.staffFeedbackComment
-          // ignore: cast_nullable_to_non_nullable
-          : staffFeedbackComment as String,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AnswerReviewRequest &&
+        staffFeedbackComment == other.staffFeedbackComment;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, staffFeedbackComment.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'AnswerReviewRequest',
+    )..add('staffFeedbackComment', staffFeedbackComment)).toString();
   }
 }
 
-extension $AnswerReviewRequestCopyWith on AnswerReviewRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfAnswerReviewRequest.copyWith(...)` or `instanceOfAnswerReviewRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$AnswerReviewRequestCWProxy get copyWith =>
-      _$AnswerReviewRequestCWProxyImpl(this);
+class AnswerReviewRequestBuilder
+    implements Builder<AnswerReviewRequest, AnswerReviewRequestBuilder> {
+  _$AnswerReviewRequest? _$v;
+
+  String? _staffFeedbackComment;
+  String? get staffFeedbackComment => _$this._staffFeedbackComment;
+  set staffFeedbackComment(String? staffFeedbackComment) =>
+      _$this._staffFeedbackComment = staffFeedbackComment;
+
+  AnswerReviewRequestBuilder() {
+    AnswerReviewRequest._defaults(this);
+  }
+
+  AnswerReviewRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _staffFeedbackComment = $v.staffFeedbackComment;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AnswerReviewRequest other) {
+    _$v = other as _$AnswerReviewRequest;
+  }
+
+  @override
+  void update(void Function(AnswerReviewRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  AnswerReviewRequest build() => _build();
+
+  _$AnswerReviewRequest _build() {
+    final _$result =
+        _$v ??
+        _$AnswerReviewRequest._(
+          staffFeedbackComment: BuiltValueNullFieldError.checkNotNull(
+            staffFeedbackComment,
+            r'AnswerReviewRequest',
+            'staffFeedbackComment',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-AnswerReviewRequest _$AnswerReviewRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('AnswerReviewRequest', json, ($checkedConvert) {
-      $checkKeys(json, requiredKeys: const ['staffFeedbackComment']);
-      final val = AnswerReviewRequest(
-        staffFeedbackComment: $checkedConvert(
-          'staffFeedbackComment',
-          (v) => v as String,
-        ),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$AnswerReviewRequestToJson(
-  AnswerReviewRequest instance,
-) => <String, dynamic>{'staffFeedbackComment': instance.staffFeedbackComment};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

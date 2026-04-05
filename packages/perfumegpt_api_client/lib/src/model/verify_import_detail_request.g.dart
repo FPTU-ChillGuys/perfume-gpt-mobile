@@ -3,131 +3,156 @@
 part of 'verify_import_detail_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$VerifyImportDetailRequestCWProxy {
-  VerifyImportDetailRequest importDetailId(String importDetailId);
+class _$VerifyImportDetailRequest extends VerifyImportDetailRequest {
+  @override
+  final String importDetailId;
+  @override
+  final int? rejectedQuantity;
+  @override
+  final String? note;
+  @override
+  final BuiltList<CreateBatchRequest> batches;
 
-  VerifyImportDetailRequest rejectedQuantity(int? rejectedQuantity);
+  factory _$VerifyImportDetailRequest([
+    void Function(VerifyImportDetailRequestBuilder)? updates,
+  ]) => (VerifyImportDetailRequestBuilder()..update(updates))._build();
 
-  VerifyImportDetailRequest note(String? note);
-
-  VerifyImportDetailRequest batches(List<CreateBatchRequest>? batches);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyImportDetailRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VerifyImportDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VerifyImportDetailRequest call({
-    String importDetailId,
-    int? rejectedQuantity,
-    String? note,
-    List<CreateBatchRequest>? batches,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfVerifyImportDetailRequest.copyWith(...)` or call `instanceOfVerifyImportDetailRequest.copyWith.fieldName(value)` for a single field.
-class _$VerifyImportDetailRequestCWProxyImpl
-    implements _$VerifyImportDetailRequestCWProxy {
-  const _$VerifyImportDetailRequestCWProxyImpl(this._value);
-
-  final VerifyImportDetailRequest _value;
+  _$VerifyImportDetailRequest._({
+    required this.importDetailId,
+    this.rejectedQuantity,
+    this.note,
+    required this.batches,
+  }) : super._();
+  @override
+  VerifyImportDetailRequest rebuild(
+    void Function(VerifyImportDetailRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  VerifyImportDetailRequest importDetailId(String importDetailId) =>
-      call(importDetailId: importDetailId);
+  VerifyImportDetailRequestBuilder toBuilder() =>
+      VerifyImportDetailRequestBuilder()..replace(this);
 
   @override
-  VerifyImportDetailRequest rejectedQuantity(int? rejectedQuantity) =>
-      call(rejectedQuantity: rejectedQuantity);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is VerifyImportDetailRequest &&
+        importDetailId == other.importDetailId &&
+        rejectedQuantity == other.rejectedQuantity &&
+        note == other.note &&
+        batches == other.batches;
+  }
 
   @override
-  VerifyImportDetailRequest note(String? note) => call(note: note);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, importDetailId.hashCode);
+    _$hash = $jc(_$hash, rejectedQuantity.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, batches.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  VerifyImportDetailRequest batches(List<CreateBatchRequest>? batches) =>
-      call(batches: batches);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VerifyImportDetailRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VerifyImportDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VerifyImportDetailRequest call({
-    Object? importDetailId = const $CopyWithPlaceholder(),
-    Object? rejectedQuantity = const $CopyWithPlaceholder(),
-    Object? note = const $CopyWithPlaceholder(),
-    Object? batches = const $CopyWithPlaceholder(),
-  }) {
-    return VerifyImportDetailRequest(
-      importDetailId:
-          importDetailId == const $CopyWithPlaceholder() ||
-              importDetailId == null
-          ? _value.importDetailId
-          // ignore: cast_nullable_to_non_nullable
-          : importDetailId as String,
-      rejectedQuantity: rejectedQuantity == const $CopyWithPlaceholder()
-          ? _value.rejectedQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : rejectedQuantity as int?,
-      note: note == const $CopyWithPlaceholder()
-          ? _value.note
-          // ignore: cast_nullable_to_non_nullable
-          : note as String?,
-      batches: batches == const $CopyWithPlaceholder()
-          ? _value.batches
-          // ignore: cast_nullable_to_non_nullable
-          : batches as List<CreateBatchRequest>?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'VerifyImportDetailRequest')
+          ..add('importDetailId', importDetailId)
+          ..add('rejectedQuantity', rejectedQuantity)
+          ..add('note', note)
+          ..add('batches', batches))
+        .toString();
   }
 }
 
-extension $VerifyImportDetailRequestCopyWith on VerifyImportDetailRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfVerifyImportDetailRequest.copyWith(...)` or `instanceOfVerifyImportDetailRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$VerifyImportDetailRequestCWProxy get copyWith =>
-      _$VerifyImportDetailRequestCWProxyImpl(this);
+class VerifyImportDetailRequestBuilder
+    implements
+        Builder<VerifyImportDetailRequest, VerifyImportDetailRequestBuilder> {
+  _$VerifyImportDetailRequest? _$v;
+
+  String? _importDetailId;
+  String? get importDetailId => _$this._importDetailId;
+  set importDetailId(String? importDetailId) =>
+      _$this._importDetailId = importDetailId;
+
+  int? _rejectedQuantity;
+  int? get rejectedQuantity => _$this._rejectedQuantity;
+  set rejectedQuantity(int? rejectedQuantity) =>
+      _$this._rejectedQuantity = rejectedQuantity;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  ListBuilder<CreateBatchRequest>? _batches;
+  ListBuilder<CreateBatchRequest> get batches =>
+      _$this._batches ??= ListBuilder<CreateBatchRequest>();
+  set batches(ListBuilder<CreateBatchRequest>? batches) =>
+      _$this._batches = batches;
+
+  VerifyImportDetailRequestBuilder() {
+    VerifyImportDetailRequest._defaults(this);
+  }
+
+  VerifyImportDetailRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _importDetailId = $v.importDetailId;
+      _rejectedQuantity = $v.rejectedQuantity;
+      _note = $v.note;
+      _batches = $v.batches.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(VerifyImportDetailRequest other) {
+    _$v = other as _$VerifyImportDetailRequest;
+  }
+
+  @override
+  void update(void Function(VerifyImportDetailRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  VerifyImportDetailRequest build() => _build();
+
+  _$VerifyImportDetailRequest _build() {
+    _$VerifyImportDetailRequest _$result;
+    try {
+      _$result =
+          _$v ??
+          _$VerifyImportDetailRequest._(
+            importDetailId: BuiltValueNullFieldError.checkNotNull(
+              importDetailId,
+              r'VerifyImportDetailRequest',
+              'importDetailId',
+            ),
+            rejectedQuantity: rejectedQuantity,
+            note: note,
+            batches: batches.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'batches';
+        batches.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'VerifyImportDetailRequest',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-VerifyImportDetailRequest _$VerifyImportDetailRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('VerifyImportDetailRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['importDetailId']);
-  final val = VerifyImportDetailRequest(
-    importDetailId: $checkedConvert('importDetailId', (v) => v as String),
-    rejectedQuantity: $checkedConvert(
-      'rejectedQuantity',
-      (v) => (v as num?)?.toInt(),
-    ),
-    note: $checkedConvert('note', (v) => v as String?),
-    batches: $checkedConvert(
-      'batches',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => CreateBatchRequest.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$VerifyImportDetailRequestToJson(
-  VerifyImportDetailRequest instance,
-) => <String, dynamic>{
-  'importDetailId': instance.importDetailId,
-  'rejectedQuantity': ?instance.rejectedQuantity,
-  'note': ?instance.note,
-  'batches': ?instance.batches?.map((e) => e.toJson()).toList(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

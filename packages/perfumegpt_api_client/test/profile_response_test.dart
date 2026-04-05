@@ -3,22 +3,12 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProfileResponse
 void main() {
-  final ProfileResponse? instance = /* ProfileResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = ProfileResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ProfileResponse, () {
-    // String id
-    test('to test the property `id`', () async {
-      // TODO
-    });
-
-    // String userId
-    test('to test the property `userId`', () async {
-      // TODO
-    });
-
-    // String scentPreference
-    test('to test the property `scentPreference`', () async {
+    // DateTime dateOfBirth
+    test('to test the property `dateOfBirth`', () async {
       // TODO
     });
 
@@ -32,24 +22,20 @@ void main() {
       // TODO
     });
 
-    // String preferredStyle
-    test('to test the property `preferredStyle`', () async {
+    // BuiltList<CustomerNotePreferenceResponse> notePreferences
+    test('to test the property `notePreferences`', () async {
       // TODO
     });
 
-    // String favoriteNotes
-    test('to test the property `favoriteNotes`', () async {
+    // BuiltList<CustomerFamilyPreferenceRespone> familyPreferences
+    test('to test the property `familyPreferences`', () async {
       // TODO
     });
 
-    // DateTime updatedAt
-    test('to test the property `updatedAt`', () async {
+    // BuiltList<CustomerAttributePreferenceResponse> attributePreferences
+    test('to test the property `attributePreferences`', () async {
       // TODO
     });
 
-    // DateTime createdAt
-    test('to test the property `createdAt`', () async {
-      // TODO
-    });
   });
 }

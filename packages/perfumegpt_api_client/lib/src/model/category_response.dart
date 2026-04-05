@@ -3,72 +3,122 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'category_response.g.dart';
 
+/// CategoryResponse
+///
+/// Properties:
+/// * [id] 
+/// * [name] 
+@BuiltValue()
+abstract class CategoryResponse implements Built<CategoryResponse, CategoryResponseBuilder> {
+  @BuiltValueField(wireName: r'id')
+  int? get id;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CategoryResponse {
-  /// Returns a new [CategoryResponse] instance.
-  CategoryResponse({
+  @BuiltValueField(wireName: r'name')
+  String get name;
 
-     this.id,
+  CategoryResponse._();
 
-     this.name,
-  });
+  factory CategoryResponse([void updates(CategoryResponseBuilder b)]) = _$CategoryResponse;
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CategoryResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CategoryResponse> get serializer => _$CategoryResponseSerializer();
+}
 
-  final int? id;
-
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? name;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CategoryResponse &&
-      other.id == id &&
-      other.name == name;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        name.hashCode;
-
-  factory CategoryResponse.fromJson(Map<String, dynamic> json) => _$CategoryResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CategoryResponseToJson(this);
+class _$CategoryResponseSerializer implements PrimitiveSerializer<CategoryResponse> {
+  @override
+  final Iterable<Type> types = const [CategoryResponse, _$CategoryResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'CategoryResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CategoryResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(int),
+      );
+    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CategoryResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CategoryResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.id = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CategoryResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CategoryResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

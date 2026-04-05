@@ -4,11 +4,12 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_bulk_action_result_of_list_of_temporary_media_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_bulk_action_result_ofstring.dart';
@@ -23,6 +24,7 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_product_infor_r
 import 'package:perfumegpt_api_client/src/model/base_response_of_product_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/create_product_request.dart';
+import 'package:perfumegpt_api_client/src/model/date.dart';
 import 'package:perfumegpt_api_client/src/model/gender.dart';
 import 'package:perfumegpt_api_client/src/model/product_image_upload_item.dart';
 import 'package:perfumegpt_api_client/src/model/update_product_request.dart';
@@ -31,7 +33,9 @@ class ProductsApi {
 
   final Dio _dio;
 
-  const ProductsApi(this._dio);
+  final Serializers _serializers;
+
+  const ProductsApi(this._dio, this._serializers);
 
   /// apiProductsBestSellersGet
   /// 
@@ -98,18 +102,18 @@ class ProductsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (gender != null) r'Gender': gender,
-      r'CategoryId': categoryId,
-      r'BrandId': brandId,
-      r'Volume': volume,
-      r'FromPrice': fromPrice,
-      r'ToPrice': toPrice,
-      if (isAvailable != null) r'IsAvailable': isAvailable,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
+      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
+      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
+      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
+      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
+      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
+      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -124,8 +128,11 @@ class ProductsApi {
     BaseResponseOfPagedResultOfProductListItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfProductListItem, BaseResponseOfPagedResultOfProductListItem>(rawData, 'BaseResponseOfPagedResultOfProductListItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItem),
+      ) as BaseResponseOfPagedResultOfProductListItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -196,7 +203,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/products/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', encodeQueryParameter(_serializers, campaignId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -216,18 +223,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     );
 
     final _queryParameters = <String, dynamic>{
-      if (gender != null) r'Gender': gender,
-      r'CategoryId': categoryId,
-      r'BrandId': brandId,
-      r'Volume': volume,
-      r'FromPrice': fromPrice,
-      r'ToPrice': toPrice,
-      if (isAvailable != null) r'IsAvailable': isAvailable,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
+      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
+      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
+      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
+      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
+      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
+      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -242,8 +249,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfPagedResultOfProductListItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfProductListItem, BaseResponseOfPagedResultOfProductListItem>(rawData, 'BaseResponseOfPagedResultOfProductListItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItem),
+      ) as BaseResponseOfPagedResultOfProductListItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -282,7 +292,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfProductDailySaleFigureResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfListOfProductDailySaleFigureResponse>> apiProductsDailySaleFiguresGet({ 
-    DateTime? date,
+    Date? date,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -310,7 +320,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     );
 
     final _queryParameters = <String, dynamic>{
-      if (date != null) r'date': date,
+      if (date != null) r'date': encodeQueryParameter(_serializers, date, const FullType(Date)),
     };
 
     final _response = await _dio.request<Object>(
@@ -325,8 +335,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfListOfProductDailySaleFigureResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProductDailySaleFigureResponse, BaseResponseOfListOfProductDailySaleFigureResponse>(rawData, 'BaseResponseOfListOfProductDailySaleFigureResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfProductDailySaleFigureResponse),
+      ) as BaseResponseOfListOfProductDailySaleFigureResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -401,8 +414,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProduct
     BaseResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>(rawData, 'BaseResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponse),
+      ) as BaseResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -449,7 +465,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/embeddings/update/{productId}'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/api/products/embeddings/update/{productId}'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -479,8 +495,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>
     BaseResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>(rawData, 'BaseResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponse),
+      ) as BaseResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -569,18 +588,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>
     );
 
     final _queryParameters = <String, dynamic>{
-      if (gender != null) r'Gender': gender,
-      r'CategoryId': categoryId,
-      r'BrandId': brandId,
-      r'Volume': volume,
-      r'FromPrice': fromPrice,
-      r'ToPrice': toPrice,
-      if (isAvailable != null) r'IsAvailable': isAvailable,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
+      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
+      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
+      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
+      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
+      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
+      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -595,8 +614,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>
     BaseResponseOfPagedResultOfProductListItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfProductListItem, BaseResponseOfPagedResultOfProductListItem>(rawData, 'BaseResponseOfPagedResultOfProductListItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItem),
+      ) as BaseResponseOfPagedResultOfProductListItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -643,7 +665,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/images/{mediaId}/set-primary'.replaceAll('{' r'mediaId' '}', mediaId.toString());
+    final _path = r'/api/products/images/{mediaId}/set-primary'.replaceAll('{' r'mediaId' '}', encodeQueryParameter(_serializers, mediaId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -673,8 +695,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -713,7 +738,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>> apiProductsImagesTemporaryPost({ 
-    List<ProductImageUploadItem>? images,
+    BuiltList<ProductImageUploadItem>? images,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -744,6 +769,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
+      _bodyData = <String, dynamic>{
+        if (images != null) r'Images': encodeCollectionQueryParameter<ProductImageUploadItem>(_serializers, images, const FullType(BuiltList, [FullType(ProductImageUploadItem)]), format: ListFormat.csv,),
+      };
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -769,8 +797,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse, BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(rawData, 'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse),
+      ) as BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -845,8 +876,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     BaseResponseOfListOfProductLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProductLookupItem, BaseResponseOfListOfProductLookupItem>(rawData, 'BaseResponseOfListOfProductLookupItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfProductLookupItem),
+      ) as BaseResponseOfListOfProductLookupItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -935,18 +969,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProduct
     );
 
     final _queryParameters = <String, dynamic>{
-      if (gender != null) r'Gender': gender,
-      r'CategoryId': categoryId,
-      r'BrandId': brandId,
-      r'Volume': volume,
-      r'FromPrice': fromPrice,
-      r'ToPrice': toPrice,
-      if (isAvailable != null) r'IsAvailable': isAvailable,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
+      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
+      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
+      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
+      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
+      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
+      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -961,8 +995,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProduct
     BaseResponseOfPagedResultOfProductListItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfProductListItem, BaseResponseOfPagedResultOfProductListItem>(rawData, 'BaseResponseOfPagedResultOfProductListItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItem),
+      ) as BaseResponseOfPagedResultOfProductListItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1032,7 +1069,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createProductRequest);
+      const _type = FullType(CreateProductRequest);
+      _bodyData = _serializers.serialize(createProductRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1057,8 +1096,11 @@ _bodyData=jsonEncode(createProductRequest);
     BaseResponseOfBulkActionResultOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfstring, BaseResponseOfBulkActionResultOfstring>(rawData, 'BaseResponseOfBulkActionResultOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBulkActionResultOfstring),
+      ) as BaseResponseOfBulkActionResultOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1105,7 +1147,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/api/products/{productId}'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -1135,8 +1177,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1183,7 +1228,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}/fast-look'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/api/products/{productId}/fast-look'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1213,8 +1258,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfProductFastLookResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfProductFastLookResponse, BaseResponseOfProductFastLookResponse>(rawData, 'BaseResponseOfProductFastLookResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfProductFastLookResponse),
+      ) as BaseResponseOfProductFastLookResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1261,7 +1309,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductFastLo
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/api/products/{productId}'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1291,8 +1339,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductFastLo
     BaseResponseOfProductResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfProductResponse, BaseResponseOfProductResponse>(rawData, 'BaseResponseOfProductResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfProductResponse),
+      ) as BaseResponseOfProductResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1339,7 +1390,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductRespon
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}/images'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/api/products/{productId}/images'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1369,8 +1420,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductRespon
     BaseResponseOfListOfMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaResponse, BaseResponseOfListOfMediaResponse>(rawData, 'BaseResponseOfListOfMediaResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfMediaResponse),
+      ) as BaseResponseOfListOfMediaResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1417,7 +1471,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaRe
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}/images/primary'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/api/products/{productId}/images/primary'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1447,8 +1501,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaRe
     BaseResponseOfMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse, BaseResponseOfMediaResponse>(rawData, 'BaseResponseOfMediaResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfMediaResponse),
+      ) as BaseResponseOfMediaResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1495,7 +1552,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}/information'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/api/products/{productId}/information'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1525,8 +1582,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse
     BaseResponseOfProductInforResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfProductInforResponse, BaseResponseOfProductInforResponse>(rawData, 'BaseResponseOfProductInforResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfProductInforResponse),
+      ) as BaseResponseOfProductInforResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1575,7 +1635,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductInforR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/products/{productId}'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/api/products/{productId}'.replaceAll('{' r'productId' '}', encodeQueryParameter(_serializers, productId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -1598,7 +1658,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductInforR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateProductRequest);
+      const _type = FullType(UpdateProductRequest);
+      _bodyData = _serializers.serialize(updateProductRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1623,8 +1685,11 @@ _bodyData=jsonEncode(updateProductRequest);
     BaseResponseOfBulkActionResultOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfstring, BaseResponseOfBulkActionResultOfstring>(rawData, 'BaseResponseOfBulkActionResultOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBulkActionResultOfstring),
+      ) as BaseResponseOfBulkActionResultOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1715,19 +1780,19 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     );
 
     final _queryParameters = <String, dynamic>{
-      if (searchText != null) r'searchText': searchText,
-      if (gender != null) r'Gender': gender,
-      r'CategoryId': categoryId,
-      r'BrandId': brandId,
-      r'Volume': volume,
-      r'FromPrice': fromPrice,
-      r'ToPrice': toPrice,
-      if (isAvailable != null) r'IsAvailable': isAvailable,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (searchText != null) r'searchText': encodeQueryParameter(_serializers, searchText, const FullType(String)),
+      if (gender != null) r'Gender': encodeQueryParameter(_serializers, gender, const FullType(Gender)),
+      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
+      r'BrandId': encodeQueryParameter(_serializers, brandId, const FullType(int)),
+      r'Volume': encodeQueryParameter(_serializers, volume, const FullType(int)),
+      r'FromPrice': encodeQueryParameter(_serializers, fromPrice, const FullType(num)),
+      r'ToPrice': encodeQueryParameter(_serializers, toPrice, const FullType(num)),
+      if (isAvailable != null) r'IsAvailable': encodeQueryParameter(_serializers, isAvailable, const FullType(bool)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -1742,8 +1807,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     BaseResponseOfPagedResultOfProductListItemWithVariants? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfProductListItemWithVariants, BaseResponseOfPagedResultOfProductListItemWithVariants>(rawData, 'BaseResponseOfPagedResultOfProductListItemWithVariants', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfProductListItemWithVariants),
+      ) as BaseResponseOfPagedResultOfProductListItemWithVariants;
 
     } catch (error, stackTrace) {
       throw DioException(

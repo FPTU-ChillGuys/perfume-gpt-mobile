@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_redeemable_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_available_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_user_voucher_response.dart';
@@ -24,7 +24,9 @@ class VouchersApi {
 
   final Dio _dio;
 
-  const VouchersApi(this._dio);
+  final Serializers _serializers;
+
+  const VouchersApi(this._dio, this._serializers);
 
   /// apiVouchersAvailableGet
   /// 
@@ -77,11 +79,11 @@ class VouchersApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -96,8 +98,11 @@ class VouchersApi {
     BaseResponseOfPagedResultOfAvailableVoucherResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfAvailableVoucherResponse, BaseResponseOfPagedResultOfAvailableVoucherResponse>(rawData, 'BaseResponseOfPagedResultOfAvailableVoucherResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfAvailableVoucherResponse),
+      ) as BaseResponseOfPagedResultOfAvailableVoucherResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -176,13 +181,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     );
 
     final _queryParameters = <String, dynamic>{
-      if (isExpired != null) r'IsExpired': isExpired,
-      if (code != null) r'Code': code,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (isExpired != null) r'IsExpired': encodeQueryParameter(_serializers, isExpired, const FullType(bool)),
+      if (code != null) r'Code': encodeQueryParameter(_serializers, code, const FullType(String)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -197,8 +202,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfPagedResultOfVoucherResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfVoucherResponse, BaseResponseOfPagedResultOfVoucherResponse>(rawData, 'BaseResponseOfPagedResultOfVoucherResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfVoucherResponse),
+      ) as BaseResponseOfPagedResultOfVoucherResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -283,16 +291,16 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     );
 
     final _queryParameters = <String, dynamic>{
-      if (status != null) r'Status': status,
-      if (isUsed != null) r'IsUsed': isUsed,
-      if (isExpired != null) r'IsExpired': isExpired,
-      if (code != null) r'Code': code,
-      if (discountType != null) r'DiscountType': discountType,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(int)),
+      if (isUsed != null) r'IsUsed': encodeQueryParameter(_serializers, isUsed, const FullType(bool)),
+      if (isExpired != null) r'IsExpired': encodeQueryParameter(_serializers, isExpired, const FullType(bool)),
+      if (code != null) r'Code': encodeQueryParameter(_serializers, code, const FullType(String)),
+      if (discountType != null) r'DiscountType': encodeQueryParameter(_serializers, discountType, const FullType(DiscountType)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -307,8 +315,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfPagedResultOfUserVoucherResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfUserVoucherResponse, BaseResponseOfPagedResultOfUserVoucherResponse>(rawData, 'BaseResponseOfPagedResultOfUserVoucherResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfUserVoucherResponse),
+      ) as BaseResponseOfPagedResultOfUserVoucherResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -378,7 +389,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createVoucherRequest);
+      const _type = FullType(CreateVoucherRequest);
+      _bodyData = _serializers.serialize(createVoucherRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -403,8 +416,11 @@ _bodyData=jsonEncode(createVoucherRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -474,7 +490,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(redeemVoucherRequest);
+      const _type = FullType(RedeemVoucherRequest);
+      _bodyData = _serializers.serialize(redeemVoucherRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -499,8 +517,11 @@ _bodyData=jsonEncode(redeemVoucherRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -575,11 +596,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     );
 
     final _queryParameters = <String, dynamic>{
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -594,8 +615,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfListOfRedeemableVoucherResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfRedeemableVoucherResponse, BaseResponseOfListOfRedeemableVoucherResponse>(rawData, 'BaseResponseOfListOfRedeemableVoucherResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfRedeemableVoucherResponse),
+      ) as BaseResponseOfListOfRedeemableVoucherResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -642,7 +666,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfRedeema
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/vouchers/{voucherId}'.replaceAll('{' r'voucherId' '}', voucherId.toString());
+    final _path = r'/api/vouchers/{voucherId}'.replaceAll('{' r'voucherId' '}', encodeQueryParameter(_serializers, voucherId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -672,8 +696,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfRedeema
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -720,7 +747,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/vouchers/{voucherId}'.replaceAll('{' r'voucherId' '}', voucherId.toString());
+    final _path = r'/api/vouchers/{voucherId}'.replaceAll('{' r'voucherId' '}', encodeQueryParameter(_serializers, voucherId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -750,8 +777,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfVoucherResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherResponse, BaseResponseOfVoucherResponse>(rawData, 'BaseResponseOfVoucherResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfVoucherResponse),
+      ) as BaseResponseOfVoucherResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -800,7 +830,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherRespon
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/vouchers/{voucherId}'.replaceAll('{' r'voucherId' '}', voucherId.toString());
+    final _path = r'/api/vouchers/{voucherId}'.replaceAll('{' r'voucherId' '}', encodeQueryParameter(_serializers, voucherId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -823,7 +853,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherRespon
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateVoucherRequest);
+      const _type = FullType(UpdateVoucherRequest);
+      _bodyData = _serializers.serialize(updateVoucherRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -848,8 +880,11 @@ _bodyData=jsonEncode(updateVoucherRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

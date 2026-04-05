@@ -3,10 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfPagedResultOfProductListItemWithVariants
 void main() {
-  final BaseResponseOfPagedResultOfProductListItemWithVariants?
-  instance = /* BaseResponseOfPagedResultOfProductListItemWithVariants(...) */
-      null;
-  // TODO add properties to the entity
+  final instance = BaseResponseOfPagedResultOfProductListItemWithVariantsBuilder();
+  // TODO add properties to the builder and call build()
 
   group(BaseResponseOfPagedResultOfProductListItemWithVariants, () {
     // PagedResultOfProductListItemWithVariants payload
@@ -24,14 +22,15 @@ void main() {
       // TODO
     });
 
-    // List<String> errors
+    // BuiltList<String> errors
     test('to test the property `errors`', () async {
       // TODO
     });
 
-    // ResponseErrorType errorType
+    // int errorType
     test('to test the property `errorType`', () async {
       // TODO
     });
+
   });
 }

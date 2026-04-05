@@ -3,119 +3,131 @@
 part of 'get_cart_total_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$GetCartTotalResponseCWProxy {
-  GetCartTotalResponse subtotal(num? subtotal);
+class _$GetCartTotalResponse extends GetCartTotalResponse {
+  @override
+  final num? subtotal;
+  @override
+  final num? shippingFee;
+  @override
+  final num? discount;
+  @override
+  final num? totalPrice;
 
-  GetCartTotalResponse shippingFee(num? shippingFee);
+  factory _$GetCartTotalResponse([
+    void Function(GetCartTotalResponseBuilder)? updates,
+  ]) => (GetCartTotalResponseBuilder()..update(updates))._build();
 
-  GetCartTotalResponse discount(num? discount);
-
-  GetCartTotalResponse totalPrice(num? totalPrice);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartTotalResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// GetCartTotalResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  GetCartTotalResponse call({
-    num? subtotal,
-    num? shippingFee,
-    num? discount,
-    num? totalPrice,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfGetCartTotalResponse.copyWith(...)` or call `instanceOfGetCartTotalResponse.copyWith.fieldName(value)` for a single field.
-class _$GetCartTotalResponseCWProxyImpl
-    implements _$GetCartTotalResponseCWProxy {
-  const _$GetCartTotalResponseCWProxyImpl(this._value);
-
-  final GetCartTotalResponse _value;
+  _$GetCartTotalResponse._({
+    this.subtotal,
+    this.shippingFee,
+    this.discount,
+    this.totalPrice,
+  }) : super._();
+  @override
+  GetCartTotalResponse rebuild(
+    void Function(GetCartTotalResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  GetCartTotalResponse subtotal(num? subtotal) => call(subtotal: subtotal);
+  GetCartTotalResponseBuilder toBuilder() =>
+      GetCartTotalResponseBuilder()..replace(this);
 
   @override
-  GetCartTotalResponse shippingFee(num? shippingFee) =>
-      call(shippingFee: shippingFee);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetCartTotalResponse &&
+        subtotal == other.subtotal &&
+        shippingFee == other.shippingFee &&
+        discount == other.discount &&
+        totalPrice == other.totalPrice;
+  }
 
   @override
-  GetCartTotalResponse discount(num? discount) => call(discount: discount);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, subtotal.hashCode);
+    _$hash = $jc(_$hash, shippingFee.hashCode);
+    _$hash = $jc(_$hash, discount.hashCode);
+    _$hash = $jc(_$hash, totalPrice.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  GetCartTotalResponse totalPrice(num? totalPrice) =>
-      call(totalPrice: totalPrice);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartTotalResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// GetCartTotalResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  GetCartTotalResponse call({
-    Object? subtotal = const $CopyWithPlaceholder(),
-    Object? shippingFee = const $CopyWithPlaceholder(),
-    Object? discount = const $CopyWithPlaceholder(),
-    Object? totalPrice = const $CopyWithPlaceholder(),
-  }) {
-    return GetCartTotalResponse(
-      subtotal: subtotal == const $CopyWithPlaceholder()
-          ? _value.subtotal
-          // ignore: cast_nullable_to_non_nullable
-          : subtotal as num?,
-      shippingFee: shippingFee == const $CopyWithPlaceholder()
-          ? _value.shippingFee
-          // ignore: cast_nullable_to_non_nullable
-          : shippingFee as num?,
-      discount: discount == const $CopyWithPlaceholder()
-          ? _value.discount
-          // ignore: cast_nullable_to_non_nullable
-          : discount as num?,
-      totalPrice: totalPrice == const $CopyWithPlaceholder()
-          ? _value.totalPrice
-          // ignore: cast_nullable_to_non_nullable
-          : totalPrice as num?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GetCartTotalResponse')
+          ..add('subtotal', subtotal)
+          ..add('shippingFee', shippingFee)
+          ..add('discount', discount)
+          ..add('totalPrice', totalPrice))
+        .toString();
   }
 }
 
-extension $GetCartTotalResponseCopyWith on GetCartTotalResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfGetCartTotalResponse.copyWith(...)` or `instanceOfGetCartTotalResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$GetCartTotalResponseCWProxy get copyWith =>
-      _$GetCartTotalResponseCWProxyImpl(this);
+class GetCartTotalResponseBuilder
+    implements Builder<GetCartTotalResponse, GetCartTotalResponseBuilder> {
+  _$GetCartTotalResponse? _$v;
+
+  num? _subtotal;
+  num? get subtotal => _$this._subtotal;
+  set subtotal(num? subtotal) => _$this._subtotal = subtotal;
+
+  num? _shippingFee;
+  num? get shippingFee => _$this._shippingFee;
+  set shippingFee(num? shippingFee) => _$this._shippingFee = shippingFee;
+
+  num? _discount;
+  num? get discount => _$this._discount;
+  set discount(num? discount) => _$this._discount = discount;
+
+  num? _totalPrice;
+  num? get totalPrice => _$this._totalPrice;
+  set totalPrice(num? totalPrice) => _$this._totalPrice = totalPrice;
+
+  GetCartTotalResponseBuilder() {
+    GetCartTotalResponse._defaults(this);
+  }
+
+  GetCartTotalResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _subtotal = $v.subtotal;
+      _shippingFee = $v.shippingFee;
+      _discount = $v.discount;
+      _totalPrice = $v.totalPrice;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GetCartTotalResponse other) {
+    _$v = other as _$GetCartTotalResponse;
+  }
+
+  @override
+  void update(void Function(GetCartTotalResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetCartTotalResponse build() => _build();
+
+  _$GetCartTotalResponse _build() {
+    final _$result =
+        _$v ??
+        _$GetCartTotalResponse._(
+          subtotal: subtotal,
+          shippingFee: shippingFee,
+          discount: discount,
+          totalPrice: totalPrice,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-GetCartTotalResponse _$GetCartTotalResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('GetCartTotalResponse', json, ($checkedConvert) {
-  final val = GetCartTotalResponse(
-    subtotal: $checkedConvert('subtotal', (v) => v as num?),
-    shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
-    discount: $checkedConvert('discount', (v) => v as num?),
-    totalPrice: $checkedConvert('totalPrice', (v) => v as num?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$GetCartTotalResponseToJson(
-  GetCartTotalResponse instance,
-) => <String, dynamic>{
-  'subtotal': ?instance.subtotal,
-  'shippingFee': ?instance.shippingFee,
-  'discount': ?instance.discount,
-  'totalPrice': ?instance.totalPrice,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

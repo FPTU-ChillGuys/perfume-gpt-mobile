@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **reservationId** | **String** |  | [optional] 
 **batchId** | **String** |  | [optional] 
-**batchCode** | **String** |  | [optional] 
+**batchCode** | **String** |  | 
 **note** | **String** |  | [optional] 
 **reservedQuantity** | **int** |  | [optional] 
 **expiryDate** | [**DateTime**](DateTime.md) |  | [optional] 

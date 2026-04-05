@@ -3,109 +3,128 @@
 part of 'update_attribute_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$UpdateAttributeRequestCWProxy {
-  UpdateAttributeRequest name(String name);
+class _$UpdateAttributeRequest extends UpdateAttributeRequest {
+  @override
+  final String name;
+  @override
+  final String? description;
+  @override
+  final bool isVariantLevel;
 
-  UpdateAttributeRequest description(String? description);
+  factory _$UpdateAttributeRequest([
+    void Function(UpdateAttributeRequestBuilder)? updates,
+  ]) => (UpdateAttributeRequestBuilder()..update(updates))._build();
 
-  UpdateAttributeRequest isVariantLevel(bool isVariantLevel);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateAttributeRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateAttributeRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateAttributeRequest call({
-    String name,
-    String? description,
-    bool isVariantLevel,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfUpdateAttributeRequest.copyWith(...)` or call `instanceOfUpdateAttributeRequest.copyWith.fieldName(value)` for a single field.
-class _$UpdateAttributeRequestCWProxyImpl
-    implements _$UpdateAttributeRequestCWProxy {
-  const _$UpdateAttributeRequestCWProxyImpl(this._value);
-
-  final UpdateAttributeRequest _value;
+  _$UpdateAttributeRequest._({
+    required this.name,
+    this.description,
+    required this.isVariantLevel,
+  }) : super._();
+  @override
+  UpdateAttributeRequest rebuild(
+    void Function(UpdateAttributeRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  UpdateAttributeRequest name(String name) => call(name: name);
+  UpdateAttributeRequestBuilder toBuilder() =>
+      UpdateAttributeRequestBuilder()..replace(this);
 
   @override
-  UpdateAttributeRequest description(String? description) =>
-      call(description: description);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is UpdateAttributeRequest &&
+        name == other.name &&
+        description == other.description &&
+        isVariantLevel == other.isVariantLevel;
+  }
 
   @override
-  UpdateAttributeRequest isVariantLevel(bool isVariantLevel) =>
-      call(isVariantLevel: isVariantLevel);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, isVariantLevel.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateAttributeRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateAttributeRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateAttributeRequest call({
-    Object? name = const $CopyWithPlaceholder(),
-    Object? description = const $CopyWithPlaceholder(),
-    Object? isVariantLevel = const $CopyWithPlaceholder(),
-  }) {
-    return UpdateAttributeRequest(
-      name: name == const $CopyWithPlaceholder() || name == null
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String,
-      description: description == const $CopyWithPlaceholder()
-          ? _value.description
-          // ignore: cast_nullable_to_non_nullable
-          : description as String?,
-      isVariantLevel:
-          isVariantLevel == const $CopyWithPlaceholder() ||
-              isVariantLevel == null
-          ? _value.isVariantLevel
-          // ignore: cast_nullable_to_non_nullable
-          : isVariantLevel as bool,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'UpdateAttributeRequest')
+          ..add('name', name)
+          ..add('description', description)
+          ..add('isVariantLevel', isVariantLevel))
+        .toString();
   }
 }
 
-extension $UpdateAttributeRequestCopyWith on UpdateAttributeRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfUpdateAttributeRequest.copyWith(...)` or `instanceOfUpdateAttributeRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$UpdateAttributeRequestCWProxy get copyWith =>
-      _$UpdateAttributeRequestCWProxyImpl(this);
+class UpdateAttributeRequestBuilder
+    implements Builder<UpdateAttributeRequest, UpdateAttributeRequestBuilder> {
+  _$UpdateAttributeRequest? _$v;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
+
+  bool? _isVariantLevel;
+  bool? get isVariantLevel => _$this._isVariantLevel;
+  set isVariantLevel(bool? isVariantLevel) =>
+      _$this._isVariantLevel = isVariantLevel;
+
+  UpdateAttributeRequestBuilder() {
+    UpdateAttributeRequest._defaults(this);
+  }
+
+  UpdateAttributeRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _description = $v.description;
+      _isVariantLevel = $v.isVariantLevel;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(UpdateAttributeRequest other) {
+    _$v = other as _$UpdateAttributeRequest;
+  }
+
+  @override
+  void update(void Function(UpdateAttributeRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  UpdateAttributeRequest build() => _build();
+
+  _$UpdateAttributeRequest _build() {
+    final _$result =
+        _$v ??
+        _$UpdateAttributeRequest._(
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'UpdateAttributeRequest',
+            'name',
+          ),
+          description: description,
+          isVariantLevel: BuiltValueNullFieldError.checkNotNull(
+            isVariantLevel,
+            r'UpdateAttributeRequest',
+            'isVariantLevel',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-UpdateAttributeRequest _$UpdateAttributeRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('UpdateAttributeRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['name', 'isVariantLevel']);
-  final val = UpdateAttributeRequest(
-    name: $checkedConvert('name', (v) => v as String),
-    description: $checkedConvert('description', (v) => v as String?),
-    isVariantLevel: $checkedConvert('isVariantLevel', (v) => v as bool),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$UpdateAttributeRequestToJson(
-  UpdateAttributeRequest instance,
-) => <String, dynamic>{
-  'name': instance.name,
-  'description': ?instance.description,
-  'isVariantLevel': instance.isVariantLevel,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

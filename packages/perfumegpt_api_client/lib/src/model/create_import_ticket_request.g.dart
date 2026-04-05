@@ -3,128 +3,143 @@
 part of 'create_import_ticket_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CreateImportTicketRequestCWProxy {
-  CreateImportTicketRequest supplierId(int? supplierId);
+class _$CreateImportTicketRequest extends CreateImportTicketRequest {
+  @override
+  final BuiltList<CreateImportDetailRequest> importDetails;
+  @override
+  final int? supplierId;
+  @override
+  final DateTime expectedArrivalDate;
 
-  CreateImportTicketRequest expectedArrivalDate(DateTime expectedArrivalDate);
+  factory _$CreateImportTicketRequest([
+    void Function(CreateImportTicketRequestBuilder)? updates,
+  ]) => (CreateImportTicketRequestBuilder()..update(updates))._build();
 
-  CreateImportTicketRequest importDetails(
-    List<CreateImportDetailRequest> importDetails,
-  );
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateImportTicketRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateImportTicketRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateImportTicketRequest call({
-    int? supplierId,
-    DateTime expectedArrivalDate,
-    List<CreateImportDetailRequest> importDetails,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCreateImportTicketRequest.copyWith(...)` or call `instanceOfCreateImportTicketRequest.copyWith.fieldName(value)` for a single field.
-class _$CreateImportTicketRequestCWProxyImpl
-    implements _$CreateImportTicketRequestCWProxy {
-  const _$CreateImportTicketRequestCWProxyImpl(this._value);
-
-  final CreateImportTicketRequest _value;
+  _$CreateImportTicketRequest._({
+    required this.importDetails,
+    this.supplierId,
+    required this.expectedArrivalDate,
+  }) : super._();
+  @override
+  CreateImportTicketRequest rebuild(
+    void Function(CreateImportTicketRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  CreateImportTicketRequest supplierId(int? supplierId) =>
-      call(supplierId: supplierId);
+  CreateImportTicketRequestBuilder toBuilder() =>
+      CreateImportTicketRequestBuilder()..replace(this);
 
   @override
-  CreateImportTicketRequest expectedArrivalDate(DateTime expectedArrivalDate) =>
-      call(expectedArrivalDate: expectedArrivalDate);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CreateImportTicketRequest &&
+        importDetails == other.importDetails &&
+        supplierId == other.supplierId &&
+        expectedArrivalDate == other.expectedArrivalDate;
+  }
 
   @override
-  CreateImportTicketRequest importDetails(
-    List<CreateImportDetailRequest> importDetails,
-  ) => call(importDetails: importDetails);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, importDetails.hashCode);
+    _$hash = $jc(_$hash, supplierId.hashCode);
+    _$hash = $jc(_$hash, expectedArrivalDate.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateImportTicketRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateImportTicketRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateImportTicketRequest call({
-    Object? supplierId = const $CopyWithPlaceholder(),
-    Object? expectedArrivalDate = const $CopyWithPlaceholder(),
-    Object? importDetails = const $CopyWithPlaceholder(),
-  }) {
-    return CreateImportTicketRequest(
-      supplierId: supplierId == const $CopyWithPlaceholder()
-          ? _value.supplierId
-          // ignore: cast_nullable_to_non_nullable
-          : supplierId as int?,
-      expectedArrivalDate:
-          expectedArrivalDate == const $CopyWithPlaceholder() ||
-              expectedArrivalDate == null
-          ? _value.expectedArrivalDate
-          // ignore: cast_nullable_to_non_nullable
-          : expectedArrivalDate as DateTime,
-      importDetails:
-          importDetails == const $CopyWithPlaceholder() || importDetails == null
-          ? _value.importDetails
-          // ignore: cast_nullable_to_non_nullable
-          : importDetails as List<CreateImportDetailRequest>,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'CreateImportTicketRequest')
+          ..add('importDetails', importDetails)
+          ..add('supplierId', supplierId)
+          ..add('expectedArrivalDate', expectedArrivalDate))
+        .toString();
   }
 }
 
-extension $CreateImportTicketRequestCopyWith on CreateImportTicketRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCreateImportTicketRequest.copyWith(...)` or `instanceOfCreateImportTicketRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CreateImportTicketRequestCWProxy get copyWith =>
-      _$CreateImportTicketRequestCWProxyImpl(this);
+class CreateImportTicketRequestBuilder
+    implements
+        Builder<CreateImportTicketRequest, CreateImportTicketRequestBuilder> {
+  _$CreateImportTicketRequest? _$v;
+
+  ListBuilder<CreateImportDetailRequest>? _importDetails;
+  ListBuilder<CreateImportDetailRequest> get importDetails =>
+      _$this._importDetails ??= ListBuilder<CreateImportDetailRequest>();
+  set importDetails(ListBuilder<CreateImportDetailRequest>? importDetails) =>
+      _$this._importDetails = importDetails;
+
+  int? _supplierId;
+  int? get supplierId => _$this._supplierId;
+  set supplierId(int? supplierId) => _$this._supplierId = supplierId;
+
+  DateTime? _expectedArrivalDate;
+  DateTime? get expectedArrivalDate => _$this._expectedArrivalDate;
+  set expectedArrivalDate(DateTime? expectedArrivalDate) =>
+      _$this._expectedArrivalDate = expectedArrivalDate;
+
+  CreateImportTicketRequestBuilder() {
+    CreateImportTicketRequest._defaults(this);
+  }
+
+  CreateImportTicketRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _importDetails = $v.importDetails.toBuilder();
+      _supplierId = $v.supplierId;
+      _expectedArrivalDate = $v.expectedArrivalDate;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CreateImportTicketRequest other) {
+    _$v = other as _$CreateImportTicketRequest;
+  }
+
+  @override
+  void update(void Function(CreateImportTicketRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CreateImportTicketRequest build() => _build();
+
+  _$CreateImportTicketRequest _build() {
+    _$CreateImportTicketRequest _$result;
+    try {
+      _$result =
+          _$v ??
+          _$CreateImportTicketRequest._(
+            importDetails: importDetails.build(),
+            supplierId: supplierId,
+            expectedArrivalDate: BuiltValueNullFieldError.checkNotNull(
+              expectedArrivalDate,
+              r'CreateImportTicketRequest',
+              'expectedArrivalDate',
+            ),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'importDetails';
+        importDetails.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'CreateImportTicketRequest',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreateImportTicketRequest _$CreateImportTicketRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('CreateImportTicketRequest', json, ($checkedConvert) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['expectedArrivalDate', 'importDetails'],
-  );
-  final val = CreateImportTicketRequest(
-    supplierId: $checkedConvert('supplierId', (v) => (v as num?)?.toInt()),
-    expectedArrivalDate: $checkedConvert(
-      'expectedArrivalDate',
-      (v) => DateTime.parse(v as String),
-    ),
-    importDetails: $checkedConvert(
-      'importDetails',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) =>
-                CreateImportDetailRequest.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$CreateImportTicketRequestToJson(
-  CreateImportTicketRequest instance,
-) => <String, dynamic>{
-  'supplierId': ?instance.supplierId,
-  'expectedArrivalDate': instance.expectedArrivalDate.toIso8601String(),
-  'importDetails': instance.importDetails.map((e) => e.toJson()).toList(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

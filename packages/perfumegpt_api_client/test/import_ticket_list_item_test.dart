@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ImportTicketListItem
 void main() {
-  final ImportTicketListItem? instance = /* ImportTicketListItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = ImportTicketListItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ImportTicketListItem, () {
     // String id
@@ -56,5 +56,6 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
+
   });
 }

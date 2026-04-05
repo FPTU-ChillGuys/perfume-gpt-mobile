@@ -3,149 +3,174 @@
 part of 'base_response_of_swap_damaged_stock_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BaseResponseOfSwapDamagedStockResponseCWProxy {
-  BaseResponseOfSwapDamagedStockResponse payload(
-    SwapDamagedStockResponse? payload,
-  );
+class _$BaseResponseOfSwapDamagedStockResponse
+    extends BaseResponseOfSwapDamagedStockResponse {
+  @override
+  final SwapDamagedStockResponse? payload;
+  @override
+  final bool? success;
+  @override
+  final String? message;
+  @override
+  final BuiltList<String>? errors;
+  @override
+  final int? errorType;
 
-  BaseResponseOfSwapDamagedStockResponse success(bool? success);
+  factory _$BaseResponseOfSwapDamagedStockResponse([
+    void Function(BaseResponseOfSwapDamagedStockResponseBuilder)? updates,
+  ]) => (BaseResponseOfSwapDamagedStockResponseBuilder()..update(updates))
+      ._build();
 
-  BaseResponseOfSwapDamagedStockResponse message(String? message);
-
-  BaseResponseOfSwapDamagedStockResponse errors(List<String>? errors);
-
-  BaseResponseOfSwapDamagedStockResponse errorType(int? errorType);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfSwapDamagedStockResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfSwapDamagedStockResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfSwapDamagedStockResponse call({
-    SwapDamagedStockResponse? payload,
-    bool? success,
-    String? message,
-    List<String>? errors,
-    int? errorType,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith(...)` or call `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith.fieldName(value)` for a single field.
-class _$BaseResponseOfSwapDamagedStockResponseCWProxyImpl
-    implements _$BaseResponseOfSwapDamagedStockResponseCWProxy {
-  const _$BaseResponseOfSwapDamagedStockResponseCWProxyImpl(this._value);
-
-  final BaseResponseOfSwapDamagedStockResponse _value;
+  _$BaseResponseOfSwapDamagedStockResponse._({
+    this.payload,
+    this.success,
+    this.message,
+    this.errors,
+    this.errorType,
+  }) : super._();
+  @override
+  BaseResponseOfSwapDamagedStockResponse rebuild(
+    void Function(BaseResponseOfSwapDamagedStockResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BaseResponseOfSwapDamagedStockResponse payload(
-    SwapDamagedStockResponse? payload,
-  ) => call(payload: payload);
+  BaseResponseOfSwapDamagedStockResponseBuilder toBuilder() =>
+      BaseResponseOfSwapDamagedStockResponseBuilder()..replace(this);
 
   @override
-  BaseResponseOfSwapDamagedStockResponse success(bool? success) =>
-      call(success: success);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BaseResponseOfSwapDamagedStockResponse &&
+        payload == other.payload &&
+        success == other.success &&
+        message == other.message &&
+        errors == other.errors &&
+        errorType == other.errorType;
+  }
 
   @override
-  BaseResponseOfSwapDamagedStockResponse message(String? message) =>
-      call(message: message);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, payload.hashCode);
+    _$hash = $jc(_$hash, success.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, errors.hashCode);
+    _$hash = $jc(_$hash, errorType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  BaseResponseOfSwapDamagedStockResponse errors(List<String>? errors) =>
-      call(errors: errors);
-
-  @override
-  BaseResponseOfSwapDamagedStockResponse errorType(int? errorType) =>
-      call(errorType: errorType);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfSwapDamagedStockResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfSwapDamagedStockResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfSwapDamagedStockResponse call({
-    Object? payload = const $CopyWithPlaceholder(),
-    Object? success = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? errorType = const $CopyWithPlaceholder(),
-  }) {
-    return BaseResponseOfSwapDamagedStockResponse(
-      payload: payload == const $CopyWithPlaceholder()
-          ? _value.payload
-          // ignore: cast_nullable_to_non_nullable
-          : payload as SwapDamagedStockResponse?,
-      success: success == const $CopyWithPlaceholder()
-          ? _value.success
-          // ignore: cast_nullable_to_non_nullable
-          : success as bool?,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
-          // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
-          // ignore: cast_nullable_to_non_nullable
-          : errors as List<String>?,
-      errorType: errorType == const $CopyWithPlaceholder()
-          ? _value.errorType
-          // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'BaseResponseOfSwapDamagedStockResponse',
+          )
+          ..add('payload', payload)
+          ..add('success', success)
+          ..add('message', message)
+          ..add('errors', errors)
+          ..add('errorType', errorType))
+        .toString();
   }
 }
 
-extension $BaseResponseOfSwapDamagedStockResponseCopyWith
-    on BaseResponseOfSwapDamagedStockResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith(...)` or `instanceOfBaseResponseOfSwapDamagedStockResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BaseResponseOfSwapDamagedStockResponseCWProxy get copyWith =>
-      _$BaseResponseOfSwapDamagedStockResponseCWProxyImpl(this);
+class BaseResponseOfSwapDamagedStockResponseBuilder
+    implements
+        Builder<
+          BaseResponseOfSwapDamagedStockResponse,
+          BaseResponseOfSwapDamagedStockResponseBuilder
+        > {
+  _$BaseResponseOfSwapDamagedStockResponse? _$v;
+
+  SwapDamagedStockResponseBuilder? _payload;
+  SwapDamagedStockResponseBuilder get payload =>
+      _$this._payload ??= SwapDamagedStockResponseBuilder();
+  set payload(SwapDamagedStockResponseBuilder? payload) =>
+      _$this._payload = payload;
+
+  bool? _success;
+  bool? get success => _$this._success;
+  set success(bool? success) => _$this._success = success;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  ListBuilder<String>? _errors;
+  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
+  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
+
+  int? _errorType;
+  int? get errorType => _$this._errorType;
+  set errorType(int? errorType) => _$this._errorType = errorType;
+
+  BaseResponseOfSwapDamagedStockResponseBuilder() {
+    BaseResponseOfSwapDamagedStockResponse._defaults(this);
+  }
+
+  BaseResponseOfSwapDamagedStockResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _payload = $v.payload?.toBuilder();
+      _success = $v.success;
+      _message = $v.message;
+      _errors = $v.errors?.toBuilder();
+      _errorType = $v.errorType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BaseResponseOfSwapDamagedStockResponse other) {
+    _$v = other as _$BaseResponseOfSwapDamagedStockResponse;
+  }
+
+  @override
+  void update(
+    void Function(BaseResponseOfSwapDamagedStockResponseBuilder)? updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BaseResponseOfSwapDamagedStockResponse build() => _build();
+
+  _$BaseResponseOfSwapDamagedStockResponse _build() {
+    _$BaseResponseOfSwapDamagedStockResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BaseResponseOfSwapDamagedStockResponse._(
+            payload: _payload?.build(),
+            success: success,
+            message: message,
+            errors: _errors?.build(),
+            errorType: errorType,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'payload';
+        _payload?.build();
+
+        _$failedField = 'errors';
+        _errors?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BaseResponseOfSwapDamagedStockResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BaseResponseOfSwapDamagedStockResponse
-_$BaseResponseOfSwapDamagedStockResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('BaseResponseOfSwapDamagedStockResponse', json, (
-      $checkedConvert,
-    ) {
-      final val = BaseResponseOfSwapDamagedStockResponse(
-        payload: $checkedConvert(
-          'payload',
-          (v) => v == null
-              ? null
-              : SwapDamagedStockResponse.fromJson(v as Map<String, dynamic>),
-        ),
-        success: $checkedConvert('success', (v) => v as bool?),
-        message: $checkedConvert('message', (v) => v as String?),
-        errors: $checkedConvert(
-          'errors',
-          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-        ),
-        errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$BaseResponseOfSwapDamagedStockResponseToJson(
-  BaseResponseOfSwapDamagedStockResponse instance,
-) => <String, dynamic>{
-  'payload': ?instance.payload?.toJson(),
-  'success': ?instance.success,
-  'message': ?instance.message,
-  'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

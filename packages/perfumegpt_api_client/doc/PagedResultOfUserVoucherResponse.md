@@ -8,11 +8,11 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;UserVoucherResponse&gt;**](UserVoucherResponse.md) |  | 
+**items** | [**BuiltList&lt;UserVoucherResponse&gt;**](UserVoucherResponse.md) |  | 
 **pageNumber** | **int** |  | 
 **pageSize** | **int** |  | 
 **totalCount** | **int** |  | 
-**totalPages** | **int** |  | 
+**totalPages** | **int** |  | [optional] 
 **hasPreviousPage** | **bool** |  | [optional] 
 **hasNextPage** | **bool** |  | [optional] 
 

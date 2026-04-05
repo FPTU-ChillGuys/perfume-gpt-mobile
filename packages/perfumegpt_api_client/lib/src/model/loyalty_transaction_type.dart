@@ -3,19 +3,32 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
+part 'loyalty_transaction_type.g.dart';
 
-enum LoyaltyTransactionType {
-      @JsonValue(r'Spend')
-      spend(r'Spend'),
-      @JsonValue(r'Earn')
-      earn(r'Earn');
+class LoyaltyTransactionType extends EnumClass {
 
-  const LoyaltyTransactionType(this.value);
+  @BuiltValueEnumConst(wireName: r'Spend')
+  static const LoyaltyTransactionType spend = _$spend;
+  @BuiltValueEnumConst(wireName: r'Earn')
+  static const LoyaltyTransactionType earn = _$earn;
 
-  final String value;
+  static Serializer<LoyaltyTransactionType> get serializer => _$loyaltyTransactionTypeSerializer;
 
-  @override
-  String toString() => value;
+  const LoyaltyTransactionType._(String name): super(name);
+
+  static BuiltSet<LoyaltyTransactionType> get values => _$values;
+  static LoyaltyTransactionType valueOf(String name) => _$valueOf(name);
 }
+
+/// Optionally, enum_class can generate a mixin to go with your enum for use
+/// with Angular. It exposes your enum constants as getters. So, if you mix it
+/// in to your Dart component class, the values become available to the
+/// corresponding Angular template.
+///
+/// Trigger mixin generation by writing a line like this one next to your enum.
+abstract class LoyaltyTransactionTypeMixin = Object with _$LoyaltyTransactionTypeMixin;
+

@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_order_cancel_request_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/cancel_request_status.dart';
@@ -18,7 +18,9 @@ class OrderCancelRequestsApi {
 
   final Dio _dio;
 
-  const OrderCancelRequestsApi(this._dio);
+  final Serializers _serializers;
+
+  const OrderCancelRequestsApi(this._dio, this._serializers);
 
   /// apiOrdercancelrequestsGet
   /// 
@@ -75,13 +77,13 @@ class OrderCancelRequestsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (status != null) r'Status': status,
-      if (isRefundRequired != null) r'IsRefundRequired': isRefundRequired,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(CancelRequestStatus)),
+      if (isRefundRequired != null) r'IsRefundRequired': encodeQueryParameter(_serializers, isRefundRequired, const FullType(bool)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -96,8 +98,11 @@ class OrderCancelRequestsApi {
     BaseResponseOfPagedResultOfOrderCancelRequestResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfOrderCancelRequestResponse, BaseResponseOfPagedResultOfOrderCancelRequestResponse>(rawData, 'BaseResponseOfPagedResultOfOrderCancelRequestResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfOrderCancelRequestResponse),
+      ) as BaseResponseOfPagedResultOfOrderCancelRequestResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -146,7 +151,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/ordercancelrequests/{id}/process'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/ordercancelrequests/{id}/process'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -169,7 +174,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(processCancelRequest);
+      const _type = FullType(ProcessCancelRequest);
+      _bodyData = _serializers.serialize(processCancelRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -194,8 +201,11 @@ _bodyData=jsonEncode(processCancelRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

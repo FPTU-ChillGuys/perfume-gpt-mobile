@@ -3,146 +3,171 @@
 part of 'base_response_of_review_detail_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BaseResponseOfReviewDetailResponseCWProxy {
-  BaseResponseOfReviewDetailResponse payload(ReviewDetailResponse? payload);
+class _$BaseResponseOfReviewDetailResponse
+    extends BaseResponseOfReviewDetailResponse {
+  @override
+  final ReviewDetailResponse? payload;
+  @override
+  final bool? success;
+  @override
+  final String? message;
+  @override
+  final BuiltList<String>? errors;
+  @override
+  final int? errorType;
 
-  BaseResponseOfReviewDetailResponse success(bool? success);
+  factory _$BaseResponseOfReviewDetailResponse([
+    void Function(BaseResponseOfReviewDetailResponseBuilder)? updates,
+  ]) => (BaseResponseOfReviewDetailResponseBuilder()..update(updates))._build();
 
-  BaseResponseOfReviewDetailResponse message(String? message);
-
-  BaseResponseOfReviewDetailResponse errors(List<String>? errors);
-
-  BaseResponseOfReviewDetailResponse errorType(int? errorType);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfReviewDetailResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfReviewDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfReviewDetailResponse call({
-    ReviewDetailResponse? payload,
-    bool? success,
-    String? message,
-    List<String>? errors,
-    int? errorType,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBaseResponseOfReviewDetailResponse.copyWith(...)` or call `instanceOfBaseResponseOfReviewDetailResponse.copyWith.fieldName(value)` for a single field.
-class _$BaseResponseOfReviewDetailResponseCWProxyImpl
-    implements _$BaseResponseOfReviewDetailResponseCWProxy {
-  const _$BaseResponseOfReviewDetailResponseCWProxyImpl(this._value);
-
-  final BaseResponseOfReviewDetailResponse _value;
+  _$BaseResponseOfReviewDetailResponse._({
+    this.payload,
+    this.success,
+    this.message,
+    this.errors,
+    this.errorType,
+  }) : super._();
+  @override
+  BaseResponseOfReviewDetailResponse rebuild(
+    void Function(BaseResponseOfReviewDetailResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BaseResponseOfReviewDetailResponse payload(ReviewDetailResponse? payload) =>
-      call(payload: payload);
+  BaseResponseOfReviewDetailResponseBuilder toBuilder() =>
+      BaseResponseOfReviewDetailResponseBuilder()..replace(this);
 
   @override
-  BaseResponseOfReviewDetailResponse success(bool? success) =>
-      call(success: success);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BaseResponseOfReviewDetailResponse &&
+        payload == other.payload &&
+        success == other.success &&
+        message == other.message &&
+        errors == other.errors &&
+        errorType == other.errorType;
+  }
 
   @override
-  BaseResponseOfReviewDetailResponse message(String? message) =>
-      call(message: message);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, payload.hashCode);
+    _$hash = $jc(_$hash, success.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, errors.hashCode);
+    _$hash = $jc(_$hash, errorType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  BaseResponseOfReviewDetailResponse errors(List<String>? errors) =>
-      call(errors: errors);
-
-  @override
-  BaseResponseOfReviewDetailResponse errorType(int? errorType) =>
-      call(errorType: errorType);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfReviewDetailResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfReviewDetailResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfReviewDetailResponse call({
-    Object? payload = const $CopyWithPlaceholder(),
-    Object? success = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? errorType = const $CopyWithPlaceholder(),
-  }) {
-    return BaseResponseOfReviewDetailResponse(
-      payload: payload == const $CopyWithPlaceholder()
-          ? _value.payload
-          // ignore: cast_nullable_to_non_nullable
-          : payload as ReviewDetailResponse?,
-      success: success == const $CopyWithPlaceholder()
-          ? _value.success
-          // ignore: cast_nullable_to_non_nullable
-          : success as bool?,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
-          // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
-          // ignore: cast_nullable_to_non_nullable
-          : errors as List<String>?,
-      errorType: errorType == const $CopyWithPlaceholder()
-          ? _value.errorType
-          // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'BaseResponseOfReviewDetailResponse')
+          ..add('payload', payload)
+          ..add('success', success)
+          ..add('message', message)
+          ..add('errors', errors)
+          ..add('errorType', errorType))
+        .toString();
   }
 }
 
-extension $BaseResponseOfReviewDetailResponseCopyWith
-    on BaseResponseOfReviewDetailResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBaseResponseOfReviewDetailResponse.copyWith(...)` or `instanceOfBaseResponseOfReviewDetailResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BaseResponseOfReviewDetailResponseCWProxy get copyWith =>
-      _$BaseResponseOfReviewDetailResponseCWProxyImpl(this);
+class BaseResponseOfReviewDetailResponseBuilder
+    implements
+        Builder<
+          BaseResponseOfReviewDetailResponse,
+          BaseResponseOfReviewDetailResponseBuilder
+        > {
+  _$BaseResponseOfReviewDetailResponse? _$v;
+
+  ReviewDetailResponseBuilder? _payload;
+  ReviewDetailResponseBuilder get payload =>
+      _$this._payload ??= ReviewDetailResponseBuilder();
+  set payload(ReviewDetailResponseBuilder? payload) =>
+      _$this._payload = payload;
+
+  bool? _success;
+  bool? get success => _$this._success;
+  set success(bool? success) => _$this._success = success;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  ListBuilder<String>? _errors;
+  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
+  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
+
+  int? _errorType;
+  int? get errorType => _$this._errorType;
+  set errorType(int? errorType) => _$this._errorType = errorType;
+
+  BaseResponseOfReviewDetailResponseBuilder() {
+    BaseResponseOfReviewDetailResponse._defaults(this);
+  }
+
+  BaseResponseOfReviewDetailResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _payload = $v.payload?.toBuilder();
+      _success = $v.success;
+      _message = $v.message;
+      _errors = $v.errors?.toBuilder();
+      _errorType = $v.errorType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BaseResponseOfReviewDetailResponse other) {
+    _$v = other as _$BaseResponseOfReviewDetailResponse;
+  }
+
+  @override
+  void update(
+    void Function(BaseResponseOfReviewDetailResponseBuilder)? updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BaseResponseOfReviewDetailResponse build() => _build();
+
+  _$BaseResponseOfReviewDetailResponse _build() {
+    _$BaseResponseOfReviewDetailResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BaseResponseOfReviewDetailResponse._(
+            payload: _payload?.build(),
+            success: success,
+            message: message,
+            errors: _errors?.build(),
+            errorType: errorType,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'payload';
+        _payload?.build();
+
+        _$failedField = 'errors';
+        _errors?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BaseResponseOfReviewDetailResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BaseResponseOfReviewDetailResponse _$BaseResponseOfReviewDetailResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('BaseResponseOfReviewDetailResponse', json, (
-  $checkedConvert,
-) {
-  final val = BaseResponseOfReviewDetailResponse(
-    payload: $checkedConvert(
-      'payload',
-      (v) => v == null
-          ? null
-          : ReviewDetailResponse.fromJson(v as Map<String, dynamic>),
-    ),
-    success: $checkedConvert('success', (v) => v as bool?),
-    message: $checkedConvert('message', (v) => v as String?),
-    errors: $checkedConvert(
-      'errors',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$BaseResponseOfReviewDetailResponseToJson(
-  BaseResponseOfReviewDetailResponse instance,
-) => <String, dynamic>{
-  'payload': ?instance.payload?.toJson(),
-  'success': ?instance.success,
-  'message': ?instance.message,
-  'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

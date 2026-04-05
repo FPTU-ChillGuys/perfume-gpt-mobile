@@ -8,8 +8,8 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**productName** | **String** |  | [optional] 
-**variantInfo** | **String** |  | [optional] 
+**productName** | **String** |  | 
+**variantInfo** | **String** |  | 
 **quantity** | **int** |  | [optional] 
 **unitPrice** | **num** |  | [optional] 
 **subtotal** | **num** |  | [optional] 

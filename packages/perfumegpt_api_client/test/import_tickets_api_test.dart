@@ -1,13 +1,19 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for ImportTicketsApi
 void main() {
   final instance = PerfumegptApiClient().getImportTicketsApi();
 
   group(ImportTicketsApi, () {
-    //Future<FileContentResult> apiImportticketsDownloadTemplateGet() async
-    test('test apiImportticketsDownloadTemplateGet', () async {
+    //Future<BaseResponseOfCreateImportTicketRequest> apiImportticketsExcelParserPost({ Uint8List excelFile, int supplierId, DateTime expectedArrivalDate }) async
+    test('test apiImportticketsExcelParserPost', () async {
+      // TODO
+    });
+
+    //Future<FileContentResult> apiImportticketsExcelTemplateGet() async
+    test('test apiImportticketsExcelTemplateGet', () async {
       // TODO
     });
 
@@ -46,9 +52,5 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfstring> apiImportticketsUploadExcelPost({ MultipartFile excelFile, int supplierId, DateTime expectedArrivalDate }) async
-    test('test apiImportticketsUploadExcelPost', () async {
-      // TODO
-    });
   });
 }

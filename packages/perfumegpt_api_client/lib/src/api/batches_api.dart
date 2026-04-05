@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_batch_detail_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_batch_lookup_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_batch_detail_response.dart';
@@ -17,7 +17,9 @@ class BatchesApi {
 
   final Dio _dio;
 
-  const BatchesApi(this._dio);
+  final Serializers _serializers;
+
+  const BatchesApi(this._dio, this._serializers);
 
   /// apiBatchesGet
   /// 
@@ -78,15 +80,15 @@ class BatchesApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (variantId != null) r'VariantId': variantId,
-      if (searchTerm != null) r'SearchTerm': searchTerm,
-      if (isExpired != null) r'IsExpired': isExpired,
-      if (isExpiringSoon != null) r'IsExpiringSoon': isExpiringSoon,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (variantId != null) r'VariantId': encodeQueryParameter(_serializers, variantId, const FullType(String)),
+      if (searchTerm != null) r'SearchTerm': encodeQueryParameter(_serializers, searchTerm, const FullType(String)),
+      if (isExpired != null) r'IsExpired': encodeQueryParameter(_serializers, isExpired, const FullType(bool)),
+      if (isExpiringSoon != null) r'IsExpiringSoon': encodeQueryParameter(_serializers, isExpiringSoon, const FullType(bool)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -101,8 +103,11 @@ class BatchesApi {
     BaseResponseOfPagedResultOfBatchDetailResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfBatchDetailResponse, BaseResponseOfPagedResultOfBatchDetailResponse>(rawData, 'BaseResponseOfPagedResultOfBatchDetailResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfBatchDetailResponse),
+      ) as BaseResponseOfPagedResultOfBatchDetailResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -149,7 +154,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/batches/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/batches/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -179,8 +184,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfBatchDetailResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBatchDetailResponse, BaseResponseOfBatchDetailResponse>(rawData, 'BaseResponseOfBatchDetailResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBatchDetailResponse),
+      ) as BaseResponseOfBatchDetailResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -255,8 +263,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBatchDetailRe
     BaseResponseOfListOfBatchLookupResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBatchLookupResponse, BaseResponseOfListOfBatchLookupResponse>(rawData, 'BaseResponseOfListOfBatchLookupResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfBatchLookupResponse),
+      ) as BaseResponseOfListOfBatchLookupResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

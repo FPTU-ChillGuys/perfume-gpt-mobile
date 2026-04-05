@@ -3,9 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateStockAdjustmentDetailRequest
 void main() {
-  final CreateStockAdjustmentDetailRequest?
-  instance = /* CreateStockAdjustmentDetailRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = CreateStockAdjustmentDetailRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CreateStockAdjustmentDetailRequest, () {
     // String variantId
@@ -27,5 +26,6 @@ void main() {
     test('to test the property `note`', () async {
       // TODO
     });
+
   });
 }

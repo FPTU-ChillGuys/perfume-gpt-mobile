@@ -3,71 +3,93 @@
 part of 'token_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$TokenResponseCWProxy {
-  TokenResponse accessToken(String accessToken);
+class _$TokenResponse extends TokenResponse {
+  @override
+  final String accessToken;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TokenResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// TokenResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  TokenResponse call({String accessToken});
-}
+  factory _$TokenResponse([void Function(TokenResponseBuilder)? updates]) =>
+      (TokenResponseBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfTokenResponse.copyWith(...)` or call `instanceOfTokenResponse.copyWith.fieldName(value)` for a single field.
-class _$TokenResponseCWProxyImpl implements _$TokenResponseCWProxy {
-  const _$TokenResponseCWProxyImpl(this._value);
-
-  final TokenResponse _value;
+  _$TokenResponse._({required this.accessToken}) : super._();
+  @override
+  TokenResponse rebuild(void Function(TokenResponseBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  TokenResponse accessToken(String accessToken) =>
-      call(accessToken: accessToken);
+  TokenResponseBuilder toBuilder() => TokenResponseBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TokenResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// TokenResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  TokenResponse call({Object? accessToken = const $CopyWithPlaceholder()}) {
-    return TokenResponse(
-      accessToken:
-          accessToken == const $CopyWithPlaceholder() || accessToken == null
-          ? _value.accessToken
-          // ignore: cast_nullable_to_non_nullable
-          : accessToken as String,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is TokenResponse && accessToken == other.accessToken;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, accessToken.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'TokenResponse',
+    )..add('accessToken', accessToken)).toString();
   }
 }
 
-extension $TokenResponseCopyWith on TokenResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfTokenResponse.copyWith(...)` or `instanceOfTokenResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$TokenResponseCWProxy get copyWith => _$TokenResponseCWProxyImpl(this);
+class TokenResponseBuilder
+    implements Builder<TokenResponse, TokenResponseBuilder> {
+  _$TokenResponse? _$v;
+
+  String? _accessToken;
+  String? get accessToken => _$this._accessToken;
+  set accessToken(String? accessToken) => _$this._accessToken = accessToken;
+
+  TokenResponseBuilder() {
+    TokenResponse._defaults(this);
+  }
+
+  TokenResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _accessToken = $v.accessToken;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(TokenResponse other) {
+    _$v = other as _$TokenResponse;
+  }
+
+  @override
+  void update(void Function(TokenResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  TokenResponse build() => _build();
+
+  _$TokenResponse _build() {
+    final _$result =
+        _$v ??
+        _$TokenResponse._(
+          accessToken: BuiltValueNullFieldError.checkNotNull(
+            accessToken,
+            r'TokenResponse',
+            'accessToken',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-TokenResponse _$TokenResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('TokenResponse', json, ($checkedConvert) {
-      $checkKeys(json, requiredKeys: const ['accessToken']);
-      final val = TokenResponse(
-        accessToken: $checkedConvert('accessToken', (v) => v as String),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$TokenResponseToJson(TokenResponse instance) =>
-    <String, dynamic>{'accessToken': instance.accessToken};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

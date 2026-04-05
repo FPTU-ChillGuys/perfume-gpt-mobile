@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_stock_adjustment_list_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_stock_adjustment_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofboolean.dart';
@@ -23,7 +23,9 @@ class StockAdjustmentsApi {
 
   final Dio _dio;
 
-  const StockAdjustmentsApi(this._dio);
+  final Serializers _serializers;
+
+  const StockAdjustmentsApi(this._dio, this._serializers);
 
   /// apiStockadjustmentsAdjustmentIdVerifyPost
   /// 
@@ -50,7 +52,7 @@ class StockAdjustmentsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/stockadjustments/{adjustmentId}/verify'.replaceAll('{' r'adjustmentId' '}', adjustmentId.toString());
+    final _path = r'/api/stockadjustments/{adjustmentId}/verify'.replaceAll('{' r'adjustmentId' '}', encodeQueryParameter(_serializers, adjustmentId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -73,7 +75,9 @@ class StockAdjustmentsApi {
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(verifyStockAdjustmentRequest);
+      const _type = FullType(VerifyStockAdjustmentRequest);
+      _bodyData = _serializers.serialize(verifyStockAdjustmentRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -98,8 +102,11 @@ _bodyData=jsonEncode(verifyStockAdjustmentRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -182,15 +189,15 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     );
 
     final _queryParameters = <String, dynamic>{
-      if (reason != null) r'Reason': reason,
-      if (status != null) r'Status': status,
-      if (fromDate != null) r'FromDate': fromDate,
-      if (toDate != null) r'ToDate': toDate,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (reason != null) r'Reason': encodeQueryParameter(_serializers, reason, const FullType(StockAdjustmentReason)),
+      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(StockAdjustmentStatus)),
+      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
+      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -205,8 +212,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfPagedResultOfStockAdjustmentListItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfStockAdjustmentListItem, BaseResponseOfPagedResultOfStockAdjustmentListItem>(rawData, 'BaseResponseOfPagedResultOfStockAdjustmentListItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfStockAdjustmentListItem),
+      ) as BaseResponseOfPagedResultOfStockAdjustmentListItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -253,7 +263,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/stockadjustments/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/stockadjustments/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -283,8 +293,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfboolean),
+      ) as BaseResponseOfboolean;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -331,7 +344,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/stockadjustments/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/stockadjustments/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -361,8 +374,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfStockAdjustmentResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfStockAdjustmentResponse, BaseResponseOfStockAdjustmentResponse>(rawData, 'BaseResponseOfStockAdjustmentResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfStockAdjustmentResponse),
+      ) as BaseResponseOfStockAdjustmentResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -411,7 +427,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStockAdjustme
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/stockadjustments/{id}/status'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/stockadjustments/{id}/status'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -434,7 +450,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStockAdjustme
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateStockAdjustmentStatusRequest);
+      const _type = FullType(UpdateStockAdjustmentStatusRequest);
+      _bodyData = _serializers.serialize(updateStockAdjustmentStatusRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -459,8 +477,11 @@ _bodyData=jsonEncode(updateStockAdjustmentStatusRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -530,7 +551,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createStockAdjustmentRequest);
+      const _type = FullType(CreateStockAdjustmentRequest);
+      _bodyData = _serializers.serialize(createStockAdjustmentRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -555,8 +578,11 @@ _bodyData=jsonEncode(createStockAdjustmentRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

@@ -3,104 +3,152 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'create_supplier_request.g.dart';
 
+/// CreateSupplierRequest
+///
+/// Properties:
+/// * [name] 
+/// * [contactEmail] 
+/// * [phone] 
+/// * [address] 
+@BuiltValue()
+abstract class CreateSupplierRequest implements Built<CreateSupplierRequest, CreateSupplierRequestBuilder> {
+  @BuiltValueField(wireName: r'name')
+  String get name;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CreateSupplierRequest {
-  /// Returns a new [CreateSupplierRequest] instance.
-  CreateSupplierRequest({
+  @BuiltValueField(wireName: r'contactEmail')
+  String get contactEmail;
 
-    required  this.name,
+  @BuiltValueField(wireName: r'phone')
+  String get phone;
 
-    required  this.contactEmail,
+  @BuiltValueField(wireName: r'address')
+  String get address;
 
-    required  this.phone,
+  CreateSupplierRequest._();
 
-    required  this.address,
-  });
+  factory CreateSupplierRequest([void updates(CreateSupplierRequestBuilder b)]) = _$CreateSupplierRequest;
 
-  @JsonKey(
-    
-    name: r'name',
-    required: true,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CreateSupplierRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CreateSupplierRequest> get serializer => _$CreateSupplierRequestSerializer();
+}
 
-  final String name;
-
-
-
-  @JsonKey(
-    
-    name: r'contactEmail',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final String contactEmail;
-
-
-
-  @JsonKey(
-    
-    name: r'phone',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final String phone;
-
-
-
-  @JsonKey(
-    
-    name: r'address',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final String address;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateSupplierRequest &&
-      other.name == name &&
-      other.contactEmail == contactEmail &&
-      other.phone == phone &&
-      other.address == address;
-
-    @override
-    int get hashCode =>
-        name.hashCode +
-        contactEmail.hashCode +
-        phone.hashCode +
-        address.hashCode;
-
-  factory CreateSupplierRequest.fromJson(Map<String, dynamic> json) => _$CreateSupplierRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CreateSupplierRequestToJson(this);
+class _$CreateSupplierRequestSerializer implements PrimitiveSerializer<CreateSupplierRequest> {
+  @override
+  final Iterable<Type> types = const [CreateSupplierRequest, _$CreateSupplierRequest];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'CreateSupplierRequest';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CreateSupplierRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    yield r'contactEmail';
+    yield serializers.serialize(
+      object.contactEmail,
+      specifiedType: const FullType(String),
+    );
+    yield r'phone';
+    yield serializers.serialize(
+      object.phone,
+      specifiedType: const FullType(String),
+    );
+    yield r'address';
+    yield serializers.serialize(
+      object.address,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CreateSupplierRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CreateSupplierRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'contactEmail':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.contactEmail = valueDes;
+          break;
+        case r'phone':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.phone = valueDes;
+          break;
+        case r'address':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.address = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CreateSupplierRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CreateSupplierRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

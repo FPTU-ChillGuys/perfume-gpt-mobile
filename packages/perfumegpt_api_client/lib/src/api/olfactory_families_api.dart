@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_olfactory_family_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_olfactory_lookup_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_olfactory_family_response.dart';
@@ -20,7 +20,9 @@ class OlfactoryFamiliesApi {
 
   final Dio _dio;
 
-  const OlfactoryFamiliesApi(this._dio);
+  final Serializers _serializers;
+
+  const OlfactoryFamiliesApi(this._dio, this._serializers);
 
   /// apiOlfactoryfamiliesGet
   /// 
@@ -73,8 +75,11 @@ class OlfactoryFamiliesApi {
     BaseResponseOfListOfOlfactoryFamilyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfactoryFamilyResponse, BaseResponseOfListOfOlfactoryFamilyResponse>(rawData, 'BaseResponseOfListOfOlfactoryFamilyResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfOlfactoryFamilyResponse),
+      ) as BaseResponseOfListOfOlfactoryFamilyResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -121,7 +126,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -151,8 +156,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfboolean),
+      ) as BaseResponseOfboolean;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -199,7 +207,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -229,8 +237,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfOlfactoryFamilyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFamilyResponse, BaseResponseOfOlfactoryFamilyResponse>(rawData, 'BaseResponseOfOlfactoryFamilyResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfOlfactoryFamilyResponse),
+      ) as BaseResponseOfOlfactoryFamilyResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -279,7 +290,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -302,7 +313,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateOlfactoryFamilyRequest);
+      const _type = FullType(UpdateOlfactoryFamilyRequest);
+      _bodyData = _serializers.serialize(updateOlfactoryFamilyRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -327,8 +340,11 @@ _bodyData=jsonEncode(updateOlfactoryFamilyRequest);
     BaseResponseOfOlfactoryFamilyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFamilyResponse, BaseResponseOfOlfactoryFamilyResponse>(rawData, 'BaseResponseOfOlfactoryFamilyResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfOlfactoryFamilyResponse),
+      ) as BaseResponseOfOlfactoryFamilyResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -403,8 +419,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
     BaseResponseOfListOfOlfactoryLookupResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfactoryLookupResponse, BaseResponseOfListOfOlfactoryLookupResponse>(rawData, 'BaseResponseOfListOfOlfactoryLookupResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfOlfactoryLookupResponse),
+      ) as BaseResponseOfListOfOlfactoryLookupResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -474,7 +493,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createOlfactoryFamilyRequest);
+      const _type = FullType(CreateOlfactoryFamilyRequest);
+      _bodyData = _serializers.serialize(createOlfactoryFamilyRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -499,8 +520,11 @@ _bodyData=jsonEncode(createOlfactoryFamilyRequest);
     BaseResponseOfOlfactoryFamilyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFamilyResponse, BaseResponseOfOlfactoryFamilyResponse>(rawData, 'BaseResponseOfOlfactoryFamilyResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfOlfactoryFamilyResponse),
+      ) as BaseResponseOfOlfactoryFamilyResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

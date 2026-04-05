@@ -3,17 +3,17 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateAddressRequest
 void main() {
-  final UpdateAddressRequest? instance = /* UpdateAddressRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = UpdateAddressRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(UpdateAddressRequest, () {
-    // String receiverName
-    test('to test the property `receiverName`', () async {
+    // String recipientName
+    test('to test the property `recipientName`', () async {
       // TODO
     });
 
-    // String phone
-    test('to test the property `phone`', () async {
+    // String recipientPhoneNumber
+    test('to test the property `recipientPhoneNumber`', () async {
       // TODO
     });
 
@@ -51,5 +51,6 @@ void main() {
     test('to test the property `provinceId`', () async {
       // TODO
     });
+
   });
 }

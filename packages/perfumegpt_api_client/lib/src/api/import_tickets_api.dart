@@ -4,11 +4,12 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'dart:typed_data';
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_create_import_ticket_request.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_excel_template_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_import_ticket_response.dart';
@@ -26,7 +27,9 @@ class ImportTicketsApi {
 
   final Dio _dio;
 
-  const ImportTicketsApi(this._dio);
+  final Serializers _serializers;
+
+  const ImportTicketsApi(this._dio, this._serializers);
 
   /// apiImportticketsExcelParserPost
   /// 
@@ -45,7 +48,7 @@ class ImportTicketsApi {
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfCreateImportTicketRequest] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfCreateImportTicketRequest>> apiImportticketsExcelParserPost({ 
-    MultipartFile? excelFile,
+    Uint8List? excelFile,
     int? supplierId,
     DateTime? expectedArrivalDate,
     CancelToken? cancelToken,
@@ -78,6 +81,11 @@ class ImportTicketsApi {
     dynamic _bodyData;
 
     try {
+      _bodyData = <String, dynamic>{
+        if (excelFile != null) r'ExcelFile': encodeQueryParameter(_serializers, excelFile, const FullType(Uint8List)),
+        if (supplierId != null) r'SupplierId': encodeQueryParameter(_serializers, supplierId, const FullType(int)),
+        if (expectedArrivalDate != null) r'ExpectedArrivalDate': encodeQueryParameter(_serializers, expectedArrivalDate, const FullType(DateTime)),
+      };
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -103,8 +111,11 @@ class ImportTicketsApi {
     BaseResponseOfCreateImportTicketRequest? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfCreateImportTicketRequest, BaseResponseOfCreateImportTicketRequest>(rawData, 'BaseResponseOfCreateImportTicketRequest', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfCreateImportTicketRequest),
+      ) as BaseResponseOfCreateImportTicketRequest;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -179,8 +190,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCreateImportT
     FileContentResult? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<FileContentResult, FileContentResult>(rawData, 'FileContentResult', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(FileContentResult),
+      ) as FileContentResult;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -265,16 +279,16 @@ _responseData = rawData == null ? null : deserialize<FileContentResult, FileCont
     );
 
     final _queryParameters = <String, dynamic>{
-      r'SupplierId': supplierId,
-      if (status != null) r'Status': status,
-      if (fromDate != null) r'FromDate': fromDate,
-      if (toDate != null) r'ToDate': toDate,
-      if (verifiedById != null) r'VerifiedById': verifiedById,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      r'SupplierId': encodeQueryParameter(_serializers, supplierId, const FullType(int)),
+      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(ImportStatus)),
+      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
+      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
+      if (verifiedById != null) r'VerifiedById': encodeQueryParameter(_serializers, verifiedById, const FullType(String)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -289,8 +303,11 @@ _responseData = rawData == null ? null : deserialize<FileContentResult, FileCont
     BaseResponseOfPagedResultOfImportTicketListItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfImportTicketListItem, BaseResponseOfPagedResultOfImportTicketListItem>(rawData, 'BaseResponseOfPagedResultOfImportTicketListItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfImportTicketListItem),
+      ) as BaseResponseOfPagedResultOfImportTicketListItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -337,7 +354,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/importtickets/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -367,8 +384,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfboolean),
+      ) as BaseResponseOfboolean;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -415,7 +435,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/importtickets/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -445,8 +465,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfImportTicketResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfImportTicketResponse, BaseResponseOfImportTicketResponse>(rawData, 'BaseResponseOfImportTicketResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfImportTicketResponse),
+      ) as BaseResponseOfImportTicketResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -495,7 +518,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfImportTicketR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/importtickets/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -518,7 +541,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfImportTicketR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateImportRequest);
+      const _type = FullType(UpdateImportRequest);
+      _bodyData = _serializers.serialize(updateImportRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -543,8 +568,11 @@ _bodyData=jsonEncode(updateImportRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -593,7 +621,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{id}/status'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/importtickets/{id}/status'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -616,7 +644,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateImportStatusRequest);
+      const _type = FullType(UpdateImportStatusRequest);
+      _bodyData = _serializers.serialize(updateImportStatusRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -641,8 +671,11 @@ _bodyData=jsonEncode(updateImportStatusRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -712,7 +745,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createImportTicketRequest);
+      const _type = FullType(CreateImportTicketRequest);
+      _bodyData = _serializers.serialize(createImportTicketRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -737,8 +772,11 @@ _bodyData=jsonEncode(createImportTicketRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -787,7 +825,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{ticketId}/verify'.replaceAll('{' r'ticketId' '}', ticketId.toString());
+    final _path = r'/api/importtickets/{ticketId}/verify'.replaceAll('{' r'ticketId' '}', encodeQueryParameter(_serializers, ticketId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -810,7 +848,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(verifyImportTicketRequest);
+      const _type = FullType(VerifyImportTicketRequest);
+      _bodyData = _serializers.serialize(verifyImportTicketRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -835,8 +875,11 @@ _bodyData=jsonEncode(verifyImportTicketRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

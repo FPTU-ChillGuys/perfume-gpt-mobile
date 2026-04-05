@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReceiptResponse
 void main() {
@@ -9,6 +9,11 @@ void main() {
   group(ReceiptResponse, () {
     // String orderId
     test('to test the property `orderId`', () async {
+      // TODO
+    });
+
+    // String code
+    test('to test the property `code`', () async {
       // TODO
     });
 

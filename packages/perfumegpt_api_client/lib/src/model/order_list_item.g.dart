@@ -3,272 +3,296 @@
 part of 'order_list_item.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$OrderListItemCWProxy {
-  OrderListItem id(String? id);
+class _$OrderListItem extends OrderListItem {
+  @override
+  final String? id;
+  @override
+  final String code;
+  @override
+  final String? customerId;
+  @override
+  final String? customerName;
+  @override
+  final String? staffId;
+  @override
+  final String? staffName;
+  @override
+  final OrderType? type;
+  @override
+  final OrderStatus? status;
+  @override
+  final PaymentStatus? paymentStatus;
+  @override
+  final num? totalAmount;
+  @override
+  final int? itemCount;
+  @override
+  final bool? isReturnalbe;
+  @override
+  final ShippingStatus? shippingStatus;
+  @override
+  final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
+  @override
+  final BuiltList<OrderDetailListItem> orderDetails;
 
-  OrderListItem customerId(String? customerId);
+  factory _$OrderListItem([void Function(OrderListItemBuilder)? updates]) =>
+      (OrderListItemBuilder()..update(updates))._build();
 
-  OrderListItem customerName(String? customerName);
-
-  OrderListItem staffId(String? staffId);
-
-  OrderListItem staffName(String? staffName);
-
-  OrderListItem type(OrderType? type);
-
-  OrderListItem status(OrderStatus? status);
-
-  OrderListItem paymentStatus(PaymentStatus? paymentStatus);
-
-  OrderListItem totalAmount(num? totalAmount);
-
-  OrderListItem itemCount(int? itemCount);
-
-  OrderListItem shippingStatus(int? shippingStatus);
-
-  OrderListItem createdAt(DateTime? createdAt);
-
-  OrderListItem updatedAt(DateTime? updatedAt);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderListItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// OrderListItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  OrderListItem call({
-    String? id,
-    String? customerId,
-    String? customerName,
-    String? staffId,
-    String? staffName,
-    OrderType? type,
-    OrderStatus? status,
-    PaymentStatus? paymentStatus,
-    num? totalAmount,
-    int? itemCount,
-    int? shippingStatus,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfOrderListItem.copyWith(...)` or call `instanceOfOrderListItem.copyWith.fieldName(value)` for a single field.
-class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
-  const _$OrderListItemCWProxyImpl(this._value);
-
-  final OrderListItem _value;
+  _$OrderListItem._({
+    this.id,
+    required this.code,
+    this.customerId,
+    this.customerName,
+    this.staffId,
+    this.staffName,
+    this.type,
+    this.status,
+    this.paymentStatus,
+    this.totalAmount,
+    this.itemCount,
+    this.isReturnalbe,
+    this.shippingStatus,
+    this.createdAt,
+    this.updatedAt,
+    required this.orderDetails,
+  }) : super._();
+  @override
+  OrderListItem rebuild(void Function(OrderListItemBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  OrderListItem id(String? id) => call(id: id);
+  OrderListItemBuilder toBuilder() => OrderListItemBuilder()..replace(this);
 
   @override
-  OrderListItem customerId(String? customerId) => call(customerId: customerId);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is OrderListItem &&
+        id == other.id &&
+        code == other.code &&
+        customerId == other.customerId &&
+        customerName == other.customerName &&
+        staffId == other.staffId &&
+        staffName == other.staffName &&
+        type == other.type &&
+        status == other.status &&
+        paymentStatus == other.paymentStatus &&
+        totalAmount == other.totalAmount &&
+        itemCount == other.itemCount &&
+        isReturnalbe == other.isReturnalbe &&
+        shippingStatus == other.shippingStatus &&
+        createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        orderDetails == other.orderDetails;
+  }
 
   @override
-  OrderListItem customerName(String? customerName) =>
-      call(customerName: customerName);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, customerId.hashCode);
+    _$hash = $jc(_$hash, customerName.hashCode);
+    _$hash = $jc(_$hash, staffId.hashCode);
+    _$hash = $jc(_$hash, staffName.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, paymentStatus.hashCode);
+    _$hash = $jc(_$hash, totalAmount.hashCode);
+    _$hash = $jc(_$hash, itemCount.hashCode);
+    _$hash = $jc(_$hash, isReturnalbe.hashCode);
+    _$hash = $jc(_$hash, shippingStatus.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, orderDetails.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  OrderListItem staffId(String? staffId) => call(staffId: staffId);
-
-  @override
-  OrderListItem staffName(String? staffName) => call(staffName: staffName);
-
-  @override
-  OrderListItem type(OrderType? type) => call(type: type);
-
-  @override
-  OrderListItem status(OrderStatus? status) => call(status: status);
-
-  @override
-  OrderListItem paymentStatus(PaymentStatus? paymentStatus) =>
-      call(paymentStatus: paymentStatus);
-
-  @override
-  OrderListItem totalAmount(num? totalAmount) => call(totalAmount: totalAmount);
-
-  @override
-  OrderListItem itemCount(int? itemCount) => call(itemCount: itemCount);
-
-  @override
-  OrderListItem shippingStatus(int? shippingStatus) =>
-      call(shippingStatus: shippingStatus);
-
-  @override
-  OrderListItem createdAt(DateTime? createdAt) => call(createdAt: createdAt);
-
-  @override
-  OrderListItem updatedAt(DateTime? updatedAt) => call(updatedAt: updatedAt);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderListItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// OrderListItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  OrderListItem call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? customerId = const $CopyWithPlaceholder(),
-    Object? customerName = const $CopyWithPlaceholder(),
-    Object? staffId = const $CopyWithPlaceholder(),
-    Object? staffName = const $CopyWithPlaceholder(),
-    Object? type = const $CopyWithPlaceholder(),
-    Object? status = const $CopyWithPlaceholder(),
-    Object? paymentStatus = const $CopyWithPlaceholder(),
-    Object? totalAmount = const $CopyWithPlaceholder(),
-    Object? itemCount = const $CopyWithPlaceholder(),
-    Object? shippingStatus = const $CopyWithPlaceholder(),
-    Object? createdAt = const $CopyWithPlaceholder(),
-    Object? updatedAt = const $CopyWithPlaceholder(),
-  }) {
-    return OrderListItem(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      customerId: customerId == const $CopyWithPlaceholder()
-          ? _value.customerId
-          // ignore: cast_nullable_to_non_nullable
-          : customerId as String?,
-      customerName: customerName == const $CopyWithPlaceholder()
-          ? _value.customerName
-          // ignore: cast_nullable_to_non_nullable
-          : customerName as String?,
-      staffId: staffId == const $CopyWithPlaceholder()
-          ? _value.staffId
-          // ignore: cast_nullable_to_non_nullable
-          : staffId as String?,
-      staffName: staffName == const $CopyWithPlaceholder()
-          ? _value.staffName
-          // ignore: cast_nullable_to_non_nullable
-          : staffName as String?,
-      type: type == const $CopyWithPlaceholder()
-          ? _value.type
-          // ignore: cast_nullable_to_non_nullable
-          : type as OrderType?,
-      status: status == const $CopyWithPlaceholder()
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as OrderStatus?,
-      paymentStatus: paymentStatus == const $CopyWithPlaceholder()
-          ? _value.paymentStatus
-          // ignore: cast_nullable_to_non_nullable
-          : paymentStatus as PaymentStatus?,
-      totalAmount: totalAmount == const $CopyWithPlaceholder()
-          ? _value.totalAmount
-          // ignore: cast_nullable_to_non_nullable
-          : totalAmount as num?,
-      itemCount: itemCount == const $CopyWithPlaceholder()
-          ? _value.itemCount
-          // ignore: cast_nullable_to_non_nullable
-          : itemCount as int?,
-      shippingStatus: shippingStatus == const $CopyWithPlaceholder()
-          ? _value.shippingStatus
-          // ignore: cast_nullable_to_non_nullable
-          : shippingStatus as int?,
-      createdAt: createdAt == const $CopyWithPlaceholder()
-          ? _value.createdAt
-          // ignore: cast_nullable_to_non_nullable
-          : createdAt as DateTime?,
-      updatedAt: updatedAt == const $CopyWithPlaceholder()
-          ? _value.updatedAt
-          // ignore: cast_nullable_to_non_nullable
-          : updatedAt as DateTime?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'OrderListItem')
+          ..add('id', id)
+          ..add('code', code)
+          ..add('customerId', customerId)
+          ..add('customerName', customerName)
+          ..add('staffId', staffId)
+          ..add('staffName', staffName)
+          ..add('type', type)
+          ..add('status', status)
+          ..add('paymentStatus', paymentStatus)
+          ..add('totalAmount', totalAmount)
+          ..add('itemCount', itemCount)
+          ..add('isReturnalbe', isReturnalbe)
+          ..add('shippingStatus', shippingStatus)
+          ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('orderDetails', orderDetails))
+        .toString();
   }
 }
 
-extension $OrderListItemCopyWith on OrderListItem {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfOrderListItem.copyWith(...)` or `instanceOfOrderListItem.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$OrderListItemCWProxy get copyWith => _$OrderListItemCWProxyImpl(this);
+class OrderListItemBuilder
+    implements Builder<OrderListItem, OrderListItemBuilder> {
+  _$OrderListItem? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _code;
+  String? get code => _$this._code;
+  set code(String? code) => _$this._code = code;
+
+  String? _customerId;
+  String? get customerId => _$this._customerId;
+  set customerId(String? customerId) => _$this._customerId = customerId;
+
+  String? _customerName;
+  String? get customerName => _$this._customerName;
+  set customerName(String? customerName) => _$this._customerName = customerName;
+
+  String? _staffId;
+  String? get staffId => _$this._staffId;
+  set staffId(String? staffId) => _$this._staffId = staffId;
+
+  String? _staffName;
+  String? get staffName => _$this._staffName;
+  set staffName(String? staffName) => _$this._staffName = staffName;
+
+  OrderType? _type;
+  OrderType? get type => _$this._type;
+  set type(OrderType? type) => _$this._type = type;
+
+  OrderStatus? _status;
+  OrderStatus? get status => _$this._status;
+  set status(OrderStatus? status) => _$this._status = status;
+
+  PaymentStatus? _paymentStatus;
+  PaymentStatus? get paymentStatus => _$this._paymentStatus;
+  set paymentStatus(PaymentStatus? paymentStatus) =>
+      _$this._paymentStatus = paymentStatus;
+
+  num? _totalAmount;
+  num? get totalAmount => _$this._totalAmount;
+  set totalAmount(num? totalAmount) => _$this._totalAmount = totalAmount;
+
+  int? _itemCount;
+  int? get itemCount => _$this._itemCount;
+  set itemCount(int? itemCount) => _$this._itemCount = itemCount;
+
+  bool? _isReturnalbe;
+  bool? get isReturnalbe => _$this._isReturnalbe;
+  set isReturnalbe(bool? isReturnalbe) => _$this._isReturnalbe = isReturnalbe;
+
+  ShippingStatus? _shippingStatus;
+  ShippingStatus? get shippingStatus => _$this._shippingStatus;
+  set shippingStatus(ShippingStatus? shippingStatus) =>
+      _$this._shippingStatus = shippingStatus;
+
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  DateTime? _updatedAt;
+  DateTime? get updatedAt => _$this._updatedAt;
+  set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
+
+  ListBuilder<OrderDetailListItem>? _orderDetails;
+  ListBuilder<OrderDetailListItem> get orderDetails =>
+      _$this._orderDetails ??= ListBuilder<OrderDetailListItem>();
+  set orderDetails(ListBuilder<OrderDetailListItem>? orderDetails) =>
+      _$this._orderDetails = orderDetails;
+
+  OrderListItemBuilder() {
+    OrderListItem._defaults(this);
+  }
+
+  OrderListItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _code = $v.code;
+      _customerId = $v.customerId;
+      _customerName = $v.customerName;
+      _staffId = $v.staffId;
+      _staffName = $v.staffName;
+      _type = $v.type;
+      _status = $v.status;
+      _paymentStatus = $v.paymentStatus;
+      _totalAmount = $v.totalAmount;
+      _itemCount = $v.itemCount;
+      _isReturnalbe = $v.isReturnalbe;
+      _shippingStatus = $v.shippingStatus;
+      _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _orderDetails = $v.orderDetails.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(OrderListItem other) {
+    _$v = other as _$OrderListItem;
+  }
+
+  @override
+  void update(void Function(OrderListItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  OrderListItem build() => _build();
+
+  _$OrderListItem _build() {
+    _$OrderListItem _$result;
+    try {
+      _$result =
+          _$v ??
+          _$OrderListItem._(
+            id: id,
+            code: BuiltValueNullFieldError.checkNotNull(
+              code,
+              r'OrderListItem',
+              'code',
+            ),
+            customerId: customerId,
+            customerName: customerName,
+            staffId: staffId,
+            staffName: staffName,
+            type: type,
+            status: status,
+            paymentStatus: paymentStatus,
+            totalAmount: totalAmount,
+            itemCount: itemCount,
+            isReturnalbe: isReturnalbe,
+            shippingStatus: shippingStatus,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+            orderDetails: orderDetails.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'orderDetails';
+        orderDetails.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'OrderListItem',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-OrderListItem _$OrderListItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('OrderListItem', json, ($checkedConvert) {
-      final val = OrderListItem(
-        id: $checkedConvert('id', (v) => v as String?),
-        customerId: $checkedConvert('customerId', (v) => v as String?),
-        customerName: $checkedConvert('customerName', (v) => v as String?),
-        staffId: $checkedConvert('staffId', (v) => v as String?),
-        staffName: $checkedConvert('staffName', (v) => v as String?),
-        type: $checkedConvert(
-          'type',
-          (v) => $enumDecodeNullable(_$OrderTypeEnumMap, v),
-        ),
-        status: $checkedConvert(
-          'status',
-          (v) => $enumDecodeNullable(_$OrderStatusEnumMap, v),
-        ),
-        paymentStatus: $checkedConvert(
-          'paymentStatus',
-          (v) => $enumDecodeNullable(_$PaymentStatusEnumMap, v),
-        ),
-        totalAmount: $checkedConvert('totalAmount', (v) => v as num?),
-        itemCount: $checkedConvert('itemCount', (v) => (v as num?)?.toInt()),
-        shippingStatus: $checkedConvert(
-          'shippingStatus',
-          (v) => (v as num?)?.toInt(),
-        ),
-        createdAt: $checkedConvert(
-          'createdAt',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-        updatedAt: $checkedConvert(
-          'updatedAt',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$OrderListItemToJson(OrderListItem instance) =>
-    <String, dynamic>{
-      'id': ?instance.id,
-      'customerId': ?instance.customerId,
-      'customerName': ?instance.customerName,
-      'staffId': ?instance.staffId,
-      'staffName': ?instance.staffName,
-      'type': ?_$OrderTypeEnumMap[instance.type],
-      'status': ?_$OrderStatusEnumMap[instance.status],
-      'paymentStatus': ?_$PaymentStatusEnumMap[instance.paymentStatus],
-      'totalAmount': ?instance.totalAmount,
-      'itemCount': ?instance.itemCount,
-      'shippingStatus': ?instance.shippingStatus,
-      'createdAt': ?instance.createdAt?.toIso8601String(),
-      'updatedAt': ?instance.updatedAt?.toIso8601String(),
-    };
-
-const _$OrderTypeEnumMap = {
-  OrderType.online: 'Online',
-  OrderType.offline: 'Offline',
-};
-
-const _$OrderStatusEnumMap = {
-  OrderStatus.pending: 'Pending',
-  OrderStatus.processing: 'Processing',
-  OrderStatus.delivering: 'Delivering',
-  OrderStatus.delivered: 'Delivered',
-  OrderStatus.returning: 'Returning',
-  OrderStatus.cancelled: 'Cancelled',
-  OrderStatus.returned: 'Returned',
-};
-
-const _$PaymentStatusEnumMap = {
-  PaymentStatus.unpaid: 'Unpaid',
-  PaymentStatus.paid: 'Paid',
-  PaymentStatus.refunded: 'Refunded',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

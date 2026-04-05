@@ -3,247 +3,269 @@
 part of 'product_list_item_with_variants.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$ProductListItemWithVariantsCWProxy {
-  ProductListItemWithVariants variants(List<VariantSummaryItem>? variants);
+class _$ProductListItemWithVariants extends ProductListItemWithVariants {
+  @override
+  final BuiltList<VariantSummaryItem> variants;
+  @override
+  final String? id;
+  @override
+  final String? name;
+  @override
+  final int? brandId;
+  @override
+  final String brandName;
+  @override
+  final int? categoryId;
+  @override
+  final String categoryName;
+  @override
+  final String? description;
+  @override
+  final int? numberOfVariants;
+  @override
+  final BuiltList<num> variantPrices;
+  @override
+  final BuiltList<String>? tags;
+  @override
+  final MediaResponse? primaryImage;
 
-  ProductListItemWithVariants id(String? id);
+  factory _$ProductListItemWithVariants([
+    void Function(ProductListItemWithVariantsBuilder)? updates,
+  ]) => (ProductListItemWithVariantsBuilder()..update(updates))._build();
 
-  ProductListItemWithVariants name(String? name);
-
-  ProductListItemWithVariants brandId(int? brandId);
-
-  ProductListItemWithVariants brandName(String? brandName);
-
-  ProductListItemWithVariants categoryId(int? categoryId);
-
-  ProductListItemWithVariants categoryName(String? categoryName);
-
-  ProductListItemWithVariants description(String? description);
-
-  ProductListItemWithVariants numberOfVariants(int? numberOfVariants);
-
-  ProductListItemWithVariants variantPrices(List<num>? variantPrices);
-
-  ProductListItemWithVariants tags(List<String>? tags);
-
-  ProductListItemWithVariants primaryImage(MediaResponse? primaryImage);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductListItemWithVariants(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ProductListItemWithVariants call({
-    List<VariantSummaryItem>? variants,
-    String? id,
-    String? name,
-    int? brandId,
-    String? brandName,
-    int? categoryId,
-    String? categoryName,
-    String? description,
-    int? numberOfVariants,
-    List<num>? variantPrices,
-    List<String>? tags,
-    MediaResponse? primaryImage,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfProductListItemWithVariants.copyWith(...)` or call `instanceOfProductListItemWithVariants.copyWith.fieldName(value)` for a single field.
-class _$ProductListItemWithVariantsCWProxyImpl
-    implements _$ProductListItemWithVariantsCWProxy {
-  const _$ProductListItemWithVariantsCWProxyImpl(this._value);
-
-  final ProductListItemWithVariants _value;
+  _$ProductListItemWithVariants._({
+    required this.variants,
+    this.id,
+    this.name,
+    this.brandId,
+    required this.brandName,
+    this.categoryId,
+    required this.categoryName,
+    this.description,
+    this.numberOfVariants,
+    required this.variantPrices,
+    this.tags,
+    this.primaryImage,
+  }) : super._();
+  @override
+  ProductListItemWithVariants rebuild(
+    void Function(ProductListItemWithVariantsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  ProductListItemWithVariants variants(List<VariantSummaryItem>? variants) =>
-      call(variants: variants);
+  ProductListItemWithVariantsBuilder toBuilder() =>
+      ProductListItemWithVariantsBuilder()..replace(this);
 
   @override
-  ProductListItemWithVariants id(String? id) => call(id: id);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ProductListItemWithVariants &&
+        variants == other.variants &&
+        id == other.id &&
+        name == other.name &&
+        brandId == other.brandId &&
+        brandName == other.brandName &&
+        categoryId == other.categoryId &&
+        categoryName == other.categoryName &&
+        description == other.description &&
+        numberOfVariants == other.numberOfVariants &&
+        variantPrices == other.variantPrices &&
+        tags == other.tags &&
+        primaryImage == other.primaryImage;
+  }
 
   @override
-  ProductListItemWithVariants name(String? name) => call(name: name);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, variants.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, brandId.hashCode);
+    _$hash = $jc(_$hash, brandName.hashCode);
+    _$hash = $jc(_$hash, categoryId.hashCode);
+    _$hash = $jc(_$hash, categoryName.hashCode);
+    _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, numberOfVariants.hashCode);
+    _$hash = $jc(_$hash, variantPrices.hashCode);
+    _$hash = $jc(_$hash, tags.hashCode);
+    _$hash = $jc(_$hash, primaryImage.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  ProductListItemWithVariants brandId(int? brandId) => call(brandId: brandId);
-
-  @override
-  ProductListItemWithVariants brandName(String? brandName) =>
-      call(brandName: brandName);
-
-  @override
-  ProductListItemWithVariants categoryId(int? categoryId) =>
-      call(categoryId: categoryId);
-
-  @override
-  ProductListItemWithVariants categoryName(String? categoryName) =>
-      call(categoryName: categoryName);
-
-  @override
-  ProductListItemWithVariants description(String? description) =>
-      call(description: description);
-
-  @override
-  ProductListItemWithVariants numberOfVariants(int? numberOfVariants) =>
-      call(numberOfVariants: numberOfVariants);
-
-  @override
-  ProductListItemWithVariants variantPrices(List<num>? variantPrices) =>
-      call(variantPrices: variantPrices);
-
-  @override
-  ProductListItemWithVariants tags(List<String>? tags) => call(tags: tags);
-
-  @override
-  ProductListItemWithVariants primaryImage(MediaResponse? primaryImage) =>
-      call(primaryImage: primaryImage);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductListItemWithVariants(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ProductListItemWithVariants(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ProductListItemWithVariants call({
-    Object? variants = const $CopyWithPlaceholder(),
-    Object? id = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
-    Object? brandId = const $CopyWithPlaceholder(),
-    Object? brandName = const $CopyWithPlaceholder(),
-    Object? categoryId = const $CopyWithPlaceholder(),
-    Object? categoryName = const $CopyWithPlaceholder(),
-    Object? description = const $CopyWithPlaceholder(),
-    Object? numberOfVariants = const $CopyWithPlaceholder(),
-    Object? variantPrices = const $CopyWithPlaceholder(),
-    Object? tags = const $CopyWithPlaceholder(),
-    Object? primaryImage = const $CopyWithPlaceholder(),
-  }) {
-    return ProductListItemWithVariants(
-      variants: variants == const $CopyWithPlaceholder()
-          ? _value.variants
-          // ignore: cast_nullable_to_non_nullable
-          : variants as List<VariantSummaryItem>?,
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-      brandId: brandId == const $CopyWithPlaceholder()
-          ? _value.brandId
-          // ignore: cast_nullable_to_non_nullable
-          : brandId as int?,
-      brandName: brandName == const $CopyWithPlaceholder()
-          ? _value.brandName
-          // ignore: cast_nullable_to_non_nullable
-          : brandName as String?,
-      categoryId: categoryId == const $CopyWithPlaceholder()
-          ? _value.categoryId
-          // ignore: cast_nullable_to_non_nullable
-          : categoryId as int?,
-      categoryName: categoryName == const $CopyWithPlaceholder()
-          ? _value.categoryName
-          // ignore: cast_nullable_to_non_nullable
-          : categoryName as String?,
-      description: description == const $CopyWithPlaceholder()
-          ? _value.description
-          // ignore: cast_nullable_to_non_nullable
-          : description as String?,
-      numberOfVariants: numberOfVariants == const $CopyWithPlaceholder()
-          ? _value.numberOfVariants
-          // ignore: cast_nullable_to_non_nullable
-          : numberOfVariants as int?,
-      variantPrices: variantPrices == const $CopyWithPlaceholder()
-          ? _value.variantPrices
-          // ignore: cast_nullable_to_non_nullable
-          : variantPrices as List<num>?,
-      tags: tags == const $CopyWithPlaceholder()
-          ? _value.tags
-          // ignore: cast_nullable_to_non_nullable
-          : tags as List<String>?,
-      primaryImage: primaryImage == const $CopyWithPlaceholder()
-          ? _value.primaryImage
-          // ignore: cast_nullable_to_non_nullable
-          : primaryImage as MediaResponse?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'ProductListItemWithVariants')
+          ..add('variants', variants)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('brandId', brandId)
+          ..add('brandName', brandName)
+          ..add('categoryId', categoryId)
+          ..add('categoryName', categoryName)
+          ..add('description', description)
+          ..add('numberOfVariants', numberOfVariants)
+          ..add('variantPrices', variantPrices)
+          ..add('tags', tags)
+          ..add('primaryImage', primaryImage))
+        .toString();
   }
 }
 
-extension $ProductListItemWithVariantsCopyWith on ProductListItemWithVariants {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfProductListItemWithVariants.copyWith(...)` or `instanceOfProductListItemWithVariants.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$ProductListItemWithVariantsCWProxy get copyWith =>
-      _$ProductListItemWithVariantsCWProxyImpl(this);
+class ProductListItemWithVariantsBuilder
+    implements
+        Builder<
+          ProductListItemWithVariants,
+          ProductListItemWithVariantsBuilder
+        > {
+  _$ProductListItemWithVariants? _$v;
+
+  ListBuilder<VariantSummaryItem>? _variants;
+  ListBuilder<VariantSummaryItem> get variants =>
+      _$this._variants ??= ListBuilder<VariantSummaryItem>();
+  set variants(ListBuilder<VariantSummaryItem>? variants) =>
+      _$this._variants = variants;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  int? _brandId;
+  int? get brandId => _$this._brandId;
+  set brandId(int? brandId) => _$this._brandId = brandId;
+
+  String? _brandName;
+  String? get brandName => _$this._brandName;
+  set brandName(String? brandName) => _$this._brandName = brandName;
+
+  int? _categoryId;
+  int? get categoryId => _$this._categoryId;
+  set categoryId(int? categoryId) => _$this._categoryId = categoryId;
+
+  String? _categoryName;
+  String? get categoryName => _$this._categoryName;
+  set categoryName(String? categoryName) => _$this._categoryName = categoryName;
+
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
+
+  int? _numberOfVariants;
+  int? get numberOfVariants => _$this._numberOfVariants;
+  set numberOfVariants(int? numberOfVariants) =>
+      _$this._numberOfVariants = numberOfVariants;
+
+  ListBuilder<num>? _variantPrices;
+  ListBuilder<num> get variantPrices =>
+      _$this._variantPrices ??= ListBuilder<num>();
+  set variantPrices(ListBuilder<num>? variantPrices) =>
+      _$this._variantPrices = variantPrices;
+
+  ListBuilder<String>? _tags;
+  ListBuilder<String> get tags => _$this._tags ??= ListBuilder<String>();
+  set tags(ListBuilder<String>? tags) => _$this._tags = tags;
+
+  MediaResponseBuilder? _primaryImage;
+  MediaResponseBuilder get primaryImage =>
+      _$this._primaryImage ??= MediaResponseBuilder();
+  set primaryImage(MediaResponseBuilder? primaryImage) =>
+      _$this._primaryImage = primaryImage;
+
+  ProductListItemWithVariantsBuilder() {
+    ProductListItemWithVariants._defaults(this);
+  }
+
+  ProductListItemWithVariantsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _variants = $v.variants.toBuilder();
+      _id = $v.id;
+      _name = $v.name;
+      _brandId = $v.brandId;
+      _brandName = $v.brandName;
+      _categoryId = $v.categoryId;
+      _categoryName = $v.categoryName;
+      _description = $v.description;
+      _numberOfVariants = $v.numberOfVariants;
+      _variantPrices = $v.variantPrices.toBuilder();
+      _tags = $v.tags?.toBuilder();
+      _primaryImage = $v.primaryImage?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ProductListItemWithVariants other) {
+    _$v = other as _$ProductListItemWithVariants;
+  }
+
+  @override
+  void update(void Function(ProductListItemWithVariantsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ProductListItemWithVariants build() => _build();
+
+  _$ProductListItemWithVariants _build() {
+    _$ProductListItemWithVariants _$result;
+    try {
+      _$result =
+          _$v ??
+          _$ProductListItemWithVariants._(
+            variants: variants.build(),
+            id: id,
+            name: name,
+            brandId: brandId,
+            brandName: BuiltValueNullFieldError.checkNotNull(
+              brandName,
+              r'ProductListItemWithVariants',
+              'brandName',
+            ),
+            categoryId: categoryId,
+            categoryName: BuiltValueNullFieldError.checkNotNull(
+              categoryName,
+              r'ProductListItemWithVariants',
+              'categoryName',
+            ),
+            description: description,
+            numberOfVariants: numberOfVariants,
+            variantPrices: variantPrices.build(),
+            tags: _tags?.build(),
+            primaryImage: _primaryImage?.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'variants';
+        variants.build();
+
+        _$failedField = 'variantPrices';
+        variantPrices.build();
+        _$failedField = 'tags';
+        _tags?.build();
+        _$failedField = 'primaryImage';
+        _primaryImage?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'ProductListItemWithVariants',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-ProductListItemWithVariants _$ProductListItemWithVariantsFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('ProductListItemWithVariants', json, ($checkedConvert) {
-  final val = ProductListItemWithVariants(
-    variants: $checkedConvert(
-      'variants',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => VariantSummaryItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    id: $checkedConvert('id', (v) => v as String?),
-    name: $checkedConvert('name', (v) => v as String?),
-    brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
-    brandName: $checkedConvert('brandName', (v) => v as String?),
-    categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
-    categoryName: $checkedConvert('categoryName', (v) => v as String?),
-    description: $checkedConvert('description', (v) => v as String?),
-    numberOfVariants: $checkedConvert(
-      'numberOfVariants',
-      (v) => (v as num?)?.toInt(),
-    ),
-    variantPrices: $checkedConvert(
-      'variantPrices',
-      (v) => (v as List<dynamic>?)?.map((e) => e as num).toList(),
-    ),
-    tags: $checkedConvert(
-      'tags',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    primaryImage: $checkedConvert(
-      'primaryImage',
-      (v) =>
-          v == null ? null : MediaResponse.fromJson(v as Map<String, dynamic>),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$ProductListItemWithVariantsToJson(
-  ProductListItemWithVariants instance,
-) => <String, dynamic>{
-  'variants': ?instance.variants?.map((e) => e.toJson()).toList(),
-  'id': ?instance.id,
-  'name': ?instance.name,
-  'brandId': ?instance.brandId,
-  'brandName': ?instance.brandName,
-  'categoryId': ?instance.categoryId,
-  'categoryName': ?instance.categoryName,
-  'description': ?instance.description,
-  'numberOfVariants': ?instance.numberOfVariants,
-  'variantPrices': ?instance.variantPrices,
-  'tags': ?instance.tags,
-  'primaryImage': ?instance.primaryImage?.toJson(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

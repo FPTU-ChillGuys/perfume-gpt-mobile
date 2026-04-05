@@ -3,9 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfAddressLevel4Response
 void main() {
-  final BaseResponseOfAddressLevel4Response?
-  instance = /* BaseResponseOfAddressLevel4Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = BaseResponseOfAddressLevel4ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(BaseResponseOfAddressLevel4Response, () {
     // AddressLevel4Response payload
@@ -23,14 +22,15 @@ void main() {
       // TODO
     });
 
-    // List<String> errors
+    // BuiltList<String> errors
     test('to test the property `errors`', () async {
       // TODO
     });
 
-    // ResponseErrorType errorType
+    // int errorType
     test('to test the property `errorType`', () async {
       // TODO
     });
+
   });
 }

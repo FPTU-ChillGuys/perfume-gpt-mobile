@@ -9,11 +9,11 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
-**name** | **String** |  | [optional] 
+**name** | **String** |  | 
 **description** | **String** |  | [optional] 
-**brandName** | **String** |  | [optional] 
+**brandName** | **String** |  | 
 **gender** | [**Gender**](Gender.md) |  | [optional] 
-**variants** | [**List&lt;VariantFastLookResponse&gt;**](VariantFastLookResponse.md) |  | [optional] 
+**variants** | [**BuiltList&lt;VariantFastLookResponse&gt;**](VariantFastLookResponse.md) |  | 
 **rating** | **int** |  | [optional] 
 **reviewCount** | **int** |  | [optional] 
 

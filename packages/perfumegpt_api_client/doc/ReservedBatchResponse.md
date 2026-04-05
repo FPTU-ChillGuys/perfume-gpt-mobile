@@ -9,7 +9,7 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **batchId** | **String** |  | [optional] 
-**batchCode** | **String** |  | [optional] 
+**batchCode** | **String** |  | 
 **reservedQuantity** | **int** |  | [optional] 
 **expiryDate** | [**DateTime**](DateTime.md) |  | [optional] 
 

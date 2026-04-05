@@ -3,133 +3,159 @@
 part of 'base_response_ofstring.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BaseResponseOfstringCWProxy {
-  BaseResponseOfstring payload(String? payload);
+class _$BaseResponseOfstring extends BaseResponseOfstring {
+  @override
+  final String? payload;
+  @override
+  final bool? success;
+  @override
+  final String? message;
+  @override
+  final BuiltList<String>? errors;
+  @override
+  final int? errorType;
 
-  BaseResponseOfstring success(bool? success);
+  factory _$BaseResponseOfstring([
+    void Function(BaseResponseOfstringBuilder)? updates,
+  ]) => (BaseResponseOfstringBuilder()..update(updates))._build();
 
-  BaseResponseOfstring message(String? message);
-
-  BaseResponseOfstring errors(List<String>? errors);
-
-  BaseResponseOfstring errorType(int? errorType);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfstring(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfstring(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfstring call({
-    String? payload,
-    bool? success,
-    String? message,
-    List<String>? errors,
-    int? errorType,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBaseResponseOfstring.copyWith(...)` or call `instanceOfBaseResponseOfstring.copyWith.fieldName(value)` for a single field.
-class _$BaseResponseOfstringCWProxyImpl
-    implements _$BaseResponseOfstringCWProxy {
-  const _$BaseResponseOfstringCWProxyImpl(this._value);
-
-  final BaseResponseOfstring _value;
+  _$BaseResponseOfstring._({
+    this.payload,
+    this.success,
+    this.message,
+    this.errors,
+    this.errorType,
+  }) : super._();
+  @override
+  BaseResponseOfstring rebuild(
+    void Function(BaseResponseOfstringBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BaseResponseOfstring payload(String? payload) => call(payload: payload);
+  BaseResponseOfstringBuilder toBuilder() =>
+      BaseResponseOfstringBuilder()..replace(this);
 
   @override
-  BaseResponseOfstring success(bool? success) => call(success: success);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BaseResponseOfstring &&
+        payload == other.payload &&
+        success == other.success &&
+        message == other.message &&
+        errors == other.errors &&
+        errorType == other.errorType;
+  }
 
   @override
-  BaseResponseOfstring message(String? message) => call(message: message);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, payload.hashCode);
+    _$hash = $jc(_$hash, success.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, errors.hashCode);
+    _$hash = $jc(_$hash, errorType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  BaseResponseOfstring errors(List<String>? errors) => call(errors: errors);
-
-  @override
-  BaseResponseOfstring errorType(int? errorType) => call(errorType: errorType);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfstring(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfstring(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfstring call({
-    Object? payload = const $CopyWithPlaceholder(),
-    Object? success = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? errorType = const $CopyWithPlaceholder(),
-  }) {
-    return BaseResponseOfstring(
-      payload: payload == const $CopyWithPlaceholder()
-          ? _value.payload
-          // ignore: cast_nullable_to_non_nullable
-          : payload as String?,
-      success: success == const $CopyWithPlaceholder()
-          ? _value.success
-          // ignore: cast_nullable_to_non_nullable
-          : success as bool?,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
-          // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
-          // ignore: cast_nullable_to_non_nullable
-          : errors as List<String>?,
-      errorType: errorType == const $CopyWithPlaceholder()
-          ? _value.errorType
-          // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'BaseResponseOfstring')
+          ..add('payload', payload)
+          ..add('success', success)
+          ..add('message', message)
+          ..add('errors', errors)
+          ..add('errorType', errorType))
+        .toString();
   }
 }
 
-extension $BaseResponseOfstringCopyWith on BaseResponseOfstring {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBaseResponseOfstring.copyWith(...)` or `instanceOfBaseResponseOfstring.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BaseResponseOfstringCWProxy get copyWith =>
-      _$BaseResponseOfstringCWProxyImpl(this);
+class BaseResponseOfstringBuilder
+    implements Builder<BaseResponseOfstring, BaseResponseOfstringBuilder> {
+  _$BaseResponseOfstring? _$v;
+
+  String? _payload;
+  String? get payload => _$this._payload;
+  set payload(String? payload) => _$this._payload = payload;
+
+  bool? _success;
+  bool? get success => _$this._success;
+  set success(bool? success) => _$this._success = success;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  ListBuilder<String>? _errors;
+  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
+  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
+
+  int? _errorType;
+  int? get errorType => _$this._errorType;
+  set errorType(int? errorType) => _$this._errorType = errorType;
+
+  BaseResponseOfstringBuilder() {
+    BaseResponseOfstring._defaults(this);
+  }
+
+  BaseResponseOfstringBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _payload = $v.payload;
+      _success = $v.success;
+      _message = $v.message;
+      _errors = $v.errors?.toBuilder();
+      _errorType = $v.errorType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BaseResponseOfstring other) {
+    _$v = other as _$BaseResponseOfstring;
+  }
+
+  @override
+  void update(void Function(BaseResponseOfstringBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BaseResponseOfstring build() => _build();
+
+  _$BaseResponseOfstring _build() {
+    _$BaseResponseOfstring _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BaseResponseOfstring._(
+            payload: payload,
+            success: success,
+            message: message,
+            errors: _errors?.build(),
+            errorType: errorType,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'errors';
+        _errors?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BaseResponseOfstring',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BaseResponseOfstring _$BaseResponseOfstringFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('BaseResponseOfstring', json, ($checkedConvert) {
-  final val = BaseResponseOfstring(
-    payload: $checkedConvert('payload', (v) => v as String?),
-    success: $checkedConvert('success', (v) => v as bool?),
-    message: $checkedConvert('message', (v) => v as String?),
-    errors: $checkedConvert(
-      'errors',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$BaseResponseOfstringToJson(
-  BaseResponseOfstring instance,
-) => <String, dynamic>{
-  'payload': ?instance.payload,
-  'success': ?instance.success,
-  'message': ?instance.message,
-  'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

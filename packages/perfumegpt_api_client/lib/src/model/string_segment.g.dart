@@ -3,126 +3,140 @@
 part of 'string_segment.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$StringSegmentCWProxy {
-  StringSegment buffer(String? buffer);
+class _$StringSegment extends StringSegment {
+  @override
+  final String? buffer;
+  @override
+  final int? offset;
+  @override
+  final int? length;
+  @override
+  final String? value;
+  @override
+  final bool? hasValue;
 
-  StringSegment offset(int? offset);
+  factory _$StringSegment([void Function(StringSegmentBuilder)? updates]) =>
+      (StringSegmentBuilder()..update(updates))._build();
 
-  StringSegment length(int? length);
-
-  StringSegment value(String? value);
-
-  StringSegment hasValue(bool? hasValue);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StringSegment(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// StringSegment(...).copyWith(id: 12, name: "My name")
-  /// ```
-  StringSegment call({
-    String? buffer,
-    int? offset,
-    int? length,
-    String? value,
-    bool? hasValue,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfStringSegment.copyWith(...)` or call `instanceOfStringSegment.copyWith.fieldName(value)` for a single field.
-class _$StringSegmentCWProxyImpl implements _$StringSegmentCWProxy {
-  const _$StringSegmentCWProxyImpl(this._value);
-
-  final StringSegment _value;
+  _$StringSegment._({
+    this.buffer,
+    this.offset,
+    this.length,
+    this.value,
+    this.hasValue,
+  }) : super._();
+  @override
+  StringSegment rebuild(void Function(StringSegmentBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  StringSegment buffer(String? buffer) => call(buffer: buffer);
+  StringSegmentBuilder toBuilder() => StringSegmentBuilder()..replace(this);
 
   @override
-  StringSegment offset(int? offset) => call(offset: offset);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is StringSegment &&
+        buffer == other.buffer &&
+        offset == other.offset &&
+        length == other.length &&
+        value == other.value &&
+        hasValue == other.hasValue;
+  }
 
   @override
-  StringSegment length(int? length) => call(length: length);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, buffer.hashCode);
+    _$hash = $jc(_$hash, offset.hashCode);
+    _$hash = $jc(_$hash, length.hashCode);
+    _$hash = $jc(_$hash, value.hashCode);
+    _$hash = $jc(_$hash, hasValue.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  StringSegment value(String? value) => call(value: value);
-
-  @override
-  StringSegment hasValue(bool? hasValue) => call(hasValue: hasValue);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StringSegment(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// StringSegment(...).copyWith(id: 12, name: "My name")
-  /// ```
-  StringSegment call({
-    Object? buffer = const $CopyWithPlaceholder(),
-    Object? offset = const $CopyWithPlaceholder(),
-    Object? length = const $CopyWithPlaceholder(),
-    Object? value = const $CopyWithPlaceholder(),
-    Object? hasValue = const $CopyWithPlaceholder(),
-  }) {
-    return StringSegment(
-      buffer: buffer == const $CopyWithPlaceholder()
-          ? _value.buffer
-          // ignore: cast_nullable_to_non_nullable
-          : buffer as String?,
-      offset: offset == const $CopyWithPlaceholder()
-          ? _value.offset
-          // ignore: cast_nullable_to_non_nullable
-          : offset as int?,
-      length: length == const $CopyWithPlaceholder()
-          ? _value.length
-          // ignore: cast_nullable_to_non_nullable
-          : length as int?,
-      value: value == const $CopyWithPlaceholder()
-          ? _value.value
-          // ignore: cast_nullable_to_non_nullable
-          : value as String?,
-      hasValue: hasValue == const $CopyWithPlaceholder()
-          ? _value.hasValue
-          // ignore: cast_nullable_to_non_nullable
-          : hasValue as bool?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'StringSegment')
+          ..add('buffer', buffer)
+          ..add('offset', offset)
+          ..add('length', length)
+          ..add('value', value)
+          ..add('hasValue', hasValue))
+        .toString();
   }
 }
 
-extension $StringSegmentCopyWith on StringSegment {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfStringSegment.copyWith(...)` or `instanceOfStringSegment.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$StringSegmentCWProxy get copyWith => _$StringSegmentCWProxyImpl(this);
+class StringSegmentBuilder
+    implements Builder<StringSegment, StringSegmentBuilder> {
+  _$StringSegment? _$v;
+
+  String? _buffer;
+  String? get buffer => _$this._buffer;
+  set buffer(String? buffer) => _$this._buffer = buffer;
+
+  int? _offset;
+  int? get offset => _$this._offset;
+  set offset(int? offset) => _$this._offset = offset;
+
+  int? _length;
+  int? get length => _$this._length;
+  set length(int? length) => _$this._length = length;
+
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
+
+  bool? _hasValue;
+  bool? get hasValue => _$this._hasValue;
+  set hasValue(bool? hasValue) => _$this._hasValue = hasValue;
+
+  StringSegmentBuilder() {
+    StringSegment._defaults(this);
+  }
+
+  StringSegmentBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _buffer = $v.buffer;
+      _offset = $v.offset;
+      _length = $v.length;
+      _value = $v.value;
+      _hasValue = $v.hasValue;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(StringSegment other) {
+    _$v = other as _$StringSegment;
+  }
+
+  @override
+  void update(void Function(StringSegmentBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  StringSegment build() => _build();
+
+  _$StringSegment _build() {
+    final _$result =
+        _$v ??
+        _$StringSegment._(
+          buffer: buffer,
+          offset: offset,
+          length: length,
+          value: value,
+          hasValue: hasValue,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-StringSegment _$StringSegmentFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('StringSegment', json, ($checkedConvert) {
-      final val = StringSegment(
-        buffer: $checkedConvert('buffer', (v) => v as String?),
-        offset: $checkedConvert('offset', (v) => (v as num?)?.toInt()),
-        length: $checkedConvert('length', (v) => (v as num?)?.toInt()),
-        value: $checkedConvert('value', (v) => v as String?),
-        hasValue: $checkedConvert('hasValue', (v) => v as bool?),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$StringSegmentToJson(StringSegment instance) =>
-    <String, dynamic>{
-      'buffer': ?instance.buffer,
-      'offset': ?instance.offset,
-      'length': ?instance.length,
-      'value': ?instance.value,
-      'hasValue': ?instance.hasValue,
-    };
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

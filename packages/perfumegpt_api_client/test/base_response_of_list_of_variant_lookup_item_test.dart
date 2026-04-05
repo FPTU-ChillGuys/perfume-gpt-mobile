@@ -3,12 +3,11 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfListOfVariantLookupItem
 void main() {
-  final BaseResponseOfListOfVariantLookupItem?
-  instance = /* BaseResponseOfListOfVariantLookupItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = BaseResponseOfListOfVariantLookupItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(BaseResponseOfListOfVariantLookupItem, () {
-    // List<VariantLookupItem> payload
+    // BuiltList<VariantLookupItem> payload
     test('to test the property `payload`', () async {
       // TODO
     });
@@ -23,14 +22,15 @@ void main() {
       // TODO
     });
 
-    // List<String> errors
+    // BuiltList<String> errors
     test('to test the property `errors`', () async {
       // TODO
     });
 
-    // ResponseErrorType errorType
+    // int errorType
     test('to test the property `errorType`', () async {
       // TODO
     });
+
   });
 }

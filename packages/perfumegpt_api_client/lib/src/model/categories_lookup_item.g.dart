@@ -3,85 +3,108 @@
 part of 'categories_lookup_item.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CategoriesLookupItemCWProxy {
-  CategoriesLookupItem id(int? id);
+class _$CategoriesLookupItem extends CategoriesLookupItem {
+  @override
+  final int? id;
+  @override
+  final String name;
 
-  CategoriesLookupItem name(String? name);
+  factory _$CategoriesLookupItem([
+    void Function(CategoriesLookupItemBuilder)? updates,
+  ]) => (CategoriesLookupItemBuilder()..update(updates))._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CategoriesLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CategoriesLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CategoriesLookupItem call({int? id, String? name});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCategoriesLookupItem.copyWith(...)` or call `instanceOfCategoriesLookupItem.copyWith.fieldName(value)` for a single field.
-class _$CategoriesLookupItemCWProxyImpl
-    implements _$CategoriesLookupItemCWProxy {
-  const _$CategoriesLookupItemCWProxyImpl(this._value);
-
-  final CategoriesLookupItem _value;
+  _$CategoriesLookupItem._({this.id, required this.name}) : super._();
+  @override
+  CategoriesLookupItem rebuild(
+    void Function(CategoriesLookupItemBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  CategoriesLookupItem id(int? id) => call(id: id);
+  CategoriesLookupItemBuilder toBuilder() =>
+      CategoriesLookupItemBuilder()..replace(this);
 
   @override
-  CategoriesLookupItem name(String? name) => call(name: name);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CategoriesLookupItem &&
+        id == other.id &&
+        name == other.name;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CategoriesLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CategoriesLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CategoriesLookupItem call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
-  }) {
-    return CategoriesLookupItem(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as int?,
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'CategoriesLookupItem')
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
   }
 }
 
-extension $CategoriesLookupItemCopyWith on CategoriesLookupItem {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCategoriesLookupItem.copyWith(...)` or `instanceOfCategoriesLookupItem.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CategoriesLookupItemCWProxy get copyWith =>
-      _$CategoriesLookupItemCWProxyImpl(this);
+class CategoriesLookupItemBuilder
+    implements Builder<CategoriesLookupItem, CategoriesLookupItemBuilder> {
+  _$CategoriesLookupItem? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  CategoriesLookupItemBuilder() {
+    CategoriesLookupItem._defaults(this);
+  }
+
+  CategoriesLookupItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CategoriesLookupItem other) {
+    _$v = other as _$CategoriesLookupItem;
+  }
+
+  @override
+  void update(void Function(CategoriesLookupItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CategoriesLookupItem build() => _build();
+
+  _$CategoriesLookupItem _build() {
+    final _$result =
+        _$v ??
+        _$CategoriesLookupItem._(
+          id: id,
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'CategoriesLookupItem',
+            'name',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CategoriesLookupItem _$CategoriesLookupItemFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('CategoriesLookupItem', json, ($checkedConvert) {
-  final val = CategoriesLookupItem(
-    id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-    name: $checkedConvert('name', (v) => v as String?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$CategoriesLookupItemToJson(
-  CategoriesLookupItem instance,
-) => <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductLookupItem
 void main() {
-  final ProductLookupItem? instance = /* ProductLookupItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = ProductLookupItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ProductLookupItem, () {
     // String id
@@ -22,9 +22,10 @@ void main() {
       // TODO
     });
 
-    // MediaResponse primaryImage
-    test('to test the property `primaryImage`', () async {
+    // String primaryImageUrl
+    test('to test the property `primaryImageUrl`', () async {
       // TODO
     });
+
   });
 }

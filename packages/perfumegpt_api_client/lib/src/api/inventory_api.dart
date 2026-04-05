@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_inventory_summary_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_stock_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_stock_response.dart';
@@ -18,7 +18,9 @@ class InventoryApi {
 
   final Dio _dio;
 
-  const InventoryApi(this._dio);
+  final Serializers _serializers;
+
+  const InventoryApi(this._dio, this._serializers);
 
   /// apiInventoryStockGet
   /// 
@@ -81,16 +83,16 @@ class InventoryApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'CategoryId': categoryId,
-      if (batchCode != null) r'BatchCode': batchCode,
-      if (SKU != null) r'SKU': SKU,
-      r'DaysUntilExpiry': daysUntilExpiry,
-      if (stockStatus != null) r'StockStatus': stockStatus,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      r'CategoryId': encodeQueryParameter(_serializers, categoryId, const FullType(int)),
+      if (batchCode != null) r'BatchCode': encodeQueryParameter(_serializers, batchCode, const FullType(String)),
+      if (SKU != null) r'SKU': encodeQueryParameter(_serializers, SKU, const FullType(String)),
+      r'DaysUntilExpiry': encodeQueryParameter(_serializers, daysUntilExpiry, const FullType(int)),
+      if (stockStatus != null) r'StockStatus': encodeQueryParameter(_serializers, stockStatus, const FullType(StockStatus)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -105,8 +107,11 @@ class InventoryApi {
     BaseResponseOfPagedResultOfStockResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfStockResponse, BaseResponseOfPagedResultOfStockResponse>(rawData, 'BaseResponseOfPagedResultOfStockResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfStockResponse),
+      ) as BaseResponseOfPagedResultOfStockResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -153,7 +158,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/inventory/stock/variant/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/inventory/stock/variant/{variantId}'.replaceAll('{' r'variantId' '}', encodeQueryParameter(_serializers, variantId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -183,8 +188,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfStockResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfStockResponse, BaseResponseOfStockResponse>(rawData, 'BaseResponseOfStockResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfStockResponse),
+      ) as BaseResponseOfStockResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -259,8 +267,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStockResponse
     BaseResponseOfInventorySummaryResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfInventorySummaryResponse, BaseResponseOfInventorySummaryResponse>(rawData, 'BaseResponseOfInventorySummaryResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfInventorySummaryResponse),
+      ) as BaseResponseOfInventorySummaryResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

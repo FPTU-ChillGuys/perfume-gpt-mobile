@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VariantSummaryItem
 void main() {
-  final VariantSummaryItem? instance = /* VariantSummaryItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = VariantSummaryItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(VariantSummaryItem, () {
     // String id
@@ -21,5 +21,6 @@ void main() {
     test('to test the property `concentrationName`', () async {
       // TODO
     });
+
   });
 }

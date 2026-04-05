@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cartItemId** | **String** |  | [optional] 
 **variantId** | **String** |  | [optional] 
-**variantName** | **String** |  | [optional] 
-**imageUrl** | **String** |  | [optional] 
+**variantName** | **String** |  | 
+**imageUrl** | **String** |  | 
 **volumeMl** | **int** |  | [optional] 
 **type** | [**VariantType**](VariantType.md) |  | [optional] 
 **variantPrice** | **num** |  | [optional] 

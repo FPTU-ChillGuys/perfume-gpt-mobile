@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_loyalty_transaction_totals_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_loyalty_transaction_history_item_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
@@ -19,7 +19,9 @@ class LoyaltyTransactionsApi {
 
   final Dio _dio;
 
-  const LoyaltyTransactionsApi(this._dio);
+  final Serializers _serializers;
+
+  const LoyaltyTransactionsApi(this._dio, this._serializers);
 
   /// apiLoyaltytransactionsGet
   /// 
@@ -76,13 +78,13 @@ class LoyaltyTransactionsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (userId != null) r'UserId': userId,
-      if (transactionType != null) r'TransactionType': transactionType,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (userId != null) r'UserId': encodeQueryParameter(_serializers, userId, const FullType(String)),
+      if (transactionType != null) r'TransactionType': encodeQueryParameter(_serializers, transactionType, const FullType(LoyaltyTransactionType)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -97,8 +99,11 @@ class LoyaltyTransactionsApi {
     BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse, BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>(rawData, 'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse),
+      ) as BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -175,12 +180,12 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     );
 
     final _queryParameters = <String, dynamic>{
-      if (transactionType != null) r'TransactionType': transactionType,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (transactionType != null) r'TransactionType': encodeQueryParameter(_serializers, transactionType, const FullType(LoyaltyTransactionType)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -195,8 +200,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse, BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>(rawData, 'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse),
+      ) as BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -271,8 +279,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfLoyaltyTransactionTotalsResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyTransactionTotalsResponse, BaseResponseOfLoyaltyTransactionTotalsResponse>(rawData, 'BaseResponseOfLoyaltyTransactionTotalsResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfLoyaltyTransactionTotalsResponse),
+      ) as BaseResponseOfLoyaltyTransactionTotalsResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -321,7 +332,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyTransa
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/loyaltytransactions/{userId}/manual-change'.replaceAll('{' r'userId' '}', userId.toString());
+    final _path = r'/api/loyaltytransactions/{userId}/manual-change'.replaceAll('{' r'userId' '}', encodeQueryParameter(_serializers, userId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -344,7 +355,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyTransa
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(manualChangeRequest);
+      const _type = FullType(ManualChangeRequest);
+      _bodyData = _serializers.serialize(manualChangeRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -369,8 +382,11 @@ _bodyData=jsonEncode(manualChangeRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

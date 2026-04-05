@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for OrdersApi
 void main() {
   final instance = PerfumegptApiClient().getOrdersApi();
@@ -31,12 +32,17 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfReceiptResponse> apiOrdersMyOrdersOrderIdInvoiceGet(String orderId) async
+    test('test apiOrdersMyOrdersOrderIdInvoiceGet', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiOrdersOrderIdAddressPut(String orderId, UpdateOrderAddressRequest updateOrderAddressRequest) async
     test('test apiOrdersOrderIdAddressPut', () async {
       // TODO
     });
 
-    //Future<BaseResponseOfstring> apiOrdersOrderIdCancelPost(String orderId) async
+    //Future<BaseResponseOfstring> apiOrdersOrderIdCancelPost(String orderId, UserCancelOrderRequest userCancelOrderRequest) async
     test('test apiOrdersOrderIdCancelPost', () async {
       // TODO
     });
@@ -48,6 +54,11 @@ void main() {
 
     //Future<BaseResponseOfOrderResponse> apiOrdersOrderIdGet(String orderId) async
     test('test apiOrdersOrderIdGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfReceiptResponse> apiOrdersOrderIdInvoiceGet(String orderId) async
+    test('test apiOrdersOrderIdInvoiceGet', () async {
       // TODO
     });
 
@@ -66,7 +77,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPreviewOrderResponse> apiOrdersPreviewGet({ List<String> barCodes, String wardCode, int districtId, String voucherCode }) async
+    //Future<BaseResponseOfPreviewOrderResponse> apiOrdersPreviewGet({ BuiltList<String> barCodes, String wardCode, int districtId, String voucherCode }) async
     test('test apiOrdersPreviewGet', () async {
       // TODO
     });
@@ -80,5 +91,6 @@ void main() {
     test('test apiOrdersUserUserIdGet', () async {
       // TODO
     });
+
   });
 }

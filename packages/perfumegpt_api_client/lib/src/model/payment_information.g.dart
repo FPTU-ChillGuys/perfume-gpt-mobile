@@ -3,79 +3,88 @@
 part of 'payment_information.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$PaymentInformationCWProxy {
-  PaymentInformation method(PaymentMethod? method);
+class _$PaymentInformation extends PaymentInformation {
+  @override
+  final PaymentMethod? method;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInformation(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PaymentInformation(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PaymentInformation call({PaymentMethod? method});
-}
+  factory _$PaymentInformation([
+    void Function(PaymentInformationBuilder)? updates,
+  ]) => (PaymentInformationBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfPaymentInformation.copyWith(...)` or call `instanceOfPaymentInformation.copyWith.fieldName(value)` for a single field.
-class _$PaymentInformationCWProxyImpl implements _$PaymentInformationCWProxy {
-  const _$PaymentInformationCWProxyImpl(this._value);
-
-  final PaymentInformation _value;
+  _$PaymentInformation._({this.method}) : super._();
+  @override
+  PaymentInformation rebuild(
+    void Function(PaymentInformationBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  PaymentInformation method(PaymentMethod? method) => call(method: method);
+  PaymentInformationBuilder toBuilder() =>
+      PaymentInformationBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInformation(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PaymentInformation(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PaymentInformation call({Object? method = const $CopyWithPlaceholder()}) {
-    return PaymentInformation(
-      method: method == const $CopyWithPlaceholder()
-          ? _value.method
-          // ignore: cast_nullable_to_non_nullable
-          : method as PaymentMethod?,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PaymentInformation && method == other.method;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'PaymentInformation',
+    )..add('method', method)).toString();
   }
 }
 
-extension $PaymentInformationCopyWith on PaymentInformation {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfPaymentInformation.copyWith(...)` or `instanceOfPaymentInformation.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$PaymentInformationCWProxy get copyWith =>
-      _$PaymentInformationCWProxyImpl(this);
+class PaymentInformationBuilder
+    implements Builder<PaymentInformation, PaymentInformationBuilder> {
+  _$PaymentInformation? _$v;
+
+  PaymentMethod? _method;
+  PaymentMethod? get method => _$this._method;
+  set method(PaymentMethod? method) => _$this._method = method;
+
+  PaymentInformationBuilder() {
+    PaymentInformation._defaults(this);
+  }
+
+  PaymentInformationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _method = $v.method;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PaymentInformation other) {
+    _$v = other as _$PaymentInformation;
+  }
+
+  @override
+  void update(void Function(PaymentInformationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  PaymentInformation build() => _build();
+
+  _$PaymentInformation _build() {
+    final _$result = _$v ?? _$PaymentInformation._(method: method);
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-PaymentInformation _$PaymentInformationFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('PaymentInformation', json, ($checkedConvert) {
-      final val = PaymentInformation(
-        method: $checkedConvert(
-          'method',
-          (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
-        ),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$PaymentInformationToJson(PaymentInformation instance) =>
-    <String, dynamic>{'method': ?_$PaymentMethodEnumMap[instance.method]};
-
-const _$PaymentMethodEnumMap = {
-  PaymentMethod.cashOnDelivery: 'CashOnDelivery',
-  PaymentMethod.vnPay: 'VnPay',
-  PaymentMethod.momo: 'Momo',
-  PaymentMethod.cashInStore: 'CashInStore',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

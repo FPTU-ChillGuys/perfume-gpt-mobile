@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for BatchesApi
 void main() {
   final instance = PerfumegptApiClient().getBatchesApi();
@@ -16,9 +17,10 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfListOfBatchDetailResponse> apiBatchesVariantVariantIdGet(String variantId) async
-    test('test apiBatchesVariantVariantIdGet', () async {
+    //Future<BaseResponseOfListOfBatchLookupResponse> apiBatchesLookupGet() async
+    test('test apiBatchesLookupGet', () async {
       // TODO
     });
+
   });
 }

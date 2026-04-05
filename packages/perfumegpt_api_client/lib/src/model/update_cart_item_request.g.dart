@@ -3,74 +3,88 @@
 part of 'update_cart_item_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$UpdateCartItemRequestCWProxy {
-  UpdateCartItemRequest quantity(int? quantity);
+class _$UpdateCartItemRequest extends UpdateCartItemRequest {
+  @override
+  final int? quantity;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCartItemRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateCartItemRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateCartItemRequest call({int? quantity});
-}
+  factory _$UpdateCartItemRequest([
+    void Function(UpdateCartItemRequestBuilder)? updates,
+  ]) => (UpdateCartItemRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfUpdateCartItemRequest.copyWith(...)` or call `instanceOfUpdateCartItemRequest.copyWith.fieldName(value)` for a single field.
-class _$UpdateCartItemRequestCWProxyImpl
-    implements _$UpdateCartItemRequestCWProxy {
-  const _$UpdateCartItemRequestCWProxyImpl(this._value);
-
-  final UpdateCartItemRequest _value;
+  _$UpdateCartItemRequest._({this.quantity}) : super._();
+  @override
+  UpdateCartItemRequest rebuild(
+    void Function(UpdateCartItemRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  UpdateCartItemRequest quantity(int? quantity) => call(quantity: quantity);
+  UpdateCartItemRequestBuilder toBuilder() =>
+      UpdateCartItemRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCartItemRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateCartItemRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateCartItemRequest call({
-    Object? quantity = const $CopyWithPlaceholder(),
-  }) {
-    return UpdateCartItemRequest(
-      quantity: quantity == const $CopyWithPlaceholder()
-          ? _value.quantity
-          // ignore: cast_nullable_to_non_nullable
-          : quantity as int?,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is UpdateCartItemRequest && quantity == other.quantity;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, quantity.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'UpdateCartItemRequest',
+    )..add('quantity', quantity)).toString();
   }
 }
 
-extension $UpdateCartItemRequestCopyWith on UpdateCartItemRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfUpdateCartItemRequest.copyWith(...)` or `instanceOfUpdateCartItemRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$UpdateCartItemRequestCWProxy get copyWith =>
-      _$UpdateCartItemRequestCWProxyImpl(this);
+class UpdateCartItemRequestBuilder
+    implements Builder<UpdateCartItemRequest, UpdateCartItemRequestBuilder> {
+  _$UpdateCartItemRequest? _$v;
+
+  int? _quantity;
+  int? get quantity => _$this._quantity;
+  set quantity(int? quantity) => _$this._quantity = quantity;
+
+  UpdateCartItemRequestBuilder() {
+    UpdateCartItemRequest._defaults(this);
+  }
+
+  UpdateCartItemRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _quantity = $v.quantity;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(UpdateCartItemRequest other) {
+    _$v = other as _$UpdateCartItemRequest;
+  }
+
+  @override
+  void update(void Function(UpdateCartItemRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  UpdateCartItemRequest build() => _build();
+
+  _$UpdateCartItemRequest _build() {
+    final _$result = _$v ?? _$UpdateCartItemRequest._(quantity: quantity);
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-UpdateCartItemRequest _$UpdateCartItemRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('UpdateCartItemRequest', json, ($checkedConvert) {
-  final val = UpdateCartItemRequest(
-    quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$UpdateCartItemRequestToJson(
-  UpdateCartItemRequest instance,
-) => <String, dynamic>{'quantity': ?instance.quantity};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

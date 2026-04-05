@@ -3,273 +3,261 @@
 part of 'order_cancel_request_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$OrderCancelRequestResponseCWProxy {
-  OrderCancelRequestResponse id(String? id);
+class _$OrderCancelRequestResponse extends OrderCancelRequestResponse {
+  @override
+  final String? id;
+  @override
+  final String? orderId;
+  @override
+  final String? requestedById;
+  @override
+  final String? requestedByEmail;
+  @override
+  final String? processedById;
+  @override
+  final String reason;
+  @override
+  final String? staffNote;
+  @override
+  final CancelRequestStatus? status;
+  @override
+  final bool? isRefundRequired;
+  @override
+  final num? refundAmount;
+  @override
+  final bool? isRefunded;
+  @override
+  final String? vnpTransactionNo;
+  @override
+  final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
 
-  OrderCancelRequestResponse orderId(String? orderId);
+  factory _$OrderCancelRequestResponse([
+    void Function(OrderCancelRequestResponseBuilder)? updates,
+  ]) => (OrderCancelRequestResponseBuilder()..update(updates))._build();
 
-  OrderCancelRequestResponse requestedById(String? requestedById);
-
-  OrderCancelRequestResponse requestedByEmail(String? requestedByEmail);
-
-  OrderCancelRequestResponse processedById(String? processedById);
-
-  OrderCancelRequestResponse reason(String? reason);
-
-  OrderCancelRequestResponse staffNote(String? staffNote);
-
-  OrderCancelRequestResponse status(CancelRequestStatus? status);
-
-  OrderCancelRequestResponse isRefundRequired(bool? isRefundRequired);
-
-  OrderCancelRequestResponse refundAmount(num? refundAmount);
-
-  OrderCancelRequestResponse isRefunded(bool? isRefunded);
-
-  OrderCancelRequestResponse vnpTransactionNo(String? vnpTransactionNo);
-
-  OrderCancelRequestResponse createdAt(DateTime? createdAt);
-
-  OrderCancelRequestResponse updatedAt(DateTime? updatedAt);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderCancelRequestResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// OrderCancelRequestResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  OrderCancelRequestResponse call({
-    String? id,
-    String? orderId,
-    String? requestedById,
-    String? requestedByEmail,
-    String? processedById,
-    String? reason,
-    String? staffNote,
-    CancelRequestStatus? status,
-    bool? isRefundRequired,
-    num? refundAmount,
-    bool? isRefunded,
-    String? vnpTransactionNo,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfOrderCancelRequestResponse.copyWith(...)` or call `instanceOfOrderCancelRequestResponse.copyWith.fieldName(value)` for a single field.
-class _$OrderCancelRequestResponseCWProxyImpl
-    implements _$OrderCancelRequestResponseCWProxy {
-  const _$OrderCancelRequestResponseCWProxyImpl(this._value);
-
-  final OrderCancelRequestResponse _value;
+  _$OrderCancelRequestResponse._({
+    this.id,
+    this.orderId,
+    this.requestedById,
+    this.requestedByEmail,
+    this.processedById,
+    required this.reason,
+    this.staffNote,
+    this.status,
+    this.isRefundRequired,
+    this.refundAmount,
+    this.isRefunded,
+    this.vnpTransactionNo,
+    this.createdAt,
+    this.updatedAt,
+  }) : super._();
+  @override
+  OrderCancelRequestResponse rebuild(
+    void Function(OrderCancelRequestResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  OrderCancelRequestResponse id(String? id) => call(id: id);
+  OrderCancelRequestResponseBuilder toBuilder() =>
+      OrderCancelRequestResponseBuilder()..replace(this);
 
   @override
-  OrderCancelRequestResponse orderId(String? orderId) => call(orderId: orderId);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is OrderCancelRequestResponse &&
+        id == other.id &&
+        orderId == other.orderId &&
+        requestedById == other.requestedById &&
+        requestedByEmail == other.requestedByEmail &&
+        processedById == other.processedById &&
+        reason == other.reason &&
+        staffNote == other.staffNote &&
+        status == other.status &&
+        isRefundRequired == other.isRefundRequired &&
+        refundAmount == other.refundAmount &&
+        isRefunded == other.isRefunded &&
+        vnpTransactionNo == other.vnpTransactionNo &&
+        createdAt == other.createdAt &&
+        updatedAt == other.updatedAt;
+  }
 
   @override
-  OrderCancelRequestResponse requestedById(String? requestedById) =>
-      call(requestedById: requestedById);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, orderId.hashCode);
+    _$hash = $jc(_$hash, requestedById.hashCode);
+    _$hash = $jc(_$hash, requestedByEmail.hashCode);
+    _$hash = $jc(_$hash, processedById.hashCode);
+    _$hash = $jc(_$hash, reason.hashCode);
+    _$hash = $jc(_$hash, staffNote.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, isRefundRequired.hashCode);
+    _$hash = $jc(_$hash, refundAmount.hashCode);
+    _$hash = $jc(_$hash, isRefunded.hashCode);
+    _$hash = $jc(_$hash, vnpTransactionNo.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  OrderCancelRequestResponse requestedByEmail(String? requestedByEmail) =>
-      call(requestedByEmail: requestedByEmail);
-
-  @override
-  OrderCancelRequestResponse processedById(String? processedById) =>
-      call(processedById: processedById);
-
-  @override
-  OrderCancelRequestResponse reason(String? reason) => call(reason: reason);
-
-  @override
-  OrderCancelRequestResponse staffNote(String? staffNote) =>
-      call(staffNote: staffNote);
-
-  @override
-  OrderCancelRequestResponse status(CancelRequestStatus? status) =>
-      call(status: status);
-
-  @override
-  OrderCancelRequestResponse isRefundRequired(bool? isRefundRequired) =>
-      call(isRefundRequired: isRefundRequired);
-
-  @override
-  OrderCancelRequestResponse refundAmount(num? refundAmount) =>
-      call(refundAmount: refundAmount);
-
-  @override
-  OrderCancelRequestResponse isRefunded(bool? isRefunded) =>
-      call(isRefunded: isRefunded);
-
-  @override
-  OrderCancelRequestResponse vnpTransactionNo(String? vnpTransactionNo) =>
-      call(vnpTransactionNo: vnpTransactionNo);
-
-  @override
-  OrderCancelRequestResponse createdAt(DateTime? createdAt) =>
-      call(createdAt: createdAt);
-
-  @override
-  OrderCancelRequestResponse updatedAt(DateTime? updatedAt) =>
-      call(updatedAt: updatedAt);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderCancelRequestResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// OrderCancelRequestResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  OrderCancelRequestResponse call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? orderId = const $CopyWithPlaceholder(),
-    Object? requestedById = const $CopyWithPlaceholder(),
-    Object? requestedByEmail = const $CopyWithPlaceholder(),
-    Object? processedById = const $CopyWithPlaceholder(),
-    Object? reason = const $CopyWithPlaceholder(),
-    Object? staffNote = const $CopyWithPlaceholder(),
-    Object? status = const $CopyWithPlaceholder(),
-    Object? isRefundRequired = const $CopyWithPlaceholder(),
-    Object? refundAmount = const $CopyWithPlaceholder(),
-    Object? isRefunded = const $CopyWithPlaceholder(),
-    Object? vnpTransactionNo = const $CopyWithPlaceholder(),
-    Object? createdAt = const $CopyWithPlaceholder(),
-    Object? updatedAt = const $CopyWithPlaceholder(),
-  }) {
-    return OrderCancelRequestResponse(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      orderId: orderId == const $CopyWithPlaceholder()
-          ? _value.orderId
-          // ignore: cast_nullable_to_non_nullable
-          : orderId as String?,
-      requestedById: requestedById == const $CopyWithPlaceholder()
-          ? _value.requestedById
-          // ignore: cast_nullable_to_non_nullable
-          : requestedById as String?,
-      requestedByEmail: requestedByEmail == const $CopyWithPlaceholder()
-          ? _value.requestedByEmail
-          // ignore: cast_nullable_to_non_nullable
-          : requestedByEmail as String?,
-      processedById: processedById == const $CopyWithPlaceholder()
-          ? _value.processedById
-          // ignore: cast_nullable_to_non_nullable
-          : processedById as String?,
-      reason: reason == const $CopyWithPlaceholder()
-          ? _value.reason
-          // ignore: cast_nullable_to_non_nullable
-          : reason as String?,
-      staffNote: staffNote == const $CopyWithPlaceholder()
-          ? _value.staffNote
-          // ignore: cast_nullable_to_non_nullable
-          : staffNote as String?,
-      status: status == const $CopyWithPlaceholder()
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as CancelRequestStatus?,
-      isRefundRequired: isRefundRequired == const $CopyWithPlaceholder()
-          ? _value.isRefundRequired
-          // ignore: cast_nullable_to_non_nullable
-          : isRefundRequired as bool?,
-      refundAmount: refundAmount == const $CopyWithPlaceholder()
-          ? _value.refundAmount
-          // ignore: cast_nullable_to_non_nullable
-          : refundAmount as num?,
-      isRefunded: isRefunded == const $CopyWithPlaceholder()
-          ? _value.isRefunded
-          // ignore: cast_nullable_to_non_nullable
-          : isRefunded as bool?,
-      vnpTransactionNo: vnpTransactionNo == const $CopyWithPlaceholder()
-          ? _value.vnpTransactionNo
-          // ignore: cast_nullable_to_non_nullable
-          : vnpTransactionNo as String?,
-      createdAt: createdAt == const $CopyWithPlaceholder()
-          ? _value.createdAt
-          // ignore: cast_nullable_to_non_nullable
-          : createdAt as DateTime?,
-      updatedAt: updatedAt == const $CopyWithPlaceholder()
-          ? _value.updatedAt
-          // ignore: cast_nullable_to_non_nullable
-          : updatedAt as DateTime?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'OrderCancelRequestResponse')
+          ..add('id', id)
+          ..add('orderId', orderId)
+          ..add('requestedById', requestedById)
+          ..add('requestedByEmail', requestedByEmail)
+          ..add('processedById', processedById)
+          ..add('reason', reason)
+          ..add('staffNote', staffNote)
+          ..add('status', status)
+          ..add('isRefundRequired', isRefundRequired)
+          ..add('refundAmount', refundAmount)
+          ..add('isRefunded', isRefunded)
+          ..add('vnpTransactionNo', vnpTransactionNo)
+          ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt))
+        .toString();
   }
 }
 
-extension $OrderCancelRequestResponseCopyWith on OrderCancelRequestResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfOrderCancelRequestResponse.copyWith(...)` or `instanceOfOrderCancelRequestResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$OrderCancelRequestResponseCWProxy get copyWith =>
-      _$OrderCancelRequestResponseCWProxyImpl(this);
+class OrderCancelRequestResponseBuilder
+    implements
+        Builder<OrderCancelRequestResponse, OrderCancelRequestResponseBuilder> {
+  _$OrderCancelRequestResponse? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _orderId;
+  String? get orderId => _$this._orderId;
+  set orderId(String? orderId) => _$this._orderId = orderId;
+
+  String? _requestedById;
+  String? get requestedById => _$this._requestedById;
+  set requestedById(String? requestedById) =>
+      _$this._requestedById = requestedById;
+
+  String? _requestedByEmail;
+  String? get requestedByEmail => _$this._requestedByEmail;
+  set requestedByEmail(String? requestedByEmail) =>
+      _$this._requestedByEmail = requestedByEmail;
+
+  String? _processedById;
+  String? get processedById => _$this._processedById;
+  set processedById(String? processedById) =>
+      _$this._processedById = processedById;
+
+  String? _reason;
+  String? get reason => _$this._reason;
+  set reason(String? reason) => _$this._reason = reason;
+
+  String? _staffNote;
+  String? get staffNote => _$this._staffNote;
+  set staffNote(String? staffNote) => _$this._staffNote = staffNote;
+
+  CancelRequestStatus? _status;
+  CancelRequestStatus? get status => _$this._status;
+  set status(CancelRequestStatus? status) => _$this._status = status;
+
+  bool? _isRefundRequired;
+  bool? get isRefundRequired => _$this._isRefundRequired;
+  set isRefundRequired(bool? isRefundRequired) =>
+      _$this._isRefundRequired = isRefundRequired;
+
+  num? _refundAmount;
+  num? get refundAmount => _$this._refundAmount;
+  set refundAmount(num? refundAmount) => _$this._refundAmount = refundAmount;
+
+  bool? _isRefunded;
+  bool? get isRefunded => _$this._isRefunded;
+  set isRefunded(bool? isRefunded) => _$this._isRefunded = isRefunded;
+
+  String? _vnpTransactionNo;
+  String? get vnpTransactionNo => _$this._vnpTransactionNo;
+  set vnpTransactionNo(String? vnpTransactionNo) =>
+      _$this._vnpTransactionNo = vnpTransactionNo;
+
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  DateTime? _updatedAt;
+  DateTime? get updatedAt => _$this._updatedAt;
+  set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
+
+  OrderCancelRequestResponseBuilder() {
+    OrderCancelRequestResponse._defaults(this);
+  }
+
+  OrderCancelRequestResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _orderId = $v.orderId;
+      _requestedById = $v.requestedById;
+      _requestedByEmail = $v.requestedByEmail;
+      _processedById = $v.processedById;
+      _reason = $v.reason;
+      _staffNote = $v.staffNote;
+      _status = $v.status;
+      _isRefundRequired = $v.isRefundRequired;
+      _refundAmount = $v.refundAmount;
+      _isRefunded = $v.isRefunded;
+      _vnpTransactionNo = $v.vnpTransactionNo;
+      _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(OrderCancelRequestResponse other) {
+    _$v = other as _$OrderCancelRequestResponse;
+  }
+
+  @override
+  void update(void Function(OrderCancelRequestResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  OrderCancelRequestResponse build() => _build();
+
+  _$OrderCancelRequestResponse _build() {
+    final _$result =
+        _$v ??
+        _$OrderCancelRequestResponse._(
+          id: id,
+          orderId: orderId,
+          requestedById: requestedById,
+          requestedByEmail: requestedByEmail,
+          processedById: processedById,
+          reason: BuiltValueNullFieldError.checkNotNull(
+            reason,
+            r'OrderCancelRequestResponse',
+            'reason',
+          ),
+          staffNote: staffNote,
+          status: status,
+          isRefundRequired: isRefundRequired,
+          refundAmount: refundAmount,
+          isRefunded: isRefunded,
+          vnpTransactionNo: vnpTransactionNo,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-OrderCancelRequestResponse _$OrderCancelRequestResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('OrderCancelRequestResponse', json, ($checkedConvert) {
-  final val = OrderCancelRequestResponse(
-    id: $checkedConvert('id', (v) => v as String?),
-    orderId: $checkedConvert('orderId', (v) => v as String?),
-    requestedById: $checkedConvert('requestedById', (v) => v as String?),
-    requestedByEmail: $checkedConvert('requestedByEmail', (v) => v as String?),
-    processedById: $checkedConvert('processedById', (v) => v as String?),
-    reason: $checkedConvert('reason', (v) => v as String?),
-    staffNote: $checkedConvert('staffNote', (v) => v as String?),
-    status: $checkedConvert(
-      'status',
-      (v) => $enumDecodeNullable(_$CancelRequestStatusEnumMap, v),
-    ),
-    isRefundRequired: $checkedConvert('isRefundRequired', (v) => v as bool?),
-    refundAmount: $checkedConvert('refundAmount', (v) => v as num?),
-    isRefunded: $checkedConvert('isRefunded', (v) => v as bool?),
-    vnpTransactionNo: $checkedConvert('vnpTransactionNo', (v) => v as String?),
-    createdAt: $checkedConvert(
-      'createdAt',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    updatedAt: $checkedConvert(
-      'updatedAt',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$OrderCancelRequestResponseToJson(
-  OrderCancelRequestResponse instance,
-) => <String, dynamic>{
-  'id': ?instance.id,
-  'orderId': ?instance.orderId,
-  'requestedById': ?instance.requestedById,
-  'requestedByEmail': ?instance.requestedByEmail,
-  'processedById': ?instance.processedById,
-  'reason': ?instance.reason,
-  'staffNote': ?instance.staffNote,
-  'status': ?_$CancelRequestStatusEnumMap[instance.status],
-  'isRefundRequired': ?instance.isRefundRequired,
-  'refundAmount': ?instance.refundAmount,
-  'isRefunded': ?instance.isRefunded,
-  'vnpTransactionNo': ?instance.vnpTransactionNo,
-  'createdAt': ?instance.createdAt?.toIso8601String(),
-  'updatedAt': ?instance.updatedAt?.toIso8601String(),
-};
-
-const _$CancelRequestStatusEnumMap = {
-  CancelRequestStatus.pending: 'Pending',
-  CancelRequestStatus.approved: 'Approved',
-  CancelRequestStatus.rejected: 'Rejected',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

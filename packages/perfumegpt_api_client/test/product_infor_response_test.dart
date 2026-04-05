@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductInforResponse
 void main() {
-  final ProductInforResponse? instance = /* ProductInforResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = ProductInforResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ProductInforResponse, () {
     // String productCode
@@ -27,6 +27,11 @@ void main() {
       // TODO
     });
 
+    // Gender gender
+    test('to test the property `gender`', () async {
+      // TODO
+    });
+
     // String scentGroup
     test('to test the property `scentGroup`', () async {
       // TODO
@@ -42,8 +47,8 @@ void main() {
       // TODO
     });
 
-    // String middleNotes
-    test('to test the property `middleNotes`', () async {
+    // String heartNotes
+    test('to test the property `heartNotes`', () async {
       // TODO
     });
 
@@ -56,5 +61,6 @@ void main() {
     test('to test the property `description`', () async {
       // TODO
     });
+
   });
 }

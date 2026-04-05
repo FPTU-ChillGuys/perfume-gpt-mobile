@@ -8,11 +8,11 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;StockResponse&gt;**](StockResponse.md) |  | 
+**items** | [**BuiltList&lt;StockResponse&gt;**](StockResponse.md) |  | 
 **pageNumber** | **int** |  | 
 **pageSize** | **int** |  | 
 **totalCount** | **int** |  | 
-**totalPages** | **int** |  | 
+**totalPages** | **int** |  | [optional] 
 **hasPreviousPage** | **bool** |  | [optional] 
 **hasNextPage** | **bool** |  | [optional] 
 

@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_attribute_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_attribute_value_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
@@ -21,7 +21,9 @@ class AttributesApi {
 
   final Dio _dio;
 
-  const AttributesApi(this._dio);
+  final Serializers _serializers;
+
+  const AttributesApi(this._dio, this._serializers);
 
   /// apiAttributesAttributeIdDelete
   /// 
@@ -46,7 +48,7 @@ class AttributesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/{attributeId}'.replaceAll('{' r'attributeId' '}', attributeId.toString());
+    final _path = r'/api/attributes/{attributeId}'.replaceAll('{' r'attributeId' '}', encodeQueryParameter(_serializers, attributeId, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -76,8 +78,11 @@ class AttributesApi {
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -126,7 +131,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/{attributeId}'.replaceAll('{' r'attributeId' '}', attributeId.toString());
+    final _path = r'/api/attributes/{attributeId}'.replaceAll('{' r'attributeId' '}', encodeQueryParameter(_serializers, attributeId, const FullType(int)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -149,7 +154,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateAttributeRequest);
+      const _type = FullType(UpdateAttributeRequest);
+      _bodyData = _serializers.serialize(updateAttributeRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -174,8 +181,11 @@ _bodyData=jsonEncode(updateAttributeRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -222,7 +232,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/{attributeId}/values/lookup'.replaceAll('{' r'attributeId' '}', attributeId.toString());
+    final _path = r'/api/attributes/{attributeId}/values/lookup'.replaceAll('{' r'attributeId' '}', encodeQueryParameter(_serializers, attributeId, const FullType(int)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -252,8 +262,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfListOfAttributeValueLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAttributeValueLookupItem, BaseResponseOfListOfAttributeValueLookupItem>(rawData, 'BaseResponseOfListOfAttributeValueLookupItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfAttributeValueLookupItem),
+      ) as BaseResponseOfListOfAttributeValueLookupItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -302,7 +315,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAttribu
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/{attributeId}/values'.replaceAll('{' r'attributeId' '}', attributeId.toString());
+    final _path = r'/api/attributes/{attributeId}/values'.replaceAll('{' r'attributeId' '}', encodeQueryParameter(_serializers, attributeId, const FullType(int)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -325,7 +338,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAttribu
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createAttributeValueRequest);
+      const _type = FullType(CreateAttributeValueRequest);
+      _bodyData = _serializers.serialize(createAttributeValueRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -350,8 +365,11 @@ _bodyData=jsonEncode(createAttributeValueRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -418,7 +436,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     );
 
     final _queryParameters = <String, dynamic>{
-      if (isVariantLevel != null) r'isVariantLevel': isVariantLevel,
+      if (isVariantLevel != null) r'isVariantLevel': encodeQueryParameter(_serializers, isVariantLevel, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -433,8 +451,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfListOfAttributeLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAttributeLookupItem, BaseResponseOfListOfAttributeLookupItem>(rawData, 'BaseResponseOfListOfAttributeLookupItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfAttributeLookupItem),
+      ) as BaseResponseOfListOfAttributeLookupItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -504,7 +525,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAttribu
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createAttributeRequest);
+      const _type = FullType(CreateAttributeRequest);
+      _bodyData = _serializers.serialize(createAttributeRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -529,8 +552,11 @@ _bodyData=jsonEncode(createAttributeRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -577,7 +603,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/values/{valueId}'.replaceAll('{' r'valueId' '}', valueId.toString());
+    final _path = r'/api/attributes/values/{valueId}'.replaceAll('{' r'valueId' '}', encodeQueryParameter(_serializers, valueId, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -607,8 +633,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -657,7 +686,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/attributes/values/{valueId}'.replaceAll('{' r'valueId' '}', valueId.toString());
+    final _path = r'/api/attributes/values/{valueId}'.replaceAll('{' r'valueId' '}', encodeQueryParameter(_serializers, valueId, const FullType(int)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -680,7 +709,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateAttributeValueRequest);
+      const _type = FullType(UpdateAttributeValueRequest);
+      _bodyData = _serializers.serialize(updateAttributeValueRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -705,8 +736,11 @@ _bodyData=jsonEncode(updateAttributeValueRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

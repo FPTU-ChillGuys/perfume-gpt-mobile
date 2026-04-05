@@ -5,152 +5,215 @@
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/campaign_status.dart';
 import 'package:perfumegpt_api_client/src/model/campaign_type.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'campaign_response.g.dart';
 
+/// CampaignResponse
+///
+/// Properties:
+/// * [id] 
+/// * [name] 
+/// * [description] 
+/// * [startDate] 
+/// * [endDate] 
+/// * [type] 
+/// * [status] 
+@BuiltValue()
+abstract class CampaignResponse implements Built<CampaignResponse, CampaignResponseBuilder> {
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class CampaignResponse {
-  /// Returns a new [CampaignResponse] instance.
-  CampaignResponse({
+  @BuiltValueField(wireName: r'name')
+  String get name;
 
-     this.id,
+  @BuiltValueField(wireName: r'description')
+  String? get description;
 
-     this.name,
+  @BuiltValueField(wireName: r'startDate')
+  DateTime? get startDate;
 
-     this.description,
+  @BuiltValueField(wireName: r'endDate')
+  DateTime? get endDate;
 
-     this.startDate,
+  @BuiltValueField(wireName: r'type')
+  CampaignType? get type;
+  // enum typeEnum {  FlashSale,  Clearance,  };
 
-     this.endDate,
+  @BuiltValueField(wireName: r'status')
+  CampaignStatus? get status;
+  // enum statusEnum {  Upcoming,  Active,  Paused,  Completed,  Cancelled,  };
 
-     this.type,
+  CampaignResponse._();
 
-     this.status,
-  });
+  factory CampaignResponse([void updates(CampaignResponseBuilder b)]) = _$CampaignResponse;
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(CampaignResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<CampaignResponse> get serializer => _$CampaignResponseSerializer();
+}
 
-  final String? id;
-
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? name;
-
-
-
-  @JsonKey(
-    
-    name: r'description',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? description;
-
-
-
-  @JsonKey(
-    
-    name: r'startDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? startDate;
-
-
-
-  @JsonKey(
-    
-    name: r'endDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? endDate;
-
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final CampaignType? type;
-
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final CampaignStatus? status;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CampaignResponse &&
-      other.id == id &&
-      other.name == name &&
-      other.description == description &&
-      other.startDate == startDate &&
-      other.endDate == endDate &&
-      other.type == type &&
-      other.status == status;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        name.hashCode +
-        (description == null ? 0 : description.hashCode) +
-        startDate.hashCode +
-        endDate.hashCode +
-        type.hashCode +
-        status.hashCode;
-
-  factory CampaignResponse.fromJson(Map<String, dynamic> json) => _$CampaignResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CampaignResponseToJson(this);
+class _$CampaignResponseSerializer implements PrimitiveSerializer<CampaignResponse> {
+  @override
+  final Iterable<Type> types = const [CampaignResponse, _$CampaignResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'CampaignResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    CampaignResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    if (object.description != null) {
+      yield r'description';
+      yield serializers.serialize(
+        object.description,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.startDate != null) {
+      yield r'startDate';
+      yield serializers.serialize(
+        object.startDate,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.endDate != null) {
+      yield r'endDate';
+      yield serializers.serialize(
+        object.endDate,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(CampaignType),
+      );
+    }
+    if (object.status != null) {
+      yield r'status';
+      yield serializers.serialize(
+        object.status,
+        specifiedType: const FullType(CampaignStatus),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    CampaignResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required CampaignResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'description':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.description = valueDes;
+          break;
+        case r'startDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.startDate = valueDes;
+          break;
+        case r'endDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.endDate = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CampaignType),
+          ) as CampaignType;
+          result.type = valueDes;
+          break;
+        case r'status':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CampaignStatus),
+          ) as CampaignStatus;
+          result.status = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  CampaignResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = CampaignResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

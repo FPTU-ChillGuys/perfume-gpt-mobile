@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_brand_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_brand_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_brand_response.dart';
@@ -20,7 +20,9 @@ class BrandsApi {
 
   final Dio _dio;
 
-  const BrandsApi(this._dio);
+  final Serializers _serializers;
+
+  const BrandsApi(this._dio, this._serializers);
 
   /// apiBrandsGet
   /// 
@@ -73,8 +75,11 @@ class BrandsApi {
     BaseResponseOfListOfBrandResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBrandResponse, BaseResponseOfListOfBrandResponse>(rawData, 'BaseResponseOfListOfBrandResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfBrandResponse),
+      ) as BaseResponseOfListOfBrandResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -121,7 +126,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBrandRe
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/brands/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/brands/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -151,8 +156,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBrandRe
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfboolean),
+      ) as BaseResponseOfboolean;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -199,7 +207,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/brands/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/brands/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -229,8 +237,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfBrandResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBrandResponse, BaseResponseOfBrandResponse>(rawData, 'BaseResponseOfBrandResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBrandResponse),
+      ) as BaseResponseOfBrandResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -279,7 +290,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBrandResponse
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/brands/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/brands/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -302,7 +313,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBrandResponse
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateBrandRequest);
+      const _type = FullType(UpdateBrandRequest);
+      _bodyData = _serializers.serialize(updateBrandRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -327,8 +340,11 @@ _bodyData=jsonEncode(updateBrandRequest);
     BaseResponseOfBrandResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBrandResponse, BaseResponseOfBrandResponse>(rawData, 'BaseResponseOfBrandResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBrandResponse),
+      ) as BaseResponseOfBrandResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -403,8 +419,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBrandResponse
     BaseResponseOfListOfBrandLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBrandLookupItem, BaseResponseOfListOfBrandLookupItem>(rawData, 'BaseResponseOfListOfBrandLookupItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfBrandLookupItem),
+      ) as BaseResponseOfListOfBrandLookupItem;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -474,7 +493,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBrandLo
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createBrandRequest);
+      const _type = FullType(CreateBrandRequest);
+      _bodyData = _serializers.serialize(createBrandRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -499,8 +520,11 @@ _bodyData=jsonEncode(createBrandRequest);
     BaseResponseOfBrandResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBrandResponse, BaseResponseOfBrandResponse>(rawData, 'BaseResponseOfBrandResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfBrandResponse),
+      ) as BaseResponseOfBrandResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

@@ -9,7 +9,7 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
-**createdByName** | **String** |  | [optional] 
+**createdByName** | **String** |  | 
 **adjustmentDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **reason** | [**StockAdjustmentReason**](StockAdjustmentReason.md) |  | [optional] 
 **status** | [**StockAdjustmentStatus**](StockAdjustmentStatus.md) |  | [optional] 

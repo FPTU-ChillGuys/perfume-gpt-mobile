@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BulkOperationResult
 void main() {
-  final BulkOperationResult? instance = /* BulkOperationResult(...) */ null;
-  // TODO add properties to the entity
+  final instance = BulkOperationResultBuilder();
+  // TODO add properties to the builder and call build()
 
   group(BulkOperationResult, () {
     // String operationName
@@ -22,7 +22,7 @@ void main() {
       // TODO
     });
 
-    // List<BulkActionError> errors
+    // BuiltList<BulkActionError> errors
     test('to test the property `errors`', () async {
       // TODO
     });
@@ -36,5 +36,6 @@ void main() {
     test('to test the property `hasError`', () async {
       // TODO
     });
+
   });
 }

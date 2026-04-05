@@ -3,72 +3,122 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'bulk_action_error.g.dart';
 
+/// BulkActionError
+///
+/// Properties:
+/// * [id] 
+/// * [errorMessage] 
+@BuiltValue()
+abstract class BulkActionError implements Built<BulkActionError, BulkActionErrorBuilder> {
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class BulkActionError {
-  /// Returns a new [BulkActionError] instance.
-  BulkActionError({
+  @BuiltValueField(wireName: r'errorMessage')
+  String get errorMessage;
 
-     this.id,
+  BulkActionError._();
 
-     this.errorMessage,
-  });
+  factory BulkActionError([void updates(BulkActionErrorBuilder b)]) = _$BulkActionError;
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(BulkActionErrorBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<BulkActionError> get serializer => _$BulkActionErrorSerializer();
+}
 
-  final String? id;
-
-
-
-  @JsonKey(
-    
-    name: r'errorMessage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? errorMessage;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BulkActionError &&
-      other.id == id &&
-      other.errorMessage == errorMessage;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        errorMessage.hashCode;
-
-  factory BulkActionError.fromJson(Map<String, dynamic> json) => _$BulkActionErrorFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BulkActionErrorToJson(this);
+class _$BulkActionErrorSerializer implements PrimitiveSerializer<BulkActionError> {
+  @override
+  final Iterable<Type> types = const [BulkActionError, _$BulkActionError];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'BulkActionError';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    BulkActionError object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'errorMessage';
+    yield serializers.serialize(
+      object.errorMessage,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    BulkActionError object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required BulkActionErrorBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'errorMessage':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.errorMessage = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  BulkActionError deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = BulkActionErrorBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

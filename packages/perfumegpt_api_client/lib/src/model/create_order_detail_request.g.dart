@@ -3,90 +3,110 @@
 part of 'create_order_detail_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CreateOrderDetailRequestCWProxy {
-  CreateOrderDetailRequest variantId(String variantId);
+class _$CreateOrderDetailRequest extends CreateOrderDetailRequest {
+  @override
+  final String variantId;
+  @override
+  final int? quantity;
 
-  CreateOrderDetailRequest quantity(int? quantity);
+  factory _$CreateOrderDetailRequest([
+    void Function(CreateOrderDetailRequestBuilder)? updates,
+  ]) => (CreateOrderDetailRequestBuilder()..update(updates))._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateOrderDetailRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateOrderDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateOrderDetailRequest call({String variantId, int? quantity});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCreateOrderDetailRequest.copyWith(...)` or call `instanceOfCreateOrderDetailRequest.copyWith.fieldName(value)` for a single field.
-class _$CreateOrderDetailRequestCWProxyImpl
-    implements _$CreateOrderDetailRequestCWProxy {
-  const _$CreateOrderDetailRequestCWProxyImpl(this._value);
-
-  final CreateOrderDetailRequest _value;
+  _$CreateOrderDetailRequest._({required this.variantId, this.quantity})
+    : super._();
+  @override
+  CreateOrderDetailRequest rebuild(
+    void Function(CreateOrderDetailRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  CreateOrderDetailRequest variantId(String variantId) =>
-      call(variantId: variantId);
+  CreateOrderDetailRequestBuilder toBuilder() =>
+      CreateOrderDetailRequestBuilder()..replace(this);
 
   @override
-  CreateOrderDetailRequest quantity(int? quantity) => call(quantity: quantity);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CreateOrderDetailRequest &&
+        variantId == other.variantId &&
+        quantity == other.quantity;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateOrderDetailRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateOrderDetailRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateOrderDetailRequest call({
-    Object? variantId = const $CopyWithPlaceholder(),
-    Object? quantity = const $CopyWithPlaceholder(),
-  }) {
-    return CreateOrderDetailRequest(
-      variantId: variantId == const $CopyWithPlaceholder() || variantId == null
-          ? _value.variantId
-          // ignore: cast_nullable_to_non_nullable
-          : variantId as String,
-      quantity: quantity == const $CopyWithPlaceholder()
-          ? _value.quantity
-          // ignore: cast_nullable_to_non_nullable
-          : quantity as int?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, variantId.hashCode);
+    _$hash = $jc(_$hash, quantity.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'CreateOrderDetailRequest')
+          ..add('variantId', variantId)
+          ..add('quantity', quantity))
+        .toString();
   }
 }
 
-extension $CreateOrderDetailRequestCopyWith on CreateOrderDetailRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCreateOrderDetailRequest.copyWith(...)` or `instanceOfCreateOrderDetailRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CreateOrderDetailRequestCWProxy get copyWith =>
-      _$CreateOrderDetailRequestCWProxyImpl(this);
+class CreateOrderDetailRequestBuilder
+    implements
+        Builder<CreateOrderDetailRequest, CreateOrderDetailRequestBuilder> {
+  _$CreateOrderDetailRequest? _$v;
+
+  String? _variantId;
+  String? get variantId => _$this._variantId;
+  set variantId(String? variantId) => _$this._variantId = variantId;
+
+  int? _quantity;
+  int? get quantity => _$this._quantity;
+  set quantity(int? quantity) => _$this._quantity = quantity;
+
+  CreateOrderDetailRequestBuilder() {
+    CreateOrderDetailRequest._defaults(this);
+  }
+
+  CreateOrderDetailRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _variantId = $v.variantId;
+      _quantity = $v.quantity;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CreateOrderDetailRequest other) {
+    _$v = other as _$CreateOrderDetailRequest;
+  }
+
+  @override
+  void update(void Function(CreateOrderDetailRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CreateOrderDetailRequest build() => _build();
+
+  _$CreateOrderDetailRequest _build() {
+    final _$result =
+        _$v ??
+        _$CreateOrderDetailRequest._(
+          variantId: BuiltValueNullFieldError.checkNotNull(
+            variantId,
+            r'CreateOrderDetailRequest',
+            'variantId',
+          ),
+          quantity: quantity,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreateOrderDetailRequest _$CreateOrderDetailRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('CreateOrderDetailRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['variantId']);
-  final val = CreateOrderDetailRequest(
-    variantId: $checkedConvert('variantId', (v) => v as String),
-    quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$CreateOrderDetailRequestToJson(
-  CreateOrderDetailRequest instance,
-) => <String, dynamic>{
-  'variantId': instance.variantId,
-  'quantity': ?instance.quantity,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

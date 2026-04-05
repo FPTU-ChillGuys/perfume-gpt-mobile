@@ -3,115 +3,135 @@
 part of 'supplier_lookup_item.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$SupplierLookupItemCWProxy {
-  SupplierLookupItem id(int? id);
+class _$SupplierLookupItem extends SupplierLookupItem {
+  @override
+  final int? id;
+  @override
+  final String name;
+  @override
+  final String? phone;
+  @override
+  final String? contactEmail;
 
-  SupplierLookupItem name(String? name);
+  factory _$SupplierLookupItem([
+    void Function(SupplierLookupItemBuilder)? updates,
+  ]) => (SupplierLookupItemBuilder()..update(updates))._build();
 
-  SupplierLookupItem phone(String? phone);
-
-  SupplierLookupItem contactEmail(String? contactEmail);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SupplierLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// SupplierLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  SupplierLookupItem call({
-    int? id,
-    String? name,
-    String? phone,
-    String? contactEmail,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfSupplierLookupItem.copyWith(...)` or call `instanceOfSupplierLookupItem.copyWith.fieldName(value)` for a single field.
-class _$SupplierLookupItemCWProxyImpl implements _$SupplierLookupItemCWProxy {
-  const _$SupplierLookupItemCWProxyImpl(this._value);
-
-  final SupplierLookupItem _value;
+  _$SupplierLookupItem._({
+    this.id,
+    required this.name,
+    this.phone,
+    this.contactEmail,
+  }) : super._();
+  @override
+  SupplierLookupItem rebuild(
+    void Function(SupplierLookupItemBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  SupplierLookupItem id(int? id) => call(id: id);
+  SupplierLookupItemBuilder toBuilder() =>
+      SupplierLookupItemBuilder()..replace(this);
 
   @override
-  SupplierLookupItem name(String? name) => call(name: name);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is SupplierLookupItem &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        contactEmail == other.contactEmail;
+  }
 
   @override
-  SupplierLookupItem phone(String? phone) => call(phone: phone);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, contactEmail.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  SupplierLookupItem contactEmail(String? contactEmail) =>
-      call(contactEmail: contactEmail);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SupplierLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// SupplierLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  SupplierLookupItem call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
-    Object? phone = const $CopyWithPlaceholder(),
-    Object? contactEmail = const $CopyWithPlaceholder(),
-  }) {
-    return SupplierLookupItem(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as int?,
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-      phone: phone == const $CopyWithPlaceholder()
-          ? _value.phone
-          // ignore: cast_nullable_to_non_nullable
-          : phone as String?,
-      contactEmail: contactEmail == const $CopyWithPlaceholder()
-          ? _value.contactEmail
-          // ignore: cast_nullable_to_non_nullable
-          : contactEmail as String?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'SupplierLookupItem')
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('contactEmail', contactEmail))
+        .toString();
   }
 }
 
-extension $SupplierLookupItemCopyWith on SupplierLookupItem {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfSupplierLookupItem.copyWith(...)` or `instanceOfSupplierLookupItem.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$SupplierLookupItemCWProxy get copyWith =>
-      _$SupplierLookupItemCWProxyImpl(this);
+class SupplierLookupItemBuilder
+    implements Builder<SupplierLookupItem, SupplierLookupItemBuilder> {
+  _$SupplierLookupItem? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _contactEmail;
+  String? get contactEmail => _$this._contactEmail;
+  set contactEmail(String? contactEmail) => _$this._contactEmail = contactEmail;
+
+  SupplierLookupItemBuilder() {
+    SupplierLookupItem._defaults(this);
+  }
+
+  SupplierLookupItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _contactEmail = $v.contactEmail;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(SupplierLookupItem other) {
+    _$v = other as _$SupplierLookupItem;
+  }
+
+  @override
+  void update(void Function(SupplierLookupItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  SupplierLookupItem build() => _build();
+
+  _$SupplierLookupItem _build() {
+    final _$result =
+        _$v ??
+        _$SupplierLookupItem._(
+          id: id,
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'SupplierLookupItem',
+            'name',
+          ),
+          phone: phone,
+          contactEmail: contactEmail,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-SupplierLookupItem _$SupplierLookupItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('SupplierLookupItem', json, ($checkedConvert) {
-      final val = SupplierLookupItem(
-        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-        name: $checkedConvert('name', (v) => v as String?),
-        phone: $checkedConvert('phone', (v) => v as String?),
-        contactEmail: $checkedConvert('contactEmail', (v) => v as String?),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$SupplierLookupItemToJson(SupplierLookupItem instance) =>
-    <String, dynamic>{
-      'id': ?instance.id,
-      'name': ?instance.name,
-      'phone': ?instance.phone,
-      'contactEmail': ?instance.contactEmail,
-    };
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

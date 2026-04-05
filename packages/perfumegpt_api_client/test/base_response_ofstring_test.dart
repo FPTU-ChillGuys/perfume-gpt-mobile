@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfstring
 void main() {
-  final BaseResponseOfstring? instance = /* BaseResponseOfstring(...) */ null;
-  // TODO add properties to the entity
+  final instance = BaseResponseOfstringBuilder();
+  // TODO add properties to the builder and call build()
 
   group(BaseResponseOfstring, () {
     // String payload
@@ -22,14 +22,15 @@ void main() {
       // TODO
     });
 
-    // List<String> errors
+    // BuiltList<String> errors
     test('to test the property `errors`', () async {
       // TODO
     });
 
-    // ResponseErrorType errorType
+    // int errorType
     test('to test the property `errorType`', () async {
       // TODO
     });
+
   });
 }

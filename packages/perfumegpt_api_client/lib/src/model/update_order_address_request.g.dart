@@ -3,101 +3,128 @@
 part of 'update_order_address_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$UpdateOrderAddressRequestCWProxy {
-  UpdateOrderAddressRequest savedAddressId(String? savedAddressId);
+class _$UpdateOrderAddressRequest extends UpdateOrderAddressRequest {
+  @override
+  final String? savedAddressId;
+  @override
+  final ContactAddressInformation? recipientInformation;
 
-  UpdateOrderAddressRequest recipientInformation(
-    RecipientInformation? recipientInformation,
-  );
+  factory _$UpdateOrderAddressRequest([
+    void Function(UpdateOrderAddressRequestBuilder)? updates,
+  ]) => (UpdateOrderAddressRequestBuilder()..update(updates))._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOrderAddressRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateOrderAddressRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateOrderAddressRequest call({
-    String? savedAddressId,
-    RecipientInformation? recipientInformation,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfUpdateOrderAddressRequest.copyWith(...)` or call `instanceOfUpdateOrderAddressRequest.copyWith.fieldName(value)` for a single field.
-class _$UpdateOrderAddressRequestCWProxyImpl
-    implements _$UpdateOrderAddressRequestCWProxy {
-  const _$UpdateOrderAddressRequestCWProxyImpl(this._value);
-
-  final UpdateOrderAddressRequest _value;
+  _$UpdateOrderAddressRequest._({
+    this.savedAddressId,
+    this.recipientInformation,
+  }) : super._();
+  @override
+  UpdateOrderAddressRequest rebuild(
+    void Function(UpdateOrderAddressRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  UpdateOrderAddressRequest savedAddressId(String? savedAddressId) =>
-      call(savedAddressId: savedAddressId);
+  UpdateOrderAddressRequestBuilder toBuilder() =>
+      UpdateOrderAddressRequestBuilder()..replace(this);
 
   @override
-  UpdateOrderAddressRequest recipientInformation(
-    RecipientInformation? recipientInformation,
-  ) => call(recipientInformation: recipientInformation);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is UpdateOrderAddressRequest &&
+        savedAddressId == other.savedAddressId &&
+        recipientInformation == other.recipientInformation;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOrderAddressRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateOrderAddressRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateOrderAddressRequest call({
-    Object? savedAddressId = const $CopyWithPlaceholder(),
-    Object? recipientInformation = const $CopyWithPlaceholder(),
-  }) {
-    return UpdateOrderAddressRequest(
-      savedAddressId: savedAddressId == const $CopyWithPlaceholder()
-          ? _value.savedAddressId
-          // ignore: cast_nullable_to_non_nullable
-          : savedAddressId as String?,
-      recipientInformation: recipientInformation == const $CopyWithPlaceholder()
-          ? _value.recipientInformation
-          // ignore: cast_nullable_to_non_nullable
-          : recipientInformation as RecipientInformation?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, savedAddressId.hashCode);
+    _$hash = $jc(_$hash, recipientInformation.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'UpdateOrderAddressRequest')
+          ..add('savedAddressId', savedAddressId)
+          ..add('recipientInformation', recipientInformation))
+        .toString();
   }
 }
 
-extension $UpdateOrderAddressRequestCopyWith on UpdateOrderAddressRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfUpdateOrderAddressRequest.copyWith(...)` or `instanceOfUpdateOrderAddressRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$UpdateOrderAddressRequestCWProxy get copyWith =>
-      _$UpdateOrderAddressRequestCWProxyImpl(this);
+class UpdateOrderAddressRequestBuilder
+    implements
+        Builder<UpdateOrderAddressRequest, UpdateOrderAddressRequestBuilder> {
+  _$UpdateOrderAddressRequest? _$v;
+
+  String? _savedAddressId;
+  String? get savedAddressId => _$this._savedAddressId;
+  set savedAddressId(String? savedAddressId) =>
+      _$this._savedAddressId = savedAddressId;
+
+  ContactAddressInformationBuilder? _recipientInformation;
+  ContactAddressInformationBuilder get recipientInformation =>
+      _$this._recipientInformation ??= ContactAddressInformationBuilder();
+  set recipientInformation(
+    ContactAddressInformationBuilder? recipientInformation,
+  ) => _$this._recipientInformation = recipientInformation;
+
+  UpdateOrderAddressRequestBuilder() {
+    UpdateOrderAddressRequest._defaults(this);
+  }
+
+  UpdateOrderAddressRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _savedAddressId = $v.savedAddressId;
+      _recipientInformation = $v.recipientInformation?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(UpdateOrderAddressRequest other) {
+    _$v = other as _$UpdateOrderAddressRequest;
+  }
+
+  @override
+  void update(void Function(UpdateOrderAddressRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  UpdateOrderAddressRequest build() => _build();
+
+  _$UpdateOrderAddressRequest _build() {
+    _$UpdateOrderAddressRequest _$result;
+    try {
+      _$result =
+          _$v ??
+          _$UpdateOrderAddressRequest._(
+            savedAddressId: savedAddressId,
+            recipientInformation: _recipientInformation?.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'recipientInformation';
+        _recipientInformation?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'UpdateOrderAddressRequest',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-UpdateOrderAddressRequest _$UpdateOrderAddressRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('UpdateOrderAddressRequest', json, ($checkedConvert) {
-  final val = UpdateOrderAddressRequest(
-    savedAddressId: $checkedConvert('savedAddressId', (v) => v as String?),
-    recipientInformation: $checkedConvert(
-      'recipientInformation',
-      (v) => v == null
-          ? null
-          : RecipientInformation.fromJson(v as Map<String, dynamic>),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$UpdateOrderAddressRequestToJson(
-  UpdateOrderAddressRequest instance,
-) => <String, dynamic>{
-  'savedAddressId': ?instance.savedAddressId,
-  'recipientInformation': ?instance.recipientInformation?.toJson(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

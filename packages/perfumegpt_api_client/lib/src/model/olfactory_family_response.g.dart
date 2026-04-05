@@ -3,85 +3,109 @@
 part of 'olfactory_family_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$OlfactoryFamilyResponseCWProxy {
-  OlfactoryFamilyResponse id(int? id);
+class _$OlfactoryFamilyResponse extends OlfactoryFamilyResponse {
+  @override
+  final int? id;
+  @override
+  final String name;
 
-  OlfactoryFamilyResponse name(String? name);
+  factory _$OlfactoryFamilyResponse([
+    void Function(OlfactoryFamilyResponseBuilder)? updates,
+  ]) => (OlfactoryFamilyResponseBuilder()..update(updates))._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OlfactoryFamilyResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// OlfactoryFamilyResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  OlfactoryFamilyResponse call({int? id, String? name});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfOlfactoryFamilyResponse.copyWith(...)` or call `instanceOfOlfactoryFamilyResponse.copyWith.fieldName(value)` for a single field.
-class _$OlfactoryFamilyResponseCWProxyImpl
-    implements _$OlfactoryFamilyResponseCWProxy {
-  const _$OlfactoryFamilyResponseCWProxyImpl(this._value);
-
-  final OlfactoryFamilyResponse _value;
+  _$OlfactoryFamilyResponse._({this.id, required this.name}) : super._();
+  @override
+  OlfactoryFamilyResponse rebuild(
+    void Function(OlfactoryFamilyResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  OlfactoryFamilyResponse id(int? id) => call(id: id);
+  OlfactoryFamilyResponseBuilder toBuilder() =>
+      OlfactoryFamilyResponseBuilder()..replace(this);
 
   @override
-  OlfactoryFamilyResponse name(String? name) => call(name: name);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is OlfactoryFamilyResponse &&
+        id == other.id &&
+        name == other.name;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OlfactoryFamilyResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// OlfactoryFamilyResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  OlfactoryFamilyResponse call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
-  }) {
-    return OlfactoryFamilyResponse(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as int?,
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'OlfactoryFamilyResponse')
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
   }
 }
 
-extension $OlfactoryFamilyResponseCopyWith on OlfactoryFamilyResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfOlfactoryFamilyResponse.copyWith(...)` or `instanceOfOlfactoryFamilyResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$OlfactoryFamilyResponseCWProxy get copyWith =>
-      _$OlfactoryFamilyResponseCWProxyImpl(this);
+class OlfactoryFamilyResponseBuilder
+    implements
+        Builder<OlfactoryFamilyResponse, OlfactoryFamilyResponseBuilder> {
+  _$OlfactoryFamilyResponse? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  OlfactoryFamilyResponseBuilder() {
+    OlfactoryFamilyResponse._defaults(this);
+  }
+
+  OlfactoryFamilyResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(OlfactoryFamilyResponse other) {
+    _$v = other as _$OlfactoryFamilyResponse;
+  }
+
+  @override
+  void update(void Function(OlfactoryFamilyResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  OlfactoryFamilyResponse build() => _build();
+
+  _$OlfactoryFamilyResponse _build() {
+    final _$result =
+        _$v ??
+        _$OlfactoryFamilyResponse._(
+          id: id,
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'OlfactoryFamilyResponse',
+            'name',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-OlfactoryFamilyResponse _$OlfactoryFamilyResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('OlfactoryFamilyResponse', json, ($checkedConvert) {
-  final val = OlfactoryFamilyResponse(
-    id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-    name: $checkedConvert('name', (v) => v as String?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$OlfactoryFamilyResponseToJson(
-  OlfactoryFamilyResponse instance,
-) => <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

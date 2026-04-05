@@ -9,6 +9,7 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
+**code** | **String** |  | 
 **customerId** | **String** |  | [optional] 
 **customerName** | **String** |  | [optional] 
 **staffId** | **String** |  | [optional] 
@@ -18,9 +19,11 @@ Name | Type | Description | Notes
 **paymentStatus** | [**PaymentStatus**](PaymentStatus.md) |  | [optional] 
 **totalAmount** | **num** |  | [optional] 
 **itemCount** | **int** |  | [optional] 
-**shippingStatus** | **int** |  | [optional] 
+**isReturnalbe** | **bool** |  | [optional] 
+**shippingStatus** | [**ShippingStatus**](ShippingStatus.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**orderDetails** | [**BuiltList&lt;OrderDetailListItem&gt;**](OrderDetailListItem.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

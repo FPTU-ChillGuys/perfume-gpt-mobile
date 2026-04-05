@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_scent_note_lookup_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_scent_note_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_scent_note_response.dart';
@@ -20,7 +20,9 @@ class ScentNotesApi {
 
   final Dio _dio;
 
-  const ScentNotesApi(this._dio);
+  final Serializers _serializers;
+
+  const ScentNotesApi(this._dio, this._serializers);
 
   /// apiScentnotesGet
   /// 
@@ -73,8 +75,11 @@ class ScentNotesApi {
     BaseResponseOfListOfScentNoteResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNoteResponse, BaseResponseOfListOfScentNoteResponse>(rawData, 'BaseResponseOfListOfScentNoteResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfScentNoteResponse),
+      ) as BaseResponseOfListOfScentNoteResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -121,7 +126,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/scentnotes/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/scentnotes/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -151,8 +156,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfboolean),
+      ) as BaseResponseOfboolean;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -199,7 +207,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/scentnotes/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/scentnotes/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -229,8 +237,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfScentNoteResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResponse, BaseResponseOfScentNoteResponse>(rawData, 'BaseResponseOfScentNoteResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfScentNoteResponse),
+      ) as BaseResponseOfScentNoteResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -279,7 +290,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/scentnotes/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/scentnotes/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -302,7 +313,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateScentNoteRequest);
+      const _type = FullType(UpdateScentNoteRequest);
+      _bodyData = _serializers.serialize(updateScentNoteRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -327,8 +340,11 @@ _bodyData=jsonEncode(updateScentNoteRequest);
     BaseResponseOfScentNoteResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResponse, BaseResponseOfScentNoteResponse>(rawData, 'BaseResponseOfScentNoteResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfScentNoteResponse),
+      ) as BaseResponseOfScentNoteResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -403,8 +419,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
     BaseResponseOfListOfScentNoteLookupResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNoteLookupResponse, BaseResponseOfListOfScentNoteLookupResponse>(rawData, 'BaseResponseOfListOfScentNoteLookupResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfScentNoteLookupResponse),
+      ) as BaseResponseOfListOfScentNoteLookupResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -474,7 +493,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createScentNoteRequest);
+      const _type = FullType(CreateScentNoteRequest);
+      _bodyData = _serializers.serialize(createScentNoteRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -499,8 +520,11 @@ _bodyData=jsonEncode(createScentNoteRequest);
     BaseResponseOfScentNoteResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResponse, BaseResponseOfScentNoteResponse>(rawData, 'BaseResponseOfScentNoteResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfScentNoteResponse),
+      ) as BaseResponseOfScentNoteResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

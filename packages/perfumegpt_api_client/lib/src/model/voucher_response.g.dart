@@ -3,306 +3,271 @@
 part of 'voucher_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$VoucherResponseCWProxy {
-  VoucherResponse id(String? id);
+class _$VoucherResponse extends VoucherResponse {
+  @override
+  final String? id;
+  @override
+  final String code;
+  @override
+  final num? discountValue;
+  @override
+  final DiscountType? discountType;
+  @override
+  final String? campaignId;
+  @override
+  final VoucherType? applyType;
+  @override
+  final PromotionType? targetItemType;
+  @override
+  final int? requiredPoints;
+  @override
+  final num? minOrderValue;
+  @override
+  final DateTime? expiryDate;
+  @override
+  final bool? isExpired;
+  @override
+  final int? totalQuantity;
+  @override
+  final int? remainingQuantity;
+  @override
+  final bool? isPublic;
+  @override
+  final DateTime? createdAt;
 
-  VoucherResponse code(String? code);
+  factory _$VoucherResponse([void Function(VoucherResponseBuilder)? updates]) =>
+      (VoucherResponseBuilder()..update(updates))._build();
 
-  VoucherResponse discountValue(num? discountValue);
-
-  VoucherResponse discountType(DiscountType? discountType);
-
-  VoucherResponse campaignId(String? campaignId);
-
-  VoucherResponse applyType(VoucherType? applyType);
-
-  VoucherResponse targetItemType(PromotionType? targetItemType);
-
-  VoucherResponse requiredPoints(int? requiredPoints);
-
-  VoucherResponse minOrderValue(num? minOrderValue);
-
-  VoucherResponse expiryDate(DateTime? expiryDate);
-
-  VoucherResponse isExpired(bool? isExpired);
-
-  VoucherResponse totalQuantity(int? totalQuantity);
-
-  VoucherResponse remainingQuantity(int? remainingQuantity);
-
-  VoucherResponse isPublic(bool? isPublic);
-
-  VoucherResponse createdAt(DateTime? createdAt);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VoucherResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VoucherResponse call({
-    String? id,
-    String? code,
-    num? discountValue,
-    DiscountType? discountType,
-    String? campaignId,
-    VoucherType? applyType,
-    PromotionType? targetItemType,
-    int? requiredPoints,
-    num? minOrderValue,
-    DateTime? expiryDate,
-    bool? isExpired,
-    int? totalQuantity,
-    int? remainingQuantity,
-    bool? isPublic,
-    DateTime? createdAt,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfVoucherResponse.copyWith(...)` or call `instanceOfVoucherResponse.copyWith.fieldName(value)` for a single field.
-class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
-  const _$VoucherResponseCWProxyImpl(this._value);
-
-  final VoucherResponse _value;
+  _$VoucherResponse._({
+    this.id,
+    required this.code,
+    this.discountValue,
+    this.discountType,
+    this.campaignId,
+    this.applyType,
+    this.targetItemType,
+    this.requiredPoints,
+    this.minOrderValue,
+    this.expiryDate,
+    this.isExpired,
+    this.totalQuantity,
+    this.remainingQuantity,
+    this.isPublic,
+    this.createdAt,
+  }) : super._();
+  @override
+  VoucherResponse rebuild(void Function(VoucherResponseBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  VoucherResponse id(String? id) => call(id: id);
+  VoucherResponseBuilder toBuilder() => VoucherResponseBuilder()..replace(this);
 
   @override
-  VoucherResponse code(String? code) => call(code: code);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is VoucherResponse &&
+        id == other.id &&
+        code == other.code &&
+        discountValue == other.discountValue &&
+        discountType == other.discountType &&
+        campaignId == other.campaignId &&
+        applyType == other.applyType &&
+        targetItemType == other.targetItemType &&
+        requiredPoints == other.requiredPoints &&
+        minOrderValue == other.minOrderValue &&
+        expiryDate == other.expiryDate &&
+        isExpired == other.isExpired &&
+        totalQuantity == other.totalQuantity &&
+        remainingQuantity == other.remainingQuantity &&
+        isPublic == other.isPublic &&
+        createdAt == other.createdAt;
+  }
 
   @override
-  VoucherResponse discountValue(num? discountValue) =>
-      call(discountValue: discountValue);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, discountValue.hashCode);
+    _$hash = $jc(_$hash, discountType.hashCode);
+    _$hash = $jc(_$hash, campaignId.hashCode);
+    _$hash = $jc(_$hash, applyType.hashCode);
+    _$hash = $jc(_$hash, targetItemType.hashCode);
+    _$hash = $jc(_$hash, requiredPoints.hashCode);
+    _$hash = $jc(_$hash, minOrderValue.hashCode);
+    _$hash = $jc(_$hash, expiryDate.hashCode);
+    _$hash = $jc(_$hash, isExpired.hashCode);
+    _$hash = $jc(_$hash, totalQuantity.hashCode);
+    _$hash = $jc(_$hash, remainingQuantity.hashCode);
+    _$hash = $jc(_$hash, isPublic.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  VoucherResponse discountType(DiscountType? discountType) =>
-      call(discountType: discountType);
-
-  @override
-  VoucherResponse campaignId(String? campaignId) =>
-      call(campaignId: campaignId);
-
-  @override
-  VoucherResponse applyType(VoucherType? applyType) =>
-      call(applyType: applyType);
-
-  @override
-  VoucherResponse targetItemType(PromotionType? targetItemType) =>
-      call(targetItemType: targetItemType);
-
-  @override
-  VoucherResponse requiredPoints(int? requiredPoints) =>
-      call(requiredPoints: requiredPoints);
-
-  @override
-  VoucherResponse minOrderValue(num? minOrderValue) =>
-      call(minOrderValue: minOrderValue);
-
-  @override
-  VoucherResponse expiryDate(DateTime? expiryDate) =>
-      call(expiryDate: expiryDate);
-
-  @override
-  VoucherResponse isExpired(bool? isExpired) => call(isExpired: isExpired);
-
-  @override
-  VoucherResponse totalQuantity(int? totalQuantity) =>
-      call(totalQuantity: totalQuantity);
-
-  @override
-  VoucherResponse remainingQuantity(int? remainingQuantity) =>
-      call(remainingQuantity: remainingQuantity);
-
-  @override
-  VoucherResponse isPublic(bool? isPublic) => call(isPublic: isPublic);
-
-  @override
-  VoucherResponse createdAt(DateTime? createdAt) => call(createdAt: createdAt);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VoucherResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VoucherResponse call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? code = const $CopyWithPlaceholder(),
-    Object? discountValue = const $CopyWithPlaceholder(),
-    Object? discountType = const $CopyWithPlaceholder(),
-    Object? campaignId = const $CopyWithPlaceholder(),
-    Object? applyType = const $CopyWithPlaceholder(),
-    Object? targetItemType = const $CopyWithPlaceholder(),
-    Object? requiredPoints = const $CopyWithPlaceholder(),
-    Object? minOrderValue = const $CopyWithPlaceholder(),
-    Object? expiryDate = const $CopyWithPlaceholder(),
-    Object? isExpired = const $CopyWithPlaceholder(),
-    Object? totalQuantity = const $CopyWithPlaceholder(),
-    Object? remainingQuantity = const $CopyWithPlaceholder(),
-    Object? isPublic = const $CopyWithPlaceholder(),
-    Object? createdAt = const $CopyWithPlaceholder(),
-  }) {
-    return VoucherResponse(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      code: code == const $CopyWithPlaceholder()
-          ? _value.code
-          // ignore: cast_nullable_to_non_nullable
-          : code as String?,
-      discountValue: discountValue == const $CopyWithPlaceholder()
-          ? _value.discountValue
-          // ignore: cast_nullable_to_non_nullable
-          : discountValue as num?,
-      discountType: discountType == const $CopyWithPlaceholder()
-          ? _value.discountType
-          // ignore: cast_nullable_to_non_nullable
-          : discountType as DiscountType?,
-      campaignId: campaignId == const $CopyWithPlaceholder()
-          ? _value.campaignId
-          // ignore: cast_nullable_to_non_nullable
-          : campaignId as String?,
-      applyType: applyType == const $CopyWithPlaceholder()
-          ? _value.applyType
-          // ignore: cast_nullable_to_non_nullable
-          : applyType as VoucherType?,
-      targetItemType: targetItemType == const $CopyWithPlaceholder()
-          ? _value.targetItemType
-          // ignore: cast_nullable_to_non_nullable
-          : targetItemType as PromotionType?,
-      requiredPoints: requiredPoints == const $CopyWithPlaceholder()
-          ? _value.requiredPoints
-          // ignore: cast_nullable_to_non_nullable
-          : requiredPoints as int?,
-      minOrderValue: minOrderValue == const $CopyWithPlaceholder()
-          ? _value.minOrderValue
-          // ignore: cast_nullable_to_non_nullable
-          : minOrderValue as num?,
-      expiryDate: expiryDate == const $CopyWithPlaceholder()
-          ? _value.expiryDate
-          // ignore: cast_nullable_to_non_nullable
-          : expiryDate as DateTime?,
-      isExpired: isExpired == const $CopyWithPlaceholder()
-          ? _value.isExpired
-          // ignore: cast_nullable_to_non_nullable
-          : isExpired as bool?,
-      totalQuantity: totalQuantity == const $CopyWithPlaceholder()
-          ? _value.totalQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : totalQuantity as int?,
-      remainingQuantity: remainingQuantity == const $CopyWithPlaceholder()
-          ? _value.remainingQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : remainingQuantity as int?,
-      isPublic: isPublic == const $CopyWithPlaceholder()
-          ? _value.isPublic
-          // ignore: cast_nullable_to_non_nullable
-          : isPublic as bool?,
-      createdAt: createdAt == const $CopyWithPlaceholder()
-          ? _value.createdAt
-          // ignore: cast_nullable_to_non_nullable
-          : createdAt as DateTime?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'VoucherResponse')
+          ..add('id', id)
+          ..add('code', code)
+          ..add('discountValue', discountValue)
+          ..add('discountType', discountType)
+          ..add('campaignId', campaignId)
+          ..add('applyType', applyType)
+          ..add('targetItemType', targetItemType)
+          ..add('requiredPoints', requiredPoints)
+          ..add('minOrderValue', minOrderValue)
+          ..add('expiryDate', expiryDate)
+          ..add('isExpired', isExpired)
+          ..add('totalQuantity', totalQuantity)
+          ..add('remainingQuantity', remainingQuantity)
+          ..add('isPublic', isPublic)
+          ..add('createdAt', createdAt))
+        .toString();
   }
 }
 
-extension $VoucherResponseCopyWith on VoucherResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfVoucherResponse.copyWith(...)` or `instanceOfVoucherResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$VoucherResponseCWProxy get copyWith => _$VoucherResponseCWProxyImpl(this);
+class VoucherResponseBuilder
+    implements Builder<VoucherResponse, VoucherResponseBuilder> {
+  _$VoucherResponse? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _code;
+  String? get code => _$this._code;
+  set code(String? code) => _$this._code = code;
+
+  num? _discountValue;
+  num? get discountValue => _$this._discountValue;
+  set discountValue(num? discountValue) =>
+      _$this._discountValue = discountValue;
+
+  DiscountType? _discountType;
+  DiscountType? get discountType => _$this._discountType;
+  set discountType(DiscountType? discountType) =>
+      _$this._discountType = discountType;
+
+  String? _campaignId;
+  String? get campaignId => _$this._campaignId;
+  set campaignId(String? campaignId) => _$this._campaignId = campaignId;
+
+  VoucherType? _applyType;
+  VoucherType? get applyType => _$this._applyType;
+  set applyType(VoucherType? applyType) => _$this._applyType = applyType;
+
+  PromotionType? _targetItemType;
+  PromotionType? get targetItemType => _$this._targetItemType;
+  set targetItemType(PromotionType? targetItemType) =>
+      _$this._targetItemType = targetItemType;
+
+  int? _requiredPoints;
+  int? get requiredPoints => _$this._requiredPoints;
+  set requiredPoints(int? requiredPoints) =>
+      _$this._requiredPoints = requiredPoints;
+
+  num? _minOrderValue;
+  num? get minOrderValue => _$this._minOrderValue;
+  set minOrderValue(num? minOrderValue) =>
+      _$this._minOrderValue = minOrderValue;
+
+  DateTime? _expiryDate;
+  DateTime? get expiryDate => _$this._expiryDate;
+  set expiryDate(DateTime? expiryDate) => _$this._expiryDate = expiryDate;
+
+  bool? _isExpired;
+  bool? get isExpired => _$this._isExpired;
+  set isExpired(bool? isExpired) => _$this._isExpired = isExpired;
+
+  int? _totalQuantity;
+  int? get totalQuantity => _$this._totalQuantity;
+  set totalQuantity(int? totalQuantity) =>
+      _$this._totalQuantity = totalQuantity;
+
+  int? _remainingQuantity;
+  int? get remainingQuantity => _$this._remainingQuantity;
+  set remainingQuantity(int? remainingQuantity) =>
+      _$this._remainingQuantity = remainingQuantity;
+
+  bool? _isPublic;
+  bool? get isPublic => _$this._isPublic;
+  set isPublic(bool? isPublic) => _$this._isPublic = isPublic;
+
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  VoucherResponseBuilder() {
+    VoucherResponse._defaults(this);
+  }
+
+  VoucherResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _code = $v.code;
+      _discountValue = $v.discountValue;
+      _discountType = $v.discountType;
+      _campaignId = $v.campaignId;
+      _applyType = $v.applyType;
+      _targetItemType = $v.targetItemType;
+      _requiredPoints = $v.requiredPoints;
+      _minOrderValue = $v.minOrderValue;
+      _expiryDate = $v.expiryDate;
+      _isExpired = $v.isExpired;
+      _totalQuantity = $v.totalQuantity;
+      _remainingQuantity = $v.remainingQuantity;
+      _isPublic = $v.isPublic;
+      _createdAt = $v.createdAt;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(VoucherResponse other) {
+    _$v = other as _$VoucherResponse;
+  }
+
+  @override
+  void update(void Function(VoucherResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  VoucherResponse build() => _build();
+
+  _$VoucherResponse _build() {
+    final _$result =
+        _$v ??
+        _$VoucherResponse._(
+          id: id,
+          code: BuiltValueNullFieldError.checkNotNull(
+            code,
+            r'VoucherResponse',
+            'code',
+          ),
+          discountValue: discountValue,
+          discountType: discountType,
+          campaignId: campaignId,
+          applyType: applyType,
+          targetItemType: targetItemType,
+          requiredPoints: requiredPoints,
+          minOrderValue: minOrderValue,
+          expiryDate: expiryDate,
+          isExpired: isExpired,
+          totalQuantity: totalQuantity,
+          remainingQuantity: remainingQuantity,
+          isPublic: isPublic,
+          createdAt: createdAt,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-VoucherResponse _$VoucherResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('VoucherResponse', json, ($checkedConvert) {
-      final val = VoucherResponse(
-        id: $checkedConvert('id', (v) => v as String?),
-        code: $checkedConvert('code', (v) => v as String?),
-        discountValue: $checkedConvert('discountValue', (v) => v as num?),
-        discountType: $checkedConvert(
-          'discountType',
-          (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
-        ),
-        campaignId: $checkedConvert('campaignId', (v) => v as String?),
-        applyType: $checkedConvert(
-          'applyType',
-          (v) => $enumDecodeNullable(_$VoucherTypeEnumMap, v),
-        ),
-        targetItemType: $checkedConvert(
-          'targetItemType',
-          (v) => $enumDecodeNullable(_$PromotionTypeEnumMap, v),
-        ),
-        requiredPoints: $checkedConvert(
-          'requiredPoints',
-          (v) => (v as num?)?.toInt(),
-        ),
-        minOrderValue: $checkedConvert('minOrderValue', (v) => v as num?),
-        expiryDate: $checkedConvert(
-          'expiryDate',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-        isExpired: $checkedConvert('isExpired', (v) => v as bool?),
-        totalQuantity: $checkedConvert(
-          'totalQuantity',
-          (v) => (v as num?)?.toInt(),
-        ),
-        remainingQuantity: $checkedConvert(
-          'remainingQuantity',
-          (v) => (v as num?)?.toInt(),
-        ),
-        isPublic: $checkedConvert('isPublic', (v) => v as bool?),
-        createdAt: $checkedConvert(
-          'createdAt',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$VoucherResponseToJson(VoucherResponse instance) =>
-    <String, dynamic>{
-      'id': ?instance.id,
-      'code': ?instance.code,
-      'discountValue': ?instance.discountValue,
-      'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
-      'campaignId': ?instance.campaignId,
-      'applyType': ?_$VoucherTypeEnumMap[instance.applyType],
-      'targetItemType': ?_$PromotionTypeEnumMap[instance.targetItemType],
-      'requiredPoints': ?instance.requiredPoints,
-      'minOrderValue': ?instance.minOrderValue,
-      'expiryDate': ?instance.expiryDate?.toIso8601String(),
-      'isExpired': ?instance.isExpired,
-      'totalQuantity': ?instance.totalQuantity,
-      'remainingQuantity': ?instance.remainingQuantity,
-      'isPublic': ?instance.isPublic,
-      'createdAt': ?instance.createdAt?.toIso8601String(),
-    };
-
-const _$DiscountTypeEnumMap = {
-  DiscountType.percentage: 'Percentage',
-  DiscountType.fixedAmount: 'FixedAmount',
-};
-
-const _$VoucherTypeEnumMap = {
-  VoucherType.order: 'Order',
-  VoucherType.product: 'Product',
-};
-
-const _$PromotionTypeEnumMap = {
-  PromotionType.clearance: 'Clearance',
-  PromotionType.newArrival: 'NewArrival',
-  PromotionType.regular: 'Regular',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

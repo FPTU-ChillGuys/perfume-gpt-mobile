@@ -3,56 +3,104 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'update_category_request.g.dart';
 
+/// UpdateCategoryRequest
+///
+/// Properties:
+/// * [name] 
+@BuiltValue()
+abstract class UpdateCategoryRequest implements Built<UpdateCategoryRequest, UpdateCategoryRequestBuilder> {
+  @BuiltValueField(wireName: r'name')
+  String get name;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class UpdateCategoryRequest {
-  /// Returns a new [UpdateCategoryRequest] instance.
-  UpdateCategoryRequest({
+  UpdateCategoryRequest._();
 
-    required  this.name,
-  });
+  factory UpdateCategoryRequest([void updates(UpdateCategoryRequestBuilder b)]) = _$UpdateCategoryRequest;
 
-  @JsonKey(
-    
-    name: r'name',
-    required: true,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(UpdateCategoryRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<UpdateCategoryRequest> get serializer => _$UpdateCategoryRequestSerializer();
+}
 
-  final String name;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateCategoryRequest &&
-      other.name == name;
-
-    @override
-    int get hashCode =>
-        name.hashCode;
-
-  factory UpdateCategoryRequest.fromJson(Map<String, dynamic> json) => _$UpdateCategoryRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UpdateCategoryRequestToJson(this);
+class _$UpdateCategoryRequestSerializer implements PrimitiveSerializer<UpdateCategoryRequest> {
+  @override
+  final Iterable<Type> types = const [UpdateCategoryRequest, _$UpdateCategoryRequest];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'UpdateCategoryRequest';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    UpdateCategoryRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    UpdateCategoryRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required UpdateCategoryRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  UpdateCategoryRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = UpdateCategoryRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

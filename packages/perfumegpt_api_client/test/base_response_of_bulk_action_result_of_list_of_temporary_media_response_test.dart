@@ -3,10 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
 void main() {
-  final BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse?
-  instance = /* BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse(...) */
-      null;
-  // TODO add properties to the entity
+  final instance = BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse, () {
     // BulkActionResultOfListOfTemporaryMediaResponse payload
@@ -24,14 +22,15 @@ void main() {
       // TODO
     });
 
-    // List<String> errors
+    // BuiltList<String> errors
     test('to test the property `errors`', () async {
       // TODO
     });
 
-    // ResponseErrorType errorType
+    // int errorType
     test('to test the property `errorType`', () async {
       // TODO
     });
+
   });
 }

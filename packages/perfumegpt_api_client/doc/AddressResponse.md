@@ -9,13 +9,13 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
-**recipientName** | **String** |  | [optional] 
-**recipientPhoneNumber** | **String** |  | [optional] 
-**street** | **String** |  | [optional] 
-**ward** | **String** |  | [optional] 
-**district** | **String** |  | [optional] 
-**city** | **String** |  | [optional] 
-**wardCode** | **String** |  | [optional] 
+**recipientName** | **String** |  | 
+**recipientPhoneNumber** | **String** |  | 
+**street** | **String** |  | 
+**ward** | **String** |  | 
+**district** | **String** |  | 
+**city** | **String** |  | 
+**wardCode** | **String** |  | 
 **districtId** | **int** |  | [optional] 
 **provinceId** | **int** |  | [optional] 
 **isDefault** | **bool** |  | [optional] 

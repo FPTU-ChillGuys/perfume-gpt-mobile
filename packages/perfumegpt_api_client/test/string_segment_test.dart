@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for StringSegment
 void main() {
-  final StringSegment? instance = /* StringSegment(...) */ null;
-  // TODO add properties to the entity
+  final instance = StringSegmentBuilder();
+  // TODO add properties to the builder and call build()
 
   group(StringSegment, () {
     // String buffer
@@ -31,5 +31,6 @@ void main() {
     test('to test the property `hasValue`', () async {
       // TODO
     });
+
   });
 }

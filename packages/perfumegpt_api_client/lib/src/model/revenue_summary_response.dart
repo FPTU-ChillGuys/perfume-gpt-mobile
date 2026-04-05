@@ -3,152 +3,214 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'revenue_summary_response.g.dart';
 
+/// RevenueSummaryResponse
+///
+/// Properties:
+/// * [fromDate] 
+/// * [toDate] 
+/// * [grossRevenue] 
+/// * [refundedAmount] 
+/// * [netRevenue] 
+/// * [successfulTransactionsCount] 
+/// * [paidOrdersCount] 
+@BuiltValue()
+abstract class RevenueSummaryResponse implements Built<RevenueSummaryResponse, RevenueSummaryResponseBuilder> {
+  @BuiltValueField(wireName: r'fromDate')
+  DateTime? get fromDate;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class RevenueSummaryResponse {
-  /// Returns a new [RevenueSummaryResponse] instance.
-  RevenueSummaryResponse({
+  @BuiltValueField(wireName: r'toDate')
+  DateTime? get toDate;
 
-     this.fromDate,
+  @BuiltValueField(wireName: r'grossRevenue')
+  num? get grossRevenue;
 
-     this.toDate,
+  @BuiltValueField(wireName: r'refundedAmount')
+  num? get refundedAmount;
 
-     this.grossRevenue,
+  @BuiltValueField(wireName: r'netRevenue')
+  num? get netRevenue;
 
-     this.refundedAmount,
+  @BuiltValueField(wireName: r'successfulTransactionsCount')
+  int? get successfulTransactionsCount;
 
-     this.netRevenue,
+  @BuiltValueField(wireName: r'paidOrdersCount')
+  int? get paidOrdersCount;
 
-     this.successfulTransactionsCount,
+  RevenueSummaryResponse._();
 
-     this.paidOrdersCount,
-  });
+  factory RevenueSummaryResponse([void updates(RevenueSummaryResponseBuilder b)]) = _$RevenueSummaryResponse;
 
-  @JsonKey(
-    
-    name: r'fromDate',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(RevenueSummaryResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<RevenueSummaryResponse> get serializer => _$RevenueSummaryResponseSerializer();
+}
 
-  final DateTime? fromDate;
-
-
-
-  @JsonKey(
-    
-    name: r'toDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? toDate;
-
-
-
-  @JsonKey(
-    
-    name: r'grossRevenue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? grossRevenue;
-
-
-
-  @JsonKey(
-    
-    name: r'refundedAmount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? refundedAmount;
-
-
-
-  @JsonKey(
-    
-    name: r'netRevenue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? netRevenue;
-
-
-
-  @JsonKey(
-    
-    name: r'successfulTransactionsCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? successfulTransactionsCount;
-
-
-
-  @JsonKey(
-    
-    name: r'paidOrdersCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? paidOrdersCount;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is RevenueSummaryResponse &&
-      other.fromDate == fromDate &&
-      other.toDate == toDate &&
-      other.grossRevenue == grossRevenue &&
-      other.refundedAmount == refundedAmount &&
-      other.netRevenue == netRevenue &&
-      other.successfulTransactionsCount == successfulTransactionsCount &&
-      other.paidOrdersCount == paidOrdersCount;
-
-    @override
-    int get hashCode =>
-        fromDate.hashCode +
-        toDate.hashCode +
-        grossRevenue.hashCode +
-        refundedAmount.hashCode +
-        netRevenue.hashCode +
-        successfulTransactionsCount.hashCode +
-        paidOrdersCount.hashCode;
-
-  factory RevenueSummaryResponse.fromJson(Map<String, dynamic> json) => _$RevenueSummaryResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RevenueSummaryResponseToJson(this);
+class _$RevenueSummaryResponseSerializer implements PrimitiveSerializer<RevenueSummaryResponse> {
+  @override
+  final Iterable<Type> types = const [RevenueSummaryResponse, _$RevenueSummaryResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'RevenueSummaryResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    RevenueSummaryResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.fromDate != null) {
+      yield r'fromDate';
+      yield serializers.serialize(
+        object.fromDate,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.toDate != null) {
+      yield r'toDate';
+      yield serializers.serialize(
+        object.toDate,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.grossRevenue != null) {
+      yield r'grossRevenue';
+      yield serializers.serialize(
+        object.grossRevenue,
+        specifiedType: const FullType(num),
+      );
+    }
+    if (object.refundedAmount != null) {
+      yield r'refundedAmount';
+      yield serializers.serialize(
+        object.refundedAmount,
+        specifiedType: const FullType(num),
+      );
+    }
+    if (object.netRevenue != null) {
+      yield r'netRevenue';
+      yield serializers.serialize(
+        object.netRevenue,
+        specifiedType: const FullType(num),
+      );
+    }
+    if (object.successfulTransactionsCount != null) {
+      yield r'successfulTransactionsCount';
+      yield serializers.serialize(
+        object.successfulTransactionsCount,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.paidOrdersCount != null) {
+      yield r'paidOrdersCount';
+      yield serializers.serialize(
+        object.paidOrdersCount,
+        specifiedType: const FullType(int),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    RevenueSummaryResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required RevenueSummaryResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'fromDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.fromDate = valueDes;
+          break;
+        case r'toDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.toDate = valueDes;
+          break;
+        case r'grossRevenue':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.grossRevenue = valueDes;
+          break;
+        case r'refundedAmount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.refundedAmount = valueDes;
+          break;
+        case r'netRevenue':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.netRevenue = valueDes;
+          break;
+        case r'successfulTransactionsCount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.successfulTransactionsCount = valueDes;
+          break;
+        case r'paidOrdersCount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.paidOrdersCount = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  RevenueSummaryResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = RevenueSummaryResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

@@ -3,12 +3,17 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for OrderListItem
 void main() {
-  final OrderListItem? instance = /* OrderListItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = OrderListItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(OrderListItem, () {
     // String id
     test('to test the property `id`', () async {
+      // TODO
+    });
+
+    // String code
+    test('to test the property `code`', () async {
       // TODO
     });
 
@@ -57,7 +62,12 @@ void main() {
       // TODO
     });
 
-    // int shippingStatus
+    // bool isReturnalbe
+    test('to test the property `isReturnalbe`', () async {
+      // TODO
+    });
+
+    // ShippingStatus shippingStatus
     test('to test the property `shippingStatus`', () async {
       // TODO
     });
@@ -71,5 +81,11 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
+
+    // BuiltList<OrderDetailListItem> orderDetails
+    test('to test the property `orderDetails`', () async {
+      // TODO
+    });
+
   });
 }

@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VariantLookupItem
 void main() {
-  final VariantLookupItem? instance = /* VariantLookupItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = VariantLookupItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(VariantLookupItem, () {
     // String id
@@ -42,9 +42,10 @@ void main() {
       // TODO
     });
 
-    // MediaResponse primaryImage
-    test('to test the property `primaryImage`', () async {
+    // String primaryImageUrl
+    test('to test the property `primaryImageUrl`', () async {
       // TODO
     });
+
   });
 }

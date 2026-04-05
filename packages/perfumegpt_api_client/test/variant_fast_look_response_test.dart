@@ -3,13 +3,17 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VariantFastLookResponse
 void main() {
-  final VariantFastLookResponse? instance = /* VariantFastLookResponse(...) */
-      null;
-  // TODO add properties to the entity
+  final instance = VariantFastLookResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(VariantFastLookResponse, () {
     // String id
     test('to test the property `id`', () async {
+      // TODO
+    });
+
+    // String sku
+    test('to test the property `sku`', () async {
       // TODO
     });
 
@@ -23,6 +27,11 @@ void main() {
       // TODO
     });
 
+    // num retailPrice
+    test('to test the property `retailPrice`', () async {
+      // TODO
+    });
+
     // int stockQuantity
     test('to test the property `stockQuantity`', () async {
       // TODO
@@ -32,5 +41,6 @@ void main() {
     test('to test the property `media`', () async {
       // TODO
     });
+
   });
 }

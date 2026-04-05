@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductResponse
 void main() {
-  final ProductResponse? instance = /* ProductResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = ProductResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ProductResponse, () {
     // String id
@@ -14,6 +14,21 @@ void main() {
 
     // String name
     test('to test the property `name`', () async {
+      // TODO
+    });
+
+    // Gender gender
+    test('to test the property `gender`', () async {
+      // TODO
+    });
+
+    // String origin
+    test('to test the property `origin`', () async {
+      // TODO
+    });
+
+    // int releaseYear
+    test('to test the property `releaseYear`', () async {
       // TODO
     });
 
@@ -47,19 +62,30 @@ void main() {
       // TODO
     });
 
-    // List<MediaResponse> media
+    // BuiltList<MediaResponse> media
     test('to test the property `media`', () async {
       // TODO
     });
 
-    // List<ProductVariantResponse> variants
+    // BuiltList<ProductVariantResponse> variants
     test('to test the property `variants`', () async {
       // TODO
     });
 
-    // List<ProductAttributeResponse> attributes
+    // BuiltList<ProductAttributeResponse> attributes
     test('to test the property `attributes`', () async {
       // TODO
     });
+
+    // BuiltList<ProductOlfactoryFamilyResponse> olfactoryFamilies
+    test('to test the property `olfactoryFamilies`', () async {
+      // TODO
+    });
+
+    // BuiltList<ProductScentNoteResponse> scentNotes
+    test('to test the property `scentNotes`', () async {
+      // TODO
+    });
+
   });
 }

@@ -3,168 +3,225 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'variant_lookup_item.g.dart';
 
+/// VariantLookupItem
+///
+/// Properties:
+/// * [id] 
+/// * [barcode] 
+/// * [sku] 
+/// * [displayName] 
+/// * [volumeMl] 
+/// * [concentrationName] 
+/// * [basePrice] 
+/// * [primaryImageUrl] 
+@BuiltValue()
+abstract class VariantLookupItem implements Built<VariantLookupItem, VariantLookupItemBuilder> {
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class VariantLookupItem {
-  /// Returns a new [VariantLookupItem] instance.
-  VariantLookupItem({
+  @BuiltValueField(wireName: r'barcode')
+  String get barcode;
 
-     this.id,
+  @BuiltValueField(wireName: r'sku')
+  String get sku;
 
-     this.barcode,
+  @BuiltValueField(wireName: r'displayName')
+  String get displayName;
 
-     this.sku,
+  @BuiltValueField(wireName: r'volumeMl')
+  int? get volumeMl;
 
-     this.displayName,
+  @BuiltValueField(wireName: r'concentrationName')
+  String get concentrationName;
 
-     this.volumeMl,
+  @BuiltValueField(wireName: r'basePrice')
+  num? get basePrice;
 
-     this.concentrationName,
+  @BuiltValueField(wireName: r'primaryImageUrl')
+  String? get primaryImageUrl;
 
-     this.basePrice,
+  VariantLookupItem._();
 
-     this.primaryImageUrl,
-  });
+  factory VariantLookupItem([void updates(VariantLookupItemBuilder b)]) = _$VariantLookupItem;
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(VariantLookupItemBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<VariantLookupItem> get serializer => _$VariantLookupItemSerializer();
+}
 
-  final String? id;
-
-
-
-  @JsonKey(
-    
-    name: r'barcode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? barcode;
-
-
-
-  @JsonKey(
-    
-    name: r'sku',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? sku;
-
-
-
-  @JsonKey(
-    
-    name: r'displayName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? displayName;
-
-
-
-  @JsonKey(
-    
-    name: r'volumeMl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? volumeMl;
-
-
-
-  @JsonKey(
-    
-    name: r'concentrationName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? concentrationName;
-
-
-
-  @JsonKey(
-    
-    name: r'basePrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? basePrice;
-
-
-
-  @JsonKey(
-    
-    name: r'primaryImageUrl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? primaryImageUrl;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is VariantLookupItem &&
-      other.id == id &&
-      other.barcode == barcode &&
-      other.sku == sku &&
-      other.displayName == displayName &&
-      other.volumeMl == volumeMl &&
-      other.concentrationName == concentrationName &&
-      other.basePrice == basePrice &&
-      other.primaryImageUrl == primaryImageUrl;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        barcode.hashCode +
-        sku.hashCode +
-        displayName.hashCode +
-        volumeMl.hashCode +
-        concentrationName.hashCode +
-        basePrice.hashCode +
-        (primaryImageUrl == null ? 0 : primaryImageUrl.hashCode);
-
-  factory VariantLookupItem.fromJson(Map<String, dynamic> json) => _$VariantLookupItemFromJson(json);
-
-  Map<String, dynamic> toJson() => _$VariantLookupItemToJson(this);
+class _$VariantLookupItemSerializer implements PrimitiveSerializer<VariantLookupItem> {
+  @override
+  final Iterable<Type> types = const [VariantLookupItem, _$VariantLookupItem];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'VariantLookupItem';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    VariantLookupItem object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'barcode';
+    yield serializers.serialize(
+      object.barcode,
+      specifiedType: const FullType(String),
+    );
+    yield r'sku';
+    yield serializers.serialize(
+      object.sku,
+      specifiedType: const FullType(String),
+    );
+    yield r'displayName';
+    yield serializers.serialize(
+      object.displayName,
+      specifiedType: const FullType(String),
+    );
+    if (object.volumeMl != null) {
+      yield r'volumeMl';
+      yield serializers.serialize(
+        object.volumeMl,
+        specifiedType: const FullType(int),
+      );
+    }
+    yield r'concentrationName';
+    yield serializers.serialize(
+      object.concentrationName,
+      specifiedType: const FullType(String),
+    );
+    if (object.basePrice != null) {
+      yield r'basePrice';
+      yield serializers.serialize(
+        object.basePrice,
+        specifiedType: const FullType(num),
+      );
+    }
+    if (object.primaryImageUrl != null) {
+      yield r'primaryImageUrl';
+      yield serializers.serialize(
+        object.primaryImageUrl,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    VariantLookupItem object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required VariantLookupItemBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'barcode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.barcode = valueDes;
+          break;
+        case r'sku':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.sku = valueDes;
+          break;
+        case r'displayName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.displayName = valueDes;
+          break;
+        case r'volumeMl':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.volumeMl = valueDes;
+          break;
+        case r'concentrationName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.concentrationName = valueDes;
+          break;
+        case r'basePrice':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.basePrice = valueDes;
+          break;
+        case r'primaryImageUrl':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.primaryImageUrl = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  VariantLookupItem deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = VariantLookupItemBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

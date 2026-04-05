@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ShippingInfoResponse
 void main() {
-  final ShippingInfoResponse? instance = /* ShippingInfoResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = ShippingInfoResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ShippingInfoResponse, () {
     // String id
@@ -27,14 +27,20 @@ void main() {
       // TODO
     });
 
-    // int status
+    // ShippingStatus status
     test('to test the property `status`', () async {
       // TODO
     });
 
-    // int leadTime
-    test('to test the property `leadTime`', () async {
+    // DateTime estimatedDeliveryDate
+    test('to test the property `estimatedDeliveryDate`', () async {
       // TODO
     });
+
+    // DateTime shippedDate
+    test('to test the property `shippedDate`', () async {
+      // TODO
+    });
+
   });
 }

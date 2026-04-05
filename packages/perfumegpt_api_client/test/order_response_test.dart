@@ -3,12 +3,17 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for OrderResponse
 void main() {
-  final OrderResponse? instance = /* OrderResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = OrderResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(OrderResponse, () {
     // String id
     test('to test the property `id`', () async {
+      // TODO
+    });
+
+    // String code
+    test('to test the property `code`', () async {
       // TODO
     });
 
@@ -87,7 +92,7 @@ void main() {
       // TODO
     });
 
-    // List<PaymentInfoResponse> paymentTransactions
+    // BuiltList<PaymentInfoResponse> paymentTransactions
     test('to test the property `paymentTransactions`', () async {
       // TODO
     });
@@ -102,9 +107,10 @@ void main() {
       // TODO
     });
 
-    // List<OrderDetailResponse> orderDetails
+    // BuiltList<OrderDetailResponse> orderDetails
     test('to test the property `orderDetails`', () async {
       // TODO
     });
+
   });
 }

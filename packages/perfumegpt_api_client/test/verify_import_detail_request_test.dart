@@ -3,9 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VerifyImportDetailRequest
 void main() {
-  final VerifyImportDetailRequest?
-  instance = /* VerifyImportDetailRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = VerifyImportDetailRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(VerifyImportDetailRequest, () {
     // String importDetailId
@@ -13,8 +12,8 @@ void main() {
       // TODO
     });
 
-    // int rejectQuantity
-    test('to test the property `rejectQuantity`', () async {
+    // int rejectedQuantity
+    test('to test the property `rejectedQuantity`', () async {
       // TODO
     });
 
@@ -23,9 +22,10 @@ void main() {
       // TODO
     });
 
-    // List<CreateBatchRequest> batches
+    // BuiltList<CreateBatchRequest> batches
     test('to test the property `batches`', () async {
       // TODO
     });
+
   });
 }

@@ -3,154 +3,178 @@
 part of 'base_response_of_paged_result_of_user_voucher_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxy {
-  BaseResponseOfPagedResultOfUserVoucherResponse payload(
-    PagedResultOfUserVoucherResponse? payload,
-  );
+class _$BaseResponseOfPagedResultOfUserVoucherResponse
+    extends BaseResponseOfPagedResultOfUserVoucherResponse {
+  @override
+  final PagedResultOfUserVoucherResponse? payload;
+  @override
+  final bool? success;
+  @override
+  final String? message;
+  @override
+  final BuiltList<String>? errors;
+  @override
+  final int? errorType;
 
-  BaseResponseOfPagedResultOfUserVoucherResponse success(bool? success);
+  factory _$BaseResponseOfPagedResultOfUserVoucherResponse([
+    void Function(BaseResponseOfPagedResultOfUserVoucherResponseBuilder)?
+    updates,
+  ]) =>
+      (BaseResponseOfPagedResultOfUserVoucherResponseBuilder()..update(updates))
+          ._build();
 
-  BaseResponseOfPagedResultOfUserVoucherResponse message(String? message);
-
-  BaseResponseOfPagedResultOfUserVoucherResponse errors(List<String>? errors);
-
-  BaseResponseOfPagedResultOfUserVoucherResponse errorType(int? errorType);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfPagedResultOfUserVoucherResponse call({
-    PagedResultOfUserVoucherResponse? payload,
-    bool? success,
-    String? message,
-    List<String>? errors,
-    int? errorType,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith(...)` or call `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith.fieldName(value)` for a single field.
-class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl
-    implements _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxy {
-  const _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl(
-    this._value,
-  );
-
-  final BaseResponseOfPagedResultOfUserVoucherResponse _value;
+  _$BaseResponseOfPagedResultOfUserVoucherResponse._({
+    this.payload,
+    this.success,
+    this.message,
+    this.errors,
+    this.errorType,
+  }) : super._();
+  @override
+  BaseResponseOfPagedResultOfUserVoucherResponse rebuild(
+    void Function(BaseResponseOfPagedResultOfUserVoucherResponseBuilder)
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BaseResponseOfPagedResultOfUserVoucherResponse payload(
-    PagedResultOfUserVoucherResponse? payload,
-  ) => call(payload: payload);
+  BaseResponseOfPagedResultOfUserVoucherResponseBuilder toBuilder() =>
+      BaseResponseOfPagedResultOfUserVoucherResponseBuilder()..replace(this);
 
   @override
-  BaseResponseOfPagedResultOfUserVoucherResponse success(bool? success) =>
-      call(success: success);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BaseResponseOfPagedResultOfUserVoucherResponse &&
+        payload == other.payload &&
+        success == other.success &&
+        message == other.message &&
+        errors == other.errors &&
+        errorType == other.errorType;
+  }
 
   @override
-  BaseResponseOfPagedResultOfUserVoucherResponse message(String? message) =>
-      call(message: message);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, payload.hashCode);
+    _$hash = $jc(_$hash, success.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, errors.hashCode);
+    _$hash = $jc(_$hash, errorType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  BaseResponseOfPagedResultOfUserVoucherResponse errors(List<String>? errors) =>
-      call(errors: errors);
-
-  @override
-  BaseResponseOfPagedResultOfUserVoucherResponse errorType(int? errorType) =>
-      call(errorType: errorType);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfPagedResultOfUserVoucherResponse call({
-    Object? payload = const $CopyWithPlaceholder(),
-    Object? success = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? errorType = const $CopyWithPlaceholder(),
-  }) {
-    return BaseResponseOfPagedResultOfUserVoucherResponse(
-      payload: payload == const $CopyWithPlaceholder()
-          ? _value.payload
-          // ignore: cast_nullable_to_non_nullable
-          : payload as PagedResultOfUserVoucherResponse?,
-      success: success == const $CopyWithPlaceholder()
-          ? _value.success
-          // ignore: cast_nullable_to_non_nullable
-          : success as bool?,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
-          // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
-          // ignore: cast_nullable_to_non_nullable
-          : errors as List<String>?,
-      errorType: errorType == const $CopyWithPlaceholder()
-          ? _value.errorType
-          // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'BaseResponseOfPagedResultOfUserVoucherResponse',
+          )
+          ..add('payload', payload)
+          ..add('success', success)
+          ..add('message', message)
+          ..add('errors', errors)
+          ..add('errorType', errorType))
+        .toString();
   }
 }
 
-extension $BaseResponseOfPagedResultOfUserVoucherResponseCopyWith
-    on BaseResponseOfPagedResultOfUserVoucherResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith(...)` or `instanceOfBaseResponseOfPagedResultOfUserVoucherResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxy get copyWith =>
-      _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl(this);
+class BaseResponseOfPagedResultOfUserVoucherResponseBuilder
+    implements
+        Builder<
+          BaseResponseOfPagedResultOfUserVoucherResponse,
+          BaseResponseOfPagedResultOfUserVoucherResponseBuilder
+        > {
+  _$BaseResponseOfPagedResultOfUserVoucherResponse? _$v;
+
+  PagedResultOfUserVoucherResponseBuilder? _payload;
+  PagedResultOfUserVoucherResponseBuilder get payload =>
+      _$this._payload ??= PagedResultOfUserVoucherResponseBuilder();
+  set payload(PagedResultOfUserVoucherResponseBuilder? payload) =>
+      _$this._payload = payload;
+
+  bool? _success;
+  bool? get success => _$this._success;
+  set success(bool? success) => _$this._success = success;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  ListBuilder<String>? _errors;
+  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
+  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
+
+  int? _errorType;
+  int? get errorType => _$this._errorType;
+  set errorType(int? errorType) => _$this._errorType = errorType;
+
+  BaseResponseOfPagedResultOfUserVoucherResponseBuilder() {
+    BaseResponseOfPagedResultOfUserVoucherResponse._defaults(this);
+  }
+
+  BaseResponseOfPagedResultOfUserVoucherResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _payload = $v.payload?.toBuilder();
+      _success = $v.success;
+      _message = $v.message;
+      _errors = $v.errors?.toBuilder();
+      _errorType = $v.errorType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BaseResponseOfPagedResultOfUserVoucherResponse other) {
+    _$v = other as _$BaseResponseOfPagedResultOfUserVoucherResponse;
+  }
+
+  @override
+  void update(
+    void Function(BaseResponseOfPagedResultOfUserVoucherResponseBuilder)?
+    updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BaseResponseOfPagedResultOfUserVoucherResponse build() => _build();
+
+  _$BaseResponseOfPagedResultOfUserVoucherResponse _build() {
+    _$BaseResponseOfPagedResultOfUserVoucherResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BaseResponseOfPagedResultOfUserVoucherResponse._(
+            payload: _payload?.build(),
+            success: success,
+            message: message,
+            errors: _errors?.build(),
+            errorType: errorType,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'payload';
+        _payload?.build();
+
+        _$failedField = 'errors';
+        _errors?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BaseResponseOfPagedResultOfUserVoucherResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BaseResponseOfPagedResultOfUserVoucherResponse
-_$BaseResponseOfPagedResultOfUserVoucherResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('BaseResponseOfPagedResultOfUserVoucherResponse', json, (
-  $checkedConvert,
-) {
-  final val = BaseResponseOfPagedResultOfUserVoucherResponse(
-    payload: $checkedConvert(
-      'payload',
-      (v) => v == null
-          ? null
-          : PagedResultOfUserVoucherResponse.fromJson(
-              v as Map<String, dynamic>,
-            ),
-    ),
-    success: $checkedConvert('success', (v) => v as bool?),
-    message: $checkedConvert('message', (v) => v as String?),
-    errors: $checkedConvert(
-      'errors',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-    ),
-    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$BaseResponseOfPagedResultOfUserVoucherResponseToJson(
-  BaseResponseOfPagedResultOfUserVoucherResponse instance,
-) => <String, dynamic>{
-  'payload': ?instance.payload?.toJson(),
-  'success': ?instance.success,
-  'message': ?instance.message,
-  'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

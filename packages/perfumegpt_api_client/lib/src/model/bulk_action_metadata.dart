@@ -4,136 +4,195 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/bulk_operation_result.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'bulk_action_metadata.g.dart';
 
+/// BulkActionMetadata
+///
+/// Properties:
+/// * [operations] 
+/// * [hasPartialFailure] 
+/// * [allSucceeded] 
+/// * [totalOperations] 
+/// * [totalSucceeded] 
+/// * [totalFailed] 
+@BuiltValue()
+abstract class BulkActionMetadata implements Built<BulkActionMetadata, BulkActionMetadataBuilder> {
+  @BuiltValueField(wireName: r'operations')
+  BuiltList<BulkOperationResult> get operations;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class BulkActionMetadata {
-  /// Returns a new [BulkActionMetadata] instance.
-  BulkActionMetadata({
+  @BuiltValueField(wireName: r'hasPartialFailure')
+  bool? get hasPartialFailure;
 
-     this.operations,
+  @BuiltValueField(wireName: r'allSucceeded')
+  bool? get allSucceeded;
 
-     this.hasPartialFailure,
+  @BuiltValueField(wireName: r'totalOperations')
+  int? get totalOperations;
 
-     this.allSucceeded,
+  @BuiltValueField(wireName: r'totalSucceeded')
+  int? get totalSucceeded;
 
-     this.totalOperations,
+  @BuiltValueField(wireName: r'totalFailed')
+  int? get totalFailed;
 
-     this.totalSucceeded,
+  BulkActionMetadata._();
 
-     this.totalFailed,
-  });
+  factory BulkActionMetadata([void updates(BulkActionMetadataBuilder b)]) = _$BulkActionMetadata;
 
-  @JsonKey(
-    
-    name: r'operations',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(BulkActionMetadataBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<BulkActionMetadata> get serializer => _$BulkActionMetadataSerializer();
+}
 
-  final List<BulkOperationResult>? operations;
-
-
-
-  @JsonKey(
-    
-    name: r'hasPartialFailure',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final bool? hasPartialFailure;
-
-
-
-  @JsonKey(
-    
-    name: r'allSucceeded',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final bool? allSucceeded;
-
-
-
-  @JsonKey(
-    
-    name: r'totalOperations',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? totalOperations;
-
-
-
-  @JsonKey(
-    
-    name: r'totalSucceeded',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? totalSucceeded;
-
-
-
-  @JsonKey(
-    
-    name: r'totalFailed',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? totalFailed;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BulkActionMetadata &&
-      other.operations == operations &&
-      other.hasPartialFailure == hasPartialFailure &&
-      other.allSucceeded == allSucceeded &&
-      other.totalOperations == totalOperations &&
-      other.totalSucceeded == totalSucceeded &&
-      other.totalFailed == totalFailed;
-
-    @override
-    int get hashCode =>
-        operations.hashCode +
-        hasPartialFailure.hashCode +
-        allSucceeded.hashCode +
-        totalOperations.hashCode +
-        totalSucceeded.hashCode +
-        totalFailed.hashCode;
-
-  factory BulkActionMetadata.fromJson(Map<String, dynamic> json) => _$BulkActionMetadataFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BulkActionMetadataToJson(this);
+class _$BulkActionMetadataSerializer implements PrimitiveSerializer<BulkActionMetadata> {
+  @override
+  final Iterable<Type> types = const [BulkActionMetadata, _$BulkActionMetadata];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'BulkActionMetadata';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    BulkActionMetadata object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'operations';
+    yield serializers.serialize(
+      object.operations,
+      specifiedType: const FullType(BuiltList, [FullType(BulkOperationResult)]),
+    );
+    if (object.hasPartialFailure != null) {
+      yield r'hasPartialFailure';
+      yield serializers.serialize(
+        object.hasPartialFailure,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.allSucceeded != null) {
+      yield r'allSucceeded';
+      yield serializers.serialize(
+        object.allSucceeded,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.totalOperations != null) {
+      yield r'totalOperations';
+      yield serializers.serialize(
+        object.totalOperations,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.totalSucceeded != null) {
+      yield r'totalSucceeded';
+      yield serializers.serialize(
+        object.totalSucceeded,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.totalFailed != null) {
+      yield r'totalFailed';
+      yield serializers.serialize(
+        object.totalFailed,
+        specifiedType: const FullType(int),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    BulkActionMetadata object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required BulkActionMetadataBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'operations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(BulkOperationResult)]),
+          ) as BuiltList<BulkOperationResult>;
+          result.operations.replace(valueDes);
+          break;
+        case r'hasPartialFailure':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.hasPartialFailure = valueDes;
+          break;
+        case r'allSucceeded':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.allSucceeded = valueDes;
+          break;
+        case r'totalOperations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalOperations = valueDes;
+          break;
+        case r'totalSucceeded':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalSucceeded = valueDes;
+          break;
+        case r'totalFailed':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalFailed = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  BulkActionMetadata deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = BulkActionMetadataBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

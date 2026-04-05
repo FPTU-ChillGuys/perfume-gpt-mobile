@@ -3,71 +3,96 @@
 part of 'reject_inspection_dto.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$RejectInspectionDtoCWProxy {
-  RejectInspectionDto note(String note);
+class _$RejectInspectionDto extends RejectInspectionDto {
+  @override
+  final String note;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RejectInspectionDto(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// RejectInspectionDto(...).copyWith(id: 12, name: "My name")
-  /// ```
-  RejectInspectionDto call({String note});
-}
+  factory _$RejectInspectionDto([
+    void Function(RejectInspectionDtoBuilder)? updates,
+  ]) => (RejectInspectionDtoBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfRejectInspectionDto.copyWith(...)` or call `instanceOfRejectInspectionDto.copyWith.fieldName(value)` for a single field.
-class _$RejectInspectionDtoCWProxyImpl implements _$RejectInspectionDtoCWProxy {
-  const _$RejectInspectionDtoCWProxyImpl(this._value);
-
-  final RejectInspectionDto _value;
+  _$RejectInspectionDto._({required this.note}) : super._();
+  @override
+  RejectInspectionDto rebuild(
+    void Function(RejectInspectionDtoBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  RejectInspectionDto note(String note) => call(note: note);
+  RejectInspectionDtoBuilder toBuilder() =>
+      RejectInspectionDtoBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RejectInspectionDto(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// RejectInspectionDto(...).copyWith(id: 12, name: "My name")
-  /// ```
-  RejectInspectionDto call({Object? note = const $CopyWithPlaceholder()}) {
-    return RejectInspectionDto(
-      note: note == const $CopyWithPlaceholder() || note == null
-          ? _value.note
-          // ignore: cast_nullable_to_non_nullable
-          : note as String,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is RejectInspectionDto && note == other.note;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'RejectInspectionDto',
+    )..add('note', note)).toString();
   }
 }
 
-extension $RejectInspectionDtoCopyWith on RejectInspectionDto {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfRejectInspectionDto.copyWith(...)` or `instanceOfRejectInspectionDto.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$RejectInspectionDtoCWProxy get copyWith =>
-      _$RejectInspectionDtoCWProxyImpl(this);
+class RejectInspectionDtoBuilder
+    implements Builder<RejectInspectionDto, RejectInspectionDtoBuilder> {
+  _$RejectInspectionDto? _$v;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  RejectInspectionDtoBuilder() {
+    RejectInspectionDto._defaults(this);
+  }
+
+  RejectInspectionDtoBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _note = $v.note;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(RejectInspectionDto other) {
+    _$v = other as _$RejectInspectionDto;
+  }
+
+  @override
+  void update(void Function(RejectInspectionDtoBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  RejectInspectionDto build() => _build();
+
+  _$RejectInspectionDto _build() {
+    final _$result =
+        _$v ??
+        _$RejectInspectionDto._(
+          note: BuiltValueNullFieldError.checkNotNull(
+            note,
+            r'RejectInspectionDto',
+            'note',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-RejectInspectionDto _$RejectInspectionDtoFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('RejectInspectionDto', json, ($checkedConvert) {
-      $checkKeys(json, requiredKeys: const ['note']);
-      final val = RejectInspectionDto(
-        note: $checkedConvert('note', (v) => v as String),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$RejectInspectionDtoToJson(
-  RejectInspectionDto instance,
-) => <String, dynamic>{'note': instance.note};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

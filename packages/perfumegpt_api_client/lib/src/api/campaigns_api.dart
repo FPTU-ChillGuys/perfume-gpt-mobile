@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_campaign_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_campaign_promotion_item_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_campaign_response.dart';
@@ -28,7 +28,9 @@ class CampaignsApi {
 
   final Dio _dio;
 
-  const CampaignsApi(this._dio);
+  final Serializers _serializers;
+
+  const CampaignsApi(this._dio, this._serializers);
 
   /// apiCampaignsCampaignIdDelete
   /// 
@@ -53,7 +55,7 @@ class CampaignsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', encodeQueryParameter(_serializers, campaignId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -83,8 +85,11 @@ class CampaignsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -131,7 +136,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', encodeQueryParameter(_serializers, campaignId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -161,8 +166,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfCampaignResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignResponse, BaseResponseOfCampaignResponse>(rawData, 'BaseResponseOfCampaignResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfCampaignResponse),
+      ) as BaseResponseOfCampaignResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -209,7 +217,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignRespo
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}/items'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}/items'.replaceAll('{' r'campaignId' '}', encodeQueryParameter(_serializers, campaignId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -239,8 +247,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignRespo
     BaseResponseOfListOfCampaignPromotionItemResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaignPromotionItemResponse, BaseResponseOfListOfCampaignPromotionItemResponse>(rawData, 'BaseResponseOfListOfCampaignPromotionItemResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfCampaignPromotionItemResponse),
+      ) as BaseResponseOfListOfCampaignPromotionItemResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -289,7 +300,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', encodeQueryParameter(_serializers, campaignId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -312,7 +323,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCampaignRequest);
+      const _type = FullType(UpdateCampaignRequest);
+      _bodyData = _serializers.serialize(updateCampaignRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -337,8 +350,11 @@ _bodyData=jsonEncode(updateCampaignRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -387,7 +403,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}/status'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}/status'.replaceAll('{' r'campaignId' '}', encodeQueryParameter(_serializers, campaignId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -410,7 +426,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCampaignStatusRequest);
+      const _type = FullType(UpdateCampaignStatusRequest);
+      _bodyData = _serializers.serialize(updateCampaignStatusRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -435,8 +453,11 @@ _bodyData=jsonEncode(updateCampaignStatusRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -517,14 +538,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     );
 
     final _queryParameters = <String, dynamic>{
-      if (searchTerm != null) r'SearchTerm': searchTerm,
-      if (status != null) r'Status': status,
-      if (type != null) r'Type': type,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
+      if (searchTerm != null) r'SearchTerm': encodeQueryParameter(_serializers, searchTerm, const FullType(String)),
+      if (status != null) r'Status': encodeQueryParameter(_serializers, status, const FullType(CampaignStatus)),
+      if (type != null) r'Type': encodeQueryParameter(_serializers, type, const FullType(CampaignType)),
+      if (pageNumber != null) r'PageNumber': encodeQueryParameter(_serializers, pageNumber, const FullType(int)),
+      if (pageSize != null) r'PageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (sortBy != null) r'SortBy': encodeQueryParameter(_serializers, sortBy, const FullType(String)),
+      if (sortOrder != null) r'SortOrder': encodeQueryParameter(_serializers, sortOrder, const FullType(String)),
+      if (isDescending != null) r'IsDescending': encodeQueryParameter(_serializers, isDescending, const FullType(bool)),
     };
 
     final _response = await _dio.request<Object>(
@@ -539,8 +560,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfPagedResultOfCampaignResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfCampaignResponse, BaseResponseOfPagedResultOfCampaignResponse>(rawData, 'BaseResponseOfPagedResultOfCampaignResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfPagedResultOfCampaignResponse),
+      ) as BaseResponseOfPagedResultOfCampaignResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -589,7 +613,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/items/{itemId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'itemId' '}', itemId.toString());
+    final _path = r'/api/campaigns/{id}/items/{itemId}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString()).replaceAll('{' r'itemId' '}', encodeQueryParameter(_serializers, itemId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -619,8 +643,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -671,7 +698,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/items/{itemId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'itemId' '}', itemId.toString());
+    final _path = r'/api/campaigns/{id}/items/{itemId}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString()).replaceAll('{' r'itemId' '}', encodeQueryParameter(_serializers, itemId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -694,7 +721,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCampaignPromotionItemRequest);
+      const _type = FullType(UpdateCampaignPromotionItemRequest);
+      _bodyData = _serializers.serialize(updateCampaignPromotionItemRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -719,8 +748,11 @@ _bodyData=jsonEncode(updateCampaignPromotionItemRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -769,7 +801,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/items'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/campaigns/{id}/items'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -792,7 +824,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createCampaignPromotionItemRequest);
+      const _type = FullType(CreateCampaignPromotionItemRequest);
+      _bodyData = _serializers.serialize(createCampaignPromotionItemRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -817,8 +851,11 @@ _bodyData=jsonEncode(createCampaignPromotionItemRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -867,7 +904,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/vouchers'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/campaigns/{id}/vouchers'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -890,7 +927,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createCampaignVoucherRequest);
+      const _type = FullType(CreateCampaignVoucherRequest);
+      _bodyData = _serializers.serialize(createCampaignVoucherRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -915,8 +954,11 @@ _bodyData=jsonEncode(createCampaignVoucherRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -965,7 +1007,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'voucherId' '}', voucherId.toString());
+    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString()).replaceAll('{' r'voucherId' '}', encodeQueryParameter(_serializers, voucherId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -995,8 +1037,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1045,7 +1090,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'voucherId' '}', voucherId.toString());
+    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString()).replaceAll('{' r'voucherId' '}', encodeQueryParameter(_serializers, voucherId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -1075,8 +1120,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfVoucherResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherResponse, BaseResponseOfVoucherResponse>(rawData, 'BaseResponseOfVoucherResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfVoucherResponse),
+      ) as BaseResponseOfVoucherResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1127,7 +1175,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherRespon
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'voucherId' '}', voucherId.toString());
+    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString()).replaceAll('{' r'voucherId' '}', encodeQueryParameter(_serializers, voucherId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -1150,7 +1198,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherRespon
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCampaignVoucherRequest);
+      const _type = FullType(UpdateCampaignVoucherRequest);
+      _bodyData = _serializers.serialize(updateCampaignVoucherRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1175,8 +1225,11 @@ _bodyData=jsonEncode(updateCampaignVoucherRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1246,7 +1299,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createCampaignRequest);
+      const _type = FullType(CreateCampaignRequest);
+      _bodyData = _serializers.serialize(createCampaignRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -1271,8 +1326,11 @@ _bodyData=jsonEncode(createCampaignRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

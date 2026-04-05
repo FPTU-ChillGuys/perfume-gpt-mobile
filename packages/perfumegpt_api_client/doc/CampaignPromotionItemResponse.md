@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **campaignId** | **String** |  | [optional] 
 **productVariantId** | **String** |  | [optional] 
 **batchId** | **String** |  | [optional] 
-**name** | **String** |  | [optional] 
+**name** | **String** |  | 
 **itemType** | [**PromotionType**](PromotionType.md) |  | [optional] 
 **startDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **endDate** | [**DateTime**](DateTime.md) |  | [optional] 

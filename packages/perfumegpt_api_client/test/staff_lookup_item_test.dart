@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for StaffLookupItem
 void main() {
-  final StaffLookupItem? instance = /* StaffLookupItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = StaffLookupItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(StaffLookupItem, () {
     // String id
@@ -26,5 +26,6 @@ void main() {
     test('to test the property `email`', () async {
       // TODO
     });
+
   });
 }

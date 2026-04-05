@@ -3,73 +3,96 @@
 part of 'create_scent_note_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CreateScentNoteRequestCWProxy {
-  CreateScentNoteRequest name(String name);
+class _$CreateScentNoteRequest extends CreateScentNoteRequest {
+  @override
+  final String name;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateScentNoteRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateScentNoteRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateScentNoteRequest call({String name});
-}
+  factory _$CreateScentNoteRequest([
+    void Function(CreateScentNoteRequestBuilder)? updates,
+  ]) => (CreateScentNoteRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCreateScentNoteRequest.copyWith(...)` or call `instanceOfCreateScentNoteRequest.copyWith.fieldName(value)` for a single field.
-class _$CreateScentNoteRequestCWProxyImpl
-    implements _$CreateScentNoteRequestCWProxy {
-  const _$CreateScentNoteRequestCWProxyImpl(this._value);
-
-  final CreateScentNoteRequest _value;
+  _$CreateScentNoteRequest._({required this.name}) : super._();
+  @override
+  CreateScentNoteRequest rebuild(
+    void Function(CreateScentNoteRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  CreateScentNoteRequest name(String name) => call(name: name);
+  CreateScentNoteRequestBuilder toBuilder() =>
+      CreateScentNoteRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateScentNoteRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateScentNoteRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateScentNoteRequest call({Object? name = const $CopyWithPlaceholder()}) {
-    return CreateScentNoteRequest(
-      name: name == const $CopyWithPlaceholder() || name == null
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CreateScentNoteRequest && name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'CreateScentNoteRequest',
+    )..add('name', name)).toString();
   }
 }
 
-extension $CreateScentNoteRequestCopyWith on CreateScentNoteRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCreateScentNoteRequest.copyWith(...)` or `instanceOfCreateScentNoteRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CreateScentNoteRequestCWProxy get copyWith =>
-      _$CreateScentNoteRequestCWProxyImpl(this);
+class CreateScentNoteRequestBuilder
+    implements Builder<CreateScentNoteRequest, CreateScentNoteRequestBuilder> {
+  _$CreateScentNoteRequest? _$v;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  CreateScentNoteRequestBuilder() {
+    CreateScentNoteRequest._defaults(this);
+  }
+
+  CreateScentNoteRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CreateScentNoteRequest other) {
+    _$v = other as _$CreateScentNoteRequest;
+  }
+
+  @override
+  void update(void Function(CreateScentNoteRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CreateScentNoteRequest build() => _build();
+
+  _$CreateScentNoteRequest _build() {
+    final _$result =
+        _$v ??
+        _$CreateScentNoteRequest._(
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'CreateScentNoteRequest',
+            'name',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreateScentNoteRequest _$CreateScentNoteRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('CreateScentNoteRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['name']);
-  final val = CreateScentNoteRequest(
-    name: $checkedConvert('name', (v) => v as String),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$CreateScentNoteRequestToJson(
-  CreateScentNoteRequest instance,
-) => <String, dynamic>{'name': instance.name};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

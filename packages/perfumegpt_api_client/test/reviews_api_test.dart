@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for ReviewsApi
 void main() {
   final instance = PerfumegptApiClient().getReviewsApi();
@@ -11,7 +12,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiReviewsImagesTemporaryPost({ List<MultipartFile> images }) async
+    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiReviewsImagesTemporaryPost({ BuiltList<Uint8List> images }) async
     test('test apiReviewsImagesTemporaryPost', () async {
       // TODO
     });
@@ -23,6 +24,11 @@ void main() {
 
     //Future<BaseResponseOfBulkActionResultOfGuid> apiReviewsPost(CreateReviewRequest createReviewRequest) async
     test('test apiReviewsPost', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfstring> apiReviewsReviewIdAnswerPost(String reviewId, AnswerReviewRequest answerReviewRequest) async
+    test('test apiReviewsReviewIdAnswerPost', () async {
       // TODO
     });
 
@@ -41,11 +47,6 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfBulkActionResultOfstring> apiReviewsReviewIdPut(String reviewId, UpdateReviewRequest updateReviewRequest) async
-    test('test apiReviewsReviewIdPut', () async {
-      // TODO
-    });
-
     //Future<BaseResponseOfListOfReviewResponse> apiReviewsVariantVariantIdGet(String variantId) async
     test('test apiReviewsVariantVariantIdGet', () async {
       // TODO
@@ -55,5 +56,6 @@ void main() {
     test('test apiReviewsVariantVariantIdStatisticsGet', () async {
       // TODO
     });
+
   });
 }

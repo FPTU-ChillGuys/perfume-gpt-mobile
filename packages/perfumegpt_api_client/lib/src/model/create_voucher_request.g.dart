@@ -3,215 +3,200 @@
 part of 'create_voucher_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CreateVoucherRequestCWProxy {
-  CreateVoucherRequest code(String code);
+class _$CreateVoucherRequest extends CreateVoucherRequest {
+  @override
+  final String code;
+  @override
+  final num? discountValue;
+  @override
+  final DiscountType? discountType;
+  @override
+  final VoucherType? applyType;
+  @override
+  final int? requiredPoints;
+  @override
+  final num? minOrderValue;
+  @override
+  final DateTime? expiryDate;
+  @override
+  final int? totalQuantity;
+  @override
+  final bool? isPublic;
 
-  CreateVoucherRequest discountValue(num? discountValue);
+  factory _$CreateVoucherRequest([
+    void Function(CreateVoucherRequestBuilder)? updates,
+  ]) => (CreateVoucherRequestBuilder()..update(updates))._build();
 
-  CreateVoucherRequest discountType(DiscountType? discountType);
-
-  CreateVoucherRequest applyType(VoucherType? applyType);
-
-  CreateVoucherRequest requiredPoints(int? requiredPoints);
-
-  CreateVoucherRequest minOrderValue(num? minOrderValue);
-
-  CreateVoucherRequest expiryDate(DateTime? expiryDate);
-
-  CreateVoucherRequest totalQuantity(int? totalQuantity);
-
-  CreateVoucherRequest isPublic(bool? isPublic);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateVoucherRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateVoucherRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateVoucherRequest call({
-    String code,
-    num? discountValue,
-    DiscountType? discountType,
-    VoucherType? applyType,
-    int? requiredPoints,
-    num? minOrderValue,
-    DateTime? expiryDate,
-    int? totalQuantity,
-    bool? isPublic,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCreateVoucherRequest.copyWith(...)` or call `instanceOfCreateVoucherRequest.copyWith.fieldName(value)` for a single field.
-class _$CreateVoucherRequestCWProxyImpl
-    implements _$CreateVoucherRequestCWProxy {
-  const _$CreateVoucherRequestCWProxyImpl(this._value);
-
-  final CreateVoucherRequest _value;
+  _$CreateVoucherRequest._({
+    required this.code,
+    this.discountValue,
+    this.discountType,
+    this.applyType,
+    this.requiredPoints,
+    this.minOrderValue,
+    this.expiryDate,
+    this.totalQuantity,
+    this.isPublic,
+  }) : super._();
+  @override
+  CreateVoucherRequest rebuild(
+    void Function(CreateVoucherRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  CreateVoucherRequest code(String code) => call(code: code);
+  CreateVoucherRequestBuilder toBuilder() =>
+      CreateVoucherRequestBuilder()..replace(this);
 
   @override
-  CreateVoucherRequest discountValue(num? discountValue) =>
-      call(discountValue: discountValue);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CreateVoucherRequest &&
+        code == other.code &&
+        discountValue == other.discountValue &&
+        discountType == other.discountType &&
+        applyType == other.applyType &&
+        requiredPoints == other.requiredPoints &&
+        minOrderValue == other.minOrderValue &&
+        expiryDate == other.expiryDate &&
+        totalQuantity == other.totalQuantity &&
+        isPublic == other.isPublic;
+  }
 
   @override
-  CreateVoucherRequest discountType(DiscountType? discountType) =>
-      call(discountType: discountType);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, discountValue.hashCode);
+    _$hash = $jc(_$hash, discountType.hashCode);
+    _$hash = $jc(_$hash, applyType.hashCode);
+    _$hash = $jc(_$hash, requiredPoints.hashCode);
+    _$hash = $jc(_$hash, minOrderValue.hashCode);
+    _$hash = $jc(_$hash, expiryDate.hashCode);
+    _$hash = $jc(_$hash, totalQuantity.hashCode);
+    _$hash = $jc(_$hash, isPublic.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  CreateVoucherRequest applyType(VoucherType? applyType) =>
-      call(applyType: applyType);
-
-  @override
-  CreateVoucherRequest requiredPoints(int? requiredPoints) =>
-      call(requiredPoints: requiredPoints);
-
-  @override
-  CreateVoucherRequest minOrderValue(num? minOrderValue) =>
-      call(minOrderValue: minOrderValue);
-
-  @override
-  CreateVoucherRequest expiryDate(DateTime? expiryDate) =>
-      call(expiryDate: expiryDate);
-
-  @override
-  CreateVoucherRequest totalQuantity(int? totalQuantity) =>
-      call(totalQuantity: totalQuantity);
-
-  @override
-  CreateVoucherRequest isPublic(bool? isPublic) => call(isPublic: isPublic);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateVoucherRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateVoucherRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateVoucherRequest call({
-    Object? code = const $CopyWithPlaceholder(),
-    Object? discountValue = const $CopyWithPlaceholder(),
-    Object? discountType = const $CopyWithPlaceholder(),
-    Object? applyType = const $CopyWithPlaceholder(),
-    Object? requiredPoints = const $CopyWithPlaceholder(),
-    Object? minOrderValue = const $CopyWithPlaceholder(),
-    Object? expiryDate = const $CopyWithPlaceholder(),
-    Object? totalQuantity = const $CopyWithPlaceholder(),
-    Object? isPublic = const $CopyWithPlaceholder(),
-  }) {
-    return CreateVoucherRequest(
-      code: code == const $CopyWithPlaceholder() || code == null
-          ? _value.code
-          // ignore: cast_nullable_to_non_nullable
-          : code as String,
-      discountValue: discountValue == const $CopyWithPlaceholder()
-          ? _value.discountValue
-          // ignore: cast_nullable_to_non_nullable
-          : discountValue as num?,
-      discountType: discountType == const $CopyWithPlaceholder()
-          ? _value.discountType
-          // ignore: cast_nullable_to_non_nullable
-          : discountType as DiscountType?,
-      applyType: applyType == const $CopyWithPlaceholder()
-          ? _value.applyType
-          // ignore: cast_nullable_to_non_nullable
-          : applyType as VoucherType?,
-      requiredPoints: requiredPoints == const $CopyWithPlaceholder()
-          ? _value.requiredPoints
-          // ignore: cast_nullable_to_non_nullable
-          : requiredPoints as int?,
-      minOrderValue: minOrderValue == const $CopyWithPlaceholder()
-          ? _value.minOrderValue
-          // ignore: cast_nullable_to_non_nullable
-          : minOrderValue as num?,
-      expiryDate: expiryDate == const $CopyWithPlaceholder()
-          ? _value.expiryDate
-          // ignore: cast_nullable_to_non_nullable
-          : expiryDate as DateTime?,
-      totalQuantity: totalQuantity == const $CopyWithPlaceholder()
-          ? _value.totalQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : totalQuantity as int?,
-      isPublic: isPublic == const $CopyWithPlaceholder()
-          ? _value.isPublic
-          // ignore: cast_nullable_to_non_nullable
-          : isPublic as bool?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'CreateVoucherRequest')
+          ..add('code', code)
+          ..add('discountValue', discountValue)
+          ..add('discountType', discountType)
+          ..add('applyType', applyType)
+          ..add('requiredPoints', requiredPoints)
+          ..add('minOrderValue', minOrderValue)
+          ..add('expiryDate', expiryDate)
+          ..add('totalQuantity', totalQuantity)
+          ..add('isPublic', isPublic))
+        .toString();
   }
 }
 
-extension $CreateVoucherRequestCopyWith on CreateVoucherRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCreateVoucherRequest.copyWith(...)` or `instanceOfCreateVoucherRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CreateVoucherRequestCWProxy get copyWith =>
-      _$CreateVoucherRequestCWProxyImpl(this);
+class CreateVoucherRequestBuilder
+    implements Builder<CreateVoucherRequest, CreateVoucherRequestBuilder> {
+  _$CreateVoucherRequest? _$v;
+
+  String? _code;
+  String? get code => _$this._code;
+  set code(String? code) => _$this._code = code;
+
+  num? _discountValue;
+  num? get discountValue => _$this._discountValue;
+  set discountValue(num? discountValue) =>
+      _$this._discountValue = discountValue;
+
+  DiscountType? _discountType;
+  DiscountType? get discountType => _$this._discountType;
+  set discountType(DiscountType? discountType) =>
+      _$this._discountType = discountType;
+
+  VoucherType? _applyType;
+  VoucherType? get applyType => _$this._applyType;
+  set applyType(VoucherType? applyType) => _$this._applyType = applyType;
+
+  int? _requiredPoints;
+  int? get requiredPoints => _$this._requiredPoints;
+  set requiredPoints(int? requiredPoints) =>
+      _$this._requiredPoints = requiredPoints;
+
+  num? _minOrderValue;
+  num? get minOrderValue => _$this._minOrderValue;
+  set minOrderValue(num? minOrderValue) =>
+      _$this._minOrderValue = minOrderValue;
+
+  DateTime? _expiryDate;
+  DateTime? get expiryDate => _$this._expiryDate;
+  set expiryDate(DateTime? expiryDate) => _$this._expiryDate = expiryDate;
+
+  int? _totalQuantity;
+  int? get totalQuantity => _$this._totalQuantity;
+  set totalQuantity(int? totalQuantity) =>
+      _$this._totalQuantity = totalQuantity;
+
+  bool? _isPublic;
+  bool? get isPublic => _$this._isPublic;
+  set isPublic(bool? isPublic) => _$this._isPublic = isPublic;
+
+  CreateVoucherRequestBuilder() {
+    CreateVoucherRequest._defaults(this);
+  }
+
+  CreateVoucherRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _code = $v.code;
+      _discountValue = $v.discountValue;
+      _discountType = $v.discountType;
+      _applyType = $v.applyType;
+      _requiredPoints = $v.requiredPoints;
+      _minOrderValue = $v.minOrderValue;
+      _expiryDate = $v.expiryDate;
+      _totalQuantity = $v.totalQuantity;
+      _isPublic = $v.isPublic;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CreateVoucherRequest other) {
+    _$v = other as _$CreateVoucherRequest;
+  }
+
+  @override
+  void update(void Function(CreateVoucherRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CreateVoucherRequest build() => _build();
+
+  _$CreateVoucherRequest _build() {
+    final _$result =
+        _$v ??
+        _$CreateVoucherRequest._(
+          code: BuiltValueNullFieldError.checkNotNull(
+            code,
+            r'CreateVoucherRequest',
+            'code',
+          ),
+          discountValue: discountValue,
+          discountType: discountType,
+          applyType: applyType,
+          requiredPoints: requiredPoints,
+          minOrderValue: minOrderValue,
+          expiryDate: expiryDate,
+          totalQuantity: totalQuantity,
+          isPublic: isPublic,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreateVoucherRequest _$CreateVoucherRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('CreateVoucherRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['code']);
-  final val = CreateVoucherRequest(
-    code: $checkedConvert('code', (v) => v as String),
-    discountValue: $checkedConvert('discountValue', (v) => v as num?),
-    discountType: $checkedConvert(
-      'discountType',
-      (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
-    ),
-    applyType: $checkedConvert(
-      'applyType',
-      (v) => $enumDecodeNullable(_$VoucherTypeEnumMap, v),
-    ),
-    requiredPoints: $checkedConvert(
-      'requiredPoints',
-      (v) => (v as num?)?.toInt(),
-    ),
-    minOrderValue: $checkedConvert('minOrderValue', (v) => v as num?),
-    expiryDate: $checkedConvert(
-      'expiryDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    totalQuantity: $checkedConvert(
-      'totalQuantity',
-      (v) => (v as num?)?.toInt(),
-    ),
-    isPublic: $checkedConvert('isPublic', (v) => v as bool?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$CreateVoucherRequestToJson(
-  CreateVoucherRequest instance,
-) => <String, dynamic>{
-  'code': instance.code,
-  'discountValue': ?instance.discountValue,
-  'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
-  'applyType': ?_$VoucherTypeEnumMap[instance.applyType],
-  'requiredPoints': ?instance.requiredPoints,
-  'minOrderValue': ?instance.minOrderValue,
-  'expiryDate': ?instance.expiryDate?.toIso8601String(),
-  'totalQuantity': ?instance.totalQuantity,
-  'isPublic': ?instance.isPublic,
-};
-
-const _$DiscountTypeEnumMap = {
-  DiscountType.percentage: 'Percentage',
-  DiscountType.fixedAmount: 'FixedAmount',
-};
-
-const _$VoucherTypeEnumMap = {
-  VoucherType.order: 'Order',
-  VoucherType.product: 'Product',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

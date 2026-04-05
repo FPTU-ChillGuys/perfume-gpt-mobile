@@ -3,13 +3,14 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for AddressLevel4Response
 void main() {
-  final AddressLevel4Response? instance = /* AddressLevel4Response(...) */ null;
-  // TODO add properties to the entity
+  final instance = AddressLevel4ResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(AddressLevel4Response, () {
-    // List<String> data
+    // BuiltList<String> data
     test('to test the property `data`', () async {
       // TODO
     });
+
   });
 }

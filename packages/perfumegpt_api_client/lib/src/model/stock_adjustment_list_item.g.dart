@@ -3,192 +3,174 @@
 part of 'stock_adjustment_list_item.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$StockAdjustmentListItemCWProxy {
-  StockAdjustmentListItem id(String? id);
+class _$StockAdjustmentListItem extends StockAdjustmentListItem {
+  @override
+  final String? id;
+  @override
+  final String createdByName;
+  @override
+  final DateTime? adjustmentDate;
+  @override
+  final StockAdjustmentReason? reason;
+  @override
+  final StockAdjustmentStatus? status;
+  @override
+  final int? totalItems;
+  @override
+  final DateTime? createdAt;
 
-  StockAdjustmentListItem createdByName(String? createdByName);
+  factory _$StockAdjustmentListItem([
+    void Function(StockAdjustmentListItemBuilder)? updates,
+  ]) => (StockAdjustmentListItemBuilder()..update(updates))._build();
 
-  StockAdjustmentListItem adjustmentDate(DateTime? adjustmentDate);
-
-  StockAdjustmentListItem reason(StockAdjustmentReason? reason);
-
-  StockAdjustmentListItem status(StockAdjustmentStatus? status);
-
-  StockAdjustmentListItem totalItems(int? totalItems);
-
-  StockAdjustmentListItem createdAt(DateTime? createdAt);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockAdjustmentListItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// StockAdjustmentListItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  StockAdjustmentListItem call({
-    String? id,
-    String? createdByName,
-    DateTime? adjustmentDate,
-    StockAdjustmentReason? reason,
-    StockAdjustmentStatus? status,
-    int? totalItems,
-    DateTime? createdAt,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfStockAdjustmentListItem.copyWith(...)` or call `instanceOfStockAdjustmentListItem.copyWith.fieldName(value)` for a single field.
-class _$StockAdjustmentListItemCWProxyImpl
-    implements _$StockAdjustmentListItemCWProxy {
-  const _$StockAdjustmentListItemCWProxyImpl(this._value);
-
-  final StockAdjustmentListItem _value;
+  _$StockAdjustmentListItem._({
+    this.id,
+    required this.createdByName,
+    this.adjustmentDate,
+    this.reason,
+    this.status,
+    this.totalItems,
+    this.createdAt,
+  }) : super._();
+  @override
+  StockAdjustmentListItem rebuild(
+    void Function(StockAdjustmentListItemBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  StockAdjustmentListItem id(String? id) => call(id: id);
+  StockAdjustmentListItemBuilder toBuilder() =>
+      StockAdjustmentListItemBuilder()..replace(this);
 
   @override
-  StockAdjustmentListItem createdByName(String? createdByName) =>
-      call(createdByName: createdByName);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is StockAdjustmentListItem &&
+        id == other.id &&
+        createdByName == other.createdByName &&
+        adjustmentDate == other.adjustmentDate &&
+        reason == other.reason &&
+        status == other.status &&
+        totalItems == other.totalItems &&
+        createdAt == other.createdAt;
+  }
 
   @override
-  StockAdjustmentListItem adjustmentDate(DateTime? adjustmentDate) =>
-      call(adjustmentDate: adjustmentDate);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, createdByName.hashCode);
+    _$hash = $jc(_$hash, adjustmentDate.hashCode);
+    _$hash = $jc(_$hash, reason.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, totalItems.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  StockAdjustmentListItem reason(StockAdjustmentReason? reason) =>
-      call(reason: reason);
-
-  @override
-  StockAdjustmentListItem status(StockAdjustmentStatus? status) =>
-      call(status: status);
-
-  @override
-  StockAdjustmentListItem totalItems(int? totalItems) =>
-      call(totalItems: totalItems);
-
-  @override
-  StockAdjustmentListItem createdAt(DateTime? createdAt) =>
-      call(createdAt: createdAt);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StockAdjustmentListItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// StockAdjustmentListItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  StockAdjustmentListItem call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? createdByName = const $CopyWithPlaceholder(),
-    Object? adjustmentDate = const $CopyWithPlaceholder(),
-    Object? reason = const $CopyWithPlaceholder(),
-    Object? status = const $CopyWithPlaceholder(),
-    Object? totalItems = const $CopyWithPlaceholder(),
-    Object? createdAt = const $CopyWithPlaceholder(),
-  }) {
-    return StockAdjustmentListItem(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      createdByName: createdByName == const $CopyWithPlaceholder()
-          ? _value.createdByName
-          // ignore: cast_nullable_to_non_nullable
-          : createdByName as String?,
-      adjustmentDate: adjustmentDate == const $CopyWithPlaceholder()
-          ? _value.adjustmentDate
-          // ignore: cast_nullable_to_non_nullable
-          : adjustmentDate as DateTime?,
-      reason: reason == const $CopyWithPlaceholder()
-          ? _value.reason
-          // ignore: cast_nullable_to_non_nullable
-          : reason as StockAdjustmentReason?,
-      status: status == const $CopyWithPlaceholder()
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as StockAdjustmentStatus?,
-      totalItems: totalItems == const $CopyWithPlaceholder()
-          ? _value.totalItems
-          // ignore: cast_nullable_to_non_nullable
-          : totalItems as int?,
-      createdAt: createdAt == const $CopyWithPlaceholder()
-          ? _value.createdAt
-          // ignore: cast_nullable_to_non_nullable
-          : createdAt as DateTime?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'StockAdjustmentListItem')
+          ..add('id', id)
+          ..add('createdByName', createdByName)
+          ..add('adjustmentDate', adjustmentDate)
+          ..add('reason', reason)
+          ..add('status', status)
+          ..add('totalItems', totalItems)
+          ..add('createdAt', createdAt))
+        .toString();
   }
 }
 
-extension $StockAdjustmentListItemCopyWith on StockAdjustmentListItem {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfStockAdjustmentListItem.copyWith(...)` or `instanceOfStockAdjustmentListItem.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$StockAdjustmentListItemCWProxy get copyWith =>
-      _$StockAdjustmentListItemCWProxyImpl(this);
+class StockAdjustmentListItemBuilder
+    implements
+        Builder<StockAdjustmentListItem, StockAdjustmentListItemBuilder> {
+  _$StockAdjustmentListItem? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _createdByName;
+  String? get createdByName => _$this._createdByName;
+  set createdByName(String? createdByName) =>
+      _$this._createdByName = createdByName;
+
+  DateTime? _adjustmentDate;
+  DateTime? get adjustmentDate => _$this._adjustmentDate;
+  set adjustmentDate(DateTime? adjustmentDate) =>
+      _$this._adjustmentDate = adjustmentDate;
+
+  StockAdjustmentReason? _reason;
+  StockAdjustmentReason? get reason => _$this._reason;
+  set reason(StockAdjustmentReason? reason) => _$this._reason = reason;
+
+  StockAdjustmentStatus? _status;
+  StockAdjustmentStatus? get status => _$this._status;
+  set status(StockAdjustmentStatus? status) => _$this._status = status;
+
+  int? _totalItems;
+  int? get totalItems => _$this._totalItems;
+  set totalItems(int? totalItems) => _$this._totalItems = totalItems;
+
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  StockAdjustmentListItemBuilder() {
+    StockAdjustmentListItem._defaults(this);
+  }
+
+  StockAdjustmentListItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _createdByName = $v.createdByName;
+      _adjustmentDate = $v.adjustmentDate;
+      _reason = $v.reason;
+      _status = $v.status;
+      _totalItems = $v.totalItems;
+      _createdAt = $v.createdAt;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(StockAdjustmentListItem other) {
+    _$v = other as _$StockAdjustmentListItem;
+  }
+
+  @override
+  void update(void Function(StockAdjustmentListItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  StockAdjustmentListItem build() => _build();
+
+  _$StockAdjustmentListItem _build() {
+    final _$result =
+        _$v ??
+        _$StockAdjustmentListItem._(
+          id: id,
+          createdByName: BuiltValueNullFieldError.checkNotNull(
+            createdByName,
+            r'StockAdjustmentListItem',
+            'createdByName',
+          ),
+          adjustmentDate: adjustmentDate,
+          reason: reason,
+          status: status,
+          totalItems: totalItems,
+          createdAt: createdAt,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-StockAdjustmentListItem _$StockAdjustmentListItemFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('StockAdjustmentListItem', json, ($checkedConvert) {
-  final val = StockAdjustmentListItem(
-    id: $checkedConvert('id', (v) => v as String?),
-    createdByName: $checkedConvert('createdByName', (v) => v as String?),
-    adjustmentDate: $checkedConvert(
-      'adjustmentDate',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    reason: $checkedConvert(
-      'reason',
-      (v) => $enumDecodeNullable(_$StockAdjustmentReasonEnumMap, v),
-    ),
-    status: $checkedConvert(
-      'status',
-      (v) => $enumDecodeNullable(_$StockAdjustmentStatusEnumMap, v),
-    ),
-    totalItems: $checkedConvert('totalItems', (v) => (v as num?)?.toInt()),
-    createdAt: $checkedConvert(
-      'createdAt',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$StockAdjustmentListItemToJson(
-  StockAdjustmentListItem instance,
-) => <String, dynamic>{
-  'id': ?instance.id,
-  'createdByName': ?instance.createdByName,
-  'adjustmentDate': ?instance.adjustmentDate?.toIso8601String(),
-  'reason': ?_$StockAdjustmentReasonEnumMap[instance.reason],
-  'status': ?_$StockAdjustmentStatusEnumMap[instance.status],
-  'totalItems': ?instance.totalItems,
-  'createdAt': ?instance.createdAt?.toIso8601String(),
-};
-
-const _$StockAdjustmentReasonEnumMap = {
-  StockAdjustmentReason.damage: 'Damage',
-  StockAdjustmentReason.expired: 'Expired',
-  StockAdjustmentReason.theft: 'Theft',
-  StockAdjustmentReason.loss: 'Loss',
-  StockAdjustmentReason.found: 'Found',
-  StockAdjustmentReason.correction: 'Correction',
-  StockAdjustmentReason.return_: 'Return',
-  StockAdjustmentReason.other: 'Other',
-};
-
-const _$StockAdjustmentStatusEnumMap = {
-  StockAdjustmentStatus.pending: 'Pending',
-  StockAdjustmentStatus.inProgress: 'InProgress',
-  StockAdjustmentStatus.completed: 'Completed',
-  StockAdjustmentStatus.cancelled: 'Cancelled',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

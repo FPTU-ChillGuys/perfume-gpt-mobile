@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateVariantRequest
 void main() {
-  final UpdateVariantRequest? instance = /* UpdateVariantRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = UpdateVariantRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(UpdateVariantRequest, () {
     // String sku
@@ -37,24 +37,40 @@ void main() {
       // TODO
     });
 
+    // num retailPrice
+    test('to test the property `retailPrice`', () async {
+      // TODO
+    });
+
     // VariantStatus status
     test('to test the property `status`', () async {
       // TODO
     });
 
-    // List<String> mediaIdsToDelete
+    // int sillage
+    test('to test the property `sillage`', () async {
+      // TODO
+    });
+
+    // int longevity
+    test('to test the property `longevity`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> mediaIdsToDelete
     test('to test the property `mediaIdsToDelete`', () async {
       // TODO
     });
 
-    // List<String> temporaryMediaIdsToAdd
+    // BuiltList<String> temporaryMediaIdsToAdd
     test('to test the property `temporaryMediaIdsToAdd`', () async {
       // TODO
     });
 
-    // List<ProductAttributeDto> attributes
+    // BuiltList<ProductAttributeDto> attributes
     test('to test the property `attributes`', () async {
       // TODO
     });
+
   });
 }

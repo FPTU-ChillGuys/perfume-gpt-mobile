@@ -8,6 +8,7 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**userId** | **String** |  | [optional] 
 **transactionType** | [**LoyaltyTransactionType**](LoyaltyTransactionType.md) |  | [optional] 
 **points** | **int** |  | [optional] 
 **reason** | **String** |  | 

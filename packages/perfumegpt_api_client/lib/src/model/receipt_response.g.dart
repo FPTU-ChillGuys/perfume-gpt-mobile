@@ -3,259 +3,308 @@
 part of 'receipt_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$ReceiptResponseCWProxy {
-  ReceiptResponse orderId(String? orderId);
+class _$ReceiptResponse extends ReceiptResponse {
+  @override
+  final String? orderId;
+  @override
+  final String code;
+  @override
+  final DateTime? orderDate;
+  @override
+  final String orderStatus;
+  @override
+  final String staffName;
+  @override
+  final String customerName;
+  @override
+  final String recipientPhone;
+  @override
+  final String recipientAddress;
+  @override
+  final BuiltList<ReceiptItemDto> items;
+  @override
+  final num? subtotal;
+  @override
+  final num? discount;
+  @override
+  final num? tax;
+  @override
+  final num? total;
+  @override
+  final String paymentMethod;
+  @override
+  final String? note;
 
-  ReceiptResponse orderDate(DateTime? orderDate);
+  factory _$ReceiptResponse([void Function(ReceiptResponseBuilder)? updates]) =>
+      (ReceiptResponseBuilder()..update(updates))._build();
 
-  ReceiptResponse orderStatus(String? orderStatus);
-
-  ReceiptResponse staffName(String? staffName);
-
-  ReceiptResponse customerName(String? customerName);
-
-  ReceiptResponse recipientPhone(String? recipientPhone);
-
-  ReceiptResponse recipientAddress(String? recipientAddress);
-
-  ReceiptResponse items(List<ReceiptItemDto>? items);
-
-  ReceiptResponse subtotal(num? subtotal);
-
-  ReceiptResponse discount(num? discount);
-
-  ReceiptResponse tax(num? tax);
-
-  ReceiptResponse total(num? total);
-
-  ReceiptResponse paymentMethod(String? paymentMethod);
-
-  ReceiptResponse note(String? note);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReceiptResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ReceiptResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ReceiptResponse call({
-    String? orderId,
-    DateTime? orderDate,
-    String? orderStatus,
-    String? staffName,
-    String? customerName,
-    String? recipientPhone,
-    String? recipientAddress,
-    List<ReceiptItemDto>? items,
-    num? subtotal,
-    num? discount,
-    num? tax,
-    num? total,
-    String? paymentMethod,
-    String? note,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfReceiptResponse.copyWith(...)` or call `instanceOfReceiptResponse.copyWith.fieldName(value)` for a single field.
-class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
-  const _$ReceiptResponseCWProxyImpl(this._value);
-
-  final ReceiptResponse _value;
+  _$ReceiptResponse._({
+    this.orderId,
+    required this.code,
+    this.orderDate,
+    required this.orderStatus,
+    required this.staffName,
+    required this.customerName,
+    required this.recipientPhone,
+    required this.recipientAddress,
+    required this.items,
+    this.subtotal,
+    this.discount,
+    this.tax,
+    this.total,
+    required this.paymentMethod,
+    this.note,
+  }) : super._();
+  @override
+  ReceiptResponse rebuild(void Function(ReceiptResponseBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  ReceiptResponse orderId(String? orderId) => call(orderId: orderId);
+  ReceiptResponseBuilder toBuilder() => ReceiptResponseBuilder()..replace(this);
 
   @override
-  ReceiptResponse orderDate(DateTime? orderDate) => call(orderDate: orderDate);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ReceiptResponse &&
+        orderId == other.orderId &&
+        code == other.code &&
+        orderDate == other.orderDate &&
+        orderStatus == other.orderStatus &&
+        staffName == other.staffName &&
+        customerName == other.customerName &&
+        recipientPhone == other.recipientPhone &&
+        recipientAddress == other.recipientAddress &&
+        items == other.items &&
+        subtotal == other.subtotal &&
+        discount == other.discount &&
+        tax == other.tax &&
+        total == other.total &&
+        paymentMethod == other.paymentMethod &&
+        note == other.note;
+  }
 
   @override
-  ReceiptResponse orderStatus(String? orderStatus) =>
-      call(orderStatus: orderStatus);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, orderId.hashCode);
+    _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, orderDate.hashCode);
+    _$hash = $jc(_$hash, orderStatus.hashCode);
+    _$hash = $jc(_$hash, staffName.hashCode);
+    _$hash = $jc(_$hash, customerName.hashCode);
+    _$hash = $jc(_$hash, recipientPhone.hashCode);
+    _$hash = $jc(_$hash, recipientAddress.hashCode);
+    _$hash = $jc(_$hash, items.hashCode);
+    _$hash = $jc(_$hash, subtotal.hashCode);
+    _$hash = $jc(_$hash, discount.hashCode);
+    _$hash = $jc(_$hash, tax.hashCode);
+    _$hash = $jc(_$hash, total.hashCode);
+    _$hash = $jc(_$hash, paymentMethod.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  ReceiptResponse staffName(String? staffName) => call(staffName: staffName);
-
-  @override
-  ReceiptResponse customerName(String? customerName) =>
-      call(customerName: customerName);
-
-  @override
-  ReceiptResponse recipientPhone(String? recipientPhone) =>
-      call(recipientPhone: recipientPhone);
-
-  @override
-  ReceiptResponse recipientAddress(String? recipientAddress) =>
-      call(recipientAddress: recipientAddress);
-
-  @override
-  ReceiptResponse items(List<ReceiptItemDto>? items) => call(items: items);
-
-  @override
-  ReceiptResponse subtotal(num? subtotal) => call(subtotal: subtotal);
-
-  @override
-  ReceiptResponse discount(num? discount) => call(discount: discount);
-
-  @override
-  ReceiptResponse tax(num? tax) => call(tax: tax);
-
-  @override
-  ReceiptResponse total(num? total) => call(total: total);
-
-  @override
-  ReceiptResponse paymentMethod(String? paymentMethod) =>
-      call(paymentMethod: paymentMethod);
-
-  @override
-  ReceiptResponse note(String? note) => call(note: note);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ReceiptResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ReceiptResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ReceiptResponse call({
-    Object? orderId = const $CopyWithPlaceholder(),
-    Object? orderDate = const $CopyWithPlaceholder(),
-    Object? orderStatus = const $CopyWithPlaceholder(),
-    Object? staffName = const $CopyWithPlaceholder(),
-    Object? customerName = const $CopyWithPlaceholder(),
-    Object? recipientPhone = const $CopyWithPlaceholder(),
-    Object? recipientAddress = const $CopyWithPlaceholder(),
-    Object? items = const $CopyWithPlaceholder(),
-    Object? subtotal = const $CopyWithPlaceholder(),
-    Object? discount = const $CopyWithPlaceholder(),
-    Object? tax = const $CopyWithPlaceholder(),
-    Object? total = const $CopyWithPlaceholder(),
-    Object? paymentMethod = const $CopyWithPlaceholder(),
-    Object? note = const $CopyWithPlaceholder(),
-  }) {
-    return ReceiptResponse(
-      orderId: orderId == const $CopyWithPlaceholder()
-          ? _value.orderId
-          // ignore: cast_nullable_to_non_nullable
-          : orderId as String?,
-      orderDate: orderDate == const $CopyWithPlaceholder()
-          ? _value.orderDate
-          // ignore: cast_nullable_to_non_nullable
-          : orderDate as DateTime?,
-      orderStatus: orderStatus == const $CopyWithPlaceholder()
-          ? _value.orderStatus
-          // ignore: cast_nullable_to_non_nullable
-          : orderStatus as String?,
-      staffName: staffName == const $CopyWithPlaceholder()
-          ? _value.staffName
-          // ignore: cast_nullable_to_non_nullable
-          : staffName as String?,
-      customerName: customerName == const $CopyWithPlaceholder()
-          ? _value.customerName
-          // ignore: cast_nullable_to_non_nullable
-          : customerName as String?,
-      recipientPhone: recipientPhone == const $CopyWithPlaceholder()
-          ? _value.recipientPhone
-          // ignore: cast_nullable_to_non_nullable
-          : recipientPhone as String?,
-      recipientAddress: recipientAddress == const $CopyWithPlaceholder()
-          ? _value.recipientAddress
-          // ignore: cast_nullable_to_non_nullable
-          : recipientAddress as String?,
-      items: items == const $CopyWithPlaceholder()
-          ? _value.items
-          // ignore: cast_nullable_to_non_nullable
-          : items as List<ReceiptItemDto>?,
-      subtotal: subtotal == const $CopyWithPlaceholder()
-          ? _value.subtotal
-          // ignore: cast_nullable_to_non_nullable
-          : subtotal as num?,
-      discount: discount == const $CopyWithPlaceholder()
-          ? _value.discount
-          // ignore: cast_nullable_to_non_nullable
-          : discount as num?,
-      tax: tax == const $CopyWithPlaceholder()
-          ? _value.tax
-          // ignore: cast_nullable_to_non_nullable
-          : tax as num?,
-      total: total == const $CopyWithPlaceholder()
-          ? _value.total
-          // ignore: cast_nullable_to_non_nullable
-          : total as num?,
-      paymentMethod: paymentMethod == const $CopyWithPlaceholder()
-          ? _value.paymentMethod
-          // ignore: cast_nullable_to_non_nullable
-          : paymentMethod as String?,
-      note: note == const $CopyWithPlaceholder()
-          ? _value.note
-          // ignore: cast_nullable_to_non_nullable
-          : note as String?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'ReceiptResponse')
+          ..add('orderId', orderId)
+          ..add('code', code)
+          ..add('orderDate', orderDate)
+          ..add('orderStatus', orderStatus)
+          ..add('staffName', staffName)
+          ..add('customerName', customerName)
+          ..add('recipientPhone', recipientPhone)
+          ..add('recipientAddress', recipientAddress)
+          ..add('items', items)
+          ..add('subtotal', subtotal)
+          ..add('discount', discount)
+          ..add('tax', tax)
+          ..add('total', total)
+          ..add('paymentMethod', paymentMethod)
+          ..add('note', note))
+        .toString();
   }
 }
 
-extension $ReceiptResponseCopyWith on ReceiptResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfReceiptResponse.copyWith(...)` or `instanceOfReceiptResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$ReceiptResponseCWProxy get copyWith => _$ReceiptResponseCWProxyImpl(this);
+class ReceiptResponseBuilder
+    implements Builder<ReceiptResponse, ReceiptResponseBuilder> {
+  _$ReceiptResponse? _$v;
+
+  String? _orderId;
+  String? get orderId => _$this._orderId;
+  set orderId(String? orderId) => _$this._orderId = orderId;
+
+  String? _code;
+  String? get code => _$this._code;
+  set code(String? code) => _$this._code = code;
+
+  DateTime? _orderDate;
+  DateTime? get orderDate => _$this._orderDate;
+  set orderDate(DateTime? orderDate) => _$this._orderDate = orderDate;
+
+  String? _orderStatus;
+  String? get orderStatus => _$this._orderStatus;
+  set orderStatus(String? orderStatus) => _$this._orderStatus = orderStatus;
+
+  String? _staffName;
+  String? get staffName => _$this._staffName;
+  set staffName(String? staffName) => _$this._staffName = staffName;
+
+  String? _customerName;
+  String? get customerName => _$this._customerName;
+  set customerName(String? customerName) => _$this._customerName = customerName;
+
+  String? _recipientPhone;
+  String? get recipientPhone => _$this._recipientPhone;
+  set recipientPhone(String? recipientPhone) =>
+      _$this._recipientPhone = recipientPhone;
+
+  String? _recipientAddress;
+  String? get recipientAddress => _$this._recipientAddress;
+  set recipientAddress(String? recipientAddress) =>
+      _$this._recipientAddress = recipientAddress;
+
+  ListBuilder<ReceiptItemDto>? _items;
+  ListBuilder<ReceiptItemDto> get items =>
+      _$this._items ??= ListBuilder<ReceiptItemDto>();
+  set items(ListBuilder<ReceiptItemDto>? items) => _$this._items = items;
+
+  num? _subtotal;
+  num? get subtotal => _$this._subtotal;
+  set subtotal(num? subtotal) => _$this._subtotal = subtotal;
+
+  num? _discount;
+  num? get discount => _$this._discount;
+  set discount(num? discount) => _$this._discount = discount;
+
+  num? _tax;
+  num? get tax => _$this._tax;
+  set tax(num? tax) => _$this._tax = tax;
+
+  num? _total;
+  num? get total => _$this._total;
+  set total(num? total) => _$this._total = total;
+
+  String? _paymentMethod;
+  String? get paymentMethod => _$this._paymentMethod;
+  set paymentMethod(String? paymentMethod) =>
+      _$this._paymentMethod = paymentMethod;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  ReceiptResponseBuilder() {
+    ReceiptResponse._defaults(this);
+  }
+
+  ReceiptResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _orderId = $v.orderId;
+      _code = $v.code;
+      _orderDate = $v.orderDate;
+      _orderStatus = $v.orderStatus;
+      _staffName = $v.staffName;
+      _customerName = $v.customerName;
+      _recipientPhone = $v.recipientPhone;
+      _recipientAddress = $v.recipientAddress;
+      _items = $v.items.toBuilder();
+      _subtotal = $v.subtotal;
+      _discount = $v.discount;
+      _tax = $v.tax;
+      _total = $v.total;
+      _paymentMethod = $v.paymentMethod;
+      _note = $v.note;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ReceiptResponse other) {
+    _$v = other as _$ReceiptResponse;
+  }
+
+  @override
+  void update(void Function(ReceiptResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ReceiptResponse build() => _build();
+
+  _$ReceiptResponse _build() {
+    _$ReceiptResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$ReceiptResponse._(
+            orderId: orderId,
+            code: BuiltValueNullFieldError.checkNotNull(
+              code,
+              r'ReceiptResponse',
+              'code',
+            ),
+            orderDate: orderDate,
+            orderStatus: BuiltValueNullFieldError.checkNotNull(
+              orderStatus,
+              r'ReceiptResponse',
+              'orderStatus',
+            ),
+            staffName: BuiltValueNullFieldError.checkNotNull(
+              staffName,
+              r'ReceiptResponse',
+              'staffName',
+            ),
+            customerName: BuiltValueNullFieldError.checkNotNull(
+              customerName,
+              r'ReceiptResponse',
+              'customerName',
+            ),
+            recipientPhone: BuiltValueNullFieldError.checkNotNull(
+              recipientPhone,
+              r'ReceiptResponse',
+              'recipientPhone',
+            ),
+            recipientAddress: BuiltValueNullFieldError.checkNotNull(
+              recipientAddress,
+              r'ReceiptResponse',
+              'recipientAddress',
+            ),
+            items: items.build(),
+            subtotal: subtotal,
+            discount: discount,
+            tax: tax,
+            total: total,
+            paymentMethod: BuiltValueNullFieldError.checkNotNull(
+              paymentMethod,
+              r'ReceiptResponse',
+              'paymentMethod',
+            ),
+            note: note,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'items';
+        items.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'ReceiptResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-ReceiptResponse _$ReceiptResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ReceiptResponse', json, ($checkedConvert) {
-      final val = ReceiptResponse(
-        orderId: $checkedConvert('orderId', (v) => v as String?),
-        orderDate: $checkedConvert(
-          'orderDate',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-        orderStatus: $checkedConvert('orderStatus', (v) => v as String?),
-        staffName: $checkedConvert('staffName', (v) => v as String?),
-        customerName: $checkedConvert('customerName', (v) => v as String?),
-        recipientPhone: $checkedConvert('recipientPhone', (v) => v as String?),
-        recipientAddress: $checkedConvert(
-          'recipientAddress',
-          (v) => v as String?,
-        ),
-        items: $checkedConvert(
-          'items',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => ReceiptItemDto.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
-        subtotal: $checkedConvert('subtotal', (v) => v as num?),
-        discount: $checkedConvert('discount', (v) => v as num?),
-        tax: $checkedConvert('tax', (v) => v as num?),
-        total: $checkedConvert('total', (v) => v as num?),
-        paymentMethod: $checkedConvert('paymentMethod', (v) => v as String?),
-        note: $checkedConvert('note', (v) => v as String?),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$ReceiptResponseToJson(ReceiptResponse instance) =>
-    <String, dynamic>{
-      'orderId': ?instance.orderId,
-      'orderDate': ?instance.orderDate?.toIso8601String(),
-      'orderStatus': ?instance.orderStatus,
-      'staffName': ?instance.staffName,
-      'customerName': ?instance.customerName,
-      'recipientPhone': ?instance.recipientPhone,
-      'recipientAddress': ?instance.recipientAddress,
-      'items': ?instance.items?.map((e) => e.toJson()).toList(),
-      'subtotal': ?instance.subtotal,
-      'discount': ?instance.discount,
-      'tax': ?instance.tax,
-      'total': ?instance.total,
-      'paymentMethod': ?instance.paymentMethod,
-      'note': ?instance.note,
-    };
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

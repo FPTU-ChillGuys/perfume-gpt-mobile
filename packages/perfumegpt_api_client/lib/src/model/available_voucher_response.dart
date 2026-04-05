@@ -4,152 +4,215 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/discount_type.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'available_voucher_response.g.dart';
 
+/// AvailableVoucherResponse
+///
+/// Properties:
+/// * [id] 
+/// * [code] 
+/// * [discountValue] 
+/// * [discountType] 
+/// * [minOrderValue] 
+/// * [expiryDate] 
+/// * [remainingQuantity] 
+@BuiltValue()
+abstract class AvailableVoucherResponse implements Built<AvailableVoucherResponse, AvailableVoucherResponseBuilder> {
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class AvailableVoucherResponse {
-  /// Returns a new [AvailableVoucherResponse] instance.
-  AvailableVoucherResponse({
+  @BuiltValueField(wireName: r'code')
+  String get code;
 
-     this.id,
+  @BuiltValueField(wireName: r'discountValue')
+  num? get discountValue;
 
-     this.code,
+  @BuiltValueField(wireName: r'discountType')
+  DiscountType? get discountType;
+  // enum discountTypeEnum {  Percentage,  FixedAmount,  };
 
-     this.discountValue,
+  @BuiltValueField(wireName: r'minOrderValue')
+  num? get minOrderValue;
 
-     this.discountType,
+  @BuiltValueField(wireName: r'expiryDate')
+  DateTime? get expiryDate;
 
-     this.minOrderValue,
+  @BuiltValueField(wireName: r'remainingQuantity')
+  int? get remainingQuantity;
 
-     this.expiryDate,
+  AvailableVoucherResponse._();
 
-     this.remainingQuantity,
-  });
+  factory AvailableVoucherResponse([void updates(AvailableVoucherResponseBuilder b)]) = _$AvailableVoucherResponse;
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(AvailableVoucherResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<AvailableVoucherResponse> get serializer => _$AvailableVoucherResponseSerializer();
+}
 
-  final String? id;
-
-
-
-  @JsonKey(
-    
-    name: r'code',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? code;
-
-
-
-  @JsonKey(
-    
-    name: r'discountValue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? discountValue;
-
-
-
-  @JsonKey(
-    
-    name: r'discountType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DiscountType? discountType;
-
-
-
-  @JsonKey(
-    
-    name: r'minOrderValue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? minOrderValue;
-
-
-
-  @JsonKey(
-    
-    name: r'expiryDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? expiryDate;
-
-
-
-  @JsonKey(
-    
-    name: r'remainingQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? remainingQuantity;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is AvailableVoucherResponse &&
-      other.id == id &&
-      other.code == code &&
-      other.discountValue == discountValue &&
-      other.discountType == discountType &&
-      other.minOrderValue == minOrderValue &&
-      other.expiryDate == expiryDate &&
-      other.remainingQuantity == remainingQuantity;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        code.hashCode +
-        discountValue.hashCode +
-        discountType.hashCode +
-        (minOrderValue == null ? 0 : minOrderValue.hashCode) +
-        expiryDate.hashCode +
-        (remainingQuantity == null ? 0 : remainingQuantity.hashCode);
-
-  factory AvailableVoucherResponse.fromJson(Map<String, dynamic> json) => _$AvailableVoucherResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AvailableVoucherResponseToJson(this);
+class _$AvailableVoucherResponseSerializer implements PrimitiveSerializer<AvailableVoucherResponse> {
+  @override
+  final Iterable<Type> types = const [AvailableVoucherResponse, _$AvailableVoucherResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'AvailableVoucherResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    AvailableVoucherResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'code';
+    yield serializers.serialize(
+      object.code,
+      specifiedType: const FullType(String),
+    );
+    if (object.discountValue != null) {
+      yield r'discountValue';
+      yield serializers.serialize(
+        object.discountValue,
+        specifiedType: const FullType(num),
+      );
+    }
+    if (object.discountType != null) {
+      yield r'discountType';
+      yield serializers.serialize(
+        object.discountType,
+        specifiedType: const FullType(DiscountType),
+      );
+    }
+    if (object.minOrderValue != null) {
+      yield r'minOrderValue';
+      yield serializers.serialize(
+        object.minOrderValue,
+        specifiedType: const FullType.nullable(num),
+      );
+    }
+    if (object.expiryDate != null) {
+      yield r'expiryDate';
+      yield serializers.serialize(
+        object.expiryDate,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.remainingQuantity != null) {
+      yield r'remainingQuantity';
+      yield serializers.serialize(
+        object.remainingQuantity,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    AvailableVoucherResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required AvailableVoucherResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.code = valueDes;
+          break;
+        case r'discountValue':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.discountValue = valueDes;
+          break;
+        case r'discountType':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DiscountType),
+          ) as DiscountType;
+          result.discountType = valueDes;
+          break;
+        case r'minOrderValue':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
+          result.minOrderValue = valueDes;
+          break;
+        case r'expiryDate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.expiryDate = valueDes;
+          break;
+        case r'remainingQuantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.remainingQuantity = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  AvailableVoucherResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = AvailableVoucherResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

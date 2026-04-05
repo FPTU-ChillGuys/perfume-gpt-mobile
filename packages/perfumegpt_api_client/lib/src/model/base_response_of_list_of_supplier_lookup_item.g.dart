@@ -3,151 +3,174 @@
 part of 'base_response_of_list_of_supplier_lookup_item.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BaseResponseOfListOfSupplierLookupItemCWProxy {
-  BaseResponseOfListOfSupplierLookupItem payload(
-    List<SupplierLookupItem>? payload,
-  );
+class _$BaseResponseOfListOfSupplierLookupItem
+    extends BaseResponseOfListOfSupplierLookupItem {
+  @override
+  final BuiltList<SupplierLookupItem>? payload;
+  @override
+  final bool? success;
+  @override
+  final String? message;
+  @override
+  final BuiltList<String>? errors;
+  @override
+  final int? errorType;
 
-  BaseResponseOfListOfSupplierLookupItem success(bool? success);
+  factory _$BaseResponseOfListOfSupplierLookupItem([
+    void Function(BaseResponseOfListOfSupplierLookupItemBuilder)? updates,
+  ]) => (BaseResponseOfListOfSupplierLookupItemBuilder()..update(updates))
+      ._build();
 
-  BaseResponseOfListOfSupplierLookupItem message(String? message);
-
-  BaseResponseOfListOfSupplierLookupItem errors(List<String>? errors);
-
-  BaseResponseOfListOfSupplierLookupItem errorType(int? errorType);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfSupplierLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfListOfSupplierLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfListOfSupplierLookupItem call({
-    List<SupplierLookupItem>? payload,
-    bool? success,
-    String? message,
-    List<String>? errors,
-    int? errorType,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBaseResponseOfListOfSupplierLookupItem.copyWith(...)` or call `instanceOfBaseResponseOfListOfSupplierLookupItem.copyWith.fieldName(value)` for a single field.
-class _$BaseResponseOfListOfSupplierLookupItemCWProxyImpl
-    implements _$BaseResponseOfListOfSupplierLookupItemCWProxy {
-  const _$BaseResponseOfListOfSupplierLookupItemCWProxyImpl(this._value);
-
-  final BaseResponseOfListOfSupplierLookupItem _value;
+  _$BaseResponseOfListOfSupplierLookupItem._({
+    this.payload,
+    this.success,
+    this.message,
+    this.errors,
+    this.errorType,
+  }) : super._();
+  @override
+  BaseResponseOfListOfSupplierLookupItem rebuild(
+    void Function(BaseResponseOfListOfSupplierLookupItemBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BaseResponseOfListOfSupplierLookupItem payload(
-    List<SupplierLookupItem>? payload,
-  ) => call(payload: payload);
+  BaseResponseOfListOfSupplierLookupItemBuilder toBuilder() =>
+      BaseResponseOfListOfSupplierLookupItemBuilder()..replace(this);
 
   @override
-  BaseResponseOfListOfSupplierLookupItem success(bool? success) =>
-      call(success: success);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BaseResponseOfListOfSupplierLookupItem &&
+        payload == other.payload &&
+        success == other.success &&
+        message == other.message &&
+        errors == other.errors &&
+        errorType == other.errorType;
+  }
 
   @override
-  BaseResponseOfListOfSupplierLookupItem message(String? message) =>
-      call(message: message);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, payload.hashCode);
+    _$hash = $jc(_$hash, success.hashCode);
+    _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, errors.hashCode);
+    _$hash = $jc(_$hash, errorType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  BaseResponseOfListOfSupplierLookupItem errors(List<String>? errors) =>
-      call(errors: errors);
-
-  @override
-  BaseResponseOfListOfSupplierLookupItem errorType(int? errorType) =>
-      call(errorType: errorType);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfSupplierLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BaseResponseOfListOfSupplierLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BaseResponseOfListOfSupplierLookupItem call({
-    Object? payload = const $CopyWithPlaceholder(),
-    Object? success = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? errorType = const $CopyWithPlaceholder(),
-  }) {
-    return BaseResponseOfListOfSupplierLookupItem(
-      payload: payload == const $CopyWithPlaceholder()
-          ? _value.payload
-          // ignore: cast_nullable_to_non_nullable
-          : payload as List<SupplierLookupItem>?,
-      success: success == const $CopyWithPlaceholder()
-          ? _value.success
-          // ignore: cast_nullable_to_non_nullable
-          : success as bool?,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
-          // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
-          // ignore: cast_nullable_to_non_nullable
-          : errors as List<String>?,
-      errorType: errorType == const $CopyWithPlaceholder()
-          ? _value.errorType
-          // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'BaseResponseOfListOfSupplierLookupItem',
+          )
+          ..add('payload', payload)
+          ..add('success', success)
+          ..add('message', message)
+          ..add('errors', errors)
+          ..add('errorType', errorType))
+        .toString();
   }
 }
 
-extension $BaseResponseOfListOfSupplierLookupItemCopyWith
-    on BaseResponseOfListOfSupplierLookupItem {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBaseResponseOfListOfSupplierLookupItem.copyWith(...)` or `instanceOfBaseResponseOfListOfSupplierLookupItem.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BaseResponseOfListOfSupplierLookupItemCWProxy get copyWith =>
-      _$BaseResponseOfListOfSupplierLookupItemCWProxyImpl(this);
+class BaseResponseOfListOfSupplierLookupItemBuilder
+    implements
+        Builder<
+          BaseResponseOfListOfSupplierLookupItem,
+          BaseResponseOfListOfSupplierLookupItemBuilder
+        > {
+  _$BaseResponseOfListOfSupplierLookupItem? _$v;
+
+  ListBuilder<SupplierLookupItem>? _payload;
+  ListBuilder<SupplierLookupItem> get payload =>
+      _$this._payload ??= ListBuilder<SupplierLookupItem>();
+  set payload(ListBuilder<SupplierLookupItem>? payload) =>
+      _$this._payload = payload;
+
+  bool? _success;
+  bool? get success => _$this._success;
+  set success(bool? success) => _$this._success = success;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  ListBuilder<String>? _errors;
+  ListBuilder<String> get errors => _$this._errors ??= ListBuilder<String>();
+  set errors(ListBuilder<String>? errors) => _$this._errors = errors;
+
+  int? _errorType;
+  int? get errorType => _$this._errorType;
+  set errorType(int? errorType) => _$this._errorType = errorType;
+
+  BaseResponseOfListOfSupplierLookupItemBuilder() {
+    BaseResponseOfListOfSupplierLookupItem._defaults(this);
+  }
+
+  BaseResponseOfListOfSupplierLookupItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _payload = $v.payload?.toBuilder();
+      _success = $v.success;
+      _message = $v.message;
+      _errors = $v.errors?.toBuilder();
+      _errorType = $v.errorType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BaseResponseOfListOfSupplierLookupItem other) {
+    _$v = other as _$BaseResponseOfListOfSupplierLookupItem;
+  }
+
+  @override
+  void update(
+    void Function(BaseResponseOfListOfSupplierLookupItemBuilder)? updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BaseResponseOfListOfSupplierLookupItem build() => _build();
+
+  _$BaseResponseOfListOfSupplierLookupItem _build() {
+    _$BaseResponseOfListOfSupplierLookupItem _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BaseResponseOfListOfSupplierLookupItem._(
+            payload: _payload?.build(),
+            success: success,
+            message: message,
+            errors: _errors?.build(),
+            errorType: errorType,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'payload';
+        _payload?.build();
+
+        _$failedField = 'errors';
+        _errors?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BaseResponseOfListOfSupplierLookupItem',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BaseResponseOfListOfSupplierLookupItem
-_$BaseResponseOfListOfSupplierLookupItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('BaseResponseOfListOfSupplierLookupItem', json, (
-      $checkedConvert,
-    ) {
-      final val = BaseResponseOfListOfSupplierLookupItem(
-        payload: $checkedConvert(
-          'payload',
-          (v) => (v as List<dynamic>?)
-              ?.map(
-                (e) => SupplierLookupItem.fromJson(e as Map<String, dynamic>),
-              )
-              .toList(),
-        ),
-        success: $checkedConvert('success', (v) => v as bool?),
-        message: $checkedConvert('message', (v) => v as String?),
-        errors: $checkedConvert(
-          'errors',
-          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-        ),
-        errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$BaseResponseOfListOfSupplierLookupItemToJson(
-  BaseResponseOfListOfSupplierLookupItem instance,
-) => <String, dynamic>{
-  'payload': ?instance.payload?.map((e) => e.toJson()).toList(),
-  'success': ?instance.success,
-  'message': ?instance.message,
-  'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

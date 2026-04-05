@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for RedeemVoucherRequest
 void main() {
-  final RedeemVoucherRequest? instance = /* RedeemVoucherRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = RedeemVoucherRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(RedeemVoucherRequest, () {
     // String voucherId
@@ -16,5 +16,6 @@ void main() {
     test('to test the property `receiverEmailOrPhone`', () async {
       // TODO
     });
+
   });
 }

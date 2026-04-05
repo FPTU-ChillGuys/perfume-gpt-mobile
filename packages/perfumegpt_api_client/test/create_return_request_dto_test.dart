@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateReturnRequestDto
 void main() {
@@ -12,13 +12,13 @@ void main() {
       // TODO
     });
 
-    // String reason
+    // ReturnOrderReason reason
     test('to test the property `reason`', () async {
       // TODO
     });
 
-    // num requestedRefundAmount
-    test('to test the property `requestedRefundAmount`', () async {
+    // BuiltList<ReturnItemDto> returnItems
+    test('to test the property `returnItems`', () async {
       // TODO
     });
 
@@ -27,13 +27,18 @@ void main() {
       // TODO
     });
 
-    // BuiltList<String> temporaryMediaIds
-    test('to test the property `temporaryMediaIds`', () async {
+    // String savedAddressId
+    test('to test the property `savedAddressId`', () async {
       // TODO
     });
 
-    // BuiltList<CreateReturnRequestDetailDto> returnItems
-    test('to test the property `returnItems`', () async {
+    // ContactAddressInformation recipient
+    test('to test the property `recipient`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> temporaryMediaIds
+    test('to test the property `temporaryMediaIds`', () async {
       // TODO
     });
 

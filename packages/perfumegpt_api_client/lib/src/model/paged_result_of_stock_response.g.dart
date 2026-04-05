@@ -3,180 +3,198 @@
 part of 'paged_result_of_stock_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$PagedResultOfStockResponseCWProxy {
-  PagedResultOfStockResponse items(List<StockResponse> items);
+class _$PagedResultOfStockResponse extends PagedResultOfStockResponse {
+  @override
+  final BuiltList<StockResponse> items;
+  @override
+  final int pageNumber;
+  @override
+  final int pageSize;
+  @override
+  final int totalCount;
+  @override
+  final int? totalPages;
+  @override
+  final bool? hasPreviousPage;
+  @override
+  final bool? hasNextPage;
 
-  PagedResultOfStockResponse pageNumber(int pageNumber);
+  factory _$PagedResultOfStockResponse([
+    void Function(PagedResultOfStockResponseBuilder)? updates,
+  ]) => (PagedResultOfStockResponseBuilder()..update(updates))._build();
 
-  PagedResultOfStockResponse pageSize(int pageSize);
-
-  PagedResultOfStockResponse totalCount(int totalCount);
-
-  PagedResultOfStockResponse totalPages(int totalPages);
-
-  PagedResultOfStockResponse hasPreviousPage(bool? hasPreviousPage);
-
-  PagedResultOfStockResponse hasNextPage(bool? hasNextPage);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfStockResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PagedResultOfStockResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PagedResultOfStockResponse call({
-    List<StockResponse> items,
-    int pageNumber,
-    int pageSize,
-    int totalCount,
-    int totalPages,
-    bool? hasPreviousPage,
-    bool? hasNextPage,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfPagedResultOfStockResponse.copyWith(...)` or call `instanceOfPagedResultOfStockResponse.copyWith.fieldName(value)` for a single field.
-class _$PagedResultOfStockResponseCWProxyImpl
-    implements _$PagedResultOfStockResponseCWProxy {
-  const _$PagedResultOfStockResponseCWProxyImpl(this._value);
-
-  final PagedResultOfStockResponse _value;
+  _$PagedResultOfStockResponse._({
+    required this.items,
+    required this.pageNumber,
+    required this.pageSize,
+    required this.totalCount,
+    this.totalPages,
+    this.hasPreviousPage,
+    this.hasNextPage,
+  }) : super._();
+  @override
+  PagedResultOfStockResponse rebuild(
+    void Function(PagedResultOfStockResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  PagedResultOfStockResponse items(List<StockResponse> items) =>
-      call(items: items);
+  PagedResultOfStockResponseBuilder toBuilder() =>
+      PagedResultOfStockResponseBuilder()..replace(this);
 
   @override
-  PagedResultOfStockResponse pageNumber(int pageNumber) =>
-      call(pageNumber: pageNumber);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PagedResultOfStockResponse &&
+        items == other.items &&
+        pageNumber == other.pageNumber &&
+        pageSize == other.pageSize &&
+        totalCount == other.totalCount &&
+        totalPages == other.totalPages &&
+        hasPreviousPage == other.hasPreviousPage &&
+        hasNextPage == other.hasNextPage;
+  }
 
   @override
-  PagedResultOfStockResponse pageSize(int pageSize) => call(pageSize: pageSize);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, items.hashCode);
+    _$hash = $jc(_$hash, pageNumber.hashCode);
+    _$hash = $jc(_$hash, pageSize.hashCode);
+    _$hash = $jc(_$hash, totalCount.hashCode);
+    _$hash = $jc(_$hash, totalPages.hashCode);
+    _$hash = $jc(_$hash, hasPreviousPage.hashCode);
+    _$hash = $jc(_$hash, hasNextPage.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  PagedResultOfStockResponse totalCount(int totalCount) =>
-      call(totalCount: totalCount);
-
-  @override
-  PagedResultOfStockResponse totalPages(int totalPages) =>
-      call(totalPages: totalPages);
-
-  @override
-  PagedResultOfStockResponse hasPreviousPage(bool? hasPreviousPage) =>
-      call(hasPreviousPage: hasPreviousPage);
-
-  @override
-  PagedResultOfStockResponse hasNextPage(bool? hasNextPage) =>
-      call(hasNextPage: hasNextPage);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PagedResultOfStockResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PagedResultOfStockResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PagedResultOfStockResponse call({
-    Object? items = const $CopyWithPlaceholder(),
-    Object? pageNumber = const $CopyWithPlaceholder(),
-    Object? pageSize = const $CopyWithPlaceholder(),
-    Object? totalCount = const $CopyWithPlaceholder(),
-    Object? totalPages = const $CopyWithPlaceholder(),
-    Object? hasPreviousPage = const $CopyWithPlaceholder(),
-    Object? hasNextPage = const $CopyWithPlaceholder(),
-  }) {
-    return PagedResultOfStockResponse(
-      items: items == const $CopyWithPlaceholder() || items == null
-          ? _value.items
-          // ignore: cast_nullable_to_non_nullable
-          : items as List<StockResponse>,
-      pageNumber:
-          pageNumber == const $CopyWithPlaceholder() || pageNumber == null
-          ? _value.pageNumber
-          // ignore: cast_nullable_to_non_nullable
-          : pageNumber as int,
-      pageSize: pageSize == const $CopyWithPlaceholder() || pageSize == null
-          ? _value.pageSize
-          // ignore: cast_nullable_to_non_nullable
-          : pageSize as int,
-      totalCount:
-          totalCount == const $CopyWithPlaceholder() || totalCount == null
-          ? _value.totalCount
-          // ignore: cast_nullable_to_non_nullable
-          : totalCount as int,
-      totalPages:
-          totalPages == const $CopyWithPlaceholder() || totalPages == null
-          ? _value.totalPages
-          // ignore: cast_nullable_to_non_nullable
-          : totalPages as int,
-      hasPreviousPage: hasPreviousPage == const $CopyWithPlaceholder()
-          ? _value.hasPreviousPage
-          // ignore: cast_nullable_to_non_nullable
-          : hasPreviousPage as bool?,
-      hasNextPage: hasNextPage == const $CopyWithPlaceholder()
-          ? _value.hasNextPage
-          // ignore: cast_nullable_to_non_nullable
-          : hasNextPage as bool?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'PagedResultOfStockResponse')
+          ..add('items', items)
+          ..add('pageNumber', pageNumber)
+          ..add('pageSize', pageSize)
+          ..add('totalCount', totalCount)
+          ..add('totalPages', totalPages)
+          ..add('hasPreviousPage', hasPreviousPage)
+          ..add('hasNextPage', hasNextPage))
+        .toString();
   }
 }
 
-extension $PagedResultOfStockResponseCopyWith on PagedResultOfStockResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfPagedResultOfStockResponse.copyWith(...)` or `instanceOfPagedResultOfStockResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$PagedResultOfStockResponseCWProxy get copyWith =>
-      _$PagedResultOfStockResponseCWProxyImpl(this);
+class PagedResultOfStockResponseBuilder
+    implements
+        Builder<PagedResultOfStockResponse, PagedResultOfStockResponseBuilder> {
+  _$PagedResultOfStockResponse? _$v;
+
+  ListBuilder<StockResponse>? _items;
+  ListBuilder<StockResponse> get items =>
+      _$this._items ??= ListBuilder<StockResponse>();
+  set items(ListBuilder<StockResponse>? items) => _$this._items = items;
+
+  int? _pageNumber;
+  int? get pageNumber => _$this._pageNumber;
+  set pageNumber(int? pageNumber) => _$this._pageNumber = pageNumber;
+
+  int? _pageSize;
+  int? get pageSize => _$this._pageSize;
+  set pageSize(int? pageSize) => _$this._pageSize = pageSize;
+
+  int? _totalCount;
+  int? get totalCount => _$this._totalCount;
+  set totalCount(int? totalCount) => _$this._totalCount = totalCount;
+
+  int? _totalPages;
+  int? get totalPages => _$this._totalPages;
+  set totalPages(int? totalPages) => _$this._totalPages = totalPages;
+
+  bool? _hasPreviousPage;
+  bool? get hasPreviousPage => _$this._hasPreviousPage;
+  set hasPreviousPage(bool? hasPreviousPage) =>
+      _$this._hasPreviousPage = hasPreviousPage;
+
+  bool? _hasNextPage;
+  bool? get hasNextPage => _$this._hasNextPage;
+  set hasNextPage(bool? hasNextPage) => _$this._hasNextPage = hasNextPage;
+
+  PagedResultOfStockResponseBuilder() {
+    PagedResultOfStockResponse._defaults(this);
+  }
+
+  PagedResultOfStockResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _items = $v.items.toBuilder();
+      _pageNumber = $v.pageNumber;
+      _pageSize = $v.pageSize;
+      _totalCount = $v.totalCount;
+      _totalPages = $v.totalPages;
+      _hasPreviousPage = $v.hasPreviousPage;
+      _hasNextPage = $v.hasNextPage;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PagedResultOfStockResponse other) {
+    _$v = other as _$PagedResultOfStockResponse;
+  }
+
+  @override
+  void update(void Function(PagedResultOfStockResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  PagedResultOfStockResponse build() => _build();
+
+  _$PagedResultOfStockResponse _build() {
+    _$PagedResultOfStockResponse _$result;
+    try {
+      _$result =
+          _$v ??
+          _$PagedResultOfStockResponse._(
+            items: items.build(),
+            pageNumber: BuiltValueNullFieldError.checkNotNull(
+              pageNumber,
+              r'PagedResultOfStockResponse',
+              'pageNumber',
+            ),
+            pageSize: BuiltValueNullFieldError.checkNotNull(
+              pageSize,
+              r'PagedResultOfStockResponse',
+              'pageSize',
+            ),
+            totalCount: BuiltValueNullFieldError.checkNotNull(
+              totalCount,
+              r'PagedResultOfStockResponse',
+              'totalCount',
+            ),
+            totalPages: totalPages,
+            hasPreviousPage: hasPreviousPage,
+            hasNextPage: hasNextPage,
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'items';
+        items.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'PagedResultOfStockResponse',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-PagedResultOfStockResponse _$PagedResultOfStockResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('PagedResultOfStockResponse', json, ($checkedConvert) {
-  $checkKeys(
-    json,
-    requiredKeys: const [
-      'items',
-      'pageNumber',
-      'pageSize',
-      'totalCount',
-      'totalPages',
-    ],
-  );
-  final val = PagedResultOfStockResponse(
-    items: $checkedConvert(
-      'items',
-      (v) => (v as List<dynamic>)
-          .map((e) => StockResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    ),
-    pageNumber: $checkedConvert('pageNumber', (v) => (v as num).toInt()),
-    pageSize: $checkedConvert('pageSize', (v) => (v as num).toInt()),
-    totalCount: $checkedConvert('totalCount', (v) => (v as num).toInt()),
-    totalPages: $checkedConvert('totalPages', (v) => (v as num).toInt()),
-    hasPreviousPage: $checkedConvert('hasPreviousPage', (v) => v as bool?),
-    hasNextPage: $checkedConvert('hasNextPage', (v) => v as bool?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$PagedResultOfStockResponseToJson(
-  PagedResultOfStockResponse instance,
-) => <String, dynamic>{
-  'items': instance.items.map((e) => e.toJson()).toList(),
-  'pageNumber': instance.pageNumber,
-  'pageSize': instance.pageSize,
-  'totalCount': instance.totalCount,
-  'totalPages': instance.totalPages,
-  'hasPreviousPage': ?instance.hasPreviousPage,
-  'hasNextPage': ?instance.hasNextPage,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

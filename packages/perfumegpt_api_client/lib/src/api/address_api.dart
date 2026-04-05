@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_address_level4_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_address_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_address_response.dart';
@@ -23,7 +23,9 @@ class AddressApi {
 
   final Dio _dio;
 
-  const AddressApi(this._dio);
+  final Serializers _serializers;
+
+  const AddressApi(this._dio, this._serializers);
 
   /// apiAddressDefaultGet
   /// 
@@ -76,8 +78,11 @@ class AddressApi {
     BaseResponseOfAddressResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfAddressResponse, BaseResponseOfAddressResponse>(rawData, 'BaseResponseOfAddressResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfAddressResponse),
+      ) as BaseResponseOfAddressResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -144,7 +149,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
     );
 
     final _queryParameters = <String, dynamic>{
-      if (provinceId != null) r'provinceId': provinceId,
+      if (provinceId != null) r'provinceId': encodeQueryParameter(_serializers, provinceId, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -159,8 +164,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
     BaseResponseOfListOfDistrictResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfDistrictResponse, BaseResponseOfListOfDistrictResponse>(rawData, 'BaseResponseOfListOfDistrictResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfDistrictResponse),
+      ) as BaseResponseOfListOfDistrictResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -235,8 +243,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfDistric
     BaseResponseOfListOfAddressResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAddressResponse, BaseResponseOfListOfAddressResponse>(rawData, 'BaseResponseOfListOfAddressResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfAddressResponse),
+      ) as BaseResponseOfListOfAddressResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -283,7 +294,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAddress
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/address/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/address/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -313,8 +324,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfAddress
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -361,7 +375,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/address/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/address/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -391,8 +405,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfAddressResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfAddressResponse, BaseResponseOfAddressResponse>(rawData, 'BaseResponseOfAddressResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfAddressResponse),
+      ) as BaseResponseOfAddressResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -441,7 +458,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/address/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/address/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -464,7 +481,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressRespon
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateAddressRequest);
+      const _type = FullType(UpdateAddressRequest);
+      _bodyData = _serializers.serialize(updateAddressRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -489,8 +508,11 @@ _bodyData=jsonEncode(updateAddressRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -537,7 +559,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/address/{id}/set-default'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/address/{id}/set-default'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -567,8 +589,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -638,7 +663,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createAddressRequest);
+      const _type = FullType(CreateAddressRequest);
+      _bodyData = _serializers.serialize(createAddressRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -663,8 +690,11 @@ _bodyData=jsonEncode(createAddressRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -739,8 +769,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfListOfProvinceResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProvinceResponse, BaseResponseOfListOfProvinceResponse>(rawData, 'BaseResponseOfListOfProvinceResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfProvinceResponse),
+      ) as BaseResponseOfListOfProvinceResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -811,9 +844,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProvinc
     );
 
     final _queryParameters = <String, dynamic>{
-      if (province != null) r'Province': province,
-      if (district != null) r'District': district,
-      if (wardStreet != null) r'Ward_street': wardStreet,
+      if (province != null) r'Province': encodeQueryParameter(_serializers, province, const FullType(String)),
+      if (district != null) r'District': encodeQueryParameter(_serializers, district, const FullType(String)),
+      if (wardStreet != null) r'Ward_street': encodeQueryParameter(_serializers, wardStreet, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -828,8 +861,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProvinc
     BaseResponseOfAddressLevel4Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfAddressLevel4Response, BaseResponseOfAddressLevel4Response>(rawData, 'BaseResponseOfAddressLevel4Response', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfAddressLevel4Response),
+      ) as BaseResponseOfAddressLevel4Response;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -896,7 +932,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressLevel4
     );
 
     final _queryParameters = <String, dynamic>{
-      if (districtId != null) r'districtId': districtId,
+      if (districtId != null) r'districtId': encodeQueryParameter(_serializers, districtId, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -911,8 +947,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAddressLevel4
     BaseResponseOfListOfWardResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfWardResponse, BaseResponseOfListOfWardResponse>(rawData, 'BaseResponseOfListOfWardResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfWardResponse),
+      ) as BaseResponseOfListOfWardResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

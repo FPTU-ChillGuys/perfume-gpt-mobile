@@ -3,149 +3,160 @@
 part of 'pick_list_batch_info.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$PickListBatchInfoCWProxy {
-  PickListBatchInfo reservationId(String? reservationId);
+class _$PickListBatchInfo extends PickListBatchInfo {
+  @override
+  final String? reservationId;
+  @override
+  final String? batchId;
+  @override
+  final String batchCode;
+  @override
+  final String? note;
+  @override
+  final int? reservedQuantity;
+  @override
+  final DateTime? expiryDate;
 
-  PickListBatchInfo batchId(String? batchId);
+  factory _$PickListBatchInfo([
+    void Function(PickListBatchInfoBuilder)? updates,
+  ]) => (PickListBatchInfoBuilder()..update(updates))._build();
 
-  PickListBatchInfo batchCode(String? batchCode);
-
-  PickListBatchInfo note(String? note);
-
-  PickListBatchInfo reservedQuantity(int? reservedQuantity);
-
-  PickListBatchInfo expiryDate(DateTime? expiryDate);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PickListBatchInfo(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PickListBatchInfo(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PickListBatchInfo call({
-    String? reservationId,
-    String? batchId,
-    String? batchCode,
-    String? note,
-    int? reservedQuantity,
-    DateTime? expiryDate,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfPickListBatchInfo.copyWith(...)` or call `instanceOfPickListBatchInfo.copyWith.fieldName(value)` for a single field.
-class _$PickListBatchInfoCWProxyImpl implements _$PickListBatchInfoCWProxy {
-  const _$PickListBatchInfoCWProxyImpl(this._value);
-
-  final PickListBatchInfo _value;
+  _$PickListBatchInfo._({
+    this.reservationId,
+    this.batchId,
+    required this.batchCode,
+    this.note,
+    this.reservedQuantity,
+    this.expiryDate,
+  }) : super._();
+  @override
+  PickListBatchInfo rebuild(void Function(PickListBatchInfoBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  PickListBatchInfo reservationId(String? reservationId) =>
-      call(reservationId: reservationId);
+  PickListBatchInfoBuilder toBuilder() =>
+      PickListBatchInfoBuilder()..replace(this);
 
   @override
-  PickListBatchInfo batchId(String? batchId) => call(batchId: batchId);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PickListBatchInfo &&
+        reservationId == other.reservationId &&
+        batchId == other.batchId &&
+        batchCode == other.batchCode &&
+        note == other.note &&
+        reservedQuantity == other.reservedQuantity &&
+        expiryDate == other.expiryDate;
+  }
 
   @override
-  PickListBatchInfo batchCode(String? batchCode) => call(batchCode: batchCode);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, reservationId.hashCode);
+    _$hash = $jc(_$hash, batchId.hashCode);
+    _$hash = $jc(_$hash, batchCode.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, reservedQuantity.hashCode);
+    _$hash = $jc(_$hash, expiryDate.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  PickListBatchInfo note(String? note) => call(note: note);
-
-  @override
-  PickListBatchInfo reservedQuantity(int? reservedQuantity) =>
-      call(reservedQuantity: reservedQuantity);
-
-  @override
-  PickListBatchInfo expiryDate(DateTime? expiryDate) =>
-      call(expiryDate: expiryDate);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PickListBatchInfo(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PickListBatchInfo(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PickListBatchInfo call({
-    Object? reservationId = const $CopyWithPlaceholder(),
-    Object? batchId = const $CopyWithPlaceholder(),
-    Object? batchCode = const $CopyWithPlaceholder(),
-    Object? note = const $CopyWithPlaceholder(),
-    Object? reservedQuantity = const $CopyWithPlaceholder(),
-    Object? expiryDate = const $CopyWithPlaceholder(),
-  }) {
-    return PickListBatchInfo(
-      reservationId: reservationId == const $CopyWithPlaceholder()
-          ? _value.reservationId
-          // ignore: cast_nullable_to_non_nullable
-          : reservationId as String?,
-      batchId: batchId == const $CopyWithPlaceholder()
-          ? _value.batchId
-          // ignore: cast_nullable_to_non_nullable
-          : batchId as String?,
-      batchCode: batchCode == const $CopyWithPlaceholder()
-          ? _value.batchCode
-          // ignore: cast_nullable_to_non_nullable
-          : batchCode as String?,
-      note: note == const $CopyWithPlaceholder()
-          ? _value.note
-          // ignore: cast_nullable_to_non_nullable
-          : note as String?,
-      reservedQuantity: reservedQuantity == const $CopyWithPlaceholder()
-          ? _value.reservedQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : reservedQuantity as int?,
-      expiryDate: expiryDate == const $CopyWithPlaceholder()
-          ? _value.expiryDate
-          // ignore: cast_nullable_to_non_nullable
-          : expiryDate as DateTime?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'PickListBatchInfo')
+          ..add('reservationId', reservationId)
+          ..add('batchId', batchId)
+          ..add('batchCode', batchCode)
+          ..add('note', note)
+          ..add('reservedQuantity', reservedQuantity)
+          ..add('expiryDate', expiryDate))
+        .toString();
   }
 }
 
-extension $PickListBatchInfoCopyWith on PickListBatchInfo {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfPickListBatchInfo.copyWith(...)` or `instanceOfPickListBatchInfo.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$PickListBatchInfoCWProxy get copyWith =>
-      _$PickListBatchInfoCWProxyImpl(this);
+class PickListBatchInfoBuilder
+    implements Builder<PickListBatchInfo, PickListBatchInfoBuilder> {
+  _$PickListBatchInfo? _$v;
+
+  String? _reservationId;
+  String? get reservationId => _$this._reservationId;
+  set reservationId(String? reservationId) =>
+      _$this._reservationId = reservationId;
+
+  String? _batchId;
+  String? get batchId => _$this._batchId;
+  set batchId(String? batchId) => _$this._batchId = batchId;
+
+  String? _batchCode;
+  String? get batchCode => _$this._batchCode;
+  set batchCode(String? batchCode) => _$this._batchCode = batchCode;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  int? _reservedQuantity;
+  int? get reservedQuantity => _$this._reservedQuantity;
+  set reservedQuantity(int? reservedQuantity) =>
+      _$this._reservedQuantity = reservedQuantity;
+
+  DateTime? _expiryDate;
+  DateTime? get expiryDate => _$this._expiryDate;
+  set expiryDate(DateTime? expiryDate) => _$this._expiryDate = expiryDate;
+
+  PickListBatchInfoBuilder() {
+    PickListBatchInfo._defaults(this);
+  }
+
+  PickListBatchInfoBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _reservationId = $v.reservationId;
+      _batchId = $v.batchId;
+      _batchCode = $v.batchCode;
+      _note = $v.note;
+      _reservedQuantity = $v.reservedQuantity;
+      _expiryDate = $v.expiryDate;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PickListBatchInfo other) {
+    _$v = other as _$PickListBatchInfo;
+  }
+
+  @override
+  void update(void Function(PickListBatchInfoBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  PickListBatchInfo build() => _build();
+
+  _$PickListBatchInfo _build() {
+    final _$result =
+        _$v ??
+        _$PickListBatchInfo._(
+          reservationId: reservationId,
+          batchId: batchId,
+          batchCode: BuiltValueNullFieldError.checkNotNull(
+            batchCode,
+            r'PickListBatchInfo',
+            'batchCode',
+          ),
+          note: note,
+          reservedQuantity: reservedQuantity,
+          expiryDate: expiryDate,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-PickListBatchInfo _$PickListBatchInfoFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('PickListBatchInfo', json, ($checkedConvert) {
-      final val = PickListBatchInfo(
-        reservationId: $checkedConvert('reservationId', (v) => v as String?),
-        batchId: $checkedConvert('batchId', (v) => v as String?),
-        batchCode: $checkedConvert('batchCode', (v) => v as String?),
-        note: $checkedConvert('note', (v) => v as String?),
-        reservedQuantity: $checkedConvert(
-          'reservedQuantity',
-          (v) => (v as num?)?.toInt(),
-        ),
-        expiryDate: $checkedConvert(
-          'expiryDate',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$PickListBatchInfoToJson(PickListBatchInfo instance) =>
-    <String, dynamic>{
-      'reservationId': ?instance.reservationId,
-      'batchId': ?instance.batchId,
-      'batchCode': ?instance.batchCode,
-      'note': ?instance.note,
-      'reservedQuantity': ?instance.reservedQuantity,
-      'expiryDate': ?instance.expiryDate?.toIso8601String(),
-    };
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

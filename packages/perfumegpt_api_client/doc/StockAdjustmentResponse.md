@@ -10,14 +10,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **createdById** | **String** |  | [optional] 
-**createdByName** | **String** |  | [optional] 
+**createdByName** | **String** |  | 
 **verifiedById** | **String** |  | [optional] 
 **verifiedByName** | **String** |  | [optional] 
 **adjustmentDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **reason** | [**StockAdjustmentReason**](StockAdjustmentReason.md) |  | [optional] 
 **note** | **String** |  | [optional] 
 **status** | [**StockAdjustmentStatus**](StockAdjustmentStatus.md) |  | [optional] 
-**adjustmentDetails** | [**List&lt;StockAdjustmentDetailResponse&gt;**](StockAdjustmentDetailResponse.md) |  | [optional] 
+**adjustmentDetails** | [**BuiltList&lt;StockAdjustmentDetailResponse&gt;**](StockAdjustmentDetailResponse.md) |  | 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

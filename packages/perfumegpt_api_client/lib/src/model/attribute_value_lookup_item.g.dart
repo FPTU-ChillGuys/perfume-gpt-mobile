@@ -3,85 +3,109 @@
 part of 'attribute_value_lookup_item.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$AttributeValueLookupItemCWProxy {
-  AttributeValueLookupItem id(int? id);
+class _$AttributeValueLookupItem extends AttributeValueLookupItem {
+  @override
+  final int? id;
+  @override
+  final String value;
 
-  AttributeValueLookupItem value(String? value);
+  factory _$AttributeValueLookupItem([
+    void Function(AttributeValueLookupItemBuilder)? updates,
+  ]) => (AttributeValueLookupItemBuilder()..update(updates))._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AttributeValueLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AttributeValueLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AttributeValueLookupItem call({int? id, String? value});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfAttributeValueLookupItem.copyWith(...)` or call `instanceOfAttributeValueLookupItem.copyWith.fieldName(value)` for a single field.
-class _$AttributeValueLookupItemCWProxyImpl
-    implements _$AttributeValueLookupItemCWProxy {
-  const _$AttributeValueLookupItemCWProxyImpl(this._value);
-
-  final AttributeValueLookupItem _value;
+  _$AttributeValueLookupItem._({this.id, required this.value}) : super._();
+  @override
+  AttributeValueLookupItem rebuild(
+    void Function(AttributeValueLookupItemBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  AttributeValueLookupItem id(int? id) => call(id: id);
+  AttributeValueLookupItemBuilder toBuilder() =>
+      AttributeValueLookupItemBuilder()..replace(this);
 
   @override
-  AttributeValueLookupItem value(String? value) => call(value: value);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AttributeValueLookupItem &&
+        id == other.id &&
+        value == other.value;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AttributeValueLookupItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AttributeValueLookupItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AttributeValueLookupItem call({
-    Object? id = const $CopyWithPlaceholder(),
-    Object? value = const $CopyWithPlaceholder(),
-  }) {
-    return AttributeValueLookupItem(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as int?,
-      value: value == const $CopyWithPlaceholder()
-          ? _value.value
-          // ignore: cast_nullable_to_non_nullable
-          : value as String?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, value.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'AttributeValueLookupItem')
+          ..add('id', id)
+          ..add('value', value))
+        .toString();
   }
 }
 
-extension $AttributeValueLookupItemCopyWith on AttributeValueLookupItem {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfAttributeValueLookupItem.copyWith(...)` or `instanceOfAttributeValueLookupItem.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$AttributeValueLookupItemCWProxy get copyWith =>
-      _$AttributeValueLookupItemCWProxyImpl(this);
+class AttributeValueLookupItemBuilder
+    implements
+        Builder<AttributeValueLookupItem, AttributeValueLookupItemBuilder> {
+  _$AttributeValueLookupItem? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
+
+  AttributeValueLookupItemBuilder() {
+    AttributeValueLookupItem._defaults(this);
+  }
+
+  AttributeValueLookupItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _value = $v.value;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AttributeValueLookupItem other) {
+    _$v = other as _$AttributeValueLookupItem;
+  }
+
+  @override
+  void update(void Function(AttributeValueLookupItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  AttributeValueLookupItem build() => _build();
+
+  _$AttributeValueLookupItem _build() {
+    final _$result =
+        _$v ??
+        _$AttributeValueLookupItem._(
+          id: id,
+          value: BuiltValueNullFieldError.checkNotNull(
+            value,
+            r'AttributeValueLookupItem',
+            'value',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-AttributeValueLookupItem _$AttributeValueLookupItemFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('AttributeValueLookupItem', json, ($checkedConvert) {
-  final val = AttributeValueLookupItem(
-    id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-    value: $checkedConvert('value', (v) => v as String?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$AttributeValueLookupItemToJson(
-  AttributeValueLookupItem instance,
-) => <String, dynamic>{'id': ?instance.id, 'value': ?instance.value};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

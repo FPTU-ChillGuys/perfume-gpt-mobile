@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateReviewRequest
 void main() {
-  final CreateReviewRequest? instance = /* CreateReviewRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = CreateReviewRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(CreateReviewRequest, () {
     // String orderDetailId
@@ -22,9 +22,10 @@ void main() {
       // TODO
     });
 
-    // List<String> temporaryMediaIds
+    // BuiltList<String> temporaryMediaIds
     test('to test the property `temporaryMediaIds`', () async {
       // TODO
     });
+
   });
 }

@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_admin_dashboard_overview_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_inventory_levels_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_top_product_response.dart';
@@ -18,7 +18,9 @@ class AdminDashboardApi {
 
   final Dio _dio;
 
-  const AdminDashboardApi(this._dio);
+  final Serializers _serializers;
+
+  const AdminDashboardApi(this._dio, this._serializers);
 
   /// apiAdmindashboardInventoryLevelsGet
   /// 
@@ -63,7 +65,7 @@ class AdminDashboardApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (expiringWithinDays != null) r'ExpiringWithinDays': expiringWithinDays,
+      if (expiringWithinDays != null) r'ExpiringWithinDays': encodeQueryParameter(_serializers, expiringWithinDays, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -78,8 +80,11 @@ class AdminDashboardApi {
     BaseResponseOfInventoryLevelsResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfInventoryLevelsResponse, BaseResponseOfInventoryLevelsResponse>(rawData, 'BaseResponseOfInventoryLevelsResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfInventoryLevelsResponse),
+      ) as BaseResponseOfInventoryLevelsResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -107,6 +112,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfInventoryLeve
   /// 
   ///
   /// Parameters:
+  /// * [topProductsCount] 
   /// * [expiringWithinDays] 
   /// * [top] 
   /// * [fromDate] 
@@ -121,6 +127,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfInventoryLeve
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfAdminDashboardOverviewResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfAdminDashboardOverviewResponse>> apiAdmindashboardOverviewGet({ 
+    int? topProductsCount,
     int? expiringWithinDays,
     int? top,
     DateTime? fromDate,
@@ -152,10 +159,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfInventoryLeve
     );
 
     final _queryParameters = <String, dynamic>{
-      if (expiringWithinDays != null) r'ExpiringWithinDays': expiringWithinDays,
-      if (top != null) r'Top': top,
-      if (fromDate != null) r'FromDate': fromDate,
-      if (toDate != null) r'ToDate': toDate,
+      if (topProductsCount != null) r'TopProductsCount': encodeQueryParameter(_serializers, topProductsCount, const FullType(int)),
+      if (expiringWithinDays != null) r'ExpiringWithinDays': encodeQueryParameter(_serializers, expiringWithinDays, const FullType(int)),
+      if (top != null) r'Top': encodeQueryParameter(_serializers, top, const FullType(int)),
+      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
+      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
     };
 
     final _response = await _dio.request<Object>(
@@ -170,8 +178,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfInventoryLeve
     BaseResponseOfAdminDashboardOverviewResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfAdminDashboardOverviewResponse, BaseResponseOfAdminDashboardOverviewResponse>(rawData, 'BaseResponseOfAdminDashboardOverviewResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfAdminDashboardOverviewResponse),
+      ) as BaseResponseOfAdminDashboardOverviewResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -240,8 +251,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAdminDashboar
     );
 
     final _queryParameters = <String, dynamic>{
-      if (fromDate != null) r'FromDate': fromDate,
-      if (toDate != null) r'ToDate': toDate,
+      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
+      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
     };
 
     final _response = await _dio.request<Object>(
@@ -256,8 +267,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfAdminDashboar
     BaseResponseOfRevenueSummaryResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfRevenueSummaryResponse, BaseResponseOfRevenueSummaryResponse>(rawData, 'BaseResponseOfRevenueSummaryResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfRevenueSummaryResponse),
+      ) as BaseResponseOfRevenueSummaryResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -328,9 +342,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfRevenueSummar
     );
 
     final _queryParameters = <String, dynamic>{
-      if (top != null) r'Top': top,
-      if (fromDate != null) r'FromDate': fromDate,
-      if (toDate != null) r'ToDate': toDate,
+      if (top != null) r'Top': encodeQueryParameter(_serializers, top, const FullType(int)),
+      if (fromDate != null) r'FromDate': encodeQueryParameter(_serializers, fromDate, const FullType(DateTime)),
+      if (toDate != null) r'ToDate': encodeQueryParameter(_serializers, toDate, const FullType(DateTime)),
     };
 
     final _response = await _dio.request<Object>(
@@ -345,8 +359,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfRevenueSummar
     BaseResponseOfListOfTopProductResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfTopProductResponse, BaseResponseOfListOfTopProductResponse>(rawData, 'BaseResponseOfListOfTopProductResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfTopProductResponse),
+      ) as BaseResponseOfListOfTopProductResponse;
 
     } catch (error, stackTrace) {
       throw DioException(

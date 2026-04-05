@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_token_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/forgot_password_request.dart';
@@ -22,7 +22,9 @@ class AuthsApi {
 
   final Dio _dio;
 
-  const AuthsApi(this._dio);
+  final Serializers _serializers;
+
+  const AuthsApi(this._dio, this._serializers);
 
   /// apiAuthsAdminRegisterPost
   /// 
@@ -70,13 +72,15 @@ class AuthsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (role != null) r'role': role,
+      if (role != null) r'role': encodeQueryParameter(_serializers, role, const FullType(UserRole)),
     };
 
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(registerRequest);
+      const _type = FullType(RegisterRequest);
+      _bodyData = _serializers.serialize(registerRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -103,8 +107,11 @@ _bodyData=jsonEncode(registerRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -179,8 +186,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfTokenResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse, BaseResponseOfTokenResponse>(rawData, 'BaseResponseOfTokenResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfTokenResponse),
+      ) as BaseResponseOfTokenResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -250,7 +260,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(forgotPasswordRequest);
+      const _type = FullType(ForgotPasswordRequest);
+      _bodyData = _serializers.serialize(forgotPasswordRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -275,8 +287,11 @@ _bodyData=jsonEncode(forgotPasswordRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -346,7 +361,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(googleLoginRequest);
+      const _type = FullType(GoogleLoginRequest);
+      _bodyData = _serializers.serialize(googleLoginRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -371,8 +388,11 @@ _bodyData=jsonEncode(googleLoginRequest);
     BaseResponseOfTokenResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse, BaseResponseOfTokenResponse>(rawData, 'BaseResponseOfTokenResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfTokenResponse),
+      ) as BaseResponseOfTokenResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -442,7 +462,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(loginRequest);
+      const _type = FullType(LoginRequest);
+      _bodyData = _serializers.serialize(loginRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -467,8 +489,11 @@ _bodyData=jsonEncode(loginRequest);
     BaseResponseOfTokenResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse, BaseResponseOfTokenResponse>(rawData, 'BaseResponseOfTokenResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfTokenResponse),
+      ) as BaseResponseOfTokenResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -538,7 +563,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfTokenResponse
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(registerRequest);
+      const _type = FullType(RegisterRequest);
+      _bodyData = _serializers.serialize(registerRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -563,8 +590,11 @@ _bodyData=jsonEncode(registerRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -634,7 +664,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(resetPasswordRequest);
+      const _type = FullType(ResetPasswordRequest);
+      _bodyData = _serializers.serialize(resetPasswordRequest, specifiedType: _type);
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -659,8 +691,11 @@ _bodyData=jsonEncode(resetPasswordRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -729,8 +764,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     );
 
     final _queryParameters = <String, dynamic>{
-      if (email != null) r'Email': email,
-      if (token != null) r'Token': token,
+      if (email != null) r'Email': encodeQueryParameter(_serializers, email, const FullType(String)),
+      if (token != null) r'Token': encodeQueryParameter(_serializers, token, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -745,8 +780,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(

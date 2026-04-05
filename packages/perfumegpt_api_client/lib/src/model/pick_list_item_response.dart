@@ -4,120 +4,175 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/pick_list_batch_info.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'pick_list_item_response.g.dart';
 
+/// PickListItemResponse
+///
+/// Properties:
+/// * [orderDetailId] 
+/// * [variantId] 
+/// * [variantName] 
+/// * [quantity] 
+/// * [batches] 
+@BuiltValue()
+abstract class PickListItemResponse implements Built<PickListItemResponse, PickListItemResponseBuilder> {
+  @BuiltValueField(wireName: r'orderDetailId')
+  String? get orderDetailId;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class PickListItemResponse {
-  /// Returns a new [PickListItemResponse] instance.
-  PickListItemResponse({
+  @BuiltValueField(wireName: r'variantId')
+  String? get variantId;
 
-     this.orderDetailId,
+  @BuiltValueField(wireName: r'variantName')
+  String get variantName;
 
-     this.variantId,
+  @BuiltValueField(wireName: r'quantity')
+  int? get quantity;
 
-     this.variantName,
+  @BuiltValueField(wireName: r'batches')
+  BuiltList<PickListBatchInfo> get batches;
 
-     this.quantity,
+  PickListItemResponse._();
 
-     this.batches,
-  });
+  factory PickListItemResponse([void updates(PickListItemResponseBuilder b)]) = _$PickListItemResponse;
 
-  @JsonKey(
-    
-    name: r'orderDetailId',
-    required: false,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(PickListItemResponseBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<PickListItemResponse> get serializer => _$PickListItemResponseSerializer();
+}
 
-  final String? orderDetailId;
-
-
-
-  @JsonKey(
-    
-    name: r'variantId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? variantId;
-
-
-
-  @JsonKey(
-    
-    name: r'variantName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? variantName;
-
-
-
-  @JsonKey(
-    
-    name: r'quantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? quantity;
-
-
-
-  @JsonKey(
-    
-    name: r'batches',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final List<PickListBatchInfo>? batches;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PickListItemResponse &&
-      other.orderDetailId == orderDetailId &&
-      other.variantId == variantId &&
-      other.variantName == variantName &&
-      other.quantity == quantity &&
-      other.batches == batches;
-
-    @override
-    int get hashCode =>
-        orderDetailId.hashCode +
-        variantId.hashCode +
-        variantName.hashCode +
-        quantity.hashCode +
-        batches.hashCode;
-
-  factory PickListItemResponse.fromJson(Map<String, dynamic> json) => _$PickListItemResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PickListItemResponseToJson(this);
+class _$PickListItemResponseSerializer implements PrimitiveSerializer<PickListItemResponse> {
+  @override
+  final Iterable<Type> types = const [PickListItemResponse, _$PickListItemResponse];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'PickListItemResponse';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    PickListItemResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.orderDetailId != null) {
+      yield r'orderDetailId';
+      yield serializers.serialize(
+        object.orderDetailId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.variantId != null) {
+      yield r'variantId';
+      yield serializers.serialize(
+        object.variantId,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'variantName';
+    yield serializers.serialize(
+      object.variantName,
+      specifiedType: const FullType(String),
+    );
+    if (object.quantity != null) {
+      yield r'quantity';
+      yield serializers.serialize(
+        object.quantity,
+        specifiedType: const FullType(int),
+      );
+    }
+    yield r'batches';
+    yield serializers.serialize(
+      object.batches,
+      specifiedType: const FullType(BuiltList, [FullType(PickListBatchInfo)]),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    PickListItemResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required PickListItemResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'orderDetailId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.orderDetailId = valueDes;
+          break;
+        case r'variantId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.variantId = valueDes;
+          break;
+        case r'variantName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.variantName = valueDes;
+          break;
+        case r'quantity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.quantity = valueDes;
+          break;
+        case r'batches':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(PickListBatchInfo)]),
+          ) as BuiltList<PickListBatchInfo>;
+          result.batches.replace(valueDes);
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  PickListItemResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = PickListItemResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

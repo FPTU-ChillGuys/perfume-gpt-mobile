@@ -8,11 +8,11 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;ImportTicketListItem&gt;**](ImportTicketListItem.md) |  | 
+**items** | [**BuiltList&lt;ImportTicketListItem&gt;**](ImportTicketListItem.md) |  | 
 **pageNumber** | **int** |  | 
 **pageSize** | **int** |  | 
 **totalCount** | **int** |  | 
-**totalPages** | **int** |  | 
+**totalPages** | **int** |  | [optional] 
 **hasPreviousPage** | **bool** |  | [optional] 
 **hasNextPage** | **bool** |  | [optional] 
 

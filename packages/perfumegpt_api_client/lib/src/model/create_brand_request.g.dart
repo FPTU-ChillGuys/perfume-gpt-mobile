@@ -3,69 +3,96 @@
 part of 'create_brand_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$CreateBrandRequestCWProxy {
-  CreateBrandRequest name(String? name);
+class _$CreateBrandRequest extends CreateBrandRequest {
+  @override
+  final String name;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateBrandRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateBrandRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateBrandRequest call({String? name});
-}
+  factory _$CreateBrandRequest([
+    void Function(CreateBrandRequestBuilder)? updates,
+  ]) => (CreateBrandRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfCreateBrandRequest.copyWith(...)` or call `instanceOfCreateBrandRequest.copyWith.fieldName(value)` for a single field.
-class _$CreateBrandRequestCWProxyImpl implements _$CreateBrandRequestCWProxy {
-  const _$CreateBrandRequestCWProxyImpl(this._value);
-
-  final CreateBrandRequest _value;
+  _$CreateBrandRequest._({required this.name}) : super._();
+  @override
+  CreateBrandRequest rebuild(
+    void Function(CreateBrandRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  CreateBrandRequest name(String? name) => call(name: name);
+  CreateBrandRequestBuilder toBuilder() =>
+      CreateBrandRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateBrandRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// CreateBrandRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  CreateBrandRequest call({Object? name = const $CopyWithPlaceholder()}) {
-    return CreateBrandRequest(
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CreateBrandRequest && name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'CreateBrandRequest',
+    )..add('name', name)).toString();
   }
 }
 
-extension $CreateBrandRequestCopyWith on CreateBrandRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfCreateBrandRequest.copyWith(...)` or `instanceOfCreateBrandRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CreateBrandRequestCWProxy get copyWith =>
-      _$CreateBrandRequestCWProxyImpl(this);
+class CreateBrandRequestBuilder
+    implements Builder<CreateBrandRequest, CreateBrandRequestBuilder> {
+  _$CreateBrandRequest? _$v;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  CreateBrandRequestBuilder() {
+    CreateBrandRequest._defaults(this);
+  }
+
+  CreateBrandRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CreateBrandRequest other) {
+    _$v = other as _$CreateBrandRequest;
+  }
+
+  @override
+  void update(void Function(CreateBrandRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CreateBrandRequest build() => _build();
+
+  _$CreateBrandRequest _build() {
+    final _$result =
+        _$v ??
+        _$CreateBrandRequest._(
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'CreateBrandRequest',
+            'name',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreateBrandRequest _$CreateBrandRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('CreateBrandRequest', json, ($checkedConvert) {
-      final val = CreateBrandRequest(
-        name: $checkedConvert('name', (v) => v as String?),
-      );
-      return val;
-    });
-
-Map<String, dynamic> _$CreateBrandRequestToJson(CreateBrandRequest instance) =>
-    <String, dynamic>{'name': ?instance.name};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

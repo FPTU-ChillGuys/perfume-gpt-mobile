@@ -3,202 +3,187 @@
 part of 'inventory_levels_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$InventoryLevelsResponseCWProxy {
-  InventoryLevelsResponse totalVariants(int? totalVariants);
+class _$InventoryLevelsResponse extends InventoryLevelsResponse {
+  @override
+  final int? totalVariants;
+  @override
+  final int? totalStockQuantity;
+  @override
+  final int? totalAvailableQuantity;
+  @override
+  final int? lowStockVariantsCount;
+  @override
+  final int? outOfStockVariantsCount;
+  @override
+  final int? totalBatches;
+  @override
+  final int? expiredBatchesCount;
+  @override
+  final int? expiringSoonCount;
 
-  InventoryLevelsResponse totalStockQuantity(int? totalStockQuantity);
+  factory _$InventoryLevelsResponse([
+    void Function(InventoryLevelsResponseBuilder)? updates,
+  ]) => (InventoryLevelsResponseBuilder()..update(updates))._build();
 
-  InventoryLevelsResponse totalAvailableQuantity(int? totalAvailableQuantity);
-
-  InventoryLevelsResponse lowStockVariantsCount(int? lowStockVariantsCount);
-
-  InventoryLevelsResponse outOfStockVariantsCount(int? outOfStockVariantsCount);
-
-  InventoryLevelsResponse totalBatches(int? totalBatches);
-
-  InventoryLevelsResponse expiredBatchesCount(int? expiredBatchesCount);
-
-  InventoryLevelsResponse expiringSoonCount(int? expiringSoonCount);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `InventoryLevelsResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// InventoryLevelsResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  InventoryLevelsResponse call({
-    int? totalVariants,
-    int? totalStockQuantity,
-    int? totalAvailableQuantity,
-    int? lowStockVariantsCount,
-    int? outOfStockVariantsCount,
-    int? totalBatches,
-    int? expiredBatchesCount,
-    int? expiringSoonCount,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfInventoryLevelsResponse.copyWith(...)` or call `instanceOfInventoryLevelsResponse.copyWith.fieldName(value)` for a single field.
-class _$InventoryLevelsResponseCWProxyImpl
-    implements _$InventoryLevelsResponseCWProxy {
-  const _$InventoryLevelsResponseCWProxyImpl(this._value);
-
-  final InventoryLevelsResponse _value;
+  _$InventoryLevelsResponse._({
+    this.totalVariants,
+    this.totalStockQuantity,
+    this.totalAvailableQuantity,
+    this.lowStockVariantsCount,
+    this.outOfStockVariantsCount,
+    this.totalBatches,
+    this.expiredBatchesCount,
+    this.expiringSoonCount,
+  }) : super._();
+  @override
+  InventoryLevelsResponse rebuild(
+    void Function(InventoryLevelsResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  InventoryLevelsResponse totalVariants(int? totalVariants) =>
-      call(totalVariants: totalVariants);
+  InventoryLevelsResponseBuilder toBuilder() =>
+      InventoryLevelsResponseBuilder()..replace(this);
 
   @override
-  InventoryLevelsResponse totalStockQuantity(int? totalStockQuantity) =>
-      call(totalStockQuantity: totalStockQuantity);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is InventoryLevelsResponse &&
+        totalVariants == other.totalVariants &&
+        totalStockQuantity == other.totalStockQuantity &&
+        totalAvailableQuantity == other.totalAvailableQuantity &&
+        lowStockVariantsCount == other.lowStockVariantsCount &&
+        outOfStockVariantsCount == other.outOfStockVariantsCount &&
+        totalBatches == other.totalBatches &&
+        expiredBatchesCount == other.expiredBatchesCount &&
+        expiringSoonCount == other.expiringSoonCount;
+  }
 
   @override
-  InventoryLevelsResponse totalAvailableQuantity(int? totalAvailableQuantity) =>
-      call(totalAvailableQuantity: totalAvailableQuantity);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, totalVariants.hashCode);
+    _$hash = $jc(_$hash, totalStockQuantity.hashCode);
+    _$hash = $jc(_$hash, totalAvailableQuantity.hashCode);
+    _$hash = $jc(_$hash, lowStockVariantsCount.hashCode);
+    _$hash = $jc(_$hash, outOfStockVariantsCount.hashCode);
+    _$hash = $jc(_$hash, totalBatches.hashCode);
+    _$hash = $jc(_$hash, expiredBatchesCount.hashCode);
+    _$hash = $jc(_$hash, expiringSoonCount.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  InventoryLevelsResponse lowStockVariantsCount(int? lowStockVariantsCount) =>
-      call(lowStockVariantsCount: lowStockVariantsCount);
-
-  @override
-  InventoryLevelsResponse outOfStockVariantsCount(
-    int? outOfStockVariantsCount,
-  ) => call(outOfStockVariantsCount: outOfStockVariantsCount);
-
-  @override
-  InventoryLevelsResponse totalBatches(int? totalBatches) =>
-      call(totalBatches: totalBatches);
-
-  @override
-  InventoryLevelsResponse expiredBatchesCount(int? expiredBatchesCount) =>
-      call(expiredBatchesCount: expiredBatchesCount);
-
-  @override
-  InventoryLevelsResponse expiringSoonCount(int? expiringSoonCount) =>
-      call(expiringSoonCount: expiringSoonCount);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `InventoryLevelsResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// InventoryLevelsResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  InventoryLevelsResponse call({
-    Object? totalVariants = const $CopyWithPlaceholder(),
-    Object? totalStockQuantity = const $CopyWithPlaceholder(),
-    Object? totalAvailableQuantity = const $CopyWithPlaceholder(),
-    Object? lowStockVariantsCount = const $CopyWithPlaceholder(),
-    Object? outOfStockVariantsCount = const $CopyWithPlaceholder(),
-    Object? totalBatches = const $CopyWithPlaceholder(),
-    Object? expiredBatchesCount = const $CopyWithPlaceholder(),
-    Object? expiringSoonCount = const $CopyWithPlaceholder(),
-  }) {
-    return InventoryLevelsResponse(
-      totalVariants: totalVariants == const $CopyWithPlaceholder()
-          ? _value.totalVariants
-          // ignore: cast_nullable_to_non_nullable
-          : totalVariants as int?,
-      totalStockQuantity: totalStockQuantity == const $CopyWithPlaceholder()
-          ? _value.totalStockQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : totalStockQuantity as int?,
-      totalAvailableQuantity:
-          totalAvailableQuantity == const $CopyWithPlaceholder()
-          ? _value.totalAvailableQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : totalAvailableQuantity as int?,
-      lowStockVariantsCount:
-          lowStockVariantsCount == const $CopyWithPlaceholder()
-          ? _value.lowStockVariantsCount
-          // ignore: cast_nullable_to_non_nullable
-          : lowStockVariantsCount as int?,
-      outOfStockVariantsCount:
-          outOfStockVariantsCount == const $CopyWithPlaceholder()
-          ? _value.outOfStockVariantsCount
-          // ignore: cast_nullable_to_non_nullable
-          : outOfStockVariantsCount as int?,
-      totalBatches: totalBatches == const $CopyWithPlaceholder()
-          ? _value.totalBatches
-          // ignore: cast_nullable_to_non_nullable
-          : totalBatches as int?,
-      expiredBatchesCount: expiredBatchesCount == const $CopyWithPlaceholder()
-          ? _value.expiredBatchesCount
-          // ignore: cast_nullable_to_non_nullable
-          : expiredBatchesCount as int?,
-      expiringSoonCount: expiringSoonCount == const $CopyWithPlaceholder()
-          ? _value.expiringSoonCount
-          // ignore: cast_nullable_to_non_nullable
-          : expiringSoonCount as int?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'InventoryLevelsResponse')
+          ..add('totalVariants', totalVariants)
+          ..add('totalStockQuantity', totalStockQuantity)
+          ..add('totalAvailableQuantity', totalAvailableQuantity)
+          ..add('lowStockVariantsCount', lowStockVariantsCount)
+          ..add('outOfStockVariantsCount', outOfStockVariantsCount)
+          ..add('totalBatches', totalBatches)
+          ..add('expiredBatchesCount', expiredBatchesCount)
+          ..add('expiringSoonCount', expiringSoonCount))
+        .toString();
   }
 }
 
-extension $InventoryLevelsResponseCopyWith on InventoryLevelsResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfInventoryLevelsResponse.copyWith(...)` or `instanceOfInventoryLevelsResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$InventoryLevelsResponseCWProxy get copyWith =>
-      _$InventoryLevelsResponseCWProxyImpl(this);
+class InventoryLevelsResponseBuilder
+    implements
+        Builder<InventoryLevelsResponse, InventoryLevelsResponseBuilder> {
+  _$InventoryLevelsResponse? _$v;
+
+  int? _totalVariants;
+  int? get totalVariants => _$this._totalVariants;
+  set totalVariants(int? totalVariants) =>
+      _$this._totalVariants = totalVariants;
+
+  int? _totalStockQuantity;
+  int? get totalStockQuantity => _$this._totalStockQuantity;
+  set totalStockQuantity(int? totalStockQuantity) =>
+      _$this._totalStockQuantity = totalStockQuantity;
+
+  int? _totalAvailableQuantity;
+  int? get totalAvailableQuantity => _$this._totalAvailableQuantity;
+  set totalAvailableQuantity(int? totalAvailableQuantity) =>
+      _$this._totalAvailableQuantity = totalAvailableQuantity;
+
+  int? _lowStockVariantsCount;
+  int? get lowStockVariantsCount => _$this._lowStockVariantsCount;
+  set lowStockVariantsCount(int? lowStockVariantsCount) =>
+      _$this._lowStockVariantsCount = lowStockVariantsCount;
+
+  int? _outOfStockVariantsCount;
+  int? get outOfStockVariantsCount => _$this._outOfStockVariantsCount;
+  set outOfStockVariantsCount(int? outOfStockVariantsCount) =>
+      _$this._outOfStockVariantsCount = outOfStockVariantsCount;
+
+  int? _totalBatches;
+  int? get totalBatches => _$this._totalBatches;
+  set totalBatches(int? totalBatches) => _$this._totalBatches = totalBatches;
+
+  int? _expiredBatchesCount;
+  int? get expiredBatchesCount => _$this._expiredBatchesCount;
+  set expiredBatchesCount(int? expiredBatchesCount) =>
+      _$this._expiredBatchesCount = expiredBatchesCount;
+
+  int? _expiringSoonCount;
+  int? get expiringSoonCount => _$this._expiringSoonCount;
+  set expiringSoonCount(int? expiringSoonCount) =>
+      _$this._expiringSoonCount = expiringSoonCount;
+
+  InventoryLevelsResponseBuilder() {
+    InventoryLevelsResponse._defaults(this);
+  }
+
+  InventoryLevelsResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _totalVariants = $v.totalVariants;
+      _totalStockQuantity = $v.totalStockQuantity;
+      _totalAvailableQuantity = $v.totalAvailableQuantity;
+      _lowStockVariantsCount = $v.lowStockVariantsCount;
+      _outOfStockVariantsCount = $v.outOfStockVariantsCount;
+      _totalBatches = $v.totalBatches;
+      _expiredBatchesCount = $v.expiredBatchesCount;
+      _expiringSoonCount = $v.expiringSoonCount;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(InventoryLevelsResponse other) {
+    _$v = other as _$InventoryLevelsResponse;
+  }
+
+  @override
+  void update(void Function(InventoryLevelsResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  InventoryLevelsResponse build() => _build();
+
+  _$InventoryLevelsResponse _build() {
+    final _$result =
+        _$v ??
+        _$InventoryLevelsResponse._(
+          totalVariants: totalVariants,
+          totalStockQuantity: totalStockQuantity,
+          totalAvailableQuantity: totalAvailableQuantity,
+          lowStockVariantsCount: lowStockVariantsCount,
+          outOfStockVariantsCount: outOfStockVariantsCount,
+          totalBatches: totalBatches,
+          expiredBatchesCount: expiredBatchesCount,
+          expiringSoonCount: expiringSoonCount,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-InventoryLevelsResponse _$InventoryLevelsResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('InventoryLevelsResponse', json, ($checkedConvert) {
-  final val = InventoryLevelsResponse(
-    totalVariants: $checkedConvert(
-      'totalVariants',
-      (v) => (v as num?)?.toInt(),
-    ),
-    totalStockQuantity: $checkedConvert(
-      'totalStockQuantity',
-      (v) => (v as num?)?.toInt(),
-    ),
-    totalAvailableQuantity: $checkedConvert(
-      'totalAvailableQuantity',
-      (v) => (v as num?)?.toInt(),
-    ),
-    lowStockVariantsCount: $checkedConvert(
-      'lowStockVariantsCount',
-      (v) => (v as num?)?.toInt(),
-    ),
-    outOfStockVariantsCount: $checkedConvert(
-      'outOfStockVariantsCount',
-      (v) => (v as num?)?.toInt(),
-    ),
-    totalBatches: $checkedConvert('totalBatches', (v) => (v as num?)?.toInt()),
-    expiredBatchesCount: $checkedConvert(
-      'expiredBatchesCount',
-      (v) => (v as num?)?.toInt(),
-    ),
-    expiringSoonCount: $checkedConvert(
-      'expiringSoonCount',
-      (v) => (v as num?)?.toInt(),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$InventoryLevelsResponseToJson(
-  InventoryLevelsResponse instance,
-) => <String, dynamic>{
-  'totalVariants': ?instance.totalVariants,
-  'totalStockQuantity': ?instance.totalStockQuantity,
-  'totalAvailableQuantity': ?instance.totalAvailableQuantity,
-  'lowStockVariantsCount': ?instance.lowStockVariantsCount,
-  'outOfStockVariantsCount': ?instance.outOfStockVariantsCount,
-  'totalBatches': ?instance.totalBatches,
-  'expiredBatchesCount': ?instance.expiredBatchesCount,
-  'expiringSoonCount': ?instance.expiringSoonCount,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

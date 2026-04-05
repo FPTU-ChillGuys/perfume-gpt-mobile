@@ -3,12 +3,11 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductListItemWithVariants
 void main() {
-  final ProductListItemWithVariants?
-  instance = /* ProductListItemWithVariants(...) */ null;
-  // TODO add properties to the entity
+  final instance = ProductListItemWithVariantsBuilder();
+  // TODO add properties to the builder and call build()
 
   group(ProductListItemWithVariants, () {
-    // List<VariantSummaryItem> variants
+    // BuiltList<VariantSummaryItem> variants
     test('to test the property `variants`', () async {
       // TODO
     });
@@ -53,14 +52,20 @@ void main() {
       // TODO
     });
 
+    // BuiltList<num> variantPrices
+    test('to test the property `variantPrices`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> tags
+    test('to test the property `tags`', () async {
+      // TODO
+    });
+
     // MediaResponse primaryImage
     test('to test the property `primaryImage`', () async {
       // TODO
     });
 
-    // List<ProductAttributeResponse> attributes
-    test('to test the property `attributes`', () async {
-      // TODO
-    });
   });
 }

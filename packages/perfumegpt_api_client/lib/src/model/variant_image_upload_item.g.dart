@@ -3,118 +3,135 @@
 part of 'variant_image_upload_item.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$VariantImageUploadItemCWProxy {
-  VariantImageUploadItem imageFile(MultipartFile? imageFile);
+class _$VariantImageUploadItem extends VariantImageUploadItem {
+  @override
+  final Uint8List imageFile;
+  @override
+  final String? altText;
+  @override
+  final int? displayOrder;
+  @override
+  final bool? isPrimary;
 
-  VariantImageUploadItem altText(String? altText);
+  factory _$VariantImageUploadItem([
+    void Function(VariantImageUploadItemBuilder)? updates,
+  ]) => (VariantImageUploadItemBuilder()..update(updates))._build();
 
-  VariantImageUploadItem displayOrder(int? displayOrder);
-
-  VariantImageUploadItem isPrimary(bool? isPrimary);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantImageUploadItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VariantImageUploadItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VariantImageUploadItem call({
-    MultipartFile? imageFile,
-    String? altText,
-    int? displayOrder,
-    bool? isPrimary,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfVariantImageUploadItem.copyWith(...)` or call `instanceOfVariantImageUploadItem.copyWith.fieldName(value)` for a single field.
-class _$VariantImageUploadItemCWProxyImpl
-    implements _$VariantImageUploadItemCWProxy {
-  const _$VariantImageUploadItemCWProxyImpl(this._value);
-
-  final VariantImageUploadItem _value;
+  _$VariantImageUploadItem._({
+    required this.imageFile,
+    this.altText,
+    this.displayOrder,
+    this.isPrimary,
+  }) : super._();
+  @override
+  VariantImageUploadItem rebuild(
+    void Function(VariantImageUploadItemBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  VariantImageUploadItem imageFile(MultipartFile? imageFile) =>
-      call(imageFile: imageFile);
+  VariantImageUploadItemBuilder toBuilder() =>
+      VariantImageUploadItemBuilder()..replace(this);
 
   @override
-  VariantImageUploadItem altText(String? altText) => call(altText: altText);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is VariantImageUploadItem &&
+        imageFile == other.imageFile &&
+        altText == other.altText &&
+        displayOrder == other.displayOrder &&
+        isPrimary == other.isPrimary;
+  }
 
   @override
-  VariantImageUploadItem displayOrder(int? displayOrder) =>
-      call(displayOrder: displayOrder);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, imageFile.hashCode);
+    _$hash = $jc(_$hash, altText.hashCode);
+    _$hash = $jc(_$hash, displayOrder.hashCode);
+    _$hash = $jc(_$hash, isPrimary.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  VariantImageUploadItem isPrimary(bool? isPrimary) =>
-      call(isPrimary: isPrimary);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantImageUploadItem(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// VariantImageUploadItem(...).copyWith(id: 12, name: "My name")
-  /// ```
-  VariantImageUploadItem call({
-    Object? imageFile = const $CopyWithPlaceholder(),
-    Object? altText = const $CopyWithPlaceholder(),
-    Object? displayOrder = const $CopyWithPlaceholder(),
-    Object? isPrimary = const $CopyWithPlaceholder(),
-  }) {
-    return VariantImageUploadItem(
-      imageFile: imageFile == const $CopyWithPlaceholder()
-          ? _value.imageFile
-          // ignore: cast_nullable_to_non_nullable
-          : imageFile as MultipartFile?,
-      altText: altText == const $CopyWithPlaceholder()
-          ? _value.altText
-          // ignore: cast_nullable_to_non_nullable
-          : altText as String?,
-      displayOrder: displayOrder == const $CopyWithPlaceholder()
-          ? _value.displayOrder
-          // ignore: cast_nullable_to_non_nullable
-          : displayOrder as int?,
-      isPrimary: isPrimary == const $CopyWithPlaceholder()
-          ? _value.isPrimary
-          // ignore: cast_nullable_to_non_nullable
-          : isPrimary as bool?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'VariantImageUploadItem')
+          ..add('imageFile', imageFile)
+          ..add('altText', altText)
+          ..add('displayOrder', displayOrder)
+          ..add('isPrimary', isPrimary))
+        .toString();
   }
 }
 
-extension $VariantImageUploadItemCopyWith on VariantImageUploadItem {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfVariantImageUploadItem.copyWith(...)` or `instanceOfVariantImageUploadItem.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$VariantImageUploadItemCWProxy get copyWith =>
-      _$VariantImageUploadItemCWProxyImpl(this);
+class VariantImageUploadItemBuilder
+    implements Builder<VariantImageUploadItem, VariantImageUploadItemBuilder> {
+  _$VariantImageUploadItem? _$v;
+
+  Uint8List? _imageFile;
+  Uint8List? get imageFile => _$this._imageFile;
+  set imageFile(Uint8List? imageFile) => _$this._imageFile = imageFile;
+
+  String? _altText;
+  String? get altText => _$this._altText;
+  set altText(String? altText) => _$this._altText = altText;
+
+  int? _displayOrder;
+  int? get displayOrder => _$this._displayOrder;
+  set displayOrder(int? displayOrder) => _$this._displayOrder = displayOrder;
+
+  bool? _isPrimary;
+  bool? get isPrimary => _$this._isPrimary;
+  set isPrimary(bool? isPrimary) => _$this._isPrimary = isPrimary;
+
+  VariantImageUploadItemBuilder() {
+    VariantImageUploadItem._defaults(this);
+  }
+
+  VariantImageUploadItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _imageFile = $v.imageFile;
+      _altText = $v.altText;
+      _displayOrder = $v.displayOrder;
+      _isPrimary = $v.isPrimary;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(VariantImageUploadItem other) {
+    _$v = other as _$VariantImageUploadItem;
+  }
+
+  @override
+  void update(void Function(VariantImageUploadItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  VariantImageUploadItem build() => _build();
+
+  _$VariantImageUploadItem _build() {
+    final _$result =
+        _$v ??
+        _$VariantImageUploadItem._(
+          imageFile: BuiltValueNullFieldError.checkNotNull(
+            imageFile,
+            r'VariantImageUploadItem',
+            'imageFile',
+          ),
+          altText: altText,
+          displayOrder: displayOrder,
+          isPrimary: isPrimary,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-VariantImageUploadItem _$VariantImageUploadItemFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('VariantImageUploadItem', json, ($checkedConvert) {
-  final val = VariantImageUploadItem(
-    altText: $checkedConvert('altText', (v) => v as String?),
-    displayOrder: $checkedConvert('displayOrder', (v) => (v as num?)?.toInt()),
-    isPrimary: $checkedConvert('isPrimary', (v) => v as bool?),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$VariantImageUploadItemToJson(
-  VariantImageUploadItem instance,
-) => <String, dynamic>{
-  'altText': ?instance.altText,
-  'displayOrder': ?instance.displayOrder,
-  'isPrimary': ?instance.isPrimary,
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

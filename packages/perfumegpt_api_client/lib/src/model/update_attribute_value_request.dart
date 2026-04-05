@@ -3,56 +3,104 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'update_attribute_value_request.g.dart';
 
+/// UpdateAttributeValueRequest
+///
+/// Properties:
+/// * [value] 
+@BuiltValue()
+abstract class UpdateAttributeValueRequest implements Built<UpdateAttributeValueRequest, UpdateAttributeValueRequestBuilder> {
+  @BuiltValueField(wireName: r'value')
+  String get value;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class UpdateAttributeValueRequest {
-  /// Returns a new [UpdateAttributeValueRequest] instance.
-  UpdateAttributeValueRequest({
+  UpdateAttributeValueRequest._();
 
-    required  this.value,
-  });
+  factory UpdateAttributeValueRequest([void updates(UpdateAttributeValueRequestBuilder b)]) = _$UpdateAttributeValueRequest;
 
-  @JsonKey(
-    
-    name: r'value',
-    required: true,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(UpdateAttributeValueRequestBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<UpdateAttributeValueRequest> get serializer => _$UpdateAttributeValueRequestSerializer();
+}
 
-  final String value;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateAttributeValueRequest &&
-      other.value == value;
-
-    @override
-    int get hashCode =>
-        value.hashCode;
-
-  factory UpdateAttributeValueRequest.fromJson(Map<String, dynamic> json) => _$UpdateAttributeValueRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UpdateAttributeValueRequestToJson(this);
+class _$UpdateAttributeValueRequestSerializer implements PrimitiveSerializer<UpdateAttributeValueRequest> {
+  @override
+  final Iterable<Type> types = const [UpdateAttributeValueRequest, _$UpdateAttributeValueRequest];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'UpdateAttributeValueRequest';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    UpdateAttributeValueRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'value';
+    yield serializers.serialize(
+      object.value,
+      specifiedType: const FullType(String),
+    );
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    UpdateAttributeValueRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required UpdateAttributeValueRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'value':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.value = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  UpdateAttributeValueRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = UpdateAttributeValueRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

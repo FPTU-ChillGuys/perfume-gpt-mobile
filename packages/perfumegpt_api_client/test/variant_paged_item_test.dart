@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VariantPagedItem
 void main() {
-  final VariantPagedItem? instance = /* VariantPagedItem(...) */ null;
-  // TODO add properties to the entity
+  final instance = VariantPagedItemBuilder();
+  // TODO add properties to the builder and call build()
 
   group(VariantPagedItem, () {
     // String id
@@ -17,8 +17,8 @@ void main() {
       // TODO
     });
 
-    // MediaResponse primaryImage
-    test('to test the property `primaryImage`', () async {
+    // String primaryImageUrl
+    test('to test the property `primaryImageUrl`', () async {
       // TODO
     });
 
@@ -57,6 +57,11 @@ void main() {
       // TODO
     });
 
+    // num retailPrice
+    test('to test the property `retailPrice`', () async {
+      // TODO
+    });
+
     // VariantStatus status
     test('to test the property `status`', () async {
       // TODO
@@ -67,9 +72,10 @@ void main() {
       // TODO
     });
 
-    // List<ProductAttributeResponse> attributes
+    // BuiltList<ProductAttributeResponse> attributes
     test('to test the property `attributes`', () async {
       // TODO
     });
+
   });
 }

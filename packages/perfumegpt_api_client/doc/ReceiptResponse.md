@@ -9,18 +9,19 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **orderId** | **String** |  | [optional] 
+**code** | **String** |  | 
 **orderDate** | [**DateTime**](DateTime.md) |  | [optional] 
-**orderStatus** | **String** |  | [optional] 
-**staffName** | **String** |  | [optional] 
-**customerName** | **String** |  | [optional] 
-**recipientPhone** | **String** |  | [optional] 
-**recipientAddress** | **String** |  | [optional] 
-**items** | [**List&lt;ReceiptItemDto&gt;**](ReceiptItemDto.md) |  | [optional] 
+**orderStatus** | **String** |  | 
+**staffName** | **String** |  | 
+**customerName** | **String** |  | 
+**recipientPhone** | **String** |  | 
+**recipientAddress** | **String** |  | 
+**items** | [**BuiltList&lt;ReceiptItemDto&gt;**](ReceiptItemDto.md) |  | 
 **subtotal** | **num** |  | [optional] 
 **discount** | **num** |  | [optional] 
 **tax** | **num** |  | [optional] 
 **total** | **num** |  | [optional] 
-**paymentMethod** | **String** |  | [optional] 
+**paymentMethod** | **String** |  | 
 **note** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

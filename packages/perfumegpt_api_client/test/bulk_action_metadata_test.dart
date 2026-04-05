@@ -3,11 +3,11 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BulkActionMetadata
 void main() {
-  final BulkActionMetadata? instance = /* BulkActionMetadata(...) */ null;
-  // TODO add properties to the entity
+  final instance = BulkActionMetadataBuilder();
+  // TODO add properties to the builder and call build()
 
   group(BulkActionMetadata, () {
-    // List<BulkOperationResult> operations
+    // BuiltList<BulkOperationResult> operations
     test('to test the property `operations`', () async {
       // TODO
     });
@@ -36,5 +36,6 @@ void main() {
     test('to test the property `totalFailed`', () async {
       // TODO
     });
+
   });
 }

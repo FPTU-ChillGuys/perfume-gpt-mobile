@@ -27,7 +27,7 @@ Method | HTTP request | Description
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getCartApi();
-final List<String> itemIds = ; // List<String> | 
+final BuiltList<String> itemIds = ; // BuiltList<String> | 
 
 try {
     final response = api.apiCartClearDelete(itemIds);
@@ -41,7 +41,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemIds** | [**List&lt;String&gt;**](String.md)|  | [optional] 
+ **itemIds** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
 
 ### Return type
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiCartItemsGet**
-> BaseResponseOfGetCartItemsResponse apiCartItemsGet(itemIds)
+> BaseResponseOfGetCartItemsResponse apiCartItemsGet(itemIds, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -68,10 +68,15 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getCartApi();
-final List<String> itemIds = ; // List<String> | 
+final BuiltList<String> itemIds = ; // BuiltList<String> | 
+final int pageNumber = 56; // int | 
+final int pageSize = 56; // int | 
+final String sortBy = sortBy_example; // String | 
+final String sortOrder = sortOrder_example; // String | 
+final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiCartItemsGet(itemIds);
+    final response = api.apiCartItemsGet(itemIds, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling CartApi->apiCartItemsGet: $e\n');
@@ -82,7 +87,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemIds** | [**List&lt;String&gt;**](String.md)|  | [optional] 
+ **itemIds** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
+ **pageNumber** | **int**|  | [optional] 
+ **pageSize** | **int**|  | [optional] 
+ **sortBy** | **String**|  | [optional] 
+ **sortOrder** | **String**|  | [optional] 
+ **isDescending** | **bool**|  | [optional] 
 
 ### Return type
 
@@ -225,7 +235,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiCartTotalGet**
-> BaseResponseOfGetCartTotalResponse apiCartTotalGet(voucherCode, itemIds, savedAddressId, recipientPeriodRecipientName, recipientPeriodRecipientPhoneNumber, recipientPeriodDistrictId, recipientPeriodDistrictName, recipientPeriodWardCode, recipientPeriodWardName, recipientPeriodProvinceId, recipientPeriodProvinceName, recipientPeriodFullAddress)
+> BaseResponseOfGetCartTotalResponse apiCartTotalGet(voucherCode, itemIds, savedAddressId, recipientPeriodContactName, recipientPeriodContactPhoneNumber, recipientPeriodDistrictId, recipientPeriodDistrictName, recipientPeriodWardCode, recipientPeriodWardName, recipientPeriodProvinceId, recipientPeriodProvinceName, recipientPeriodFullAddress)
 
 
 
@@ -235,10 +245,10 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getCartApi();
 final String voucherCode = voucherCode_example; // String | 
-final List<String> itemIds = ; // List<String> | 
+final BuiltList<String> itemIds = ; // BuiltList<String> | 
 final String savedAddressId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final String recipientPeriodRecipientName = recipientPeriodRecipientName_example; // String | 
-final String recipientPeriodRecipientPhoneNumber = recipientPeriodRecipientPhoneNumber_example; // String | 
+final String recipientPeriodContactName = recipientPeriodContactName_example; // String | 
+final String recipientPeriodContactPhoneNumber = recipientPeriodContactPhoneNumber_example; // String | 
 final int recipientPeriodDistrictId = 56; // int | 
 final String recipientPeriodDistrictName = recipientPeriodDistrictName_example; // String | 
 final String recipientPeriodWardCode = recipientPeriodWardCode_example; // String | 
@@ -248,7 +258,7 @@ final String recipientPeriodProvinceName = recipientPeriodProvinceName_example; 
 final String recipientPeriodFullAddress = recipientPeriodFullAddress_example; // String | 
 
 try {
-    final response = api.apiCartTotalGet(voucherCode, itemIds, savedAddressId, recipientPeriodRecipientName, recipientPeriodRecipientPhoneNumber, recipientPeriodDistrictId, recipientPeriodDistrictName, recipientPeriodWardCode, recipientPeriodWardName, recipientPeriodProvinceId, recipientPeriodProvinceName, recipientPeriodFullAddress);
+    final response = api.apiCartTotalGet(voucherCode, itemIds, savedAddressId, recipientPeriodContactName, recipientPeriodContactPhoneNumber, recipientPeriodDistrictId, recipientPeriodDistrictName, recipientPeriodWardCode, recipientPeriodWardName, recipientPeriodProvinceId, recipientPeriodProvinceName, recipientPeriodFullAddress);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling CartApi->apiCartTotalGet: $e\n');
@@ -260,10 +270,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **voucherCode** | **String**|  | [optional] 
- **itemIds** | [**List&lt;String&gt;**](String.md)|  | [optional] 
+ **itemIds** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
  **savedAddressId** | **String**|  | [optional] 
- **recipientPeriodRecipientName** | **String**|  | [optional] 
- **recipientPeriodRecipientPhoneNumber** | **String**|  | [optional] 
+ **recipientPeriodContactName** | **String**|  | [optional] 
+ **recipientPeriodContactPhoneNumber** | **String**|  | [optional] 
  **recipientPeriodDistrictId** | **int**|  | [optional] 
  **recipientPeriodDistrictName** | **String**|  | [optional] 
  **recipientPeriodWardCode** | **String**|  | [optional] 

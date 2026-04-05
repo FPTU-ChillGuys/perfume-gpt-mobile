@@ -3,95 +3,123 @@
 part of 'bulk_action_result_ofstring.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$BulkActionResultOfstringCWProxy {
-  BulkActionResultOfstring data(String? data);
+class _$BulkActionResultOfstring extends BulkActionResultOfstring {
+  @override
+  final String? data;
+  @override
+  final BulkActionMetadata? metadata;
 
-  BulkActionResultOfstring metadata(BulkActionMetadata? metadata);
+  factory _$BulkActionResultOfstring([
+    void Function(BulkActionResultOfstringBuilder)? updates,
+  ]) => (BulkActionResultOfstringBuilder()..update(updates))._build();
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionResultOfstring(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BulkActionResultOfstring(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BulkActionResultOfstring call({String? data, BulkActionMetadata? metadata});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBulkActionResultOfstring.copyWith(...)` or call `instanceOfBulkActionResultOfstring.copyWith.fieldName(value)` for a single field.
-class _$BulkActionResultOfstringCWProxyImpl
-    implements _$BulkActionResultOfstringCWProxy {
-  const _$BulkActionResultOfstringCWProxyImpl(this._value);
-
-  final BulkActionResultOfstring _value;
+  _$BulkActionResultOfstring._({this.data, this.metadata}) : super._();
+  @override
+  BulkActionResultOfstring rebuild(
+    void Function(BulkActionResultOfstringBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  BulkActionResultOfstring data(String? data) => call(data: data);
+  BulkActionResultOfstringBuilder toBuilder() =>
+      BulkActionResultOfstringBuilder()..replace(this);
 
   @override
-  BulkActionResultOfstring metadata(BulkActionMetadata? metadata) =>
-      call(metadata: metadata);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is BulkActionResultOfstring &&
+        data == other.data &&
+        metadata == other.metadata;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionResultOfstring(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// BulkActionResultOfstring(...).copyWith(id: 12, name: "My name")
-  /// ```
-  BulkActionResultOfstring call({
-    Object? data = const $CopyWithPlaceholder(),
-    Object? metadata = const $CopyWithPlaceholder(),
-  }) {
-    return BulkActionResultOfstring(
-      data: data == const $CopyWithPlaceholder()
-          ? _value.data
-          // ignore: cast_nullable_to_non_nullable
-          : data as String?,
-      metadata: metadata == const $CopyWithPlaceholder()
-          ? _value.metadata
-          // ignore: cast_nullable_to_non_nullable
-          : metadata as BulkActionMetadata?,
-    );
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, data.hashCode);
+    _$hash = $jc(_$hash, metadata.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'BulkActionResultOfstring')
+          ..add('data', data)
+          ..add('metadata', metadata))
+        .toString();
   }
 }
 
-extension $BulkActionResultOfstringCopyWith on BulkActionResultOfstring {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBulkActionResultOfstring.copyWith(...)` or `instanceOfBulkActionResultOfstring.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$BulkActionResultOfstringCWProxy get copyWith =>
-      _$BulkActionResultOfstringCWProxyImpl(this);
+class BulkActionResultOfstringBuilder
+    implements
+        Builder<BulkActionResultOfstring, BulkActionResultOfstringBuilder> {
+  _$BulkActionResultOfstring? _$v;
+
+  String? _data;
+  String? get data => _$this._data;
+  set data(String? data) => _$this._data = data;
+
+  BulkActionMetadataBuilder? _metadata;
+  BulkActionMetadataBuilder get metadata =>
+      _$this._metadata ??= BulkActionMetadataBuilder();
+  set metadata(BulkActionMetadataBuilder? metadata) =>
+      _$this._metadata = metadata;
+
+  BulkActionResultOfstringBuilder() {
+    BulkActionResultOfstring._defaults(this);
+  }
+
+  BulkActionResultOfstringBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _data = $v.data;
+      _metadata = $v.metadata?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(BulkActionResultOfstring other) {
+    _$v = other as _$BulkActionResultOfstring;
+  }
+
+  @override
+  void update(void Function(BulkActionResultOfstringBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  BulkActionResultOfstring build() => _build();
+
+  _$BulkActionResultOfstring _build() {
+    _$BulkActionResultOfstring _$result;
+    try {
+      _$result =
+          _$v ??
+          _$BulkActionResultOfstring._(
+            data: data,
+            metadata: _metadata?.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'metadata';
+        _metadata?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'BulkActionResultOfstring',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-BulkActionResultOfstring _$BulkActionResultOfstringFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('BulkActionResultOfstring', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['data']);
-  final val = BulkActionResultOfstring(
-    data: $checkedConvert('data', (v) => v as String?),
-    metadata: $checkedConvert(
-      'metadata',
-      (v) => v == null
-          ? null
-          : BulkActionMetadata.fromJson(v as Map<String, dynamic>),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$BulkActionResultOfstringToJson(
-  BulkActionResultOfstring instance,
-) => <String, dynamic>{
-  'data': instance.data,
-  'metadata': ?instance.metadata?.toJson(),
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

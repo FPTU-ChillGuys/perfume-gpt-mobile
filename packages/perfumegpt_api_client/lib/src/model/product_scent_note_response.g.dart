@@ -3,109 +3,121 @@
 part of 'product_scent_note_response.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$ProductScentNoteResponseCWProxy {
-  ProductScentNoteResponse noteId(int? noteId);
+class _$ProductScentNoteResponse extends ProductScentNoteResponse {
+  @override
+  final int? noteId;
+  @override
+  final String name;
+  @override
+  final NoteType? type;
 
-  ProductScentNoteResponse name(String? name);
+  factory _$ProductScentNoteResponse([
+    void Function(ProductScentNoteResponseBuilder)? updates,
+  ]) => (ProductScentNoteResponseBuilder()..update(updates))._build();
 
-  ProductScentNoteResponse type(NoteType? type);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductScentNoteResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ProductScentNoteResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ProductScentNoteResponse call({int? noteId, String? name, NoteType? type});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfProductScentNoteResponse.copyWith(...)` or call `instanceOfProductScentNoteResponse.copyWith.fieldName(value)` for a single field.
-class _$ProductScentNoteResponseCWProxyImpl
-    implements _$ProductScentNoteResponseCWProxy {
-  const _$ProductScentNoteResponseCWProxyImpl(this._value);
-
-  final ProductScentNoteResponse _value;
+  _$ProductScentNoteResponse._({this.noteId, required this.name, this.type})
+    : super._();
+  @override
+  ProductScentNoteResponse rebuild(
+    void Function(ProductScentNoteResponseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  ProductScentNoteResponse noteId(int? noteId) => call(noteId: noteId);
+  ProductScentNoteResponseBuilder toBuilder() =>
+      ProductScentNoteResponseBuilder()..replace(this);
 
   @override
-  ProductScentNoteResponse name(String? name) => call(name: name);
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ProductScentNoteResponse &&
+        noteId == other.noteId &&
+        name == other.name &&
+        type == other.type;
+  }
 
   @override
-  ProductScentNoteResponse type(NoteType? type) => call(type: type);
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, noteId.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductScentNoteResponse(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ProductScentNoteResponse(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ProductScentNoteResponse call({
-    Object? noteId = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
-    Object? type = const $CopyWithPlaceholder(),
-  }) {
-    return ProductScentNoteResponse(
-      noteId: noteId == const $CopyWithPlaceholder()
-          ? _value.noteId
-          // ignore: cast_nullable_to_non_nullable
-          : noteId as int?,
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-      type: type == const $CopyWithPlaceholder()
-          ? _value.type
-          // ignore: cast_nullable_to_non_nullable
-          : type as NoteType?,
-    );
+  String toString() {
+    return (newBuiltValueToStringHelper(r'ProductScentNoteResponse')
+          ..add('noteId', noteId)
+          ..add('name', name)
+          ..add('type', type))
+        .toString();
   }
 }
 
-extension $ProductScentNoteResponseCopyWith on ProductScentNoteResponse {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfProductScentNoteResponse.copyWith(...)` or `instanceOfProductScentNoteResponse.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$ProductScentNoteResponseCWProxy get copyWith =>
-      _$ProductScentNoteResponseCWProxyImpl(this);
+class ProductScentNoteResponseBuilder
+    implements
+        Builder<ProductScentNoteResponse, ProductScentNoteResponseBuilder> {
+  _$ProductScentNoteResponse? _$v;
+
+  int? _noteId;
+  int? get noteId => _$this._noteId;
+  set noteId(int? noteId) => _$this._noteId = noteId;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  NoteType? _type;
+  NoteType? get type => _$this._type;
+  set type(NoteType? type) => _$this._type = type;
+
+  ProductScentNoteResponseBuilder() {
+    ProductScentNoteResponse._defaults(this);
+  }
+
+  ProductScentNoteResponseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _noteId = $v.noteId;
+      _name = $v.name;
+      _type = $v.type;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ProductScentNoteResponse other) {
+    _$v = other as _$ProductScentNoteResponse;
+  }
+
+  @override
+  void update(void Function(ProductScentNoteResponseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ProductScentNoteResponse build() => _build();
+
+  _$ProductScentNoteResponse _build() {
+    final _$result =
+        _$v ??
+        _$ProductScentNoteResponse._(
+          noteId: noteId,
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'ProductScentNoteResponse',
+            'name',
+          ),
+          type: type,
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-ProductScentNoteResponse _$ProductScentNoteResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('ProductScentNoteResponse', json, ($checkedConvert) {
-  final val = ProductScentNoteResponse(
-    noteId: $checkedConvert('noteId', (v) => (v as num?)?.toInt()),
-    name: $checkedConvert('name', (v) => v as String?),
-    type: $checkedConvert(
-      'type',
-      (v) => $enumDecodeNullable(_$NoteTypeEnumMap, v),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$ProductScentNoteResponseToJson(
-  ProductScentNoteResponse instance,
-) => <String, dynamic>{
-  'noteId': ?instance.noteId,
-  'name': ?instance.name,
-  'type': ?_$NoteTypeEnumMap[instance.type],
-};
-
-const _$NoteTypeEnumMap = {
-  NoteType.top: 'Top',
-  NoteType.heart: 'Heart',
-  NoteType.base_: 'Base',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

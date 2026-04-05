@@ -4,11 +4,12 @@
 
 import 'dart:async';
 
-// ignore: unused_import
-import 'dart:convert';
-import 'package:perfumegpt_api_client/src/deserialize.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'dart:typed_data';
+import 'package:perfumegpt_api_client/src/api_util.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_staff_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_media_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_user_credentials_response.dart';
@@ -18,7 +19,9 @@ class UsersApi {
 
   final Dio _dio;
 
-  const UsersApi(this._dio);
+  final Serializers _serializers;
+
+  const UsersApi(this._dio, this._serializers);
 
   /// apiUsersAvatarDelete
   /// 
@@ -71,8 +74,11 @@ class UsersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -147,8 +153,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse, BaseResponseOfMediaResponse>(rawData, 'BaseResponseOfMediaResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfMediaResponse),
+      ) as BaseResponseOfMediaResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -188,7 +197,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfstring>> apiUsersAvatarPost({ 
-    MultipartFile? avatar,
+    Uint8List? avatar,
     String? altText,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -220,6 +229,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse
     dynamic _bodyData;
 
     try {
+      _bodyData = <String, dynamic>{
+        if (avatar != null) r'Avatar': encodeQueryParameter(_serializers, avatar, const FullType(Uint8List)),
+        if (altText != null) r'AltText': encodeQueryParameter(_serializers, altText, const FullType(String)),
+      };
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -245,8 +258,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -293,7 +309,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/users/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/users/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -323,8 +339,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfstring),
+      ) as BaseResponseOfstring;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -399,8 +418,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfUserCredentialsResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfUserCredentialsResponse, BaseResponseOfUserCredentialsResponse>(rawData, 'BaseResponseOfUserCredentialsResponse', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfUserCredentialsResponse),
+      ) as BaseResponseOfUserCredentialsResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -475,8 +497,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfUserCredentia
     BaseResponseOfListOfStaffLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfStaffLookupItem, BaseResponseOfListOfStaffLookupItem>(rawData, 'BaseResponseOfListOfStaffLookupItem', growable: true);
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BaseResponseOfListOfStaffLookupItem),
+      ) as BaseResponseOfListOfStaffLookupItem;
 
     } catch (error, stackTrace) {
       throw DioException(

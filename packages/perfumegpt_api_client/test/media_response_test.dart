@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for MediaResponse
 void main() {
-  final MediaResponse? instance = /* MediaResponse(...) */ null;
-  // TODO add properties to the entity
+  final instance = MediaResponseBuilder();
+  // TODO add properties to the builder and call build()
 
   group(MediaResponse, () {
     // String id
@@ -41,5 +41,6 @@ void main() {
     test('to test the property `mimeType`', () async {
       // TODO
     });
+
   });
 }

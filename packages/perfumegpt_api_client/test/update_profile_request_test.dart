@@ -3,12 +3,12 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateProfileRequest
 void main() {
-  final UpdateProfileRequest? instance = /* UpdateProfileRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = UpdateProfileRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(UpdateProfileRequest, () {
-    // String scentPreference
-    test('to test the property `scentPreference`', () async {
+    // DateTime dateOfBirth
+    test('to test the property `dateOfBirth`', () async {
       // TODO
     });
 
@@ -22,14 +22,20 @@ void main() {
       // TODO
     });
 
-    // String preferredStyle
-    test('to test the property `preferredStyle`', () async {
+    // BuiltList<UpdateNotePreferenceRequest> notePreferenceIds
+    test('to test the property `notePreferenceIds`', () async {
       // TODO
     });
 
-    // String favoriteNotes
-    test('to test the property `favoriteNotes`', () async {
+    // BuiltList<int> familyPreferenceIds
+    test('to test the property `familyPreferenceIds`', () async {
       // TODO
     });
+
+    // BuiltList<int> attributePreferenceIds
+    test('to test the property `attributePreferenceIds`', () async {
+      // TODO
+    });
+
   });
 }

@@ -10,20 +10,20 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **userId** | **String** |  | [optional] 
-**userFullName** | **String** |  | [optional] 
+**userFullName** | **String** |  | 
 **userProfilePictureUrl** | **String** |  | [optional] 
 **orderDetailId** | **String** |  | [optional] 
 **orderId** | **String** |  | [optional] 
 **quantity** | **int** |  | [optional] 
 **unitPrice** | **num** |  | [optional] 
 **variantId** | **String** |  | [optional] 
-**variantName** | **String** |  | [optional] 
-**productName** | **String** |  | [optional] 
+**variantName** | **String** |  | 
+**productName** | **String** |  | 
 **volumeMl** | **int** |  | [optional] 
-**concentrationName** | **String** |  | [optional] 
+**concentrationName** | **String** |  | 
 **rating** | **int** |  | [optional] 
-**comment** | **String** |  | [optional] 
-**images** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | [optional] 
+**comment** | **String** |  | 
+**images** | [**BuiltList&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
 **staffFeedbackComment** | **String** |  | [optional] 
 **staffFeedbackByStaffId** | **String** |  | [optional] 
 **staffFeedbackAt** | [**DateTime**](DateTime.md) |  | [optional] 

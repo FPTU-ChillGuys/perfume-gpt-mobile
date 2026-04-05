@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateProductRequest
 void main() {
-  final UpdateProductRequest? instance = /* UpdateProductRequest(...) */ null;
-  // TODO add properties to the entity
+  final instance = UpdateProductRequestBuilder();
+  // TODO add properties to the builder and call build()
 
   group(UpdateProductRequest, () {
     // String name
@@ -27,19 +27,45 @@ void main() {
       // TODO
     });
 
-    // List<String> temporaryMediaIdsToAdd
+    // Gender gender
+    test('to test the property `gender`', () async {
+      // TODO
+    });
+
+    // String origin
+    test('to test the property `origin`', () async {
+      // TODO
+    });
+
+    // int releaseYear
+    test('to test the property `releaseYear`', () async {
+      // TODO
+    });
+
+    // BuiltList<int> olfactoryFamilyIds
+    test('to test the property `olfactoryFamilyIds`', () async {
+      // TODO
+    });
+
+    // BuiltList<ScentNoteDto> scentNotes
+    test('to test the property `scentNotes`', () async {
+      // TODO
+    });
+
+    // BuiltList<ProductAttributeDto> attributes
+    test('to test the property `attributes`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> temporaryMediaIdsToAdd
     test('to test the property `temporaryMediaIdsToAdd`', () async {
       // TODO
     });
 
-    // List<String> mediaIdsToDelete
+    // BuiltList<String> mediaIdsToDelete
     test('to test the property `mediaIdsToDelete`', () async {
       // TODO
     });
 
-    // List<ProductAttributeDto> attributes
-    test('to test the property `attributes`', () async {
-      // TODO
-    });
   });
 }

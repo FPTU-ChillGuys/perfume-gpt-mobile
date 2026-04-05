@@ -3,85 +3,89 @@
 part of 'update_import_status_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$UpdateImportStatusRequestCWProxy {
-  UpdateImportStatusRequest status(ImportStatus? status);
+class _$UpdateImportStatusRequest extends UpdateImportStatusRequest {
+  @override
+  final ImportStatus? status;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateImportStatusRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateImportStatusRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateImportStatusRequest call({ImportStatus? status});
-}
+  factory _$UpdateImportStatusRequest([
+    void Function(UpdateImportStatusRequestBuilder)? updates,
+  ]) => (UpdateImportStatusRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfUpdateImportStatusRequest.copyWith(...)` or call `instanceOfUpdateImportStatusRequest.copyWith.fieldName(value)` for a single field.
-class _$UpdateImportStatusRequestCWProxyImpl
-    implements _$UpdateImportStatusRequestCWProxy {
-  const _$UpdateImportStatusRequestCWProxyImpl(this._value);
-
-  final UpdateImportStatusRequest _value;
+  _$UpdateImportStatusRequest._({this.status}) : super._();
+  @override
+  UpdateImportStatusRequest rebuild(
+    void Function(UpdateImportStatusRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  UpdateImportStatusRequest status(ImportStatus? status) =>
-      call(status: status);
+  UpdateImportStatusRequestBuilder toBuilder() =>
+      UpdateImportStatusRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateImportStatusRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateImportStatusRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateImportStatusRequest call({
-    Object? status = const $CopyWithPlaceholder(),
-  }) {
-    return UpdateImportStatusRequest(
-      status: status == const $CopyWithPlaceholder()
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as ImportStatus?,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is UpdateImportStatusRequest && status == other.status;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'UpdateImportStatusRequest',
+    )..add('status', status)).toString();
   }
 }
 
-extension $UpdateImportStatusRequestCopyWith on UpdateImportStatusRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfUpdateImportStatusRequest.copyWith(...)` or `instanceOfUpdateImportStatusRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$UpdateImportStatusRequestCWProxy get copyWith =>
-      _$UpdateImportStatusRequestCWProxyImpl(this);
+class UpdateImportStatusRequestBuilder
+    implements
+        Builder<UpdateImportStatusRequest, UpdateImportStatusRequestBuilder> {
+  _$UpdateImportStatusRequest? _$v;
+
+  ImportStatus? _status;
+  ImportStatus? get status => _$this._status;
+  set status(ImportStatus? status) => _$this._status = status;
+
+  UpdateImportStatusRequestBuilder() {
+    UpdateImportStatusRequest._defaults(this);
+  }
+
+  UpdateImportStatusRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _status = $v.status;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(UpdateImportStatusRequest other) {
+    _$v = other as _$UpdateImportStatusRequest;
+  }
+
+  @override
+  void update(void Function(UpdateImportStatusRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  UpdateImportStatusRequest build() => _build();
+
+  _$UpdateImportStatusRequest _build() {
+    final _$result = _$v ?? _$UpdateImportStatusRequest._(status: status);
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-UpdateImportStatusRequest _$UpdateImportStatusRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('UpdateImportStatusRequest', json, ($checkedConvert) {
-  final val = UpdateImportStatusRequest(
-    status: $checkedConvert(
-      'status',
-      (v) => $enumDecodeNullable(_$ImportStatusEnumMap, v),
-    ),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$UpdateImportStatusRequestToJson(
-  UpdateImportStatusRequest instance,
-) => <String, dynamic>{'status': ?_$ImportStatusEnumMap[instance.status]};
-
-const _$ImportStatusEnumMap = {
-  ImportStatus.pending: 'Pending',
-  ImportStatus.inProgress: 'InProgress',
-  ImportStatus.completed: 'Completed',
-  ImportStatus.cancelled: 'Cancelled',
-};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

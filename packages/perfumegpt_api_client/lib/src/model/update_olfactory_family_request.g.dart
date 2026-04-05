@@ -3,76 +3,100 @@
 part of 'update_olfactory_family_request.dart';
 
 // **************************************************************************
-// CopyWithGenerator
+// BuiltValueGenerator
 // **************************************************************************
 
-abstract class _$UpdateOlfactoryFamilyRequestCWProxy {
-  UpdateOlfactoryFamilyRequest name(String name);
+class _$UpdateOlfactoryFamilyRequest extends UpdateOlfactoryFamilyRequest {
+  @override
+  final String name;
 
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOlfactoryFamilyRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateOlfactoryFamilyRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateOlfactoryFamilyRequest call({String name});
-}
+  factory _$UpdateOlfactoryFamilyRequest([
+    void Function(UpdateOlfactoryFamilyRequestBuilder)? updates,
+  ]) => (UpdateOlfactoryFamilyRequestBuilder()..update(updates))._build();
 
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfUpdateOlfactoryFamilyRequest.copyWith(...)` or call `instanceOfUpdateOlfactoryFamilyRequest.copyWith.fieldName(value)` for a single field.
-class _$UpdateOlfactoryFamilyRequestCWProxyImpl
-    implements _$UpdateOlfactoryFamilyRequestCWProxy {
-  const _$UpdateOlfactoryFamilyRequestCWProxyImpl(this._value);
-
-  final UpdateOlfactoryFamilyRequest _value;
+  _$UpdateOlfactoryFamilyRequest._({required this.name}) : super._();
+  @override
+  UpdateOlfactoryFamilyRequest rebuild(
+    void Function(UpdateOlfactoryFamilyRequestBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  UpdateOlfactoryFamilyRequest name(String name) => call(name: name);
+  UpdateOlfactoryFamilyRequestBuilder toBuilder() =>
+      UpdateOlfactoryFamilyRequestBuilder()..replace(this);
 
   @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateOlfactoryFamilyRequest(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// UpdateOlfactoryFamilyRequest(...).copyWith(id: 12, name: "My name")
-  /// ```
-  UpdateOlfactoryFamilyRequest call({
-    Object? name = const $CopyWithPlaceholder(),
-  }) {
-    return UpdateOlfactoryFamilyRequest(
-      name: name == const $CopyWithPlaceholder() || name == null
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String,
-    );
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is UpdateOlfactoryFamilyRequest && name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'UpdateOlfactoryFamilyRequest',
+    )..add('name', name)).toString();
   }
 }
 
-extension $UpdateOlfactoryFamilyRequestCopyWith
-    on UpdateOlfactoryFamilyRequest {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfUpdateOlfactoryFamilyRequest.copyWith(...)` or `instanceOfUpdateOlfactoryFamilyRequest.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$UpdateOlfactoryFamilyRequestCWProxy get copyWith =>
-      _$UpdateOlfactoryFamilyRequestCWProxyImpl(this);
+class UpdateOlfactoryFamilyRequestBuilder
+    implements
+        Builder<
+          UpdateOlfactoryFamilyRequest,
+          UpdateOlfactoryFamilyRequestBuilder
+        > {
+  _$UpdateOlfactoryFamilyRequest? _$v;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  UpdateOlfactoryFamilyRequestBuilder() {
+    UpdateOlfactoryFamilyRequest._defaults(this);
+  }
+
+  UpdateOlfactoryFamilyRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(UpdateOlfactoryFamilyRequest other) {
+    _$v = other as _$UpdateOlfactoryFamilyRequest;
+  }
+
+  @override
+  void update(void Function(UpdateOlfactoryFamilyRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  UpdateOlfactoryFamilyRequest build() => _build();
+
+  _$UpdateOlfactoryFamilyRequest _build() {
+    final _$result =
+        _$v ??
+        _$UpdateOlfactoryFamilyRequest._(
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'UpdateOlfactoryFamilyRequest',
+            'name',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
 }
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-UpdateOlfactoryFamilyRequest _$UpdateOlfactoryFamilyRequestFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('UpdateOlfactoryFamilyRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['name']);
-  final val = UpdateOlfactoryFamilyRequest(
-    name: $checkedConvert('name', (v) => v as String),
-  );
-  return val;
-});
-
-Map<String, dynamic> _$UpdateOlfactoryFamilyRequestToJson(
-  UpdateOlfactoryFamilyRequest instance,
-) => <String, dynamic>{'name': instance.name};
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

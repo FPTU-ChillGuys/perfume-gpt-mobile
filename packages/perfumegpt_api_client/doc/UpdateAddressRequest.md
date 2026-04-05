@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **recipientName** | **String** |  | 
 **recipientPhoneNumber** | **String** |  | 
-**street** | **String** |  | [optional] 
-**ward** | **String** |  | [optional] 
-**district** | **String** |  | [optional] 
-**city** | **String** |  | [optional] 
+**street** | **String** |  | 
+**ward** | **String** |  | 
+**district** | **String** |  | 
+**city** | **String** |  | 
 **wardCode** | **String** |  | 
 **districtId** | **int** |  | [optional] 
 **provinceId** | **int** |  | [optional] 

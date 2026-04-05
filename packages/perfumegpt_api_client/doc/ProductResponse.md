@@ -11,19 +11,19 @@ Name | Type | Description | Notes
 **id** | **String** |  | [optional] 
 **name** | **String** |  | [optional] 
 **gender** | [**Gender**](Gender.md) |  | [optional] 
-**origin** | **String** |  | [optional] 
+**origin** | **String** |  | 
 **releaseYear** | **int** |  | [optional] 
 **brandId** | **int** |  | [optional] 
-**brandName** | **String** |  | [optional] 
+**brandName** | **String** |  | 
 **categoryId** | **int** |  | [optional] 
-**categoryName** | **String** |  | [optional] 
+**categoryName** | **String** |  | 
 **description** | **String** |  | [optional] 
 **numberOfVariants** | **int** |  | [optional] 
-**media** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | [optional] 
-**variants** | [**List&lt;ProductVariantResponse&gt;**](ProductVariantResponse.md) |  | [optional] 
-**attributes** | [**List&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | [optional] 
-**olfactoryFamilies** | [**List&lt;ProductOlfactoryFamilyResponse&gt;**](ProductOlfactoryFamilyResponse.md) |  | [optional] 
-**scentNotes** | [**List&lt;ProductScentNoteResponse&gt;**](ProductScentNoteResponse.md) |  | [optional] 
+**media** | [**BuiltList&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
+**variants** | [**BuiltList&lt;ProductVariantResponse&gt;**](ProductVariantResponse.md) |  | 
+**attributes** | [**BuiltList&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | 
+**olfactoryFamilies** | [**BuiltList&lt;ProductOlfactoryFamilyResponse&gt;**](ProductOlfactoryFamilyResponse.md) |  | 
+**scentNotes** | [**BuiltList&lt;ProductScentNoteResponse&gt;**](ProductScentNoteResponse.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

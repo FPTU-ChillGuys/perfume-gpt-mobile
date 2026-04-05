@@ -4,152 +4,207 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/product_list_item_with_variants.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
 part 'paged_result_of_product_list_item_with_variants.g.dart';
 
+/// PagedResultOfProductListItemWithVariants
+///
+/// Properties:
+/// * [items] 
+/// * [pageNumber] 
+/// * [pageSize] 
+/// * [totalCount] 
+/// * [totalPages] 
+/// * [hasPreviousPage] 
+/// * [hasNextPage] 
+@BuiltValue()
+abstract class PagedResultOfProductListItemWithVariants implements Built<PagedResultOfProductListItemWithVariants, PagedResultOfProductListItemWithVariantsBuilder> {
+  @BuiltValueField(wireName: r'items')
+  BuiltList<ProductListItemWithVariants> get items;
 
-@CopyWith()
-@JsonSerializable(
-  checked: true,
-  createToJson: true,
-  disallowUnrecognizedKeys: false,
-  explicitToJson: true,
-)
-class PagedResultOfProductListItemWithVariants {
-  /// Returns a new [PagedResultOfProductListItemWithVariants] instance.
-  PagedResultOfProductListItemWithVariants({
+  @BuiltValueField(wireName: r'pageNumber')
+  int get pageNumber;
 
-    required  this.items,
+  @BuiltValueField(wireName: r'pageSize')
+  int get pageSize;
 
-    required  this.pageNumber,
+  @BuiltValueField(wireName: r'totalCount')
+  int get totalCount;
 
-    required  this.pageSize,
+  @BuiltValueField(wireName: r'totalPages')
+  int? get totalPages;
 
-    required  this.totalCount,
+  @BuiltValueField(wireName: r'hasPreviousPage')
+  bool? get hasPreviousPage;
 
-    required  this.totalPages,
+  @BuiltValueField(wireName: r'hasNextPage')
+  bool? get hasNextPage;
 
-     this.hasPreviousPage,
+  PagedResultOfProductListItemWithVariants._();
 
-     this.hasNextPage,
-  });
+  factory PagedResultOfProductListItemWithVariants([void updates(PagedResultOfProductListItemWithVariantsBuilder b)]) = _$PagedResultOfProductListItemWithVariants;
 
-  @JsonKey(
-    
-    name: r'items',
-    required: true,
-    includeIfNull: false,
-  )
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(PagedResultOfProductListItemWithVariantsBuilder b) => b;
 
+  @BuiltValueSerializer(custom: true)
+  static Serializer<PagedResultOfProductListItemWithVariants> get serializer => _$PagedResultOfProductListItemWithVariantsSerializer();
+}
 
-  final List<ProductListItemWithVariants> items;
-
-
-
-  @JsonKey(
-    
-    name: r'pageNumber',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final int pageNumber;
-
-
-
-  @JsonKey(
-    
-    name: r'pageSize',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final int pageSize;
-
-
-
-  @JsonKey(
-    
-    name: r'totalCount',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final int totalCount;
-
-
-
-  @JsonKey(
-    
-    name: r'totalPages',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final int totalPages;
-
-
-
-  @JsonKey(
-    
-    name: r'hasPreviousPage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final bool? hasPreviousPage;
-
-
-
-  @JsonKey(
-    
-    name: r'hasNextPage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final bool? hasNextPage;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PagedResultOfProductListItemWithVariants &&
-      other.items == items &&
-      other.pageNumber == pageNumber &&
-      other.pageSize == pageSize &&
-      other.totalCount == totalCount &&
-      other.totalPages == totalPages &&
-      other.hasPreviousPage == hasPreviousPage &&
-      other.hasNextPage == hasNextPage;
-
-    @override
-    int get hashCode =>
-        items.hashCode +
-        pageNumber.hashCode +
-        pageSize.hashCode +
-        totalCount.hashCode +
-        totalPages.hashCode +
-        hasPreviousPage.hashCode +
-        hasNextPage.hashCode;
-
-  factory PagedResultOfProductListItemWithVariants.fromJson(Map<String, dynamic> json) => _$PagedResultOfProductListItemWithVariantsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PagedResultOfProductListItemWithVariantsToJson(this);
+class _$PagedResultOfProductListItemWithVariantsSerializer implements PrimitiveSerializer<PagedResultOfProductListItemWithVariants> {
+  @override
+  final Iterable<Type> types = const [PagedResultOfProductListItemWithVariants, _$PagedResultOfProductListItemWithVariants];
 
   @override
-  String toString() {
-    return toJson().toString();
+  final String wireName = r'PagedResultOfProductListItemWithVariants';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    PagedResultOfProductListItemWithVariants object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'items';
+    yield serializers.serialize(
+      object.items,
+      specifiedType: const FullType(BuiltList, [FullType(ProductListItemWithVariants)]),
+    );
+    yield r'pageNumber';
+    yield serializers.serialize(
+      object.pageNumber,
+      specifiedType: const FullType(int),
+    );
+    yield r'pageSize';
+    yield serializers.serialize(
+      object.pageSize,
+      specifiedType: const FullType(int),
+    );
+    yield r'totalCount';
+    yield serializers.serialize(
+      object.totalCount,
+      specifiedType: const FullType(int),
+    );
+    if (object.totalPages != null) {
+      yield r'totalPages';
+      yield serializers.serialize(
+        object.totalPages,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.hasPreviousPage != null) {
+      yield r'hasPreviousPage';
+      yield serializers.serialize(
+        object.hasPreviousPage,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.hasNextPage != null) {
+      yield r'hasNextPage';
+      yield serializers.serialize(
+        object.hasNextPage,
+        specifiedType: const FullType(bool),
+      );
+    }
   }
 
+  @override
+  Object serialize(
+    Serializers serializers,
+    PagedResultOfProductListItemWithVariants object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required PagedResultOfProductListItemWithVariantsBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'items':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ProductListItemWithVariants)]),
+          ) as BuiltList<ProductListItemWithVariants>;
+          result.items.replace(valueDes);
+          break;
+        case r'pageNumber':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.pageNumber = valueDes;
+          break;
+        case r'pageSize':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.pageSize = valueDes;
+          break;
+        case r'totalCount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalCount = valueDes;
+          break;
+        case r'totalPages':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalPages = valueDes;
+          break;
+        case r'hasPreviousPage':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.hasPreviousPage = valueDes;
+          break;
+        case r'hasNextPage':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.hasNextPage = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  PagedResultOfProductListItemWithVariants deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = PagedResultOfProductListItemWithVariantsBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 
