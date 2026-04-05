@@ -11,9 +11,9 @@ abstract class _$ImportDetailResponseCWProxy {
 
   ImportDetailResponse variantId(String? variantId);
 
-  ImportDetailResponse variantName(String? variantName);
+  ImportDetailResponse variantName(String variantName);
 
-  ImportDetailResponse variantSku(String? variantSku);
+  ImportDetailResponse variantSku(String variantSku);
 
   ImportDetailResponse expectedQuantity(int? expectedQuantity);
 
@@ -25,7 +25,7 @@ abstract class _$ImportDetailResponseCWProxy {
 
   ImportDetailResponse note(String? note);
 
-  ImportDetailResponse batches(List<BatchResponse>? batches);
+  ImportDetailResponse batches(List<BatchResponse> batches);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportDetailResponse(...).copyWith.fieldName(value)`.
@@ -37,14 +37,14 @@ abstract class _$ImportDetailResponseCWProxy {
   ImportDetailResponse call({
     String? id,
     String? variantId,
-    String? variantName,
-    String? variantSku,
+    String variantName,
+    String variantSku,
     int? expectedQuantity,
     num? unitPrice,
     num? totalPrice,
     int? rejectedQuantity,
     String? note,
-    List<BatchResponse>? batches,
+    List<BatchResponse> batches,
   });
 }
 
@@ -64,11 +64,11 @@ class _$ImportDetailResponseCWProxyImpl
       call(variantId: variantId);
 
   @override
-  ImportDetailResponse variantName(String? variantName) =>
+  ImportDetailResponse variantName(String variantName) =>
       call(variantName: variantName);
 
   @override
-  ImportDetailResponse variantSku(String? variantSku) =>
+  ImportDetailResponse variantSku(String variantSku) =>
       call(variantSku: variantSku);
 
   @override
@@ -90,7 +90,7 @@ class _$ImportDetailResponseCWProxyImpl
   ImportDetailResponse note(String? note) => call(note: note);
 
   @override
-  ImportDetailResponse batches(List<BatchResponse>? batches) =>
+  ImportDetailResponse batches(List<BatchResponse> batches) =>
       call(batches: batches);
 
   @override
@@ -122,14 +122,16 @@ class _$ImportDetailResponseCWProxyImpl
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
           ? _value.variantName
           // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
-      variantSku: variantSku == const $CopyWithPlaceholder()
+          : variantName as String,
+      variantSku:
+          variantSku == const $CopyWithPlaceholder() || variantSku == null
           ? _value.variantSku
           // ignore: cast_nullable_to_non_nullable
-          : variantSku as String?,
+          : variantSku as String,
       expectedQuantity: expectedQuantity == const $CopyWithPlaceholder()
           ? _value.expectedQuantity
           // ignore: cast_nullable_to_non_nullable
@@ -150,10 +152,10 @@ class _$ImportDetailResponseCWProxyImpl
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
           : note as String?,
-      batches: batches == const $CopyWithPlaceholder()
+      batches: batches == const $CopyWithPlaceholder() || batches == null
           ? _value.batches
           // ignore: cast_nullable_to_non_nullable
-          : batches as List<BatchResponse>?,
+          : batches as List<BatchResponse>,
     );
   }
 }
@@ -173,11 +175,15 @@ extension $ImportDetailResponseCopyWith on ImportDetailResponse {
 ImportDetailResponse _$ImportDetailResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ImportDetailResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['variantName', 'variantSku', 'batches'],
+  );
   final val = ImportDetailResponse(
     id: $checkedConvert('id', (v) => v as String?),
     variantId: $checkedConvert('variantId', (v) => v as String?),
-    variantName: $checkedConvert('variantName', (v) => v as String?),
-    variantSku: $checkedConvert('variantSku', (v) => v as String?),
+    variantName: $checkedConvert('variantName', (v) => v as String),
+    variantSku: $checkedConvert('variantSku', (v) => v as String),
     expectedQuantity: $checkedConvert(
       'expectedQuantity',
       (v) => (v as num?)?.toInt(),
@@ -191,8 +197,8 @@ ImportDetailResponse _$ImportDetailResponseFromJson(
     note: $checkedConvert('note', (v) => v as String?),
     batches: $checkedConvert(
       'batches',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => BatchResponse.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => BatchResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
   );
@@ -204,12 +210,12 @@ Map<String, dynamic> _$ImportDetailResponseToJson(
 ) => <String, dynamic>{
   'id': ?instance.id,
   'variantId': ?instance.variantId,
-  'variantName': ?instance.variantName,
-  'variantSku': ?instance.variantSku,
+  'variantName': instance.variantName,
+  'variantSku': instance.variantSku,
   'expectedQuantity': ?instance.expectedQuantity,
   'unitPrice': ?instance.unitPrice,
   'totalPrice': ?instance.totalPrice,
   'rejectedQuantity': ?instance.rejectedQuantity,
   'note': ?instance.note,
-  'batches': ?instance.batches?.map((e) => e.toJson()).toList(),
+  'batches': instance.batches.map((e) => e.toJson()).toList(),
 };

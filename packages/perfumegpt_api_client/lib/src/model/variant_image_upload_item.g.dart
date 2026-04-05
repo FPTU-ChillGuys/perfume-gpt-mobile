@@ -7,7 +7,7 @@ part of 'variant_image_upload_item.dart';
 // **************************************************************************
 
 abstract class _$VariantImageUploadItemCWProxy {
-  VariantImageUploadItem imageFile(MultipartFile? imageFile);
+  VariantImageUploadItem imageFile(MultipartFile imageFile);
 
   VariantImageUploadItem altText(String? altText);
 
@@ -23,7 +23,7 @@ abstract class _$VariantImageUploadItemCWProxy {
   /// VariantImageUploadItem(...).copyWith(id: 12, name: "My name")
   /// ```
   VariantImageUploadItem call({
-    MultipartFile? imageFile,
+    MultipartFile imageFile,
     String? altText,
     int? displayOrder,
     bool? isPrimary,
@@ -39,7 +39,7 @@ class _$VariantImageUploadItemCWProxyImpl
   final VariantImageUploadItem _value;
 
   @override
-  VariantImageUploadItem imageFile(MultipartFile? imageFile) =>
+  VariantImageUploadItem imageFile(MultipartFile imageFile) =>
       call(imageFile: imageFile);
 
   @override
@@ -68,10 +68,10 @@ class _$VariantImageUploadItemCWProxyImpl
     Object? isPrimary = const $CopyWithPlaceholder(),
   }) {
     return VariantImageUploadItem(
-      imageFile: imageFile == const $CopyWithPlaceholder()
+      imageFile: imageFile == const $CopyWithPlaceholder() || imageFile == null
           ? _value.imageFile
           // ignore: cast_nullable_to_non_nullable
-          : imageFile as MultipartFile?,
+          : imageFile as MultipartFile,
       altText: altText == const $CopyWithPlaceholder()
           ? _value.altText
           // ignore: cast_nullable_to_non_nullable
@@ -100,21 +100,11 @@ extension $VariantImageUploadItemCopyWith on VariantImageUploadItem {
 // JsonSerializableGenerator
 // **************************************************************************
 
-VariantImageUploadItem _$VariantImageUploadItemFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('VariantImageUploadItem', json, ($checkedConvert) {
-  final val = VariantImageUploadItem(
-    altText: $checkedConvert('altText', (v) => v as String?),
-    displayOrder: $checkedConvert('displayOrder', (v) => (v as num?)?.toInt()),
-    isPrimary: $checkedConvert('isPrimary', (v) => v as bool?),
-  );
-  return val;
-});
-
 Map<String, dynamic> _$VariantImageUploadItemToJson(
   VariantImageUploadItem instance,
 ) => <String, dynamic>{
   'altText': ?instance.altText,
   'displayOrder': ?instance.displayOrder,
   'isPrimary': ?instance.isPrimary,
+  'hashCode': instance.hashCode,
 };

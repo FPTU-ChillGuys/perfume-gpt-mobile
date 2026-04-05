@@ -9,7 +9,7 @@ part of 'campaign_response.dart';
 abstract class _$CampaignResponseCWProxy {
   CampaignResponse id(String? id);
 
-  CampaignResponse name(String? name);
+  CampaignResponse name(String name);
 
   CampaignResponse description(String? description);
 
@@ -30,7 +30,7 @@ abstract class _$CampaignResponseCWProxy {
   /// ```
   CampaignResponse call({
     String? id,
-    String? name,
+    String name,
     String? description,
     DateTime? startDate,
     DateTime? endDate,
@@ -50,7 +50,7 @@ class _$CampaignResponseCWProxyImpl implements _$CampaignResponseCWProxy {
   CampaignResponse id(String? id) => call(id: id);
 
   @override
-  CampaignResponse name(String? name) => call(name: name);
+  CampaignResponse name(String name) => call(name: name);
 
   @override
   CampaignResponse description(String? description) =>
@@ -90,10 +90,10 @@ class _$CampaignResponseCWProxyImpl implements _$CampaignResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
       description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
@@ -131,9 +131,10 @@ extension $CampaignResponseCopyWith on CampaignResponse {
 
 CampaignResponse _$CampaignResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('CampaignResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['name']);
       final val = CampaignResponse(
         id: $checkedConvert('id', (v) => v as String?),
-        name: $checkedConvert('name', (v) => v as String?),
+        name: $checkedConvert('name', (v) => v as String),
         description: $checkedConvert('description', (v) => v as String?),
         startDate: $checkedConvert(
           'startDate',
@@ -158,7 +159,7 @@ CampaignResponse _$CampaignResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$CampaignResponseToJson(CampaignResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'name': ?instance.name,
+      'name': instance.name,
       'description': ?instance.description,
       'startDate': ?instance.startDate?.toIso8601String(),
       'endDate': ?instance.endDate?.toIso8601String(),

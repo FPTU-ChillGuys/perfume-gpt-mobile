@@ -9,9 +9,9 @@ part of 'variant_fast_look_response.dart';
 abstract class _$VariantFastLookResponseCWProxy {
   VariantFastLookResponse id(String? id);
 
-  VariantFastLookResponse sku(String? sku);
+  VariantFastLookResponse sku(String sku);
 
-  VariantFastLookResponse displayName(String? displayName);
+  VariantFastLookResponse displayName(String displayName);
 
   VariantFastLookResponse price(num? price);
 
@@ -30,8 +30,8 @@ abstract class _$VariantFastLookResponseCWProxy {
   /// ```
   VariantFastLookResponse call({
     String? id,
-    String? sku,
-    String? displayName,
+    String sku,
+    String displayName,
     num? price,
     num? retailPrice,
     int? stockQuantity,
@@ -51,10 +51,10 @@ class _$VariantFastLookResponseCWProxyImpl
   VariantFastLookResponse id(String? id) => call(id: id);
 
   @override
-  VariantFastLookResponse sku(String? sku) => call(sku: sku);
+  VariantFastLookResponse sku(String sku) => call(sku: sku);
 
   @override
-  VariantFastLookResponse displayName(String? displayName) =>
+  VariantFastLookResponse displayName(String displayName) =>
       call(displayName: displayName);
 
   @override
@@ -93,14 +93,15 @@ class _$VariantFastLookResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      sku: sku == const $CopyWithPlaceholder()
+      sku: sku == const $CopyWithPlaceholder() || sku == null
           ? _value.sku
           // ignore: cast_nullable_to_non_nullable
-          : sku as String?,
-      displayName: displayName == const $CopyWithPlaceholder()
+          : sku as String,
+      displayName:
+          displayName == const $CopyWithPlaceholder() || displayName == null
           ? _value.displayName
           // ignore: cast_nullable_to_non_nullable
-          : displayName as String?,
+          : displayName as String,
       price: price == const $CopyWithPlaceholder()
           ? _value.price
           // ignore: cast_nullable_to_non_nullable
@@ -136,10 +137,11 @@ extension $VariantFastLookResponseCopyWith on VariantFastLookResponse {
 VariantFastLookResponse _$VariantFastLookResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('VariantFastLookResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['sku', 'displayName']);
   final val = VariantFastLookResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    sku: $checkedConvert('sku', (v) => v as String?),
-    displayName: $checkedConvert('displayName', (v) => v as String?),
+    sku: $checkedConvert('sku', (v) => v as String),
+    displayName: $checkedConvert('displayName', (v) => v as String),
     price: $checkedConvert('price', (v) => v as num?),
     retailPrice: $checkedConvert('retailPrice', (v) => v as num?),
     stockQuantity: $checkedConvert(
@@ -159,8 +161,8 @@ Map<String, dynamic> _$VariantFastLookResponseToJson(
   VariantFastLookResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'sku': ?instance.sku,
-  'displayName': ?instance.displayName,
+  'sku': instance.sku,
+  'displayName': instance.displayName,
   'price': ?instance.price,
   'retailPrice': ?instance.retailPrice,
   'stockQuantity': ?instance.stockQuantity,

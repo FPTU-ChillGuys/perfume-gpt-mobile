@@ -37,8 +37,23 @@ void main() {
       // TODO
     });
 
+    // num retailPrice
+    test('to test the property `retailPrice`', () async {
+      // TODO
+    });
+
     // VariantStatus status
     test('to test the property `status`', () async {
+      // TODO
+    });
+
+    // int sillage
+    test('to test the property `sillage`', () async {
+      // TODO
+    });
+
+    // int longevity
+    test('to test the property `longevity`', () async {
       // TODO
     });
 

@@ -1,10 +1,11 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for RevenueSummaryResponse
 void main() {
-  final instance = RevenueSummaryResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final RevenueSummaryResponse? instance = /* RevenueSummaryResponse(...) */
+      null;
+  // TODO add properties to the entity
 
   group(RevenueSummaryResponse, () {
     // DateTime fromDate
@@ -41,6 +42,5 @@ void main() {
     test('to test the property `paidOrdersCount`', () async {
       // TODO
     });
-
   });
 }

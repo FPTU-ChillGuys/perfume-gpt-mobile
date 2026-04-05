@@ -9,7 +9,7 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **productId** | **String** |  | 
-**barcode** | **String** |  | [optional] 
+**barcode** | **String** |  | 
 **sku** | **String** |  | 
 **volumeMl** | **int** |  | [optional] 
 **concentrationId** | **int** |  | [optional] 

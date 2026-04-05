@@ -1,10 +1,11 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateNotePreferenceRequest
 void main() {
-  final instance = UpdateNotePreferenceRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final UpdateNotePreferenceRequest?
+  instance = /* UpdateNotePreferenceRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(UpdateNotePreferenceRequest, () {
     // int noteId
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `noteType`', () async {
       // TODO
     });
-
   });
 }

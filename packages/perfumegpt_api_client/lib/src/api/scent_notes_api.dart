@@ -17,13 +17,12 @@ import 'package:perfumegpt_api_client/src/model/create_scent_note_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_scent_note_request.dart';
 
 class ScentNotesApi {
-
   final Dio _dio;
 
   const ScentNotesApi(this._dio);
 
   /// apiScentnotesGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -35,7 +34,7 @@ class ScentNotesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfScentNoteResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfScentNoteResponse>> apiScentnotesGet({ 
+  Future<Response<BaseResponseOfListOfScentNoteResponse>> apiScentnotesGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -46,16 +45,10 @@ class ScentNotesApi {
     final _path = r'/api/scentnotes';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -73,9 +66,13 @@ class ScentNotesApi {
     BaseResponseOfListOfScentNoteResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNoteResponse, BaseResponseOfListOfScentNoteResponse>(rawData, 'BaseResponseOfListOfScentNoteResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfScentNoteResponse,
+              BaseResponseOfListOfScentNoteResponse
+            >(rawData, 'BaseResponseOfListOfScentNoteResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -99,10 +96,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
   }
 
   /// apiScentnotesIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -112,7 +109,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiScentnotesIdDelete({ 
+  Future<Response<BaseResponseOfboolean>> apiScentnotesIdDelete({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -121,19 +118,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/scentnotes/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/scentnotes/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -151,9 +147,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
+              rawData,
+              'BaseResponseOfboolean',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -177,10 +178,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   }
 
   /// apiScentnotesIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -190,7 +191,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfScentNoteResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfScentNoteResponse>> apiScentnotesIdGet({ 
+  Future<Response<BaseResponseOfScentNoteResponse>> apiScentnotesIdGet({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -199,19 +200,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/scentnotes/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/scentnotes/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -229,9 +229,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfScentNoteResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResponse, BaseResponseOfScentNoteResponse>(rawData, 'BaseResponseOfScentNoteResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfScentNoteResponse,
+              BaseResponseOfScentNoteResponse
+            >(rawData, 'BaseResponseOfScentNoteResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -255,11 +259,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
   }
 
   /// apiScentnotesIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [updateScentNoteRequest] 
+  /// * [id]
+  /// * [updateScentNoteRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -269,7 +273,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfScentNoteResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfScentNoteResponse>> apiScentnotesIdPut({ 
+  Future<Response<BaseResponseOfScentNoteResponse>> apiScentnotesIdPut({
     required int id,
     required UpdateScentNoteRequest updateScentNoteRequest,
     CancelToken? cancelToken,
@@ -279,19 +283,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/scentnotes/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/scentnotes/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -302,13 +305,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateScentNoteRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateScentNoteRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -327,9 +327,13 @@ _bodyData=jsonEncode(updateScentNoteRequest);
     BaseResponseOfScentNoteResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResponse, BaseResponseOfScentNoteResponse>(rawData, 'BaseResponseOfScentNoteResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfScentNoteResponse,
+              BaseResponseOfScentNoteResponse
+            >(rawData, 'BaseResponseOfScentNoteResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -353,7 +357,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
   }
 
   /// apiScentnotesLookupGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -365,7 +369,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfScentNoteLookupResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfScentNoteLookupResponse>> apiScentnotesLookupGet({ 
+  Future<Response<BaseResponseOfListOfScentNoteLookupResponse>>
+  apiScentnotesLookupGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -376,16 +381,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
     final _path = r'/api/scentnotes/lookup';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -403,9 +402,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
     BaseResponseOfListOfScentNoteLookupResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNoteLookupResponse, BaseResponseOfListOfScentNoteLookupResponse>(rawData, 'BaseResponseOfListOfScentNoteLookupResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfScentNoteLookupResponse,
+              BaseResponseOfListOfScentNoteLookupResponse
+            >(
+              rawData,
+              'BaseResponseOfListOfScentNoteLookupResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -429,10 +436,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
   }
 
   /// apiScentnotesPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createScentNoteRequest] 
+  /// * [createScentNoteRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -442,7 +449,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfScentNoteResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfScentNoteResponse>> apiScentnotesPost({ 
+  Future<Response<BaseResponseOfScentNoteResponse>> apiScentnotesPost({
     required CreateScentNoteRequest createScentNoteRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -454,16 +461,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
     final _path = r'/api/scentnotes';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -474,13 +475,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfScentNo
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createScentNoteRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createScentNoteRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -499,9 +497,13 @@ _bodyData=jsonEncode(createScentNoteRequest);
     BaseResponseOfScentNoteResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResponse, BaseResponseOfScentNoteResponse>(rawData, 'BaseResponseOfScentNoteResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfScentNoteResponse,
+              BaseResponseOfScentNoteResponse
+            >(rawData, 'BaseResponseOfScentNoteResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -523,5 +525,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfScentNoteResp
       extra: _response.extra,
     );
   }
-
 }

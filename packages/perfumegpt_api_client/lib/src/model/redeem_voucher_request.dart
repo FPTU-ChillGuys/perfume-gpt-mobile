@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'redeem_voucher_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,50 +17,28 @@ part 'redeem_voucher_request.g.dart';
 )
 class RedeemVoucherRequest {
   /// Returns a new [RedeemVoucherRequest] instance.
-  RedeemVoucherRequest({
+  RedeemVoucherRequest({this.voucherId, this.receiverEmailOrPhone});
 
-     this.voucherId,
-
-     this.receiverEmailOrPhone,
-  });
-
-  @JsonKey(
-    
-    name: r'voucherId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'voucherId', required: false, includeIfNull: false)
   final String? voucherId;
 
-
-
-  @JsonKey(
-    
-    name: r'receiverEmailOrPhone',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'receiverEmailOrPhone', required: false, includeIfNull: false)
   final String? receiverEmailOrPhone;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RedeemVoucherRequest &&
+          other.voucherId == voucherId &&
+          other.receiverEmailOrPhone == receiverEmailOrPhone;
 
+  @override
+  int get hashCode =>
+      voucherId.hashCode +
+      (receiverEmailOrPhone == null ? 0 : receiverEmailOrPhone.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is RedeemVoucherRequest &&
-      other.voucherId == voucherId &&
-      other.receiverEmailOrPhone == receiverEmailOrPhone;
-
-    @override
-    int get hashCode =>
-        voucherId.hashCode +
-        (receiverEmailOrPhone == null ? 0 : receiverEmailOrPhone.hashCode);
-
-  factory RedeemVoucherRequest.fromJson(Map<String, dynamic> json) => _$RedeemVoucherRequestFromJson(json);
+  factory RedeemVoucherRequest.fromJson(Map<String, dynamic> json) =>
+      _$RedeemVoucherRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$RedeemVoucherRequestToJson(this);
 
@@ -69,6 +46,4 @@ class RedeemVoucherRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

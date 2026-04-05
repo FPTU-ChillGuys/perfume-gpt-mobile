@@ -16,22 +16,21 @@ import 'package:perfumegpt_api_client/src/model/loyalty_transaction_type.dart';
 import 'package:perfumegpt_api_client/src/model/manual_change_request.dart';
 
 class LoyaltyTransactionsApi {
-
   final Dio _dio;
 
   const LoyaltyTransactionsApi(this._dio);
 
   /// apiLoyaltytransactionsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [userId] 
-  /// * [transactionType] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [userId]
+  /// * [transactionType]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -41,7 +40,10 @@ class LoyaltyTransactionsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>> apiLoyaltytransactionsGet({ 
+  Future<
+    Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>
+  >
+  apiLoyaltytransactionsGet({
     String? userId,
     LoyaltyTransactionType? transactionType,
     int? pageNumber,
@@ -59,16 +61,10 @@ class LoyaltyTransactionsApi {
     final _path = r'/api/loyaltytransactions';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -94,12 +90,21 @@ class LoyaltyTransactionsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse? _responseData;
+    BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse?
+    _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse, BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>(rawData, 'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse,
+              BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -110,7 +115,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
       );
     }
 
-    return Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>(
+    return Response<
+      BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -123,15 +130,15 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiLoyaltytransactionsMeHistoryGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [transactionType] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [transactionType]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -141,7 +148,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>> apiLoyaltytransactionsMeHistoryGet({ 
+  Future<
+    Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>
+  >
+  apiLoyaltytransactionsMeHistoryGet({
     LoyaltyTransactionType? transactionType,
     int? pageNumber,
     int? pageSize,
@@ -158,16 +168,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     final _path = r'/api/loyaltytransactions/me/history';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -192,12 +196,21 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
       onReceiveProgress: onReceiveProgress,
     );
 
-    BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse? _responseData;
+    BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse?
+    _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse, BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>(rawData, 'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse,
+              BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -208,7 +221,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
       );
     }
 
-    return Response<BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse>(
+    return Response<
+      BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -221,7 +236,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiLoyaltytransactionsMeTotalGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -233,7 +248,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfLoyaltyTransactionTotalsResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfLoyaltyTransactionTotalsResponse>> apiLoyaltytransactionsMeTotalGet({ 
+  Future<Response<BaseResponseOfLoyaltyTransactionTotalsResponse>>
+  apiLoyaltytransactionsMeTotalGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -244,16 +260,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     final _path = r'/api/loyaltytransactions/me/total';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -271,9 +281,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfLoyaltyTransactionTotalsResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyTransactionTotalsResponse, BaseResponseOfLoyaltyTransactionTotalsResponse>(rawData, 'BaseResponseOfLoyaltyTransactionTotalsResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfLoyaltyTransactionTotalsResponse,
+              BaseResponseOfLoyaltyTransactionTotalsResponse
+            >(
+              rawData,
+              'BaseResponseOfLoyaltyTransactionTotalsResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -297,11 +315,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyTransa
   }
 
   /// apiLoyaltytransactionsUserIdManualChangePost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [userId] 
-  /// * [manualChangeRequest] 
+  /// * [userId]
+  /// * [manualChangeRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -311,7 +329,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyTransa
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiLoyaltytransactionsUserIdManualChangePost({ 
+  Future<Response<BaseResponseOfstring>>
+  apiLoyaltytransactionsUserIdManualChangePost({
     required String userId,
     required ManualChangeRequest manualChangeRequest,
     CancelToken? cancelToken,
@@ -321,19 +340,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyTransa
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/loyaltytransactions/{userId}/manual-change'.replaceAll('{' r'userId' '}', userId.toString());
+    final _path = r'/api/loyaltytransactions/{userId}/manual-change'.replaceAll(
+      '{'
+      r'userId'
+      '}',
+      userId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -344,13 +362,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfLoyaltyTransa
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(manualChangeRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(manualChangeRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -369,9 +384,14 @@ _bodyData=jsonEncode(manualChangeRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -393,5 +413,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
       extra: _response.extra,
     );
   }
-
 }

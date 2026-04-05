@@ -17,7 +17,7 @@ abstract class _$CreateOrderRequestCWProxy {
 
   CreateOrderRequest savedAddressId(String? savedAddressId);
 
-  CreateOrderRequest recipient(RecipientInformation? recipient);
+  CreateOrderRequest recipient(ContactAddressInformation? recipient);
 
   CreateOrderRequest payment(PaymentInformation payment);
 
@@ -34,7 +34,7 @@ abstract class _$CreateOrderRequestCWProxy {
     num? expectedTotalPrice,
     DeliveryMethod? deliveryMethod,
     String? savedAddressId,
-    RecipientInformation? recipient,
+    ContactAddressInformation? recipient,
     PaymentInformation payment,
   });
 }
@@ -66,7 +66,7 @@ class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
       call(savedAddressId: savedAddressId);
 
   @override
-  CreateOrderRequest recipient(RecipientInformation? recipient) =>
+  CreateOrderRequest recipient(ContactAddressInformation? recipient) =>
       call(recipient: recipient);
 
   @override
@@ -114,7 +114,7 @@ class _$CreateOrderRequestCWProxyImpl implements _$CreateOrderRequestCWProxy {
       recipient: recipient == const $CopyWithPlaceholder()
           ? _value.recipient
           // ignore: cast_nullable_to_non_nullable
-          : recipient as RecipientInformation?,
+          : recipient as ContactAddressInformation?,
       payment: payment == const $CopyWithPlaceholder() || payment == null
           ? _value.payment
           // ignore: cast_nullable_to_non_nullable
@@ -157,7 +157,7 @@ CreateOrderRequest _$CreateOrderRequestFromJson(Map<String, dynamic> json) =>
           'recipient',
           (v) => v == null
               ? null
-              : RecipientInformation.fromJson(v as Map<String, dynamic>),
+              : ContactAddressInformation.fromJson(v as Map<String, dynamic>),
         ),
         payment: $checkedConvert(
           'payment',

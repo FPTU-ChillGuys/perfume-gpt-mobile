@@ -7,7 +7,7 @@ part of 'update_product_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateProductRequestCWProxy {
-  UpdateProductRequest name(String? name);
+  UpdateProductRequest name(String name);
 
   UpdateProductRequest brandId(int? brandId);
 
@@ -21,9 +21,9 @@ abstract class _$UpdateProductRequestCWProxy {
 
   UpdateProductRequest releaseYear(int? releaseYear);
 
-  UpdateProductRequest olfactoryFamilyIds(List<int>? olfactoryFamilyIds);
+  UpdateProductRequest olfactoryFamilyIds(List<int> olfactoryFamilyIds);
 
-  UpdateProductRequest scentNotes(List<ScentNoteDto>? scentNotes);
+  UpdateProductRequest scentNotes(List<ScentNoteDto> scentNotes);
 
   UpdateProductRequest attributes(List<ProductAttributeDto>? attributes);
 
@@ -41,15 +41,15 @@ abstract class _$UpdateProductRequestCWProxy {
   /// UpdateProductRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateProductRequest call({
-    String? name,
+    String name,
     int? brandId,
     int? categoryId,
     String? description,
     Gender? gender,
     String origin,
     int? releaseYear,
-    List<int>? olfactoryFamilyIds,
-    List<ScentNoteDto>? scentNotes,
+    List<int> olfactoryFamilyIds,
+    List<ScentNoteDto> scentNotes,
     List<ProductAttributeDto>? attributes,
     List<String>? temporaryMediaIdsToAdd,
     List<String>? mediaIdsToDelete,
@@ -65,7 +65,7 @@ class _$UpdateProductRequestCWProxyImpl
   final UpdateProductRequest _value;
 
   @override
-  UpdateProductRequest name(String? name) => call(name: name);
+  UpdateProductRequest name(String name) => call(name: name);
 
   @override
   UpdateProductRequest brandId(int? brandId) => call(brandId: brandId);
@@ -89,11 +89,11 @@ class _$UpdateProductRequestCWProxyImpl
       call(releaseYear: releaseYear);
 
   @override
-  UpdateProductRequest olfactoryFamilyIds(List<int>? olfactoryFamilyIds) =>
+  UpdateProductRequest olfactoryFamilyIds(List<int> olfactoryFamilyIds) =>
       call(olfactoryFamilyIds: olfactoryFamilyIds);
 
   @override
-  UpdateProductRequest scentNotes(List<ScentNoteDto>? scentNotes) =>
+  UpdateProductRequest scentNotes(List<ScentNoteDto> scentNotes) =>
       call(scentNotes: scentNotes);
 
   @override
@@ -132,10 +132,10 @@ class _$UpdateProductRequestCWProxyImpl
     Object? mediaIdsToDelete = const $CopyWithPlaceholder(),
   }) {
     return UpdateProductRequest(
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
       brandId: brandId == const $CopyWithPlaceholder()
           ? _value.brandId
           // ignore: cast_nullable_to_non_nullable
@@ -160,14 +160,17 @@ class _$UpdateProductRequestCWProxyImpl
           ? _value.releaseYear
           // ignore: cast_nullable_to_non_nullable
           : releaseYear as int?,
-      olfactoryFamilyIds: olfactoryFamilyIds == const $CopyWithPlaceholder()
+      olfactoryFamilyIds:
+          olfactoryFamilyIds == const $CopyWithPlaceholder() ||
+              olfactoryFamilyIds == null
           ? _value.olfactoryFamilyIds
           // ignore: cast_nullable_to_non_nullable
-          : olfactoryFamilyIds as List<int>?,
-      scentNotes: scentNotes == const $CopyWithPlaceholder()
+          : olfactoryFamilyIds as List<int>,
+      scentNotes:
+          scentNotes == const $CopyWithPlaceholder() || scentNotes == null
           ? _value.scentNotes
           // ignore: cast_nullable_to_non_nullable
-          : scentNotes as List<ScentNoteDto>?,
+          : scentNotes as List<ScentNoteDto>,
       attributes: attributes == const $CopyWithPlaceholder()
           ? _value.attributes
           // ignore: cast_nullable_to_non_nullable
@@ -200,9 +203,12 @@ extension $UpdateProductRequestCopyWith on UpdateProductRequest {
 UpdateProductRequest _$UpdateProductRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateProductRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['origin']);
+  $checkKeys(
+    json,
+    requiredKeys: const ['name', 'origin', 'olfactoryFamilyIds', 'scentNotes'],
+  );
   final val = UpdateProductRequest(
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
     brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
     categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
     description: $checkedConvert('description', (v) => v as String?),
@@ -214,12 +220,12 @@ UpdateProductRequest _$UpdateProductRequestFromJson(
     releaseYear: $checkedConvert('releaseYear', (v) => (v as num?)?.toInt()),
     olfactoryFamilyIds: $checkedConvert(
       'olfactoryFamilyIds',
-      (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
+      (v) => (v as List<dynamic>).map((e) => (e as num).toInt()).toList(),
     ),
     scentNotes: $checkedConvert(
       'scentNotes',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => ScentNoteDto.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => ScentNoteDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
     attributes: $checkedConvert(
@@ -243,15 +249,15 @@ UpdateProductRequest _$UpdateProductRequestFromJson(
 Map<String, dynamic> _$UpdateProductRequestToJson(
   UpdateProductRequest instance,
 ) => <String, dynamic>{
-  'name': ?instance.name,
+  'name': instance.name,
   'brandId': ?instance.brandId,
   'categoryId': ?instance.categoryId,
   'description': ?instance.description,
   'gender': ?_$GenderEnumMap[instance.gender],
   'origin': instance.origin,
   'releaseYear': ?instance.releaseYear,
-  'olfactoryFamilyIds': ?instance.olfactoryFamilyIds,
-  'scentNotes': ?instance.scentNotes?.map((e) => e.toJson()).toList(),
+  'olfactoryFamilyIds': instance.olfactoryFamilyIds,
+  'scentNotes': instance.scentNotes.map((e) => e.toJson()).toList(),
   'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
   'temporaryMediaIdsToAdd': ?instance.temporaryMediaIdsToAdd,
   'mediaIdsToDelete': ?instance.mediaIdsToDelete,

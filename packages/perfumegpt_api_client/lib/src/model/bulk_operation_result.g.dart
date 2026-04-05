@@ -7,13 +7,13 @@ part of 'bulk_operation_result.dart';
 // **************************************************************************
 
 abstract class _$BulkOperationResultCWProxy {
-  BulkOperationResult operationName(String? operationName);
+  BulkOperationResult operationName(String operationName);
 
   BulkOperationResult succeededCount(int? succeededCount);
 
   BulkOperationResult failedCount(int? failedCount);
 
-  BulkOperationResult errors(List<BulkActionError>? errors);
+  BulkOperationResult errors(List<BulkActionError> errors);
 
   BulkOperationResult totalProcessed(int? totalProcessed);
 
@@ -27,10 +27,10 @@ abstract class _$BulkOperationResultCWProxy {
   /// BulkOperationResult(...).copyWith(id: 12, name: "My name")
   /// ```
   BulkOperationResult call({
-    String? operationName,
+    String operationName,
     int? succeededCount,
     int? failedCount,
-    List<BulkActionError>? errors,
+    List<BulkActionError> errors,
     int? totalProcessed,
     bool? hasError,
   });
@@ -44,7 +44,7 @@ class _$BulkOperationResultCWProxyImpl implements _$BulkOperationResultCWProxy {
   final BulkOperationResult _value;
 
   @override
-  BulkOperationResult operationName(String? operationName) =>
+  BulkOperationResult operationName(String operationName) =>
       call(operationName: operationName);
 
   @override
@@ -56,7 +56,7 @@ class _$BulkOperationResultCWProxyImpl implements _$BulkOperationResultCWProxy {
       call(failedCount: failedCount);
 
   @override
-  BulkOperationResult errors(List<BulkActionError>? errors) =>
+  BulkOperationResult errors(List<BulkActionError> errors) =>
       call(errors: errors);
 
   @override
@@ -83,10 +83,11 @@ class _$BulkOperationResultCWProxyImpl implements _$BulkOperationResultCWProxy {
     Object? hasError = const $CopyWithPlaceholder(),
   }) {
     return BulkOperationResult(
-      operationName: operationName == const $CopyWithPlaceholder()
+      operationName:
+          operationName == const $CopyWithPlaceholder() || operationName == null
           ? _value.operationName
           // ignore: cast_nullable_to_non_nullable
-          : operationName as String?,
+          : operationName as String,
       succeededCount: succeededCount == const $CopyWithPlaceholder()
           ? _value.succeededCount
           // ignore: cast_nullable_to_non_nullable
@@ -95,10 +96,10 @@ class _$BulkOperationResultCWProxyImpl implements _$BulkOperationResultCWProxy {
           ? _value.failedCount
           // ignore: cast_nullable_to_non_nullable
           : failedCount as int?,
-      errors: errors == const $CopyWithPlaceholder()
+      errors: errors == const $CopyWithPlaceholder() || errors == null
           ? _value.errors
           // ignore: cast_nullable_to_non_nullable
-          : errors as List<BulkActionError>?,
+          : errors as List<BulkActionError>,
       totalProcessed: totalProcessed == const $CopyWithPlaceholder()
           ? _value.totalProcessed
           // ignore: cast_nullable_to_non_nullable
@@ -125,8 +126,9 @@ extension $BulkOperationResultCopyWith on BulkOperationResult {
 
 BulkOperationResult _$BulkOperationResultFromJson(Map<String, dynamic> json) =>
     $checkedCreate('BulkOperationResult', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['operationName', 'errors']);
       final val = BulkOperationResult(
-        operationName: $checkedConvert('operationName', (v) => v as String?),
+        operationName: $checkedConvert('operationName', (v) => v as String),
         succeededCount: $checkedConvert(
           'succeededCount',
           (v) => (v as num?)?.toInt(),
@@ -137,8 +139,8 @@ BulkOperationResult _$BulkOperationResultFromJson(Map<String, dynamic> json) =>
         ),
         errors: $checkedConvert(
           'errors',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => BulkActionError.fromJson(e as Map<String, dynamic>))
+          (v) => (v as List<dynamic>)
+              .map((e) => BulkActionError.fromJson(e as Map<String, dynamic>))
               .toList(),
         ),
         totalProcessed: $checkedConvert(
@@ -153,10 +155,10 @@ BulkOperationResult _$BulkOperationResultFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$BulkOperationResultToJson(
   BulkOperationResult instance,
 ) => <String, dynamic>{
-  'operationName': ?instance.operationName,
+  'operationName': instance.operationName,
   'succeededCount': ?instance.succeededCount,
   'failedCount': ?instance.failedCount,
-  'errors': ?instance.errors?.map((e) => e.toJson()).toList(),
+  'errors': instance.errors.map((e) => e.toJson()).toList(),
   'totalProcessed': ?instance.totalProcessed,
   'hasError': ?instance.hasError,
 };

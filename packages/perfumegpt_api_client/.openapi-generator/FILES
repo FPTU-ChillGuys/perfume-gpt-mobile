@@ -64,6 +64,7 @@ doc/BaseResponseOfLoyaltyTransactionTotalsResponse.md
 doc/BaseResponseOfMediaResponse.md
 doc/BaseResponseOfOlfactoryFamilyResponse.md
 doc/BaseResponseOfOrderResponse.md
+doc/BaseResponseOfOrderReturnRequestResponse.md
 doc/BaseResponseOfPagedResultOfAvailableVoucherResponse.md
 doc/BaseResponseOfPagedResultOfBatchDetailResponse.md
 doc/BaseResponseOfPagedResultOfCampaignResponse.md
@@ -71,9 +72,11 @@ doc/BaseResponseOfPagedResultOfImportTicketListItem.md
 doc/BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse.md
 doc/BaseResponseOfPagedResultOfOrderCancelRequestResponse.md
 doc/BaseResponseOfPagedResultOfOrderListItem.md
+doc/BaseResponseOfPagedResultOfOrderReturnRequestResponse.md
 doc/BaseResponseOfPagedResultOfProductListItem.md
 doc/BaseResponseOfPagedResultOfProductListItemWithVariants.md
 doc/BaseResponseOfPagedResultOfReviewListItem.md
+doc/BaseResponseOfPagedResultOfShippingInfoListItem.md
 doc/BaseResponseOfPagedResultOfStockAdjustmentListItem.md
 doc/BaseResponseOfPagedResultOfStockResponse.md
 doc/BaseResponseOfPagedResultOfUserVoucherResponse.md
@@ -119,6 +122,7 @@ doc/CampaignResponse.md
 doc/CampaignStatus.md
 doc/CampaignType.md
 doc/CampaignsApi.md
+doc/CancelOrderReason.md
 doc/CancelRequestStatus.md
 doc/CarrierName.md
 doc/CartApi.md
@@ -129,6 +133,7 @@ doc/ConcentrationLookupDto.md
 doc/ConcentrationResponse.md
 doc/ConcentrationsApi.md
 doc/ConfirmPaymentRequest.md
+doc/ContactAddressInformation.md
 doc/CreateAddressRequest.md
 doc/CreateAttributeRequest.md
 doc/CreateAttributeValueRequest.md
@@ -147,7 +152,6 @@ doc/CreateOlfactoryFamilyRequest.md
 doc/CreateOrderDetailRequest.md
 doc/CreateOrderRequest.md
 doc/CreateProductRequest.md
-doc/CreateReturnRequestDetailDto.md
 doc/CreateReturnRequestDto.md
 doc/CreateReviewRequest.md
 doc/CreateScentNoteRequest.md
@@ -172,6 +176,7 @@ doc/Gender.md
 doc/GetCartItemResponse.md
 doc/GetCartItemsResponse.md
 doc/GetCartTotalResponse.md
+doc/GetOrderInfoRequest.md
 doc/GoogleLoginRequest.md
 doc/ImportDetailResponse.md
 doc/ImportStatus.md
@@ -189,15 +194,19 @@ doc/LoyaltyTransactionsApi.md
 doc/ManualChangeRequest.md
 doc/MediaResponse.md
 doc/NoteType.md
+doc/NotificationsApi.md
 doc/OlfactoryFamiliesApi.md
 doc/OlfactoryFamilyResponse.md
 doc/OlfactoryLookupResponse.md
 doc/OrderCancelRequestResponse.md
 doc/OrderCancelRequestsApi.md
+doc/OrderDetailListItem.md
 doc/OrderDetailListItems.md
 doc/OrderDetailResponse.md
 doc/OrderListItem.md
 doc/OrderResponse.md
+doc/OrderReturnRequestDetailResponse.md
+doc/OrderReturnRequestResponse.md
 doc/OrderReturnRequestsApi.md
 doc/OrderStatus.md
 doc/OrderType.md
@@ -209,9 +218,11 @@ doc/PagedResultOfImportTicketListItem.md
 doc/PagedResultOfLoyaltyTransactionHistoryItemResponse.md
 doc/PagedResultOfOrderCancelRequestResponse.md
 doc/PagedResultOfOrderListItem.md
+doc/PagedResultOfOrderReturnRequestResponse.md
 doc/PagedResultOfProductListItem.md
 doc/PagedResultOfProductListItemWithVariants.md
 doc/PagedResultOfReviewListItem.md
+doc/PagedResultOfShippingInfoListItem.md
 doc/PagedResultOfStockAdjustmentListItem.md
 doc/PagedResultOfStockResponse.md
 doc/PagedResultOfUserVoucherResponse.md
@@ -229,6 +240,7 @@ doc/PreviewOrderResponse.md
 doc/ProblemDetails.md
 doc/ProcessCancelRequest.md
 doc/ProcessInitialReturnDto.md
+doc/ProcessRefundRequest.md
 doc/ProductAttributeDto.md
 doc/ProductAttributeResponse.md
 doc/ProductDailySaleFigureResponse.md
@@ -251,8 +263,6 @@ doc/ProvinceResponse.md
 doc/ReceiptItemDto.md
 doc/ReceiptResponse.md
 doc/RecipientInfoResponse.md
-doc/RecipientInformation.md
-doc/RecordInspectionDetailDto.md
 doc/RecordInspectionDto.md
 doc/RedeemVoucherRequest.md
 doc/RedeemableVoucherResponse.md
@@ -260,6 +270,10 @@ doc/RegisterRequest.md
 doc/RejectInspectionDto.md
 doc/ReservedBatchResponse.md
 doc/ResetPasswordRequest.md
+doc/ReturnItemDto.md
+doc/ReturnOrderReason.md
+doc/ReturnRequestStatus.md
+doc/ReturnShippingInfoResponse.md
 doc/RevenueSummaryResponse.md
 doc/ReviewDetailResponse.md
 doc/ReviewListItem.md
@@ -270,7 +284,11 @@ doc/ScentNoteDto.md
 doc/ScentNoteLookupResponse.md
 doc/ScentNoteResponse.md
 doc/ScentNotesApi.md
+doc/ShippingInfoListItem.md
 doc/ShippingInfoResponse.md
+doc/ShippingStatus.md
+doc/ShippingType.md
+doc/ShippingsApi.md
 doc/StaffLookupItem.md
 doc/StartInspectionDto.md
 doc/StockAdjustmentDetailResponse.md
@@ -291,6 +309,7 @@ doc/TemporaryMediaResponse.md
 doc/TokenResponse.md
 doc/TopProductResponse.md
 doc/TransactionStatus.md
+doc/TransactionType.md
 doc/UpdateAddressRequest.md
 doc/UpdateAttributeRequest.md
 doc/UpdateAttributeValueRequest.md
@@ -353,6 +372,7 @@ lib/src/api/concentrations_api.dart
 lib/src/api/import_tickets_api.dart
 lib/src/api/inventory_api.dart
 lib/src/api/loyalty_transactions_api.dart
+lib/src/api/notifications_api.dart
 lib/src/api/olfactory_families_api.dart
 lib/src/api/order_cancel_requests_api.dart
 lib/src/api/order_return_requests_api.dart
@@ -363,6 +383,7 @@ lib/src/api/products_api.dart
 lib/src/api/profiles_api.dart
 lib/src/api/reviews_api.dart
 lib/src/api/scent_notes_api.dart
+lib/src/api/shippings_api.dart
 lib/src/api/stock_adjustments_api.dart
 lib/src/api/suppliers_api.dart
 lib/src/api/users_api.dart
@@ -431,6 +452,7 @@ lib/src/model/base_response_of_loyalty_transaction_totals_response.dart
 lib/src/model/base_response_of_media_response.dart
 lib/src/model/base_response_of_olfactory_family_response.dart
 lib/src/model/base_response_of_order_response.dart
+lib/src/model/base_response_of_order_return_request_response.dart
 lib/src/model/base_response_of_paged_result_of_available_voucher_response.dart
 lib/src/model/base_response_of_paged_result_of_batch_detail_response.dart
 lib/src/model/base_response_of_paged_result_of_campaign_response.dart
@@ -438,9 +460,11 @@ lib/src/model/base_response_of_paged_result_of_import_ticket_list_item.dart
 lib/src/model/base_response_of_paged_result_of_loyalty_transaction_history_item_response.dart
 lib/src/model/base_response_of_paged_result_of_order_cancel_request_response.dart
 lib/src/model/base_response_of_paged_result_of_order_list_item.dart
+lib/src/model/base_response_of_paged_result_of_order_return_request_response.dart
 lib/src/model/base_response_of_paged_result_of_product_list_item.dart
 lib/src/model/base_response_of_paged_result_of_product_list_item_with_variants.dart
 lib/src/model/base_response_of_paged_result_of_review_list_item.dart
+lib/src/model/base_response_of_paged_result_of_shipping_info_list_item.dart
 lib/src/model/base_response_of_paged_result_of_stock_adjustment_list_item.dart
 lib/src/model/base_response_of_paged_result_of_stock_response.dart
 lib/src/model/base_response_of_paged_result_of_user_voucher_response.dart
@@ -483,6 +507,7 @@ lib/src/model/campaign_promotion_item_response.dart
 lib/src/model/campaign_response.dart
 lib/src/model/campaign_status.dart
 lib/src/model/campaign_type.dart
+lib/src/model/cancel_order_reason.dart
 lib/src/model/cancel_request_status.dart
 lib/src/model/carrier_name.dart
 lib/src/model/categories_lookup_item.dart
@@ -490,6 +515,7 @@ lib/src/model/category_response.dart
 lib/src/model/concentration_lookup_dto.dart
 lib/src/model/concentration_response.dart
 lib/src/model/confirm_payment_request.dart
+lib/src/model/contact_address_information.dart
 lib/src/model/create_address_request.dart
 lib/src/model/create_attribute_request.dart
 lib/src/model/create_attribute_value_request.dart
@@ -508,7 +534,6 @@ lib/src/model/create_olfactory_family_request.dart
 lib/src/model/create_order_detail_request.dart
 lib/src/model/create_order_request.dart
 lib/src/model/create_product_request.dart
-lib/src/model/create_return_request_detail_dto.dart
 lib/src/model/create_return_request_dto.dart
 lib/src/model/create_review_request.dart
 lib/src/model/create_scent_note_request.dart
@@ -533,6 +558,7 @@ lib/src/model/gender.dart
 lib/src/model/get_cart_item_response.dart
 lib/src/model/get_cart_items_response.dart
 lib/src/model/get_cart_total_response.dart
+lib/src/model/get_order_info_request.dart
 lib/src/model/google_login_request.dart
 lib/src/model/import_detail_response.dart
 lib/src/model/import_status.dart
@@ -550,10 +576,13 @@ lib/src/model/note_type.dart
 lib/src/model/olfactory_family_response.dart
 lib/src/model/olfactory_lookup_response.dart
 lib/src/model/order_cancel_request_response.dart
+lib/src/model/order_detail_list_item.dart
 lib/src/model/order_detail_list_items.dart
 lib/src/model/order_detail_response.dart
 lib/src/model/order_list_item.dart
 lib/src/model/order_response.dart
+lib/src/model/order_return_request_detail_response.dart
+lib/src/model/order_return_request_response.dart
 lib/src/model/order_status.dart
 lib/src/model/order_type.dart
 lib/src/model/paged_result_of_available_voucher_response.dart
@@ -563,9 +592,11 @@ lib/src/model/paged_result_of_import_ticket_list_item.dart
 lib/src/model/paged_result_of_loyalty_transaction_history_item_response.dart
 lib/src/model/paged_result_of_order_cancel_request_response.dart
 lib/src/model/paged_result_of_order_list_item.dart
+lib/src/model/paged_result_of_order_return_request_response.dart
 lib/src/model/paged_result_of_product_list_item.dart
 lib/src/model/paged_result_of_product_list_item_with_variants.dart
 lib/src/model/paged_result_of_review_list_item.dart
+lib/src/model/paged_result_of_shipping_info_list_item.dart
 lib/src/model/paged_result_of_stock_adjustment_list_item.dart
 lib/src/model/paged_result_of_stock_response.dart
 lib/src/model/paged_result_of_user_voucher_response.dart
@@ -582,6 +613,7 @@ lib/src/model/preview_order_response.dart
 lib/src/model/problem_details.dart
 lib/src/model/process_cancel_request.dart
 lib/src/model/process_initial_return_dto.dart
+lib/src/model/process_refund_request.dart
 lib/src/model/product_attribute_dto.dart
 lib/src/model/product_attribute_response.dart
 lib/src/model/product_daily_sale_figure_response.dart
@@ -601,8 +633,6 @@ lib/src/model/province_response.dart
 lib/src/model/receipt_item_dto.dart
 lib/src/model/receipt_response.dart
 lib/src/model/recipient_info_response.dart
-lib/src/model/recipient_information.dart
-lib/src/model/record_inspection_detail_dto.dart
 lib/src/model/record_inspection_dto.dart
 lib/src/model/redeem_voucher_request.dart
 lib/src/model/redeemable_voucher_response.dart
@@ -610,6 +640,10 @@ lib/src/model/register_request.dart
 lib/src/model/reject_inspection_dto.dart
 lib/src/model/reserved_batch_response.dart
 lib/src/model/reset_password_request.dart
+lib/src/model/return_item_dto.dart
+lib/src/model/return_order_reason.dart
+lib/src/model/return_request_status.dart
+lib/src/model/return_shipping_info_response.dart
 lib/src/model/revenue_summary_response.dart
 lib/src/model/review_detail_response.dart
 lib/src/model/review_list_item.dart
@@ -618,7 +652,10 @@ lib/src/model/review_statistics_response.dart
 lib/src/model/scent_note_dto.dart
 lib/src/model/scent_note_lookup_response.dart
 lib/src/model/scent_note_response.dart
+lib/src/model/shipping_info_list_item.dart
 lib/src/model/shipping_info_response.dart
+lib/src/model/shipping_status.dart
+lib/src/model/shipping_type.dart
 lib/src/model/staff_lookup_item.dart
 lib/src/model/start_inspection_dto.dart
 lib/src/model/stock_adjustment_detail_response.dart
@@ -637,6 +674,7 @@ lib/src/model/temporary_media_response.dart
 lib/src/model/token_response.dart
 lib/src/model/top_product_response.dart
 lib/src/model/transaction_status.dart
+lib/src/model/transaction_type.dart
 lib/src/model/update_address_request.dart
 lib/src/model/update_attribute_request.dart
 lib/src/model/update_attribute_value_request.dart

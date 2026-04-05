@@ -1,10 +1,11 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for AdminDashboardOverviewResponse
 void main() {
-  final instance = AdminDashboardOverviewResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final AdminDashboardOverviewResponse?
+  instance = /* AdminDashboardOverviewResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(AdminDashboardOverviewResponse, () {
     // RevenueSummaryResponse revenue
@@ -17,10 +18,9 @@ void main() {
       // TODO
     });
 
-    // BuiltList<TopProductResponse> topProducts
+    // List<TopProductResponse> topProducts
     test('to test the property `topProducts`', () async {
       // TODO
     });
-
   });
 }

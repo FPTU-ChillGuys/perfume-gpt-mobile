@@ -9,7 +9,7 @@ part of 'create_variant_request.dart';
 abstract class _$CreateVariantRequestCWProxy {
   CreateVariantRequest productId(String productId);
 
-  CreateVariantRequest barcode(String? barcode);
+  CreateVariantRequest barcode(String barcode);
 
   CreateVariantRequest sku(String sku);
 
@@ -44,7 +44,7 @@ abstract class _$CreateVariantRequestCWProxy {
   /// ```
   CreateVariantRequest call({
     String productId,
-    String? barcode,
+    String barcode,
     String sku,
     int? volumeMl,
     int? concentrationId,
@@ -73,7 +73,7 @@ class _$CreateVariantRequestCWProxyImpl
       call(productId: productId);
 
   @override
-  CreateVariantRequest barcode(String? barcode) => call(barcode: barcode);
+  CreateVariantRequest barcode(String barcode) => call(barcode: barcode);
 
   @override
   CreateVariantRequest sku(String sku) => call(sku: sku);
@@ -145,10 +145,10 @@ class _$CreateVariantRequestCWProxyImpl
           ? _value.productId
           // ignore: cast_nullable_to_non_nullable
           : productId as String,
-      barcode: barcode == const $CopyWithPlaceholder()
+      barcode: barcode == const $CopyWithPlaceholder() || barcode == null
           ? _value.barcode
           // ignore: cast_nullable_to_non_nullable
-          : barcode as String?,
+          : barcode as String,
       sku: sku == const $CopyWithPlaceholder() || sku == null
           ? _value.sku
           // ignore: cast_nullable_to_non_nullable
@@ -216,10 +216,10 @@ extension $CreateVariantRequestCopyWith on CreateVariantRequest {
 CreateVariantRequest _$CreateVariantRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateVariantRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['productId', 'sku']);
+  $checkKeys(json, requiredKeys: const ['productId', 'barcode', 'sku']);
   final val = CreateVariantRequest(
     productId: $checkedConvert('productId', (v) => v as String),
-    barcode: $checkedConvert('barcode', (v) => v as String?),
+    barcode: $checkedConvert('barcode', (v) => v as String),
     sku: $checkedConvert('sku', (v) => v as String),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
     concentrationId: $checkedConvert(
@@ -260,7 +260,7 @@ Map<String, dynamic> _$CreateVariantRequestToJson(
   CreateVariantRequest instance,
 ) => <String, dynamic>{
   'productId': instance.productId,
-  'barcode': ?instance.barcode,
+  'barcode': instance.barcode,
   'sku': instance.sku,
   'volumeMl': ?instance.volumeMl,
   'concentrationId': ?instance.concentrationId,

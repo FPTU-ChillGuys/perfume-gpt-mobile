@@ -15,7 +15,7 @@ abstract class _$PagedResultOfCampaignResponseCWProxy {
 
   PagedResultOfCampaignResponse totalCount(int totalCount);
 
-  PagedResultOfCampaignResponse totalPages(int totalPages);
+  PagedResultOfCampaignResponse totalPages(int? totalPages);
 
   PagedResultOfCampaignResponse hasPreviousPage(bool? hasPreviousPage);
 
@@ -33,7 +33,7 @@ abstract class _$PagedResultOfCampaignResponseCWProxy {
     int pageNumber,
     int pageSize,
     int totalCount,
-    int totalPages,
+    int? totalPages,
     bool? hasPreviousPage,
     bool? hasNextPage,
   });
@@ -64,7 +64,7 @@ class _$PagedResultOfCampaignResponseCWProxyImpl
       call(totalCount: totalCount);
 
   @override
-  PagedResultOfCampaignResponse totalPages(int totalPages) =>
+  PagedResultOfCampaignResponse totalPages(int? totalPages) =>
       call(totalPages: totalPages);
 
   @override
@@ -111,11 +111,10 @@ class _$PagedResultOfCampaignResponseCWProxyImpl
           ? _value.totalCount
           // ignore: cast_nullable_to_non_nullable
           : totalCount as int,
-      totalPages:
-          totalPages == const $CopyWithPlaceholder() || totalPages == null
+      totalPages: totalPages == const $CopyWithPlaceholder()
           ? _value.totalPages
           // ignore: cast_nullable_to_non_nullable
-          : totalPages as int,
+          : totalPages as int?,
       hasPreviousPage: hasPreviousPage == const $CopyWithPlaceholder()
           ? _value.hasPreviousPage
           // ignore: cast_nullable_to_non_nullable
@@ -146,13 +145,7 @@ PagedResultOfCampaignResponse _$PagedResultOfCampaignResponseFromJson(
 ) => $checkedCreate('PagedResultOfCampaignResponse', json, ($checkedConvert) {
   $checkKeys(
     json,
-    requiredKeys: const [
-      'items',
-      'pageNumber',
-      'pageSize',
-      'totalCount',
-      'totalPages',
-    ],
+    requiredKeys: const ['items', 'pageNumber', 'pageSize', 'totalCount'],
   );
   final val = PagedResultOfCampaignResponse(
     items: $checkedConvert(
@@ -164,7 +157,7 @@ PagedResultOfCampaignResponse _$PagedResultOfCampaignResponseFromJson(
     pageNumber: $checkedConvert('pageNumber', (v) => (v as num).toInt()),
     pageSize: $checkedConvert('pageSize', (v) => (v as num).toInt()),
     totalCount: $checkedConvert('totalCount', (v) => (v as num).toInt()),
-    totalPages: $checkedConvert('totalPages', (v) => (v as num).toInt()),
+    totalPages: $checkedConvert('totalPages', (v) => (v as num?)?.toInt()),
     hasPreviousPage: $checkedConvert('hasPreviousPage', (v) => v as bool?),
     hasNextPage: $checkedConvert('hasNextPage', (v) => v as bool?),
   );
@@ -178,7 +171,7 @@ Map<String, dynamic> _$PagedResultOfCampaignResponseToJson(
   'pageNumber': instance.pageNumber,
   'pageSize': instance.pageSize,
   'totalCount': instance.totalCount,
-  'totalPages': instance.totalPages,
+  'totalPages': ?instance.totalPages,
   'hasPreviousPage': ?instance.hasPreviousPage,
   'hasNextPage': ?instance.hasNextPage,
 };

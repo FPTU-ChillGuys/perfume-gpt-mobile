@@ -8,13 +8,13 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | 
-**createdByName** | **String** |  | [optional] 
+**id** | **String** |  | [optional] 
+**createdByName** | **String** |  | 
 **verifiedByName** | **String** |  | [optional] 
-**supplierName** | **String** |  | [optional] 
-**expectedArrivalDate** | [**DateTime**](DateTime.md) |  | 
-**actualImportDate** | [**DateTime**](DateTime.md) |  | 
-**totalCost** | **num** |  | 
+**supplierName** | **String** |  | 
+**expectedArrivalDate** | [**DateTime**](DateTime.md) |  | [optional] 
+**actualImportDate** | [**DateTime**](DateTime.md) |  | [optional] 
+**totalCost** | **num** |  | [optional] 
 **status** | [**ImportStatus**](ImportStatus.md) |  | [optional] 
 **totalItems** | **int** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 

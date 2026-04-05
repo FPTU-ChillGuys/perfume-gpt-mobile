@@ -9,15 +9,15 @@ part of 'product_fast_look_response.dart';
 abstract class _$ProductFastLookResponseCWProxy {
   ProductFastLookResponse id(String? id);
 
-  ProductFastLookResponse name(String? name);
+  ProductFastLookResponse name(String name);
 
   ProductFastLookResponse description(String? description);
 
-  ProductFastLookResponse brandName(String? brandName);
+  ProductFastLookResponse brandName(String brandName);
 
   ProductFastLookResponse gender(Gender? gender);
 
-  ProductFastLookResponse variants(List<VariantFastLookResponse>? variants);
+  ProductFastLookResponse variants(List<VariantFastLookResponse> variants);
 
   ProductFastLookResponse rating(int? rating);
 
@@ -32,11 +32,11 @@ abstract class _$ProductFastLookResponseCWProxy {
   /// ```
   ProductFastLookResponse call({
     String? id,
-    String? name,
+    String name,
     String? description,
-    String? brandName,
+    String brandName,
     Gender? gender,
-    List<VariantFastLookResponse>? variants,
+    List<VariantFastLookResponse> variants,
     int? rating,
     int? reviewCount,
   });
@@ -54,21 +54,21 @@ class _$ProductFastLookResponseCWProxyImpl
   ProductFastLookResponse id(String? id) => call(id: id);
 
   @override
-  ProductFastLookResponse name(String? name) => call(name: name);
+  ProductFastLookResponse name(String name) => call(name: name);
 
   @override
   ProductFastLookResponse description(String? description) =>
       call(description: description);
 
   @override
-  ProductFastLookResponse brandName(String? brandName) =>
+  ProductFastLookResponse brandName(String brandName) =>
       call(brandName: brandName);
 
   @override
   ProductFastLookResponse gender(Gender? gender) => call(gender: gender);
 
   @override
-  ProductFastLookResponse variants(List<VariantFastLookResponse>? variants) =>
+  ProductFastLookResponse variants(List<VariantFastLookResponse> variants) =>
       call(variants: variants);
 
   @override
@@ -101,26 +101,26 @@ class _$ProductFastLookResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
       description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
           : description as String?,
-      brandName: brandName == const $CopyWithPlaceholder()
+      brandName: brandName == const $CopyWithPlaceholder() || brandName == null
           ? _value.brandName
           // ignore: cast_nullable_to_non_nullable
-          : brandName as String?,
+          : brandName as String,
       gender: gender == const $CopyWithPlaceholder()
           ? _value.gender
           // ignore: cast_nullable_to_non_nullable
           : gender as Gender?,
-      variants: variants == const $CopyWithPlaceholder()
+      variants: variants == const $CopyWithPlaceholder() || variants == null
           ? _value.variants
           // ignore: cast_nullable_to_non_nullable
-          : variants as List<VariantFastLookResponse>?,
+          : variants as List<VariantFastLookResponse>,
       rating: rating == const $CopyWithPlaceholder()
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
@@ -148,19 +148,20 @@ extension $ProductFastLookResponseCopyWith on ProductFastLookResponse {
 ProductFastLookResponse _$ProductFastLookResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProductFastLookResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name', 'brandName', 'variants']);
   final val = ProductFastLookResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
     description: $checkedConvert('description', (v) => v as String?),
-    brandName: $checkedConvert('brandName', (v) => v as String?),
+    brandName: $checkedConvert('brandName', (v) => v as String),
     gender: $checkedConvert(
       'gender',
       (v) => $enumDecodeNullable(_$GenderEnumMap, v),
     ),
     variants: $checkedConvert(
       'variants',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => VariantFastLookResponse.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
@@ -175,11 +176,11 @@ Map<String, dynamic> _$ProductFastLookResponseToJson(
   ProductFastLookResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'name': ?instance.name,
+  'name': instance.name,
   'description': ?instance.description,
-  'brandName': ?instance.brandName,
+  'brandName': instance.brandName,
   'gender': ?_$GenderEnumMap[instance.gender],
-  'variants': ?instance.variants?.map((e) => e.toJson()).toList(),
+  'variants': instance.variants.map((e) => e.toJson()).toList(),
   'rating': ?instance.rating,
   'reviewCount': ?instance.reviewCount,
 };

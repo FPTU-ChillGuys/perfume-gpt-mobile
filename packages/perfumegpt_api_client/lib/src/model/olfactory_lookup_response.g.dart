@@ -9,7 +9,7 @@ part of 'olfactory_lookup_response.dart';
 abstract class _$OlfactoryLookupResponseCWProxy {
   OlfactoryLookupResponse id(int? id);
 
-  OlfactoryLookupResponse name(String? name);
+  OlfactoryLookupResponse name(String name);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OlfactoryLookupResponse(...).copyWith.fieldName(value)`.
@@ -18,7 +18,7 @@ abstract class _$OlfactoryLookupResponseCWProxy {
   /// ```dart
   /// OlfactoryLookupResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  OlfactoryLookupResponse call({int? id, String? name});
+  OlfactoryLookupResponse call({int? id, String name});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -33,7 +33,7 @@ class _$OlfactoryLookupResponseCWProxyImpl
   OlfactoryLookupResponse id(int? id) => call(id: id);
 
   @override
-  OlfactoryLookupResponse name(String? name) => call(name: name);
+  OlfactoryLookupResponse name(String name) => call(name: name);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -52,10 +52,10 @@ class _$OlfactoryLookupResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as int?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
     );
   }
 }
@@ -75,13 +75,14 @@ extension $OlfactoryLookupResponseCopyWith on OlfactoryLookupResponse {
 OlfactoryLookupResponse _$OlfactoryLookupResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('OlfactoryLookupResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
   final val = OlfactoryLookupResponse(
     id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
   );
   return val;
 });
 
 Map<String, dynamic> _$OlfactoryLookupResponseToJson(
   OlfactoryLookupResponse instance,
-) => <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+) => <String, dynamic>{'id': ?instance.id, 'name': instance.name};

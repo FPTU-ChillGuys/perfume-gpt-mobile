@@ -9,14 +9,14 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **variantId** | **String** |  | [optional] 
-**variantSku** | **String** |  | [optional] 
-**productName** | **String** |  | [optional] 
+**variantSku** | **String** |  | 
+**productName** | **String** |  | 
 **volumeMl** | **int** |  | [optional] 
-**concentrationName** | **String** |  | [optional] 
+**concentrationName** | **String** |  | 
 **isExpired** | **bool** |  | [optional] 
 **daysUntilExpiry** | **int** |  | [optional] 
 **id** | **String** |  | [optional] 
-**batchCode** | **String** |  | [optional] 
+**batchCode** | **String** |  | 
 **manufactureDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **expiryDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **importQuantity** | **int** |  | [optional] 

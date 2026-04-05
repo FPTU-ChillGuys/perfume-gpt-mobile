@@ -8,15 +8,15 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **String** |  | [optional] 
+**name** | **String** |  | 
 **brandId** | **int** |  | [optional] 
 **categoryId** | **int** |  | [optional] 
 **description** | **String** |  | [optional] 
 **gender** | [**Gender**](Gender.md) |  | [optional] 
 **origin** | **String** |  | 
 **releaseYear** | **int** |  | [optional] 
-**olfactoryFamilyIds** | **List&lt;int&gt;** |  | [optional] 
-**scentNotes** | [**List&lt;ScentNoteDto&gt;**](ScentNoteDto.md) |  | [optional] 
+**olfactoryFamilyIds** | **List&lt;int&gt;** |  | 
+**scentNotes** | [**List&lt;ScentNoteDto&gt;**](ScentNoteDto.md) |  | 
 **attributes** | [**List&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 
 **temporaryMediaIdsToAdd** | **List&lt;String&gt;** |  | [optional] 
 **mediaIdsToDelete** | **List&lt;String&gt;** |  | [optional] 

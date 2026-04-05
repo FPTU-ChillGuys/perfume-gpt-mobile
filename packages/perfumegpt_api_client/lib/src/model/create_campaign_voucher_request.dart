@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_campaign_voucher_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,98 +21,53 @@ part 'create_campaign_voucher_request.g.dart';
 class CreateCampaignVoucherRequest {
   /// Returns a new [CreateCampaignVoucherRequest] instance.
   CreateCampaignVoucherRequest({
+    required this.code,
 
-    required  this.code,
+    this.discountValue,
 
-     this.discountValue,
+    this.targetItemType,
 
-     this.targetItemType,
+    this.discountType,
 
-     this.discountType,
-
-     this.applyType,
+    this.applyType,
   });
 
-  @JsonKey(
-    
-    name: r'code',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'code', required: true, includeIfNull: false)
   final String code;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'discountValue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'discountValue', required: false, includeIfNull: false)
   final num? discountValue;
 
-
-
-  @JsonKey(
-    
-    name: r'targetItemType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'targetItemType', required: false, includeIfNull: false)
   final PromotionType? targetItemType;
 
-
-
-  @JsonKey(
-    
-    name: r'discountType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'discountType', required: false, includeIfNull: false)
   final DiscountType? discountType;
 
-
-
-  @JsonKey(
-    
-    name: r'applyType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'applyType', required: false, includeIfNull: false)
   final VoucherType? applyType;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateCampaignVoucherRequest &&
+          other.code == code &&
+          other.discountValue == discountValue &&
+          other.targetItemType == targetItemType &&
+          other.discountType == discountType &&
+          other.applyType == applyType;
 
+  @override
+  int get hashCode =>
+      code.hashCode +
+      discountValue.hashCode +
+      targetItemType.hashCode +
+      discountType.hashCode +
+      applyType.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateCampaignVoucherRequest &&
-      other.code == code &&
-      other.discountValue == discountValue &&
-      other.targetItemType == targetItemType &&
-      other.discountType == discountType &&
-      other.applyType == applyType;
-
-    @override
-    int get hashCode =>
-        code.hashCode +
-        discountValue.hashCode +
-        targetItemType.hashCode +
-        discountType.hashCode +
-        applyType.hashCode;
-
-  factory CreateCampaignVoucherRequest.fromJson(Map<String, dynamic> json) => _$CreateCampaignVoucherRequestFromJson(json);
+  factory CreateCampaignVoucherRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateCampaignVoucherRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateCampaignVoucherRequestToJson(this);
 
@@ -121,6 +75,4 @@ class CreateCampaignVoucherRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -7,9 +7,9 @@ part of 'receipt_item_dto.dart';
 // **************************************************************************
 
 abstract class _$ReceiptItemDtoCWProxy {
-  ReceiptItemDto productName(String? productName);
+  ReceiptItemDto productName(String productName);
 
-  ReceiptItemDto variantInfo(String? variantInfo);
+  ReceiptItemDto variantInfo(String variantInfo);
 
   ReceiptItemDto quantity(int? quantity);
 
@@ -25,8 +25,8 @@ abstract class _$ReceiptItemDtoCWProxy {
   /// ReceiptItemDto(...).copyWith(id: 12, name: "My name")
   /// ```
   ReceiptItemDto call({
-    String? productName,
-    String? variantInfo,
+    String productName,
+    String variantInfo,
     int? quantity,
     num? unitPrice,
     num? subtotal,
@@ -41,11 +41,11 @@ class _$ReceiptItemDtoCWProxyImpl implements _$ReceiptItemDtoCWProxy {
   final ReceiptItemDto _value;
 
   @override
-  ReceiptItemDto productName(String? productName) =>
+  ReceiptItemDto productName(String productName) =>
       call(productName: productName);
 
   @override
-  ReceiptItemDto variantInfo(String? variantInfo) =>
+  ReceiptItemDto variantInfo(String variantInfo) =>
       call(variantInfo: variantInfo);
 
   @override
@@ -73,14 +73,16 @@ class _$ReceiptItemDtoCWProxyImpl implements _$ReceiptItemDtoCWProxy {
     Object? subtotal = const $CopyWithPlaceholder(),
   }) {
     return ReceiptItemDto(
-      productName: productName == const $CopyWithPlaceholder()
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
-          : productName as String?,
-      variantInfo: variantInfo == const $CopyWithPlaceholder()
+          : productName as String,
+      variantInfo:
+          variantInfo == const $CopyWithPlaceholder() || variantInfo == null
           ? _value.variantInfo
           // ignore: cast_nullable_to_non_nullable
-          : variantInfo as String?,
+          : variantInfo as String,
       quantity: quantity == const $CopyWithPlaceholder()
           ? _value.quantity
           // ignore: cast_nullable_to_non_nullable
@@ -110,9 +112,10 @@ extension $ReceiptItemDtoCopyWith on ReceiptItemDto {
 
 ReceiptItemDto _$ReceiptItemDtoFromJson(Map<String, dynamic> json) =>
     $checkedCreate('ReceiptItemDto', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['productName', 'variantInfo']);
       final val = ReceiptItemDto(
-        productName: $checkedConvert('productName', (v) => v as String?),
-        variantInfo: $checkedConvert('variantInfo', (v) => v as String?),
+        productName: $checkedConvert('productName', (v) => v as String),
+        variantInfo: $checkedConvert('variantInfo', (v) => v as String),
         quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
         unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
         subtotal: $checkedConvert('subtotal', (v) => v as num?),
@@ -122,8 +125,8 @@ ReceiptItemDto _$ReceiptItemDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ReceiptItemDtoToJson(ReceiptItemDto instance) =>
     <String, dynamic>{
-      'productName': ?instance.productName,
-      'variantInfo': ?instance.variantInfo,
+      'productName': instance.productName,
+      'variantInfo': instance.variantInfo,
       'quantity': ?instance.quantity,
       'unitPrice': ?instance.unitPrice,
       'subtotal': ?instance.subtotal,

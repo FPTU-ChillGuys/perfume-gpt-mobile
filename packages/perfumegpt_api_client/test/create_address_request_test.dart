@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the entity
 
   group(CreateAddressRequest, () {
-    // String receiverName
-    test('to test the property `receiverName`', () async {
+    // String recipientName
+    test('to test the property `recipientName`', () async {
       // TODO
     });
 
-    // String phone
-    test('to test the property `phone`', () async {
+    // String recipientPhoneNumber
+    test('to test the property `recipientPhoneNumber`', () async {
       // TODO
     });
 
@@ -49,6 +49,11 @@ void main() {
 
     // int provinceId
     test('to test the property `provinceId`', () async {
+      // TODO
+    });
+
+    // bool isDefault
+    test('to test the property `isDefault`', () async {
       // TODO
     });
   });

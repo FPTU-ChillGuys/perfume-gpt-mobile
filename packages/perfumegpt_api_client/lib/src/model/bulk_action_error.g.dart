@@ -9,7 +9,7 @@ part of 'bulk_action_error.dart';
 abstract class _$BulkActionErrorCWProxy {
   BulkActionError id(String? id);
 
-  BulkActionError errorMessage(String? errorMessage);
+  BulkActionError errorMessage(String errorMessage);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BulkActionError(...).copyWith.fieldName(value)`.
@@ -18,7 +18,7 @@ abstract class _$BulkActionErrorCWProxy {
   /// ```dart
   /// BulkActionError(...).copyWith(id: 12, name: "My name")
   /// ```
-  BulkActionError call({String? id, String? errorMessage});
+  BulkActionError call({String? id, String errorMessage});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -32,7 +32,7 @@ class _$BulkActionErrorCWProxyImpl implements _$BulkActionErrorCWProxy {
   BulkActionError id(String? id) => call(id: id);
 
   @override
-  BulkActionError errorMessage(String? errorMessage) =>
+  BulkActionError errorMessage(String errorMessage) =>
       call(errorMessage: errorMessage);
 
   @override
@@ -52,10 +52,11 @@ class _$BulkActionErrorCWProxyImpl implements _$BulkActionErrorCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      errorMessage: errorMessage == const $CopyWithPlaceholder()
+      errorMessage:
+          errorMessage == const $CopyWithPlaceholder() || errorMessage == null
           ? _value.errorMessage
           // ignore: cast_nullable_to_non_nullable
-          : errorMessage as String?,
+          : errorMessage as String,
     );
   }
 }
@@ -73,9 +74,10 @@ extension $BulkActionErrorCopyWith on BulkActionError {
 
 BulkActionError _$BulkActionErrorFromJson(Map<String, dynamic> json) =>
     $checkedCreate('BulkActionError', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['errorMessage']);
       final val = BulkActionError(
         id: $checkedConvert('id', (v) => v as String?),
-        errorMessage: $checkedConvert('errorMessage', (v) => v as String?),
+        errorMessage: $checkedConvert('errorMessage', (v) => v as String),
       );
       return val;
     });
@@ -83,5 +85,5 @@ BulkActionError _$BulkActionErrorFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$BulkActionErrorToJson(BulkActionError instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'errorMessage': ?instance.errorMessage,
+      'errorMessage': instance.errorMessage,
     };

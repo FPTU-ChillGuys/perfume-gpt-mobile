@@ -27,6 +27,36 @@ void main() {
       // TODO
     });
 
+    // Gender gender
+    test('to test the property `gender`', () async {
+      // TODO
+    });
+
+    // String origin
+    test('to test the property `origin`', () async {
+      // TODO
+    });
+
+    // int releaseYear
+    test('to test the property `releaseYear`', () async {
+      // TODO
+    });
+
+    // List<int> olfactoryFamilyIds
+    test('to test the property `olfactoryFamilyIds`', () async {
+      // TODO
+    });
+
+    // List<ScentNoteDto> scentNotes
+    test('to test the property `scentNotes`', () async {
+      // TODO
+    });
+
+    // List<ProductAttributeDto> attributes
+    test('to test the property `attributes`', () async {
+      // TODO
+    });
+
     // List<String> temporaryMediaIdsToAdd
     test('to test the property `temporaryMediaIdsToAdd`', () async {
       // TODO
@@ -34,11 +64,6 @@ void main() {
 
     // List<String> mediaIdsToDelete
     test('to test the property `mediaIdsToDelete`', () async {
-      // TODO
-    });
-
-    // List<ProductAttributeDto> attributes
-    test('to test the property `attributes`', () async {
       // TODO
     });
   });

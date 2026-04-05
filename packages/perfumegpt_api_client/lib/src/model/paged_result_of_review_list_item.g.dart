@@ -15,7 +15,7 @@ abstract class _$PagedResultOfReviewListItemCWProxy {
 
   PagedResultOfReviewListItem totalCount(int totalCount);
 
-  PagedResultOfReviewListItem totalPages(int totalPages);
+  PagedResultOfReviewListItem totalPages(int? totalPages);
 
   PagedResultOfReviewListItem hasPreviousPage(bool? hasPreviousPage);
 
@@ -33,7 +33,7 @@ abstract class _$PagedResultOfReviewListItemCWProxy {
     int pageNumber,
     int pageSize,
     int totalCount,
-    int totalPages,
+    int? totalPages,
     bool? hasPreviousPage,
     bool? hasNextPage,
   });
@@ -64,7 +64,7 @@ class _$PagedResultOfReviewListItemCWProxyImpl
       call(totalCount: totalCount);
 
   @override
-  PagedResultOfReviewListItem totalPages(int totalPages) =>
+  PagedResultOfReviewListItem totalPages(int? totalPages) =>
       call(totalPages: totalPages);
 
   @override
@@ -111,11 +111,10 @@ class _$PagedResultOfReviewListItemCWProxyImpl
           ? _value.totalCount
           // ignore: cast_nullable_to_non_nullable
           : totalCount as int,
-      totalPages:
-          totalPages == const $CopyWithPlaceholder() || totalPages == null
+      totalPages: totalPages == const $CopyWithPlaceholder()
           ? _value.totalPages
           // ignore: cast_nullable_to_non_nullable
-          : totalPages as int,
+          : totalPages as int?,
       hasPreviousPage: hasPreviousPage == const $CopyWithPlaceholder()
           ? _value.hasPreviousPage
           // ignore: cast_nullable_to_non_nullable
@@ -145,13 +144,7 @@ PagedResultOfReviewListItem _$PagedResultOfReviewListItemFromJson(
 ) => $checkedCreate('PagedResultOfReviewListItem', json, ($checkedConvert) {
   $checkKeys(
     json,
-    requiredKeys: const [
-      'items',
-      'pageNumber',
-      'pageSize',
-      'totalCount',
-      'totalPages',
-    ],
+    requiredKeys: const ['items', 'pageNumber', 'pageSize', 'totalCount'],
   );
   final val = PagedResultOfReviewListItem(
     items: $checkedConvert(
@@ -163,7 +156,7 @@ PagedResultOfReviewListItem _$PagedResultOfReviewListItemFromJson(
     pageNumber: $checkedConvert('pageNumber', (v) => (v as num).toInt()),
     pageSize: $checkedConvert('pageSize', (v) => (v as num).toInt()),
     totalCount: $checkedConvert('totalCount', (v) => (v as num).toInt()),
-    totalPages: $checkedConvert('totalPages', (v) => (v as num).toInt()),
+    totalPages: $checkedConvert('totalPages', (v) => (v as num?)?.toInt()),
     hasPreviousPage: $checkedConvert('hasPreviousPage', (v) => v as bool?),
     hasNextPage: $checkedConvert('hasNextPage', (v) => v as bool?),
   );
@@ -177,7 +170,7 @@ Map<String, dynamic> _$PagedResultOfReviewListItemToJson(
   'pageNumber': instance.pageNumber,
   'pageSize': instance.pageSize,
   'totalCount': instance.totalCount,
-  'totalPages': instance.totalPages,
+  'totalPages': ?instance.totalPages,
   'hasPreviousPage': ?instance.hasPreviousPage,
   'hasNextPage': ?instance.hasNextPage,
 };

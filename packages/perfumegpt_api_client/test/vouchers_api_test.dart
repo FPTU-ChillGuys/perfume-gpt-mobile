@@ -16,8 +16,8 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPagedResultOfUserVoucherResponse> apiVouchersMyVouchersGet({ int status, bool isUsed, bool isExpired, String code, DiscountType discountType, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
-    test('test apiVouchersMyVouchersGet', () async {
+    //Future<BaseResponseOfPagedResultOfUserVoucherResponse> apiVouchersMeGet({ int status, bool isUsed, bool isExpired, String code, DiscountType discountType, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    test('test apiVouchersMeGet', () async {
       // TODO
     });
 
@@ -28,6 +28,11 @@ void main() {
 
     //Future<BaseResponseOfstring> apiVouchersRedeemPost(RedeemVoucherRequest redeemVoucherRequest) async
     test('test apiVouchersRedeemPost', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfListOfRedeemableVoucherResponse> apiVouchersRedeemableListGet({ int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    test('test apiVouchersRedeemableListGet', () async {
       // TODO
     });
 

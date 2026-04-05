@@ -23,7 +23,7 @@ abstract class _$LoyaltyTransactionHistoryItemResponseCWProxy {
 
   LoyaltyTransactionHistoryItemResponse absolutePoints(int? absolutePoints);
 
-  LoyaltyTransactionHistoryItemResponse reason(String? reason);
+  LoyaltyTransactionHistoryItemResponse reason(String reason);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoyaltyTransactionHistoryItemResponse(...).copyWith.fieldName(value)`.
@@ -40,7 +40,7 @@ abstract class _$LoyaltyTransactionHistoryItemResponseCWProxy {
     LoyaltyTransactionType? transactionType,
     int? pointsChanged,
     int? absolutePoints,
-    String? reason,
+    String reason,
   });
 }
 
@@ -81,7 +81,7 @@ class _$LoyaltyTransactionHistoryItemResponseCWProxyImpl
       call(absolutePoints: absolutePoints);
 
   @override
-  LoyaltyTransactionHistoryItemResponse reason(String? reason) =>
+  LoyaltyTransactionHistoryItemResponse reason(String reason) =>
       call(reason: reason);
 
   @override
@@ -131,10 +131,10 @@ class _$LoyaltyTransactionHistoryItemResponseCWProxyImpl
           ? _value.absolutePoints
           // ignore: cast_nullable_to_non_nullable
           : absolutePoints as int?,
-      reason: reason == const $CopyWithPlaceholder()
+      reason: reason == const $CopyWithPlaceholder() || reason == null
           ? _value.reason
           // ignore: cast_nullable_to_non_nullable
-          : reason as String?,
+          : reason as String,
     );
   }
 }
@@ -157,6 +157,7 @@ _$LoyaltyTransactionHistoryItemResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('LoyaltyTransactionHistoryItemResponse', json, (
       $checkedConvert,
     ) {
+      $checkKeys(json, requiredKeys: const ['reason']);
       final val = LoyaltyTransactionHistoryItemResponse(
         id: $checkedConvert('id', (v) => v as String?),
         userId: $checkedConvert('userId', (v) => v as String?),
@@ -174,7 +175,7 @@ _$LoyaltyTransactionHistoryItemResponseFromJson(Map<String, dynamic> json) =>
           'absolutePoints',
           (v) => (v as num?)?.toInt(),
         ),
-        reason: $checkedConvert('reason', (v) => v as String?),
+        reason: $checkedConvert('reason', (v) => v as String),
       );
       return val;
     });
@@ -189,7 +190,7 @@ Map<String, dynamic> _$LoyaltyTransactionHistoryItemResponseToJson(
   'transactionType': ?_$LoyaltyTransactionTypeEnumMap[instance.transactionType],
   'pointsChanged': ?instance.pointsChanged,
   'absolutePoints': ?instance.absolutePoints,
-  'reason': ?instance.reason,
+  'reason': instance.reason,
 };
 
 const _$LoyaltyTransactionTypeEnumMap = {

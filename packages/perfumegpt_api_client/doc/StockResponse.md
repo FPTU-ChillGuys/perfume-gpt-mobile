@@ -10,11 +10,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **variantId** | **String** |  | [optional] 
-**variantSku** | **String** |  | [optional] 
-**productName** | **String** |  | [optional] 
-**variantImageUrl** | **String** |  | [optional] 
+**variantSku** | **String** |  | 
+**productName** | **String** |  | 
+**variantImageUrl** | **String** |  | 
 **volumeMl** | **int** |  | [optional] 
-**concentrationName** | **String** |  | [optional] 
+**concentrationName** | **String** |  | 
 **totalQuantity** | **int** |  | [optional] 
 **availableQuantity** | **int** |  | [optional] 
 **lowStockThreshold** | **int** |  | [optional] 

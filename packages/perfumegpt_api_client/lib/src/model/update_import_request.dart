@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_import_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,66 +19,39 @@ part 'update_import_request.g.dart';
 class UpdateImportRequest {
   /// Returns a new [UpdateImportRequest] instance.
   UpdateImportRequest({
+    required this.importDetails,
 
-     this.supplierId,
+    this.supplierId,
 
-    required  this.expectedArrivalDate,
-
-    required  this.importDetails,
+    required this.expectedArrivalDate,
   });
 
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'supplierId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? supplierId;
-
-
-
-  @JsonKey(
-    
-    name: r'expectedArrivalDate',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final DateTime expectedArrivalDate;
-
-
-
-  @JsonKey(
-    
-    name: r'importDetails',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'importDetails', required: true, includeIfNull: false)
   final List<UpdateImportDetailRequest> importDetails;
 
+  // minimum: 0
+  @JsonKey(name: r'supplierId', required: false, includeIfNull: false)
+  final int? supplierId;
 
+  @JsonKey(name: r'expectedArrivalDate', required: true, includeIfNull: false)
+  final DateTime expectedArrivalDate;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateImportRequest &&
+          other.importDetails == importDetails &&
+          other.supplierId == supplierId &&
+          other.expectedArrivalDate == expectedArrivalDate;
 
+  @override
+  int get hashCode =>
+      importDetails.hashCode +
+      supplierId.hashCode +
+      expectedArrivalDate.hashCode;
 
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateImportRequest &&
-      other.supplierId == supplierId &&
-      other.expectedArrivalDate == expectedArrivalDate &&
-      other.importDetails == importDetails;
-
-    @override
-    int get hashCode =>
-        supplierId.hashCode +
-        expectedArrivalDate.hashCode +
-        importDetails.hashCode;
-
-  factory UpdateImportRequest.fromJson(Map<String, dynamic> json) => _$UpdateImportRequestFromJson(json);
+  factory UpdateImportRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateImportRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateImportRequestToJson(this);
 
@@ -87,6 +59,4 @@ class UpdateImportRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -28,13 +28,13 @@ void main() {
       // TODO
     });
 
-    // List<VariantFastLookResponse> variants
-    test('to test the property `variants`', () async {
+    // Gender gender
+    test('to test the property `gender`', () async {
       // TODO
     });
 
-    // ProductAttributeResponse attribute
-    test('to test the property `attribute`', () async {
+    // List<VariantFastLookResponse> variants
+    test('to test the property `variants`', () async {
       // TODO
     });
 

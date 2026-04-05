@@ -9,9 +9,9 @@ part of 'variant_summary_item.dart';
 abstract class _$VariantSummaryItemCWProxy {
   VariantSummaryItem id(String? id);
 
-  VariantSummaryItem displayName(String? displayName);
+  VariantSummaryItem displayName(String displayName);
 
-  VariantSummaryItem concentrationName(String? concentrationName);
+  VariantSummaryItem concentrationName(String concentrationName);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `VariantSummaryItem(...).copyWith.fieldName(value)`.
@@ -22,8 +22,8 @@ abstract class _$VariantSummaryItemCWProxy {
   /// ```
   VariantSummaryItem call({
     String? id,
-    String? displayName,
-    String? concentrationName,
+    String displayName,
+    String concentrationName,
   });
 }
 
@@ -38,11 +38,11 @@ class _$VariantSummaryItemCWProxyImpl implements _$VariantSummaryItemCWProxy {
   VariantSummaryItem id(String? id) => call(id: id);
 
   @override
-  VariantSummaryItem displayName(String? displayName) =>
+  VariantSummaryItem displayName(String displayName) =>
       call(displayName: displayName);
 
   @override
-  VariantSummaryItem concentrationName(String? concentrationName) =>
+  VariantSummaryItem concentrationName(String concentrationName) =>
       call(concentrationName: concentrationName);
 
   @override
@@ -63,14 +63,17 @@ class _$VariantSummaryItemCWProxyImpl implements _$VariantSummaryItemCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      displayName: displayName == const $CopyWithPlaceholder()
+      displayName:
+          displayName == const $CopyWithPlaceholder() || displayName == null
           ? _value.displayName
           // ignore: cast_nullable_to_non_nullable
-          : displayName as String?,
-      concentrationName: concentrationName == const $CopyWithPlaceholder()
+          : displayName as String,
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
           ? _value.concentrationName
           // ignore: cast_nullable_to_non_nullable
-          : concentrationName as String?,
+          : concentrationName as String,
     );
   }
 }
@@ -87,22 +90,21 @@ extension $VariantSummaryItemCopyWith on VariantSummaryItem {
 // JsonSerializableGenerator
 // **************************************************************************
 
-VariantSummaryItem _$VariantSummaryItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('VariantSummaryItem', json, ($checkedConvert) {
-      final val = VariantSummaryItem(
-        id: $checkedConvert('id', (v) => v as String?),
-        displayName: $checkedConvert('displayName', (v) => v as String?),
-        concentrationName: $checkedConvert(
-          'concentrationName',
-          (v) => v as String?,
-        ),
-      );
-      return val;
-    });
+VariantSummaryItem _$VariantSummaryItemFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('VariantSummaryItem', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['displayName', 'concentrationName']);
+  final val = VariantSummaryItem(
+    id: $checkedConvert('id', (v) => v as String?),
+    displayName: $checkedConvert('displayName', (v) => v as String),
+    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$VariantSummaryItemToJson(VariantSummaryItem instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'displayName': ?instance.displayName,
-      'concentrationName': ?instance.concentrationName,
+      'displayName': instance.displayName,
+      'concentrationName': instance.concentrationName,
     };

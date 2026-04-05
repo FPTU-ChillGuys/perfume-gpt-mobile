@@ -7,15 +7,15 @@ part of 'register_request.dart';
 // **************************************************************************
 
 abstract class _$RegisterRequestCWProxy {
-  RegisterRequest fullName(String? fullName);
+  RegisterRequest fullName(String fullName);
 
   RegisterRequest phoneNumber(String phoneNumber);
 
   RegisterRequest email(String email);
 
-  RegisterRequest password(String? password);
+  RegisterRequest password(String password);
 
-  RegisterRequest clientUri(String? clientUri);
+  RegisterRequest clientUri(String clientUri);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RegisterRequest(...).copyWith.fieldName(value)`.
@@ -25,11 +25,11 @@ abstract class _$RegisterRequestCWProxy {
   /// RegisterRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   RegisterRequest call({
-    String? fullName,
+    String fullName,
     String phoneNumber,
     String email,
-    String? password,
-    String? clientUri,
+    String password,
+    String clientUri,
   });
 }
 
@@ -41,7 +41,7 @@ class _$RegisterRequestCWProxyImpl implements _$RegisterRequestCWProxy {
   final RegisterRequest _value;
 
   @override
-  RegisterRequest fullName(String? fullName) => call(fullName: fullName);
+  RegisterRequest fullName(String fullName) => call(fullName: fullName);
 
   @override
   RegisterRequest phoneNumber(String phoneNumber) =>
@@ -51,10 +51,10 @@ class _$RegisterRequestCWProxyImpl implements _$RegisterRequestCWProxy {
   RegisterRequest email(String email) => call(email: email);
 
   @override
-  RegisterRequest password(String? password) => call(password: password);
+  RegisterRequest password(String password) => call(password: password);
 
   @override
-  RegisterRequest clientUri(String? clientUri) => call(clientUri: clientUri);
+  RegisterRequest clientUri(String clientUri) => call(clientUri: clientUri);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -72,10 +72,10 @@ class _$RegisterRequestCWProxyImpl implements _$RegisterRequestCWProxy {
     Object? clientUri = const $CopyWithPlaceholder(),
   }) {
     return RegisterRequest(
-      fullName: fullName == const $CopyWithPlaceholder()
+      fullName: fullName == const $CopyWithPlaceholder() || fullName == null
           ? _value.fullName
           // ignore: cast_nullable_to_non_nullable
-          : fullName as String?,
+          : fullName as String,
       phoneNumber:
           phoneNumber == const $CopyWithPlaceholder() || phoneNumber == null
           ? _value.phoneNumber
@@ -85,14 +85,14 @@ class _$RegisterRequestCWProxyImpl implements _$RegisterRequestCWProxy {
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
           : email as String,
-      password: password == const $CopyWithPlaceholder()
+      password: password == const $CopyWithPlaceholder() || password == null
           ? _value.password
           // ignore: cast_nullable_to_non_nullable
-          : password as String?,
-      clientUri: clientUri == const $CopyWithPlaceholder()
+          : password as String,
+      clientUri: clientUri == const $CopyWithPlaceholder() || clientUri == null
           ? _value.clientUri
           // ignore: cast_nullable_to_non_nullable
-          : clientUri as String?,
+          : clientUri as String,
     );
   }
 }
@@ -110,22 +110,31 @@ extension $RegisterRequestCopyWith on RegisterRequest {
 
 RegisterRequest _$RegisterRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('RegisterRequest', json, ($checkedConvert) {
-      $checkKeys(json, requiredKeys: const ['phoneNumber', 'email']);
+      $checkKeys(
+        json,
+        requiredKeys: const [
+          'fullName',
+          'phoneNumber',
+          'email',
+          'password',
+          'clientUri',
+        ],
+      );
       final val = RegisterRequest(
-        fullName: $checkedConvert('fullName', (v) => v as String?),
+        fullName: $checkedConvert('fullName', (v) => v as String),
         phoneNumber: $checkedConvert('phoneNumber', (v) => v as String),
         email: $checkedConvert('email', (v) => v as String),
-        password: $checkedConvert('password', (v) => v as String?),
-        clientUri: $checkedConvert('clientUri', (v) => v as String?),
+        password: $checkedConvert('password', (v) => v as String),
+        clientUri: $checkedConvert('clientUri', (v) => v as String),
       );
       return val;
     });
 
 Map<String, dynamic> _$RegisterRequestToJson(RegisterRequest instance) =>
     <String, dynamic>{
-      'fullName': ?instance.fullName,
+      'fullName': instance.fullName,
       'phoneNumber': instance.phoneNumber,
       'email': instance.email,
-      'password': ?instance.password,
-      'clientUri': ?instance.clientUri,
+      'password': instance.password,
+      'clientUri': instance.clientUri,
     };

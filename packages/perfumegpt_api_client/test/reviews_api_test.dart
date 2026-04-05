@@ -26,6 +26,11 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfstring> apiReviewsReviewIdAnswerPost(String reviewId, AnswerReviewRequest answerReviewRequest) async
+    test('test apiReviewsReviewIdAnswerPost', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiReviewsReviewIdDelete(String reviewId) async
     test('test apiReviewsReviewIdDelete', () async {
       // TODO
@@ -38,11 +43,6 @@ void main() {
 
     //Future<BaseResponseOfListOfMediaResponse> apiReviewsReviewIdImagesGet(String reviewId) async
     test('test apiReviewsReviewIdImagesGet', () async {
-      // TODO
-    });
-
-    //Future<BaseResponseOfBulkActionResultOfstring> apiReviewsReviewIdPut(String reviewId, UpdateReviewRequest updateReviewRequest) async
-    test('test apiReviewsReviewIdPut', () async {
       // TODO
     });
 

@@ -17,13 +17,13 @@ void main() {
       // TODO
     });
 
-    // DeliveryMethod deliveryMethod
-    test('to test the property `deliveryMethod`', () async {
+    // num expectedTotalPrice
+    test('to test the property `expectedTotalPrice`', () async {
       // TODO
     });
 
-    // String guestEmail
-    test('to test the property `guestEmail`', () async {
+    // DeliveryMethod deliveryMethod
+    test('to test the property `deliveryMethod`', () async {
       // TODO
     });
 
@@ -32,7 +32,7 @@ void main() {
       // TODO
     });
 
-    // RecipientInformation recipient
+    // ContactAddressInformation recipient
     test('to test the property `recipient`', () async {
       // TODO
     });

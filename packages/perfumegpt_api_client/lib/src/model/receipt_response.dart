@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'receipt_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,241 +19,122 @@ part 'receipt_response.g.dart';
 class ReceiptResponse {
   /// Returns a new [ReceiptResponse] instance.
   ReceiptResponse({
+    this.orderId,
 
-     this.orderId,
+    required this.code,
 
-     this.orderDate,
+    this.orderDate,
 
-     this.orderStatus,
+    required this.orderStatus,
 
-     this.staffName,
+    required this.staffName,
 
-     this.customerName,
+    required this.customerName,
 
-     this.recipientPhone,
+    required this.recipientPhone,
 
-     this.recipientAddress,
+    required this.recipientAddress,
 
-     this.items,
+    required this.items,
 
-     this.subtotal,
+    this.subtotal,
 
-     this.discount,
+    this.discount,
 
-     this.tax,
+    this.tax,
 
-     this.total,
+    this.total,
 
-     this.paymentMethod,
+    required this.paymentMethod,
 
-     this.note,
+    this.note,
   });
 
-  @JsonKey(
-    
-    name: r'orderId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'orderId', required: false, includeIfNull: false)
   final String? orderId;
 
+  @JsonKey(name: r'code', required: true, includeIfNull: false)
+  final String code;
 
-
-  @JsonKey(
-    
-    name: r'orderDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'orderDate', required: false, includeIfNull: false)
   final DateTime? orderDate;
 
+  @JsonKey(name: r'orderStatus', required: true, includeIfNull: false)
+  final String orderStatus;
 
+  @JsonKey(name: r'staffName', required: true, includeIfNull: false)
+  final String staffName;
 
-  @JsonKey(
-    
-    name: r'orderStatus',
-    required: false,
-    includeIfNull: false,
-  )
+  @JsonKey(name: r'customerName', required: true, includeIfNull: false)
+  final String customerName;
 
+  @JsonKey(name: r'recipientPhone', required: true, includeIfNull: false)
+  final String recipientPhone;
 
-  final String? orderStatus;
+  @JsonKey(name: r'recipientAddress', required: true, includeIfNull: false)
+  final String recipientAddress;
 
+  @JsonKey(name: r'items', required: true, includeIfNull: false)
+  final List<ReceiptItemDto> items;
 
-
-  @JsonKey(
-    
-    name: r'staffName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? staffName;
-
-
-
-  @JsonKey(
-    
-    name: r'customerName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? customerName;
-
-
-
-  @JsonKey(
-    
-    name: r'recipientPhone',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? recipientPhone;
-
-
-
-  @JsonKey(
-    
-    name: r'recipientAddress',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? recipientAddress;
-
-
-
-  @JsonKey(
-    
-    name: r'items',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final List<ReceiptItemDto>? items;
-
-
-
-  @JsonKey(
-    
-    name: r'subtotal',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'subtotal', required: false, includeIfNull: false)
   final num? subtotal;
 
-
-
-  @JsonKey(
-    
-    name: r'discount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'discount', required: false, includeIfNull: false)
   final num? discount;
 
-
-
-  @JsonKey(
-    
-    name: r'tax',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'tax', required: false, includeIfNull: false)
   final num? tax;
 
-
-
-  @JsonKey(
-    
-    name: r'total',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'total', required: false, includeIfNull: false)
   final num? total;
 
+  @JsonKey(name: r'paymentMethod', required: true, includeIfNull: false)
+  final String paymentMethod;
 
-
-  @JsonKey(
-    
-    name: r'paymentMethod',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? paymentMethod;
-
-
-
-  @JsonKey(
-    
-    name: r'note',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
   final String? note;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReceiptResponse &&
+          other.orderId == orderId &&
+          other.code == code &&
+          other.orderDate == orderDate &&
+          other.orderStatus == orderStatus &&
+          other.staffName == staffName &&
+          other.customerName == customerName &&
+          other.recipientPhone == recipientPhone &&
+          other.recipientAddress == recipientAddress &&
+          other.items == items &&
+          other.subtotal == subtotal &&
+          other.discount == discount &&
+          other.tax == tax &&
+          other.total == total &&
+          other.paymentMethod == paymentMethod &&
+          other.note == note;
 
+  @override
+  int get hashCode =>
+      orderId.hashCode +
+      code.hashCode +
+      orderDate.hashCode +
+      orderStatus.hashCode +
+      staffName.hashCode +
+      customerName.hashCode +
+      recipientPhone.hashCode +
+      recipientAddress.hashCode +
+      items.hashCode +
+      subtotal.hashCode +
+      discount.hashCode +
+      tax.hashCode +
+      total.hashCode +
+      paymentMethod.hashCode +
+      (note == null ? 0 : note.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ReceiptResponse &&
-      other.orderId == orderId &&
-      other.orderDate == orderDate &&
-      other.orderStatus == orderStatus &&
-      other.staffName == staffName &&
-      other.customerName == customerName &&
-      other.recipientPhone == recipientPhone &&
-      other.recipientAddress == recipientAddress &&
-      other.items == items &&
-      other.subtotal == subtotal &&
-      other.discount == discount &&
-      other.tax == tax &&
-      other.total == total &&
-      other.paymentMethod == paymentMethod &&
-      other.note == note;
-
-    @override
-    int get hashCode =>
-        orderId.hashCode +
-        orderDate.hashCode +
-        orderStatus.hashCode +
-        staffName.hashCode +
-        customerName.hashCode +
-        recipientPhone.hashCode +
-        recipientAddress.hashCode +
-        items.hashCode +
-        subtotal.hashCode +
-        discount.hashCode +
-        tax.hashCode +
-        total.hashCode +
-        paymentMethod.hashCode +
-        (note == null ? 0 : note.hashCode);
-
-  factory ReceiptResponse.fromJson(Map<String, dynamic> json) => _$ReceiptResponseFromJson(json);
+  factory ReceiptResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReceiptResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReceiptResponseToJson(this);
 
@@ -262,6 +142,4 @@ class ReceiptResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

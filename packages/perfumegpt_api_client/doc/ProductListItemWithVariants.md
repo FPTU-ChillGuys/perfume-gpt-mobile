@@ -8,16 +8,16 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**variants** | [**List&lt;VariantSummaryItem&gt;**](VariantSummaryItem.md) |  | [optional] 
+**variants** | [**List&lt;VariantSummaryItem&gt;**](VariantSummaryItem.md) |  | 
 **id** | **String** |  | [optional] 
 **name** | **String** |  | [optional] 
 **brandId** | **int** |  | [optional] 
-**brandName** | **String** |  | [optional] 
+**brandName** | **String** |  | 
 **categoryId** | **int** |  | [optional] 
-**categoryName** | **String** |  | [optional] 
+**categoryName** | **String** |  | 
 **description** | **String** |  | [optional] 
 **numberOfVariants** | **int** |  | [optional] 
-**variantPrices** | **List&lt;num&gt;** |  | [optional] 
+**variantPrices** | **List&lt;num&gt;** |  | 
 **tags** | **List&lt;String&gt;** |  | [optional] 
 **primaryImage** | [**MediaResponse**](MediaResponse.md) |  | [optional] 
 

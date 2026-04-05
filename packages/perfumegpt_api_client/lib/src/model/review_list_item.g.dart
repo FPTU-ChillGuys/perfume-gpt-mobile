@@ -11,17 +11,17 @@ abstract class _$ReviewListItemCWProxy {
 
   ReviewListItem userId(String? userId);
 
-  ReviewListItem userFullName(String? userFullName);
+  ReviewListItem userFullName(String userFullName);
 
   ReviewListItem userProfilePictureUrl(String? userProfilePictureUrl);
 
   ReviewListItem variantId(String? variantId);
 
-  ReviewListItem variantName(String? variantName);
+  ReviewListItem variantName(String variantName);
 
   ReviewListItem rating(int? rating);
 
-  ReviewListItem commentPreview(String? commentPreview);
+  ReviewListItem commentPreview(String commentPreview);
 
   ReviewListItem imageCount(int? imageCount);
 
@@ -37,12 +37,12 @@ abstract class _$ReviewListItemCWProxy {
   ReviewListItem call({
     String? id,
     String? userId,
-    String? userFullName,
+    String userFullName,
     String? userProfilePictureUrl,
     String? variantId,
-    String? variantName,
+    String variantName,
     int? rating,
-    String? commentPreview,
+    String commentPreview,
     int? imageCount,
     DateTime? createdAt,
   });
@@ -62,7 +62,7 @@ class _$ReviewListItemCWProxyImpl implements _$ReviewListItemCWProxy {
   ReviewListItem userId(String? userId) => call(userId: userId);
 
   @override
-  ReviewListItem userFullName(String? userFullName) =>
+  ReviewListItem userFullName(String userFullName) =>
       call(userFullName: userFullName);
 
   @override
@@ -73,14 +73,14 @@ class _$ReviewListItemCWProxyImpl implements _$ReviewListItemCWProxy {
   ReviewListItem variantId(String? variantId) => call(variantId: variantId);
 
   @override
-  ReviewListItem variantName(String? variantName) =>
+  ReviewListItem variantName(String variantName) =>
       call(variantName: variantName);
 
   @override
   ReviewListItem rating(int? rating) => call(rating: rating);
 
   @override
-  ReviewListItem commentPreview(String? commentPreview) =>
+  ReviewListItem commentPreview(String commentPreview) =>
       call(commentPreview: commentPreview);
 
   @override
@@ -118,10 +118,11 @@ class _$ReviewListItemCWProxyImpl implements _$ReviewListItemCWProxy {
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable
           : userId as String?,
-      userFullName: userFullName == const $CopyWithPlaceholder()
+      userFullName:
+          userFullName == const $CopyWithPlaceholder() || userFullName == null
           ? _value.userFullName
           // ignore: cast_nullable_to_non_nullable
-          : userFullName as String?,
+          : userFullName as String,
       userProfilePictureUrl:
           userProfilePictureUrl == const $CopyWithPlaceholder()
           ? _value.userProfilePictureUrl
@@ -131,18 +132,21 @@ class _$ReviewListItemCWProxyImpl implements _$ReviewListItemCWProxy {
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
           ? _value.variantName
           // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
+          : variantName as String,
       rating: rating == const $CopyWithPlaceholder()
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
           : rating as int?,
-      commentPreview: commentPreview == const $CopyWithPlaceholder()
+      commentPreview:
+          commentPreview == const $CopyWithPlaceholder() ||
+              commentPreview == null
           ? _value.commentPreview
           // ignore: cast_nullable_to_non_nullable
-          : commentPreview as String?,
+          : commentPreview as String,
       imageCount: imageCount == const $CopyWithPlaceholder()
           ? _value.imageCount
           // ignore: cast_nullable_to_non_nullable
@@ -168,18 +172,22 @@ extension $ReviewListItemCopyWith on ReviewListItem {
 
 ReviewListItem _$ReviewListItemFromJson(Map<String, dynamic> json) =>
     $checkedCreate('ReviewListItem', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const ['userFullName', 'variantName', 'commentPreview'],
+      );
       final val = ReviewListItem(
         id: $checkedConvert('id', (v) => v as String?),
         userId: $checkedConvert('userId', (v) => v as String?),
-        userFullName: $checkedConvert('userFullName', (v) => v as String?),
+        userFullName: $checkedConvert('userFullName', (v) => v as String),
         userProfilePictureUrl: $checkedConvert(
           'userProfilePictureUrl',
           (v) => v as String?,
         ),
         variantId: $checkedConvert('variantId', (v) => v as String?),
-        variantName: $checkedConvert('variantName', (v) => v as String?),
+        variantName: $checkedConvert('variantName', (v) => v as String),
         rating: $checkedConvert('rating', (v) => (v as num?)?.toInt()),
-        commentPreview: $checkedConvert('commentPreview', (v) => v as String?),
+        commentPreview: $checkedConvert('commentPreview', (v) => v as String),
         imageCount: $checkedConvert('imageCount', (v) => (v as num?)?.toInt()),
         createdAt: $checkedConvert(
           'createdAt',
@@ -193,12 +201,12 @@ Map<String, dynamic> _$ReviewListItemToJson(ReviewListItem instance) =>
     <String, dynamic>{
       'id': ?instance.id,
       'userId': ?instance.userId,
-      'userFullName': ?instance.userFullName,
+      'userFullName': instance.userFullName,
       'userProfilePictureUrl': ?instance.userProfilePictureUrl,
       'variantId': ?instance.variantId,
-      'variantName': ?instance.variantName,
+      'variantName': instance.variantName,
       'rating': ?instance.rating,
-      'commentPreview': ?instance.commentPreview,
+      'commentPreview': instance.commentPreview,
       'imageCount': ?instance.imageCount,
       'createdAt': ?instance.createdAt?.toIso8601String(),
     };

@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the entity
 
   group(UpdateAddressRequest, () {
-    // String receiverName
-    test('to test the property `receiverName`', () async {
+    // String recipientName
+    test('to test the property `recipientName`', () async {
       // TODO
     });
 
-    // String phone
-    test('to test the property `phone`', () async {
+    // String recipientPhoneNumber
+    test('to test the property `recipientPhoneNumber`', () async {
       // TODO
     });
 

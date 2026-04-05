@@ -9,7 +9,7 @@ part of 'voucher_response.dart';
 abstract class _$VoucherResponseCWProxy {
   VoucherResponse id(String? id);
 
-  VoucherResponse code(String? code);
+  VoucherResponse code(String code);
 
   VoucherResponse discountValue(num? discountValue);
 
@@ -46,7 +46,7 @@ abstract class _$VoucherResponseCWProxy {
   /// ```
   VoucherResponse call({
     String? id,
-    String? code,
+    String code,
     num? discountValue,
     DiscountType? discountType,
     String? campaignId,
@@ -74,7 +74,7 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
   VoucherResponse id(String? id) => call(id: id);
 
   @override
-  VoucherResponse code(String? code) => call(code: code);
+  VoucherResponse code(String code) => call(code: code);
 
   @override
   VoucherResponse discountValue(num? discountValue) =>
@@ -155,10 +155,10 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      code: code == const $CopyWithPlaceholder()
+      code: code == const $CopyWithPlaceholder() || code == null
           ? _value.code
           // ignore: cast_nullable_to_non_nullable
-          : code as String?,
+          : code as String,
       discountValue: discountValue == const $CopyWithPlaceholder()
           ? _value.discountValue
           // ignore: cast_nullable_to_non_nullable
@@ -228,9 +228,10 @@ extension $VoucherResponseCopyWith on VoucherResponse {
 
 VoucherResponse _$VoucherResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('VoucherResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['code']);
       final val = VoucherResponse(
         id: $checkedConvert('id', (v) => v as String?),
-        code: $checkedConvert('code', (v) => v as String?),
+        code: $checkedConvert('code', (v) => v as String),
         discountValue: $checkedConvert('discountValue', (v) => v as num?),
         discountType: $checkedConvert(
           'discountType',
@@ -275,7 +276,7 @@ VoucherResponse _$VoucherResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$VoucherResponseToJson(VoucherResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'code': ?instance.code,
+      'code': instance.code,
       'discountValue': ?instance.discountValue,
       'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
       'campaignId': ?instance.campaignId,

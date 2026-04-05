@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateCampaignRequest
 void main() {
-  final instance = CreateCampaignRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateCampaignRequest? instance = /* CreateCampaignRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateCampaignRequest, () {
     // String name
@@ -32,15 +32,14 @@ void main() {
       // TODO
     });
 
-    // BuiltList<CreateCampaignPromotionItemRequest> items
+    // List<CreateCampaignPromotionItemRequest> items
     test('to test the property `items`', () async {
       // TODO
     });
 
-    // BuiltList<CreateCampaignVoucherRequest> vouchers
+    // List<CreateCampaignVoucherRequest> vouchers
     test('to test the property `vouchers`', () async {
       // TODO
     });
-
   });
 }

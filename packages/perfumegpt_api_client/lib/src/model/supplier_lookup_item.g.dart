@@ -9,7 +9,7 @@ part of 'supplier_lookup_item.dart';
 abstract class _$SupplierLookupItemCWProxy {
   SupplierLookupItem id(int? id);
 
-  SupplierLookupItem name(String? name);
+  SupplierLookupItem name(String name);
 
   SupplierLookupItem phone(String? phone);
 
@@ -24,7 +24,7 @@ abstract class _$SupplierLookupItemCWProxy {
   /// ```
   SupplierLookupItem call({
     int? id,
-    String? name,
+    String name,
     String? phone,
     String? contactEmail,
   });
@@ -41,7 +41,7 @@ class _$SupplierLookupItemCWProxyImpl implements _$SupplierLookupItemCWProxy {
   SupplierLookupItem id(int? id) => call(id: id);
 
   @override
-  SupplierLookupItem name(String? name) => call(name: name);
+  SupplierLookupItem name(String name) => call(name: name);
 
   @override
   SupplierLookupItem phone(String? phone) => call(phone: phone);
@@ -69,10 +69,10 @@ class _$SupplierLookupItemCWProxyImpl implements _$SupplierLookupItemCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as int?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
       phone: phone == const $CopyWithPlaceholder()
           ? _value.phone
           // ignore: cast_nullable_to_non_nullable
@@ -99,9 +99,10 @@ extension $SupplierLookupItemCopyWith on SupplierLookupItem {
 
 SupplierLookupItem _$SupplierLookupItemFromJson(Map<String, dynamic> json) =>
     $checkedCreate('SupplierLookupItem', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['name']);
       final val = SupplierLookupItem(
         id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-        name: $checkedConvert('name', (v) => v as String?),
+        name: $checkedConvert('name', (v) => v as String),
         phone: $checkedConvert('phone', (v) => v as String?),
         contactEmail: $checkedConvert('contactEmail', (v) => v as String?),
       );
@@ -111,7 +112,7 @@ SupplierLookupItem _$SupplierLookupItemFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SupplierLookupItemToJson(SupplierLookupItem instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'name': ?instance.name,
+      'name': instance.name,
       'phone': ?instance.phone,
       'contactEmail': ?instance.contactEmail,
     };

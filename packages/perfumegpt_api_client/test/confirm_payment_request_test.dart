@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ConfirmPaymentRequest
 void main() {
-  final instance = ConfirmPaymentRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final ConfirmPaymentRequest? instance = /* ConfirmPaymentRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(ConfirmPaymentRequest, () {
     // bool isSuccess
@@ -16,6 +16,5 @@ void main() {
     test('to test the property `failureReason`', () async {
       // TODO
     });
-
   });
 }

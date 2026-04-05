@@ -7,13 +7,13 @@ part of 'ward_response.dart';
 // **************************************************************************
 
 abstract class _$WardResponseCWProxy {
-  WardResponse wardCode(String? wardCode);
+  WardResponse wardCode(String wardCode);
 
   WardResponse districtID(int? districtID);
 
-  WardResponse wardName(String? wardName);
+  WardResponse wardName(String wardName);
 
-  WardResponse nameExtension(List<String>? nameExtension);
+  WardResponse nameExtension(List<String> nameExtension);
 
   WardResponse canUpdateCOD(bool? canUpdateCOD);
 
@@ -21,9 +21,9 @@ abstract class _$WardResponseCWProxy {
 
   WardResponse status(int? status);
 
-  WardResponse createdDate(String? createdDate);
+  WardResponse createdDate(String createdDate);
 
-  WardResponse updatedDate(String? updatedDate);
+  WardResponse updatedDate(String updatedDate);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `WardResponse(...).copyWith.fieldName(value)`.
@@ -33,15 +33,15 @@ abstract class _$WardResponseCWProxy {
   /// WardResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   WardResponse call({
-    String? wardCode,
+    String wardCode,
     int? districtID,
-    String? wardName,
-    List<String>? nameExtension,
+    String wardName,
+    List<String> nameExtension,
     bool? canUpdateCOD,
     int? supportType,
     int? status,
-    String? createdDate,
-    String? updatedDate,
+    String createdDate,
+    String updatedDate,
   });
 }
 
@@ -53,16 +53,16 @@ class _$WardResponseCWProxyImpl implements _$WardResponseCWProxy {
   final WardResponse _value;
 
   @override
-  WardResponse wardCode(String? wardCode) => call(wardCode: wardCode);
+  WardResponse wardCode(String wardCode) => call(wardCode: wardCode);
 
   @override
   WardResponse districtID(int? districtID) => call(districtID: districtID);
 
   @override
-  WardResponse wardName(String? wardName) => call(wardName: wardName);
+  WardResponse wardName(String wardName) => call(wardName: wardName);
 
   @override
-  WardResponse nameExtension(List<String>? nameExtension) =>
+  WardResponse nameExtension(List<String> nameExtension) =>
       call(nameExtension: nameExtension);
 
   @override
@@ -76,11 +76,11 @@ class _$WardResponseCWProxyImpl implements _$WardResponseCWProxy {
   WardResponse status(int? status) => call(status: status);
 
   @override
-  WardResponse createdDate(String? createdDate) =>
+  WardResponse createdDate(String createdDate) =>
       call(createdDate: createdDate);
 
   @override
-  WardResponse updatedDate(String? updatedDate) =>
+  WardResponse updatedDate(String updatedDate) =>
       call(updatedDate: updatedDate);
 
   @override
@@ -103,22 +103,23 @@ class _$WardResponseCWProxyImpl implements _$WardResponseCWProxy {
     Object? updatedDate = const $CopyWithPlaceholder(),
   }) {
     return WardResponse(
-      wardCode: wardCode == const $CopyWithPlaceholder()
+      wardCode: wardCode == const $CopyWithPlaceholder() || wardCode == null
           ? _value.wardCode
           // ignore: cast_nullable_to_non_nullable
-          : wardCode as String?,
+          : wardCode as String,
       districtID: districtID == const $CopyWithPlaceholder()
           ? _value.districtID
           // ignore: cast_nullable_to_non_nullable
           : districtID as int?,
-      wardName: wardName == const $CopyWithPlaceholder()
+      wardName: wardName == const $CopyWithPlaceholder() || wardName == null
           ? _value.wardName
           // ignore: cast_nullable_to_non_nullable
-          : wardName as String?,
-      nameExtension: nameExtension == const $CopyWithPlaceholder()
+          : wardName as String,
+      nameExtension:
+          nameExtension == const $CopyWithPlaceholder() || nameExtension == null
           ? _value.nameExtension
           // ignore: cast_nullable_to_non_nullable
-          : nameExtension as List<String>?,
+          : nameExtension as List<String>,
       canUpdateCOD: canUpdateCOD == const $CopyWithPlaceholder()
           ? _value.canUpdateCOD
           // ignore: cast_nullable_to_non_nullable
@@ -131,14 +132,16 @@ class _$WardResponseCWProxyImpl implements _$WardResponseCWProxy {
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as int?,
-      createdDate: createdDate == const $CopyWithPlaceholder()
+      createdDate:
+          createdDate == const $CopyWithPlaceholder() || createdDate == null
           ? _value.createdDate
           // ignore: cast_nullable_to_non_nullable
-          : createdDate as String?,
-      updatedDate: updatedDate == const $CopyWithPlaceholder()
+          : createdDate as String,
+      updatedDate:
+          updatedDate == const $CopyWithPlaceholder() || updatedDate == null
           ? _value.updatedDate
           // ignore: cast_nullable_to_non_nullable
-          : updatedDate as String?,
+          : updatedDate as String,
     );
   }
 }
@@ -160,19 +163,29 @@ WardResponse _$WardResponseFromJson(
   'WardResponse',
   json,
   ($checkedConvert) {
+    $checkKeys(
+      json,
+      requiredKeys: const [
+        'WardCode',
+        'WardName',
+        'NameExtension',
+        'CreatedDate',
+        'UpdatedDate',
+      ],
+    );
     final val = WardResponse(
-      wardCode: $checkedConvert('WardCode', (v) => v as String?),
+      wardCode: $checkedConvert('WardCode', (v) => v as String),
       districtID: $checkedConvert('DistrictID', (v) => (v as num?)?.toInt()),
-      wardName: $checkedConvert('WardName', (v) => v as String?),
+      wardName: $checkedConvert('WardName', (v) => v as String),
       nameExtension: $checkedConvert(
         'NameExtension',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
       ),
       canUpdateCOD: $checkedConvert('CanUpdateCOD', (v) => v as bool?),
       supportType: $checkedConvert('SupportType', (v) => (v as num?)?.toInt()),
       status: $checkedConvert('Status', (v) => (v as num?)?.toInt()),
-      createdDate: $checkedConvert('CreatedDate', (v) => v as String?),
-      updatedDate: $checkedConvert('UpdatedDate', (v) => v as String?),
+      createdDate: $checkedConvert('CreatedDate', (v) => v as String),
+      updatedDate: $checkedConvert('UpdatedDate', (v) => v as String),
     );
     return val;
   },
@@ -191,13 +204,13 @@ WardResponse _$WardResponseFromJson(
 
 Map<String, dynamic> _$WardResponseToJson(WardResponse instance) =>
     <String, dynamic>{
-      'WardCode': ?instance.wardCode,
+      'WardCode': instance.wardCode,
       'DistrictID': ?instance.districtID,
-      'WardName': ?instance.wardName,
-      'NameExtension': ?instance.nameExtension,
+      'WardName': instance.wardName,
+      'NameExtension': instance.nameExtension,
       'CanUpdateCOD': ?instance.canUpdateCOD,
       'SupportType': ?instance.supportType,
       'Status': ?instance.status,
-      'CreatedDate': ?instance.createdDate,
-      'UpdatedDate': ?instance.updatedDate,
+      'CreatedDate': instance.createdDate,
+      'UpdatedDate': instance.updatedDate,
     };

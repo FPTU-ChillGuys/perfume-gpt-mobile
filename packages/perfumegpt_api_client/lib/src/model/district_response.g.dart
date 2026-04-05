@@ -11,7 +11,7 @@ abstract class _$DistrictResponseCWProxy {
 
   DistrictResponse provinceID(int? provinceID);
 
-  DistrictResponse districtName(String? districtName);
+  DistrictResponse districtName(String districtName);
 
   DistrictResponse code(int? code);
 
@@ -19,7 +19,7 @@ abstract class _$DistrictResponseCWProxy {
 
   DistrictResponse supportType(int? supportType);
 
-  DistrictResponse nameExtension(List<String>? nameExtension);
+  DistrictResponse nameExtension(List<String> nameExtension);
 
   DistrictResponse isEnable(int? isEnable);
 
@@ -29,7 +29,7 @@ abstract class _$DistrictResponseCWProxy {
 
   DistrictResponse createdDate(String? createdDate);
 
-  DistrictResponse updatedDate(String? updatedDate);
+  DistrictResponse updatedDate(String updatedDate);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `DistrictResponse(...).copyWith.fieldName(value)`.
@@ -41,16 +41,16 @@ abstract class _$DistrictResponseCWProxy {
   DistrictResponse call({
     int? districtID,
     int? provinceID,
-    String? districtName,
+    String districtName,
     int? code,
     int? type,
     int? supportType,
-    List<String>? nameExtension,
+    List<String> nameExtension,
     int? isEnable,
     bool? canUpdateCOD,
     int? status,
     String? createdDate,
-    String? updatedDate,
+    String updatedDate,
   });
 }
 
@@ -68,7 +68,7 @@ class _$DistrictResponseCWProxyImpl implements _$DistrictResponseCWProxy {
   DistrictResponse provinceID(int? provinceID) => call(provinceID: provinceID);
 
   @override
-  DistrictResponse districtName(String? districtName) =>
+  DistrictResponse districtName(String districtName) =>
       call(districtName: districtName);
 
   @override
@@ -82,7 +82,7 @@ class _$DistrictResponseCWProxyImpl implements _$DistrictResponseCWProxy {
       call(supportType: supportType);
 
   @override
-  DistrictResponse nameExtension(List<String>? nameExtension) =>
+  DistrictResponse nameExtension(List<String> nameExtension) =>
       call(nameExtension: nameExtension);
 
   @override
@@ -100,7 +100,7 @@ class _$DistrictResponseCWProxyImpl implements _$DistrictResponseCWProxy {
       call(createdDate: createdDate);
 
   @override
-  DistrictResponse updatedDate(String? updatedDate) =>
+  DistrictResponse updatedDate(String updatedDate) =>
       call(updatedDate: updatedDate);
 
   @override
@@ -134,10 +134,11 @@ class _$DistrictResponseCWProxyImpl implements _$DistrictResponseCWProxy {
           ? _value.provinceID
           // ignore: cast_nullable_to_non_nullable
           : provinceID as int?,
-      districtName: districtName == const $CopyWithPlaceholder()
+      districtName:
+          districtName == const $CopyWithPlaceholder() || districtName == null
           ? _value.districtName
           // ignore: cast_nullable_to_non_nullable
-          : districtName as String?,
+          : districtName as String,
       code: code == const $CopyWithPlaceholder()
           ? _value.code
           // ignore: cast_nullable_to_non_nullable
@@ -150,10 +151,11 @@ class _$DistrictResponseCWProxyImpl implements _$DistrictResponseCWProxy {
           ? _value.supportType
           // ignore: cast_nullable_to_non_nullable
           : supportType as int?,
-      nameExtension: nameExtension == const $CopyWithPlaceholder()
+      nameExtension:
+          nameExtension == const $CopyWithPlaceholder() || nameExtension == null
           ? _value.nameExtension
           // ignore: cast_nullable_to_non_nullable
-          : nameExtension as List<String>?,
+          : nameExtension as List<String>,
       isEnable: isEnable == const $CopyWithPlaceholder()
           ? _value.isEnable
           // ignore: cast_nullable_to_non_nullable
@@ -170,10 +172,11 @@ class _$DistrictResponseCWProxyImpl implements _$DistrictResponseCWProxy {
           ? _value.createdDate
           // ignore: cast_nullable_to_non_nullable
           : createdDate as String?,
-      updatedDate: updatedDate == const $CopyWithPlaceholder()
+      updatedDate:
+          updatedDate == const $CopyWithPlaceholder() || updatedDate == null
           ? _value.updatedDate
           // ignore: cast_nullable_to_non_nullable
-          : updatedDate as String?,
+          : updatedDate as String,
     );
   }
 }
@@ -195,22 +198,26 @@ DistrictResponse _$DistrictResponseFromJson(
   'DistrictResponse',
   json,
   ($checkedConvert) {
+    $checkKeys(
+      json,
+      requiredKeys: const ['DistrictName', 'NameExtension', 'UpdatedDate'],
+    );
     final val = DistrictResponse(
       districtID: $checkedConvert('DistrictID', (v) => (v as num?)?.toInt()),
       provinceID: $checkedConvert('ProvinceID', (v) => (v as num?)?.toInt()),
-      districtName: $checkedConvert('DistrictName', (v) => v as String?),
+      districtName: $checkedConvert('DistrictName', (v) => v as String),
       code: $checkedConvert('Code', (v) => (v as num?)?.toInt()),
       type: $checkedConvert('Type', (v) => (v as num?)?.toInt()),
       supportType: $checkedConvert('SupportType', (v) => (v as num?)?.toInt()),
       nameExtension: $checkedConvert(
         'NameExtension',
-        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
       ),
       isEnable: $checkedConvert('IsEnable', (v) => (v as num?)?.toInt()),
       canUpdateCOD: $checkedConvert('CanUpdateCOD', (v) => v as bool?),
       status: $checkedConvert('Status', (v) => (v as num?)?.toInt()),
       createdDate: $checkedConvert('CreatedDate', (v) => v as String?),
-      updatedDate: $checkedConvert('UpdatedDate', (v) => v as String?),
+      updatedDate: $checkedConvert('UpdatedDate', (v) => v as String),
     );
     return val;
   },
@@ -234,14 +241,14 @@ Map<String, dynamic> _$DistrictResponseToJson(DistrictResponse instance) =>
     <String, dynamic>{
       'DistrictID': ?instance.districtID,
       'ProvinceID': ?instance.provinceID,
-      'DistrictName': ?instance.districtName,
+      'DistrictName': instance.districtName,
       'Code': ?instance.code,
       'Type': ?instance.type,
       'SupportType': ?instance.supportType,
-      'NameExtension': ?instance.nameExtension,
+      'NameExtension': instance.nameExtension,
       'IsEnable': ?instance.isEnable,
       'CanUpdateCOD': ?instance.canUpdateCOD,
       'Status': ?instance.status,
       'CreatedDate': ?instance.createdDate,
-      'UpdatedDate': ?instance.updatedDate,
+      'UpdatedDate': instance.updatedDate,
     };

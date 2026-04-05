@@ -9,7 +9,7 @@ part of 'reserved_batch_response.dart';
 abstract class _$ReservedBatchResponseCWProxy {
   ReservedBatchResponse batchId(String? batchId);
 
-  ReservedBatchResponse batchCode(String? batchCode);
+  ReservedBatchResponse batchCode(String batchCode);
 
   ReservedBatchResponse reservedQuantity(int? reservedQuantity);
 
@@ -24,7 +24,7 @@ abstract class _$ReservedBatchResponseCWProxy {
   /// ```
   ReservedBatchResponse call({
     String? batchId,
-    String? batchCode,
+    String batchCode,
     int? reservedQuantity,
     DateTime? expiryDate,
   });
@@ -42,7 +42,7 @@ class _$ReservedBatchResponseCWProxyImpl
   ReservedBatchResponse batchId(String? batchId) => call(batchId: batchId);
 
   @override
-  ReservedBatchResponse batchCode(String? batchCode) =>
+  ReservedBatchResponse batchCode(String batchCode) =>
       call(batchCode: batchCode);
 
   @override
@@ -72,10 +72,10 @@ class _$ReservedBatchResponseCWProxyImpl
           ? _value.batchId
           // ignore: cast_nullable_to_non_nullable
           : batchId as String?,
-      batchCode: batchCode == const $CopyWithPlaceholder()
+      batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
           ? _value.batchCode
           // ignore: cast_nullable_to_non_nullable
-          : batchCode as String?,
+          : batchCode as String,
       reservedQuantity: reservedQuantity == const $CopyWithPlaceholder()
           ? _value.reservedQuantity
           // ignore: cast_nullable_to_non_nullable
@@ -103,9 +103,10 @@ extension $ReservedBatchResponseCopyWith on ReservedBatchResponse {
 ReservedBatchResponse _$ReservedBatchResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ReservedBatchResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['batchCode']);
   final val = ReservedBatchResponse(
     batchId: $checkedConvert('batchId', (v) => v as String?),
-    batchCode: $checkedConvert('batchCode', (v) => v as String?),
+    batchCode: $checkedConvert('batchCode', (v) => v as String),
     reservedQuantity: $checkedConvert(
       'reservedQuantity',
       (v) => (v as num?)?.toInt(),
@@ -122,7 +123,7 @@ Map<String, dynamic> _$ReservedBatchResponseToJson(
   ReservedBatchResponse instance,
 ) => <String, dynamic>{
   'batchId': ?instance.batchId,
-  'batchCode': ?instance.batchCode,
+  'batchCode': instance.batchCode,
   'reservedQuantity': ?instance.reservedQuantity,
   'expiryDate': ?instance.expiryDate?.toIso8601String(),
 };

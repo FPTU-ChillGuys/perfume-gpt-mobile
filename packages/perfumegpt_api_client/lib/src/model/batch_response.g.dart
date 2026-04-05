@@ -9,7 +9,7 @@ part of 'batch_response.dart';
 abstract class _$BatchResponseCWProxy {
   BatchResponse id(String? id);
 
-  BatchResponse batchCode(String? batchCode);
+  BatchResponse batchCode(String batchCode);
 
   BatchResponse manufactureDate(DateTime? manufactureDate);
 
@@ -30,7 +30,7 @@ abstract class _$BatchResponseCWProxy {
   /// ```
   BatchResponse call({
     String? id,
-    String? batchCode,
+    String batchCode,
     DateTime? manufactureDate,
     DateTime? expiryDate,
     int? importQuantity,
@@ -50,7 +50,7 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
   BatchResponse id(String? id) => call(id: id);
 
   @override
-  BatchResponse batchCode(String? batchCode) => call(batchCode: batchCode);
+  BatchResponse batchCode(String batchCode) => call(batchCode: batchCode);
 
   @override
   BatchResponse manufactureDate(DateTime? manufactureDate) =>
@@ -93,10 +93,10 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      batchCode: batchCode == const $CopyWithPlaceholder()
+      batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
           ? _value.batchCode
           // ignore: cast_nullable_to_non_nullable
-          : batchCode as String?,
+          : batchCode as String,
       manufactureDate: manufactureDate == const $CopyWithPlaceholder()
           ? _value.manufactureDate
           // ignore: cast_nullable_to_non_nullable
@@ -134,9 +134,10 @@ extension $BatchResponseCopyWith on BatchResponse {
 
 BatchResponse _$BatchResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('BatchResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['batchCode']);
       final val = BatchResponse(
         id: $checkedConvert('id', (v) => v as String?),
-        batchCode: $checkedConvert('batchCode', (v) => v as String?),
+        batchCode: $checkedConvert('batchCode', (v) => v as String),
         manufactureDate: $checkedConvert(
           'manufactureDate',
           (v) => v == null ? null : DateTime.parse(v as String),
@@ -164,7 +165,7 @@ BatchResponse _$BatchResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$BatchResponseToJson(BatchResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'batchCode': ?instance.batchCode,
+      'batchCode': instance.batchCode,
       'manufactureDate': ?instance.manufactureDate?.toIso8601String(),
       'expiryDate': ?instance.expiryDate?.toIso8601String(),
       'importQuantity': ?instance.importQuantity,

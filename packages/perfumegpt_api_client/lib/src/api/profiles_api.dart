@@ -14,13 +14,12 @@ import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/update_profile_request.dart';
 
 class ProfilesApi {
-
   final Dio _dio;
 
   const ProfilesApi(this._dio);
 
   /// apiProfilesMeGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -32,7 +31,7 @@ class ProfilesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfProfileResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfProfileResponse>> apiProfilesMeGet({ 
+  Future<Response<BaseResponseOfProfileResponse>> apiProfilesMeGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -43,16 +42,10 @@ class ProfilesApi {
     final _path = r'/api/profiles/me';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -70,9 +63,13 @@ class ProfilesApi {
     BaseResponseOfProfileResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfProfileResponse, BaseResponseOfProfileResponse>(rawData, 'BaseResponseOfProfileResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfProfileResponse,
+              BaseResponseOfProfileResponse
+            >(rawData, 'BaseResponseOfProfileResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -96,10 +93,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProfileRespon
   }
 
   /// apiProfilesPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [updateProfileRequest] 
+  /// * [updateProfileRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -109,7 +106,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProfileRespon
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiProfilesPut({ 
+  Future<Response<BaseResponseOfstring>> apiProfilesPut({
     required UpdateProfileRequest updateProfileRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -121,16 +118,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProfileRespon
     final _path = r'/api/profiles';
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -141,13 +132,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProfileRespon
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateProfileRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateProfileRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -166,9 +154,14 @@ _bodyData=jsonEncode(updateProfileRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -190,5 +183,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
       extra: _response.extra,
     );
   }
-
 }

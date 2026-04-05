@@ -21,11 +21,11 @@ abstract class _$CreateProductRequestCWProxy {
 
   CreateProductRequest description(String? description);
 
-  CreateProductRequest olfactoryFamilyIds(List<int>? olfactoryFamilyIds);
+  CreateProductRequest olfactoryFamilyIds(List<int> olfactoryFamilyIds);
 
   CreateProductRequest temporaryMediaIds(List<String>? temporaryMediaIds);
 
-  CreateProductRequest scentNotes(List<ScentNoteDto>? scentNotes);
+  CreateProductRequest scentNotes(List<ScentNoteDto> scentNotes);
 
   CreateProductRequest attributes(List<ProductAttributeDto>? attributes);
 
@@ -44,9 +44,9 @@ abstract class _$CreateProductRequestCWProxy {
     String origin,
     int? releaseYear,
     String? description,
-    List<int>? olfactoryFamilyIds,
+    List<int> olfactoryFamilyIds,
     List<String>? temporaryMediaIds,
-    List<ScentNoteDto>? scentNotes,
+    List<ScentNoteDto> scentNotes,
     List<ProductAttributeDto>? attributes,
   });
 }
@@ -84,7 +84,7 @@ class _$CreateProductRequestCWProxyImpl
       call(description: description);
 
   @override
-  CreateProductRequest olfactoryFamilyIds(List<int>? olfactoryFamilyIds) =>
+  CreateProductRequest olfactoryFamilyIds(List<int> olfactoryFamilyIds) =>
       call(olfactoryFamilyIds: olfactoryFamilyIds);
 
   @override
@@ -92,7 +92,7 @@ class _$CreateProductRequestCWProxyImpl
       call(temporaryMediaIds: temporaryMediaIds);
 
   @override
-  CreateProductRequest scentNotes(List<ScentNoteDto>? scentNotes) =>
+  CreateProductRequest scentNotes(List<ScentNoteDto> scentNotes) =>
       call(scentNotes: scentNotes);
 
   @override
@@ -149,18 +149,21 @@ class _$CreateProductRequestCWProxyImpl
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
           : description as String?,
-      olfactoryFamilyIds: olfactoryFamilyIds == const $CopyWithPlaceholder()
+      olfactoryFamilyIds:
+          olfactoryFamilyIds == const $CopyWithPlaceholder() ||
+              olfactoryFamilyIds == null
           ? _value.olfactoryFamilyIds
           // ignore: cast_nullable_to_non_nullable
-          : olfactoryFamilyIds as List<int>?,
+          : olfactoryFamilyIds as List<int>,
       temporaryMediaIds: temporaryMediaIds == const $CopyWithPlaceholder()
           ? _value.temporaryMediaIds
           // ignore: cast_nullable_to_non_nullable
           : temporaryMediaIds as List<String>?,
-      scentNotes: scentNotes == const $CopyWithPlaceholder()
+      scentNotes:
+          scentNotes == const $CopyWithPlaceholder() || scentNotes == null
           ? _value.scentNotes
           // ignore: cast_nullable_to_non_nullable
-          : scentNotes as List<ScentNoteDto>?,
+          : scentNotes as List<ScentNoteDto>,
       attributes: attributes == const $CopyWithPlaceholder()
           ? _value.attributes
           // ignore: cast_nullable_to_non_nullable
@@ -184,7 +187,10 @@ extension $CreateProductRequestCopyWith on CreateProductRequest {
 CreateProductRequest _$CreateProductRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateProductRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['name', 'origin']);
+  $checkKeys(
+    json,
+    requiredKeys: const ['name', 'origin', 'olfactoryFamilyIds', 'scentNotes'],
+  );
   final val = CreateProductRequest(
     name: $checkedConvert('name', (v) => v as String),
     brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
@@ -198,7 +204,7 @@ CreateProductRequest _$CreateProductRequestFromJson(
     description: $checkedConvert('description', (v) => v as String?),
     olfactoryFamilyIds: $checkedConvert(
       'olfactoryFamilyIds',
-      (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
+      (v) => (v as List<dynamic>).map((e) => (e as num).toInt()).toList(),
     ),
     temporaryMediaIds: $checkedConvert(
       'temporaryMediaIds',
@@ -206,8 +212,8 @@ CreateProductRequest _$CreateProductRequestFromJson(
     ),
     scentNotes: $checkedConvert(
       'scentNotes',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => ScentNoteDto.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => ScentNoteDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
     attributes: $checkedConvert(
@@ -230,9 +236,9 @@ Map<String, dynamic> _$CreateProductRequestToJson(
   'origin': instance.origin,
   'releaseYear': ?instance.releaseYear,
   'description': ?instance.description,
-  'olfactoryFamilyIds': ?instance.olfactoryFamilyIds,
+  'olfactoryFamilyIds': instance.olfactoryFamilyIds,
   'temporaryMediaIds': ?instance.temporaryMediaIds,
-  'scentNotes': ?instance.scentNotes?.map((e) => e.toJson()).toList(),
+  'scentNotes': instance.scentNotes.map((e) => e.toJson()).toList(),
   'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
 };
 

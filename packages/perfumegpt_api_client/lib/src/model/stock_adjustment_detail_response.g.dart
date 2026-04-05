@@ -11,13 +11,13 @@ abstract class _$StockAdjustmentDetailResponseCWProxy {
 
   StockAdjustmentDetailResponse productVariantId(String? productVariantId);
 
-  StockAdjustmentDetailResponse productName(String? productName);
+  StockAdjustmentDetailResponse productName(String productName);
 
-  StockAdjustmentDetailResponse variantSku(String? variantSku);
+  StockAdjustmentDetailResponse variantSku(String variantSku);
 
   StockAdjustmentDetailResponse batchId(String? batchId);
 
-  StockAdjustmentDetailResponse batchCode(String? batchCode);
+  StockAdjustmentDetailResponse batchCode(String batchCode);
 
   StockAdjustmentDetailResponse adjustmentQuantity(int? adjustmentQuantity);
 
@@ -35,10 +35,10 @@ abstract class _$StockAdjustmentDetailResponseCWProxy {
   StockAdjustmentDetailResponse call({
     String? id,
     String? productVariantId,
-    String? productName,
-    String? variantSku,
+    String productName,
+    String variantSku,
     String? batchId,
-    String? batchCode,
+    String batchCode,
     int? adjustmentQuantity,
     int? approvedQuantity,
     String? note,
@@ -61,11 +61,11 @@ class _$StockAdjustmentDetailResponseCWProxyImpl
       call(productVariantId: productVariantId);
 
   @override
-  StockAdjustmentDetailResponse productName(String? productName) =>
+  StockAdjustmentDetailResponse productName(String productName) =>
       call(productName: productName);
 
   @override
-  StockAdjustmentDetailResponse variantSku(String? variantSku) =>
+  StockAdjustmentDetailResponse variantSku(String variantSku) =>
       call(variantSku: variantSku);
 
   @override
@@ -73,7 +73,7 @@ class _$StockAdjustmentDetailResponseCWProxyImpl
       call(batchId: batchId);
 
   @override
-  StockAdjustmentDetailResponse batchCode(String? batchCode) =>
+  StockAdjustmentDetailResponse batchCode(String batchCode) =>
       call(batchCode: batchCode);
 
   @override
@@ -115,22 +115,24 @@ class _$StockAdjustmentDetailResponseCWProxyImpl
           ? _value.productVariantId
           // ignore: cast_nullable_to_non_nullable
           : productVariantId as String?,
-      productName: productName == const $CopyWithPlaceholder()
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
-          : productName as String?,
-      variantSku: variantSku == const $CopyWithPlaceholder()
+          : productName as String,
+      variantSku:
+          variantSku == const $CopyWithPlaceholder() || variantSku == null
           ? _value.variantSku
           // ignore: cast_nullable_to_non_nullable
-          : variantSku as String?,
+          : variantSku as String,
       batchId: batchId == const $CopyWithPlaceholder()
           ? _value.batchId
           // ignore: cast_nullable_to_non_nullable
           : batchId as String?,
-      batchCode: batchCode == const $CopyWithPlaceholder()
+      batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
           ? _value.batchCode
           // ignore: cast_nullable_to_non_nullable
-          : batchCode as String?,
+          : batchCode as String,
       adjustmentQuantity: adjustmentQuantity == const $CopyWithPlaceholder()
           ? _value.adjustmentQuantity
           // ignore: cast_nullable_to_non_nullable
@@ -163,13 +165,17 @@ extension $StockAdjustmentDetailResponseCopyWith
 StockAdjustmentDetailResponse _$StockAdjustmentDetailResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('StockAdjustmentDetailResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['productName', 'variantSku', 'batchCode'],
+  );
   final val = StockAdjustmentDetailResponse(
     id: $checkedConvert('id', (v) => v as String?),
     productVariantId: $checkedConvert('productVariantId', (v) => v as String?),
-    productName: $checkedConvert('productName', (v) => v as String?),
-    variantSku: $checkedConvert('variantSku', (v) => v as String?),
+    productName: $checkedConvert('productName', (v) => v as String),
+    variantSku: $checkedConvert('variantSku', (v) => v as String),
     batchId: $checkedConvert('batchId', (v) => v as String?),
-    batchCode: $checkedConvert('batchCode', (v) => v as String?),
+    batchCode: $checkedConvert('batchCode', (v) => v as String),
     adjustmentQuantity: $checkedConvert(
       'adjustmentQuantity',
       (v) => (v as num?)?.toInt(),
@@ -188,10 +194,10 @@ Map<String, dynamic> _$StockAdjustmentDetailResponseToJson(
 ) => <String, dynamic>{
   'id': ?instance.id,
   'productVariantId': ?instance.productVariantId,
-  'productName': ?instance.productName,
-  'variantSku': ?instance.variantSku,
+  'productName': instance.productName,
+  'variantSku': instance.variantSku,
   'batchId': ?instance.batchId,
-  'batchCode': ?instance.batchCode,
+  'batchCode': instance.batchCode,
   'adjustmentQuantity': ?instance.adjustmentQuantity,
   'approvedQuantity': ?instance.approvedQuantity,
   'note': ?instance.note,

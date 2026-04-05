@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'confirm_payment_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,50 +17,27 @@ part 'confirm_payment_request.g.dart';
 )
 class ConfirmPaymentRequest {
   /// Returns a new [ConfirmPaymentRequest] instance.
-  ConfirmPaymentRequest({
+  ConfirmPaymentRequest({required this.isSuccess, this.failureReason});
 
-    required  this.isSuccess,
-
-     this.failureReason,
-  });
-
-  @JsonKey(
-    
-    name: r'isSuccess',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isSuccess', required: true, includeIfNull: false)
   final bool isSuccess;
 
-
-
-  @JsonKey(
-    
-    name: r'failureReason',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'failureReason', required: false, includeIfNull: false)
   final String? failureReason;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ConfirmPaymentRequest &&
+          other.isSuccess == isSuccess &&
+          other.failureReason == failureReason;
 
+  @override
+  int get hashCode =>
+      isSuccess.hashCode + (failureReason == null ? 0 : failureReason.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ConfirmPaymentRequest &&
-      other.isSuccess == isSuccess &&
-      other.failureReason == failureReason;
-
-    @override
-    int get hashCode =>
-        isSuccess.hashCode +
-        (failureReason == null ? 0 : failureReason.hashCode);
-
-  factory ConfirmPaymentRequest.fromJson(Map<String, dynamic> json) => _$ConfirmPaymentRequestFromJson(json);
+  factory ConfirmPaymentRequest.fromJson(Map<String, dynamic> json) =>
+      _$ConfirmPaymentRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ConfirmPaymentRequestToJson(this);
 
@@ -69,6 +45,4 @@ class ConfirmPaymentRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

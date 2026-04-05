@@ -1,10 +1,11 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfPagedResultOfCampaignResponse
 void main() {
-  final instance = BaseResponseOfPagedResultOfCampaignResponseBuilder();
-  // TODO add properties to the builder and call build()
+  final BaseResponseOfPagedResultOfCampaignResponse?
+  instance = /* BaseResponseOfPagedResultOfCampaignResponse(...) */ null;
+  // TODO add properties to the entity
 
   group(BaseResponseOfPagedResultOfCampaignResponse, () {
     // PagedResultOfCampaignResponse payload
@@ -22,7 +23,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<String> errors
+    // List<String> errors
     test('to test the property `errors`', () async {
       // TODO
     });
@@ -31,6 +32,5 @@ void main() {
     test('to test the property `errorType`', () async {
       // TODO
     });
-
   });
 }

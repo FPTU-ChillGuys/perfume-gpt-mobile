@@ -9,7 +9,7 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **provinceID** | **int** |  | [optional] 
-**provinceName** | **String** |  | [optional] 
+**provinceName** | **String** |  | 
 **countryID** | **int** |  | [optional] 
 **code** | **int** |  | [optional] 
 **nameExtension** | **List&lt;String&gt;** |  | [optional] 

@@ -3,11 +3,11 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/cancel_order_reason.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_cancel_order_request.g.dart';
-
 
 @CopyWith()
 @JsonSerializable(
@@ -18,34 +18,21 @@ part 'user_cancel_order_request.g.dart';
 )
 class UserCancelOrderRequest {
   /// Returns a new [UserCancelOrderRequest] instance.
-  UserCancelOrderRequest({
+  UserCancelOrderRequest({this.reason});
 
-     this.reason,
-  });
+  @JsonKey(name: r'reason', required: false, includeIfNull: false)
+  final CancelOrderReason? reason;
 
-  @JsonKey(
-    
-    name: r'reason',
-    required: false,
-    includeIfNull: false,
-  )
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserCancelOrderRequest && other.reason == reason;
 
+  @override
+  int get hashCode => reason.hashCode;
 
-  final String? reason;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UserCancelOrderRequest &&
-      other.reason == reason;
-
-    @override
-    int get hashCode =>
-        (reason == null ? 0 : reason.hashCode);
-
-  factory UserCancelOrderRequest.fromJson(Map<String, dynamic> json) => _$UserCancelOrderRequestFromJson(json);
+  factory UserCancelOrderRequest.fromJson(Map<String, dynamic> json) =>
+      _$UserCancelOrderRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserCancelOrderRequestToJson(this);
 
@@ -53,6 +40,4 @@ class UserCancelOrderRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

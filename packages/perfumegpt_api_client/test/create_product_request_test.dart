@@ -22,13 +22,38 @@ void main() {
       // TODO
     });
 
+    // Gender gender
+    test('to test the property `gender`', () async {
+      // TODO
+    });
+
+    // String origin
+    test('to test the property `origin`', () async {
+      // TODO
+    });
+
+    // int releaseYear
+    test('to test the property `releaseYear`', () async {
+      // TODO
+    });
+
     // String description
     test('to test the property `description`', () async {
       // TODO
     });
 
+    // List<int> olfactoryFamilyIds
+    test('to test the property `olfactoryFamilyIds`', () async {
+      // TODO
+    });
+
     // List<String> temporaryMediaIds
     test('to test the property `temporaryMediaIds`', () async {
+      // TODO
+    });
+
+    // List<ScentNoteDto> scentNotes
+    test('to test the property `scentNotes`', () async {
       // TODO
     });
 

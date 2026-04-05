@@ -13,13 +13,13 @@ abstract class _$RecipientInfoResponseCWProxy {
 
   RecipientInfoResponse recipientPhoneNumber(String? recipientPhoneNumber);
 
-  RecipientInfoResponse districtName(String? districtName);
+  RecipientInfoResponse districtName(String districtName);
 
-  RecipientInfoResponse wardName(String? wardName);
+  RecipientInfoResponse wardName(String wardName);
 
-  RecipientInfoResponse provinceName(String? provinceName);
+  RecipientInfoResponse provinceName(String provinceName);
 
-  RecipientInfoResponse fullAddress(String? fullAddress);
+  RecipientInfoResponse fullAddress(String fullAddress);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RecipientInfoResponse(...).copyWith.fieldName(value)`.
@@ -32,10 +32,10 @@ abstract class _$RecipientInfoResponseCWProxy {
     String? id,
     String? recipientName,
     String? recipientPhoneNumber,
-    String? districtName,
-    String? wardName,
-    String? provinceName,
-    String? fullAddress,
+    String districtName,
+    String wardName,
+    String provinceName,
+    String fullAddress,
   });
 }
 
@@ -59,18 +59,18 @@ class _$RecipientInfoResponseCWProxyImpl
       call(recipientPhoneNumber: recipientPhoneNumber);
 
   @override
-  RecipientInfoResponse districtName(String? districtName) =>
+  RecipientInfoResponse districtName(String districtName) =>
       call(districtName: districtName);
 
   @override
-  RecipientInfoResponse wardName(String? wardName) => call(wardName: wardName);
+  RecipientInfoResponse wardName(String wardName) => call(wardName: wardName);
 
   @override
-  RecipientInfoResponse provinceName(String? provinceName) =>
+  RecipientInfoResponse provinceName(String provinceName) =>
       call(provinceName: provinceName);
 
   @override
-  RecipientInfoResponse fullAddress(String? fullAddress) =>
+  RecipientInfoResponse fullAddress(String fullAddress) =>
       call(fullAddress: fullAddress);
 
   @override
@@ -103,22 +103,25 @@ class _$RecipientInfoResponseCWProxyImpl
           ? _value.recipientPhoneNumber
           // ignore: cast_nullable_to_non_nullable
           : recipientPhoneNumber as String?,
-      districtName: districtName == const $CopyWithPlaceholder()
+      districtName:
+          districtName == const $CopyWithPlaceholder() || districtName == null
           ? _value.districtName
           // ignore: cast_nullable_to_non_nullable
-          : districtName as String?,
-      wardName: wardName == const $CopyWithPlaceholder()
+          : districtName as String,
+      wardName: wardName == const $CopyWithPlaceholder() || wardName == null
           ? _value.wardName
           // ignore: cast_nullable_to_non_nullable
-          : wardName as String?,
-      provinceName: provinceName == const $CopyWithPlaceholder()
+          : wardName as String,
+      provinceName:
+          provinceName == const $CopyWithPlaceholder() || provinceName == null
           ? _value.provinceName
           // ignore: cast_nullable_to_non_nullable
-          : provinceName as String?,
-      fullAddress: fullAddress == const $CopyWithPlaceholder()
+          : provinceName as String,
+      fullAddress:
+          fullAddress == const $CopyWithPlaceholder() || fullAddress == null
           ? _value.fullAddress
           // ignore: cast_nullable_to_non_nullable
-          : fullAddress as String?,
+          : fullAddress as String,
     );
   }
 }
@@ -138,6 +141,15 @@ extension $RecipientInfoResponseCopyWith on RecipientInfoResponse {
 RecipientInfoResponse _$RecipientInfoResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('RecipientInfoResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'districtName',
+      'wardName',
+      'provinceName',
+      'fullAddress',
+    ],
+  );
   final val = RecipientInfoResponse(
     id: $checkedConvert('id', (v) => v as String?),
     recipientName: $checkedConvert('recipientName', (v) => v as String?),
@@ -145,10 +157,10 @@ RecipientInfoResponse _$RecipientInfoResponseFromJson(
       'recipientPhoneNumber',
       (v) => v as String?,
     ),
-    districtName: $checkedConvert('districtName', (v) => v as String?),
-    wardName: $checkedConvert('wardName', (v) => v as String?),
-    provinceName: $checkedConvert('provinceName', (v) => v as String?),
-    fullAddress: $checkedConvert('fullAddress', (v) => v as String?),
+    districtName: $checkedConvert('districtName', (v) => v as String),
+    wardName: $checkedConvert('wardName', (v) => v as String),
+    provinceName: $checkedConvert('provinceName', (v) => v as String),
+    fullAddress: $checkedConvert('fullAddress', (v) => v as String),
   );
   return val;
 });
@@ -159,8 +171,8 @@ Map<String, dynamic> _$RecipientInfoResponseToJson(
   'id': ?instance.id,
   'recipientName': ?instance.recipientName,
   'recipientPhoneNumber': ?instance.recipientPhoneNumber,
-  'districtName': ?instance.districtName,
-  'wardName': ?instance.wardName,
-  'provinceName': ?instance.provinceName,
-  'fullAddress': ?instance.fullAddress,
+  'districtName': instance.districtName,
+  'wardName': instance.wardName,
+  'provinceName': instance.provinceName,
+  'fullAddress': instance.fullAddress,
 };

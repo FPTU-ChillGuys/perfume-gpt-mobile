@@ -9,15 +9,15 @@ part of 'product_variant_response.dart';
 abstract class _$ProductVariantResponseCWProxy {
   ProductVariantResponse id(String? id);
 
-  ProductVariantResponse barcode(String? barcode);
+  ProductVariantResponse barcode(String barcode);
 
-  ProductVariantResponse sku(String? sku);
+  ProductVariantResponse sku(String sku);
 
   ProductVariantResponse volumeMl(int? volumeMl);
 
   ProductVariantResponse concentrationId(int? concentrationId);
 
-  ProductVariantResponse concentrationName(String? concentrationName);
+  ProductVariantResponse concentrationName(String concentrationName);
 
   ProductVariantResponse type(VariantType? type);
 
@@ -35,9 +35,9 @@ abstract class _$ProductVariantResponseCWProxy {
 
   ProductVariantResponse productId(String? productId);
 
-  ProductVariantResponse productName(String? productName);
+  ProductVariantResponse productName(String productName);
 
-  ProductVariantResponse media(List<MediaResponse>? media);
+  ProductVariantResponse media(List<MediaResponse> media);
 
   ProductVariantResponse campaignName(String? campaignName);
 
@@ -56,11 +56,11 @@ abstract class _$ProductVariantResponseCWProxy {
   /// ```
   ProductVariantResponse call({
     String? id,
-    String? barcode,
-    String? sku,
+    String barcode,
+    String sku,
     int? volumeMl,
     int? concentrationId,
-    String? concentrationName,
+    String concentrationName,
     VariantType? type,
     num? basePrice,
     num? retailPrice,
@@ -69,8 +69,8 @@ abstract class _$ProductVariantResponseCWProxy {
     int? sillage,
     int? longevity,
     String? productId,
-    String? productName,
-    List<MediaResponse>? media,
+    String productName,
+    List<MediaResponse> media,
     String? campaignName,
     String? voucherCode,
     num? discountedPrice,
@@ -90,10 +90,10 @@ class _$ProductVariantResponseCWProxyImpl
   ProductVariantResponse id(String? id) => call(id: id);
 
   @override
-  ProductVariantResponse barcode(String? barcode) => call(barcode: barcode);
+  ProductVariantResponse barcode(String barcode) => call(barcode: barcode);
 
   @override
-  ProductVariantResponse sku(String? sku) => call(sku: sku);
+  ProductVariantResponse sku(String sku) => call(sku: sku);
 
   @override
   ProductVariantResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
@@ -103,7 +103,7 @@ class _$ProductVariantResponseCWProxyImpl
       call(concentrationId: concentrationId);
 
   @override
-  ProductVariantResponse concentrationName(String? concentrationName) =>
+  ProductVariantResponse concentrationName(String concentrationName) =>
       call(concentrationName: concentrationName);
 
   @override
@@ -136,12 +136,11 @@ class _$ProductVariantResponseCWProxyImpl
       call(productId: productId);
 
   @override
-  ProductVariantResponse productName(String? productName) =>
+  ProductVariantResponse productName(String productName) =>
       call(productName: productName);
 
   @override
-  ProductVariantResponse media(List<MediaResponse>? media) =>
-      call(media: media);
+  ProductVariantResponse media(List<MediaResponse> media) => call(media: media);
 
   @override
   ProductVariantResponse campaignName(String? campaignName) =>
@@ -195,14 +194,14 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      barcode: barcode == const $CopyWithPlaceholder()
+      barcode: barcode == const $CopyWithPlaceholder() || barcode == null
           ? _value.barcode
           // ignore: cast_nullable_to_non_nullable
-          : barcode as String?,
-      sku: sku == const $CopyWithPlaceholder()
+          : barcode as String,
+      sku: sku == const $CopyWithPlaceholder() || sku == null
           ? _value.sku
           // ignore: cast_nullable_to_non_nullable
-          : sku as String?,
+          : sku as String,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
@@ -211,10 +210,12 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.concentrationId
           // ignore: cast_nullable_to_non_nullable
           : concentrationId as int?,
-      concentrationName: concentrationName == const $CopyWithPlaceholder()
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
           ? _value.concentrationName
           // ignore: cast_nullable_to_non_nullable
-          : concentrationName as String?,
+          : concentrationName as String,
       type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
@@ -247,14 +248,15 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.productId
           // ignore: cast_nullable_to_non_nullable
           : productId as String?,
-      productName: productName == const $CopyWithPlaceholder()
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
-          : productName as String?,
-      media: media == const $CopyWithPlaceholder()
+          : productName as String,
+      media: media == const $CopyWithPlaceholder() || media == null
           ? _value.media
           // ignore: cast_nullable_to_non_nullable
-          : media as List<MediaResponse>?,
+          : media as List<MediaResponse>,
       campaignName: campaignName == const $CopyWithPlaceholder()
           ? _value.campaignName
           // ignore: cast_nullable_to_non_nullable
@@ -290,19 +292,26 @@ extension $ProductVariantResponseCopyWith on ProductVariantResponse {
 ProductVariantResponse _$ProductVariantResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProductVariantResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'barcode',
+      'sku',
+      'concentrationName',
+      'productName',
+      'media',
+    ],
+  );
   final val = ProductVariantResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    barcode: $checkedConvert('barcode', (v) => v as String?),
-    sku: $checkedConvert('sku', (v) => v as String?),
+    barcode: $checkedConvert('barcode', (v) => v as String),
+    sku: $checkedConvert('sku', (v) => v as String),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
     concentrationId: $checkedConvert(
       'concentrationId',
       (v) => (v as num?)?.toInt(),
     ),
-    concentrationName: $checkedConvert(
-      'concentrationName',
-      (v) => v as String?,
-    ),
+    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
     type: $checkedConvert(
       'type',
       (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
@@ -320,11 +329,11 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
     sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
     longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
     productId: $checkedConvert('productId', (v) => v as String?),
-    productName: $checkedConvert('productName', (v) => v as String?),
+    productName: $checkedConvert('productName', (v) => v as String),
     media: $checkedConvert(
       'media',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
     campaignName: $checkedConvert('campaignName', (v) => v as String?),
@@ -346,11 +355,11 @@ Map<String, dynamic> _$ProductVariantResponseToJson(
   ProductVariantResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'barcode': ?instance.barcode,
-  'sku': ?instance.sku,
+  'barcode': instance.barcode,
+  'sku': instance.sku,
   'volumeMl': ?instance.volumeMl,
   'concentrationId': ?instance.concentrationId,
-  'concentrationName': ?instance.concentrationName,
+  'concentrationName': instance.concentrationName,
   'type': ?_$VariantTypeEnumMap[instance.type],
   'basePrice': ?instance.basePrice,
   'retailPrice': ?instance.retailPrice,
@@ -359,8 +368,8 @@ Map<String, dynamic> _$ProductVariantResponseToJson(
   'sillage': ?instance.sillage,
   'longevity': ?instance.longevity,
   'productId': ?instance.productId,
-  'productName': ?instance.productName,
-  'media': ?instance.media?.map((e) => e.toJson()).toList(),
+  'productName': instance.productName,
+  'media': instance.media.map((e) => e.toJson()).toList(),
   'campaignName': ?instance.campaignName,
   'voucherCode': ?instance.voucherCode,
   'discountedPrice': ?instance.discountedPrice,

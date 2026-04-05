@@ -1,12 +1,16 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
-
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 /// tests for OrderReturnRequestsApi
 void main() {
-  final instance = Openapi().getOrderReturnRequestsApi();
+  final instance = PerfumegptApiClient().getOrderReturnRequestsApi();
 
   group(OrderReturnRequestsApi, () {
+    //Future<BaseResponseOfPagedResultOfOrderReturnRequestResponse> apiOrderreturnrequestsGet({ String customerId, ReturnRequestStatus status, bool isRefunded, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    test('test apiOrderreturnrequestsGet', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiOrderreturnrequestsIdCompleteInspectionPost(String id, RecordInspectionDto recordInspectionDto) async
     test('test apiOrderreturnrequestsIdCompleteInspectionPost', () async {
       // TODO
@@ -17,12 +21,12 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfListOfMediaResponse> apiOrderreturnrequestsIdImagesGet(String id) async
-    test('test apiOrderreturnrequestsIdImagesGet', () async {
+    //Future<BaseResponseOfOrderReturnRequestResponse> apiOrderreturnrequestsIdGet(String id) async
+    test('test apiOrderreturnrequestsIdGet', () async {
       // TODO
     });
 
-    //Future<BaseResponseOfstring> apiOrderreturnrequestsIdRefundPost(String id) async
+    //Future<BaseResponseOfstring> apiOrderreturnrequestsIdRefundPost(String id, ProcessRefundRequest processRefundRequest) async
     test('test apiOrderreturnrequestsIdRefundPost', () async {
       // TODO
     });
@@ -37,8 +41,8 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiOrderreturnrequestsImagesTemporaryPost({ BuiltList<Uint8List> images }) async
-    test('test apiOrderreturnrequestsImagesTemporaryPost', () async {
+    //Future<BaseResponseOfPagedResultOfOrderReturnRequestResponse> apiOrderreturnrequestsMyRequestsGet({ ReturnRequestStatus status, bool isRefunded, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    test('test apiOrderreturnrequestsMyRequestsGet', () async {
       // TODO
     });
 
@@ -47,5 +51,9 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse> apiOrderreturnrequestsVideosTemporaryPost({ List<MultipartFile> videos, List<MultipartFile> images }) async
+    test('test apiOrderreturnrequestsVideosTemporaryPost', () async {
+      // TODO
+    });
   });
 }

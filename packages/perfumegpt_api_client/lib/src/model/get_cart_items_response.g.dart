@@ -7,7 +7,7 @@ part of 'get_cart_items_response.dart';
 // **************************************************************************
 
 abstract class _$GetCartItemsResponseCWProxy {
-  GetCartItemsResponse items(List<GetCartItemResponse>? items);
+  GetCartItemsResponse items(List<GetCartItemResponse> items);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemsResponse(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$GetCartItemsResponseCWProxy {
   /// ```dart
   /// GetCartItemsResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  GetCartItemsResponse call({List<GetCartItemResponse>? items});
+  GetCartItemsResponse call({List<GetCartItemResponse> items});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -28,7 +28,7 @@ class _$GetCartItemsResponseCWProxyImpl
   final GetCartItemsResponse _value;
 
   @override
-  GetCartItemsResponse items(List<GetCartItemResponse>? items) =>
+  GetCartItemsResponse items(List<GetCartItemResponse> items) =>
       call(items: items);
 
   @override
@@ -41,10 +41,10 @@ class _$GetCartItemsResponseCWProxyImpl
   /// ```
   GetCartItemsResponse call({Object? items = const $CopyWithPlaceholder()}) {
     return GetCartItemsResponse(
-      items: items == const $CopyWithPlaceholder()
+      items: items == const $CopyWithPlaceholder() || items == null
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
-          : items as List<GetCartItemResponse>?,
+          : items as List<GetCartItemResponse>,
     );
   }
 }
@@ -64,11 +64,12 @@ extension $GetCartItemsResponseCopyWith on GetCartItemsResponse {
 GetCartItemsResponse _$GetCartItemsResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('GetCartItemsResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['items']);
   final val = GetCartItemsResponse(
     items: $checkedConvert(
       'items',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => GetCartItemResponse.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => GetCartItemResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
   );
@@ -77,6 +78,4 @@ GetCartItemsResponse _$GetCartItemsResponseFromJson(
 
 Map<String, dynamic> _$GetCartItemsResponseToJson(
   GetCartItemsResponse instance,
-) => <String, dynamic>{
-  'items': ?instance.items?.map((e) => e.toJson()).toList(),
-};
+) => <String, dynamic>{'items': instance.items.map((e) => e.toJson()).toList()};

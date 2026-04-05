@@ -9,7 +9,7 @@ part of 'stock_adjustment_list_item.dart';
 abstract class _$StockAdjustmentListItemCWProxy {
   StockAdjustmentListItem id(String? id);
 
-  StockAdjustmentListItem createdByName(String? createdByName);
+  StockAdjustmentListItem createdByName(String createdByName);
 
   StockAdjustmentListItem adjustmentDate(DateTime? adjustmentDate);
 
@@ -30,7 +30,7 @@ abstract class _$StockAdjustmentListItemCWProxy {
   /// ```
   StockAdjustmentListItem call({
     String? id,
-    String? createdByName,
+    String createdByName,
     DateTime? adjustmentDate,
     StockAdjustmentReason? reason,
     StockAdjustmentStatus? status,
@@ -51,7 +51,7 @@ class _$StockAdjustmentListItemCWProxyImpl
   StockAdjustmentListItem id(String? id) => call(id: id);
 
   @override
-  StockAdjustmentListItem createdByName(String? createdByName) =>
+  StockAdjustmentListItem createdByName(String createdByName) =>
       call(createdByName: createdByName);
 
   @override
@@ -96,10 +96,11 @@ class _$StockAdjustmentListItemCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      createdByName: createdByName == const $CopyWithPlaceholder()
+      createdByName:
+          createdByName == const $CopyWithPlaceholder() || createdByName == null
           ? _value.createdByName
           // ignore: cast_nullable_to_non_nullable
-          : createdByName as String?,
+          : createdByName as String,
       adjustmentDate: adjustmentDate == const $CopyWithPlaceholder()
           ? _value.adjustmentDate
           // ignore: cast_nullable_to_non_nullable
@@ -139,9 +140,10 @@ extension $StockAdjustmentListItemCopyWith on StockAdjustmentListItem {
 StockAdjustmentListItem _$StockAdjustmentListItemFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('StockAdjustmentListItem', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['createdByName']);
   final val = StockAdjustmentListItem(
     id: $checkedConvert('id', (v) => v as String?),
-    createdByName: $checkedConvert('createdByName', (v) => v as String?),
+    createdByName: $checkedConvert('createdByName', (v) => v as String),
     adjustmentDate: $checkedConvert(
       'adjustmentDate',
       (v) => v == null ? null : DateTime.parse(v as String),
@@ -167,7 +169,7 @@ Map<String, dynamic> _$StockAdjustmentListItemToJson(
   StockAdjustmentListItem instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'createdByName': ?instance.createdByName,
+  'createdByName': instance.createdByName,
   'adjustmentDate': ?instance.adjustmentDate?.toIso8601String(),
   'reason': ?_$StockAdjustmentReasonEnumMap[instance.reason],
   'status': ?_$StockAdjustmentStatusEnumMap[instance.status],

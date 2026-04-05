@@ -11,7 +11,7 @@ abstract class _$PickListBatchInfoCWProxy {
 
   PickListBatchInfo batchId(String? batchId);
 
-  PickListBatchInfo batchCode(String? batchCode);
+  PickListBatchInfo batchCode(String batchCode);
 
   PickListBatchInfo note(String? note);
 
@@ -29,7 +29,7 @@ abstract class _$PickListBatchInfoCWProxy {
   PickListBatchInfo call({
     String? reservationId,
     String? batchId,
-    String? batchCode,
+    String batchCode,
     String? note,
     int? reservedQuantity,
     DateTime? expiryDate,
@@ -51,7 +51,7 @@ class _$PickListBatchInfoCWProxyImpl implements _$PickListBatchInfoCWProxy {
   PickListBatchInfo batchId(String? batchId) => call(batchId: batchId);
 
   @override
-  PickListBatchInfo batchCode(String? batchCode) => call(batchCode: batchCode);
+  PickListBatchInfo batchCode(String batchCode) => call(batchCode: batchCode);
 
   @override
   PickListBatchInfo note(String? note) => call(note: note);
@@ -89,10 +89,10 @@ class _$PickListBatchInfoCWProxyImpl implements _$PickListBatchInfoCWProxy {
           ? _value.batchId
           // ignore: cast_nullable_to_non_nullable
           : batchId as String?,
-      batchCode: batchCode == const $CopyWithPlaceholder()
+      batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
           ? _value.batchCode
           // ignore: cast_nullable_to_non_nullable
-          : batchCode as String?,
+          : batchCode as String,
       note: note == const $CopyWithPlaceholder()
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
@@ -123,10 +123,11 @@ extension $PickListBatchInfoCopyWith on PickListBatchInfo {
 
 PickListBatchInfo _$PickListBatchInfoFromJson(Map<String, dynamic> json) =>
     $checkedCreate('PickListBatchInfo', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['batchCode']);
       final val = PickListBatchInfo(
         reservationId: $checkedConvert('reservationId', (v) => v as String?),
         batchId: $checkedConvert('batchId', (v) => v as String?),
-        batchCode: $checkedConvert('batchCode', (v) => v as String?),
+        batchCode: $checkedConvert('batchCode', (v) => v as String),
         note: $checkedConvert('note', (v) => v as String?),
         reservedQuantity: $checkedConvert(
           'reservedQuantity',
@@ -144,7 +145,7 @@ Map<String, dynamic> _$PickListBatchInfoToJson(PickListBatchInfo instance) =>
     <String, dynamic>{
       'reservationId': ?instance.reservationId,
       'batchId': ?instance.batchId,
-      'batchCode': ?instance.batchCode,
+      'batchCode': instance.batchCode,
       'note': ?instance.note,
       'reservedQuantity': ?instance.reservedQuantity,
       'expiryDate': ?instance.expiryDate?.toIso8601String(),

@@ -9,7 +9,7 @@ part of 'province_response.dart';
 abstract class _$ProvinceResponseCWProxy {
   ProvinceResponse provinceID(int? provinceID);
 
-  ProvinceResponse provinceName(String? provinceName);
+  ProvinceResponse provinceName(String provinceName);
 
   ProvinceResponse countryID(int? countryID);
 
@@ -40,7 +40,7 @@ abstract class _$ProvinceResponseCWProxy {
   /// ```
   ProvinceResponse call({
     int? provinceID,
-    String? provinceName,
+    String provinceName,
     int? countryID,
     int? code,
     List<String>? nameExtension,
@@ -65,7 +65,7 @@ class _$ProvinceResponseCWProxyImpl implements _$ProvinceResponseCWProxy {
   ProvinceResponse provinceID(int? provinceID) => call(provinceID: provinceID);
 
   @override
-  ProvinceResponse provinceName(String? provinceName) =>
+  ProvinceResponse provinceName(String provinceName) =>
       call(provinceName: provinceName);
 
   @override
@@ -127,10 +127,11 @@ class _$ProvinceResponseCWProxyImpl implements _$ProvinceResponseCWProxy {
           ? _value.provinceID
           // ignore: cast_nullable_to_non_nullable
           : provinceID as int?,
-      provinceName: provinceName == const $CopyWithPlaceholder()
+      provinceName:
+          provinceName == const $CopyWithPlaceholder() || provinceName == null
           ? _value.provinceName
           // ignore: cast_nullable_to_non_nullable
-          : provinceName as String?,
+          : provinceName as String,
       countryID: countryID == const $CopyWithPlaceholder()
           ? _value.countryID
           // ignore: cast_nullable_to_non_nullable
@@ -191,12 +192,13 @@ ProvinceResponse _$ProvinceResponseFromJson(Map<String, dynamic> json) =>
       'ProvinceResponse',
       json,
       ($checkedConvert) {
+        $checkKeys(json, requiredKeys: const ['ProvinceName']);
         final val = ProvinceResponse(
           provinceID: $checkedConvert(
             'ProvinceID',
             (v) => (v as num?)?.toInt(),
           ),
-          provinceName: $checkedConvert('ProvinceName', (v) => v as String?),
+          provinceName: $checkedConvert('ProvinceName', (v) => v as String),
           countryID: $checkedConvert('CountryID', (v) => (v as num?)?.toInt()),
           code: $checkedConvert('Code', (v) => (v as num?)?.toInt()),
           nameExtension: $checkedConvert(
@@ -232,7 +234,7 @@ ProvinceResponse _$ProvinceResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ProvinceResponseToJson(ProvinceResponse instance) =>
     <String, dynamic>{
       'ProvinceID': ?instance.provinceID,
-      'ProvinceName': ?instance.provinceName,
+      'ProvinceName': instance.provinceName,
       'CountryID': ?instance.countryID,
       'Code': ?instance.code,
       'NameExtension': ?instance.nameExtension,

@@ -11,7 +11,7 @@ abstract class _$SwapDamagedStockResponseCWProxy {
 
   SwapDamagedStockResponse newBatchId(String? newBatchId);
 
-  SwapDamagedStockResponse newBatchCode(String? newBatchCode);
+  SwapDamagedStockResponse newBatchCode(String newBatchCode);
 
   SwapDamagedStockResponse newLocation(String? newLocation);
 
@@ -19,7 +19,7 @@ abstract class _$SwapDamagedStockResponseCWProxy {
 
   SwapDamagedStockResponse expiryDate(DateTime? expiryDate);
 
-  SwapDamagedStockResponse message(String? message);
+  SwapDamagedStockResponse message(String message);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SwapDamagedStockResponse(...).copyWith.fieldName(value)`.
@@ -31,11 +31,11 @@ abstract class _$SwapDamagedStockResponseCWProxy {
   SwapDamagedStockResponse call({
     String? newReservationId,
     String? newBatchId,
-    String? newBatchCode,
+    String newBatchCode,
     String? newLocation,
     int? reservedQuantity,
     DateTime? expiryDate,
-    String? message,
+    String message,
   });
 }
 
@@ -56,7 +56,7 @@ class _$SwapDamagedStockResponseCWProxyImpl
       call(newBatchId: newBatchId);
 
   @override
-  SwapDamagedStockResponse newBatchCode(String? newBatchCode) =>
+  SwapDamagedStockResponse newBatchCode(String newBatchCode) =>
       call(newBatchCode: newBatchCode);
 
   @override
@@ -72,7 +72,7 @@ class _$SwapDamagedStockResponseCWProxyImpl
       call(expiryDate: expiryDate);
 
   @override
-  SwapDamagedStockResponse message(String? message) => call(message: message);
+  SwapDamagedStockResponse message(String message) => call(message: message);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -100,10 +100,11 @@ class _$SwapDamagedStockResponseCWProxyImpl
           ? _value.newBatchId
           // ignore: cast_nullable_to_non_nullable
           : newBatchId as String?,
-      newBatchCode: newBatchCode == const $CopyWithPlaceholder()
+      newBatchCode:
+          newBatchCode == const $CopyWithPlaceholder() || newBatchCode == null
           ? _value.newBatchCode
           // ignore: cast_nullable_to_non_nullable
-          : newBatchCode as String?,
+          : newBatchCode as String,
       newLocation: newLocation == const $CopyWithPlaceholder()
           ? _value.newLocation
           // ignore: cast_nullable_to_non_nullable
@@ -116,10 +117,10 @@ class _$SwapDamagedStockResponseCWProxyImpl
           ? _value.expiryDate
           // ignore: cast_nullable_to_non_nullable
           : expiryDate as DateTime?,
-      message: message == const $CopyWithPlaceholder()
+      message: message == const $CopyWithPlaceholder() || message == null
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
-          : message as String?,
+          : message as String,
     );
   }
 }
@@ -139,10 +140,11 @@ extension $SwapDamagedStockResponseCopyWith on SwapDamagedStockResponse {
 SwapDamagedStockResponse _$SwapDamagedStockResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('SwapDamagedStockResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['newBatchCode', 'message']);
   final val = SwapDamagedStockResponse(
     newReservationId: $checkedConvert('newReservationId', (v) => v as String?),
     newBatchId: $checkedConvert('newBatchId', (v) => v as String?),
-    newBatchCode: $checkedConvert('newBatchCode', (v) => v as String?),
+    newBatchCode: $checkedConvert('newBatchCode', (v) => v as String),
     newLocation: $checkedConvert('newLocation', (v) => v as String?),
     reservedQuantity: $checkedConvert(
       'reservedQuantity',
@@ -152,7 +154,7 @@ SwapDamagedStockResponse _$SwapDamagedStockResponseFromJson(
       'expiryDate',
       (v) => v == null ? null : DateTime.parse(v as String),
     ),
-    message: $checkedConvert('message', (v) => v as String?),
+    message: $checkedConvert('message', (v) => v as String),
   );
   return val;
 });
@@ -162,9 +164,9 @@ Map<String, dynamic> _$SwapDamagedStockResponseToJson(
 ) => <String, dynamic>{
   'newReservationId': ?instance.newReservationId,
   'newBatchId': ?instance.newBatchId,
-  'newBatchCode': ?instance.newBatchCode,
+  'newBatchCode': instance.newBatchCode,
   'newLocation': ?instance.newLocation,
   'reservedQuantity': ?instance.reservedQuantity,
   'expiryDate': ?instance.expiryDate?.toIso8601String(),
-  'message': ?instance.message,
+  'message': instance.message,
 };

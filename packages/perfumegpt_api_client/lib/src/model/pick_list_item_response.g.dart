@@ -11,11 +11,11 @@ abstract class _$PickListItemResponseCWProxy {
 
   PickListItemResponse variantId(String? variantId);
 
-  PickListItemResponse variantName(String? variantName);
+  PickListItemResponse variantName(String variantName);
 
   PickListItemResponse quantity(int? quantity);
 
-  PickListItemResponse batches(List<PickListBatchInfo>? batches);
+  PickListItemResponse batches(List<PickListBatchInfo> batches);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PickListItemResponse(...).copyWith.fieldName(value)`.
@@ -27,9 +27,9 @@ abstract class _$PickListItemResponseCWProxy {
   PickListItemResponse call({
     String? orderDetailId,
     String? variantId,
-    String? variantName,
+    String variantName,
     int? quantity,
-    List<PickListBatchInfo>? batches,
+    List<PickListBatchInfo> batches,
   });
 }
 
@@ -50,14 +50,14 @@ class _$PickListItemResponseCWProxyImpl
       call(variantId: variantId);
 
   @override
-  PickListItemResponse variantName(String? variantName) =>
+  PickListItemResponse variantName(String variantName) =>
       call(variantName: variantName);
 
   @override
   PickListItemResponse quantity(int? quantity) => call(quantity: quantity);
 
   @override
-  PickListItemResponse batches(List<PickListBatchInfo>? batches) =>
+  PickListItemResponse batches(List<PickListBatchInfo> batches) =>
       call(batches: batches);
 
   @override
@@ -84,18 +84,19 @@ class _$PickListItemResponseCWProxyImpl
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
           ? _value.variantName
           // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
+          : variantName as String,
       quantity: quantity == const $CopyWithPlaceholder()
           ? _value.quantity
           // ignore: cast_nullable_to_non_nullable
           : quantity as int?,
-      batches: batches == const $CopyWithPlaceholder()
+      batches: batches == const $CopyWithPlaceholder() || batches == null
           ? _value.batches
           // ignore: cast_nullable_to_non_nullable
-          : batches as List<PickListBatchInfo>?,
+          : batches as List<PickListBatchInfo>,
     );
   }
 }
@@ -115,15 +116,16 @@ extension $PickListItemResponseCopyWith on PickListItemResponse {
 PickListItemResponse _$PickListItemResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('PickListItemResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['variantName', 'batches']);
   final val = PickListItemResponse(
     orderDetailId: $checkedConvert('orderDetailId', (v) => v as String?),
     variantId: $checkedConvert('variantId', (v) => v as String?),
-    variantName: $checkedConvert('variantName', (v) => v as String?),
+    variantName: $checkedConvert('variantName', (v) => v as String),
     quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
     batches: $checkedConvert(
       'batches',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => PickListBatchInfo.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => PickListBatchInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
   );
@@ -135,7 +137,7 @@ Map<String, dynamic> _$PickListItemResponseToJson(
 ) => <String, dynamic>{
   'orderDetailId': ?instance.orderDetailId,
   'variantId': ?instance.variantId,
-  'variantName': ?instance.variantName,
+  'variantName': instance.variantName,
   'quantity': ?instance.quantity,
-  'batches': ?instance.batches?.map((e) => e.toJson()).toList(),
+  'batches': instance.batches.map((e) => e.toJson()).toList(),
 };

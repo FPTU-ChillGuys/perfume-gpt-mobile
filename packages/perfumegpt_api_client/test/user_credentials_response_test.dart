@@ -13,6 +13,11 @@ void main() {
       // TODO
     });
 
+    // int loyaltyPoint
+    test('to test the property `loyaltyPoint`', () async {
+      // TODO
+    });
+
     // String fullName
     test('to test the property `fullName`', () async {
       // TODO
@@ -25,6 +30,11 @@ void main() {
 
     // String email
     test('to test the property `email`', () async {
+      // TODO
+    });
+
+    // String profilePictureUrl
+    test('to test the property `profilePictureUrl`', () async {
       // TODO
     });
   });

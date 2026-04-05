@@ -11,7 +11,7 @@ abstract class _$OrderDetailResponseCWProxy {
 
   OrderDetailResponse variantId(String? variantId);
 
-  OrderDetailResponse variantName(String? variantName);
+  OrderDetailResponse variantName(String variantName);
 
   OrderDetailResponse imageUrl(String? imageUrl);
 
@@ -19,10 +19,12 @@ abstract class _$OrderDetailResponseCWProxy {
 
   OrderDetailResponse unitPrice(num? unitPrice);
 
+  OrderDetailResponse refunablePrice(num? refunablePrice);
+
   OrderDetailResponse total(num? total);
 
   OrderDetailResponse reservedBatches(
-    List<ReservedBatchResponse>? reservedBatches,
+    List<ReservedBatchResponse> reservedBatches,
   );
 
   /// Creates a new instance with the provided field values.
@@ -35,12 +37,13 @@ abstract class _$OrderDetailResponseCWProxy {
   OrderDetailResponse call({
     String? id,
     String? variantId,
-    String? variantName,
+    String variantName,
     String? imageUrl,
     int? quantity,
     num? unitPrice,
+    num? refunablePrice,
     num? total,
-    List<ReservedBatchResponse>? reservedBatches,
+    List<ReservedBatchResponse> reservedBatches,
   });
 }
 
@@ -59,7 +62,7 @@ class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
       call(variantId: variantId);
 
   @override
-  OrderDetailResponse variantName(String? variantName) =>
+  OrderDetailResponse variantName(String variantName) =>
       call(variantName: variantName);
 
   @override
@@ -72,11 +75,15 @@ class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
   OrderDetailResponse unitPrice(num? unitPrice) => call(unitPrice: unitPrice);
 
   @override
+  OrderDetailResponse refunablePrice(num? refunablePrice) =>
+      call(refunablePrice: refunablePrice);
+
+  @override
   OrderDetailResponse total(num? total) => call(total: total);
 
   @override
   OrderDetailResponse reservedBatches(
-    List<ReservedBatchResponse>? reservedBatches,
+    List<ReservedBatchResponse> reservedBatches,
   ) => call(reservedBatches: reservedBatches);
 
   @override
@@ -94,6 +101,7 @@ class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
     Object? imageUrl = const $CopyWithPlaceholder(),
     Object? quantity = const $CopyWithPlaceholder(),
     Object? unitPrice = const $CopyWithPlaceholder(),
+    Object? refunablePrice = const $CopyWithPlaceholder(),
     Object? total = const $CopyWithPlaceholder(),
     Object? reservedBatches = const $CopyWithPlaceholder(),
   }) {
@@ -106,10 +114,11 @@ class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
           ? _value.variantName
           // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
+          : variantName as String,
       imageUrl: imageUrl == const $CopyWithPlaceholder()
           ? _value.imageUrl
           // ignore: cast_nullable_to_non_nullable
@@ -122,14 +131,20 @@ class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
           ? _value.unitPrice
           // ignore: cast_nullable_to_non_nullable
           : unitPrice as num?,
+      refunablePrice: refunablePrice == const $CopyWithPlaceholder()
+          ? _value.refunablePrice
+          // ignore: cast_nullable_to_non_nullable
+          : refunablePrice as num?,
       total: total == const $CopyWithPlaceholder()
           ? _value.total
           // ignore: cast_nullable_to_non_nullable
           : total as num?,
-      reservedBatches: reservedBatches == const $CopyWithPlaceholder()
+      reservedBatches:
+          reservedBatches == const $CopyWithPlaceholder() ||
+              reservedBatches == null
           ? _value.reservedBatches
           // ignore: cast_nullable_to_non_nullable
-          : reservedBatches as List<ReservedBatchResponse>?,
+          : reservedBatches as List<ReservedBatchResponse>,
     );
   }
 }
@@ -148,18 +163,20 @@ extension $OrderDetailResponseCopyWith on OrderDetailResponse {
 
 OrderDetailResponse _$OrderDetailResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('OrderDetailResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['variantName', 'reservedBatches']);
       final val = OrderDetailResponse(
         id: $checkedConvert('id', (v) => v as String?),
         variantId: $checkedConvert('variantId', (v) => v as String?),
-        variantName: $checkedConvert('variantName', (v) => v as String?),
+        variantName: $checkedConvert('variantName', (v) => v as String),
         imageUrl: $checkedConvert('imageUrl', (v) => v as String?),
         quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
         unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
+        refunablePrice: $checkedConvert('refunablePrice', (v) => v as num?),
         total: $checkedConvert('total', (v) => v as num?),
         reservedBatches: $checkedConvert(
           'reservedBatches',
-          (v) => (v as List<dynamic>?)
-              ?.map(
+          (v) => (v as List<dynamic>)
+              .map(
                 (e) =>
                     ReservedBatchResponse.fromJson(e as Map<String, dynamic>),
               )
@@ -174,10 +191,11 @@ Map<String, dynamic> _$OrderDetailResponseToJson(
 ) => <String, dynamic>{
   'id': ?instance.id,
   'variantId': ?instance.variantId,
-  'variantName': ?instance.variantName,
+  'variantName': instance.variantName,
   'imageUrl': ?instance.imageUrl,
   'quantity': ?instance.quantity,
   'unitPrice': ?instance.unitPrice,
+  'refunablePrice': ?instance.refunablePrice,
   'total': ?instance.total,
-  'reservedBatches': ?instance.reservedBatches?.map((e) => e.toJson()).toList(),
+  'reservedBatches': instance.reservedBatches.map((e) => e.toJson()).toList(),
 };

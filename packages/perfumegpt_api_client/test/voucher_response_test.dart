@@ -27,6 +27,21 @@ void main() {
       // TODO
     });
 
+    // String campaignId
+    test('to test the property `campaignId`', () async {
+      // TODO
+    });
+
+    // VoucherType applyType
+    test('to test the property `applyType`', () async {
+      // TODO
+    });
+
+    // PromotionType targetItemType
+    test('to test the property `targetItemType`', () async {
+      // TODO
+    });
+
     // int requiredPoints
     test('to test the property `requiredPoints`', () async {
       // TODO

@@ -9,9 +9,9 @@ part of 'record_inspection_dto.dart';
 abstract class _$RecordInspectionDtoCWProxy {
   RecordInspectionDto approvedRefundAmount(num? approvedRefundAmount);
 
-  RecordInspectionDto inspectionResults(
-    List<RecordInspectionDetailDto> inspectionResults,
-  );
+  RecordInspectionDto isRestocked(bool? isRestocked);
+
+  RecordInspectionDto inspectionNote(String? inspectionNote);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RecordInspectionDto(...).copyWith.fieldName(value)`.
@@ -22,7 +22,8 @@ abstract class _$RecordInspectionDtoCWProxy {
   /// ```
   RecordInspectionDto call({
     num? approvedRefundAmount,
-    List<RecordInspectionDetailDto> inspectionResults,
+    bool? isRestocked,
+    String? inspectionNote,
   });
 }
 
@@ -38,9 +39,12 @@ class _$RecordInspectionDtoCWProxyImpl implements _$RecordInspectionDtoCWProxy {
       call(approvedRefundAmount: approvedRefundAmount);
 
   @override
-  RecordInspectionDto inspectionResults(
-    List<RecordInspectionDetailDto> inspectionResults,
-  ) => call(inspectionResults: inspectionResults);
+  RecordInspectionDto isRestocked(bool? isRestocked) =>
+      call(isRestocked: isRestocked);
+
+  @override
+  RecordInspectionDto inspectionNote(String? inspectionNote) =>
+      call(inspectionNote: inspectionNote);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -52,19 +56,22 @@ class _$RecordInspectionDtoCWProxyImpl implements _$RecordInspectionDtoCWProxy {
   /// ```
   RecordInspectionDto call({
     Object? approvedRefundAmount = const $CopyWithPlaceholder(),
-    Object? inspectionResults = const $CopyWithPlaceholder(),
+    Object? isRestocked = const $CopyWithPlaceholder(),
+    Object? inspectionNote = const $CopyWithPlaceholder(),
   }) {
     return RecordInspectionDto(
       approvedRefundAmount: approvedRefundAmount == const $CopyWithPlaceholder()
           ? _value.approvedRefundAmount
           // ignore: cast_nullable_to_non_nullable
           : approvedRefundAmount as num?,
-      inspectionResults:
-          inspectionResults == const $CopyWithPlaceholder() ||
-              inspectionResults == null
-          ? _value.inspectionResults
+      isRestocked: isRestocked == const $CopyWithPlaceholder()
+          ? _value.isRestocked
           // ignore: cast_nullable_to_non_nullable
-          : inspectionResults as List<RecordInspectionDetailDto>,
+          : isRestocked as bool?,
+      inspectionNote: inspectionNote == const $CopyWithPlaceholder()
+          ? _value.inspectionNote
+          // ignore: cast_nullable_to_non_nullable
+          : inspectionNote as String?,
     );
   }
 }
@@ -83,22 +90,13 @@ extension $RecordInspectionDtoCopyWith on RecordInspectionDto {
 
 RecordInspectionDto _$RecordInspectionDtoFromJson(Map<String, dynamic> json) =>
     $checkedCreate('RecordInspectionDto', json, ($checkedConvert) {
-      $checkKeys(json, requiredKeys: const ['inspectionResults']);
       final val = RecordInspectionDto(
         approvedRefundAmount: $checkedConvert(
           'approvedRefundAmount',
           (v) => v as num?,
         ),
-        inspectionResults: $checkedConvert(
-          'inspectionResults',
-          (v) => (v as List<dynamic>)
-              .map(
-                (e) => RecordInspectionDetailDto.fromJson(
-                  e as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
-        ),
+        isRestocked: $checkedConvert('isRestocked', (v) => v as bool?),
+        inspectionNote: $checkedConvert('inspectionNote', (v) => v as String?),
       );
       return val;
     });
@@ -107,7 +105,6 @@ Map<String, dynamic> _$RecordInspectionDtoToJson(
   RecordInspectionDto instance,
 ) => <String, dynamic>{
   'approvedRefundAmount': ?instance.approvedRefundAmount,
-  'inspectionResults': instance.inspectionResults
-      .map((e) => e.toJson())
-      .toList(),
+  'isRestocked': ?instance.isRestocked,
+  'inspectionNote': ?instance.inspectionNote,
 };

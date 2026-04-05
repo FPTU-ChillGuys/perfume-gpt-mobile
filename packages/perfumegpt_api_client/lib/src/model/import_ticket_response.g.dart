@@ -9,13 +9,13 @@ part of 'import_ticket_response.dart';
 abstract class _$ImportTicketResponseCWProxy {
   ImportTicketResponse id(String? id);
 
-  ImportTicketResponse createdByName(String? createdByName);
+  ImportTicketResponse createdByName(String createdByName);
 
   ImportTicketResponse verifiedByName(String? verifiedByName);
 
   ImportTicketResponse supplierId(int? supplierId);
 
-  ImportTicketResponse supplierName(String? supplierName);
+  ImportTicketResponse supplierName(String supplierName);
 
   ImportTicketResponse expectedArrivalDate(DateTime? expectedArrivalDate);
 
@@ -27,7 +27,7 @@ abstract class _$ImportTicketResponseCWProxy {
 
   ImportTicketResponse createdAt(DateTime? createdAt);
 
-  ImportTicketResponse importDetails(List<ImportDetailResponse>? importDetails);
+  ImportTicketResponse importDetails(List<ImportDetailResponse> importDetails);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ImportTicketResponse(...).copyWith.fieldName(value)`.
@@ -38,16 +38,16 @@ abstract class _$ImportTicketResponseCWProxy {
   /// ```
   ImportTicketResponse call({
     String? id,
-    String? createdByName,
+    String createdByName,
     String? verifiedByName,
     int? supplierId,
-    String? supplierName,
+    String supplierName,
     DateTime? expectedArrivalDate,
     DateTime? actualImportDate,
     num? totalCost,
     ImportStatus? status,
     DateTime? createdAt,
-    List<ImportDetailResponse>? importDetails,
+    List<ImportDetailResponse> importDetails,
   });
 }
 
@@ -63,7 +63,7 @@ class _$ImportTicketResponseCWProxyImpl
   ImportTicketResponse id(String? id) => call(id: id);
 
   @override
-  ImportTicketResponse createdByName(String? createdByName) =>
+  ImportTicketResponse createdByName(String createdByName) =>
       call(createdByName: createdByName);
 
   @override
@@ -75,7 +75,7 @@ class _$ImportTicketResponseCWProxyImpl
       call(supplierId: supplierId);
 
   @override
-  ImportTicketResponse supplierName(String? supplierName) =>
+  ImportTicketResponse supplierName(String supplierName) =>
       call(supplierName: supplierName);
 
   @override
@@ -98,7 +98,7 @@ class _$ImportTicketResponseCWProxyImpl
 
   @override
   ImportTicketResponse importDetails(
-    List<ImportDetailResponse>? importDetails,
+    List<ImportDetailResponse> importDetails,
   ) => call(importDetails: importDetails);
 
   @override
@@ -127,10 +127,11 @@ class _$ImportTicketResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      createdByName: createdByName == const $CopyWithPlaceholder()
+      createdByName:
+          createdByName == const $CopyWithPlaceholder() || createdByName == null
           ? _value.createdByName
           // ignore: cast_nullable_to_non_nullable
-          : createdByName as String?,
+          : createdByName as String,
       verifiedByName: verifiedByName == const $CopyWithPlaceholder()
           ? _value.verifiedByName
           // ignore: cast_nullable_to_non_nullable
@@ -139,10 +140,11 @@ class _$ImportTicketResponseCWProxyImpl
           ? _value.supplierId
           // ignore: cast_nullable_to_non_nullable
           : supplierId as int?,
-      supplierName: supplierName == const $CopyWithPlaceholder()
+      supplierName:
+          supplierName == const $CopyWithPlaceholder() || supplierName == null
           ? _value.supplierName
           // ignore: cast_nullable_to_non_nullable
-          : supplierName as String?,
+          : supplierName as String,
       expectedArrivalDate: expectedArrivalDate == const $CopyWithPlaceholder()
           ? _value.expectedArrivalDate
           // ignore: cast_nullable_to_non_nullable
@@ -163,10 +165,11 @@ class _$ImportTicketResponseCWProxyImpl
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
           : createdAt as DateTime?,
-      importDetails: importDetails == const $CopyWithPlaceholder()
+      importDetails:
+          importDetails == const $CopyWithPlaceholder() || importDetails == null
           ? _value.importDetails
           // ignore: cast_nullable_to_non_nullable
-          : importDetails as List<ImportDetailResponse>?,
+          : importDetails as List<ImportDetailResponse>,
     );
   }
 }
@@ -186,12 +189,16 @@ extension $ImportTicketResponseCopyWith on ImportTicketResponse {
 ImportTicketResponse _$ImportTicketResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ImportTicketResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const ['createdByName', 'supplierName', 'importDetails'],
+  );
   final val = ImportTicketResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    createdByName: $checkedConvert('createdByName', (v) => v as String?),
+    createdByName: $checkedConvert('createdByName', (v) => v as String),
     verifiedByName: $checkedConvert('verifiedByName', (v) => v as String?),
     supplierId: $checkedConvert('supplierId', (v) => (v as num?)?.toInt()),
-    supplierName: $checkedConvert('supplierName', (v) => v as String?),
+    supplierName: $checkedConvert('supplierName', (v) => v as String),
     expectedArrivalDate: $checkedConvert(
       'expectedArrivalDate',
       (v) => v == null ? null : DateTime.parse(v as String),
@@ -211,8 +218,8 @@ ImportTicketResponse _$ImportTicketResponseFromJson(
     ),
     importDetails: $checkedConvert(
       'importDetails',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => ImportDetailResponse.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => ImportDetailResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
   );
@@ -223,16 +230,16 @@ Map<String, dynamic> _$ImportTicketResponseToJson(
   ImportTicketResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'createdByName': ?instance.createdByName,
+  'createdByName': instance.createdByName,
   'verifiedByName': ?instance.verifiedByName,
   'supplierId': ?instance.supplierId,
-  'supplierName': ?instance.supplierName,
+  'supplierName': instance.supplierName,
   'expectedArrivalDate': ?instance.expectedArrivalDate?.toIso8601String(),
   'actualImportDate': ?instance.actualImportDate?.toIso8601String(),
   'totalCost': ?instance.totalCost,
   'status': ?_$ImportStatusEnumMap[instance.status],
   'createdAt': ?instance.createdAt?.toIso8601String(),
-  'importDetails': ?instance.importDetails?.map((e) => e.toJson()).toList(),
+  'importDetails': instance.importDetails.map((e) => e.toJson()).toList(),
 };
 
 const _$ImportStatusEnumMap = {

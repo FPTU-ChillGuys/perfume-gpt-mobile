@@ -16,8 +16,8 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfListOfBatchDetailResponse> apiBatchesVariantVariantIdGet(String variantId) async
-    test('test apiBatchesVariantVariantIdGet', () async {
+    //Future<BaseResponseOfListOfBatchLookupResponse> apiBatchesLookupGet() async
+    test('test apiBatchesLookupGet', () async {
       // TODO
     });
   });

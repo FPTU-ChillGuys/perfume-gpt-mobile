@@ -9,11 +9,11 @@ part of 'staff_lookup_item.dart';
 abstract class _$StaffLookupItemCWProxy {
   StaffLookupItem id(String? id);
 
-  StaffLookupItem userName(String? userName);
+  StaffLookupItem userName(String userName);
 
-  StaffLookupItem fullName(String? fullName);
+  StaffLookupItem fullName(String fullName);
 
-  StaffLookupItem email(String? email);
+  StaffLookupItem email(String email);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StaffLookupItem(...).copyWith.fieldName(value)`.
@@ -24,9 +24,9 @@ abstract class _$StaffLookupItemCWProxy {
   /// ```
   StaffLookupItem call({
     String? id,
-    String? userName,
-    String? fullName,
-    String? email,
+    String userName,
+    String fullName,
+    String email,
   });
 }
 
@@ -41,13 +41,13 @@ class _$StaffLookupItemCWProxyImpl implements _$StaffLookupItemCWProxy {
   StaffLookupItem id(String? id) => call(id: id);
 
   @override
-  StaffLookupItem userName(String? userName) => call(userName: userName);
+  StaffLookupItem userName(String userName) => call(userName: userName);
 
   @override
-  StaffLookupItem fullName(String? fullName) => call(fullName: fullName);
+  StaffLookupItem fullName(String fullName) => call(fullName: fullName);
 
   @override
-  StaffLookupItem email(String? email) => call(email: email);
+  StaffLookupItem email(String email) => call(email: email);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -68,18 +68,18 @@ class _$StaffLookupItemCWProxyImpl implements _$StaffLookupItemCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      userName: userName == const $CopyWithPlaceholder()
+      userName: userName == const $CopyWithPlaceholder() || userName == null
           ? _value.userName
           // ignore: cast_nullable_to_non_nullable
-          : userName as String?,
-      fullName: fullName == const $CopyWithPlaceholder()
+          : userName as String,
+      fullName: fullName == const $CopyWithPlaceholder() || fullName == null
           ? _value.fullName
           // ignore: cast_nullable_to_non_nullable
-          : fullName as String?,
-      email: email == const $CopyWithPlaceholder()
+          : fullName as String,
+      email: email == const $CopyWithPlaceholder() || email == null
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
-          : email as String?,
+          : email as String,
     );
   }
 }
@@ -97,11 +97,12 @@ extension $StaffLookupItemCopyWith on StaffLookupItem {
 
 StaffLookupItem _$StaffLookupItemFromJson(Map<String, dynamic> json) =>
     $checkedCreate('StaffLookupItem', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['userName', 'fullName', 'email']);
       final val = StaffLookupItem(
         id: $checkedConvert('id', (v) => v as String?),
-        userName: $checkedConvert('userName', (v) => v as String?),
-        fullName: $checkedConvert('fullName', (v) => v as String?),
-        email: $checkedConvert('email', (v) => v as String?),
+        userName: $checkedConvert('userName', (v) => v as String),
+        fullName: $checkedConvert('fullName', (v) => v as String),
+        email: $checkedConvert('email', (v) => v as String),
       );
       return val;
     });
@@ -109,7 +110,7 @@ StaffLookupItem _$StaffLookupItemFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$StaffLookupItemToJson(StaffLookupItem instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'userName': ?instance.userName,
-      'fullName': ?instance.fullName,
-      'email': ?instance.email,
+      'userName': instance.userName,
+      'fullName': instance.fullName,
+      'email': instance.email,
     };

@@ -13,7 +13,7 @@ void main() {
       // TODO
     });
 
-    // RecipientInformation recipientInformation
+    // ContactAddressInformation recipientInformation
     test('to test the property `recipientInformation`', () async {
       // TODO
     });

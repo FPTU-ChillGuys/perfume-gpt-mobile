@@ -9,7 +9,7 @@ part of 'variant_daily_sale_figure.dart';
 abstract class _$VariantDailySaleFigureCWProxy {
   VariantDailySaleFigure variantId(String? variantId);
 
-  VariantDailySaleFigure variantName(String? variantName);
+  VariantDailySaleFigure variantName(String variantName);
 
   VariantDailySaleFigure date(DateTime? date);
 
@@ -24,7 +24,7 @@ abstract class _$VariantDailySaleFigureCWProxy {
   /// ```
   VariantDailySaleFigure call({
     String? variantId,
-    String? variantName,
+    String variantName,
     DateTime? date,
     int? quantitySold,
   });
@@ -43,7 +43,7 @@ class _$VariantDailySaleFigureCWProxyImpl
       call(variantId: variantId);
 
   @override
-  VariantDailySaleFigure variantName(String? variantName) =>
+  VariantDailySaleFigure variantName(String variantName) =>
       call(variantName: variantName);
 
   @override
@@ -72,10 +72,11 @@ class _$VariantDailySaleFigureCWProxyImpl
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantName: variantName == const $CopyWithPlaceholder()
+      variantName:
+          variantName == const $CopyWithPlaceholder() || variantName == null
           ? _value.variantName
           // ignore: cast_nullable_to_non_nullable
-          : variantName as String?,
+          : variantName as String,
       date: date == const $CopyWithPlaceholder()
           ? _value.date
           // ignore: cast_nullable_to_non_nullable
@@ -103,9 +104,10 @@ extension $VariantDailySaleFigureCopyWith on VariantDailySaleFigure {
 VariantDailySaleFigure _$VariantDailySaleFigureFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('VariantDailySaleFigure', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['variantName']);
   final val = VariantDailySaleFigure(
     variantId: $checkedConvert('variantId', (v) => v as String?),
-    variantName: $checkedConvert('variantName', (v) => v as String?),
+    variantName: $checkedConvert('variantName', (v) => v as String),
     date: $checkedConvert(
       'date',
       (v) => v == null ? null : DateTime.parse(v as String),
@@ -119,7 +121,7 @@ Map<String, dynamic> _$VariantDailySaleFigureToJson(
   VariantDailySaleFigure instance,
 ) => <String, dynamic>{
   'variantId': ?instance.variantId,
-  'variantName': ?instance.variantName,
+  'variantName': instance.variantName,
   'date': ?instance.date?.toIso8601String(),
   'quantitySold': ?instance.quantitySold,
 };

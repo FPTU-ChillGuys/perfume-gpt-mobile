@@ -8,11 +8,11 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fullName** | **String** |  | [optional] 
+**fullName** | **String** |  | 
 **phoneNumber** | **String** |  | 
 **email** | **String** |  | 
-**password** | **String** |  | [optional] 
-**clientUri** | **String** |  | [optional] 
+**password** | **String** |  | 
+**clientUri** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -31,12 +31,17 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfReceiptResponse> apiOrdersMyOrdersOrderIdInvoiceGet(String orderId) async
+    test('test apiOrdersMyOrdersOrderIdInvoiceGet', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiOrdersOrderIdAddressPut(String orderId, UpdateOrderAddressRequest updateOrderAddressRequest) async
     test('test apiOrdersOrderIdAddressPut', () async {
       // TODO
     });
 
-    //Future<BaseResponseOfstring> apiOrdersOrderIdCancelPost(String orderId) async
+    //Future<BaseResponseOfstring> apiOrdersOrderIdCancelPost(String orderId, UserCancelOrderRequest userCancelOrderRequest) async
     test('test apiOrdersOrderIdCancelPost', () async {
       // TODO
     });
@@ -48,6 +53,11 @@ void main() {
 
     //Future<BaseResponseOfOrderResponse> apiOrdersOrderIdGet(String orderId) async
     test('test apiOrdersOrderIdGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfReceiptResponse> apiOrdersOrderIdInvoiceGet(String orderId) async
+    test('test apiOrdersOrderIdInvoiceGet', () async {
       // TODO
     });
 

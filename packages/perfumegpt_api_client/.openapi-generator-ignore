@@ -24,3 +24,5 @@
 
 # The generator will break the file, so we will deal with it manually...
 pubspec.yaml
+lib/src/model/product_image_upload_item.dart
+lib/src/model/variant_image_upload_item.dart

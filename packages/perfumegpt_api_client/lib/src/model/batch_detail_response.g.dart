@@ -9,13 +9,13 @@ part of 'batch_detail_response.dart';
 abstract class _$BatchDetailResponseCWProxy {
   BatchDetailResponse variantId(String? variantId);
 
-  BatchDetailResponse variantSku(String? variantSku);
+  BatchDetailResponse variantSku(String variantSku);
 
-  BatchDetailResponse productName(String? productName);
+  BatchDetailResponse productName(String productName);
 
   BatchDetailResponse volumeMl(int? volumeMl);
 
-  BatchDetailResponse concentrationName(String? concentrationName);
+  BatchDetailResponse concentrationName(String concentrationName);
 
   BatchDetailResponse isExpired(bool? isExpired);
 
@@ -23,7 +23,7 @@ abstract class _$BatchDetailResponseCWProxy {
 
   BatchDetailResponse id(String? id);
 
-  BatchDetailResponse batchCode(String? batchCode);
+  BatchDetailResponse batchCode(String batchCode);
 
   BatchDetailResponse manufactureDate(DateTime? manufactureDate);
 
@@ -44,14 +44,14 @@ abstract class _$BatchDetailResponseCWProxy {
   /// ```
   BatchDetailResponse call({
     String? variantId,
-    String? variantSku,
-    String? productName,
+    String variantSku,
+    String productName,
     int? volumeMl,
-    String? concentrationName,
+    String concentrationName,
     bool? isExpired,
     int? daysUntilExpiry,
     String? id,
-    String? batchCode,
+    String batchCode,
     DateTime? manufactureDate,
     DateTime? expiryDate,
     int? importQuantity,
@@ -72,18 +72,18 @@ class _$BatchDetailResponseCWProxyImpl implements _$BatchDetailResponseCWProxy {
       call(variantId: variantId);
 
   @override
-  BatchDetailResponse variantSku(String? variantSku) =>
+  BatchDetailResponse variantSku(String variantSku) =>
       call(variantSku: variantSku);
 
   @override
-  BatchDetailResponse productName(String? productName) =>
+  BatchDetailResponse productName(String productName) =>
       call(productName: productName);
 
   @override
   BatchDetailResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
-  BatchDetailResponse concentrationName(String? concentrationName) =>
+  BatchDetailResponse concentrationName(String concentrationName) =>
       call(concentrationName: concentrationName);
 
   @override
@@ -97,8 +97,7 @@ class _$BatchDetailResponseCWProxyImpl implements _$BatchDetailResponseCWProxy {
   BatchDetailResponse id(String? id) => call(id: id);
 
   @override
-  BatchDetailResponse batchCode(String? batchCode) =>
-      call(batchCode: batchCode);
+  BatchDetailResponse batchCode(String batchCode) => call(batchCode: batchCode);
 
   @override
   BatchDetailResponse manufactureDate(DateTime? manufactureDate) =>
@@ -149,22 +148,26 @@ class _$BatchDetailResponseCWProxyImpl implements _$BatchDetailResponseCWProxy {
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantSku: variantSku == const $CopyWithPlaceholder()
+      variantSku:
+          variantSku == const $CopyWithPlaceholder() || variantSku == null
           ? _value.variantSku
           // ignore: cast_nullable_to_non_nullable
-          : variantSku as String?,
-      productName: productName == const $CopyWithPlaceholder()
+          : variantSku as String,
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
-          : productName as String?,
+          : productName as String,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
           : volumeMl as int?,
-      concentrationName: concentrationName == const $CopyWithPlaceholder()
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
           ? _value.concentrationName
           // ignore: cast_nullable_to_non_nullable
-          : concentrationName as String?,
+          : concentrationName as String,
       isExpired: isExpired == const $CopyWithPlaceholder()
           ? _value.isExpired
           // ignore: cast_nullable_to_non_nullable
@@ -177,10 +180,10 @@ class _$BatchDetailResponseCWProxyImpl implements _$BatchDetailResponseCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      batchCode: batchCode == const $CopyWithPlaceholder()
+      batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
           ? _value.batchCode
           // ignore: cast_nullable_to_non_nullable
-          : batchCode as String?,
+          : batchCode as String,
       manufactureDate: manufactureDate == const $CopyWithPlaceholder()
           ? _value.manufactureDate
           // ignore: cast_nullable_to_non_nullable
@@ -219,14 +222,23 @@ extension $BatchDetailResponseCopyWith on BatchDetailResponse {
 
 BatchDetailResponse _$BatchDetailResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('BatchDetailResponse', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const [
+          'variantSku',
+          'productName',
+          'concentrationName',
+          'batchCode',
+        ],
+      );
       final val = BatchDetailResponse(
         variantId: $checkedConvert('variantId', (v) => v as String?),
-        variantSku: $checkedConvert('variantSku', (v) => v as String?),
-        productName: $checkedConvert('productName', (v) => v as String?),
+        variantSku: $checkedConvert('variantSku', (v) => v as String),
+        productName: $checkedConvert('productName', (v) => v as String),
         volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
         concentrationName: $checkedConvert(
           'concentrationName',
-          (v) => v as String?,
+          (v) => v as String,
         ),
         isExpired: $checkedConvert('isExpired', (v) => v as bool?),
         daysUntilExpiry: $checkedConvert(
@@ -234,7 +246,7 @@ BatchDetailResponse _$BatchDetailResponseFromJson(Map<String, dynamic> json) =>
           (v) => (v as num?)?.toInt(),
         ),
         id: $checkedConvert('id', (v) => v as String?),
-        batchCode: $checkedConvert('batchCode', (v) => v as String?),
+        batchCode: $checkedConvert('batchCode', (v) => v as String),
         manufactureDate: $checkedConvert(
           'manufactureDate',
           (v) => v == null ? null : DateTime.parse(v as String),
@@ -263,14 +275,14 @@ Map<String, dynamic> _$BatchDetailResponseToJson(
   BatchDetailResponse instance,
 ) => <String, dynamic>{
   'variantId': ?instance.variantId,
-  'variantSku': ?instance.variantSku,
-  'productName': ?instance.productName,
+  'variantSku': instance.variantSku,
+  'productName': instance.productName,
   'volumeMl': ?instance.volumeMl,
-  'concentrationName': ?instance.concentrationName,
+  'concentrationName': instance.concentrationName,
   'isExpired': ?instance.isExpired,
   'daysUntilExpiry': ?instance.daysUntilExpiry,
   'id': ?instance.id,
-  'batchCode': ?instance.batchCode,
+  'batchCode': instance.batchCode,
   'manufactureDate': ?instance.manufactureDate?.toIso8601String(),
   'expiryDate': ?instance.expiryDate?.toIso8601String(),
   'importQuantity': ?instance.importQuantity,

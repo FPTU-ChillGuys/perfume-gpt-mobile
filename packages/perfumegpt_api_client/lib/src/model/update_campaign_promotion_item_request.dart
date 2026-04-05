@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_campaign_promotion_item_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,104 +19,59 @@ part 'update_campaign_promotion_item_request.g.dart';
 class UpdateCampaignPromotionItemRequest {
   /// Returns a new [UpdateCampaignPromotionItemRequest] instance.
   UpdateCampaignPromotionItemRequest({
+    this.id,
 
-     this.id,
+    required this.productVariantId,
 
-    required  this.productVariantId,
+    this.batchId,
 
-     this.batchId,
+    this.promotionType,
 
-     this.promotionType,
-
-     this.maxUsage,
+    this.maxUsage,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'productVariantId',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'productVariantId', required: true, includeIfNull: false)
   final String productVariantId;
 
-
-
-  @JsonKey(
-    
-    name: r'batchId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'batchId', required: false, includeIfNull: false)
   final String? batchId;
 
-
-
-  @JsonKey(
-    
-    name: r'promotionType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'promotionType', required: false, includeIfNull: false)
   final PromotionType? promotionType;
 
-
-
-  @JsonKey(
-    
-    name: r'maxUsage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'maxUsage', required: false, includeIfNull: false)
   final int? maxUsage;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateCampaignPromotionItemRequest &&
+          other.id == id &&
+          other.productVariantId == productVariantId &&
+          other.batchId == batchId &&
+          other.promotionType == promotionType &&
+          other.maxUsage == maxUsage;
 
+  @override
+  int get hashCode =>
+      (id == null ? 0 : id.hashCode) +
+      productVariantId.hashCode +
+      (batchId == null ? 0 : batchId.hashCode) +
+      promotionType.hashCode +
+      (maxUsage == null ? 0 : maxUsage.hashCode);
 
+  factory UpdateCampaignPromotionItemRequest.fromJson(
+    Map<String, dynamic> json,
+  ) => _$UpdateCampaignPromotionItemRequestFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateCampaignPromotionItemRequest &&
-      other.id == id &&
-      other.productVariantId == productVariantId &&
-      other.batchId == batchId &&
-      other.promotionType == promotionType &&
-      other.maxUsage == maxUsage;
-
-    @override
-    int get hashCode =>
-        (id == null ? 0 : id.hashCode) +
-        productVariantId.hashCode +
-        (batchId == null ? 0 : batchId.hashCode) +
-        promotionType.hashCode +
-        (maxUsage == null ? 0 : maxUsage.hashCode);
-
-  factory UpdateCampaignPromotionItemRequest.fromJson(Map<String, dynamic> json) => _$UpdateCampaignPromotionItemRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UpdateCampaignPromotionItemRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$UpdateCampaignPromotionItemRequestToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

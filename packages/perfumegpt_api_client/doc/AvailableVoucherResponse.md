@@ -9,7 +9,7 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
-**code** | **String** |  | [optional] 
+**code** | **String** |  | 
 **discountValue** | **num** |  | [optional] 
 **discountType** | [**DiscountType**](DiscountType.md) |  | [optional] 
 **minOrderValue** | **num** |  | [optional] 

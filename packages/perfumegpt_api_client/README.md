@@ -153,6 +153,8 @@ Class | Method | HTTP request | Description
 [*LoyaltyTransactionsApi*](doc/LoyaltyTransactionsApi.md) | [**apiLoyaltytransactionsMeHistoryGet**](doc/LoyaltyTransactionsApi.md#apiloyaltytransactionsmehistoryget) | **GET** /api/loyaltytransactions/me/history | 
 [*LoyaltyTransactionsApi*](doc/LoyaltyTransactionsApi.md) | [**apiLoyaltytransactionsMeTotalGet**](doc/LoyaltyTransactionsApi.md#apiloyaltytransactionsmetotalget) | **GET** /api/loyaltytransactions/me/total | 
 [*LoyaltyTransactionsApi*](doc/LoyaltyTransactionsApi.md) | [**apiLoyaltytransactionsUserIdManualChangePost**](doc/LoyaltyTransactionsApi.md#apiloyaltytransactionsuseridmanualchangepost) | **POST** /api/loyaltytransactions/{userId}/manual-change | 
+[*NotificationsApi*](doc/NotificationsApi.md) | [**apiNotificationsIdReadPatch**](doc/NotificationsApi.md#apinotificationsidreadpatch) | **PATCH** /api/notifications/{id}/read | 
+[*NotificationsApi*](doc/NotificationsApi.md) | [**apiNotificationsReadAllPatch**](doc/NotificationsApi.md#apinotificationsreadallpatch) | **PATCH** /api/notifications/read-all | 
 [*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesGet**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliesget) | **GET** /api/olfactoryfamilies | 
 [*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesIdDelete**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliesiddelete) | **DELETE** /api/olfactoryfamilies/{id} | 
 [*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesIdGet**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliesidget) | **GET** /api/olfactoryfamilies/{id} | 
@@ -161,14 +163,16 @@ Class | Method | HTTP request | Description
 [*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesPost**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliespost) | **POST** /api/olfactoryfamilies | 
 [*OrderCancelRequestsApi*](doc/OrderCancelRequestsApi.md) | [**apiOrdercancelrequestsGet**](doc/OrderCancelRequestsApi.md#apiordercancelrequestsget) | **GET** /api/ordercancelrequests | 
 [*OrderCancelRequestsApi*](doc/OrderCancelRequestsApi.md) | [**apiOrdercancelrequestsIdProcessPost**](doc/OrderCancelRequestsApi.md#apiordercancelrequestsidprocesspost) | **POST** /api/ordercancelrequests/{id}/process | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsGet**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsget) | **GET** /api/orderreturnrequests | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdCompleteInspectionPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidcompleteinspectionpost) | **POST** /api/orderreturnrequests/{id}/complete-inspection | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdFailInspectionPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidfailinspectionpost) | **POST** /api/orderreturnrequests/{id}/fail-inspection | 
-[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdImagesGet**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidimagesget) | **GET** /api/orderreturnrequests/{id}/images | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdGet**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidget) | **GET** /api/orderreturnrequests/{id} | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdRefundPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidrefundpost) | **POST** /api/orderreturnrequests/{id}/refund | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdReviewPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidreviewpost) | **POST** /api/orderreturnrequests/{id}/review | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdStartInspectionPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidstartinspectionpost) | **POST** /api/orderreturnrequests/{id}/start-inspection | 
-[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsImagesTemporaryPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsimagestemporarypost) | **POST** /api/orderreturnrequests/images/temporary | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsMyRequestsGet**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsmyrequestsget) | **GET** /api/orderreturnrequests/my-requests | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestspost) | **POST** /api/orderreturnrequests | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsVideosTemporaryPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsvideostemporarypost) | **POST** /api/orderreturnrequests/videos/temporary | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersCheckoutInStorePost**](doc/OrdersApi.md#apiorderscheckoutinstorepost) | **POST** /api/orders/checkout-in-store | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersCheckoutPost**](doc/OrdersApi.md#apiorderscheckoutpost) | **POST** /api/orders/checkout | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersGet**](doc/OrdersApi.md#apiordersget) | **GET** /api/orders | 
@@ -186,6 +190,7 @@ Class | Method | HTTP request | Description
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersPreviewGet**](doc/OrdersApi.md#apiorderspreviewget) | **GET** /api/orders/preview | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersStaffStaffIdGet**](doc/OrdersApi.md#apiordersstaffstaffidget) | **GET** /api/orders/staff/{staffId} | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersUserUserIdGet**](doc/OrdersApi.md#apiordersuseruseridget) | **GET** /api/orders/user/{userId} | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsMomoReturnGet**](doc/PaymentsApi.md#apipaymentsmomoreturnget) | **GET** /api/payments/momo-return | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdConfirmPut**](doc/PaymentsApi.md#apipaymentspaymentidconfirmput) | **PUT** /api/payments/{paymentId}/confirm | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdMethodPut**](doc/PaymentsApi.md#apipaymentspaymentidmethodput) | **PUT** /api/payments/{paymentId}/method | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdRetryPost**](doc/PaymentsApi.md#apipaymentspaymentidretrypost) | **POST** /api/payments/{paymentId}/retry | 
@@ -237,6 +242,11 @@ Class | Method | HTTP request | Description
 [*ScentNotesApi*](doc/ScentNotesApi.md) | [**apiScentnotesIdPut**](doc/ScentNotesApi.md#apiscentnotesidput) | **PUT** /api/scentnotes/{id} | 
 [*ScentNotesApi*](doc/ScentNotesApi.md) | [**apiScentnotesLookupGet**](doc/ScentNotesApi.md#apiscentnoteslookupget) | **GET** /api/scentnotes/lookup | 
 [*ScentNotesApi*](doc/ScentNotesApi.md) | [**apiScentnotesPost**](doc/ScentNotesApi.md#apiscentnotespost) | **POST** /api/scentnotes | 
+[*ShippingsApi*](doc/ShippingsApi.md) | [**apiShippingsMeGet**](doc/ShippingsApi.md#apishippingsmeget) | **GET** /api/shippings/me | 
+[*ShippingsApi*](doc/ShippingsApi.md) | [**apiShippingsMeSyncShippingStatusPost**](doc/ShippingsApi.md#apishippingsmesyncshippingstatuspost) | **POST** /api/shippings/me/sync-shipping-status | 
+[*ShippingsApi*](doc/ShippingsApi.md) | [**apiShippingsOrderInfoUrlPost**](doc/ShippingsApi.md#apishippingsorderinfourlpost) | **POST** /api/shippings/order-info-url | 
+[*ShippingsApi*](doc/ShippingsApi.md) | [**apiShippingsUserUserIdGet**](doc/ShippingsApi.md#apishippingsuseruseridget) | **GET** /api/shippings/user/{userId} | 
+[*ShippingsApi*](doc/ShippingsApi.md) | [**apiShippingsUserUserIdSyncShippingStatusPost**](doc/ShippingsApi.md#apishippingsuseruseridsyncshippingstatuspost) | **POST** /api/shippings/user/{userId}/sync-shipping-status | 
 [*StockAdjustmentsApi*](doc/StockAdjustmentsApi.md) | [**apiStockadjustmentsAdjustmentIdVerifyPost**](doc/StockAdjustmentsApi.md#apistockadjustmentsadjustmentidverifypost) | **POST** /api/stockadjustments/{adjustmentId}/verify | 
 [*StockAdjustmentsApi*](doc/StockAdjustmentsApi.md) | [**apiStockadjustmentsGet**](doc/StockAdjustmentsApi.md#apistockadjustmentsget) | **GET** /api/stockadjustments | 
 [*StockAdjustmentsApi*](doc/StockAdjustmentsApi.md) | [**apiStockadjustmentsIdDelete**](doc/StockAdjustmentsApi.md#apistockadjustmentsiddelete) | **DELETE** /api/stockadjustments/{id} | 
@@ -326,6 +336,7 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfMediaResponse](doc/BaseResponseOfMediaResponse.md)
  - [BaseResponseOfOlfactoryFamilyResponse](doc/BaseResponseOfOlfactoryFamilyResponse.md)
  - [BaseResponseOfOrderResponse](doc/BaseResponseOfOrderResponse.md)
+ - [BaseResponseOfOrderReturnRequestResponse](doc/BaseResponseOfOrderReturnRequestResponse.md)
  - [BaseResponseOfPagedResultOfAvailableVoucherResponse](doc/BaseResponseOfPagedResultOfAvailableVoucherResponse.md)
  - [BaseResponseOfPagedResultOfBatchDetailResponse](doc/BaseResponseOfPagedResultOfBatchDetailResponse.md)
  - [BaseResponseOfPagedResultOfCampaignResponse](doc/BaseResponseOfPagedResultOfCampaignResponse.md)
@@ -333,9 +344,11 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse](doc/BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse.md)
  - [BaseResponseOfPagedResultOfOrderCancelRequestResponse](doc/BaseResponseOfPagedResultOfOrderCancelRequestResponse.md)
  - [BaseResponseOfPagedResultOfOrderListItem](doc/BaseResponseOfPagedResultOfOrderListItem.md)
+ - [BaseResponseOfPagedResultOfOrderReturnRequestResponse](doc/BaseResponseOfPagedResultOfOrderReturnRequestResponse.md)
  - [BaseResponseOfPagedResultOfProductListItem](doc/BaseResponseOfPagedResultOfProductListItem.md)
  - [BaseResponseOfPagedResultOfProductListItemWithVariants](doc/BaseResponseOfPagedResultOfProductListItemWithVariants.md)
  - [BaseResponseOfPagedResultOfReviewListItem](doc/BaseResponseOfPagedResultOfReviewListItem.md)
+ - [BaseResponseOfPagedResultOfShippingInfoListItem](doc/BaseResponseOfPagedResultOfShippingInfoListItem.md)
  - [BaseResponseOfPagedResultOfStockAdjustmentListItem](doc/BaseResponseOfPagedResultOfStockAdjustmentListItem.md)
  - [BaseResponseOfPagedResultOfStockResponse](doc/BaseResponseOfPagedResultOfStockResponse.md)
  - [BaseResponseOfPagedResultOfUserVoucherResponse](doc/BaseResponseOfPagedResultOfUserVoucherResponse.md)
@@ -378,6 +391,7 @@ Class | Method | HTTP request | Description
  - [CampaignResponse](doc/CampaignResponse.md)
  - [CampaignStatus](doc/CampaignStatus.md)
  - [CampaignType](doc/CampaignType.md)
+ - [CancelOrderReason](doc/CancelOrderReason.md)
  - [CancelRequestStatus](doc/CancelRequestStatus.md)
  - [CarrierName](doc/CarrierName.md)
  - [CategoriesLookupItem](doc/CategoriesLookupItem.md)
@@ -385,6 +399,7 @@ Class | Method | HTTP request | Description
  - [ConcentrationLookupDto](doc/ConcentrationLookupDto.md)
  - [ConcentrationResponse](doc/ConcentrationResponse.md)
  - [ConfirmPaymentRequest](doc/ConfirmPaymentRequest.md)
+ - [ContactAddressInformation](doc/ContactAddressInformation.md)
  - [CreateAddressRequest](doc/CreateAddressRequest.md)
  - [CreateAttributeRequest](doc/CreateAttributeRequest.md)
  - [CreateAttributeValueRequest](doc/CreateAttributeValueRequest.md)
@@ -403,7 +418,6 @@ Class | Method | HTTP request | Description
  - [CreateOrderDetailRequest](doc/CreateOrderDetailRequest.md)
  - [CreateOrderRequest](doc/CreateOrderRequest.md)
  - [CreateProductRequest](doc/CreateProductRequest.md)
- - [CreateReturnRequestDetailDto](doc/CreateReturnRequestDetailDto.md)
  - [CreateReturnRequestDto](doc/CreateReturnRequestDto.md)
  - [CreateReviewRequest](doc/CreateReviewRequest.md)
  - [CreateScentNoteRequest](doc/CreateScentNoteRequest.md)
@@ -428,6 +442,7 @@ Class | Method | HTTP request | Description
  - [GetCartItemResponse](doc/GetCartItemResponse.md)
  - [GetCartItemsResponse](doc/GetCartItemsResponse.md)
  - [GetCartTotalResponse](doc/GetCartTotalResponse.md)
+ - [GetOrderInfoRequest](doc/GetOrderInfoRequest.md)
  - [GoogleLoginRequest](doc/GoogleLoginRequest.md)
  - [ImportDetailResponse](doc/ImportDetailResponse.md)
  - [ImportStatus](doc/ImportStatus.md)
@@ -445,10 +460,13 @@ Class | Method | HTTP request | Description
  - [OlfactoryFamilyResponse](doc/OlfactoryFamilyResponse.md)
  - [OlfactoryLookupResponse](doc/OlfactoryLookupResponse.md)
  - [OrderCancelRequestResponse](doc/OrderCancelRequestResponse.md)
+ - [OrderDetailListItem](doc/OrderDetailListItem.md)
  - [OrderDetailListItems](doc/OrderDetailListItems.md)
  - [OrderDetailResponse](doc/OrderDetailResponse.md)
  - [OrderListItem](doc/OrderListItem.md)
  - [OrderResponse](doc/OrderResponse.md)
+ - [OrderReturnRequestDetailResponse](doc/OrderReturnRequestDetailResponse.md)
+ - [OrderReturnRequestResponse](doc/OrderReturnRequestResponse.md)
  - [OrderStatus](doc/OrderStatus.md)
  - [OrderType](doc/OrderType.md)
  - [PagedResultOfAvailableVoucherResponse](doc/PagedResultOfAvailableVoucherResponse.md)
@@ -458,9 +476,11 @@ Class | Method | HTTP request | Description
  - [PagedResultOfLoyaltyTransactionHistoryItemResponse](doc/PagedResultOfLoyaltyTransactionHistoryItemResponse.md)
  - [PagedResultOfOrderCancelRequestResponse](doc/PagedResultOfOrderCancelRequestResponse.md)
  - [PagedResultOfOrderListItem](doc/PagedResultOfOrderListItem.md)
+ - [PagedResultOfOrderReturnRequestResponse](doc/PagedResultOfOrderReturnRequestResponse.md)
  - [PagedResultOfProductListItem](doc/PagedResultOfProductListItem.md)
  - [PagedResultOfProductListItemWithVariants](doc/PagedResultOfProductListItemWithVariants.md)
  - [PagedResultOfReviewListItem](doc/PagedResultOfReviewListItem.md)
+ - [PagedResultOfShippingInfoListItem](doc/PagedResultOfShippingInfoListItem.md)
  - [PagedResultOfStockAdjustmentListItem](doc/PagedResultOfStockAdjustmentListItem.md)
  - [PagedResultOfStockResponse](doc/PagedResultOfStockResponse.md)
  - [PagedResultOfUserVoucherResponse](doc/PagedResultOfUserVoucherResponse.md)
@@ -477,6 +497,7 @@ Class | Method | HTTP request | Description
  - [ProblemDetails](doc/ProblemDetails.md)
  - [ProcessCancelRequest](doc/ProcessCancelRequest.md)
  - [ProcessInitialReturnDto](doc/ProcessInitialReturnDto.md)
+ - [ProcessRefundRequest](doc/ProcessRefundRequest.md)
  - [ProductAttributeDto](doc/ProductAttributeDto.md)
  - [ProductAttributeResponse](doc/ProductAttributeResponse.md)
  - [ProductDailySaleFigureResponse](doc/ProductDailySaleFigureResponse.md)
@@ -496,8 +517,6 @@ Class | Method | HTTP request | Description
  - [ReceiptItemDto](doc/ReceiptItemDto.md)
  - [ReceiptResponse](doc/ReceiptResponse.md)
  - [RecipientInfoResponse](doc/RecipientInfoResponse.md)
- - [RecipientInformation](doc/RecipientInformation.md)
- - [RecordInspectionDetailDto](doc/RecordInspectionDetailDto.md)
  - [RecordInspectionDto](doc/RecordInspectionDto.md)
  - [RedeemVoucherRequest](doc/RedeemVoucherRequest.md)
  - [RedeemableVoucherResponse](doc/RedeemableVoucherResponse.md)
@@ -505,6 +524,10 @@ Class | Method | HTTP request | Description
  - [RejectInspectionDto](doc/RejectInspectionDto.md)
  - [ReservedBatchResponse](doc/ReservedBatchResponse.md)
  - [ResetPasswordRequest](doc/ResetPasswordRequest.md)
+ - [ReturnItemDto](doc/ReturnItemDto.md)
+ - [ReturnOrderReason](doc/ReturnOrderReason.md)
+ - [ReturnRequestStatus](doc/ReturnRequestStatus.md)
+ - [ReturnShippingInfoResponse](doc/ReturnShippingInfoResponse.md)
  - [RevenueSummaryResponse](doc/RevenueSummaryResponse.md)
  - [ReviewDetailResponse](doc/ReviewDetailResponse.md)
  - [ReviewListItem](doc/ReviewListItem.md)
@@ -513,7 +536,10 @@ Class | Method | HTTP request | Description
  - [ScentNoteDto](doc/ScentNoteDto.md)
  - [ScentNoteLookupResponse](doc/ScentNoteLookupResponse.md)
  - [ScentNoteResponse](doc/ScentNoteResponse.md)
+ - [ShippingInfoListItem](doc/ShippingInfoListItem.md)
  - [ShippingInfoResponse](doc/ShippingInfoResponse.md)
+ - [ShippingStatus](doc/ShippingStatus.md)
+ - [ShippingType](doc/ShippingType.md)
  - [StaffLookupItem](doc/StaffLookupItem.md)
  - [StartInspectionDto](doc/StartInspectionDto.md)
  - [StockAdjustmentDetailResponse](doc/StockAdjustmentDetailResponse.md)
@@ -532,6 +558,7 @@ Class | Method | HTTP request | Description
  - [TokenResponse](doc/TokenResponse.md)
  - [TopProductResponse](doc/TopProductResponse.md)
  - [TransactionStatus](doc/TransactionStatus.md)
+ - [TransactionType](doc/TransactionType.md)
  - [UpdateAddressRequest](doc/UpdateAddressRequest.md)
  - [UpdateAttributeRequest](doc/UpdateAttributeRequest.md)
  - [UpdateAttributeValueRequest](doc/UpdateAttributeValueRequest.md)

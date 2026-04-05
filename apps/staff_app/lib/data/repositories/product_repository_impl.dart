@@ -24,14 +24,14 @@ class ProductRepositoryImpl implements ProductRepository {
             id: item.id ?? '',
             variantId: item.variantId ?? '',
             batchId: item.id ?? '', // Using id from stock record as batchId
-            sku: item.variantSku ?? '',
-            name: item.productName ?? '',
+            sku: item.variantSku,
+            name: item.productName,
             description: '', // Not in stock response
             price: 0, // Not in stock response
             retailPrice: null,
             basePrice: null,
             discountedPrice: null,
-            imageUrl: item.variantImageUrl ?? '',
+            imageUrl: item.variantImageUrl,
             scentNotes: [], // Not in stock response
             brand: '',
             rating: 0,
@@ -84,8 +84,8 @@ class ProductRepositoryImpl implements ProductRepository {
       id: item.id ?? '',
       variantId: item.variantId ?? '',
       batchId: item.id ?? '', // Using id from stock record as batchId
-      sku: item.variantSku ?? sku,
-      name: item.productName ?? '',
+      sku: item.variantSku,
+      name: item.productName,
       description: '',
       price: retailPrice > 0
           ? retailPrice
@@ -93,7 +93,7 @@ class ProductRepositoryImpl implements ProductRepository {
       retailPrice: retailPrice > 0 ? retailPrice : null,
       basePrice: basePrice > 0 ? basePrice : null,
       discountedPrice: discountedPrice,
-      imageUrl: item.variantImageUrl ?? '',
+      imageUrl: item.variantImageUrl,
       scentNotes: [],
       brand: '',
       rating: 0,

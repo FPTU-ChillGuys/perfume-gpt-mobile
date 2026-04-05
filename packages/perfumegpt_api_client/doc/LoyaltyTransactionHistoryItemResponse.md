@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **transactionType** | [**LoyaltyTransactionType**](LoyaltyTransactionType.md) |  | [optional] 
 **pointsChanged** | **int** |  | [optional] 
 **absolutePoints** | **int** |  | [optional] 
-**reason** | **String** |  | [optional] 
+**reason** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

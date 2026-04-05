@@ -10,7 +10,7 @@ abstract class _$CustomerAttributePreferenceResponseCWProxy {
   CustomerAttributePreferenceResponse attributeValueId(int? attributeValueId);
 
   CustomerAttributePreferenceResponse attributeValueName(
-    String? attributeValueName,
+    String attributeValueName,
   );
 
   /// Creates a new instance with the provided field values.
@@ -22,7 +22,7 @@ abstract class _$CustomerAttributePreferenceResponseCWProxy {
   /// ```
   CustomerAttributePreferenceResponse call({
     int? attributeValueId,
-    String? attributeValueName,
+    String attributeValueName,
   });
 }
 
@@ -40,7 +40,7 @@ class _$CustomerAttributePreferenceResponseCWProxyImpl
 
   @override
   CustomerAttributePreferenceResponse attributeValueName(
-    String? attributeValueName,
+    String attributeValueName,
   ) => call(attributeValueName: attributeValueName);
 
   @override
@@ -60,10 +60,12 @@ class _$CustomerAttributePreferenceResponseCWProxyImpl
           ? _value.attributeValueId
           // ignore: cast_nullable_to_non_nullable
           : attributeValueId as int?,
-      attributeValueName: attributeValueName == const $CopyWithPlaceholder()
+      attributeValueName:
+          attributeValueName == const $CopyWithPlaceholder() ||
+              attributeValueName == null
           ? _value.attributeValueName
           // ignore: cast_nullable_to_non_nullable
-          : attributeValueName as String?,
+          : attributeValueName as String,
     );
   }
 }
@@ -86,6 +88,7 @@ _$CustomerAttributePreferenceResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('CustomerAttributePreferenceResponse', json, (
       $checkedConvert,
     ) {
+      $checkKeys(json, requiredKeys: const ['attributeValueName']);
       final val = CustomerAttributePreferenceResponse(
         attributeValueId: $checkedConvert(
           'attributeValueId',
@@ -93,7 +96,7 @@ _$CustomerAttributePreferenceResponseFromJson(Map<String, dynamic> json) =>
         ),
         attributeValueName: $checkedConvert(
           'attributeValueName',
-          (v) => v as String?,
+          (v) => v as String,
         ),
       );
       return val;
@@ -103,5 +106,5 @@ Map<String, dynamic> _$CustomerAttributePreferenceResponseToJson(
   CustomerAttributePreferenceResponse instance,
 ) => <String, dynamic>{
   'attributeValueId': ?instance.attributeValueId,
-  'attributeValueName': ?instance.attributeValueName,
+  'attributeValueName': instance.attributeValueName,
 };

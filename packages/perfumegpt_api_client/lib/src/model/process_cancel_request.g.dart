@@ -11,6 +11,8 @@ abstract class _$ProcessCancelRequestCWProxy {
 
   ProcessCancelRequest staffNote(String? staffNote);
 
+  ProcessCancelRequest refundMethod(PaymentMethod? refundMethod);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessCancelRequest(...).copyWith.fieldName(value)`.
   ///
@@ -18,7 +20,11 @@ abstract class _$ProcessCancelRequestCWProxy {
   /// ```dart
   /// ProcessCancelRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  ProcessCancelRequest call({bool? isApproved, String? staffNote});
+  ProcessCancelRequest call({
+    bool? isApproved,
+    String? staffNote,
+    PaymentMethod? refundMethod,
+  });
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -38,6 +44,10 @@ class _$ProcessCancelRequestCWProxyImpl
       call(staffNote: staffNote);
 
   @override
+  ProcessCancelRequest refundMethod(PaymentMethod? refundMethod) =>
+      call(refundMethod: refundMethod);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessCancelRequest(...).copyWith.fieldName(value)`.
   ///
@@ -48,6 +58,7 @@ class _$ProcessCancelRequestCWProxyImpl
   ProcessCancelRequest call({
     Object? isApproved = const $CopyWithPlaceholder(),
     Object? staffNote = const $CopyWithPlaceholder(),
+    Object? refundMethod = const $CopyWithPlaceholder(),
   }) {
     return ProcessCancelRequest(
       isApproved: isApproved == const $CopyWithPlaceholder()
@@ -58,6 +69,10 @@ class _$ProcessCancelRequestCWProxyImpl
           ? _value.staffNote
           // ignore: cast_nullable_to_non_nullable
           : staffNote as String?,
+      refundMethod: refundMethod == const $CopyWithPlaceholder()
+          ? _value.refundMethod
+          // ignore: cast_nullable_to_non_nullable
+          : refundMethod as PaymentMethod?,
     );
   }
 }
@@ -80,6 +95,10 @@ ProcessCancelRequest _$ProcessCancelRequestFromJson(
   final val = ProcessCancelRequest(
     isApproved: $checkedConvert('isApproved', (v) => v as bool?),
     staffNote: $checkedConvert('staffNote', (v) => v as String?),
+    refundMethod: $checkedConvert(
+      'refundMethod',
+      (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
+    ),
   );
   return val;
 });
@@ -89,4 +108,12 @@ Map<String, dynamic> _$ProcessCancelRequestToJson(
 ) => <String, dynamic>{
   'isApproved': ?instance.isApproved,
   'staffNote': ?instance.staffNote,
+  'refundMethod': ?_$PaymentMethodEnumMap[instance.refundMethod],
+};
+
+const _$PaymentMethodEnumMap = {
+  PaymentMethod.cashOnDelivery: 'CashOnDelivery',
+  PaymentMethod.vnPay: 'VnPay',
+  PaymentMethod.momo: 'Momo',
+  PaymentMethod.cashInStore: 'CashInStore',
 };

@@ -13,21 +13,6 @@ void main() {
       // TODO
     });
 
-    // String productId
-    test('to test the property `productId`', () async {
-      // TODO
-    });
-
-    // String productName
-    test('to test the property `productName`', () async {
-      // TODO
-    });
-
-    // List<MediaResponse> media
-    test('to test the property `media`', () async {
-      // TODO
-    });
-
     // String barcode
     test('to test the property `barcode`', () async {
       // TODO
@@ -63,6 +48,11 @@ void main() {
       // TODO
     });
 
+    // num retailPrice
+    test('to test the property `retailPrice`', () async {
+      // TODO
+    });
+
     // VariantStatus status
     test('to test the property `status`', () async {
       // TODO
@@ -70,6 +60,46 @@ void main() {
 
     // int stockQuantity
     test('to test the property `stockQuantity`', () async {
+      // TODO
+    });
+
+    // int sillage
+    test('to test the property `sillage`', () async {
+      // TODO
+    });
+
+    // int longevity
+    test('to test the property `longevity`', () async {
+      // TODO
+    });
+
+    // String productId
+    test('to test the property `productId`', () async {
+      // TODO
+    });
+
+    // String productName
+    test('to test the property `productName`', () async {
+      // TODO
+    });
+
+    // List<MediaResponse> media
+    test('to test the property `media`', () async {
+      // TODO
+    });
+
+    // String campaignName
+    test('to test the property `campaignName`', () async {
+      // TODO
+    });
+
+    // String voucherCode
+    test('to test the property `voucherCode`', () async {
+      // TODO
+    });
+
+    // num discountedPrice
+    test('to test the property `discountedPrice`', () async {
       // TODO
     });
 

@@ -15,7 +15,7 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
     List<CreateOrderDetailRequest> orderDetails,
   );
 
-  CreateInStoreOrderRequest recipient(RecipientInformation? recipient);
+  CreateInStoreOrderRequest recipient(ContactAddressInformation? recipient);
 
   CreateInStoreOrderRequest payment(PaymentInformation payment);
 
@@ -30,7 +30,7 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
     String? voucherCode,
     bool? isPickupInStore,
     List<CreateOrderDetailRequest> orderDetails,
-    RecipientInformation? recipient,
+    ContactAddressInformation? recipient,
     PaymentInformation payment,
   });
 }
@@ -57,7 +57,7 @@ class _$CreateInStoreOrderRequestCWProxyImpl
   ) => call(orderDetails: orderDetails);
 
   @override
-  CreateInStoreOrderRequest recipient(RecipientInformation? recipient) =>
+  CreateInStoreOrderRequest recipient(ContactAddressInformation? recipient) =>
       call(recipient: recipient);
 
   @override
@@ -96,7 +96,7 @@ class _$CreateInStoreOrderRequestCWProxyImpl
       recipient: recipient == const $CopyWithPlaceholder()
           ? _value.recipient
           // ignore: cast_nullable_to_non_nullable
-          : recipient as RecipientInformation?,
+          : recipient as ContactAddressInformation?,
       payment: payment == const $CopyWithPlaceholder() || payment == null
           ? _value.payment
           // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ CreateInStoreOrderRequest _$CreateInStoreOrderRequestFromJson(
       'recipient',
       (v) => v == null
           ? null
-          : RecipientInformation.fromJson(v as Map<String, dynamic>),
+          : ContactAddressInformation.fromJson(v as Map<String, dynamic>),
     ),
     payment: $checkedConvert(
       'payment',

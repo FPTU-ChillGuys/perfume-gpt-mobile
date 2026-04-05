@@ -9,7 +9,7 @@ part of 'customer_note_preference_response.dart';
 abstract class _$CustomerNotePreferenceResponseCWProxy {
   CustomerNotePreferenceResponse noteId(int? noteId);
 
-  CustomerNotePreferenceResponse noteName(String? noteName);
+  CustomerNotePreferenceResponse noteName(String noteName);
 
   CustomerNotePreferenceResponse noteType(NoteType? noteType);
 
@@ -22,7 +22,7 @@ abstract class _$CustomerNotePreferenceResponseCWProxy {
   /// ```
   CustomerNotePreferenceResponse call({
     int? noteId,
-    String? noteName,
+    String noteName,
     NoteType? noteType,
   });
 }
@@ -39,7 +39,7 @@ class _$CustomerNotePreferenceResponseCWProxyImpl
   CustomerNotePreferenceResponse noteId(int? noteId) => call(noteId: noteId);
 
   @override
-  CustomerNotePreferenceResponse noteName(String? noteName) =>
+  CustomerNotePreferenceResponse noteName(String noteName) =>
       call(noteName: noteName);
 
   @override
@@ -64,10 +64,10 @@ class _$CustomerNotePreferenceResponseCWProxyImpl
           ? _value.noteId
           // ignore: cast_nullable_to_non_nullable
           : noteId as int?,
-      noteName: noteName == const $CopyWithPlaceholder()
+      noteName: noteName == const $CopyWithPlaceholder() || noteName == null
           ? _value.noteName
           // ignore: cast_nullable_to_non_nullable
-          : noteName as String?,
+          : noteName as String,
       noteType: noteType == const $CopyWithPlaceholder()
           ? _value.noteType
           // ignore: cast_nullable_to_non_nullable
@@ -92,9 +92,10 @@ extension $CustomerNotePreferenceResponseCopyWith
 CustomerNotePreferenceResponse _$CustomerNotePreferenceResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CustomerNotePreferenceResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['noteName']);
   final val = CustomerNotePreferenceResponse(
     noteId: $checkedConvert('noteId', (v) => (v as num?)?.toInt()),
-    noteName: $checkedConvert('noteName', (v) => v as String?),
+    noteName: $checkedConvert('noteName', (v) => v as String),
     noteType: $checkedConvert(
       'noteType',
       (v) => $enumDecodeNullable(_$NoteTypeEnumMap, v),
@@ -107,7 +108,7 @@ Map<String, dynamic> _$CustomerNotePreferenceResponseToJson(
   CustomerNotePreferenceResponse instance,
 ) => <String, dynamic>{
   'noteId': ?instance.noteId,
-  'noteName': ?instance.noteName,
+  'noteName': instance.noteName,
   'noteType': ?_$NoteTypeEnumMap[instance.noteType],
 };
 

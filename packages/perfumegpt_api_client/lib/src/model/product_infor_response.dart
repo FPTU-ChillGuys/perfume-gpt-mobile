@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_infor_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,193 +19,94 @@ part 'product_infor_response.g.dart';
 class ProductInforResponse {
   /// Returns a new [ProductInforResponse] instance.
   ProductInforResponse({
+    required this.productCode,
 
-     this.productCode,
+    required this.brandName,
 
-     this.brandName,
+    required this.origin,
 
-     this.origin,
+    this.releaseYear,
 
-     this.releaseYear,
+    this.gender,
 
-     this.gender,
+    required this.scentGroup,
 
-     this.scentGroup,
+    required this.style,
 
-     this.style,
+    required this.topNotes,
 
-     this.topNotes,
+    required this.heartNotes,
 
-     this.heartNotes,
+    required this.baseNotes,
 
-     this.baseNotes,
-
-     this.description,
+    required this.description,
   });
 
-  @JsonKey(
-    
-    name: r'productCode',
-    required: false,
-    includeIfNull: false,
-  )
+  @JsonKey(name: r'productCode', required: true, includeIfNull: false)
+  final String productCode;
 
+  @JsonKey(name: r'brandName', required: true, includeIfNull: false)
+  final String brandName;
 
-  final String? productCode;
+  @JsonKey(name: r'origin', required: true, includeIfNull: false)
+  final String origin;
 
-
-
-  @JsonKey(
-    
-    name: r'brandName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? brandName;
-
-
-
-  @JsonKey(
-    
-    name: r'origin',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? origin;
-
-
-
-  @JsonKey(
-    
-    name: r'releaseYear',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'releaseYear', required: false, includeIfNull: false)
   final int? releaseYear;
 
-
-
-  @JsonKey(
-    
-    name: r'gender',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'gender', required: false, includeIfNull: false)
   final Gender? gender;
 
+  @JsonKey(name: r'scentGroup', required: true, includeIfNull: false)
+  final String scentGroup;
 
+  @JsonKey(name: r'style', required: true, includeIfNull: false)
+  final String style;
 
-  @JsonKey(
-    
-    name: r'scentGroup',
-    required: false,
-    includeIfNull: false,
-  )
+  @JsonKey(name: r'topNotes', required: true, includeIfNull: false)
+  final String topNotes;
 
+  @JsonKey(name: r'heartNotes', required: true, includeIfNull: false)
+  final String heartNotes;
 
-  final String? scentGroup;
+  @JsonKey(name: r'baseNotes', required: true, includeIfNull: false)
+  final String baseNotes;
 
+  @JsonKey(name: r'description', required: true, includeIfNull: false)
+  final String description;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductInforResponse &&
+          other.productCode == productCode &&
+          other.brandName == brandName &&
+          other.origin == origin &&
+          other.releaseYear == releaseYear &&
+          other.gender == gender &&
+          other.scentGroup == scentGroup &&
+          other.style == style &&
+          other.topNotes == topNotes &&
+          other.heartNotes == heartNotes &&
+          other.baseNotes == baseNotes &&
+          other.description == description;
 
-  @JsonKey(
-    
-    name: r'style',
-    required: false,
-    includeIfNull: false,
-  )
+  @override
+  int get hashCode =>
+      productCode.hashCode +
+      brandName.hashCode +
+      origin.hashCode +
+      releaseYear.hashCode +
+      gender.hashCode +
+      scentGroup.hashCode +
+      style.hashCode +
+      topNotes.hashCode +
+      heartNotes.hashCode +
+      baseNotes.hashCode +
+      description.hashCode;
 
-
-  final String? style;
-
-
-
-  @JsonKey(
-    
-    name: r'topNotes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? topNotes;
-
-
-
-  @JsonKey(
-    
-    name: r'heartNotes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? heartNotes;
-
-
-
-  @JsonKey(
-    
-    name: r'baseNotes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? baseNotes;
-
-
-
-  @JsonKey(
-    
-    name: r'description',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? description;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductInforResponse &&
-      other.productCode == productCode &&
-      other.brandName == brandName &&
-      other.origin == origin &&
-      other.releaseYear == releaseYear &&
-      other.gender == gender &&
-      other.scentGroup == scentGroup &&
-      other.style == style &&
-      other.topNotes == topNotes &&
-      other.heartNotes == heartNotes &&
-      other.baseNotes == baseNotes &&
-      other.description == description;
-
-    @override
-    int get hashCode =>
-        productCode.hashCode +
-        brandName.hashCode +
-        origin.hashCode +
-        releaseYear.hashCode +
-        gender.hashCode +
-        scentGroup.hashCode +
-        style.hashCode +
-        topNotes.hashCode +
-        heartNotes.hashCode +
-        baseNotes.hashCode +
-        description.hashCode;
-
-  factory ProductInforResponse.fromJson(Map<String, dynamic> json) => _$ProductInforResponseFromJson(json);
+  factory ProductInforResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductInforResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductInforResponseToJson(this);
 
@@ -214,6 +114,4 @@ class ProductInforResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

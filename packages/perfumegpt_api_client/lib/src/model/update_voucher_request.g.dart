@@ -7,7 +7,7 @@ part of 'update_voucher_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateVoucherRequestCWProxy {
-  UpdateVoucherRequest code(String? code);
+  UpdateVoucherRequest code(String code);
 
   UpdateVoucherRequest discountValue(num? discountValue);
 
@@ -35,7 +35,7 @@ abstract class _$UpdateVoucherRequestCWProxy {
   /// UpdateVoucherRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateVoucherRequest call({
-    String? code,
+    String code,
     num? discountValue,
     DiscountType? discountType,
     VoucherType? applyType,
@@ -57,7 +57,7 @@ class _$UpdateVoucherRequestCWProxyImpl
   final UpdateVoucherRequest _value;
 
   @override
-  UpdateVoucherRequest code(String? code) => call(code: code);
+  UpdateVoucherRequest code(String code) => call(code: code);
 
   @override
   UpdateVoucherRequest discountValue(num? discountValue) =>
@@ -115,10 +115,10 @@ class _$UpdateVoucherRequestCWProxyImpl
     Object? isPublic = const $CopyWithPlaceholder(),
   }) {
     return UpdateVoucherRequest(
-      code: code == const $CopyWithPlaceholder()
+      code: code == const $CopyWithPlaceholder() || code == null
           ? _value.code
           // ignore: cast_nullable_to_non_nullable
-          : code as String?,
+          : code as String,
       discountValue: discountValue == const $CopyWithPlaceholder()
           ? _value.discountValue
           // ignore: cast_nullable_to_non_nullable
@@ -174,8 +174,9 @@ extension $UpdateVoucherRequestCopyWith on UpdateVoucherRequest {
 UpdateVoucherRequest _$UpdateVoucherRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateVoucherRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code']);
   final val = UpdateVoucherRequest(
-    code: $checkedConvert('code', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
     discountValue: $checkedConvert('discountValue', (v) => v as num?),
     discountType: $checkedConvert(
       'discountType',
@@ -210,7 +211,7 @@ UpdateVoucherRequest _$UpdateVoucherRequestFromJson(
 Map<String, dynamic> _$UpdateVoucherRequestToJson(
   UpdateVoucherRequest instance,
 ) => <String, dynamic>{
-  'code': ?instance.code,
+  'code': instance.code,
   'discountValue': ?instance.discountValue,
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
   'applyType': ?_$VoucherTypeEnumMap[instance.applyType],

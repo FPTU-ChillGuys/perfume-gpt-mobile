@@ -7,13 +7,13 @@ part of 'update_import_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateImportRequestCWProxy {
-  UpdateImportRequest supplierId(int? supplierId);
-
-  UpdateImportRequest expectedArrivalDate(DateTime expectedArrivalDate);
-
   UpdateImportRequest importDetails(
     List<UpdateImportDetailRequest> importDetails,
   );
+
+  UpdateImportRequest supplierId(int? supplierId);
+
+  UpdateImportRequest expectedArrivalDate(DateTime expectedArrivalDate);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateImportRequest(...).copyWith.fieldName(value)`.
@@ -23,9 +23,9 @@ abstract class _$UpdateImportRequestCWProxy {
   /// UpdateImportRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateImportRequest call({
+    List<UpdateImportDetailRequest> importDetails,
     int? supplierId,
     DateTime expectedArrivalDate,
-    List<UpdateImportDetailRequest> importDetails,
   });
 }
 
@@ -37,17 +37,17 @@ class _$UpdateImportRequestCWProxyImpl implements _$UpdateImportRequestCWProxy {
   final UpdateImportRequest _value;
 
   @override
+  UpdateImportRequest importDetails(
+    List<UpdateImportDetailRequest> importDetails,
+  ) => call(importDetails: importDetails);
+
+  @override
   UpdateImportRequest supplierId(int? supplierId) =>
       call(supplierId: supplierId);
 
   @override
   UpdateImportRequest expectedArrivalDate(DateTime expectedArrivalDate) =>
       call(expectedArrivalDate: expectedArrivalDate);
-
-  @override
-  UpdateImportRequest importDetails(
-    List<UpdateImportDetailRequest> importDetails,
-  ) => call(importDetails: importDetails);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -58,11 +58,16 @@ class _$UpdateImportRequestCWProxyImpl implements _$UpdateImportRequestCWProxy {
   /// UpdateImportRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   UpdateImportRequest call({
+    Object? importDetails = const $CopyWithPlaceholder(),
     Object? supplierId = const $CopyWithPlaceholder(),
     Object? expectedArrivalDate = const $CopyWithPlaceholder(),
-    Object? importDetails = const $CopyWithPlaceholder(),
   }) {
     return UpdateImportRequest(
+      importDetails:
+          importDetails == const $CopyWithPlaceholder() || importDetails == null
+          ? _value.importDetails
+          // ignore: cast_nullable_to_non_nullable
+          : importDetails as List<UpdateImportDetailRequest>,
       supplierId: supplierId == const $CopyWithPlaceholder()
           ? _value.supplierId
           // ignore: cast_nullable_to_non_nullable
@@ -73,11 +78,6 @@ class _$UpdateImportRequestCWProxyImpl implements _$UpdateImportRequestCWProxy {
           ? _value.expectedArrivalDate
           // ignore: cast_nullable_to_non_nullable
           : expectedArrivalDate as DateTime,
-      importDetails:
-          importDetails == const $CopyWithPlaceholder() || importDetails == null
-          ? _value.importDetails
-          // ignore: cast_nullable_to_non_nullable
-          : importDetails as List<UpdateImportDetailRequest>,
     );
   }
 }
@@ -98,14 +98,9 @@ UpdateImportRequest _$UpdateImportRequestFromJson(Map<String, dynamic> json) =>
     $checkedCreate('UpdateImportRequest', json, ($checkedConvert) {
       $checkKeys(
         json,
-        requiredKeys: const ['expectedArrivalDate', 'importDetails'],
+        requiredKeys: const ['importDetails', 'expectedArrivalDate'],
       );
       final val = UpdateImportRequest(
-        supplierId: $checkedConvert('supplierId', (v) => (v as num?)?.toInt()),
-        expectedArrivalDate: $checkedConvert(
-          'expectedArrivalDate',
-          (v) => DateTime.parse(v as String),
-        ),
         importDetails: $checkedConvert(
           'importDetails',
           (v) => (v as List<dynamic>)
@@ -116,6 +111,11 @@ UpdateImportRequest _$UpdateImportRequestFromJson(Map<String, dynamic> json) =>
               )
               .toList(),
         ),
+        supplierId: $checkedConvert('supplierId', (v) => (v as num?)?.toInt()),
+        expectedArrivalDate: $checkedConvert(
+          'expectedArrivalDate',
+          (v) => DateTime.parse(v as String),
+        ),
       );
       return val;
     });
@@ -123,7 +123,7 @@ UpdateImportRequest _$UpdateImportRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$UpdateImportRequestToJson(
   UpdateImportRequest instance,
 ) => <String, dynamic>{
+  'importDetails': instance.importDetails.map((e) => e.toJson()).toList(),
   'supplierId': ?instance.supplierId,
   'expectedArrivalDate': instance.expectedArrivalDate.toIso8601String(),
-  'importDetails': instance.importDetails.map((e) => e.toJson()).toList(),
 };

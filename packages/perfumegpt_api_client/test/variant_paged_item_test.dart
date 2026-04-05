@@ -17,8 +17,8 @@ void main() {
       // TODO
     });
 
-    // MediaResponse primaryImage
-    test('to test the property `primaryImage`', () async {
+    // String primaryImageUrl
+    test('to test the property `primaryImageUrl`', () async {
       // TODO
     });
 
@@ -54,6 +54,11 @@ void main() {
 
     // num basePrice
     test('to test the property `basePrice`', () async {
+      // TODO
+    });
+
+    // num retailPrice
+    test('to test the property `retailPrice`', () async {
       // TODO
     });
 

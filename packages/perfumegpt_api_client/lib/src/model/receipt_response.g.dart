@@ -9,19 +9,21 @@ part of 'receipt_response.dart';
 abstract class _$ReceiptResponseCWProxy {
   ReceiptResponse orderId(String? orderId);
 
+  ReceiptResponse code(String code);
+
   ReceiptResponse orderDate(DateTime? orderDate);
 
-  ReceiptResponse orderStatus(String? orderStatus);
+  ReceiptResponse orderStatus(String orderStatus);
 
-  ReceiptResponse staffName(String? staffName);
+  ReceiptResponse staffName(String staffName);
 
-  ReceiptResponse customerName(String? customerName);
+  ReceiptResponse customerName(String customerName);
 
-  ReceiptResponse recipientPhone(String? recipientPhone);
+  ReceiptResponse recipientPhone(String recipientPhone);
 
-  ReceiptResponse recipientAddress(String? recipientAddress);
+  ReceiptResponse recipientAddress(String recipientAddress);
 
-  ReceiptResponse items(List<ReceiptItemDto>? items);
+  ReceiptResponse items(List<ReceiptItemDto> items);
 
   ReceiptResponse subtotal(num? subtotal);
 
@@ -31,7 +33,7 @@ abstract class _$ReceiptResponseCWProxy {
 
   ReceiptResponse total(num? total);
 
-  ReceiptResponse paymentMethod(String? paymentMethod);
+  ReceiptResponse paymentMethod(String paymentMethod);
 
   ReceiptResponse note(String? note);
 
@@ -44,18 +46,19 @@ abstract class _$ReceiptResponseCWProxy {
   /// ```
   ReceiptResponse call({
     String? orderId,
+    String code,
     DateTime? orderDate,
-    String? orderStatus,
-    String? staffName,
-    String? customerName,
-    String? recipientPhone,
-    String? recipientAddress,
-    List<ReceiptItemDto>? items,
+    String orderStatus,
+    String staffName,
+    String customerName,
+    String recipientPhone,
+    String recipientAddress,
+    List<ReceiptItemDto> items,
     num? subtotal,
     num? discount,
     num? tax,
     num? total,
-    String? paymentMethod,
+    String paymentMethod,
     String? note,
   });
 }
@@ -71,29 +74,32 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
   ReceiptResponse orderId(String? orderId) => call(orderId: orderId);
 
   @override
+  ReceiptResponse code(String code) => call(code: code);
+
+  @override
   ReceiptResponse orderDate(DateTime? orderDate) => call(orderDate: orderDate);
 
   @override
-  ReceiptResponse orderStatus(String? orderStatus) =>
+  ReceiptResponse orderStatus(String orderStatus) =>
       call(orderStatus: orderStatus);
 
   @override
-  ReceiptResponse staffName(String? staffName) => call(staffName: staffName);
+  ReceiptResponse staffName(String staffName) => call(staffName: staffName);
 
   @override
-  ReceiptResponse customerName(String? customerName) =>
+  ReceiptResponse customerName(String customerName) =>
       call(customerName: customerName);
 
   @override
-  ReceiptResponse recipientPhone(String? recipientPhone) =>
+  ReceiptResponse recipientPhone(String recipientPhone) =>
       call(recipientPhone: recipientPhone);
 
   @override
-  ReceiptResponse recipientAddress(String? recipientAddress) =>
+  ReceiptResponse recipientAddress(String recipientAddress) =>
       call(recipientAddress: recipientAddress);
 
   @override
-  ReceiptResponse items(List<ReceiptItemDto>? items) => call(items: items);
+  ReceiptResponse items(List<ReceiptItemDto> items) => call(items: items);
 
   @override
   ReceiptResponse subtotal(num? subtotal) => call(subtotal: subtotal);
@@ -108,7 +114,7 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
   ReceiptResponse total(num? total) => call(total: total);
 
   @override
-  ReceiptResponse paymentMethod(String? paymentMethod) =>
+  ReceiptResponse paymentMethod(String paymentMethod) =>
       call(paymentMethod: paymentMethod);
 
   @override
@@ -124,6 +130,7 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
   /// ```
   ReceiptResponse call({
     Object? orderId = const $CopyWithPlaceholder(),
+    Object? code = const $CopyWithPlaceholder(),
     Object? orderDate = const $CopyWithPlaceholder(),
     Object? orderStatus = const $CopyWithPlaceholder(),
     Object? staffName = const $CopyWithPlaceholder(),
@@ -143,34 +150,44 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
           ? _value.orderId
           // ignore: cast_nullable_to_non_nullable
           : orderId as String?,
+      code: code == const $CopyWithPlaceholder() || code == null
+          ? _value.code
+          // ignore: cast_nullable_to_non_nullable
+          : code as String,
       orderDate: orderDate == const $CopyWithPlaceholder()
           ? _value.orderDate
           // ignore: cast_nullable_to_non_nullable
           : orderDate as DateTime?,
-      orderStatus: orderStatus == const $CopyWithPlaceholder()
+      orderStatus:
+          orderStatus == const $CopyWithPlaceholder() || orderStatus == null
           ? _value.orderStatus
           // ignore: cast_nullable_to_non_nullable
-          : orderStatus as String?,
-      staffName: staffName == const $CopyWithPlaceholder()
+          : orderStatus as String,
+      staffName: staffName == const $CopyWithPlaceholder() || staffName == null
           ? _value.staffName
           // ignore: cast_nullable_to_non_nullable
-          : staffName as String?,
-      customerName: customerName == const $CopyWithPlaceholder()
+          : staffName as String,
+      customerName:
+          customerName == const $CopyWithPlaceholder() || customerName == null
           ? _value.customerName
           // ignore: cast_nullable_to_non_nullable
-          : customerName as String?,
-      recipientPhone: recipientPhone == const $CopyWithPlaceholder()
+          : customerName as String,
+      recipientPhone:
+          recipientPhone == const $CopyWithPlaceholder() ||
+              recipientPhone == null
           ? _value.recipientPhone
           // ignore: cast_nullable_to_non_nullable
-          : recipientPhone as String?,
-      recipientAddress: recipientAddress == const $CopyWithPlaceholder()
+          : recipientPhone as String,
+      recipientAddress:
+          recipientAddress == const $CopyWithPlaceholder() ||
+              recipientAddress == null
           ? _value.recipientAddress
           // ignore: cast_nullable_to_non_nullable
-          : recipientAddress as String?,
-      items: items == const $CopyWithPlaceholder()
+          : recipientAddress as String,
+      items: items == const $CopyWithPlaceholder() || items == null
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
-          : items as List<ReceiptItemDto>?,
+          : items as List<ReceiptItemDto>,
       subtotal: subtotal == const $CopyWithPlaceholder()
           ? _value.subtotal
           // ignore: cast_nullable_to_non_nullable
@@ -187,10 +204,11 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
           ? _value.total
           // ignore: cast_nullable_to_non_nullable
           : total as num?,
-      paymentMethod: paymentMethod == const $CopyWithPlaceholder()
+      paymentMethod:
+          paymentMethod == const $CopyWithPlaceholder() || paymentMethod == null
           ? _value.paymentMethod
           // ignore: cast_nullable_to_non_nullable
-          : paymentMethod as String?,
+          : paymentMethod as String,
       note: note == const $CopyWithPlaceholder()
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
@@ -212,31 +230,45 @@ extension $ReceiptResponseCopyWith on ReceiptResponse {
 
 ReceiptResponse _$ReceiptResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('ReceiptResponse', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const [
+          'code',
+          'orderStatus',
+          'staffName',
+          'customerName',
+          'recipientPhone',
+          'recipientAddress',
+          'items',
+          'paymentMethod',
+        ],
+      );
       final val = ReceiptResponse(
         orderId: $checkedConvert('orderId', (v) => v as String?),
+        code: $checkedConvert('code', (v) => v as String),
         orderDate: $checkedConvert(
           'orderDate',
           (v) => v == null ? null : DateTime.parse(v as String),
         ),
-        orderStatus: $checkedConvert('orderStatus', (v) => v as String?),
-        staffName: $checkedConvert('staffName', (v) => v as String?),
-        customerName: $checkedConvert('customerName', (v) => v as String?),
-        recipientPhone: $checkedConvert('recipientPhone', (v) => v as String?),
+        orderStatus: $checkedConvert('orderStatus', (v) => v as String),
+        staffName: $checkedConvert('staffName', (v) => v as String),
+        customerName: $checkedConvert('customerName', (v) => v as String),
+        recipientPhone: $checkedConvert('recipientPhone', (v) => v as String),
         recipientAddress: $checkedConvert(
           'recipientAddress',
-          (v) => v as String?,
+          (v) => v as String,
         ),
         items: $checkedConvert(
           'items',
-          (v) => (v as List<dynamic>?)
-              ?.map((e) => ReceiptItemDto.fromJson(e as Map<String, dynamic>))
+          (v) => (v as List<dynamic>)
+              .map((e) => ReceiptItemDto.fromJson(e as Map<String, dynamic>))
               .toList(),
         ),
         subtotal: $checkedConvert('subtotal', (v) => v as num?),
         discount: $checkedConvert('discount', (v) => v as num?),
         tax: $checkedConvert('tax', (v) => v as num?),
         total: $checkedConvert('total', (v) => v as num?),
-        paymentMethod: $checkedConvert('paymentMethod', (v) => v as String?),
+        paymentMethod: $checkedConvert('paymentMethod', (v) => v as String),
         note: $checkedConvert('note', (v) => v as String?),
       );
       return val;
@@ -245,17 +277,18 @@ ReceiptResponse _$ReceiptResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ReceiptResponseToJson(ReceiptResponse instance) =>
     <String, dynamic>{
       'orderId': ?instance.orderId,
+      'code': instance.code,
       'orderDate': ?instance.orderDate?.toIso8601String(),
-      'orderStatus': ?instance.orderStatus,
-      'staffName': ?instance.staffName,
-      'customerName': ?instance.customerName,
-      'recipientPhone': ?instance.recipientPhone,
-      'recipientAddress': ?instance.recipientAddress,
-      'items': ?instance.items?.map((e) => e.toJson()).toList(),
+      'orderStatus': instance.orderStatus,
+      'staffName': instance.staffName,
+      'customerName': instance.customerName,
+      'recipientPhone': instance.recipientPhone,
+      'recipientAddress': instance.recipientAddress,
+      'items': instance.items.map((e) => e.toJson()).toList(),
       'subtotal': ?instance.subtotal,
       'discount': ?instance.discount,
       'tax': ?instance.tax,
       'total': ?instance.total,
-      'paymentMethod': ?instance.paymentMethod,
+      'paymentMethod': instance.paymentMethod,
       'note': ?instance.note,
     };

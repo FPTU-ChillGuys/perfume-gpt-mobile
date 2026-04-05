@@ -1,16 +1,16 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateOlfactoryFamilyRequest
 void main() {
-  final instance = CreateOlfactoryFamilyRequestBuilder();
-  // TODO add properties to the builder and call build()
+  final CreateOlfactoryFamilyRequest?
+  instance = /* CreateOlfactoryFamilyRequest(...) */ null;
+  // TODO add properties to the entity
 
   group(CreateOlfactoryFamilyRequest, () {
     // String name
     test('to test the property `name`', () async {
       // TODO
     });
-
   });
 }

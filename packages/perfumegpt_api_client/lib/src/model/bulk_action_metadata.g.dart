@@ -7,7 +7,7 @@ part of 'bulk_action_metadata.dart';
 // **************************************************************************
 
 abstract class _$BulkActionMetadataCWProxy {
-  BulkActionMetadata operations(List<BulkOperationResult>? operations);
+  BulkActionMetadata operations(List<BulkOperationResult> operations);
 
   BulkActionMetadata hasPartialFailure(bool? hasPartialFailure);
 
@@ -27,7 +27,7 @@ abstract class _$BulkActionMetadataCWProxy {
   /// BulkActionMetadata(...).copyWith(id: 12, name: "My name")
   /// ```
   BulkActionMetadata call({
-    List<BulkOperationResult>? operations,
+    List<BulkOperationResult> operations,
     bool? hasPartialFailure,
     bool? allSucceeded,
     int? totalOperations,
@@ -44,7 +44,7 @@ class _$BulkActionMetadataCWProxyImpl implements _$BulkActionMetadataCWProxy {
   final BulkActionMetadata _value;
 
   @override
-  BulkActionMetadata operations(List<BulkOperationResult>? operations) =>
+  BulkActionMetadata operations(List<BulkOperationResult> operations) =>
       call(operations: operations);
 
   @override
@@ -84,10 +84,11 @@ class _$BulkActionMetadataCWProxyImpl implements _$BulkActionMetadataCWProxy {
     Object? totalFailed = const $CopyWithPlaceholder(),
   }) {
     return BulkActionMetadata(
-      operations: operations == const $CopyWithPlaceholder()
+      operations:
+          operations == const $CopyWithPlaceholder() || operations == null
           ? _value.operations
           // ignore: cast_nullable_to_non_nullable
-          : operations as List<BulkOperationResult>?,
+          : operations as List<BulkOperationResult>,
       hasPartialFailure: hasPartialFailure == const $CopyWithPlaceholder()
           ? _value.hasPartialFailure
           // ignore: cast_nullable_to_non_nullable
@@ -127,11 +128,12 @@ extension $BulkActionMetadataCopyWith on BulkActionMetadata {
 BulkActionMetadata _$BulkActionMetadataFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('BulkActionMetadata', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['operations']);
   final val = BulkActionMetadata(
     operations: $checkedConvert(
       'operations',
-      (v) => (v as List<dynamic>?)
-          ?.map((e) => BulkOperationResult.fromJson(e as Map<String, dynamic>))
+      (v) => (v as List<dynamic>)
+          .map((e) => BulkOperationResult.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
     hasPartialFailure: $checkedConvert('hasPartialFailure', (v) => v as bool?),
@@ -151,7 +153,7 @@ BulkActionMetadata _$BulkActionMetadataFromJson(
 
 Map<String, dynamic> _$BulkActionMetadataToJson(BulkActionMetadata instance) =>
     <String, dynamic>{
-      'operations': ?instance.operations?.map((e) => e.toJson()).toList(),
+      'operations': instance.operations.map((e) => e.toJson()).toList(),
       'hasPartialFailure': ?instance.hasPartialFailure,
       'allSucceeded': ?instance.allSucceeded,
       'totalOperations': ?instance.totalOperations,

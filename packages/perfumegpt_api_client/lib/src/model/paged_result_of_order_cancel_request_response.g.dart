@@ -17,7 +17,7 @@ abstract class _$PagedResultOfOrderCancelRequestResponseCWProxy {
 
   PagedResultOfOrderCancelRequestResponse totalCount(int totalCount);
 
-  PagedResultOfOrderCancelRequestResponse totalPages(int totalPages);
+  PagedResultOfOrderCancelRequestResponse totalPages(int? totalPages);
 
   PagedResultOfOrderCancelRequestResponse hasPreviousPage(
     bool? hasPreviousPage,
@@ -37,7 +37,7 @@ abstract class _$PagedResultOfOrderCancelRequestResponseCWProxy {
     int pageNumber,
     int pageSize,
     int totalCount,
-    int totalPages,
+    int? totalPages,
     bool? hasPreviousPage,
     bool? hasNextPage,
   });
@@ -69,7 +69,7 @@ class _$PagedResultOfOrderCancelRequestResponseCWProxyImpl
       call(totalCount: totalCount);
 
   @override
-  PagedResultOfOrderCancelRequestResponse totalPages(int totalPages) =>
+  PagedResultOfOrderCancelRequestResponse totalPages(int? totalPages) =>
       call(totalPages: totalPages);
 
   @override
@@ -117,11 +117,10 @@ class _$PagedResultOfOrderCancelRequestResponseCWProxyImpl
           ? _value.totalCount
           // ignore: cast_nullable_to_non_nullable
           : totalCount as int,
-      totalPages:
-          totalPages == const $CopyWithPlaceholder() || totalPages == null
+      totalPages: totalPages == const $CopyWithPlaceholder()
           ? _value.totalPages
           // ignore: cast_nullable_to_non_nullable
-          : totalPages as int,
+          : totalPages as int?,
       hasPreviousPage: hasPreviousPage == const $CopyWithPlaceholder()
           ? _value.hasPreviousPage
           // ignore: cast_nullable_to_non_nullable
@@ -154,13 +153,7 @@ _$PagedResultOfOrderCancelRequestResponseFromJson(Map<String, dynamic> json) =>
     ) {
       $checkKeys(
         json,
-        requiredKeys: const [
-          'items',
-          'pageNumber',
-          'pageSize',
-          'totalCount',
-          'totalPages',
-        ],
+        requiredKeys: const ['items', 'pageNumber', 'pageSize', 'totalCount'],
       );
       final val = PagedResultOfOrderCancelRequestResponse(
         items: $checkedConvert(
@@ -176,7 +169,7 @@ _$PagedResultOfOrderCancelRequestResponseFromJson(Map<String, dynamic> json) =>
         pageNumber: $checkedConvert('pageNumber', (v) => (v as num).toInt()),
         pageSize: $checkedConvert('pageSize', (v) => (v as num).toInt()),
         totalCount: $checkedConvert('totalCount', (v) => (v as num).toInt()),
-        totalPages: $checkedConvert('totalPages', (v) => (v as num).toInt()),
+        totalPages: $checkedConvert('totalPages', (v) => (v as num?)?.toInt()),
         hasPreviousPage: $checkedConvert('hasPreviousPage', (v) => v as bool?),
         hasNextPage: $checkedConvert('hasNextPage', (v) => v as bool?),
       );
@@ -190,7 +183,7 @@ Map<String, dynamic> _$PagedResultOfOrderCancelRequestResponseToJson(
   'pageNumber': instance.pageNumber,
   'pageSize': instance.pageSize,
   'totalCount': instance.totalCount,
-  'totalPages': instance.totalPages,
+  'totalPages': ?instance.totalPages,
   'hasPreviousPage': ?instance.hasPreviousPage,
   'hasNextPage': ?instance.hasNextPage,
 };

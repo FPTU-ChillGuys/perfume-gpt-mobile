@@ -9,7 +9,7 @@ part of 'concentration_response.dart';
 abstract class _$ConcentrationResponseCWProxy {
   ConcentrationResponse id(int? id);
 
-  ConcentrationResponse name(String? name);
+  ConcentrationResponse name(String name);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConcentrationResponse(...).copyWith.fieldName(value)`.
@@ -18,7 +18,7 @@ abstract class _$ConcentrationResponseCWProxy {
   /// ```dart
   /// ConcentrationResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  ConcentrationResponse call({int? id, String? name});
+  ConcentrationResponse call({int? id, String name});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -33,7 +33,7 @@ class _$ConcentrationResponseCWProxyImpl
   ConcentrationResponse id(int? id) => call(id: id);
 
   @override
-  ConcentrationResponse name(String? name) => call(name: name);
+  ConcentrationResponse name(String name) => call(name: name);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -52,10 +52,10 @@ class _$ConcentrationResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as int?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
     );
   }
 }
@@ -75,13 +75,14 @@ extension $ConcentrationResponseCopyWith on ConcentrationResponse {
 ConcentrationResponse _$ConcentrationResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ConcentrationResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
   final val = ConcentrationResponse(
     id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
   );
   return val;
 });
 
 Map<String, dynamic> _$ConcentrationResponseToJson(
   ConcentrationResponse instance,
-) => <String, dynamic>{'id': ?instance.id, 'name': ?instance.name};
+) => <String, dynamic>{'id': ?instance.id, 'name': instance.name};

@@ -27,13 +27,18 @@ void main() {
       // TODO
     });
 
-    // int status
+    // ShippingStatus status
     test('to test the property `status`', () async {
       // TODO
     });
 
-    // int leadTime
-    test('to test the property `leadTime`', () async {
+    // DateTime estimatedDeliveryDate
+    test('to test the property `estimatedDeliveryDate`', () async {
+      // TODO
+    });
+
+    // DateTime shippedDate
+    test('to test the property `shippedDate`', () async {
       // TODO
     });
   });

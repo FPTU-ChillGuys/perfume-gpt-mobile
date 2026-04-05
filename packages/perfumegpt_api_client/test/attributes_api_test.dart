@@ -16,6 +16,16 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfListOfAttributeValueLookupItem> apiAttributesAttributeIdValuesLookupGet(int attributeId) async
+    test('test apiAttributesAttributeIdValuesLookupGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfstring> apiAttributesAttributeIdValuesPost(int attributeId, CreateAttributeValueRequest createAttributeValueRequest) async
+    test('test apiAttributesAttributeIdValuesPost', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfListOfAttributeLookupItem> apiAttributesLookupGet({ bool isVariantLevel }) async
     test('test apiAttributesLookupGet', () async {
       // TODO
@@ -23,16 +33,6 @@ void main() {
 
     //Future<BaseResponseOfstring> apiAttributesPost(CreateAttributeRequest createAttributeRequest) async
     test('test apiAttributesPost', () async {
-      // TODO
-    });
-
-    //Future<BaseResponseOfListOfAttributeValueLookupItem> apiAttributesValuesLookupAttributeIdGet(int attributeId) async
-    test('test apiAttributesValuesLookupAttributeIdGet', () async {
-      // TODO
-    });
-
-    //Future<BaseResponseOfstring> apiAttributesValuesPost(CreateAttributeValueRequest createAttributeValueRequest) async
-    test('test apiAttributesValuesPost', () async {
       // TODO
     });
 

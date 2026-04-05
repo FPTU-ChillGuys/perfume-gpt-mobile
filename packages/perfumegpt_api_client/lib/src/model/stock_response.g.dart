@@ -11,15 +11,15 @@ abstract class _$StockResponseCWProxy {
 
   StockResponse variantId(String? variantId);
 
-  StockResponse variantSku(String? variantSku);
+  StockResponse variantSku(String variantSku);
 
-  StockResponse productName(String? productName);
+  StockResponse productName(String productName);
 
-  StockResponse variantImageUrl(String? variantImageUrl);
+  StockResponse variantImageUrl(String variantImageUrl);
 
   StockResponse volumeMl(int? volumeMl);
 
-  StockResponse concentrationName(String? concentrationName);
+  StockResponse concentrationName(String concentrationName);
 
   StockResponse totalQuantity(int? totalQuantity);
 
@@ -39,11 +39,11 @@ abstract class _$StockResponseCWProxy {
   StockResponse call({
     String? id,
     String? variantId,
-    String? variantSku,
-    String? productName,
-    String? variantImageUrl,
+    String variantSku,
+    String productName,
+    String variantImageUrl,
     int? volumeMl,
-    String? concentrationName,
+    String concentrationName,
     int? totalQuantity,
     int? availableQuantity,
     int? lowStockThreshold,
@@ -65,21 +65,21 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
   StockResponse variantId(String? variantId) => call(variantId: variantId);
 
   @override
-  StockResponse variantSku(String? variantSku) => call(variantSku: variantSku);
+  StockResponse variantSku(String variantSku) => call(variantSku: variantSku);
 
   @override
-  StockResponse productName(String? productName) =>
+  StockResponse productName(String productName) =>
       call(productName: productName);
 
   @override
-  StockResponse variantImageUrl(String? variantImageUrl) =>
+  StockResponse variantImageUrl(String variantImageUrl) =>
       call(variantImageUrl: variantImageUrl);
 
   @override
   StockResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
-  StockResponse concentrationName(String? concentrationName) =>
+  StockResponse concentrationName(String concentrationName) =>
       call(concentrationName: concentrationName);
 
   @override
@@ -127,26 +127,32 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
           ? _value.variantId
           // ignore: cast_nullable_to_non_nullable
           : variantId as String?,
-      variantSku: variantSku == const $CopyWithPlaceholder()
+      variantSku:
+          variantSku == const $CopyWithPlaceholder() || variantSku == null
           ? _value.variantSku
           // ignore: cast_nullable_to_non_nullable
-          : variantSku as String?,
-      productName: productName == const $CopyWithPlaceholder()
+          : variantSku as String,
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
-          : productName as String?,
-      variantImageUrl: variantImageUrl == const $CopyWithPlaceholder()
+          : productName as String,
+      variantImageUrl:
+          variantImageUrl == const $CopyWithPlaceholder() ||
+              variantImageUrl == null
           ? _value.variantImageUrl
           // ignore: cast_nullable_to_non_nullable
-          : variantImageUrl as String?,
+          : variantImageUrl as String,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
           : volumeMl as int?,
-      concentrationName: concentrationName == const $CopyWithPlaceholder()
+      concentrationName:
+          concentrationName == const $CopyWithPlaceholder() ||
+              concentrationName == null
           ? _value.concentrationName
           // ignore: cast_nullable_to_non_nullable
-          : concentrationName as String?,
+          : concentrationName as String,
       totalQuantity: totalQuantity == const $CopyWithPlaceholder()
           ? _value.totalQuantity
           // ignore: cast_nullable_to_non_nullable
@@ -180,19 +186,25 @@ extension $StockResponseCopyWith on StockResponse {
 
 StockResponse _$StockResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('StockResponse', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const [
+          'variantSku',
+          'productName',
+          'variantImageUrl',
+          'concentrationName',
+        ],
+      );
       final val = StockResponse(
         id: $checkedConvert('id', (v) => v as String?),
         variantId: $checkedConvert('variantId', (v) => v as String?),
-        variantSku: $checkedConvert('variantSku', (v) => v as String?),
-        productName: $checkedConvert('productName', (v) => v as String?),
-        variantImageUrl: $checkedConvert(
-          'variantImageUrl',
-          (v) => v as String?,
-        ),
+        variantSku: $checkedConvert('variantSku', (v) => v as String),
+        productName: $checkedConvert('productName', (v) => v as String),
+        variantImageUrl: $checkedConvert('variantImageUrl', (v) => v as String),
         volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
         concentrationName: $checkedConvert(
           'concentrationName',
-          (v) => v as String?,
+          (v) => v as String,
         ),
         totalQuantity: $checkedConvert(
           'totalQuantity',
@@ -218,11 +230,11 @@ Map<String, dynamic> _$StockResponseToJson(StockResponse instance) =>
     <String, dynamic>{
       'id': ?instance.id,
       'variantId': ?instance.variantId,
-      'variantSku': ?instance.variantSku,
-      'productName': ?instance.productName,
-      'variantImageUrl': ?instance.variantImageUrl,
+      'variantSku': instance.variantSku,
+      'productName': instance.productName,
+      'variantImageUrl': instance.variantImageUrl,
       'volumeMl': ?instance.volumeMl,
-      'concentrationName': ?instance.concentrationName,
+      'concentrationName': instance.concentrationName,
       'totalQuantity': ?instance.totalQuantity,
       'availableQuantity': ?instance.availableQuantity,
       'lowStockThreshold': ?instance.lowStockThreshold,

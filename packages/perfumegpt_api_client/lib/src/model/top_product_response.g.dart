@@ -9,7 +9,7 @@ part of 'top_product_response.dart';
 abstract class _$TopProductResponseCWProxy {
   TopProductResponse productId(String? productId);
 
-  TopProductResponse productName(String? productName);
+  TopProductResponse productName(String productName);
 
   TopProductResponse totalUnitsSold(int? totalUnitsSold);
 
@@ -24,7 +24,7 @@ abstract class _$TopProductResponseCWProxy {
   /// ```
   TopProductResponse call({
     String? productId,
-    String? productName,
+    String productName,
     int? totalUnitsSold,
     num? revenue,
   });
@@ -41,7 +41,7 @@ class _$TopProductResponseCWProxyImpl implements _$TopProductResponseCWProxy {
   TopProductResponse productId(String? productId) => call(productId: productId);
 
   @override
-  TopProductResponse productName(String? productName) =>
+  TopProductResponse productName(String productName) =>
       call(productName: productName);
 
   @override
@@ -70,10 +70,11 @@ class _$TopProductResponseCWProxyImpl implements _$TopProductResponseCWProxy {
           ? _value.productId
           // ignore: cast_nullable_to_non_nullable
           : productId as String?,
-      productName: productName == const $CopyWithPlaceholder()
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
-          : productName as String?,
+          : productName as String,
       totalUnitsSold: totalUnitsSold == const $CopyWithPlaceholder()
           ? _value.totalUnitsSold
           // ignore: cast_nullable_to_non_nullable
@@ -100,9 +101,10 @@ extension $TopProductResponseCopyWith on TopProductResponse {
 
 TopProductResponse _$TopProductResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('TopProductResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['productName']);
       final val = TopProductResponse(
         productId: $checkedConvert('productId', (v) => v as String?),
-        productName: $checkedConvert('productName', (v) => v as String?),
+        productName: $checkedConvert('productName', (v) => v as String),
         totalUnitsSold: $checkedConvert(
           'totalUnitsSold',
           (v) => (v as num?)?.toInt(),
@@ -115,7 +117,7 @@ TopProductResponse _$TopProductResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TopProductResponseToJson(TopProductResponse instance) =>
     <String, dynamic>{
       'productId': ?instance.productId,
-      'productName': ?instance.productName,
+      'productName': instance.productName,
       'totalUnitsSold': ?instance.totalUnitsSold,
       'revenue': ?instance.revenue,
     };

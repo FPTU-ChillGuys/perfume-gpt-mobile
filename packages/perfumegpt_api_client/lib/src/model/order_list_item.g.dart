@@ -9,6 +9,8 @@ part of 'order_list_item.dart';
 abstract class _$OrderListItemCWProxy {
   OrderListItem id(String? id);
 
+  OrderListItem code(String code);
+
   OrderListItem customerId(String? customerId);
 
   OrderListItem customerName(String? customerName);
@@ -27,11 +29,15 @@ abstract class _$OrderListItemCWProxy {
 
   OrderListItem itemCount(int? itemCount);
 
-  OrderListItem shippingStatus(int? shippingStatus);
+  OrderListItem isReturnalbe(bool? isReturnalbe);
+
+  OrderListItem shippingStatus(ShippingStatus? shippingStatus);
 
   OrderListItem createdAt(DateTime? createdAt);
 
   OrderListItem updatedAt(DateTime? updatedAt);
+
+  OrderListItem orderDetails(List<OrderDetailListItem> orderDetails);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderListItem(...).copyWith.fieldName(value)`.
@@ -42,6 +48,7 @@ abstract class _$OrderListItemCWProxy {
   /// ```
   OrderListItem call({
     String? id,
+    String code,
     String? customerId,
     String? customerName,
     String? staffId,
@@ -51,9 +58,11 @@ abstract class _$OrderListItemCWProxy {
     PaymentStatus? paymentStatus,
     num? totalAmount,
     int? itemCount,
-    int? shippingStatus,
+    bool? isReturnalbe,
+    ShippingStatus? shippingStatus,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<OrderDetailListItem> orderDetails,
   });
 }
 
@@ -66,6 +75,9 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
 
   @override
   OrderListItem id(String? id) => call(id: id);
+
+  @override
+  OrderListItem code(String code) => call(code: code);
 
   @override
   OrderListItem customerId(String? customerId) => call(customerId: customerId);
@@ -97,7 +109,11 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
   OrderListItem itemCount(int? itemCount) => call(itemCount: itemCount);
 
   @override
-  OrderListItem shippingStatus(int? shippingStatus) =>
+  OrderListItem isReturnalbe(bool? isReturnalbe) =>
+      call(isReturnalbe: isReturnalbe);
+
+  @override
+  OrderListItem shippingStatus(ShippingStatus? shippingStatus) =>
       call(shippingStatus: shippingStatus);
 
   @override
@@ -105,6 +121,10 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
 
   @override
   OrderListItem updatedAt(DateTime? updatedAt) => call(updatedAt: updatedAt);
+
+  @override
+  OrderListItem orderDetails(List<OrderDetailListItem> orderDetails) =>
+      call(orderDetails: orderDetails);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -116,6 +136,7 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
   /// ```
   OrderListItem call({
     Object? id = const $CopyWithPlaceholder(),
+    Object? code = const $CopyWithPlaceholder(),
     Object? customerId = const $CopyWithPlaceholder(),
     Object? customerName = const $CopyWithPlaceholder(),
     Object? staffId = const $CopyWithPlaceholder(),
@@ -125,15 +146,21 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
     Object? paymentStatus = const $CopyWithPlaceholder(),
     Object? totalAmount = const $CopyWithPlaceholder(),
     Object? itemCount = const $CopyWithPlaceholder(),
+    Object? isReturnalbe = const $CopyWithPlaceholder(),
     Object? shippingStatus = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? updatedAt = const $CopyWithPlaceholder(),
+    Object? orderDetails = const $CopyWithPlaceholder(),
   }) {
     return OrderListItem(
       id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
+      code: code == const $CopyWithPlaceholder() || code == null
+          ? _value.code
+          // ignore: cast_nullable_to_non_nullable
+          : code as String,
       customerId: customerId == const $CopyWithPlaceholder()
           ? _value.customerId
           // ignore: cast_nullable_to_non_nullable
@@ -170,10 +197,14 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
           ? _value.itemCount
           // ignore: cast_nullable_to_non_nullable
           : itemCount as int?,
+      isReturnalbe: isReturnalbe == const $CopyWithPlaceholder()
+          ? _value.isReturnalbe
+          // ignore: cast_nullable_to_non_nullable
+          : isReturnalbe as bool?,
       shippingStatus: shippingStatus == const $CopyWithPlaceholder()
           ? _value.shippingStatus
           // ignore: cast_nullable_to_non_nullable
-          : shippingStatus as int?,
+          : shippingStatus as ShippingStatus?,
       createdAt: createdAt == const $CopyWithPlaceholder()
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
@@ -182,6 +213,11 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
           ? _value.updatedAt
           // ignore: cast_nullable_to_non_nullable
           : updatedAt as DateTime?,
+      orderDetails:
+          orderDetails == const $CopyWithPlaceholder() || orderDetails == null
+          ? _value.orderDetails
+          // ignore: cast_nullable_to_non_nullable
+          : orderDetails as List<OrderDetailListItem>,
     );
   }
 }
@@ -199,8 +235,10 @@ extension $OrderListItemCopyWith on OrderListItem {
 
 OrderListItem _$OrderListItemFromJson(Map<String, dynamic> json) =>
     $checkedCreate('OrderListItem', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['code', 'orderDetails']);
       final val = OrderListItem(
         id: $checkedConvert('id', (v) => v as String?),
+        code: $checkedConvert('code', (v) => v as String),
         customerId: $checkedConvert('customerId', (v) => v as String?),
         customerName: $checkedConvert('customerName', (v) => v as String?),
         staffId: $checkedConvert('staffId', (v) => v as String?),
@@ -219,9 +257,10 @@ OrderListItem _$OrderListItemFromJson(Map<String, dynamic> json) =>
         ),
         totalAmount: $checkedConvert('totalAmount', (v) => v as num?),
         itemCount: $checkedConvert('itemCount', (v) => (v as num?)?.toInt()),
+        isReturnalbe: $checkedConvert('isReturnalbe', (v) => v as bool?),
         shippingStatus: $checkedConvert(
           'shippingStatus',
-          (v) => (v as num?)?.toInt(),
+          (v) => $enumDecodeNullable(_$ShippingStatusEnumMap, v),
         ),
         createdAt: $checkedConvert(
           'createdAt',
@@ -231,6 +270,14 @@ OrderListItem _$OrderListItemFromJson(Map<String, dynamic> json) =>
           'updatedAt',
           (v) => v == null ? null : DateTime.parse(v as String),
         ),
+        orderDetails: $checkedConvert(
+          'orderDetails',
+          (v) => (v as List<dynamic>)
+              .map(
+                (e) => OrderDetailListItem.fromJson(e as Map<String, dynamic>),
+              )
+              .toList(),
+        ),
       );
       return val;
     });
@@ -238,6 +285,7 @@ OrderListItem _$OrderListItemFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$OrderListItemToJson(OrderListItem instance) =>
     <String, dynamic>{
       'id': ?instance.id,
+      'code': instance.code,
       'customerId': ?instance.customerId,
       'customerName': ?instance.customerName,
       'staffId': ?instance.staffId,
@@ -247,9 +295,11 @@ Map<String, dynamic> _$OrderListItemToJson(OrderListItem instance) =>
       'paymentStatus': ?_$PaymentStatusEnumMap[instance.paymentStatus],
       'totalAmount': ?instance.totalAmount,
       'itemCount': ?instance.itemCount,
-      'shippingStatus': ?instance.shippingStatus,
+      'isReturnalbe': ?instance.isReturnalbe,
+      'shippingStatus': ?_$ShippingStatusEnumMap[instance.shippingStatus],
       'createdAt': ?instance.createdAt?.toIso8601String(),
       'updatedAt': ?instance.updatedAt?.toIso8601String(),
+      'orderDetails': instance.orderDetails.map((e) => e.toJson()).toList(),
     };
 
 const _$OrderTypeEnumMap = {
@@ -264,11 +314,22 @@ const _$OrderStatusEnumMap = {
   OrderStatus.delivered: 'Delivered',
   OrderStatus.returning: 'Returning',
   OrderStatus.cancelled: 'Cancelled',
+  OrderStatus.partialReturned: 'Partial_Returned',
   OrderStatus.returned: 'Returned',
 };
 
 const _$PaymentStatusEnumMap = {
   PaymentStatus.unpaid: 'Unpaid',
   PaymentStatus.paid: 'Paid',
+  PaymentStatus.partialRefunded: 'Partial_Refunded',
   PaymentStatus.refunded: 'Refunded',
+};
+
+const _$ShippingStatusEnumMap = {
+  ShippingStatus.pending: 'Pending',
+  ShippingStatus.delivering: 'Delivering',
+  ShippingStatus.delivered: 'Delivered',
+  ShippingStatus.cancelled: 'Cancelled',
+  ShippingStatus.returning: 'Returning',
+  ShippingStatus.returned: 'Returned',
 };

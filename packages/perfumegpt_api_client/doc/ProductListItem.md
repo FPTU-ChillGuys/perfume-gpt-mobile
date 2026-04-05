@@ -11,12 +11,12 @@ Name | Type | Description | Notes
 **id** | **String** |  | [optional] 
 **name** | **String** |  | [optional] 
 **brandId** | **int** |  | [optional] 
-**brandName** | **String** |  | [optional] 
+**brandName** | **String** |  | 
 **categoryId** | **int** |  | [optional] 
-**categoryName** | **String** |  | [optional] 
+**categoryName** | **String** |  | 
 **description** | **String** |  | [optional] 
 **numberOfVariants** | **int** |  | [optional] 
-**variantPrices** | **List&lt;num&gt;** |  | [optional] 
+**variantPrices** | **List&lt;num&gt;** |  | 
 **tags** | **List&lt;String&gt;** |  | [optional] 
 **primaryImage** | [**MediaResponse**](MediaResponse.md) |  | [optional] 
 

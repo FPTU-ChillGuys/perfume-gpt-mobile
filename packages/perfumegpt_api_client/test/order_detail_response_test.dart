@@ -37,6 +37,11 @@ void main() {
       // TODO
     });
 
+    // num refunablePrice
+    test('to test the property `refunablePrice`', () async {
+      // TODO
+    });
+
     // num total
     test('to test the property `total`', () async {
       // TODO

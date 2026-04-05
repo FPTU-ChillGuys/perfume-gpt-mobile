@@ -27,8 +27,8 @@ void main() {
       // TODO
     });
 
-    // int quantity
-    test('to test the property `quantity`', () async {
+    // int expectedQuantity
+    test('to test the property `expectedQuantity`', () async {
       // TODO
     });
 
@@ -42,8 +42,8 @@ void main() {
       // TODO
     });
 
-    // int rejectQuantity
-    test('to test the property `rejectQuantity`', () async {
+    // int rejectedQuantity
+    test('to test the property `rejectedQuantity`', () async {
       // TODO
     });
 

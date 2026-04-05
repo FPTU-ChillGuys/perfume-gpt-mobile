@@ -9,17 +9,17 @@ part of 'create_return_request_dto.dart';
 abstract class _$CreateReturnRequestDtoCWProxy {
   CreateReturnRequestDto orderId(String orderId);
 
-  CreateReturnRequestDto reason(String reason);
+  CreateReturnRequestDto reason(ReturnOrderReason reason);
 
-  CreateReturnRequestDto requestedRefundAmount(num? requestedRefundAmount);
+  CreateReturnRequestDto returnItems(List<ReturnItemDto> returnItems);
 
   CreateReturnRequestDto customerNote(String? customerNote);
 
-  CreateReturnRequestDto temporaryMediaIds(List<String>? temporaryMediaIds);
+  CreateReturnRequestDto savedAddressId(String? savedAddressId);
 
-  CreateReturnRequestDto returnItems(
-    List<CreateReturnRequestDetailDto> returnItems,
-  );
+  CreateReturnRequestDto recipient(ContactAddressInformation? recipient);
+
+  CreateReturnRequestDto temporaryMediaIds(List<String>? temporaryMediaIds);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateReturnRequestDto(...).copyWith.fieldName(value)`.
@@ -30,11 +30,12 @@ abstract class _$CreateReturnRequestDtoCWProxy {
   /// ```
   CreateReturnRequestDto call({
     String orderId,
-    String reason,
-    num? requestedRefundAmount,
+    ReturnOrderReason reason,
+    List<ReturnItemDto> returnItems,
     String? customerNote,
+    String? savedAddressId,
+    ContactAddressInformation? recipient,
     List<String>? temporaryMediaIds,
-    List<CreateReturnRequestDetailDto> returnItems,
   });
 }
 
@@ -50,24 +51,28 @@ class _$CreateReturnRequestDtoCWProxyImpl
   CreateReturnRequestDto orderId(String orderId) => call(orderId: orderId);
 
   @override
-  CreateReturnRequestDto reason(String reason) => call(reason: reason);
+  CreateReturnRequestDto reason(ReturnOrderReason reason) =>
+      call(reason: reason);
 
   @override
-  CreateReturnRequestDto requestedRefundAmount(num? requestedRefundAmount) =>
-      call(requestedRefundAmount: requestedRefundAmount);
+  CreateReturnRequestDto returnItems(List<ReturnItemDto> returnItems) =>
+      call(returnItems: returnItems);
 
   @override
   CreateReturnRequestDto customerNote(String? customerNote) =>
       call(customerNote: customerNote);
 
   @override
-  CreateReturnRequestDto temporaryMediaIds(List<String>? temporaryMediaIds) =>
-      call(temporaryMediaIds: temporaryMediaIds);
+  CreateReturnRequestDto savedAddressId(String? savedAddressId) =>
+      call(savedAddressId: savedAddressId);
 
   @override
-  CreateReturnRequestDto returnItems(
-    List<CreateReturnRequestDetailDto> returnItems,
-  ) => call(returnItems: returnItems);
+  CreateReturnRequestDto recipient(ContactAddressInformation? recipient) =>
+      call(recipient: recipient);
+
+  @override
+  CreateReturnRequestDto temporaryMediaIds(List<String>? temporaryMediaIds) =>
+      call(temporaryMediaIds: temporaryMediaIds);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -80,10 +85,11 @@ class _$CreateReturnRequestDtoCWProxyImpl
   CreateReturnRequestDto call({
     Object? orderId = const $CopyWithPlaceholder(),
     Object? reason = const $CopyWithPlaceholder(),
-    Object? requestedRefundAmount = const $CopyWithPlaceholder(),
-    Object? customerNote = const $CopyWithPlaceholder(),
-    Object? temporaryMediaIds = const $CopyWithPlaceholder(),
     Object? returnItems = const $CopyWithPlaceholder(),
+    Object? customerNote = const $CopyWithPlaceholder(),
+    Object? savedAddressId = const $CopyWithPlaceholder(),
+    Object? recipient = const $CopyWithPlaceholder(),
+    Object? temporaryMediaIds = const $CopyWithPlaceholder(),
   }) {
     return CreateReturnRequestDto(
       orderId: orderId == const $CopyWithPlaceholder() || orderId == null
@@ -93,25 +99,28 @@ class _$CreateReturnRequestDtoCWProxyImpl
       reason: reason == const $CopyWithPlaceholder() || reason == null
           ? _value.reason
           // ignore: cast_nullable_to_non_nullable
-          : reason as String,
-      requestedRefundAmount:
-          requestedRefundAmount == const $CopyWithPlaceholder()
-          ? _value.requestedRefundAmount
-          // ignore: cast_nullable_to_non_nullable
-          : requestedRefundAmount as num?,
-      customerNote: customerNote == const $CopyWithPlaceholder()
-          ? _value.customerNote
-          // ignore: cast_nullable_to_non_nullable
-          : customerNote as String?,
-      temporaryMediaIds: temporaryMediaIds == const $CopyWithPlaceholder()
-          ? _value.temporaryMediaIds
-          // ignore: cast_nullable_to_non_nullable
-          : temporaryMediaIds as List<String>?,
+          : reason as ReturnOrderReason,
       returnItems:
           returnItems == const $CopyWithPlaceholder() || returnItems == null
           ? _value.returnItems
           // ignore: cast_nullable_to_non_nullable
-          : returnItems as List<CreateReturnRequestDetailDto>,
+          : returnItems as List<ReturnItemDto>,
+      customerNote: customerNote == const $CopyWithPlaceholder()
+          ? _value.customerNote
+          // ignore: cast_nullable_to_non_nullable
+          : customerNote as String?,
+      savedAddressId: savedAddressId == const $CopyWithPlaceholder()
+          ? _value.savedAddressId
+          // ignore: cast_nullable_to_non_nullable
+          : savedAddressId as String?,
+      recipient: recipient == const $CopyWithPlaceholder()
+          ? _value.recipient
+          // ignore: cast_nullable_to_non_nullable
+          : recipient as ContactAddressInformation?,
+      temporaryMediaIds: temporaryMediaIds == const $CopyWithPlaceholder()
+          ? _value.temporaryMediaIds
+          // ignore: cast_nullable_to_non_nullable
+          : temporaryMediaIds as List<String>?,
     );
   }
 }
@@ -134,25 +143,27 @@ CreateReturnRequestDto _$CreateReturnRequestDtoFromJson(
   $checkKeys(json, requiredKeys: const ['orderId', 'reason', 'returnItems']);
   final val = CreateReturnRequestDto(
     orderId: $checkedConvert('orderId', (v) => v as String),
-    reason: $checkedConvert('reason', (v) => v as String),
-    requestedRefundAmount: $checkedConvert(
-      'requestedRefundAmount',
-      (v) => v as num?,
-    ),
-    customerNote: $checkedConvert('customerNote', (v) => v as String?),
-    temporaryMediaIds: $checkedConvert(
-      'temporaryMediaIds',
-      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    reason: $checkedConvert(
+      'reason',
+      (v) => $enumDecode(_$ReturnOrderReasonEnumMap, v),
     ),
     returnItems: $checkedConvert(
       'returnItems',
       (v) => (v as List<dynamic>)
-          .map(
-            (e) => CreateReturnRequestDetailDto.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
+          .map((e) => ReturnItemDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+    ),
+    customerNote: $checkedConvert('customerNote', (v) => v as String?),
+    savedAddressId: $checkedConvert('savedAddressId', (v) => v as String?),
+    recipient: $checkedConvert(
+      'recipient',
+      (v) => v == null
+          ? null
+          : ContactAddressInformation.fromJson(v as Map<String, dynamic>),
+    ),
+    temporaryMediaIds: $checkedConvert(
+      'temporaryMediaIds',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
     ),
   );
   return val;
@@ -162,9 +173,18 @@ Map<String, dynamic> _$CreateReturnRequestDtoToJson(
   CreateReturnRequestDto instance,
 ) => <String, dynamic>{
   'orderId': instance.orderId,
-  'reason': instance.reason,
-  'requestedRefundAmount': ?instance.requestedRefundAmount,
-  'customerNote': ?instance.customerNote,
-  'temporaryMediaIds': ?instance.temporaryMediaIds,
+  'reason': _$ReturnOrderReasonEnumMap[instance.reason]!,
   'returnItems': instance.returnItems.map((e) => e.toJson()).toList(),
+  'customerNote': ?instance.customerNote,
+  'savedAddressId': ?instance.savedAddressId,
+  'recipient': ?instance.recipient?.toJson(),
+  'temporaryMediaIds': ?instance.temporaryMediaIds,
+};
+
+const _$ReturnOrderReasonEnumMap = {
+  ReturnOrderReason.damagedProduct: 'DamagedProduct',
+  ReturnOrderReason.wrongItemReceived: 'WrongItemReceived',
+  ReturnOrderReason.itemNotAsDescribed: 'ItemNotAsDescribed',
+  ReturnOrderReason.changedMind: 'ChangedMind',
+  ReturnOrderReason.allergicReaction: 'AllergicReaction',
 };

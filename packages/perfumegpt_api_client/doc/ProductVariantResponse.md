@@ -9,11 +9,11 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
-**barcode** | **String** |  | [optional] 
-**sku** | **String** |  | [optional] 
+**barcode** | **String** |  | 
+**sku** | **String** |  | 
 **volumeMl** | **int** |  | [optional] 
 **concentrationId** | **int** |  | [optional] 
-**concentrationName** | **String** |  | [optional] 
+**concentrationName** | **String** |  | 
 **type** | [**VariantType**](VariantType.md) |  | [optional] 
 **basePrice** | **num** |  | [optional] 
 **retailPrice** | **num** |  | [optional] 
@@ -22,8 +22,8 @@ Name | Type | Description | Notes
 **sillage** | **int** |  | [optional] 
 **longevity** | **int** |  | [optional] 
 **productId** | **String** |  | [optional] 
-**productName** | **String** |  | [optional] 
-**media** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | [optional] 
+**productName** | **String** |  | 
+**media** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
 **campaignName** | **String** |  | [optional] 
 **voucherCode** | **String** |  | [optional] 
 **discountedPrice** | **num** |  | [optional] 

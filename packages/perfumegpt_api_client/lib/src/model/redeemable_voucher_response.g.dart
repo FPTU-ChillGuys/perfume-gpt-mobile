@@ -9,7 +9,7 @@ part of 'redeemable_voucher_response.dart';
 abstract class _$RedeemableVoucherResponseCWProxy {
   RedeemableVoucherResponse id(String? id);
 
-  RedeemableVoucherResponse code(String? code);
+  RedeemableVoucherResponse code(String code);
 
   RedeemableVoucherResponse discountValue(num? discountValue);
 
@@ -36,7 +36,7 @@ abstract class _$RedeemableVoucherResponseCWProxy {
   /// ```
   RedeemableVoucherResponse call({
     String? id,
-    String? code,
+    String code,
     num? discountValue,
     DiscountType? discountType,
     int? requiredPoints,
@@ -60,7 +60,7 @@ class _$RedeemableVoucherResponseCWProxyImpl
   RedeemableVoucherResponse id(String? id) => call(id: id);
 
   @override
-  RedeemableVoucherResponse code(String? code) => call(code: code);
+  RedeemableVoucherResponse code(String code) => call(code: code);
 
   @override
   RedeemableVoucherResponse discountValue(num? discountValue) =>
@@ -119,10 +119,10 @@ class _$RedeemableVoucherResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      code: code == const $CopyWithPlaceholder()
+      code: code == const $CopyWithPlaceholder() || code == null
           ? _value.code
           // ignore: cast_nullable_to_non_nullable
-          : code as String?,
+          : code as String,
       discountValue: discountValue == const $CopyWithPlaceholder()
           ? _value.discountValue
           // ignore: cast_nullable_to_non_nullable
@@ -174,9 +174,10 @@ extension $RedeemableVoucherResponseCopyWith on RedeemableVoucherResponse {
 RedeemableVoucherResponse _$RedeemableVoucherResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('RedeemableVoucherResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code']);
   final val = RedeemableVoucherResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    code: $checkedConvert('code', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
     discountValue: $checkedConvert('discountValue', (v) => v as num?),
     discountType: $checkedConvert(
       'discountType',
@@ -208,7 +209,7 @@ Map<String, dynamic> _$RedeemableVoucherResponseToJson(
   RedeemableVoucherResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'code': ?instance.code,
+  'code': instance.code,
   'discountValue': ?instance.discountValue,
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
   'requiredPoints': ?instance.requiredPoints,

@@ -22,8 +22,8 @@ void main() {
       // TODO
     });
 
-    // MediaResponse primaryImage
-    test('to test the property `primaryImage`', () async {
+    // String primaryImageUrl
+    test('to test the property `primaryImageUrl`', () async {
       // TODO
     });
   });

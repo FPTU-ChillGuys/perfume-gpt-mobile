@@ -52,6 +52,16 @@ void main() {
       // TODO
     });
 
+    // String staffFeedbackComment
+    test('to test the property `staffFeedbackComment`', () async {
+      // TODO
+    });
+
+    // DateTime staffFeedbackAt
+    test('to test the property `staffFeedbackAt`', () async {
+      // TODO
+    });
+
     // List<MediaResponse> images
     test('to test the property `images`', () async {
       // TODO

@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 **origin** | **String** |  | 
 **releaseYear** | **int** |  | [optional] 
 **description** | **String** |  | [optional] 
-**olfactoryFamilyIds** | **List&lt;int&gt;** |  | [optional] 
+**olfactoryFamilyIds** | **List&lt;int&gt;** |  | 
 **temporaryMediaIds** | **List&lt;String&gt;** |  | [optional] 
-**scentNotes** | [**List&lt;ScentNoteDto&gt;**](ScentNoteDto.md) |  | [optional] 
+**scentNotes** | [**List&lt;ScentNoteDto&gt;**](ScentNoteDto.md) |  | 
 **attributes** | [**List&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -87,23 +87,18 @@ void main() {
       // TODO
     });
 
-    // String moderatedByStaffId
-    test('to test the property `moderatedByStaffId`', () async {
+    // String staffFeedbackComment
+    test('to test the property `staffFeedbackComment`', () async {
       // TODO
     });
 
-    // String moderatedByStaffName
-    test('to test the property `moderatedByStaffName`', () async {
+    // String staffFeedbackByStaffId
+    test('to test the property `staffFeedbackByStaffId`', () async {
       // TODO
     });
 
-    // DateTime moderatedAt
-    test('to test the property `moderatedAt`', () async {
-      // TODO
-    });
-
-    // String moderationReason
-    test('to test the property `moderationReason`', () async {
+    // DateTime staffFeedbackAt
+    test('to test the property `staffFeedbackAt`', () async {
       // TODO
     });
 

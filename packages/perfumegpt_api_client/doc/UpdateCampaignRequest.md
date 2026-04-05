@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **endDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **type** | [**CampaignType**](CampaignType.md) |  | [optional] 
 **items** | [**List&lt;UpdateCampaignPromotionItemRequest&gt;**](UpdateCampaignPromotionItemRequest.md) |  | 
-**vouchers** | [**List&lt;UpdateCampaignVoucherRequest&gt;**](UpdateCampaignVoucherRequest.md) |  | [optional] 
+**vouchers** | [**List&lt;UpdateCampaignVoucherRequest&gt;**](UpdateCampaignVoucherRequest.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

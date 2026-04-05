@@ -1,10 +1,9 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
-
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 /// tests for ScentNotesApi
 void main() {
-  final instance = Openapi().getScentNotesApi();
+  final instance = PerfumegptApiClient().getScentNotesApi();
 
   group(ScentNotesApi, () {
     //Future<BaseResponseOfListOfScentNoteResponse> apiScentnotesGet() async
@@ -36,6 +35,5 @@ void main() {
     test('test apiScentnotesPost', () async {
       // TODO
     });
-
   });
 }

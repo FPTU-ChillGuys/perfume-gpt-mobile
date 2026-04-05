@@ -19,7 +19,7 @@ abstract class _$CreateCampaignRequestCWProxy {
 
   CreateCampaignRequest items(List<CreateCampaignPromotionItemRequest> items);
 
-  CreateCampaignRequest vouchers(List<CreateCampaignVoucherRequest>? vouchers);
+  CreateCampaignRequest vouchers(List<CreateCampaignVoucherRequest> vouchers);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateCampaignRequest(...).copyWith.fieldName(value)`.
@@ -35,7 +35,7 @@ abstract class _$CreateCampaignRequestCWProxy {
     DateTime? endDate,
     CampaignType? type,
     List<CreateCampaignPromotionItemRequest> items,
-    List<CreateCampaignVoucherRequest>? vouchers,
+    List<CreateCampaignVoucherRequest> vouchers,
   });
 }
 
@@ -69,9 +69,8 @@ class _$CreateCampaignRequestCWProxyImpl
       call(items: items);
 
   @override
-  CreateCampaignRequest vouchers(
-    List<CreateCampaignVoucherRequest>? vouchers,
-  ) => call(vouchers: vouchers);
+  CreateCampaignRequest vouchers(List<CreateCampaignVoucherRequest> vouchers) =>
+      call(vouchers: vouchers);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -115,10 +114,10 @@ class _$CreateCampaignRequestCWProxyImpl
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
           : items as List<CreateCampaignPromotionItemRequest>,
-      vouchers: vouchers == const $CopyWithPlaceholder()
+      vouchers: vouchers == const $CopyWithPlaceholder() || vouchers == null
           ? _value.vouchers
           // ignore: cast_nullable_to_non_nullable
-          : vouchers as List<CreateCampaignVoucherRequest>?,
+          : vouchers as List<CreateCampaignVoucherRequest>,
     );
   }
 }
@@ -138,7 +137,7 @@ extension $CreateCampaignRequestCopyWith on CreateCampaignRequest {
 CreateCampaignRequest _$CreateCampaignRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateCampaignRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['name', 'items']);
+  $checkKeys(json, requiredKeys: const ['name', 'items', 'vouchers']);
   final val = CreateCampaignRequest(
     name: $checkedConvert('name', (v) => v as String),
     description: $checkedConvert('description', (v) => v as String?),
@@ -166,8 +165,8 @@ CreateCampaignRequest _$CreateCampaignRequestFromJson(
     ),
     vouchers: $checkedConvert(
       'vouchers',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => CreateCampaignVoucherRequest.fromJson(
               e as Map<String, dynamic>,
             ),
@@ -187,7 +186,7 @@ Map<String, dynamic> _$CreateCampaignRequestToJson(
   'endDate': ?instance.endDate?.toIso8601String(),
   'type': ?_$CampaignTypeEnumMap[instance.type],
   'items': instance.items.map((e) => e.toJson()).toList(),
-  'vouchers': ?instance.vouchers?.map((e) => e.toJson()).toList(),
+  'vouchers': instance.vouchers.map((e) => e.toJson()).toList(),
 };
 
 const _$CampaignTypeEnumMap = {

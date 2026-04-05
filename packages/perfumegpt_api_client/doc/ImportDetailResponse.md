@@ -10,14 +10,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **variantId** | **String** |  | [optional] 
-**variantName** | **String** |  | [optional] 
-**variantSku** | **String** |  | [optional] 
+**variantName** | **String** |  | 
+**variantSku** | **String** |  | 
 **expectedQuantity** | **int** |  | [optional] 
 **unitPrice** | **num** |  | [optional] 
 **totalPrice** | **num** |  | [optional] 
 **rejectedQuantity** | **int** |  | [optional] 
 **note** | **String** |  | [optional] 
-**batches** | [**List&lt;BatchResponse&gt;**](BatchResponse.md) |  | [optional] 
+**batches** | [**List&lt;BatchResponse&gt;**](BatchResponse.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

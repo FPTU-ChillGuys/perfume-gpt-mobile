@@ -12,6 +12,11 @@ void main() {
       // TODO
     });
 
+    // String code
+    test('to test the property `code`', () async {
+      // TODO
+    });
+
     // OrderType type
     test('to test the property `type`', () async {
       // TODO
@@ -19,6 +24,11 @@ void main() {
 
     // OrderStatus status
     test('to test the property `status`', () async {
+      // TODO
+    });
+
+    // bool isReturnable
+    test('to test the property `isReturnable`', () async {
       // TODO
     });
 

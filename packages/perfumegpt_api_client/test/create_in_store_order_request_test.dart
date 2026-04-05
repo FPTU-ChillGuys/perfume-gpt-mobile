@@ -23,7 +23,7 @@ void main() {
       // TODO
     });
 
-    // RecipientInformation recipient
+    // ContactAddressInformation recipient
     test('to test the property `recipient`', () async {
       // TODO
     });

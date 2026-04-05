@@ -9,7 +9,7 @@ part of 'product_scent_note_response.dart';
 abstract class _$ProductScentNoteResponseCWProxy {
   ProductScentNoteResponse noteId(int? noteId);
 
-  ProductScentNoteResponse name(String? name);
+  ProductScentNoteResponse name(String name);
 
   ProductScentNoteResponse type(NoteType? type);
 
@@ -20,7 +20,7 @@ abstract class _$ProductScentNoteResponseCWProxy {
   /// ```dart
   /// ProductScentNoteResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  ProductScentNoteResponse call({int? noteId, String? name, NoteType? type});
+  ProductScentNoteResponse call({int? noteId, String name, NoteType? type});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -35,7 +35,7 @@ class _$ProductScentNoteResponseCWProxyImpl
   ProductScentNoteResponse noteId(int? noteId) => call(noteId: noteId);
 
   @override
-  ProductScentNoteResponse name(String? name) => call(name: name);
+  ProductScentNoteResponse name(String name) => call(name: name);
 
   @override
   ProductScentNoteResponse type(NoteType? type) => call(type: type);
@@ -58,10 +58,10 @@ class _$ProductScentNoteResponseCWProxyImpl
           ? _value.noteId
           // ignore: cast_nullable_to_non_nullable
           : noteId as int?,
-      name: name == const $CopyWithPlaceholder()
+      name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : name as String?,
+          : name as String,
       type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
@@ -85,9 +85,10 @@ extension $ProductScentNoteResponseCopyWith on ProductScentNoteResponse {
 ProductScentNoteResponse _$ProductScentNoteResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProductScentNoteResponse', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['name']);
   final val = ProductScentNoteResponse(
     noteId: $checkedConvert('noteId', (v) => (v as num?)?.toInt()),
-    name: $checkedConvert('name', (v) => v as String?),
+    name: $checkedConvert('name', (v) => v as String),
     type: $checkedConvert(
       'type',
       (v) => $enumDecodeNullable(_$NoteTypeEnumMap, v),
@@ -100,7 +101,7 @@ Map<String, dynamic> _$ProductScentNoteResponseToJson(
   ProductScentNoteResponse instance,
 ) => <String, dynamic>{
   'noteId': ?instance.noteId,
-  'name': ?instance.name,
+  'name': instance.name,
   'type': ?_$NoteTypeEnumMap[instance.type],
 };
 

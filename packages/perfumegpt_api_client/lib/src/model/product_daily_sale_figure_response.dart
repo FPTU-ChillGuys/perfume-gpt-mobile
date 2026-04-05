@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_daily_sale_figure_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,65 +19,36 @@ part 'product_daily_sale_figure_response.g.dart';
 class ProductDailySaleFigureResponse {
   /// Returns a new [ProductDailySaleFigureResponse] instance.
   ProductDailySaleFigureResponse({
+    this.productId,
 
-     this.productId,
+    required this.productName,
 
-     this.productName,
-
-     this.dailySaleFigures,
+    required this.dailySaleFigures,
   });
 
-  @JsonKey(
-    
-    name: r'productId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'productId', required: false, includeIfNull: false)
   final String? productId;
 
+  @JsonKey(name: r'productName', required: true, includeIfNull: false)
+  final String productName;
 
+  @JsonKey(name: r'dailySaleFigures', required: true, includeIfNull: false)
+  final List<VariantDailySaleFigure> dailySaleFigures;
 
-  @JsonKey(
-    
-    name: r'productName',
-    required: false,
-    includeIfNull: false,
-  )
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductDailySaleFigureResponse &&
+          other.productId == productId &&
+          other.productName == productName &&
+          other.dailySaleFigures == dailySaleFigures;
 
+  @override
+  int get hashCode =>
+      productId.hashCode + productName.hashCode + dailySaleFigures.hashCode;
 
-  final String? productName;
-
-
-
-  @JsonKey(
-    
-    name: r'dailySaleFigures',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final List<VariantDailySaleFigure>? dailySaleFigures;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductDailySaleFigureResponse &&
-      other.productId == productId &&
-      other.productName == productName &&
-      other.dailySaleFigures == dailySaleFigures;
-
-    @override
-    int get hashCode =>
-        productId.hashCode +
-        productName.hashCode +
-        dailySaleFigures.hashCode;
-
-  factory ProductDailySaleFigureResponse.fromJson(Map<String, dynamic> json) => _$ProductDailySaleFigureResponseFromJson(json);
+  factory ProductDailySaleFigureResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductDailySaleFigureResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductDailySaleFigureResponseToJson(this);
 
@@ -86,6 +56,4 @@ class ProductDailySaleFigureResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

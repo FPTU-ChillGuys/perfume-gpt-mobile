@@ -10,11 +10,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **newReservationId** | **String** |  | [optional] 
 **newBatchId** | **String** |  | [optional] 
-**newBatchCode** | **String** |  | [optional] 
+**newBatchCode** | **String** |  | 
 **newLocation** | **String** |  | [optional] 
 **reservedQuantity** | **int** |  | [optional] 
 **expiryDate** | [**DateTime**](DateTime.md) |  | [optional] 
-**message** | **String** |  | [optional] 
+**message** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

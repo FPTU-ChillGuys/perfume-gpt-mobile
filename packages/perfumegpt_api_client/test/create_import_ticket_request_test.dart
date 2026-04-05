@@ -8,6 +8,11 @@ void main() {
   // TODO add properties to the entity
 
   group(CreateImportTicketRequest, () {
+    // List<CreateImportDetailRequest> importDetails
+    test('to test the property `importDetails`', () async {
+      // TODO
+    });
+
     // int supplierId
     test('to test the property `supplierId`', () async {
       // TODO
@@ -15,11 +20,6 @@ void main() {
 
     // DateTime expectedArrivalDate
     test('to test the property `expectedArrivalDate`', () async {
-      // TODO
-    });
-
-    // List<CreateImportDetailRequest> importDetails
-    test('to test the property `importDetails`', () async {
       // TODO
     });
   });

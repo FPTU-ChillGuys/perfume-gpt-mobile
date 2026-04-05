@@ -7,7 +7,7 @@ part of 'user_cancel_order_request.dart';
 // **************************************************************************
 
 abstract class _$UserCancelOrderRequestCWProxy {
-  UserCancelOrderRequest reason(String? reason);
+  UserCancelOrderRequest reason(CancelOrderReason? reason);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UserCancelOrderRequest(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$UserCancelOrderRequestCWProxy {
   /// ```dart
   /// UserCancelOrderRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  UserCancelOrderRequest call({String? reason});
+  UserCancelOrderRequest call({CancelOrderReason? reason});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -28,7 +28,8 @@ class _$UserCancelOrderRequestCWProxyImpl
   final UserCancelOrderRequest _value;
 
   @override
-  UserCancelOrderRequest reason(String? reason) => call(reason: reason);
+  UserCancelOrderRequest reason(CancelOrderReason? reason) =>
+      call(reason: reason);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -43,7 +44,7 @@ class _$UserCancelOrderRequestCWProxyImpl
       reason: reason == const $CopyWithPlaceholder()
           ? _value.reason
           // ignore: cast_nullable_to_non_nullable
-          : reason as String?,
+          : reason as CancelOrderReason?,
     );
   }
 }
@@ -64,11 +65,23 @@ UserCancelOrderRequest _$UserCancelOrderRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UserCancelOrderRequest', json, ($checkedConvert) {
   final val = UserCancelOrderRequest(
-    reason: $checkedConvert('reason', (v) => v as String?),
+    reason: $checkedConvert(
+      'reason',
+      (v) => $enumDecodeNullable(_$CancelOrderReasonEnumMap, v),
+    ),
   );
   return val;
 });
 
 Map<String, dynamic> _$UserCancelOrderRequestToJson(
   UserCancelOrderRequest instance,
-) => <String, dynamic>{'reason': ?instance.reason};
+) => <String, dynamic>{'reason': ?_$CancelOrderReasonEnumMap[instance.reason]};
+
+const _$CancelOrderReasonEnumMap = {
+  CancelOrderReason.changedMind: 'ChangedMind',
+  CancelOrderReason.foundBetterPrice: 'FoundBetterPrice',
+  CancelOrderReason.wrongShippingInformation: 'WrongShippingInformation',
+  CancelOrderReason.paymentIssue: 'PaymentIssue',
+  CancelOrderReason.deliveryTooLate: 'DeliveryTooLate',
+  CancelOrderReason.insufficientStock: 'InsufficientStock',
+};
