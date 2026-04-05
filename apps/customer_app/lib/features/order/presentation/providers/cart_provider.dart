@@ -22,7 +22,14 @@ class Cart extends _$Cart {
             state[i],
       ];
     } else {
-      state = [...state, CartItem(product: product, quantity: 1)];
+      state = [
+        ...state,
+        CartItem(
+          variantId: product.id, // TODO: Use actual variant ID when available
+          product: product,
+          quantity: 1,
+        ),
+      ];
     }
   }
 
