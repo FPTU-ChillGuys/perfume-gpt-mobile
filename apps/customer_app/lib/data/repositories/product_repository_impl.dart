@@ -21,7 +21,6 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<Product> getProductById(String id) async {
-    // We fetch detailed info via /api/Products/{id}
     final response = await _api.apiProductsProductIdGet(productId: id);
     final product = response.data?.payload;
     if (product == null) throw Exception('Product not found');
@@ -29,12 +28,19 @@ class ProductRepositoryImpl implements ProductRepository {
     double minP = 0;
     double maxP = 0;
     List<double> variantPrices = [];
+    List<ProductVariant> variants = [];
+
     if (product.variants.isNotEmpty) {
       variantPrices = product.variants
           .map((v) => (v.basePrice ?? 0).toDouble())
           .toList();
       minP = variantPrices.reduce(min);
       maxP = variantPrices.reduce(max);
+      variants = product.variants.map((v) => ProductVariant(
+        id: v.id ?? '',
+        name: v.concentrationName,
+        price: (v.basePrice ?? 0).toDouble(),
+      )).toList();
     }
 
     return Product(
@@ -45,6 +51,7 @@ class ProductRepositoryImpl implements ProductRepository {
       minPrice: minP > 0 ? minP : null,
       maxPrice: maxP > 0 ? maxP : null,
       variantPrices: variantPrices,
+      variants: variants,
       imageUrl: product.media.firstOrNull?.url ?? '',
       scentNotes:
           product.attributes.map((a) => a.attribute).toList(),
@@ -105,10 +112,23 @@ class ProductRepositoryImpl implements ProductRepository {
     double minP = 0;
     double maxP = 0;
     List<double> variantPrices = [];
+    List<ProductVariant> variants = [];
+    
     if (item.variantPrices.isNotEmpty) {
-      variantPrices = item.variantPrices.map((p) => p.toDouble()).toList();
+      variantPrices = item.variantPrices.map((v) => v.toDouble()).toList();
       minP = variantPrices.reduce(min);
       maxP = variantPrices.reduce(max);
+      
+      // Pair VariantSummaryItem with corresponding price from variantPrices list
+      for (int i = 0; i < item.variants.length; i++) {
+          final v = item.variants[i];
+          final price = i < variantPrices.length ? variantPrices[i] : 0.0;
+          variants.add(ProductVariant(
+            id: v.id ?? '',
+            name: v.displayName,
+            price: price,
+          ));
+      }
     }
 
     return Product(
@@ -119,6 +139,7 @@ class ProductRepositoryImpl implements ProductRepository {
       minPrice: minP > 0 ? minP : null,
       maxPrice: maxP > 0 ? maxP : null,
       variantPrices: variantPrices,
+      variants: variants,
       imageUrl: item.primaryImage?.url ?? '',
       scentNotes: item.tags ?? [],
       brand: item.brandName,

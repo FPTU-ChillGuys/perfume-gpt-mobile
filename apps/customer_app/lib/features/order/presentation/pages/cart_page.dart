@@ -73,11 +73,14 @@ class CartPage extends ConsumerWidget {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
                                   ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                Text(
-                                  item.product.brand,
-                                  style: const TextStyle(color: Colors.grey),
-                                ),
+                                if (item.product.brand.isNotEmpty)
+                                  Text(
+                                    item.product.brand,
+                                    style: const TextStyle(color: Colors.grey),
+                                  ),
                                 const SizedBox(height: 8),
                                 Text(
                                   '${item.product.price.toStringAsFixed(0)} VND',
@@ -95,10 +98,20 @@ class CartPage extends ConsumerWidget {
                                 children: [
                                   IconButton(
                                     icon: const Icon(Icons.remove_circle_outline),
-                                    onPressed: () => cartNotifier.updateQuantity(
-                                      item.variantId,
-                                      item.quantity - 1,
-                                    ),
+                                    onPressed: () async {
+                                      try {
+                                        await cartNotifier.updateQuantity(
+                                          item.variantId,
+                                          item.quantity - 1,
+                                        );
+                                      } catch (e) {
+                                        if (context.mounted) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(content: Text('Failed to update: $e')),
+                                          );
+                                        }
+                                      }
+                                    },
                                   ),
                                   Text(
                                     '${item.quantity}',
@@ -109,16 +122,40 @@ class CartPage extends ConsumerWidget {
                                   ),
                                   IconButton(
                                     icon: const Icon(Icons.add_circle_outline),
-                                    onPressed: () => cartNotifier.updateQuantity(
-                                      item.variantId,
-                                      item.quantity + 1,
-                                    ),
+                                    onPressed: () async {
+                                      try {
+                                        await cartNotifier.updateQuantity(
+                                          item.variantId,
+                                          item.quantity + 1,
+                                        );
+                                      } catch (e) {
+                                        if (context.mounted) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(content: Text('Failed to update: $e')),
+                                          );
+                                        }
+                                      }
+                                    },
                                   ),
                                 ],
                               ),
                               TextButton(
-                                onPressed: () =>
-                                    cartNotifier.removeProduct(item.variantId),
+                                onPressed: () async {
+                                   try {
+                                      await cartNotifier.removeProduct(item.variantId);
+                                      if (context.mounted) {
+                                         ScaffoldMessenger.of(context).showSnackBar(
+                                           const SnackBar(content: Text('Item removed')),
+                                         );
+                                      }
+                                   } catch (e) {
+                                      if (context.mounted) {
+                                         ScaffoldMessenger.of(context).showSnackBar(
+                                           SnackBar(content: Text('Failed to remove: $e')),
+                                         );
+                                      }
+                                   }
+                                },
                                 child: const Text(
                                   'Remove',
                                   style: TextStyle(color: Colors.red),
@@ -133,7 +170,19 @@ class CartPage extends ConsumerWidget {
                 },
               ),
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stack) => Center(child: Text('Error: $error')),
+        error: (error, stack) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Error: $error'),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () => ref.refresh(cartProvider),
+                child: const Text('Retry'),
+              ),
+            ],
+          ),
+        ),
       ),
       bottomNavigationBar: cartState.when(
         data: (items) => items.isEmpty
