@@ -1,9 +1,31 @@
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 
+/// Bypasses SSL certificate validation in debug mode so that
+/// Image.network can load images from the local dev server (self-signed cert).
+class _DevHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Increase image cache so product images are retained when scrolling,
+  // preventing re-fetches that cause blank images.
+  PaintingBinding.instance.imageCache
+    ..maximumSize = 300
+    ..maximumSizeBytes = 150 * 1024 * 1024; // 150 MB
+  if (kDebugMode) {
+    HttpOverrides.global = _DevHttpOverrides();
+  }
   runApp(const ProviderScope(child: MyApp()));
 }
 

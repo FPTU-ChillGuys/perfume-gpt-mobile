@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../domain/entities/cart_item.dart';
 import '../../../../domain/entities/product.dart';
+import '../../../../domain/entities/product_variant.dart';
 
 part 'cart_provider.g.dart';
 
@@ -11,8 +12,12 @@ class Cart extends _$Cart {
     return [];
   }
 
-  void addProduct(Product product) {
-    final index = state.indexWhere((item) => item.product.id == product.id);
+  void addProduct(Product product, {ProductVariant? variant}) {
+    final variantId = variant?.id;
+    final index = state.indexWhere(
+      (item) =>
+          item.product.id == product.id && item.selectedVariantId == variantId,
+    );
     if (index != -1) {
       state = [
         for (int i = 0; i < state.length; i++)
@@ -22,22 +27,36 @@ class Cart extends _$Cart {
             state[i],
       ];
     } else {
-      state = [...state, CartItem(product: product, quantity: 1)];
+      state = [
+        ...state,
+        CartItem(
+          product: product,
+          selectedVariantId: variant?.id,
+          selectedVariantName: variant?.displayName,
+          selectedVariantPrice: variant?.effectivePrice,
+          quantity: 1,
+        ),
+      ];
     }
   }
 
-  void removeProduct(String productId) {
-    state = state.where((item) => item.product.id != productId).toList();
+  void removeProduct(String productId, {String? variantId}) {
+    state = state
+        .where((item) =>
+            !(item.product.id == productId &&
+                item.selectedVariantId == variantId))
+        .toList();
   }
 
-  void updateQuantity(String productId, int quantity) {
+  void updateQuantity(String productId, int quantity, {String? variantId}) {
     if (quantity <= 0) {
-      removeProduct(productId);
+      removeProduct(productId, variantId: variantId);
       return;
     }
     state = [
       for (final item in state)
-        if (item.product.id == productId)
+        if (item.product.id == productId &&
+            item.selectedVariantId == variantId)
           item.copyWith(quantity: quantity)
         else
           item,
@@ -48,5 +67,6 @@ class Cart extends _$Cart {
     state = [];
   }
 
-  double get totalAmount => state.fold(0, (sum, item) => sum + item.totalPrice);
+  double get totalAmount =>
+      state.fold(0, (sum, item) => sum + item.totalPrice);
 }

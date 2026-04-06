@@ -1,6 +1,9 @@
 import 'dart:math';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import '../../core/utils/image_url_helper.dart';
 import '../../domain/entities/product.dart';
+import '../../domain/entities/product_variant.dart';
+import '../../domain/entities/product_scent_note.dart';
 import '../../domain/repositories/product_repository.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
@@ -21,21 +24,28 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<Product> getProductById(String id) async {
-    // We fetch detailed info via /api/Products/{id}
     final response = await _api.apiProductsProductIdGet(productId: id);
     final product = response.data?.payload;
     if (product == null) throw Exception('Product not found');
 
-    double minP = 0;
-    double maxP = 0;
-    List<double> variantPrices = [];
-    if (product.variants.isNotEmpty) {
-      variantPrices = product.variants
-          .map((v) => (v.basePrice ?? 0).toDouble())
-          .toList();
-      minP = variantPrices.reduce(min);
-      maxP = variantPrices.reduce(max);
-    }
+    final variants = product.variants.map(_mapVariant).toList();
+    final variantPrices = variants.map((v) => v.basePrice).toList();
+    final minP = variantPrices.isNotEmpty ? variantPrices.reduce(min) : 0.0;
+    final maxP = variantPrices.isNotEmpty ? variantPrices.reduce(max) : 0.0;
+
+    final imageUrls = product.media.map((m) => ImageUrlHelper.resolve(m.url)).toList();
+    final primaryImage = product.media
+        .where((m) => m.isPrimary == true)
+        .map((m) => ImageUrlHelper.resolve(m.url))
+        .firstOrNull ?? imageUrls.firstOrNull ?? '';
+
+    final scentNoteDetails = product.scentNotes
+        .map((n) => ProductScentNote(
+              noteId: n.noteId,
+              name: n.name,
+              type: n.type?.value ?? 'Top',
+            ))
+        .toList();
 
     return Product(
       id: product.id ?? '',
@@ -45,12 +55,18 @@ class ProductRepositoryImpl implements ProductRepository {
       minPrice: minP > 0 ? minP : null,
       maxPrice: maxP > 0 ? maxP : null,
       variantPrices: variantPrices,
-      imageUrl: product.media.firstOrNull?.url ?? '',
-      scentNotes:
-          product.attributes.map((a) => a.attribute).toList(),
+      imageUrl: primaryImage,
+      imageUrls: imageUrls,
+      scentNotes: scentNoteDetails.map((n) => n.name).toList(),
+      scentNoteDetails: scentNoteDetails,
       brand: product.brandName,
       rating: 0,
       reviewCount: 0,
+      gender: product.gender?.value,
+      categoryName: product.categoryName,
+      origin: product.origin,
+      releaseYear: product.releaseYear,
+      variants: variants,
     );
   }
 
@@ -75,15 +91,39 @@ class ProductRepositoryImpl implements ProductRepository {
     return items.map(_mapListItemToProduct).toList();
   }
 
+  ProductVariant _mapVariant(ProductVariantResponse v) {
+    final imageUrls = v.media.map((m) => ImageUrlHelper.resolve(m.url)).toList();
+    final primaryImage = v.media
+        .where((m) => m.isPrimary == true)
+        .map((m) => ImageUrlHelper.resolve(m.url))
+        .firstOrNull ?? imageUrls.firstOrNull;
+
+    return ProductVariant(
+      id: v.id ?? '',
+      sku: v.sku,
+      barcode: v.barcode,
+      volumeMl: v.volumeMl,
+      concentrationName: v.concentrationName,
+      type: v.type?.value ?? 'Standard',
+      basePrice: (v.basePrice ?? 0).toDouble(),
+      retailPrice: v.retailPrice?.toDouble(),
+      discountedPrice: v.discountedPrice?.toDouble(),
+      status: v.status?.value ?? 'Active',
+      stockQuantity: v.stockQuantity ?? 0,
+      sillage: v.sillage,
+      longevity: v.longevity,
+      imageUrls: imageUrls,
+      primaryImageUrl: primaryImage,
+    );
+  }
+
   Product _mapListItemToProduct(ProductListItem item) {
-    double minP = 0;
-    double maxP = 0;
     List<double> variantPrices = [];
     if (item.variantPrices.isNotEmpty) {
       variantPrices = item.variantPrices.map((p) => p.toDouble()).toList();
-      minP = variantPrices.reduce(min);
-      maxP = variantPrices.reduce(max);
     }
+    final minP = variantPrices.isNotEmpty ? variantPrices.reduce(min) : 0.0;
+    final maxP = variantPrices.isNotEmpty ? variantPrices.reduce(max) : 0.0;
 
     return Product(
       id: item.id ?? '',
@@ -93,23 +133,22 @@ class ProductRepositoryImpl implements ProductRepository {
       minPrice: minP > 0 ? minP : null,
       maxPrice: maxP > 0 ? maxP : null,
       variantPrices: variantPrices,
-      imageUrl: item.primaryImage?.url ?? '',
+      imageUrl: ImageUrlHelper.resolve(item.primaryImage?.url ?? ''),
       scentNotes: item.tags ?? [],
       brand: item.brandName,
       rating: 0,
       reviewCount: 0,
+      categoryName: item.categoryName,
     );
   }
 
   Product _mapListItemWithVariantsToProduct(ProductListItemWithVariants item) {
-    double minP = 0;
-    double maxP = 0;
     List<double> variantPrices = [];
     if (item.variantPrices.isNotEmpty) {
       variantPrices = item.variantPrices.map((p) => p.toDouble()).toList();
-      minP = variantPrices.reduce(min);
-      maxP = variantPrices.reduce(max);
     }
+    final minP = variantPrices.isNotEmpty ? variantPrices.reduce(min) : 0.0;
+    final maxP = variantPrices.isNotEmpty ? variantPrices.reduce(max) : 0.0;
 
     return Product(
       id: item.id ?? '',
@@ -119,11 +158,12 @@ class ProductRepositoryImpl implements ProductRepository {
       minPrice: minP > 0 ? minP : null,
       maxPrice: maxP > 0 ? maxP : null,
       variantPrices: variantPrices,
-      imageUrl: item.primaryImage?.url ?? '',
+      imageUrl: ImageUrlHelper.resolve(item.primaryImage?.url ?? ''),
       scentNotes: item.tags ?? [],
       brand: item.brandName,
       rating: 0,
       reviewCount: 0,
+      categoryName: item.categoryName,
     );
   }
 }
