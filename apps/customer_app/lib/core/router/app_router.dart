@@ -6,6 +6,9 @@ import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/order/presentation/pages/cart_page.dart';
 import '../../features/order/presentation/pages/checkout_page.dart';
+import '../../features/order/presentation/pages/order_detail_page.dart';
+import '../../features/order/presentation/pages/order_list_page.dart';
+import '../../features/order/presentation/pages/payment_webview_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 import '../../features/store/presentation/pages/product_details_page.dart';
@@ -39,6 +42,24 @@ class AppRouter {
       GoRoute(
         path: '/checkout',
         builder: (context, state) => const CheckoutPage(),
+      ),
+      GoRoute(
+        path: '/payment-webview',
+        builder: (context, state) {
+          final url = state.uri.queryParameters['url'] ?? '';
+          return PaymentWebViewPage(paymentUrl: url);
+        },
+      ),
+      GoRoute(
+        path: '/orders',
+        builder: (context, state) => const OrderListPage(),
+      ),
+      GoRoute(
+        path: '/orders/:orderId',
+        builder: (context, state) {
+          final orderId = state.pathParameters['orderId']!;
+          return OrderDetailPage(orderId: orderId);
+        },
       ),
       GoRoute(
         path: '/profile',

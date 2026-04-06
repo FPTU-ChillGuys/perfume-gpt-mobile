@@ -1,37 +1,54 @@
-import 'product.dart';
-
+/// A cart item as returned by the server API (GET /api/cart/items).
+/// The server is the source of truth — no local Product reference needed.
 class CartItem {
-  final Product product;
-  final String? selectedVariantId;
-  final String? selectedVariantName;
-  final double? selectedVariantPrice;
+  final String cartItemId;
+  final String variantId;
+  final String variantName;
+  final String imageUrl;
+  final int? volumeMl;
+  final String? type;
+  final double variantPrice;
   final int quantity;
+  final bool isAvailable;
+  final double subTotal;
 
   const CartItem({
-    required this.product,
-    this.selectedVariantId,
-    this.selectedVariantName,
-    this.selectedVariantPrice,
+    required this.cartItemId,
+    required this.variantId,
+    required this.variantName,
+    required this.imageUrl,
+    this.volumeMl,
+    this.type,
+    required this.variantPrice,
     required this.quantity,
+    required this.isAvailable,
+    required this.subTotal,
   });
 
   CartItem copyWith({
-    Product? product,
-    String? selectedVariantId,
-    String? selectedVariantName,
-    double? selectedVariantPrice,
+    String? cartItemId,
+    String? variantId,
+    String? variantName,
+    String? imageUrl,
+    int? volumeMl,
+    String? type,
+    double? variantPrice,
     int? quantity,
+    bool? isAvailable,
+    double? subTotal,
   }) {
     return CartItem(
-      product: product ?? this.product,
-      selectedVariantId: selectedVariantId ?? this.selectedVariantId,
-      selectedVariantName: selectedVariantName ?? this.selectedVariantName,
-      selectedVariantPrice: selectedVariantPrice ?? this.selectedVariantPrice,
+      cartItemId: cartItemId ?? this.cartItemId,
+      variantId: variantId ?? this.variantId,
+      variantName: variantName ?? this.variantName,
+      imageUrl: imageUrl ?? this.imageUrl,
+      volumeMl: volumeMl ?? this.volumeMl,
+      type: type ?? this.type,
+      variantPrice: variantPrice ?? this.variantPrice,
       quantity: quantity ?? this.quantity,
+      isAvailable: isAvailable ?? this.isAvailable,
+      subTotal: subTotal ?? this.subTotal,
     );
   }
-
-  double get unitPrice => selectedVariantPrice ?? product.price;
-
-  double get totalPrice => unitPrice * quantity;
 }
+

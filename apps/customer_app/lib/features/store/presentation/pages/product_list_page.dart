@@ -229,7 +229,7 @@ class _ProductGridCard extends StatelessWidget {
                                 ),
                               );
                             },
-                            errorBuilder: (_, __, ___) =>
+                            errorBuilder: (_, _, _) =>
                                 const _ImagePlaceholder(),
                           )
                         : const _ImagePlaceholder(),
