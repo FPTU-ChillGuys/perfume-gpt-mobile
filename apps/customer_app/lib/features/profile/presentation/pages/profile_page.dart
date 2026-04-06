@@ -84,6 +84,12 @@ class ProfilePage extends ConsumerWidget {
                 ),
                 Text(user.email),
                 const SizedBox(height: 32),
+                ListTile(
+                  leading: const Icon(Icons.receipt_long),
+                  title: const Text('Đơn hàng của tôi'),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/orders'),
+                ),
                 const ListTile(
                   leading: Icon(Icons.history),
                   title: Text('Purchase History'),

@@ -38,8 +38,9 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
     });
   }
 
-  void _addToCart(Product product) {
-    if (product.variants.isNotEmpty && _selectedVariant == null) {
+  Future<void> _addToCart(Product product) async {
+    final variantId = _selectedVariant?.id;
+    if (variantId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Please select a variant first'),
@@ -48,18 +49,28 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
       );
       return;
     }
-    ref.read(cartProvider.notifier).addProduct(
-          product,
-          variant: _selectedVariant,
+    try {
+      await ref.read(cartProvider.notifier).addItem(variantId);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              '${product.name} (${_selectedVariant!.displayName}) added to cart',
+            ),
+            backgroundColor: Colors.green,
+          ),
         );
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          '${product.name}${_selectedVariant != null ? ' (${_selectedVariant!.displayName})' : ''} added to cart',
-        ),
-        backgroundColor: Colors.green,
-      ),
-    );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to add to cart: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -417,7 +428,7 @@ class _ImageGallery extends StatelessWidget {
                   ),
                 );
               },
-              errorBuilder: (_, __, ___) => Container(
+              errorBuilder: (_, _, _) => Container(
                 color: Colors.grey.shade200,
                 child: const Center(
                   child: Icon(Icons.broken_image, size: 60, color: Colors.grey),
@@ -713,14 +724,18 @@ class _VariantDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final rows = <_DetailRow>[];
-    if (variant.concentrationName.isNotEmpty)
+    if (variant.concentrationName.isNotEmpty) {
       rows.add(_DetailRow('Concentration', variant.concentrationName));
-    if (variant.volumeMl != null)
+    }
+    if (variant.volumeMl != null) {
       rows.add(_DetailRow('Volume', '${variant.volumeMl} ml'));
-    if (variant.sillage != null)
+    }
+    if (variant.sillage != null) {
       rows.add(_DetailRow('Sillage', '${variant.sillage}/10'));
-    if (variant.longevity != null)
+    }
+    if (variant.longevity != null) {
       rows.add(_DetailRow('Longevity', '${variant.longevity}/10'));
+    }
     rows.add(_DetailRow(
       'Stock',
       variant.isInStock ? '${variant.stockQuantity} available' : 'Out of stock',

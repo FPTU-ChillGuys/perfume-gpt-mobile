@@ -1,72 +1,63 @@
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../../../data/repositories/cart_repository_impl.dart';
 import '../../../../domain/entities/cart_item.dart';
-import '../../../../domain/entities/product.dart';
-import '../../../../domain/entities/product_variant.dart';
+import '../../../../domain/entities/cart_total.dart';
+import '../../../../domain/repositories/cart_repository.dart';
 
 part 'cart_provider.g.dart';
 
 @riverpod
+CartRepository cartRepository(Ref ref) {
+  final apiClient = ref.watch(apiClientProvider);
+  return CartRepositoryImpl(apiClient.dio);
+}
+
+@riverpod
 class Cart extends _$Cart {
   @override
-  List<CartItem> build() {
-    return [];
+  FutureOr<List<CartItem>> build() {
+    return ref.watch(cartRepositoryProvider).getItems();
   }
 
-  void addProduct(Product product, {ProductVariant? variant}) {
-    final variantId = variant?.id;
-    final index = state.indexWhere(
-      (item) =>
-          item.product.id == product.id && item.selectedVariantId == variantId,
-    );
-    if (index != -1) {
-      state = [
-        for (int i = 0; i < state.length; i++)
-          if (i == index)
-            state[i].copyWith(quantity: state[i].quantity + 1)
-          else
-            state[i],
-      ];
-    } else {
-      state = [
-        ...state,
-        CartItem(
-          product: product,
-          selectedVariantId: variant?.id,
-          selectedVariantName: variant?.displayName,
-          selectedVariantPrice: variant?.effectivePrice,
-          quantity: 1,
-        ),
-      ];
-    }
+  CartRepository get _repo => ref.read(cartRepositoryProvider);
+
+  Future<void> addItem(String variantId, {int quantity = 1}) async {
+    final repo = _repo;
+    await repo.addItem(variantId, quantity: quantity);
+    if (!ref.mounted) return;
+    ref.invalidateSelf();
   }
 
-  void removeProduct(String productId, {String? variantId}) {
-    state = state
-        .where((item) =>
-            !(item.product.id == productId &&
-                item.selectedVariantId == variantId))
-        .toList();
-  }
-
-  void updateQuantity(String productId, int quantity, {String? variantId}) {
+  Future<void> updateItem(String cartItemId, int quantity) async {
     if (quantity <= 0) {
-      removeProduct(productId, variantId: variantId);
+      await removeItem(cartItemId);
       return;
     }
-    state = [
-      for (final item in state)
-        if (item.product.id == productId &&
-            item.selectedVariantId == variantId)
-          item.copyWith(quantity: quantity)
-        else
-          item,
-    ];
+    final repo = _repo;
+    await repo.updateItem(cartItemId, quantity);
+    if (!ref.mounted) return;
+    ref.invalidateSelf();
   }
 
-  void clear() {
-    state = [];
+  Future<void> removeItem(String cartItemId) async {
+    final repo = _repo;
+    await repo.removeItem(cartItemId);
+    if (!ref.mounted) return;
+    ref.invalidateSelf();
   }
 
-  double get totalAmount =>
-      state.fold(0, (sum, item) => sum + item.totalPrice);
+  Future<void> clearCart() async {
+    final repo = _repo;
+    await repo.clearCart();
+    if (!ref.mounted) return;
+    ref.invalidateSelf();
+  }
 }
+
+@riverpod
+FutureOr<CartTotal> cartTotal(Ref ref) {
+  ref.watch(cartProvider);
+  return ref.watch(cartRepositoryProvider).getTotal();
+}
+
