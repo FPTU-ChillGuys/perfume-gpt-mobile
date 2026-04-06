@@ -68,13 +68,21 @@ class CartPage extends ConsumerWidget {
                                   fontSize: 16,
                                 ),
                               ),
+                              if (item.selectedVariantName != null)
+                                Text(
+                                  item.selectedVariantName!,
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12,
+                                  ),
+                                ),
                               Text(
                                 item.product.brand,
                                 style: const TextStyle(color: Colors.grey),
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                '${item.product.price.toStringAsFixed(0)} VND',
+                                '${item.unitPrice.toStringAsFixed(0)} VND',
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.primary,
                                   fontWeight: FontWeight.bold,
@@ -92,6 +100,7 @@ class CartPage extends ConsumerWidget {
                                   onPressed: () => cartNotifier.updateQuantity(
                                     item.product.id,
                                     item.quantity - 1,
+                                    variantId: item.selectedVariantId,
                                   ),
                                 ),
                                 Text(
@@ -106,13 +115,16 @@ class CartPage extends ConsumerWidget {
                                   onPressed: () => cartNotifier.updateQuantity(
                                     item.product.id,
                                     item.quantity + 1,
+                                    variantId: item.selectedVariantId,
                                   ),
                                 ),
                               ],
                             ),
                             TextButton(
-                              onPressed: () =>
-                                  cartNotifier.removeProduct(item.product.id),
+                              onPressed: () => cartNotifier.removeProduct(
+                                item.product.id,
+                                variantId: item.selectedVariantId,
+                              ),
                               child: const Text(
                                 'Remove',
                                 style: TextStyle(color: Colors.red),
