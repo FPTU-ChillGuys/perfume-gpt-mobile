@@ -62,6 +62,76 @@ final class MyReviewsProvider
 
 String _$myReviewsHash() => r'my_reviews_hash';
 
+// --- reviewDetail (family) ---
+
+@ProviderFor(reviewDetail)
+final reviewDetailProvider = ReviewDetailFamily._();
+
+final class ReviewDetailProvider
+    extends $FunctionalProvider<AsyncValue<ReviewDetail>, ReviewDetail, FutureOr<ReviewDetail>>
+    with $FutureModifier<ReviewDetail>, $FutureProvider<ReviewDetail> {
+  ReviewDetailProvider._({
+    required ReviewDetailFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'reviewDetailProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$reviewDetailHash();
+
+  @override
+  String toString() {
+    return r'reviewDetailProvider'
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<ReviewDetail> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<ReviewDetail> create(Ref ref) {
+    final argument = this.argument as String;
+    return reviewDetail(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ReviewDetailProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$reviewDetailHash() => r'review_detail_hash';
+
+final class ReviewDetailFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<ReviewDetail>, String> {
+  ReviewDetailFamily._()
+    : super(
+        retry: null,
+        name: r'reviewDetailProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  ReviewDetailProvider call(String reviewId) =>
+      ReviewDetailProvider._(argument: reviewId, from: this);
+
+  @override
+  String toString() => r'reviewDetailProvider';
+}
+
 // --- variantReviews (family) ---
 
 @ProviderFor(variantReviews)

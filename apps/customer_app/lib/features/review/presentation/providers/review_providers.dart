@@ -18,6 +18,11 @@ FutureOr<List<Review>> myReviews(Ref ref) {
 }
 
 @riverpod
+FutureOr<ReviewDetail> reviewDetail(Ref ref, String reviewId) {
+  return ref.watch(reviewRepositoryProvider).getReviewDetail(reviewId);
+}
+
+@riverpod
 FutureOr<List<Review>> variantReviews(Ref ref, String variantId) {
   return ref.watch(reviewRepositoryProvider).getVariantReviews(variantId);
 }

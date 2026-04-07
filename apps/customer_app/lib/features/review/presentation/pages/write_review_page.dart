@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../providers/review_providers.dart';
 
 class WriteReviewPage extends ConsumerStatefulWidget {
-  final String variantId;
+  final String orderDetailId;
+  final String? variantId;
   final String? variantName;
 
-  const WriteReviewPage({super.key, required this.variantId, this.variantName});
+  const WriteReviewPage({
+    super.key,
+    required this.orderDetailId,
+    this.variantId,
+    this.variantName,
+  });
 
   @override
   ConsumerState<WriteReviewPage> createState() => _WriteReviewPageState();
@@ -18,12 +25,22 @@ class WriteReviewPage extends ConsumerStatefulWidget {
 class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
   int _rating = 5;
   final _commentCtrl = TextEditingController();
+  final List<({String filename, Uint8List bytes})> _images = [];
   bool _saving = false;
 
   @override
   void dispose() {
     _commentCtrl.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickImages() async {
+    final picker = ImagePicker();
+    final files = await picker.pickMultiImage(imageQuality: 80);
+    for (final f in files) {
+      final bytes = await f.readAsBytes();
+      setState(() => _images.add((filename: f.name, bytes: bytes)));
+    }
   }
 
   Future<void> _submit() async {
@@ -33,18 +50,35 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
       );
       return;
     }
+    final comment = _commentCtrl.text.trim();
+    if (comment.length < 10) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Nhận xét phải có ít nhất 10 ký tự')),
+      );
+      return;
+    }
     setState(() => _saving = true);
     try {
       final repo = ref.read(reviewRepositoryProvider);
+
+      // Upload images first if any
+      List<String>? tempMediaIds;
+      if (_images.isNotEmpty) {
+        tempMediaIds = await repo.uploadTemporaryImages(_images);
+      }
+
       await repo.createReview(
-        variantId: widget.variantId,
+        orderDetailId: widget.orderDetailId,
         rating: _rating,
-        comment: _commentCtrl.text.trim().isEmpty ? null : _commentCtrl.text.trim(),
+        comment: comment,
+        temporaryMediaIds: tempMediaIds,
       );
-      // Invalidate reviews cache
+
       ref.invalidate(myReviewsProvider);
-      ref.invalidate(variantReviewsProvider(widget.variantId));
-      ref.invalidate(variantReviewStatsProvider(widget.variantId));
+      if (widget.variantId != null) {
+        ref.invalidate(variantReviewsProvider(widget.variantId!));
+        ref.invalidate(variantReviewStatsProvider(widget.variantId!));
+      }
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Đã gửi đánh giá')),
@@ -146,11 +180,79 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
             child: TextField(
               controller: _commentCtrl,
               maxLines: 5,
+              maxLength: 2000,
               decoration: const InputDecoration(
-                hintText: 'Chia sẻ trải nghiệm của bạn về sản phẩm...',
+                hintText: 'Chia sẻ trải nghiệm của bạn về sản phẩm (tối thiểu 10 ký tự)...',
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.all(16),
+                counterStyle: TextStyle(fontSize: 11, color: AppColors.textSecondary),
               ),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // ── Image picker ──
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppColors.border),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.camera_alt_outlined, size: 20, color: AppColors.textSecondary),
+                    const SizedBox(width: 8),
+                    const Expanded(
+                      child: Text('Thêm hình ảnh',
+                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: AppColors.textPrimary)),
+                    ),
+                    TextButton.icon(
+                      onPressed: _pickImages,
+                      icon: const Icon(Icons.add_photo_alternate_outlined, size: 18),
+                      label: const Text('Chọn ảnh'),
+                      style: TextButton.styleFrom(foregroundColor: AppColors.primary),
+                    ),
+                  ],
+                ),
+                if (_images.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: _images.asMap().entries.map((entry) {
+                      return Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.memory(
+                              entry.value.bytes,
+                              width: 70,
+                              height: 70,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: GestureDetector(
+                              onTap: () => setState(() => _images.removeAt(entry.key)),
+                              child: Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+                                child: const Icon(Icons.close, size: 12, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ],
             ),
           ),
 

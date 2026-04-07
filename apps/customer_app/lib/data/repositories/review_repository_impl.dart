@@ -1,3 +1,7 @@
+import 'dart:typed_data';
+
+import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/review.dart';
 import '../../domain/repositories/review_repository.dart';
@@ -11,6 +15,43 @@ class ReviewRepositoryImpl implements ReviewRepository {
     final response = await _api.apiReviewsMeGet();
     final list = response.data?.payload ?? [];
     return list.map(_mapResponse).toList();
+  }
+
+  @override
+  Future<ReviewDetail> getReviewDetail(String reviewId) async {
+    final response = await _api.apiReviewsReviewIdGet(reviewId: reviewId);
+    final j = response.data?.payload;
+    if (j == null) throw Exception('Review not found');
+    return ReviewDetail(
+      id: j.id ?? '',
+      userId: j.userId,
+      userName: j.userFullName,
+      userProfilePictureUrl: j.userProfilePictureUrl,
+      orderDetailId: j.orderDetailId,
+      orderId: j.orderId,
+      quantity: j.quantity,
+      unitPrice: j.unitPrice?.toDouble(),
+      variantId: j.variantId ?? '',
+      variantName: j.variantName,
+      productName: j.productName,
+      volumeMl: j.volumeMl,
+      concentrationName: j.concentrationName,
+      rating: j.rating ?? 0,
+      comment: j.comment,
+      images: j.images
+          .map((i) => ReviewImage(
+                id: i.id ?? '',
+                url: i.url,
+                altText: i.altText,
+                displayOrder: i.displayOrder,
+                isPrimary: i.isPrimary ?? false,
+              ))
+          .toList(),
+      staffFeedbackComment: j.staffFeedbackComment,
+      staffFeedbackAt: j.staffFeedbackAt,
+      createdAt: j.createdAt ?? DateTime.now(),
+      updatedAt: j.updatedAt,
+    );
   }
 
   @override
@@ -51,15 +92,17 @@ class ReviewRepositoryImpl implements ReviewRepository {
 
   @override
   Future<void> createReview({
-    required String variantId,
+    required String orderDetailId,
     required int rating,
-    String? comment,
+    required String comment,
+    List<String>? temporaryMediaIds,
   }) async {
     await _api.apiReviewsPost(
       createReviewRequest: CreateReviewRequest(
-        orderDetailId: variantId, // FIXME: API expects orderDetailId
+        orderDetailId: orderDetailId,
         rating: rating,
-        comment: comment ?? '',
+        comment: comment,
+        temporaryMediaIds: temporaryMediaIds,
       ),
     );
   }
@@ -69,16 +112,53 @@ class ReviewRepositoryImpl implements ReviewRepository {
     await _api.apiReviewsReviewIdDelete(reviewId: reviewId);
   }
 
+  @override
+  Future<List<String>> uploadTemporaryImages(
+    List<({String filename, Uint8List bytes})> images,
+  ) async {
+    final imageFiles = images.map((img) {
+      final ext = img.filename.split('.').last.toLowerCase();
+      return MultipartFile.fromBytes(img.bytes,
+          filename: img.filename,
+          contentType: MediaType('image', ext == 'png' ? 'png' : 'jpeg'));
+    }).toList();
+
+    try {
+      final response = await _api.apiReviewsImagesTemporaryPost(
+        images: imageFiles,
+      );
+      final data = response.data?.payload?.data ?? [];
+      return data.map((m) => m.id ?? '').where((id) => id.isNotEmpty).toList();
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 200) {
+        final raw = e.response?.data;
+        if (raw is Map<String, dynamic>) {
+          final payload = raw['payload'] as Map<String, dynamic>?;
+          final data =
+              (payload?['data'] as List?)?.cast<Map<String, dynamic>>() ?? [];
+          return data
+              .map((m) => (m['id'] ?? '') as String)
+              .where((id) => id.isNotEmpty)
+              .toList();
+        }
+      }
+      rethrow;
+    }
+  }
+
   Review _mapResponse(ReviewResponse j) => Review(
-    id: j.id ?? '',
-    userId: j.userId,
-    userName: j.userFullName,
-    variantId: j.variantId ?? '',
-    variantName: j.variantName,
-    rating: j.rating ?? 0,
-    comment: j.comment,
-    answerContent: j.staffFeedbackComment,
-    createdAt: j.createdAt ?? DateTime.now(),
-    imageUrls: j.images.map((i) => i.url).toList(),
-  );
+        id: j.id ?? '',
+        userId: j.userId,
+        userName: j.userFullName,
+        userProfilePictureUrl: j.userProfilePictureUrl,
+        orderDetailId: j.orderDetailId,
+        variantId: j.variantId ?? '',
+        variantName: j.variantName,
+        rating: j.rating ?? 0,
+        comment: j.comment,
+        staffFeedbackComment: j.staffFeedbackComment,
+        staffFeedbackAt: j.staffFeedbackAt,
+        createdAt: j.createdAt ?? DateTime.now(),
+        imageUrls: j.images.map((i) => i.url).toList(),
+      );
 }
