@@ -35,7 +35,8 @@ class _StatusTab {
 const _statusTabs = [
   _StatusTab('Tất cả', null),
   _StatusTab('Chờ xử lý', 'Pending'),
-  _StatusTab('Đang xử lý', 'Processing'),
+  _StatusTab('Đang chuẩn bị', 'Preparing'),
+  _StatusTab('Chờ lấy hàng', 'ReadyToPick'),
   _StatusTab('Đang giao', 'Delivering'),
   _StatusTab('Đã giao', 'Delivered'),
   _StatusTab('Đã hủy', 'Cancelled'),
@@ -103,8 +104,10 @@ String _orderStatusLabel(String status) {
   switch (status) {
     case 'Pending':
       return 'Chờ xử lý';
-    case 'Processing':
-      return 'Đang xử lý';
+    case 'Preparing':
+      return 'Đang chuẩn bị';
+    case 'ReadyToPick':
+      return 'Chờ lấy hàng';
     case 'Delivering':
       return 'Đang giao';
     case 'Delivered':
@@ -126,8 +129,10 @@ Color _orderStatusColor(String status) {
   switch (status) {
     case 'Pending':
       return AppColors.statusPending;
-    case 'Processing':
-      return AppColors.statusProcessing;
+    case 'Preparing':
+      return AppColors.statusPreparing;
+    case 'ReadyToPick':
+      return AppColors.statusReadyToPick;
     case 'Delivering':
       return AppColors.statusDelivering;
     case 'Delivered':
@@ -177,7 +182,8 @@ Color _paymentStatusColor(String status) {
 ({String mode, String buttonLabel, String note})? _getCancelBehavior(
     OrderSummary order) {
   final isPending = order.status == 'Pending';
-  final isProcessing = order.status == 'Processing';
+  final isPreparing = order.status == 'Preparing';
+  final isReadyToPick = order.status == 'ReadyToPick';
   final isPaid = order.paymentStatus == 'Paid';
 
   if (isPending && !isPaid) {
@@ -188,7 +194,7 @@ Color _paymentStatusColor(String status) {
           'Đơn hàng đang ở trạng thái chờ xử lý và chưa thanh toán, hệ thống sẽ hủy ngay sau khi bạn xác nhận.',
     );
   }
-  if ((isPending && isPaid) || isProcessing) {
+  if ((isPending && isPaid) || isPreparing || isReadyToPick) {
     return (
       mode: 'request',
       buttonLabel: 'Yêu cầu hủy đơn',

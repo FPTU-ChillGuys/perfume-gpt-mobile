@@ -87,7 +87,7 @@ class OrderRepositoryImpl implements OrderRepository {
     OrderStatus? orderStatus;
     if (status != null) {
       orderStatus = OrderStatus.values.firstWhere(
-        (e) => e.name.toLowerCase() == status.toLowerCase(),
+        (e) => e.value.toLowerCase() == status.toLowerCase(),
         orElse: () => OrderStatus.pending,
       );
     }
@@ -95,7 +95,7 @@ class OrderRepositoryImpl implements OrderRepository {
     OrderType? orderType;
     if (type != null) {
       orderType = OrderType.values.firstWhere(
-        (e) => e.name.toLowerCase() == type.toLowerCase(),
+        (e) => e.value.toLowerCase() == type.toLowerCase(),
         orElse: () => OrderType.online,
       );
     }
@@ -103,7 +103,7 @@ class OrderRepositoryImpl implements OrderRepository {
     PaymentStatus? pStatus;
     if (paymentStatus != null) {
       pStatus = PaymentStatus.values.firstWhere(
-        (e) => e.name.toLowerCase() == paymentStatus.toLowerCase(),
+        (e) => e.value.toLowerCase() == paymentStatus.toLowerCase(),
         orElse: () => PaymentStatus.unpaid,
       );
     }
@@ -133,13 +133,13 @@ class OrderRepositoryImpl implements OrderRepository {
       return OrderSummary(
         id: o.id?.toString() ?? '',
         code: o.code,
-        type: o.type?.name,
-        status: o.status?.name,
-        paymentStatus: o.paymentStatus?.name,
+        type: o.type?.value,
+        status: o.status?.value,
+        paymentStatus: o.paymentStatus?.value,
         totalAmount: o.totalAmount?.toDouble() ?? 0.0,
         itemCount: o.itemCount,
         isReturnable: o.isReturnalbe ?? false,
-        shippingStatus: o.shippingStatus?.name,
+        shippingStatus: o.shippingStatus?.value,
         createdAt: o.createdAt,
         orderDetails: o.orderDetails
             .map(
@@ -174,10 +174,10 @@ class OrderRepositoryImpl implements OrderRepository {
     return OrderDetail(
       id: o.id?.toString() ?? '',
       code: o.code,
-      type: o.type?.name,
-      status: o.status?.name,
+      type: o.type?.value,
+      status: o.status?.value,
       isReturnable: o.isReturnable ?? false,
-      paymentStatus: o.paymentStatus?.name,
+      paymentStatus: o.paymentStatus?.value,
       totalAmount: o.totalAmount?.toDouble() ?? 0.0,
       voucherCode: o.voucherCode,
       paymentExpiresAt: o.paymentExpiresAt,
@@ -189,9 +189,9 @@ class OrderRepositoryImpl implements OrderRepository {
               ?.map(
                 (p) => PaymentTransaction(
                   id: p.id?.toString() ?? '',
-                  transactionType: p.transactionType?.name,
-                  status: p.status?.name,
-                  paymentMethod: p.paymentMethod?.name,
+                  transactionType: p.transactionType?.value,
+                  status: p.status?.value,
+                  paymentMethod: p.paymentMethod?.value,
                   failureReason: p.failureReason,
                   totalAmount: p.totalAmount?.toDouble() ?? 0.0,
                 ),
@@ -200,10 +200,10 @@ class OrderRepositoryImpl implements OrderRepository {
           [],
       shippingInfo: o.shippingInfo != null
           ? ShippingInfo(
-              carrierName: o.shippingInfo!.carrierName?.name,
+              carrierName: o.shippingInfo!.carrierName?.value,
               trackingNumber: o.shippingInfo!.trackingNumber,
               shippingFee: o.shippingInfo!.shippingFee?.toDouble() ?? 0.0,
-              status: o.shippingInfo!.status?.name,
+              status: o.shippingInfo!.status?.value,
               estimatedDeliveryDate: o.shippingInfo!.estimatedDeliveryDate,
             )
           : null,
@@ -308,7 +308,7 @@ class OrderRepositoryImpl implements OrderRepository {
   }) async {
     CancelOrderReason? cancelReason;
     cancelReason = CancelOrderReason.values.firstWhere(
-      (e) => e.name.toLowerCase() == reason.toLowerCase(),
+      (e) => e.value.toLowerCase() == reason.toLowerCase(),
       orElse: () => CancelOrderReason.changedMind,
     );
 
