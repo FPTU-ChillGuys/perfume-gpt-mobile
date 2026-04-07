@@ -147,7 +147,6 @@ String _shippingStatusLabel(String? status) {
 // ─── Order stepper logic ────────────────────────────────────────────────────
 
 /// Maps order status to the step index in the progress stepper
-/// -1 = Cancelled, -2 = Returned (special banners shown instead)
 int _statusToStep(String? status) {
   switch (status) {
     case 'Pending':
@@ -168,13 +167,63 @@ int _statusToStep(String? status) {
   }
 }
 
-const _stepLabels = [
-  'Đơn Hàng Đã Đặt',
-  'Đã Thanh Toán',
-  'Đã Giao Cho ĐVVC',
-  'Đang Giao Hàng',
-  'Đánh Giá',
-];
+class _TrackingStep {
+  final String title;
+  final String? subtitle;
+  final IconData icon;
+  final bool isActive;
+  final bool isCurrent;
+
+  const _TrackingStep({
+    required this.title,
+    this.subtitle,
+    required this.icon,
+    this.isActive = false,
+    this.isCurrent = false,
+  });
+}
+
+List<_TrackingStep> _buildTrackingSteps(OrderDetail order) {
+  final step = _statusToStep(order.status);
+  final steps = <_TrackingStep>[
+    _TrackingStep(
+      title: 'Đơn Hàng\nĐã Đặt',
+      subtitle: order.createdAt != null ? _fmtDateTime(order.createdAt) : null,
+      icon: Icons.receipt_long,
+      isActive: step >= 0,
+      isCurrent: step == 0,
+    ),
+    _TrackingStep(
+      title: 'Đã Xác Nhận\nThanh Toán',
+      subtitle: order.paidAt != null ? _fmtDateTime(order.paidAt) : (step >= 1 ? _fmtDateTime(order.updatedAt) : null),
+      icon: Icons.payments_outlined,
+      isActive: step >= 1,
+      isCurrent: step == 1,
+    ),
+    _TrackingStep(
+      title: 'Đã Giao Cho\nĐVVC',
+      subtitle: step >= 2 ? _fmtDateTime(order.updatedAt) : null,
+      icon: Icons.local_shipping,
+      isActive: step >= 2,
+      isCurrent: step == 2,
+    ),
+    _TrackingStep(
+      title: 'Đã Nhận\nĐược Hàng',
+      subtitle: step >= 3 ? _fmtDateTime(order.updatedAt) : null,
+      icon: Icons.inventory_2_outlined,
+      isActive: step >= 3,
+      isCurrent: step == 3,
+    ),
+    _TrackingStep(
+      title: 'Đơn Hàng Đã\nHoàn Thành',
+      subtitle: step >= 4 ? _fmtDateTime(order.updatedAt) : null,
+      icon: Icons.star_outline_rounded,
+      isActive: step >= 4,
+      isCurrent: step == 4,
+    ),
+  ];
+  return steps;
+}
 
 // ─── Cancel reason options ──────────────────────────────────────────────────
 
@@ -328,7 +377,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     subtitle: 'Đơn hàng đã được trả lại hoặc hoàn tiền.',
                   )
                 else
-                  _buildStepper(step),
+                  _buildTrackingTimeline(order),
 
                 // ── Retry payment alert ──
                 if (isPendingUnpaid) ...[
@@ -473,9 +522,12 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     );
   }
 
-  // ── Stepper ───────────────────────────────────────────────────────────────
+  // ── Tracking Timeline (horizontal like React web) ──────────────────────────
 
-  Widget _buildStepper(int activeStep) {
+  Widget _buildTrackingTimeline(OrderDetail order) {
+    final steps = _buildTrackingSteps(order);
+    const activeColor = Color(0xFF4CAF50); // green matching screenshot
+
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -483,77 +535,86 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         side: BorderSide(color: Colors.grey[200]!),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
         child: Row(
-          children: List.generate(_stepLabels.length, (i) {
-            final isActive = i <= activeStep;
-            final isCurrent = i == activeStep;
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(steps.length, (i) {
+            final step = steps[i];
+            final isFirst = i == 0;
+            final isLast = i == steps.length - 1;
+
             return Expanded(
               child: Column(
                 children: [
+                  // ── Line + Circle row ──
                   Row(
                     children: [
-                      if (i > 0)
+                      // Left line
+                      if (!isFirst)
                         Expanded(
                           child: Container(
-                            height: 2,
-                            color: i <= activeStep
-                                ? Colors.green
-                                : Colors.grey[300],
+                            height: 3,
+                            color: step.isActive ? activeColor : Colors.grey[300],
                           ),
-                        ),
+                        )
+                      else
+                        const Expanded(child: SizedBox()),
+                      // Circle with icon
                       Container(
-                        width: isCurrent ? 28 : 22,
-                        height: isCurrent ? 28 : 22,
+                        width: 40,
+                        height: 40,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: isActive ? Colors.green : Colors.grey[300],
-                          border: isCurrent
-                              ? Border.all(
-                                  color: Colors.green.shade700, width: 2)
-                              : null,
-                        ),
-                        child: Center(
-                          child: isActive && i < activeStep
-                              ? const Icon(Icons.check,
-                                  size: 14, color: Colors.white)
-                              : Text(
-                                  '${i + 1}',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w600,
-                                    color: isActive
-                                        ? Colors.white
-                                        : Colors.grey[600],
-                                  ),
-                                ),
-                        ),
-                      ),
-                      if (i < _stepLabels.length - 1)
-                        Expanded(
-                          child: Container(
-                            height: 2,
-                            color: i < activeStep
-                                ? Colors.green
-                                : Colors.grey[300],
+                          color: step.isActive ? Colors.white : Colors.grey[100],
+                          border: Border.all(
+                            color: step.isActive ? activeColor : Colors.grey[350]!,
+                            width: 2.5,
                           ),
                         ),
+                        child: Icon(
+                          step.icon,
+                          size: 20,
+                          color: step.isActive ? activeColor : Colors.grey[400],
+                        ),
+                      ),
+                      // Right line
+                      if (!isLast)
+                        Expanded(
+                          child: Container(
+                            height: 3,
+                            color: (i + 1 < steps.length && steps[i + 1].isActive)
+                                ? activeColor
+                                : Colors.grey[300],
+                          ),
+                        )
+                      else
+                        const Expanded(child: SizedBox()),
                     ],
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 8),
+                  // ── Title ──
                   Text(
-                    _stepLabels[i],
+                    step.title,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 9,
-                      fontWeight:
-                          isCurrent ? FontWeight.w700 : FontWeight.w500,
-                      color:
-                          isActive ? Colors.green.shade800 : Colors.grey[500],
+                      fontSize: 10,
+                      fontWeight: step.isActive ? FontWeight.w600 : FontWeight.w500,
+                      color: step.isActive ? Colors.green.shade800 : Colors.grey[500],
+                      height: 1.3,
                     ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                   ),
+                  // ── Subtitle / date ──
+                  if (step.subtitle != null) ...[
+                    const SizedBox(height: 2),
+                    Text(
+                      step.subtitle!,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 9,
+                        color: step.isActive ? Colors.green.shade600 : Colors.grey[400],
+                      ),
+                    ),
+                  ],
                 ],
               ),
             );
