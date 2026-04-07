@@ -22,8 +22,10 @@ Name | Type | Description | Notes
 **isReturnalbe** | **bool** |  | [optional] 
 **shippingStatus** | [**ShippingStatus**](ShippingStatus.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**paymentExpiresAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **orderDetails** | [**List&lt;OrderDetailListItem&gt;**](OrderDetailListItem.md) |  | 
+**paymentTransactions** | [**List&lt;PaymentInfoResponse&gt;**](PaymentInfoResponse.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

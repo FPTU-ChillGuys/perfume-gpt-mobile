@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_campaign_promotion_item_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,52 +20,88 @@ part 'create_campaign_promotion_item_request.g.dart';
 class CreateCampaignPromotionItemRequest {
   /// Returns a new [CreateCampaignPromotionItemRequest] instance.
   CreateCampaignPromotionItemRequest({
-    required this.productVariantId,
 
-    this.batchId,
+    required  this.productVariantId,
 
-    this.promotionType,
+     this.batchId,
 
-    this.maxUsage,
+     this.promotionType,
+
+     this.maxUsage,
   });
 
-  @JsonKey(name: r'productVariantId', required: true, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'productVariantId',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String productVariantId;
 
-  @JsonKey(name: r'batchId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'batchId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? batchId;
 
-  @JsonKey(name: r'promotionType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'promotionType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final PromotionType? promotionType;
 
-  @JsonKey(name: r'maxUsage', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'maxUsage',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? maxUsage;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateCampaignPromotionItemRequest &&
-          other.productVariantId == productVariantId &&
-          other.batchId == batchId &&
-          other.promotionType == promotionType &&
-          other.maxUsage == maxUsage;
 
-  @override
-  int get hashCode =>
-      productVariantId.hashCode +
-      (batchId == null ? 0 : batchId.hashCode) +
-      promotionType.hashCode +
-      (maxUsage == null ? 0 : maxUsage.hashCode);
 
-  factory CreateCampaignPromotionItemRequest.fromJson(
-    Map<String, dynamic> json,
-  ) => _$CreateCampaignPromotionItemRequestFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CreateCampaignPromotionItemRequestToJson(this);
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateCampaignPromotionItemRequest &&
+      other.productVariantId == productVariantId &&
+      other.batchId == batchId &&
+      other.promotionType == promotionType &&
+      other.maxUsage == maxUsage;
+
+    @override
+    int get hashCode =>
+        productVariantId.hashCode +
+        (batchId == null ? 0 : batchId.hashCode) +
+        promotionType.hashCode +
+        (maxUsage == null ? 0 : maxUsage.hashCode);
+
+  factory CreateCampaignPromotionItemRequest.fromJson(Map<String, dynamic> json) => _$CreateCampaignPromotionItemRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CreateCampaignPromotionItemRequestToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
+
 }
+

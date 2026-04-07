@@ -1,0 +1,130 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'preview_pos_order_request.dart';
+
+// **************************************************************************
+// CopyWithGenerator
+// **************************************************************************
+
+abstract class _$PreviewPosOrderRequestCWProxy {
+  PreviewPosOrderRequest scannedItems(List<PosScanItemRequest> scannedItems);
+
+  PreviewPosOrderRequest voucherCode(String? voucherCode);
+
+  PreviewPosOrderRequest customerId(String? customerId);
+
+  PreviewPosOrderRequest sessionId(String? sessionId);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PreviewPosOrderRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// PreviewPosOrderRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  PreviewPosOrderRequest call({
+    List<PosScanItemRequest> scannedItems,
+    String? voucherCode,
+    String? customerId,
+    String? sessionId,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPreviewPosOrderRequest.copyWith(...)` or call `instanceOfPreviewPosOrderRequest.copyWith.fieldName(value)` for a single field.
+class _$PreviewPosOrderRequestCWProxyImpl
+    implements _$PreviewPosOrderRequestCWProxy {
+  const _$PreviewPosOrderRequestCWProxyImpl(this._value);
+
+  final PreviewPosOrderRequest _value;
+
+  @override
+  PreviewPosOrderRequest scannedItems(List<PosScanItemRequest> scannedItems) =>
+      call(scannedItems: scannedItems);
+
+  @override
+  PreviewPosOrderRequest voucherCode(String? voucherCode) =>
+      call(voucherCode: voucherCode);
+
+  @override
+  PreviewPosOrderRequest customerId(String? customerId) =>
+      call(customerId: customerId);
+
+  @override
+  PreviewPosOrderRequest sessionId(String? sessionId) =>
+      call(sessionId: sessionId);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PreviewPosOrderRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// PreviewPosOrderRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  PreviewPosOrderRequest call({
+    Object? scannedItems = const $CopyWithPlaceholder(),
+    Object? voucherCode = const $CopyWithPlaceholder(),
+    Object? customerId = const $CopyWithPlaceholder(),
+    Object? sessionId = const $CopyWithPlaceholder(),
+  }) {
+    return PreviewPosOrderRequest(
+      scannedItems:
+          scannedItems == const $CopyWithPlaceholder() || scannedItems == null
+          ? _value.scannedItems
+          // ignore: cast_nullable_to_non_nullable
+          : scannedItems as List<PosScanItemRequest>,
+      voucherCode: voucherCode == const $CopyWithPlaceholder()
+          ? _value.voucherCode
+          // ignore: cast_nullable_to_non_nullable
+          : voucherCode as String?,
+      customerId: customerId == const $CopyWithPlaceholder()
+          ? _value.customerId
+          // ignore: cast_nullable_to_non_nullable
+          : customerId as String?,
+      sessionId: sessionId == const $CopyWithPlaceholder()
+          ? _value.sessionId
+          // ignore: cast_nullable_to_non_nullable
+          : sessionId as String?,
+    );
+  }
+}
+
+extension $PreviewPosOrderRequestCopyWith on PreviewPosOrderRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPreviewPosOrderRequest.copyWith(...)` or `instanceOfPreviewPosOrderRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$PreviewPosOrderRequestCWProxy get copyWith =>
+      _$PreviewPosOrderRequestCWProxyImpl(this);
+}
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+PreviewPosOrderRequest _$PreviewPosOrderRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('PreviewPosOrderRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['scannedItems']);
+  final val = PreviewPosOrderRequest(
+    scannedItems: $checkedConvert(
+      'scannedItems',
+      (v) => (v as List<dynamic>)
+          .map((e) => PosScanItemRequest.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
+    customerId: $checkedConvert('customerId', (v) => v as String?),
+    sessionId: $checkedConvert('sessionId', (v) => v as String?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$PreviewPosOrderRequestToJson(
+  PreviewPosOrderRequest instance,
+) => <String, dynamic>{
+  'scannedItems': instance.scannedItems.map((e) => e.toJson()).toList(),
+  'voucherCode': ?instance.voucherCode,
+  'customerId': ?instance.customerId,
+  'sessionId': ?instance.sessionId,
+};

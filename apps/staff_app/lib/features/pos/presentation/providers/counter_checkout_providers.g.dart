@@ -6,6 +6,7 @@ part of 'counter_checkout_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(DraftItems)
@@ -40,7 +41,7 @@ final class DraftItemsProvider
   }
 }
 
-String _$draftItemsHash() => r'draft_items_hash';
+String _$draftItemsHash() => r'd3db5cfb19f354cb6a10fc22df86c90d333d3425';
 
 abstract class _$DraftItems extends $Notifier<List<DraftItem>> {
   List<DraftItem> build();
@@ -99,13 +100,13 @@ final class DraftTotalProvider
   }
 }
 
-String _$draftTotalHash() => r'draft_total_hash';
+String _$draftTotalHash() => r'e9dd918aa1b84e9538fca1be4845a0477151a391';
 
 @ProviderFor(LoadedOrder)
 final loadedOrderProvider = LoadedOrderProvider._();
 
 final class LoadedOrderProvider
-    extends $NotifierProvider<LoadedOrder, Map<String, dynamic>?> {
+    extends $NotifierProvider<LoadedOrder, UserOrderResponse?> {
   LoadedOrderProvider._()
     : super(
         from: null,
@@ -125,27 +126,27 @@ final class LoadedOrderProvider
   LoadedOrder create() => LoadedOrder();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(Map<String, dynamic>? value) {
+  Override overrideWithValue(UserOrderResponse? value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<Map<String, dynamic>?>(value),
+      providerOverride: $SyncValueProvider<UserOrderResponse?>(value),
     );
   }
 }
 
-String _$loadedOrderHash() => r'loaded_order_hash';
+String _$loadedOrderHash() => r'0678b19ddff0f4b6b4df5fb0f9ca82f4faac68bb';
 
-abstract class _$LoadedOrder extends $Notifier<Map<String, dynamic>?> {
-  Map<String, dynamic>? build();
+abstract class _$LoadedOrder extends $Notifier<UserOrderResponse?> {
+  UserOrderResponse? build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<Map<String, dynamic>?, Map<String, dynamic>?>;
+    final ref = this.ref as $Ref<UserOrderResponse?, UserOrderResponse?>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<Map<String, dynamic>?, Map<String, dynamic>?>,
-              Map<String, dynamic>?,
+              AnyNotifier<UserOrderResponse?, UserOrderResponse?>,
+              UserOrderResponse?,
               Object?,
               Object?
             >;
@@ -185,7 +186,8 @@ final class SelectedPaymentMethodProvider
   }
 }
 
-String _$selectedPaymentMethodHash() => r'selected_payment_method_hash';
+String _$selectedPaymentMethodHash() =>
+    r'c27dc7592c8d76427ac43fcea022b2dcb5a557f1';
 
 abstract class _$SelectedPaymentMethod extends $Notifier<String> {
   String build();
@@ -206,7 +208,7 @@ abstract class _$SelectedPaymentMethod extends $Notifier<String> {
 }
 
 @ProviderFor(CounterCheckoutNotifier)
-final counterCheckoutNotifierProvider = CounterCheckoutNotifierProvider._();
+final counterCheckoutNotifier = CounterCheckoutNotifierProvider._();
 
 final class CounterCheckoutNotifierProvider
     extends $NotifierProvider<CounterCheckoutNotifier, AsyncValue<void>> {
@@ -215,7 +217,7 @@ final class CounterCheckoutNotifierProvider
         from: null,
         argument: null,
         retry: null,
-        name: r'counterCheckoutNotifierProvider',
+        name: r'counterCheckoutNotifier',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
@@ -237,7 +239,8 @@ final class CounterCheckoutNotifierProvider
   }
 }
 
-String _$counterCheckoutNotifierHash() => r'counter_checkout_notifier_hash';
+String _$counterCheckoutNotifierHash() =>
+    r'48cedc8c00232b16f003bbc3b45155cfc7b3117d';
 
 abstract class _$CounterCheckoutNotifier extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();

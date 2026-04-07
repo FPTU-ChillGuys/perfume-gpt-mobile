@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'process_refund_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,21 +19,66 @@ part 'process_refund_request.g.dart';
 )
 class ProcessRefundRequest {
   /// Returns a new [ProcessRefundRequest] instance.
-  ProcessRefundRequest({this.refundMethod});
+  ProcessRefundRequest({
 
-  @JsonKey(name: r'refundMethod', required: false, includeIfNull: false)
+     this.refundMethod,
+
+     this.manualTransactionReference,
+
+     this.note,
+  });
+
+  @JsonKey(
+    
+    name: r'refundMethod',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final PaymentMethod? refundMethod;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProcessRefundRequest && other.refundMethod == refundMethod;
 
-  @override
-  int get hashCode => refundMethod.hashCode;
 
-  factory ProcessRefundRequest.fromJson(Map<String, dynamic> json) =>
-      _$ProcessRefundRequestFromJson(json);
+  @JsonKey(
+    
+    name: r'manualTransactionReference',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? manualTransactionReference;
+
+
+
+  @JsonKey(
+    
+    name: r'note',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? note;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ProcessRefundRequest &&
+      other.refundMethod == refundMethod &&
+      other.manualTransactionReference == manualTransactionReference &&
+      other.note == note;
+
+    @override
+    int get hashCode =>
+        refundMethod.hashCode +
+        (manualTransactionReference == null ? 0 : manualTransactionReference.hashCode) +
+        (note == null ? 0 : note.hashCode);
+
+  factory ProcessRefundRequest.fromJson(Map<String, dynamic> json) => _$ProcessRefundRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProcessRefundRequestToJson(this);
 
@@ -40,4 +86,6 @@ class ProcessRefundRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

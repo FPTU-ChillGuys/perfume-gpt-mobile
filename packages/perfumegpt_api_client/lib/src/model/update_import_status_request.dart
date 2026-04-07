@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_import_status_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,21 +19,34 @@ part 'update_import_status_request.g.dart';
 )
 class UpdateImportStatusRequest {
   /// Returns a new [UpdateImportStatusRequest] instance.
-  UpdateImportStatusRequest({this.status});
+  UpdateImportStatusRequest({
 
-  @JsonKey(name: r'status', required: false, includeIfNull: false)
+     this.status,
+  });
+
+  @JsonKey(
+    
+    name: r'status',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final ImportStatus? status;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is UpdateImportStatusRequest && other.status == status;
 
-  @override
-  int get hashCode => status.hashCode;
 
-  factory UpdateImportStatusRequest.fromJson(Map<String, dynamic> json) =>
-      _$UpdateImportStatusRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is UpdateImportStatusRequest &&
+      other.status == status;
+
+    @override
+    int get hashCode =>
+        status.hashCode;
+
+  factory UpdateImportStatusRequest.fromJson(Map<String, dynamic> json) => _$UpdateImportStatusRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateImportStatusRequestToJson(this);
 
@@ -40,4 +54,6 @@ class UpdateImportStatusRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

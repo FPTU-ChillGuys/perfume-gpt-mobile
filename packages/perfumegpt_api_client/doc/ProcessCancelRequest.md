@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **isApproved** | **bool** |  | [optional] 
 **staffNote** | **String** |  | [optional] 
 **refundMethod** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
+**manualTransactionReference** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

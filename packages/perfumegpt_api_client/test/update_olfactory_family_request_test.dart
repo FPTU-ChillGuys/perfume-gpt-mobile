@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateOlfactoryFamilyRequest
 void main() {
-  final UpdateOlfactoryFamilyRequest?
-  instance = /* UpdateOlfactoryFamilyRequest(...) */ null;
+  final UpdateOlfactoryFamilyRequest? instance = /* UpdateOlfactoryFamilyRequest(...) */ null;
   // TODO add properties to the entity
 
   group(UpdateOlfactoryFamilyRequest, () {
@@ -12,5 +11,6 @@ void main() {
     test('to test the property `name`', () async {
       // TODO
     });
+
   });
 }

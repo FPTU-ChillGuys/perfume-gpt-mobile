@@ -11,6 +11,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'voucher_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,122 +22,257 @@ part 'voucher_response.g.dart';
 class VoucherResponse {
   /// Returns a new [VoucherResponse] instance.
   VoucherResponse({
-    this.id,
 
-    required this.code,
+     this.id,
 
-    this.discountValue,
+    required  this.code,
 
-    this.discountType,
+     this.discountValue,
 
-    this.campaignId,
+     this.discountType,
 
-    this.applyType,
+     this.campaignId,
 
-    this.targetItemType,
+     this.applyType,
 
-    this.requiredPoints,
+     this.targetItemType,
 
-    this.minOrderValue,
+     this.requiredPoints,
 
-    this.expiryDate,
+     this.minOrderValue,
 
-    this.isExpired,
+     this.expiryDate,
 
-    this.totalQuantity,
+     this.isExpired,
 
-    this.remainingQuantity,
+     this.totalQuantity,
 
-    this.isPublic,
+     this.remainingQuantity,
 
-    this.createdAt,
+     this.isPublic,
+
+     this.createdAt,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'code', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'code',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String code;
 
-  @JsonKey(name: r'discountValue', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'discountValue',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? discountValue;
 
-  @JsonKey(name: r'discountType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'discountType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DiscountType? discountType;
 
-  @JsonKey(name: r'campaignId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'campaignId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? campaignId;
 
-  @JsonKey(name: r'applyType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'applyType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final VoucherType? applyType;
 
-  @JsonKey(name: r'targetItemType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'targetItemType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final PromotionType? targetItemType;
 
-  @JsonKey(name: r'requiredPoints', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'requiredPoints',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? requiredPoints;
 
-  @JsonKey(name: r'minOrderValue', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'minOrderValue',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? minOrderValue;
 
-  @JsonKey(name: r'expiryDate', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'expiryDate',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? expiryDate;
 
-  @JsonKey(name: r'isExpired', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'isExpired',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? isExpired;
 
-  @JsonKey(name: r'totalQuantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? totalQuantity;
 
-  @JsonKey(name: r'remainingQuantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'remainingQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? remainingQuantity;
 
-  @JsonKey(name: r'isPublic', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'isPublic',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? isPublic;
 
-  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'createdAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? createdAt;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is VoucherResponse &&
-          other.id == id &&
-          other.code == code &&
-          other.discountValue == discountValue &&
-          other.discountType == discountType &&
-          other.campaignId == campaignId &&
-          other.applyType == applyType &&
-          other.targetItemType == targetItemType &&
-          other.requiredPoints == requiredPoints &&
-          other.minOrderValue == minOrderValue &&
-          other.expiryDate == expiryDate &&
-          other.isExpired == isExpired &&
-          other.totalQuantity == totalQuantity &&
-          other.remainingQuantity == remainingQuantity &&
-          other.isPublic == isPublic &&
-          other.createdAt == createdAt;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      code.hashCode +
-      discountValue.hashCode +
-      discountType.hashCode +
-      (campaignId == null ? 0 : campaignId.hashCode) +
-      applyType.hashCode +
-      targetItemType.hashCode +
-      (requiredPoints == null ? 0 : requiredPoints.hashCode) +
-      (minOrderValue == null ? 0 : minOrderValue.hashCode) +
-      expiryDate.hashCode +
-      isExpired.hashCode +
-      (totalQuantity == null ? 0 : totalQuantity.hashCode) +
-      (remainingQuantity == null ? 0 : remainingQuantity.hashCode) +
-      isPublic.hashCode +
-      createdAt.hashCode;
 
-  factory VoucherResponse.fromJson(Map<String, dynamic> json) =>
-      _$VoucherResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is VoucherResponse &&
+      other.id == id &&
+      other.code == code &&
+      other.discountValue == discountValue &&
+      other.discountType == discountType &&
+      other.campaignId == campaignId &&
+      other.applyType == applyType &&
+      other.targetItemType == targetItemType &&
+      other.requiredPoints == requiredPoints &&
+      other.minOrderValue == minOrderValue &&
+      other.expiryDate == expiryDate &&
+      other.isExpired == isExpired &&
+      other.totalQuantity == totalQuantity &&
+      other.remainingQuantity == remainingQuantity &&
+      other.isPublic == isPublic &&
+      other.createdAt == createdAt;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        code.hashCode +
+        discountValue.hashCode +
+        discountType.hashCode +
+        (campaignId == null ? 0 : campaignId.hashCode) +
+        applyType.hashCode +
+        targetItemType.hashCode +
+        (requiredPoints == null ? 0 : requiredPoints.hashCode) +
+        (minOrderValue == null ? 0 : minOrderValue.hashCode) +
+        expiryDate.hashCode +
+        isExpired.hashCode +
+        (totalQuantity == null ? 0 : totalQuantity.hashCode) +
+        (remainingQuantity == null ? 0 : remainingQuantity.hashCode) +
+        isPublic.hashCode +
+        createdAt.hashCode;
+
+  factory VoucherResponse.fromJson(Map<String, dynamic> json) => _$VoucherResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$VoucherResponseToJson(this);
 
@@ -144,4 +280,6 @@ class VoucherResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

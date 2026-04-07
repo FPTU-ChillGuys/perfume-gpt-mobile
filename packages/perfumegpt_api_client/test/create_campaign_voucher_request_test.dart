@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateCampaignVoucherRequest
 void main() {
-  final CreateCampaignVoucherRequest?
-  instance = /* CreateCampaignVoucherRequest(...) */ null;
+  final CreateCampaignVoucherRequest? instance = /* CreateCampaignVoucherRequest(...) */ null;
   // TODO add properties to the entity
 
   group(CreateCampaignVoucherRequest, () {
@@ -32,5 +31,6 @@ void main() {
     test('to test the property `applyType`', () async {
       // TODO
     });
+
   });
 }

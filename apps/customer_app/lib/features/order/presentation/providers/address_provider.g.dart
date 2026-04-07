@@ -6,17 +6,19 @@ part of 'address_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(savedAddresses)
 final savedAddressesProvider = SavedAddressesProvider._();
 
 final class SavedAddressesProvider
-    extends $FunctionalProvider<
-      AsyncValue<List<AddressResponse>>,
-      List<AddressResponse>,
-      FutureOr<List<AddressResponse>>
-    >
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<AddressResponse>>,
+          List<AddressResponse>,
+          FutureOr<List<AddressResponse>>
+        >
     with
         $FutureModifier<List<AddressResponse>>,
         $FutureProvider<List<AddressResponse>> {
@@ -46,17 +48,18 @@ final class SavedAddressesProvider
   }
 }
 
-String _$savedAddressesHash() => r'00a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1';
+String _$savedAddressesHash() => r'12d605baf5400616c87497c27a4cdd59fa2f6e21';
 
 @ProviderFor(provinces)
 final provincesProvider = ProvincesProvider._();
 
 final class ProvincesProvider
-    extends $FunctionalProvider<
-      AsyncValue<List<ProvinceResponse>>,
-      List<ProvinceResponse>,
-      FutureOr<List<ProvinceResponse>>
-    >
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<ProvinceResponse>>,
+          List<ProvinceResponse>,
+          FutureOr<List<ProvinceResponse>>
+        >
     with
         $FutureModifier<List<ProvinceResponse>>,
         $FutureProvider<List<ProvinceResponse>> {
@@ -86,19 +89,18 @@ final class ProvincesProvider
   }
 }
 
-String _$provincesHash() => r'a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2';
-
-// --- Districts (family) ---
+String _$provincesHash() => r'144a7ac3367aa893da7a558671395be965805744';
 
 @ProviderFor(districts)
 final districtsProvider = DistrictsFamily._();
 
 final class DistrictsProvider
-    extends $FunctionalProvider<
-      AsyncValue<List<DistrictResponse>>,
-      List<DistrictResponse>,
-      FutureOr<List<DistrictResponse>>
-    >
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<DistrictResponse>>,
+          List<DistrictResponse>,
+          FutureOr<List<DistrictResponse>>
+        >
     with
         $FutureModifier<List<DistrictResponse>>,
         $FutureProvider<List<DistrictResponse>> {
@@ -146,7 +148,7 @@ final class DistrictsProvider
   }
 }
 
-String _$districtsHash() => r'b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3';
+String _$districtsHash() => r'377e36d04449f696de861d91159e265d11367da2';
 
 final class DistrictsFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<List<DistrictResponse>>, int> {
@@ -166,17 +168,16 @@ final class DistrictsFamily extends $Family
   String toString() => r'districtsProvider';
 }
 
-// --- Wards (family) ---
-
 @ProviderFor(wards)
 final wardsProvider = WardsFamily._();
 
 final class WardsProvider
-    extends $FunctionalProvider<
-      AsyncValue<List<WardResponse>>,
-      List<WardResponse>,
-      FutureOr<List<WardResponse>>
-    >
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<WardResponse>>,
+          List<WardResponse>,
+          FutureOr<List<WardResponse>>
+        >
     with
         $FutureModifier<List<WardResponse>>,
         $FutureProvider<List<WardResponse>> {
@@ -224,7 +225,7 @@ final class WardsProvider
   }
 }
 
-String _$wardsHash() => r'c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4';
+String _$wardsHash() => r'33ccd06212ec25d8ccb37d6a35cb9efe92ce14a9';
 
 final class WardsFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<List<WardResponse>>, int> {

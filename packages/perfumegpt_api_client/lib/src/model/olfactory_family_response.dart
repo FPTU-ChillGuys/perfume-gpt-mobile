@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'olfactory_family_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,24 +18,50 @@ part 'olfactory_family_response.g.dart';
 )
 class OlfactoryFamilyResponse {
   /// Returns a new [OlfactoryFamilyResponse] instance.
-  OlfactoryFamilyResponse({this.id, required this.name});
+  OlfactoryFamilyResponse({
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+     this.id,
+
+    required  this.name,
+  });
+
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? id;
 
-  @JsonKey(name: r'name', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'name',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String name;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is OlfactoryFamilyResponse && other.id == id && other.name == name;
 
-  @override
-  int get hashCode => id.hashCode + name.hashCode;
 
-  factory OlfactoryFamilyResponse.fromJson(Map<String, dynamic> json) =>
-      _$OlfactoryFamilyResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is OlfactoryFamilyResponse &&
+      other.id == id &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        name.hashCode;
+
+  factory OlfactoryFamilyResponse.fromJson(Map<String, dynamic> json) => _$OlfactoryFamilyResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$OlfactoryFamilyResponseToJson(this);
 
@@ -42,4 +69,6 @@ class OlfactoryFamilyResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

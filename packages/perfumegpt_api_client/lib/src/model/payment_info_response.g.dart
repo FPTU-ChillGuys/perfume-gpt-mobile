@@ -172,4 +172,5 @@ const _$PaymentMethodEnumMap = {
   PaymentMethod.vnPay: 'VnPay',
   PaymentMethod.momo: 'Momo',
   PaymentMethod.cashInStore: 'CashInStore',
+  PaymentMethod.externalBankTransfer: 'ExternalBankTransfer',
 };

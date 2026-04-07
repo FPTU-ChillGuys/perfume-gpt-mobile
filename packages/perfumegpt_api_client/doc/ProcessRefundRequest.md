@@ -9,6 +9,8 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **refundMethod** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
+**manualTransactionReference** | **String** |  | [optional] 
+**note** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

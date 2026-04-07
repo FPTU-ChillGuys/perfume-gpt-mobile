@@ -23,17 +23,18 @@ import 'package:perfumegpt_api_client/src/model/update_import_status_request.dar
 import 'package:perfumegpt_api_client/src/model/verify_import_ticket_request.dart';
 
 class ImportTicketsApi {
+
   final Dio _dio;
 
   const ImportTicketsApi(this._dio);
 
   /// apiImportticketsExcelParserPost
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [excelFile]
-  /// * [supplierId]
-  /// * [expectedArrivalDate]
+  /// * [excelFile] 
+  /// * [supplierId] 
+  /// * [expectedArrivalDate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -43,8 +44,7 @@ class ImportTicketsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfCreateImportTicketRequest] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfCreateImportTicketRequest>>
-  apiImportticketsExcelParserPost({
+  Future<Response<BaseResponseOfCreateImportTicketRequest>> apiImportticketsExcelParserPost({ 
     MultipartFile? excelFile,
     int? supplierId,
     DateTime? expectedArrivalDate,
@@ -58,10 +58,16 @@ class ImportTicketsApi {
     final _path = r'/api/importtickets/excel-parser';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -71,9 +77,14 @@ class ImportTicketsApi {
 
     dynamic _bodyData;
 
-    try {} catch (error, stackTrace) {
+    try {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -92,17 +103,9 @@ class ImportTicketsApi {
     BaseResponseOfCreateImportTicketRequest? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfCreateImportTicketRequest,
-              BaseResponseOfCreateImportTicketRequest
-            >(
-              rawData,
-              'BaseResponseOfCreateImportTicketRequest',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfCreateImportTicketRequest, BaseResponseOfCreateImportTicketRequest>(rawData, 'BaseResponseOfCreateImportTicketRequest', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -126,7 +129,7 @@ class ImportTicketsApi {
   }
 
   /// apiImportticketsExcelTemplateGet
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -138,7 +141,7 @@ class ImportTicketsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [FileContentResult] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<FileContentResult>> apiImportticketsExcelTemplateGet({
+  Future<Response<FileContentResult>> apiImportticketsExcelTemplateGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -149,10 +152,16 @@ class ImportTicketsApi {
     final _path = r'/api/importtickets/excel-template';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -170,14 +179,9 @@ class ImportTicketsApi {
     FileContentResult? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<FileContentResult, FileContentResult>(
-              rawData,
-              'FileContentResult',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<FileContentResult, FileContentResult>(rawData, 'FileContentResult', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -201,19 +205,19 @@ class ImportTicketsApi {
   }
 
   /// apiImportticketsGet
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [supplierId]
-  /// * [status]
-  /// * [fromDate]
-  /// * [toDate]
-  /// * [verifiedById]
-  /// * [pageNumber]
-  /// * [pageSize]
-  /// * [sortBy]
-  /// * [sortOrder]
-  /// * [isDescending]
+  /// * [supplierId] 
+  /// * [status] 
+  /// * [fromDate] 
+  /// * [toDate] 
+  /// * [verifiedById] 
+  /// * [pageNumber] 
+  /// * [pageSize] 
+  /// * [sortBy] 
+  /// * [sortOrder] 
+  /// * [isDescending] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -223,8 +227,7 @@ class ImportTicketsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfImportTicketListItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfImportTicketListItem>>
-  apiImportticketsGet({
+  Future<Response<BaseResponseOfPagedResultOfImportTicketListItem>> apiImportticketsGet({ 
     int? supplierId,
     ImportStatus? status,
     DateTime? fromDate,
@@ -245,10 +248,16 @@ class ImportTicketsApi {
     final _path = r'/api/importtickets';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -280,17 +289,9 @@ class ImportTicketsApi {
     BaseResponseOfPagedResultOfImportTicketListItem? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfPagedResultOfImportTicketListItem,
-              BaseResponseOfPagedResultOfImportTicketListItem
-            >(
-              rawData,
-              'BaseResponseOfPagedResultOfImportTicketListItem',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfImportTicketListItem, BaseResponseOfPagedResultOfImportTicketListItem>(rawData, 'BaseResponseOfPagedResultOfImportTicketListItem', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -314,10 +315,10 @@ class ImportTicketsApi {
   }
 
   /// apiImportticketsIdDelete
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
+  /// * [id] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -327,7 +328,7 @@ class ImportTicketsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiImportticketsIdDelete({
+  Future<Response<BaseResponseOfboolean>> apiImportticketsIdDelete({ 
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -336,18 +337,19 @@ class ImportTicketsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{id}'.replaceAll(
-      '{'
-      r'id'
-      '}',
-      id.toString(),
-    );
+    final _path = r'/api/importtickets/{id}'.replaceAll('{' r'id' '}', id.toString());
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -365,14 +367,9 @@ class ImportTicketsApi {
     BaseResponseOfboolean? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
-              rawData,
-              'BaseResponseOfboolean',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -396,10 +393,10 @@ class ImportTicketsApi {
   }
 
   /// apiImportticketsIdGet
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
+  /// * [id] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -409,7 +406,7 @@ class ImportTicketsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfImportTicketResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfImportTicketResponse>> apiImportticketsIdGet({
+  Future<Response<BaseResponseOfImportTicketResponse>> apiImportticketsIdGet({ 
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -418,18 +415,19 @@ class ImportTicketsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{id}'.replaceAll(
-      '{'
-      r'id'
-      '}',
-      id.toString(),
-    );
+    final _path = r'/api/importtickets/{id}'.replaceAll('{' r'id' '}', id.toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -447,13 +445,9 @@ class ImportTicketsApi {
     BaseResponseOfImportTicketResponse? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfImportTicketResponse,
-              BaseResponseOfImportTicketResponse
-            >(rawData, 'BaseResponseOfImportTicketResponse', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfImportTicketResponse, BaseResponseOfImportTicketResponse>(rawData, 'BaseResponseOfImportTicketResponse', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -477,11 +471,11 @@ class ImportTicketsApi {
   }
 
   /// apiImportticketsIdPut
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
-  /// * [updateImportRequest]
+  /// * [id] 
+  /// * [updateImportRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -491,7 +485,7 @@ class ImportTicketsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiImportticketsIdPut({
+  Future<Response<BaseResponseOfstring>> apiImportticketsIdPut({ 
     required String id,
     required UpdateImportRequest updateImportRequest,
     CancelToken? cancelToken,
@@ -501,18 +495,19 @@ class ImportTicketsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{id}'.replaceAll(
-      '{'
-      r'id'
-      '}',
-      id.toString(),
-    );
+    final _path = r'/api/importtickets/{id}'.replaceAll('{' r'id' '}', id.toString());
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -523,10 +518,13 @@ class ImportTicketsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(updateImportRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(updateImportRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -545,14 +543,9 @@ class ImportTicketsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -576,11 +569,11 @@ class ImportTicketsApi {
   }
 
   /// apiImportticketsIdStatusPut
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
-  /// * [updateImportStatusRequest]
+  /// * [id] 
+  /// * [updateImportStatusRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -590,7 +583,7 @@ class ImportTicketsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiImportticketsIdStatusPut({
+  Future<Response<BaseResponseOfstring>> apiImportticketsIdStatusPut({ 
     required String id,
     required UpdateImportStatusRequest updateImportStatusRequest,
     CancelToken? cancelToken,
@@ -600,18 +593,19 @@ class ImportTicketsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{id}/status'.replaceAll(
-      '{'
-      r'id'
-      '}',
-      id.toString(),
-    );
+    final _path = r'/api/importtickets/{id}/status'.replaceAll('{' r'id' '}', id.toString());
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -622,10 +616,13 @@ class ImportTicketsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(updateImportStatusRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(updateImportStatusRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -644,14 +641,9 @@ class ImportTicketsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -675,10 +667,10 @@ class ImportTicketsApi {
   }
 
   /// apiImportticketsPost
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [createImportTicketRequest]
+  /// * [createImportTicketRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -688,7 +680,7 @@ class ImportTicketsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiImportticketsPost({
+  Future<Response<BaseResponseOfstring>> apiImportticketsPost({ 
     required CreateImportTicketRequest createImportTicketRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -700,10 +692,16 @@ class ImportTicketsApi {
     final _path = r'/api/importtickets';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -714,10 +712,13 @@ class ImportTicketsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(createImportTicketRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(createImportTicketRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -736,14 +737,9 @@ class ImportTicketsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -767,11 +763,11 @@ class ImportTicketsApi {
   }
 
   /// apiImportticketsTicketIdVerifyPost
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [ticketId]
-  /// * [verifyImportTicketRequest]
+  /// * [ticketId] 
+  /// * [verifyImportTicketRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -781,7 +777,7 @@ class ImportTicketsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiImportticketsTicketIdVerifyPost({
+  Future<Response<BaseResponseOfstring>> apiImportticketsTicketIdVerifyPost({ 
     required String ticketId,
     required VerifyImportTicketRequest verifyImportTicketRequest,
     CancelToken? cancelToken,
@@ -791,18 +787,19 @@ class ImportTicketsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/{ticketId}/verify'.replaceAll(
-      '{'
-      r'ticketId'
-      '}',
-      ticketId.toString(),
-    );
+    final _path = r'/api/importtickets/{ticketId}/verify'.replaceAll('{' r'ticketId' '}', ticketId.toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -813,10 +810,13 @@ class ImportTicketsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(verifyImportTicketRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(verifyImportTicketRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -835,14 +835,9 @@ class ImportTicketsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -864,4 +859,5 @@ class ImportTicketsApi {
       extra: _response.extra,
     );
   }
+
 }

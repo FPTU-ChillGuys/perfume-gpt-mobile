@@ -5,13 +5,13 @@ AI-Powered Staff Mobile App for the PerfumeGPT ecosystem, providing Mobile POS a
 ## Features
 
 -   **Mobile POS:**
-    -   Quick SKU entry and barcode scanning interface (placeholder).
-    -   Real-time cart management with quantity adjustments.
-    -   Checkout flow supporting multiple payment methods (Cash, Card, E-Wallet).
+    -   Quick variant/barcode entry and order retrieval interface.
+    -   Real-time draft management with quantity adjustments.
+    -   Type-safe checkout flow supporting multiple payment methods (Cash, VnPay, Momo) integrated with the backend API.
 -   **Stock Management:**
     -   Real-time inventory list with search and filtering by SKU, name, or brand.
-    -   Detailed product views including current stock levels and scent profiles.
-    -   Direct stock adjustments with reason codes (Restock, Damage, Return).
+    -   Detailed product views including current stock levels and pricing fetched from the API.
+    -   Direct stock adjustments with reason codes (Found, Loss) synchronized with backend.
 -   **Architecture:**
     -   Built with Flutter following **Clean Architecture** principles.
     -   State management powered by **Riverpod** with code generation.

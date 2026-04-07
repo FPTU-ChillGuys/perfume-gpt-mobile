@@ -23,10 +23,6 @@ abstract class _$CampaignPromotionItemResponseCWProxy {
 
   CampaignPromotionItemResponse endDate(DateTime? endDate);
 
-  CampaignPromotionItemResponse autoStopWhenBatchEmpty(
-    bool? autoStopWhenBatchEmpty,
-  );
-
   CampaignPromotionItemResponse maxUsage(int? maxUsage);
 
   CampaignPromotionItemResponse currentUsage(int? currentUsage);
@@ -47,7 +43,6 @@ abstract class _$CampaignPromotionItemResponseCWProxy {
     PromotionType? itemType,
     DateTime? startDate,
     DateTime? endDate,
-    bool? autoStopWhenBatchEmpty,
     int? maxUsage,
     int? currentUsage,
   });
@@ -92,11 +87,6 @@ class _$CampaignPromotionItemResponseCWProxyImpl
       call(endDate: endDate);
 
   @override
-  CampaignPromotionItemResponse autoStopWhenBatchEmpty(
-    bool? autoStopWhenBatchEmpty,
-  ) => call(autoStopWhenBatchEmpty: autoStopWhenBatchEmpty);
-
-  @override
   CampaignPromotionItemResponse maxUsage(int? maxUsage) =>
       call(maxUsage: maxUsage);
 
@@ -121,7 +111,6 @@ class _$CampaignPromotionItemResponseCWProxyImpl
     Object? itemType = const $CopyWithPlaceholder(),
     Object? startDate = const $CopyWithPlaceholder(),
     Object? endDate = const $CopyWithPlaceholder(),
-    Object? autoStopWhenBatchEmpty = const $CopyWithPlaceholder(),
     Object? maxUsage = const $CopyWithPlaceholder(),
     Object? currentUsage = const $CopyWithPlaceholder(),
   }) {
@@ -158,11 +147,6 @@ class _$CampaignPromotionItemResponseCWProxyImpl
           ? _value.endDate
           // ignore: cast_nullable_to_non_nullable
           : endDate as DateTime?,
-      autoStopWhenBatchEmpty:
-          autoStopWhenBatchEmpty == const $CopyWithPlaceholder()
-          ? _value.autoStopWhenBatchEmpty
-          // ignore: cast_nullable_to_non_nullable
-          : autoStopWhenBatchEmpty as bool?,
       maxUsage: maxUsage == const $CopyWithPlaceholder()
           ? _value.maxUsage
           // ignore: cast_nullable_to_non_nullable
@@ -210,10 +194,6 @@ CampaignPromotionItemResponse _$CampaignPromotionItemResponseFromJson(
       'endDate',
       (v) => v == null ? null : DateTime.parse(v as String),
     ),
-    autoStopWhenBatchEmpty: $checkedConvert(
-      'autoStopWhenBatchEmpty',
-      (v) => v as bool?,
-    ),
     maxUsage: $checkedConvert('maxUsage', (v) => (v as num?)?.toInt()),
     currentUsage: $checkedConvert('currentUsage', (v) => (v as num?)?.toInt()),
   );
@@ -231,7 +211,6 @@ Map<String, dynamic> _$CampaignPromotionItemResponseToJson(
   'itemType': ?_$PromotionTypeEnumMap[instance.itemType],
   'startDate': ?instance.startDate?.toIso8601String(),
   'endDate': ?instance.endDate?.toIso8601String(),
-  'autoStopWhenBatchEmpty': ?instance.autoStopWhenBatchEmpty,
   'maxUsage': ?instance.maxUsage,
   'currentUsage': ?instance.currentUsage,
 };

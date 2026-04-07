@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'order_detail_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,80 +20,161 @@ part 'order_detail_response.g.dart';
 class OrderDetailResponse {
   /// Returns a new [OrderDetailResponse] instance.
   OrderDetailResponse({
-    this.id,
 
-    this.variantId,
+     this.id,
 
-    required this.variantName,
+     this.variantId,
 
-    this.imageUrl,
+    required  this.variantName,
 
-    this.quantity,
+     this.imageUrl,
 
-    this.unitPrice,
+     this.quantity,
 
-    this.refunablePrice,
+     this.unitPrice,
 
-    this.total,
+     this.refunablePrice,
 
-    required this.reservedBatches,
+     this.total,
+
+    required  this.reservedBatches,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantId;
 
-  @JsonKey(name: r'variantName', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String variantName;
 
-  @JsonKey(name: r'imageUrl', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'imageUrl',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? imageUrl;
 
-  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'quantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? quantity;
 
-  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'unitPrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? unitPrice;
 
-  @JsonKey(name: r'refunablePrice', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'refunablePrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? refunablePrice;
 
-  @JsonKey(name: r'total', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'total',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? total;
 
-  @JsonKey(name: r'reservedBatches', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'reservedBatches',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<ReservedBatchResponse> reservedBatches;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is OrderDetailResponse &&
-          other.id == id &&
-          other.variantId == variantId &&
-          other.variantName == variantName &&
-          other.imageUrl == imageUrl &&
-          other.quantity == quantity &&
-          other.unitPrice == unitPrice &&
-          other.refunablePrice == refunablePrice &&
-          other.total == total &&
-          other.reservedBatches == reservedBatches;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      variantId.hashCode +
-      variantName.hashCode +
-      (imageUrl == null ? 0 : imageUrl.hashCode) +
-      quantity.hashCode +
-      unitPrice.hashCode +
-      refunablePrice.hashCode +
-      total.hashCode +
-      reservedBatches.hashCode;
 
-  factory OrderDetailResponse.fromJson(Map<String, dynamic> json) =>
-      _$OrderDetailResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is OrderDetailResponse &&
+      other.id == id &&
+      other.variantId == variantId &&
+      other.variantName == variantName &&
+      other.imageUrl == imageUrl &&
+      other.quantity == quantity &&
+      other.unitPrice == unitPrice &&
+      other.refunablePrice == refunablePrice &&
+      other.total == total &&
+      other.reservedBatches == reservedBatches;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        variantId.hashCode +
+        variantName.hashCode +
+        (imageUrl == null ? 0 : imageUrl.hashCode) +
+        quantity.hashCode +
+        unitPrice.hashCode +
+        refunablePrice.hashCode +
+        total.hashCode +
+        reservedBatches.hashCode;
+
+  factory OrderDetailResponse.fromJson(Map<String, dynamic> json) => _$OrderDetailResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderDetailResponseToJson(this);
 
@@ -100,4 +182,6 @@ class OrderDetailResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

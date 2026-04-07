@@ -5,13 +5,14 @@
 // ignore_for_file: unused_element
 import 'package:json_annotation/json_annotation.dart';
 
+
 enum VariantStatus {
-  @JsonValue(r'Active')
-  active(r'Active'),
-  @JsonValue(r'Inactive')
-  inactive(r'Inactive'),
-  @JsonValue(r'Discontinued')
-  discontinued(r'Discontinued');
+      @JsonValue(r'Active')
+      active(r'Active'),
+      @JsonValue(r'Inactive')
+      inactive(r'Inactive'),
+      @JsonValue(r'Discontinued')
+      discontinued(r'Discontinued');
 
   const VariantStatus(this.value);
 

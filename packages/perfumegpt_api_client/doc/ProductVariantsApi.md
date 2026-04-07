@@ -9,6 +9,7 @@ All URIs are relative to *https://localhost:7011*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**apiProductvariantsForPosGet**](ProductVariantsApi.md#apiproductvariantsforposget) | **GET** /api/productvariants/for-pos | 
 [**apiProductvariantsGet**](ProductVariantsApi.md#apiproductvariantsget) | **GET** /api/productvariants | 
 [**apiProductvariantsImagesMediaIdSetPrimaryPut**](ProductVariantsApi.md#apiproductvariantsimagesmediaidsetprimaryput) | **PUT** /api/productvariants/images/{mediaId}/set-primary | 
 [**apiProductvariantsImagesTemporaryPost**](ProductVariantsApi.md#apiproductvariantsimagestemporarypost) | **POST** /api/productvariants/images/temporary | 
@@ -20,6 +21,51 @@ Method | HTTP request | Description
 [**apiProductvariantsVariantIdImagesPrimaryGet**](ProductVariantsApi.md#apiproductvariantsvariantidimagesprimaryget) | **GET** /api/productvariants/{variantId}/images/primary | 
 [**apiProductvariantsVariantIdPut**](ProductVariantsApi.md#apiproductvariantsvariantidput) | **PUT** /api/productvariants/{variantId} | 
 
+
+# **apiProductvariantsForPosGet**
+> BaseResponseOfProductVariantForPosResponse apiProductvariantsForPosGet(barcode, sku, name)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getProductVariantsApi();
+final String barcode = barcode_example; // String | 
+final String sku = sku_example; // String | 
+final String name = name_example; // String | 
+
+try {
+    final response = api.apiProductvariantsForPosGet(barcode, sku, name);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ProductVariantsApi->apiProductvariantsForPosGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **barcode** | **String**|  | [optional] 
+ **sku** | **String**|  | [optional] 
+ **name** | **String**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfProductVariantForPosResponse**](BaseResponseOfProductVariantForPosResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiProductvariantsGet**
 > BaseResponseOfPagedResultOfVariantPagedItem apiProductvariantsGet(pageNumber, pageSize, sortBy, sortOrder, isDescending)

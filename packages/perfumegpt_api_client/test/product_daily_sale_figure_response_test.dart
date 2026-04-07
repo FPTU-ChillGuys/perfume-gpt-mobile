@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductDailySaleFigureResponse
 void main() {
-  final ProductDailySaleFigureResponse?
-  instance = /* ProductDailySaleFigureResponse(...) */ null;
+  final ProductDailySaleFigureResponse? instance = /* ProductDailySaleFigureResponse(...) */ null;
   // TODO add properties to the entity
 
   group(ProductDailySaleFigureResponse, () {
@@ -22,5 +21,6 @@ void main() {
     test('to test the property `dailySaleFigures`', () async {
       // TODO
     });
+
   });
 }

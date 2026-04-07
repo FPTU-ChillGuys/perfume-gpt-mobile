@@ -1,0 +1,123 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+
+// ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/order_cancel_request_response.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'base_response_of_order_cancel_request_response.g.dart';
+
+
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class BaseResponseOfOrderCancelRequestResponse {
+  /// Returns a new [BaseResponseOfOrderCancelRequestResponse] instance.
+  BaseResponseOfOrderCancelRequestResponse({
+
+     this.payload,
+
+     this.success,
+
+     this.message,
+
+     this.errors,
+
+     this.errorType,
+  });
+
+  @JsonKey(
+    
+    name: r'payload',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final OrderCancelRequestResponse? payload;
+
+
+
+  @JsonKey(
+    
+    name: r'success',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final bool? success;
+
+
+
+  @JsonKey(
+    
+    name: r'message',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? message;
+
+
+
+  @JsonKey(
+    
+    name: r'errors',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final List<String>? errors;
+
+
+
+  @JsonKey(
+    
+    name: r'errorType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? errorType;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is BaseResponseOfOrderCancelRequestResponse &&
+      other.payload == payload &&
+      other.success == success &&
+      other.message == message &&
+      other.errors == errors &&
+      other.errorType == errorType;
+
+    @override
+    int get hashCode =>
+        (payload == null ? 0 : payload.hashCode) +
+        success.hashCode +
+        message.hashCode +
+        (errors == null ? 0 : errors.hashCode) +
+        (errorType == null ? 0 : errorType.hashCode);
+
+  factory BaseResponseOfOrderCancelRequestResponse.fromJson(Map<String, dynamic> json) => _$BaseResponseOfOrderCancelRequestResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BaseResponseOfOrderCancelRequestResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+}
+

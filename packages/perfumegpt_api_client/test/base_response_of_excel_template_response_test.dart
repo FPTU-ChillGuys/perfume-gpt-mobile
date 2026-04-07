@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfExcelTemplateResponse
 void main() {
-  final BaseResponseOfExcelTemplateResponse?
-  instance = /* BaseResponseOfExcelTemplateResponse(...) */ null;
+  final BaseResponseOfExcelTemplateResponse? instance = /* BaseResponseOfExcelTemplateResponse(...) */ null;
   // TODO add properties to the entity
 
   group(BaseResponseOfExcelTemplateResponse, () {
@@ -32,5 +31,6 @@ void main() {
     test('to test the property `errorType`', () async {
       // TODO
     });
+
   });
 }

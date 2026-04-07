@@ -13,6 +13,10 @@ abstract class _$ProcessCancelRequestCWProxy {
 
   ProcessCancelRequest refundMethod(PaymentMethod? refundMethod);
 
+  ProcessCancelRequest manualTransactionReference(
+    String? manualTransactionReference,
+  );
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessCancelRequest(...).copyWith.fieldName(value)`.
   ///
@@ -24,6 +28,7 @@ abstract class _$ProcessCancelRequestCWProxy {
     bool? isApproved,
     String? staffNote,
     PaymentMethod? refundMethod,
+    String? manualTransactionReference,
   });
 }
 
@@ -48,6 +53,11 @@ class _$ProcessCancelRequestCWProxyImpl
       call(refundMethod: refundMethod);
 
   @override
+  ProcessCancelRequest manualTransactionReference(
+    String? manualTransactionReference,
+  ) => call(manualTransactionReference: manualTransactionReference);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessCancelRequest(...).copyWith.fieldName(value)`.
   ///
@@ -59,6 +69,7 @@ class _$ProcessCancelRequestCWProxyImpl
     Object? isApproved = const $CopyWithPlaceholder(),
     Object? staffNote = const $CopyWithPlaceholder(),
     Object? refundMethod = const $CopyWithPlaceholder(),
+    Object? manualTransactionReference = const $CopyWithPlaceholder(),
   }) {
     return ProcessCancelRequest(
       isApproved: isApproved == const $CopyWithPlaceholder()
@@ -73,6 +84,11 @@ class _$ProcessCancelRequestCWProxyImpl
           ? _value.refundMethod
           // ignore: cast_nullable_to_non_nullable
           : refundMethod as PaymentMethod?,
+      manualTransactionReference:
+          manualTransactionReference == const $CopyWithPlaceholder()
+          ? _value.manualTransactionReference
+          // ignore: cast_nullable_to_non_nullable
+          : manualTransactionReference as String?,
     );
   }
 }
@@ -99,6 +115,10 @@ ProcessCancelRequest _$ProcessCancelRequestFromJson(
       'refundMethod',
       (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
     ),
+    manualTransactionReference: $checkedConvert(
+      'manualTransactionReference',
+      (v) => v as String?,
+    ),
   );
   return val;
 });
@@ -109,6 +129,7 @@ Map<String, dynamic> _$ProcessCancelRequestToJson(
   'isApproved': ?instance.isApproved,
   'staffNote': ?instance.staffNote,
   'refundMethod': ?_$PaymentMethodEnumMap[instance.refundMethod],
+  'manualTransactionReference': ?instance.manualTransactionReference,
 };
 
 const _$PaymentMethodEnumMap = {
@@ -116,4 +137,5 @@ const _$PaymentMethodEnumMap = {
   PaymentMethod.vnPay: 'VnPay',
   PaymentMethod.momo: 'Momo',
   PaymentMethod.cashInStore: 'CashInStore',
+  PaymentMethod.externalBankTransfer: 'ExternalBankTransfer',
 };
