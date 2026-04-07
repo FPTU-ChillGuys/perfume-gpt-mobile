@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'order_return_request_detail_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,66 +19,120 @@ part 'order_return_request_detail_response.g.dart';
 class OrderReturnRequestDetailResponse {
   /// Returns a new [OrderReturnRequestDetailResponse] instance.
   OrderReturnRequestDetailResponse({
-    this.id,
 
-    this.orderDetailId,
+     this.id,
 
-    this.variantId,
+     this.orderDetailId,
 
-    this.requestedQuantity,
+     this.variantId,
 
-    this.unitPrice,
+     this.requestedQuantity,
 
-    this.refundableAmount,
+     this.unitPrice,
+
+     this.refundableAmount,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'orderDetailId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'orderDetailId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? orderDetailId;
 
-  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantId;
 
-  @JsonKey(name: r'requestedQuantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'requestedQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? requestedQuantity;
 
-  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'unitPrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? unitPrice;
 
-  @JsonKey(name: r'refundableAmount', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'refundableAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? refundableAmount;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is OrderReturnRequestDetailResponse &&
-          other.id == id &&
-          other.orderDetailId == orderDetailId &&
-          other.variantId == variantId &&
-          other.requestedQuantity == requestedQuantity &&
-          other.unitPrice == unitPrice &&
-          other.refundableAmount == refundableAmount;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      orderDetailId.hashCode +
-      variantId.hashCode +
-      requestedQuantity.hashCode +
-      unitPrice.hashCode +
-      refundableAmount.hashCode;
 
-  factory OrderReturnRequestDetailResponse.fromJson(
-    Map<String, dynamic> json,
-  ) => _$OrderReturnRequestDetailResponseFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$OrderReturnRequestDetailResponseToJson(this);
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is OrderReturnRequestDetailResponse &&
+      other.id == id &&
+      other.orderDetailId == orderDetailId &&
+      other.variantId == variantId &&
+      other.requestedQuantity == requestedQuantity &&
+      other.unitPrice == unitPrice &&
+      other.refundableAmount == refundableAmount;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        orderDetailId.hashCode +
+        variantId.hashCode +
+        requestedQuantity.hashCode +
+        unitPrice.hashCode +
+        refundableAmount.hashCode;
+
+  factory OrderReturnRequestDetailResponse.fromJson(Map<String, dynamic> json) => _$OrderReturnRequestDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrderReturnRequestDetailResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
+
 }
+

@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'bulk_action_metadata.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,59 +20,113 @@ part 'bulk_action_metadata.g.dart';
 class BulkActionMetadata {
   /// Returns a new [BulkActionMetadata] instance.
   BulkActionMetadata({
-    required this.operations,
 
-    this.hasPartialFailure,
+    required  this.operations,
 
-    this.allSucceeded,
+     this.hasPartialFailure,
 
-    this.totalOperations,
+     this.allSucceeded,
 
-    this.totalSucceeded,
+     this.totalOperations,
 
-    this.totalFailed,
+     this.totalSucceeded,
+
+     this.totalFailed,
   });
 
-  @JsonKey(name: r'operations', required: true, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'operations',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<BulkOperationResult> operations;
 
-  @JsonKey(name: r'hasPartialFailure', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'hasPartialFailure',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? hasPartialFailure;
 
-  @JsonKey(name: r'allSucceeded', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'allSucceeded',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? allSucceeded;
 
-  @JsonKey(name: r'totalOperations', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalOperations',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? totalOperations;
 
-  @JsonKey(name: r'totalSucceeded', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalSucceeded',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? totalSucceeded;
 
-  @JsonKey(name: r'totalFailed', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalFailed',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? totalFailed;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BulkActionMetadata &&
-          other.operations == operations &&
-          other.hasPartialFailure == hasPartialFailure &&
-          other.allSucceeded == allSucceeded &&
-          other.totalOperations == totalOperations &&
-          other.totalSucceeded == totalSucceeded &&
-          other.totalFailed == totalFailed;
 
-  @override
-  int get hashCode =>
-      operations.hashCode +
-      hasPartialFailure.hashCode +
-      allSucceeded.hashCode +
-      totalOperations.hashCode +
-      totalSucceeded.hashCode +
-      totalFailed.hashCode;
 
-  factory BulkActionMetadata.fromJson(Map<String, dynamic> json) =>
-      _$BulkActionMetadataFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is BulkActionMetadata &&
+      other.operations == operations &&
+      other.hasPartialFailure == hasPartialFailure &&
+      other.allSucceeded == allSucceeded &&
+      other.totalOperations == totalOperations &&
+      other.totalSucceeded == totalSucceeded &&
+      other.totalFailed == totalFailed;
+
+    @override
+    int get hashCode =>
+        operations.hashCode +
+        hasPartialFailure.hashCode +
+        allSucceeded.hashCode +
+        totalOperations.hashCode +
+        totalSucceeded.hashCode +
+        totalFailed.hashCode;
+
+  factory BulkActionMetadata.fromJson(Map<String, dynamic> json) => _$BulkActionMetadataFromJson(json);
 
   Map<String, dynamic> toJson() => _$BulkActionMetadataToJson(this);
 
@@ -79,4 +134,6 @@ class BulkActionMetadata {
   String toString() {
     return toJson().toString();
   }
+
 }
+

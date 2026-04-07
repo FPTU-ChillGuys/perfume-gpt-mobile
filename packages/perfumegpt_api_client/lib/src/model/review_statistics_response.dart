@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'review_statistics_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,73 +19,145 @@ part 'review_statistics_response.g.dart';
 class ReviewStatisticsResponse {
   /// Returns a new [ReviewStatisticsResponse] instance.
   ReviewStatisticsResponse({
-    this.variantId,
 
-    this.totalReviews,
+     this.variantId,
 
-    this.averageRating,
+     this.totalReviews,
 
-    this.fiveStarCount,
+     this.averageRating,
 
-    this.fourStarCount,
+     this.fiveStarCount,
 
-    this.threeStarCount,
+     this.fourStarCount,
 
-    this.twoStarCount,
+     this.threeStarCount,
 
-    this.oneStarCount,
+     this.twoStarCount,
+
+     this.oneStarCount,
   });
 
-  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'variantId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantId;
 
-  @JsonKey(name: r'totalReviews', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalReviews',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? totalReviews;
 
-  @JsonKey(name: r'averageRating', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'averageRating',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final double? averageRating;
 
-  @JsonKey(name: r'fiveStarCount', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'fiveStarCount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? fiveStarCount;
 
-  @JsonKey(name: r'fourStarCount', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'fourStarCount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? fourStarCount;
 
-  @JsonKey(name: r'threeStarCount', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'threeStarCount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? threeStarCount;
 
-  @JsonKey(name: r'twoStarCount', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'twoStarCount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? twoStarCount;
 
-  @JsonKey(name: r'oneStarCount', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'oneStarCount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? oneStarCount;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ReviewStatisticsResponse &&
-          other.variantId == variantId &&
-          other.totalReviews == totalReviews &&
-          other.averageRating == averageRating &&
-          other.fiveStarCount == fiveStarCount &&
-          other.fourStarCount == fourStarCount &&
-          other.threeStarCount == threeStarCount &&
-          other.twoStarCount == twoStarCount &&
-          other.oneStarCount == oneStarCount;
 
-  @override
-  int get hashCode =>
-      variantId.hashCode +
-      totalReviews.hashCode +
-      averageRating.hashCode +
-      fiveStarCount.hashCode +
-      fourStarCount.hashCode +
-      threeStarCount.hashCode +
-      twoStarCount.hashCode +
-      oneStarCount.hashCode;
 
-  factory ReviewStatisticsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ReviewStatisticsResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ReviewStatisticsResponse &&
+      other.variantId == variantId &&
+      other.totalReviews == totalReviews &&
+      other.averageRating == averageRating &&
+      other.fiveStarCount == fiveStarCount &&
+      other.fourStarCount == fourStarCount &&
+      other.threeStarCount == threeStarCount &&
+      other.twoStarCount == twoStarCount &&
+      other.oneStarCount == oneStarCount;
+
+    @override
+    int get hashCode =>
+        variantId.hashCode +
+        totalReviews.hashCode +
+        averageRating.hashCode +
+        fiveStarCount.hashCode +
+        fourStarCount.hashCode +
+        threeStarCount.hashCode +
+        twoStarCount.hashCode +
+        oneStarCount.hashCode;
+
+  factory ReviewStatisticsResponse.fromJson(Map<String, dynamic> json) => _$ReviewStatisticsResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReviewStatisticsResponseToJson(this);
 
@@ -92,4 +165,6 @@ class ReviewStatisticsResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

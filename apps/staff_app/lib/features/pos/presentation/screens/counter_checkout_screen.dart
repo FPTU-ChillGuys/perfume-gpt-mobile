@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../providers/counter_checkout_providers.dart';
 
@@ -33,7 +34,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
   @override
   Widget build(BuildContext context) {
     final loadedOrder = ref.watch(loadedOrderProvider);
-    final checkoutState = ref.watch(counterCheckoutNotifierProvider);
+    final checkoutState = ref.watch(counterCheckoutNotifier);
     final isLoading = checkoutState is AsyncLoading;
 
     return Scaffold(
@@ -44,7 +45,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
             icon: const Icon(Icons.refresh),
             tooltip: 'Làm mới',
             onPressed: () {
-              ref.read(counterCheckoutNotifierProvider.notifier).resetAll();
+              ref.read(counterCheckoutNotifier.notifier).resetAll();
               _orderCodeController.clear();
               _variantIdController.clear();
               _voucherController.clear();
@@ -324,15 +325,14 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     );
   }
 
-  Widget _buildOrderInfoSection(Map<String, dynamic> order) {
-    final code = order['code'] as String? ?? '';
-    final status = order['status'] as String? ?? '';
-    final paymentStatus = order['paymentStatus'] as String? ?? '';
-    final totalAmount = (order['totalAmount'] as num?)?.toDouble() ?? 0;
-    final customerName = order['customerName'] as String?;
-    final staffName = order['staffName'] as String?;
-    final details = order['orderDetails'] as List<dynamic>? ?? [];
-    final voucherCode = order['voucherCode'] as String?;
+  Widget _buildOrderInfoSection(UserOrderResponse order) {
+    final code = order.code;
+    final status = order.status?.value ?? '';
+    final paymentStatus = order.paymentStatus?.value ?? '';
+    final totalAmount = (order.totalAmount ?? 0).toDouble();
+    final customerName = order.recipientInfo?.recipientName;
+    final details = order.orderDetails;
+    final voucherCode = order.voucherCode;
 
     return Card(
       child: Padding(
@@ -356,7 +356,6 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
             _infoRow('Mã đơn', code),
             _infoRow('Trạng thái', status),
             if (customerName != null) _infoRow('Khách hàng', customerName),
-            if (staffName != null) _infoRow('Nhân viên', staffName),
             if (voucherCode != null) _infoRow('Voucher', voucherCode),
             _infoRow('Tổng tiền', PriceFormatter.format(totalAmount)),
             const Divider(),
@@ -365,12 +364,11 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                       fontWeight: FontWeight.bold,
                     )),
             const SizedBox(height: 8),
-            ...details.map((d) {
-              final detail = d as Map<String, dynamic>;
-              final name = detail['variantName'] as String? ?? '';
-              final qty = detail['quantity'] as int? ?? 0;
-              final unitPrice = (detail['unitPrice'] as num?)?.toDouble() ?? 0;
-              final imgUrl = detail['imageUrl'] as String?;
+            ...details.map((detail) {
+              final name = detail.variantName;
+              final qty = detail.quantity ?? 0;
+              final unitPrice = (detail.unitPrice ?? 0).toDouble();
+              final imgUrl = detail.imageUrl;
               return ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: imgUrl != null
@@ -400,15 +398,15 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     );
   }
 
-  Widget _buildPaymentSection(Map<String, dynamic> order) {
+  Widget _buildPaymentSection(UserOrderResponse order) {
     final paymentMethod = ref.watch(selectedPaymentMethodProvider);
-    final paymentStatus = order['paymentStatus'] as String? ?? '';
-    final transactions = order['paymentTransactions'] as List<dynamic>? ?? [];
+    final isPaid = order.paymentStatus == PaymentStatus.paid;
+    final transactions = order.paymentTransactions ?? [];
     final paymentId = transactions.isNotEmpty
-        ? (transactions.first as Map<String, dynamic>)['id'] as String?
+        ? transactions.first.id
         : null;
 
-    if (paymentStatus == 'Paid') {
+    if (isPaid) {
       return Card(
         color: Colors.green.shade50,
         child: Padding(
@@ -528,7 +526,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     final code = _orderCodeController.text.trim();
     if (code.isEmpty) return;
     await ref
-        .read(counterCheckoutNotifierProvider.notifier)
+        .read(counterCheckoutNotifier.notifier)
         .loadOrder(code);
     final order = ref.read(loadedOrderProvider);
     if (order == null && mounted) {
@@ -543,7 +541,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     if (variantId.isEmpty) return;
 
     final item = await ref
-        .read(counterCheckoutNotifierProvider.notifier)
+        .read(counterCheckoutNotifier.notifier)
         .lookupVariant(variantId);
     if (item != null) {
       ref.read(draftItemsProvider.notifier).addItem(item);
@@ -560,7 +558,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     final method = ref.read(selectedPaymentMethodProvider);
 
     final orderId = await ref
-        .read(counterCheckoutNotifierProvider.notifier)
+        .read(counterCheckoutNotifier.notifier)
         .createInStoreOrder(
           items: items,
           paymentMethod: method,
@@ -590,7 +588,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
 
   Future<void> _confirmCashPayment(String paymentId) async {
     final success = await ref
-        .read(counterCheckoutNotifierProvider.notifier)
+        .read(counterCheckoutNotifier.notifier)
         .confirmPayment(paymentId);
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -606,7 +604,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
 
   Future<void> _showQrPayment(String paymentId, String method) async {
     final url = await ref
-        .read(counterCheckoutNotifierProvider.notifier)
+        .read(counterCheckoutNotifier.notifier)
         .retryPayment(paymentId, method);
 
     if (url != null && url.isNotEmpty && mounted) {
@@ -669,10 +667,10 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
 
   Future<void> _reloadCurrentOrder() async {
     final order = ref.read(loadedOrderProvider);
-    if (order != null && order['id'] != null) {
+    if (order != null && order.id != null) {
       await ref
-          .read(counterCheckoutNotifierProvider.notifier)
-          .loadOrder(order['id'] as String);
+          .read(counterCheckoutNotifier.notifier)
+          .loadOrder(order.id!);
     }
   }
 }

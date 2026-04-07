@@ -210,7 +210,8 @@ const _$ShippingTypeEnumMap = {
 };
 
 const _$ShippingStatusEnumMap = {
-  ShippingStatus.pending: 'Pending',
+  ShippingStatus.unAssigned: 'UnAssigned',
+  ShippingStatus.readyToPick: 'ReadyToPick',
   ShippingStatus.delivering: 'Delivering',
   ShippingStatus.delivered: 'Delivered',
   ShippingStatus.cancelled: 'Cancelled',

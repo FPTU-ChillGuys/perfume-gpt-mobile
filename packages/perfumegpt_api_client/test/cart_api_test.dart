@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for CartApi
 void main() {
   final instance = PerfumegptApiClient().getCartApi();
@@ -31,9 +32,15 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfPreviewPosOrderResponse> apiCartPosPreviewPost(PreviewPosOrderRequest previewPosOrderRequest) async
+    test('test apiCartPosPreviewPost', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfGetCartTotalResponse> apiCartTotalGet({ String voucherCode, List<String> itemIds, String savedAddressId, String recipientPeriodContactName, String recipientPeriodContactPhoneNumber, int recipientPeriodDistrictId, String recipientPeriodDistrictName, String recipientPeriodWardCode, String recipientPeriodWardName, int recipientPeriodProvinceId, String recipientPeriodProvinceName, String recipientPeriodFullAddress }) async
     test('test apiCartTotalGet', () async {
       // TODO
     });
+
   });
 }

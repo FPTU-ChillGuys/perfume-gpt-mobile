@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_concentration_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,21 +18,34 @@ part 'create_concentration_request.g.dart';
 )
 class CreateConcentrationRequest {
   /// Returns a new [CreateConcentrationRequest] instance.
-  CreateConcentrationRequest({required this.name});
+  CreateConcentrationRequest({
 
-  @JsonKey(name: r'name', required: true, includeIfNull: false)
+    required  this.name,
+  });
+
+  @JsonKey(
+    
+    name: r'name',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String name;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateConcentrationRequest && other.name == name;
 
-  @override
-  int get hashCode => name.hashCode;
 
-  factory CreateConcentrationRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateConcentrationRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateConcentrationRequest &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        name.hashCode;
+
+  factory CreateConcentrationRequest.fromJson(Map<String, dynamic> json) => _$CreateConcentrationRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateConcentrationRequestToJson(this);
 
@@ -39,4 +53,6 @@ class CreateConcentrationRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'loyalty_transaction_history_item_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,80 +20,152 @@ part 'loyalty_transaction_history_item_response.g.dart';
 class LoyaltyTransactionHistoryItemResponse {
   /// Returns a new [LoyaltyTransactionHistoryItemResponse] instance.
   LoyaltyTransactionHistoryItemResponse({
-    this.id,
 
-    this.userId,
+     this.id,
 
-    this.voucherId,
+     this.userId,
 
-    this.orderId,
+     this.voucherId,
 
-    this.transactionType,
+     this.orderId,
 
-    this.pointsChanged,
+     this.transactionType,
 
-    this.absolutePoints,
+     this.pointsChanged,
 
-    required this.reason,
+     this.absolutePoints,
+
+    required  this.reason,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'userId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'userId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? userId;
 
-  @JsonKey(name: r'voucherId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'voucherId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? voucherId;
 
-  @JsonKey(name: r'orderId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'orderId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? orderId;
 
-  @JsonKey(name: r'transactionType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'transactionType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final LoyaltyTransactionType? transactionType;
 
-  @JsonKey(name: r'pointsChanged', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'pointsChanged',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? pointsChanged;
 
-  @JsonKey(name: r'absolutePoints', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'absolutePoints',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? absolutePoints;
 
-  @JsonKey(name: r'reason', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'reason',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String reason;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is LoyaltyTransactionHistoryItemResponse &&
-          other.id == id &&
-          other.userId == userId &&
-          other.voucherId == voucherId &&
-          other.orderId == orderId &&
-          other.transactionType == transactionType &&
-          other.pointsChanged == pointsChanged &&
-          other.absolutePoints == absolutePoints &&
-          other.reason == reason;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      userId.hashCode +
-      (voucherId == null ? 0 : voucherId.hashCode) +
-      (orderId == null ? 0 : orderId.hashCode) +
-      transactionType.hashCode +
-      pointsChanged.hashCode +
-      absolutePoints.hashCode +
-      reason.hashCode;
 
-  factory LoyaltyTransactionHistoryItemResponse.fromJson(
-    Map<String, dynamic> json,
-  ) => _$LoyaltyTransactionHistoryItemResponseFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$LoyaltyTransactionHistoryItemResponseToJson(this);
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is LoyaltyTransactionHistoryItemResponse &&
+      other.id == id &&
+      other.userId == userId &&
+      other.voucherId == voucherId &&
+      other.orderId == orderId &&
+      other.transactionType == transactionType &&
+      other.pointsChanged == pointsChanged &&
+      other.absolutePoints == absolutePoints &&
+      other.reason == reason;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        userId.hashCode +
+        (voucherId == null ? 0 : voucherId.hashCode) +
+        (orderId == null ? 0 : orderId.hashCode) +
+        transactionType.hashCode +
+        pointsChanged.hashCode +
+        absolutePoints.hashCode +
+        reason.hashCode;
+
+  factory LoyaltyTransactionHistoryItemResponse.fromJson(Map<String, dynamic> json) => _$LoyaltyTransactionHistoryItemResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LoyaltyTransactionHistoryItemResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
+
 }
+

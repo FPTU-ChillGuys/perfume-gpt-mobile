@@ -15,6 +15,7 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_media_r
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_variant_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_media_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_variant_paged_item.dart';
+import 'package:perfumegpt_api_client/src/model/base_response_of_product_variant_for_pos_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_product_variant_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/create_variant_request.dart';
@@ -22,19 +23,109 @@ import 'package:perfumegpt_api_client/src/model/update_variant_request.dart';
 import 'package:perfumegpt_api_client/src/model/variant_image_upload_item.dart';
 
 class ProductVariantsApi {
+
   final Dio _dio;
 
   const ProductVariantsApi(this._dio);
 
-  /// apiProductvariantsGet
-  ///
+  /// apiProductvariantsForPosGet
+  /// 
   ///
   /// Parameters:
-  /// * [pageNumber]
-  /// * [pageSize]
-  /// * [sortBy]
-  /// * [sortOrder]
-  /// * [isDescending]
+  /// * [barcode] 
+  /// * [sku] 
+  /// * [name] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BaseResponseOfProductVariantForPosResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BaseResponseOfProductVariantForPosResponse>> apiProductvariantsForPosGet({ 
+    String? barcode,
+    String? sku,
+    String? name,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/productvariants/for-pos';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (barcode != null) r'Barcode': barcode,
+      if (sku != null) r'Sku': sku,
+      if (name != null) r'Name': name,
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BaseResponseOfProductVariantForPosResponse? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfProductVariantForPosResponse, BaseResponseOfProductVariantForPosResponse>(rawData, 'BaseResponseOfProductVariantForPosResponse', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BaseResponseOfProductVariantForPosResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiProductvariantsGet
+  /// 
+  ///
+  /// Parameters:
+  /// * [pageNumber] 
+  /// * [pageSize] 
+  /// * [sortBy] 
+  /// * [sortOrder] 
+  /// * [isDescending] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -44,8 +135,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfVariantPagedItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfVariantPagedItem>>
-  apiProductvariantsGet({
+  Future<Response<BaseResponseOfPagedResultOfVariantPagedItem>> apiProductvariantsGet({ 
     int? pageNumber,
     int? pageSize,
     String? sortBy,
@@ -61,10 +151,16 @@ class ProductVariantsApi {
     final _path = r'/api/productvariants';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -91,17 +187,9 @@ class ProductVariantsApi {
     BaseResponseOfPagedResultOfVariantPagedItem? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfPagedResultOfVariantPagedItem,
-              BaseResponseOfPagedResultOfVariantPagedItem
-            >(
-              rawData,
-              'BaseResponseOfPagedResultOfVariantPagedItem',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfVariantPagedItem, BaseResponseOfPagedResultOfVariantPagedItem>(rawData, 'BaseResponseOfPagedResultOfVariantPagedItem', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -125,10 +213,10 @@ class ProductVariantsApi {
   }
 
   /// apiProductvariantsImagesMediaIdSetPrimaryPut
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [mediaId]
+  /// * [mediaId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -138,8 +226,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>>
-  apiProductvariantsImagesMediaIdSetPrimaryPut({
+  Future<Response<BaseResponseOfstring>> apiProductvariantsImagesMediaIdSetPrimaryPut({ 
     required String mediaId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -148,19 +235,19 @@ class ProductVariantsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/images/{mediaId}/set-primary'
-        .replaceAll(
-          '{'
-          r'mediaId'
-          '}',
-          mediaId.toString(),
-        );
+    final _path = r'/api/productvariants/images/{mediaId}/set-primary'.replaceAll('{' r'mediaId' '}', mediaId.toString());
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -178,14 +265,9 @@ class ProductVariantsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -209,10 +291,10 @@ class ProductVariantsApi {
   }
 
   /// apiProductvariantsImagesTemporaryPost
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [images]
+  /// * [images] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -222,8 +304,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>>
-  apiProductvariantsImagesTemporaryPost({
+  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>> apiProductvariantsImagesTemporaryPost({ 
     List<VariantImageUploadItem>? images,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -235,10 +316,16 @@ class ProductVariantsApi {
     final _path = r'/api/productvariants/images/temporary';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -248,9 +335,14 @@ class ProductVariantsApi {
 
     dynamic _bodyData;
 
-    try {} catch (error, stackTrace) {
+    try {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -269,17 +361,9 @@ class ProductVariantsApi {
     BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse,
-              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
-            >(
-              rawData,
-              'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse, BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(rawData, 'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -290,9 +374,7 @@ class ProductVariantsApi {
       );
     }
 
-    return Response<
-      BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
-    >(
+    return Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -305,10 +387,10 @@ class ProductVariantsApi {
   }
 
   /// apiProductvariantsLookupGet
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [productId]
+  /// * [productId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -318,8 +400,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfVariantLookupItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfVariantLookupItem>>
-  apiProductvariantsLookupGet({
+  Future<Response<BaseResponseOfListOfVariantLookupItem>> apiProductvariantsLookupGet({ 
     String? productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -331,10 +412,16 @@ class ProductVariantsApi {
     final _path = r'/api/productvariants/lookup';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -357,13 +444,9 @@ class ProductVariantsApi {
     BaseResponseOfListOfVariantLookupItem? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfListOfVariantLookupItem,
-              BaseResponseOfListOfVariantLookupItem
-            >(rawData, 'BaseResponseOfListOfVariantLookupItem', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfVariantLookupItem, BaseResponseOfListOfVariantLookupItem>(rawData, 'BaseResponseOfListOfVariantLookupItem', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -387,10 +470,10 @@ class ProductVariantsApi {
   }
 
   /// apiProductvariantsPost
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [createVariantRequest]
+  /// * [createVariantRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -400,8 +483,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfstring>>
-  apiProductvariantsPost({
+  Future<Response<BaseResponseOfBulkActionResultOfstring>> apiProductvariantsPost({ 
     required CreateVariantRequest createVariantRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -413,10 +495,16 @@ class ProductVariantsApi {
     final _path = r'/api/productvariants';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -427,10 +515,13 @@ class ProductVariantsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(createVariantRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(createVariantRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -449,17 +540,9 @@ class ProductVariantsApi {
     BaseResponseOfBulkActionResultOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfBulkActionResultOfstring,
-              BaseResponseOfBulkActionResultOfstring
-            >(
-              rawData,
-              'BaseResponseOfBulkActionResultOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfstring, BaseResponseOfBulkActionResultOfstring>(rawData, 'BaseResponseOfBulkActionResultOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -483,10 +566,10 @@ class ProductVariantsApi {
   }
 
   /// apiProductvariantsVariantIdDelete
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [variantId]
+  /// * [variantId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -496,7 +579,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiProductvariantsVariantIdDelete({
+  Future<Response<BaseResponseOfstring>> apiProductvariantsVariantIdDelete({ 
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -505,18 +588,19 @@ class ProductVariantsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}'.replaceAll(
-      '{'
-      r'variantId'
-      '}',
-      variantId.toString(),
-    );
+    final _path = r'/api/productvariants/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -534,14 +618,9 @@ class ProductVariantsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -565,10 +644,10 @@ class ProductVariantsApi {
   }
 
   /// apiProductvariantsVariantIdGet
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [variantId]
+  /// * [variantId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -578,8 +657,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfProductVariantResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfProductVariantResponse>>
-  apiProductvariantsVariantIdGet({
+  Future<Response<BaseResponseOfProductVariantResponse>> apiProductvariantsVariantIdGet({ 
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -588,18 +666,19 @@ class ProductVariantsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}'.replaceAll(
-      '{'
-      r'variantId'
-      '}',
-      variantId.toString(),
-    );
+    final _path = r'/api/productvariants/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -617,13 +696,9 @@ class ProductVariantsApi {
     BaseResponseOfProductVariantResponse? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfProductVariantResponse,
-              BaseResponseOfProductVariantResponse
-            >(rawData, 'BaseResponseOfProductVariantResponse', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfProductVariantResponse, BaseResponseOfProductVariantResponse>(rawData, 'BaseResponseOfProductVariantResponse', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -647,10 +722,10 @@ class ProductVariantsApi {
   }
 
   /// apiProductvariantsVariantIdImagesGet
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [variantId]
+  /// * [variantId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -660,8 +735,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfMediaResponse>>
-  apiProductvariantsVariantIdImagesGet({
+  Future<Response<BaseResponseOfListOfMediaResponse>> apiProductvariantsVariantIdImagesGet({ 
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -670,18 +744,19 @@ class ProductVariantsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}/images'.replaceAll(
-      '{'
-      r'variantId'
-      '}',
-      variantId.toString(),
-    );
+    final _path = r'/api/productvariants/{variantId}/images'.replaceAll('{' r'variantId' '}', variantId.toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -699,13 +774,9 @@ class ProductVariantsApi {
     BaseResponseOfListOfMediaResponse? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfListOfMediaResponse,
-              BaseResponseOfListOfMediaResponse
-            >(rawData, 'BaseResponseOfListOfMediaResponse', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfMediaResponse, BaseResponseOfListOfMediaResponse>(rawData, 'BaseResponseOfListOfMediaResponse', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -729,10 +800,10 @@ class ProductVariantsApi {
   }
 
   /// apiProductvariantsVariantIdImagesPrimaryGet
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [variantId]
+  /// * [variantId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -742,8 +813,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfMediaResponse>>
-  apiProductvariantsVariantIdImagesPrimaryGet({
+  Future<Response<BaseResponseOfMediaResponse>> apiProductvariantsVariantIdImagesPrimaryGet({ 
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -752,18 +822,19 @@ class ProductVariantsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}/images/primary'.replaceAll(
-      '{'
-      r'variantId'
-      '}',
-      variantId.toString(),
-    );
+    final _path = r'/api/productvariants/{variantId}/images/primary'.replaceAll('{' r'variantId' '}', variantId.toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -781,13 +852,9 @@ class ProductVariantsApi {
     BaseResponseOfMediaResponse? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfMediaResponse,
-              BaseResponseOfMediaResponse
-            >(rawData, 'BaseResponseOfMediaResponse', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfMediaResponse, BaseResponseOfMediaResponse>(rawData, 'BaseResponseOfMediaResponse', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -811,11 +878,11 @@ class ProductVariantsApi {
   }
 
   /// apiProductvariantsVariantIdPut
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [variantId]
-  /// * [updateVariantRequest]
+  /// * [variantId] 
+  /// * [updateVariantRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -825,8 +892,7 @@ class ProductVariantsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfstring>>
-  apiProductvariantsVariantIdPut({
+  Future<Response<BaseResponseOfBulkActionResultOfstring>> apiProductvariantsVariantIdPut({ 
     required String variantId,
     required UpdateVariantRequest updateVariantRequest,
     CancelToken? cancelToken,
@@ -836,18 +902,19 @@ class ProductVariantsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/productvariants/{variantId}'.replaceAll(
-      '{'
-      r'variantId'
-      '}',
-      variantId.toString(),
-    );
+    final _path = r'/api/productvariants/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -858,10 +925,13 @@ class ProductVariantsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(updateVariantRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(updateVariantRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -880,17 +950,9 @@ class ProductVariantsApi {
     BaseResponseOfBulkActionResultOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              BaseResponseOfBulkActionResultOfstring,
-              BaseResponseOfBulkActionResultOfstring
-            >(
-              rawData,
-              'BaseResponseOfBulkActionResultOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfstring, BaseResponseOfBulkActionResultOfstring>(rawData, 'BaseResponseOfBulkActionResultOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -912,4 +974,5 @@ class ProductVariantsApi {
       extra: _response.extra,
     );
   }
+
 }

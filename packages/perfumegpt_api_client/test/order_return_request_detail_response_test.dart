@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for OrderReturnRequestDetailResponse
 void main() {
-  final OrderReturnRequestDetailResponse?
-  instance = /* OrderReturnRequestDetailResponse(...) */ null;
+  final OrderReturnRequestDetailResponse? instance = /* OrderReturnRequestDetailResponse(...) */ null;
   // TODO add properties to the entity
 
   group(OrderReturnRequestDetailResponse, () {
@@ -37,5 +36,6 @@ void main() {
     test('to test the property `refundableAmount`', () async {
       // TODO
     });
+
   });
 }

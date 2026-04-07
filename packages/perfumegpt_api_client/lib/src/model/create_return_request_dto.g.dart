@@ -11,9 +11,17 @@ abstract class _$CreateReturnRequestDtoCWProxy {
 
   CreateReturnRequestDto reason(ReturnOrderReason reason);
 
+  CreateReturnRequestDto isRefundOnly(bool? isRefundOnly);
+
   CreateReturnRequestDto returnItems(List<ReturnItemDto> returnItems);
 
   CreateReturnRequestDto customerNote(String? customerNote);
+
+  CreateReturnRequestDto refundBankName(String? refundBankName);
+
+  CreateReturnRequestDto refundAccountNumber(String? refundAccountNumber);
+
+  CreateReturnRequestDto refundAccountName(String? refundAccountName);
 
   CreateReturnRequestDto savedAddressId(String? savedAddressId);
 
@@ -31,8 +39,12 @@ abstract class _$CreateReturnRequestDtoCWProxy {
   CreateReturnRequestDto call({
     String orderId,
     ReturnOrderReason reason,
+    bool? isRefundOnly,
     List<ReturnItemDto> returnItems,
     String? customerNote,
+    String? refundBankName,
+    String? refundAccountNumber,
+    String? refundAccountName,
     String? savedAddressId,
     ContactAddressInformation? recipient,
     List<String>? temporaryMediaIds,
@@ -55,12 +67,28 @@ class _$CreateReturnRequestDtoCWProxyImpl
       call(reason: reason);
 
   @override
+  CreateReturnRequestDto isRefundOnly(bool? isRefundOnly) =>
+      call(isRefundOnly: isRefundOnly);
+
+  @override
   CreateReturnRequestDto returnItems(List<ReturnItemDto> returnItems) =>
       call(returnItems: returnItems);
 
   @override
   CreateReturnRequestDto customerNote(String? customerNote) =>
       call(customerNote: customerNote);
+
+  @override
+  CreateReturnRequestDto refundBankName(String? refundBankName) =>
+      call(refundBankName: refundBankName);
+
+  @override
+  CreateReturnRequestDto refundAccountNumber(String? refundAccountNumber) =>
+      call(refundAccountNumber: refundAccountNumber);
+
+  @override
+  CreateReturnRequestDto refundAccountName(String? refundAccountName) =>
+      call(refundAccountName: refundAccountName);
 
   @override
   CreateReturnRequestDto savedAddressId(String? savedAddressId) =>
@@ -85,8 +113,12 @@ class _$CreateReturnRequestDtoCWProxyImpl
   CreateReturnRequestDto call({
     Object? orderId = const $CopyWithPlaceholder(),
     Object? reason = const $CopyWithPlaceholder(),
+    Object? isRefundOnly = const $CopyWithPlaceholder(),
     Object? returnItems = const $CopyWithPlaceholder(),
     Object? customerNote = const $CopyWithPlaceholder(),
+    Object? refundBankName = const $CopyWithPlaceholder(),
+    Object? refundAccountNumber = const $CopyWithPlaceholder(),
+    Object? refundAccountName = const $CopyWithPlaceholder(),
     Object? savedAddressId = const $CopyWithPlaceholder(),
     Object? recipient = const $CopyWithPlaceholder(),
     Object? temporaryMediaIds = const $CopyWithPlaceholder(),
@@ -100,6 +132,10 @@ class _$CreateReturnRequestDtoCWProxyImpl
           ? _value.reason
           // ignore: cast_nullable_to_non_nullable
           : reason as ReturnOrderReason,
+      isRefundOnly: isRefundOnly == const $CopyWithPlaceholder()
+          ? _value.isRefundOnly
+          // ignore: cast_nullable_to_non_nullable
+          : isRefundOnly as bool?,
       returnItems:
           returnItems == const $CopyWithPlaceholder() || returnItems == null
           ? _value.returnItems
@@ -109,6 +145,18 @@ class _$CreateReturnRequestDtoCWProxyImpl
           ? _value.customerNote
           // ignore: cast_nullable_to_non_nullable
           : customerNote as String?,
+      refundBankName: refundBankName == const $CopyWithPlaceholder()
+          ? _value.refundBankName
+          // ignore: cast_nullable_to_non_nullable
+          : refundBankName as String?,
+      refundAccountNumber: refundAccountNumber == const $CopyWithPlaceholder()
+          ? _value.refundAccountNumber
+          // ignore: cast_nullable_to_non_nullable
+          : refundAccountNumber as String?,
+      refundAccountName: refundAccountName == const $CopyWithPlaceholder()
+          ? _value.refundAccountName
+          // ignore: cast_nullable_to_non_nullable
+          : refundAccountName as String?,
       savedAddressId: savedAddressId == const $CopyWithPlaceholder()
           ? _value.savedAddressId
           // ignore: cast_nullable_to_non_nullable
@@ -147,6 +195,7 @@ CreateReturnRequestDto _$CreateReturnRequestDtoFromJson(
       'reason',
       (v) => $enumDecode(_$ReturnOrderReasonEnumMap, v),
     ),
+    isRefundOnly: $checkedConvert('isRefundOnly', (v) => v as bool?),
     returnItems: $checkedConvert(
       'returnItems',
       (v) => (v as List<dynamic>)
@@ -154,6 +203,15 @@ CreateReturnRequestDto _$CreateReturnRequestDtoFromJson(
           .toList(),
     ),
     customerNote: $checkedConvert('customerNote', (v) => v as String?),
+    refundBankName: $checkedConvert('refundBankName', (v) => v as String?),
+    refundAccountNumber: $checkedConvert(
+      'refundAccountNumber',
+      (v) => v as String?,
+    ),
+    refundAccountName: $checkedConvert(
+      'refundAccountName',
+      (v) => v as String?,
+    ),
     savedAddressId: $checkedConvert('savedAddressId', (v) => v as String?),
     recipient: $checkedConvert(
       'recipient',
@@ -174,8 +232,12 @@ Map<String, dynamic> _$CreateReturnRequestDtoToJson(
 ) => <String, dynamic>{
   'orderId': instance.orderId,
   'reason': _$ReturnOrderReasonEnumMap[instance.reason]!,
+  'isRefundOnly': ?instance.isRefundOnly,
   'returnItems': instance.returnItems.map((e) => e.toJson()).toList(),
   'customerNote': ?instance.customerNote,
+  'refundBankName': ?instance.refundBankName,
+  'refundAccountNumber': ?instance.refundAccountNumber,
+  'refundAccountName': ?instance.refundAccountName,
   'savedAddressId': ?instance.savedAddressId,
   'recipient': ?instance.recipient?.toJson(),
   'temporaryMediaIds': ?instance.temporaryMediaIds,

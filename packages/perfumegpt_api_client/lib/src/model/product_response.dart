@@ -14,6 +14,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -24,129 +25,273 @@ part 'product_response.g.dart';
 class ProductResponse {
   /// Returns a new [ProductResponse] instance.
   ProductResponse({
-    this.id,
 
-    this.name,
+     this.id,
 
-    this.gender,
+     this.name,
 
-    required this.origin,
+     this.gender,
 
-    this.releaseYear,
+    required  this.origin,
 
-    this.brandId,
+     this.releaseYear,
 
-    required this.brandName,
+     this.brandId,
 
-    this.categoryId,
+    required  this.brandName,
 
-    required this.categoryName,
+     this.categoryId,
 
-    this.description,
+    required  this.categoryName,
 
-    this.numberOfVariants,
+     this.description,
 
-    required this.media,
+     this.numberOfVariants,
 
-    required this.variants,
+    required  this.media,
 
-    required this.attributes,
+    required  this.variants,
 
-    required this.olfactoryFamilies,
+    required  this.attributes,
 
-    required this.scentNotes,
+    required  this.olfactoryFamilies,
+
+    required  this.scentNotes,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'name', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'name',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? name;
 
-  @JsonKey(name: r'gender', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'gender',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final Gender? gender;
 
-  @JsonKey(name: r'origin', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'origin',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String origin;
 
-  @JsonKey(name: r'releaseYear', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'releaseYear',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? releaseYear;
 
-  @JsonKey(name: r'brandId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'brandId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? brandId;
 
-  @JsonKey(name: r'brandName', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'brandName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String brandName;
 
-  @JsonKey(name: r'categoryId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'categoryId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? categoryId;
 
-  @JsonKey(name: r'categoryName', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'categoryName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String categoryName;
 
-  @JsonKey(name: r'description', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'description',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? description;
 
-  @JsonKey(name: r'numberOfVariants', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'numberOfVariants',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? numberOfVariants;
 
-  @JsonKey(name: r'media', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'media',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<MediaResponse> media;
 
-  @JsonKey(name: r'variants', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variants',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<ProductVariantResponse> variants;
 
-  @JsonKey(name: r'attributes', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'attributes',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<ProductAttributeResponse> attributes;
 
-  @JsonKey(name: r'olfactoryFamilies', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'olfactoryFamilies',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<ProductOlfactoryFamilyResponse> olfactoryFamilies;
 
-  @JsonKey(name: r'scentNotes', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'scentNotes',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<ProductScentNoteResponse> scentNotes;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProductResponse &&
-          other.id == id &&
-          other.name == name &&
-          other.gender == gender &&
-          other.origin == origin &&
-          other.releaseYear == releaseYear &&
-          other.brandId == brandId &&
-          other.brandName == brandName &&
-          other.categoryId == categoryId &&
-          other.categoryName == categoryName &&
-          other.description == description &&
-          other.numberOfVariants == numberOfVariants &&
-          other.media == media &&
-          other.variants == variants &&
-          other.attributes == attributes &&
-          other.olfactoryFamilies == olfactoryFamilies &&
-          other.scentNotes == scentNotes;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      (name == null ? 0 : name.hashCode) +
-      gender.hashCode +
-      origin.hashCode +
-      releaseYear.hashCode +
-      brandId.hashCode +
-      brandName.hashCode +
-      categoryId.hashCode +
-      categoryName.hashCode +
-      (description == null ? 0 : description.hashCode) +
-      numberOfVariants.hashCode +
-      media.hashCode +
-      variants.hashCode +
-      attributes.hashCode +
-      olfactoryFamilies.hashCode +
-      scentNotes.hashCode;
 
-  factory ProductResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ProductResponse &&
+      other.id == id &&
+      other.name == name &&
+      other.gender == gender &&
+      other.origin == origin &&
+      other.releaseYear == releaseYear &&
+      other.brandId == brandId &&
+      other.brandName == brandName &&
+      other.categoryId == categoryId &&
+      other.categoryName == categoryName &&
+      other.description == description &&
+      other.numberOfVariants == numberOfVariants &&
+      other.media == media &&
+      other.variants == variants &&
+      other.attributes == attributes &&
+      other.olfactoryFamilies == olfactoryFamilies &&
+      other.scentNotes == scentNotes;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        (name == null ? 0 : name.hashCode) +
+        gender.hashCode +
+        origin.hashCode +
+        releaseYear.hashCode +
+        brandId.hashCode +
+        brandName.hashCode +
+        categoryId.hashCode +
+        categoryName.hashCode +
+        (description == null ? 0 : description.hashCode) +
+        numberOfVariants.hashCode +
+        media.hashCode +
+        variants.hashCode +
+        attributes.hashCode +
+        olfactoryFamilies.hashCode +
+        scentNotes.hashCode;
+
+  factory ProductResponse.fromJson(Map<String, dynamic> json) => _$ProductResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductResponseToJson(this);
 
@@ -154,4 +299,6 @@ class ProductResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

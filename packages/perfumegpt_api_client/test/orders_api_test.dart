@@ -1,11 +1,17 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for OrdersApi
 void main() {
   final instance = PerfumegptApiClient().getOrdersApi();
 
   group(OrdersApi, () {
+    //Future<BaseResponseOfUserOrderResponse> apiOrdersByordercodeGet({ String orderCode }) async
+    test('test apiOrdersByordercodeGet', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiOrdersCheckoutInStorePost(CreateInStoreOrderRequest createInStoreOrderRequest) async
     test('test apiOrdersCheckoutInStorePost', () async {
       // TODO
@@ -16,12 +22,12 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersGet({ OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersGet({ String userId, OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiOrdersGet', () async {
       // TODO
     });
 
-    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersMyOrdersGet({ OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersMyOrdersGet({ String userId, OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiOrdersMyOrdersGet', () async {
       // TODO
     });
@@ -46,6 +52,11 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfstring> apiOrdersOrderIdDeliverInStorePut(String orderId) async
+    test('test apiOrdersOrderIdDeliverInStorePut', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiOrdersOrderIdFulfillPost(String orderId, FulfillOrderRequest fulfillOrderRequest) async
     test('test apiOrdersOrderIdFulfillPost', () async {
       // TODO
@@ -66,8 +77,13 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPickListResponse> apiOrdersOrderIdStatusPut(String orderId, UpdateOrderStatusRequest updateOrderStatusRequest) async
-    test('test apiOrdersOrderIdStatusPut', () async {
+    //Future<BaseResponseOfstring> apiOrdersOrderIdStaffCancelPost(String orderId, StaffCancelOrderRequest staffCancelOrderRequest) async
+    test('test apiOrdersOrderIdStaffCancelPost', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfPickListResponse> apiOrdersOrderIdStaffPreparePut(String orderId) async
+    test('test apiOrdersOrderIdStaffPreparePut', () async {
       // TODO
     });
 
@@ -76,19 +92,5 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPreviewOrderResponse> apiOrdersPreviewGet({ List<String> barCodes, String wardCode, int districtId, String voucherCode }) async
-    test('test apiOrdersPreviewGet', () async {
-      // TODO
-    });
-
-    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersStaffStaffIdGet(String staffId, { OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
-    test('test apiOrdersStaffStaffIdGet', () async {
-      // TODO
-    });
-
-    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersUserUserIdGet(String userId, { OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
-    test('test apiOrdersUserUserIdGet', () async {
-      // TODO
-    });
   });
 }

@@ -35,9 +35,15 @@ abstract class _$OrderListItemCWProxy {
 
   OrderListItem createdAt(DateTime? createdAt);
 
+  OrderListItem paymentExpiresAt(DateTime? paymentExpiresAt);
+
   OrderListItem updatedAt(DateTime? updatedAt);
 
   OrderListItem orderDetails(List<OrderDetailListItem> orderDetails);
+
+  OrderListItem paymentTransactions(
+    List<PaymentInfoResponse>? paymentTransactions,
+  );
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderListItem(...).copyWith.fieldName(value)`.
@@ -61,8 +67,10 @@ abstract class _$OrderListItemCWProxy {
     bool? isReturnalbe,
     ShippingStatus? shippingStatus,
     DateTime? createdAt,
+    DateTime? paymentExpiresAt,
     DateTime? updatedAt,
     List<OrderDetailListItem> orderDetails,
+    List<PaymentInfoResponse>? paymentTransactions,
   });
 }
 
@@ -120,11 +128,20 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
   OrderListItem createdAt(DateTime? createdAt) => call(createdAt: createdAt);
 
   @override
+  OrderListItem paymentExpiresAt(DateTime? paymentExpiresAt) =>
+      call(paymentExpiresAt: paymentExpiresAt);
+
+  @override
   OrderListItem updatedAt(DateTime? updatedAt) => call(updatedAt: updatedAt);
 
   @override
   OrderListItem orderDetails(List<OrderDetailListItem> orderDetails) =>
       call(orderDetails: orderDetails);
+
+  @override
+  OrderListItem paymentTransactions(
+    List<PaymentInfoResponse>? paymentTransactions,
+  ) => call(paymentTransactions: paymentTransactions);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -149,8 +166,10 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
     Object? isReturnalbe = const $CopyWithPlaceholder(),
     Object? shippingStatus = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
+    Object? paymentExpiresAt = const $CopyWithPlaceholder(),
     Object? updatedAt = const $CopyWithPlaceholder(),
     Object? orderDetails = const $CopyWithPlaceholder(),
+    Object? paymentTransactions = const $CopyWithPlaceholder(),
   }) {
     return OrderListItem(
       id: id == const $CopyWithPlaceholder()
@@ -209,6 +228,10 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
           : createdAt as DateTime?,
+      paymentExpiresAt: paymentExpiresAt == const $CopyWithPlaceholder()
+          ? _value.paymentExpiresAt
+          // ignore: cast_nullable_to_non_nullable
+          : paymentExpiresAt as DateTime?,
       updatedAt: updatedAt == const $CopyWithPlaceholder()
           ? _value.updatedAt
           // ignore: cast_nullable_to_non_nullable
@@ -218,6 +241,10 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
           ? _value.orderDetails
           // ignore: cast_nullable_to_non_nullable
           : orderDetails as List<OrderDetailListItem>,
+      paymentTransactions: paymentTransactions == const $CopyWithPlaceholder()
+          ? _value.paymentTransactions
+          // ignore: cast_nullable_to_non_nullable
+          : paymentTransactions as List<PaymentInfoResponse>?,
     );
   }
 }
@@ -233,54 +260,63 @@ extension $OrderListItemCopyWith on OrderListItem {
 // JsonSerializableGenerator
 // **************************************************************************
 
-OrderListItem _$OrderListItemFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('OrderListItem', json, ($checkedConvert) {
-      $checkKeys(json, requiredKeys: const ['code', 'orderDetails']);
-      final val = OrderListItem(
-        id: $checkedConvert('id', (v) => v as String?),
-        code: $checkedConvert('code', (v) => v as String),
-        customerId: $checkedConvert('customerId', (v) => v as String?),
-        customerName: $checkedConvert('customerName', (v) => v as String?),
-        staffId: $checkedConvert('staffId', (v) => v as String?),
-        staffName: $checkedConvert('staffName', (v) => v as String?),
-        type: $checkedConvert(
-          'type',
-          (v) => $enumDecodeNullable(_$OrderTypeEnumMap, v),
-        ),
-        status: $checkedConvert(
-          'status',
-          (v) => $enumDecodeNullable(_$OrderStatusEnumMap, v),
-        ),
-        paymentStatus: $checkedConvert(
-          'paymentStatus',
-          (v) => $enumDecodeNullable(_$PaymentStatusEnumMap, v),
-        ),
-        totalAmount: $checkedConvert('totalAmount', (v) => v as num?),
-        itemCount: $checkedConvert('itemCount', (v) => (v as num?)?.toInt()),
-        isReturnalbe: $checkedConvert('isReturnalbe', (v) => v as bool?),
-        shippingStatus: $checkedConvert(
-          'shippingStatus',
-          (v) => $enumDecodeNullable(_$ShippingStatusEnumMap, v),
-        ),
-        createdAt: $checkedConvert(
-          'createdAt',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-        updatedAt: $checkedConvert(
-          'updatedAt',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-        orderDetails: $checkedConvert(
-          'orderDetails',
-          (v) => (v as List<dynamic>)
-              .map(
-                (e) => OrderDetailListItem.fromJson(e as Map<String, dynamic>),
-              )
-              .toList(),
-        ),
-      );
-      return val;
-    });
+OrderListItem _$OrderListItemFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('OrderListItem', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['code', 'orderDetails']);
+  final val = OrderListItem(
+    id: $checkedConvert('id', (v) => v as String?),
+    code: $checkedConvert('code', (v) => v as String),
+    customerId: $checkedConvert('customerId', (v) => v as String?),
+    customerName: $checkedConvert('customerName', (v) => v as String?),
+    staffId: $checkedConvert('staffId', (v) => v as String?),
+    staffName: $checkedConvert('staffName', (v) => v as String?),
+    type: $checkedConvert(
+      'type',
+      (v) => $enumDecodeNullable(_$OrderTypeEnumMap, v),
+    ),
+    status: $checkedConvert(
+      'status',
+      (v) => $enumDecodeNullable(_$OrderStatusEnumMap, v),
+    ),
+    paymentStatus: $checkedConvert(
+      'paymentStatus',
+      (v) => $enumDecodeNullable(_$PaymentStatusEnumMap, v),
+    ),
+    totalAmount: $checkedConvert('totalAmount', (v) => v as num?),
+    itemCount: $checkedConvert('itemCount', (v) => (v as num?)?.toInt()),
+    isReturnalbe: $checkedConvert('isReturnalbe', (v) => v as bool?),
+    shippingStatus: $checkedConvert(
+      'shippingStatus',
+      (v) => $enumDecodeNullable(_$ShippingStatusEnumMap, v),
+    ),
+    createdAt: $checkedConvert(
+      'createdAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    paymentExpiresAt: $checkedConvert(
+      'paymentExpiresAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    updatedAt: $checkedConvert(
+      'updatedAt',
+      (v) => v == null ? null : DateTime.parse(v as String),
+    ),
+    orderDetails: $checkedConvert(
+      'orderDetails',
+      (v) => (v as List<dynamic>)
+          .map((e) => OrderDetailListItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    paymentTransactions: $checkedConvert(
+      'paymentTransactions',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => PaymentInfoResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$OrderListItemToJson(OrderListItem instance) =>
     <String, dynamic>{
@@ -298,8 +334,12 @@ Map<String, dynamic> _$OrderListItemToJson(OrderListItem instance) =>
       'isReturnalbe': ?instance.isReturnalbe,
       'shippingStatus': ?_$ShippingStatusEnumMap[instance.shippingStatus],
       'createdAt': ?instance.createdAt?.toIso8601String(),
+      'paymentExpiresAt': ?instance.paymentExpiresAt?.toIso8601String(),
       'updatedAt': ?instance.updatedAt?.toIso8601String(),
       'orderDetails': instance.orderDetails.map((e) => e.toJson()).toList(),
+      'paymentTransactions': ?instance.paymentTransactions
+          ?.map((e) => e.toJson())
+          .toList(),
     };
 
 const _$OrderTypeEnumMap = {
@@ -309,7 +349,8 @@ const _$OrderTypeEnumMap = {
 
 const _$OrderStatusEnumMap = {
   OrderStatus.pending: 'Pending',
-  OrderStatus.processing: 'Processing',
+  OrderStatus.preparing: 'Preparing',
+  OrderStatus.readyToPick: 'ReadyToPick',
   OrderStatus.delivering: 'Delivering',
   OrderStatus.delivered: 'Delivered',
   OrderStatus.returning: 'Returning',
@@ -326,7 +367,8 @@ const _$PaymentStatusEnumMap = {
 };
 
 const _$ShippingStatusEnumMap = {
-  ShippingStatus.pending: 'Pending',
+  ShippingStatus.unAssigned: 'UnAssigned',
+  ShippingStatus.readyToPick: 'ReadyToPick',
   ShippingStatus.delivering: 'Delivering',
   ShippingStatus.delivered: 'Delivered',
   ShippingStatus.cancelled: 'Cancelled',
