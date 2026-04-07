@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/order.dart';
 import '../providers/order_provider.dart';
 
@@ -21,7 +22,7 @@ String? _fmtUnitPrice(double unitPrice, double total) {
   return _fmt(unitPrice);
 }
 
-const _accent = Color(0xFFEE4D2D);
+const _accent = AppColors.primary;
 
 // ─── Status tabs ────────────────────────────────────────────────────────────
 
@@ -90,7 +91,7 @@ String _orderTypeLabel(String type) {
 Color _orderTypeColor(String type) {
   switch (type) {
     case 'Online':
-      return Colors.blue;
+      return AppColors.primary;
     case 'Offline':
       return Colors.teal;
     default:
@@ -124,19 +125,19 @@ String _orderStatusLabel(String status) {
 Color _orderStatusColor(String status) {
   switch (status) {
     case 'Pending':
-      return Colors.orange;
+      return AppColors.statusPending;
     case 'Processing':
-      return Colors.blue;
+      return AppColors.statusProcessing;
     case 'Delivering':
-      return Colors.indigo;
+      return AppColors.statusDelivering;
     case 'Delivered':
-      return Colors.green;
+      return AppColors.statusDelivered;
     case 'Cancelled':
-      return Colors.red;
+      return AppColors.statusCancelled;
     case 'Returning':
     case 'Returned':
     case 'Partial_Returned':
-      return Colors.deepOrange;
+      return AppColors.statusReturning;
     default:
       return Colors.grey;
   }
@@ -160,13 +161,13 @@ String _paymentStatusLabel(String status) {
 Color _paymentStatusColor(String status) {
   switch (status) {
     case 'Unpaid':
-      return Colors.orange;
+      return AppColors.paymentUnpaid;
     case 'Paid':
-      return Colors.green;
+      return AppColors.paymentPaid;
     case 'Partial_Refunded':
-      return Colors.amber.shade800;
+      return AppColors.paymentPartialRefund;
     case 'Refunded':
-      return Colors.teal;
+      return AppColors.paymentRefunded;
     default:
       return Colors.grey;
   }
@@ -276,7 +277,13 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go('/');
+            }
+          },
         ),
         title: const Text('Đơn hàng của tôi'),
         bottom: TabBar(

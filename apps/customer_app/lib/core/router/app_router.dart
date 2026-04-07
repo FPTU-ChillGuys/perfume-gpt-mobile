@@ -29,7 +29,16 @@ class AppRouter {
       GoRoute(path: '/quiz', builder: (context, state) => const QuizPage()),
       GoRoute(
         path: '/store',
-        builder: (context, state) => const ProductListPage(),
+        builder: (context, state) {
+          final params = state.uri.queryParameters;
+          return ProductListPage(
+            source: params['source'],
+            sourceLabel: params['sourceLabel'],
+            searchQuery: params['search'],
+            categoryId: int.tryParse(params['categoryId'] ?? ''),
+            categoryName: params['categoryName'],
+          );
+        },
       ),
       GoRoute(
         path: '/product/:id',

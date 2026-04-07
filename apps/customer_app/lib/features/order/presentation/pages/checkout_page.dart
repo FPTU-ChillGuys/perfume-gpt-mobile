@@ -3,6 +3,7 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/cart_total.dart';
 import '../../../../domain/repositories/order_repository.dart';
 import '../providers/address_provider.dart';
@@ -989,7 +990,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             _PaymentOption('CashInStore', 'Thanh toán tại cửa hàng',
                 'Thanh toán trực tiếp tại cửa hàng', Icons.store, Colors.teal),
             _PaymentOption('VnPay', 'VNPay', 'Thanh toán qua VNPay',
-                Icons.payment, Colors.blue),
+                Icons.payment, AppColors.primary),
             _PaymentOption('Momo', 'MoMo', 'Thanh toán qua MoMo',
                 Icons.account_balance_wallet, Colors.pink),
           ]
@@ -1001,7 +1002,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                 Icons.money,
                 Colors.green),
             _PaymentOption('VnPay', 'VNPay', 'Thanh toán qua VNPay',
-                Icons.payment, Colors.blue),
+                Icons.payment, AppColors.primary),
             _PaymentOption('Momo', 'MoMo', 'Thanh toán qua MoMo',
                 Icons.account_balance_wallet, Colors.pink),
           ];

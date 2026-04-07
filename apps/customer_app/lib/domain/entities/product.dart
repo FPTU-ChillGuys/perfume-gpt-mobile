@@ -16,6 +16,8 @@ class Product {
   final double rating;
   final int reviewCount;
   final String? gender;
+  final int? brandId;
+  final int? categoryId;
   final String? categoryName;
   final String? origin;
   final int? releaseYear;
@@ -37,6 +39,8 @@ class Product {
     required this.rating,
     required this.reviewCount,
     this.gender,
+    this.brandId,
+    this.categoryId,
     this.categoryName,
     this.origin,
     this.releaseYear,

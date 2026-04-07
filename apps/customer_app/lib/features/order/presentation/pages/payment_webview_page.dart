@@ -283,7 +283,10 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
                 } catch (_) {}
               }
               ref.invalidate(myOrdersProvider);
-              if (mounted) context.go('/orders');
+              if (mounted) {
+                context.go('/');
+                context.push('/orders');
+              }
             },
             child: const Text('Thoát', style: TextStyle(color: Colors.red)),
           ),

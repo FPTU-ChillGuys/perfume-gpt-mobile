@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:customer_app/features/order/presentation/providers/cart_provider.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../providers/product_provider.dart';
 import '../../../../domain/entities/product.dart';
 import '../../../../domain/entities/product_variant.dart';
@@ -803,22 +804,22 @@ class _AiReviewSummary extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.blue.withValues(alpha: 0.07),
+        color: AppColors.primaryLight,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.blue.withValues(alpha: 0.2)),
+        border: Border.all(color: AppColors.primaryBorder.withValues(alpha: 0.5)),
       ),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.auto_awesome, color: Colors.blue, size: 18),
+              Icon(Icons.auto_awesome, color: AppColors.primary, size: 18),
               SizedBox(width: 8),
               Text(
                 'AI Review Summary',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: AppColors.primary,
                 ),
               ),
             ],

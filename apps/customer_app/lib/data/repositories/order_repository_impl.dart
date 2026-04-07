@@ -88,12 +88,15 @@ class OrderRepositoryImpl implements OrderRepository {
     int? pageSize,
   }) async {
     final queryParameters = <String, dynamic>{
-      'Status': ?status,
-      'Type': ?type,
-      'PaymentStatus': ?paymentStatus,
-      'SearchTerm': ?searchTerm,
-      'PageNumber': ?page,
+      if (status != null) 'Status': status,
+      if (type != null) 'Type': type,
+      if (paymentStatus != null) 'PaymentStatus': paymentStatus,
+      if (searchTerm != null) 'SearchTerm': searchTerm,
+      if (page != null) 'PageNumber': page,
       'PageSize': pageSize ?? 20,
+      'SortBy': 'CreatedAt',
+      'SortOrder': 'desc',
+      'IsDescending': true,
     };
 
     try {
@@ -133,8 +136,7 @@ class OrderRepositoryImpl implements OrderRepository {
       );
     }
     final rawItems = (payload['items'] as List?)?.cast<Map<String, dynamic>>() ?? [];
-    return PaginatedOrders(
-      items: rawItems.map((o) {
+    final items = rawItems.map((o) {
         final details = (o['orderDetails'] as List?)?.cast<Map<String, dynamic>>() ?? [];
         return OrderSummary(
           id: (o['id'] ?? '').toString(),
@@ -157,7 +159,17 @@ class OrderRepositoryImpl implements OrderRepository {
             total: (d['total'] as num? ?? 0).toDouble(),
           )).toList(),
         );
-      }).toList(),
+      }).toList()
+        ..sort((a, b) {
+          final aDate = a.createdAt;
+          final bDate = b.createdAt;
+          if (aDate == null && bDate == null) return 0;
+          if (aDate == null) return 1;
+          if (bDate == null) return -1;
+          return bDate.compareTo(aDate); // newest first
+        });
+    return PaginatedOrders(
+      items: items,
       totalCount: (payload['totalCount'] as num? ?? 0).toInt(),
       totalPages: (payload['totalPages'] as num? ?? 0).toInt(),
       hasNextPage: payload['hasNextPage'] as bool? ?? false,
