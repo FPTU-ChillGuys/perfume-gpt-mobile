@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for AdminDashboardOverviewResponse
 void main() {
-  final AdminDashboardOverviewResponse?
-  instance = /* AdminDashboardOverviewResponse(...) */ null;
+  final AdminDashboardOverviewResponse? instance = /* AdminDashboardOverviewResponse(...) */ null;
   // TODO add properties to the entity
 
   group(AdminDashboardOverviewResponse, () {
@@ -22,5 +21,6 @@ void main() {
     test('to test the property `topProducts`', () async {
       // TODO
     });
+
   });
 }

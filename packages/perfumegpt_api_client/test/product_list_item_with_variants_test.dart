@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductListItemWithVariants
 void main() {
-  final ProductListItemWithVariants?
-  instance = /* ProductListItemWithVariants(...) */ null;
+  final ProductListItemWithVariants? instance = /* ProductListItemWithVariants(...) */ null;
   // TODO add properties to the entity
 
   group(ProductListItemWithVariants, () {
@@ -67,5 +66,6 @@ void main() {
     test('to test the property `primaryImage`', () async {
       // TODO
     });
+
   });
 }

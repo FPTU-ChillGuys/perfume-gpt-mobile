@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductOlfactoryFamilyResponse
 void main() {
-  final ProductOlfactoryFamilyResponse?
-  instance = /* ProductOlfactoryFamilyResponse(...) */ null;
+  final ProductOlfactoryFamilyResponse? instance = /* ProductOlfactoryFamilyResponse(...) */ null;
   // TODO add properties to the entity
 
   group(ProductOlfactoryFamilyResponse, () {
@@ -17,5 +16,6 @@ void main() {
     test('to test the property `name`', () async {
       // TODO
     });
+
   });
 }

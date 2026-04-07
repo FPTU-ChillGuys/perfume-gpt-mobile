@@ -1,11 +1,17 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for ProductVariantsApi
 void main() {
   final instance = PerfumegptApiClient().getProductVariantsApi();
 
   group(ProductVariantsApi, () {
+    //Future<BaseResponseOfProductVariantForPosResponse> apiProductvariantsForPosGet({ String barcode, String sku, String name }) async
+    test('test apiProductvariantsForPosGet', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfPagedResultOfVariantPagedItem> apiProductvariantsGet({ int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiProductvariantsGet', () async {
       // TODO
@@ -55,5 +61,6 @@ void main() {
     test('test apiProductvariantsVariantIdPut', () async {
       // TODO
     });
+
   });
 }

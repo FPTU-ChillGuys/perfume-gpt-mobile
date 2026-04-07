@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for RevenueSummaryResponse
 void main() {
-  final RevenueSummaryResponse? instance = /* RevenueSummaryResponse(...) */
-      null;
+  final RevenueSummaryResponse? instance = /* RevenueSummaryResponse(...) */ null;
   // TODO add properties to the entity
 
   group(RevenueSummaryResponse, () {
@@ -42,5 +41,6 @@ void main() {
     test('to test the property `paidOrdersCount`', () async {
       // TODO
     });
+
   });
 }

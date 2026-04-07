@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for LoyaltyTransactionsApi
 void main() {
   final instance = PerfumegptApiClient().getLoyaltyTransactionsApi();
@@ -25,5 +26,6 @@ void main() {
     test('test apiLoyaltytransactionsUserIdManualChangePost', () async {
       // TODO
     });
+
   });
 }

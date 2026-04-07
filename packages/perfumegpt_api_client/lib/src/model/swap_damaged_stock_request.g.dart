@@ -9,6 +9,8 @@ part of 'swap_damaged_stock_request.dart';
 abstract class _$SwapDamagedStockRequestCWProxy {
   SwapDamagedStockRequest damagedReservationId(String damagedReservationId);
 
+  SwapDamagedStockRequest damagedQuantity(int? damagedQuantity);
+
   SwapDamagedStockRequest damageNote(String? damageNote);
 
   /// Creates a new instance with the provided field values.
@@ -20,6 +22,7 @@ abstract class _$SwapDamagedStockRequestCWProxy {
   /// ```
   SwapDamagedStockRequest call({
     String damagedReservationId,
+    int? damagedQuantity,
     String? damageNote,
   });
 }
@@ -37,6 +40,10 @@ class _$SwapDamagedStockRequestCWProxyImpl
       call(damagedReservationId: damagedReservationId);
 
   @override
+  SwapDamagedStockRequest damagedQuantity(int? damagedQuantity) =>
+      call(damagedQuantity: damagedQuantity);
+
+  @override
   SwapDamagedStockRequest damageNote(String? damageNote) =>
       call(damageNote: damageNote);
 
@@ -50,6 +57,7 @@ class _$SwapDamagedStockRequestCWProxyImpl
   /// ```
   SwapDamagedStockRequest call({
     Object? damagedReservationId = const $CopyWithPlaceholder(),
+    Object? damagedQuantity = const $CopyWithPlaceholder(),
     Object? damageNote = const $CopyWithPlaceholder(),
   }) {
     return SwapDamagedStockRequest(
@@ -59,6 +67,10 @@ class _$SwapDamagedStockRequestCWProxyImpl
           ? _value.damagedReservationId
           // ignore: cast_nullable_to_non_nullable
           : damagedReservationId as String,
+      damagedQuantity: damagedQuantity == const $CopyWithPlaceholder()
+          ? _value.damagedQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : damagedQuantity as int?,
       damageNote: damageNote == const $CopyWithPlaceholder()
           ? _value.damageNote
           // ignore: cast_nullable_to_non_nullable
@@ -88,6 +100,10 @@ SwapDamagedStockRequest _$SwapDamagedStockRequestFromJson(
       'damagedReservationId',
       (v) => v as String,
     ),
+    damagedQuantity: $checkedConvert(
+      'damagedQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
     damageNote: $checkedConvert('damageNote', (v) => v as String?),
   );
   return val;
@@ -97,5 +113,6 @@ Map<String, dynamic> _$SwapDamagedStockRequestToJson(
   SwapDamagedStockRequest instance,
 ) => <String, dynamic>{
   'damagedReservationId': instance.damagedReservationId,
+  'damagedQuantity': ?instance.damagedQuantity,
   'damageNote': ?instance.damageNote,
 };

@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateImportDetailRequest
 void main() {
-  final CreateImportDetailRequest?
-  instance = /* CreateImportDetailRequest(...) */ null;
+  final CreateImportDetailRequest? instance = /* CreateImportDetailRequest(...) */ null;
   // TODO add properties to the entity
 
   group(CreateImportDetailRequest, () {
@@ -22,5 +21,6 @@ void main() {
     test('to test the property `unitPrice`', () async {
       // TODO
     });
+
   });
 }

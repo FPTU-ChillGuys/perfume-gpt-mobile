@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for AttributeValueLookupItem
 void main() {
-  final AttributeValueLookupItem? instance = /* AttributeValueLookupItem(...) */
-      null;
+  final AttributeValueLookupItem? instance = /* AttributeValueLookupItem(...) */ null;
   // TODO add properties to the entity
 
   group(AttributeValueLookupItem, () {
@@ -17,5 +16,6 @@ void main() {
     test('to test the property `value`', () async {
       // TODO
     });
+
   });
 }
