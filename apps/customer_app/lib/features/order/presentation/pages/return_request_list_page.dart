@@ -1,25 +1,71 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/return_request.dart';
 import '../providers/return_request_providers.dart';
 
-class ReturnRequestListPage extends ConsumerWidget {
+final _currencyFmt = NumberFormat.currency(locale: 'vi_VN', symbol: '₫', decimalDigits: 0);
+
+const _statusTabs = <(String? value, String label)>[
+  (null, 'Tất cả'),
+  ('Pending', 'Chờ duyệt'),
+  ('RequestMoreInfo', 'Cần bổ sung'),
+  ('ApprovedForReturn', 'Đã duyệt'),
+  ('Inspecting', 'Đang kiểm tra'),
+  ('ReadyForRefund', 'Sẵn sàng hoàn'),
+  ('Completed', 'Hoàn tất'),
+  ('Rejected', 'Từ chối'),
+];
+
+class ReturnRequestListPage extends ConsumerStatefulWidget {
   const ReturnRequestListPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final requestsAsync = ref.watch(myReturnRequestsProvider);
+  ConsumerState<ReturnRequestListPage> createState() => _ReturnRequestListPageState();
+}
+
+class _ReturnRequestListPageState extends ConsumerState<ReturnRequestListPage>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+  int _currentPage = 1;
+  static const _pageSize = 10;
+
+  String? get _currentStatus => _statusTabs[_tabController.index].$1;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: _statusTabs.length, vsync: this);
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        setState(() => _currentPage = 1);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final dataAsync = ref.watch(
+      myReturnRequestsProvider(status: _currentStatus, page: _currentPage, pageSize: _pageSize),
+    );
 
     return Scaffold(
       backgroundColor: AppColors.surface,
-      body: CustomScrollView(
-        slivers: [
+      body: NestedScrollView(
+        headerSliverBuilder: (_, _) => [
           SliverAppBar(
             expandedHeight: 120,
             pinned: true,
+            floating: true,
             systemOverlayStyle: SystemUiOverlayStyle.light,
             backgroundColor: AppColors.primaryDark,
             flexibleSpace: FlexibleSpaceBar(
@@ -35,51 +81,211 @@ class ReturnRequestListPage extends ConsumerWidget {
                 ),
               ),
             ),
-          ),
-          requestsAsync.when(
-            data: (requests) {
-              if (requests.isEmpty) {
-                return SliverFillRemaining(
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.assignment_return_outlined, size: 64,
-                            color: AppColors.textSecondary.withValues(alpha: 0.5)),
-                        const SizedBox(height: 16),
-                        const Text('Chưa có yêu cầu trả hàng nào',
-                            style: TextStyle(fontSize: 16, color: AppColors.textSecondary)),
-                      ],
-                    ),
-                  ),
-                );
-              }
-              return SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: SliverList.separated(
-                  itemCount: requests.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 12),
-                  itemBuilder: (_, i) => _ReturnRequestCard(request: requests[i]),
-                ),
-              );
-            },
-            loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+            bottom: TabBar(
+              controller: _tabController,
+              isScrollable: true,
+              indicatorColor: Colors.white,
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.white70,
+              labelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+              tabAlignment: TabAlignment.start,
+              tabs: _statusTabs.map((t) => Tab(text: t.$2)).toList(),
             ),
-            error: (e, _) => SliverFillRemaining(
-              child: Center(
+          ),
+        ],
+        body: dataAsync.when(
+          data: (paginated) {
+            if (paginated.items.isEmpty) {
+              return Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Lỗi khi tải', style: TextStyle(color: AppColors.textSecondary)),
-                    TextButton(
-                      onPressed: () => ref.read(myReturnRequestsProvider.notifier).refresh(),
-                      child: const Text('Thử lại'),
-                    ),
+                    Icon(Icons.assignment_return_outlined, size: 64,
+                        color: AppColors.textSecondary.withValues(alpha: 0.5)),
+                    const SizedBox(height: 16),
+                    const Text('Chưa có yêu cầu trả hàng nào',
+                        style: TextStyle(fontSize: 16, color: AppColors.textSecondary)),
                   ],
                 ),
+              );
+            }
+            return RefreshIndicator(
+              color: AppColors.primary,
+              onRefresh: () async {
+                ref.invalidate(
+                  myReturnRequestsProvider(status: _currentStatus, page: _currentPage, pageSize: _pageSize),
+                );
+              },
+              child: ListView(
+                padding: const EdgeInsets.all(16),
+                children: [
+                  ...paginated.items.map((r) => Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: _ReturnRequestCard(request: r),
+                      )),
+                  if (paginated.totalPages > 1)
+                    _PaginationBar(
+                      currentPage: _currentPage,
+                      totalPages: paginated.totalPages,
+                      onPageChanged: (p) => setState(() => _currentPage = p),
+                    ),
+                ],
+              ),
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+          error: (e, _) => Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.error_outline, size: 48, color: AppColors.textSecondary),
+                const SizedBox(height: 12),
+                const Text('Lỗi khi tải', style: TextStyle(color: AppColors.textSecondary)),
+                const SizedBox(height: 8),
+                TextButton(
+                  onPressed: () => ref.invalidate(
+                    myReturnRequestsProvider(status: _currentStatus, page: _currentPage, pageSize: _pageSize),
+                  ),
+                  child: const Text('Thử lại'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ── Card ──
+
+class _ReturnRequestCard extends StatelessWidget {
+  final ReturnRequest request;
+  const _ReturnRequestCard({required this.request});
+
+  @override
+  Widget build(BuildContext context) {
+    final statusInfo = _statusInfo(request.status);
+    final reasonLabel = _reasonLabel(request.reason);
+
+    return GestureDetector(
+      onTap: () => context.push('/return-requests/${request.id}'),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.border),
+          boxShadow: [
+            BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2)),
+          ],
+        ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header
+            Row(
+              children: [
+                Icon(Icons.assignment_return, color: statusInfo.color, size: 20),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    request.orderCode ?? request.orderId.substring(0, 8),
+                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: AppColors.textPrimary),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  decoration: BoxDecoration(
+                    color: statusInfo.color.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(statusInfo.label,
+                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: statusInfo.color)),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                const Icon(Icons.access_time, size: 14, color: AppColors.textSecondary),
+                const SizedBox(width: 4),
+                Text(DateFormat('dd/MM/yyyy HH:mm').format(request.createdAt),
+                    style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+              ],
+            ),
+
+            if (reasonLabel != null) ...[
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  const Icon(Icons.info_outline, size: 14, color: AppColors.textSecondary),
+                  const SizedBox(width: 4),
+                  Text('Lý do: $reasonLabel',
+                      style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+                ],
+              ),
+            ],
+
+            if (request.requestedRefundAmount > 0) ...[
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  const Icon(Icons.payments_outlined, size: 14, color: AppColors.primary),
+                  const SizedBox(width: 4),
+                  Text('Số tiền yêu cầu: ${_currencyFmt.format(request.requestedRefundAmount)}',
+                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.primary)),
+                ],
+              ),
+            ],
+
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton.icon(
+                onPressed: () => context.push('/return-requests/${request.id}'),
+                icon: const Icon(Icons.visibility, size: 16),
+                label: const Text('Xem chi tiết', style: TextStyle(fontSize: 12)),
+                style: TextButton.styleFrom(foregroundColor: AppColors.primary),
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ── Pagination ──
+
+class _PaginationBar extends StatelessWidget {
+  final int currentPage;
+  final int totalPages;
+  final ValueChanged<int> onPageChanged;
+
+  const _PaginationBar({
+    required this.currentPage,
+    required this.totalPages,
+    required this.onPageChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.chevron_left),
+            onPressed: currentPage > 1 ? () => onPageChanged(currentPage - 1) : null,
+          ),
+          Text('$currentPage / $totalPages',
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+          IconButton(
+            icon: const Icon(Icons.chevron_right),
+            onPressed: currentPage < totalPages ? () => onPageChanged(currentPage + 1) : null,
           ),
         ],
       ),
@@ -87,127 +293,42 @@ class ReturnRequestListPage extends ConsumerWidget {
   }
 }
 
-class _ReturnRequestCard extends ConsumerWidget {
-  final ReturnRequest request;
-  const _ReturnRequestCard({required this.request});
+// ── Helpers ──
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final statusInfo = _statusInfo(request.status);
-    final canCancel = request.status == 'Pending';
-
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.border),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2)),
-        ],
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // ── Header ──
-          Row(
-            children: [
-              Icon(Icons.assignment_return, color: statusInfo.color, size: 20),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text('Đơn hàng: ${request.orderCode ?? request.orderId.substring(0, 8)}',
-                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: AppColors.textPrimary)),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(
-                  color: statusInfo.color.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(statusInfo.label,
-                    style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: statusInfo.color)),
-              ),
-            ],
-          ),
-
-          if (request.reason != null) ...[
-            const SizedBox(height: 10),
-            Text('Lý do: ${request.reason}',
-                style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
-          ],
-
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              const Icon(Icons.access_time, size: 14, color: AppColors.textSecondary),
-              const SizedBox(width: 4),
-              Text('Tạo: ${DateFormat('dd/MM/yyyy HH:mm').format(request.createdAt)}',
-                  style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
-              if (request.updatedAt != null) ...[
-                const Text('  •  ', style: TextStyle(color: AppColors.textSecondary)),
-                Text('Cập nhật: ${DateFormat('dd/MM/yyyy').format(request.updatedAt!)}',
-                    style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
-              ],
-            ],
-          ),
-
-          if (canCancel) ...[
-            const SizedBox(height: 12),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton.icon(
-                onPressed: () => _confirmCancel(context, ref),
-                icon: const Icon(Icons.close, size: 16),
-                label: const Text('Hủy yêu cầu', style: TextStyle(fontSize: 12)),
-                style: TextButton.styleFrom(foregroundColor: Colors.red),
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
+({String label, Color color}) _statusInfo(String status) {
+  switch (status) {
+    case 'Pending':
+      return (label: 'Chờ duyệt', color: AppColors.statusPending);
+    case 'RequestMoreInfo':
+      return (label: 'Cần bổ sung', color: Colors.amber.shade700);
+    case 'ApprovedForReturn':
+      return (label: 'Đã duyệt trả', color: AppColors.statusDelivered);
+    case 'Inspecting':
+      return (label: 'Đang kiểm tra', color: AppColors.statusDelivering);
+    case 'ReadyForRefund':
+      return (label: 'Sẵn sàng hoàn', color: AppColors.statusProcessing);
+    case 'Completed':
+      return (label: 'Hoàn tất', color: AppColors.paymentRefunded);
+    case 'Rejected':
+      return (label: 'Từ chối', color: AppColors.statusCancelled);
+    default:
+      return (label: status, color: Colors.grey);
   }
+}
 
-  void _confirmCancel(BuildContext context, WidgetRef ref) {
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: const Text('Hủy yêu cầu trả hàng'),
-        content: const Text('Bạn có chắc muốn hủy yêu cầu trả hàng này?'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Không')),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              ref.read(myReturnRequestsProvider.notifier).cancelRequest(request.id);
-            },
-            child: const Text('Hủy yêu cầu', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  ({String label, Color color}) _statusInfo(String status) {
-    switch (status) {
-      case 'Pending':
-        return (label: 'Chờ duyệt', color: AppColors.statusPending);
-      case 'Approved':
-        return (label: 'Đã duyệt', color: AppColors.statusDelivered);
-      case 'Rejected':
-        return (label: 'Từ chối', color: AppColors.statusCancelled);
-      case 'InspectionStarted':
-        return (label: 'Đang kiểm tra', color: AppColors.statusDelivering);
-      case 'InspectionCompleted':
-        return (label: 'Kiểm tra xong', color: AppColors.statusProcessing);
-      case 'InspectionFailed':
-        return (label: 'Không đạt', color: AppColors.statusCancelled);
-      case 'Refunded':
-        return (label: 'Đã hoàn tiền', color: AppColors.paymentRefunded);
-      case 'Cancelled':
-        return (label: 'Đã hủy', color: Colors.grey);
-      default:
-        return (label: status, color: Colors.grey);
-    }
+String? _reasonLabel(String? reason) {
+  switch (reason) {
+    case 'DamagedProduct':
+      return 'Sản phẩm bị hư hỏng';
+    case 'WrongItemReceived':
+      return 'Nhận sai sản phẩm';
+    case 'ItemNotAsDescribed':
+      return 'Không đúng mô tả';
+    case 'ChangedMind':
+      return 'Đổi ý';
+    case 'AllergicReaction':
+      return 'Dị ứng sản phẩm';
+    default:
+      return reason;
   }
 }

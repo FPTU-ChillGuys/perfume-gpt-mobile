@@ -168,7 +168,7 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
                 },
               ),
               loading: () => _loadingDropdown('Đang tải tỉnh/thành...'),
-              error: (_, __) => _errorDropdown('Lỗi tải tỉnh/thành'),
+              error: (_, _) => _errorDropdown('Lỗi tải tỉnh/thành'),
             ),
             const SizedBox(height: 12),
 
@@ -194,7 +194,7 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
                   },
                 ),
                 loading: () => _loadingDropdown('Đang tải quận/huyện...'),
-                error: (_, __) => _errorDropdown('Lỗi tải quận/huyện'),
+                error: (_, _) => _errorDropdown('Lỗi tải quận/huyện'),
               )
             else
               _disabledDropdown('Chọn tỉnh/thành trước'),
@@ -219,7 +219,7 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
                   },
                 ),
                 loading: () => _loadingDropdown('Đang tải phường/xã...'),
-                error: (_, __) => _errorDropdown('Lỗi tải phường/xã'),
+                error: (_, _) => _errorDropdown('Lỗi tải phường/xã'),
               )
             else
               _disabledDropdown('Chọn quận/huyện trước'),

@@ -35,7 +35,7 @@ class _VoucherListPageState extends ConsumerState<VoucherListPage> with SingleTi
     return Scaffold(
       backgroundColor: AppColors.surface,
       body: NestedScrollView(
-        headerSliverBuilder: (_, __) => [
+        headerSliverBuilder: (_, _) => [
           SliverAppBar(
             expandedHeight: 120,
             pinned: true,
@@ -89,7 +89,7 @@ class _AvailableTab extends ConsumerWidget {
         return ListView.separated(
           padding: const EdgeInsets.all(16),
           itemCount: vouchers.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 12),
+          separatorBuilder: (_, _) => const SizedBox(height: 12),
           itemBuilder: (_, i) => _VoucherCard(voucher: vouchers[i], showRedeem: true),
         );
       },
@@ -115,7 +115,7 @@ class _MyVouchersTab extends ConsumerWidget {
         return ListView.separated(
           padding: const EdgeInsets.all(16),
           itemCount: vouchers.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 12),
+          separatorBuilder: (_, _) => const SizedBox(height: 12),
           itemBuilder: (_, i) => _VoucherCard(voucher: vouchers[i], showRedeem: false),
         );
       },

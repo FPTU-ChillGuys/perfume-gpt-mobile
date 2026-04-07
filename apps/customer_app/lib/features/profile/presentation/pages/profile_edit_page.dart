@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/image_url_helper.dart';
 import '../providers/profile_providers.dart';
 
 class ProfileEditPage extends ConsumerStatefulWidget {
@@ -104,12 +105,30 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
             children: [
               // ── Avatar placeholder ──
               Center(
-                child: CircleAvatar(
-                  radius: 48,
-                  backgroundColor: AppColors.primaryLight,
-                  child: Text(
-                    (_nameCtrl.text.isNotEmpty ? _nameCtrl.text[0] : '?').toUpperCase(),
-                    style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.primary),
+                child: profileAsync.maybeWhen(
+                  data: (p) {
+                    final hasAvatar = p.avatarUrl != null && p.avatarUrl!.isNotEmpty;
+                    return CircleAvatar(
+                      radius: 48,
+                      backgroundColor: AppColors.primaryLight,
+                      backgroundImage: hasAvatar
+                          ? NetworkImage(ImageUrlHelper.resolve(p.avatarUrl!))
+                          : null,
+                      child: hasAvatar
+                          ? null
+                          : Text(
+                              (_nameCtrl.text.isNotEmpty ? _nameCtrl.text[0] : '?').toUpperCase(),
+                              style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.primary),
+                            ),
+                    );
+                  },
+                  orElse: () => CircleAvatar(
+                    radius: 48,
+                    backgroundColor: AppColors.primaryLight,
+                    child: Text(
+                      (_nameCtrl.text.isNotEmpty ? _nameCtrl.text[0] : '?').toUpperCase(),
+                      style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.primary),
+                    ),
                   ),
                 ),
               ),
@@ -163,7 +182,7 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: DropdownButtonFormField<String>(
-                  value: _gender,
+                  initialValue: _gender,
                   decoration: const InputDecoration(
                     labelText: 'Giới tính',
                     prefixIcon: Icon(Icons.wc_outlined, size: 20),

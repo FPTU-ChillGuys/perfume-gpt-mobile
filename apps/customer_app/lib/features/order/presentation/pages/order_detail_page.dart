@@ -273,6 +273,7 @@ const _retryPaymentMethods = [
   final isReadyToPick = order.status == 'ReadyToPick';
   final isPaid = order.paymentStatus == 'Paid';
 
+  // Pending + chưa thanh toán → hủy trực tiếp, không cần gửi request
   if (isPending && !isPaid) {
     return (
       mode: 'direct',
@@ -281,12 +282,22 @@ const _retryPaymentMethods = [
           'Đơn hàng đang ở trạng thái chờ xử lý và chưa thanh toán, hệ thống sẽ hủy ngay sau khi bạn xác nhận.',
     );
   }
-  if ((isPending && isPaid) || isPreparing || isReadyToPick) {
+  // Đã thanh toán (bất kỳ trạng thái nào cho phép hủy) → gửi yêu cầu hủy + hoàn tiền
+  if (isPaid && (isPending || isPreparing || isReadyToPick)) {
     return (
       mode: 'request',
       buttonLabel: 'Yêu cầu hủy đơn',
       note:
-          'Đơn hàng này cần duyệt yêu cầu hủy. Sau khi gửi, Staff/Admin sẽ xem xét và phản hồi.',
+          'Đơn hàng đã thanh toán, yêu cầu hủy sẽ được Staff/Admin xem xét. Vui lòng cung cấp thông tin ngân hàng để hoàn tiền.',
+    );
+  }
+  // Đang chuẩn bị trở đi + chưa thanh toán → gửi yêu cầu hủy, không hoàn tiền
+  if (!isPaid && (isPreparing || isReadyToPick)) {
+    return (
+      mode: 'request',
+      buttonLabel: 'Yêu cầu hủy đơn',
+      note:
+          'Đơn hàng đã vào xử lý, yêu cầu hủy sẽ được Staff/Admin xem xét. Do chưa thanh toán nên không cần hoàn tiền.',
     );
   }
   return null;
@@ -1333,44 +1344,45 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         builder: (ctx, setDialogState) => AlertDialog(
           title: const Text('Thanh toán lại đơn hàng'),
           content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Chọn phương thức thanh toán để tiếp tục.',
-                  style: TextStyle(color: Colors.grey[600], fontSize: 13),
-                ),
-                const SizedBox(height: 16),
-                ...allowedMethods.map(
-                  (method) => Container(
-                    margin: const EdgeInsets.only(bottom: 6),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: selectedMethod == method
-                            ? _accent
-                            : Colors.grey[300]!,
+            child: RadioGroup<String>(
+              groupValue: selectedMethod,
+              onChanged: (v) {
+                    if (!isSubmitting && v != null) setDialogState(() => selectedMethod = v);
+                  },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Chọn phương thức thanh toán để tiếp tục.',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                  ),
+                  const SizedBox(height: 16),
+                  ...allowedMethods.map(
+                    (method) => Container(
+                      margin: const EdgeInsets.only(bottom: 6),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: selectedMethod == method
+                              ? _accent
+                              : Colors.grey[300]!,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: RadioListTile<String>(
-                      title: Text(
-                        _paymentMethodLabel(method),
-                        style: const TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
+                      child: RadioListTile<String>(
+                        title: Text(
+                          _paymentMethodLabel(method),
+                          style: const TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        ),
+                        value: method,
+                        dense: true,
+                        activeColor: _accent,
                       ),
-                      value: method,
-                      groupValue: selectedMethod,
-                      onChanged: isSubmitting
-                          ? null
-                          : (v) =>
-                              setDialogState(() => selectedMethod = v!),
-                      dense: true,
-                      activeColor: _accent,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           actions: [
