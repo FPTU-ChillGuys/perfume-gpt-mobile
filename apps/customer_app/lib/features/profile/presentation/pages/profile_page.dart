@@ -1,7 +1,11 @@
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../providers/profile_providers.dart';
+import '../../../loyalty/presentation/providers/loyalty_providers.dart';
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
@@ -11,106 +15,325 @@ class ProfilePage extends ConsumerWidget {
     final authState = ref.watch(authProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        actions: [
-          if (authState.value != null)
-            IconButton(
-              onPressed: () {
-                ref.read(authProvider.notifier).logout();
-                // We stay on this page, which will rebuild as Guest View
-              },
-              icon: const Icon(Icons.logout),
-            ),
-        ],
-      ),
+      backgroundColor: AppColors.surface,
       body: authState.when(
         data: (user) {
-          if (user == null) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.account_circle_outlined,
-                      size: 100,
-                      color: Colors.grey,
-                    ),
-                    const SizedBox(height: 24),
-                    Text(
-                      'Welcome to PerfumeGPT',
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Log in to track your orders, save your scent preferences, and earn loyalty points.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    const SizedBox(height: 40),
-                    ElevatedButton(
-                      onPressed: () => context.push('/login'),
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 50),
-                      ),
-                      child: const Text('Log In'),
-                    ),
-                    const SizedBox(height: 16),
-                    OutlinedButton(
-                      onPressed: () => context.push('/register'),
-                      style: OutlinedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 50),
-                      ),
-                      child: const Text('Create an Account'),
-                    ),
-                  ],
+          if (user == null) return _GuestView();
+          return _AuthenticatedView(userName: user.name, userEmail: user.email);
+        },
+        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        error: (error, _) => Center(child: Text('Lỗi: $error')),
+      ),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// GUEST VIEW
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _GuestView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          expandedHeight: 200,
+          pinned: true,
+          backgroundColor: AppColors.primaryDark,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          flexibleSpace: FlexibleSpaceBar(
+            background: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [AppColors.heroStart, AppColors.heroEnd],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
               ),
-            );
-          }
-          return Center(
+              child: const SafeArea(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.account_circle_outlined, size: 80, color: Colors.white54),
+                      SizedBox(height: 12),
+                      Text('PerfumeGPT',
+                          style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+                      SizedBox(height: 4),
+                      Text('Đăng nhập để trải nghiệm đầy đủ',
+                          style: TextStyle(color: Colors.white70, fontSize: 13)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        SliverFillRemaining(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(radius: 50, child: Text(user.name ?? 'U')),
-                const SizedBox(height: 16),
-                Text(
-                  user.name ?? 'No Name',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => context.push('/login'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    child: const Text('Đăng nhập', style: TextStyle(fontWeight: FontWeight.w600)),
+                  ),
                 ),
-                Text(user.email),
-                const SizedBox(height: 32),
-                ListTile(
-                  leading: const Icon(Icons.receipt_long),
-                  title: const Text('Đơn hàng của tôi'),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () => context.push('/orders'),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.history),
-                  title: Text('Purchase History'),
-                  trailing: Icon(Icons.chevron_right),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.favorite),
-                  title: Text('Scent Preferences'),
-                  trailing: Icon(Icons.chevron_right),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.loyalty),
-                  title: Text('Loyalty Points'),
-                  trailing: Text('150 pts'),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () => context.push('/register'),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppColors.primary,
+                      side: const BorderSide(color: AppColors.primary),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    child: const Text('Tạo tài khoản', style: TextStyle(fontWeight: FontWeight.w600)),
+                  ),
                 ),
               ],
             ),
-          );
-        },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stack) => Center(child: Text('Error: $error')),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// AUTHENTICATED VIEW
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _AuthenticatedView extends ConsumerWidget {
+  final String? userName;
+  final String userEmail;
+
+  const _AuthenticatedView({required this.userName, required this.userEmail});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profileAsync = ref.watch(profileNotifierProvider);
+    final loyaltyAsync = ref.watch(loyaltyTotalProvider);
+
+    return CustomScrollView(
+      slivers: [
+        // ── Hero header ──
+        SliverAppBar(
+          expandedHeight: 220,
+          pinned: true,
+          backgroundColor: AppColors.primaryDark,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout, color: Colors.white),
+              onPressed: () => ref.read(authProvider.notifier).logout(),
+            ),
+          ],
+          flexibleSpace: FlexibleSpaceBar(
+            background: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [AppColors.heroStart, AppColors.heroEnd],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 60, 24, 24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      // Avatar
+                      CircleAvatar(
+                        radius: 36,
+                        backgroundColor: Colors.white24,
+                        child: Text(
+                          (userName ?? 'U')[0].toUpperCase(),
+                          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        profileAsync.when(
+                          data: (p) => p.fullName ?? userName ?? 'Người dùng',
+                          error: (_, __) => userName ?? 'Người dùng',
+                          loading: () => userName ?? 'Người dùng',
+                        ),
+                        style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(userEmail,
+                          style: const TextStyle(color: Colors.white60, fontSize: 13)),
+                      const SizedBox(height: 12),
+                      // ── Loyalty points badge ──
+                      loyaltyAsync.when(
+                        data: (total) => Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.star_rounded, color: Colors.amberAccent, size: 18),
+                              const SizedBox(width: 6),
+                              Text('${total.totalPoints} điểm tích lũy',
+                                  style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                        ),
+                        loading: () => const SizedBox.shrink(),
+                        error: (_, __) => const SizedBox.shrink(),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        // ── Menu items ──
+        SliverPadding(
+          padding: const EdgeInsets.all(16),
+          sliver: SliverList(
+            delegate: SliverChildListDelegate([
+              // Edit profile
+              _MenuCard(
+                icon: Icons.edit_outlined,
+                title: 'Chỉnh sửa hồ sơ',
+                subtitle: 'Cập nhật thông tin cá nhân',
+                onTap: () async {
+                  final updated = await context.push<bool>('/profile/edit');
+                  if (updated == true) ref.invalidate(profileNotifierProvider);
+                },
+              ),
+              const SizedBox(height: 10),
+
+              // Orders
+              _MenuCard(
+                icon: Icons.receipt_long_outlined,
+                title: 'Đơn hàng của tôi',
+                subtitle: 'Theo dõi và quản lý đơn hàng',
+                onTap: () => context.push('/orders'),
+              ),
+              const SizedBox(height: 10),
+
+              // Addresses
+              _MenuCard(
+                icon: Icons.location_on_outlined,
+                title: 'Sổ địa chỉ',
+                subtitle: 'Quản lý địa chỉ giao hàng',
+                onTap: () => context.push('/addresses'),
+              ),
+              const SizedBox(height: 10),
+
+              // Vouchers
+              _MenuCard(
+                icon: Icons.local_offer_outlined,
+                title: 'Voucher',
+                subtitle: 'Xem và nhận voucher giảm giá',
+                onTap: () => context.push('/vouchers'),
+              ),
+              const SizedBox(height: 10),
+
+              // Reviews
+              _MenuCard(
+                icon: Icons.rate_review_outlined,
+                title: 'Đánh giá của tôi',
+                subtitle: 'Xem các đánh giá đã viết',
+                onTap: () => context.push('/reviews'),
+              ),
+              const SizedBox(height: 10),
+
+              // Return requests
+              _MenuCard(
+                icon: Icons.assignment_return_outlined,
+                title: 'Yêu cầu trả hàng',
+                subtitle: 'Xem và tạo yêu cầu trả hàng/hoàn tiền',
+                onTap: () => context.push('/return-requests'),
+              ),
+              const SizedBox(height: 10),
+
+              // Loyalty
+              _MenuCard(
+                icon: Icons.star_outline_rounded,
+                title: 'Điểm tích lũy',
+                subtitle: loyaltyAsync.when(data: (t) => '${t.totalPoints} điểm', error: (_, __) => 'Xem lịch sử điểm', loading: () => 'Xem lịch sử điểm'),
+                onTap: () => context.push('/loyalty'),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Logout
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.red.shade200),
+                ),
+                child: ListTile(
+                  leading: const Icon(Icons.logout, color: Colors.red),
+                  title: const Text('Đăng xuất', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  onTap: () => ref.read(authProvider.notifier).logout(),
+                ),
+              ),
+            ]),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _MenuCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  const _MenuCard({required this.icon, required this.title, required this.subtitle, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppColors.border),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 6, offset: const Offset(0, 2)),
+        ],
+      ),
+      child: ListTile(
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppColors.primaryLight,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(icon, color: AppColors.primary, size: 20),
+        ),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: AppColors.textPrimary)),
+        subtitle: Text(subtitle, style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+        trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        onTap: onTap,
       ),
     );
   }

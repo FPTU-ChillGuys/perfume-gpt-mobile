@@ -1,18 +1,26 @@
 import 'package:go_router/go_router.dart';
+import '../../features/address/presentation/pages/address_form_page.dart';
+import '../../features/address/presentation/pages/address_list_page.dart';
 import '../../features/ai_consultation/presentation/pages/chat_page.dart';
 import '../../features/ai_consultation/presentation/pages/quiz_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/loyalty/presentation/pages/loyalty_page.dart';
 import '../../features/order/presentation/pages/cart_page.dart';
 import '../../features/order/presentation/pages/checkout_page.dart';
 import '../../features/order/presentation/pages/order_detail_page.dart';
 import '../../features/order/presentation/pages/order_list_page.dart';
 import '../../features/order/presentation/pages/payment_webview_page.dart';
+import '../../features/order/presentation/pages/return_request_list_page.dart';
+import '../../features/profile/presentation/pages/profile_edit_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/review/presentation/pages/my_reviews_page.dart';
+import '../../features/review/presentation/pages/write_review_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 import '../../features/store/presentation/pages/product_details_page.dart';
 import '../../features/store/presentation/pages/product_list_page.dart';
+import '../../features/voucher/presentation/pages/voucher_list_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -73,6 +81,51 @@ class AppRouter {
       GoRoute(
         path: '/profile',
         builder: (context, state) => const ProfilePage(),
+      ),
+      GoRoute(
+        path: '/profile/edit',
+        builder: (context, state) => const ProfileEditPage(),
+      ),
+      GoRoute(
+        path: '/addresses',
+        builder: (context, state) => const AddressListPage(),
+      ),
+      GoRoute(
+        path: '/addresses/new',
+        builder: (context, state) => const AddressFormPage(),
+      ),
+      GoRoute(
+        path: '/addresses/:id/edit',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return AddressFormPage(addressId: id);
+        },
+      ),
+      GoRoute(
+        path: '/vouchers',
+        builder: (context, state) => const VoucherListPage(),
+      ),
+      GoRoute(
+        path: '/reviews',
+        builder: (context, state) => const MyReviewsPage(),
+      ),
+      GoRoute(
+        path: '/reviews/write',
+        builder: (context, state) {
+          final params = state.uri.queryParameters;
+          return WriteReviewPage(
+            variantId: params['variantId'] ?? '',
+            variantName: params['variantName'],
+          );
+        },
+      ),
+      GoRoute(
+        path: '/return-requests',
+        builder: (context, state) => const ReturnRequestListPage(),
+      ),
+      GoRoute(
+        path: '/loyalty',
+        builder: (context, state) => const LoyaltyPage(),
       ),
     ],
   );

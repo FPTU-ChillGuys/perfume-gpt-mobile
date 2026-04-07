@@ -61,7 +61,11 @@ abstract class OrderRepository {
     String? savedAddressId,
     RecipientAddress? recipient,
   });
-  Future<void> cancelOrder(String orderId, String reason);
+  Future<void> cancelOrder(String orderId, String reason, {
+    String? refundBankName,
+    String? refundAccountNumber,
+    String? refundAccountName,
+  });
   Future<String> retryPayment(String paymentId, String paymentMethod);
   Future<void> confirmPayment(String paymentId, {required bool isSuccess, String? failureReason});
 }

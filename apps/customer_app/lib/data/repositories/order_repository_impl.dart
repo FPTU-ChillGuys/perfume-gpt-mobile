@@ -5,6 +5,12 @@ import '../../core/utils/image_url_helper.dart';
 import '../../domain/entities/order.dart';
 import '../../domain/repositories/order_repository.dart';
 
+const _authExtra = <String, dynamic>{
+  'secure': <Map<String, String>>[
+    {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+  ],
+};
+
 class OrderRepositoryImpl implements OrderRepository {
   final OrdersApi _ordersApi;
   // ignore: unused_field - kept for potential future use
@@ -350,35 +356,23 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<void> cancelOrder(String orderId, String reason) async {
-    CancelOrderReason? cancelReason;
-    switch (reason) {
-      case 'ChangedMind':
-        cancelReason = CancelOrderReason.changedMind;
-        break;
-      case 'FoundBetterPrice':
-        cancelReason = CancelOrderReason.foundBetterPrice;
-        break;
-      case 'WrongShippingInformation':
-        cancelReason = CancelOrderReason.wrongShippingInformation;
-        break;
-      case 'PaymentIssue':
-        cancelReason = CancelOrderReason.paymentIssue;
-        break;
-      case 'DeliveryTooLate':
-        cancelReason = CancelOrderReason.deliveryTooLate;
-        break;
-      case 'InsufficientStock':
-        cancelReason = CancelOrderReason.insufficientStock;
-        break;
-    }
+  Future<void> cancelOrder(String orderId, String reason, {
+    String? refundBankName,
+    String? refundAccountNumber,
+    String? refundAccountName,
+  }) async {
+    final data = <String, dynamic>{
+      'reason': reason,
+    };
+    if (refundBankName != null) data['refundBankName'] = refundBankName;
+    if (refundAccountNumber != null) data['refundAccountNumber'] = refundAccountNumber;
+    if (refundAccountName != null) data['refundAccountName'] = refundAccountName;
 
     try {
-      await _ordersApi.apiOrdersOrderIdCancelPost(
-        orderId: orderId,
-        userCancelOrderRequest: UserCancelOrderRequest(
-          reason: cancelReason,
-        ),
+      await _dio.post(
+        '/api/orders/$orderId/cancel',
+        options: Options(contentType: 'application/json', extra: _authExtra),
+        data: data,
       );
     } on DioException catch (e) {
       final status = e.response?.statusCode;
