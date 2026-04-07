@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'review_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,119 +20,241 @@ part 'review_response.g.dart';
 class ReviewResponse {
   /// Returns a new [ReviewResponse] instance.
   ReviewResponse({
-    this.id,
 
-    this.userId,
+     this.id,
 
-    required this.userFullName,
+     this.userId,
 
-    this.userProfilePictureUrl,
+    required  this.userFullName,
 
-    this.orderDetailId,
+     this.userProfilePictureUrl,
 
-    this.variantId,
+     this.orderDetailId,
 
-    required this.variantName,
+     this.variantId,
 
-    this.rating,
+    required  this.variantName,
 
-    required this.comment,
+     this.rating,
 
-    this.staffFeedbackComment,
+    required  this.comment,
 
-    this.staffFeedbackAt,
+     this.staffFeedbackComment,
 
-    required this.images,
+     this.staffFeedbackAt,
 
-    this.createdAt,
+    required  this.images,
 
-    this.updatedAt,
+     this.createdAt,
+
+     this.updatedAt,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'userId', required: false, includeIfNull: false)
-  final String? userId;
 
-  @JsonKey(name: r'userFullName', required: true, includeIfNull: false)
-  final String userFullName;
 
   @JsonKey(
+    
+    name: r'userId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? userId;
+
+
+
+  @JsonKey(
+    
+    name: r'userFullName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String userFullName;
+
+
+
+  @JsonKey(
+    
     name: r'userProfilePictureUrl',
     required: false,
     includeIfNull: false,
   )
+
+
   final String? userProfilePictureUrl;
 
-  @JsonKey(name: r'orderDetailId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'orderDetailId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? orderDetailId;
 
-  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? variantId;
 
-  @JsonKey(name: r'variantName', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String variantName;
 
-  @JsonKey(name: r'rating', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'rating',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? rating;
 
-  @JsonKey(name: r'comment', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'comment',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String comment;
 
-  @JsonKey(name: r'staffFeedbackComment', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'staffFeedbackComment',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? staffFeedbackComment;
 
-  @JsonKey(name: r'staffFeedbackAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'staffFeedbackAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? staffFeedbackAt;
 
-  @JsonKey(name: r'images', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'images',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<MediaResponse> images;
 
-  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'createdAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? createdAt;
 
-  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'updatedAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? updatedAt;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ReviewResponse &&
-          other.id == id &&
-          other.userId == userId &&
-          other.userFullName == userFullName &&
-          other.userProfilePictureUrl == userProfilePictureUrl &&
-          other.orderDetailId == orderDetailId &&
-          other.variantId == variantId &&
-          other.variantName == variantName &&
-          other.rating == rating &&
-          other.comment == comment &&
-          other.staffFeedbackComment == staffFeedbackComment &&
-          other.staffFeedbackAt == staffFeedbackAt &&
-          other.images == images &&
-          other.createdAt == createdAt &&
-          other.updatedAt == updatedAt;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      userId.hashCode +
-      userFullName.hashCode +
-      (userProfilePictureUrl == null ? 0 : userProfilePictureUrl.hashCode) +
-      orderDetailId.hashCode +
-      variantId.hashCode +
-      variantName.hashCode +
-      rating.hashCode +
-      comment.hashCode +
-      (staffFeedbackComment == null ? 0 : staffFeedbackComment.hashCode) +
-      (staffFeedbackAt == null ? 0 : staffFeedbackAt.hashCode) +
-      images.hashCode +
-      createdAt.hashCode +
-      (updatedAt == null ? 0 : updatedAt.hashCode);
 
-  factory ReviewResponse.fromJson(Map<String, dynamic> json) =>
-      _$ReviewResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ReviewResponse &&
+      other.id == id &&
+      other.userId == userId &&
+      other.userFullName == userFullName &&
+      other.userProfilePictureUrl == userProfilePictureUrl &&
+      other.orderDetailId == orderDetailId &&
+      other.variantId == variantId &&
+      other.variantName == variantName &&
+      other.rating == rating &&
+      other.comment == comment &&
+      other.staffFeedbackComment == staffFeedbackComment &&
+      other.staffFeedbackAt == staffFeedbackAt &&
+      other.images == images &&
+      other.createdAt == createdAt &&
+      other.updatedAt == updatedAt;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        userId.hashCode +
+        userFullName.hashCode +
+        (userProfilePictureUrl == null ? 0 : userProfilePictureUrl.hashCode) +
+        orderDetailId.hashCode +
+        variantId.hashCode +
+        variantName.hashCode +
+        rating.hashCode +
+        comment.hashCode +
+        (staffFeedbackComment == null ? 0 : staffFeedbackComment.hashCode) +
+        (staffFeedbackAt == null ? 0 : staffFeedbackAt.hashCode) +
+        images.hashCode +
+        createdAt.hashCode +
+        (updatedAt == null ? 0 : updatedAt.hashCode);
+
+  factory ReviewResponse.fromJson(Map<String, dynamic> json) => _$ReviewResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReviewResponseToJson(this);
 
@@ -139,4 +262,6 @@ class ReviewResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

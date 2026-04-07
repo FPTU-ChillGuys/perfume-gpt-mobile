@@ -11,6 +11,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_order_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,66 +22,129 @@ part 'create_order_request.g.dart';
 class CreateOrderRequest {
   /// Returns a new [CreateOrderRequest] instance.
   CreateOrderRequest({
-    this.voucherCode,
 
-    this.itemIds,
+     this.voucherCode,
 
-    this.expectedTotalPrice,
+     this.itemIds,
 
-    this.deliveryMethod,
+     this.expectedTotalPrice,
 
-    this.savedAddressId,
+     this.deliveryMethod,
 
-    this.recipient,
+     this.savedAddressId,
 
-    required this.payment,
+     this.recipient,
+
+    required  this.payment,
   });
 
-  @JsonKey(name: r'voucherCode', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'voucherCode',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? voucherCode;
 
-  @JsonKey(name: r'itemIds', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'itemIds',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<String>? itemIds;
 
-  @JsonKey(name: r'expectedTotalPrice', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'expectedTotalPrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? expectedTotalPrice;
 
-  @JsonKey(name: r'deliveryMethod', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'deliveryMethod',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DeliveryMethod? deliveryMethod;
 
-  @JsonKey(name: r'savedAddressId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'savedAddressId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? savedAddressId;
 
-  @JsonKey(name: r'recipient', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'recipient',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final ContactAddressInformation? recipient;
 
-  @JsonKey(name: r'payment', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'payment',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final PaymentInformation payment;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateOrderRequest &&
-          other.voucherCode == voucherCode &&
-          other.itemIds == itemIds &&
-          other.expectedTotalPrice == expectedTotalPrice &&
-          other.deliveryMethod == deliveryMethod &&
-          other.savedAddressId == savedAddressId &&
-          other.recipient == recipient &&
-          other.payment == payment;
 
-  @override
-  int get hashCode =>
-      (voucherCode == null ? 0 : voucherCode.hashCode) +
-      itemIds.hashCode +
-      (expectedTotalPrice == null ? 0 : expectedTotalPrice.hashCode) +
-      deliveryMethod.hashCode +
-      (savedAddressId == null ? 0 : savedAddressId.hashCode) +
-      (recipient == null ? 0 : recipient.hashCode) +
-      payment.hashCode;
 
-  factory CreateOrderRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateOrderRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateOrderRequest &&
+      other.voucherCode == voucherCode &&
+      other.itemIds == itemIds &&
+      other.expectedTotalPrice == expectedTotalPrice &&
+      other.deliveryMethod == deliveryMethod &&
+      other.savedAddressId == savedAddressId &&
+      other.recipient == recipient &&
+      other.payment == payment;
+
+    @override
+    int get hashCode =>
+        (voucherCode == null ? 0 : voucherCode.hashCode) +
+        itemIds.hashCode +
+        (expectedTotalPrice == null ? 0 : expectedTotalPrice.hashCode) +
+        deliveryMethod.hashCode +
+        (savedAddressId == null ? 0 : savedAddressId.hashCode) +
+        (recipient == null ? 0 : recipient.hashCode) +
+        payment.hashCode;
+
+  factory CreateOrderRequest.fromJson(Map<String, dynamic> json) => _$CreateOrderRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateOrderRequestToJson(this);
 
@@ -88,4 +152,6 @@ class CreateOrderRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

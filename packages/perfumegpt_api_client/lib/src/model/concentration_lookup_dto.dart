@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'concentration_lookup_dto.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,24 +18,50 @@ part 'concentration_lookup_dto.g.dart';
 )
 class ConcentrationLookupDto {
   /// Returns a new [ConcentrationLookupDto] instance.
-  ConcentrationLookupDto({this.id, required this.name});
+  ConcentrationLookupDto({
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+     this.id,
+
+    required  this.name,
+  });
+
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? id;
 
-  @JsonKey(name: r'name', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'name',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String name;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ConcentrationLookupDto && other.id == id && other.name == name;
 
-  @override
-  int get hashCode => id.hashCode + name.hashCode;
 
-  factory ConcentrationLookupDto.fromJson(Map<String, dynamic> json) =>
-      _$ConcentrationLookupDtoFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ConcentrationLookupDto &&
+      other.id == id &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        name.hashCode;
+
+  factory ConcentrationLookupDto.fromJson(Map<String, dynamic> json) => _$ConcentrationLookupDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ConcentrationLookupDtoToJson(this);
 
@@ -42,4 +69,6 @@ class ConcentrationLookupDto {
   String toString() {
     return toJson().toString();
   }
+
 }
+

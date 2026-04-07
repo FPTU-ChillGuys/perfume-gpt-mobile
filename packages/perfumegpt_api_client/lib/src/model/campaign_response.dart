@@ -10,6 +10,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'campaign_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,66 +21,129 @@ part 'campaign_response.g.dart';
 class CampaignResponse {
   /// Returns a new [CampaignResponse] instance.
   CampaignResponse({
-    this.id,
 
-    required this.name,
+     this.id,
 
-    this.description,
+    required  this.name,
 
-    this.startDate,
+     this.description,
 
-    this.endDate,
+     this.startDate,
 
-    this.type,
+     this.endDate,
 
-    this.status,
+     this.type,
+
+     this.status,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'name', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'name',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String name;
 
-  @JsonKey(name: r'description', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'description',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? description;
 
-  @JsonKey(name: r'startDate', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'startDate',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? startDate;
 
-  @JsonKey(name: r'endDate', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'endDate',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? endDate;
 
-  @JsonKey(name: r'type', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'type',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final CampaignType? type;
 
-  @JsonKey(name: r'status', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'status',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final CampaignStatus? status;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CampaignResponse &&
-          other.id == id &&
-          other.name == name &&
-          other.description == description &&
-          other.startDate == startDate &&
-          other.endDate == endDate &&
-          other.type == type &&
-          other.status == status;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      name.hashCode +
-      (description == null ? 0 : description.hashCode) +
-      startDate.hashCode +
-      endDate.hashCode +
-      type.hashCode +
-      status.hashCode;
 
-  factory CampaignResponse.fromJson(Map<String, dynamic> json) =>
-      _$CampaignResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CampaignResponse &&
+      other.id == id &&
+      other.name == name &&
+      other.description == description &&
+      other.startDate == startDate &&
+      other.endDate == endDate &&
+      other.type == type &&
+      other.status == status;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        name.hashCode +
+        (description == null ? 0 : description.hashCode) +
+        startDate.hashCode +
+        endDate.hashCode +
+        type.hashCode +
+        status.hashCode;
+
+  factory CampaignResponse.fromJson(Map<String, dynamic> json) => _$CampaignResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$CampaignResponseToJson(this);
 
@@ -87,4 +151,6 @@ class CampaignResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

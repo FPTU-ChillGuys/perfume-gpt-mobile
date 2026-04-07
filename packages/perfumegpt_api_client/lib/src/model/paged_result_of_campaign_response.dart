@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'paged_result_of_campaign_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,66 +20,129 @@ part 'paged_result_of_campaign_response.g.dart';
 class PagedResultOfCampaignResponse {
   /// Returns a new [PagedResultOfCampaignResponse] instance.
   PagedResultOfCampaignResponse({
-    required this.items,
 
-    required this.pageNumber,
+    required  this.items,
 
-    required this.pageSize,
+    required  this.pageNumber,
 
-    required this.totalCount,
+    required  this.pageSize,
 
-    this.totalPages,
+    required  this.totalCount,
 
-    this.hasPreviousPage,
+     this.totalPages,
 
-    this.hasNextPage,
+     this.hasPreviousPage,
+
+     this.hasNextPage,
   });
 
-  @JsonKey(name: r'items', required: true, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'items',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<CampaignResponse> items;
 
-  @JsonKey(name: r'pageNumber', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'pageNumber',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final int pageNumber;
 
-  @JsonKey(name: r'pageSize', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'pageSize',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final int pageSize;
 
-  @JsonKey(name: r'totalCount', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalCount',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final int totalCount;
 
-  @JsonKey(name: r'totalPages', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalPages',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? totalPages;
 
-  @JsonKey(name: r'hasPreviousPage', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'hasPreviousPage',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? hasPreviousPage;
 
-  @JsonKey(name: r'hasNextPage', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'hasNextPage',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? hasNextPage;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PagedResultOfCampaignResponse &&
-          other.items == items &&
-          other.pageNumber == pageNumber &&
-          other.pageSize == pageSize &&
-          other.totalCount == totalCount &&
-          other.totalPages == totalPages &&
-          other.hasPreviousPage == hasPreviousPage &&
-          other.hasNextPage == hasNextPage;
 
-  @override
-  int get hashCode =>
-      items.hashCode +
-      pageNumber.hashCode +
-      pageSize.hashCode +
-      totalCount.hashCode +
-      totalPages.hashCode +
-      hasPreviousPage.hashCode +
-      hasNextPage.hashCode;
 
-  factory PagedResultOfCampaignResponse.fromJson(Map<String, dynamic> json) =>
-      _$PagedResultOfCampaignResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is PagedResultOfCampaignResponse &&
+      other.items == items &&
+      other.pageNumber == pageNumber &&
+      other.pageSize == pageSize &&
+      other.totalCount == totalCount &&
+      other.totalPages == totalPages &&
+      other.hasPreviousPage == hasPreviousPage &&
+      other.hasNextPage == hasNextPage;
+
+    @override
+    int get hashCode =>
+        items.hashCode +
+        pageNumber.hashCode +
+        pageSize.hashCode +
+        totalCount.hashCode +
+        totalPages.hashCode +
+        hasPreviousPage.hashCode +
+        hasNextPage.hashCode;
+
+  factory PagedResultOfCampaignResponse.fromJson(Map<String, dynamic> json) => _$PagedResultOfCampaignResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$PagedResultOfCampaignResponseToJson(this);
 
@@ -86,4 +150,6 @@ class PagedResultOfCampaignResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

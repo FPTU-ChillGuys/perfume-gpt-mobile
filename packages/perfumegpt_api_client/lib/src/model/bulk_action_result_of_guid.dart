@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'bulk_action_result_of_guid.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,27 +19,50 @@ part 'bulk_action_result_of_guid.g.dart';
 )
 class BulkActionResultOfGuid {
   /// Returns a new [BulkActionResultOfGuid] instance.
-  BulkActionResultOfGuid({required this.data, this.metadata});
+  BulkActionResultOfGuid({
 
-  @JsonKey(name: r'data', required: true, includeIfNull: false)
+    required  this.data,
+
+     this.metadata,
+  });
+
+  @JsonKey(
+    
+    name: r'data',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String data;
 
-  @JsonKey(name: r'metadata', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'metadata',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final BulkActionMetadata? metadata;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BulkActionResultOfGuid &&
-          other.data == data &&
-          other.metadata == metadata;
 
-  @override
-  int get hashCode =>
-      data.hashCode + (metadata == null ? 0 : metadata.hashCode);
 
-  factory BulkActionResultOfGuid.fromJson(Map<String, dynamic> json) =>
-      _$BulkActionResultOfGuidFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is BulkActionResultOfGuid &&
+      other.data == data &&
+      other.metadata == metadata;
+
+    @override
+    int get hashCode =>
+        data.hashCode +
+        (metadata == null ? 0 : metadata.hashCode);
+
+  factory BulkActionResultOfGuid.fromJson(Map<String, dynamic> json) => _$BulkActionResultOfGuidFromJson(json);
 
   Map<String, dynamic> toJson() => _$BulkActionResultOfGuidToJson(this);
 
@@ -46,4 +70,6 @@ class BulkActionResultOfGuid {
   String toString() {
     return toJson().toString();
   }
+
 }
+

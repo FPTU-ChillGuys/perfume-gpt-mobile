@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**apiCartItemsIdDelete**](CartApi.md#apicartitemsiddelete) | **DELETE** /api/cart/items/{id} | 
 [**apiCartItemsIdPut**](CartApi.md#apicartitemsidput) | **PUT** /api/cart/items/{id} | 
 [**apiCartItemsPost**](CartApi.md#apicartitemspost) | **POST** /api/cart/items | 
+[**apiCartPosPreviewPost**](CartApi.md#apicartpospreviewpost) | **POST** /api/cart/pos-preview | 
 [**apiCartTotalGet**](CartApi.md#apicarttotalget) | **GET** /api/cart/total | 
 
 
@@ -222,6 +223,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiCartPosPreviewPost**
+> BaseResponseOfPreviewPosOrderResponse apiCartPosPreviewPost(previewPosOrderRequest)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getCartApi();
+final PreviewPosOrderRequest previewPosOrderRequest = ; // PreviewPosOrderRequest | 
+
+try {
+    final response = api.apiCartPosPreviewPost(previewPosOrderRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling CartApi->apiCartPosPreviewPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **previewPosOrderRequest** | [**PreviewPosOrderRequest**](PreviewPosOrderRequest.md)|  | 
+
+### Return type
+
+[**BaseResponseOfPreviewPosOrderResponse**](BaseResponseOfPreviewPosOrderResponse.md)
 
 ### Authorization
 

@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'manual_change_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,46 +20,82 @@ part 'manual_change_request.g.dart';
 class ManualChangeRequest {
   /// Returns a new [ManualChangeRequest] instance.
   ManualChangeRequest({
-    this.userId,
 
-    this.transactionType,
+     this.userId,
 
-    this.points,
+     this.transactionType,
 
-    required this.reason,
+     this.points,
+
+    required  this.reason,
   });
 
-  @JsonKey(name: r'userId', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'userId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? userId;
 
-  @JsonKey(name: r'transactionType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'transactionType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final LoyaltyTransactionType? transactionType;
 
-  // minimum: 0
-  @JsonKey(name: r'points', required: false, includeIfNull: false)
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'points',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? points;
 
-  @JsonKey(name: r'reason', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'reason',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String reason;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ManualChangeRequest &&
-          other.userId == userId &&
-          other.transactionType == transactionType &&
-          other.points == points &&
-          other.reason == reason;
 
-  @override
-  int get hashCode =>
-      userId.hashCode +
-      transactionType.hashCode +
-      points.hashCode +
-      reason.hashCode;
 
-  factory ManualChangeRequest.fromJson(Map<String, dynamic> json) =>
-      _$ManualChangeRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ManualChangeRequest &&
+      other.userId == userId &&
+      other.transactionType == transactionType &&
+      other.points == points &&
+      other.reason == reason;
+
+    @override
+    int get hashCode =>
+        userId.hashCode +
+        transactionType.hashCode +
+        points.hashCode +
+        reason.hashCode;
+
+  factory ManualChangeRequest.fromJson(Map<String, dynamic> json) => _$ManualChangeRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ManualChangeRequestToJson(this);
 
@@ -66,4 +103,6 @@ class ManualChangeRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

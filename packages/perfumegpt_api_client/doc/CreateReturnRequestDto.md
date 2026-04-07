@@ -10,8 +10,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **orderId** | **String** |  | 
 **reason** | [**ReturnOrderReason**](ReturnOrderReason.md) |  | 
+**isRefundOnly** | **bool** |  | [optional] 
 **returnItems** | [**List&lt;ReturnItemDto&gt;**](ReturnItemDto.md) |  | 
 **customerNote** | **String** |  | [optional] 
+**refundBankName** | **String** |  | [optional] 
+**refundAccountNumber** | **String** |  | [optional] 
+**refundAccountName** | **String** |  | [optional] 
 **savedAddressId** | **String** |  | [optional] 
 **recipient** | [**ContactAddressInformation**](ContactAddressInformation.md) |  | [optional] 
 **temporaryMediaIds** | **List&lt;String&gt;** |  | [optional] 

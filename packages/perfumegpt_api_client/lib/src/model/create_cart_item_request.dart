@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_cart_item_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,27 +18,51 @@ part 'create_cart_item_request.g.dart';
 )
 class CreateCartItemRequest {
   /// Returns a new [CreateCartItemRequest] instance.
-  CreateCartItemRequest({required this.variantId, this.quantity});
+  CreateCartItemRequest({
 
-  @JsonKey(name: r'variantId', required: true, includeIfNull: false)
+    required  this.variantId,
+
+     this.quantity,
+  });
+
+  @JsonKey(
+    
+    name: r'variantId',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String variantId;
 
-  // minimum: 0
-  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'quantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? quantity;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateCartItemRequest &&
-          other.variantId == variantId &&
-          other.quantity == quantity;
 
-  @override
-  int get hashCode => variantId.hashCode + quantity.hashCode;
 
-  factory CreateCartItemRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateCartItemRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateCartItemRequest &&
+      other.variantId == variantId &&
+      other.quantity == quantity;
+
+    @override
+    int get hashCode =>
+        variantId.hashCode +
+        quantity.hashCode;
+
+  factory CreateCartItemRequest.fromJson(Map<String, dynamic> json) => _$CreateCartItemRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateCartItemRequestToJson(this);
 
@@ -45,4 +70,6 @@ class CreateCartItemRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

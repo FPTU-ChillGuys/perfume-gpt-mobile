@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_olfactory_family_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,26 +18,50 @@ part 'product_olfactory_family_response.g.dart';
 )
 class ProductOlfactoryFamilyResponse {
   /// Returns a new [ProductOlfactoryFamilyResponse] instance.
-  ProductOlfactoryFamilyResponse({this.olfactoryFamilyId, required this.name});
+  ProductOlfactoryFamilyResponse({
 
-  @JsonKey(name: r'olfactoryFamilyId', required: false, includeIfNull: false)
+     this.olfactoryFamilyId,
+
+    required  this.name,
+  });
+
+  @JsonKey(
+    
+    name: r'olfactoryFamilyId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? olfactoryFamilyId;
 
-  @JsonKey(name: r'name', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'name',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String name;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProductOlfactoryFamilyResponse &&
-          other.olfactoryFamilyId == olfactoryFamilyId &&
-          other.name == name;
 
-  @override
-  int get hashCode => olfactoryFamilyId.hashCode + name.hashCode;
 
-  factory ProductOlfactoryFamilyResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductOlfactoryFamilyResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ProductOlfactoryFamilyResponse &&
+      other.olfactoryFamilyId == olfactoryFamilyId &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        olfactoryFamilyId.hashCode +
+        name.hashCode;
+
+  factory ProductOlfactoryFamilyResponse.fromJson(Map<String, dynamic> json) => _$ProductOlfactoryFamilyResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductOlfactoryFamilyResponseToJson(this);
 
@@ -44,4 +69,6 @@ class ProductOlfactoryFamilyResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

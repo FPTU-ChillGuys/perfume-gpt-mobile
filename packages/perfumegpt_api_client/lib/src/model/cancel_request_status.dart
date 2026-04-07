@@ -5,13 +5,14 @@
 // ignore_for_file: unused_element
 import 'package:json_annotation/json_annotation.dart';
 
+
 enum CancelRequestStatus {
-  @JsonValue(r'Pending')
-  pending(r'Pending'),
-  @JsonValue(r'Approved')
-  approved(r'Approved'),
-  @JsonValue(r'Rejected')
-  rejected(r'Rejected');
+      @JsonValue(r'Pending')
+      pending(r'Pending'),
+      @JsonValue(r'Approved')
+      approved(r'Approved'),
+      @JsonValue(r'Rejected')
+      rejected(r'Rejected');
 
   const CancelRequestStatus(this.value);
 

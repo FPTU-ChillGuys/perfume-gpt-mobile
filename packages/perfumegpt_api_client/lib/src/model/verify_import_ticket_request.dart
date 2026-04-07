@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'verify_import_ticket_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,22 +19,34 @@ part 'verify_import_ticket_request.g.dart';
 )
 class VerifyImportTicketRequest {
   /// Returns a new [VerifyImportTicketRequest] instance.
-  VerifyImportTicketRequest({required this.importDetails});
+  VerifyImportTicketRequest({
 
-  @JsonKey(name: r'importDetails', required: true, includeIfNull: false)
+    required  this.importDetails,
+  });
+
+  @JsonKey(
+    
+    name: r'importDetails',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<VerifyImportDetailRequest> importDetails;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is VerifyImportTicketRequest &&
-          other.importDetails == importDetails;
 
-  @override
-  int get hashCode => importDetails.hashCode;
 
-  factory VerifyImportTicketRequest.fromJson(Map<String, dynamic> json) =>
-      _$VerifyImportTicketRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is VerifyImportTicketRequest &&
+      other.importDetails == importDetails;
+
+    @override
+    int get hashCode =>
+        importDetails.hashCode;
+
+  factory VerifyImportTicketRequest.fromJson(Map<String, dynamic> json) => _$VerifyImportTicketRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$VerifyImportTicketRequestToJson(this);
 
@@ -41,4 +54,6 @@ class VerifyImportTicketRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

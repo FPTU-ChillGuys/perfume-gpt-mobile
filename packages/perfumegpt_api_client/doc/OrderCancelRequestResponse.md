@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **orderId** | **String** |  | [optional] 
+**orderCode** | **String** |  | 
 **requestedById** | **String** |  | [optional] 
 **requestedByEmail** | **String** |  | [optional] 
 **processedById** | **String** |  | [optional] 
@@ -19,6 +20,9 @@ Name | Type | Description | Notes
 **isRefundRequired** | **bool** |  | [optional] 
 **refundAmount** | **num** |  | [optional] 
 **isRefunded** | **bool** |  | [optional] 
+**refundBankName** | **String** |  | [optional] 
+**refundAccountName** | **String** |  | [optional] 
+**refundAccountNumber** | **String** |  | [optional] 
 **vnpTransactionNo** | **String** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 

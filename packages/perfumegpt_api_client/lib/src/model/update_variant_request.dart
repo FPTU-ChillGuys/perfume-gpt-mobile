@@ -11,6 +11,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_variant_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,115 +22,228 @@ part 'update_variant_request.g.dart';
 class UpdateVariantRequest {
   /// Returns a new [UpdateVariantRequest] instance.
   UpdateVariantRequest({
-    required this.sku,
 
-    required this.barcode,
+    required  this.sku,
 
-    this.volumeMl,
+    required  this.barcode,
 
-    this.concentrationId,
+     this.volumeMl,
 
-    this.type,
+     this.concentrationId,
 
-    this.basePrice,
+     this.type,
 
-    this.retailPrice,
+     this.basePrice,
 
-    this.status,
+     this.retailPrice,
 
-    this.sillage,
+     this.status,
 
-    this.longevity,
+     this.sillage,
 
-    this.mediaIdsToDelete,
+     this.longevity,
 
-    this.temporaryMediaIdsToAdd,
+     this.mediaIdsToDelete,
 
-    this.attributes,
+     this.temporaryMediaIdsToAdd,
+
+     this.attributes,
   });
 
-  @JsonKey(name: r'sku', required: true, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'sku',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String sku;
 
-  @JsonKey(name: r'barcode', required: true, includeIfNull: false)
-  final String barcode;
 
-  // minimum: 0
-  @JsonKey(name: r'volumeMl', required: false, includeIfNull: false)
-  final int? volumeMl;
-
-  // minimum: 0
-  @JsonKey(name: r'concentrationId', required: false, includeIfNull: false)
-  final int? concentrationId;
-
-  @JsonKey(name: r'type', required: false, includeIfNull: false)
-  final VariantType? type;
-
-  // minimum: 0
-  @JsonKey(name: r'basePrice', required: false, includeIfNull: false)
-  final num? basePrice;
-
-  @JsonKey(name: r'retailPrice', required: false, includeIfNull: false)
-  final num? retailPrice;
-
-  @JsonKey(name: r'status', required: false, includeIfNull: false)
-  final VariantStatus? status;
-
-  @JsonKey(name: r'sillage', required: false, includeIfNull: false)
-  final int? sillage;
-
-  @JsonKey(name: r'longevity', required: false, includeIfNull: false)
-  final int? longevity;
-
-  @JsonKey(name: r'mediaIdsToDelete', required: false, includeIfNull: false)
-  final List<String>? mediaIdsToDelete;
 
   @JsonKey(
+    
+    name: r'barcode',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String barcode;
+
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'volumeMl',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? volumeMl;
+
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'concentrationId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? concentrationId;
+
+
+
+  @JsonKey(
+    
+    name: r'type',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final VariantType? type;
+
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'basePrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? basePrice;
+
+
+
+  @JsonKey(
+    
+    name: r'retailPrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? retailPrice;
+
+
+
+  @JsonKey(
+    
+    name: r'status',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final VariantStatus? status;
+
+
+
+  @JsonKey(
+    
+    name: r'sillage',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? sillage;
+
+
+
+  @JsonKey(
+    
+    name: r'longevity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? longevity;
+
+
+
+  @JsonKey(
+    
+    name: r'mediaIdsToDelete',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final List<String>? mediaIdsToDelete;
+
+
+
+  @JsonKey(
+    
     name: r'temporaryMediaIdsToAdd',
     required: false,
     includeIfNull: false,
   )
+
+
   final List<String>? temporaryMediaIdsToAdd;
 
-  @JsonKey(name: r'attributes', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'attributes',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<ProductAttributeDto>? attributes;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is UpdateVariantRequest &&
-          other.sku == sku &&
-          other.barcode == barcode &&
-          other.volumeMl == volumeMl &&
-          other.concentrationId == concentrationId &&
-          other.type == type &&
-          other.basePrice == basePrice &&
-          other.retailPrice == retailPrice &&
-          other.status == status &&
-          other.sillage == sillage &&
-          other.longevity == longevity &&
-          other.mediaIdsToDelete == mediaIdsToDelete &&
-          other.temporaryMediaIdsToAdd == temporaryMediaIdsToAdd &&
-          other.attributes == attributes;
 
-  @override
-  int get hashCode =>
-      sku.hashCode +
-      barcode.hashCode +
-      volumeMl.hashCode +
-      concentrationId.hashCode +
-      type.hashCode +
-      basePrice.hashCode +
-      (retailPrice == null ? 0 : retailPrice.hashCode) +
-      status.hashCode +
-      sillage.hashCode +
-      longevity.hashCode +
-      (mediaIdsToDelete == null ? 0 : mediaIdsToDelete.hashCode) +
-      (temporaryMediaIdsToAdd == null ? 0 : temporaryMediaIdsToAdd.hashCode) +
-      (attributes == null ? 0 : attributes.hashCode);
 
-  factory UpdateVariantRequest.fromJson(Map<String, dynamic> json) =>
-      _$UpdateVariantRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is UpdateVariantRequest &&
+      other.sku == sku &&
+      other.barcode == barcode &&
+      other.volumeMl == volumeMl &&
+      other.concentrationId == concentrationId &&
+      other.type == type &&
+      other.basePrice == basePrice &&
+      other.retailPrice == retailPrice &&
+      other.status == status &&
+      other.sillage == sillage &&
+      other.longevity == longevity &&
+      other.mediaIdsToDelete == mediaIdsToDelete &&
+      other.temporaryMediaIdsToAdd == temporaryMediaIdsToAdd &&
+      other.attributes == attributes;
+
+    @override
+    int get hashCode =>
+        sku.hashCode +
+        barcode.hashCode +
+        volumeMl.hashCode +
+        concentrationId.hashCode +
+        type.hashCode +
+        basePrice.hashCode +
+        (retailPrice == null ? 0 : retailPrice.hashCode) +
+        status.hashCode +
+        sillage.hashCode +
+        longevity.hashCode +
+        (mediaIdsToDelete == null ? 0 : mediaIdsToDelete.hashCode) +
+        (temporaryMediaIdsToAdd == null ? 0 : temporaryMediaIdsToAdd.hashCode) +
+        (attributes == null ? 0 : attributes.hashCode);
+
+  factory UpdateVariantRequest.fromJson(Map<String, dynamic> json) => _$UpdateVariantRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateVariantRequestToJson(this);
 
@@ -137,4 +251,6 @@ class UpdateVariantRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

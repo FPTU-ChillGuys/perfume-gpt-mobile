@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'receipt_item_dto.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,52 +19,97 @@ part 'receipt_item_dto.g.dart';
 class ReceiptItemDto {
   /// Returns a new [ReceiptItemDto] instance.
   ReceiptItemDto({
-    required this.productName,
 
-    required this.variantInfo,
+    required  this.productName,
 
-    this.quantity,
+    required  this.variantInfo,
 
-    this.unitPrice,
+     this.quantity,
 
-    this.subtotal,
+     this.unitPrice,
+
+     this.subtotal,
   });
 
-  @JsonKey(name: r'productName', required: true, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'productName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String productName;
 
-  @JsonKey(name: r'variantInfo', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'variantInfo',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String variantInfo;
 
-  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'quantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? quantity;
 
-  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'unitPrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? unitPrice;
 
-  @JsonKey(name: r'subtotal', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'subtotal',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? subtotal;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ReceiptItemDto &&
-          other.productName == productName &&
-          other.variantInfo == variantInfo &&
-          other.quantity == quantity &&
-          other.unitPrice == unitPrice &&
-          other.subtotal == subtotal;
 
-  @override
-  int get hashCode =>
-      productName.hashCode +
-      variantInfo.hashCode +
-      quantity.hashCode +
-      unitPrice.hashCode +
-      subtotal.hashCode;
 
-  factory ReceiptItemDto.fromJson(Map<String, dynamic> json) =>
-      _$ReceiptItemDtoFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ReceiptItemDto &&
+      other.productName == productName &&
+      other.variantInfo == variantInfo &&
+      other.quantity == quantity &&
+      other.unitPrice == unitPrice &&
+      other.subtotal == subtotal;
+
+    @override
+    int get hashCode =>
+        productName.hashCode +
+        variantInfo.hashCode +
+        quantity.hashCode +
+        unitPrice.hashCode +
+        subtotal.hashCode;
+
+  factory ReceiptItemDto.fromJson(Map<String, dynamic> json) => _$ReceiptItemDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReceiptItemDtoToJson(this);
 
@@ -71,4 +117,6 @@ class ReceiptItemDto {
   String toString() {
     return toJson().toString();
   }
+
 }
+

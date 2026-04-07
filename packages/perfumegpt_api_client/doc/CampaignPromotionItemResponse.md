@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **itemType** | [**PromotionType**](PromotionType.md) |  | [optional] 
 **startDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **endDate** | [**DateTime**](DateTime.md) |  | [optional] 
-**autoStopWhenBatchEmpty** | **bool** |  | [optional] 
 **maxUsage** | **int** |  | [optional] 
 **currentUsage** | **int** |  | [optional] 
 
