@@ -9,7 +9,7 @@ part 'review_providers.g.dart';
 @riverpod
 ReviewRepository reviewRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return ReviewRepositoryImpl(apiClient.dio);
+  return ReviewRepositoryImpl(apiClient.getReviewsApi());
 }
 
 @riverpod

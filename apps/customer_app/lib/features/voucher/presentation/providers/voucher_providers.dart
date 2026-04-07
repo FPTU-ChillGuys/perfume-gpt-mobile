@@ -9,7 +9,7 @@ part 'voucher_providers.g.dart';
 @riverpod
 VoucherRepository voucherRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return VoucherRepositoryImpl(apiClient.dio);
+  return VoucherRepositoryImpl(apiClient.getVouchersApi());
 }
 
 @riverpod

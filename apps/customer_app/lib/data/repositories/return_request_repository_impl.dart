@@ -1,65 +1,56 @@
-import 'package:dio/dio.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/return_request.dart';
 import '../../domain/repositories/return_request_repository.dart';
 
-const _authExtra = <String, dynamic>{
-  'secure': <Map<String, String>>[
-    {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-  ],
-};
-
 class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
-  final Dio _dio;
-  ReturnRequestRepositoryImpl(this._dio);
-
-  Options get _opts => Options(extra: _authExtra);
+  final OrderReturnRequestsApi _api;
+  ReturnRequestRepositoryImpl(this._api);
 
   @override
   Future<List<ReturnRequest>> getMyRequests() async {
-    final r = await _dio.get<Map<String, dynamic>>('/api/orderreturnrequests/my-requests', options: _opts);
-    return _extractList(r.data).map(_map).toList();
+    final response = await _api.apiOrderreturnrequestsMyRequestsGet();
+    final items = response.data?.payload?.items ?? [];
+    return items.map(_map).toList();
   }
 
   @override
   Future<ReturnRequest> getById(String id) async {
-    final r = await _dio.get<Map<String, dynamic>>('/api/orderreturnrequests/$id', options: _opts);
-    return _map(r.data!['payload'] as Map<String, dynamic>);
+    final response = await _api.apiOrderreturnrequestsIdGet(id: id);
+    return _map(response.data!.payload!);
   }
 
   @override
   Future<void> create({required String orderId, String? reason}) async {
-    await _dio.post(
-      '/api/orderreturnrequests',
-      data: {
-        'orderId': orderId,
-        if (reason != null) 'reason': reason,
-      },
-      options: Options(contentType: 'application/json', extra: _authExtra),
+    // Mapping string reason to enum, default to changedMind if not found or null
+    ReturnOrderReason returnReason = ReturnOrderReason.changedMind;
+    if (reason != null) {
+      returnReason = ReturnOrderReason.values.firstWhere(
+        (e) => e.name.toLowerCase() == reason.toLowerCase(),
+        orElse: () => ReturnOrderReason.changedMind,
+      );
+    }
+
+    await _api.apiOrderreturnrequestsPost(
+      createReturnRequestDto: CreateReturnRequestDto(
+        orderId: orderId,
+        reason: returnReason,
+        returnItems: [], // FIXME: Needs actual items from UI
+      ),
     );
   }
 
   @override
   Future<void> cancel(String id) async {
-    await _dio.post('/api/orderreturnrequests/$id/cancel', options: _opts);
+    await _api.apiOrderreturnrequestsIdCancelPost(id: id);
   }
 
-  List<Map<String, dynamic>> _extractList(Map<String, dynamic>? data) {
-    final payload = data?['payload'];
-    if (payload is List) return payload.cast<Map<String, dynamic>>();
-    if (payload is Map<String, dynamic>) {
-      final items = payload['items'] as List?;
-      if (items != null) return items.cast<Map<String, dynamic>>();
-    }
-    return [];
-  }
-
-  ReturnRequest _map(Map<String, dynamic> j) => ReturnRequest(
-        id: j['id'] as String? ?? '',
-        orderId: j['orderId'] as String? ?? '',
-        orderCode: j['orderCode'] as String?,
-        status: j['status'] as String? ?? 'Pending',
-        reason: j['reason'] as String?,
-        createdAt: DateTime.tryParse(j['createdAt'] as String? ?? '') ?? DateTime.now(),
-        updatedAt: j['updatedAt'] != null ? DateTime.tryParse(j['updatedAt'] as String) : null,
+  ReturnRequest _map(OrderReturnRequestResponse j) => ReturnRequest(
+        id: j.id?.toString() ?? '',
+        orderId: j.orderId?.toString() ?? '',
+        orderCode: j.orderCode,
+        status: j.status?.name ?? 'Pending',
+        reason: j.reason,
+        createdAt: j.createdAt ?? DateTime.now(),
+        updatedAt: j.updatedAt,
       );
 }

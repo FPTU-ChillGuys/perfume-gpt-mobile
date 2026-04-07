@@ -9,7 +9,7 @@ part 'address_providers.g.dart';
 @riverpod
 AddressRepository addressRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return AddressRepositoryImpl(apiClient.dio);
+  return AddressRepositoryImpl(apiClient.getAddressApi());
 }
 
 @riverpod
