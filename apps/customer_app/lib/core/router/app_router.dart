@@ -17,6 +17,7 @@ import '../../features/order/presentation/pages/return_request_list_page.dart';
 import '../../features/profile/presentation/pages/profile_edit_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/review/presentation/pages/my_reviews_page.dart';
+import '../../features/review/presentation/pages/review_detail_page.dart';
 import '../../features/review/presentation/pages/write_review_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 import '../../features/store/presentation/pages/product_details_page.dart';
@@ -115,9 +116,17 @@ class AppRouter {
         builder: (context, state) {
           final params = state.uri.queryParameters;
           return WriteReviewPage(
-            variantId: params['variantId'] ?? '',
+            orderDetailId: params['orderDetailId'] ?? '',
+            variantId: params['variantId'],
             variantName: params['variantName'],
           );
+        },
+      ),
+      GoRoute(
+        path: '/reviews/:reviewId',
+        builder: (context, state) {
+          final reviewId = state.pathParameters['reviewId']!;
+          return ReviewDetailPage(reviewId: reviewId);
         },
       ),
       GoRoute(

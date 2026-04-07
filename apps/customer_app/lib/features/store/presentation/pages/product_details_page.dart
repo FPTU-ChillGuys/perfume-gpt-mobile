@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:customer_app/features/order/presentation/providers/cart_provider.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/image_url_helper.dart';
+import '../../../review/presentation/providers/review_providers.dart';
 import '../providers/product_provider.dart';
 import '../../../../domain/entities/product.dart';
 import '../../../../domain/entities/product_variant.dart';
 import '../../../../core/utils/price_formatter.dart';
+import 'package:intl/intl.dart';
 
 class ProductDetailsPage extends ConsumerStatefulWidget {
   final String productId;
@@ -368,6 +371,12 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
 
       // AI Review summary
       _AiReviewSummary(product: product),
+
+      // ── Variant reviews ──
+      if (_selectedVariant != null) ...[
+        const SizedBox(height: 20),
+        _VariantReviewsSection(variantId: _selectedVariant!.id),
+      ],
     ];
   }
 }
@@ -889,6 +898,245 @@ class _AddToCartBar extends StatelessWidget {
   }
 }
 
+// ── Variant reviews section ─────────────────────────────────────────────
 
+class _VariantReviewsSection extends ConsumerWidget {
+  final String variantId;
+  const _VariantReviewsSection({required this.variantId});
 
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final statsAsync = ref.watch(variantReviewStatsProvider(variantId));
+    final reviewsAsync = ref.watch(variantReviewsProvider(variantId));
 
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Đánh giá sản phẩm',
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 12),
+
+        // ── Stats summary ──
+        statsAsync.when(
+          data: (stats) {
+            if (stats.totalReviews == 0) {
+              return Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppColors.border),
+                ),
+                child: const Column(
+                  children: [
+                    Icon(Icons.rate_review_outlined, size: 36, color: AppColors.textSecondary),
+                    SizedBox(height: 8),
+                    Text('Chưa có đánh giá nào', style: TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+                  ],
+                ),
+              );
+            }
+            return Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppColors.border),
+              ),
+              child: Row(
+                children: [
+                  // Average rating
+                  Column(
+                    children: [
+                      Text(
+                        stats.averageRating.toStringAsFixed(1),
+                        style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
+                      ),
+                      Row(
+                        children: List.generate(5, (i) => Icon(
+                          i < stats.averageRating.round() ? Icons.star_rounded : Icons.star_outline_rounded,
+                          color: Colors.amber,
+                          size: 16,
+                        )),
+                      ),
+                      const SizedBox(height: 4),
+                      Text('${stats.totalReviews} đánh giá',
+                          style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                    ],
+                  ),
+                  const SizedBox(width: 20),
+                  // Rating distribution bars
+                  Expanded(
+                    child: Column(
+                      children: List.generate(5, (i) {
+                        final star = 5 - i;
+                        final count = stats.ratingDistribution[star] ?? 0;
+                        final ratio = stats.totalReviews > 0 ? count / stats.totalReviews : 0.0;
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 2),
+                          child: Row(
+                            children: [
+                              Text('$star', style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                              const SizedBox(width: 4),
+                              const Icon(Icons.star_rounded, size: 12, color: Colors.amber),
+                              const SizedBox(width: 6),
+                              Expanded(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(4),
+                                  child: LinearProgressIndicator(
+                                    value: ratio,
+                                    minHeight: 6,
+                                    backgroundColor: Colors.grey.shade200,
+                                    valueColor: const AlwaysStoppedAnimation(Colors.amber),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              SizedBox(
+                                width: 24,
+                                child: Text('$count', style: const TextStyle(fontSize: 11, color: AppColors.textSecondary)),
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+          loading: () => const SizedBox.shrink(),
+          error: (_, _) => const SizedBox.shrink(),
+        ),
+        const SizedBox(height: 12),
+
+        // ── Review list ──
+        reviewsAsync.when(
+          data: (reviews) {
+            if (reviews.isEmpty) return const SizedBox.shrink();
+            return Column(
+              children: reviews.map((review) => _buildReviewTile(context, review)).toList(),
+            );
+          },
+          loading: () => const Center(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: CircularProgressIndicator(color: AppColors.primary, strokeWidth: 2),
+            ),
+          ),
+          error: (_, _) => const SizedBox.shrink(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildReviewTile(BuildContext context, dynamic review) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // User + date
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 14,
+                backgroundColor: AppColors.primaryLight,
+                backgroundImage: review.userProfilePictureUrl != null && review.userProfilePictureUrl!.isNotEmpty
+                    ? NetworkImage(ImageUrlHelper.resolve(review.userProfilePictureUrl!))
+                    : null,
+                child: review.userProfilePictureUrl == null || review.userProfilePictureUrl!.isEmpty
+                    ? Text(
+                        (review.userName ?? 'U')[0].toUpperCase(),
+                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primary),
+                      )
+                    : null,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(review.userName ?? 'Người dùng',
+                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+              ),
+              Text(
+                DateFormat('dd/MM/yyyy').format(review.createdAt),
+                style: const TextStyle(fontSize: 11, color: AppColors.textSecondary),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          // Stars
+          Row(
+            children: List.generate(5, (i) => Icon(
+              i < review.rating ? Icons.star_rounded : Icons.star_outline_rounded,
+              color: i < review.rating ? Colors.amber : AppColors.border,
+              size: 16,
+            )),
+          ),
+          // Comment
+          if (review.comment != null && review.comment!.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(review.comment!,
+                style: const TextStyle(fontSize: 13, color: AppColors.textPrimary, height: 1.4),
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis),
+          ],
+          // Images
+          if (review.imageUrls.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 56,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: review.imageUrls.length,
+                separatorBuilder: (_, _) => const SizedBox(width: 6),
+                itemBuilder: (_, i) => ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: Image.network(
+                    ImageUrlHelper.resolve(review.imageUrls[i]),
+                    width: 56, height: 56, fit: BoxFit.cover,
+                    errorBuilder: (_, _, _) => Container(
+                      width: 56, height: 56, color: Colors.grey.shade200,
+                      child: const Icon(Icons.broken_image, size: 16, color: Colors.grey),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+          // Staff feedback
+          if (review.staffFeedbackComment != null && review.staffFeedbackComment!.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: AppColors.primaryLight,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(Icons.store, size: 14, color: AppColors.primary),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(review.staffFeedbackComment!,
+                        style: const TextStyle(fontSize: 12, color: AppColors.textPrimary)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}

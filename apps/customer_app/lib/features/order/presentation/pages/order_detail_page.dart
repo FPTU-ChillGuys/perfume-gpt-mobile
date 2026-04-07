@@ -1126,13 +1126,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 icon: const Icon(Icons.star_outline, size: 16),
                 label: const Text('Đánh giá'),
                 style: FilledButton.styleFrom(backgroundColor: _accent),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Chức năng đánh giá đang phát triển'),
-                    ),
-                  );
-                },
+                onPressed: () => _showReviewItemsSheet(context, order),
               ),
           ],
         ),
@@ -1315,6 +1309,51 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
   }
 
   // ── Retry Payment Dialog ──────────────────────────────────────────────────
+
+  void _showReviewItemsSheet(BuildContext context, OrderDetail order) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (_) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Chọn sản phẩm để đánh giá',
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+              const SizedBox(height: 12),
+              ...order.orderDetails.map((item) => ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: item.imageUrl != null && item.imageUrl!.isNotEmpty
+                      ? Image.network(item.imageUrl!, width: 48, height: 48, fit: BoxFit.cover,
+                          errorBuilder: (_, _, _) => _imagePlaceholder(48))
+                      : _imagePlaceholder(48),
+                ),
+                title: Text(item.variantName,
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    maxLines: 2, overflow: TextOverflow.ellipsis),
+                subtitle: Text('x${item.quantity} · ${_fmt(item.total)}',
+                    style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+                trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+                contentPadding: EdgeInsets.zero,
+                onTap: () {
+                  Navigator.pop(context);
+                  context.push(
+                    '/reviews/write?orderDetailId=${item.id}&variantId=${item.variantId}&variantName=${Uri.encodeComponent(item.variantName)}',
+                  );
+                },
+              )),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   void _showRetryPaymentDialog(BuildContext context, OrderDetail order,
       PaymentTransaction? latestPayment) {
