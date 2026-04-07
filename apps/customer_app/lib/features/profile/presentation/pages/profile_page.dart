@@ -21,7 +21,9 @@ class ProfilePage extends ConsumerWidget {
           if (user == null) return _GuestView();
           return _AuthenticatedView(userName: user.name, userEmail: user.email);
         },
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const Center(
+          child: CircularProgressIndicator(color: AppColors.primary),
+        ),
         error: (error, _) => Center(child: Text('Lỗi: $error')),
       ),
     );
@@ -56,13 +58,25 @@ class _GuestView extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.account_circle_outlined, size: 80, color: Colors.white54),
+                      Icon(
+                        Icons.account_circle_outlined,
+                        size: 80,
+                        color: Colors.white54,
+                      ),
                       SizedBox(height: 12),
-                      Text('PerfumeGPT',
-                          style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+                      Text(
+                        'PerfumeGPT',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       SizedBox(height: 4),
-                      Text('Đăng nhập để trải nghiệm đầy đủ',
-                          style: TextStyle(color: Colors.white70, fontSize: 13)),
+                      Text(
+                        'Đăng nhập để trải nghiệm đầy đủ',
+                        style: TextStyle(color: Colors.white70, fontSize: 13),
+                      ),
                     ],
                   ),
                 ),
@@ -84,9 +98,14 @@ class _GuestView extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
-                    child: const Text('Đăng nhập', style: TextStyle(fontWeight: FontWeight.w600)),
+                    child: const Text(
+                      'Đăng nhập',
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -98,9 +117,14 @@ class _GuestView extends StatelessWidget {
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.primary,
                       side: const BorderSide(color: AppColors.primary),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
-                    child: const Text('Tạo tài khoản', style: TextStyle(fontWeight: FontWeight.w600)),
+                    child: const Text(
+                      'Tạo tài khoản',
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ],
@@ -160,27 +184,40 @@ class _AuthenticatedView extends ConsumerWidget {
                   radius: 36,
                   backgroundColor: Colors.white24,
                   child: Text(
-                    (userName ?? 'U')[0].toUpperCase(),
-                    style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+                    (userName ?? 'U').toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
                 Text(
                   profileAsync.when(
                     data: (p) => p.fullName ?? userName ?? 'Người dùng',
-                    error: (_, __) => userName ?? 'Người dùng',
+                    error: (_, _) => userName ?? 'Người dùng',
                     loading: () => userName ?? 'Người dùng',
                   ),
-                  style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 4),
-                Text(userEmail,
-                    style: const TextStyle(color: Colors.white60, fontSize: 13)),
+                Text(
+                  userEmail,
+                  style: const TextStyle(color: Colors.white60, fontSize: 13),
+                ),
                 const SizedBox(height: 12),
                 // ── Loyalty points badge ──
                 loyaltyAsync.when(
                   data: (total) => Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(20),
@@ -188,15 +225,25 @@ class _AuthenticatedView extends ConsumerWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.star_rounded, color: Colors.amberAccent, size: 18),
+                        const Icon(
+                          Icons.star_rounded,
+                          color: Colors.amberAccent,
+                          size: 18,
+                        ),
                         const SizedBox(width: 6),
-                        Text('${total.totalPoints} điểm tích lũy',
-                            style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500)),
+                        Text(
+                          '${total.totalPoints} điểm tích lũy',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                   loading: () => const SizedBox.shrink(),
-                  error: (_, __) => const SizedBox.shrink(),
+                  error: (_, _) => const SizedBox.shrink(),
                 ),
               ],
             ),
@@ -269,7 +316,11 @@ class _AuthenticatedView extends ConsumerWidget {
               _MenuCard(
                 icon: Icons.star_outline_rounded,
                 title: 'Điểm tích lũy',
-                subtitle: loyaltyAsync.when(data: (t) => '${t.totalPoints} điểm', error: (_, __) => 'Xem lịch sử điểm', loading: () => 'Xem lịch sử điểm'),
+                subtitle: loyaltyAsync.when(
+                  data: (t) => '${t.totalPoints} điểm',
+                  error: (_, _) => 'Xem lịch sử điểm',
+                  loading: () => 'Xem lịch sử điểm',
+                ),
                 onTap: () => context.push('/loyalty'),
               ),
 
@@ -283,8 +334,16 @@ class _AuthenticatedView extends ConsumerWidget {
                 ),
                 child: ListTile(
                   leading: const Icon(Icons.logout, color: Colors.red),
-                  title: const Text('Đăng xuất', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500)),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  title: const Text(
+                    'Đăng xuất',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   onTap: () => ref.read(authProvider.notifier).logout(),
                 ),
               ),
@@ -302,7 +361,12 @@ class _MenuCard extends StatelessWidget {
   final String subtitle;
   final VoidCallback onTap;
 
-  const _MenuCard({required this.icon, required this.title, required this.subtitle, required this.onTap});
+  const _MenuCard({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -312,7 +376,11 @@ class _MenuCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: AppColors.border),
         boxShadow: [
-          BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 6, offset: const Offset(0, 2)),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.03),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       child: ListTile(
@@ -325,9 +393,22 @@ class _MenuCard extends StatelessWidget {
           ),
           child: Icon(icon, color: AppColors.primary, size: 20),
         ),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: AppColors.textPrimary)),
-        subtitle: Text(subtitle, style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
-        trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+            color: AppColors.textPrimary,
+          ),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+        ),
+        trailing: const Icon(
+          Icons.chevron_right,
+          color: AppColors.textSecondary,
+        ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         onTap: onTap,
       ),
