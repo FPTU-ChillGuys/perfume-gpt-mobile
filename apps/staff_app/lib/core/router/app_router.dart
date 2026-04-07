@@ -5,6 +5,7 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import '../../features/inventory/presentation/screens/inventory_screen.dart';
 import '../../features/inventory/presentation/screens/product_detail_screen.dart';
 import '../../features/pos/presentation/screens/pos_screen.dart';
+import '../../features/pos/presentation/screens/counter_checkout_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 
 part 'app_router.g.dart';
@@ -64,6 +65,14 @@ GoRouter appRouter(Ref ref) {
               ),
             ],
           ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/counter',
+                builder: (context, state) => const CounterCheckoutScreen(),
+              ),
+            ],
+          ),
         ],
       ),
     ],
@@ -87,6 +96,10 @@ class ScaffoldWithBottomNavBar extends StatelessWidget {
           NavigationDestination(
             icon: Icon(Icons.inventory),
             label: 'Inventory',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.store),
+            label: 'Counter',
           ),
         ],
       ),

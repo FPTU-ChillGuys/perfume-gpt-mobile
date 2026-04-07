@@ -563,11 +563,39 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
     String selectedMethod =
         allowedMethods.isNotEmpty ? allowedMethods.first : 'VnPay';
     bool isSubmitting = false;
+    bool isLoadingPaymentId = true;
+    String? paymentId;
 
     showDialog(
       context: context,
       builder: (ctx) => StatefulBuilder(
-        builder: (ctx, setDialogState) => AlertDialog(
+        builder: (ctx, setDialogState) {
+          // Fetch order detail to get paymentId on first build
+          if (isLoadingPaymentId && paymentId == null) {
+            ref.read(orderRepositoryProvider).getOrderDetail(order.id).then((detail) {
+              // Use first Payment-type transaction (matching React: paymentTransactions[0].id)
+              final paymentTxn = detail.paymentTransactions
+                  .where((t) => t.transactionType == 'Payment')
+                  .firstOrNull
+                  ?? (detail.paymentTransactions.isNotEmpty
+                      ? detail.paymentTransactions.first
+                      : null);
+              final pid = paymentTxn?.id;
+              if (ctx.mounted) {
+                setDialogState(() {
+                  paymentId = pid;
+                  isLoadingPaymentId = false;
+                });
+              }
+            }).catchError((e) {
+              if (ctx.mounted) {
+                setDialogState(() => isLoadingPaymentId = false);
+              }
+            });
+            isLoadingPaymentId = false; // prevent re-triggering
+          }
+
+          return AlertDialog(
           title: const Text('Thanh toán lại đơn hàng'),
           content: SingleChildScrollView(
             child: Column(
@@ -619,14 +647,14 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
             FilledButton(
               style:
                   FilledButton.styleFrom(backgroundColor: Colors.orange),
-              onPressed: isSubmitting
+              onPressed: isSubmitting || paymentId == null
                   ? null
                   : () async {
                       setDialogState(() => isSubmitting = true);
                       try {
                         final url = await ref
                             .read(orderRepositoryProvider)
-                            .retryPayment(order.id, selectedMethod);
+                            .retryPayment(paymentId!, selectedMethod);
                         if (selectedMethod == 'VnPay' ||
                             selectedMethod == 'Momo') {
                           if (ctx.mounted) Navigator.pop(ctx);
@@ -661,10 +689,11 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                       }
                     },
               child: Text(
-                  isSubmitting ? 'Đang xử lý...' : 'Thanh toán ngay'),
+                  isSubmitting ? 'Đang xử lý...' : paymentId == null ? 'Đang tải...' : 'Thanh toán ngay'),
             ),
           ],
-        ),
+        );
+        },
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../core/utils/image_url_helper.dart';
 import '../../domain/entities/order.dart';
@@ -6,6 +7,7 @@ import '../../domain/repositories/order_repository.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
   final OrdersApi _ordersApi;
+  // ignore: unused_field - kept for potential future use
   final PaymentsApi _paymentsApi;
   final Dio _dio;
 
@@ -86,11 +88,11 @@ class OrderRepositoryImpl implements OrderRepository {
     int? pageSize,
   }) async {
     final queryParameters = <String, dynamic>{
-      if (status != null) 'Status': status,
-      if (type != null) 'Type': type,
-      if (paymentStatus != null) 'PaymentStatus': paymentStatus,
-      if (searchTerm != null) 'SearchTerm': searchTerm,
-      if (page != null) 'PageNumber': page,
+      'Status': ?status,
+      'Type': ?type,
+      'PaymentStatus': ?paymentStatus,
+      'SearchTerm': ?searchTerm,
+      'PageNumber': ?page,
       'PageSize': pageSize ?? 20,
     };
 
@@ -190,6 +192,7 @@ class OrderRepositoryImpl implements OrderRepository {
     final data = raw is Map<String, dynamic> ? raw : <String, dynamic>{};
     final o = data['payload'] as Map<String, dynamic>? ?? {};
     final txns = (o['paymentTransactions'] as List?)?.cast<Map<String, dynamic>>() ?? [];
+    debugPrint('[getOrderDetail] orderId=${o['id']}, txns=$txns');
     final shipping = o['shippingInfo'] as Map<String, dynamic>?;
     final recipient = o['recipientInfo'] as Map<String, dynamic>?;
     final details = (o['orderDetails'] as List?)?.cast<Map<String, dynamic>>() ?? [];
@@ -374,31 +377,34 @@ class OrderRepositoryImpl implements OrderRepository {
 
   @override
   Future<String> retryPayment(String paymentId, String paymentMethod) async {
-    PaymentMethod? method;
-    switch (paymentMethod) {
-      case 'VnPay':
-        method = PaymentMethod.vnPay;
-        break;
-      case 'Momo':
-        method = PaymentMethod.momo;
-        break;
-      case 'CashOnDelivery':
-        method = PaymentMethod.cashOnDelivery;
-        break;
-      case 'CashInStore':
-        method = PaymentMethod.cashInStore;
-        break;
-    }
-
+    debugPrint('[retryPayment] paymentId=$paymentId, method=$paymentMethod');
     try {
-      final response = await _paymentsApi.apiPaymentsPaymentIdRetryPost(
-        paymentId: paymentId,
-        paymentInformation: PaymentInformation(method: method),
+      final response = await _dio.post<dynamic>(
+        '/api/payments/$paymentId/retry',
+        data: {'method': paymentMethod},
+        options: Options(
+          contentType: 'application/json',
+          extra: <String, dynamic>{
+            'secure': <Map<String, String>>[
+              {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+            ],
+          },
+        ),
       );
-      return response.data?.payload ?? '';
+      final data = response.data;
+      if (data is Map<String, dynamic>) {
+        return (data['payload'] as String?) ?? '';
+      }
+      return '';
     } on DioException catch (e) {
       final status = e.response?.statusCode;
-      if (status != null && status >= 200 && status < 300) return '';
+      if (status != null && status >= 200 && status < 300) {
+        final data = e.response?.data;
+        if (data is Map<String, dynamic>) {
+          return (data['payload'] as String?) ?? '';
+        }
+        return '';
+      }
       final message = e.response?.data is Map
           ? (e.response!.data as Map)['message']?.toString()
           : null;

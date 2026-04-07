@@ -549,7 +549,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     DropdownButtonFormField<String>(
-                      value: _useNewAddress ? 'new' : _selectedAddressId,
+                      initialValue: _useNewAddress ? 'new' : _selectedAddressId,
                       isExpanded: true,
                       decoration: const InputDecoration(
                         labelText: 'Chọn địa chỉ',
@@ -655,7 +655,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     final provincesAsync = ref.watch(provincesProvider);
     return provincesAsync.when(
       data: (provinces) => DropdownButtonFormField<ProvinceResponse>(
-        value: _selectedProvince,
+        initialValue: _selectedProvince,
         isExpanded: true,
         decoration: const InputDecoration(
           labelText: 'Tỉnh/Thành phố *',
@@ -696,7 +696,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         ref.watch(districtsProvider(_selectedProvince!.provinceID!));
     return districtsAsync.when(
       data: (districts) => DropdownButtonFormField<DistrictResponse>(
-        value: _selectedDistrict,
+        initialValue: _selectedDistrict,
         isExpanded: true,
         decoration: const InputDecoration(
           labelText: 'Quận/Huyện *',
@@ -736,7 +736,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         ref.watch(wardsProvider(_selectedDistrict!.districtID!));
     return wardsAsync.when(
       data: (wards) => DropdownButtonFormField<WardResponse>(
-        value: _selectedWard,
+        initialValue: _selectedWard,
         isExpanded: true,
         decoration: const InputDecoration(
           labelText: 'Phường/Xã *',

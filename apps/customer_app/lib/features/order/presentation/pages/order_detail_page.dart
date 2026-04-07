@@ -287,9 +287,13 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     final isDelivered = order.status == 'Delivered';
     final canReturn = isDelivered && order.isReturnable == true;
     final cancelBehavior = _getCancelBehavior(order);
-    final latestPayment = order.paymentTransactions.isNotEmpty
-        ? order.paymentTransactions.last
-        : null;
+    // Use first Payment-type transaction (matching React: paymentTransactions[0].id)
+    final latestPayment = order.paymentTransactions
+        .where((t) => t.transactionType == 'Payment')
+        .firstOrNull
+        ?? (order.paymentTransactions.isNotEmpty
+            ? order.paymentTransactions.first
+            : null);
 
     return Column(
       children: [

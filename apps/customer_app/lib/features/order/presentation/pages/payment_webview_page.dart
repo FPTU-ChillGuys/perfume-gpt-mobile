@@ -26,6 +26,7 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
   bool _isLoading = true;
   bool _isProcessing = false;
   String _title = 'Thanh toán';
+  String? _paymentIdFromUrl;
 
   /// The return URL pattern from VNPay/Momo that we need to intercept.
   static const _returnPatterns = [
@@ -36,6 +37,9 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
   @override
   void initState() {
     super.initState();
+    // Try to extract vnp_TxnRef (paymentId) from the payment URL
+    final uri = Uri.tryParse(widget.paymentUrl);
+    _paymentIdFromUrl = uri?.queryParameters['vnp_TxnRef'];
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
@@ -265,9 +269,21 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
             child: const Text('Tiếp tục thanh toán'),
           ),
           TextButton(
-            onPressed: () {
+            onPressed: () async {
               Navigator.pop(ctx);
-              context.go('/orders');
+              // Confirm payment as failed/cancelled
+              final pid = _paymentIdFromUrl;
+              if (pid != null && pid.isNotEmpty) {
+                try {
+                  await ref.read(orderRepositoryProvider).confirmPayment(
+                        pid,
+                        isSuccess: false,
+                        failureReason: 'User cancelled payment',
+                      );
+                } catch (_) {}
+              }
+              ref.invalidate(myOrdersProvider);
+              if (mounted) context.go('/orders');
             },
             child: const Text('Thoát', style: TextStyle(color: Colors.red)),
           ),
