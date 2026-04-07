@@ -12,6 +12,7 @@ import '../../features/order/presentation/pages/checkout_page.dart';
 import '../../features/order/presentation/pages/order_detail_page.dart';
 import '../../features/order/presentation/pages/order_list_page.dart';
 import '../../features/order/presentation/pages/payment_webview_page.dart';
+import '../../features/order/presentation/pages/return_request_detail_page.dart';
 import '../../features/order/presentation/pages/return_request_list_page.dart';
 import '../../features/profile/presentation/pages/profile_edit_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
@@ -122,6 +123,13 @@ class AppRouter {
       GoRoute(
         path: '/return-requests',
         builder: (context, state) => const ReturnRequestListPage(),
+      ),
+      GoRoute(
+        path: '/return-requests/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return ReturnRequestDetailPage(requestId: id);
+        },
       ),
       GoRoute(
         path: '/loyalty',

@@ -27,6 +27,8 @@ dependencies:
   perfumegpt_common:
     path: ../../packages/perfumegpt_common
   webview_flutter: ^4.13.1
+  image_picker: ^1.1.2
+  http_parser: ^4.1.2
 
 dev_dependencies:
   flutter_test:

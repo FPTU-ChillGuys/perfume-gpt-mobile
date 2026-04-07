@@ -9,27 +9,27 @@ part 'return_request_providers.g.dart';
 @riverpod
 ReturnRequestRepository returnRequestRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return ReturnRequestRepositoryImpl(apiClient.getOrderReturnRequestsApi());
+  return ReturnRequestRepositoryImpl(
+    apiClient.getOrderReturnRequestsApi(),
+    apiClient.getShippingsApi(),
+  );
 }
 
 @riverpod
-class MyReturnRequests extends _$MyReturnRequests {
-  @override
-  FutureOr<List<ReturnRequest>> build() {
-    return ref.watch(returnRequestRepositoryProvider).getMyRequests();
-  }
+FutureOr<PaginatedReturnRequests> myReturnRequests(
+  Ref ref, {
+  String? status,
+  int page = 1,
+  int pageSize = 10,
+}) {
+  return ref.read(returnRequestRepositoryProvider).getMyRequests(
+        status: status,
+        page: page,
+        pageSize: pageSize,
+      );
+}
 
-  Future<void> refresh() async {
-    ref.invalidateSelf();
-  }
-
-  Future<void> createRequest({required String orderId, String? reason}) async {
-    await ref.read(returnRequestRepositoryProvider).create(orderId: orderId, reason: reason);
-    ref.invalidateSelf();
-  }
-
-  Future<void> cancelRequest(String id) async {
-    await ref.read(returnRequestRepositoryProvider).cancel(id);
-    ref.invalidateSelf();
-  }
+@riverpod
+FutureOr<ReturnRequest> returnRequestDetail(Ref ref, String id) {
+  return ref.read(returnRequestRepositoryProvider).getById(id);
 }

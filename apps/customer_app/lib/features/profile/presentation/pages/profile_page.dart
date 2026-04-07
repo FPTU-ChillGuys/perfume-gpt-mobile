@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/image_url_helper.dart';
 import '../providers/profile_providers.dart';
 import '../../../loyalty/presentation/providers/loyalty_providers.dart';
 
@@ -183,12 +184,29 @@ class _AuthenticatedView extends ConsumerWidget {
                 CircleAvatar(
                   radius: 36,
                   backgroundColor: Colors.white24,
-                  child: Text(
-                    (userName ?? 'U').toUpperCase(),
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  backgroundImage: profileAsync.whenOrNull(
+                    data: (p) => p.avatarUrl != null && p.avatarUrl!.isNotEmpty
+                        ? NetworkImage(ImageUrlHelper.resolve(p.avatarUrl!))
+                        : null,
+                  ),
+                  child: profileAsync.maybeWhen(
+                    data: (p) => p.avatarUrl != null && p.avatarUrl!.isNotEmpty
+                        ? null
+                        : Text(
+                            (userName ?? 'U')[0].toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                    orElse: () => Text(
+                      (userName ?? 'U')[0].toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

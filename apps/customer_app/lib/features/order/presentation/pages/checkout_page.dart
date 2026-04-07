@@ -1008,21 +1008,23 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
           ];
 
     return Card(
-      child: Column(
-        children: methods.map((m) {
-          final isSelected = _selectedPayment == m.value;
-          return RadioListTile<String>(
-            value: m.value,
-            groupValue: _selectedPayment,
-            onChanged: (v) => setState(() => _selectedPayment = v!),
-            secondary: Icon(m.icon, color: m.color),
-            title: Text(m.label,
-                style: TextStyle(
-                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal)),
-            subtitle: Text(m.description,
-                style: const TextStyle(fontSize: 12)),
-          );
-        }).toList(),
+      child: RadioGroup<String>(
+        groupValue: _selectedPayment,
+        onChanged: (v) { if (v != null) setState(() => _selectedPayment = v); },
+        child: Column(
+          children: methods.map((m) {
+            final isSelected = _selectedPayment == m.value;
+            return RadioListTile<String>(
+              value: m.value,
+              secondary: Icon(m.icon, color: m.color),
+              title: Text(m.label,
+                  style: TextStyle(
+                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal)),
+              subtitle: Text(m.description,
+                  style: const TextStyle(fontSize: 12)),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
