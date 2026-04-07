@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **canUpdateCOD** | **bool** |  | [optional] 
 **supportType** | **int** |  | [optional] 
 **status** | **int** |  | [optional] 
-**createdDate** | **String** |  | 
+**createdDate** | **String** |  | [optional] 
 **updatedDate** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

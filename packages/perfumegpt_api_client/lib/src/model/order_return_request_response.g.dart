@@ -41,6 +41,14 @@ abstract class _$OrderReturnRequestResponseCWProxy {
 
   OrderReturnRequestResponse isRefunded(bool? isRefunded);
 
+  OrderReturnRequestResponse isRefundOnly(bool? isRefundOnly);
+
+  OrderReturnRequestResponse refundBankName(String? refundBankName);
+
+  OrderReturnRequestResponse refundAccountName(String? refundAccountName);
+
+  OrderReturnRequestResponse refundAccountNumber(String? refundAccountNumber);
+
   OrderReturnRequestResponse vnpTransactionNo(String? vnpTransactionNo);
 
   OrderReturnRequestResponse isRestocked(bool? isRestocked);
@@ -84,6 +92,10 @@ abstract class _$OrderReturnRequestResponseCWProxy {
     num? requestedRefundAmount,
     num? approvedRefundAmount,
     bool? isRefunded,
+    bool? isRefundOnly,
+    String? refundBankName,
+    String? refundAccountName,
+    String? refundAccountNumber,
     String? vnpTransactionNo,
     bool? isRestocked,
     ReturnShippingInfoResponse? returnShippingInfo,
@@ -169,6 +181,22 @@ class _$OrderReturnRequestResponseCWProxyImpl
       call(isRefunded: isRefunded);
 
   @override
+  OrderReturnRequestResponse isRefundOnly(bool? isRefundOnly) =>
+      call(isRefundOnly: isRefundOnly);
+
+  @override
+  OrderReturnRequestResponse refundBankName(String? refundBankName) =>
+      call(refundBankName: refundBankName);
+
+  @override
+  OrderReturnRequestResponse refundAccountName(String? refundAccountName) =>
+      call(refundAccountName: refundAccountName);
+
+  @override
+  OrderReturnRequestResponse refundAccountNumber(String? refundAccountNumber) =>
+      call(refundAccountNumber: refundAccountNumber);
+
+  @override
   OrderReturnRequestResponse vnpTransactionNo(String? vnpTransactionNo) =>
       call(vnpTransactionNo: vnpTransactionNo);
 
@@ -224,6 +252,10 @@ class _$OrderReturnRequestResponseCWProxyImpl
     Object? requestedRefundAmount = const $CopyWithPlaceholder(),
     Object? approvedRefundAmount = const $CopyWithPlaceholder(),
     Object? isRefunded = const $CopyWithPlaceholder(),
+    Object? isRefundOnly = const $CopyWithPlaceholder(),
+    Object? refundBankName = const $CopyWithPlaceholder(),
+    Object? refundAccountName = const $CopyWithPlaceholder(),
+    Object? refundAccountNumber = const $CopyWithPlaceholder(),
     Object? vnpTransactionNo = const $CopyWithPlaceholder(),
     Object? isRestocked = const $CopyWithPlaceholder(),
     Object? returnShippingInfo = const $CopyWithPlaceholder(),
@@ -302,6 +334,22 @@ class _$OrderReturnRequestResponseCWProxyImpl
           ? _value.isRefunded
           // ignore: cast_nullable_to_non_nullable
           : isRefunded as bool?,
+      isRefundOnly: isRefundOnly == const $CopyWithPlaceholder()
+          ? _value.isRefundOnly
+          // ignore: cast_nullable_to_non_nullable
+          : isRefundOnly as bool?,
+      refundBankName: refundBankName == const $CopyWithPlaceholder()
+          ? _value.refundBankName
+          // ignore: cast_nullable_to_non_nullable
+          : refundBankName as String?,
+      refundAccountName: refundAccountName == const $CopyWithPlaceholder()
+          ? _value.refundAccountName
+          // ignore: cast_nullable_to_non_nullable
+          : refundAccountName as String?,
+      refundAccountNumber: refundAccountNumber == const $CopyWithPlaceholder()
+          ? _value.refundAccountNumber
+          // ignore: cast_nullable_to_non_nullable
+          : refundAccountNumber as String?,
       vnpTransactionNo: vnpTransactionNo == const $CopyWithPlaceholder()
           ? _value.vnpTransactionNo
           // ignore: cast_nullable_to_non_nullable
@@ -377,6 +425,16 @@ OrderReturnRequestResponse _$OrderReturnRequestResponseFromJson(
       (v) => v as num?,
     ),
     isRefunded: $checkedConvert('isRefunded', (v) => v as bool?),
+    isRefundOnly: $checkedConvert('isRefundOnly', (v) => v as bool?),
+    refundBankName: $checkedConvert('refundBankName', (v) => v as String?),
+    refundAccountName: $checkedConvert(
+      'refundAccountName',
+      (v) => v as String?,
+    ),
+    refundAccountNumber: $checkedConvert(
+      'refundAccountNumber',
+      (v) => v as String?,
+    ),
     vnpTransactionNo: $checkedConvert('vnpTransactionNo', (v) => v as String?),
     isRestocked: $checkedConvert('isRestocked', (v) => v as bool?),
     returnShippingInfo: $checkedConvert(
@@ -433,6 +491,10 @@ Map<String, dynamic> _$OrderReturnRequestResponseToJson(
   'requestedRefundAmount': ?instance.requestedRefundAmount,
   'approvedRefundAmount': ?instance.approvedRefundAmount,
   'isRefunded': ?instance.isRefunded,
+  'isRefundOnly': ?instance.isRefundOnly,
+  'refundBankName': ?instance.refundBankName,
+  'refundAccountName': ?instance.refundAccountName,
+  'refundAccountNumber': ?instance.refundAccountNumber,
   'vnpTransactionNo': ?instance.vnpTransactionNo,
   'isRestocked': ?instance.isRestocked,
   'returnShippingInfo': ?instance.returnShippingInfo?.toJson(),
@@ -449,4 +511,5 @@ const _$ReturnRequestStatusEnumMap = {
   ReturnRequestStatus.readyForRefund: 'ReadyForRefund',
   ReturnRequestStatus.completed: 'Completed',
   ReturnRequestStatus.rejected: 'Rejected',
+  ReturnRequestStatus.requestMoreInfo: 'RequestMoreInfo',
 };

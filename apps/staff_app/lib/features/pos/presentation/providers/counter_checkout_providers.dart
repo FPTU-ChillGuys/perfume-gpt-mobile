@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/order_repository_impl.dart';
 
@@ -6,6 +7,8 @@ part 'counter_checkout_providers.g.dart';
 
 class DraftItem {
   final String variantId;
+  final String barcode;
+  final String sku;
   final String variantName;
   final String? imageUrl;
   final double price;
@@ -13,6 +16,8 @@ class DraftItem {
 
   const DraftItem({
     required this.variantId,
+    required this.barcode,
+    required this.sku,
     required this.variantName,
     this.imageUrl,
     required this.price,
@@ -22,6 +27,8 @@ class DraftItem {
   DraftItem copyWith({int? quantity}) {
     return DraftItem(
       variantId: variantId,
+      barcode: barcode,
+      sku: sku,
       variantName: variantName,
       imageUrl: imageUrl,
       price: price,
@@ -74,9 +81,9 @@ double draftTotal(Ref ref) {
 @riverpod
 class LoadedOrder extends _$LoadedOrder {
   @override
-  Map<String, dynamic>? build() => null;
+  UserOrderResponse? build() => null;
 
-  void setOrder(Map<String, dynamic>? order) => state = order;
+  void setOrder(UserOrderResponse? order) => state = order;
   void clear() => state = null;
 }
 
@@ -88,7 +95,7 @@ class SelectedPaymentMethod extends _$SelectedPaymentMethod {
   void setMethod(String method) => state = method;
 }
 
-@riverpod
+@Riverpod(name: 'counterCheckoutNotifier')
 class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
   @override
   AsyncValue<void> build() => const AsyncData(null);
@@ -119,31 +126,33 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
     state = const AsyncLoading();
     try {
       final repo = ref.read(orderRepositoryProvider);
-      final orderDetails = items
-          .map((i) => {
-                'variantId': i.variantId,
-                'quantity': i.quantity,
-              })
+      final scannedItems = items
+          .map((i) => PosScanItemRequest(
+                barcode: i.barcode,
+                batchCode: 'DEFAULT', // Note: Need batch selection in UI eventually
+                quantity: i.quantity,
+              ))
           .toList();
 
-      Map<String, dynamic>? recipient;
+      ContactAddressInformation? recipient;
       if (recipientName != null && recipientName.isNotEmpty) {
-        recipient = {
-          'contactName': recipientName,
-          'contactPhoneNumber': recipientPhone ?? '',
-          'districtName': '',
-          'wardCode': '',
-          'wardName': '',
-          'provinceName': '',
-          'fullAddress': recipientAddress ?? '',
-        };
+        recipient = ContactAddressInformation(
+          contactName: recipientName,
+          contactPhoneNumber: recipientPhone ?? '',
+          fullAddress: recipientAddress ?? '',
+          provinceName: 'N/A', // TODO: Add real location selection
+          districtName: 'N/A',
+          wardName: 'N/A',
+          wardCode: 'N/A',
+        );
       }
 
       final orderId = await repo.checkoutInStore(
-        orderDetails: orderDetails,
+        scannedItems: scannedItems,
         paymentMethod: paymentMethod,
         voucherCode: voucherCode,
         recipient: recipient,
+        expectedTotalPrice: ref.read(draftTotalProvider),
       );
 
       if (orderId != null) {
@@ -181,8 +190,8 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
       final success = await repo.confirmPayment(paymentId, true);
       if (success) {
         final order = ref.read(loadedOrderProvider);
-        if (order != null && order['id'] != null) {
-          final refreshed = await repo.getOrderById(order['id']);
+        if (order != null && order.id != null) {
+          final refreshed = await repo.getOrderById(order.id!);
           if (refreshed != null) {
             ref.read(loadedOrderProvider.notifier).setOrder(refreshed);
           }
@@ -202,10 +211,12 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
       final data = await repo.getVariantById(variantId);
       if (data != null) {
         return DraftItem(
-          variantId: data['id'] ?? variantId,
-          variantName: data['name'] ?? data['variantName'] ?? 'Unknown',
-          imageUrl: data['imageUrl'] as String?,
-          price: ((data['retailPrice'] ?? data['basePrice'] ?? 0) as num).toDouble(),
+          variantId: data.id ?? variantId,
+          barcode: data.barcode,
+          sku: data.sku,
+          variantName: data.displayName,
+          imageUrl: data.primaryImageUrl,
+          price: (data.basePrice ?? 0).toDouble(),
           quantity: 1,
         );
       }
@@ -215,13 +226,13 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
     return null;
   }
 
-  void _syncPaymentMethod(Map<String, dynamic> order) {
-    final transactions = order['paymentTransactions'] as List<dynamic>?;
+  void _syncPaymentMethod(UserOrderResponse order) {
+    final transactions = order.paymentTransactions;
     if (transactions != null && transactions.isNotEmpty) {
-      final first = transactions.first as Map<String, dynamic>;
-      final method = first['paymentMethod'] as String?;
+      final method = transactions.first.paymentMethod;
       if (method != null) {
-        ref.read(selectedPaymentMethodProvider.notifier).setMethod(method);
+        // Map API PaymentMethod to String for provider
+        ref.read(selectedPaymentMethodProvider.notifier).setMethod(method.value);
       }
     }
   }

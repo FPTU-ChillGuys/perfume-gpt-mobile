@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'olfactory_lookup_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,24 +18,50 @@ part 'olfactory_lookup_response.g.dart';
 )
 class OlfactoryLookupResponse {
   /// Returns a new [OlfactoryLookupResponse] instance.
-  OlfactoryLookupResponse({this.id, required this.name});
+  OlfactoryLookupResponse({
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+     this.id,
+
+    required  this.name,
+  });
+
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? id;
 
-  @JsonKey(name: r'name', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'name',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String name;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is OlfactoryLookupResponse && other.id == id && other.name == name;
 
-  @override
-  int get hashCode => id.hashCode + name.hashCode;
 
-  factory OlfactoryLookupResponse.fromJson(Map<String, dynamic> json) =>
-      _$OlfactoryLookupResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is OlfactoryLookupResponse &&
+      other.id == id &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        name.hashCode;
+
+  factory OlfactoryLookupResponse.fromJson(Map<String, dynamic> json) => _$OlfactoryLookupResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$OlfactoryLookupResponseToJson(this);
 
@@ -42,4 +69,6 @@ class OlfactoryLookupResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

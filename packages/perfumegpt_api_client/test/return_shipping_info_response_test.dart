@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReturnShippingInfoResponse
 void main() {
-  final ReturnShippingInfoResponse?
-  instance = /* ReturnShippingInfoResponse(...) */ null;
+  final ReturnShippingInfoResponse? instance = /* ReturnShippingInfoResponse(...) */ null;
   // TODO add properties to the entity
 
   group(ReturnShippingInfoResponse, () {
@@ -47,5 +46,6 @@ void main() {
     test('to test the property `shippedDate`', () async {
       // TODO
     });
+
   });
 }

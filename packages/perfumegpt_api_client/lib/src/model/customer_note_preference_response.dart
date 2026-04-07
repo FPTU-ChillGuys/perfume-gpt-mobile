@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'customer_note_preference_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,35 +20,65 @@ part 'customer_note_preference_response.g.dart';
 class CustomerNotePreferenceResponse {
   /// Returns a new [CustomerNotePreferenceResponse] instance.
   CustomerNotePreferenceResponse({
-    this.noteId,
 
-    required this.noteName,
+     this.noteId,
 
-    this.noteType,
+    required  this.noteName,
+
+     this.noteType,
   });
 
-  @JsonKey(name: r'noteId', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'noteId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? noteId;
 
-  @JsonKey(name: r'noteName', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'noteName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String noteName;
 
-  @JsonKey(name: r'noteType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'noteType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final NoteType? noteType;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CustomerNotePreferenceResponse &&
-          other.noteId == noteId &&
-          other.noteName == noteName &&
-          other.noteType == noteType;
 
-  @override
-  int get hashCode => noteId.hashCode + noteName.hashCode + noteType.hashCode;
 
-  factory CustomerNotePreferenceResponse.fromJson(Map<String, dynamic> json) =>
-      _$CustomerNotePreferenceResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CustomerNotePreferenceResponse &&
+      other.noteId == noteId &&
+      other.noteName == noteName &&
+      other.noteType == noteType;
+
+    @override
+    int get hashCode =>
+        noteId.hashCode +
+        noteName.hashCode +
+        noteType.hashCode;
+
+  factory CustomerNotePreferenceResponse.fromJson(Map<String, dynamic> json) => _$CustomerNotePreferenceResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$CustomerNotePreferenceResponseToJson(this);
 
@@ -55,4 +86,6 @@ class CustomerNotePreferenceResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

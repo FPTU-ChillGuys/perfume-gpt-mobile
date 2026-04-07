@@ -13,11 +13,7 @@ part of 'cart_provider.dart';
 final cartRepositoryProvider = CartRepositoryProvider._();
 
 final class CartRepositoryProvider
-    extends $FunctionalProvider<
-      CartRepository,
-      CartRepository,
-      CartRepository
-    >
+    extends $FunctionalProvider<CartRepository, CartRepository, CartRepository>
     with $Provider<CartRepository> {
   CartRepositoryProvider._()
     : super(
@@ -35,9 +31,8 @@ final class CartRepositoryProvider
 
   @$internal
   @override
-  $ProviderElement<CartRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<CartRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
   CartRepository create(Ref ref) {
@@ -53,7 +48,7 @@ final class CartRepositoryProvider
   }
 }
 
-String _$cartRepositoryHash() => r'a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2';
+String _$cartRepositoryHash() => r'576766dfc309c0c2f29e9154f496ed8dcf98e74f';
 
 @ProviderFor(Cart)
 final cartProvider = CartProvider._();
@@ -78,7 +73,7 @@ final class CartProvider extends $AsyncNotifierProvider<Cart, List<CartItem>> {
   Cart create() => Cart();
 }
 
-String _$cartHash() => r'b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3';
+String _$cartHash() => r'22e15a759210218c776a3f8935351f03d89b1dce';
 
 abstract class _$Cart extends $AsyncNotifier<List<CartItem>> {
   FutureOr<List<CartItem>> build();
@@ -102,11 +97,12 @@ abstract class _$Cart extends $AsyncNotifier<List<CartItem>> {
 final cartTotalProvider = CartTotalProvider._();
 
 final class CartTotalProvider
-    extends $FunctionalProvider<
-      AsyncValue<CartTotal>,
-      CartTotal,
-      FutureOr<CartTotal>
-    >
+    extends
+        $FunctionalProvider<
+          AsyncValue<CartTotal>,
+          CartTotal,
+          FutureOr<CartTotal>
+        >
     with $FutureModifier<CartTotal>, $FutureProvider<CartTotal> {
   CartTotalProvider._()
     : super(
@@ -124,9 +120,8 @@ final class CartTotalProvider
 
   @$internal
   @override
-  $FutureProviderElement<CartTotal> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<CartTotal> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
 
   @override
   FutureOr<CartTotal> create(Ref ref) {
@@ -134,5 +129,4 @@ final class CartTotalProvider
   }
 }
 
-String _$cartTotalHash() => r'c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4';
-
+String _$cartTotalHash() => r'84747cc3c79eb65b51f33fcb448fd6d9f4a0306e';

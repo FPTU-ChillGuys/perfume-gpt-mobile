@@ -3,5 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for StockStatus
 void main() {
-  group(StockStatus, () {});
+
+  group(StockStatus, () {
+  });
 }

@@ -1,118 +1,106 @@
-import 'dart:convert';
-import 'package:dio/dio.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 
 part 'order_repository_impl.g.dart';
 
-const _secureAuth = {
-  'secure': <Map<String, String>>[
-    {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-  ],
-};
-
 class OrderRepositoryImpl {
-  final Dio _dio;
+  final PerfumegptApiClient _apiClient;
 
-  OrderRepositoryImpl(this._dio);
+  OrderRepositoryImpl(this._apiClient);
 
-  Future<Map<String, dynamic>?> getOrderById(String orderId) async {
-    final response = await _dio.request<dynamic>(
-      '/api/orders/$orderId',
-      options: Options(method: 'GET', extra: _secureAuth),
-    );
-    final data = response.data;
-    if (data is Map<String, dynamic>) {
-      return data['payload'] as Map<String, dynamic>?;
-    }
-    return null;
+  OrdersApi get _ordersApi => _apiClient.getOrdersApi();
+  ProductVariantsApi get _productVariantsApi => _apiClient.getProductVariantsApi();
+  PaymentsApi get _paymentsApi => _apiClient.getPaymentsApi();
+
+  Future<UserOrderResponse?> getOrderById(String orderCode) async {
+    final response = await _ordersApi.apiOrdersByordercodeGet(orderCode: orderCode);
+    return response.data?.payload;
   }
 
   Future<String?> checkoutInStore({
-    required List<Map<String, dynamic>> orderDetails,
+    required List<PosScanItemRequest> scannedItems,
     required String paymentMethod,
     bool isPickupInStore = true,
     String? voucherCode,
-    Map<String, dynamic>? recipient,
+    ContactAddressInformation? recipient,
+    num? expectedTotalPrice,
   }) async {
-    final body = <String, dynamic>{
-      'orderDetails': orderDetails,
-      'payment': {'method': paymentMethod},
-      'isPickupInStore': isPickupInStore,
-    };
-    if (voucherCode != null && voucherCode.isNotEmpty) {
-      body['voucherCode'] = voucherCode;
-    }
-    if (recipient != null) {
-      body['recipient'] = recipient;
-    }
-
-    final response = await _dio.request<dynamic>(
-      '/api/orders/checkout-in-store',
-      data: jsonEncode(body),
-      options: Options(
-        method: 'POST',
-        contentType: 'application/json',
-        extra: _secureAuth,
-      ),
+    final method = PaymentMethod.values.firstWhere(
+      (e) => e.value == paymentMethod,
+      orElse: () => PaymentMethod.cashInStore,
     );
-    final data = response.data;
-    if (data is Map<String, dynamic>) {
-      return data['payload'] as String?;
-    }
-    return null;
+
+    final request = CreateInStoreOrderRequest(
+      scannedItems: scannedItems,
+      payment: PaymentInformation(method: method),
+      isPickupInStore: isPickupInStore,
+      voucherCode: voucherCode,
+      recipient: recipient,
+      expectedTotalPrice: expectedTotalPrice,
+    );
+
+    final response = await _ordersApi.apiOrdersCheckoutInStorePost(
+      createInStoreOrderRequest: request,
+    );
+    return response.data?.payload;
   }
 
   Future<String?> retryPayment(
     String paymentId,
     String paymentMethod,
   ) async {
-    final response = await _dio.request<dynamic>(
-      '/api/payments/$paymentId/retry',
-      data: jsonEncode({'method': paymentMethod}),
-      options: Options(
-        method: 'POST',
-        contentType: 'application/json',
-        extra: _secureAuth,
-      ),
+    final method = PaymentMethod.values.firstWhere(
+      (e) => e.value == paymentMethod,
+      orElse: () => PaymentMethod.cashInStore,
     );
-    final data = response.data;
-    if (data is Map<String, dynamic>) {
-      return data['payload'] as String?;
-    }
-    return null;
+
+    final response = await _paymentsApi.apiPaymentsPaymentIdRetryPost(
+      paymentId: paymentId,
+      paymentInformation: PaymentInformation(method: method),
+    );
+    return response.data?.payload;
   }
 
   Future<bool> confirmPayment(String paymentId, bool isSuccess) async {
-    final response = await _dio.request<dynamic>(
-      '/api/payments/$paymentId/confirm',
-      data: jsonEncode({
-        'isSuccess': isSuccess,
-      }),
-      options: Options(
-        method: 'PUT',
-        contentType: 'application/json',
-        extra: _secureAuth,
-      ),
+    final response = await _paymentsApi.apiPaymentsPaymentIdConfirmPut(
+      paymentId: paymentId,
+      confirmPaymentRequest: ConfirmPaymentRequest(isSuccess: isSuccess),
     );
-    return response.statusCode == 200;
+    return response.data?.payload ?? false;
   }
 
-  Future<Map<String, dynamic>?> getVariantById(String variantId) async {
-    final response = await _dio.request<dynamic>(
-      '/api/productvariants/$variantId',
-      options: Options(method: 'GET', extra: _secureAuth),
+  Future<ProductVariantForPosResponse?> getVariantById(String variantId) async {
+    final response = await _productVariantsApi.apiProductvariantsVariantIdGet(
+      variantId: variantId,
     );
-    final data = response.data;
-    if (data is Map<String, dynamic>) {
-      return data['payload'] as Map<String, dynamic>?;
+    final variant = response.data?.payload;
+    if (variant == null) return null;
+
+    String? primaryUrl;
+    try {
+      primaryUrl = variant.media.firstWhere((m) => m.isPrimary == true).url;
+    } catch (_) {
+      if (variant.media.isNotEmpty) {
+        primaryUrl = variant.media.first.url;
+      }
     }
-    return null;
+
+    return ProductVariantForPosResponse(
+      id: variant.id,
+      barcode: variant.barcode,
+      sku: variant.sku,
+      name: variant.productName,
+      displayName: '${variant.productName} - ${variant.concentrationName}',
+      concentrationName: variant.concentrationName,
+      basePrice: variant.basePrice,
+      primaryImageUrl: primaryUrl,
+    );
   }
 }
 
 @riverpod
 OrderRepositoryImpl orderRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return OrderRepositoryImpl(apiClient.dio);
+  return OrderRepositoryImpl(apiClient);
 }

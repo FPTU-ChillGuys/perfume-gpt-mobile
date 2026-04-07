@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'top_product_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,45 +19,81 @@ part 'top_product_response.g.dart';
 class TopProductResponse {
   /// Returns a new [TopProductResponse] instance.
   TopProductResponse({
-    this.productId,
 
-    required this.productName,
+     this.productId,
 
-    this.totalUnitsSold,
+    required  this.productName,
 
-    this.revenue,
+     this.totalUnitsSold,
+
+     this.revenue,
   });
 
-  @JsonKey(name: r'productId', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'productId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? productId;
 
-  @JsonKey(name: r'productName', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'productName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String productName;
 
-  @JsonKey(name: r'totalUnitsSold', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'totalUnitsSold',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? totalUnitsSold;
 
-  @JsonKey(name: r'revenue', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'revenue',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? revenue;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is TopProductResponse &&
-          other.productId == productId &&
-          other.productName == productName &&
-          other.totalUnitsSold == totalUnitsSold &&
-          other.revenue == revenue;
 
-  @override
-  int get hashCode =>
-      productId.hashCode +
-      productName.hashCode +
-      totalUnitsSold.hashCode +
-      revenue.hashCode;
 
-  factory TopProductResponse.fromJson(Map<String, dynamic> json) =>
-      _$TopProductResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is TopProductResponse &&
+      other.productId == productId &&
+      other.productName == productName &&
+      other.totalUnitsSold == totalUnitsSold &&
+      other.revenue == revenue;
+
+    @override
+    int get hashCode =>
+        productId.hashCode +
+        productName.hashCode +
+        totalUnitsSold.hashCode +
+        revenue.hashCode;
+
+  factory TopProductResponse.fromJson(Map<String, dynamic> json) => _$TopProductResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$TopProductResponseToJson(this);
 
@@ -64,4 +101,6 @@ class TopProductResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

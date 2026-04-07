@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'attribute_value_lookup_item.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,26 +18,50 @@ part 'attribute_value_lookup_item.g.dart';
 )
 class AttributeValueLookupItem {
   /// Returns a new [AttributeValueLookupItem] instance.
-  AttributeValueLookupItem({this.id, required this.value});
+  AttributeValueLookupItem({
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+     this.id,
+
+    required  this.value,
+  });
+
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? id;
 
-  @JsonKey(name: r'value', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'value',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String value;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AttributeValueLookupItem &&
-          other.id == id &&
-          other.value == value;
 
-  @override
-  int get hashCode => id.hashCode + value.hashCode;
 
-  factory AttributeValueLookupItem.fromJson(Map<String, dynamic> json) =>
-      _$AttributeValueLookupItemFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is AttributeValueLookupItem &&
+      other.id == id &&
+      other.value == value;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        value.hashCode;
+
+  factory AttributeValueLookupItem.fromJson(Map<String, dynamic> json) => _$AttributeValueLookupItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$AttributeValueLookupItemToJson(this);
 
@@ -44,4 +69,6 @@ class AttributeValueLookupItem {
   String toString() {
     return toJson().toString();
   }
+
 }
+

@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for TemporaryMediaResponse
 void main() {
-  final TemporaryMediaResponse? instance = /* TemporaryMediaResponse(...) */
-      null;
+  final TemporaryMediaResponse? instance = /* TemporaryMediaResponse(...) */ null;
   // TODO add properties to the entity
 
   group(TemporaryMediaResponse, () {
@@ -47,5 +46,6 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
+
   });
 }

@@ -11,6 +11,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'shipping_info_list_item.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,80 +22,161 @@ part 'shipping_info_list_item.g.dart';
 class ShippingInfoListItem {
   /// Returns a new [ShippingInfoListItem] instance.
   ShippingInfoListItem({
-    this.id,
 
-    this.orderId,
+     this.id,
 
-    this.carrierName,
+     this.orderId,
 
-    this.trackingNumber,
+     this.carrierName,
 
-    this.shippingFee,
+     this.trackingNumber,
 
-    this.type,
+     this.shippingFee,
 
-    this.status,
+     this.type,
 
-    this.leadTime,
+     this.status,
 
-    this.shippedDate,
+     this.leadTime,
+
+     this.shippedDate,
   });
 
-  @JsonKey(name: r'id', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? id;
 
-  @JsonKey(name: r'orderId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'orderId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? orderId;
 
-  @JsonKey(name: r'carrierName', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'carrierName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final CarrierName? carrierName;
 
-  @JsonKey(name: r'trackingNumber', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'trackingNumber',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? trackingNumber;
 
-  @JsonKey(name: r'shippingFee', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'shippingFee',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? shippingFee;
 
-  @JsonKey(name: r'type', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'type',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final ShippingType? type;
 
-  @JsonKey(name: r'status', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'status',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final ShippingStatus? status;
 
-  @JsonKey(name: r'leadTime', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'leadTime',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? leadTime;
 
-  @JsonKey(name: r'shippedDate', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'shippedDate',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final DateTime? shippedDate;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ShippingInfoListItem &&
-          other.id == id &&
-          other.orderId == orderId &&
-          other.carrierName == carrierName &&
-          other.trackingNumber == trackingNumber &&
-          other.shippingFee == shippingFee &&
-          other.type == type &&
-          other.status == status &&
-          other.leadTime == leadTime &&
-          other.shippedDate == shippedDate;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      orderId.hashCode +
-      carrierName.hashCode +
-      (trackingNumber == null ? 0 : trackingNumber.hashCode) +
-      shippingFee.hashCode +
-      type.hashCode +
-      status.hashCode +
-      (leadTime == null ? 0 : leadTime.hashCode) +
-      (shippedDate == null ? 0 : shippedDate.hashCode);
 
-  factory ShippingInfoListItem.fromJson(Map<String, dynamic> json) =>
-      _$ShippingInfoListItemFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ShippingInfoListItem &&
+      other.id == id &&
+      other.orderId == orderId &&
+      other.carrierName == carrierName &&
+      other.trackingNumber == trackingNumber &&
+      other.shippingFee == shippingFee &&
+      other.type == type &&
+      other.status == status &&
+      other.leadTime == leadTime &&
+      other.shippedDate == shippedDate;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        orderId.hashCode +
+        carrierName.hashCode +
+        (trackingNumber == null ? 0 : trackingNumber.hashCode) +
+        shippingFee.hashCode +
+        type.hashCode +
+        status.hashCode +
+        (leadTime == null ? 0 : leadTime.hashCode) +
+        (shippedDate == null ? 0 : shippedDate.hashCode);
+
+  factory ShippingInfoListItem.fromJson(Map<String, dynamic> json) => _$ShippingInfoListItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$ShippingInfoListItemToJson(this);
 
@@ -102,4 +184,6 @@ class ShippingInfoListItem {
   String toString() {
     return toJson().toString();
   }
+
 }
+

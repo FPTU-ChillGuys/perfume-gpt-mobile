@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PagedResultOfLoyaltyTransactionHistoryItemResponse
 void main() {
-  final PagedResultOfLoyaltyTransactionHistoryItemResponse?
-  instance = /* PagedResultOfLoyaltyTransactionHistoryItemResponse(...) */ null;
+  final PagedResultOfLoyaltyTransactionHistoryItemResponse? instance = /* PagedResultOfLoyaltyTransactionHistoryItemResponse(...) */ null;
   // TODO add properties to the entity
 
   group(PagedResultOfLoyaltyTransactionHistoryItemResponse, () {
@@ -42,5 +41,6 @@ void main() {
     test('to test the property `hasNextPage`', () async {
       // TODO
     });
+
   });
 }

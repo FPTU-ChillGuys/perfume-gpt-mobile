@@ -12,15 +12,16 @@ import 'package:dio/dio.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 
 class NotificationsApi {
+
   final Dio _dio;
 
   const NotificationsApi(this._dio);
 
   /// apiNotificationsIdReadPatch
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
+  /// * [id] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -30,7 +31,7 @@ class NotificationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiNotificationsIdReadPatch({
+  Future<Response<BaseResponseOfstring>> apiNotificationsIdReadPatch({ 
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -39,18 +40,19 @@ class NotificationsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/notifications/{id}/read'.replaceAll(
-      '{'
-      r'id'
-      '}',
-      id.toString(),
-    );
+    final _path = r'/api/notifications/{id}/read'.replaceAll('{' r'id' '}', id.toString());
     final _options = Options(
       method: r'PATCH',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -68,14 +70,9 @@ class NotificationsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -99,7 +96,7 @@ class NotificationsApi {
   }
 
   /// apiNotificationsReadAllPatch
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -111,7 +108,7 @@ class NotificationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiNotificationsReadAllPatch({
+  Future<Response<BaseResponseOfstring>> apiNotificationsReadAllPatch({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -122,10 +119,16 @@ class NotificationsApi {
     final _path = r'/api/notifications/read-all';
     final _options = Options(
       method: r'PATCH',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
         ],
         ...?extra,
       },
@@ -143,14 +146,9 @@ class NotificationsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
-              rawData,
-              'BaseResponseOfstring',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -172,4 +170,5 @@ class NotificationsApi {
       extra: _response.extra,
     );
   }
+
 }

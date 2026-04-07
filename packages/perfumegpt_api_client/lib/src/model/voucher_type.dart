@@ -5,11 +5,12 @@
 // ignore_for_file: unused_element
 import 'package:json_annotation/json_annotation.dart';
 
+
 enum VoucherType {
-  @JsonValue(r'Order')
-  order(r'Order'),
-  @JsonValue(r'Product')
-  product(r'Product');
+      @JsonValue(r'Order')
+      order(r'Order'),
+      @JsonValue(r'Product')
+      product(r'Product');
 
   const VoucherType(this.value);
 

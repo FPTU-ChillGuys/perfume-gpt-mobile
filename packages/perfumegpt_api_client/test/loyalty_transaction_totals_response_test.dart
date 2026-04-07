@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for LoyaltyTransactionTotalsResponse
 void main() {
-  final LoyaltyTransactionTotalsResponse?
-  instance = /* LoyaltyTransactionTotalsResponse(...) */ null;
+  final LoyaltyTransactionTotalsResponse? instance = /* LoyaltyTransactionTotalsResponse(...) */ null;
   // TODO add properties to the entity
 
   group(LoyaltyTransactionTotalsResponse, () {
@@ -32,5 +31,6 @@ void main() {
     test('to test the property `totalTransactions`', () async {
       // TODO
     });
+
   });
 }
