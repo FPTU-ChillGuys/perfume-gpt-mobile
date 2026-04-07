@@ -31,8 +31,10 @@ String _orderStatusLabel(String status) {
   switch (status) {
     case 'Pending':
       return 'Chờ xử lý';
-    case 'Processing':
-      return 'Đang xử lý';
+    case 'Preparing':
+      return 'Đang chuẩn bị';
+    case 'ReadyToPick':
+      return 'Chờ lấy hàng';
     case 'Delivering':
       return 'Đang giao';
     case 'Delivered':
@@ -54,8 +56,10 @@ Color _statusColor(String status) {
   switch (status) {
     case 'Pending':
       return AppColors.statusPending;
-    case 'Processing':
-      return AppColors.statusProcessing;
+    case 'Preparing':
+      return AppColors.statusPreparing;
+    case 'ReadyToPick':
+      return AppColors.statusReadyToPick;
     case 'Delivering':
       return AppColors.statusDelivering;
     case 'Delivered':
@@ -111,6 +115,8 @@ String _paymentMethodLabel(String method) {
       return 'Thanh toán qua VNPay';
     case 'Momo':
       return 'Thanh toán qua MoMo';
+    case 'ExternalBankTransfer':
+      return 'Chuyển khoản ngân hàng';
     default:
       return method;
   }
@@ -151,12 +157,14 @@ int _statusToStep(String? status) {
   switch (status) {
     case 'Pending':
       return 0;
-    case 'Processing':
-      return 1;
-    case 'Delivering':
+    case 'Preparing':
+      return 2;
+    case 'ReadyToPick':
       return 3;
-    case 'Delivered':
+    case 'Delivering':
       return 4;
+    case 'Delivered':
+      return 5;
     case 'Cancelled':
       return -1;
     case 'Returned':
@@ -194,32 +202,39 @@ List<_TrackingStep> _buildTrackingSteps(OrderDetail order) {
       isCurrent: step == 0,
     ),
     _TrackingStep(
-      title: 'Đã Xác Nhận\nThanh Toán',
+      title: 'Đã Thanh\nToán',
       subtitle: order.paidAt != null ? _fmtDateTime(order.paidAt) : (step >= 1 ? _fmtDateTime(order.updatedAt) : null),
       icon: Icons.payments_outlined,
       isActive: step >= 1,
       isCurrent: step == 1,
     ),
     _TrackingStep(
-      title: 'Đã Giao Cho\nĐVVC',
+      title: 'Đang\nChuẩn Bị',
       subtitle: step >= 2 ? _fmtDateTime(order.updatedAt) : null,
-      icon: Icons.local_shipping,
+      icon: Icons.inventory_2_outlined,
       isActive: step >= 2,
       isCurrent: step == 2,
     ),
     _TrackingStep(
-      title: 'Đã Nhận\nĐược Hàng',
+      title: 'Chờ Lấy\nHàng',
       subtitle: step >= 3 ? _fmtDateTime(order.updatedAt) : null,
-      icon: Icons.inventory_2_outlined,
+      icon: Icons.store_outlined,
       isActive: step >= 3,
       isCurrent: step == 3,
     ),
     _TrackingStep(
-      title: 'Đơn Hàng Đã\nHoàn Thành',
+      title: 'Đang Giao\nHàng',
       subtitle: step >= 4 ? _fmtDateTime(order.updatedAt) : null,
-      icon: Icons.star_outline_rounded,
+      icon: Icons.local_shipping,
       isActive: step >= 4,
       isCurrent: step == 4,
+    ),
+    _TrackingStep(
+      title: 'Đã Giao\nHàng',
+      subtitle: step >= 5 ? _fmtDateTime(order.updatedAt) : null,
+      icon: Icons.star_outline_rounded,
+      isActive: step >= 5,
+      isCurrent: step == 5,
     ),
   ];
   return steps;
@@ -254,7 +269,8 @@ const _retryPaymentMethods = [
 ({String mode, String buttonLabel, String note})? _getCancelBehavior(
     OrderDetail order) {
   final isPending = order.status == 'Pending';
-  final isProcessing = order.status == 'Processing';
+  final isPreparing = order.status == 'Preparing';
+  final isReadyToPick = order.status == 'ReadyToPick';
   final isPaid = order.paymentStatus == 'Paid';
 
   if (isPending && !isPaid) {
@@ -265,7 +281,7 @@ const _retryPaymentMethods = [
           'Đơn hàng đang ở trạng thái chờ xử lý và chưa thanh toán, hệ thống sẽ hủy ngay sau khi bạn xác nhận.',
     );
   }
-  if ((isPending && isPaid) || isProcessing) {
+  if ((isPending && isPaid) || isPreparing || isReadyToPick) {
     return (
       mode: 'request',
       buttonLabel: 'Yêu cầu hủy đơn',

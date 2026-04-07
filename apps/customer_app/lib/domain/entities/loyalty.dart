@@ -1,16 +1,16 @@
 class LoyaltyTransaction {
   final String id;
   final int points;
-  final String type; // Earned, Redeemed, Adjusted
+  final String type; // Earn, Spend
   final String? description;
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   const LoyaltyTransaction({
     required this.id,
     required this.points,
     required this.type,
     this.description,
-    required this.createdAt,
+    this.createdAt,
   });
 }
 

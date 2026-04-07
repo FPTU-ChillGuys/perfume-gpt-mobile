@@ -27,6 +27,8 @@ class AppColors {
 
   // ── Status colors (semantic — keep these separate) ────────────────────
   static const Color statusPending = Colors.orange;
+  static const Color statusPreparing = Color(0xFF5E35B1);
+  static const Color statusReadyToPick = Color(0xFF1565C0);   // Blue 800
   static const Color statusProcessing = Color(0xFF5E35B1);
   static const Color statusDelivering = Color(0xFF7C4DFF);
   static const Color statusDelivered = Colors.green;
