@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../core/utils/image_url_helper.dart';
+import '../../domain/entities/paged_result.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/entities/product_variant.dart';
 import '../../domain/entities/product_scent_note.dart';
@@ -138,6 +139,8 @@ class ProductRepositoryImpl implements ProductRepository {
       brand: item.brandName,
       rating: 0,
       reviewCount: 0,
+      brandId: item.brandId,
+      categoryId: item.categoryId,
       categoryName: item.categoryName,
     );
   }
@@ -163,7 +166,77 @@ class ProductRepositoryImpl implements ProductRepository {
       brand: item.brandName,
       rating: 0,
       reviewCount: 0,
+      brandId: item.brandId,
+      categoryId: item.categoryId,
       categoryName: item.categoryName,
+    );
+  }
+
+  @override
+  Future<PagedResult<Product>> getProductsPaged({
+    int pageNumber = 1,
+    int pageSize = 12,
+    int? brandId,
+    int? categoryId,
+    int? volume,
+    num? fromPrice,
+    num? toPrice,
+    String? sortBy,
+    bool? isDescending,
+  }) async {
+    final response = await _api.apiProductsGet(
+      pageNumber: pageNumber,
+      pageSize: pageSize,
+      brandId: brandId,
+      categoryId: categoryId,
+      volume: volume,
+      fromPrice: fromPrice,
+      toPrice: toPrice,
+      sortBy: sortBy,
+      isDescending: isDescending,
+    );
+    final payload = response.data?.payload;
+    final items = payload?.items ?? [];
+    return PagedResult(
+      items: items.map(_mapListItemToProduct).toList(),
+      totalCount: payload?.totalCount ?? 0,
+      totalPages: payload?.totalPages ?? 0,
+      hasNextPage: payload?.hasNextPage ?? false,
+    );
+  }
+
+  @override
+  Future<PagedResult<Product>> searchProductsPaged({
+    required String query,
+    int pageNumber = 1,
+    int pageSize = 12,
+    int? brandId,
+    int? categoryId,
+    int? volume,
+    num? fromPrice,
+    num? toPrice,
+    String? sortBy,
+    bool? isDescending,
+  }) async {
+    final response = await _api.apiProductsSearchSemanticGet(
+      searchText: query,
+      pageNumber: pageNumber,
+      pageSize: pageSize,
+      brandId: brandId,
+      categoryId: categoryId,
+      volume: volume,
+      fromPrice: fromPrice,
+      toPrice: toPrice,
+      sortBy: sortBy,
+      isDescending: isDescending,
+    );
+    final payload = response.data?.payload;
+    final items = payload?.items ?? [];
+    return PagedResult(
+      items: items.map(_mapListItemWithVariantsToProduct).toList(),
+      totalCount: payload?.totalCount ?? 0,
+      totalPages: payload?.totalPages ?? 0,
+      hasNextPage: payload?.hasNextPage ?? false,
     );
   }
 }

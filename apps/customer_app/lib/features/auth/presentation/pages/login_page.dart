@@ -2,6 +2,7 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/theme/app_colors.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -47,7 +48,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.auto_awesome, size: 80, color: Colors.deepPurple),
+            const Icon(Icons.auto_awesome, size: 80, color: AppColors.primary),
             const SizedBox(height: 32),
             TextField(
               controller: _emailController,

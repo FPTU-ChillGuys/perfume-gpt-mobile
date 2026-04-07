@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/order.dart';
 import '../providers/order_provider.dart';
 
@@ -22,7 +23,7 @@ String _fmtDateTime(DateTime? date) {
   return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year} ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
 }
 
-const _accent = Color(0xFFEE4D2D);
+const _accent = AppColors.primary;
 
 // ─── Status / label helpers ─────────────────────────────────────────────────
 
@@ -52,19 +53,19 @@ String _orderStatusLabel(String status) {
 Color _statusColor(String status) {
   switch (status) {
     case 'Pending':
-      return Colors.orange;
+      return AppColors.statusPending;
     case 'Processing':
-      return Colors.blue;
+      return AppColors.statusProcessing;
     case 'Delivering':
-      return Colors.indigo;
+      return AppColors.statusDelivering;
     case 'Delivered':
-      return Colors.green;
+      return AppColors.statusDelivered;
     case 'Cancelled':
-      return Colors.red;
+      return AppColors.statusCancelled;
     case 'Returning':
     case 'Returned':
     case 'Partial_Returned':
-      return Colors.deepOrange;
+      return AppColors.statusReturning;
     default:
       return Colors.grey;
   }
@@ -88,13 +89,13 @@ String _paymentStatusLabel(String status) {
 Color _paymentStatusColor(String status) {
   switch (status) {
     case 'Unpaid':
-      return Colors.orange;
+      return AppColors.paymentUnpaid;
     case 'Paid':
-      return Colors.green;
+      return AppColors.paymentPaid;
     case 'Partial_Refunded':
-      return Colors.amber.shade800;
+      return AppColors.paymentPartialRefund;
     case 'Refunded':
-      return Colors.teal;
+      return AppColors.paymentRefunded;
     default:
       return Colors.grey;
   }
