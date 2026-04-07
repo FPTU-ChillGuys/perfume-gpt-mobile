@@ -1,3 +1,4 @@
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -75,15 +76,17 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
   Widget build(BuildContext context) {
     final profileAsync = ref.watch(profileNotifierProvider);
 
-    profileAsync.whenData((profile) {
-      if (!_didLoad) {
+    if (!_didLoad) {
+      profileAsync.whenData((profile) {
         _didLoad = true;
-        _nameCtrl.text = profile.fullName ?? '';
+        final authUser = ref.read(authProvider).value;
+        _nameCtrl.text = profile.fullName ?? authUser?.name ?? '';
         _phoneCtrl.text = profile.phoneNumber ?? '';
         _dateOfBirth = profile.dateOfBirth;
         _gender = profile.gender;
-      }
-    });
+        if (mounted) setState(() {});
+      });
+    }
 
     return Scaffold(
       backgroundColor: AppColors.surface,
@@ -160,7 +163,7 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: DropdownButtonFormField<String>(
-                  initialValue: _gender,
+                  value: _gender,
                   decoration: const InputDecoration(
                     labelText: 'Giới tính',
                     prefixIcon: Icon(Icons.wc_outlined, size: 20),

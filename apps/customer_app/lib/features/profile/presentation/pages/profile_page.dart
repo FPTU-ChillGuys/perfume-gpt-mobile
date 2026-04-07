@@ -131,7 +131,6 @@ class _AuthenticatedView extends ConsumerWidget {
       slivers: [
         // ── Hero header ──
         SliverAppBar(
-          expandedHeight: 220,
           pinned: true,
           backgroundColor: AppColors.primaryDark,
           systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -141,68 +140,65 @@ class _AuthenticatedView extends ConsumerWidget {
               onPressed: () => ref.read(authProvider.notifier).logout(),
             ),
           ],
-          flexibleSpace: FlexibleSpaceBar(
-            background: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [AppColors.heroStart, AppColors.heroEnd],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
+        ),
+
+        SliverToBoxAdapter(
+          child: Container(
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [AppColors.heroStart, AppColors.heroEnd],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 60, 24, 24),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      // Avatar
-                      CircleAvatar(
-                        radius: 36,
-                        backgroundColor: Colors.white24,
-                        child: Text(
-                          (userName ?? 'U')[0].toUpperCase(),
-                          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        profileAsync.when(
-                          data: (p) => p.fullName ?? userName ?? 'Người dùng',
-                          error: (_, __) => userName ?? 'Người dùng',
-                          loading: () => userName ?? 'Người dùng',
-                        ),
-                        style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(userEmail,
-                          style: const TextStyle(color: Colors.white60, fontSize: 13)),
-                      const SizedBox(height: 12),
-                      // ── Loyalty points badge ──
-                      loyaltyAsync.when(
-                        data: (total) => Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(Icons.star_rounded, color: Colors.amberAccent, size: 18),
-                              const SizedBox(width: 6),
-                              Text('${total.totalPoints} điểm tích lũy',
-                                  style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500)),
-                            ],
-                          ),
-                        ),
-                        loading: () => const SizedBox.shrink(),
-                        error: (_, __) => const SizedBox.shrink(),
-                      ),
-                    ],
+            ),
+            padding: const EdgeInsets.fromLTRB(24, 16, 24, 28),
+            child: Column(
+              children: [
+                // Avatar
+                CircleAvatar(
+                  radius: 36,
+                  backgroundColor: Colors.white24,
+                  child: Text(
+                    (userName ?? 'U')[0].toUpperCase(),
+                    style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
-              ),
+                const SizedBox(height: 12),
+                Text(
+                  profileAsync.when(
+                    data: (p) => p.fullName ?? userName ?? 'Người dùng',
+                    error: (_, __) => userName ?? 'Người dùng',
+                    loading: () => userName ?? 'Người dùng',
+                  ),
+                  style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 4),
+                Text(userEmail,
+                    style: const TextStyle(color: Colors.white60, fontSize: 13)),
+                const SizedBox(height: 12),
+                // ── Loyalty points badge ──
+                loyaltyAsync.when(
+                  data: (total) => Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.star_rounded, color: Colors.amberAccent, size: 18),
+                        const SizedBox(width: 6),
+                        Text('${total.totalPoints} điểm tích lũy',
+                            style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500)),
+                      ],
+                    ),
+                  ),
+                  loading: () => const SizedBox.shrink(),
+                  error: (_, __) => const SizedBox.shrink(),
+                ),
+              ],
             ),
           ),
         ),
