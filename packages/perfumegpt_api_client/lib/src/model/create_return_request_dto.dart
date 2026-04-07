@@ -11,6 +11,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_return_request_dto.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,66 +22,193 @@ part 'create_return_request_dto.g.dart';
 class CreateReturnRequestDto {
   /// Returns a new [CreateReturnRequestDto] instance.
   CreateReturnRequestDto({
-    required this.orderId,
 
-    required this.reason,
+    required  this.orderId,
 
-    required this.returnItems,
+    required  this.reason,
 
-    this.customerNote,
+     this.isRefundOnly,
 
-    this.savedAddressId,
+    required  this.returnItems,
 
-    this.recipient,
+     this.customerNote,
 
-    this.temporaryMediaIds,
+     this.refundBankName,
+
+     this.refundAccountNumber,
+
+     this.refundAccountName,
+
+     this.savedAddressId,
+
+     this.recipient,
+
+     this.temporaryMediaIds,
   });
 
-  @JsonKey(name: r'orderId', required: true, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'orderId',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String orderId;
 
-  @JsonKey(name: r'reason', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'reason',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final ReturnOrderReason reason;
 
-  @JsonKey(name: r'returnItems', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'isRefundOnly',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final bool? isRefundOnly;
+
+
+
+  @JsonKey(
+    
+    name: r'returnItems',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<ReturnItemDto> returnItems;
 
-  @JsonKey(name: r'customerNote', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'customerNote',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? customerNote;
 
-  @JsonKey(name: r'savedAddressId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'refundBankName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? refundBankName;
+
+
+
+  @JsonKey(
+    
+    name: r'refundAccountNumber',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? refundAccountNumber;
+
+
+
+  @JsonKey(
+    
+    name: r'refundAccountName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? refundAccountName;
+
+
+
+  @JsonKey(
+    
+    name: r'savedAddressId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? savedAddressId;
 
-  @JsonKey(name: r'recipient', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'recipient',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final ContactAddressInformation? recipient;
 
-  @JsonKey(name: r'temporaryMediaIds', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'temporaryMediaIds',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<String>? temporaryMediaIds;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateReturnRequestDto &&
-          other.orderId == orderId &&
-          other.reason == reason &&
-          other.returnItems == returnItems &&
-          other.customerNote == customerNote &&
-          other.savedAddressId == savedAddressId &&
-          other.recipient == recipient &&
-          other.temporaryMediaIds == temporaryMediaIds;
 
-  @override
-  int get hashCode =>
-      orderId.hashCode +
-      reason.hashCode +
-      returnItems.hashCode +
-      (customerNote == null ? 0 : customerNote.hashCode) +
-      (savedAddressId == null ? 0 : savedAddressId.hashCode) +
-      (recipient == null ? 0 : recipient.hashCode) +
-      (temporaryMediaIds == null ? 0 : temporaryMediaIds.hashCode);
 
-  factory CreateReturnRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$CreateReturnRequestDtoFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateReturnRequestDto &&
+      other.orderId == orderId &&
+      other.reason == reason &&
+      other.isRefundOnly == isRefundOnly &&
+      other.returnItems == returnItems &&
+      other.customerNote == customerNote &&
+      other.refundBankName == refundBankName &&
+      other.refundAccountNumber == refundAccountNumber &&
+      other.refundAccountName == refundAccountName &&
+      other.savedAddressId == savedAddressId &&
+      other.recipient == recipient &&
+      other.temporaryMediaIds == temporaryMediaIds;
+
+    @override
+    int get hashCode =>
+        orderId.hashCode +
+        reason.hashCode +
+        isRefundOnly.hashCode +
+        returnItems.hashCode +
+        (customerNote == null ? 0 : customerNote.hashCode) +
+        (refundBankName == null ? 0 : refundBankName.hashCode) +
+        (refundAccountNumber == null ? 0 : refundAccountNumber.hashCode) +
+        (refundAccountName == null ? 0 : refundAccountName.hashCode) +
+        (savedAddressId == null ? 0 : savedAddressId.hashCode) +
+        (recipient == null ? 0 : recipient.hashCode) +
+        (temporaryMediaIds == null ? 0 : temporaryMediaIds.hashCode);
+
+  factory CreateReturnRequestDto.fromJson(Map<String, dynamic> json) => _$CreateReturnRequestDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateReturnRequestDtoToJson(this);
 
@@ -88,4 +216,6 @@ class CreateReturnRequestDto {
   String toString() {
     return toJson().toString();
   }
+
 }
+

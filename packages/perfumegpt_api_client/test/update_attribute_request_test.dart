@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateAttributeRequest
 void main() {
-  final UpdateAttributeRequest? instance = /* UpdateAttributeRequest(...) */
-      null;
+  final UpdateAttributeRequest? instance = /* UpdateAttributeRequest(...) */ null;
   // TODO add properties to the entity
 
   group(UpdateAttributeRequest, () {
@@ -22,5 +21,6 @@ void main() {
     test('to test the property `isVariantLevel`', () async {
       // TODO
     });
+
   });
 }

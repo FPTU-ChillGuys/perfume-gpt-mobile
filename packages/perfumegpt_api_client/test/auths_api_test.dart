@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for AuthsApi
 void main() {
   final instance = PerfumegptApiClient().getAuthsApi();
@@ -45,5 +46,6 @@ void main() {
     test('test apiAuthsVerifyEmailGet', () async {
       // TODO
     });
+
   });
 }

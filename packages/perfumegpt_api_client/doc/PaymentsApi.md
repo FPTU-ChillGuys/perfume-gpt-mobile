@@ -9,12 +9,69 @@ All URIs are relative to *https://localhost:7011*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**apiPaymentsManagementTransactionsGet**](PaymentsApi.md#apipaymentsmanagementtransactionsget) | **GET** /api/payments/management-transactions | 
 [**apiPaymentsMomoReturnGet**](PaymentsApi.md#apipaymentsmomoreturnget) | **GET** /api/payments/momo-return | 
 [**apiPaymentsPaymentIdConfirmPut**](PaymentsApi.md#apipaymentspaymentidconfirmput) | **PUT** /api/payments/{paymentId}/confirm | 
-[**apiPaymentsPaymentIdMethodPut**](PaymentsApi.md#apipaymentspaymentidmethodput) | **PUT** /api/payments/{paymentId}/method | 
 [**apiPaymentsPaymentIdRetryPost**](PaymentsApi.md#apipaymentspaymentidretrypost) | **POST** /api/payments/{paymentId}/retry | 
 [**apiPaymentsVnpayReturnGet**](PaymentsApi.md#apipaymentsvnpayreturnget) | **GET** /api/payments/vnpay-return | 
 
+
+# **apiPaymentsManagementTransactionsGet**
+> BaseResponseOfPaymentTransactionOverviewResponse apiPaymentsManagementTransactionsGet(fromDate, toDate, paymentMethod, transactionType, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getPaymentsApi();
+final DateTime fromDate = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime toDate = 2013-10-20T19:20:30+01:00; // DateTime | 
+final PaymentMethod paymentMethod = ; // PaymentMethod | 
+final TransactionType transactionType = ; // TransactionType | 
+final int pageNumber = 56; // int | 
+final int pageSize = 56; // int | 
+final String sortBy = sortBy_example; // String | 
+final String sortOrder = sortOrder_example; // String | 
+final bool isDescending = true; // bool | 
+
+try {
+    final response = api.apiPaymentsManagementTransactionsGet(fromDate, toDate, paymentMethod, transactionType, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PaymentsApi->apiPaymentsManagementTransactionsGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fromDate** | **DateTime**|  | [optional] 
+ **toDate** | **DateTime**|  | [optional] 
+ **paymentMethod** | [**PaymentMethod**](.md)|  | [optional] 
+ **transactionType** | [**TransactionType**](.md)|  | [optional] 
+ **pageNumber** | **int**|  | [optional] 
+ **pageSize** | **int**|  | [optional] 
+ **sortBy** | **String**|  | [optional] 
+ **sortOrder** | **String**|  | [optional] 
+ **isDescending** | **bool**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfPaymentTransactionOverviewResponse**](BaseResponseOfPaymentTransactionOverviewResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiPaymentsMomoReturnGet**
 > apiPaymentsMomoReturnGet()
@@ -83,49 +140,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BaseResponseOfboolean**](BaseResponseOfboolean.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiPaymentsPaymentIdMethodPut**
-> BaseResponseOfstring apiPaymentsPaymentIdMethodPut(paymentId, paymentInformation)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getPaymentsApi();
-final String paymentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final PaymentInformation paymentInformation = ; // PaymentInformation | 
-
-try {
-    final response = api.apiPaymentsPaymentIdMethodPut(paymentId, paymentInformation);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling PaymentsApi->apiPaymentsPaymentIdMethodPut: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **paymentId** | **String**|  | 
- **paymentInformation** | [**PaymentInformation**](PaymentInformation.md)|  | 
-
-### Return type
-
-[**BaseResponseOfstring**](BaseResponseOfstring.md)
 
 ### Authorization
 

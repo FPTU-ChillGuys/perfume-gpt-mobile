@@ -10,6 +10,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'bulk_action_result_of_list_of_temporary_media_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,38 +21,56 @@ part 'bulk_action_result_of_list_of_temporary_media_response.g.dart';
 class BulkActionResultOfListOfTemporaryMediaResponse {
   /// Returns a new [BulkActionResultOfListOfTemporaryMediaResponse] instance.
   BulkActionResultOfListOfTemporaryMediaResponse({
-    required this.data,
 
-    this.metadata,
+    required  this.data,
+
+     this.metadata,
   });
 
-  @JsonKey(name: r'data', required: true, includeIfNull: true)
+  @JsonKey(
+    
+    name: r'data',
+    required: true,
+    includeIfNull: true,
+  )
+
+
   final List<TemporaryMediaResponse>? data;
 
-  @JsonKey(name: r'metadata', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'metadata',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final BulkActionMetadata? metadata;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BulkActionResultOfListOfTemporaryMediaResponse &&
-          other.data == data &&
-          other.metadata == metadata;
 
-  @override
-  int get hashCode =>
-      (data == null ? 0 : data.hashCode) +
-      (metadata == null ? 0 : metadata.hashCode);
 
-  factory BulkActionResultOfListOfTemporaryMediaResponse.fromJson(
-    Map<String, dynamic> json,
-  ) => _$BulkActionResultOfListOfTemporaryMediaResponseFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$BulkActionResultOfListOfTemporaryMediaResponseToJson(this);
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is BulkActionResultOfListOfTemporaryMediaResponse &&
+      other.data == data &&
+      other.metadata == metadata;
+
+    @override
+    int get hashCode =>
+        (data == null ? 0 : data.hashCode) +
+        (metadata == null ? 0 : metadata.hashCode);
+
+  factory BulkActionResultOfListOfTemporaryMediaResponse.fromJson(Map<String, dynamic> json) => _$BulkActionResultOfListOfTemporaryMediaResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BulkActionResultOfListOfTemporaryMediaResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
+
 }
+

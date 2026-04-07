@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'return_item_dto.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,26 +18,50 @@ part 'return_item_dto.g.dart';
 )
 class ReturnItemDto {
   /// Returns a new [ReturnItemDto] instance.
-  ReturnItemDto({this.orderDetailId, this.quantity});
+  ReturnItemDto({
 
-  @JsonKey(name: r'orderDetailId', required: false, includeIfNull: false)
+     this.orderDetailId,
+
+     this.quantity,
+  });
+
+  @JsonKey(
+    
+    name: r'orderDetailId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? orderDetailId;
 
-  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'quantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? quantity;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ReturnItemDto &&
-          other.orderDetailId == orderDetailId &&
-          other.quantity == quantity;
 
-  @override
-  int get hashCode => orderDetailId.hashCode + quantity.hashCode;
 
-  factory ReturnItemDto.fromJson(Map<String, dynamic> json) =>
-      _$ReturnItemDtoFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ReturnItemDto &&
+      other.orderDetailId == orderDetailId &&
+      other.quantity == quantity;
+
+    @override
+    int get hashCode =>
+        orderDetailId.hashCode +
+        quantity.hashCode;
+
+  factory ReturnItemDto.fromJson(Map<String, dynamic> json) => _$ReturnItemDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReturnItemDtoToJson(this);
 
@@ -44,4 +69,6 @@ class ReturnItemDto {
   String toString() {
     return toJson().toString();
   }
+
 }
+

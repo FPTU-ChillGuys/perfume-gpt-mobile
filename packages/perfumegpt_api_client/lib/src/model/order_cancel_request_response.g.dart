@@ -11,6 +11,8 @@ abstract class _$OrderCancelRequestResponseCWProxy {
 
   OrderCancelRequestResponse orderId(String? orderId);
 
+  OrderCancelRequestResponse orderCode(String orderCode);
+
   OrderCancelRequestResponse requestedById(String? requestedById);
 
   OrderCancelRequestResponse requestedByEmail(String? requestedByEmail);
@@ -29,6 +31,12 @@ abstract class _$OrderCancelRequestResponseCWProxy {
 
   OrderCancelRequestResponse isRefunded(bool? isRefunded);
 
+  OrderCancelRequestResponse refundBankName(String? refundBankName);
+
+  OrderCancelRequestResponse refundAccountName(String? refundAccountName);
+
+  OrderCancelRequestResponse refundAccountNumber(String? refundAccountNumber);
+
   OrderCancelRequestResponse vnpTransactionNo(String? vnpTransactionNo);
 
   OrderCancelRequestResponse createdAt(DateTime? createdAt);
@@ -45,6 +53,7 @@ abstract class _$OrderCancelRequestResponseCWProxy {
   OrderCancelRequestResponse call({
     String? id,
     String? orderId,
+    String orderCode,
     String? requestedById,
     String? requestedByEmail,
     String? processedById,
@@ -54,6 +63,9 @@ abstract class _$OrderCancelRequestResponseCWProxy {
     bool? isRefundRequired,
     num? refundAmount,
     bool? isRefunded,
+    String? refundBankName,
+    String? refundAccountName,
+    String? refundAccountNumber,
     String? vnpTransactionNo,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -73,6 +85,10 @@ class _$OrderCancelRequestResponseCWProxyImpl
 
   @override
   OrderCancelRequestResponse orderId(String? orderId) => call(orderId: orderId);
+
+  @override
+  OrderCancelRequestResponse orderCode(String orderCode) =>
+      call(orderCode: orderCode);
 
   @override
   OrderCancelRequestResponse requestedById(String? requestedById) =>
@@ -110,6 +126,18 @@ class _$OrderCancelRequestResponseCWProxyImpl
       call(isRefunded: isRefunded);
 
   @override
+  OrderCancelRequestResponse refundBankName(String? refundBankName) =>
+      call(refundBankName: refundBankName);
+
+  @override
+  OrderCancelRequestResponse refundAccountName(String? refundAccountName) =>
+      call(refundAccountName: refundAccountName);
+
+  @override
+  OrderCancelRequestResponse refundAccountNumber(String? refundAccountNumber) =>
+      call(refundAccountNumber: refundAccountNumber);
+
+  @override
   OrderCancelRequestResponse vnpTransactionNo(String? vnpTransactionNo) =>
       call(vnpTransactionNo: vnpTransactionNo);
 
@@ -132,6 +160,7 @@ class _$OrderCancelRequestResponseCWProxyImpl
   OrderCancelRequestResponse call({
     Object? id = const $CopyWithPlaceholder(),
     Object? orderId = const $CopyWithPlaceholder(),
+    Object? orderCode = const $CopyWithPlaceholder(),
     Object? requestedById = const $CopyWithPlaceholder(),
     Object? requestedByEmail = const $CopyWithPlaceholder(),
     Object? processedById = const $CopyWithPlaceholder(),
@@ -141,6 +170,9 @@ class _$OrderCancelRequestResponseCWProxyImpl
     Object? isRefundRequired = const $CopyWithPlaceholder(),
     Object? refundAmount = const $CopyWithPlaceholder(),
     Object? isRefunded = const $CopyWithPlaceholder(),
+    Object? refundBankName = const $CopyWithPlaceholder(),
+    Object? refundAccountName = const $CopyWithPlaceholder(),
+    Object? refundAccountNumber = const $CopyWithPlaceholder(),
     Object? vnpTransactionNo = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? updatedAt = const $CopyWithPlaceholder(),
@@ -154,6 +186,10 @@ class _$OrderCancelRequestResponseCWProxyImpl
           ? _value.orderId
           // ignore: cast_nullable_to_non_nullable
           : orderId as String?,
+      orderCode: orderCode == const $CopyWithPlaceholder() || orderCode == null
+          ? _value.orderCode
+          // ignore: cast_nullable_to_non_nullable
+          : orderCode as String,
       requestedById: requestedById == const $CopyWithPlaceholder()
           ? _value.requestedById
           // ignore: cast_nullable_to_non_nullable
@@ -190,6 +226,18 @@ class _$OrderCancelRequestResponseCWProxyImpl
           ? _value.isRefunded
           // ignore: cast_nullable_to_non_nullable
           : isRefunded as bool?,
+      refundBankName: refundBankName == const $CopyWithPlaceholder()
+          ? _value.refundBankName
+          // ignore: cast_nullable_to_non_nullable
+          : refundBankName as String?,
+      refundAccountName: refundAccountName == const $CopyWithPlaceholder()
+          ? _value.refundAccountName
+          // ignore: cast_nullable_to_non_nullable
+          : refundAccountName as String?,
+      refundAccountNumber: refundAccountNumber == const $CopyWithPlaceholder()
+          ? _value.refundAccountNumber
+          // ignore: cast_nullable_to_non_nullable
+          : refundAccountNumber as String?,
       vnpTransactionNo: vnpTransactionNo == const $CopyWithPlaceholder()
           ? _value.vnpTransactionNo
           // ignore: cast_nullable_to_non_nullable
@@ -221,10 +269,11 @@ extension $OrderCancelRequestResponseCopyWith on OrderCancelRequestResponse {
 OrderCancelRequestResponse _$OrderCancelRequestResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('OrderCancelRequestResponse', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['reason']);
+  $checkKeys(json, requiredKeys: const ['orderCode', 'reason']);
   final val = OrderCancelRequestResponse(
     id: $checkedConvert('id', (v) => v as String?),
     orderId: $checkedConvert('orderId', (v) => v as String?),
+    orderCode: $checkedConvert('orderCode', (v) => v as String),
     requestedById: $checkedConvert('requestedById', (v) => v as String?),
     requestedByEmail: $checkedConvert('requestedByEmail', (v) => v as String?),
     processedById: $checkedConvert('processedById', (v) => v as String?),
@@ -237,6 +286,15 @@ OrderCancelRequestResponse _$OrderCancelRequestResponseFromJson(
     isRefundRequired: $checkedConvert('isRefundRequired', (v) => v as bool?),
     refundAmount: $checkedConvert('refundAmount', (v) => v as num?),
     isRefunded: $checkedConvert('isRefunded', (v) => v as bool?),
+    refundBankName: $checkedConvert('refundBankName', (v) => v as String?),
+    refundAccountName: $checkedConvert(
+      'refundAccountName',
+      (v) => v as String?,
+    ),
+    refundAccountNumber: $checkedConvert(
+      'refundAccountNumber',
+      (v) => v as String?,
+    ),
     vnpTransactionNo: $checkedConvert('vnpTransactionNo', (v) => v as String?),
     createdAt: $checkedConvert(
       'createdAt',
@@ -255,6 +313,7 @@ Map<String, dynamic> _$OrderCancelRequestResponseToJson(
 ) => <String, dynamic>{
   'id': ?instance.id,
   'orderId': ?instance.orderId,
+  'orderCode': instance.orderCode,
   'requestedById': ?instance.requestedById,
   'requestedByEmail': ?instance.requestedByEmail,
   'processedById': ?instance.processedById,
@@ -264,6 +323,9 @@ Map<String, dynamic> _$OrderCancelRequestResponseToJson(
   'isRefundRequired': ?instance.isRefundRequired,
   'refundAmount': ?instance.refundAmount,
   'isRefunded': ?instance.isRefunded,
+  'refundBankName': ?instance.refundBankName,
+  'refundAccountName': ?instance.refundAccountName,
+  'refundAccountNumber': ?instance.refundAccountNumber,
   'vnpTransactionNo': ?instance.vnpTransactionNo,
   'createdAt': ?instance.createdAt?.toIso8601String(),
   'updatedAt': ?instance.updatedAt?.toIso8601String(),

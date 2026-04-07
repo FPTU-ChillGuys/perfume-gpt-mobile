@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PagedResultOfVoucherResponse
 void main() {
-  final PagedResultOfVoucherResponse?
-  instance = /* PagedResultOfVoucherResponse(...) */ null;
+  final PagedResultOfVoucherResponse? instance = /* PagedResultOfVoucherResponse(...) */ null;
   // TODO add properties to the entity
 
   group(PagedResultOfVoucherResponse, () {
@@ -42,5 +41,6 @@ void main() {
     test('to test the property `hasNextPage`', () async {
       // TODO
     });
+
   });
 }

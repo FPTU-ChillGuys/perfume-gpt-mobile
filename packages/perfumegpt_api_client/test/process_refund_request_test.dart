@@ -11,5 +11,16 @@ void main() {
     test('to test the property `refundMethod`', () async {
       // TODO
     });
+
+    // String manualTransactionReference
+    test('to test the property `manualTransactionReference`', () async {
+      // TODO
+    });
+
+    // String note
+    test('to test the property `note`', () async {
+      // TODO
+    });
+
   });
 }

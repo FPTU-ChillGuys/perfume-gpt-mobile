@@ -9,6 +9,12 @@ part of 'process_refund_request.dart';
 abstract class _$ProcessRefundRequestCWProxy {
   ProcessRefundRequest refundMethod(PaymentMethod? refundMethod);
 
+  ProcessRefundRequest manualTransactionReference(
+    String? manualTransactionReference,
+  );
+
+  ProcessRefundRequest note(String? note);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessRefundRequest(...).copyWith.fieldName(value)`.
   ///
@@ -16,7 +22,11 @@ abstract class _$ProcessRefundRequestCWProxy {
   /// ```dart
   /// ProcessRefundRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  ProcessRefundRequest call({PaymentMethod? refundMethod});
+  ProcessRefundRequest call({
+    PaymentMethod? refundMethod,
+    String? manualTransactionReference,
+    String? note,
+  });
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -32,6 +42,14 @@ class _$ProcessRefundRequestCWProxyImpl
       call(refundMethod: refundMethod);
 
   @override
+  ProcessRefundRequest manualTransactionReference(
+    String? manualTransactionReference,
+  ) => call(manualTransactionReference: manualTransactionReference);
+
+  @override
+  ProcessRefundRequest note(String? note) => call(note: note);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProcessRefundRequest(...).copyWith.fieldName(value)`.
   ///
@@ -41,12 +59,23 @@ class _$ProcessRefundRequestCWProxyImpl
   /// ```
   ProcessRefundRequest call({
     Object? refundMethod = const $CopyWithPlaceholder(),
+    Object? manualTransactionReference = const $CopyWithPlaceholder(),
+    Object? note = const $CopyWithPlaceholder(),
   }) {
     return ProcessRefundRequest(
       refundMethod: refundMethod == const $CopyWithPlaceholder()
           ? _value.refundMethod
           // ignore: cast_nullable_to_non_nullable
           : refundMethod as PaymentMethod?,
+      manualTransactionReference:
+          manualTransactionReference == const $CopyWithPlaceholder()
+          ? _value.manualTransactionReference
+          // ignore: cast_nullable_to_non_nullable
+          : manualTransactionReference as String?,
+      note: note == const $CopyWithPlaceholder()
+          ? _value.note
+          // ignore: cast_nullable_to_non_nullable
+          : note as String?,
     );
   }
 }
@@ -71,6 +100,11 @@ ProcessRefundRequest _$ProcessRefundRequestFromJson(
       'refundMethod',
       (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
     ),
+    manualTransactionReference: $checkedConvert(
+      'manualTransactionReference',
+      (v) => v as String?,
+    ),
+    note: $checkedConvert('note', (v) => v as String?),
   );
   return val;
 });
@@ -79,6 +113,8 @@ Map<String, dynamic> _$ProcessRefundRequestToJson(
   ProcessRefundRequest instance,
 ) => <String, dynamic>{
   'refundMethod': ?_$PaymentMethodEnumMap[instance.refundMethod],
+  'manualTransactionReference': ?instance.manualTransactionReference,
+  'note': ?instance.note,
 };
 
 const _$PaymentMethodEnumMap = {
@@ -86,4 +122,5 @@ const _$PaymentMethodEnumMap = {
   PaymentMethod.vnPay: 'VnPay',
   PaymentMethod.momo: 'Momo',
   PaymentMethod.cashInStore: 'CashInStore',
+  PaymentMethod.externalBankTransfer: 'ExternalBankTransfer',
 };

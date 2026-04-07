@@ -13,11 +13,8 @@ part of 'order_provider.dart';
 final orderRepositoryProvider = OrderRepositoryProvider._();
 
 final class OrderRepositoryProvider
-    extends $FunctionalProvider<
-      OrderRepository,
-      OrderRepository,
-      OrderRepository
-    >
+    extends
+        $FunctionalProvider<OrderRepository, OrderRepository, OrderRepository>
     with $Provider<OrderRepository> {
   OrderRepositoryProvider._()
     : super(
@@ -35,9 +32,8 @@ final class OrderRepositoryProvider
 
   @$internal
   @override
-  $ProviderElement<OrderRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<OrderRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
   OrderRepository create(Ref ref) {
@@ -53,52 +49,23 @@ final class OrderRepositoryProvider
   }
 }
 
-String _$orderRepositoryHash() => r'd1e2f3a4b5c6d1e2f3a4b5c6d1e2f3a4b5c6d1e2';
-
-/// MyOrders family arguments
-class MyOrdersArgs {
-  final String? status;
-  final String? searchTerm;
-  final int page;
-  final int pageSize;
-
-  const MyOrdersArgs({
-    this.status,
-    this.searchTerm,
-    this.page = 1,
-    this.pageSize = 10,
-  });
-
-  @override
-  bool operator ==(Object other) {
-    return other is MyOrdersArgs &&
-        other.status == status &&
-        other.searchTerm == searchTerm &&
-        other.page == page &&
-        other.pageSize == pageSize;
-  }
-
-  @override
-  int get hashCode => Object.hash(status, searchTerm, page, pageSize);
-
-  @override
-  String toString() =>
-      'MyOrdersArgs(status: $status, searchTerm: $searchTerm, page: $page, pageSize: $pageSize)';
-}
+String _$orderRepositoryHash() => r'3ebca83bacfd2247090dcd50eb37952a437ac21e';
 
 @ProviderFor(myOrders)
 final myOrdersProvider = MyOrdersFamily._();
 
 final class MyOrdersProvider
-    extends $FunctionalProvider<
-      AsyncValue<PaginatedOrders>,
-      PaginatedOrders,
-      FutureOr<PaginatedOrders>
-    >
+    extends
+        $FunctionalProvider<
+          AsyncValue<PaginatedOrders>,
+          PaginatedOrders,
+          FutureOr<PaginatedOrders>
+        >
     with $FutureModifier<PaginatedOrders>, $FutureProvider<PaginatedOrders> {
   MyOrdersProvider._({
     required MyOrdersFamily super.from,
-    required MyOrdersArgs super.argument,
+    required ({String? status, String? searchTerm, int page, int pageSize})
+    super.argument,
   }) : super(
          retry: null,
          name: r'myOrdersProvider',
@@ -114,7 +81,7 @@ final class MyOrdersProvider
   String toString() {
     return r'myOrdersProvider'
         ''
-        '($argument)';
+        '$argument';
   }
 
   @$internal
@@ -125,7 +92,9 @@ final class MyOrdersProvider
 
   @override
   FutureOr<PaginatedOrders> create(Ref ref) {
-    final argument = this.argument as MyOrdersArgs;
+    final argument =
+        this.argument
+            as ({String? status, String? searchTerm, int page, int pageSize});
     return myOrders(
       ref,
       status: argument.status,
@@ -146,10 +115,14 @@ final class MyOrdersProvider
   }
 }
 
-String _$myOrdersHash() => r'e2f3a4b5c6d1e2f3a4b5c6d1e2f3a4b5c6d1e2f3';
+String _$myOrdersHash() => r'09fe2c58df2de272827bcc3e85b6103297d428c9';
 
 final class MyOrdersFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<PaginatedOrders>, MyOrdersArgs> {
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<PaginatedOrders>,
+          ({String? status, String? searchTerm, int page, int pageSize})
+        > {
   MyOrdersFamily._()
     : super(
         retry: null,
@@ -164,16 +137,15 @@ final class MyOrdersFamily extends $Family
     String? searchTerm,
     int page = 1,
     int pageSize = 10,
-  }) =>
-      MyOrdersProvider._(
-        argument: MyOrdersArgs(
-          status: status,
-          searchTerm: searchTerm,
-          page: page,
-          pageSize: pageSize,
-        ),
-        from: this,
-      );
+  }) => MyOrdersProvider._(
+    argument: (
+      status: status,
+      searchTerm: searchTerm,
+      page: page,
+      pageSize: pageSize,
+    ),
+    from: this,
+  );
 
   @override
   String toString() => r'myOrdersProvider';
@@ -183,11 +155,12 @@ final class MyOrdersFamily extends $Family
 final orderDetailProvider = OrderDetailFamily._();
 
 final class OrderDetailProvider
-    extends $FunctionalProvider<
-      AsyncValue<OrderDetail>,
-      OrderDetail,
-      FutureOr<OrderDetail>
-    >
+    extends
+        $FunctionalProvider<
+          AsyncValue<OrderDetail>,
+          OrderDetail,
+          FutureOr<OrderDetail>
+        >
     with $FutureModifier<OrderDetail>, $FutureProvider<OrderDetail> {
   OrderDetailProvider._({
     required OrderDetailFamily super.from,
@@ -233,7 +206,7 @@ final class OrderDetailProvider
   }
 }
 
-String _$orderDetailHash() => r'f3a4b5c6d1e2f3a4b5c6d1e2f3a4b5c6d1e2f3a4';
+String _$orderDetailHash() => r'2474ee8bbc525269ddf7351b3cebc53a3d83d504';
 
 final class OrderDetailFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<OrderDetail>, String> {
@@ -257,11 +230,7 @@ final class OrderDetailFamily extends $Family
 final orderInvoiceProvider = OrderInvoiceFamily._();
 
 final class OrderInvoiceProvider
-    extends $FunctionalProvider<
-      AsyncValue<Invoice>,
-      Invoice,
-      FutureOr<Invoice>
-    >
+    extends $FunctionalProvider<AsyncValue<Invoice>, Invoice, FutureOr<Invoice>>
     with $FutureModifier<Invoice>, $FutureProvider<Invoice> {
   OrderInvoiceProvider._({
     required OrderInvoiceFamily super.from,
@@ -286,9 +255,8 @@ final class OrderInvoiceProvider
 
   @$internal
   @override
-  $FutureProviderElement<Invoice> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<Invoice> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
 
   @override
   FutureOr<Invoice> create(Ref ref) {
@@ -307,7 +275,7 @@ final class OrderInvoiceProvider
   }
 }
 
-String _$orderInvoiceHash() => r'a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2';
+String _$orderInvoiceHash() => r'0712fe6a0199e934b87b04b0e5c58ab2002adc17';
 
 final class OrderInvoiceFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<Invoice>, String> {

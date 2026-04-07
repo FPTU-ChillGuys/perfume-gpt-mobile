@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_attribute_dto.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,26 +18,50 @@ part 'product_attribute_dto.g.dart';
 )
 class ProductAttributeDto {
   /// Returns a new [ProductAttributeDto] instance.
-  ProductAttributeDto({this.attributeId, this.valueId});
+  ProductAttributeDto({
 
-  @JsonKey(name: r'attributeId', required: false, includeIfNull: false)
+     this.attributeId,
+
+     this.valueId,
+  });
+
+  @JsonKey(
+    
+    name: r'attributeId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? attributeId;
 
-  @JsonKey(name: r'valueId', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'valueId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? valueId;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProductAttributeDto &&
-          other.attributeId == attributeId &&
-          other.valueId == valueId;
 
-  @override
-  int get hashCode => attributeId.hashCode + valueId.hashCode;
 
-  factory ProductAttributeDto.fromJson(Map<String, dynamic> json) =>
-      _$ProductAttributeDtoFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ProductAttributeDto &&
+      other.attributeId == attributeId &&
+      other.valueId == valueId;
+
+    @override
+    int get hashCode =>
+        attributeId.hashCode +
+        valueId.hashCode;
+
+  factory ProductAttributeDto.fromJson(Map<String, dynamic> json) => _$ProductAttributeDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductAttributeDtoToJson(this);
 
@@ -44,4 +69,6 @@ class ProductAttributeDto {
   String toString() {
     return toJson().toString();
   }
+
 }
+

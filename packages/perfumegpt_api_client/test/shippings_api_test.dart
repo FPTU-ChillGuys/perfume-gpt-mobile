@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for ShippingsApi
 void main() {
   final instance = PerfumegptApiClient().getShippingsApi();
@@ -30,5 +31,6 @@ void main() {
     test('test apiShippingsUserUserIdSyncShippingStatusPost', () async {
       // TODO
     });
+
   });
 }

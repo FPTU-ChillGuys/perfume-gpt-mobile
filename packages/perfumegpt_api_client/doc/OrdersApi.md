@@ -9,6 +9,7 @@ All URIs are relative to *https://localhost:7011*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**apiOrdersByordercodeGet**](OrdersApi.md#apiordersbyordercodeget) | **GET** /api/orders/byordercode | 
 [**apiOrdersCheckoutInStorePost**](OrdersApi.md#apiorderscheckoutinstorepost) | **POST** /api/orders/checkout-in-store | 
 [**apiOrdersCheckoutPost**](OrdersApi.md#apiorderscheckoutpost) | **POST** /api/orders/checkout | 
 [**apiOrdersGet**](OrdersApi.md#apiordersget) | **GET** /api/orders | 
@@ -17,16 +18,56 @@ Method | HTTP request | Description
 [**apiOrdersMyOrdersOrderIdInvoiceGet**](OrdersApi.md#apiordersmyordersorderidinvoiceget) | **GET** /api/orders/my-orders/{orderId}/invoice | 
 [**apiOrdersOrderIdAddressPut**](OrdersApi.md#apiordersorderidaddressput) | **PUT** /api/orders/{orderId}/address | 
 [**apiOrdersOrderIdCancelPost**](OrdersApi.md#apiordersorderidcancelpost) | **POST** /api/orders/{orderId}/cancel | 
+[**apiOrdersOrderIdDeliverInStorePut**](OrdersApi.md#apiordersorderiddeliverinstoreput) | **PUT** /api/orders/{orderId}/deliver-in-store | 
 [**apiOrdersOrderIdFulfillPost**](OrdersApi.md#apiordersorderidfulfillpost) | **POST** /api/orders/{orderId}/fulfill | 
 [**apiOrdersOrderIdGet**](OrdersApi.md#apiordersorderidget) | **GET** /api/orders/{orderId} | 
 [**apiOrdersOrderIdInvoiceGet**](OrdersApi.md#apiordersorderidinvoiceget) | **GET** /api/orders/{orderId}/invoice | 
 [**apiOrdersOrderIdPicklistGet**](OrdersApi.md#apiordersorderidpicklistget) | **GET** /api/orders/{orderId}/picklist | 
-[**apiOrdersOrderIdStatusPut**](OrdersApi.md#apiordersorderidstatusput) | **PUT** /api/orders/{orderId}/status | 
+[**apiOrdersOrderIdStaffCancelPost**](OrdersApi.md#apiordersorderidstaffcancelpost) | **POST** /api/orders/{orderId}/staff-cancel | 
+[**apiOrdersOrderIdStaffPreparePut**](OrdersApi.md#apiordersorderidstaffprepareput) | **PUT** /api/orders/{orderId}/staff-prepare | 
 [**apiOrdersOrderIdSwapDamagedPost**](OrdersApi.md#apiordersorderidswapdamagedpost) | **POST** /api/orders/{orderId}/swap-damaged | 
-[**apiOrdersPreviewGet**](OrdersApi.md#apiorderspreviewget) | **GET** /api/orders/preview | 
-[**apiOrdersStaffStaffIdGet**](OrdersApi.md#apiordersstaffstaffidget) | **GET** /api/orders/staff/{staffId} | 
-[**apiOrdersUserUserIdGet**](OrdersApi.md#apiordersuseruseridget) | **GET** /api/orders/user/{userId} | 
 
+
+# **apiOrdersByordercodeGet**
+> BaseResponseOfUserOrderResponse apiOrdersByordercodeGet(orderCode)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrdersApi();
+final String orderCode = orderCode_example; // String | 
+
+try {
+    final response = api.apiOrdersByordercodeGet(orderCode);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrdersApi->apiOrdersByordercodeGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderCode** | **String**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfUserOrderResponse**](BaseResponseOfUserOrderResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiOrdersCheckoutInStorePost**
 > BaseResponseOfstring apiOrdersCheckoutInStorePost(createInStoreOrderRequest)
@@ -111,7 +152,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiOrdersGet**
-> BaseResponseOfPagedResultOfOrderListItem apiOrdersGet(status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+> BaseResponseOfPagedResultOfOrderListItem apiOrdersGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -120,6 +161,7 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrdersApi();
+final String userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final OrderStatus status = ; // OrderStatus | 
 final OrderType type = ; // OrderType | 
 final PaymentStatus paymentStatus = ; // PaymentStatus | 
@@ -133,7 +175,7 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiOrdersGet(status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiOrdersGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling OrdersApi->apiOrdersGet: $e\n');
@@ -144,6 +186,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | [optional] 
  **status** | [**OrderStatus**](.md)|  | [optional] 
  **type** | [**OrderType**](.md)|  | [optional] 
  **paymentStatus** | [**PaymentStatus**](.md)|  | [optional] 
@@ -172,7 +215,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiOrdersMyOrdersGet**
-> BaseResponseOfPagedResultOfOrderListItem apiOrdersMyOrdersGet(status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+> BaseResponseOfPagedResultOfOrderListItem apiOrdersMyOrdersGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -181,6 +224,7 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrdersApi();
+final String userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final OrderStatus status = ; // OrderStatus | 
 final OrderType type = ; // OrderType | 
 final PaymentStatus paymentStatus = ; // PaymentStatus | 
@@ -194,7 +238,7 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiOrdersMyOrdersGet(status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiOrdersMyOrdersGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling OrdersApi->apiOrdersMyOrdersGet: $e\n');
@@ -205,6 +249,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | [optional] 
  **status** | [**OrderStatus**](.md)|  | [optional] 
  **type** | [**OrderType**](.md)|  | [optional] 
  **paymentStatus** | [**PaymentStatus**](.md)|  | [optional] 
@@ -400,6 +445,47 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **apiOrdersOrderIdDeliverInStorePut**
+> BaseResponseOfstring apiOrdersOrderIdDeliverInStorePut(orderId)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrdersApi();
+final String orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiOrdersOrderIdDeliverInStorePut(orderId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrdersApi->apiOrdersOrderIdDeliverInStorePut: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **apiOrdersOrderIdFulfillPost**
 > BaseResponseOfstring apiOrdersOrderIdFulfillPost(orderId, fulfillOrderRequest)
 
@@ -566,8 +652,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiOrdersOrderIdStatusPut**
-> BaseResponseOfPickListResponse apiOrdersOrderIdStatusPut(orderId, updateOrderStatusRequest)
+# **apiOrdersOrderIdStaffCancelPost**
+> BaseResponseOfstring apiOrdersOrderIdStaffCancelPost(orderId, staffCancelOrderRequest)
 
 
 
@@ -577,13 +663,13 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrdersApi();
 final String orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final UpdateOrderStatusRequest updateOrderStatusRequest = ; // UpdateOrderStatusRequest | 
+final StaffCancelOrderRequest staffCancelOrderRequest = ; // StaffCancelOrderRequest | 
 
 try {
-    final response = api.apiOrdersOrderIdStatusPut(orderId, updateOrderStatusRequest);
+    final response = api.apiOrdersOrderIdStaffCancelPost(orderId, staffCancelOrderRequest);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling OrdersApi->apiOrdersOrderIdStatusPut: $e\n');
+    print('Exception when calling OrdersApi->apiOrdersOrderIdStaffCancelPost: $e\n');
 }
 ```
 
@@ -592,7 +678,48 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**|  | 
- **updateOrderStatusRequest** | [**UpdateOrderStatusRequest**](UpdateOrderStatusRequest.md)|  | 
+ **staffCancelOrderRequest** | [**StaffCancelOrderRequest**](StaffCancelOrderRequest.md)|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiOrdersOrderIdStaffPreparePut**
+> BaseResponseOfPickListResponse apiOrdersOrderIdStaffPreparePut(orderId)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrdersApi();
+final String orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiOrdersOrderIdStaffPreparePut(orderId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrdersApi->apiOrdersOrderIdStaffPreparePut: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**|  | 
 
 ### Return type
 
@@ -604,7 +731,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/json, application/*+json
+ - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -648,179 +775,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiOrdersPreviewGet**
-> BaseResponseOfPreviewOrderResponse apiOrdersPreviewGet(barCodes, wardCode, districtId, voucherCode)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getOrdersApi();
-final List<String> barCodes = ; // List<String> | 
-final String wardCode = wardCode_example; // String | 
-final int districtId = 56; // int | 
-final String voucherCode = voucherCode_example; // String | 
-
-try {
-    final response = api.apiOrdersPreviewGet(barCodes, wardCode, districtId, voucherCode);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling OrdersApi->apiOrdersPreviewGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **barCodes** | [**List&lt;String&gt;**](String.md)|  | [optional] 
- **wardCode** | **String**|  | [optional] 
- **districtId** | **int**|  | [optional] 
- **voucherCode** | **String**|  | [optional] 
-
-### Return type
-
-[**BaseResponseOfPreviewOrderResponse**](BaseResponseOfPreviewOrderResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiOrdersStaffStaffIdGet**
-> BaseResponseOfPagedResultOfOrderListItem apiOrdersStaffStaffIdGet(staffId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getOrdersApi();
-final String staffId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final OrderStatus status = ; // OrderStatus | 
-final OrderType type = ; // OrderType | 
-final PaymentStatus paymentStatus = ; // PaymentStatus | 
-final DateTime fromDate = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime toDate = 2013-10-20T19:20:30+01:00; // DateTime | 
-final String searchTerm = searchTerm_example; // String | 
-final int pageNumber = 56; // int | 
-final int pageSize = 56; // int | 
-final String sortBy = sortBy_example; // String | 
-final String sortOrder = sortOrder_example; // String | 
-final bool isDescending = true; // bool | 
-
-try {
-    final response = api.apiOrdersStaffStaffIdGet(staffId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling OrdersApi->apiOrdersStaffStaffIdGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **staffId** | **String**|  | 
- **status** | [**OrderStatus**](.md)|  | [optional] 
- **type** | [**OrderType**](.md)|  | [optional] 
- **paymentStatus** | [**PaymentStatus**](.md)|  | [optional] 
- **fromDate** | **DateTime**|  | [optional] 
- **toDate** | **DateTime**|  | [optional] 
- **searchTerm** | **String**|  | [optional] 
- **pageNumber** | **int**|  | [optional] 
- **pageSize** | **int**|  | [optional] 
- **sortBy** | **String**|  | [optional] 
- **sortOrder** | **String**|  | [optional] 
- **isDescending** | **bool**|  | [optional] 
-
-### Return type
-
-[**BaseResponseOfPagedResultOfOrderListItem**](BaseResponseOfPagedResultOfOrderListItem.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiOrdersUserUserIdGet**
-> BaseResponseOfPagedResultOfOrderListItem apiOrdersUserUserIdGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getOrdersApi();
-final String userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final OrderStatus status = ; // OrderStatus | 
-final OrderType type = ; // OrderType | 
-final PaymentStatus paymentStatus = ; // PaymentStatus | 
-final DateTime fromDate = 2013-10-20T19:20:30+01:00; // DateTime | 
-final DateTime toDate = 2013-10-20T19:20:30+01:00; // DateTime | 
-final String searchTerm = searchTerm_example; // String | 
-final int pageNumber = 56; // int | 
-final int pageSize = 56; // int | 
-final String sortBy = sortBy_example; // String | 
-final String sortOrder = sortOrder_example; // String | 
-final bool isDescending = true; // bool | 
-
-try {
-    final response = api.apiOrdersUserUserIdGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling OrdersApi->apiOrdersUserUserIdGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **String**|  | 
- **status** | [**OrderStatus**](.md)|  | [optional] 
- **type** | [**OrderType**](.md)|  | [optional] 
- **paymentStatus** | [**PaymentStatus**](.md)|  | [optional] 
- **fromDate** | **DateTime**|  | [optional] 
- **toDate** | **DateTime**|  | [optional] 
- **searchTerm** | **String**|  | [optional] 
- **pageNumber** | **int**|  | [optional] 
- **pageSize** | **int**|  | [optional] 
- **sortBy** | **String**|  | [optional] 
- **sortOrder** | **String**|  | [optional] 
- **isDescending** | **bool**|  | [optional] 
-
-### Return type
-
-[**BaseResponseOfPagedResultOfOrderListItem**](BaseResponseOfPagedResultOfOrderListItem.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

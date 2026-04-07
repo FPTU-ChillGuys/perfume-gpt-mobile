@@ -77,6 +77,11 @@ void main() {
       // TODO
     });
 
+    // DateTime paymentExpiresAt
+    test('to test the property `paymentExpiresAt`', () async {
+      // TODO
+    });
+
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
       // TODO
@@ -86,5 +91,11 @@ void main() {
     test('to test the property `orderDetails`', () async {
       // TODO
     });
+
+    // List<PaymentInfoResponse> paymentTransactions
+    test('to test the property `paymentTransactions`', () async {
+      // TODO
+    });
+
   });
 }

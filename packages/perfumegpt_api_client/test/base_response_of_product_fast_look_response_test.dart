@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfProductFastLookResponse
 void main() {
-  final BaseResponseOfProductFastLookResponse?
-  instance = /* BaseResponseOfProductFastLookResponse(...) */ null;
+  final BaseResponseOfProductFastLookResponse? instance = /* BaseResponseOfProductFastLookResponse(...) */ null;
   // TODO add properties to the entity
 
   group(BaseResponseOfProductFastLookResponse, () {
@@ -32,5 +31,6 @@ void main() {
     test('to test the property `errorType`', () async {
       // TODO
     });
+
   });
 }

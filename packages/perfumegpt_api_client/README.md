@@ -124,6 +124,7 @@ Class | Method | HTTP request | Description
 [*CartApi*](doc/CartApi.md) | [**apiCartItemsIdDelete**](doc/CartApi.md#apicartitemsiddelete) | **DELETE** /api/cart/items/{id} | 
 [*CartApi*](doc/CartApi.md) | [**apiCartItemsIdPut**](doc/CartApi.md#apicartitemsidput) | **PUT** /api/cart/items/{id} | 
 [*CartApi*](doc/CartApi.md) | [**apiCartItemsPost**](doc/CartApi.md#apicartitemspost) | **POST** /api/cart/items | 
+[*CartApi*](doc/CartApi.md) | [**apiCartPosPreviewPost**](doc/CartApi.md#apicartpospreviewpost) | **POST** /api/cart/pos-preview | 
 [*CartApi*](doc/CartApi.md) | [**apiCartTotalGet**](doc/CartApi.md#apicarttotalget) | **GET** /api/cart/total | 
 [*CategoriesApi*](doc/CategoriesApi.md) | [**apiCategoriesGet**](doc/CategoriesApi.md#apicategoriesget) | **GET** /api/categories | 
 [*CategoriesApi*](doc/CategoriesApi.md) | [**apiCategoriesIdDelete**](doc/CategoriesApi.md#apicategoriesiddelete) | **DELETE** /api/categories/{id} | 
@@ -162,17 +163,22 @@ Class | Method | HTTP request | Description
 [*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesLookupGet**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamilieslookupget) | **GET** /api/olfactoryfamilies/lookup | 
 [*OlfactoryFamiliesApi*](doc/OlfactoryFamiliesApi.md) | [**apiOlfactoryfamiliesPost**](doc/OlfactoryFamiliesApi.md#apiolfactoryfamiliespost) | **POST** /api/olfactoryfamilies | 
 [*OrderCancelRequestsApi*](doc/OrderCancelRequestsApi.md) | [**apiOrdercancelrequestsGet**](doc/OrderCancelRequestsApi.md#apiordercancelrequestsget) | **GET** /api/ordercancelrequests | 
+[*OrderCancelRequestsApi*](doc/OrderCancelRequestsApi.md) | [**apiOrdercancelrequestsIdGet**](doc/OrderCancelRequestsApi.md#apiordercancelrequestsidget) | **GET** /api/ordercancelrequests/{id} | 
 [*OrderCancelRequestsApi*](doc/OrderCancelRequestsApi.md) | [**apiOrdercancelrequestsIdProcessPost**](doc/OrderCancelRequestsApi.md#apiordercancelrequestsidprocesspost) | **POST** /api/ordercancelrequests/{id}/process | 
+[*OrderCancelRequestsApi*](doc/OrderCancelRequestsApi.md) | [**apiOrdercancelrequestsMyRequestsGet**](doc/OrderCancelRequestsApi.md#apiordercancelrequestsmyrequestsget) | **GET** /api/ordercancelrequests/my-requests | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsGet**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsget) | **GET** /api/orderreturnrequests | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdCancelPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidcancelpost) | **POST** /api/orderreturnrequests/{id}/cancel | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdCompleteInspectionPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidcompleteinspectionpost) | **POST** /api/orderreturnrequests/{id}/complete-inspection | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdFailInspectionPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidfailinspectionpost) | **POST** /api/orderreturnrequests/{id}/fail-inspection | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdGet**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidget) | **GET** /api/orderreturnrequests/{id} | 
+[*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdPut**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidput) | **PUT** /api/orderreturnrequests/{id} | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdRefundPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidrefundpost) | **POST** /api/orderreturnrequests/{id}/refund | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdReviewPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidreviewpost) | **POST** /api/orderreturnrequests/{id}/review | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsIdStartInspectionPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsidstartinspectionpost) | **POST** /api/orderreturnrequests/{id}/start-inspection | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsMyRequestsGet**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsmyrequestsget) | **GET** /api/orderreturnrequests/my-requests | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestspost) | **POST** /api/orderreturnrequests | 
 [*OrderReturnRequestsApi*](doc/OrderReturnRequestsApi.md) | [**apiOrderreturnrequestsVideosTemporaryPost**](doc/OrderReturnRequestsApi.md#apiorderreturnrequestsvideostemporarypost) | **POST** /api/orderreturnrequests/videos/temporary | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersByordercodeGet**](doc/OrdersApi.md#apiordersbyordercodeget) | **GET** /api/orders/byordercode | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersCheckoutInStorePost**](doc/OrdersApi.md#apiorderscheckoutinstorepost) | **POST** /api/orders/checkout-in-store | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersCheckoutPost**](doc/OrdersApi.md#apiorderscheckoutpost) | **POST** /api/orders/checkout | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersGet**](doc/OrdersApi.md#apiordersget) | **GET** /api/orders | 
@@ -181,20 +187,20 @@ Class | Method | HTTP request | Description
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersMyOrdersOrderIdInvoiceGet**](doc/OrdersApi.md#apiordersmyordersorderidinvoiceget) | **GET** /api/orders/my-orders/{orderId}/invoice | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdAddressPut**](doc/OrdersApi.md#apiordersorderidaddressput) | **PUT** /api/orders/{orderId}/address | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdCancelPost**](doc/OrdersApi.md#apiordersorderidcancelpost) | **POST** /api/orders/{orderId}/cancel | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdDeliverInStorePut**](doc/OrdersApi.md#apiordersorderiddeliverinstoreput) | **PUT** /api/orders/{orderId}/deliver-in-store | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdFulfillPost**](doc/OrdersApi.md#apiordersorderidfulfillpost) | **POST** /api/orders/{orderId}/fulfill | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdGet**](doc/OrdersApi.md#apiordersorderidget) | **GET** /api/orders/{orderId} | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdInvoiceGet**](doc/OrdersApi.md#apiordersorderidinvoiceget) | **GET** /api/orders/{orderId}/invoice | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdPicklistGet**](doc/OrdersApi.md#apiordersorderidpicklistget) | **GET** /api/orders/{orderId}/picklist | 
-[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdStatusPut**](doc/OrdersApi.md#apiordersorderidstatusput) | **PUT** /api/orders/{orderId}/status | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdStaffCancelPost**](doc/OrdersApi.md#apiordersorderidstaffcancelpost) | **POST** /api/orders/{orderId}/staff-cancel | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdStaffPreparePut**](doc/OrdersApi.md#apiordersorderidstaffprepareput) | **PUT** /api/orders/{orderId}/staff-prepare | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdSwapDamagedPost**](doc/OrdersApi.md#apiordersorderidswapdamagedpost) | **POST** /api/orders/{orderId}/swap-damaged | 
-[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersPreviewGet**](doc/OrdersApi.md#apiorderspreviewget) | **GET** /api/orders/preview | 
-[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersStaffStaffIdGet**](doc/OrdersApi.md#apiordersstaffstaffidget) | **GET** /api/orders/staff/{staffId} | 
-[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersUserUserIdGet**](doc/OrdersApi.md#apiordersuseruseridget) | **GET** /api/orders/user/{userId} | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsManagementTransactionsGet**](doc/PaymentsApi.md#apipaymentsmanagementtransactionsget) | **GET** /api/payments/management-transactions | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsMomoReturnGet**](doc/PaymentsApi.md#apipaymentsmomoreturnget) | **GET** /api/payments/momo-return | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdConfirmPut**](doc/PaymentsApi.md#apipaymentspaymentidconfirmput) | **PUT** /api/payments/{paymentId}/confirm | 
-[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdMethodPut**](doc/PaymentsApi.md#apipaymentspaymentidmethodput) | **PUT** /api/payments/{paymentId}/method | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdRetryPost**](doc/PaymentsApi.md#apipaymentspaymentidretrypost) | **POST** /api/payments/{paymentId}/retry | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsVnpayReturnGet**](doc/PaymentsApi.md#apipaymentsvnpayreturnget) | **GET** /api/payments/vnpay-return | 
+[*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsForPosGet**](doc/ProductVariantsApi.md#apiproductvariantsforposget) | **GET** /api/productvariants/for-pos | 
 [*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsGet**](doc/ProductVariantsApi.md#apiproductvariantsget) | **GET** /api/productvariants | 
 [*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsImagesMediaIdSetPrimaryPut**](doc/ProductVariantsApi.md#apiproductvariantsimagesmediaidsetprimaryput) | **PUT** /api/productvariants/images/{mediaId}/set-primary | 
 [*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsImagesTemporaryPost**](doc/ProductVariantsApi.md#apiproductvariantsimagestemporarypost) | **POST** /api/productvariants/images/temporary | 
@@ -335,6 +341,7 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfLoyaltyTransactionTotalsResponse](doc/BaseResponseOfLoyaltyTransactionTotalsResponse.md)
  - [BaseResponseOfMediaResponse](doc/BaseResponseOfMediaResponse.md)
  - [BaseResponseOfOlfactoryFamilyResponse](doc/BaseResponseOfOlfactoryFamilyResponse.md)
+ - [BaseResponseOfOrderCancelRequestResponse](doc/BaseResponseOfOrderCancelRequestResponse.md)
  - [BaseResponseOfOrderResponse](doc/BaseResponseOfOrderResponse.md)
  - [BaseResponseOfOrderReturnRequestResponse](doc/BaseResponseOfOrderReturnRequestResponse.md)
  - [BaseResponseOfPagedResultOfAvailableVoucherResponse](doc/BaseResponseOfPagedResultOfAvailableVoucherResponse.md)
@@ -354,11 +361,13 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfPagedResultOfUserVoucherResponse](doc/BaseResponseOfPagedResultOfUserVoucherResponse.md)
  - [BaseResponseOfPagedResultOfVariantPagedItem](doc/BaseResponseOfPagedResultOfVariantPagedItem.md)
  - [BaseResponseOfPagedResultOfVoucherResponse](doc/BaseResponseOfPagedResultOfVoucherResponse.md)
+ - [BaseResponseOfPaymentTransactionOverviewResponse](doc/BaseResponseOfPaymentTransactionOverviewResponse.md)
  - [BaseResponseOfPickListResponse](doc/BaseResponseOfPickListResponse.md)
- - [BaseResponseOfPreviewOrderResponse](doc/BaseResponseOfPreviewOrderResponse.md)
+ - [BaseResponseOfPreviewPosOrderResponse](doc/BaseResponseOfPreviewPosOrderResponse.md)
  - [BaseResponseOfProductFastLookResponse](doc/BaseResponseOfProductFastLookResponse.md)
  - [BaseResponseOfProductInforResponse](doc/BaseResponseOfProductInforResponse.md)
  - [BaseResponseOfProductResponse](doc/BaseResponseOfProductResponse.md)
+ - [BaseResponseOfProductVariantForPosResponse](doc/BaseResponseOfProductVariantForPosResponse.md)
  - [BaseResponseOfProductVariantResponse](doc/BaseResponseOfProductVariantResponse.md)
  - [BaseResponseOfProfileResponse](doc/BaseResponseOfProfileResponse.md)
  - [BaseResponseOfReceiptResponse](doc/BaseResponseOfReceiptResponse.md)
@@ -415,7 +424,6 @@ Class | Method | HTTP request | Description
  - [CreateImportTicketRequest](doc/CreateImportTicketRequest.md)
  - [CreateInStoreOrderRequest](doc/CreateInStoreOrderRequest.md)
  - [CreateOlfactoryFamilyRequest](doc/CreateOlfactoryFamilyRequest.md)
- - [CreateOrderDetailRequest](doc/CreateOrderDetailRequest.md)
  - [CreateOrderRequest](doc/CreateOrderRequest.md)
  - [CreateProductRequest](doc/CreateProductRequest.md)
  - [CreateReturnRequestDto](doc/CreateReturnRequestDto.md)
@@ -461,7 +469,6 @@ Class | Method | HTTP request | Description
  - [OlfactoryLookupResponse](doc/OlfactoryLookupResponse.md)
  - [OrderCancelRequestResponse](doc/OrderCancelRequestResponse.md)
  - [OrderDetailListItem](doc/OrderDetailListItem.md)
- - [OrderDetailListItems](doc/OrderDetailListItems.md)
  - [OrderDetailResponse](doc/OrderDetailResponse.md)
  - [OrderListItem](doc/OrderListItem.md)
  - [OrderResponse](doc/OrderResponse.md)
@@ -477,6 +484,7 @@ Class | Method | HTTP request | Description
  - [PagedResultOfOrderCancelRequestResponse](doc/PagedResultOfOrderCancelRequestResponse.md)
  - [PagedResultOfOrderListItem](doc/PagedResultOfOrderListItem.md)
  - [PagedResultOfOrderReturnRequestResponse](doc/PagedResultOfOrderReturnRequestResponse.md)
+ - [PagedResultOfPaymentTransactionAdminItemResponse](doc/PagedResultOfPaymentTransactionAdminItemResponse.md)
  - [PagedResultOfProductListItem](doc/PagedResultOfProductListItem.md)
  - [PagedResultOfProductListItemWithVariants](doc/PagedResultOfProductListItemWithVariants.md)
  - [PagedResultOfReviewListItem](doc/PagedResultOfReviewListItem.md)
@@ -490,10 +498,16 @@ Class | Method | HTTP request | Description
  - [PaymentInformation](doc/PaymentInformation.md)
  - [PaymentMethod](doc/PaymentMethod.md)
  - [PaymentStatus](doc/PaymentStatus.md)
+ - [PaymentTransactionAdminItemResponse](doc/PaymentTransactionAdminItemResponse.md)
+ - [PaymentTransactionOverviewResponse](doc/PaymentTransactionOverviewResponse.md)
+ - [PaymentTransactionSummaryResponse](doc/PaymentTransactionSummaryResponse.md)
  - [PickListBatchInfo](doc/PickListBatchInfo.md)
  - [PickListItemResponse](doc/PickListItemResponse.md)
  - [PickListResponse](doc/PickListResponse.md)
- - [PreviewOrderResponse](doc/PreviewOrderResponse.md)
+ - [PosOrderDetailListItem](doc/PosOrderDetailListItem.md)
+ - [PosScanItemRequest](doc/PosScanItemRequest.md)
+ - [PreviewPosOrderRequest](doc/PreviewPosOrderRequest.md)
+ - [PreviewPosOrderResponse](doc/PreviewPosOrderResponse.md)
  - [ProblemDetails](doc/ProblemDetails.md)
  - [ProcessCancelRequest](doc/ProcessCancelRequest.md)
  - [ProcessInitialReturnDto](doc/ProcessInitialReturnDto.md)
@@ -510,6 +524,7 @@ Class | Method | HTTP request | Description
  - [ProductOlfactoryFamilyResponse](doc/ProductOlfactoryFamilyResponse.md)
  - [ProductResponse](doc/ProductResponse.md)
  - [ProductScentNoteResponse](doc/ProductScentNoteResponse.md)
+ - [ProductVariantForPosResponse](doc/ProductVariantForPosResponse.md)
  - [ProductVariantResponse](doc/ProductVariantResponse.md)
  - [ProfileResponse](doc/ProfileResponse.md)
  - [PromotionType](doc/PromotionType.md)
@@ -540,6 +555,7 @@ Class | Method | HTTP request | Description
  - [ShippingInfoResponse](doc/ShippingInfoResponse.md)
  - [ShippingStatus](doc/ShippingStatus.md)
  - [ShippingType](doc/ShippingType.md)
+ - [StaffCancelOrderRequest](doc/StaffCancelOrderRequest.md)
  - [StaffLookupItem](doc/StaffLookupItem.md)
  - [StartInspectionDto](doc/StartInspectionDto.md)
  - [StockAdjustmentDetailResponse](doc/StockAdjustmentDetailResponse.md)
@@ -576,9 +592,9 @@ Class | Method | HTTP request | Description
  - [UpdateNotePreferenceRequest](doc/UpdateNotePreferenceRequest.md)
  - [UpdateOlfactoryFamilyRequest](doc/UpdateOlfactoryFamilyRequest.md)
  - [UpdateOrderAddressRequest](doc/UpdateOrderAddressRequest.md)
- - [UpdateOrderStatusRequest](doc/UpdateOrderStatusRequest.md)
  - [UpdateProductRequest](doc/UpdateProductRequest.md)
  - [UpdateProfileRequest](doc/UpdateProfileRequest.md)
+ - [UpdateReturnRequestDto](doc/UpdateReturnRequestDto.md)
  - [UpdateScentNoteRequest](doc/UpdateScentNoteRequest.md)
  - [UpdateStockAdjustmentStatusRequest](doc/UpdateStockAdjustmentStatusRequest.md)
  - [UpdateSupplierRequest](doc/UpdateSupplierRequest.md)

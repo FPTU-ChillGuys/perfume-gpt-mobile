@@ -6,13 +6,19 @@ part of 'order_repository_impl.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(orderRepository)
 final orderRepositoryProvider = OrderRepositoryProvider._();
 
 final class OrderRepositoryProvider
-    extends $FunctionalProvider<OrderRepositoryImpl, OrderRepositoryImpl, OrderRepositoryImpl>
+    extends
+        $FunctionalProvider<
+          OrderRepositoryImpl,
+          OrderRepositoryImpl,
+          OrderRepositoryImpl
+        >
     with $Provider<OrderRepositoryImpl> {
   OrderRepositoryProvider._()
     : super(
@@ -31,8 +37,8 @@ final class OrderRepositoryProvider
   @$internal
   @override
   $ProviderElement<OrderRepositoryImpl> $createElement(
-          $ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
 
   @override
   OrderRepositoryImpl create(Ref ref) {
@@ -48,4 +54,4 @@ final class OrderRepositoryProvider
   }
 }
 
-String _$orderRepositoryHash() => r'order_repository_impl_hash';
+String _$orderRepositoryHash() => r'ce7f284d184ad1383f5a73515a7c2e9550deebd0';

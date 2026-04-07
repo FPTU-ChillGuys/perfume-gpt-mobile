@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response_of_list_of_concentration_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,59 +20,104 @@ part 'base_response_of_list_of_concentration_response.g.dart';
 class BaseResponseOfListOfConcentrationResponse {
   /// Returns a new [BaseResponseOfListOfConcentrationResponse] instance.
   BaseResponseOfListOfConcentrationResponse({
-    this.payload,
 
-    this.success,
+     this.payload,
 
-    this.message,
+     this.success,
 
-    this.errors,
+     this.message,
 
-    this.errorType,
+     this.errors,
+
+     this.errorType,
   });
 
-  @JsonKey(name: r'payload', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'payload',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<ConcentrationResponse>? payload;
 
-  @JsonKey(name: r'success', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'success',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? success;
 
-  @JsonKey(name: r'message', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'message',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? message;
 
-  @JsonKey(name: r'errors', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'errors',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final List<String>? errors;
 
-  @JsonKey(name: r'errorType', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'errorType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? errorType;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BaseResponseOfListOfConcentrationResponse &&
-          other.payload == payload &&
-          other.success == success &&
-          other.message == message &&
-          other.errors == errors &&
-          other.errorType == errorType;
 
-  @override
-  int get hashCode =>
-      (payload == null ? 0 : payload.hashCode) +
-      success.hashCode +
-      message.hashCode +
-      (errors == null ? 0 : errors.hashCode) +
-      (errorType == null ? 0 : errorType.hashCode);
 
-  factory BaseResponseOfListOfConcentrationResponse.fromJson(
-    Map<String, dynamic> json,
-  ) => _$BaseResponseOfListOfConcentrationResponseFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$BaseResponseOfListOfConcentrationResponseToJson(this);
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is BaseResponseOfListOfConcentrationResponse &&
+      other.payload == payload &&
+      other.success == success &&
+      other.message == message &&
+      other.errors == errors &&
+      other.errorType == errorType;
+
+    @override
+    int get hashCode =>
+        (payload == null ? 0 : payload.hashCode) +
+        success.hashCode +
+        message.hashCode +
+        (errors == null ? 0 : errors.hashCode) +
+        (errorType == null ? 0 : errorType.hashCode);
+
+  factory BaseResponseOfListOfConcentrationResponse.fromJson(Map<String, dynamic> json) => _$BaseResponseOfListOfConcentrationResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BaseResponseOfListOfConcentrationResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
+
 }
+

@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_attribute_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,38 +19,65 @@ part 'update_attribute_request.g.dart';
 class UpdateAttributeRequest {
   /// Returns a new [UpdateAttributeRequest] instance.
   UpdateAttributeRequest({
-    required this.name,
 
-    this.description,
+    required  this.name,
 
-    required this.isVariantLevel,
+     this.description,
+
+    required  this.isVariantLevel,
   });
 
-  @JsonKey(name: r'name', required: true, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'name',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String name;
 
-  @JsonKey(name: r'description', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'description',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? description;
 
-  @JsonKey(name: r'isVariantLevel', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'isVariantLevel',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final bool isVariantLevel;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is UpdateAttributeRequest &&
-          other.name == name &&
-          other.description == description &&
-          other.isVariantLevel == isVariantLevel;
 
-  @override
-  int get hashCode =>
-      name.hashCode +
-      (description == null ? 0 : description.hashCode) +
-      isVariantLevel.hashCode;
 
-  factory UpdateAttributeRequest.fromJson(Map<String, dynamic> json) =>
-      _$UpdateAttributeRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is UpdateAttributeRequest &&
+      other.name == name &&
+      other.description == description &&
+      other.isVariantLevel == isVariantLevel;
+
+    @override
+    int get hashCode =>
+        name.hashCode +
+        (description == null ? 0 : description.hashCode) +
+        isVariantLevel.hashCode;
+
+  factory UpdateAttributeRequest.fromJson(Map<String, dynamic> json) => _$UpdateAttributeRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateAttributeRequestToJson(this);
 
@@ -57,4 +85,6 @@ class UpdateAttributeRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+
