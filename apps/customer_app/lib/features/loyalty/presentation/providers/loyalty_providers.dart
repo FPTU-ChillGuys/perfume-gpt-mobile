@@ -9,7 +9,7 @@ part 'loyalty_providers.g.dart';
 @riverpod
 LoyaltyRepository loyaltyRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return LoyaltyRepositoryImpl(apiClient.dio);
+  return LoyaltyRepositoryImpl(apiClient.getLoyaltyTransactionsApi());
 }
 
 @riverpod

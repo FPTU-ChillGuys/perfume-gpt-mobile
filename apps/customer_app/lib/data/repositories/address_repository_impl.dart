@@ -1,40 +1,32 @@
 import 'package:dio/dio.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/address.dart';
 import '../../domain/repositories/address_repository.dart';
 
-const _authExtra = <String, dynamic>{
-  'secure': <Map<String, String>>[
-    {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-  ],
-};
-
 class AddressRepositoryImpl implements AddressRepository {
-  final Dio _dio;
-  AddressRepositoryImpl(this._dio);
-
-  Options get _opts => Options(extra: _authExtra);
-  Options get _jsonOpts => Options(contentType: 'application/json', extra: _authExtra);
+  final AddressApi _api;
+  AddressRepositoryImpl(this._api);
 
   @override
   Future<List<Address>> getAll() async {
-    final r = await _dio.get<Map<String, dynamic>>('/api/address', options: _opts);
-    final list = (r.data?['payload'] as List?)?.cast<Map<String, dynamic>>() ?? [];
+    final response = await _api.apiAddressGet();
+    final list = response.data?.payload ?? [];
     return list.map(_map).toList();
   }
 
   @override
   Future<Address> getById(String id) async {
-    final r = await _dio.get<Map<String, dynamic>>('/api/address/$id', options: _opts);
-    return _map(r.data!['payload'] as Map<String, dynamic>);
+    final response = await _api.apiAddressIdGet(id: id);
+    return _map(response.data!.payload!);
   }
 
   @override
   Future<Address?> getDefault() async {
     try {
-      final r = await _dio.get<Map<String, dynamic>>('/api/address/default', options: _opts);
-      final payload = r.data?['payload'];
+      final response = await _api.apiAddressDefaultGet();
+      final payload = response.data?.payload;
       if (payload == null) return null;
-      return _map(payload as Map<String, dynamic>);
+      return _map(payload);
     } on DioException catch (e) {
       if (e.response?.statusCode == 404) return null;
       rethrow;
@@ -43,48 +35,61 @@ class AddressRepositoryImpl implements AddressRepository {
 
   @override
   Future<void> create(Address address) async {
-    await _dio.post('/api/address', options: _jsonOpts, data: _toJson(address));
+    await _api.apiAddressPost(
+      createAddressRequest: CreateAddressRequest(
+        recipientName: address.recipientName,
+        recipientPhoneNumber: address.recipientPhoneNumber,
+        street: address.street,
+        ward: address.ward,
+        district: address.district,
+        city: address.city,
+        wardCode: address.wardCode,
+        districtId: address.districtId,
+        provinceId: address.provinceId,
+        isDefault: address.isDefault,
+      ),
+    );
   }
 
   @override
   Future<void> update(String id, Address address) async {
-    await _dio.put('/api/address/$id', options: _jsonOpts, data: _toJson(address));
+    await _api.apiAddressIdPut(
+      id: id,
+      updateAddressRequest: UpdateAddressRequest(
+        recipientName: address.recipientName,
+        recipientPhoneNumber: address.recipientPhoneNumber,
+        street: address.street,
+        ward: address.ward,
+        district: address.district,
+        city: address.city,
+        wardCode: address.wardCode,
+        districtId: address.districtId,
+        provinceId: address.provinceId,
+      ),
+    );
   }
 
   @override
   Future<void> delete(String id) async {
-    await _dio.delete('/api/address/$id', options: _opts);
+    await _api.apiAddressIdDelete(id: id);
   }
 
   @override
   Future<void> setDefault(String id) async {
-    await _dio.put('/api/address/$id/set-default', options: _opts);
+    await _api.apiAddressIdSetDefaultPut(id: id);
   }
 
-  Address _map(Map<String, dynamic> j) => Address(
-        id: j['id'] as String? ?? '',
-        recipientName: j['recipientName'] as String? ?? '',
-        recipientPhoneNumber: j['recipientPhoneNumber'] as String? ?? '',
-        street: j['street'] as String? ?? '',
-        ward: j['ward'] as String? ?? '',
-        district: j['district'] as String? ?? '',
-        city: j['city'] as String? ?? '',
-        wardCode: j['wardCode'] as String? ?? '',
-        districtId: j['districtId'] as int? ?? 0,
-        provinceId: j['provinceId'] as int? ?? 0,
-        isDefault: j['isDefault'] as bool? ?? false,
+  Address _map(AddressResponse j) => Address(
+        id: j.id ?? '',
+        recipientName: j.recipientName,
+        recipientPhoneNumber: j.recipientPhoneNumber,
+        street: j.street,
+        ward: j.ward,
+        district: j.district,
+        city: j.city,
+        wardCode: j.wardCode,
+        districtId: j.districtId ?? 0,
+        provinceId: j.provinceId ?? 0,
+        isDefault: j.isDefault ?? false,
       );
-
-  Map<String, dynamic> _toJson(Address a) => {
-        'recipientName': a.recipientName,
-        'recipientPhoneNumber': a.recipientPhoneNumber,
-        'street': a.street,
-        'ward': a.ward,
-        'district': a.district,
-        'city': a.city,
-        'wardCode': a.wardCode,
-        'districtId': a.districtId,
-        'provinceId': a.provinceId,
-        'isDefault': a.isDefault,
-      };
 }

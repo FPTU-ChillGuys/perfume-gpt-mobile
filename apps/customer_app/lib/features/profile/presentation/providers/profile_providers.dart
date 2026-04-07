@@ -9,7 +9,10 @@ part 'profile_providers.g.dart';
 @riverpod
 ProfileRepository profileRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return ProfileRepositoryImpl(apiClient.dio);
+  return ProfileRepositoryImpl(
+    apiClient.getUsersApi(),
+    apiClient.getProfilesApi(),
+  );
 }
 
 @riverpod

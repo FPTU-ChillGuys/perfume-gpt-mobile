@@ -1,62 +1,59 @@
-import 'package:dio/dio.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/voucher.dart';
 import '../../domain/repositories/voucher_repository.dart';
 
-const _authExtra = <String, dynamic>{
-  'secure': <Map<String, String>>[
-    {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-  ],
-};
-
 class VoucherRepositoryImpl implements VoucherRepository {
-  final Dio _dio;
-  VoucherRepositoryImpl(this._dio);
-
-  Options get _opts => Options(extra: _authExtra);
+  final VouchersApi _api;
+  VoucherRepositoryImpl(this._api);
 
   @override
   Future<List<Voucher>> getAvailable() async {
-    final r = await _dio.get<Map<String, dynamic>>('/api/vouchers/available', options: _opts);
-    return _extractList(r.data).map(_map).toList();
+    final response = await _api.apiVouchersAvailableGet();
+    final list = response.data?.payload?.items ?? [];
+    return list.map(_mapAvailable).toList();
   }
 
   @override
   Future<List<Voucher>> getMyVouchers() async {
-    final r = await _dio.get<Map<String, dynamic>>('/api/vouchers/me', options: _opts);
-    return _extractList(r.data).map(_map).toList();
+    final response = await _api.apiVouchersMeGet();
+    final list = response.data?.payload?.items ?? [];
+    return list.map(_mapUserVoucher).toList();
   }
 
   @override
   Future<void> redeem(String voucherCode) async {
-    await _dio.post(
-      '/api/vouchers/redeem',
-      data: {'voucherCode': voucherCode},
-      options: Options(contentType: 'application/json', extra: _authExtra),
+    await _api.apiVouchersRedeemPost(
+      redeemVoucherRequest: RedeemVoucherRequest(voucherId: voucherCode),
     );
   }
 
-  List<Map<String, dynamic>> _extractList(Map<String, dynamic>? data) {
-    final payload = data?['payload'];
-    if (payload is List) return payload.cast<Map<String, dynamic>>();
-    if (payload is Map<String, dynamic>) {
-      final items = payload['items'] as List?;
-      if (items != null) return items.cast<Map<String, dynamic>>();
-    }
-    return [];
-  }
+  Voucher _mapAvailable(AvailableVoucherResponse j) => Voucher(
+        id: j.id?.toString() ?? '',
+        code: j.code,
+        description: null,
+        discountType: j.discountType?.name == 'percentage' ? 'Percentage' : 'FixedAmount',
+        discountValue: j.discountValue?.toDouble() ?? 0,
+        minOrderValue: j.minOrderValue?.toDouble(),
+        maxDiscount: null,
+        startDate: null,
+        endDate: j.expiryDate,
+        usageLimit: j.remainingQuantity,
+        usedCount: null,
+        isActive: true,
+      );
 
-  Voucher _map(Map<String, dynamic> j) => Voucher(
-        id: j['id'] as String? ?? '',
-        code: j['code'] as String? ?? '',
-        description: j['description'] as String?,
-        discountType: j['discountType'] as String? ?? 'Percentage',
-        discountValue: (j['discountValue'] as num?)?.toDouble() ?? 0,
-        minOrderValue: (j['minOrderValue'] as num?)?.toDouble(),
-        maxDiscount: (j['maxDiscount'] as num?)?.toDouble(),
-        startDate: j['startDate'] != null ? DateTime.tryParse(j['startDate'] as String) : null,
-        endDate: j['endDate'] != null ? DateTime.tryParse(j['endDate'] as String) : null,
-        usageLimit: j['usageLimit'] as int?,
-        usedCount: j['usedCount'] as int?,
-        isActive: j['isActive'] as bool? ?? true,
+  Voucher _mapUserVoucher(UserVoucherResponse j) => Voucher(
+        id: j.id?.toString() ?? '',
+        code: j.code,
+        description: null,
+        discountType: j.discountType,
+        discountValue: j.discountValue?.toDouble() ?? 0,
+        minOrderValue: j.minOrderValue?.toDouble(),
+        maxDiscount: null,
+        startDate: null,
+        endDate: j.expiryDate,
+        usageLimit: null,
+        usedCount: null,
+        isActive: ! (j.isUsed ?? false) && ! (j.isExpired ?? false),
       );
 }

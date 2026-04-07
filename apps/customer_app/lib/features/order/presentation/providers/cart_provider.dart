@@ -10,7 +10,7 @@ part 'cart_provider.g.dart';
 @riverpod
 CartRepository cartRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return CartRepositoryImpl(apiClient.dio);
+  return CartRepositoryImpl(apiClient.getCartApi());
 }
 
 @riverpod

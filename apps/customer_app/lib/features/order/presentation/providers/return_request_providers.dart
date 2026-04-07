@@ -9,7 +9,7 @@ part 'return_request_providers.g.dart';
 @riverpod
 ReturnRequestRepository returnRequestRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return ReturnRequestRepositoryImpl(apiClient.dio);
+  return ReturnRequestRepositoryImpl(apiClient.getOrderReturnRequestsApi());
 }
 
 @riverpod

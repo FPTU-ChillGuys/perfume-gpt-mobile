@@ -1,23 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../core/utils/image_url_helper.dart';
 import '../../domain/entities/order.dart';
 import '../../domain/repositories/order_repository.dart';
 
-const _authExtra = <String, dynamic>{
-  'secure': <Map<String, String>>[
-    {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-  ],
-};
-
 class OrderRepositoryImpl implements OrderRepository {
   final OrdersApi _ordersApi;
-  // ignore: unused_field - kept for potential future use
   final PaymentsApi _paymentsApi;
-  final Dio _dio;
 
-  OrderRepositoryImpl(this._ordersApi, this._paymentsApi, this._dio);
+  OrderRepositoryImpl(this._ordersApi, this._paymentsApi);
 
   @override
   Future<String> checkout(CheckoutRequest request) async {
@@ -93,226 +84,187 @@ class OrderRepositoryImpl implements OrderRepository {
     int? page,
     int? pageSize,
   }) async {
-    final queryParameters = <String, dynamic>{
-      if (status != null) 'Status': status,
-      if (type != null) 'Type': type,
-      if (paymentStatus != null) 'PaymentStatus': paymentStatus,
-      if (searchTerm != null) 'SearchTerm': searchTerm,
-      if (page != null) 'PageNumber': page,
-      'PageSize': pageSize ?? 20,
-      'SortBy': 'CreatedAt',
-      'SortOrder': 'desc',
-      'IsDescending': true,
-    };
-
-    try {
-      final response = await _dio.get<Map<String, dynamic>>(
-        '/api/orders/my-orders',
-        queryParameters: queryParameters,
-        options: Options(
-          extra: <String, dynamic>{
-            'secure': <Map<String, String>>[
-              {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-            ],
-          },
-        ),
-      );
-      return _parseMyOrdersFromRaw(response.data);
-    } on DioException catch (e) {
-      final statusCode = e.response?.statusCode;
-      if (statusCode != null && statusCode >= 200 && statusCode < 300) {
-        return _parseMyOrdersFromRaw(e.response?.data);
-      }
-      rethrow;
-    }
-  }
-
-  PaginatedOrders _parseMyOrdersFromRaw(dynamic raw) {
-    if (raw is! Map<String, dynamic>) {
-      return const PaginatedOrders(
-        items: [], totalCount: 0, totalPages: 0,
-        hasNextPage: false, hasPreviousPage: false,
+    OrderStatus? orderStatus;
+    if (status != null) {
+      orderStatus = OrderStatus.values.firstWhere(
+        (e) => e.name.toLowerCase() == status.toLowerCase(),
+        orElse: () => OrderStatus.pending,
       );
     }
-    final payload = raw['payload'] as Map<String, dynamic>?;
+
+    OrderType? orderType;
+    if (type != null) {
+      orderType = OrderType.values.firstWhere(
+        (e) => e.name.toLowerCase() == type.toLowerCase(),
+        orElse: () => OrderType.online,
+      );
+    }
+
+    PaymentStatus? pStatus;
+    if (paymentStatus != null) {
+      pStatus = PaymentStatus.values.firstWhere(
+        (e) => e.name.toLowerCase() == paymentStatus.toLowerCase(),
+        orElse: () => PaymentStatus.unpaid,
+      );
+    }
+
+    final response = await _ordersApi.apiOrdersMyOrdersGet(
+      status: orderStatus,
+      type: orderType,
+      paymentStatus: pStatus,
+      searchTerm: searchTerm,
+      pageNumber: page,
+      pageSize: pageSize ?? 20,
+      sortBy: 'CreatedAt',
+      sortOrder: 'desc',
+      isDescending: true,
+    );
+    final payload = response.data?.payload;
     if (payload == null) {
       return const PaginatedOrders(
-        items: [], totalCount: 0, totalPages: 0,
-        hasNextPage: false, hasPreviousPage: false,
+        items: [],
+        totalCount: 0,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPreviousPage: false,
       );
     }
-    final rawItems = (payload['items'] as List?)?.cast<Map<String, dynamic>>() ?? [];
-    final items = rawItems.map((o) {
-        final details = (o['orderDetails'] as List?)?.cast<Map<String, dynamic>>() ?? [];
-        return OrderSummary(
-          id: (o['id'] ?? '').toString(),
-          code: (o['code'] ?? '').toString(),
-          type: o['type']?.toString(),
-          status: o['status']?.toString(),
-          paymentStatus: o['paymentStatus']?.toString(),
-          totalAmount: (o['totalAmount'] as num? ?? 0).toDouble(),
-          itemCount: o['itemCount'] as int?,
-          isReturnable: o['isReturnalbe'] as bool?,
-          shippingStatus: o['shippingStatus']?.toString(),
-          createdAt: o['createdAt'] != null ? DateTime.tryParse(o['createdAt'].toString()) : null,
-          orderDetails: details.map((d) => OrderDetailItem(
-            id: (d['id'] ?? '').toString(),
-            variantId: (d['variantId'] ?? '').toString(),
-            variantName: (d['variantName'] ?? '').toString(),
-            imageUrl: d['imageUrl'] != null ? ImageUrlHelper.resolve(d['imageUrl'].toString()) : null,
-            quantity: (d['quantity'] as num? ?? 0).toInt(),
-            unitPrice: (d['unitPrice'] as num? ?? 0).toDouble(),
-            total: (d['total'] as num? ?? 0).toDouble(),
-          )).toList(),
-        );
-      }).toList()
-        ..sort((a, b) {
-          final aDate = a.createdAt;
-          final bDate = b.createdAt;
-          if (aDate == null && bDate == null) return 0;
-          if (aDate == null) return 1;
-          if (bDate == null) return -1;
-          return bDate.compareTo(aDate); // newest first
-        });
+    final items = payload.items.map((o) {
+      return OrderSummary(
+        id: o.id?.toString() ?? '',
+        code: o.code,
+        type: o.type?.name,
+        status: o.status?.name,
+        paymentStatus: o.paymentStatus?.name,
+        totalAmount: o.totalAmount?.toDouble() ?? 0.0,
+        itemCount: o.itemCount,
+        isReturnable: o.isReturnalbe ?? false,
+        shippingStatus: o.shippingStatus?.name,
+        createdAt: o.createdAt,
+        orderDetails: o.orderDetails
+            .map(
+              (d) => OrderDetailItem(
+                id: d.id?.toString() ?? '',
+                variantId: d.variantId?.toString() ?? '',
+                variantName: d.variantName,
+                imageUrl: ImageUrlHelper.resolve(d.imageUrl ?? ''),
+                quantity: d.quantity ?? 0,
+                unitPrice: d.unitPrice?.toDouble() ?? 0.0,
+                total: d.total?.toDouble() ?? 0.0,
+              ),
+            )
+            .toList(),
+      );
+    }).toList();
     return PaginatedOrders(
       items: items,
-      totalCount: (payload['totalCount'] as num? ?? 0).toInt(),
-      totalPages: (payload['totalPages'] as num? ?? 0).toInt(),
-      hasNextPage: payload['hasNextPage'] as bool? ?? false,
-      hasPreviousPage: payload['hasPreviousPage'] as bool? ?? false,
+      totalCount: payload.totalCount,
+      totalPages: payload.totalPages ?? 0,
+      hasNextPage: payload.hasNextPage ?? false,
+      hasPreviousPage: payload.hasPreviousPage ?? false,
     );
   }
 
   @override
   Future<OrderDetail> getOrderDetail(String orderId) async {
-    try {
-      final response = await _dio.get<Map<String, dynamic>>(
-        '/api/orders/my-orders/$orderId',
-        options: Options(
-          extra: <String, dynamic>{
-            'secure': <Map<String, String>>[
-              {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-            ],
-          },
-        ),
-      );
-      return _parseOrderDetailFromRaw(response.data);
-    } on DioException catch (e) {
-      final status = e.response?.statusCode;
-      if (status != null && status >= 200 && status < 300) {
-        return _parseOrderDetailFromRaw(e.response?.data);
-      }
-      rethrow;
-    }
-  }
-
-  OrderDetail _parseOrderDetailFromRaw(dynamic raw) {
-    final data = raw is Map<String, dynamic> ? raw : <String, dynamic>{};
-    final o = data['payload'] as Map<String, dynamic>? ?? {};
-    final txns = (o['paymentTransactions'] as List?)?.cast<Map<String, dynamic>>() ?? [];
-    debugPrint('[getOrderDetail] orderId=${o['id']}, txns=$txns');
-    final shipping = o['shippingInfo'] as Map<String, dynamic>?;
-    final recipient = o['recipientInfo'] as Map<String, dynamic>?;
-    final details = (o['orderDetails'] as List?)?.cast<Map<String, dynamic>>() ?? [];
+    final response = await _ordersApi.apiOrdersMyOrdersOrderIdGet(
+      orderId: orderId,
+    );
+    final o = response.data!.payload!;
     return OrderDetail(
-      id: (o['id'] ?? '').toString(),
-      code: (o['code'] ?? '').toString(),
-      type: o['type']?.toString(),
-      status: o['status']?.toString(),
-      isReturnable: o['isReturnable'] as bool?,
-      paymentStatus: o['paymentStatus']?.toString(),
-      totalAmount: (o['totalAmount'] as num? ?? 0).toDouble(),
-      voucherCode: o['voucherCode']?.toString(),
-      paymentExpiresAt: o['paymentExpiresAt'] != null ? DateTime.tryParse(o['paymentExpiresAt'].toString()) : null,
-      paidAt: o['paidAt'] != null ? DateTime.tryParse(o['paidAt'].toString()) : null,
-      createdAt: o['createdAt'] != null ? DateTime.tryParse(o['createdAt'].toString()) : null,
-      updatedAt: o['updatedAt'] != null ? DateTime.tryParse(o['updatedAt'].toString()) : null,
-      paymentTransactions: txns.map((p) => PaymentTransaction(
-        id: (p['id'] ?? '').toString(),
-        transactionType: p['transactionType']?.toString(),
-        status: p['status']?.toString(),
-        paymentMethod: p['paymentMethod']?.toString(),
-        failureReason: p['failureReason']?.toString(),
-        totalAmount: (p['totalAmount'] as num? ?? 0).toDouble(),
-      )).toList(),
-      shippingInfo: shipping != null ? ShippingInfo(
-        carrierName: shipping['carrierName']?.toString(),
-        trackingNumber: shipping['trackingNumber']?.toString(),
-        shippingFee: (shipping['shippingFee'] as num? ?? 0).toDouble(),
-        status: shipping['status']?.toString(),
-        estimatedDeliveryDate: shipping['estimatedDeliveryDate'] != null
-            ? DateTime.tryParse(shipping['estimatedDeliveryDate'].toString())
-            : null,
-      ) : null,
-      recipientInfo: recipient != null ? RecipientInfo(
-        name: recipient['recipientName']?.toString(),
-        phoneNumber: recipient['recipientPhoneNumber']?.toString(),
-        districtName: recipient['districtName']?.toString(),
-        wardName: recipient['wardName']?.toString(),
-        provinceName: recipient['provinceName']?.toString(),
-        fullAddress: recipient['fullAddress']?.toString(),
-      ) : null,
-      orderDetails: details.map((d) => OrderDetailItem(
-        id: (d['id'] ?? '').toString(),
-        variantId: (d['variantId'] ?? '').toString(),
-        variantName: (d['variantName'] ?? '').toString(),
-        imageUrl: d['imageUrl'] != null ? ImageUrlHelper.resolve(d['imageUrl'].toString()) : null,
-        quantity: (d['quantity'] as num? ?? 0).toInt(),
-        unitPrice: (d['unitPrice'] as num? ?? 0).toDouble(),
-        total: (d['total'] as num? ?? 0).toDouble(),
-      )).toList(),
+      id: o.id?.toString() ?? '',
+      code: o.code,
+      type: o.type?.name,
+      status: o.status?.name,
+      isReturnable: o.isReturnable ?? false,
+      paymentStatus: o.paymentStatus?.name,
+      totalAmount: o.totalAmount?.toDouble() ?? 0.0,
+      voucherCode: o.voucherCode,
+      paymentExpiresAt: o.paymentExpiresAt,
+      paidAt: o.paidAt,
+      createdAt: o.createdAt,
+      updatedAt: o.updatedAt,
+      paymentTransactions:
+          o.paymentTransactions
+              ?.map(
+                (p) => PaymentTransaction(
+                  id: p.id?.toString() ?? '',
+                  transactionType: p.transactionType?.name,
+                  status: p.status?.name,
+                  paymentMethod: p.paymentMethod?.name,
+                  failureReason: p.failureReason,
+                  totalAmount: p.totalAmount?.toDouble() ?? 0.0,
+                ),
+              )
+              .toList() ??
+          [],
+      shippingInfo: o.shippingInfo != null
+          ? ShippingInfo(
+              carrierName: o.shippingInfo!.carrierName?.name,
+              trackingNumber: o.shippingInfo!.trackingNumber,
+              shippingFee: o.shippingInfo!.shippingFee?.toDouble() ?? 0.0,
+              status: o.shippingInfo!.status?.name,
+              estimatedDeliveryDate: o.shippingInfo!.estimatedDeliveryDate,
+            )
+          : null,
+      recipientInfo: o.recipientInfo != null
+          ? RecipientInfo(
+              name: o.recipientInfo!.recipientName,
+              phoneNumber: o.recipientInfo!.recipientPhoneNumber,
+              districtName: o.recipientInfo!.districtName,
+              wardName: o.recipientInfo!.wardName,
+              provinceName: o.recipientInfo!.provinceName,
+              fullAddress: o.recipientInfo!.fullAddress,
+            )
+          : null,
+      orderDetails: o.orderDetails
+          .map(
+            (d) => OrderDetailItem(
+              id: d.id?.toString() ?? '',
+              variantId: d.variantId?.toString() ?? '',
+              variantName: d.variantName,
+              imageUrl: ImageUrlHelper.resolve(d.imageUrl ?? ''),
+              quantity: d.quantity ?? 0,
+              unitPrice: d.unitPrice?.toDouble() ?? 0.0,
+              total: d.total?.toDouble() ?? 0.0,
+            ),
+          )
+          .toList(),
     );
   }
 
   @override
   Future<Invoice> getInvoice(String orderId) async {
-    try {
-      final response = await _dio.get<Map<String, dynamic>>(
-        '/api/orders/my-orders/$orderId/invoice',
-        options: Options(
-          extra: <String, dynamic>{
-            'secure': <Map<String, String>>[
-              {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-            ],
-          },
-        ),
-      );
-      return _parseInvoiceFromRaw(response.data);
-    } on DioException catch (e) {
-      final status = e.response?.statusCode;
-      if (status != null && status >= 200 && status < 300) {
-        return _parseInvoiceFromRaw(e.response?.data);
-      }
-      rethrow;
-    }
-  }
-
-  Invoice _parseInvoiceFromRaw(dynamic raw) {
-    final data = raw is Map<String, dynamic> ? raw : <String, dynamic>{};
-    final r = data['payload'] as Map<String, dynamic>? ?? {};
-    final rawItems = (r['items'] as List?)?.cast<Map<String, dynamic>>() ?? [];
+    final response = await _ordersApi.apiOrdersMyOrdersOrderIdInvoiceGet(
+      orderId: orderId,
+    );
+    final r = response.data!.payload!;
     return Invoice(
-      orderId: r['orderId']?.toString(),
-      code: (r['code'] ?? '').toString(),
-      orderDate: r['orderDate'] != null ? DateTime.tryParse(r['orderDate'].toString()) : null,
-      orderStatus: (r['orderStatus'] ?? '').toString(),
-      staffName: (r['staffName'] ?? '').toString(),
-      customerName: (r['customerName'] ?? '').toString(),
-      recipientPhone: (r['recipientPhone'] ?? '').toString(),
-      recipientAddress: (r['recipientAddress'] ?? '').toString(),
-      items: rawItems.map((i) => InvoiceItem(
-        productName: (i['productName'] ?? '').toString(),
-        variantInfo: (i['variantInfo'] ?? '').toString(),
-        quantity: (i['quantity'] as num? ?? 0).toInt(),
-        unitPrice: (i['unitPrice'] as num? ?? 0).toDouble(),
-        subtotal: (i['subtotal'] as num? ?? 0).toDouble(),
-      )).toList(),
-      subtotal: (r['subtotal'] as num? ?? 0).toDouble(),
-      discount: (r['discount'] as num? ?? 0).toDouble(),
-      tax: (r['tax'] as num? ?? 0).toDouble(),
-      total: (r['total'] as num? ?? 0).toDouble(),
-      paymentMethod: (r['paymentMethod'] ?? '').toString(),
-      note: r['note']?.toString(),
+      orderId: r.orderId?.toString(),
+      code: r.code,
+      orderDate: r.orderDate,
+      orderStatus: r.orderStatus,
+      staffName: r.staffName,
+      customerName: r.customerName,
+      recipientPhone: r.recipientPhone,
+      recipientAddress: r.recipientAddress,
+      items: r.items
+          .map(
+            (i) => InvoiceItem(
+              productName: i.productName,
+              variantInfo: i.variantInfo,
+              quantity: i.quantity ?? 0,
+              unitPrice: i.unitPrice?.toDouble() ?? 0.0,
+              subtotal: i.subtotal?.toDouble() ?? 0.0,
+            ),
+          )
+          .toList(),
+      subtotal: r.subtotal?.toDouble() ?? 0.0,
+      discount: r.discount?.toDouble() ?? 0.0,
+      tax: r.tax?.toDouble() ?? 0.0,
+      total: r.total?.toDouble() ?? 0.0,
+      paymentMethod: r.paymentMethod,
+      note: r.note,
     );
   }
 
@@ -337,109 +289,77 @@ class OrderRepositoryImpl implements OrderRepository {
       );
     }
 
-    try {
-      await _ordersApi.apiOrdersOrderIdAddressPut(
-        orderId: orderId,
-        updateOrderAddressRequest: UpdateOrderAddressRequest(
-          savedAddressId: savedAddressId,
-          recipientInformation: recipientInfo,
-        ),
-      );
-    } on DioException catch (e) {
-      final status = e.response?.statusCode;
-      if (status != null && status >= 200 && status < 300) return;
-      final message = e.response?.data is Map
-          ? (e.response!.data as Map)['message']?.toString()
-          : null;
-      throw Exception(message ?? 'Failed to update address');
-    }
+    await _ordersApi.apiOrdersOrderIdAddressPut(
+      orderId: orderId,
+      updateOrderAddressRequest: UpdateOrderAddressRequest(
+        savedAddressId: savedAddressId,
+        recipientInformation: recipientInfo,
+      ),
+    );
   }
 
   @override
-  Future<void> cancelOrder(String orderId, String reason, {
+  Future<void> cancelOrder(
+    String orderId,
+    String reason, {
     String? refundBankName,
     String? refundAccountNumber,
     String? refundAccountName,
   }) async {
-    final data = <String, dynamic>{
-      'reason': reason,
-    };
-    if (refundBankName != null) data['refundBankName'] = refundBankName;
-    if (refundAccountNumber != null) data['refundAccountNumber'] = refundAccountNumber;
-    if (refundAccountName != null) data['refundAccountName'] = refundAccountName;
+    CancelOrderReason? cancelReason;
+    cancelReason = CancelOrderReason.values.firstWhere(
+      (e) => e.name.toLowerCase() == reason.toLowerCase(),
+      orElse: () => CancelOrderReason.changedMind,
+    );
 
-    try {
-      await _dio.post(
-        '/api/orders/$orderId/cancel',
-        options: Options(contentType: 'application/json', extra: _authExtra),
-        data: data,
-      );
-    } on DioException catch (e) {
-      final status = e.response?.statusCode;
-      if (status != null && status >= 200 && status < 300) return;
-      rethrow;
-    }
+    await _ordersApi.apiOrdersOrderIdCancelPost(
+      orderId: orderId,
+      userCancelOrderRequest: UserCancelOrderRequest(
+        reason: cancelReason,
+        refundBankName: refundBankName,
+        refundAccountNumber: refundAccountNumber,
+        refundAccountName: refundAccountName,
+      ),
+    );
   }
 
   @override
   Future<String> retryPayment(String paymentId, String paymentMethod) async {
-    debugPrint('[retryPayment] paymentId=$paymentId, method=$paymentMethod');
-    try {
-      final response = await _dio.post<dynamic>(
-        '/api/payments/$paymentId/retry',
-        data: {'method': paymentMethod},
-        options: Options(
-          contentType: 'application/json',
-          extra: <String, dynamic>{
-            'secure': <Map<String, String>>[
-              {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-            ],
-          },
-        ),
-      );
-      final data = response.data;
-      if (data is Map<String, dynamic>) {
-        return (data['payload'] as String?) ?? '';
-      }
-      return '';
-    } on DioException catch (e) {
-      final status = e.response?.statusCode;
-      if (status != null && status >= 200 && status < 300) {
-        final data = e.response?.data;
-        if (data is Map<String, dynamic>) {
-          return (data['payload'] as String?) ?? '';
-        }
-        return '';
-      }
-      final message = e.response?.data is Map
-          ? (e.response!.data as Map)['message']?.toString()
-          : null;
-      throw Exception(message ?? 'Retry payment failed');
+    PaymentMethod? method;
+    switch (paymentMethod) {
+      case 'VnPay':
+        method = PaymentMethod.vnPay;
+        break;
+      case 'Momo':
+        method = PaymentMethod.momo;
+        break;
+      case 'CashOnDelivery':
+        method = PaymentMethod.cashOnDelivery;
+        break;
+      case 'CashInStore':
+        method = PaymentMethod.cashInStore;
+        break;
     }
+
+    final response = await _paymentsApi.apiPaymentsPaymentIdRetryPost(
+      paymentId: paymentId,
+      paymentInformation: PaymentInformation(method: method),
+    );
+    return response.data?.payload ?? '';
   }
 
   @override
-  Future<void> confirmPayment(String paymentId, {required bool isSuccess, String? failureReason}) async {
-    try {
-      await _dio.put<Map<String, dynamic>>(
-        '/api/payments/$paymentId/confirm',
-        data: {
-          'isSuccess': isSuccess,
-          'failureReason': failureReason,
-        },
-        options: Options(
-          contentType: 'application/json',
-          extra: <String, dynamic>{
-            'secure': <Map<String, String>>[
-              {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-            ],
-          },
-        ),
-      );
-    } on DioException catch (e) {
-      final status = e.response?.statusCode;
-      if (status != null && status >= 200 && status < 300) return;
-      rethrow;
-    }
+  Future<void> confirmPayment(
+    String paymentId, {
+    required bool isSuccess,
+    String? failureReason,
+  }) async {
+    await _paymentsApi.apiPaymentsPaymentIdConfirmPut(
+      paymentId: paymentId,
+      confirmPaymentRequest: ConfirmPaymentRequest(
+        isSuccess: isSuccess,
+        failureReason: failureReason,
+      ),
+    );
   }
 }
