@@ -1060,6 +1060,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
 
     String cancelReason = '';
     bool isSubmitting = false;
+    final needRefund = order.paymentStatus == 'Paid';
+    String refundBankName = '';
+    String refundAccountNumber = '';
+    String refundAccountName = '';
 
     showDialog(
       context: context,
@@ -1106,6 +1110,39 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     );
                   }).toList(),
                 ),
+                if (needRefund) ...[
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  const SizedBox(height: 8),
+                  Text('Thông tin hoàn tiền',
+                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: Colors.grey[700])),
+                  const SizedBox(height: 12),
+                  TextField(
+                    onChanged: (v) => setDialogState(() => refundBankName = v),
+                    decoration: const InputDecoration(
+                      labelText: 'Tên ngân hàng',
+                      hintText: 'VD: Vietcombank',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    onChanged: (v) => setDialogState(() => refundAccountNumber = v),
+                    decoration: const InputDecoration(
+                      labelText: 'Số tài khoản',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    onChanged: (v) => setDialogState(() => refundAccountName = v),
+                    decoration: const InputDecoration(
+                      labelText: 'Tên chủ tài khoản',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -1140,7 +1177,13 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                       try {
                         await ref
                             .read(orderRepositoryProvider)
-                            .cancelOrder(order.id, reasonEnum);
+                            .cancelOrder(
+                              order.id,
+                              reasonEnum,
+                              refundBankName: needRefund && refundBankName.trim().isNotEmpty ? refundBankName.trim() : null,
+                              refundAccountNumber: needRefund && refundAccountNumber.trim().isNotEmpty ? refundAccountNumber.trim() : null,
+                              refundAccountName: needRefund && refundAccountName.trim().isNotEmpty ? refundAccountName.trim() : null,
+                            );
                         if (ctx.mounted) Navigator.pop(ctx);
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
