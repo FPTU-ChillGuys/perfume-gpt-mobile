@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../providers/order_provider.dart';
 
 /// Opens a payment URL (VNPay/Momo) in an in-app WebView.
@@ -22,11 +23,12 @@ class PaymentWebViewPage extends ConsumerStatefulWidget {
 }
 
 class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
-  late final WebViewController _controller;
+  WebViewController? _controller;
   bool _isLoading = true;
   bool _isProcessing = false;
   String _title = 'Thanh toán';
   String? _paymentIdFromUrl;
+  bool _isPlatformSupported = true;
 
   /// The return URL pattern from VNPay/Momo that we need to intercept.
   static const _returnPatterns = [
@@ -40,28 +42,51 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
     // Try to extract vnp_TxnRef (paymentId) from the payment URL
     final uri = Uri.tryParse(widget.paymentUrl);
     _paymentIdFromUrl = uri?.queryParameters['vnp_TxnRef'];
-    _controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onNavigationRequest: _onNavigationRequest,
-          onPageStarted: (_) {
-            if (mounted) setState(() => _isLoading = true);
-          },
-          onPageFinished: (url) {
-            if (mounted) setState(() => _isLoading = false);
-            _controller.getTitle().then((t) {
-              if (t != null && t.isNotEmpty && mounted) {
-                setState(() => _title = t);
-              }
-            });
-          },
-          onWebResourceError: (error) {
-            // Web resource errors are expected during payment redirects
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse(widget.paymentUrl));
+
+    _checkPlatformAndInit();
+  }
+
+  void _checkPlatformAndInit() {
+    // Check if current platform is supported by webview_flutter
+    if (kIsWeb ||
+        (!Platform.isAndroid && !Platform.isIOS && !Platform.isMacOS)) {
+      setState(() {
+        _isPlatformSupported = false;
+        _isLoading = false;
+      });
+      return;
+    }
+
+    try {
+      _controller = WebViewController()
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onNavigationRequest: _onNavigationRequest,
+            onPageStarted: (_) {
+              if (mounted) setState(() => _isLoading = true);
+            },
+            onPageFinished: (url) {
+              if (mounted) setState(() => _isLoading = false);
+              _controller?.getTitle().then((t) {
+                if (t != null && t.isNotEmpty && mounted) {
+                  setState(() => _title = t);
+                }
+              });
+            },
+            onWebResourceError: (error) {
+              // Web resource errors are expected during payment redirects
+            },
+          ),
+        )
+        ..loadRequest(Uri.parse(widget.paymentUrl));
+    } catch (e) {
+      debugPrint('WebView initialization error: $e');
+      setState(() {
+        _isPlatformSupported = false;
+        _isLoading = false;
+      });
+    }
   }
 
   /// Intercept navigation to the return URL.
@@ -245,10 +270,90 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
                 ],
               ),
             )
+          else if (!_isPlatformSupported)
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.language, size: 64, color: Colors.blue),
+                    const SizedBox(height: 24),
+                    const Text(
+                      'Thanh toán qua trình duyệt',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Tính năng thanh toán trong ứng dụng không hỗ trợ trên nền tảng này. Vui lòng nhấn nút bên dưới để mở trang thanh toán trong trình duyệt của bạn.',
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 32),
+                    FilledButton.icon(
+                      onPressed: () => _launchPaymentUrl(),
+                      icon: const Icon(Icons.open_in_browser),
+                      label: const Text('Mở trang thanh toán'),
+                    ),
+                    const SizedBox(height: 16),
+                    TextButton(
+                      onPressed: () => context.pop(),
+                      child: const Text('Quay lại'),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          else if (_controller != null)
+            WebViewWidget(controller: _controller!)
           else
-            WebViewWidget(controller: _controller),
-          if (_isLoading && !_isProcessing)
+            const Center(child: Text('Đang khởi tạo trình duyệt...')),
+          if (_isLoading && !_isProcessing && _isPlatformSupported)
             const LinearProgressIndicator(),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _launchPaymentUrl() async {
+    final uri = Uri.parse(widget.paymentUrl);
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+        if (mounted) {
+          _showExternalLaunchInstructions();
+        }
+      } else {
+        throw 'Could not launch $uri';
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Không thể mở trang thanh toán: $e')),
+        );
+      }
+    }
+  }
+
+  void _showExternalLaunchInstructions() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Đã mở trang thanh toán'),
+        content: const Text(
+          'Vui lòng hoàn tất thanh toán trong trình duyệt của bạn. '
+          'Sau khi hoàn tất, hãy quay lại đây để kiểm tra trạng thái đơn hàng.',
+        ),
+        actions: [
+          FilledButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              context.go('/');
+              context.push('/orders');
+            },
+            child: const Text('Xem đơn hàng của tôi'),
+          ),
         ],
       ),
     );
