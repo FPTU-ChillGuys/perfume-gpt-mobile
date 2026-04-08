@@ -4,6 +4,7 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import '../../../../data/repositories/product_repository_impl.dart';
 import '../providers/cart_providers.dart';
 import '../../../../core/utils/price_formatter.dart';
+import 'scanner_screen.dart';
 
 class PosScreen extends ConsumerWidget {
   const PosScreen({super.key});
@@ -41,9 +42,48 @@ class PosScreen extends ConsumerWidget {
                 Expanded(
                   child: TextField(
                     controller: skuController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Scan or Enter SKU',
-                      prefixIcon: Icon(Icons.qr_code_scanner),
+                      prefixIcon: IconButton(
+                        icon: const Icon(Icons.qr_code_scanner),
+                        onPressed: () async {
+                          final scannedSku = await Navigator.push<String>(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ScannerScreen(),
+                            ),
+                          );
+
+                          if (scannedSku != null && context.mounted) {
+                            final product = await ref
+                                .read(productRepositoryProvider)
+                                .getProductBySku(scannedSku);
+                            if (product != null) {
+                              ref
+                                  .read(posCartProvider.notifier)
+                                  .addProduct(product);
+                            } else {
+                              if (context.mounted) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Error'),
+                                    content: Text(
+                                      'Product with SKU "$scannedSku" not found.',
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                            }
+                          }
+                        },
+                      ),
                     ),
                     onSubmitted: (value) async {
                       final product = await ref
