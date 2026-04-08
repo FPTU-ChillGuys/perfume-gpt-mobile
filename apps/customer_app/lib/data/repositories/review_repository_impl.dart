@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/review.dart';
 import '../../domain/repositories/review_repository.dart';
@@ -115,7 +117,7 @@ class ReviewRepositoryImpl implements ReviewRepository {
     List<({String filename, Uint8List bytes})> images,
   ) async {
     final response = await _api.apiReviewsImagesTemporaryPost(
-      images: images,
+      images: images.map((e) => MultipartFile.fromBytes(e.bytes, filename: e.filename, contentType: MediaType('image', 'jpeg'))).toList(),
     );
     final data = response.data?.payload?.data ?? [];
     return data.map((m) => m.id ?? '').where((id) => id.isNotEmpty).toList();

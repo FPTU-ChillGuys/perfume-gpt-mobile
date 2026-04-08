@@ -108,7 +108,7 @@ final class CartProvider extends $AsyncNotifierProvider<Cart, List<CartItem>> {
         argument: null,
         retry: null,
         name: r'cartProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -121,7 +121,7 @@ final class CartProvider extends $AsyncNotifierProvider<Cart, List<CartItem>> {
   Cart create() => Cart();
 }
 
-String _$cartHash() => r'3f99c940dc3d6b28be53886e8726319cbf5dcd20';
+String _$cartHash() => r'af583336575feeefda6f51b243ce64b0933ae79a';
 
 abstract class _$Cart extends $AsyncNotifier<List<CartItem>> {
   FutureOr<List<CartItem>> build();
@@ -140,6 +140,97 @@ abstract class _$Cart extends $AsyncNotifier<List<CartItem>> {
     element.handleCreate(ref, build);
   }
 }
+
+@ProviderFor(SelectedCartItemIds)
+final selectedCartItemIdsProvider = SelectedCartItemIdsProvider._();
+
+final class SelectedCartItemIdsProvider
+    extends $NotifierProvider<SelectedCartItemIds, Set<String>> {
+  SelectedCartItemIdsProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'selectedCartItemIdsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$selectedCartItemIdsHash();
+
+  @$internal
+  @override
+  SelectedCartItemIds create() => SelectedCartItemIds();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Set<String> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Set<String>>(value),
+    );
+  }
+}
+
+String _$selectedCartItemIdsHash() =>
+    r'e966b5af25974b942e3b7b113089a2eae287c32b';
+
+abstract class _$SelectedCartItemIds extends $Notifier<Set<String>> {
+  Set<String> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<Set<String>, Set<String>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<Set<String>, Set<String>>,
+              Set<String>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(selectedCartTotal)
+final selectedCartTotalProvider = SelectedCartTotalProvider._();
+
+final class SelectedCartTotalProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<CartTotal>,
+          CartTotal,
+          FutureOr<CartTotal>
+        >
+    with $FutureModifier<CartTotal>, $FutureProvider<CartTotal> {
+  SelectedCartTotalProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'selectedCartTotalProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$selectedCartTotalHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<CartTotal> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<CartTotal> create(Ref ref) {
+    return selectedCartTotal(ref);
+  }
+}
+
+String _$selectedCartTotalHash() => r'2f9822f7607fef14374811d6d4ed80cd98e9187d';
 
 @ProviderFor(cartTotal)
 final cartTotalProvider = CartTotalProvider._();
@@ -177,4 +268,4 @@ final class CartTotalProvider
   }
 }
 
-String _$cartTotalHash() => r'2cbc3dc5dafe60af92a2188d871a604a685b3a8a';
+String _$cartTotalHash() => r'5cce10c7226f444ed0f66de246d65f9b0dace152';

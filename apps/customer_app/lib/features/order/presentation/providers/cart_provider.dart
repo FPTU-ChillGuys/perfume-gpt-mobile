@@ -23,40 +23,92 @@ CartRepository cartRepository(Ref ref) {
   return CartRepositoryImpl(cartApi, localDataSource);
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class Cart extends _$Cart {
+  static const _tokenKey = 'auth_token';
+  int _generation = 0;
+
+  Future<bool> _checkAuth(dynamic storage, dynamic apiClient) async {
+    final token = await storage.read(key: _tokenKey);
+    if (token != null && token.isNotEmpty) {
+      apiClient.setBearerAuth('Bearer', token);
+      return true;
+    }
+    return false;
+  }
+
+  Future<List<CartItem>> _fetchItems() async {
+    final storage = ref.read(flutterSecureStorageProvider);
+    final apiClient = ref.read(apiClientProvider);
+    final repository = ref.read(cartRepositoryProvider);
+    final localDs = ref.read(localCartDataSourceProvider);
+
+    final token = await storage.read(key: _tokenKey);
+    final isAuthenticated = token != null && token.isNotEmpty;
+    if (isAuthenticated) {
+      apiClient.setBearerAuth('Bearer', token);
+      localDs.clearCart();
+    }
+    return repository.getItems(isAuthenticated: isAuthenticated);
+  }
+
   @override
   FutureOr<List<CartItem>> build() async {
-    final isAuthenticated = ref.watch(authProvider).asData?.value != null;
-    return ref.watch(cartRepositoryProvider).getItems(isAuthenticated: isAuthenticated);
+    final gen = ++_generation;
+    final items = await _fetchItems();
+    if (_generation != gen) return state.asData?.value ?? [];
+    return items;
+  }
+
+  Future<void> reload() async {
+    final gen = ++_generation;
+    state = const AsyncValue.loading();
+    try {
+      final items = await _fetchItems();
+      if (_generation != gen) return;
+      state = AsyncValue.data(items);
+    } catch (e, st) {
+      if (_generation != gen) return;
+      state = AsyncValue.error(e, st);
+    }
   }
 
   Future<void> addItem(String variantId, {int quantity = 1}) async {
-    final isAuthenticated = ref.read(authProvider).asData?.value != null;
+    final gen = _generation;
+    final repository = ref.read(cartRepositoryProvider);
+    final storage = ref.read(flutterSecureStorageProvider);
+    final apiClient = ref.read(apiClientProvider);
     final previousState = state;
-    
-    // For simple add, we can't easily do optimistic update if it's a new item 
-    // because we don't have the product info here.
-    // So for guest mode we prefer addProduct.
-    
+
+    final isAuthenticated = await _checkAuth(storage, apiClient);
+    if (_generation != gen) return;
+
     try {
-      await ref.read(cartRepositoryProvider).addItem(variantId, quantity: quantity, isAuthenticated: isAuthenticated);
-      ref.invalidateSelf();
+      await repository.addItem(variantId, quantity: quantity, isAuthenticated: isAuthenticated);
+      if (_generation != gen) return;
+      final items = await repository.getItems(isAuthenticated: isAuthenticated);
+      if (_generation != gen) return;
+      state = AsyncValue.data(items);
     } catch (e) {
+      if (_generation != gen) return;
       state = previousState;
       rethrow;
     }
   }
 
-  // Wrapper that supports optimistic update and guest cart with full info
   Future<void> addProduct(Product product, {String? variantId}) async {
-    final isAuthenticated = ref.read(authProvider).asData?.value != null;
-    final targetVariantId = variantId ?? product.id;
+    final gen = _generation;
+    final repository = ref.read(cartRepositoryProvider);
+    final storage = ref.read(flutterSecureStorageProvider);
+    final apiClient = ref.read(apiClientProvider);
 
-    // Optimistic Update
+    final isAuthenticated = await _checkAuth(storage, apiClient);
+    if (_generation != gen) return;
+
+    final targetVariantId = variantId ?? product.id;
     final previousState = state;
     final currentItems = state.asData?.value ?? [];
-    
+
     final newItem = CartItem(
       variantId: targetVariantId,
       variantName: product.name + (variantId != null ? ' (Variant)' : ''),
@@ -82,21 +134,21 @@ class Cart extends _$Cart {
     } else {
       updatedItems = [...currentItems, newItem];
     }
-    
+
     state = AsyncValue.data(updatedItems);
 
     try {
-      final repository = ref.read(cartRepositoryProvider);
       if (repository is CartRepositoryImpl) {
-         await repository.addEntityToCart(newItem, isAuthenticated: isAuthenticated);
+        await repository.addEntityToCart(newItem, isAuthenticated: isAuthenticated);
       } else {
-         await repository.addItem(targetVariantId, quantity: 1, isAuthenticated: isAuthenticated);
+        await repository.addItem(targetVariantId, quantity: 1, isAuthenticated: isAuthenticated);
       }
-      // Re-fetch to get server-side IDs if authenticated
-      if (isAuthenticated) {
-         ref.invalidateSelf();
-      }
+      if (_generation != gen) return;
+      final items = await repository.getItems(isAuthenticated: isAuthenticated);
+      if (_generation != gen) return;
+      state = AsyncValue.data(items);
     } catch (e) {
+      if (_generation != gen) return;
       state = previousState;
       rethrow;
     }
@@ -108,97 +160,177 @@ class Cart extends _$Cart {
       return;
     }
 
-    final isAuthenticated = ref.read(authProvider).asData?.value != null;
+    final gen = _generation;
+    final repository = ref.read(cartRepositoryProvider);
+    final storage = ref.read(flutterSecureStorageProvider);
+    final apiClient = ref.read(apiClientProvider);
     final previousState = state;
     final currentItems = state.asData?.value ?? [];
+
+    final isAuthenticated = await _checkAuth(storage, apiClient);
+    if (_generation != gen) return;
 
     state = AsyncValue.data([
       for (final item in currentItems)
         if (item.cartItemId == cartItemId || item.variantId == cartItemId)
-          item.copyWith(
-            quantity: quantity,
-            subTotal: item.variantPrice * quantity,
-          )
+          item.copyWith(quantity: quantity, subTotal: item.variantPrice * quantity)
         else
           item,
     ]);
 
     try {
-      await ref.read(cartRepositoryProvider).updateItem(cartItemId, quantity, isAuthenticated: isAuthenticated);
+      await repository.updateItem(cartItemId, quantity, isAuthenticated: isAuthenticated);
+      if (_generation != gen) return;
+      final items = await repository.getItems(isAuthenticated: isAuthenticated);
+      if (_generation != gen) return;
+      state = AsyncValue.data(items);
     } catch (e) {
+      if (_generation != gen) return;
       state = previousState;
       rethrow;
     }
   }
 
   Future<void> removeItem(String cartItemId) async {
-    final isAuthenticated = ref.read(authProvider).asData?.value != null;
+    final gen = _generation;
+    final repository = ref.read(cartRepositoryProvider);
+    final storage = ref.read(flutterSecureStorageProvider);
+    final apiClient = ref.read(apiClientProvider);
     final previousState = state;
     final currentItems = state.asData?.value ?? [];
-    
-    state = AsyncValue.data(currentItems.where((item) => item.cartItemId != cartItemId && item.variantId != cartItemId).toList());
+
+    final isAuthenticated = await _checkAuth(storage, apiClient);
+    if (_generation != gen) return;
+
+    state = AsyncValue.data(currentItems.where(
+      (item) => item.cartItemId != cartItemId && item.variantId != cartItemId,
+    ).toList());
 
     try {
-      await ref.read(cartRepositoryProvider).removeItem(cartItemId, isAuthenticated: isAuthenticated);
+      await repository.removeItem(cartItemId, isAuthenticated: isAuthenticated);
+      if (_generation != gen) return;
+      final items = await repository.getItems(isAuthenticated: isAuthenticated);
+      if (_generation != gen) return;
+      state = AsyncValue.data(items);
     } catch (e) {
+      if (_generation != gen) return;
       state = previousState;
       rethrow;
     }
   }
 
   Future<void> clearCart() async {
-    final isAuthenticated = ref.read(authProvider).asData?.value != null;
+    final gen = _generation;
+    final repository = ref.read(cartRepositoryProvider);
+    final storage = ref.read(flutterSecureStorageProvider);
+    final apiClient = ref.read(apiClientProvider);
     final previousState = state;
+
+    final isAuthenticated = await _checkAuth(storage, apiClient);
+    if (_generation != gen) return;
+
     state = const AsyncValue.data([]);
 
     try {
-      await ref.read(cartRepositoryProvider).clearCart(isAuthenticated: isAuthenticated);
+      await repository.clearCart(isAuthenticated: isAuthenticated);
     } catch (e) {
+      if (_generation != gen) return;
       state = previousState;
       rethrow;
     }
   }
 
   Future<void> mergeCart([List<CartItem>? guestItems]) async {
+    final gen = _generation;
     final repository = ref.read(cartRepositoryProvider);
-    final itemsToMerge = guestItems ?? await repository.getItems(isAuthenticated: false);
-    
-    if (itemsToMerge.isEmpty) return;
+    final storage = ref.read(flutterSecureStorageProvider);
+    final apiClient = ref.read(apiClientProvider);
 
-    if (ref.mounted) {
-      state = const AsyncValue.loading();
-    }
-    
+    final itemsToMerge = guestItems ?? await repository.getItems(isAuthenticated: false);
+    if (_generation != gen || itemsToMerge.isEmpty) return;
+
+    state = const AsyncValue.loading();
+
     try {
       await repository.mergeCart(itemsToMerge);
-      if (ref.mounted) {
-        ref.invalidateSelf();
-      }
-    } catch (e) {
-      if (ref.mounted) {
-        ref.invalidateSelf();
-      }
-      rethrow;
+      if (_generation != gen) return;
+
+      final isAuthenticated = await _checkAuth(storage, apiClient);
+      if (_generation != gen) return;
+
+      final items = await repository.getItems(isAuthenticated: isAuthenticated);
+      if (_generation != gen) return;
+      state = AsyncValue.data(items);
+    } catch (e, st) {
+      if (_generation != gen) return;
+      state = AsyncValue.error(e, st);
     }
   }
 
   double get totalAmount => (state.asData?.value ?? []).fold(0, (sum, item) => sum + item.totalPrice);
 }
 
+// ─── Selected cart item IDs ─────────────────────────────────────────────────
+
 @riverpod
-FutureOr<CartTotal> cartTotal(Ref ref) {
+class SelectedCartItemIds extends _$SelectedCartItemIds {
+  @override
+  Set<String> build() => const {};
+
+  void update(Set<String> ids) => state = ids;
+
+  void toggle(String id) {
+    final next = Set<String>.from(state);
+    if (!next.remove(id)) next.add(id);
+    state = next;
+  }
+
+  void clear() => state = const {};
+}
+
+@riverpod
+FutureOr<CartTotal> selectedCartTotal(Ref ref) async {
+  final selectedIds = ref.watch(selectedCartItemIdsProvider);
   final cartItems = ref.watch(cartProvider).asData?.value ?? [];
-  final isAuthenticated = ref.watch(authProvider).asData?.value != null;
-  
+
+  final storage = ref.read(flutterSecureStorageProvider);
+  final token = await storage.read(key: 'auth_token');
+  final isAuthenticated = token != null && token.isNotEmpty;
+
+  final allIds = cartItems
+      .map((e) => e.cartItemId)
+      .whereType<String>()
+      .where((id) => id.isNotEmpty)
+      .toSet();
+
+  final isSubset = selectedIds.isNotEmpty && selectedIds.length < allIds.length;
+
   if (isAuthenticated) {
-     return ref.watch(cartRepositoryProvider).getTotal();
+    return ref.read(cartRepositoryProvider).getTotal(
+      itemIds: isSubset ? selectedIds.toList() : null,
+    );
   } else {
-     final subtotal = cartItems.fold(0.0, (sum, item) => sum + item.totalPrice);
-     return CartTotal(
-       subtotal: subtotal,
-       shippingFee: 0,
-       discount: 0,
-       totalPrice: subtotal,
-     );
+    final items = selectedIds.isEmpty
+        ? cartItems
+        : cartItems.where((e) =>
+            e.cartItemId != null && selectedIds.contains(e.cartItemId)).toList();
+    final subtotal = items.fold(0.0, (sum, item) => sum + item.totalPrice);
+    return CartTotal(subtotal: subtotal, shippingFee: 0, discount: 0, totalPrice: subtotal);
+  }
+}
+
+@riverpod
+FutureOr<CartTotal> cartTotal(Ref ref) async {
+  final cartItems = ref.watch(cartProvider).asData?.value ?? [];
+
+  final storage = ref.read(flutterSecureStorageProvider);
+  final token = await storage.read(key: 'auth_token');
+  final isAuthenticated = token != null && token.isNotEmpty;
+
+  if (isAuthenticated) {
+    return ref.read(cartRepositoryProvider).getTotal();
+  } else {
+    final subtotal = cartItems.fold(0.0, (sum, item) => sum + item.totalPrice);
+    return CartTotal(subtotal: subtotal, shippingFee: 0, discount: 0, totalPrice: subtotal);
   }
 }
