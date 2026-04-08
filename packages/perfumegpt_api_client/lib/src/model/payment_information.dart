@@ -22,6 +22,8 @@ class PaymentInformation {
   PaymentInformation({
 
      this.method,
+
+     this.posSessionId,
   });
 
   @JsonKey(
@@ -36,15 +38,29 @@ class PaymentInformation {
 
 
 
+  @JsonKey(
+    
+    name: r'posSessionId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? posSessionId;
+
+
+
 
 
     @override
     bool operator ==(Object other) => identical(this, other) || other is PaymentInformation &&
-      other.method == method;
+      other.method == method &&
+      other.posSessionId == posSessionId;
 
     @override
     int get hashCode =>
-        method.hashCode;
+        method.hashCode +
+        (posSessionId == null ? 0 : posSessionId.hashCode);
 
   factory PaymentInformation.fromJson(Map<String, dynamic> json) => _$PaymentInformationFromJson(json);
 

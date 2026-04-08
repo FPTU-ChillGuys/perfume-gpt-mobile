@@ -6,7 +6,6 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
@@ -152,7 +151,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>> apiReviewsImagesTemporaryPost({ 
-    List<({Uint8List bytes, String filename})>? images,
+    List<MultipartFile>? images,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -176,16 +175,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
         ],
         ...?extra,
       },
+      contentType: 'application/x-www-form-urlencoded',
       validateStatus: validateStatus,
     );
 
     dynamic _bodyData;
 
     try {
-      _bodyData = FormData.fromMap({
-        if (images != null)
-          'images': images.map((img) => MultipartFile.fromBytes(img.bytes, filename: img.filename)).toList(),
-      });
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

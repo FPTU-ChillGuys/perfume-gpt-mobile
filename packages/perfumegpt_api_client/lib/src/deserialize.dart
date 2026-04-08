@@ -18,6 +18,7 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_campaign_respon
 import 'package:perfumegpt_api_client/src/model/base_response_of_category_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_concentration_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_create_import_ticket_request.dart';
+import 'package:perfumegpt_api_client/src/model/base_response_of_customer_for_pos_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_excel_template_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_get_cart_items_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_get_cart_total_response.dart';
@@ -145,6 +146,7 @@ import 'package:perfumegpt_api_client/src/model/create_variant_request.dart';
 import 'package:perfumegpt_api_client/src/model/create_voucher_request.dart';
 import 'package:perfumegpt_api_client/src/model/customer_attribute_preference_response.dart';
 import 'package:perfumegpt_api_client/src/model/customer_family_preference_respone.dart';
+import 'package:perfumegpt_api_client/src/model/customer_for_pos_response.dart';
 import 'package:perfumegpt_api_client/src/model/customer_note_preference_response.dart';
 import 'package:perfumegpt_api_client/src/model/district_response.dart';
 import 'package:perfumegpt_api_client/src/model/entity_tag_header_value.dart';
@@ -364,6 +366,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return BaseResponseOfConcentrationResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfCreateImportTicketRequest':
           return BaseResponseOfCreateImportTicketRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'BaseResponseOfCustomerForPosResponse':
+          return BaseResponseOfCustomerForPosResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfExcelTemplateResponse':
           return BaseResponseOfExcelTemplateResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfGetCartItemsResponse':
@@ -633,6 +637,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return CustomerAttributePreferenceResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'CustomerFamilyPreferenceRespone':
           return CustomerFamilyPreferenceRespone.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'CustomerForPosResponse':
+          return CustomerForPosResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'CustomerNotePreferenceResponse':
           return CustomerNotePreferenceResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'DeliveryMethod':

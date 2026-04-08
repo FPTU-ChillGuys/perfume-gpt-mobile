@@ -21,26 +21,12 @@ class ManualChangeRequest {
   /// Returns a new [ManualChangeRequest] instance.
   ManualChangeRequest({
 
-     this.userId,
-
      this.transactionType,
 
      this.points,
 
     required  this.reason,
   });
-
-  @JsonKey(
-    
-    name: r'userId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? userId;
-
-
 
   @JsonKey(
     
@@ -83,14 +69,12 @@ class ManualChangeRequest {
 
     @override
     bool operator ==(Object other) => identical(this, other) || other is ManualChangeRequest &&
-      other.userId == userId &&
       other.transactionType == transactionType &&
       other.points == points &&
       other.reason == reason;
 
     @override
     int get hashCode =>
-        userId.hashCode +
         transactionType.hashCode +
         points.hashCode +
         reason.hashCode;

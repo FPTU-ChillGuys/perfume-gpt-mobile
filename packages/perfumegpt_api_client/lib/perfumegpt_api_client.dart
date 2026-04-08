@@ -59,6 +59,7 @@ export 'package:perfumegpt_api_client/src/model/base_response_of_campaign_respon
 export 'package:perfumegpt_api_client/src/model/base_response_of_category_response.dart';
 export 'package:perfumegpt_api_client/src/model/base_response_of_concentration_response.dart';
 export 'package:perfumegpt_api_client/src/model/base_response_of_create_import_ticket_request.dart';
+export 'package:perfumegpt_api_client/src/model/base_response_of_customer_for_pos_response.dart';
 export 'package:perfumegpt_api_client/src/model/base_response_of_excel_template_response.dart';
 export 'package:perfumegpt_api_client/src/model/base_response_of_get_cart_items_response.dart';
 export 'package:perfumegpt_api_client/src/model/base_response_of_get_cart_total_response.dart';
@@ -191,6 +192,7 @@ export 'package:perfumegpt_api_client/src/model/create_variant_request.dart';
 export 'package:perfumegpt_api_client/src/model/create_voucher_request.dart';
 export 'package:perfumegpt_api_client/src/model/customer_attribute_preference_response.dart';
 export 'package:perfumegpt_api_client/src/model/customer_family_preference_respone.dart';
+export 'package:perfumegpt_api_client/src/model/customer_for_pos_response.dart';
 export 'package:perfumegpt_api_client/src/model/customer_note_preference_response.dart';
 export 'package:perfumegpt_api_client/src/model/delivery_method.dart';
 export 'package:perfumegpt_api_client/src/model/discount_type.dart';

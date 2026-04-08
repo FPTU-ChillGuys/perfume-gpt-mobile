@@ -6,7 +6,6 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
@@ -1090,8 +1089,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>> apiOrderreturnrequestsVideosTemporaryPost({ 
-    List<({Uint8List bytes, String filename})>? videos,
-    List<({Uint8List bytes, String filename})>? images,
+    List<MultipartFile>? videos,
+    List<MultipartFile>? images,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1115,18 +1114,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
         ],
         ...?extra,
       },
+      contentType: 'application/x-www-form-urlencoded',
       validateStatus: validateStatus,
     );
 
     dynamic _bodyData;
 
     try {
-      _bodyData = FormData.fromMap({
-        if (images != null)
-          'images': images.map((img) => MultipartFile.fromBytes(img.bytes, filename: img.filename)).toList(),
-        if (videos != null)
-          'videos': videos.map((vid) => MultipartFile.fromBytes(vid.bytes, filename: vid.filename)).toList(),
-      });
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

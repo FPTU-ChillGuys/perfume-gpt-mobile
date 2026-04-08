@@ -138,4 +138,5 @@ const _$PaymentMethodEnumMap = {
   PaymentMethod.momo: 'Momo',
   PaymentMethod.cashInStore: 'CashInStore',
   PaymentMethod.externalBankTransfer: 'ExternalBankTransfer',
+  PaymentMethod.payOs: 'PayOs',
 };

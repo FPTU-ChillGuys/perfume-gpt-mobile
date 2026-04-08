@@ -13,6 +13,8 @@ Method | HTTP request | Description
 [**apiPaymentsMomoReturnGet**](PaymentsApi.md#apipaymentsmomoreturnget) | **GET** /api/payments/momo-return | 
 [**apiPaymentsPaymentIdConfirmPut**](PaymentsApi.md#apipaymentspaymentidconfirmput) | **PUT** /api/payments/{paymentId}/confirm | 
 [**apiPaymentsPaymentIdRetryPost**](PaymentsApi.md#apipaymentspaymentidretrypost) | **POST** /api/payments/{paymentId}/retry | 
+[**apiPaymentsPayosCancelGet**](PaymentsApi.md#apipaymentspayoscancelget) | **GET** /api/payments/payos-cancel | 
+[**apiPaymentsPayosReturnGet**](PaymentsApi.md#apipaymentspayosreturnget) | **GET** /api/payments/payos-return | 
 [**apiPaymentsVnpayReturnGet**](PaymentsApi.md#apipaymentsvnpayreturnget) | **GET** /api/payments/vnpay-return | 
 
 
@@ -191,6 +193,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiPaymentsPayosCancelGet**
+> apiPaymentsPayosCancelGet()
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getPaymentsApi();
+
+try {
+    api.apiPaymentsPayosCancelGet();
+} on DioException catch (e) {
+    print('Exception when calling PaymentsApi->apiPaymentsPayosCancelGet: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiPaymentsPayosReturnGet**
+> apiPaymentsPayosReturnGet()
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getPaymentsApi();
+
+try {
+    api.apiPaymentsPayosReturnGet();
+} on DioException catch (e) {
+    print('Exception when calling PaymentsApi->apiPaymentsPayosReturnGet: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

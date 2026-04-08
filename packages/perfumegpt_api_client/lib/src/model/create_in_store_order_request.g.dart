@@ -21,6 +21,8 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
 
   CreateInStoreOrderRequest expectedTotalPrice(num? expectedTotalPrice);
 
+  CreateInStoreOrderRequest posSessionId(String? posSessionId);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateInStoreOrderRequest(...).copyWith.fieldName(value)`.
   ///
@@ -36,6 +38,7 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
     ContactAddressInformation? recipient,
     PaymentInformation payment,
     num? expectedTotalPrice,
+    String? posSessionId,
   });
 }
 
@@ -77,6 +80,10 @@ class _$CreateInStoreOrderRequestCWProxyImpl
       call(expectedTotalPrice: expectedTotalPrice);
 
   @override
+  CreateInStoreOrderRequest posSessionId(String? posSessionId) =>
+      call(posSessionId: posSessionId);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateInStoreOrderRequest(...).copyWith.fieldName(value)`.
   ///
@@ -92,6 +99,7 @@ class _$CreateInStoreOrderRequestCWProxyImpl
     Object? recipient = const $CopyWithPlaceholder(),
     Object? payment = const $CopyWithPlaceholder(),
     Object? expectedTotalPrice = const $CopyWithPlaceholder(),
+    Object? posSessionId = const $CopyWithPlaceholder(),
   }) {
     return CreateInStoreOrderRequest(
       scannedItems:
@@ -123,6 +131,10 @@ class _$CreateInStoreOrderRequestCWProxyImpl
           ? _value.expectedTotalPrice
           // ignore: cast_nullable_to_non_nullable
           : expectedTotalPrice as num?,
+      posSessionId: posSessionId == const $CopyWithPlaceholder()
+          ? _value.posSessionId
+          // ignore: cast_nullable_to_non_nullable
+          : posSessionId as String?,
     );
   }
 }
@@ -164,6 +176,7 @@ CreateInStoreOrderRequest _$CreateInStoreOrderRequestFromJson(
       (v) => PaymentInformation.fromJson(v as Map<String, dynamic>),
     ),
     expectedTotalPrice: $checkedConvert('expectedTotalPrice', (v) => v as num?),
+    posSessionId: $checkedConvert('posSessionId', (v) => v as String?),
   );
   return val;
 });
@@ -178,4 +191,5 @@ Map<String, dynamic> _$CreateInStoreOrderRequestToJson(
   'recipient': ?instance.recipient?.toJson(),
   'payment': instance.payment.toJson(),
   'expectedTotalPrice': ?instance.expectedTotalPrice,
+  'posSessionId': ?instance.posSessionId,
 };
