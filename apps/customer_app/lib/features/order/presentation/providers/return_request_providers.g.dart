@@ -6,19 +6,29 @@ part of 'return_request_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(returnRequestRepository)
 final returnRequestRepositoryProvider = ReturnRequestRepositoryProvider._();
 
 final class ReturnRequestRepositoryProvider
-    extends $FunctionalProvider<ReturnRequestRepository, ReturnRequestRepository, ReturnRequestRepository>
+    extends
+        $FunctionalProvider<
+          ReturnRequestRepository,
+          ReturnRequestRepository,
+          ReturnRequestRepository
+        >
     with $Provider<ReturnRequestRepository> {
   ReturnRequestRepositoryProvider._()
     : super(
-        from: null, argument: null, retry: null,
-        name: r'returnRequestRepositoryProvider', isAutoDispose: true,
-        dependencies: null, $allTransitiveDependencies: null,
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'returnRequestRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
       );
 
   @override
@@ -26,25 +36,37 @@ final class ReturnRequestRepositoryProvider
 
   @$internal
   @override
-  $ProviderElement<ReturnRequestRepository> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<ReturnRequestRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
 
   @override
-  ReturnRequestRepository create(Ref ref) => returnRequestRepository(ref);
+  ReturnRequestRepository create(Ref ref) {
+    return returnRequestRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ReturnRequestRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ReturnRequestRepository>(value),
+    );
+  }
 }
 
-String _$returnRequestRepositoryHash() => r'return_request_repo_hash';
-
-// ---- myReturnRequests (family) ----
+String _$returnRequestRepositoryHash() =>
+    r'0cd47c8f2ac9e2289bb4c3e8901ba7aeeca3e78d';
 
 @ProviderFor(myReturnRequests)
 final myReturnRequestsProvider = MyReturnRequestsFamily._();
 
 final class MyReturnRequestsProvider
-    extends $FunctionalProvider<
-        AsyncValue<PaginatedReturnRequests>,
-        PaginatedReturnRequests,
-        FutureOr<PaginatedReturnRequests>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<PaginatedReturnRequests>,
+          PaginatedReturnRequests,
+          FutureOr<PaginatedReturnRequests>
+        >
     with
         $FutureModifier<PaginatedReturnRequests>,
         $FutureProvider<PaginatedReturnRequests> {
@@ -63,13 +85,17 @@ final class MyReturnRequestsProvider
   String debugGetCreateSourceHash() => _$myReturnRequestsHash();
 
   @override
-  String toString() => r'myReturnRequestsProvider' '$argument';
+  String toString() {
+    return r'myReturnRequestsProvider'
+        ''
+        '$argument';
+  }
 
   @$internal
   @override
   $FutureProviderElement<PaginatedReturnRequests> $createElement(
-      $ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<PaginatedReturnRequests> create(Ref ref) {
@@ -89,16 +115,19 @@ final class MyReturnRequestsProvider
   }
 
   @override
-  int get hashCode => argument.hashCode;
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
-String _$myReturnRequestsHash() => r'my_return_requests_hash';
+String _$myReturnRequestsHash() => r'b55805b9a6d78c2bfcfbcac115026a617d2f01de';
 
 final class MyReturnRequestsFamily extends $Family
     with
         $FunctionalFamilyOverride<
-            FutureOr<PaginatedReturnRequests>,
-            ({String? status, int page, int pageSize})> {
+          FutureOr<PaginatedReturnRequests>,
+          ({String? status, int page, int pageSize})
+        > {
   MyReturnRequestsFamily._()
     : super(
         retry: null,
@@ -112,26 +141,25 @@ final class MyReturnRequestsFamily extends $Family
     String? status,
     int page = 1,
     int pageSize = 10,
-  }) =>
-      MyReturnRequestsProvider._(
-        argument: (status: status, page: page, pageSize: pageSize),
-        from: this,
-      );
+  }) => MyReturnRequestsProvider._(
+    argument: (status: status, page: page, pageSize: pageSize),
+    from: this,
+  );
 
   @override
   String toString() => r'myReturnRequestsProvider';
 }
 
-// ---- returnRequestDetail (family) ----
-
 @ProviderFor(returnRequestDetail)
 final returnRequestDetailProvider = ReturnRequestDetailFamily._();
 
 final class ReturnRequestDetailProvider
-    extends $FunctionalProvider<
-        AsyncValue<ReturnRequest>,
-        ReturnRequest,
-        FutureOr<ReturnRequest>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<ReturnRequest>,
+          ReturnRequest,
+          FutureOr<ReturnRequest>
+        >
     with $FutureModifier<ReturnRequest>, $FutureProvider<ReturnRequest> {
   ReturnRequestDetailProvider._({
     required ReturnRequestDetailFamily super.from,
@@ -148,13 +176,17 @@ final class ReturnRequestDetailProvider
   String debugGetCreateSourceHash() => _$returnRequestDetailHash();
 
   @override
-  String toString() => r'returnRequestDetailProvider' '($argument)';
+  String toString() {
+    return r'returnRequestDetailProvider'
+        ''
+        '($argument)';
+  }
 
   @$internal
   @override
   $FutureProviderElement<ReturnRequest> $createElement(
-      $ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<ReturnRequest> create(Ref ref) {
@@ -168,10 +200,13 @@ final class ReturnRequestDetailProvider
   }
 
   @override
-  int get hashCode => argument.hashCode;
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
-String _$returnRequestDetailHash() => r'return_request_detail_hash';
+String _$returnRequestDetailHash() =>
+    r'0d9cd564cc8cd78a199b49df3c7cd720494c29da';
 
 final class ReturnRequestDetailFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<ReturnRequest>, String> {

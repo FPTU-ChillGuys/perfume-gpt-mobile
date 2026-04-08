@@ -52,7 +52,7 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _saving = true);
     try {
-      await ref.read(profileNotifierProvider.notifier).updateProfile(
+      await ref.read(profileControllerProvider.notifier).updateProfile(
             fullName: _nameCtrl.text.trim(),
             phoneNumber: _phoneCtrl.text.trim(),
             dateOfBirth: _dateOfBirth,
@@ -75,7 +75,7 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    final profileAsync = ref.watch(profileNotifierProvider);
+    final profileAsync = ref.watch(profileControllerProvider);
 
     if (!_didLoad) {
       profileAsync.whenData((profile) {

@@ -79,7 +79,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     final cartItems = ref.read(cartProvider).value ?? [];
     if (cartItems.isEmpty) return;
 
-    final itemIds = cartItems.map((e) => e.cartItemId).toList();
+    final itemIds = cartItems.map((e) => e.cartItemId ?? '').toList();
     final voucher = voucherOverride ?? _appliedVoucherCode;
 
     try {
@@ -103,7 +103,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 
     try {
       final cartItems = ref.read(cartProvider).value ?? [];
-      final itemIds = cartItems.map((e) => e.cartItemId).toList();
+      final itemIds = cartItems.map((e) => e.cartItemId ?? '').toList();
       final total = await ref.read(cartRepositoryProvider).getTotal(
             voucherCode: code,
             itemIds: itemIds,
@@ -179,7 +179,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 
     try {
       final cartItems = ref.read(cartProvider).value ?? [];
-      final itemIds = cartItems.map((e) => e.cartItemId).toList();
+      final itemIds = cartItems.map((e) => e.cartItemId ?? '').toList();
       final total = _computedTotal ?? ref.read(cartTotalProvider).value;
 
       RecipientAddress? recipient;

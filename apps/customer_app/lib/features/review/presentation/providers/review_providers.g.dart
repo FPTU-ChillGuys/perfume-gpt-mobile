@@ -6,19 +6,29 @@ part of 'review_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(reviewRepository)
 final reviewRepositoryProvider = ReviewRepositoryProvider._();
 
 final class ReviewRepositoryProvider
-    extends $FunctionalProvider<ReviewRepository, ReviewRepository, ReviewRepository>
+    extends
+        $FunctionalProvider<
+          ReviewRepository,
+          ReviewRepository,
+          ReviewRepository
+        >
     with $Provider<ReviewRepository> {
   ReviewRepositoryProvider._()
     : super(
-        from: null, argument: null, retry: null,
-        name: r'reviewRepositoryProvider', isAutoDispose: true,
-        dependencies: null, $allTransitiveDependencies: null,
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'reviewRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
       );
 
   @override
@@ -30,22 +40,41 @@ final class ReviewRepositoryProvider
       $ProviderElement(pointer);
 
   @override
-  ReviewRepository create(Ref ref) => reviewRepository(ref);
+  ReviewRepository create(Ref ref) {
+    return reviewRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ReviewRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ReviewRepository>(value),
+    );
+  }
 }
 
-String _$reviewRepositoryHash() => r'review_repo_hash';
+String _$reviewRepositoryHash() => r'86284bce6440cd606b95e35df2ced3499431f037';
 
 @ProviderFor(myReviews)
 final myReviewsProvider = MyReviewsProvider._();
 
 final class MyReviewsProvider
-    extends $FunctionalProvider<AsyncValue<List<Review>>, List<Review>, FutureOr<List<Review>>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Review>>,
+          List<Review>,
+          FutureOr<List<Review>>
+        >
     with $FutureModifier<List<Review>>, $FutureProvider<List<Review>> {
   MyReviewsProvider._()
     : super(
-        from: null, argument: null, retry: null,
-        name: r'myReviewsProvider', isAutoDispose: true,
-        dependencies: null, $allTransitiveDependencies: null,
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'myReviewsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
       );
 
   @override
@@ -53,22 +82,28 @@ final class MyReviewsProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<Review>> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<List<Review>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
-  FutureOr<List<Review>> create(Ref ref) => myReviews(ref);
+  FutureOr<List<Review>> create(Ref ref) {
+    return myReviews(ref);
+  }
 }
 
-String _$myReviewsHash() => r'my_reviews_hash';
-
-// --- reviewDetail (family) ---
+String _$myReviewsHash() => r'4308aa69077dadd839c5793512ca263f0115996e';
 
 @ProviderFor(reviewDetail)
 final reviewDetailProvider = ReviewDetailFamily._();
 
 final class ReviewDetailProvider
-    extends $FunctionalProvider<AsyncValue<ReviewDetail>, ReviewDetail, FutureOr<ReviewDetail>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<ReviewDetail>,
+          ReviewDetail,
+          FutureOr<ReviewDetail>
+        >
     with $FutureModifier<ReviewDetail>, $FutureProvider<ReviewDetail> {
   ReviewDetailProvider._({
     required ReviewDetailFamily super.from,
@@ -87,13 +122,15 @@ final class ReviewDetailProvider
   @override
   String toString() {
     return r'reviewDetailProvider'
+        ''
         '($argument)';
   }
 
   @$internal
   @override
-  $FutureProviderElement<ReviewDetail> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<ReviewDetail> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<ReviewDetail> create(Ref ref) {
@@ -112,7 +149,7 @@ final class ReviewDetailProvider
   }
 }
 
-String _$reviewDetailHash() => r'review_detail_hash';
+String _$reviewDetailHash() => r'a69a65cd15b76a43da760cf8ee42d5c20a0e7d0c';
 
 final class ReviewDetailFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<ReviewDetail>, String> {
@@ -132,13 +169,16 @@ final class ReviewDetailFamily extends $Family
   String toString() => r'reviewDetailProvider';
 }
 
-// --- variantReviews (family) ---
-
 @ProviderFor(variantReviews)
 final variantReviewsProvider = VariantReviewsFamily._();
 
 final class VariantReviewsProvider
-    extends $FunctionalProvider<AsyncValue<List<Review>>, List<Review>, FutureOr<List<Review>>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Review>>,
+          List<Review>,
+          FutureOr<List<Review>>
+        >
     with $FutureModifier<List<Review>>, $FutureProvider<List<Review>> {
   VariantReviewsProvider._({
     required VariantReviewsFamily super.from,
@@ -157,13 +197,15 @@ final class VariantReviewsProvider
   @override
   String toString() {
     return r'variantReviewsProvider'
+        ''
         '($argument)';
   }
 
   @$internal
   @override
-  $FutureProviderElement<List<Review>> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<List<Review>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<List<Review>> create(Ref ref) {
@@ -182,7 +224,7 @@ final class VariantReviewsProvider
   }
 }
 
-String _$variantReviewsHash() => r'variant_reviews_hash';
+String _$variantReviewsHash() => r'8d6bac3a49cec360c0d5f82ff3423a91b719e2d4';
 
 final class VariantReviewsFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<List<Review>>, String> {
@@ -202,13 +244,16 @@ final class VariantReviewsFamily extends $Family
   String toString() => r'variantReviewsProvider';
 }
 
-// --- variantReviewStats (family) ---
-
 @ProviderFor(variantReviewStats)
 final variantReviewStatsProvider = VariantReviewStatsFamily._();
 
 final class VariantReviewStatsProvider
-    extends $FunctionalProvider<AsyncValue<ReviewStatistics>, ReviewStatistics, FutureOr<ReviewStatistics>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<ReviewStatistics>,
+          ReviewStatistics,
+          FutureOr<ReviewStatistics>
+        >
     with $FutureModifier<ReviewStatistics>, $FutureProvider<ReviewStatistics> {
   VariantReviewStatsProvider._({
     required VariantReviewStatsFamily super.from,
@@ -227,13 +272,15 @@ final class VariantReviewStatsProvider
   @override
   String toString() {
     return r'variantReviewStatsProvider'
+        ''
         '($argument)';
   }
 
   @$internal
   @override
-  $FutureProviderElement<ReviewStatistics> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<ReviewStatistics> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<ReviewStatistics> create(Ref ref) {
@@ -252,7 +299,8 @@ final class VariantReviewStatsProvider
   }
 }
 
-String _$variantReviewStatsHash() => r'variant_review_stats_hash';
+String _$variantReviewStatsHash() =>
+    r'de9adf08feafa3838960f419a33431e70a6171ed';
 
 final class VariantReviewStatsFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<ReviewStatistics>, String> {
