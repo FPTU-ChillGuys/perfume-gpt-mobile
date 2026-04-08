@@ -57,7 +57,7 @@ class PosScreen extends ConsumerWidget {
                           if (scannedSku != null && context.mounted) {
                             final product = await ref
                                 .read(productRepositoryProvider)
-                                .getProductBySku(scannedSku);
+                                .getProductForPos(barcode: scannedSku);
                             if (product != null) {
                               ref
                                   .read(posCartProvider.notifier)
@@ -88,7 +88,7 @@ class PosScreen extends ConsumerWidget {
                     onSubmitted: (value) async {
                       final product = await ref
                           .read(productRepositoryProvider)
-                          .getProductBySku(value);
+                          .getProductForPos(sku: value);
                       if (product != null) {
                         ref.read(posCartProvider.notifier).addProduct(product);
                         skuController.clear();
@@ -107,7 +107,7 @@ class PosScreen extends ConsumerWidget {
                   onPressed: () async {
                     final product = await ref
                         .read(productRepositoryProvider)
-                        .getProductBySku(skuController.text);
+                        .getProductForPos(sku: skuController.text);
                     if (product != null) {
                       ref.read(posCartProvider.notifier).addProduct(product);
                       skuController.clear();
