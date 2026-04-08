@@ -103,6 +103,50 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
+  Future<Product?> getProductForPos({String? barcode, String? sku}) async {
+    try {
+      final response = await _apiClient
+          .getProductVariantsApi()
+          .apiProductvariantsForPosGet(
+            barcode: barcode,
+            sku: sku,
+          );
+      final item = response.data?.payload;
+
+      if (item == null) return null;
+
+      final price = (item.basePrice ?? 0).toDouble();
+
+      return Product(
+        id: item.id ?? '', // Using variant ID as product ID for cart uniqueness
+        variantId: item.id ?? '',
+        batchId: '', // Will be assigned during checkout if needed
+        sku: item.sku,
+        name: item.displayName,
+        description: '',
+        price: price,
+        retailPrice: price,
+        basePrice: price,
+        discountedPrice: null,
+        imageUrl: item.primaryImageUrl ?? '',
+        scentNotes: [],
+        brand: '',
+        rating: 0,
+        reviewCount: 0,
+        stockQuantity: 1, // Just a default, POS can override or handle stock limits during checkout
+      );
+    } catch (e, s) {
+      developer.log(
+        'Failed to fetch product for POS: barcode=$barcode, sku=$sku',
+        name: 'staff_app.repository',
+        error: e,
+        stackTrace: s,
+      );
+      return null;
+    }
+  }
+
+  @override
   Future<void> updateStock(
     String variantId,
     String batchId,
