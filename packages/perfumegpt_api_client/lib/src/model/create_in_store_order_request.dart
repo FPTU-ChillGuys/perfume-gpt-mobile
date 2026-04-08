@@ -36,6 +36,8 @@ class CreateInStoreOrderRequest {
     required  this.payment,
 
      this.expectedTotalPrice,
+
+     this.posSessionId,
   });
 
   @JsonKey(
@@ -122,6 +124,18 @@ class CreateInStoreOrderRequest {
 
 
 
+  @JsonKey(
+    
+    name: r'posSessionId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? posSessionId;
+
+
+
 
 
     @override
@@ -132,7 +146,8 @@ class CreateInStoreOrderRequest {
       other.isPickupInStore == isPickupInStore &&
       other.recipient == recipient &&
       other.payment == payment &&
-      other.expectedTotalPrice == expectedTotalPrice;
+      other.expectedTotalPrice == expectedTotalPrice &&
+      other.posSessionId == posSessionId;
 
     @override
     int get hashCode =>
@@ -142,7 +157,8 @@ class CreateInStoreOrderRequest {
         isPickupInStore.hashCode +
         (recipient == null ? 0 : recipient.hashCode) +
         payment.hashCode +
-        (expectedTotalPrice == null ? 0 : expectedTotalPrice.hashCode);
+        (expectedTotalPrice == null ? 0 : expectedTotalPrice.hashCode) +
+        (posSessionId == null ? 0 : posSessionId.hashCode);
 
   factory CreateInStoreOrderRequest.fromJson(Map<String, dynamic> json) => _$CreateInStoreOrderRequestFromJson(json);
 

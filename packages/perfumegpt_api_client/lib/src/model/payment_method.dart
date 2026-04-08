@@ -16,7 +16,9 @@ enum PaymentMethod {
       @JsonValue(r'CashInStore')
       cashInStore(r'CashInStore'),
       @JsonValue(r'ExternalBankTransfer')
-      externalBankTransfer(r'ExternalBankTransfer');
+      externalBankTransfer(r'ExternalBankTransfer'),
+      @JsonValue(r'PayOs')
+      payOs(r'PayOs');
 
   const PaymentMethod(this.value);
 

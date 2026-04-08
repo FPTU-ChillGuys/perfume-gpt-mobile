@@ -9,6 +9,8 @@ part of 'payment_information.dart';
 abstract class _$PaymentInformationCWProxy {
   PaymentInformation method(PaymentMethod? method);
 
+  PaymentInformation posSessionId(String? posSessionId);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInformation(...).copyWith.fieldName(value)`.
   ///
@@ -16,7 +18,7 @@ abstract class _$PaymentInformationCWProxy {
   /// ```dart
   /// PaymentInformation(...).copyWith(id: 12, name: "My name")
   /// ```
-  PaymentInformation call({PaymentMethod? method});
+  PaymentInformation call({PaymentMethod? method, String? posSessionId});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -30,6 +32,10 @@ class _$PaymentInformationCWProxyImpl implements _$PaymentInformationCWProxy {
   PaymentInformation method(PaymentMethod? method) => call(method: method);
 
   @override
+  PaymentInformation posSessionId(String? posSessionId) =>
+      call(posSessionId: posSessionId);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentInformation(...).copyWith.fieldName(value)`.
   ///
@@ -37,12 +43,19 @@ class _$PaymentInformationCWProxyImpl implements _$PaymentInformationCWProxy {
   /// ```dart
   /// PaymentInformation(...).copyWith(id: 12, name: "My name")
   /// ```
-  PaymentInformation call({Object? method = const $CopyWithPlaceholder()}) {
+  PaymentInformation call({
+    Object? method = const $CopyWithPlaceholder(),
+    Object? posSessionId = const $CopyWithPlaceholder(),
+  }) {
     return PaymentInformation(
       method: method == const $CopyWithPlaceholder()
           ? _value.method
           // ignore: cast_nullable_to_non_nullable
           : method as PaymentMethod?,
+      posSessionId: posSessionId == const $CopyWithPlaceholder()
+          ? _value.posSessionId
+          // ignore: cast_nullable_to_non_nullable
+          : posSessionId as String?,
     );
   }
 }
@@ -66,12 +79,16 @@ PaymentInformation _$PaymentInformationFromJson(Map<String, dynamic> json) =>
           'method',
           (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
         ),
+        posSessionId: $checkedConvert('posSessionId', (v) => v as String?),
       );
       return val;
     });
 
 Map<String, dynamic> _$PaymentInformationToJson(PaymentInformation instance) =>
-    <String, dynamic>{'method': ?_$PaymentMethodEnumMap[instance.method]};
+    <String, dynamic>{
+      'method': ?_$PaymentMethodEnumMap[instance.method],
+      'posSessionId': ?instance.posSessionId,
+    };
 
 const _$PaymentMethodEnumMap = {
   PaymentMethod.cashOnDelivery: 'CashOnDelivery',
@@ -79,4 +96,5 @@ const _$PaymentMethodEnumMap = {
   PaymentMethod.momo: 'Momo',
   PaymentMethod.cashInStore: 'CashInStore',
   PaymentMethod.externalBankTransfer: 'ExternalBankTransfer',
+  PaymentMethod.payOs: 'PayOs',
 };
