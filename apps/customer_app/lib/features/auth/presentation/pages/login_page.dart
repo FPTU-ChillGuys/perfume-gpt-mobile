@@ -31,8 +31,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       next.whenOrNull(
         data: (user) async {
           if (user != null) {
-            final cartItems = ref.read(cartProvider).asData?.value ?? [];
-            if (cartItems.isNotEmpty && context.mounted) {
+            final guestItems = await ref.read(cartRepositoryProvider).getItems(isAuthenticated: false);
+            if (guestItems.isNotEmpty && context.mounted) {
               final shouldMerge = await showDialog<bool>(
                 context: context,
                 builder: (context) => AlertDialog(
@@ -54,9 +54,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               );
 
               if (shouldMerge == true) {
-                await ref.read(cartProvider.notifier).mergeCart();
+                await ref.read(cartProvider.notifier).mergeCart(guestItems);
               } else if (shouldMerge == false) {
-                await ref.read(cartProvider.notifier).clearCart();
+                await ref.read(cartRepositoryProvider).clearCart(isAuthenticated: false);
               }
             }
             if (context.mounted) {

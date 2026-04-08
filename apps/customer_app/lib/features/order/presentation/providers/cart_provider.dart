@@ -159,16 +159,25 @@ class Cart extends _$Cart {
     }
   }
 
-  Future<void> mergeCart() async {
-    final currentLocalItems = state.asData?.value ?? [];
-    if (currentLocalItems.isEmpty) return;
+  Future<void> mergeCart([List<CartItem>? guestItems]) async {
+    final repository = ref.read(cartRepositoryProvider);
+    final itemsToMerge = guestItems ?? await repository.getItems(isAuthenticated: false);
+    
+    if (itemsToMerge.isEmpty) return;
 
-    state = const AsyncValue.loading();
+    if (ref.mounted) {
+      state = const AsyncValue.loading();
+    }
+    
     try {
-      await ref.read(cartRepositoryProvider).mergeCart(currentLocalItems);
-      ref.invalidateSelf();
+      await repository.mergeCart(itemsToMerge);
+      if (ref.mounted) {
+        ref.invalidateSelf();
+      }
     } catch (e) {
-      ref.invalidateSelf();
+      if (ref.mounted) {
+        ref.invalidateSelf();
+      }
       rethrow;
     }
   }
