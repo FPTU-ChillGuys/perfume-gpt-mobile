@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/return_request.dart';
 import '../../domain/repositories/return_request_repository.dart';
@@ -81,8 +83,8 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
     List<({String filename, Uint8List bytes})>? videos,
   }) async {
     final response = await _api.apiOrderreturnrequestsVideosTemporaryPost(
-      images: images,
-      videos: videos,
+      images: images?.map((e) => MultipartFile.fromBytes(e.bytes, filename: e.filename, contentType: MediaType('image', 'jpeg'))).toList(),
+      videos: videos?.map((e) => MultipartFile.fromBytes(e.bytes, filename: e.filename, contentType: MediaType('video', 'mp4'))).toList(),
     );
     final data = response.data?.payload?.data ?? [];
     return data.map((m) => m.id ?? '').where((id) => id.isNotEmpty).toList();

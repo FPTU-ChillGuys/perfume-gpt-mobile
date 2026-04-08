@@ -57,7 +57,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 await ref.read(cartProvider.notifier).mergeCart(guestItems);
               } else if (shouldMerge == false) {
                 await ref.read(cartRepositoryProvider).clearCart(isAuthenticated: false);
+                // Reload cart from server after discarding guest items
+                await ref.read(cartProvider.notifier).reload();
               }
+            } else {
+              // No guest items — just reload cart from server
+              await ref.read(cartProvider.notifier).reload();
             }
             if (context.mounted) {
               context.go('/');
