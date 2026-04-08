@@ -1114,14 +1114,25 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
         ],
         ...?extra,
       },
-      contentType: 'application/x-www-form-urlencoded',
+      contentType: 'multipart/form-data',
       validateStatus: validateStatus,
     );
 
     dynamic _bodyData;
 
     try {
-
+      final formData = FormData();
+      if (videos != null) {
+        for (final v in videos) {
+          formData.files.add(MapEntry('videos', v));
+        }
+      }
+      if (images != null) {
+        for (final i in images) {
+          formData.files.add(MapEntry('images', i));
+        }
+      }
+      _bodyData = formData;
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

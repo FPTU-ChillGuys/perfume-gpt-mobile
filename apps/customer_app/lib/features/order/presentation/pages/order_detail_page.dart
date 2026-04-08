@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/order.dart';
+import '../../../review/presentation/providers/review_providers.dart';
 import '../providers/order_provider.dart';
 import '../providers/return_request_providers.dart';
 
@@ -456,6 +457,16 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     final isDelivered = order.status == 'Delivered';
     final canReturn = isDelivered && order.isReturnable == true;
     final cancelBehavior = _getCancelBehavior(order);
+
+    // Pre-fetch reviews to know which items are already reviewed
+    final myReviews = ref.watch(myReviewsProvider).asData?.value ?? [];
+    final reviewedDetailIds = myReviews
+        .where((r) => r.orderDetailId != null)
+        .map((r) => r.orderDetailId!)
+        .toSet();
+    final allReviewed = isDelivered &&
+        order.orderDetails.every((item) => reviewedDetailIds.contains(item.id));
+
     // Use first Payment-type transaction (matching React: paymentTransactions[0].id)
     final latestPayment = order.paymentTransactions
         .where((t) => t.transactionType == 'Payment')
@@ -533,6 +544,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
           cancelBehavior: cancelBehavior,
           canReturn: canReturn,
           isDelivered: isDelivered,
+          allReviewed: allReviewed,
           latestPayment: latestPayment,
         ),
       ],
@@ -1258,6 +1270,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     required ({String mode, String buttonLabel, String note})? cancelBehavior,
     required bool canReturn,
     required bool isDelivered,
+    required bool allReviewed,
     required PaymentTransaction? latestPayment,
   }) {
     final hasActions =
@@ -1308,20 +1321,25 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   foregroundColor: Colors.orange,
                   side: const BorderSide(color: Colors.orange),
                 ),
-                onPressed: () {
-                  context.push('/return-requests/create', extra: {
+                onPressed: () async {
+                  final result = await context.push('/return-requests/create', extra: {
                     'orderId': order.id,
                     'orderItems': order.orderDetails,
                   });
+                  if (result == true) {
+                    ref.invalidate(orderDetailProvider(widget.orderId));
+                  }
                 },
                 child: const Text('Yêu cầu trả hàng'),
               ),
             if (isDelivered)
               FilledButton.icon(
-                icon: const Icon(Icons.star_outline, size: 16),
-                label: const Text('Đánh giá'),
-                style: FilledButton.styleFrom(backgroundColor: _accent),
-                onPressed: () => _showReviewItemsSheet(context, order),
+                icon: Icon(allReviewed ? Icons.check_circle : Icons.star_outline, size: 16),
+                label: Text(allReviewed ? 'Đã đánh giá' : 'Đánh giá'),
+                style: FilledButton.styleFrom(
+                  backgroundColor: allReviewed ? Colors.grey : _accent,
+                ),
+                onPressed: allReviewed ? null : () => _showReviewItemsSheet(context, order),
               ),
           ],
         ),
@@ -1506,6 +1524,12 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
   // ── Retry Payment Dialog ──────────────────────────────────────────────────
 
   void _showReviewItemsSheet(BuildContext context, OrderDetail order) {
+    final myReviews = ref.read(myReviewsProvider).asData?.value ?? [];
+    final reviewedDetailIds = myReviews
+        .where((r) => r.orderDetailId != null)
+        .map((r) => r.orderDetailId!)
+        .toSet();
+
     showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -1521,28 +1545,44 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               const Text('Chọn sản phẩm để đánh giá',
                   style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
               const SizedBox(height: 12),
-              ...order.orderDetails.map((item) => ListTile(
-                leading: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: item.imageUrl != null && item.imageUrl!.isNotEmpty
-                      ? Image.network(item.imageUrl!, width: 48, height: 48, fit: BoxFit.cover,
-                          errorBuilder: (_, _, _) => _imagePlaceholder(48))
-                      : _imagePlaceholder(48),
-                ),
-                title: Text(item.variantName,
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                    maxLines: 2, overflow: TextOverflow.ellipsis),
-                subtitle: Text('x${item.quantity} · ${_fmt(item.total)}',
-                    style: TextStyle(fontSize: 12, color: Colors.grey[600])),
-                trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
-                contentPadding: EdgeInsets.zero,
-                onTap: () {
-                  Navigator.pop(context);
-                  context.push(
-                    '/reviews/write?orderDetailId=${item.id}&variantId=${item.variantId}&variantName=${Uri.encodeComponent(item.variantName)}',
-                  );
-                },
-              )),
+              ...order.orderDetails.map((item) {
+                final alreadyReviewed = reviewedDetailIds.contains(item.id);
+                return ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: item.imageUrl != null && item.imageUrl!.isNotEmpty
+                        ? Image.network(item.imageUrl!, width: 48, height: 48, fit: BoxFit.cover,
+                            errorBuilder: (_, _, _) => _imagePlaceholder(48))
+                        : _imagePlaceholder(48),
+                  ),
+                  title: Text(item.variantName,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: alreadyReviewed ? Colors.grey : null,
+                      ),
+                      maxLines: 2, overflow: TextOverflow.ellipsis),
+                  subtitle: Text(
+                    alreadyReviewed
+                        ? 'Đã đánh giá'
+                        : 'x${item.quantity} · ${_fmt(item.total)}',
+                    style: TextStyle(fontSize: 12, color: alreadyReviewed ? Colors.green : Colors.grey[600]),
+                  ),
+                  trailing: alreadyReviewed
+                      ? const Icon(Icons.check_circle, color: Colors.green, size: 20)
+                      : const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+                  contentPadding: EdgeInsets.zero,
+                  enabled: !alreadyReviewed,
+                  onTap: alreadyReviewed
+                      ? null
+                      : () {
+                          Navigator.pop(context);
+                          context.push(
+                            '/reviews/write?orderDetailId=${item.id}&variantId=${item.variantId}&variantName=${Uri.encodeComponent(item.variantName)}',
+                          );
+                        },
+                );
+              }),
             ],
           ),
         ),
