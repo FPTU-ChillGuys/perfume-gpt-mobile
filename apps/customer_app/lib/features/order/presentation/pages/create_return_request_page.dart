@@ -871,10 +871,11 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
       );
 
       if (mounted) {
+        ref.invalidate(myReturnRequestsProvider);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Đã tạo yêu cầu hoàn trả'), backgroundColor: Colors.green),
         );
-        context.pop();
+        context.pop(true);
       }
     } catch (e) {
       if (mounted) {
