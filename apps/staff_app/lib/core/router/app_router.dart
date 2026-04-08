@@ -10,13 +10,13 @@ import '../../features/auth/presentation/screens/login_screen.dart';
 
 part 'app_router.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 GoRouter appRouter(Ref ref) {
-  final authState = ref.watch(authProvider);
-
-  return GoRouter(
+  final router = GoRouter(
     initialLocation: '/pos',
     redirect: (context, state) {
+      final authState = ref.read(authProvider);
+      
       final isLoading = authState.isLoading;
       final isAuth = authState.value != null;
       final isLoggingIn = state.matchedLocation == '/login';
@@ -77,6 +77,12 @@ GoRouter appRouter(Ref ref) {
       ),
     ],
   );
+
+  ref.listen(authProvider, (_, __) {
+    router.refresh();
+  });
+
+  return router;
 }
 
 class ScaffoldWithBottomNavBar extends StatelessWidget {
