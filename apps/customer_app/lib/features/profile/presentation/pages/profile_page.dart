@@ -149,7 +149,7 @@ class _AuthenticatedView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profileAsync = ref.watch(profileNotifierProvider);
+    final profileAsync = ref.watch(profileControllerProvider);
     final loyaltyAsync = ref.watch(loyaltyTotalProvider);
 
     return CustomScrollView(
@@ -280,7 +280,7 @@ class _AuthenticatedView extends ConsumerWidget {
                 subtitle: 'Cập nhật thông tin cá nhân',
                 onTap: () async {
                   final updated = await context.push<bool>('/profile/edit');
-                  if (updated == true) ref.invalidate(profileNotifierProvider);
+                  if (updated == true) ref.invalidate(profileControllerProvider);
                 },
               ),
               const SizedBox(height: 10),

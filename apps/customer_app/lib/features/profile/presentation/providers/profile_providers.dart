@@ -16,7 +16,7 @@ ProfileRepository profileRepository(Ref ref) {
 }
 
 @riverpod
-class ProfileNotifier extends _$ProfileNotifier {
+class ProfileController extends _$ProfileController {
   @override
   FutureOr<UserProfile> build() {
     return ref.watch(profileRepositoryProvider).getMe();
