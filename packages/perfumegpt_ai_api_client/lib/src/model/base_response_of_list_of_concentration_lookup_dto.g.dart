@@ -1,0 +1,154 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'base_response_of_list_of_concentration_lookup_dto.dart';
+
+// **************************************************************************
+// CopyWithGenerator
+// **************************************************************************
+
+abstract class _$BaseResponseOfListOfConcentrationLookupDtoCWProxy {
+  BaseResponseOfListOfConcentrationLookupDto payload(
+    List<ConcentrationLookupDto>? payload,
+  );
+
+  BaseResponseOfListOfConcentrationLookupDto success(bool? success);
+
+  BaseResponseOfListOfConcentrationLookupDto message(String? message);
+
+  BaseResponseOfListOfConcentrationLookupDto errors(List<String>? errors);
+
+  BaseResponseOfListOfConcentrationLookupDto errorType(int? errorType);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfConcentrationLookupDto(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfListOfConcentrationLookupDto(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfListOfConcentrationLookupDto call({
+    List<ConcentrationLookupDto>? payload,
+    bool? success,
+    String? message,
+    List<String>? errors,
+    int? errorType,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith(...)` or call `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith.fieldName(value)` for a single field.
+class _$BaseResponseOfListOfConcentrationLookupDtoCWProxyImpl
+    implements _$BaseResponseOfListOfConcentrationLookupDtoCWProxy {
+  const _$BaseResponseOfListOfConcentrationLookupDtoCWProxyImpl(this._value);
+
+  final BaseResponseOfListOfConcentrationLookupDto _value;
+
+  @override
+  BaseResponseOfListOfConcentrationLookupDto payload(
+    List<ConcentrationLookupDto>? payload,
+  ) => call(payload: payload);
+
+  @override
+  BaseResponseOfListOfConcentrationLookupDto success(bool? success) =>
+      call(success: success);
+
+  @override
+  BaseResponseOfListOfConcentrationLookupDto message(String? message) =>
+      call(message: message);
+
+  @override
+  BaseResponseOfListOfConcentrationLookupDto errors(List<String>? errors) =>
+      call(errors: errors);
+
+  @override
+  BaseResponseOfListOfConcentrationLookupDto errorType(int? errorType) =>
+      call(errorType: errorType);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfConcentrationLookupDto(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// BaseResponseOfListOfConcentrationLookupDto(...).copyWith(id: 12, name: "My name")
+  /// ```
+  BaseResponseOfListOfConcentrationLookupDto call({
+    Object? payload = const $CopyWithPlaceholder(),
+    Object? success = const $CopyWithPlaceholder(),
+    Object? message = const $CopyWithPlaceholder(),
+    Object? errors = const $CopyWithPlaceholder(),
+    Object? errorType = const $CopyWithPlaceholder(),
+  }) {
+    return BaseResponseOfListOfConcentrationLookupDto(
+      payload: payload == const $CopyWithPlaceholder()
+          ? _value.payload
+          // ignore: cast_nullable_to_non_nullable
+          : payload as List<ConcentrationLookupDto>?,
+      success: success == const $CopyWithPlaceholder()
+          ? _value.success
+          // ignore: cast_nullable_to_non_nullable
+          : success as bool?,
+      message: message == const $CopyWithPlaceholder()
+          ? _value.message
+          // ignore: cast_nullable_to_non_nullable
+          : message as String?,
+      errors: errors == const $CopyWithPlaceholder()
+          ? _value.errors
+          // ignore: cast_nullable_to_non_nullable
+          : errors as List<String>?,
+      errorType: errorType == const $CopyWithPlaceholder()
+          ? _value.errorType
+          // ignore: cast_nullable_to_non_nullable
+          : errorType as int?,
+    );
+  }
+}
+
+extension $BaseResponseOfListOfConcentrationLookupDtoCopyWith
+    on BaseResponseOfListOfConcentrationLookupDto {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith(...)` or `instanceOfBaseResponseOfListOfConcentrationLookupDto.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$BaseResponseOfListOfConcentrationLookupDtoCWProxy get copyWith =>
+      _$BaseResponseOfListOfConcentrationLookupDtoCWProxyImpl(this);
+}
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BaseResponseOfListOfConcentrationLookupDto
+_$BaseResponseOfListOfConcentrationLookupDtoFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('BaseResponseOfListOfConcentrationLookupDto', json, (
+  $checkedConvert,
+) {
+  final val = BaseResponseOfListOfConcentrationLookupDto(
+    payload: $checkedConvert(
+      'payload',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => ConcentrationLookupDto.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    success: $checkedConvert('success', (v) => v as bool?),
+    message: $checkedConvert('message', (v) => v as String?),
+    errors: $checkedConvert(
+      'errors',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    ),
+    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$BaseResponseOfListOfConcentrationLookupDtoToJson(
+  BaseResponseOfListOfConcentrationLookupDto instance,
+) => <String, dynamic>{
+  'payload': ?instance.payload?.map((e) => e.toJson()).toList(),
+  'success': ?instance.success,
+  'message': ?instance.message,
+  'errors': ?instance.errors,
+  'errorType': ?instance.errorType,
+};
