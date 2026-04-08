@@ -26,6 +26,7 @@ doc/BaseResponseOfCampaignResponse.md
 doc/BaseResponseOfCategoryResponse.md
 doc/BaseResponseOfConcentrationResponse.md
 doc/BaseResponseOfCreateImportTicketRequest.md
+doc/BaseResponseOfCustomerForPosResponse.md
 doc/BaseResponseOfExcelTemplateResponse.md
 doc/BaseResponseOfGetCartItemsResponse.md
 doc/BaseResponseOfGetCartTotalResponse.md
@@ -164,6 +165,7 @@ doc/CreateVariantRequest.md
 doc/CreateVoucherRequest.md
 doc/CustomerAttributePreferenceResponse.md
 doc/CustomerFamilyPreferenceRespone.md
+doc/CustomerForPosResponse.md
 doc/CustomerNotePreferenceResponse.md
 doc/DeliveryMethod.md
 doc/DiscountType.md
@@ -424,6 +426,7 @@ lib/src/model/base_response_of_campaign_response.dart
 lib/src/model/base_response_of_category_response.dart
 lib/src/model/base_response_of_concentration_response.dart
 lib/src/model/base_response_of_create_import_ticket_request.dart
+lib/src/model/base_response_of_customer_for_pos_response.dart
 lib/src/model/base_response_of_excel_template_response.dart
 lib/src/model/base_response_of_get_cart_items_response.dart
 lib/src/model/base_response_of_get_cart_total_response.dart
@@ -556,6 +559,7 @@ lib/src/model/create_variant_request.dart
 lib/src/model/create_voucher_request.dart
 lib/src/model/customer_attribute_preference_response.dart
 lib/src/model/customer_family_preference_respone.dart
+lib/src/model/customer_for_pos_response.dart
 lib/src/model/customer_note_preference_response.dart
 lib/src/model/delivery_method.dart
 lib/src/model/discount_type.dart

@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**apiUsersAvatarDelete**](UsersApi.md#apiusersavatardelete) | **DELETE** /api/users/avatar | 
 [**apiUsersAvatarGet**](UsersApi.md#apiusersavatarget) | **GET** /api/users/avatar | 
 [**apiUsersAvatarPost**](UsersApi.md#apiusersavatarpost) | **POST** /api/users/avatar | 
+[**apiUsersForPosGet**](UsersApi.md#apiusersforposget) | **GET** /api/users/for-pos | 
 [**apiUsersIdGet**](UsersApi.md#apiusersidget) | **GET** /api/users/{id} | 
 [**apiUsersMeGet**](UsersApi.md#apiusersmeget) | **GET** /api/users/me | 
 [**apiUsersStaffLookupGet**](UsersApi.md#apiusersstafflookupget) | **GET** /api/users/staff-lookup | 
@@ -130,6 +131,47 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiUsersForPosGet**
+> BaseResponseOfCustomerForPosResponse apiUsersForPosGet(phoneOrEmail)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getUsersApi();
+final String phoneOrEmail = phoneOrEmail_example; // String | 
+
+try {
+    final response = api.apiUsersForPosGet(phoneOrEmail);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling UsersApi->apiUsersForPosGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **phoneOrEmail** | **String**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfCustomerForPosResponse**](BaseResponseOfCustomerForPosResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

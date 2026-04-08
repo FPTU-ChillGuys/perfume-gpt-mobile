@@ -6,24 +6,26 @@ part of 'return_request_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-
-// ---- staffReturnRequests (family) ----
 
 @ProviderFor(staffReturnRequests)
 final staffReturnRequestsProvider = StaffReturnRequestsFamily._();
 
 final class StaffReturnRequestsProvider
-    extends $FunctionalProvider<
-        AsyncValue<PagedResultOfOrderReturnRequestResponse>,
-        PagedResultOfOrderReturnRequestResponse,
-        FutureOr<PagedResultOfOrderReturnRequestResponse>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<PagedResultOfOrderReturnRequestResponse>,
+          PagedResultOfOrderReturnRequestResponse,
+          FutureOr<PagedResultOfOrderReturnRequestResponse>
+        >
     with
         $FutureModifier<PagedResultOfOrderReturnRequestResponse>,
         $FutureProvider<PagedResultOfOrderReturnRequestResponse> {
   StaffReturnRequestsProvider._({
     required StaffReturnRequestsFamily super.from,
-    required ({ReturnRequestStatus? status, int pageNumber, int pageSize}) super.argument,
+    required ({ReturnRequestStatus? status, int pageNumber, int pageSize})
+    super.argument,
   }) : super(
          retry: null,
          name: r'staffReturnRequestsProvider',
@@ -36,18 +38,22 @@ final class StaffReturnRequestsProvider
   String debugGetCreateSourceHash() => _$staffReturnRequestsHash();
 
   @override
-  String toString() => r'staffReturnRequestsProvider' '$argument';
+  String toString() {
+    return r'staffReturnRequestsProvider'
+        ''
+        '$argument';
+  }
 
   @$internal
   @override
-  $FutureProviderElement<PagedResultOfOrderReturnRequestResponse> $createElement(
-      $ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<PagedResultOfOrderReturnRequestResponse>
+  $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<PagedResultOfOrderReturnRequestResponse> create(Ref ref) {
     final argument =
-        this.argument as ({ReturnRequestStatus? status, int pageNumber, int pageSize});
+        this.argument
+            as ({ReturnRequestStatus? status, int pageNumber, int pageSize});
     return staffReturnRequests(
       ref,
       status: argument.status,
@@ -62,16 +68,20 @@ final class StaffReturnRequestsProvider
   }
 
   @override
-  int get hashCode => argument.hashCode;
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
-String _$staffReturnRequestsHash() => r'staff_return_requests_hash';
+String _$staffReturnRequestsHash() =>
+    r'c6fc0914e5d64d7590e6b6c6061ab3d14a0cbea4';
 
 final class StaffReturnRequestsFamily extends $Family
     with
         $FunctionalFamilyOverride<
-            FutureOr<PagedResultOfOrderReturnRequestResponse>,
-            ({ReturnRequestStatus? status, int pageNumber, int pageSize})> {
+          FutureOr<PagedResultOfOrderReturnRequestResponse>,
+          ({ReturnRequestStatus? status, int pageNumber, int pageSize})
+        > {
   StaffReturnRequestsFamily._()
     : super(
         retry: null,
@@ -85,27 +95,28 @@ final class StaffReturnRequestsFamily extends $Family
     ReturnRequestStatus? status,
     int pageNumber = 1,
     int pageSize = 10,
-  }) =>
-      StaffReturnRequestsProvider._(
-        argument: (status: status, pageNumber: pageNumber, pageSize: pageSize),
-        from: this,
-      );
+  }) => StaffReturnRequestsProvider._(
+    argument: (status: status, pageNumber: pageNumber, pageSize: pageSize),
+    from: this,
+  );
 
   @override
   String toString() => r'staffReturnRequestsProvider';
 }
 
-// ---- staffReturnRequestDetail (family) ----
-
 @ProviderFor(staffReturnRequestDetail)
 final staffReturnRequestDetailProvider = StaffReturnRequestDetailFamily._();
 
 final class StaffReturnRequestDetailProvider
-    extends $FunctionalProvider<
-        AsyncValue<OrderReturnRequestResponse>,
-        OrderReturnRequestResponse,
-        FutureOr<OrderReturnRequestResponse>>
-    with $FutureModifier<OrderReturnRequestResponse>, $FutureProvider<OrderReturnRequestResponse> {
+    extends
+        $FunctionalProvider<
+          AsyncValue<OrderReturnRequestResponse>,
+          OrderReturnRequestResponse,
+          FutureOr<OrderReturnRequestResponse>
+        >
+    with
+        $FutureModifier<OrderReturnRequestResponse>,
+        $FutureProvider<OrderReturnRequestResponse> {
   StaffReturnRequestDetailProvider._({
     required StaffReturnRequestDetailFamily super.from,
     required String super.argument,
@@ -121,13 +132,17 @@ final class StaffReturnRequestDetailProvider
   String debugGetCreateSourceHash() => _$staffReturnRequestDetailHash();
 
   @override
-  String toString() => r'staffReturnRequestDetailProvider' '($argument)';
+  String toString() {
+    return r'staffReturnRequestDetailProvider'
+        ''
+        '($argument)';
+  }
 
   @$internal
   @override
   $FutureProviderElement<OrderReturnRequestResponse> $createElement(
-      $ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<OrderReturnRequestResponse> create(Ref ref) {
@@ -137,17 +152,25 @@ final class StaffReturnRequestDetailProvider
 
   @override
   bool operator ==(Object other) {
-    return other is StaffReturnRequestDetailProvider && other.argument == argument;
+    return other is StaffReturnRequestDetailProvider &&
+        other.argument == argument;
   }
 
   @override
-  int get hashCode => argument.hashCode;
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
-String _$staffReturnRequestDetailHash() => r'staff_return_request_detail_hash';
+String _$staffReturnRequestDetailHash() =>
+    r'c37b6a0883d0b384b7dce470a2b7ca8a0fd3ef69';
 
 final class StaffReturnRequestDetailFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<OrderReturnRequestResponse>, String> {
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<OrderReturnRequestResponse>,
+          String
+        > {
   StaffReturnRequestDetailFamily._()
     : super(
         retry: null,

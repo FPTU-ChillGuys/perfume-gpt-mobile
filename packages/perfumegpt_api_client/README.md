@@ -199,6 +199,8 @@ Class | Method | HTTP request | Description
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsMomoReturnGet**](doc/PaymentsApi.md#apipaymentsmomoreturnget) | **GET** /api/payments/momo-return | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdConfirmPut**](doc/PaymentsApi.md#apipaymentspaymentidconfirmput) | **PUT** /api/payments/{paymentId}/confirm | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPaymentIdRetryPost**](doc/PaymentsApi.md#apipaymentspaymentidretrypost) | **POST** /api/payments/{paymentId}/retry | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPayosCancelGet**](doc/PaymentsApi.md#apipaymentspayoscancelget) | **GET** /api/payments/payos-cancel | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsPayosReturnGet**](doc/PaymentsApi.md#apipaymentspayosreturnget) | **GET** /api/payments/payos-return | 
 [*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsVnpayReturnGet**](doc/PaymentsApi.md#apipaymentsvnpayreturnget) | **GET** /api/payments/vnpay-return | 
 [*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsForPosGet**](doc/ProductVariantsApi.md#apiproductvariantsforposget) | **GET** /api/productvariants/for-pos | 
 [*ProductVariantsApi*](doc/ProductVariantsApi.md) | [**apiProductvariantsGet**](doc/ProductVariantsApi.md#apiproductvariantsget) | **GET** /api/productvariants | 
@@ -268,6 +270,7 @@ Class | Method | HTTP request | Description
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersAvatarDelete**](doc/UsersApi.md#apiusersavatardelete) | **DELETE** /api/users/avatar | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersAvatarGet**](doc/UsersApi.md#apiusersavatarget) | **GET** /api/users/avatar | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersAvatarPost**](doc/UsersApi.md#apiusersavatarpost) | **POST** /api/users/avatar | 
+[*UsersApi*](doc/UsersApi.md) | [**apiUsersForPosGet**](doc/UsersApi.md#apiusersforposget) | **GET** /api/users/for-pos | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersIdGet**](doc/UsersApi.md#apiusersidget) | **GET** /api/users/{id} | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersMeGet**](doc/UsersApi.md#apiusersmeget) | **GET** /api/users/me | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersStaffLookupGet**](doc/UsersApi.md#apiusersstafflookupget) | **GET** /api/users/staff-lookup | 
@@ -304,6 +307,7 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfCategoryResponse](doc/BaseResponseOfCategoryResponse.md)
  - [BaseResponseOfConcentrationResponse](doc/BaseResponseOfConcentrationResponse.md)
  - [BaseResponseOfCreateImportTicketRequest](doc/BaseResponseOfCreateImportTicketRequest.md)
+ - [BaseResponseOfCustomerForPosResponse](doc/BaseResponseOfCustomerForPosResponse.md)
  - [BaseResponseOfExcelTemplateResponse](doc/BaseResponseOfExcelTemplateResponse.md)
  - [BaseResponseOfGetCartItemsResponse](doc/BaseResponseOfGetCartItemsResponse.md)
  - [BaseResponseOfGetCartTotalResponse](doc/BaseResponseOfGetCartTotalResponse.md)
@@ -436,6 +440,7 @@ Class | Method | HTTP request | Description
  - [CreateVoucherRequest](doc/CreateVoucherRequest.md)
  - [CustomerAttributePreferenceResponse](doc/CustomerAttributePreferenceResponse.md)
  - [CustomerFamilyPreferenceRespone](doc/CustomerFamilyPreferenceRespone.md)
+ - [CustomerForPosResponse](doc/CustomerForPosResponse.md)
  - [CustomerNotePreferenceResponse](doc/CustomerNotePreferenceResponse.md)
  - [DeliveryMethod](doc/DeliveryMethod.md)
  - [DiscountType](doc/DiscountType.md)
