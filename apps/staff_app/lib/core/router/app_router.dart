@@ -7,6 +7,8 @@ import '../../features/inventory/presentation/screens/product_detail_screen.dart
 import '../../features/pos/presentation/screens/pos_screen.dart';
 import '../../features/pos/presentation/screens/counter_checkout_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
+import '../../features/returns/presentation/screens/return_request_list_screen.dart';
+import '../../features/returns/presentation/screens/return_request_detail_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -73,12 +75,29 @@ GoRouter appRouter(Ref ref) {
               ),
             ],
           ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/returns',
+                builder: (context, state) => const ReturnRequestListScreen(),
+                routes: [
+                  GoRoute(
+                    path: ':id',
+                    builder: (context, state) {
+                      final id = state.pathParameters['id']!;
+                      return ReturnRequestDetailScreen(id: id);
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     ],
   );
 
-  ref.listen(authProvider, (_, _) {
+  ref.listen(authProvider, (_, next) {
     router.refresh();
   });
 
@@ -106,6 +125,10 @@ class ScaffoldWithBottomNavBar extends StatelessWidget {
           NavigationDestination(
             icon: Icon(Icons.store),
             label: 'Counter',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.assignment_return),
+            label: 'Returns',
           ),
         ],
       ),

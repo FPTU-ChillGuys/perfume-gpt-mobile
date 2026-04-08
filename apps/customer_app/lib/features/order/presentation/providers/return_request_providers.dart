@@ -1,8 +1,10 @@
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/return_request_repository_impl.dart';
+import '../../../../domain/entities/order.dart';
 import '../../../../domain/entities/return_request.dart';
 import '../../../../domain/repositories/return_request_repository.dart';
+import 'order_provider.dart';
 
 part 'return_request_providers.g.dart';
 
@@ -32,4 +34,18 @@ FutureOr<PaginatedReturnRequests> myReturnRequests(
 @riverpod
 FutureOr<ReturnRequest> returnRequestDetail(Ref ref, String id) {
   return ref.read(returnRequestRepositoryProvider).getById(id);
+}
+
+@riverpod
+FutureOr<(ReturnRequest, OrderDetail?)> returnRequestWithOrder(
+    Ref ref, String id) async {
+  final request = await ref.watch(returnRequestDetailProvider(id).future);
+  if (request.orderId.isEmpty) return (request, null);
+  try {
+    final order =
+        await ref.watch(orderDetailProvider(request.orderId).future);
+    return (request, order);
+  } catch (_) {
+    return (request, null);
+  }
 }

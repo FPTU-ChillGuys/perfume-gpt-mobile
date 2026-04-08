@@ -9,7 +9,9 @@ class ReturnRequest {
   final String? inspectionNote;
   final double requestedRefundAmount;
   final double? approvedRefundAmount;
+  final double? refundableAmount;
   final String? requestedByEmail;
+  final String? customerId;
   final String? processedByName;
   final String? inspectedByName;
   final ReturnShippingInfo? returnShippingInfo;
@@ -17,6 +19,11 @@ class ReturnRequest {
   final List<ProofMedia> proofImages;
   final DateTime createdAt;
   final DateTime? updatedAt;
+  // Refund bank info
+  final String? refundBankName;
+  final String? refundAccountNumber;
+  final String? refundAccountName;
+  final bool? isRestocked;
 
   const ReturnRequest({
     required this.id,
@@ -29,7 +36,9 @@ class ReturnRequest {
     this.inspectionNote,
     this.requestedRefundAmount = 0,
     this.approvedRefundAmount,
+    this.refundableAmount,
     this.requestedByEmail,
+    this.customerId,
     this.processedByName,
     this.inspectedByName,
     this.returnShippingInfo,
@@ -37,6 +46,10 @@ class ReturnRequest {
     this.proofImages = const [],
     required this.createdAt,
     this.updatedAt,
+    this.refundBankName,
+    this.refundAccountNumber,
+    this.refundAccountName,
+    this.isRestocked,
   });
 }
 
@@ -63,12 +76,14 @@ class ReturnShippingInfo {
   final String? trackingNumber;
   final String? status;
   final double shippingFee;
+  final DateTime? estimatedDeliveryDate;
 
   const ReturnShippingInfo({
     this.carrierName,
     this.trackingNumber,
     this.status,
     this.shippingFee = 0,
+    this.estimatedDeliveryDate,
   });
 }
 

@@ -190,3 +190,77 @@ final class ReturnRequestDetailFamily extends $Family
   @override
   String toString() => r'returnRequestDetailProvider';
 }
+
+// ---- returnRequestWithOrder (family) ----
+
+@ProviderFor(returnRequestWithOrder)
+final returnRequestWithOrderProvider = ReturnRequestWithOrderFamily._();
+
+final class ReturnRequestWithOrderProvider
+    extends $FunctionalProvider<
+        AsyncValue<(ReturnRequest, OrderDetail?)>,
+        (ReturnRequest, OrderDetail?),
+        FutureOr<(ReturnRequest, OrderDetail?)>>
+    with
+        $FutureModifier<(ReturnRequest, OrderDetail?)>,
+        $FutureProvider<(ReturnRequest, OrderDetail?)> {
+  ReturnRequestWithOrderProvider._({
+    required ReturnRequestWithOrderFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'returnRequestWithOrderProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$returnRequestWithOrderHash();
+
+  @override
+  String toString() => r'returnRequestWithOrderProvider' '($argument)';
+
+  @$internal
+  @override
+  $FutureProviderElement<(ReturnRequest, OrderDetail?)> $createElement(
+          $ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<(ReturnRequest, OrderDetail?)> create(Ref ref) {
+    final argument = this.argument as String;
+    return returnRequestWithOrder(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ReturnRequestWithOrderProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode => argument.hashCode;
+}
+
+String _$returnRequestWithOrderHash() => r'return_request_with_order_hash';
+
+final class ReturnRequestWithOrderFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+            FutureOr<(ReturnRequest, OrderDetail?)>,
+            String> {
+  ReturnRequestWithOrderFamily._()
+    : super(
+        retry: null,
+        name: r'returnRequestWithOrderProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  ReturnRequestWithOrderProvider call(String id) =>
+      ReturnRequestWithOrderProvider._(argument: id, from: this);
+
+  @override
+  String toString() => r'returnRequestWithOrderProvider';
+}

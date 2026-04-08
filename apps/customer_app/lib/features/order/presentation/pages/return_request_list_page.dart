@@ -12,11 +12,11 @@ final _currencyFmt = NumberFormat.currency(locale: 'vi_VN', symbol: '₫', decim
 const _statusTabs = <(String? value, String label)>[
   (null, 'Tất cả'),
   ('Pending', 'Chờ duyệt'),
-  ('RequestMoreInfo', 'Cần bổ sung'),
+  ('RequestMoreInfo', 'Bổ sung bằng chứng'),
   ('ApprovedForReturn', 'Đã duyệt'),
   ('Inspecting', 'Đang kiểm tra'),
-  ('ReadyForRefund', 'Sẵn sàng hoàn'),
-  ('Completed', 'Hoàn tất'),
+  ('ReadyForRefund', 'Chờ hoàn tiền'),
+  ('Completed', 'Đã hoàn tiền'),
   ('Rejected', 'Từ chối'),
 ];
 
@@ -31,7 +31,7 @@ class _ReturnRequestListPageState extends ConsumerState<ReturnRequestListPage>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
   int _currentPage = 1;
-  static const _pageSize = 10;
+  int _pageSize = 10;
 
   String? get _currentStatus => _statusTabs[_tabController.index].$1;
 
@@ -123,11 +123,15 @@ class _ReturnRequestListPageState extends ConsumerState<ReturnRequestListPage>
                         padding: const EdgeInsets.only(bottom: 12),
                         child: _ReturnRequestCard(request: r),
                       )),
-                  if (paginated.totalPages > 1)
-                    _PaginationBar(
+                  _PaginationBar(
                       currentPage: _currentPage,
                       totalPages: paginated.totalPages,
+                      pageSize: _pageSize,
                       onPageChanged: (p) => setState(() => _currentPage = p),
+                      onPageSizeChanged: (s) => setState(() {
+                        _pageSize = s;
+                        _currentPage = 1;
+                      }),
                     ),
                 ],
               ),
@@ -262,12 +266,16 @@ class _ReturnRequestCard extends StatelessWidget {
 class _PaginationBar extends StatelessWidget {
   final int currentPage;
   final int totalPages;
+  final int pageSize;
   final ValueChanged<int> onPageChanged;
+  final ValueChanged<int> onPageSizeChanged;
 
   const _PaginationBar({
     required this.currentPage,
     required this.totalPages,
+    required this.pageSize,
     required this.onPageChanged,
+    required this.onPageSizeChanged,
   });
 
   @override
@@ -277,6 +285,30 @@ class _PaginationBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Page size selector
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColors.border),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<int>(
+                value: pageSize,
+                isDense: true,
+                style: const TextStyle(fontSize: 13, color: AppColors.textPrimary),
+                items: const [
+                  DropdownMenuItem(value: 5, child: Text('5 / trang')),
+                  DropdownMenuItem(value: 10, child: Text('10 / trang')),
+                  DropdownMenuItem(value: 20, child: Text('20 / trang')),
+                ],
+                onChanged: (v) {
+                  if (v != null) onPageSizeChanged(v);
+                },
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
           IconButton(
             icon: const Icon(Icons.chevron_left),
             onPressed: currentPage > 1 ? () => onPageChanged(currentPage - 1) : null,
@@ -300,15 +332,15 @@ class _PaginationBar extends StatelessWidget {
     case 'Pending':
       return (label: 'Chờ duyệt', color: AppColors.statusPending);
     case 'RequestMoreInfo':
-      return (label: 'Cần bổ sung', color: Colors.amber.shade700);
+      return (label: 'Bổ sung bằng chứng', color: Colors.amber.shade700);
     case 'ApprovedForReturn':
       return (label: 'Đã duyệt trả', color: AppColors.statusDelivered);
     case 'Inspecting':
       return (label: 'Đang kiểm tra', color: AppColors.statusDelivering);
     case 'ReadyForRefund':
-      return (label: 'Sẵn sàng hoàn', color: AppColors.statusProcessing);
+      return (label: 'Chờ hoàn tiền', color: AppColors.statusProcessing);
     case 'Completed':
-      return (label: 'Hoàn tất', color: AppColors.paymentRefunded);
+      return (label: 'Đã hoàn tiền', color: AppColors.paymentRefunded);
     case 'Rejected':
       return (label: 'Từ chối', color: AppColors.statusCancelled);
     default:

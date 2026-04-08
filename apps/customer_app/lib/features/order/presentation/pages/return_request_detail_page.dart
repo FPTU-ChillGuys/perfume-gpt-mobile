@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/image_url_helper.dart';
+import '../../../../domain/entities/order.dart';
 import '../../../../domain/entities/return_request.dart';
 import '../providers/return_request_providers.dart';
 
@@ -27,6 +29,7 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
   final Set<String> _removeMediaIds = {};
   bool _isSubmitting = false;
   bool _isSyncing = false;
+  bool _isPrintingLabel = false;
 
   @override
   void dispose() {
@@ -36,12 +39,12 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
 
   @override
   Widget build(BuildContext context) {
-    final detailAsync = ref.watch(returnRequestDetailProvider(widget.requestId));
+    final detailAsync = ref.watch(returnRequestWithOrderProvider(widget.requestId));
 
     return Scaffold(
       backgroundColor: AppColors.surface,
       body: detailAsync.when(
-        data: (request) => _buildContent(context, request),
+        data: (data) => _buildContent(context, data.$1, data.$2),
         loading: () => CustomScrollView(
           slivers: [
             _buildAppBar(null),
@@ -50,7 +53,9 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
             ),
           ],
         ),
-        error: (e, _) => CustomScrollView(
+        error: (e, _) {
+          debugPrint('[ReturnRequestDetailPage] Error loading detail: $e');
+          return CustomScrollView(
           slivers: [
             _buildAppBar(null),
             SliverFillRemaining(
@@ -61,9 +66,18 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
                     const Icon(Icons.error_outline, size: 48, color: AppColors.textSecondary),
                     const SizedBox(height: 12),
                     const Text('Không thể tải chi tiết', style: TextStyle(color: AppColors.textSecondary)),
+                    const SizedBox(height: 4),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: Text('$e',
+                          style: const TextStyle(fontSize: 11, color: AppColors.textSecondary),
+                          textAlign: TextAlign.center,
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis),
+                    ),
                     const SizedBox(height: 8),
                     TextButton(
-                      onPressed: () => ref.invalidate(returnRequestDetailProvider(widget.requestId)),
+                      onPressed: () => ref.invalidate(returnRequestWithOrderProvider(widget.requestId)),
                       child: const Text('Thử lại'),
                     ),
                   ],
@@ -71,19 +85,21 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
               ),
             ),
           ],
-        ),
+        );
+        },
       ),
     );
   }
 
-  Widget _buildContent(BuildContext context, ReturnRequest request) {
+  Widget _buildContent(BuildContext context, ReturnRequest request, OrderDetail? order) {
     final statusInfo = _statusInfo(request.status);
     final canAddEvidence = request.status == 'RequestMoreInfo';
+    final requestItems = _buildRequestItems(request, order);
 
     return RefreshIndicator(
       color: AppColors.primary,
       onRefresh: () async {
-        ref.invalidate(returnRequestDetailProvider(widget.requestId));
+        ref.invalidate(returnRequestWithOrderProvider(widget.requestId));
       },
       child: CustomScrollView(
         slivers: [
@@ -107,8 +123,8 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
                 ],
 
                 // ── Return items ──
-                if (request.returnDetails.isNotEmpty) ...[
-                  _buildItemsSection(request.returnDetails),
+                if (requestItems.isNotEmpty) ...[
+                  _buildItemsSection(requestItems),
                   const SizedBox(height: 16),
                 ],
 
@@ -138,6 +154,15 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
       systemOverlayStyle: SystemUiOverlayStyle.light,
       backgroundColor: AppColors.primaryDark,
       actions: [
+        if (request != null && request.returnShippingInfo?.trackingNumber != null)
+          IconButton(
+            icon: _isPrintingLabel
+                ? const SizedBox(width: 20, height: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                : const Icon(Icons.print, color: Colors.white),
+            tooltip: 'In nhãn vận chuyển',
+            onPressed: _isPrintingLabel ? null : () => _printShippingLabel(request),
+          ),
         if (request != null)
           IconButton(
             icon: _isSyncing
@@ -196,6 +221,8 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
   }
 
   Widget _buildInfoSection(ReturnRequest request) {
+    final shouldShowStaffNote =
+        request.status == 'Rejected' || request.status == 'RequestMoreInfo';
     return _SectionCard(
       title: 'Thông tin yêu cầu',
       icon: Icons.info_outline,
@@ -209,7 +236,7 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
           if (request.updatedAt != null)
             _InfoRow('Cập nhật', _dateFmt.format(request.updatedAt!)),
           _InfoRow('Số tiền yêu cầu', _currencyFmt.format(request.requestedRefundAmount)),
-          if (request.approvedRefundAmount != null)
+          if (request.approvedRefundAmount != null && request.approvedRefundAmount! > 0)
             _InfoRow('Số tiền duyệt', _currencyFmt.format(request.approvedRefundAmount!)),
           if (request.processedByName != null)
             _InfoRow('Người xử lý', request.processedByName!),
@@ -220,13 +247,15 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
             const Divider(height: 20),
             _InfoRow('Ghi chú khách', request.customerNote!),
           ],
-          if (request.staffNote != null && request.staffNote!.isNotEmpty) ...[
-            const Divider(height: 20),
-            _InfoRow('Ghi chú NV', request.staffNote!),
-          ],
-          if (request.inspectionNote != null && request.inspectionNote!.isNotEmpty) ...[
-            const Divider(height: 20),
-            _InfoRow('Ghi chú kiểm tra', request.inspectionNote!),
+          if (shouldShowStaffNote) ...[
+            if (request.staffNote != null && request.staffNote!.isNotEmpty) ...[
+              const Divider(height: 20),
+              _InfoRow('Ghi chú NV', request.staffNote!),
+            ],
+            if (request.inspectionNote != null && request.inspectionNote!.isNotEmpty) ...[
+              const Divider(height: 20),
+              _InfoRow('Ghi chú kiểm tra', request.inspectionNote!),
+            ],
           ],
         ],
       ),
@@ -244,47 +273,81 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
           if (shipping.trackingNumber != null)
             _InfoRow('Mã vận đơn', shipping.trackingNumber!),
           if (shipping.status != null)
-            _InfoRow('Trạng thái', shipping.status!),
+            _InfoRow('Trạng thái', _shippingStatusLabel(shipping.status!)),
           _InfoRow('Phí vận chuyển', _currencyFmt.format(shipping.shippingFee)),
         ],
       ),
     );
   }
 
-  Widget _buildItemsSection(List<ReturnDetail> details) {
+  Widget _buildItemsSection(List<_RequestItem> items) {
     return _SectionCard(
-      title: 'Sản phẩm trả',
+      title: 'Sản phẩm trong đơn',
       icon: Icons.inventory_2_outlined,
       child: Column(
-        children: details.asMap().entries.map((entry) {
+        children: items.asMap().entries.map((entry) {
           final i = entry.key;
-          final d = entry.value;
+          final item = entry.value;
           return Column(
             children: [
               if (i > 0) const Divider(height: 16),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Product image
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: item.imageUrl != null
+                        ? Image.network(
+                            ImageUrlHelper.resolve(item.imageUrl!),
+                            width: 72,
+                            height: 72,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, _, _) => _imagePlaceholder(),
+                          )
+                        : _imagePlaceholder(),
+                  ),
+                  const SizedBox(width: 12),
+                  // Name, qty, price
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Sản phẩm ${i + 1}',
+                        Text(item.name,
                             style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
                         const SizedBox(height: 4),
-                        Text('SL: ${d.requestedQuantity} × ${_currencyFmt.format(d.unitPrice)}',
+                        Text('Số lượng: ${item.quantity}',
                             style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                        if (item.unitPrice > 0)
+                          Text('Đơn giá: ${_currencyFmt.format(item.unitPrice)}',
+                              style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
                       ],
                     ),
                   ),
-                  Text(_currencyFmt.format(d.refundableAmount),
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13, color: AppColors.primary)),
+                  // Total
+                  if (item.totalItem > 0)
+                    Text(
+                      _currencyFmt.format(item.totalItem),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13,
+                          color: AppColors.primary),
+                    ),
                 ],
               ),
             ],
           );
         }).toList(),
       ),
+    );
+  }
+
+  Widget _imagePlaceholder() {
+    return Container(
+      width: 72,
+      height: 72,
+      color: Colors.grey.shade200,
+      child: const Icon(Icons.image_outlined, color: AppColors.textSecondary, size: 28),
     );
   }
 
@@ -548,7 +611,7 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
       );
 
       // Refresh and clear state
-      ref.invalidate(returnRequestDetailProvider(widget.requestId));
+      ref.invalidate(returnRequestWithOrderProvider(widget.requestId));
       _newImages.clear();
       _newVideos.clear();
       _removeMediaIds.clear();
@@ -574,7 +637,7 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     setState(() => _isSyncing = true);
     try {
       await ref.read(returnRequestRepositoryProvider).syncShippingStatus();
-      ref.invalidate(returnRequestDetailProvider(widget.requestId));
+      ref.invalidate(returnRequestWithOrderProvider(widget.requestId));
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Đã đồng bộ trạng thái vận chuyển'), backgroundColor: Colors.green),
@@ -588,6 +651,38 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
       }
     } finally {
       if (mounted) setState(() => _isSyncing = false);
+    }
+  }
+
+  Future<void> _printShippingLabel(ReturnRequest request) async {
+    final trackingNumber = request.returnShippingInfo?.trackingNumber;
+    if (trackingNumber == null) return;
+
+    setState(() => _isPrintingLabel = true);
+    try {
+      final url = await ref.read(returnRequestRepositoryProvider).getOrderInfoUrl(trackingNumber);
+      if (url != null && url.isNotEmpty && mounted) {
+        final uri = Uri.tryParse(url);
+        if (uri != null && await canLaunchUrl(uri)) {
+          await launchUrl(uri, mode: LaunchMode.externalApplication);
+        } else if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Không thể mở link nhãn vận chuyển'), backgroundColor: Colors.red),
+          );
+        }
+      } else if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Không có link nhãn vận chuyển'), backgroundColor: Colors.orange),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Lỗi: $e'), backgroundColor: Colors.red),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isPrintingLabel = false);
     }
   }
 }
@@ -666,6 +761,61 @@ class _InfoRow extends StatelessWidget {
 
 // ── Helpers (shared with list page) ──
 
+class _RequestItem {
+  final String name;
+  final String? imageUrl;
+  final int quantity;
+  final double unitPrice;
+  final double totalItem;
+
+  const _RequestItem({
+    required this.name,
+    this.imageUrl,
+    required this.quantity,
+    required this.unitPrice,
+    required this.totalItem,
+  });
+}
+
+List<_RequestItem> _buildRequestItems(ReturnRequest request, OrderDetail? order) {
+  final orderDetails = order?.orderDetails ?? [];
+  final returnDetails = request.returnDetails;
+
+  if (returnDetails.isEmpty) {
+    return orderDetails.map((item) {
+      final qty = item.quantity;
+      final price = item.unitPrice;
+      return _RequestItem(
+        name: item.variantName,
+        imageUrl: item.imageUrl,
+        quantity: qty,
+        unitPrice: price,
+        totalItem: price * qty,
+      );
+    }).toList();
+  }
+
+  return returnDetails.map((detail) {
+    final matched = orderDetails.cast<OrderDetailItem?>().firstWhere(
+      (item) =>
+          item?.id == detail.orderDetailId ||
+          (detail.variantId != null && item?.variantId == detail.variantId),
+      orElse: () => null,
+    );
+
+    final qty = detail.requestedQuantity;
+    final price = detail.unitPrice > 0 ? detail.unitPrice : (matched?.unitPrice ?? 0.0);
+
+    return _RequestItem(
+      name: matched?.variantName ?? 'Sản phẩm hoàn trả',
+      imageUrl: matched?.imageUrl,
+      quantity: qty,
+      unitPrice: price,
+      totalItem: price * qty,
+    );
+  }).toList();
+}
+
 ({String label, Color color}) _statusInfo(String status) {
   switch (status) {
     case 'Pending':
@@ -701,5 +851,26 @@ String? _reasonLabel(String? reason) {
       return 'Dị ứng sản phẩm';
     default:
       return reason;
+  }
+}
+
+String _shippingStatusLabel(String status) {
+  switch (status) {
+    case 'UnAssigned':
+      return 'Chưa gán';
+    case 'ReadyToPick':
+      return 'Chờ lấy hàng';
+    case 'Delivering':
+      return 'Đang giao hàng';
+    case 'Delivered':
+      return 'Đã giao';
+    case 'Cancelled':
+      return 'Đã hủy';
+    case 'Returning':
+      return 'Đang trả hàng';
+    case 'Returned':
+      return 'Đã trả hàng';
+    default:
+      return status;
   }
 }
