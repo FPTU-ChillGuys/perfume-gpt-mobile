@@ -1,0 +1,19 @@
+name: perfumegpt_ai_api_client
+description: Auto-generated API client for PerfumeGPT AI services.
+version: 0.1.0
+resolution: workspace
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  dio: ^5.7.0
+  json_annotation: ^4.11.0
+  copy_with_extension: ^14.0.0
+
+dev_dependencies:
+  build_runner: ^2.13.1
+  json_serializable: ^6.11.2
+  copy_with_extension_gen: ^14.0.0
+  test: ^1.16.0
+  lints: any
