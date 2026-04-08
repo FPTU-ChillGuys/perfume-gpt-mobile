@@ -152,6 +152,10 @@ class _AuthenticatedView extends ConsumerWidget {
     final profileAsync = ref.watch(profileControllerProvider);
     final loyaltyAsync = ref.watch(loyaltyTotalProvider);
 
+    final initial = (userName != null && userName!.trim().isNotEmpty)
+        ? userName!.trim()[0].toUpperCase()
+        : 'U';
+
     return CustomScrollView(
       slivers: [
         // ── Hero header ──
@@ -193,7 +197,7 @@ class _AuthenticatedView extends ConsumerWidget {
                     data: (p) => p.avatarUrl != null && p.avatarUrl!.isNotEmpty
                         ? null
                         : Text(
-                            (userName ?? 'U')[0].toUpperCase(),
+                            initial,
                             style: const TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
@@ -201,7 +205,7 @@ class _AuthenticatedView extends ConsumerWidget {
                             ),
                           ),
                     orElse: () => Text(
-                      (userName ?? 'U')[0].toUpperCase(),
+                      initial,
                       style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
