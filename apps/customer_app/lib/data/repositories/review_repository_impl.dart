@@ -1,7 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/review.dart';
 import '../../domain/repositories/review_repository.dart';
@@ -116,34 +114,11 @@ class ReviewRepositoryImpl implements ReviewRepository {
   Future<List<String>> uploadTemporaryImages(
     List<({String filename, Uint8List bytes})> images,
   ) async {
-    final imageFiles = images.map((img) {
-      final ext = img.filename.split('.').last.toLowerCase();
-      return MultipartFile.fromBytes(img.bytes,
-          filename: img.filename,
-          contentType: MediaType('image', ext == 'png' ? 'png' : 'jpeg'));
-    }).toList();
-
-    try {
-      final response = await _api.apiReviewsImagesTemporaryPost(
-        images: imageFiles,
-      );
-      final data = response.data?.payload?.data ?? [];
-      return data.map((m) => m.id ?? '').where((id) => id.isNotEmpty).toList();
-    } on DioException catch (e) {
-      if (e.response?.statusCode == 200) {
-        final raw = e.response?.data;
-        if (raw is Map<String, dynamic>) {
-          final payload = raw['payload'] as Map<String, dynamic>?;
-          final data =
-              (payload?['data'] as List?)?.cast<Map<String, dynamic>>() ?? [];
-          return data
-              .map((m) => (m['id'] ?? '') as String)
-              .where((id) => id.isNotEmpty)
-              .toList();
-        }
-      }
-      rethrow;
-    }
+    final response = await _api.apiReviewsImagesTemporaryPost(
+      images: images,
+    );
+    final data = response.data?.payload?.data ?? [];
+    return data.map((m) => m.id ?? '').where((id) => id.isNotEmpty).toList();
   }
 
   Review _mapResponse(ReviewResponse j) => Review(

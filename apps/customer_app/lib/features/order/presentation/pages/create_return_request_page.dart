@@ -13,12 +13,12 @@ import '../providers/return_request_providers.dart';
 
 final _currencyFmt = NumberFormat.currency(locale: 'vi_VN', symbol: '₫', decimalDigits: 0);
 
-const _reasons = <(String value, String label)>[
-  ('DamagedProduct', 'Sản phẩm bị hư hỏng'),
-  ('WrongItemReceived', 'Nhận sai sản phẩm'),
-  ('ItemNotAsDescribed', 'Không đúng mô tả'),
-  ('ChangedMind', 'Đổi ý'),
-  ('AllergicReaction', 'Dị ứng sản phẩm'),
+const _reasons = <(String value, String label, IconData icon)>[
+  ('DamagedProduct', 'Sản phẩm bị hư hỏng', Icons.broken_image_outlined),
+  ('WrongItemReceived', 'Nhận sai sản phẩm', Icons.swap_horiz_rounded),
+  ('ItemNotAsDescribed', 'Không đúng mô tả', Icons.description_outlined),
+  ('ChangedMind', 'Đổi ý', Icons.psychology_outlined),
+  ('AllergicReaction', 'Dị ứng sản phẩm', Icons.healing_outlined),
 ];
 
 class CreateReturnRequestPage extends ConsumerStatefulWidget {
@@ -32,270 +32,245 @@ class CreateReturnRequestPage extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<CreateReturnRequestPage> createState() => _CreateReturnRequestPageState();
+  ConsumerState<CreateReturnRequestPage> createState() => _State();
 }
 
-class _CreateReturnRequestPageState extends ConsumerState<CreateReturnRequestPage> {
+class _State extends ConsumerState<CreateReturnRequestPage> {
   String? _selectedReason;
   final _noteController = TextEditingController();
-  final Map<String, int> _selectedItems = {}; // orderDetailId -> quantity
+  final Map<String, int> _selectedItems = {};
   final List<({String filename, Uint8List bytes})> _images = [];
   final List<({String filename, Uint8List bytes})> _videos = [];
   bool _isSubmitting = false;
-
-  // ── New fields ──
   bool _isRefundOnly = false;
+
+  // Bank info
   final _bankNameController = TextEditingController();
-  final _bankAccountNumberController = TextEditingController();
-  final _bankAccountNameController = TextEditingController();
+  final _bankAccountController = TextEditingController();
+  final _bankHolderController = TextEditingController();
 
-  // Address mode: 'saved' or 'custom'
-  String _addressMode = 'saved';
+  // Address mode
+  bool _useCustomAddress = false;
   AddressResponse? _selectedAddress;
-
-  // Custom address
-  final _contactNameController = TextEditingController();
-  final _contactPhoneController = TextEditingController();
-  final _fullAddressController = TextEditingController();
   ProvinceResponse? _selectedProvince;
   DistrictResponse? _selectedDistrict;
   WardResponse? _selectedWard;
+  final _contactNameController = TextEditingController();
+  final _contactPhoneController = TextEditingController();
+  final _fullAddressController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    // Default select all items with full quantity
-    for (final item in widget.orderItems) {
-      _selectedItems[item.id] = item.quantity;
+  bool get _canSubmit =>
+      _selectedReason != null &&
+      _selectedItems.values.any((q) => q > 0) &&
+      _videos.isNotEmpty &&
+      !_isSubmitting;
+
+  double get _estimatedRefund {
+    double total = 0;
+    for (final entry in _selectedItems.entries) {
+      if (entry.value <= 0) continue;
+      final item = widget.orderItems.cast<OrderDetailItem?>().firstWhere(
+            (i) => i?.id == entry.key,
+            orElse: () => null,
+          );
+      if (item != null) total += item.unitPrice * entry.value;
     }
+    return total;
   }
 
   @override
   void dispose() {
     _noteController.dispose();
     _bankNameController.dispose();
-    _bankAccountNumberController.dispose();
-    _bankAccountNameController.dispose();
+    _bankAccountController.dispose();
+    _bankHolderController.dispose();
     _contactNameController.dispose();
     _contactPhoneController.dispose();
     _fullAddressController.dispose();
     super.dispose();
   }
 
-  bool get _canSubmit =>
-      _selectedReason != null &&
-      _selectedItems.isNotEmpty &&
-      _selectedItems.values.any((q) => q > 0) &&
-      _videos.isNotEmpty;
-
-  double get _estimatedRefund {
-    double total = 0;
-    for (final entry in _selectedItems.entries) {
-      if (entry.value <= 0) continue;
-      final item = widget.orderItems.firstWhere((i) => i.id == entry.key, orElse: () => widget.orderItems.first);
-      total += item.unitPrice * entry.value;
-    }
-    return total;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.surface,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight: 100,
-            pinned: true,
-            systemOverlayStyle: SystemUiOverlayStyle.light,
-            backgroundColor: AppColors.primaryDark,
-            flexibleSpace: FlexibleSpaceBar(
-              title: const Text('Yêu cầu trả hàng',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
-              background: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [AppColors.heroStart, AppColors.heroEnd],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-              ),
+      appBar: AppBar(
+        title: const Text('Tạo yêu cầu hoàn trả',
+            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17, color: Colors.white)),
+        centerTitle: true,
+        backgroundColor: AppColors.primaryDark,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        iconTheme: const IconThemeData(color: Colors.white),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [AppColors.heroStart, AppColors.heroEnd],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.all(16),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate([
-                // ── Reason ──
-                _buildReasonSection(),
-                const SizedBox(height: 16),
-
-                // ── Items ──
-                _buildItemsSection(),
-                const SizedBox(height: 16),
-
-                // ── Estimated refund ──
-                _buildEstimatedRefundSection(),
-                const SizedBox(height: 16),
-
-                // ── Resolution method ──
-                _buildResolutionSection(),
-                const SizedBox(height: 16),
-
-                // ── Note ──
-                _buildNoteSection(),
-                const SizedBox(height: 16),
-
-                // ── Evidence ──
-                _buildEvidenceSection(),
-                const SizedBox(height: 16),
-
-                // ── Bank info ──
-                _buildBankInfoSection(),
-                const SizedBox(height: 16),
-
-                // ── Pickup address (only when returning items) ──
-                if (!_isRefundOnly) ...[
-                  _buildPickupAddressSection(),
-                  const SizedBox(height: 16),
-                ],
-
-                // ── Submit ──
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _canSubmit && !_isSubmitting ? _submit : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    child: _isSubmitting
-                        ? const SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                          )
-                        : const Text('Gửi yêu cầu trả hàng',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
-                  ),
-                ),
-                const SizedBox(height: 32),
-              ]),
-            ),
-          ),
-        ],
+        ),
       ),
-    );
-  }
-
-  // ── Reason section ──
-
-  Widget _buildReasonSection() {
-    return _SectionCard(
-      title: 'Lý do trả hàng',
-      icon: Icons.help_outline,
-      child: RadioGroup<String>(
-        groupValue: _selectedReason ?? '',
-        onChanged: (v) => setState(() => _selectedReason = v),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 40),
         child: Column(
-          children: _reasons.map((r) {
-            return RadioListTile<String>(
-              value: r.$1,
-              title: Text(r.$2, style: const TextStyle(fontSize: 14)),
-              activeColor: AppColors.primary,
-              contentPadding: EdgeInsets.zero,
-              dense: true,
-            );
-          }).toList(),
+          children: [
+            _reasonSection(),
+            const SizedBox(height: 16),
+            _itemsSection(),
+            const SizedBox(height: 16),
+            if (_estimatedRefund > 0) ...[
+              _refundEstimate(),
+              const SizedBox(height: 16),
+            ],
+            _resolutionSection(),
+            const SizedBox(height: 16),
+            _noteSection(),
+            const SizedBox(height: 16),
+            _evidenceSection(),
+            const SizedBox(height: 16),
+            _bankInfoSection(),
+            const SizedBox(height: 16),
+            if (!_isRefundOnly) ...[
+              _addressSection(),
+              const SizedBox(height: 16),
+            ],
+            _submitButton(),
+          ],
         ),
       ),
     );
   }
 
-  // ── Items section ──
+  // ─────────────────────────────────────────────────────────────────────────
+  // 1. Reason
+  // ─────────────────────────────────────────────────────────────────────────
 
-  Widget _buildItemsSection() {
+  Widget _reasonSection() {
     return _SectionCard(
-      title: 'Sản phẩm trả',
+      title: 'Lý do hoàn trả',
+      icon: Icons.help_outline_rounded,
+      child: Column(
+        children: _reasons.map((r) {
+          final selected = r.$1 == _selectedReason;
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Material(
+              color: selected ? AppColors.primaryLight : Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () => setState(() => _selectedReason = r.$1),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: selected ? AppColors.primary : AppColors.border,
+                      width: selected ? 1.5 : 1,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          color: selected
+                              ? AppColors.primary.withValues(alpha: 0.12)
+                              : AppColors.skeleton,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Icon(r.$3, size: 18,
+                            color: selected ? AppColors.primary : AppColors.textSecondary),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(r.$2,
+                            style: TextStyle(
+                              fontSize: 13.5,
+                              fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+                              color: selected ? AppColors.primary : AppColors.textPrimary,
+                            )),
+                      ),
+                      if (selected)
+                        const Icon(Icons.check_circle, size: 20, color: AppColors.primary),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 2. Items
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _itemsSection() {
+    return _SectionCard(
+      title: 'Chọn sản phẩm hoàn trả',
       icon: Icons.inventory_2_outlined,
       child: Column(
         children: widget.orderItems.asMap().entries.map((entry) {
           final i = entry.key;
           final item = entry.value;
-          final selectedQty = _selectedItems[item.id] ?? 0;
-          final isSelected = selectedQty > 0;
+          final qty = _selectedItems[item.id] ?? 0;
+          final isChecked = qty > 0;
 
           return Column(
             children: [
-              if (i > 0) const Divider(height: 16),
+              if (i > 0) const Divider(height: 20),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Checkbox
                   Checkbox(
-                    value: isSelected,
+                    value: isChecked,
+                    onChanged: (v) => setState(() {
+                      if (v == true) {
+                        _selectedItems[item.id] = 1;
+                      } else {
+                        _selectedItems.remove(item.id);
+                      }
+                    }),
                     activeColor: AppColors.primary,
-                    onChanged: (v) {
-                      setState(() {
-                        if (v == true) {
-                          _selectedItems[item.id] = item.quantity;
-                        } else {
-                          _selectedItems.remove(item.id);
-                        }
-                      });
-                    },
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    visualDensity: VisualDensity.compact,
                   ),
-                  // Image
-                  if (item.imageUrl != null)
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        ImageUrlHelper.resolve(item.imageUrl!),
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) => Container(
-                          width: 50,
-                          height: 50,
-                          color: Colors.grey.shade200,
-                          child: const Icon(Icons.image, color: AppColors.textSecondary),
-                        ),
-                      ),
-                    ),
-                  if (item.imageUrl != null) const SizedBox(width: 10),
-                  // Info
+                  const SizedBox(width: 4),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: item.imageUrl != null
+                        ? Image.network(ImageUrlHelper.resolve(item.imageUrl!),
+                            width: 52, height: 52, fit: BoxFit.cover,
+                            errorBuilder: (_, a, b) => _imgPlaceholder(52))
+                        : _imgPlaceholder(52),
+                  ),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(item.variantName,
-                            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis),
+                            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                            maxLines: 2, overflow: TextOverflow.ellipsis),
                         const SizedBox(height: 4),
                         Text(_currencyFmt.format(item.unitPrice),
-                            style: const TextStyle(fontSize: 12, color: AppColors.primary)),
+                            style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                        if (isChecked) ...[
+                          const SizedBox(height: 8),
+                          _QuantitySelector(
+                            value: qty,
+                            max: item.quantity,
+                            onChanged: (v) => setState(() => _selectedItems[item.id] = v),
+                          ),
+                        ],
                       ],
                     ),
                   ),
-                  // Quantity selector
-                  if (isSelected)
-                    _QuantitySelector(
-                      value: selectedQty,
-                      max: item.quantity,
-                      onChanged: (q) {
-                        setState(() {
-                          if (q <= 0) {
-                            _selectedItems.remove(item.id);
-                          } else {
-                            _selectedItems[item.id] = q;
-                          }
-                        });
-                      },
-                    ),
                 ],
               ),
             ],
@@ -305,79 +280,217 @@ class _CreateReturnRequestPageState extends ConsumerState<CreateReturnRequestPag
     );
   }
 
-  // ── Note section ──
+  Widget _imgPlaceholder(double size) {
+    return Container(
+      width: size, height: size,
+      decoration: BoxDecoration(color: AppColors.skeleton, borderRadius: BorderRadius.circular(8)),
+      child: const Icon(Icons.image_outlined, color: AppColors.textSecondary, size: 20),
+    );
+  }
 
-  Widget _buildNoteSection() {
-    return _SectionCard(
-      title: 'Ghi chú',
-      icon: Icons.notes,
-      child: TextField(
-        controller: _noteController,
-        decoration: InputDecoration(
-          hintText: 'Mô tả chi tiết lý do trả hàng...',
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+  // ─────────────────────────────────────────────────────────────────────────
+  // 3. Refund estimate
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _refundEstimate() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [AppColors.primary.withValues(alpha: 0.08), AppColors.primary.withValues(alpha: 0.03)],
+          begin: Alignment.topLeft, end: Alignment.bottomRight,
         ),
-        maxLines: 3,
-        maxLength: 500,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppColors.primaryBorder),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: AppColors.primary.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Icon(Icons.account_balance_wallet_rounded, color: AppColors.primary, size: 22),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Ước tính hoàn tiền',
+                    style: TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                const SizedBox(height: 2),
+                Text(_currencyFmt.format(_estimatedRefund),
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.primary)),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  // ── Evidence section ──
+  // ─────────────────────────────────────────────────────────────────────────
+  // 4. Resolution
+  // ─────────────────────────────────────────────────────────────────────────
 
-  Widget _buildEvidenceSection() {
+  Widget _resolutionSection() {
     return _SectionCard(
-      title: 'Bằng chứng (ảnh / video)',
-      icon: Icons.photo_library_outlined,
+      title: 'Phương thức giải quyết',
+      icon: Icons.settings_suggest_outlined,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (_videos.isEmpty)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Text(
-                '* Bắt buộc tải lên ít nhất 1 video',
-                style: TextStyle(fontSize: 12, color: Colors.red[700], fontWeight: FontWeight.w500),
-              ),
+          _radioTile(
+            title: 'Trả hàng và hoàn tiền',
+            subtitle: 'Gửi trả sản phẩm và nhận hoàn tiền',
+            icon: Icons.swap_horiz_rounded,
+            value: false,
+            groupValue: _isRefundOnly,
+            onChanged: (v) => setState(() => _isRefundOnly = v),
+          ),
+          const SizedBox(height: 8),
+          _radioTile(
+            title: 'Chỉ hoàn tiền',
+            subtitle: 'Nhận hoàn tiền mà không cần trả hàng',
+            icon: Icons.money_rounded,
+            value: true,
+            groupValue: _isRefundOnly,
+            onChanged: (v) => setState(() => _isRefundOnly = v),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _radioTile<T>({
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required T value,
+    required T groupValue,
+    required ValueChanged<T> onChanged,
+  }) {
+    final selected = value == groupValue;
+    return Material(
+      color: selected ? AppColors.primaryLight : Colors.white,
+      borderRadius: BorderRadius.circular(10),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(10),
+        onTap: () => onChanged(value),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: selected ? AppColors.primary : AppColors.border,
+              width: selected ? 1.5 : 1,
             ),
-          Row(
+          ),
+          child: Row(
             children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: selected ? AppColors.primary.withValues(alpha: 0.12) : AppColors.skeleton,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(icon, size: 18, color: selected ? AppColors.primary : AppColors.textSecondary),
+              ),
+              const SizedBox(width: 12),
               Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _pickImages,
-                  icon: const Icon(Icons.photo, size: 18),
-                  label: Text('Ảnh (${_images.length})', style: const TextStyle(fontSize: 13)),
-                  style: OutlinedButton.styleFrom(foregroundColor: AppColors.primary),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(title,
+                        style: TextStyle(
+                          fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+                          fontSize: 13.5,
+                          color: selected ? AppColors.primary : AppColors.textPrimary,
+                        )),
+                    Text(subtitle,
+                        style: const TextStyle(fontSize: 11.5, color: AppColors.textSecondary)),
+                  ],
                 ),
               ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _pickVideos,
-                  icon: const Icon(Icons.videocam, size: 18),
-                  label: Text('Video (${_videos.length})', style: const TextStyle(fontSize: 13)),
-                  style: OutlinedButton.styleFrom(foregroundColor: AppColors.primary),
-                ),
+              Icon(
+                selected ? Icons.radio_button_checked : Icons.radio_button_off,
+                size: 20,
+                color: selected ? AppColors.primary : AppColors.textSecondary,
               ),
             ],
           ),
-          if (_images.isNotEmpty || _videos.isNotEmpty) ...[
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
+        ),
+      ),
+    );
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 5. Note
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _noteSection() {
+    return _SectionCard(
+      title: 'Ghi chú',
+      icon: Icons.note_alt_outlined,
+      child: TextField(
+        controller: _noteController,
+        decoration: _inputDecoration('Nhập ghi chú bổ sung (tuỳ chọn)…'),
+        maxLines: 3,
+      ),
+    );
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 6. Evidence
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _evidenceSection() {
+    return _SectionCard(
+      title: 'Bằng chứng',
+      icon: Icons.camera_alt_outlined,
+      accentColor: Colors.amber.shade700,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.amber.shade50,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.amber.shade200),
+            ),
+            child: Row(
               children: [
-                ..._images.asMap().entries.map((e) => _buildThumb(
-                      e.value.bytes,
-                      isVideo: false,
-                      onRemove: () => setState(() => _images.removeAt(e.key)),
-                    )),
-                ..._videos.asMap().entries.map((e) => _buildThumb(
-                      e.value.bytes,
-                      isVideo: true,
-                      onRemove: () => setState(() => _videos.removeAt(e.key)),
-                    )),
+                Icon(Icons.info_outline, size: 16, color: Colors.amber.shade800),
+                const SizedBox(width: 8),
+                const Expanded(
+                  child: Text('Video bắt buộc. Vui lòng quay video sản phẩm.',
+                      style: TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 14),
+          Row(
+            children: [
+              Expanded(child: _pickBtn(Icons.photo_rounded, 'Ảnh (${_images.length})', _pickImages)),
+              const SizedBox(width: 10),
+              Expanded(child: _pickBtn(Icons.videocam_rounded, 'Video (${_videos.length})', _pickVideos,
+                  highlight: _videos.isEmpty)),
+            ],
+          ),
+          if (_images.isNotEmpty || _videos.isNotEmpty) ...[
+            const SizedBox(height: 14),
+            Wrap(
+              spacing: 8, runSpacing: 8,
+              children: [
+                ..._images.asMap().entries.map((e) => _thumb(
+                      e.value.bytes, isVideo: false,
+                      onRemove: () => setState(() => _images.removeAt(e.key)))),
+                ..._videos.asMap().entries.map((e) => _thumb(
+                      e.value.bytes, isVideo: true,
+                      onRemove: () => setState(() => _videos.removeAt(e.key)))),
               ],
             ),
           ],
@@ -386,29 +499,43 @@ class _CreateReturnRequestPageState extends ConsumerState<CreateReturnRequestPag
     );
   }
 
-  Widget _buildThumb(Uint8List bytes, {required bool isVideo, required VoidCallback onRemove}) {
+  Widget _pickBtn(IconData icon, String label, VoidCallback onPressed, {bool highlight = false}) {
+    return OutlinedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 18),
+      label: Text(label, style: const TextStyle(fontSize: 13)),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: highlight ? Colors.amber.shade800 : AppColors.primary,
+        side: BorderSide(color: highlight ? Colors.amber.shade400 : AppColors.primaryBorder),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    );
+  }
+
+  Widget _thumb(Uint8List bytes, {required bool isVideo, required VoidCallback onRemove}) {
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            width: 70,
-            height: 70,
-            color: Colors.grey.shade200,
-            child: isVideo
-                ? const Center(child: Icon(Icons.videocam, size: 28, color: AppColors.textSecondary))
-                : Image.memory(bytes, fit: BoxFit.cover),
+        Container(
+          width: 68, height: 68,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: AppColors.border),
           ),
+          clipBehavior: Clip.antiAlias,
+          child: isVideo
+              ? Container(color: Colors.grey.shade100,
+                  child: const Center(child: Icon(Icons.videocam_rounded, size: 24, color: AppColors.textSecondary)))
+              : Image.memory(bytes, fit: BoxFit.cover),
         ),
         Positioned(
-          top: 0,
-          right: 0,
+          top: -2, right: -2,
           child: GestureDetector(
             onTap: onRemove,
             child: Container(
-              padding: const EdgeInsets.all(2),
+              padding: const EdgeInsets.all(3),
               decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
-              child: const Icon(Icons.close, size: 12, color: Colors.white),
+              child: const Icon(Icons.close, size: 11, color: Colors.white),
             ),
           ),
         ),
@@ -416,232 +543,148 @@ class _CreateReturnRequestPageState extends ConsumerState<CreateReturnRequestPag
     );
   }
 
-  // ── Estimated refund ──
-
-  Widget _buildEstimatedRefundSection() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.primary.withAlpha(15),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.primary.withAlpha(50)),
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.account_balance_wallet, color: AppColors.primary, size: 22),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('Số tiền hoàn trả dự kiến',
-                    style: TextStyle(fontSize: 12, color: AppColors.textSecondary)),
-                const SizedBox(height: 2),
-                Text(
-                  _currencyFmt.format(_estimatedRefund),
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+  Future<void> _pickImages() async {
+    final files = await ImagePicker().pickMultiImage(imageQuality: 80);
+    for (final f in files) {
+      final bytes = await f.readAsBytes();
+      setState(() => _images.add((filename: f.name, bytes: bytes)));
+    }
   }
 
-  // ── Resolution method ──
-
-  Widget _buildResolutionSection() {
-    return _SectionCard(
-      title: 'Phương án giải quyết',
-      icon: Icons.swap_horiz,
-      child: RadioGroup<bool>(
-        groupValue: _isRefundOnly,
-        onChanged: (v) => setState(() => _isRefundOnly = v ?? false),
-        child: Column(
-          children: [
-            RadioListTile<bool>(
-              value: false,
-              title: const Text('Trả hàng & Hoàn tiền', style: TextStyle(fontSize: 14)),
-              subtitle: const Text('Gửi trả sản phẩm và nhận hoàn tiền', style: TextStyle(fontSize: 12)),
-              activeColor: AppColors.primary,
-              contentPadding: EdgeInsets.zero,
-              dense: true,
-            ),
-            RadioListTile<bool>(
-              value: true,
-              title: const Text('Hoàn tiền (Không trả hàng)', style: TextStyle(fontSize: 14)),
-              subtitle: const Text('Chỉ hoàn tiền, không cần gửi trả hàng', style: TextStyle(fontSize: 12)),
-              activeColor: AppColors.primary,
-              contentPadding: EdgeInsets.zero,
-              dense: true,
-            ),
-          ],
-        ),
-      ),
-    );
+  Future<void> _pickVideos() async {
+    final file = await ImagePicker().pickVideo(source: ImageSource.gallery);
+    if (file != null) {
+      final bytes = await file.readAsBytes();
+      setState(() => _videos.add((filename: file.name, bytes: bytes)));
+    }
   }
 
-  // ── Bank info ──
+  // ─────────────────────────────────────────────────────────────────────────
+  // 7. Bank info
+  // ─────────────────────────────────────────────────────────────────────────
 
-  Widget _buildBankInfoSection() {
+  Widget _bankInfoSection() {
     return _SectionCard(
-      title: 'Thông tin hoàn tiền',
-      icon: Icons.account_balance,
+      title: 'Thông tin ngân hàng',
+      icon: Icons.account_balance_outlined,
       child: Column(
         children: [
-          TextField(
-            controller: _bankNameController,
-            decoration: InputDecoration(
-              labelText: 'Tên ngân hàng',
-              hintText: 'VD: Vietcombank, MB Bank...',
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            ),
-          ),
+          TextField(controller: _bankNameController, decoration: _inputDecoration('Tên ngân hàng')),
           const SizedBox(height: 12),
-          TextField(
-            controller: _bankAccountNumberController,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              labelText: 'Số tài khoản',
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            ),
-          ),
+          TextField(controller: _bankAccountController, decoration: _inputDecoration('Số tài khoản'),
+              keyboardType: TextInputType.number),
           const SizedBox(height: 12),
-          TextField(
-            controller: _bankAccountNameController,
-            textCapitalization: TextCapitalization.characters,
-            decoration: InputDecoration(
-              labelText: 'Tên chủ tài khoản',
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            ),
-          ),
+          TextField(controller: _bankHolderController, decoration: _inputDecoration('Chủ tài khoản')),
         ],
       ),
     );
   }
 
-  // ── Pickup address ──
+  // ─────────────────────────────────────────────────────────────────────────
+  // 8. Address
+  // ─────────────────────────────────────────────────────────────────────────
 
-  Widget _buildPickupAddressSection() {
+  Widget _addressSection() {
     return _SectionCard(
       title: 'Địa chỉ lấy hàng',
       icon: Icons.location_on_outlined,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          RadioGroup<String>(
-            groupValue: _addressMode,
-            onChanged: (v) => setState(() {
-              _addressMode = v ?? 'saved';
-              if (v == 'saved') {
-                _selectedProvince = null;
-                _selectedDistrict = null;
-                _selectedWard = null;
-              } else {
-                _selectedAddress = null;
-              }
-            }),
-            child: Column(
-              children: [
-                RadioListTile<String>(
-                  value: 'saved',
-                  title: const Text('Chọn từ sổ địa chỉ', style: TextStyle(fontSize: 14)),
-                  activeColor: AppColors.primary,
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                ),
-                RadioListTile<String>(
-                  value: 'custom',
-                  title: const Text('Nhập địa chỉ mới', style: TextStyle(fontSize: 14)),
-                  activeColor: AppColors.primary,
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                ),
-              ],
-            ),
+          Row(
+            children: [
+              Expanded(child: _radioTile<bool>(
+                title: 'Địa chỉ đã lưu',
+                subtitle: 'Chọn từ danh sách có sẵn',
+                icon: Icons.bookmark_outline,
+                value: false,
+                groupValue: _useCustomAddress,
+                onChanged: (v) => setState(() => _useCustomAddress = v),
+              )),
+            ],
           ),
-          const SizedBox(height: 12),
-          if (_addressMode == 'saved')
-            _buildSavedAddressPicker()
-          else
-            _buildCustomAddressForm(),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(child: _radioTile<bool>(
+                title: 'Địa chỉ mới',
+                subtitle: 'Nhập địa chỉ lấy hàng mới',
+                icon: Icons.add_location_alt_outlined,
+                value: true,
+                groupValue: _useCustomAddress,
+                onChanged: (v) => setState(() => _useCustomAddress = v),
+              )),
+            ],
+          ),
+          const SizedBox(height: 14),
+          if (!_useCustomAddress) _savedAddressPicker() else _customAddressForm(),
         ],
       ),
     );
   }
 
-  Widget _buildSavedAddressPicker() {
-    final addressesAsync = ref.watch(savedAddressesProvider);
-    return addressesAsync.when(
-      loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
-      error: (_, _) => const Text('Không thể tải danh sách địa chỉ', style: TextStyle(color: Colors.red, fontSize: 13)),
+  Widget _savedAddressPicker() {
+    final addressAsync = ref.watch(savedAddressesProvider);
+    return addressAsync.when(
+      loading: () => const Center(child: Padding(
+        padding: EdgeInsets.all(16),
+        child: CircularProgressIndicator(color: AppColors.primary, strokeWidth: 2),
+      )),
+      error: (_, s) => const Text('Không thể tải địa chỉ', style: TextStyle(color: Colors.red, fontSize: 13)),
       data: (addresses) {
         if (addresses.isEmpty) {
-          return const Text('Chưa có địa chỉ nào được lưu', style: TextStyle(fontSize: 13, color: AppColors.textSecondary));
+          return Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.skeleton,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Center(child: Text('Chưa có địa chỉ nào',
+                style: TextStyle(fontSize: 13, color: AppColors.textSecondary))),
+          );
         }
         return Column(
           children: addresses.map((addr) {
-            final isSelected = _selectedAddress?.id == addr.id;
-            final fullAddr = [addr.street, addr.ward, addr.district, addr.city]
-                .where((s) => s.isNotEmpty)
-                .join(', ');
-            return InkWell(
-              onTap: () => setState(() => _selectedAddress = addr),
-              borderRadius: BorderRadius.circular(10),
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 8),
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
+            final selected = _selectedAddress?.id == addr.id;
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Material(
+                color: selected ? AppColors.primaryLight : Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                child: InkWell(
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: isSelected ? AppColors.primary : AppColors.border,
-                    width: isSelected ? 2 : 1,
-                  ),
-                  color: isSelected ? AppColors.primary.withAlpha(10) : null,
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-                      size: 20,
-                      color: isSelected ? AppColors.primary : Colors.grey,
+                  onTap: () => setState(() => _selectedAddress = addr),
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: selected ? AppColors.primary : AppColors.border),
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${addr.recipientName} - ${addr.recipientPhoneNumber}',
-                            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                    child: Row(
+                      children: [
+                        Icon(
+                          selected ? Icons.radio_button_checked : Icons.radio_button_off,
+                          size: 20, color: selected ? AppColors.primary : AppColors.textSecondary,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(addr.recipientName,
+                                  style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+                              ...[
+                                const SizedBox(height: 2),
+                                Text('${addr.street}, ${addr.ward}, ${addr.district}, ${addr.city}',
+                                    style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                                    maxLines: 2, overflow: TextOverflow.ellipsis),
+                              ],
+                            ],
                           ),
-                          const SizedBox(height: 2),
-                          Text(fullAddr, style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
-                          if (addr.isDefault == true)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 4),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                decoration: BoxDecoration(
-                                  color: AppColors.primary.withAlpha(20),
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: const Text('Mặc định',
-                                    style: TextStyle(fontSize: 10, color: AppColors.primary, fontWeight: FontWeight.w600)),
-                              ),
-                            ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             );
@@ -651,199 +694,142 @@ class _CreateReturnRequestPageState extends ConsumerState<CreateReturnRequestPag
     );
   }
 
-  Widget _buildCustomAddressForm() {
+  Widget _customAddressForm() {
+    final provincesAsync = ref.watch(provincesProvider);
+
     return Column(
       children: [
-        TextField(
-          controller: _contactNameController,
-          decoration: InputDecoration(
-            labelText: 'Tên người gửi',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          ),
-        ),
+        TextField(controller: _contactNameController, decoration: _inputDecoration('Tên liên hệ')),
         const SizedBox(height: 12),
-        TextField(
-          controller: _contactPhoneController,
-          keyboardType: TextInputType.phone,
-          decoration: InputDecoration(
-            labelText: 'Số điện thoại',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          ),
-        ),
+        TextField(controller: _contactPhoneController, decoration: _inputDecoration('Số điện thoại'),
+            keyboardType: TextInputType.phone),
         const SizedBox(height: 12),
         // Province
-        _buildProvinceDropdown(),
+        provincesAsync.when(
+          loading: () => _dropdownPlaceholder('Đang tải tỉnh/thành…'),
+          error: (_, s) => _dropdownPlaceholder('Lỗi tải tỉnh/thành'),
+          data: (provinces) => _dropdown<ProvinceResponse>(
+            hint: 'Tỉnh/Thành phố',
+            value: _selectedProvince,
+            items: provinces,
+            labelOf: (p) => p.provinceName,
+            onChanged: (p) => setState(() {
+              _selectedProvince = p;
+              _selectedDistrict = null;
+              _selectedWard = null;
+            }),
+          ),
+        ),
         const SizedBox(height: 12),
         // District
-        _buildDistrictDropdown(),
-        const SizedBox(height: 12),
+        if (_selectedProvince != null)
+          ref.watch(districtsProvider(_selectedProvince!.provinceID ?? 0)).when(
+                loading: () => _dropdownPlaceholder('Đang tải quận/huyện…'),
+                error: (_, s) => _dropdownPlaceholder('Lỗi tải quận/huyện'),
+                data: (districts) => _dropdown<DistrictResponse>(
+                  hint: 'Quận/Huyện',
+                  value: _selectedDistrict,
+                  items: districts,
+                  labelOf: (d) => d.districtName,
+                  onChanged: (d) => setState(() {
+                    _selectedDistrict = d;
+                    _selectedWard = null;
+                  }),
+                ),
+              ),
+        if (_selectedProvince != null) const SizedBox(height: 12),
         // Ward
-        _buildWardDropdown(),
-        const SizedBox(height: 12),
-        TextField(
-          controller: _fullAddressController,
-          decoration: InputDecoration(
-            labelText: 'Địa chỉ chi tiết (số nhà, đường...)',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          ),
-          maxLines: 2,
-        ),
+        if (_selectedDistrict != null)
+          ref.watch(wardsProvider(_selectedDistrict!.districtID ?? 0)).when(
+                loading: () => _dropdownPlaceholder('Đang tải phường/xã…'),
+                error: (_, s) => _dropdownPlaceholder('Lỗi tải phường/xã'),
+                data: (wards) => _dropdown<WardResponse>(
+                  hint: 'Phường/Xã',
+                  value: _selectedWard,
+                  items: wards,
+                  labelOf: (w) => w.wardName,
+                  onChanged: (w) => setState(() => _selectedWard = w),
+                ),
+              ),
+        if (_selectedDistrict != null) const SizedBox(height: 12),
+        TextField(controller: _fullAddressController, decoration: _inputDecoration('Địa chỉ chi tiết')),
       ],
     );
   }
 
-  Widget _buildProvinceDropdown() {
-    final provincesAsync = ref.watch(provincesProvider);
-    return provincesAsync.when(
-      loading: () => const LinearProgressIndicator(),
-      error: (_, _) => const Text('Lỗi tải tỉnh/thành phố'),
-      data: (provinces) {
-        return DropdownButtonFormField<ProvinceResponse>(
-          initialValue: _selectedProvince,
-          decoration: InputDecoration(
-            labelText: 'Tỉnh / Thành phố',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          ),
-          isExpanded: true,
-          items: provinces
-              .map((p) => DropdownMenuItem(value: p, child: Text(p.provinceName, style: const TextStyle(fontSize: 14))))
-              .toList(),
-          onChanged: (v) {
-            setState(() {
-              _selectedProvince = v;
-              _selectedDistrict = null;
-              _selectedWard = null;
-            });
-          },
-        );
-      },
+  Widget _dropdown<T>({
+    required String hint,
+    required T? value,
+    required List<T> items,
+    required String Function(T) labelOf,
+    required ValueChanged<T?> onChanged,
+  }) {
+    return DropdownButtonFormField<T>(
+      initialValue: value,
+      decoration: _inputDecoration(hint),
+      isExpanded: true,
+      items: items.map((item) => DropdownMenuItem(value: item, child: Text(labelOf(item), style: const TextStyle(fontSize: 13)))).toList(),
+      onChanged: onChanged,
     );
   }
 
-  Widget _buildDistrictDropdown() {
-    if (_selectedProvince == null) {
-      return DropdownButtonFormField<DistrictResponse>(
-        initialValue: null,
-        decoration: InputDecoration(
-          labelText: 'Quận / Huyện',
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+  Widget _dropdownPlaceholder(String text) {
+    return Container(
+      height: 48,
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.border),
+      ),
+      alignment: Alignment.centerLeft,
+      child: Text(text, style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+    );
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Submit
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _submitButton() {
+    return SizedBox(
+      width: double.infinity,
+      child: FilledButton.icon(
+        onPressed: _canSubmit ? _submit : null,
+        icon: _isSubmitting
+            ? const SizedBox(width: 18, height: 18,
+                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+            : const Icon(Icons.send_rounded, size: 18),
+        label: Text(_isSubmitting ? 'Đang gửi…' : 'Gửi yêu cầu hoàn trả',
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
+        style: FilledButton.styleFrom(
+          backgroundColor: AppColors.primary,
+          disabledBackgroundColor: AppColors.primary.withValues(alpha: 0.4),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         ),
-        items: const [],
-        onChanged: null,
-      );
-    }
-    final districtsAsync = ref.watch(districtsProvider(_selectedProvince!.provinceID!));
-    return districtsAsync.when(
-      loading: () => const LinearProgressIndicator(),
-      error: (_, _) => const Text('Lỗi tải quận/huyện'),
-      data: (districts) {
-        return DropdownButtonFormField<DistrictResponse>(
-          initialValue: _selectedDistrict,
-          decoration: InputDecoration(
-            labelText: 'Quận / Huyện',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          ),
-          isExpanded: true,
-          items: districts
-              .map((d) => DropdownMenuItem(value: d, child: Text(d.districtName, style: const TextStyle(fontSize: 14))))
-              .toList(),
-          onChanged: (v) {
-            setState(() {
-              _selectedDistrict = v;
-              _selectedWard = null;
-            });
-          },
-        );
-      },
+      ),
     );
   }
-
-  Widget _buildWardDropdown() {
-    if (_selectedDistrict == null) {
-      return DropdownButtonFormField<WardResponse>(
-        initialValue: null,
-        decoration: InputDecoration(
-          labelText: 'Phường / Xã',
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        ),
-        items: const [],
-        onChanged: null,
-      );
-    }
-    final wardsAsync = ref.watch(wardsProvider(_selectedDistrict!.districtID!));
-    return wardsAsync.when(
-      loading: () => const LinearProgressIndicator(),
-      error: (_, _) => const Text('Lỗi tải phường/xã'),
-      data: (wards) {
-        return DropdownButtonFormField<WardResponse>(
-          initialValue: _selectedWard,
-          decoration: InputDecoration(
-            labelText: 'Phường / Xã',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          ),
-          isExpanded: true,
-          items: wards
-              .map((w) => DropdownMenuItem(value: w, child: Text(w.wardName, style: const TextStyle(fontSize: 14))))
-              .toList(),
-          onChanged: (v) => setState(() => _selectedWard = v),
-        );
-      },
-    );
-  }
-
-  // ── Pickers ──
-
-  Future<void> _pickImages() async {
-    final picker = ImagePicker();
-    final files = await picker.pickMultiImage(imageQuality: 80);
-    for (final f in files) {
-      final bytes = await f.readAsBytes();
-      setState(() => _images.add((filename: f.name, bytes: bytes)));
-    }
-  }
-
-  Future<void> _pickVideos() async {
-    final picker = ImagePicker();
-    final file = await picker.pickVideo(source: ImageSource.gallery);
-    if (file != null) {
-      final bytes = await file.readAsBytes();
-      setState(() => _videos.add((filename: file.name, bytes: bytes)));
-    }
-  }
-
-  // ── Submit ──
 
   Future<void> _submit() async {
-    if (!_canSubmit) return;
     setState(() => _isSubmitting = true);
-
     try {
       final repo = ref.read(returnRequestRepositoryProvider);
 
-      // Upload media first
-      List<String> tempIds = [];
+      List<String> tempMediaIds = [];
       if (_images.isNotEmpty || _videos.isNotEmpty) {
-        tempIds = await repo.uploadTemporaryMedia(
+        tempMediaIds = await repo.uploadTemporaryMedia(
           images: _images.isNotEmpty ? _images : null,
           videos: _videos.isNotEmpty ? _videos : null,
         );
       }
 
-      // Create the return request
-      final items = _selectedItems.entries
+      final returnItems = _selectedItems.entries
           .where((e) => e.value > 0)
           .map((e) => (orderDetailId: e.key, quantity: e.value))
           .toList();
 
-      // Build recipient for custom address
       ({
         String contactName,
         String contactPhoneNumber,
@@ -856,7 +842,7 @@ class _CreateReturnRequestPageState extends ConsumerState<CreateReturnRequestPag
         String wardName,
       })? recipient;
 
-      if (!_isRefundOnly && _addressMode == 'custom') {
+      if (!_isRefundOnly && _useCustomAddress) {
         recipient = (
           contactName: _contactNameController.text,
           contactPhoneNumber: _contactPhoneController.text,
@@ -873,20 +859,20 @@ class _CreateReturnRequestPageState extends ConsumerState<CreateReturnRequestPag
       await repo.create(
         orderId: widget.orderId,
         reason: _selectedReason!,
-        returnItems: items,
+        returnItems: returnItems,
         customerNote: _noteController.text.isNotEmpty ? _noteController.text : null,
-        temporaryMediaIds: tempIds.isNotEmpty ? tempIds : null,
+        temporaryMediaIds: tempMediaIds.isNotEmpty ? tempMediaIds : null,
         isRefundOnly: _isRefundOnly,
         refundBankName: _bankNameController.text.isNotEmpty ? _bankNameController.text : null,
-        refundAccountNumber: _bankAccountNumberController.text.isNotEmpty ? _bankAccountNumberController.text : null,
-        refundAccountName: _bankAccountNameController.text.isNotEmpty ? _bankAccountNameController.text : null,
-        savedAddressId: (!_isRefundOnly && _addressMode == 'saved') ? _selectedAddress?.id : null,
+        refundAccountNumber: _bankAccountController.text.isNotEmpty ? _bankAccountController.text : null,
+        refundAccountName: _bankHolderController.text.isNotEmpty ? _bankHolderController.text : null,
+        savedAddressId: !_isRefundOnly && !_useCustomAddress ? _selectedAddress?.id : null,
         recipient: recipient,
       );
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Đã gửi yêu cầu trả hàng'), backgroundColor: Colors.green),
+          const SnackBar(content: Text('Đã tạo yêu cầu hoàn trả'), backgroundColor: Colors.green),
         );
         context.pop();
       }
@@ -900,9 +886,76 @@ class _CreateReturnRequestPageState extends ConsumerState<CreateReturnRequestPag
       if (mounted) setState(() => _isSubmitting = false);
     }
   }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Shared input decoration
+  // ─────────────────────────────────────────────────────────────────────────
+
+  InputDecoration _inputDecoration(String hint) {
+    return InputDecoration(
+      hintText: hint,
+      hintStyle: TextStyle(color: AppColors.textSecondary.withValues(alpha: 0.6), fontSize: 13),
+      filled: true,
+      fillColor: AppColors.surface,
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: AppColors.border)),
+      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: AppColors.border)),
+      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.primary, width: 1.5)),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+    );
+  }
 }
 
-// ── Quantity selector ──
+// ═══════════════════════════════════════════════════════════════════════════════
+// Reusable widgets
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class _SectionCard extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final Widget child;
+  final Color? accentColor;
+
+  const _SectionCard({required this.title, required this.icon, required this.child, this.accentColor});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = accentColor ?? AppColors.primary;
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppColors.border),
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 10, offset: const Offset(0, 2))],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: color.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(icon, size: 16, color: color),
+                ),
+                const SizedBox(width: 10),
+                Text(title,
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
+              ],
+            ),
+          ),
+          Divider(height: 1, color: AppColors.border.withValues(alpha: 0.6)),
+          Padding(padding: const EdgeInsets.all(16), child: child),
+        ],
+      ),
+    );
+  }
+}
 
 class _QuantitySelector extends StatelessWidget {
   final int value;
@@ -913,75 +966,37 @@ class _QuantitySelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _circleBtn(Icons.remove, value > 1 ? () => onChanged(value - 1) : null),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text('$value', style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-        ),
-        _circleBtn(Icons.add, value < max ? () => onChanged(value + 1) : null),
-      ],
-    );
-  }
-
-  Widget _circleBtn(IconData icon, VoidCallback? onPressed) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        width: 28,
-        height: 28,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: onPressed != null ? AppColors.primary : AppColors.border),
-        ),
-        child: Icon(icon, size: 16, color: onPressed != null ? AppColors.primary : AppColors.border),
-      ),
-    );
-  }
-}
-
-// ── Section card ──
-
-class _SectionCard extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Widget child;
-
-  const _SectionCard({required this.title, required this.icon, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: AppColors.border),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _qtyBtn(Icons.remove, value > 1 ? () => onChanged(value - 1) : null),
+          Container(
+            constraints: const BoxConstraints(minWidth: 36),
+            alignment: Alignment.center,
+            child: Text('$value', style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+          ),
+          _qtyBtn(Icons.add, value < max ? () => onChanged(value + 1) : null),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Icon(icon, size: 18, color: AppColors.primary),
-                const SizedBox(width: 8),
-                Text(title,
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
-              ],
-            ),
-          ),
-          const Divider(height: 1),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: child,
-          ),
-        ],
+    );
+  }
+
+  Widget _qtyBtn(IconData icon, VoidCallback? onPressed) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(6),
+        onTap: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: Icon(icon, size: 16,
+              color: onPressed != null ? AppColors.primary : AppColors.textSecondary.withValues(alpha: 0.3)),
+        ),
       ),
     );
   }

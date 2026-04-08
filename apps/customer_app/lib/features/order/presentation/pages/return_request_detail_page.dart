@@ -18,11 +18,10 @@ class ReturnRequestDetailPage extends ConsumerStatefulWidget {
   const ReturnRequestDetailPage({super.key, required this.requestId});
 
   @override
-  ConsumerState<ReturnRequestDetailPage> createState() => _ReturnRequestDetailPageState();
+  ConsumerState<ReturnRequestDetailPage> createState() => _State();
 }
 
-class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPage> {
-  // Evidence upload state
+class _State extends ConsumerState<ReturnRequestDetailPage> {
   final _noteController = TextEditingController();
   final List<({String filename, Uint8List bytes})> _newImages = [];
   final List<({String filename, Uint8List bytes})> _newVideos = [];
@@ -44,100 +43,85 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     return Scaffold(
       backgroundColor: AppColors.surface,
       body: detailAsync.when(
-        data: (data) => _buildContent(context, data.$1, data.$2),
+        data: (data) => _buildBody(context, data.$1, data.$2),
         loading: () => CustomScrollView(
           slivers: [
-            _buildAppBar(null),
+            _appBar(null),
             const SliverFillRemaining(
               child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
             ),
           ],
         ),
-        error: (e, _) {
-          debugPrint('[ReturnRequestDetailPage] Error loading detail: $e');
-          return CustomScrollView(
+        error: (e, _) => CustomScrollView(
           slivers: [
-            _buildAppBar(null),
+            _appBar(null),
             SliverFillRemaining(
               child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.error_outline, size: 48, color: AppColors.textSecondary),
-                    const SizedBox(height: 12),
-                    const Text('Không thể tải chi tiết', style: TextStyle(color: AppColors.textSecondary)),
-                    const SizedBox(height: 4),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Text('$e',
-                          style: const TextStyle(fontSize: 11, color: AppColors.textSecondary),
-                          textAlign: TextAlign.center,
-                          maxLines: 4,
-                          overflow: TextOverflow.ellipsis),
-                    ),
-                    const SizedBox(height: 8),
-                    TextButton(
-                      onPressed: () => ref.invalidate(returnRequestWithOrderProvider(widget.requestId)),
-                      child: const Text('Thử lại'),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.cloud_off_rounded, size: 48, color: AppColors.textSecondary),
+                      const SizedBox(height: 16),
+                      const Text('Không thể tải chi tiết',
+                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
+                      const SizedBox(height: 12),
+                      FilledButton.icon(
+                        onPressed: () => ref.invalidate(returnRequestWithOrderProvider(widget.requestId)),
+                        icon: const Icon(Icons.refresh, size: 18),
+                        label: const Text('Thử lại'),
+                        style: FilledButton.styleFrom(backgroundColor: AppColors.primary),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ],
-        );
-        },
+        ),
       ),
     );
   }
 
-  Widget _buildContent(BuildContext context, ReturnRequest request, OrderDetail? order) {
-    final statusInfo = _statusInfo(request.status);
-    final canAddEvidence = request.status == 'RequestMoreInfo';
-    final requestItems = _buildRequestItems(request, order);
+  // ─────────────────────────────────────────────────────────────────────────
+  // Body
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _buildBody(BuildContext context, ReturnRequest req, OrderDetail? order) {
+    final si = _statusInfo(req.status);
+    final canAddEvidence = req.status == 'RequestMoreInfo';
+    final items = _buildRequestItems(req, order);
 
     return RefreshIndicator(
       color: AppColors.primary,
-      onRefresh: () async {
-        ref.invalidate(returnRequestWithOrderProvider(widget.requestId));
-      },
+      onRefresh: () async => ref.invalidate(returnRequestWithOrderProvider(widget.requestId)),
       child: CustomScrollView(
         slivers: [
-          _buildAppBar(request),
+          _appBar(req),
           SliverPadding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 40),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                // ── Status header ──
-                _buildStatusHeader(request, statusInfo),
+                _statusBanner(req, si),
                 const SizedBox(height: 16),
-
-                // ── Info section ──
-                _buildInfoSection(request),
+                _infoCard(req),
                 const SizedBox(height: 16),
-
-                // ── Shipping info ──
-                if (request.returnShippingInfo != null) ...[
-                  _buildShippingSection(request.returnShippingInfo!),
+                if (req.returnShippingInfo != null) ...[
+                  _shippingCard(req.returnShippingInfo!),
                   const SizedBox(height: 16),
                 ],
-
-                // ── Return items ──
-                if (requestItems.isNotEmpty) ...[
-                  _buildItemsSection(requestItems),
+                if (items.isNotEmpty) ...[
+                  _itemsCard(items),
                   const SizedBox(height: 16),
                 ],
-
-                // ── Proof media ──
-                if (request.proofImages.isNotEmpty) ...[
-                  _buildProofSection(request.proofImages, canAddEvidence),
+                if (req.proofImages.isNotEmpty) ...[
+                  _proofCard(req.proofImages, canAddEvidence),
                   const SizedBox(height: 16),
                 ],
-
-                // ── Evidence upload (when RequestMoreInfo) ──
                 if (canAddEvidence) ...[
-                  _buildEvidenceUploadSection(request),
-                  const SizedBox(height: 32),
+                  _evidenceUploadCard(req),
+                  const SizedBox(height: 16),
                 ],
               ]),
             ),
@@ -147,36 +131,36 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     );
   }
 
-  SliverAppBar _buildAppBar(ReturnRequest? request) {
+  // ─────────────────────────────────────────────────────────────────────────
+  // App bar
+  // ─────────────────────────────────────────────────────────────────────────
+
+  SliverAppBar _appBar(ReturnRequest? req) {
     return SliverAppBar(
       expandedHeight: 100,
       pinned: true,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       backgroundColor: AppColors.primaryDark,
       actions: [
-        if (request != null && request.returnShippingInfo?.trackingNumber != null)
-          IconButton(
-            icon: _isPrintingLabel
-                ? const SizedBox(width: 20, height: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                : const Icon(Icons.print, color: Colors.white),
+        if (req != null && req.returnShippingInfo?.trackingNumber != null)
+          _appBarAction(
+            loading: _isPrintingLabel,
+            icon: Icons.print_rounded,
             tooltip: 'In nhãn vận chuyển',
-            onPressed: _isPrintingLabel ? null : () => _printShippingLabel(request),
+            onPressed: () => _printLabel(req),
           ),
-        if (request != null)
-          IconButton(
-            icon: _isSyncing
-                ? const SizedBox(width: 20, height: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                : const Icon(Icons.sync, color: Colors.white),
+        if (req != null)
+          _appBarAction(
+            loading: _isSyncing,
+            icon: Icons.sync_rounded,
             tooltip: 'Đồng bộ vận chuyển',
-            onPressed: _isSyncing ? null : () => _syncShipping(),
+            onPressed: _syncShipping,
           ),
       ],
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
-          request?.orderCode ?? 'Chi tiết yêu cầu',
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+          req?.orderCode ?? 'Chi tiết yêu cầu',
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
         ),
         background: Container(
           decoration: const BoxDecoration(
@@ -191,26 +175,52 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     );
   }
 
-  Widget _buildStatusHeader(ReturnRequest request, ({String label, Color color}) statusInfo) {
+  Widget _appBarAction({required bool loading, required IconData icon, required String tooltip, required VoidCallback onPressed}) {
+    return IconButton(
+      icon: loading
+          ? const SizedBox(width: 20, height: 20,
+              child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+          : Icon(icon, color: Colors.white),
+      tooltip: tooltip,
+      onPressed: loading ? null : onPressed,
+    );
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Status banner
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _statusBanner(ReturnRequest req, ({String label, Color color, IconData icon}) si) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: statusInfo.color.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: statusInfo.color.withValues(alpha: 0.3)),
+        gradient: LinearGradient(
+          colors: [si.color.withValues(alpha: 0.08), si.color.withValues(alpha: 0.03)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: si.color.withValues(alpha: 0.25)),
       ),
       child: Row(
         children: [
-          Icon(Icons.assignment_return, color: statusInfo.color, size: 28),
-          const SizedBox(width: 12),
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: si.color.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(si.icon, color: si.color, size: 24),
+          ),
+          const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(statusInfo.label,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: statusInfo.color)),
-                const SizedBox(height: 2),
-                Text('Mã đơn: ${request.orderCode ?? '-'}',
+                Text(si.label,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: si.color)),
+                const SizedBox(height: 3),
+                Text('Mã đơn: ${req.orderCode ?? '-'}',
                     style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
               ],
             ),
@@ -220,41 +230,42 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     );
   }
 
-  Widget _buildInfoSection(ReturnRequest request) {
-    final shouldShowStaffNote =
-        request.status == 'Rejected' || request.status == 'RequestMoreInfo';
-    return _SectionCard(
+  // ─────────────────────────────────────────────────────────────────────────
+  // Info card
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _infoCard(ReturnRequest req) {
+    final showStaffNote = req.status == 'Rejected' || req.status == 'RequestMoreInfo';
+    return _Card(
       title: 'Thông tin yêu cầu',
-      icon: Icons.info_outline,
+      icon: Icons.info_outline_rounded,
       child: Column(
         children: [
-          _InfoRow('Mã yêu cầu', request.id.length > 8 ? '${request.id.substring(0, 8)}...' : request.id),
-          _InfoRow('Trạng thái', _statusInfo(request.status).label),
-          if (request.requestedByEmail != null)
-            _InfoRow('Người yêu cầu', request.requestedByEmail!),
-          _InfoRow('Ngày tạo', _dateFmt.format(request.createdAt)),
-          if (request.updatedAt != null)
-            _InfoRow('Cập nhật', _dateFmt.format(request.updatedAt!)),
-          _InfoRow('Số tiền yêu cầu', _currencyFmt.format(request.requestedRefundAmount)),
-          if (request.approvedRefundAmount != null && request.approvedRefundAmount! > 0)
-            _InfoRow('Số tiền duyệt', _currencyFmt.format(request.approvedRefundAmount!)),
-          if (request.processedByName != null)
-            _InfoRow('Người xử lý', request.processedByName!),
-          if (request.inspectedByName != null)
-            _InfoRow('Người kiểm tra', request.inspectedByName!),
-          _InfoRow('Lý do', _reasonLabel(request.reason) ?? '-'),
-          if (request.customerNote != null && request.customerNote!.isNotEmpty) ...[
-            const Divider(height: 20),
-            _InfoRow('Ghi chú khách', request.customerNote!),
+          _Row('Mã yêu cầu', req.id.length > 8 ? '${req.id.substring(0, 8)}…' : req.id),
+          _Row('Trạng thái', _statusInfo(req.status).label),
+          if (req.requestedByEmail != null) _Row('Người yêu cầu', req.requestedByEmail!),
+          _Row('Ngày tạo', _dateFmt.format(req.createdAt)),
+          if (req.updatedAt != null) _Row('Cập nhật', _dateFmt.format(req.updatedAt!)),
+          const Divider(height: 20),
+          _AmountRow('Số tiền yêu cầu', req.requestedRefundAmount),
+          if (req.approvedRefundAmount != null && req.approvedRefundAmount! > 0)
+            _AmountRow('Số tiền duyệt', req.approvedRefundAmount!),
+          if (req.processedByName != null) _Row('Người xử lý', req.processedByName!),
+          if (req.inspectedByName != null) _Row('Người kiểm tra', req.inspectedByName!),
+          const Divider(height: 20),
+          _Row('Lý do', _reasonLabel(req.reason) ?? '-'),
+          if (req.customerNote != null && req.customerNote!.isNotEmpty) ...[
+            const SizedBox(height: 4),
+            _NoteBlock(label: 'Ghi chú khách hàng', text: req.customerNote!),
           ],
-          if (shouldShowStaffNote) ...[
-            if (request.staffNote != null && request.staffNote!.isNotEmpty) ...[
-              const Divider(height: 20),
-              _InfoRow('Ghi chú NV', request.staffNote!),
+          if (showStaffNote) ...[
+            if (req.staffNote != null && req.staffNote!.isNotEmpty) ...[
+              const SizedBox(height: 4),
+              _NoteBlock(label: 'Ghi chú nhân viên', text: req.staffNote!, color: Colors.orange),
             ],
-            if (request.inspectionNote != null && request.inspectionNote!.isNotEmpty) ...[
-              const Divider(height: 20),
-              _InfoRow('Ghi chú kiểm tra', request.inspectionNote!),
+            if (req.inspectionNote != null && req.inspectionNote!.isNotEmpty) ...[
+              const SizedBox(height: 4),
+              _NoteBlock(label: 'Ghi chú kiểm tra', text: req.inspectionNote!, color: Colors.blue),
             ],
           ],
         ],
@@ -262,27 +273,32 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     );
   }
 
-  Widget _buildShippingSection(ReturnShippingInfo shipping) {
-    return _SectionCard(
-      title: 'Thông tin vận chuyển',
+  // ─────────────────────────────────────────────────────────────────────────
+  // Shipping card
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _shippingCard(ReturnShippingInfo s) {
+    return _Card(
+      title: 'Vận chuyển',
       icon: Icons.local_shipping_outlined,
       child: Column(
         children: [
-          if (shipping.carrierName != null)
-            _InfoRow('Đơn vị vận chuyển', shipping.carrierName!),
-          if (shipping.trackingNumber != null)
-            _InfoRow('Mã vận đơn', shipping.trackingNumber!),
-          if (shipping.status != null)
-            _InfoRow('Trạng thái', _shippingStatusLabel(shipping.status!)),
-          _InfoRow('Phí vận chuyển', _currencyFmt.format(shipping.shippingFee)),
+          if (s.carrierName != null) _Row('Đơn vị', s.carrierName!),
+          if (s.trackingNumber != null) _Row('Mã vận đơn', s.trackingNumber!),
+          if (s.status != null) _Row('Trạng thái', _shippingStatusLabel(s.status!)),
+          _Row('Phí vận chuyển', _currencyFmt.format(s.shippingFee)),
         ],
       ),
     );
   }
 
-  Widget _buildItemsSection(List<_RequestItem> items) {
-    return _SectionCard(
-      title: 'Sản phẩm trong đơn',
+  // ─────────────────────────────────────────────────────────────────────────
+  // Items card
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _itemsCard(List<_RequestItem> items) {
+    return _Card(
+      title: 'Sản phẩm trả (${items.length})',
       icon: Icons.inventory_2_outlined,
       child: Column(
         children: items.asMap().entries.map((entry) {
@@ -290,48 +306,45 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
           final item = entry.value;
           return Column(
             children: [
-              if (i > 0) const Divider(height: 16),
+              if (i > 0) const Divider(height: 20),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Product image
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(10),
                     child: item.imageUrl != null
                         ? Image.network(
                             ImageUrlHelper.resolve(item.imageUrl!),
-                            width: 72,
-                            height: 72,
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, _, _) => _imagePlaceholder(),
+                            width: 64, height: 64, fit: BoxFit.cover,
+                            errorBuilder: (_, a, b) => _imgPlaceholder(),
                           )
-                        : _imagePlaceholder(),
+                        : _imgPlaceholder(),
                   ),
                   const SizedBox(width: 12),
-                  // Name, qty, price
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(item.name,
-                            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+                            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13.5),
+                            maxLines: 2, overflow: TextOverflow.ellipsis),
                         const SizedBox(height: 4),
-                        Text('Số lượng: ${item.quantity}',
-                            style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
-                        if (item.unitPrice > 0)
-                          Text('Đơn giá: ${_currencyFmt.format(item.unitPrice)}',
-                              style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                        Row(
+                          children: [
+                            _chip('x${item.quantity}'),
+                            const SizedBox(width: 6),
+                            if (item.unitPrice > 0)
+                              Text(_currencyFmt.format(item.unitPrice),
+                                  style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                          ],
+                        ),
                       ],
                     ),
                   ),
-                  // Total
                   if (item.totalItem > 0)
                     Text(
                       _currencyFmt.format(item.totalItem),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 13,
-                          color: AppColors.primary),
+                      style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.primary),
                     ),
                 ],
               ),
@@ -342,155 +355,160 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     );
   }
 
-  Widget _imagePlaceholder() {
+  Widget _imgPlaceholder() {
     return Container(
-      width: 72,
-      height: 72,
-      color: Colors.grey.shade200,
-      child: const Icon(Icons.image_outlined, color: AppColors.textSecondary, size: 28),
+      width: 64, height: 64,
+      decoration: BoxDecoration(
+        color: AppColors.skeleton,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: const Icon(Icons.image_outlined, color: AppColors.textSecondary, size: 24),
     );
   }
 
-  Widget _buildProofSection(List<ProofMedia> media, bool canRemove) {
-    // Filter out removed items
-    final visibleMedia = media.where((m) => !_removeMediaIds.contains(m.id)).toList();
+  Widget _chip(String text) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: AppColors.primaryLight,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Text(text, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: AppColors.primary)),
+    );
+  }
 
-    return _SectionCard(
-      title: 'Bằng chứng',
+  // ─────────────────────────────────────────────────────────────────────────
+  // Proof media card
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _proofCard(List<ProofMedia> media, bool canRemove) {
+    final visible = media.where((m) => !_removeMediaIds.contains(m.id)).toList();
+    return _Card(
+      title: 'Bằng chứng (${visible.length})',
       icon: Icons.photo_library_outlined,
       child: Wrap(
         spacing: 8,
         runSpacing: 8,
-        children: visibleMedia.map((m) {
+        children: visible.map((m) {
           final isVideo = m.mimeType?.startsWith('video') == true;
-          return Stack(
-            children: [
-              GestureDetector(
-                onTap: () => _showMediaPreview(context, m),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    width: 80,
-                    height: 80,
-                    color: Colors.grey.shade200,
-                    child: isVideo
-                        ? const Center(child: Icon(Icons.videocam, size: 32, color: AppColors.textSecondary))
-                        : Image.network(
-                            ImageUrlHelper.resolve(m.url ?? ''),
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, _, _) =>
-                                const Center(child: Icon(Icons.broken_image, color: AppColors.textSecondary)),
-                          ),
+          return GestureDetector(
+            onTap: () => _previewMedia(context, m),
+            child: Stack(
+              children: [
+                Container(
+                  width: 80, height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppColors.border),
                   ),
+                  clipBehavior: Clip.antiAlias,
+                  child: isVideo
+                      ? Container(
+                          color: Colors.grey.shade100,
+                          child: const Center(child: Icon(Icons.videocam_rounded, size: 28, color: AppColors.textSecondary)),
+                        )
+                      : Image.network(
+                          ImageUrlHelper.resolve(m.url ?? ''),
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, a, b) =>
+                              Container(color: Colors.grey.shade100,
+                                child: const Center(child: Icon(Icons.broken_image_outlined, color: AppColors.textSecondary))),
+                        ),
                 ),
-              ),
-              if (canRemove && m.id != null)
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: GestureDetector(
-                    onTap: () => setState(() => _removeMediaIds.add(m.id!)),
-                    child: Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                        shape: BoxShape.circle,
+                if (canRemove && m.id != null)
+                  Positioned(
+                    top: -2, right: -2,
+                    child: GestureDetector(
+                      onTap: () => setState(() => _removeMediaIds.add(m.id!)),
+                      child: Container(
+                        padding: const EdgeInsets.all(3),
+                        decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+                        child: const Icon(Icons.close, size: 12, color: Colors.white),
                       ),
-                      child: const Icon(Icons.close, size: 14, color: Colors.white),
                     ),
                   ),
-                ),
-            ],
+              ],
+            ),
           );
         }).toList(),
       ),
     );
   }
 
-  Widget _buildEvidenceUploadSection(ReturnRequest request) {
-    return _SectionCard(
+  // ─────────────────────────────────────────────────────────────────────────
+  // Evidence upload card
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _evidenceUploadCard(ReturnRequest req) {
+    final hasChanges = _newImages.isNotEmpty || _newVideos.isNotEmpty || _removeMediaIds.isNotEmpty || _noteController.text.isNotEmpty;
+
+    return _Card(
       title: 'Bổ sung bằng chứng',
-      icon: Icons.upload_file,
+      icon: Icons.upload_file_rounded,
+      accentColor: Colors.amber.shade700,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Note field
           TextField(
             controller: _noteController,
             decoration: InputDecoration(
-              hintText: 'Nhập ghi chú bổ sung...',
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              hintText: 'Nhập ghi chú bổ sung…',
+              hintStyle: TextStyle(color: AppColors.textSecondary.withValues(alpha: 0.6)),
+              filled: true,
+              fillColor: AppColors.surface,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: AppColors.border),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: AppColors.border),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+              ),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
             ),
             maxLines: 3,
           ),
-          const SizedBox(height: 12),
-
-          // Pick buttons
+          const SizedBox(height: 14),
           Row(
             children: [
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _pickImages,
-                  icon: const Icon(Icons.photo, size: 18),
-                  label: Text('Ảnh (${_newImages.length})', style: const TextStyle(fontSize: 13)),
-                  style: OutlinedButton.styleFrom(foregroundColor: AppColors.primary),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _pickVideos,
-                  icon: const Icon(Icons.videocam, size: 18),
-                  label: Text('Video (${_newVideos.length})', style: const TextStyle(fontSize: 13)),
-                  style: OutlinedButton.styleFrom(foregroundColor: AppColors.primary),
-                ),
-              ),
+              Expanded(child: _pickBtn(Icons.photo_rounded, 'Ảnh (${_newImages.length})', _pickImages)),
+              const SizedBox(width: 10),
+              Expanded(child: _pickBtn(Icons.videocam_rounded, 'Video (${_newVideos.length})', _pickVideos)),
             ],
           ),
-
-          // Preview picked files
           if (_newImages.isNotEmpty || _newVideos.isNotEmpty) ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: 14),
             Wrap(
-              spacing: 8,
-              runSpacing: 8,
+              spacing: 8, runSpacing: 8,
               children: [
-                ..._newImages.asMap().entries.map((entry) => _buildPickedThumb(
-                      entry.value.bytes,
-                      isVideo: false,
-                      onRemove: () => setState(() => _newImages.removeAt(entry.key)),
-                    )),
-                ..._newVideos.asMap().entries.map((entry) => _buildPickedThumb(
-                      entry.value.bytes,
-                      isVideo: true,
-                      onRemove: () => setState(() => _newVideos.removeAt(entry.key)),
-                    )),
+                ..._newImages.asMap().entries.map((e) => _thumbPicked(
+                      e.value.bytes, isVideo: false,
+                      onRemove: () => setState(() => _newImages.removeAt(e.key)))),
+                ..._newVideos.asMap().entries.map((e) => _thumbPicked(
+                      e.value.bytes, isVideo: true,
+                      onRemove: () => setState(() => _newVideos.removeAt(e.key)))),
               ],
             ),
           ],
-
-          const SizedBox(height: 16),
-
-          // Submit button
+          const SizedBox(height: 18),
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton.icon(
-              onPressed: (_newImages.isEmpty && _newVideos.isEmpty && _removeMediaIds.isEmpty && _noteController.text.isEmpty)
-                  ? null
-                  : _isSubmitting
-                      ? null
-                      : () => _submitEvidence(request),
+            child: FilledButton.icon(
+              onPressed: hasChanges && !_isSubmitting ? () => _submitEvidence(req) : null,
               icon: _isSubmitting
                   ? const SizedBox(width: 16, height: 16,
                       child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                  : const Icon(Icons.send, size: 18),
-              label: Text(_isSubmitting ? 'Đang gửi...' : 'Gửi bổ sung'),
-              style: ElevatedButton.styleFrom(
+                  : const Icon(Icons.send_rounded, size: 18),
+              label: Text(_isSubmitting ? 'Đang gửi…' : 'Gửi bổ sung'),
+              style: FilledButton.styleFrom(
                 backgroundColor: AppColors.primary,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                disabledBackgroundColor: AppColors.primary.withValues(alpha: 0.4),
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
             ),
           ),
@@ -499,29 +517,43 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     );
   }
 
-  Widget _buildPickedThumb(Uint8List bytes, {required bool isVideo, required VoidCallback onRemove}) {
+  Widget _pickBtn(IconData icon, String label, VoidCallback onPressed) {
+    return OutlinedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 18),
+      label: Text(label, style: const TextStyle(fontSize: 13)),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.primary,
+        side: const BorderSide(color: AppColors.primaryBorder),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    );
+  }
+
+  Widget _thumbPicked(Uint8List bytes, {required bool isVideo, required VoidCallback onRemove}) {
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            width: 70,
-            height: 70,
-            color: Colors.grey.shade200,
-            child: isVideo
-                ? const Center(child: Icon(Icons.videocam, size: 28, color: AppColors.textSecondary))
-                : Image.memory(bytes, fit: BoxFit.cover),
+        Container(
+          width: 68, height: 68,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: AppColors.border),
           ),
+          clipBehavior: Clip.antiAlias,
+          child: isVideo
+              ? Container(color: Colors.grey.shade100,
+                  child: const Center(child: Icon(Icons.videocam_rounded, size: 24, color: AppColors.textSecondary)))
+              : Image.memory(bytes, fit: BoxFit.cover),
         ),
         Positioned(
-          top: 0,
-          right: 0,
+          top: -2, right: -2,
           child: GestureDetector(
             onTap: onRemove,
             child: Container(
-              padding: const EdgeInsets.all(2),
+              padding: const EdgeInsets.all(3),
               decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
-              child: const Icon(Icons.close, size: 12, color: Colors.white),
+              child: const Icon(Icons.close, size: 11, color: Colors.white),
             ),
           ),
         ),
@@ -529,13 +561,18 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     );
   }
 
-  void _showMediaPreview(BuildContext context, ProofMedia media) {
+  // ─────────────────────────────────────────────────────────────────────────
+  // Actions
+  // ─────────────────────────────────────────────────────────────────────────
+
+  void _previewMedia(BuildContext context, ProofMedia media) {
     final isVideo = media.mimeType?.startsWith('video') == true;
     showDialog(
       context: context,
       builder: (_) => Dialog(
         backgroundColor: Colors.black,
         insetPadding: const EdgeInsets.all(16),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Stack(
           children: [
             Center(
@@ -543,24 +580,23 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
                   ? const Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.videocam, size: 64, color: Colors.white70),
+                        Icon(Icons.videocam_rounded, size: 64, color: Colors.white54),
                         SizedBox(height: 8),
-                        Text('Xem video không khả dụng', style: TextStyle(color: Colors.white70)),
+                        Text('Xem video không khả dụng', style: TextStyle(color: Colors.white54)),
                       ],
                     )
                   : InteractiveViewer(
                       child: Image.network(
                         ImageUrlHelper.resolve(media.url ?? ''),
-                        errorBuilder: (_, _, _) =>
-                            const Center(child: Icon(Icons.broken_image, color: Colors.white70, size: 64)),
+                        errorBuilder: (_, a, b) =>
+                            const Center(child: Icon(Icons.broken_image, color: Colors.white54, size: 64)),
                       ),
                     ),
             ),
             Positioned(
-              top: 8,
-              right: 8,
+              top: 8, right: 8,
               child: IconButton(
-                icon: const Icon(Icons.close, color: Colors.white),
+                icon: const Icon(Icons.close_rounded, color: Colors.white),
                 onPressed: () => Navigator.pop(context),
               ),
             ),
@@ -571,8 +607,7 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
   }
 
   Future<void> _pickImages() async {
-    final picker = ImagePicker();
-    final files = await picker.pickMultiImage(imageQuality: 80);
+    final files = await ImagePicker().pickMultiImage(imageQuality: 80);
     for (final f in files) {
       final bytes = await f.readAsBytes();
       setState(() => _newImages.add((filename: f.name, bytes: bytes)));
@@ -580,20 +615,17 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
   }
 
   Future<void> _pickVideos() async {
-    final picker = ImagePicker();
-    final file = await picker.pickVideo(source: ImageSource.gallery);
+    final file = await ImagePicker().pickVideo(source: ImageSource.gallery);
     if (file != null) {
       final bytes = await file.readAsBytes();
       setState(() => _newVideos.add((filename: file.name, bytes: bytes)));
     }
   }
 
-  Future<void> _submitEvidence(ReturnRequest request) async {
+  Future<void> _submitEvidence(ReturnRequest req) async {
     setState(() => _isSubmitting = true);
     try {
       final repo = ref.read(returnRequestRepositoryProvider);
-
-      // Upload new media first
       List<String> tempIds = [];
       if (_newImages.isNotEmpty || _newVideos.isNotEmpty) {
         tempIds = await repo.uploadTemporaryMedia(
@@ -601,25 +633,20 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
           videos: _newVideos.isNotEmpty ? _newVideos : null,
         );
       }
-
-      // Update the request
       await repo.update(
-        id: request.id,
+        id: req.id,
         customerNote: _noteController.text.isNotEmpty ? _noteController.text : null,
         temporaryMediaIds: tempIds.isNotEmpty ? tempIds : null,
         removeMediaIds: _removeMediaIds.isNotEmpty ? _removeMediaIds.toList() : null,
       );
-
-      // Refresh and clear state
       ref.invalidate(returnRequestWithOrderProvider(widget.requestId));
       _newImages.clear();
       _newVideos.clear();
       _removeMediaIds.clear();
       _noteController.clear();
-
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Đã gửi bổ sung bằng chứng thành công'), backgroundColor: Colors.green),
+          const SnackBar(content: Text('Đã gửi bổ sung bằng chứng'), backgroundColor: Colors.green),
         );
       }
     } catch (e) {
@@ -646,7 +673,7 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi đồng bộ: $e'), backgroundColor: Colors.red),
+          SnackBar(content: Text('Lỗi: $e'), backgroundColor: Colors.red),
         );
       }
     } finally {
@@ -654,25 +681,24 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
     }
   }
 
-  Future<void> _printShippingLabel(ReturnRequest request) async {
-    final trackingNumber = request.returnShippingInfo?.trackingNumber;
-    if (trackingNumber == null) return;
-
+  Future<void> _printLabel(ReturnRequest req) async {
+    final tracking = req.returnShippingInfo?.trackingNumber;
+    if (tracking == null) return;
     setState(() => _isPrintingLabel = true);
     try {
-      final url = await ref.read(returnRequestRepositoryProvider).getOrderInfoUrl(trackingNumber);
+      final url = await ref.read(returnRequestRepositoryProvider).getOrderInfoUrl(tracking);
       if (url != null && url.isNotEmpty && mounted) {
         final uri = Uri.tryParse(url);
         if (uri != null && await canLaunchUrl(uri)) {
           await launchUrl(uri, mode: LaunchMode.externalApplication);
         } else if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Không thể mở link nhãn vận chuyển'), backgroundColor: Colors.red),
+            const SnackBar(content: Text('Không thể mở link'), backgroundColor: Colors.red),
           );
         }
       } else if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Không có link nhãn vận chuyển'), backgroundColor: Colors.orange),
+          const SnackBar(content: Text('Không có link nhãn'), backgroundColor: Colors.orange),
         );
       }
     } catch (e) {
@@ -687,41 +713,52 @@ class _ReturnRequestDetailPageState extends ConsumerState<ReturnRequestDetailPag
   }
 }
 
-// ── Reusable widgets ──
+// ═══════════════════════════════════════════════════════════════════════════════
+// Reusable widgets
+// ═══════════════════════════════════════════════════════════════════════════════
 
-class _SectionCard extends StatelessWidget {
+class _Card extends StatelessWidget {
   final String title;
   final IconData icon;
   final Widget child;
+  final Color? accentColor;
 
-  const _SectionCard({required this.title, required this.icon, required this.child});
+  const _Card({required this.title, required this.icon, required this.child, this.accentColor});
 
   @override
   Widget build(BuildContext context) {
+    final color = accentColor ?? AppColors.primary;
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(14),
         border: Border.all(color: AppColors.border),
         boxShadow: [
-          BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2)),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 10, offset: const Offset(0, 2)),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
             child: Row(
               children: [
-                Icon(icon, size: 18, color: AppColors.primary),
-                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: color.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(icon, size: 16, color: color),
+                ),
+                const SizedBox(width: 10),
                 Text(title,
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
               ],
             ),
           ),
-          const Divider(height: 1),
+          Divider(height: 1, color: AppColors.border.withValues(alpha: 0.6)),
           Padding(
             padding: const EdgeInsets.all(16),
             child: child,
@@ -732,22 +769,21 @@ class _SectionCard extends StatelessWidget {
   }
 }
 
-class _InfoRow extends StatelessWidget {
+class _Row extends StatelessWidget {
   final String label;
   final String value;
-  const _InfoRow(this.label, this.value);
+  const _Row(this.label, this.value);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             width: 120,
-            child: Text(label,
-                style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+            child: Text(label, style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
           ),
           Expanded(
             child: Text(value,
@@ -759,7 +795,66 @@ class _InfoRow extends StatelessWidget {
   }
 }
 
-// ── Helpers (shared with list page) ──
+class _AmountRow extends StatelessWidget {
+  final String label;
+  final double amount;
+  const _AmountRow(this.label, this.amount);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 120,
+            child: Text(label, style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+          ),
+          Expanded(
+            child: Text(
+              _currencyFmt.format(amount),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.primary),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _NoteBlock extends StatelessWidget {
+  final String label;
+  final String text;
+  final Color color;
+  const _NoteBlock({required this.label, required this.text, this.color = AppColors.primary});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(top: 8),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: color.withValues(alpha: 0.15)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: color)),
+          const SizedBox(height: 4),
+          Text(text, style: const TextStyle(fontSize: 13, color: AppColors.textPrimary)),
+        ],
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Helpers
+// ─────────────────────────────────────────────────────────────────────────────
 
 class _RequestItem {
   final String name;
@@ -767,110 +862,69 @@ class _RequestItem {
   final int quantity;
   final double unitPrice;
   final double totalItem;
-
-  const _RequestItem({
-    required this.name,
-    this.imageUrl,
-    required this.quantity,
-    required this.unitPrice,
-    required this.totalItem,
-  });
+  const _RequestItem({required this.name, this.imageUrl, required this.quantity, required this.unitPrice, required this.totalItem});
 }
 
-List<_RequestItem> _buildRequestItems(ReturnRequest request, OrderDetail? order) {
+List<_RequestItem> _buildRequestItems(ReturnRequest req, OrderDetail? order) {
   final orderDetails = order?.orderDetails ?? [];
-  final returnDetails = request.returnDetails;
+  final returnDetails = req.returnDetails;
 
   if (returnDetails.isEmpty) {
     return orderDetails.map((item) {
       final qty = item.quantity;
       final price = item.unitPrice;
-      return _RequestItem(
-        name: item.variantName,
-        imageUrl: item.imageUrl,
-        quantity: qty,
-        unitPrice: price,
-        totalItem: price * qty,
-      );
+      return _RequestItem(name: item.variantName, imageUrl: item.imageUrl, quantity: qty, unitPrice: price, totalItem: price * qty);
     }).toList();
   }
 
   return returnDetails.map((detail) {
     final matched = orderDetails.cast<OrderDetailItem?>().firstWhere(
-      (item) =>
-          item?.id == detail.orderDetailId ||
-          (detail.variantId != null && item?.variantId == detail.variantId),
+      (item) => item?.id == detail.orderDetailId || (detail.variantId != null && item?.variantId == detail.variantId),
       orElse: () => null,
     );
-
     final qty = detail.requestedQuantity;
     final price = detail.unitPrice > 0 ? detail.unitPrice : (matched?.unitPrice ?? 0.0);
-
     return _RequestItem(
       name: matched?.variantName ?? 'Sản phẩm hoàn trả',
       imageUrl: matched?.imageUrl,
-      quantity: qty,
-      unitPrice: price,
-      totalItem: price * qty,
+      quantity: qty, unitPrice: price, totalItem: price * qty,
     );
   }).toList();
 }
 
-({String label, Color color}) _statusInfo(String status) {
+({String label, Color color, IconData icon}) _statusInfo(String status) {
   switch (status) {
-    case 'Pending':
-      return (label: 'Chờ duyệt', color: AppColors.statusPending);
-    case 'RequestMoreInfo':
-      return (label: 'Cần bổ sung thông tin', color: Colors.amber.shade700);
-    case 'ApprovedForReturn':
-      return (label: 'Đã duyệt trả hàng', color: AppColors.statusDelivered);
-    case 'Inspecting':
-      return (label: 'Đang kiểm tra', color: AppColors.statusDelivering);
-    case 'ReadyForRefund':
-      return (label: 'Sẵn sàng hoàn tiền', color: AppColors.statusProcessing);
-    case 'Completed':
-      return (label: 'Hoàn tất', color: AppColors.paymentRefunded);
-    case 'Rejected':
-      return (label: 'Từ chối', color: AppColors.statusCancelled);
-    default:
-      return (label: status, color: Colors.grey);
+    case 'Pending':            return (label: 'Chờ duyệt', color: AppColors.statusPending, icon: Icons.hourglass_empty_rounded);
+    case 'RequestMoreInfo':    return (label: 'Cần bổ sung thông tin', color: Colors.amber.shade700, icon: Icons.info_outline_rounded);
+    case 'ApprovedForReturn':  return (label: 'Đã duyệt trả hàng', color: AppColors.statusDelivered, icon: Icons.check_circle_outline_rounded);
+    case 'Inspecting':         return (label: 'Đang kiểm tra', color: AppColors.statusDelivering, icon: Icons.search_rounded);
+    case 'ReadyForRefund':     return (label: 'Sẵn sàng hoàn tiền', color: AppColors.statusProcessing, icon: Icons.account_balance_wallet_rounded);
+    case 'Completed':          return (label: 'Hoàn tất', color: AppColors.paymentRefunded, icon: Icons.done_all_rounded);
+    case 'Rejected':           return (label: 'Từ chối', color: AppColors.statusCancelled, icon: Icons.cancel_outlined);
+    default:                   return (label: status, color: Colors.grey, icon: Icons.help_outline);
   }
 }
 
 String? _reasonLabel(String? reason) {
   switch (reason) {
-    case 'DamagedProduct':
-      return 'Sản phẩm bị hư hỏng';
-    case 'WrongItemReceived':
-      return 'Nhận sai sản phẩm';
-    case 'ItemNotAsDescribed':
-      return 'Không đúng mô tả';
-    case 'ChangedMind':
-      return 'Đổi ý';
-    case 'AllergicReaction':
-      return 'Dị ứng sản phẩm';
-    default:
-      return reason;
+    case 'DamagedProduct':     return 'Sản phẩm bị hư hỏng';
+    case 'WrongItemReceived':  return 'Nhận sai sản phẩm';
+    case 'ItemNotAsDescribed': return 'Không đúng mô tả';
+    case 'ChangedMind':        return 'Đổi ý';
+    case 'AllergicReaction':   return 'Dị ứng sản phẩm';
+    default:                   return reason;
   }
 }
 
 String _shippingStatusLabel(String status) {
   switch (status) {
-    case 'UnAssigned':
-      return 'Chưa gán';
-    case 'ReadyToPick':
-      return 'Chờ lấy hàng';
-    case 'Delivering':
-      return 'Đang giao hàng';
-    case 'Delivered':
-      return 'Đã giao';
-    case 'Cancelled':
-      return 'Đã hủy';
-    case 'Returning':
-      return 'Đang trả hàng';
-    case 'Returned':
-      return 'Đã trả hàng';
-    default:
-      return status;
+    case 'UnAssigned':   return 'Chưa gán';
+    case 'ReadyToPick':  return 'Chờ lấy hàng';
+    case 'Delivering':   return 'Đang giao';
+    case 'Delivered':    return 'Đã giao';
+    case 'Cancelled':    return 'Đã hủy';
+    case 'Returning':    return 'Đang trả hàng';
+    case 'Returned':     return 'Đã trả hàng';
+    default:             return status;
   }
 }
