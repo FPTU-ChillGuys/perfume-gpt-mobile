@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'customer_family_preference_respone.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,32 +18,57 @@ part 'customer_family_preference_respone.g.dart';
 )
 class CustomerFamilyPreferenceRespone {
   /// Returns a new [CustomerFamilyPreferenceRespone] instance.
-  CustomerFamilyPreferenceRespone({this.familyId, required this.familyName});
+  CustomerFamilyPreferenceRespone({
 
-  @JsonKey(name: r'familyId', required: false, includeIfNull: false)
+     this.familyId,
+
+    required  this.familyName,
+  });
+
+  @JsonKey(
+    
+    name: r'familyId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final int? familyId;
 
-  @JsonKey(name: r'familyName', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'familyName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String familyName;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CustomerFamilyPreferenceRespone &&
-          other.familyId == familyId &&
-          other.familyName == familyName;
 
-  @override
-  int get hashCode => familyId.hashCode + familyName.hashCode;
 
-  factory CustomerFamilyPreferenceRespone.fromJson(Map<String, dynamic> json) =>
-      _$CustomerFamilyPreferenceResponeFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CustomerFamilyPreferenceResponeToJson(this);
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CustomerFamilyPreferenceRespone &&
+      other.familyId == familyId &&
+      other.familyName == familyName;
+
+    @override
+    int get hashCode =>
+        familyId.hashCode +
+        familyName.hashCode;
+
+  factory CustomerFamilyPreferenceRespone.fromJson(Map<String, dynamic> json) => _$CustomerFamilyPreferenceResponeFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CustomerFamilyPreferenceResponeToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
+
 }
+

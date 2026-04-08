@@ -1,62 +1,85 @@
-import 'product.dart';
-
+/// A cart item as returned by the server API (GET /api/cart/items).
+/// The server is the source of truth — no local Product reference needed.
 class CartItem {
-  final String? id; // Server-side cart item ID
+  final String? cartItemId; // Nullable for guest items not yet synced
   final String variantId;
-  final Product product;
+  final String variantName;
+  final String imageUrl;
+  final int? volumeMl;
+  final String? type;
+  final double variantPrice;
   final int quantity;
+  final bool isAvailable;
+  final double subTotal;
 
   const CartItem({
-    this.id,
+    this.cartItemId,
     required this.variantId,
-    required this.product,
+    required this.variantName,
+    required this.imageUrl,
+    this.volumeMl,
+    this.type,
+    required this.variantPrice,
     required this.quantity,
+    this.isAvailable = true,
+    required this.subTotal,
   });
 
   CartItem copyWith({
-    String? id,
+    String? cartItemId,
     String? variantId,
-    Product? product,
+    String? variantName,
+    String? imageUrl,
+    int? volumeMl,
+    String? type,
+    double? variantPrice,
     int? quantity,
+    bool? isAvailable,
+    double? subTotal,
   }) {
     return CartItem(
-      id: id ?? this.id,
+      cartItemId: cartItemId ?? this.cartItemId,
       variantId: variantId ?? this.variantId,
-      product: product ?? this.product,
+      variantName: variantName ?? this.variantName,
+      imageUrl: imageUrl ?? this.imageUrl,
+      volumeMl: volumeMl ?? this.volumeMl,
+      type: type ?? this.type,
+      variantPrice: variantPrice ?? this.variantPrice,
       quantity: quantity ?? this.quantity,
+      isAvailable: isAvailable ?? this.isAvailable,
+      subTotal: subTotal ?? this.subTotal,
     );
   }
 
-  double get totalPrice => product.price * quantity;
+  double get totalPrice => variantPrice * quantity;
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'cartItemId': cartItemId,
       'variantId': variantId,
-      'product_id': product.id,
-      'product_name': product.name,
-      'product_price': product.price,
-      'product_imageUrl': product.imageUrl,
+      'variantName': variantName,
+      'imageUrl': imageUrl,
+      'volumeMl': volumeMl,
+      'type': type,
+      'variantPrice': variantPrice,
       'quantity': quantity,
+      'isAvailable': isAvailable,
+      'subTotal': subTotal,
     };
   }
 
   factory CartItem.fromJson(Map<String, dynamic> json) {
     return CartItem(
-      id: json['id'],
+      cartItemId: json['cartItemId'],
       variantId: json['variantId'],
-      product: Product(
-        id: json['product_id'],
-        name: json['product_name'],
-        price: json['product_price'],
-        imageUrl: json['product_imageUrl'],
-        description: '',
-        scentNotes: [],
-        brand: '',
-        rating: 0,
-        reviewCount: 0,
-      ),
-      quantity: json['quantity'],
+      variantName: json['variantName'],
+      imageUrl: json['imageUrl'],
+      volumeMl: json['volumeMl'],
+      type: json['type'],
+      variantPrice: (json['variantPrice'] as num).toDouble(),
+      quantity: json['quantity'] as int,
+      isAvailable: json['isAvailable'] as bool? ?? true,
+      subTotal: (json['subTotal'] as num).toDouble(),
     );
   }
 }

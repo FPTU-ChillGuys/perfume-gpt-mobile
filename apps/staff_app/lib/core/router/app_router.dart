@@ -5,17 +5,18 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import '../../features/inventory/presentation/screens/inventory_screen.dart';
 import '../../features/inventory/presentation/screens/product_detail_screen.dart';
 import '../../features/pos/presentation/screens/pos_screen.dart';
+import '../../features/pos/presentation/screens/counter_checkout_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 
 part 'app_router.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 GoRouter appRouter(Ref ref) {
-  final authState = ref.watch(authProvider);
-
-  return GoRouter(
+  final router = GoRouter(
     initialLocation: '/pos',
     redirect: (context, state) {
+      final authState = ref.read(authProvider);
+      
       final isLoading = authState.isLoading;
       final isAuth = authState.value != null;
       final isLoggingIn = state.matchedLocation == '/login';
@@ -64,10 +65,24 @@ GoRouter appRouter(Ref ref) {
               ),
             ],
           ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/counter',
+                builder: (context, state) => const CounterCheckoutScreen(),
+              ),
+            ],
+          ),
         ],
       ),
     ],
   );
+
+  ref.listen(authProvider, (_, _) {
+    router.refresh();
+  });
+
+  return router;
 }
 
 class ScaffoldWithBottomNavBar extends StatelessWidget {
@@ -87,6 +102,10 @@ class ScaffoldWithBottomNavBar extends StatelessWidget {
           NavigationDestination(
             icon: Icon(Icons.inventory),
             label: 'Inventory',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.store),
+            label: 'Counter',
           ),
         ],
       ),

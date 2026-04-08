@@ -10,9 +10,11 @@ All URIs are relative to *https://localhost:7011*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apiOrderreturnrequestsGet**](OrderReturnRequestsApi.md#apiorderreturnrequestsget) | **GET** /api/orderreturnrequests | 
+[**apiOrderreturnrequestsIdCancelPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidcancelpost) | **POST** /api/orderreturnrequests/{id}/cancel | 
 [**apiOrderreturnrequestsIdCompleteInspectionPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidcompleteinspectionpost) | **POST** /api/orderreturnrequests/{id}/complete-inspection | 
 [**apiOrderreturnrequestsIdFailInspectionPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidfailinspectionpost) | **POST** /api/orderreturnrequests/{id}/fail-inspection | 
 [**apiOrderreturnrequestsIdGet**](OrderReturnRequestsApi.md#apiorderreturnrequestsidget) | **GET** /api/orderreturnrequests/{id} | 
+[**apiOrderreturnrequestsIdPut**](OrderReturnRequestsApi.md#apiorderreturnrequestsidput) | **PUT** /api/orderreturnrequests/{id} | 
 [**apiOrderreturnrequestsIdRefundPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidrefundpost) | **POST** /api/orderreturnrequests/{id}/refund | 
 [**apiOrderreturnrequestsIdReviewPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidreviewpost) | **POST** /api/orderreturnrequests/{id}/review | 
 [**apiOrderreturnrequestsIdStartInspectionPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidstartinspectionpost) | **POST** /api/orderreturnrequests/{id}/start-inspection | 
@@ -64,6 +66,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BaseResponseOfPagedResultOfOrderReturnRequestResponse**](BaseResponseOfPagedResultOfOrderReturnRequestResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiOrderreturnrequestsIdCancelPost**
+> BaseResponseOfstring apiOrderreturnrequestsIdCancelPost(id)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrderReturnRequestsApi();
+final String id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiOrderreturnrequestsIdCancelPost(id);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsIdCancelPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
 
 ### Authorization
 
@@ -199,6 +242,49 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiOrderreturnrequestsIdPut**
+> BaseResponseOfstring apiOrderreturnrequestsIdPut(id, updateReturnRequestDto)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrderReturnRequestsApi();
+final String id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final UpdateReturnRequestDto updateReturnRequestDto = ; // UpdateReturnRequestDto | 
+
+try {
+    final response = api.apiOrderreturnrequestsIdPut(id, updateReturnRequestDto);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsIdPut: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **updateReturnRequestDto** | [**UpdateReturnRequestDto**](UpdateReturnRequestDto.md)|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

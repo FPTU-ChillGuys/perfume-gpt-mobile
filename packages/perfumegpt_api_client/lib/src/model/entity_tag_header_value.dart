@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'entity_tag_header_value.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,26 +19,50 @@ part 'entity_tag_header_value.g.dart';
 )
 class EntityTagHeaderValue {
   /// Returns a new [EntityTagHeaderValue] instance.
-  EntityTagHeaderValue({this.tag, this.isWeak});
+  EntityTagHeaderValue({
 
-  @JsonKey(name: r'tag', required: false, includeIfNull: false)
+     this.tag,
+
+     this.isWeak,
+  });
+
+  @JsonKey(
+    
+    name: r'tag',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final StringSegment? tag;
 
-  @JsonKey(name: r'isWeak', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'isWeak',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final bool? isWeak;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is EntityTagHeaderValue &&
-          other.tag == tag &&
-          other.isWeak == isWeak;
 
-  @override
-  int get hashCode => tag.hashCode + isWeak.hashCode;
 
-  factory EntityTagHeaderValue.fromJson(Map<String, dynamic> json) =>
-      _$EntityTagHeaderValueFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is EntityTagHeaderValue &&
+      other.tag == tag &&
+      other.isWeak == isWeak;
+
+    @override
+    int get hashCode =>
+        tag.hashCode +
+        isWeak.hashCode;
+
+  factory EntityTagHeaderValue.fromJson(Map<String, dynamic> json) => _$EntityTagHeaderValueFromJson(json);
 
   Map<String, dynamic> toJson() => _$EntityTagHeaderValueToJson(this);
 
@@ -45,4 +70,6 @@ class EntityTagHeaderValue {
   String toString() {
     return toJson().toString();
   }
+
 }
+

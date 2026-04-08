@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for VariantFastLookResponse
 void main() {
-  final VariantFastLookResponse? instance = /* VariantFastLookResponse(...) */
-      null;
+  final VariantFastLookResponse? instance = /* VariantFastLookResponse(...) */ null;
   // TODO add properties to the entity
 
   group(VariantFastLookResponse, () {
@@ -42,5 +41,6 @@ void main() {
     test('to test the property `media`', () async {
       // TODO
     });
+
   });
 }

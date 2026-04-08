@@ -2,6 +2,7 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/theme/app_colors.dart';
 
 class SplashPage extends ConsumerStatefulWidget {
   const SplashPage({super.key});
@@ -35,12 +36,12 @@ class _SplashPageState extends ConsumerState<SplashPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.auto_awesome, size: 100, color: Colors.deepPurple),
+            const Icon(Icons.auto_awesome, size: 100, color: AppColors.primary),
             const SizedBox(height: 20),
             Text(
               'PerfumeGPT',
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                color: Colors.deepPurple,
+                color: AppColors.primary,
                 fontWeight: FontWeight.bold,
               ),
             ),

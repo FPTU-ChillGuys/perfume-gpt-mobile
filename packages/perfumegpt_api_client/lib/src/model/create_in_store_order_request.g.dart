@@ -7,17 +7,19 @@ part of 'create_in_store_order_request.dart';
 // **************************************************************************
 
 abstract class _$CreateInStoreOrderRequestCWProxy {
+  CreateInStoreOrderRequest scannedItems(List<PosScanItemRequest> scannedItems);
+
   CreateInStoreOrderRequest voucherCode(String? voucherCode);
 
-  CreateInStoreOrderRequest isPickupInStore(bool? isPickupInStore);
+  CreateInStoreOrderRequest customerId(String? customerId);
 
-  CreateInStoreOrderRequest orderDetails(
-    List<CreateOrderDetailRequest> orderDetails,
-  );
+  CreateInStoreOrderRequest isPickupInStore(bool? isPickupInStore);
 
   CreateInStoreOrderRequest recipient(ContactAddressInformation? recipient);
 
   CreateInStoreOrderRequest payment(PaymentInformation payment);
+
+  CreateInStoreOrderRequest expectedTotalPrice(num? expectedTotalPrice);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateInStoreOrderRequest(...).copyWith.fieldName(value)`.
@@ -27,11 +29,13 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
   /// CreateInStoreOrderRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateInStoreOrderRequest call({
+    List<PosScanItemRequest> scannedItems,
     String? voucherCode,
+    String? customerId,
     bool? isPickupInStore,
-    List<CreateOrderDetailRequest> orderDetails,
     ContactAddressInformation? recipient,
     PaymentInformation payment,
+    num? expectedTotalPrice,
   });
 }
 
@@ -44,17 +48,21 @@ class _$CreateInStoreOrderRequestCWProxyImpl
   final CreateInStoreOrderRequest _value;
 
   @override
+  CreateInStoreOrderRequest scannedItems(
+    List<PosScanItemRequest> scannedItems,
+  ) => call(scannedItems: scannedItems);
+
+  @override
   CreateInStoreOrderRequest voucherCode(String? voucherCode) =>
       call(voucherCode: voucherCode);
 
   @override
-  CreateInStoreOrderRequest isPickupInStore(bool? isPickupInStore) =>
-      call(isPickupInStore: isPickupInStore);
+  CreateInStoreOrderRequest customerId(String? customerId) =>
+      call(customerId: customerId);
 
   @override
-  CreateInStoreOrderRequest orderDetails(
-    List<CreateOrderDetailRequest> orderDetails,
-  ) => call(orderDetails: orderDetails);
+  CreateInStoreOrderRequest isPickupInStore(bool? isPickupInStore) =>
+      call(isPickupInStore: isPickupInStore);
 
   @override
   CreateInStoreOrderRequest recipient(ContactAddressInformation? recipient) =>
@@ -65,6 +73,10 @@ class _$CreateInStoreOrderRequestCWProxyImpl
       call(payment: payment);
 
   @override
+  CreateInStoreOrderRequest expectedTotalPrice(num? expectedTotalPrice) =>
+      call(expectedTotalPrice: expectedTotalPrice);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateInStoreOrderRequest(...).copyWith.fieldName(value)`.
   ///
@@ -73,26 +85,32 @@ class _$CreateInStoreOrderRequestCWProxyImpl
   /// CreateInStoreOrderRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   CreateInStoreOrderRequest call({
+    Object? scannedItems = const $CopyWithPlaceholder(),
     Object? voucherCode = const $CopyWithPlaceholder(),
+    Object? customerId = const $CopyWithPlaceholder(),
     Object? isPickupInStore = const $CopyWithPlaceholder(),
-    Object? orderDetails = const $CopyWithPlaceholder(),
     Object? recipient = const $CopyWithPlaceholder(),
     Object? payment = const $CopyWithPlaceholder(),
+    Object? expectedTotalPrice = const $CopyWithPlaceholder(),
   }) {
     return CreateInStoreOrderRequest(
+      scannedItems:
+          scannedItems == const $CopyWithPlaceholder() || scannedItems == null
+          ? _value.scannedItems
+          // ignore: cast_nullable_to_non_nullable
+          : scannedItems as List<PosScanItemRequest>,
       voucherCode: voucherCode == const $CopyWithPlaceholder()
           ? _value.voucherCode
           // ignore: cast_nullable_to_non_nullable
           : voucherCode as String?,
+      customerId: customerId == const $CopyWithPlaceholder()
+          ? _value.customerId
+          // ignore: cast_nullable_to_non_nullable
+          : customerId as String?,
       isPickupInStore: isPickupInStore == const $CopyWithPlaceholder()
           ? _value.isPickupInStore
           // ignore: cast_nullable_to_non_nullable
           : isPickupInStore as bool?,
-      orderDetails:
-          orderDetails == const $CopyWithPlaceholder() || orderDetails == null
-          ? _value.orderDetails
-          // ignore: cast_nullable_to_non_nullable
-          : orderDetails as List<CreateOrderDetailRequest>,
       recipient: recipient == const $CopyWithPlaceholder()
           ? _value.recipient
           // ignore: cast_nullable_to_non_nullable
@@ -101,6 +119,10 @@ class _$CreateInStoreOrderRequestCWProxyImpl
           ? _value.payment
           // ignore: cast_nullable_to_non_nullable
           : payment as PaymentInformation,
+      expectedTotalPrice: expectedTotalPrice == const $CopyWithPlaceholder()
+          ? _value.expectedTotalPrice
+          // ignore: cast_nullable_to_non_nullable
+          : expectedTotalPrice as num?,
     );
   }
 }
@@ -120,18 +142,17 @@ extension $CreateInStoreOrderRequestCopyWith on CreateInStoreOrderRequest {
 CreateInStoreOrderRequest _$CreateInStoreOrderRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateInStoreOrderRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['orderDetails', 'payment']);
+  $checkKeys(json, requiredKeys: const ['scannedItems', 'payment']);
   final val = CreateInStoreOrderRequest(
-    voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
-    isPickupInStore: $checkedConvert('isPickupInStore', (v) => v as bool?),
-    orderDetails: $checkedConvert(
-      'orderDetails',
+    scannedItems: $checkedConvert(
+      'scannedItems',
       (v) => (v as List<dynamic>)
-          .map(
-            (e) => CreateOrderDetailRequest.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => PosScanItemRequest.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
+    voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
+    customerId: $checkedConvert('customerId', (v) => v as String?),
+    isPickupInStore: $checkedConvert('isPickupInStore', (v) => v as bool?),
     recipient: $checkedConvert(
       'recipient',
       (v) => v == null
@@ -142,6 +163,7 @@ CreateInStoreOrderRequest _$CreateInStoreOrderRequestFromJson(
       'payment',
       (v) => PaymentInformation.fromJson(v as Map<String, dynamic>),
     ),
+    expectedTotalPrice: $checkedConvert('expectedTotalPrice', (v) => v as num?),
   );
   return val;
 });
@@ -149,9 +171,11 @@ CreateInStoreOrderRequest _$CreateInStoreOrderRequestFromJson(
 Map<String, dynamic> _$CreateInStoreOrderRequestToJson(
   CreateInStoreOrderRequest instance,
 ) => <String, dynamic>{
+  'scannedItems': instance.scannedItems.map((e) => e.toJson()).toList(),
   'voucherCode': ?instance.voucherCode,
+  'customerId': ?instance.customerId,
   'isPickupInStore': ?instance.isPickupInStore,
-  'orderDetails': instance.orderDetails.map((e) => e.toJson()).toList(),
   'recipient': ?instance.recipient?.toJson(),
   'payment': instance.payment.toJson(),
+  'expectedTotalPrice': ?instance.expectedTotalPrice,
 };

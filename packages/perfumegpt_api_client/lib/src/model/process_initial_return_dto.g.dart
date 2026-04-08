@@ -9,6 +9,8 @@ part of 'process_initial_return_dto.dart';
 abstract class _$ProcessInitialReturnDtoCWProxy {
   ProcessInitialReturnDto isApproved(bool? isApproved);
 
+  ProcessInitialReturnDto isRequestMoreInfo(bool? isRequestMoreInfo);
+
   ProcessInitialReturnDto staffNote(String? staffNote);
 
   /// Creates a new instance with the provided field values.
@@ -18,7 +20,11 @@ abstract class _$ProcessInitialReturnDtoCWProxy {
   /// ```dart
   /// ProcessInitialReturnDto(...).copyWith(id: 12, name: "My name")
   /// ```
-  ProcessInitialReturnDto call({bool? isApproved, String? staffNote});
+  ProcessInitialReturnDto call({
+    bool? isApproved,
+    bool? isRequestMoreInfo,
+    String? staffNote,
+  });
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -34,6 +40,10 @@ class _$ProcessInitialReturnDtoCWProxyImpl
       call(isApproved: isApproved);
 
   @override
+  ProcessInitialReturnDto isRequestMoreInfo(bool? isRequestMoreInfo) =>
+      call(isRequestMoreInfo: isRequestMoreInfo);
+
+  @override
   ProcessInitialReturnDto staffNote(String? staffNote) =>
       call(staffNote: staffNote);
 
@@ -47,6 +57,7 @@ class _$ProcessInitialReturnDtoCWProxyImpl
   /// ```
   ProcessInitialReturnDto call({
     Object? isApproved = const $CopyWithPlaceholder(),
+    Object? isRequestMoreInfo = const $CopyWithPlaceholder(),
     Object? staffNote = const $CopyWithPlaceholder(),
   }) {
     return ProcessInitialReturnDto(
@@ -54,6 +65,10 @@ class _$ProcessInitialReturnDtoCWProxyImpl
           ? _value.isApproved
           // ignore: cast_nullable_to_non_nullable
           : isApproved as bool?,
+      isRequestMoreInfo: isRequestMoreInfo == const $CopyWithPlaceholder()
+          ? _value.isRequestMoreInfo
+          // ignore: cast_nullable_to_non_nullable
+          : isRequestMoreInfo as bool?,
       staffNote: staffNote == const $CopyWithPlaceholder()
           ? _value.staffNote
           // ignore: cast_nullable_to_non_nullable
@@ -79,6 +94,7 @@ ProcessInitialReturnDto _$ProcessInitialReturnDtoFromJson(
 ) => $checkedCreate('ProcessInitialReturnDto', json, ($checkedConvert) {
   final val = ProcessInitialReturnDto(
     isApproved: $checkedConvert('isApproved', (v) => v as bool?),
+    isRequestMoreInfo: $checkedConvert('isRequestMoreInfo', (v) => v as bool?),
     staffNote: $checkedConvert('staffNote', (v) => v as String?),
   );
   return val;
@@ -88,5 +104,6 @@ Map<String, dynamic> _$ProcessInitialReturnDtoToJson(
   ProcessInitialReturnDto instance,
 ) => <String, dynamic>{
   'isApproved': ?instance.isApproved,
+  'isRequestMoreInfo': ?instance.isRequestMoreInfo,
   'staffNote': ?instance.staffNote,
 };

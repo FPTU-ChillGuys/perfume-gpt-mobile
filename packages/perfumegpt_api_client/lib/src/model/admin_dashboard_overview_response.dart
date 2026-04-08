@@ -11,6 +11,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'admin_dashboard_overview_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,36 +22,65 @@ part 'admin_dashboard_overview_response.g.dart';
 class AdminDashboardOverviewResponse {
   /// Returns a new [AdminDashboardOverviewResponse] instance.
   AdminDashboardOverviewResponse({
-    this.revenue,
 
-    this.inventoryLevels,
+     this.revenue,
 
-    required this.topProducts,
+     this.inventoryLevels,
+
+    required  this.topProducts,
   });
 
-  @JsonKey(name: r'revenue', required: false, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'revenue',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final RevenueSummaryResponse? revenue;
 
-  @JsonKey(name: r'inventoryLevels', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'inventoryLevels',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final InventoryLevelsResponse? inventoryLevels;
 
-  @JsonKey(name: r'topProducts', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'topProducts',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<TopProductResponse> topProducts;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AdminDashboardOverviewResponse &&
-          other.revenue == revenue &&
-          other.inventoryLevels == inventoryLevels &&
-          other.topProducts == topProducts;
 
-  @override
-  int get hashCode =>
-      revenue.hashCode + inventoryLevels.hashCode + topProducts.hashCode;
 
-  factory AdminDashboardOverviewResponse.fromJson(Map<String, dynamic> json) =>
-      _$AdminDashboardOverviewResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is AdminDashboardOverviewResponse &&
+      other.revenue == revenue &&
+      other.inventoryLevels == inventoryLevels &&
+      other.topProducts == topProducts;
+
+    @override
+    int get hashCode =>
+        revenue.hashCode +
+        inventoryLevels.hashCode +
+        topProducts.hashCode;
+
+  factory AdminDashboardOverviewResponse.fromJson(Map<String, dynamic> json) => _$AdminDashboardOverviewResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$AdminDashboardOverviewResponseToJson(this);
 
@@ -58,4 +88,6 @@ class AdminDashboardOverviewResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

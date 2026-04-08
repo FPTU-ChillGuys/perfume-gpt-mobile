@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for OrderCancelRequestResponse
 void main() {
-  final OrderCancelRequestResponse?
-  instance = /* OrderCancelRequestResponse(...) */ null;
+  final OrderCancelRequestResponse? instance = /* OrderCancelRequestResponse(...) */ null;
   // TODO add properties to the entity
 
   group(OrderCancelRequestResponse, () {
@@ -15,6 +14,11 @@ void main() {
 
     // String orderId
     test('to test the property `orderId`', () async {
+      // TODO
+    });
+
+    // String orderCode
+    test('to test the property `orderCode`', () async {
       // TODO
     });
 
@@ -63,6 +67,21 @@ void main() {
       // TODO
     });
 
+    // String refundBankName
+    test('to test the property `refundBankName`', () async {
+      // TODO
+    });
+
+    // String refundAccountName
+    test('to test the property `refundAccountName`', () async {
+      // TODO
+    });
+
+    // String refundAccountNumber
+    test('to test the property `refundAccountNumber`', () async {
+      // TODO
+    });
+
     // String vnpTransactionNo
     test('to test the property `vnpTransactionNo`', () async {
       // TODO
@@ -77,5 +96,6 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
+
   });
 }

@@ -1,9 +1,10 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
-import '../../../../domain/entities/cart_item.dart';
-import '../../../../domain/entities/product.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/datasources/local_cart_data_source.dart';
 import '../../../../data/repositories/cart_repository_impl.dart';
+import '../../../../domain/entities/cart_item.dart';
+import '../../../../domain/entities/cart_total.dart';
+import '../../../../domain/entities/product.dart';
 import '../../../../domain/repositories/cart_repository.dart';
 
 part 'cart_provider.g.dart';
@@ -27,9 +28,27 @@ class Cart extends _$Cart {
   @override
   FutureOr<List<CartItem>> build() async {
     final isAuthenticated = ref.watch(authProvider).asData?.value != null;
-    return ref.watch(cartRepositoryProvider).getCart(isAuthenticated: isAuthenticated);
+    return ref.watch(cartRepositoryProvider).getItems(isAuthenticated: isAuthenticated);
   }
 
+  Future<void> addItem(String variantId, {int quantity = 1}) async {
+    final isAuthenticated = ref.read(authProvider).asData?.value != null;
+    final previousState = state;
+    
+    // For simple add, we can't easily do optimistic update if it's a new item 
+    // because we don't have the product info here.
+    // So for guest mode we prefer addProduct.
+    
+    try {
+      await ref.read(cartRepositoryProvider).addItem(variantId, quantity: quantity, isAuthenticated: isAuthenticated);
+      ref.invalidateSelf();
+    } catch (e) {
+      state = previousState;
+      rethrow;
+    }
+  }
+
+  // Wrapper that supports optimistic update and guest cart with full info
   Future<void> addProduct(Product product, {String? variantId}) async {
     final isAuthenticated = ref.read(authProvider).asData?.value != null;
     final targetVariantId = variantId ?? product.id;
@@ -40,8 +59,11 @@ class Cart extends _$Cart {
     
     final newItem = CartItem(
       variantId: targetVariantId,
-      product: product,
+      variantName: product.name + (variantId != null ? ' (Variant)' : ''),
+      imageUrl: product.imageUrl,
+      variantPrice: product.price,
       quantity: 1,
+      subTotal: product.price,
     );
 
     final existingIndex = currentItems.indexWhere((item) => item.variantId == targetVariantId);
@@ -50,7 +72,10 @@ class Cart extends _$Cart {
       updatedItems = [
         for (int i = 0; i < currentItems.length; i++)
           if (i == existingIndex)
-            currentItems[i].copyWith(quantity: currentItems[i].quantity + 1)
+            currentItems[i].copyWith(
+              quantity: currentItems[i].quantity + 1,
+              subTotal: currentItems[i].variantPrice * (currentItems[i].quantity + 1),
+            )
           else
             currentItems[i],
       ];
@@ -65,7 +90,11 @@ class Cart extends _$Cart {
       if (repository is CartRepositoryImpl) {
          await repository.addEntityToCart(newItem, isAuthenticated: isAuthenticated);
       } else {
-         await repository.addToCart(targetVariantId, 1, isAuthenticated: isAuthenticated);
+         await repository.addItem(targetVariantId, quantity: 1, isAuthenticated: isAuthenticated);
+      }
+      // Re-fetch to get server-side IDs if authenticated
+      if (isAuthenticated) {
+         ref.invalidateSelf();
       }
     } catch (e) {
       state = previousState;
@@ -73,27 +102,9 @@ class Cart extends _$Cart {
     }
   }
 
-  Future<void> removeProduct(String variantId) async {
-    final isAuthenticated = ref.read(authProvider).asData?.value != null;
-    final previousState = state;
-    final currentItems = state.asData?.value ?? [];
-    
-    state = AsyncValue.data(currentItems.where((item) => item.variantId != variantId).toList());
-
-    try {
-      final item = currentItems.firstWhere((i) => i.variantId == variantId);
-      final idToUse = (isAuthenticated && item.id != null) ? item.id! : variantId;
-      
-      await ref.read(cartRepositoryProvider).removeFromCart(idToUse, isAuthenticated: isAuthenticated);
-    } catch (e) {
-      state = previousState;
-      rethrow;
-    }
-  }
-
-  Future<void> updateQuantity(String variantId, int quantity) async {
+  Future<void> updateItem(String cartItemId, int quantity) async {
     if (quantity <= 0) {
-      await removeProduct(variantId);
+      await removeItem(cartItemId);
       return;
     }
 
@@ -103,24 +114,39 @@ class Cart extends _$Cart {
 
     state = AsyncValue.data([
       for (final item in currentItems)
-        if (item.variantId == variantId)
-          item.copyWith(quantity: quantity)
+        if (item.cartItemId == cartItemId || item.variantId == cartItemId)
+          item.copyWith(
+            quantity: quantity,
+            subTotal: item.variantPrice * quantity,
+          )
         else
           item,
     ]);
 
     try {
-      final item = currentItems.firstWhere((i) => i.variantId == variantId);
-      final idToUse = (isAuthenticated && item.id != null) ? item.id! : variantId;
-
-      await ref.read(cartRepositoryProvider).updateCartItem(idToUse, quantity, isAuthenticated: isAuthenticated);
+      await ref.read(cartRepositoryProvider).updateItem(cartItemId, quantity, isAuthenticated: isAuthenticated);
     } catch (e) {
       state = previousState;
       rethrow;
     }
   }
 
-  Future<void> clear() async {
+  Future<void> removeItem(String cartItemId) async {
+    final isAuthenticated = ref.read(authProvider).asData?.value != null;
+    final previousState = state;
+    final currentItems = state.asData?.value ?? [];
+    
+    state = AsyncValue.data(currentItems.where((item) => item.cartItemId != cartItemId && item.variantId != cartItemId).toList());
+
+    try {
+      await ref.read(cartRepositoryProvider).removeItem(cartItemId, isAuthenticated: isAuthenticated);
+    } catch (e) {
+      state = previousState;
+      rethrow;
+    }
+  }
+
+  Future<void> clearCart() async {
     final isAuthenticated = ref.read(authProvider).asData?.value != null;
     final previousState = state;
     state = const AsyncValue.data([]);
@@ -140,19 +166,30 @@ class Cart extends _$Cart {
     state = const AsyncValue.loading();
     try {
       await ref.read(cartRepositoryProvider).mergeCart(currentLocalItems);
-      // Refresh cart from server
-      final isAuthenticated = ref.read(authProvider).asData?.value != null;
-      final newCart = await ref.read(cartRepositoryProvider).getCart(isAuthenticated: isAuthenticated);
-      state = AsyncValue.data(newCart);
+      ref.invalidateSelf();
     } catch (e) {
-      // If merge fails, we still want to show the local cart or the server cart
-      // For now, just re-fetch
-      final isAuthenticated = ref.read(authProvider).asData?.value != null;
-      final newCart = await ref.read(cartRepositoryProvider).getCart(isAuthenticated: isAuthenticated);
-      state = AsyncValue.data(newCart);
+      ref.invalidateSelf();
       rethrow;
     }
   }
 
   double get totalAmount => (state.asData?.value ?? []).fold(0, (sum, item) => sum + item.totalPrice);
+}
+
+@riverpod
+FutureOr<CartTotal> cartTotal(Ref ref) {
+  final cartItems = ref.watch(cartProvider).asData?.value ?? [];
+  final isAuthenticated = ref.watch(authProvider).asData?.value != null;
+  
+  if (isAuthenticated) {
+     return ref.watch(cartRepositoryProvider).getTotal();
+  } else {
+     final subtotal = cartItems.fold(0.0, (sum, item) => sum + item.totalPrice);
+     return CartTotal(
+       subtotal: subtotal,
+       shippingFee: 0,
+       discount: 0,
+       totalPrice: subtotal,
+     );
+  }
 }

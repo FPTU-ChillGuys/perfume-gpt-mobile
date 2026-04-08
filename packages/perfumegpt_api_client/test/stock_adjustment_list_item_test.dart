@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for StockAdjustmentListItem
 void main() {
-  final StockAdjustmentListItem? instance = /* StockAdjustmentListItem(...) */
-      null;
+  final StockAdjustmentListItem? instance = /* StockAdjustmentListItem(...) */ null;
   // TODO add properties to the entity
 
   group(StockAdjustmentListItem, () {
@@ -42,5 +41,6 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
+
   });
 }

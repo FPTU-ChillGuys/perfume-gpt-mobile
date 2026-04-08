@@ -21,7 +21,7 @@ abstract class _$WardResponseCWProxy {
 
   WardResponse status(int? status);
 
-  WardResponse createdDate(String createdDate);
+  WardResponse createdDate(String? createdDate);
 
   WardResponse updatedDate(String updatedDate);
 
@@ -40,7 +40,7 @@ abstract class _$WardResponseCWProxy {
     bool? canUpdateCOD,
     int? supportType,
     int? status,
-    String createdDate,
+    String? createdDate,
     String updatedDate,
   });
 }
@@ -76,7 +76,7 @@ class _$WardResponseCWProxyImpl implements _$WardResponseCWProxy {
   WardResponse status(int? status) => call(status: status);
 
   @override
-  WardResponse createdDate(String createdDate) =>
+  WardResponse createdDate(String? createdDate) =>
       call(createdDate: createdDate);
 
   @override
@@ -132,11 +132,10 @@ class _$WardResponseCWProxyImpl implements _$WardResponseCWProxy {
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as int?,
-      createdDate:
-          createdDate == const $CopyWithPlaceholder() || createdDate == null
+      createdDate: createdDate == const $CopyWithPlaceholder()
           ? _value.createdDate
           // ignore: cast_nullable_to_non_nullable
-          : createdDate as String,
+          : createdDate as String?,
       updatedDate:
           updatedDate == const $CopyWithPlaceholder() || updatedDate == null
           ? _value.updatedDate
@@ -169,7 +168,6 @@ WardResponse _$WardResponseFromJson(
         'WardCode',
         'WardName',
         'NameExtension',
-        'CreatedDate',
         'UpdatedDate',
       ],
     );
@@ -184,7 +182,7 @@ WardResponse _$WardResponseFromJson(
       canUpdateCOD: $checkedConvert('CanUpdateCOD', (v) => v as bool?),
       supportType: $checkedConvert('SupportType', (v) => (v as num?)?.toInt()),
       status: $checkedConvert('Status', (v) => (v as num?)?.toInt()),
-      createdDate: $checkedConvert('CreatedDate', (v) => v as String),
+      createdDate: $checkedConvert('CreatedDate', (v) => v as String?),
       updatedDate: $checkedConvert('UpdatedDate', (v) => v as String),
     );
     return val;
@@ -211,6 +209,6 @@ Map<String, dynamic> _$WardResponseToJson(WardResponse instance) =>
       'CanUpdateCOD': ?instance.canUpdateCOD,
       'SupportType': ?instance.supportType,
       'Status': ?instance.status,
-      'CreatedDate': instance.createdDate,
+      'CreatedDate': ?instance.createdDate,
       'UpdatedDate': instance.updatedDate,
     };

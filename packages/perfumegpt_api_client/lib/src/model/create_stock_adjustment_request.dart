@@ -10,6 +10,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_stock_adjustment_request.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,45 +21,81 @@ part 'create_stock_adjustment_request.g.dart';
 class CreateStockAdjustmentRequest {
   /// Returns a new [CreateStockAdjustmentRequest] instance.
   CreateStockAdjustmentRequest({
-    required this.adjustmentDate,
 
-    this.reason,
+    required  this.adjustmentDate,
 
-    this.note,
+     this.reason,
 
-    required this.adjustmentDetails,
+     this.note,
+
+    required  this.adjustmentDetails,
   });
 
-  @JsonKey(name: r'adjustmentDate', required: true, includeIfNull: false)
+  @JsonKey(
+    
+    name: r'adjustmentDate',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final DateTime adjustmentDate;
 
-  @JsonKey(name: r'reason', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'reason',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final StockAdjustmentReason? reason;
 
-  @JsonKey(name: r'note', required: false, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'note',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final String? note;
 
-  @JsonKey(name: r'adjustmentDetails', required: true, includeIfNull: false)
+
+
+  @JsonKey(
+    
+    name: r'adjustmentDetails',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<CreateStockAdjustmentDetailRequest> adjustmentDetails;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CreateStockAdjustmentRequest &&
-          other.adjustmentDate == adjustmentDate &&
-          other.reason == reason &&
-          other.note == note &&
-          other.adjustmentDetails == adjustmentDetails;
 
-  @override
-  int get hashCode =>
-      adjustmentDate.hashCode +
-      reason.hashCode +
-      (note == null ? 0 : note.hashCode) +
-      adjustmentDetails.hashCode;
 
-  factory CreateStockAdjustmentRequest.fromJson(Map<String, dynamic> json) =>
-      _$CreateStockAdjustmentRequestFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is CreateStockAdjustmentRequest &&
+      other.adjustmentDate == adjustmentDate &&
+      other.reason == reason &&
+      other.note == note &&
+      other.adjustmentDetails == adjustmentDetails;
+
+    @override
+    int get hashCode =>
+        adjustmentDate.hashCode +
+        reason.hashCode +
+        (note == null ? 0 : note.hashCode) +
+        adjustmentDetails.hashCode;
+
+  factory CreateStockAdjustmentRequest.fromJson(Map<String, dynamic> json) => _$CreateStockAdjustmentRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateStockAdjustmentRequestToJson(this);
 
@@ -66,4 +103,6 @@ class CreateStockAdjustmentRequest {
   String toString() {
     return toJson().toString();
   }
+
 }
+

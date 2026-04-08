@@ -400,7 +400,8 @@ const _$OrderTypeEnumMap = {
 
 const _$OrderStatusEnumMap = {
   OrderStatus.pending: 'Pending',
-  OrderStatus.processing: 'Processing',
+  OrderStatus.preparing: 'Preparing',
+  OrderStatus.readyToPick: 'ReadyToPick',
   OrderStatus.delivering: 'Delivering',
   OrderStatus.delivered: 'Delivered',
   OrderStatus.returning: 'Returning',

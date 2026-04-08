@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for AdminDashboardApi
 void main() {
   final instance = PerfumegptApiClient().getAdminDashboardApi();
@@ -25,5 +26,6 @@ void main() {
     test('test apiAdmindashboardTopProductsGet', () async {
       // TODO
     });
+
   });
 }

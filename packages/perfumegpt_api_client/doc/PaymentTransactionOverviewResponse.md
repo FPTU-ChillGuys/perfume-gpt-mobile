@@ -1,0 +1,16 @@
+# perfumegpt_api_client.model.PaymentTransactionOverviewResponse
+
+## Load the model package
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**summary** | [**PaymentTransactionSummaryResponse**](PaymentTransactionSummaryResponse.md) |  | 
+**transactions** | [**PagedResultOfPaymentTransactionAdminItemResponse**](PagedResultOfPaymentTransactionAdminItemResponse.md) |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateReturnRequestDto
 void main() {
-  final CreateReturnRequestDto? instance = /* CreateReturnRequestDto(...) */
-      null;
+  final CreateReturnRequestDto? instance = /* CreateReturnRequestDto(...) */ null;
   // TODO add properties to the entity
 
   group(CreateReturnRequestDto, () {
@@ -18,6 +17,11 @@ void main() {
       // TODO
     });
 
+    // bool isRefundOnly
+    test('to test the property `isRefundOnly`', () async {
+      // TODO
+    });
+
     // List<ReturnItemDto> returnItems
     test('to test the property `returnItems`', () async {
       // TODO
@@ -25,6 +29,21 @@ void main() {
 
     // String customerNote
     test('to test the property `customerNote`', () async {
+      // TODO
+    });
+
+    // String refundBankName
+    test('to test the property `refundBankName`', () async {
+      // TODO
+    });
+
+    // String refundAccountNumber
+    test('to test the property `refundAccountNumber`', () async {
+      // TODO
+    });
+
+    // String refundAccountName
+    test('to test the property `refundAccountName`', () async {
       // TODO
     });
 
@@ -42,5 +61,6 @@ void main() {
     test('to test the property `temporaryMediaIds`', () async {
       // TODO
     });
+
   });
 }

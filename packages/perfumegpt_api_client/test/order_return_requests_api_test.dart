@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
+
 /// tests for OrderReturnRequestsApi
 void main() {
   final instance = PerfumegptApiClient().getOrderReturnRequestsApi();
@@ -8,6 +9,11 @@ void main() {
   group(OrderReturnRequestsApi, () {
     //Future<BaseResponseOfPagedResultOfOrderReturnRequestResponse> apiOrderreturnrequestsGet({ String customerId, ReturnRequestStatus status, bool isRefunded, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiOrderreturnrequestsGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfstring> apiOrderreturnrequestsIdCancelPost(String id) async
+    test('test apiOrderreturnrequestsIdCancelPost', () async {
       // TODO
     });
 
@@ -23,6 +29,11 @@ void main() {
 
     //Future<BaseResponseOfOrderReturnRequestResponse> apiOrderreturnrequestsIdGet(String id) async
     test('test apiOrderreturnrequestsIdGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfstring> apiOrderreturnrequestsIdPut(String id, UpdateReturnRequestDto updateReturnRequestDto) async
+    test('test apiOrderreturnrequestsIdPut', () async {
       // TODO
     });
 
@@ -55,5 +66,6 @@ void main() {
     test('test apiOrderreturnrequestsVideosTemporaryPost', () async {
       // TODO
     });
+
   });
 }
