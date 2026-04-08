@@ -1,0 +1,118 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'swap_damaged_stock_request.dart';
+
+// **************************************************************************
+// CopyWithGenerator
+// **************************************************************************
+
+abstract class _$SwapDamagedStockRequestCWProxy {
+  SwapDamagedStockRequest damagedReservationId(String damagedReservationId);
+
+  SwapDamagedStockRequest damagedQuantity(int? damagedQuantity);
+
+  SwapDamagedStockRequest damageNote(String? damageNote);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SwapDamagedStockRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// SwapDamagedStockRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  SwapDamagedStockRequest call({
+    String damagedReservationId,
+    int? damagedQuantity,
+    String? damageNote,
+  });
+}
+
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfSwapDamagedStockRequest.copyWith(...)` or call `instanceOfSwapDamagedStockRequest.copyWith.fieldName(value)` for a single field.
+class _$SwapDamagedStockRequestCWProxyImpl
+    implements _$SwapDamagedStockRequestCWProxy {
+  const _$SwapDamagedStockRequestCWProxyImpl(this._value);
+
+  final SwapDamagedStockRequest _value;
+
+  @override
+  SwapDamagedStockRequest damagedReservationId(String damagedReservationId) =>
+      call(damagedReservationId: damagedReservationId);
+
+  @override
+  SwapDamagedStockRequest damagedQuantity(int? damagedQuantity) =>
+      call(damagedQuantity: damagedQuantity);
+
+  @override
+  SwapDamagedStockRequest damageNote(String? damageNote) =>
+      call(damageNote: damageNote);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SwapDamagedStockRequest(...).copyWith.fieldName(value)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// SwapDamagedStockRequest(...).copyWith(id: 12, name: "My name")
+  /// ```
+  SwapDamagedStockRequest call({
+    Object? damagedReservationId = const $CopyWithPlaceholder(),
+    Object? damagedQuantity = const $CopyWithPlaceholder(),
+    Object? damageNote = const $CopyWithPlaceholder(),
+  }) {
+    return SwapDamagedStockRequest(
+      damagedReservationId:
+          damagedReservationId == const $CopyWithPlaceholder() ||
+              damagedReservationId == null
+          ? _value.damagedReservationId
+          // ignore: cast_nullable_to_non_nullable
+          : damagedReservationId as String,
+      damagedQuantity: damagedQuantity == const $CopyWithPlaceholder()
+          ? _value.damagedQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : damagedQuantity as int?,
+      damageNote: damageNote == const $CopyWithPlaceholder()
+          ? _value.damageNote
+          // ignore: cast_nullable_to_non_nullable
+          : damageNote as String?,
+    );
+  }
+}
+
+extension $SwapDamagedStockRequestCopyWith on SwapDamagedStockRequest {
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfSwapDamagedStockRequest.copyWith(...)` or `instanceOfSwapDamagedStockRequest.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$SwapDamagedStockRequestCWProxy get copyWith =>
+      _$SwapDamagedStockRequestCWProxyImpl(this);
+}
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+SwapDamagedStockRequest _$SwapDamagedStockRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('SwapDamagedStockRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['damagedReservationId']);
+  final val = SwapDamagedStockRequest(
+    damagedReservationId: $checkedConvert(
+      'damagedReservationId',
+      (v) => v as String,
+    ),
+    damagedQuantity: $checkedConvert(
+      'damagedQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    damageNote: $checkedConvert('damageNote', (v) => v as String?),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$SwapDamagedStockRequestToJson(
+  SwapDamagedStockRequest instance,
+) => <String, dynamic>{
+  'damagedReservationId': instance.damagedReservationId,
+  'damagedQuantity': ?instance.damagedQuantity,
+  'damageNote': ?instance.damageNote,
+};

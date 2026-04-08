@@ -1,0 +1,154 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+
+// ignore_for_file: unused_element
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'recipient_info_response.g.dart';
+
+
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class RecipientInfoResponse {
+  /// Returns a new [RecipientInfoResponse] instance.
+  RecipientInfoResponse({
+
+     this.id,
+
+     this.recipientName,
+
+     this.recipientPhoneNumber,
+
+    required  this.districtName,
+
+    required  this.wardName,
+
+    required  this.provinceName,
+
+    required  this.fullAddress,
+  });
+
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? id;
+
+
+
+  @JsonKey(
+    
+    name: r'recipientName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? recipientName;
+
+
+
+  @JsonKey(
+    
+    name: r'recipientPhoneNumber',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? recipientPhoneNumber;
+
+
+
+  @JsonKey(
+    
+    name: r'districtName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String districtName;
+
+
+
+  @JsonKey(
+    
+    name: r'wardName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String wardName;
+
+
+
+  @JsonKey(
+    
+    name: r'provinceName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String provinceName;
+
+
+
+  @JsonKey(
+    
+    name: r'fullAddress',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String fullAddress;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is RecipientInfoResponse &&
+      other.id == id &&
+      other.recipientName == recipientName &&
+      other.recipientPhoneNumber == recipientPhoneNumber &&
+      other.districtName == districtName &&
+      other.wardName == wardName &&
+      other.provinceName == provinceName &&
+      other.fullAddress == fullAddress;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        (recipientName == null ? 0 : recipientName.hashCode) +
+        (recipientPhoneNumber == null ? 0 : recipientPhoneNumber.hashCode) +
+        districtName.hashCode +
+        wardName.hashCode +
+        provinceName.hashCode +
+        fullAddress.hashCode;
+
+  factory RecipientInfoResponse.fromJson(Map<String, dynamic> json) => _$RecipientInfoResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecipientInfoResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+}
+
