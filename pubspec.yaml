@@ -36,7 +36,7 @@ melos:
         JAVA_OPTS: "-Dio.swagger.parser.util.RemoteUrl.trustAll=true -Dio.swagger.v3.parser.util.RemoteUrl.trustAll=true"
       steps:
         - openapi-generator-cli generate -i packages/perfumegpt_ai_api_client/v1.json -g dart-dio -o packages/perfumegpt_api_client --additional-properties=pubName=perfumegpt_api_client,serializationLibrary=json_serializable
-        #- melos run build-runner
+        - melos run build-runner
       description: Regenerate the OpenAPI client and run build_runner.
     build-runner:
       exec: |
