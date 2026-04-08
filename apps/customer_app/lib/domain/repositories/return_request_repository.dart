@@ -20,4 +20,28 @@ abstract class ReturnRequestRepository {
     List<({String filename, Uint8List bytes})>? videos,
   });
   Future<void> syncShippingStatus();
+  Future<String?> getOrderInfoUrl(String trackingNumber);
+  Future<void> create({
+    required String orderId,
+    required String reason,
+    required List<({String orderDetailId, int quantity})> returnItems,
+    String? customerNote,
+    List<String>? temporaryMediaIds,
+    bool? isRefundOnly,
+    String? refundBankName,
+    String? refundAccountNumber,
+    String? refundAccountName,
+    String? savedAddressId,
+    ({
+      String contactName,
+      String contactPhoneNumber,
+      String fullAddress,
+      int? provinceId,
+      String provinceName,
+      int? districtId,
+      String districtName,
+      String wardCode,
+      String wardName,
+    })? recipient,
+  });
 }

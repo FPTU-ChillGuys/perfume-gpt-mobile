@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import '../../domain/entities/order.dart';
 import '../../features/address/presentation/pages/address_form_page.dart';
 import '../../features/address/presentation/pages/address_list_page.dart';
 import '../../features/ai_consultation/presentation/pages/chat_page.dart';
@@ -9,6 +10,7 @@ import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/loyalty/presentation/pages/loyalty_page.dart';
 import '../../features/order/presentation/pages/cart_page.dart';
 import '../../features/order/presentation/pages/checkout_page.dart';
+import '../../features/order/presentation/pages/create_return_request_page.dart';
 import '../../features/order/presentation/pages/order_detail_page.dart';
 import '../../features/order/presentation/pages/order_list_page.dart';
 import '../../features/order/presentation/pages/payment_webview_page.dart';
@@ -132,6 +134,16 @@ class AppRouter {
       GoRoute(
         path: '/return-requests',
         builder: (context, state) => const ReturnRequestListPage(),
+      ),
+      GoRoute(
+        path: '/return-requests/create',
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return CreateReturnRequestPage(
+            orderId: extra['orderId'] as String,
+            orderItems: extra['orderItems'] as List<OrderDetailItem>,
+          );
+        },
       ),
       GoRoute(
         path: '/return-requests/:id',

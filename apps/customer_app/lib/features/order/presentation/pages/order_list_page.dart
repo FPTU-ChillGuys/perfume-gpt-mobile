@@ -40,6 +40,7 @@ const _statusTabs = [
   _StatusTab('Đang giao', 'Delivering'),
   _StatusTab('Đã giao', 'Delivered'),
   _StatusTab('Đã hủy', 'Cancelled'),
+  _StatusTab('Đang trả hàng', 'Returning'),
   _StatusTab('Hoàn trả một phần', 'Partial_Returned'),
   _StatusTab('Trả hàng/Hoàn tiền', 'Returned'),
 ];

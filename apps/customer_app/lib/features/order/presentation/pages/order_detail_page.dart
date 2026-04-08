@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/order.dart';
 import '../providers/order_provider.dart';
+import '../providers/return_request_providers.dart';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -167,6 +168,7 @@ int _statusToStep(String? status) {
       return 5;
     case 'Cancelled':
       return -1;
+    case 'Returning':
     case 'Returned':
     case 'Partial_Returned':
       return -2;
@@ -238,6 +240,62 @@ List<_TrackingStep> _buildTrackingSteps(OrderDetail order) {
     ),
   ];
   return steps;
+}
+
+// ─── Return stepper logic ───────────────────────────────────────────────────
+
+class _ReturnStep {
+  final String title;
+  final IconData icon;
+  final bool isActive;
+  final bool isCurrent;
+
+  const _ReturnStep({
+    required this.title,
+    required this.icon,
+    this.isActive = false,
+    this.isCurrent = false,
+  });
+}
+
+List<_ReturnStep> _buildReturnSteps(OrderDetail order) {
+  // Simplified return step based on order status
+  // 0 = request created, 1 = shipping, 2 = received, 3 = refund complete
+  int returnActiveStep;
+  if (order.status == 'Returned') {
+    returnActiveStep = 3;
+  } else if (order.status == 'Partial_Returned') {
+    returnActiveStep = 2;
+  } else {
+    returnActiveStep = 0; // Returning
+  }
+
+  return [
+    _ReturnStep(
+      title: 'Tạo yêu cầu\ntrả hàng',
+      icon: Icons.assignment_return,
+      isActive: returnActiveStep >= 0,
+      isCurrent: returnActiveStep == 0,
+    ),
+    _ReturnStep(
+      title: 'Đang gửi\nhàng hoàn',
+      icon: Icons.local_shipping,
+      isActive: returnActiveStep >= 1,
+      isCurrent: returnActiveStep == 1,
+    ),
+    _ReturnStep(
+      title: 'Shop đã\nnhận hàng',
+      icon: Icons.inventory_2_outlined,
+      isActive: returnActiveStep >= 2,
+      isCurrent: returnActiveStep == 2,
+    ),
+    _ReturnStep(
+      title: 'Hoàn tiền\nhoàn tất',
+      icon: Icons.payments_outlined,
+      isActive: returnActiveStep >= 3,
+      isCurrent: returnActiveStep == 3,
+    ),
+  ];
 }
 
 // ─── Cancel reason options ──────────────────────────────────────────────────
@@ -316,6 +374,29 @@ class OrderDetailPage extends ConsumerStatefulWidget {
 }
 
 class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
+  bool _isSyncing = false;
+
+  Future<void> _syncShipping() async {
+    setState(() => _isSyncing = true);
+    try {
+      await ref.read(returnRequestRepositoryProvider).syncShippingStatus();
+      ref.invalidate(orderDetailProvider(widget.orderId));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Đã đồng bộ trạng thái vận chuyển')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Không thể đồng bộ, vui lòng thử lại')),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isSyncing = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final detailAsync = ref.watch(orderDetailProvider(widget.orderId));
@@ -324,6 +405,17 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
       appBar: AppBar(
         title: const Text('Chi tiết đơn hàng'),
         actions: [
+          IconButton(
+            icon: _isSyncing
+                ? const SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2, color: _accent),
+                  )
+                : const Icon(Icons.sync),
+            tooltip: 'Đồng bộ trạng thái vận chuyển',
+            onPressed: _isSyncing ? null : _syncShipping,
+          ),
           IconButton(
             icon: const Icon(Icons.receipt_long_outlined),
             tooltip: 'Hóa đơn',
@@ -395,14 +487,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     subtitle: 'Đơn hàng đã được hủy bởi hệ thống hoặc người dùng.',
                   )
                 else if (isReturned)
-                  _buildBanner(
-                    icon: Icons.assignment_return,
-                    color: Colors.deepOrange,
-                    title: order.status == 'Partial_Returned'
-                        ? 'Đơn hàng hoàn trả một phần'
-                        : 'Đơn hàng đã trả',
-                    subtitle: 'Đơn hàng đã được trả lại hoặc hoàn tiền.',
-                  )
+                  _buildReturnTimeline(order)
                 else
                   _buildTrackingTimeline(order),
 
@@ -646,6 +731,117 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               ),
             );
           }),
+        ),
+      ),
+    );
+  }
+
+  // ── Return Timeline (for returning/returned orders) ────────────────────────
+
+  Widget _buildReturnTimeline(OrderDetail order) {
+    final steps = _buildReturnSteps(order);
+    const activeColor = Color(0xFFE65100); // deep orange for return flow
+
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: Colors.deepOrange[100]!),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        child: Column(
+          children: [
+            // ── Header ──
+            Row(
+              children: [
+                const SizedBox(width: 8),
+                Icon(Icons.assignment_return, size: 18, color: Colors.deepOrange[700]),
+                const SizedBox(width: 6),
+                Text(
+                  order.status == 'Returned'
+                      ? 'Đã hoàn trả'
+                      : order.status == 'Partial_Returned'
+                          ? 'Hoàn trả một phần'
+                          : 'Đang trả hàng',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.deepOrange[800],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 14),
+            // ── Stepper row ──
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: List.generate(steps.length, (i) {
+                final step = steps[i];
+                final isFirst = i == 0;
+                final isLast = i == steps.length - 1;
+
+                return Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          if (!isFirst)
+                            Expanded(
+                              child: Container(
+                                height: 3,
+                                color: step.isActive ? activeColor : Colors.grey[300],
+                              ),
+                            )
+                          else
+                            const Expanded(child: SizedBox()),
+                          Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: step.isActive ? Colors.white : Colors.grey[100],
+                              border: Border.all(
+                                color: step.isActive ? activeColor : Colors.grey[350]!,
+                                width: 2.5,
+                              ),
+                            ),
+                            child: Icon(
+                              step.icon,
+                              size: 18,
+                              color: step.isActive ? activeColor : Colors.grey[400],
+                            ),
+                          ),
+                          if (!isLast)
+                            Expanded(
+                              child: Container(
+                                height: 3,
+                                color: (i + 1 < steps.length && steps[i + 1].isActive)
+                                    ? activeColor
+                                    : Colors.grey[300],
+                              ),
+                            )
+                          else
+                            const Expanded(child: SizedBox()),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        step.title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 9.5,
+                          fontWeight: step.isActive ? FontWeight.w600 : FontWeight.w500,
+                          color: step.isActive ? Colors.deepOrange[800] : Colors.grey[500],
+                          height: 1.3,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ),
+          ],
         ),
       ),
     );
@@ -1113,11 +1309,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   side: const BorderSide(color: Colors.orange),
                 ),
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Chức năng trả hàng đang phát triển'),
-                    ),
-                  );
+                  context.push('/return-requests/create', extra: {
+                    'orderId': order.id,
+                    'orderItems': order.orderDetails,
+                  });
                 },
                 child: const Text('Yêu cầu trả hàng'),
               ),

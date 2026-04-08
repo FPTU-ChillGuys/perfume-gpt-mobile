@@ -1,5 +1,5 @@
-import 'dart:typed_data';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/return_request.dart';
@@ -58,17 +58,27 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
 
   @override
   Future<ReturnRequest> getById(String id) async {
+    debugPrint('[ReturnRequestRepo] getById called with id: "$id"');
     try {
       final response = await _api.apiOrderreturnrequestsIdGet(id: id);
-      return _map(response.data!.payload!);
+      final payload = response.data?.payload;
+      if (payload != null) return _map(payload);
+      // payload is null — try raw fallback
+      debugPrint('[ReturnRequestRepo] getById: typed payload is null for return request $id');
+      throw Exception('API returned null payload for return request $id');
     } on DioException catch (e) {
+      debugPrint('[ReturnRequestRepo] getById DioException: ${e.type} / ${e.message}');
       if (e.response?.statusCode == 200) {
         final raw = e.response?.data;
+        debugPrint('[ReturnRequestRepo] getById raw type: ${raw.runtimeType}');
         if (raw is Map<String, dynamic>) {
           final payload = raw['payload'] as Map<String, dynamic>?;
           if (payload != null) return _mapRaw(payload);
         }
       }
+      rethrow;
+    } catch (e) {
+      debugPrint('[ReturnRequestRepo] getById unexpected error: $e');
       rethrow;
     }
   }
@@ -136,7 +146,86 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
     await _shippingsApi.apiShippingsMeSyncShippingStatusPost();
   }
 
-  ReturnRequest _map(OrderReturnRequestResponse j) => ReturnRequest(
+  @override
+  Future<void> create({
+    required String orderId,
+    required String reason,
+    required List<({String orderDetailId, int quantity})> returnItems,
+    String? customerNote,
+    List<String>? temporaryMediaIds,
+    bool? isRefundOnly,
+    String? refundBankName,
+    String? refundAccountNumber,
+    String? refundAccountName,
+    String? savedAddressId,
+    ({
+      String contactName,
+      String contactPhoneNumber,
+      String fullAddress,
+      int? provinceId,
+      String provinceName,
+      int? districtId,
+      String districtName,
+      String wardCode,
+      String wardName,
+    })? recipient,
+  }) async {
+    final reasonEnum = ReturnOrderReason.values.cast<ReturnOrderReason?>().firstWhere(
+      (e) => e!.value == reason,
+      orElse: () => null,
+    );
+    await _api.apiOrderreturnrequestsPost(
+      createReturnRequestDto: CreateReturnRequestDto(
+        orderId: orderId,
+        reason: reasonEnum ?? ReturnOrderReason.damagedProduct,
+        returnItems: returnItems
+            .map((i) => ReturnItemDto(orderDetailId: i.orderDetailId, quantity: i.quantity))
+            .toList(),
+        customerNote: customerNote,
+        temporaryMediaIds: temporaryMediaIds,
+        isRefundOnly: isRefundOnly,
+        refundBankName: refundBankName,
+        refundAccountNumber: refundAccountNumber,
+        refundAccountName: refundAccountName,
+        savedAddressId: savedAddressId,
+        recipient: recipient != null
+            ? ContactAddressInformation(
+                contactName: recipient.contactName,
+                contactPhoneNumber: recipient.contactPhoneNumber,
+                fullAddress: recipient.fullAddress,
+                provinceId: recipient.provinceId,
+                provinceName: recipient.provinceName,
+                districtId: recipient.districtId,
+                districtName: recipient.districtName,
+                wardCode: recipient.wardCode,
+                wardName: recipient.wardName,
+              )
+            : null,
+      ),
+    );
+  }
+
+  @override
+  Future<String?> getOrderInfoUrl(String trackingNumber) async {
+    try {
+      final response = await _shippingsApi.apiShippingsOrderInfoUrlPost(
+        getOrderInfoRequest: GetOrderInfoRequest(trackingNumbers: [trackingNumber]),
+      );
+      return response.data?.payload;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 200) {
+        final raw = e.response?.data;
+        if (raw is Map<String, dynamic>) {
+          return raw['payload']?.toString();
+        }
+      }
+      rethrow;
+    }
+  }
+
+  ReturnRequest _map(OrderReturnRequestResponse j) {
+    debugPrint('[ReturnRequestRepo] _map id=${j.id}, orderId=${j.orderId}, orderCode=${j.orderCode}');
+    return ReturnRequest(
         id: j.id?.toString() ?? '',
         orderId: j.orderId?.toString() ?? '',
         orderCode: j.orderCode,
@@ -147,7 +236,9 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
         inspectionNote: j.inspectionNote,
         requestedRefundAmount: (j.requestedRefundAmount ?? 0).toDouble(),
         approvedRefundAmount: j.approvedRefundAmount?.toDouble(),
+        refundableAmount: null,
         requestedByEmail: j.customerEmail,
+        customerId: j.customerId,
         processedByName: j.processedByName,
         inspectedByName: j.inspectedByName,
         returnShippingInfo: j.returnShippingInfo != null
@@ -156,6 +247,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
                 trackingNumber: j.returnShippingInfo!.trackingNumber,
                 status: j.returnShippingInfo!.status?.value,
                 shippingFee: (j.returnShippingInfo!.shippingFee ?? 0).toDouble(),
+                estimatedDeliveryDate: j.returnShippingInfo!.estimatedDeliveryDate,
               )
             : null,
         returnDetails: (j.returnDetails ?? []).map((d) => ReturnDetail(
@@ -174,7 +266,12 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
             )).toList(),
         createdAt: j.createdAt ?? DateTime.now(),
         updatedAt: j.updatedAt,
+        refundBankName: j.refundBankName,
+        refundAccountNumber: j.refundAccountNumber,
+        refundAccountName: j.refundAccountName,
+        isRestocked: j.isRestocked,
       );
+  }
 
   ReturnRequest _mapRaw(Map<String, dynamic> j) => ReturnRequest(
         id: (j['id'] ?? '').toString(),
@@ -190,6 +287,12 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
             ? (j['approvedRefundAmount']).toDouble()
             : null,
         requestedByEmail: j['customerEmail']?.toString(),
+        customerId: j['customerId']?.toString(),
+        refundableAmount: j['refundableAmount'] != null ? (j['refundableAmount']).toDouble() : null,
+        refundBankName: j['refundBankName']?.toString(),
+        refundAccountNumber: j['refundAccountNumber']?.toString(),
+        refundAccountName: j['refundAccountName']?.toString(),
+        isRestocked: j['isRestocked'] as bool?,
         processedByName: j['processedByName']?.toString(),
         inspectedByName: j['inspectedByName']?.toString(),
         returnShippingInfo: j['returnShippingInfo'] != null
@@ -198,6 +301,8 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
                 trackingNumber: (j['returnShippingInfo'] as Map<String, dynamic>)['trackingNumber']?.toString(),
                 status: (j['returnShippingInfo'] as Map<String, dynamic>)['status']?.toString(),
                 shippingFee: ((j['returnShippingInfo'] as Map<String, dynamic>)['shippingFee'] ?? 0).toDouble(),
+                estimatedDeliveryDate: DateTime.tryParse(
+                  (j['returnShippingInfo'] as Map<String, dynamic>)['estimatedDeliveryDate']?.toString() ?? ''),
               )
             : null,
         returnDetails: ((j['returnDetails'] as List?) ?? []).map((d) {
