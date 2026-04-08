@@ -78,7 +78,7 @@ GoRouter appRouter(Ref ref) {
     ],
   );
 
-  ref.listen(authProvider, (_, __) {
+  ref.listen(authProvider, (_, _) {
     router.refresh();
   });
 
