@@ -9,6 +9,54 @@ part of 'cart_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
+@ProviderFor(localCartDataSource)
+final localCartDataSourceProvider = LocalCartDataSourceProvider._();
+
+final class LocalCartDataSourceProvider
+    extends
+        $FunctionalProvider<
+          LocalCartDataSource,
+          LocalCartDataSource,
+          LocalCartDataSource
+        >
+    with $Provider<LocalCartDataSource> {
+  LocalCartDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'localCartDataSourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$localCartDataSourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<LocalCartDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  LocalCartDataSource create(Ref ref) {
+    return localCartDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LocalCartDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LocalCartDataSource>(value),
+    );
+  }
+}
+
+String _$localCartDataSourceHash() =>
+    r'ba8de7a46d7599253025257892860ce6744d5e70';
+
 @ProviderFor(cartRepository)
 final cartRepositoryProvider = CartRepositoryProvider._();
 
@@ -48,7 +96,7 @@ final class CartRepositoryProvider
   }
 }
 
-String _$cartRepositoryHash() => r'576766dfc309c0c2f29e9154f496ed8dcf98e74f';
+String _$cartRepositoryHash() => r'7bd74daf8f982afa2863f5a00d95d8772c4d3ae6';
 
 @ProviderFor(Cart)
 final cartProvider = CartProvider._();
@@ -73,7 +121,7 @@ final class CartProvider extends $AsyncNotifierProvider<Cart, List<CartItem>> {
   Cart create() => Cart();
 }
 
-String _$cartHash() => r'22e15a759210218c776a3f8935351f03d89b1dce';
+String _$cartHash() => r'37d506b5c4e91853c3ecbc11445360fcd97ddd89';
 
 abstract class _$Cart extends $AsyncNotifier<List<CartItem>> {
   FutureOr<List<CartItem>> build();
@@ -129,4 +177,4 @@ final class CartTotalProvider
   }
 }
 
-String _$cartTotalHash() => r'84747cc3c79eb65b51f33fcb448fd6d9f4a0306e';
+String _$cartTotalHash() => r'2cbc3dc5dafe60af92a2188d871a604a685b3a8a';

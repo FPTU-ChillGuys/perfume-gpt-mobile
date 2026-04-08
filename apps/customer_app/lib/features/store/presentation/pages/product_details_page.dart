@@ -9,6 +9,7 @@ import '../../../../domain/entities/product.dart';
 import '../../../../domain/entities/product_variant.dart';
 import '../../../../core/utils/price_formatter.dart';
 import 'package:intl/intl.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductDetailsPage extends ConsumerStatefulWidget {
   final String productId;
@@ -35,7 +36,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
     setState(() {
       _selectedVariant = variant;
       // Switch images to variant's images if available
-      if (variant.primaryImageUrl != null) {
+      if (variant.imageUrls.isNotEmpty) {
         _currentImageIndex = 0;
         _pageController.jumpToPage(0);
       }
@@ -47,19 +48,20 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
     if (variantId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Please select a variant first'),
+          content: Text('Vui lòng chọn một loại sản phẩm'),
           backgroundColor: Colors.orange,
         ),
       );
       return;
     }
     try {
-      await ref.read(cartProvider.notifier).addItem(variantId);
+      // Use addProduct to support guest mode (provides full entity info)
+      await ref.read(cartProvider.notifier).addProduct(product, variantId: variantId);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              '${product.name} (${_selectedVariant!.displayName}) added to cart',
+              'Đã thêm ${product.name} (${_selectedVariant!.displayName}) vào giỏ hàng',
             ),
             backgroundColor: Colors.green,
           ),
@@ -69,7 +71,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to add to cart: $e'),
+            content: Text('Không thể thêm vào giỏ hàng: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -85,20 +87,13 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
       data: (product) {
         // Auto-select first active variant
         if (_selectedVariant == null && product.variants.isNotEmpty) {
-          _selectedVariant = product.variants
-                  .where((v) => v.isActive)
-                  .firstOrNull ??
-              product.variants.first;
+          _selectedVariant = product.variants.first;
         }
 
         final List<String> displayImages =
             _selectedVariant?.imageUrls.isNotEmpty == true
                 ? _selectedVariant!.imageUrls
-                : product.imageUrls.isNotEmpty
-                    ? product.imageUrls
-                    : (product.imageUrl.isNotEmpty
-                        ? [product.imageUrl]
-                        : const <String>[]);
+                : [product.imageUrl];
 
         return LayoutBuilder(
           builder: (context, constraints) {
@@ -121,11 +116,11 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 16),
-              const Text('Failed to load product'),
+              const Text('Không thể tải thông tin sản phẩm'),
               TextButton(
                 onPressed: () =>
                     ref.invalidate(productDetailsProvider(widget.productId)),
-                child: const Text('Retry'),
+                child: const Text('Thử lại'),
               ),
             ],
           ),
@@ -158,7 +153,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
             ),
             actions: [
               IconButton(
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () => context.push('/cart'),
                 icon: const Icon(Icons.shopping_cart_outlined),
               ),
             ],
@@ -196,7 +191,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
         title: Text(product.name),
         actions: [
           IconButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => context.push('/cart'),
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
         ],
@@ -285,14 +280,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
         spacing: 8,
         runSpacing: 6,
         children: [
-          if (product.gender != null)
-            _Badge(label: product.gender!, icon: Icons.person),
-          if (product.categoryName != null)
-            _Badge(label: product.categoryName!),
-          if (product.origin != null)
-            _Badge(label: product.origin!, icon: Icons.place_outlined),
-          if (product.releaseYear != null)
-            _Badge(label: '${product.releaseYear}'),
+          _Badge(label: product.brand, icon: Icons.verified),
         ],
       ),
       const SizedBox(height: 20),
@@ -300,7 +288,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
       // Variants
       if (product.variants.isNotEmpty) ...[
         Text(
-          'Select Variant',
+          'Chọn phân loại',
           style: Theme.of(context)
               .textTheme
               .titleMedium
@@ -318,7 +306,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
       // Description
       if (product.description.isNotEmpty) ...[
         Text(
-          'Description',
+          'Mô tả sản phẩm',
           style: Theme.of(context)
               .textTheme
               .titleMedium
@@ -326,27 +314,16 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
         ),
         const SizedBox(height: 8),
         Text(
-          stripHtml(product.description),
+          product.description,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 20),
       ],
 
       // Scent Notes
-      if (product.scentNoteDetails.isNotEmpty) ...[
+      if (product.scentNotes.isNotEmpty) ...[
         Text(
-          'Scent Notes',
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium
-              ?.copyWith(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        _ScentNotesSection(notes: product.scentNoteDetails),
-        const SizedBox(height: 20),
-      ] else if (product.scentNotes.isNotEmpty) ...[
-        Text(
-          'Scent Notes',
+          'Ghi chú hương thơm',
           style: Theme.of(context)
               .textTheme
               .titleMedium
@@ -485,14 +462,9 @@ class _PriceTag extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     String priceText;
-    String? originalPrice;
 
     if (selectedVariant != null) {
       priceText = PriceFormatter.format(selectedVariant!.effectivePrice);
-      if (selectedVariant!.discountedPrice != null) {
-        originalPrice =
-            PriceFormatter.format(selectedVariant!.retailPrice ?? selectedVariant!.basePrice);
-      }
     } else if (product.minPrice != null &&
         product.maxPrice != null &&
         product.minPrice != product.maxPrice) {
@@ -501,7 +473,7 @@ class _PriceTag extends StatelessWidget {
     } else if (product.price > 0) {
       priceText = PriceFormatter.format(product.price);
     } else {
-      priceText = 'Select variant';
+      priceText = 'Chọn phân loại';
     }
 
     return Column(
@@ -514,14 +486,6 @@ class _PriceTag extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        if (originalPrice != null)
-          Text(
-            originalPrice,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: Colors.grey,
-              decoration: TextDecoration.lineThrough,
-            ),
-          ),
       ],
     );
   }
@@ -582,10 +546,9 @@ class _VariantSelector extends StatelessWidget {
       runSpacing: 8,
       children: variants.map((variant) {
         final isSelected = selectedVariant?.id == variant.id;
-        final isUnavailable = !variant.isActive || !variant.isInStock;
 
         return GestureDetector(
-          onTap: isUnavailable ? null : () => onSelect(variant),
+          onTap: () => onSelect(variant),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -597,9 +560,7 @@ class _VariantSelector extends StatelessWidget {
               border: Border.all(
                 color: isSelected
                     ? theme.colorScheme.primary
-                    : isUnavailable
-                        ? Colors.grey.shade300
-                        : theme.colorScheme.outline,
+                    : theme.colorScheme.outline,
                 width: isSelected ? 2 : 1,
               ),
             ),
@@ -612,24 +573,18 @@ class _VariantSelector extends StatelessWidget {
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: isSelected
                         ? theme.colorScheme.onPrimary
-                        : isUnavailable
-                            ? Colors.grey
-                            : null,
+                        : null,
                     fontWeight:
                         isSelected ? FontWeight.bold : FontWeight.normal,
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  isUnavailable
-                      ? 'Out of stock'
-                      : PriceFormatter.format(variant.effectivePrice),
+                  PriceFormatter.format(variant.effectivePrice),
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: isSelected
                         ? theme.colorScheme.onPrimary.withValues(alpha: 0.85)
-                        : isUnavailable
-                            ? Colors.grey
-                            : theme.colorScheme.primary,
+                        : theme.colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -638,90 +593,6 @@ class _VariantSelector extends StatelessWidget {
           ),
         );
       }).toList(),
-    );
-  }
-}
-
-class _ScentNotesSection extends StatelessWidget {
-  final List<dynamic> notes;
-
-  const _ScentNotesSection({required this.notes});
-
-  @override
-  Widget build(BuildContext context) {
-    final byType = <String, List<String>>{};
-    for (final note in notes) {
-      final type = note.type as String;
-      byType.putIfAbsent(type, () => []).add(note.name as String);
-    }
-
-    const order = ['Top', 'Heart', 'Base'];
-    final icons = {
-      'Top': Icons.arrow_upward,
-      'Heart': Icons.favorite_border,
-      'Base': Icons.arrow_downward,
-    };
-    final colors = {
-      'Top': Colors.green,
-      'Heart': Colors.pink,
-      'Base': Colors.brown,
-    };
-
-    return Column(
-      children: order
-          .where((type) => byType.containsKey(type))
-          .map((type) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: colors[type]!.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Icon(icons[type], size: 16, color: colors[type]),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '$type Notes',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Wrap(
-                            spacing: 6,
-                            runSpacing: 4,
-                            children: byType[type]!
-                                .map(
-                                  (name) => Chip(
-                                    label: Text(
-                                      name,
-                                      style: const TextStyle(fontSize: 12),
-                                    ),
-                                    padding: EdgeInsets.zero,
-                                    materialTapTargetSize:
-                                        MaterialTapTargetSize.shrinkWrap,
-                                    backgroundColor:
-                                        colors[type]!.withValues(alpha: 0.1),
-                                  ),
-                                )
-                                .toList(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ))
-          .toList(),
     );
   }
 }
@@ -735,20 +606,15 @@ class _VariantDetailCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final rows = <_DetailRow>[];
     if (variant.concentrationName.isNotEmpty) {
-      rows.add(_DetailRow('Concentration', variant.concentrationName));
+      rows.add(_DetailRow('Nồng độ', variant.concentrationName));
     }
     if (variant.volumeMl != null) {
-      rows.add(_DetailRow('Volume', '${variant.volumeMl} ml'));
+      rows.add(_DetailRow('Dung tích', '${variant.volumeMl} ml'));
     }
-    if (variant.sillage != null) {
-      rows.add(_DetailRow('Sillage', '${variant.sillage}/10'));
-    }
-    if (variant.longevity != null) {
-      rows.add(_DetailRow('Longevity', '${variant.longevity}/10'));
-    }
+    
     rows.add(_DetailRow(
-      'Stock',
-      variant.isInStock ? '${variant.stockQuantity} available' : 'Out of stock',
+      'Giá',
+      PriceFormatter.format(variant.effectivePrice),
     ));
 
     if (rows.isEmpty) return const SizedBox.shrink();
@@ -763,7 +629,7 @@ class _VariantDetailCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Variant Details',
+            'Chi tiết phiên bản',
             style: Theme.of(context)
                 .textTheme
                 .titleSmall
@@ -825,7 +691,7 @@ class _AiReviewSummary extends StatelessWidget {
               Icon(Icons.auto_awesome, color: AppColors.primary, size: 18),
               SizedBox(width: 8),
               Text(
-                'AI Review Summary',
+                'Tóm tắt đánh giá bởi AI',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: AppColors.primary,
@@ -835,7 +701,7 @@ class _AiReviewSummary extends StatelessWidget {
           ),
           SizedBox(height: 8),
           Text(
-            'Most users describe this scent as elegant and long-lasting. It performs exceptionally well in cooler weather and is highly recommended for formal evening events.',
+            'Hầu hết người dùng mô tả mùi hương này là thanh lịch và lâu phai. Nó hoạt động đặc biệt tốt trong thời tiết mát mẻ và được khuyên dùng cho các sự kiện trang trọng buổi tối.',
             style: TextStyle(fontStyle: FontStyle.italic, fontSize: 13),
           ),
         ],
@@ -859,8 +725,6 @@ class _AddToCartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final needsSelection =
         product.variants.isNotEmpty && selectedVariant == null;
-    final isOutOfStock =
-        selectedVariant != null && !selectedVariant!.isInStock;
 
     return SafeArea(
       child: Container(
@@ -876,7 +740,7 @@ class _AddToCartBar extends StatelessWidget {
           ],
         ),
         child: ElevatedButton(
-          onPressed: isOutOfStock ? null : onAddToCart,
+          onPressed: onAddToCart,
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 50),
             backgroundColor: Theme.of(context).colorScheme.primary,
@@ -885,11 +749,9 @@ class _AddToCartBar extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
           child: Text(
-            isOutOfStock
-                ? 'Out of Stock'
-                : needsSelection
-                    ? 'Select a Variant'
-                    : 'Add to Cart',
+            needsSelection
+                    ? 'Chọn phân loại'
+                    : 'Thêm vào giỏ hàng',
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),

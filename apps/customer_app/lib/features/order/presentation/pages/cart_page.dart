@@ -62,7 +62,7 @@ class CartPage extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 12),
-              const Text('Failed to load cart'),
+              Text('Error: $error'),
               const SizedBox(height: 8),
               TextButton(
                 onPressed: () => ref.invalidate(cartProvider),
@@ -128,6 +128,9 @@ class _CartItemCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final notifier = ref.read(cartProvider.notifier);
+    final idToUse = (item.cartItemId == null || item.cartItemId!.isEmpty) 
+        ? item.variantId 
+        : item.cartItemId!;
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
@@ -213,7 +216,7 @@ class _CartItemCard extends ConsumerWidget {
                           _QtyButton(
                             icon: Icons.remove,
                             onTap: () => notifier.updateItem(
-                              item.cartItemId,
+                              idToUse,
                               item.quantity - 1,
                             ),
                           ),
@@ -231,7 +234,7 @@ class _CartItemCard extends ConsumerWidget {
                           _QtyButton(
                             icon: Icons.add,
                             onTap: () => notifier.updateItem(
-                              item.cartItemId,
+                              idToUse,
                               item.quantity + 1,
                             ),
                           ),
@@ -239,7 +242,7 @@ class _CartItemCard extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () =>
-                            notifier.removeItem(item.cartItemId),
+                            notifier.removeItem(idToUse),
                         style: TextButton.styleFrom(
                           foregroundColor: Colors.red,
                           padding: EdgeInsets.zero,
