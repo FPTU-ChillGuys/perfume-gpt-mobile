@@ -465,9 +465,7 @@ class _HomeProductCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius:
                         const BorderRadius.vertical(top: Radius.circular(16)),
-                    child: Hero(
-                      tag: 'product_image_${product.id}',
-                      child: product.imageUrl.isNotEmpty
+                    child: product.imageUrl.isNotEmpty
                           ? Image.network(
                               product.imageUrl,
                               fit: BoxFit.cover,
@@ -489,7 +487,6 @@ class _HomeProductCard extends StatelessWidget {
                               errorBuilder: (_, _, _) => _placeholder(),
                             )
                           : _placeholder(),
-                    ),
                   ),
                   if (isNew)
                     Positioned(

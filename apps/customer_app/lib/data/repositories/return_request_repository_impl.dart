@@ -1,6 +1,4 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/return_request.dart';
 import '../../domain/repositories/return_request_repository.dart';
@@ -24,8 +22,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
       );
     }
 
-    try {
-      final response = await _api.apiOrderreturnrequestsMyRequestsGet(
+    final response = await _api.apiOrderreturnrequestsMyRequestsGet(
         status: statusEnum,
         pageNumber: page,
         pageSize: pageSize,
@@ -39,21 +36,6 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
         totalCount: paged?.totalCount ?? 0,
         totalPages: paged?.totalPages ?? 1,
       );
-    } on DioException catch (e) {
-      if (e.response?.statusCode == 200) {
-        final raw = e.response?.data;
-        if (raw is Map<String, dynamic>) {
-          final payload = raw['payload'] as Map<String, dynamic>?;
-          final rawItems = (payload?['items'] as List?)?.cast<Map<String, dynamic>>() ?? [];
-          return PaginatedReturnRequests(
-            items: rawItems.map(_mapRaw).toList(),
-            totalCount: payload?['totalCount'] ?? 0,
-            totalPages: payload?['totalPages'] ?? 1,
-          );
-        }
-      }
-      rethrow;
-    }
   }
 
   @override
@@ -63,20 +45,8 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
       final response = await _api.apiOrderreturnrequestsIdGet(id: id);
       final payload = response.data?.payload;
       if (payload != null) return _map(payload);
-      // payload is null — try raw fallback
       debugPrint('[ReturnRequestRepo] getById: typed payload is null for return request $id');
       throw Exception('API returned null payload for return request $id');
-    } on DioException catch (e) {
-      debugPrint('[ReturnRequestRepo] getById DioException: ${e.type} / ${e.message}');
-      if (e.response?.statusCode == 200) {
-        final raw = e.response?.data;
-        debugPrint('[ReturnRequestRepo] getById raw type: ${raw.runtimeType}');
-        if (raw is Map<String, dynamic>) {
-          final payload = raw['payload'] as Map<String, dynamic>?;
-          if (payload != null) return _mapRaw(payload);
-        }
-      }
-      rethrow;
     } catch (e) {
       debugPrint('[ReturnRequestRepo] getById unexpected error: $e');
       rethrow;
@@ -110,35 +80,12 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
     List<({String filename, Uint8List bytes})>? images,
     List<({String filename, Uint8List bytes})>? videos,
   }) async {
-    final imageFiles = images?.map((img) {
-      final ext = img.filename.split('.').last.toLowerCase();
-      return MultipartFile.fromBytes(img.bytes, filename: img.filename,
-          contentType: MediaType('image', ext == 'png' ? 'png' : 'jpeg'));
-    }).toList();
-
-    final videoFiles = videos?.map((vid) {
-      return MultipartFile.fromBytes(vid.bytes, filename: vid.filename,
-          contentType: MediaType('video', 'mp4'));
-    }).toList();
-
-    try {
-      final response = await _api.apiOrderreturnrequestsVideosTemporaryPost(
-        images: imageFiles,
-        videos: videoFiles,
-      );
-      final data = response.data?.payload?.data ?? [];
-      return data.map((m) => m.id ?? '').where((id) => id.isNotEmpty).toList();
-    } on DioException catch (e) {
-      if (e.response?.statusCode == 200) {
-        final raw = e.response?.data;
-        if (raw is Map<String, dynamic>) {
-          final payload = raw['payload'] as Map<String, dynamic>?;
-          final data = (payload?['data'] as List?)?.cast<Map<String, dynamic>>() ?? [];
-          return data.map((m) => (m['id'] ?? '') as String).where((id) => id.isNotEmpty).toList();
-        }
-      }
-      rethrow;
-    }
+    final response = await _api.apiOrderreturnrequestsVideosTemporaryPost(
+      images: images,
+      videos: videos,
+    );
+    final data = response.data?.payload?.data ?? [];
+    return data.map((m) => m.id ?? '').where((id) => id.isNotEmpty).toList();
   }
 
   @override
@@ -207,20 +154,10 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
 
   @override
   Future<String?> getOrderInfoUrl(String trackingNumber) async {
-    try {
-      final response = await _shippingsApi.apiShippingsOrderInfoUrlPost(
-        getOrderInfoRequest: GetOrderInfoRequest(trackingNumbers: [trackingNumber]),
-      );
-      return response.data?.payload;
-    } on DioException catch (e) {
-      if (e.response?.statusCode == 200) {
-        final raw = e.response?.data;
-        if (raw is Map<String, dynamic>) {
-          return raw['payload']?.toString();
-        }
-      }
-      rethrow;
-    }
+    final response = await _shippingsApi.apiShippingsOrderInfoUrlPost(
+      getOrderInfoRequest: GetOrderInfoRequest(trackingNumbers: [trackingNumber]),
+    );
+    return response.data?.payload;
   }
 
   ReturnRequest _map(OrderReturnRequestResponse j) {
@@ -272,60 +209,4 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
         isRestocked: j.isRestocked,
       );
   }
-
-  ReturnRequest _mapRaw(Map<String, dynamic> j) => ReturnRequest(
-        id: (j['id'] ?? '').toString(),
-        orderId: (j['orderId'] ?? '').toString(),
-        orderCode: j['orderCode']?.toString(),
-        status: j['status']?.toString() ?? 'Pending',
-        reason: j['reason']?.toString(),
-        customerNote: j['customerNote']?.toString(),
-        staffNote: j['staffNote']?.toString(),
-        inspectionNote: j['inspectionNote']?.toString(),
-        requestedRefundAmount: (j['requestedRefundAmount'] ?? 0).toDouble(),
-        approvedRefundAmount: j['approvedRefundAmount'] != null
-            ? (j['approvedRefundAmount']).toDouble()
-            : null,
-        requestedByEmail: j['customerEmail']?.toString(),
-        customerId: j['customerId']?.toString(),
-        refundableAmount: j['refundableAmount'] != null ? (j['refundableAmount']).toDouble() : null,
-        refundBankName: j['refundBankName']?.toString(),
-        refundAccountNumber: j['refundAccountNumber']?.toString(),
-        refundAccountName: j['refundAccountName']?.toString(),
-        isRestocked: j['isRestocked'] as bool?,
-        processedByName: j['processedByName']?.toString(),
-        inspectedByName: j['inspectedByName']?.toString(),
-        returnShippingInfo: j['returnShippingInfo'] != null
-            ? ReturnShippingInfo(
-                carrierName: (j['returnShippingInfo'] as Map<String, dynamic>)['carrierName']?.toString(),
-                trackingNumber: (j['returnShippingInfo'] as Map<String, dynamic>)['trackingNumber']?.toString(),
-                status: (j['returnShippingInfo'] as Map<String, dynamic>)['status']?.toString(),
-                shippingFee: ((j['returnShippingInfo'] as Map<String, dynamic>)['shippingFee'] ?? 0).toDouble(),
-                estimatedDeliveryDate: DateTime.tryParse(
-                  (j['returnShippingInfo'] as Map<String, dynamic>)['estimatedDeliveryDate']?.toString() ?? ''),
-              )
-            : null,
-        returnDetails: ((j['returnDetails'] as List?) ?? []).map((d) {
-          final dm = d as Map<String, dynamic>;
-          return ReturnDetail(
-            id: dm['id']?.toString(),
-            orderDetailId: dm['orderDetailId']?.toString(),
-            variantId: dm['variantId']?.toString(),
-            requestedQuantity: (dm['requestedQuantity'] ?? 0) as int,
-            unitPrice: (dm['unitPrice'] ?? 0).toDouble(),
-            refundableAmount: (dm['refundableAmount'] ?? 0).toDouble(),
-          );
-        }).toList(),
-        proofImages: ((j['proofImages'] as List?) ?? []).map((m) {
-          final mm = m as Map<String, dynamic>;
-          return ProofMedia(
-            id: mm['id']?.toString(),
-            url: mm['url']?.toString(),
-            altText: mm['altText']?.toString(),
-            mimeType: mm['mimeType']?.toString(),
-          );
-        }).toList(),
-        createdAt: DateTime.tryParse(j['createdAt']?.toString() ?? '') ?? DateTime.now(),
-        updatedAt: DateTime.tryParse(j['updatedAt']?.toString() ?? ''),
-      );
 }

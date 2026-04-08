@@ -392,9 +392,7 @@ class _ImageGallery extends StatelessWidget {
           controller: pageController,
           itemCount: images.length,
           onPageChanged: onPageChanged,
-          itemBuilder: (context, index) => Hero(
-            tag: index == 0 ? 'product_image_$productId' : 'img_${productId}_$index',
-            child: Image.network(
+          itemBuilder: (context, index) => Image.network(
               images[index],
               fit: BoxFit.cover,
               width: double.infinity,
@@ -422,7 +420,6 @@ class _ImageGallery extends StatelessWidget {
                 ),
               ),
             ),
-          ),
         ),
         if (images.length > 1)
           Positioned(

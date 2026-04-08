@@ -25,7 +25,7 @@ class ReviewDetailPage extends ConsumerWidget {
         foregroundColor: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle.light,
         actions: [
-          IconButton(
+          IconButton( 
             icon: const Icon(Icons.delete_outline),
             onPressed: () => _confirmDelete(context, ref),
           ),

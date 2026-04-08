@@ -22,9 +22,7 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Hero(
-                  tag: 'product_image_${product.id}',
-                  child: Image.network(
+                child: Image.network(
                     product.imageUrl,
                     fit: BoxFit.cover,
                     width: double.infinity,
@@ -34,7 +32,6 @@ class ProductCard extends StatelessWidget {
                     },
                     errorBuilder: (context, error, stackTrace) =>
                         const Center(child: Icon(Icons.image_not_supported)),
-                  ),
                 ),
               ),
               Padding(

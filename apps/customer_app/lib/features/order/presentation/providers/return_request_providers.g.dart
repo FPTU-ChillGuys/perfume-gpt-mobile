@@ -226,16 +226,16 @@ final class ReturnRequestDetailFamily extends $Family
   String toString() => r'returnRequestDetailProvider';
 }
 
-// ---- returnRequestWithOrder (family) ----
-
 @ProviderFor(returnRequestWithOrder)
 final returnRequestWithOrderProvider = ReturnRequestWithOrderFamily._();
 
 final class ReturnRequestWithOrderProvider
-    extends $FunctionalProvider<
-        AsyncValue<(ReturnRequest, OrderDetail?)>,
-        (ReturnRequest, OrderDetail?),
-        FutureOr<(ReturnRequest, OrderDetail?)>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<(ReturnRequest, OrderDetail?)>,
+          (ReturnRequest, OrderDetail?),
+          FutureOr<(ReturnRequest, OrderDetail?)>
+        >
     with
         $FutureModifier<(ReturnRequest, OrderDetail?)>,
         $FutureProvider<(ReturnRequest, OrderDetail?)> {
@@ -254,13 +254,17 @@ final class ReturnRequestWithOrderProvider
   String debugGetCreateSourceHash() => _$returnRequestWithOrderHash();
 
   @override
-  String toString() => r'returnRequestWithOrderProvider' '($argument)';
+  String toString() {
+    return r'returnRequestWithOrderProvider'
+        ''
+        '($argument)';
+  }
 
   @$internal
   @override
   $FutureProviderElement<(ReturnRequest, OrderDetail?)> $createElement(
-          $ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<(ReturnRequest, OrderDetail?)> create(Ref ref) {
@@ -270,20 +274,25 @@ final class ReturnRequestWithOrderProvider
 
   @override
   bool operator ==(Object other) {
-    return other is ReturnRequestWithOrderProvider && other.argument == argument;
+    return other is ReturnRequestWithOrderProvider &&
+        other.argument == argument;
   }
 
   @override
-  int get hashCode => argument.hashCode;
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
-String _$returnRequestWithOrderHash() => r'return_request_with_order_hash';
+String _$returnRequestWithOrderHash() =>
+    r'4e43c4d5a2aa617c79d0d67cee50a27653cfc046';
 
 final class ReturnRequestWithOrderFamily extends $Family
     with
         $FunctionalFamilyOverride<
-            FutureOr<(ReturnRequest, OrderDetail?)>,
-            String> {
+          FutureOr<(ReturnRequest, OrderDetail?)>,
+          String
+        > {
   ReturnRequestWithOrderFamily._()
     : super(
         retry: null,
