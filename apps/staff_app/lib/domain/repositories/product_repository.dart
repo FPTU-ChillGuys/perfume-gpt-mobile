@@ -1,3 +1,4 @@
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../entities/product.dart';
 
 abstract class ProductRepository {
@@ -10,4 +11,5 @@ abstract class ProductRepository {
     int quantityChange,
     String reason,
   );
+  Future<List<BatchDetailResponse>> getBatchesForVariant(String variantId);
 }

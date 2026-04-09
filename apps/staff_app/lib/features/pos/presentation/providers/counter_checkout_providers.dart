@@ -46,7 +46,9 @@ class DraftItems extends _$DraftItems {
     final idx = state.indexWhere((e) => e.variantId == item.variantId);
     if (idx >= 0) {
       final updated = List<DraftItem>.from(state);
-      updated[idx] = updated[idx].copyWith(quantity: updated[idx].quantity + item.quantity);
+      updated[idx] = updated[idx].copyWith(
+        quantity: updated[idx].quantity + item.quantity,
+      );
       state = updated;
     } else {
       state = [...state, item];
@@ -127,11 +129,14 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
     try {
       final repo = ref.read(orderRepositoryProvider);
       final scannedItems = items
-          .map((i) => PosScanItemRequest(
-                barcode: i.barcode,
-                batchCode: 'DEFAULT', // Note: Need batch selection in UI eventually
-                quantity: i.quantity,
-              ))
+          .map(
+            (i) => PosScanItemRequest(
+              barcode: i.barcode,
+              batchCode:
+                  'DEFAULT', // Note: Need batch selection in UI eventually
+              quantity: i.quantity,
+            ),
+          )
           .toList();
 
       ContactAddressInformation? recipient;
@@ -232,7 +237,9 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
       final method = transactions.first.paymentMethod;
       if (method != null) {
         // Map API PaymentMethod to String for provider
-        ref.read(selectedPaymentMethodProvider.notifier).setMethod(method.value);
+        ref
+            .read(selectedPaymentMethodProvider.notifier)
+            .setMethod(method.value);
       }
     }
   }

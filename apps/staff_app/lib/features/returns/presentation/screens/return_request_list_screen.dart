@@ -5,7 +5,11 @@ import 'package:intl/intl.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../providers/return_request_providers.dart';
 
-final _currencyFmt = NumberFormat.currency(locale: 'vi_VN', symbol: '₫', decimalDigits: 0);
+final _currencyFmt = NumberFormat.currency(
+  locale: 'vi_VN',
+  symbol: '₫',
+  decimalDigits: 0,
+);
 
 const _statusTabs = <(ReturnRequestStatus? value, String label)>[
   (null, 'Tất cả'),
@@ -22,16 +26,19 @@ class ReturnRequestListScreen extends ConsumerStatefulWidget {
   const ReturnRequestListScreen({super.key});
 
   @override
-  ConsumerState<ReturnRequestListScreen> createState() => _ReturnRequestListScreenState();
+  ConsumerState<ReturnRequestListScreen> createState() =>
+      _ReturnRequestListScreenState();
 }
 
-class _ReturnRequestListScreenState extends ConsumerState<ReturnRequestListScreen>
+class _ReturnRequestListScreenState
+    extends ConsumerState<ReturnRequestListScreen>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
   int _currentPage = 1;
   static const int _pageSize = 10;
 
-  ReturnRequestStatus? get _currentStatus => _statusTabs[_tabController.index].$1;
+  ReturnRequestStatus? get _currentStatus =>
+      _statusTabs[_tabController.index].$1;
 
   @override
   void initState() {
@@ -78,10 +85,16 @@ class _ReturnRequestListScreenState extends ConsumerState<ReturnRequestListScree
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: const [
-                  Icon(Icons.assignment_return_outlined, size: 64, color: Colors.grey),
+                  Icon(
+                    Icons.assignment_return_outlined,
+                    size: 64,
+                    color: Colors.grey,
+                  ),
                   SizedBox(height: 16),
-                  Text('Không có yêu cầu trả hàng nào',
-                      style: TextStyle(fontSize: 16, color: Colors.grey)),
+                  Text(
+                    'Không có yêu cầu trả hàng nào',
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
                 ],
               ),
             );
@@ -97,10 +110,12 @@ class _ReturnRequestListScreenState extends ConsumerState<ReturnRequestListScree
             child: ListView(
               padding: const EdgeInsets.all(12),
               children: [
-                ...items.map((r) => Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: _ReturnRequestCard(request: r),
-                    )),
+                ...items.map(
+                  (r) => Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: _ReturnRequestCard(request: r),
+                  ),
+                ),
                 _PaginationBar(
                   currentPage: _currentPage,
                   totalPages: paged.totalPages ?? 1,
@@ -117,9 +132,11 @@ class _ReturnRequestListScreenState extends ConsumerState<ReturnRequestListScree
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.grey),
               const SizedBox(height: 12),
-              Text(e.toString(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.grey)),
+              Text(
+                e.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.grey),
+              ),
               const SizedBox(height: 8),
               TextButton(
                 onPressed: () => ref.invalidate(
@@ -163,57 +180,89 @@ class _ReturnRequestCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.assignment_return, color: statusInfo.color, size: 20),
+                  Icon(
+                    Icons.assignment_return,
+                    color: statusInfo.color,
+                    size: 20,
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       request.orderCode,
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 3,
+                    ),
                     decoration: BoxDecoration(
                       color: statusInfo.color.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    child: Text(statusInfo.label,
-                        style: TextStyle(
-                            fontSize: 11, fontWeight: FontWeight.w600, color: statusInfo.color)),
+                    child: Text(
+                      statusInfo.label,
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: statusInfo.color,
+                      ),
+                    ),
                   ),
                 ],
               ),
               if (request.customerEmail != null) ...[
                 const SizedBox(height: 6),
-                Row(children: [
-                  const Icon(Icons.person_outline, size: 14, color: Colors.grey),
-                  const SizedBox(width: 4),
-                  Text(request.customerEmail!,
-                      style: const TextStyle(fontSize: 12, color: Colors.grey)),
-                ]),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.person_outline,
+                      size: 14,
+                      color: Colors.grey,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      request.customerEmail!,
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ],
+                ),
               ],
               const SizedBox(height: 6),
-              Row(children: [
-                const Icon(Icons.access_time, size: 14, color: Colors.grey),
-                const SizedBox(width: 4),
-                Text(
-                  request.createdAt != null
-                      ? DateFormat('dd/MM/yyyy HH:mm').format(request.createdAt!)
-                      : '—',
-                  style: const TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-              ]),
+              Row(
+                children: [
+                  const Icon(Icons.access_time, size: 14, color: Colors.grey),
+                  const SizedBox(width: 4),
+                  Text(
+                    request.createdAt != null
+                        ? DateFormat(
+                            'dd/MM/yyyy HH:mm',
+                          ).format(request.createdAt!)
+                        : '—',
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                ],
+              ),
               if (reasonLabel != null) ...[
                 const SizedBox(height: 6),
-                Text('Lý do: $reasonLabel',
-                    style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                Text(
+                  'Lý do: $reasonLabel',
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
               ],
               if ((request.requestedRefundAmount ?? 0) > 0) ...[
                 const SizedBox(height: 6),
                 Text(
                   'Yêu cầu hoàn: ${_currencyFmt.format(request.requestedRefundAmount)}',
                   style: TextStyle(
-                      fontSize: 13, fontWeight: FontWeight.w500, color: Colors.indigo.shade700),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.indigo.shade700,
+                  ),
                 ),
               ],
             ],
@@ -246,13 +295,19 @@ class _PaginationBar extends StatelessWidget {
         children: [
           IconButton(
             icon: const Icon(Icons.chevron_left),
-            onPressed: currentPage > 1 ? () => onPageChanged(currentPage - 1) : null,
+            onPressed: currentPage > 1
+                ? () => onPageChanged(currentPage - 1)
+                : null,
           ),
-          Text('$currentPage / $totalPages',
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+          Text(
+            '$currentPage / $totalPages',
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          ),
           IconButton(
             icon: const Icon(Icons.chevron_right),
-            onPressed: currentPage < totalPages ? () => onPageChanged(currentPage + 1) : null,
+            onPressed: currentPage < totalPages
+                ? () => onPageChanged(currentPage + 1)
+                : null,
           ),
         ],
       ),

@@ -12,12 +12,14 @@ Future<PagedResultOfOrderReturnRequestResponse> staffReturnRequests(
   int pageSize = 10,
 }) async {
   final apiClient = ref.watch(apiClientProvider);
-  final response = await apiClient.getOrderReturnRequestsApi().apiOrderreturnrequestsGet(
-    status: status,
-    pageNumber: pageNumber,
-    pageSize: pageSize,
-    isDescending: true,
-  );
+  final response = await apiClient
+      .getOrderReturnRequestsApi()
+      .apiOrderreturnrequestsGet(
+        status: status,
+        pageNumber: pageNumber,
+        pageSize: pageSize,
+        isDescending: true,
+      );
   return response.data!.payload!;
 }
 
@@ -27,6 +29,8 @@ Future<OrderReturnRequestResponse> staffReturnRequestDetail(
   String id,
 ) async {
   final apiClient = ref.watch(apiClientProvider);
-  final response = await apiClient.getOrderReturnRequestsApi().apiOrderreturnrequestsIdGet(id: id);
+  final response = await apiClient
+      .getOrderReturnRequestsApi()
+      .apiOrderreturnrequestsIdGet(id: id);
   return response.data!.payload!;
 }

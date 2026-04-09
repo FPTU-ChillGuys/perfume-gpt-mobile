@@ -18,7 +18,7 @@ GoRouter appRouter(Ref ref) {
     initialLocation: '/pos',
     redirect: (context, state) {
       final authState = ref.read(authProvider);
-      
+
       final isLoading = authState.isLoading;
       final isAuth = authState.value != null;
       final isLoggingIn = state.matchedLocation == '/login';
@@ -122,10 +122,7 @@ class ScaffoldWithBottomNavBar extends StatelessWidget {
             icon: Icon(Icons.inventory),
             label: 'Inventory',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.store),
-            label: 'Counter',
-          ),
+          NavigationDestination(icon: Icon(Icons.store), label: 'Counter'),
           NavigationDestination(
             icon: Icon(Icons.assignment_return),
             label: 'Returns',
