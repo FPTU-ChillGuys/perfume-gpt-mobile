@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/order.dart';
+import '../../../review/presentation/providers/review_providers.dart';
 import '../providers/order_provider.dart';
+import '../providers/return_request_providers.dart';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -409,8 +411,21 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                               const SizedBox(height: 12),
                           itemBuilder: (context, index) {
                             final order = result.items[index];
+                            final myReturns = ref.watch(myReturnRequestsProvider()).asData?.value;
+                            final hasReturnReq = myReturns != null &&
+                                myReturns.items.any((r) => r.orderId == order.id);
+                            final myReviews = ref.watch(myReviewsProvider).asData?.value ?? [];
+                            final reviewedDetailIds = myReviews
+                                .where((r) => r.orderDetailId != null)
+                                .map((r) => r.orderDetailId!)
+                                .toSet();
+                            final allReviewed = order.status == 'Delivered' &&
+                                order.orderDetails.isNotEmpty &&
+                                order.orderDetails.every((item) => reviewedDetailIds.contains(item.id));
                             return _OrderCard(
                               order: order,
+                              hasReturnRequest: hasReturnReq,
+                              allReviewed: allReviewed,
                               onViewDetail: () =>
                                   context.push('/orders/${order.id}'),
                               onCancel: () =>
@@ -778,6 +793,8 @@ class _OrderCard extends StatelessWidget {
   final VoidCallback onCancel;
   final VoidCallback onRetryPayment;
   final VoidCallback onReturn;
+  final bool hasReturnRequest;
+  final bool allReviewed;
 
   const _OrderCard({
     required this.order,
@@ -785,6 +802,8 @@ class _OrderCard extends StatelessWidget {
     required this.onCancel,
     required this.onRetryPayment,
     required this.onReturn,
+    this.hasReturnRequest = false,
+    this.allReviewed = false,
   });
 
   @override
@@ -793,7 +812,7 @@ class _OrderCard extends StatelessWidget {
     final isPendingUnpaid =
         order.status == 'Pending' && order.paymentStatus == 'Unpaid';
     final isDelivered = order.status == 'Delivered';
-    final canReturn = isDelivered && order.isReturnable == true;
+    final canReturn = isDelivered && order.isReturnable == true && !hasReturnRequest;
 
     return Card(
       elevation: 0,
@@ -1000,18 +1019,20 @@ class _OrderCard extends StatelessWidget {
                   color: _accent,
                   onTap: onViewDetail,
                 ),
-                if (canReturn)
+                if (isDelivered)
                   _ActionBtn(
-                    label: 'Yêu cầu trả hàng',
-                    color: Colors.orange,
+                    label: hasReturnRequest ? 'Đã yêu cầu trả hàng' : 'Yêu cầu trả hàng',
+                    color: canReturn ? Colors.orange : Colors.grey,
                     onTap: onReturn,
+                    enabled: canReturn,
                   ),
                 if (isDelivered)
                   _ActionBtn(
-                    label: 'Đánh giá',
-                    color: _accent,
+                    label: allReviewed ? 'Đã đánh giá' : 'Đánh giá',
+                    color: allReviewed ? Colors.grey : _accent,
                     filled: true,
                     onTap: onViewDetail,
+                    enabled: !allReviewed,
                   ),
               ],
             ),
@@ -1091,12 +1112,14 @@ class _ActionBtn extends StatelessWidget {
   final Color color;
   final bool filled;
   final VoidCallback onTap;
+  final bool enabled;
 
   const _ActionBtn({
     required this.label,
     required this.color,
     this.filled = false,
     required this.onTap,
+    this.enabled = true,
   });
 
   @override
@@ -1105,7 +1128,7 @@ class _ActionBtn extends StatelessWidget {
       return SizedBox(
         height: 32,
         child: FilledButton(
-          onPressed: onTap,
+          onPressed: enabled ? onTap : null,
           style: FilledButton.styleFrom(
             backgroundColor: color,
             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -1120,7 +1143,7 @@ class _ActionBtn extends StatelessWidget {
     return SizedBox(
       height: 32,
       child: OutlinedButton(
-        onPressed: onTap,
+        onPressed: enabled ? onTap : null,
         style: OutlinedButton.styleFrom(
           foregroundColor: color,
           side: BorderSide(color: color),

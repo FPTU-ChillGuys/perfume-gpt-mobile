@@ -896,5 +896,7 @@ String _paymentMethodLabel(PaymentMethod method) {
       return 'Tiền mặt tại cửa hàng';
     case PaymentMethod.externalBankTransfer:
       return 'Chuyển khoản ngân hàng';
+    case PaymentMethod.payOs:
+      return 'PayOS';
   }
 }
