@@ -132,24 +132,34 @@ class PosScreen extends ConsumerWidget {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            IconButton(
-                              icon: const Icon(Icons.remove_circle_outline),
-                              onPressed: () => ref
-                                  .read(posCartProvider.notifier)
-                                  .updateQuantity(
-                                    item.product.id,
-                                    item.quantity - 1,
-                                  ),
+                            SizedBox(
+                              width: 32,
+                              height: 32,
+                              child: IconButton(
+                                icon: const Icon(Icons.remove_circle_outline, size: 20),
+                                padding: EdgeInsets.zero,
+                                onPressed: () => ref
+                                    .read(posCartProvider.notifier)
+                                    .updateQuantity(
+                                      item.product.id,
+                                      item.quantity - 1,
+                                    ),
+                              ),
                             ),
-                            Text('${item.quantity}'),
-                            IconButton(
-                              icon: const Icon(Icons.add_circle_outline),
-                              onPressed: () => ref
-                                  .read(posCartProvider.notifier)
-                                  .updateQuantity(
-                                    item.product.id,
-                                    item.quantity + 1,
-                                  ),
+                            SizedBox(width: 24, child: Center(child: Text('${item.quantity}'))),
+                            SizedBox(
+                              width: 32,
+                              height: 32,
+                              child: IconButton(
+                                icon: const Icon(Icons.add_circle_outline, size: 20),
+                                padding: EdgeInsets.zero,
+                                onPressed: () => ref
+                                    .read(posCartProvider.notifier)
+                                    .updateQuantity(
+                                      item.product.id,
+                                      item.quantity + 1,
+                                    ),
+                              ),
                             ),
                           ],
                         ),

@@ -79,12 +79,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Đăng nhập')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.auto_awesome, size: 80, color: AppColors.primary),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.auto_awesome, size: 80, color: AppColors.primary),
             const SizedBox(height: 32),
             TextField(
               controller: _emailController,
@@ -128,6 +129,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               child: const Text('Chưa có tài khoản? Đăng ký ngay'),
             ),
           ],
+        ),
         ),
       ),
     );

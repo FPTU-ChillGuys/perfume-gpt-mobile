@@ -85,7 +85,7 @@ class _QuizPageState extends State<QuizPage> {
           onPressed: () => context.pop(),
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -94,7 +94,7 @@ class _QuizPageState extends State<QuizPage> {
               value: (_currentStep + 1) / _questions.length,
               backgroundColor: Colors.grey.withValues(alpha: 0.2),
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: 24),
             Text(
               'Step ${_currentStep + 1} of ${_questions.length}',
               style: Theme.of(
@@ -108,7 +108,7 @@ class _QuizPageState extends State<QuizPage> {
                 context,
               ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: 24),
             ...List.generate(
               question['options'].length,
               (index) => Padding(

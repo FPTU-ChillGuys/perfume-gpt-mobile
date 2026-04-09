@@ -51,13 +51,17 @@ class LoyaltyPage extends ConsumerWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(
-                              _numberFormat.format(total.totalPoints),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 44,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: -1,
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                _numberFormat.format(total.totalPoints),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 44,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: -1,
+                                ),
+                                maxLines: 1,
                               ),
                             ),
                             const SizedBox(height: 2),
