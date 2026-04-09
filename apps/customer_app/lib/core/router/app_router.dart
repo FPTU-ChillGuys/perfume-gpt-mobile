@@ -10,6 +10,9 @@ import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/loyalty/presentation/pages/loyalty_page.dart';
 import '../../features/order/presentation/pages/cart_page.dart';
 import '../../features/order/presentation/pages/checkout_page.dart';
+import '../../features/order/presentation/pages/cancel_order_page.dart';
+import '../../features/order/presentation/pages/cancel_request_detail_page.dart';
+import '../../features/order/presentation/pages/cancel_request_list_page.dart';
 import '../../features/order/presentation/pages/create_return_request_page.dart';
 import '../../features/order/presentation/pages/order_detail_page.dart';
 import '../../features/order/presentation/pages/order_list_page.dart';
@@ -83,6 +86,18 @@ class AppRouter {
         },
       ),
       GoRoute(
+        path: '/orders/:orderId/cancel',
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return CancelOrderPage(
+            orderId: extra['orderId'] as String,
+            mode: extra['mode'] as String,
+            note: extra['note'] as String,
+            needRefund: extra['needRefund'] as bool,
+          );
+        },
+      ),
+      GoRoute(
         path: '/profile',
         builder: (context, state) => const ProfilePage(),
       ),
@@ -150,6 +165,17 @@ class AppRouter {
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           return ReturnRequestDetailPage(requestId: id);
+        },
+      ),
+      GoRoute(
+        path: '/cancel-requests',
+        builder: (context, state) => const CancelRequestListPage(),
+      ),
+      GoRoute(
+        path: '/cancel-requests/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return CancelRequestDetailPage(requestId: id);
         },
       ),
       GoRoute(

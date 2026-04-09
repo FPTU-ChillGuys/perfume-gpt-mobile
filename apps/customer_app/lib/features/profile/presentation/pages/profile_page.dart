@@ -334,6 +334,15 @@ class _AuthenticatedView extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
 
+              // Cancel requests
+              _MenuCard(
+                icon: Icons.cancel_outlined,
+                title: 'Yêu cầu hủy đơn',
+                subtitle: 'Xem các yêu cầu hủy đơn hàng',
+                onTap: () => context.push('/cancel-requests'),
+              ),
+              const SizedBox(height: 10),
+
               // Loyalty
               _MenuCard(
                 icon: Icons.star_outline_rounded,

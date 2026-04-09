@@ -609,7 +609,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
             controller: _bankAccountController,
             decoration: _inputDecoration('Số tài khoản'),
             keyboardType: TextInputType.number,
-            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]'))],
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
           const SizedBox(height: 12),
           TextField(
