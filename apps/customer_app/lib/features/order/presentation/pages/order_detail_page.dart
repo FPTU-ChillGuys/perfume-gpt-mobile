@@ -440,11 +440,16 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     final isPendingUnpaid =
         order.status == 'Pending' && order.paymentStatus == 'Unpaid';
     final isDelivered = order.status == 'Delivered';
-    final myReturns = ref.watch(myReturnRequestsProvider()).asData?.value;
-    final hasReturnRequest = myReturns != null &&
-        myReturns.items.any((r) => r.orderId == order.id);
+    final myReturns = ref.watch(myReturnRequestsProvider(pageSize: 100)).value;
+    final hasReturnRequest = (myReturns != null &&
+        myReturns.items.any((r) => r.orderId == order.id)) ||
+        order.paymentStatus == 'Partial_Refunded' ||
+        order.paymentStatus == 'Refunded' ||
+        order.status == 'Returning' ||
+        order.status == 'Returned' ||
+        order.status == 'Partial_Returned';
     final canReturn = isDelivered && order.isReturnable == true && !hasReturnRequest;
-    final myCancels = ref.watch(myCancelRequestsProvider()).asData?.value;
+    final myCancels = ref.watch(myCancelRequestsProvider(pageSize: 100)).value;
     final hasCancelRequest = myCancels != null &&
         myCancels.items.any((r) => r.orderId == order.id);
     final cancelBehavior = hasCancelRequest ? null : _getCancelBehavior(order);
@@ -458,13 +463,15 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     final allReviewed = isDelivered &&
         order.orderDetails.every((item) => reviewedDetailIds.contains(item.id));
 
-    // Use first Payment-type transaction (matching React: paymentTransactions[0].id)
-    final latestPayment = order.paymentTransactions
+    // Use the latest non-cancelled Payment transaction (after retry, COD is cancelled, VNPay is the active one)
+    final paymentTxns = order.paymentTransactions
         .where((t) => t.transactionType == 'Payment')
-        .firstOrNull
-        ?? (order.paymentTransactions.isNotEmpty
-            ? order.paymentTransactions.first
-            : null);
+        .toList();
+    final latestPayment = paymentTxns
+        .where((t) => t.status != 'Cancelled')
+        .lastOrNull
+        ?? paymentTxns.lastOrNull
+        ?? order.paymentTransactions.lastOrNull;
 
     return Column(
       children: [
@@ -1325,7 +1332,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   });
                   if (result == true) {
                     ref.invalidate(orderDetailProvider(widget.orderId));
-                    ref.invalidate(myCancelRequestsProvider());
+                    ref.invalidate(myCancelRequestsProvider(pageSize: 100));
                   }
                 },
                 child: Text(cancelBehavior.buttonLabel),
@@ -1343,7 +1350,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                           'orderItems': order.orderDetails,
                         });
                         if (result == true) {
-                          ref.invalidate(myReturnRequestsProvider());
+                          ref.invalidate(myReturnRequestsProvider(pageSize: 100));
                           ref.invalidate(orderDetailProvider(widget.orderId));
                         }
                       }
@@ -1445,17 +1452,6 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         allowedMethods.isNotEmpty ? allowedMethods.first : 'VnPay';
     bool isSubmitting = false;
 
-    final paymentId = latestPayment?.id;
-    if (paymentId == null || paymentId.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Không tìm thấy giao dịch thanh toán'),
-          backgroundColor: Colors.red,
-        ),
-      );
-      return;
-    }
-
     showDialog(
       context: context,
       builder: (ctx) => StatefulBuilder(
@@ -1517,6 +1513,23 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   : () async {
                       setDialogState(() => isSubmitting = true);
                       try {
+                        // Fetch fresh order to get the latest payment transaction ID
+                        final freshOrder = await ref
+                            .read(orderRepositoryProvider)
+                            .getOrderDetail(order.id);
+                        // Get the latest non-cancelled Payment transaction
+                        final paymentTxns = freshOrder.paymentTransactions
+                            .where((t) => t.transactionType == 'Payment')
+                            .toList();
+                        final freshPayment = paymentTxns
+                            .where((t) => t.status != 'Cancelled')
+                            .lastOrNull
+                            ?? paymentTxns.lastOrNull
+                            ?? freshOrder.paymentTransactions.lastOrNull;
+                        final paymentId = freshPayment?.id;
+                        if (paymentId == null || paymentId.isEmpty) {
+                          throw Exception('Không tìm thấy giao dịch thanh toán');
+                        }
                         final url = await ref
                             .read(orderRepositoryProvider)
                             .retryPayment(paymentId, selectedMethod);

@@ -396,10 +396,15 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                               const SizedBox(height: 12),
                           itemBuilder: (context, index) {
                             final order = result.items[index];
-                            final myReturns = ref.watch(myReturnRequestsProvider()).asData?.value;
-                            final hasReturnReq = myReturns != null &&
-                                myReturns.items.any((r) => r.orderId == order.id);
-                            final myCancels = ref.watch(myCancelRequestsProvider()).asData?.value;
+                            final myReturns = ref.watch(myReturnRequestsProvider(pageSize: 100)).value;
+                            final hasReturnReq = (myReturns != null &&
+                                myReturns.items.any((r) => r.orderId == order.id)) ||
+                                order.paymentStatus == 'Partial_Refunded' ||
+                                order.paymentStatus == 'Refunded' ||
+                                order.status == 'Returning' ||
+                                order.status == 'Returned' ||
+                                order.status == 'Partial_Returned';
+                            final myCancels = ref.watch(myCancelRequestsProvider(pageSize: 100)).value;
                             final hasCancelReq = myCancels != null &&
                                 myCancels.items.any((r) => r.orderId == order.id);
                             final myReviews = ref.watch(myReviewsProvider).asData?.value ?? [];
@@ -428,7 +433,7 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                                 });
                                 if (result == true) {
                                   _invalidateOrders();
-                                  ref.invalidate(myCancelRequestsProvider());
+                                  ref.invalidate(myCancelRequestsProvider(pageSize: 100));
                                 }
                               },
                               onRetryPayment: () =>
@@ -484,13 +489,15 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
           // Fetch order detail to get paymentId on first build
           if (isLoadingPaymentId && paymentId == null) {
             ref.read(orderRepositoryProvider).getOrderDetail(order.id).then((detail) {
-              // Use first Payment-type transaction (matching React: paymentTransactions[0].id)
-              final paymentTxn = detail.paymentTransactions
+              // Use the latest non-cancelled Payment transaction (after retry COD→VNPay, COD is cancelled)
+              final paymentTxns = detail.paymentTransactions
                   .where((t) => t.transactionType == 'Payment')
-                  .firstOrNull
-                  ?? (detail.paymentTransactions.isNotEmpty
-                      ? detail.paymentTransactions.first
-                      : null);
+                  .toList();
+              final paymentTxn = paymentTxns
+                  .where((t) => t.status != 'Cancelled')
+                  .lastOrNull
+                  ?? paymentTxns.lastOrNull
+                  ?? detail.paymentTransactions.lastOrNull;
               final pid = paymentTxn?.id;
               if (ctx.mounted) {
                 setDialogState(() {
