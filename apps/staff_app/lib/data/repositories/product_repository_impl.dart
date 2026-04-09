@@ -107,10 +107,7 @@ class ProductRepositoryImpl implements ProductRepository {
     try {
       final response = await _apiClient
           .getProductVariantsApi()
-          .apiProductvariantsForPosGet(
-            barcode: barcode,
-            sku: sku,
-          );
+          .apiProductvariantsForPosGet(barcode: barcode, sku: sku);
       final item = response.data?.payload;
 
       if (item == null) return null;
@@ -133,7 +130,8 @@ class ProductRepositoryImpl implements ProductRepository {
         brand: '',
         rating: 0,
         reviewCount: 0,
-        stockQuantity: 1, // Just a default, POS can override or handle stock limits during checkout
+        stockQuantity:
+            1, // Just a default, POS can override or handle stock limits during checkout
       );
     } catch (e, s) {
       developer.log(
@@ -174,6 +172,16 @@ class ProductRepositoryImpl implements ProductRepository {
     await _apiClient.getStockAdjustmentsApi().apiStockadjustmentsPost(
       createStockAdjustmentRequest: request,
     );
+  }
+
+  @override
+  Future<List<BatchDetailResponse>> getBatchesForVariant(
+    String variantId,
+  ) async {
+    final response = await _apiClient.getBatchesApi().apiBatchesGet(
+      variantId: variantId,
+    );
+    return response.data?.payload?.items ?? [];
   }
 }
 
