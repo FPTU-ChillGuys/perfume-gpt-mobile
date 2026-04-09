@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/order.dart';
 import '../../../review/presentation/providers/review_providers.dart';
+import '../providers/cancel_request_providers.dart';
 import '../providers/order_provider.dart';
 import '../providers/return_request_providers.dart';
 
@@ -299,22 +300,6 @@ List<_ReturnStep> _buildReturnSteps(OrderDetail order) {
   ];
 }
 
-// ─── Cancel reason options ──────────────────────────────────────────────────
-
-const _cancelReasonOptions = [
-  {'value': 'ChangedMind', 'label': 'Đổi ý'},
-  {'value': 'FoundBetterPrice', 'label': 'Tìm được giá tốt hơn'},
-  {'value': 'WrongShippingInformation', 'label': 'Sai thông tin giao hàng'},
-  {'value': 'PaymentIssue', 'label': 'Vấn đề thanh toán'},
-  {'value': 'DeliveryTooLate', 'label': 'Giao hàng quá chậm'},
-  {'value': 'InsufficientStock', 'label': 'Hết hàng'},
-];
-
-String? _mapCancelReasonToEnum(String label) {
-  final match = _cancelReasonOptions.where((o) => o['label'] == label);
-  return match.isNotEmpty ? match.first['value'] : null;
-}
-
 // ─── Retry payment methods ──────────────────────────────────────────────────
 
 const _retryPaymentMethods = [
@@ -459,7 +444,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     final hasReturnRequest = myReturns != null &&
         myReturns.items.any((r) => r.orderId == order.id);
     final canReturn = isDelivered && order.isReturnable == true && !hasReturnRequest;
-    final cancelBehavior = _getCancelBehavior(order);
+    final myCancels = ref.watch(myCancelRequestsProvider()).asData?.value;
+    final hasCancelRequest = myCancels != null &&
+        myCancels.items.any((r) => r.orderId == order.id);
+    final cancelBehavior = hasCancelRequest ? null : _getCancelBehavior(order);
 
     // Pre-fetch reviews to know which items are already reviewed
     final myReviews = ref.watch(myReviewsProvider).asData?.value ?? [];
@@ -545,6 +533,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
           order: order,
           isPendingUnpaid: isPendingUnpaid,
           cancelBehavior: cancelBehavior,
+          hasCancelRequest: hasCancelRequest,
           canReturn: canReturn,
           isDelivered: isDelivered,
           allReviewed: allReviewed,
@@ -1272,6 +1261,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     required OrderDetail order,
     required bool isPendingUnpaid,
     required ({String mode, String buttonLabel, String note})? cancelBehavior,
+    required bool hasCancelRequest,
     required bool canReturn,
     required bool isDelivered,
     required bool allReviewed,
@@ -1279,7 +1269,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     required PaymentTransaction? latestPayment,
   }) {
     final hasActions =
-        isPendingUnpaid || cancelBehavior != null || canReturn || isDelivered;
+        isPendingUnpaid || cancelBehavior != null || hasCancelRequest || canReturn || isDelivered;
     if (!hasActions) return const SizedBox.shrink();
 
     return Container(
@@ -1305,7 +1295,16 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 onPressed: () =>
                     _showRetryPaymentDialog(context, order, latestPayment),
               ),
-            if (cancelBehavior != null)
+            if (hasCancelRequest)
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.grey,
+                  side: const BorderSide(color: Colors.grey),
+                ),
+                onPressed: null,
+                child: const Text('Đã yêu cầu hủy đơn'),
+              )
+            else if (cancelBehavior != null)
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   foregroundColor: cancelBehavior.mode == 'direct'
@@ -1317,7 +1316,18 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         : Colors.orange,
                   ),
                 ),
-                onPressed: () => _showCancelDialog(context, order),
+                onPressed: () async {
+                  final result = await context.push('/orders/${order.id}/cancel', extra: {
+                    'orderId': order.id,
+                    'mode': cancelBehavior.mode,
+                    'note': cancelBehavior.note,
+                    'needRefund': order.paymentStatus == 'Paid',
+                  });
+                  if (result == true) {
+                    ref.invalidate(orderDetailProvider(widget.orderId));
+                    ref.invalidate(myCancelRequestsProvider());
+                  }
+                },
                 child: Text(cancelBehavior.buttonLabel),
               ),
             if (isDelivered)
@@ -1349,180 +1359,6 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 ),
                 onPressed: allReviewed ? null : () => _showReviewItemsSheet(context, order),
               ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // ── Cancel Dialog ─────────────────────────────────────────────────────────
-
-  void _showCancelDialog(BuildContext context, OrderDetail order) {
-    final behavior = _getCancelBehavior(order);
-    if (behavior == null) return;
-
-    String cancelReason = '';
-    bool isSubmitting = false;
-    final needRefund = order.paymentStatus == 'Paid';
-    String refundBankName = '';
-    String refundAccountNumber = '';
-    String refundAccountName = '';
-
-    showDialog(
-      context: context,
-      builder: (ctx) => StatefulBuilder(
-        builder: (ctx, setDialogState) => AlertDialog(
-          title: Text(
-            behavior.mode == 'direct'
-                ? 'Xác nhận hủy đơn hàng'
-                : 'Gửi yêu cầu hủy đơn',
-          ),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  behavior.note,
-                  style: TextStyle(color: Colors.grey[600], fontSize: 13),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  onChanged: (v) =>
-                      setDialogState(() => cancelReason = v),
-                  decoration: const InputDecoration(
-                    labelText: 'Lý do hủy *',
-                    hintText: 'Nhập lý do hủy đơn hàng',
-                    border: OutlineInputBorder(),
-                  ),
-                  maxLines: 3,
-                ),
-                const SizedBox(height: 12),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: _cancelReasonOptions.map((option) {
-                    final label = option['label']!;
-                    final isSelected = cancelReason.trim() == label;
-                    return ChoiceChip(
-                      label: Text(label),
-                      selected: isSelected,
-                      selectedColor: Colors.orange[100],
-                      onSelected: (_) =>
-                          setDialogState(() => cancelReason = label),
-                    );
-                  }).toList(),
-                ),
-                if (needRefund) ...[
-                  const SizedBox(height: 16),
-                  const Divider(),
-                  const SizedBox(height: 8),
-                  Text('Thông tin hoàn tiền',
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: Colors.grey[700])),
-                  const SizedBox(height: 12),
-                  TextField(
-                    onChanged: (v) => setDialogState(() => refundBankName = v),
-                    decoration: const InputDecoration(
-                      labelText: 'Tên ngân hàng',
-                      hintText: 'VD: Vietcombank',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  TextField(
-                    onChanged: (v) => setDialogState(() => refundAccountNumber = v),
-                    decoration: const InputDecoration(
-                      labelText: 'Số tài khoản',
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                  const SizedBox(height: 10),
-                  TextField(
-                    onChanged: (v) => setDialogState(() => refundAccountName = v),
-                    decoration: const InputDecoration(
-                      labelText: 'Tên chủ tài khoản',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ],
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed:
-                  isSubmitting ? null : () => Navigator.pop(ctx),
-              child: const Text('Đóng'),
-            ),
-            FilledButton(
-              style: FilledButton.styleFrom(
-                backgroundColor: behavior.mode == 'direct'
-                    ? Colors.red
-                    : Colors.orange,
-              ),
-              onPressed: cancelReason.trim().isEmpty || isSubmitting
-                  ? null
-                  : () async {
-                      final reasonEnum =
-                          _mapCancelReasonToEnum(cancelReason.trim());
-                      if (reasonEnum == null) {
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content:
-                                    Text('Lý do hủy không hợp lệ')),
-                          );
-                        }
-                        return;
-                      }
-                      setDialogState(() => isSubmitting = true);
-                      try {
-                        await ref
-                            .read(orderRepositoryProvider)
-                            .cancelOrder(
-                              order.id,
-                              reasonEnum,
-                              refundBankName: needRefund && refundBankName.trim().isNotEmpty ? refundBankName.trim() : null,
-                              refundAccountNumber: needRefund && refundAccountNumber.trim().isNotEmpty ? refundAccountNumber.trim() : null,
-                              refundAccountName: needRefund && refundAccountName.trim().isNotEmpty ? refundAccountName.trim() : null,
-                            );
-                        if (ctx.mounted) Navigator.pop(ctx);
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                behavior.mode == 'direct'
-                                    ? 'Đã hủy đơn hàng thành công'
-                                    : 'Đã gửi yêu cầu hủy đơn thành công',
-                              ),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
-                        }
-                        ref.invalidate(
-                            orderDetailProvider(widget.orderId));
-                      } catch (e) {
-                        setDialogState(() => isSubmitting = false);
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content:
-                                  Text('Không thể hủy đơn hàng: $e'),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
-                      }
-                    },
-              child: Text(
-                isSubmitting
-                    ? 'Đang gửi...'
-                    : behavior.mode == 'direct'
-                        ? 'Xác nhận hủy'
-                        : 'Gửi yêu cầu',
-              ),
-            ),
           ],
         ),
       ),
