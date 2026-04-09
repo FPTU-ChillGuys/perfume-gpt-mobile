@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:customer_app/features/order/presentation/providers/cart_provider.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/image_url_helper.dart';
@@ -313,9 +314,9 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
-        Text(
+        HtmlWidget(
           product.description,
-          style: Theme.of(context).textTheme.bodyMedium,
+          textStyle: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 20),
       ],
