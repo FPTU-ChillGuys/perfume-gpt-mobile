@@ -405,7 +405,16 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
                   child: isVideo
                       ? Container(
                           color: Colors.grey.shade100,
-                          child: const Center(child: Icon(Icons.videocam_rounded, size: 28, color: AppColors.textSecondary)),
+                          child: const Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.play_circle_filled_rounded, size: 32, color: AppColors.primary),
+                                SizedBox(height: 2),
+                                Text('Video', style: TextStyle(fontSize: 10, color: AppColors.textSecondary)),
+                              ],
+                            ),
+                          ),
                         )
                       : Image.network(
                           ImageUrlHelper.resolve(m.url ?? ''),
@@ -567,6 +576,13 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
 
   void _previewMedia(BuildContext context, ProofMedia media) {
     final isVideo = media.mimeType?.startsWith('video') == true;
+    if (isVideo) {
+      final url = ImageUrlHelper.resolve(media.url ?? '');
+      if (url.isNotEmpty) {
+        launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      }
+      return;
+    }
     showDialog(
       context: context,
       builder: (_) => Dialog(
@@ -576,16 +592,7 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
         child: Stack(
           children: [
             Center(
-              child: isVideo
-                  ? const Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.videocam_rounded, size: 64, color: Colors.white54),
-                        SizedBox(height: 8),
-                        Text('Xem video không khả dụng', style: TextStyle(color: Colors.white54)),
-                      ],
-                    )
-                  : InteractiveViewer(
+              child: InteractiveViewer(
                       child: Image.network(
                         ImageUrlHelper.resolve(media.url ?? ''),
                         errorBuilder: (_, a, b) =>

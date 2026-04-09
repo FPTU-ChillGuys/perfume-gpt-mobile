@@ -33,8 +33,10 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
       );
       final paged = response.data?.payload;
       final items = paged?.items ?? [];
+      final mapped = items.map(_map).toList()
+        ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
       return PaginatedReturnRequests(
-        items: items.map(_map).toList(),
+        items: mapped,
         totalCount: paged?.totalCount ?? 0,
         totalPages: paged?.totalPages ?? 1,
       );
