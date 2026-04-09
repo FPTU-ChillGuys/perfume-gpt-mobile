@@ -272,23 +272,38 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          IconButton(
-            icon: const Icon(Icons.remove_circle_outline, size: 20),
-            onPressed: () => ref
-                .read(draftItemsProvider.notifier)
-                .updateQuantity(index, item.quantity - 1),
+          SizedBox(
+            width: 28,
+            height: 28,
+            child: IconButton(
+              icon: const Icon(Icons.remove_circle_outline, size: 20),
+              padding: EdgeInsets.zero,
+              onPressed: () => ref
+                  .read(draftItemsProvider.notifier)
+                  .updateQuantity(index, item.quantity - 1),
+            ),
           ),
-          Text('${item.quantity}'),
-          IconButton(
-            icon: const Icon(Icons.add_circle_outline, size: 20),
-            onPressed: () => ref
-                .read(draftItemsProvider.notifier)
-                .updateQuantity(index, item.quantity + 1),
+          SizedBox(width: 24, child: Center(child: Text('${item.quantity}'))),
+          SizedBox(
+            width: 28,
+            height: 28,
+            child: IconButton(
+              icon: const Icon(Icons.add_circle_outline, size: 20),
+              padding: EdgeInsets.zero,
+              onPressed: () => ref
+                  .read(draftItemsProvider.notifier)
+                  .updateQuantity(index, item.quantity + 1),
+            ),
           ),
-          IconButton(
-            icon: const Icon(Icons.delete_outline, size: 20, color: Colors.red),
-            onPressed: () =>
-                ref.read(draftItemsProvider.notifier).removeItem(index),
+          SizedBox(
+            width: 28,
+            height: 28,
+            child: IconButton(
+              icon: const Icon(Icons.delete_outline, size: 20, color: Colors.red),
+              padding: EdgeInsets.zero,
+              onPressed: () =>
+                  ref.read(draftItemsProvider.notifier).removeItem(index),
+            ),
           ),
         ],
       ),
@@ -349,10 +364,12 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Thông tin đơn hàng',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                Flexible(
+                  child: Text(
+                    'Thông tin đơn hàng',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 _buildStatusChip(paymentStatus),
@@ -421,11 +438,13 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
             children: [
               Icon(Icons.check_circle, color: Colors.green.shade700, size: 32),
               const SizedBox(width: 12),
-              Text(
-                'Đã thanh toán thành công!',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Colors.green.shade700,
-                  fontWeight: FontWeight.bold,
+              Expanded(
+                child: Text(
+                  'Đã thanh toán thành công!',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Colors.green.shade700,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -628,18 +647,20 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
             children: [
               const Text('Quét mã QR để thanh toán:'),
               const SizedBox(height: 16),
-              Container(
-                width: 250,
-                height: 250,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade300),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Center(
-                  child: SelectableText(
-                    url,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 12),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 250, maxHeight: 250),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: SelectableText(
+                      url,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 12),
+                    ),
                   ),
                 ),
               ),

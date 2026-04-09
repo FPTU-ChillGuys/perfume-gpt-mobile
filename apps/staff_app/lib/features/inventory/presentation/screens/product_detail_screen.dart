@@ -66,7 +66,7 @@ class _ProductDetailsTab extends ConsumerWidget {
           Center(
             child: product.imageUrl.isNotEmpty
                 ? Image.network(product.imageUrl, height: 200)
-                : const Icon(Icons.image_not_supported, size: 200),
+                : const Icon(Icons.image_not_supported, size: 120),
           ),
           const SizedBox(height: 16),
           Text(product.name, style: Theme.of(context).textTheme.headlineMedium),
@@ -79,10 +79,14 @@ class _ProductDetailsTab extends ConsumerWidget {
             'Stock Quantity:',
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          Text(
-            '${product.stockQuantity}',
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(
-              color: product.stockQuantity < 10 ? Colors.red : Colors.green,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              '${product.stockQuantity}',
+              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                color: product.stockQuantity < 10 ? Colors.red : Colors.green,
+              ),
             ),
           ),
           const SizedBox(height: 24),
@@ -205,10 +209,13 @@ class BatchDetailCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Batch: ${batch.batchCode}',
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                Flexible(
+                  child: Text(
+                    'Batch: ${batch.batchCode}',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 if (batch.isExpired == true)
@@ -266,7 +273,14 @@ class BatchDetailCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(label, style: Theme.of(context).textTheme.bodyMedium),
-          Text(value, style: Theme.of(context).textTheme.bodyLarge),
+          Flexible(
+            child: Text(
+              value,
+              style: Theme.of(context).textTheme.bodyLarge,
+              textAlign: TextAlign.end,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ),
     );

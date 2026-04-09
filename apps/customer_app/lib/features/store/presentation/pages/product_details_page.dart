@@ -646,10 +646,14 @@ class _VariantDetailCard extends StatelessWidget {
                       style: const TextStyle(color: Colors.grey, fontSize: 13),
                     ),
                   ),
-                  Text(
-                    r.value,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w500, fontSize: 13),
+                  Expanded(
+                    child: Text(
+                      r.value,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w500, fontSize: 13),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
                   ),
                 ],
               ),
@@ -809,12 +813,14 @@ class _VariantReviewsSection extends ConsumerWidget {
               child: Row(
                 children: [
                   // Average rating
-                  Column(
-                    children: [
-                      Text(
-                        stats.averageRating.toStringAsFixed(1),
-                        style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
-                      ),
+                  Flexible(
+                    flex: 0,
+                    child: Column(
+                      children: [
+                        Text(
+                          stats.averageRating.toStringAsFixed(1),
+                          style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
+                        ),
                       Row(
                         children: List.generate(5, (i) => Icon(
                           i < stats.averageRating.round() ? Icons.star_rounded : Icons.star_outline_rounded,
@@ -826,6 +832,7 @@ class _VariantReviewsSection extends ConsumerWidget {
                       Text('${stats.totalReviews} đánh giá',
                           style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
                     ],
+                  ),
                   ),
                   const SizedBox(width: 20),
                   // Rating distribution bars

@@ -44,12 +44,13 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Register')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
               controller: _nameController,
               decoration: const InputDecoration(
                 labelText: 'Full Name',
@@ -100,6 +101,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               child: const Text('Already have an account? Login'),
             ),
           ],
+        ),
         ),
       ),
     );

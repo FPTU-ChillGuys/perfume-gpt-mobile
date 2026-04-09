@@ -537,7 +537,8 @@ class _ActionsSection extends ConsumerWidget {
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setDialogState) => AlertDialog(
           title: const Text('Xử lý yêu cầu'),
-          content: Column(
+          content: SingleChildScrollView(
+            child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               RadioGroup<_ReviewAction>(
@@ -570,6 +571,7 @@ class _ActionsSection extends ConsumerWidget {
                 maxLines: 3,
               ),
             ],
+          ),
           ),
           actions: [
             TextButton(
