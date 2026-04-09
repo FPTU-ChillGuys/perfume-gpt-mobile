@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../../../data/repositories/product_repository_impl.dart';
+import '../../../../domain/entities/product.dart';
 import '../providers/inventory_providers.dart';
 
 class ProductDetailScreen extends ConsumerWidget {
@@ -12,62 +15,88 @@ class ProductDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final productRepository = ref.watch(productRepositoryProvider);
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Product Details')),
-      body: FutureBuilder(
-        future: productRepository.getProductBySku(sku),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          final product = snapshot.data;
-          if (product == null) {
-            return const Center(child: Text('Product not found'));
-          }
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Product Details'),
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: 'Details'),
+              Tab(text: 'Batches'),
+            ],
+          ),
+        ),
+        body: FutureBuilder(
+          future: productRepository.getProductBySku(sku),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            final product = snapshot.data;
+            if (product == null) {
+              return const Center(child: Text('Product not found'));
+            }
 
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            return TabBarView(
               children: [
-                Center(child: Image.network(product.imageUrl, height: 200)),
-                const SizedBox(height: 16),
-                Text(
-                  product.name,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                Text(
-                  'SKU: ${product.sku}',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const Divider(),
-                Text(
-                  'Stock Quantity:',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Text(
-                  '${product.stockQuantity}',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: product.stockQuantity < 10
-                        ? Colors.red
-                        : Colors.green,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                ElevatedButton.icon(
-                  onPressed: () => _showAdjustmentDialog(
-                    context,
-                    ref,
-                    product.variantId,
-                    product.batchId,
-                  ),
-                  icon: const Icon(Icons.edit),
-                  label: const Text('Adjust Stock'),
-                ),
+                _ProductDetailsTab(product: product),
+                _ProductBatchesTab(variantId: product.variantId),
               ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _ProductDetailsTab extends ConsumerWidget {
+  const _ProductDetailsTab({required this.product});
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: product.imageUrl.isNotEmpty
+                ? Image.network(product.imageUrl, height: 200)
+                : const Icon(Icons.image_not_supported, size: 200),
+          ),
+          const SizedBox(height: 16),
+          Text(product.name, style: Theme.of(context).textTheme.headlineMedium),
+          Text(
+            'SKU: ${product.sku}',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const Divider(),
+          Text(
+            'Stock Quantity:',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Text(
+            '${product.stockQuantity}',
+            style: Theme.of(context).textTheme.displayMedium?.copyWith(
+              color: product.stockQuantity < 10 ? Colors.red : Colors.green,
             ),
-          );
-        },
+          ),
+          const SizedBox(height: 24),
+          ElevatedButton.icon(
+            onPressed: () => _showAdjustmentDialog(
+              context,
+              ref,
+              product.variantId,
+              product.batchId,
+            ),
+            icon: const Icon(Icons.edit),
+            label: const Text('Adjust Stock'),
+          ),
+        ],
       ),
     );
   }
@@ -122,6 +151,122 @@ class ProductDetailScreen extends ConsumerWidget {
             },
             child: const Text('Save'),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ProductBatchesTab extends ConsumerWidget {
+  const _ProductBatchesTab({required this.variantId});
+
+  final String variantId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final batchesAsync = ref.watch(variantBatchesProvider(variantId));
+
+    return batchesAsync.when(
+      data: (batches) {
+        if (batches.isEmpty) {
+          return const Center(child: Text('No batches found for this variant'));
+        }
+        return ListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: batches.length,
+          itemBuilder: (context, index) {
+            return BatchDetailCard(batch: batches[index]);
+          },
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (err, stack) => Center(child: Text('Error: $err')),
+    );
+  }
+}
+
+class BatchDetailCard extends StatelessWidget {
+  const BatchDetailCard({required this.batch, super.key});
+
+  final BatchDetailResponse batch;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final dateFormat = DateFormat('yyyy-MM-dd');
+
+    return Card(
+      margin: const EdgeInsets.only(bottom: 16),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Batch: ${batch.batchCode}',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                if (batch.isExpired == true)
+                  const Badge(
+                    label: Text('EXPIRED'),
+                    backgroundColor: Colors.red,
+                  )
+                else if (batch.daysUntilExpiry != null &&
+                    batch.daysUntilExpiry! <= 30)
+                  Badge(
+                    label: Text('EXPIRING SOON (${batch.daysUntilExpiry}d)'),
+                    backgroundColor: Colors.orange,
+                  ),
+              ],
+            ),
+            const Divider(),
+            _buildInfoRow(
+              context,
+              'Quantity',
+              '${batch.remainingQuantity} / ${batch.importQuantity}',
+            ),
+            _buildInfoRow(
+              context,
+              'Manufacture Date',
+              batch.manufactureDate != null
+                  ? dateFormat.format(batch.manufactureDate!)
+                  : 'N/A',
+            ),
+            _buildInfoRow(
+              context,
+              'Expiry Date',
+              batch.expiryDate != null
+                  ? dateFormat.format(batch.expiryDate!)
+                  : 'N/A',
+            ),
+            _buildInfoRow(
+              context,
+              'Created At',
+              batch.createdAt != null
+                  ? dateFormat.format(batch.createdAt!)
+                  : 'N/A',
+            ),
+            _buildInfoRow(context, 'Volume', '${batch.volumeMl ?? 'N/A'} ml'),
+            _buildInfoRow(context, 'Concentration', batch.concentrationName),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(BuildContext context, String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label, style: Theme.of(context).textTheme.bodyMedium),
+          Text(value, style: Theme.of(context).textTheme.bodyLarge),
         ],
       ),
     );

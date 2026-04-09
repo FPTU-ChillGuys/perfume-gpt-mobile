@@ -48,6 +48,84 @@ final class InventoryListProvider
 
 String _$inventoryListHash() => r'159a149c351823a1c066640d8c58c0f2c5917f85';
 
+@ProviderFor(variantBatches)
+final variantBatchesProvider = VariantBatchesFamily._();
+
+final class VariantBatchesProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<BatchDetailResponse>>,
+          List<BatchDetailResponse>,
+          FutureOr<List<BatchDetailResponse>>
+        >
+    with
+        $FutureModifier<List<BatchDetailResponse>>,
+        $FutureProvider<List<BatchDetailResponse>> {
+  VariantBatchesProvider._({
+    required VariantBatchesFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'variantBatchesProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$variantBatchesHash();
+
+  @override
+  String toString() {
+    return r'variantBatchesProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<List<BatchDetailResponse>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<BatchDetailResponse>> create(Ref ref) {
+    final argument = this.argument as String;
+    return variantBatches(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is VariantBatchesProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$variantBatchesHash() => r'b7c1128b62d165f88bd279037cf3b5cc20fa7069';
+
+final class VariantBatchesFamily extends $Family
+    with
+        $FunctionalFamilyOverride<FutureOr<List<BatchDetailResponse>>, String> {
+  VariantBatchesFamily._()
+    : super(
+        retry: null,
+        name: r'variantBatchesProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  VariantBatchesProvider call(String variantId) =>
+      VariantBatchesProvider._(argument: variantId, from: this);
+
+  @override
+  String toString() => r'variantBatchesProvider';
+}
+
 @ProviderFor(InventorySearchQuery)
 final inventorySearchQueryProvider = InventorySearchQueryProvider._();
 

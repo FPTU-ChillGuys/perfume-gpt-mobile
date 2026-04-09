@@ -10,11 +10,14 @@ class OrderRepositoryImpl {
   OrderRepositoryImpl(this._apiClient);
 
   OrdersApi get _ordersApi => _apiClient.getOrdersApi();
-  ProductVariantsApi get _productVariantsApi => _apiClient.getProductVariantsApi();
+  ProductVariantsApi get _productVariantsApi =>
+      _apiClient.getProductVariantsApi();
   PaymentsApi get _paymentsApi => _apiClient.getPaymentsApi();
 
   Future<UserOrderResponse?> getOrderById(String orderCode) async {
-    final response = await _ordersApi.apiOrdersByordercodeGet(orderCode: orderCode);
+    final response = await _ordersApi.apiOrdersByordercodeGet(
+      orderCode: orderCode,
+    );
     return response.data?.payload;
   }
 
@@ -46,10 +49,7 @@ class OrderRepositoryImpl {
     return response.data?.payload;
   }
 
-  Future<String?> retryPayment(
-    String paymentId,
-    String paymentMethod,
-  ) async {
+  Future<String?> retryPayment(String paymentId, String paymentMethod) async {
     final method = PaymentMethod.values.firstWhere(
       (e) => e.value == paymentMethod,
       orElse: () => PaymentMethod.cashInStore,

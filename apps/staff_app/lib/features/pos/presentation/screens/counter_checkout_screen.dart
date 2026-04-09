@@ -65,9 +65,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                 children: [
                   _buildLoadOrderSection(),
                   const SizedBox(height: 16),
-                  if (loadedOrder == null) ...[
-                    _buildCreateOrderSection(),
-                  ],
+                  if (loadedOrder == null) ...[_buildCreateOrderSection()],
                   if (loadedOrder != null) ...[
                     _buildOrderInfoSection(loadedOrder),
                     const SizedBox(height: 16),
@@ -88,9 +86,9 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
           children: [
             Text(
               '1. Tải đơn hàng',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             Row(
@@ -134,9 +132,9 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
           children: [
             Text(
               '2. Tạo đơn nhanh tại quầy',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             Row(
@@ -163,8 +161,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
             const SizedBox(height: 12),
             if (draftItems.isNotEmpty) ...[
               ...draftItems.asMap().entries.map(
-                    (entry) => _buildDraftItemTile(entry.key, entry.value),
-                  ),
+                (entry) => _buildDraftItemTile(entry.key, entry.value),
+              ),
               const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -176,9 +174,9 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                   Text(
                     PriceFormatter.format(draftTotal),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepOrange,
-                        ),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrange,
+                    ),
                   ),
                 ],
               ),
@@ -265,7 +263,11 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
               ),
             )
           : const Icon(Icons.inventory_2, size: 40),
-      title: Text(item.variantName, maxLines: 1, overflow: TextOverflow.ellipsis),
+      title: Text(
+        item.variantName,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
       subtitle: Text(PriceFormatter.format(item.price)),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
@@ -303,16 +305,20 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Phương thức thanh toán:',
-            style: Theme.of(context).textTheme.bodyMedium),
+        Text(
+          'Phương thức thanh toán:',
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
         const SizedBox(height: 8),
         SegmentedButton<String>(
           segments: methods
-              .map((m) => ButtonSegment<String>(
-                    value: m.$1,
-                    label: Text(m.$2),
-                    icon: Icon(m.$3),
-                  ))
+              .map(
+                (m) => ButtonSegment<String>(
+                  value: m.$1,
+                  label: Text(m.$2),
+                  icon: Icon(m.$3),
+                ),
+              )
               .toList(),
           selected: {selectedMethod},
           onSelectionChanged: (value) {
@@ -346,8 +352,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                 Text(
                   'Thông tin đơn hàng',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 _buildStatusChip(paymentStatus),
               ],
@@ -359,10 +365,12 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
             if (voucherCode != null) _infoRow('Voucher', voucherCode),
             _infoRow('Tổng tiền', PriceFormatter.format(totalAmount)),
             const Divider(),
-            Text('Sản phẩm:',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    )),
+            Text(
+              'Sản phẩm:',
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
             ...details.map((detail) {
               final name = detail.variantName;
@@ -402,9 +410,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     final paymentMethod = ref.watch(selectedPaymentMethodProvider);
     final isPaid = order.paymentStatus == PaymentStatus.paid;
     final transactions = order.paymentTransactions ?? [];
-    final paymentId = transactions.isNotEmpty
-        ? transactions.first.id
-        : null;
+    final paymentId = transactions.isNotEmpty ? transactions.first.id : null;
 
     if (isPaid) {
       return Card(
@@ -418,9 +424,9 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
               Text(
                 'Đã thanh toán thành công!',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Colors.green.shade700,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: Colors.green.shade700,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -436,9 +442,9 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
           children: [
             Text(
               '3. Xử lý thanh toán',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             _buildPaymentMethodSelector(paymentMethod),
@@ -498,7 +504,10 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
         color = Colors.grey;
     }
     return Chip(
-      label: Text(status, style: const TextStyle(color: Colors.white, fontSize: 12)),
+      label: Text(
+        status,
+        style: const TextStyle(color: Colors.white, fontSize: 12),
+      ),
       backgroundColor: color,
       padding: EdgeInsets.zero,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -513,9 +522,11 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
         children: [
           Text(label, style: const TextStyle(color: Colors.grey)),
           Flexible(
-            child: Text(value,
-                textAlign: TextAlign.end,
-                style: const TextStyle(fontWeight: FontWeight.w500)),
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
           ),
         ],
       ),
@@ -525,14 +536,12 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
   Future<void> _loadOrder() async {
     final code = _orderCodeController.text.trim();
     if (code.isEmpty) return;
-    await ref
-        .read(counterCheckoutNotifier.notifier)
-        .loadOrder(code);
+    await ref.read(counterCheckoutNotifier.notifier).loadOrder(code);
     final order = ref.read(loadedOrderProvider);
     if (order == null && mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Không tìm thấy đơn hàng')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Không tìm thấy đơn hàng')));
     }
   }
 
@@ -547,9 +556,9 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
       ref.read(draftItemsProvider.notifier).addItem(item);
       _variantIdController.clear();
     } else if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Không tìm thấy sản phẩm')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Không tìm thấy sản phẩm')));
     }
   }
 
@@ -593,9 +602,11 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(success
-              ? 'Xác nhận thanh toán thành công!'
-              : 'Xác nhận thanh toán thất bại'),
+          content: Text(
+            success
+                ? 'Xác nhận thanh toán thành công!'
+                : 'Xác nhận thanh toán thất bại',
+          ),
           backgroundColor: success ? Colors.green : Colors.red,
         ),
       );
@@ -668,9 +679,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
   Future<void> _reloadCurrentOrder() async {
     final order = ref.read(loadedOrderProvider);
     if (order != null && order.id != null) {
-      await ref
-          .read(counterCheckoutNotifier.notifier)
-          .loadOrder(order.id!);
+      await ref.read(counterCheckoutNotifier.notifier).loadOrder(order.id!);
     }
   }
 }

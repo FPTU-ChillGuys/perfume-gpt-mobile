@@ -1,3 +1,4 @@
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/product_repository_impl.dart';
 import '../../../../domain/entities/product.dart';
@@ -7,6 +8,11 @@ part 'inventory_providers.g.dart';
 @riverpod
 Future<List<Product>> inventoryList(Ref ref) {
   return ref.watch(productRepositoryProvider).getProducts();
+}
+
+@riverpod
+Future<List<BatchDetailResponse>> variantBatches(Ref ref, String variantId) {
+  return ref.watch(productRepositoryProvider).getBatchesForVariant(variantId);
 }
 
 @riverpod
