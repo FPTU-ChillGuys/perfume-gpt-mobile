@@ -9,6 +9,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/image_url_helper.dart';
 import '../../../../domain/entities/order.dart';
 import '../providers/address_provider.dart';
+import '../providers/bank_provider.dart';
 import '../providers/return_request_providers.dart';
 
 final _currencyFmt = NumberFormat.currency(locale: 'vi_VN', symbol: '₫', decimalDigits: 0);
@@ -45,7 +46,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   bool _isRefundOnly = false;
 
   // Bank info
-  final _bankNameController = TextEditingController();
+  VnBank? _selectedBank;
   final _bankAccountController = TextEditingController();
   final _bankHolderController = TextEditingController();
 
@@ -81,7 +82,6 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   @override
   void dispose() {
     _noteController.dispose();
-    _bankNameController.dispose();
     _bankAccountController.dispose();
     _bankHolderController.dispose();
     _contactNameController.dispose();
@@ -564,18 +564,150 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   // ─────────────────────────────────────────────────────────────────────────
 
   Widget _bankInfoSection() {
+    final banksAsync = ref.watch(vnBanksProvider);
     return _SectionCard(
-      title: 'Thông tin ngân hàng',
+      title: 'Thông tin nhận tiền hoàn trả',
       icon: Icons.account_balance_outlined,
       child: Column(
         children: [
-          TextField(controller: _bankNameController, decoration: _inputDecoration('Tên ngân hàng')),
+          // Bank picker
+          banksAsync.when(
+            loading: () => _dropdownPlaceholder('Đang tải danh sách ngân hàng…'),
+            error: (e, s) => _dropdownPlaceholder('Lỗi tải danh sách ngân hàng'),
+            data: (banks) => InkWell(
+              onTap: () => _showBankPicker(context, banks),
+              borderRadius: BorderRadius.circular(10),
+              child: InputDecorator(
+                decoration: _inputDecoration('Chọn ngân hàng'),
+                child: _selectedBank != null
+                    ? Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: Image.network(
+                              _selectedBank!.logo,
+                              width: 28, height: 28, fit: BoxFit.contain,
+                              errorBuilder: (c, e, s) => const Icon(Icons.account_balance, size: 28, color: AppColors.textSecondary),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              '${_selectedBank!.shortName} - ${_selectedBank!.name}',
+                              style: const TextStyle(fontSize: 13),
+                              maxLines: 1, overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      )
+                    : const Text('Chọn ngân hàng', style: TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+              ),
+            ),
+          ),
           const SizedBox(height: 12),
-          TextField(controller: _bankAccountController, decoration: _inputDecoration('Số tài khoản'),
-              keyboardType: TextInputType.number),
+          TextField(
+            controller: _bankAccountController,
+            decoration: _inputDecoration('Số tài khoản'),
+            keyboardType: TextInputType.number,
+            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]'))],
+          ),
           const SizedBox(height: 12),
-          TextField(controller: _bankHolderController, decoration: _inputDecoration('Chủ tài khoản')),
+          TextField(
+            controller: _bankHolderController,
+            decoration: _inputDecoration('Chủ tài khoản'),
+            textCapitalization: TextCapitalization.characters,
+            inputFormatters: [_UpperCaseTextFormatter()],
+          ),
         ],
+      ),
+    );
+  }
+
+  void _showBankPicker(BuildContext context, List<VnBank> banks) {
+    String query = '';
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (_) => StatefulBuilder(
+        builder: (ctx, setSheetState) {
+          final filtered = query.isEmpty
+              ? banks
+              : banks.where((b) {
+                  final q = query.toLowerCase();
+                  return b.shortName.toLowerCase().contains(q) ||
+                      b.name.toLowerCase().contains(q) ||
+                      b.code.toLowerCase().contains(q);
+                }).toList();
+          return DraggableScrollableSheet(
+            initialChildSize: 0.7,
+            maxChildSize: 0.9,
+            minChildSize: 0.4,
+            expand: false,
+            builder: (_, scrollController) => Column(
+              children: [
+                const SizedBox(height: 12),
+                Container(
+                  width: 40, height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                  child: TextField(
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      hintText: 'Tìm ngân hàng…',
+                      prefixIcon: const Icon(Icons.search, size: 20),
+                      filled: true,
+                      fillColor: AppColors.skeleton,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                    ),
+                    onChanged: (v) => setSheetState(() => query = v),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    controller: scrollController,
+                    itemCount: filtered.length,
+                    itemBuilder: (_, i) {
+                      final bank = filtered[i];
+                      final selected = _selectedBank?.code == bank.code;
+                      return ListTile(
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: Image.network(
+                            bank.logo,
+                            width: 36, height: 36, fit: BoxFit.contain,
+                            errorBuilder: (c, e, s) => const Icon(Icons.account_balance, size: 36),
+                          ),
+                        ),
+                        title: Text(bank.shortName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 14,
+                              color: selected ? AppColors.primary : null,
+                            )),
+                        subtitle: Text(bank.name,
+                            style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                            maxLines: 1, overflow: TextOverflow.ellipsis),
+                        trailing: selected ? const Icon(Icons.check_circle, color: AppColors.primary, size: 20) : null,
+                        onTap: () {
+                          setState(() => _selectedBank = bank);
+                          Navigator.pop(ctx);
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -863,7 +995,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
         customerNote: _noteController.text.isNotEmpty ? _noteController.text : null,
         temporaryMediaIds: tempMediaIds.isNotEmpty ? tempMediaIds : null,
         isRefundOnly: _isRefundOnly,
-        refundBankName: _bankNameController.text.isNotEmpty ? _bankNameController.text : null,
+        refundBankName: _selectedBank?.shortName,
         refundAccountNumber: _bankAccountController.text.isNotEmpty ? _bankAccountController.text : null,
         refundAccountName: _bankHolderController.text.isNotEmpty ? _bankHolderController.text : null,
         savedAddressId: !_isRefundOnly && !_useCustomAddress ? _selectedAddress?.id : null,
@@ -910,6 +1042,13 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
 // ═══════════════════════════════════════════════════════════════════════════════
 // Reusable widgets
 // ═══════════════════════════════════════════════════════════════════════════════
+
+class _UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return newValue.copyWith(text: newValue.text.toUpperCase());
+  }
+}
 
 class _SectionCard extends StatelessWidget {
   final String title;

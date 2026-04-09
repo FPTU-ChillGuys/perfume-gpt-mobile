@@ -455,7 +455,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     final isPendingUnpaid =
         order.status == 'Pending' && order.paymentStatus == 'Unpaid';
     final isDelivered = order.status == 'Delivered';
-    final canReturn = isDelivered && order.isReturnable == true;
+    final myReturns = ref.watch(myReturnRequestsProvider()).asData?.value;
+    final hasReturnRequest = myReturns != null &&
+        myReturns.items.any((r) => r.orderId == order.id);
+    final canReturn = isDelivered && order.isReturnable == true && !hasReturnRequest;
     final cancelBehavior = _getCancelBehavior(order);
 
     // Pre-fetch reviews to know which items are already reviewed
@@ -545,6 +548,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
           canReturn: canReturn,
           isDelivered: isDelivered,
           allReviewed: allReviewed,
+          hasReturnRequest: hasReturnRequest,
           latestPayment: latestPayment,
         ),
       ],
@@ -1271,6 +1275,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     required bool canReturn,
     required bool isDelivered,
     required bool allReviewed,
+    required bool hasReturnRequest,
     required PaymentTransaction? latestPayment,
   }) {
     final hasActions =
@@ -1315,22 +1320,25 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 onPressed: () => _showCancelDialog(context, order),
                 child: Text(cancelBehavior.buttonLabel),
               ),
-            if (canReturn)
+            if (isDelivered)
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.orange,
-                  side: const BorderSide(color: Colors.orange),
+                  foregroundColor: canReturn ? Colors.orange : Colors.grey,
+                  side: BorderSide(color: canReturn ? Colors.orange : Colors.grey),
                 ),
-                onPressed: () async {
-                  final result = await context.push('/return-requests/create', extra: {
-                    'orderId': order.id,
-                    'orderItems': order.orderDetails,
-                  });
-                  if (result == true) {
-                    ref.invalidate(orderDetailProvider(widget.orderId));
-                  }
-                },
-                child: const Text('Yêu cầu trả hàng'),
+                onPressed: canReturn
+                    ? () async {
+                        final result = await context.push('/return-requests/create', extra: {
+                          'orderId': order.id,
+                          'orderItems': order.orderDetails,
+                        });
+                        if (result == true) {
+                          ref.invalidate(myReturnRequestsProvider());
+                          ref.invalidate(orderDetailProvider(widget.orderId));
+                        }
+                      }
+                    : null,
+                child: Text(hasReturnRequest ? 'Đã yêu cầu trả hàng' : 'Yêu cầu trả hàng'),
               ),
             if (isDelivered)
               FilledButton.icon(
