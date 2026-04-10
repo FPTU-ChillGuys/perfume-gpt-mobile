@@ -63,8 +63,34 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     _nameController.dispose();
     _phoneController.dispose();
     _streetController.dispose();
-    _voucherController.dispose();
+    _voucherController.dispose(); 
     super.dispose();
+  }
+
+  // ─── Selected items helpers (matching React FE pattern) ───────────
+  /// Returns (allItemIds, effectiveItemIds).
+  /// If selectedCartItemIds has a valid subset, use that; otherwise all.
+  (List<String>, List<String>) _computeEffectiveItemIds() {
+    final cartItems = ref.read(cartProvider).value ?? [];
+    final allIds = cartItems
+        .map((e) => e.cartItemId ?? '')
+        .where((id) => id.isNotEmpty)
+        .toList();
+    final selectedIds = ref.read(selectedCartItemIdsProvider);
+
+    if (selectedIds.isNotEmpty) {
+      final validSelected =
+          selectedIds.where((id) => allIds.contains(id)).toList();
+      if (validSelected.isNotEmpty && validSelected.length < allIds.length) {
+        return (allIds, validSelected);
+      }
+    }
+    return (allIds, allIds);
+  }
+
+  /// Only pass itemIds to API when it's a proper subset of all items.
+  bool _shouldQuerySelectedItems(List<String> allIds, List<String> effectiveIds) {
+    return effectiveIds.isNotEmpty && effectiveIds.length < allIds.length;
   }
 
   void _onDeliveryMethodChanged(bool pickupInStore) {
@@ -76,16 +102,15 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   }
 
   Future<void> _refreshTotals([String? voucherOverride]) async {
-    final cartItems = ref.read(cartProvider).value ?? [];
-    if (cartItems.isEmpty) return;
+    final (allIds, effectiveIds) = _computeEffectiveItemIds();
+    if (effectiveIds.isEmpty) return;
 
-    final itemIds = cartItems.map((e) => e.cartItemId ?? '').toList();
     final voucher = voucherOverride ?? _appliedVoucherCode;
 
     try {
       final total = await ref.read(cartRepositoryProvider).getTotal(
             voucherCode: (voucher != null && voucher.isNotEmpty) ? voucher : null,
-            itemIds: itemIds,
+            itemIds: _shouldQuerySelectedItems(allIds, effectiveIds) ? effectiveIds : null,
           );
       if (mounted) setState(() => _computedTotal = total);
     } catch (_) {}
@@ -102,11 +127,10 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     });
 
     try {
-      final cartItems = ref.read(cartProvider).value ?? [];
-      final itemIds = cartItems.map((e) => e.cartItemId ?? '').toList();
+      final (allIds, effectiveIds) = _computeEffectiveItemIds();
       final total = await ref.read(cartRepositoryProvider).getTotal(
             voucherCode: code,
-            itemIds: itemIds,
+            itemIds: _shouldQuerySelectedItems(allIds, effectiveIds) ? effectiveIds : null,
           );
       if (mounted) {
         setState(() {
@@ -178,9 +202,18 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     setState(() => _isPlacingOrder = true);
 
     try {
-      final cartItems = ref.read(cartProvider).value ?? [];
-      final itemIds = cartItems.map((e) => e.cartItemId ?? '').toList();
+      final (_, effectiveIds) = _computeEffectiveItemIds();
       final total = _computedTotal ?? ref.read(cartTotalProvider).value;
+
+      if (effectiveIds.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Vui lòng chọn sản phẩm để thanh toán'),
+            backgroundColor: Colors.orange,
+          ),
+        );
+        return;
+      }
 
       RecipientAddress? recipient;
       String? savedAddressId;
@@ -206,7 +239,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       final request = CheckoutRequest(
         paymentMethod: _selectedPayment,
         deliveryMethod: _isPickupInStore ? 'PickupInStore' : 'Delivery',
-        itemIds: itemIds,
+        itemIds: effectiveIds,
         expectedTotalPrice: total?.totalPrice,
         voucherCode: _appliedVoucherCode,
         savedAddressId: savedAddressId,
@@ -217,15 +250,27 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       ref.invalidate(cartProvider);
       ref.invalidate(cartTotalProvider);
       ref.invalidate(myOrdersProvider);
+      ref.read(selectedCartItemIdsProvider.notifier).clear();
 
       if (!mounted) return;
 
-      // Check if result is a payment URL (VnPay/Momo)
-      if ((_selectedPayment == 'VnPay' || _selectedPayment == 'Momo') &&
-          result.startsWith('http')) {
-        // Open in-app WebView to handle the payment and return URL
-        if (mounted) {
-          context.push('/payment-webview?url=${Uri.encodeComponent(result)}');
+      // Handle payment redirect based on payment method (matching React FE)
+      final isOnlinePayment = _selectedPayment == 'VnPay' ||
+          _selectedPayment == 'Momo' ||
+          _selectedPayment == 'PayOs';
+
+      if (isOnlinePayment) {
+        if (result.paymentUrl != null && result.paymentUrl!.isNotEmpty) {
+          if (mounted) {
+            context.push('/payment-webview?url=${Uri.encodeComponent(result.paymentUrl!)}');
+          }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Không thể chuyển đến trang thanh toán'),
+              backgroundColor: Colors.red,
+            ),
+          );
         }
       } else {
         // COD / CashInStore — show success
@@ -278,6 +323,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     final authState = ref.watch(authProvider);
     final cartAsync = ref.watch(cartProvider);
     final cartTotalAsync = ref.watch(cartTotalProvider);
+    final selectedIds = ref.watch(selectedCartItemIdsProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -301,6 +347,22 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
           if (cartItems.isEmpty && !cartAsync.isLoading) {
             return _buildEmptyCart();
           }
+
+          // Filter visible items based on selected IDs (React FE pattern)
+          final allIds = cartItems
+              .map((e) => e.cartItemId ?? '')
+              .where((id) => id.isNotEmpty)
+              .toSet();
+          final validSelected = selectedIds.isNotEmpty
+              ? selectedIds.intersection(allIds)
+              : allIds;
+          final effectiveIds =
+              validSelected.isNotEmpty ? validSelected : allIds;
+          final visibleItems = effectiveIds.length < allIds.length
+              ? cartItems
+                  .where((item) => effectiveIds.contains(item.cartItemId))
+                  .toList()
+              : cartItems;
 
           final total = _computedTotal ?? cartTotalAsync.value;
           final totalPrice = total?.totalPrice ?? 0.0;
@@ -330,7 +392,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                       // --- Order Summary ---
                       _buildSectionTitle('Đơn hàng'),
                       const SizedBox(height: 8),
-                      _buildOrderItems(cartItems),
+                      _buildOrderItems(visibleItems),
                       const SizedBox(height: 16),
 
                       // --- Voucher ---
@@ -993,6 +1055,8 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                 Icons.payment, AppColors.primary),
             _PaymentOption('Momo', 'MoMo', 'Thanh toán qua MoMo',
                 Icons.account_balance_wallet, Colors.pink),
+            _PaymentOption('PayOs', 'PayOS', 'Thanh toán qua PayOS',
+                Icons.account_balance, Colors.blue),
           ]
         : [
             _PaymentOption(
@@ -1005,6 +1069,8 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                 Icons.payment, AppColors.primary),
             _PaymentOption('Momo', 'MoMo', 'Thanh toán qua MoMo',
                 Icons.account_balance_wallet, Colors.pink),
+            _PaymentOption('PayOs', 'PayOS', 'Thanh toán qua PayOS',
+                Icons.account_balance, Colors.blue),
           ];
 
     return Card(

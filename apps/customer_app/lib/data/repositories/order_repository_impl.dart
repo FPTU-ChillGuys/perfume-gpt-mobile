@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../core/utils/image_url_helper.dart';
+import '../../domain/entities/checkout_result.dart';
 import '../../domain/entities/order.dart';
 import '../../domain/repositories/order_repository.dart';
 
@@ -11,7 +14,7 @@ class OrderRepositoryImpl implements OrderRepository {
   OrderRepositoryImpl(this._ordersApi, this._paymentsApi);
 
   @override
-  Future<String> checkout(CheckoutRequest request) async {
+  Future<CheckoutResult> checkout(CheckoutRequest request) async {
     PaymentMethod? paymentMethod;
     switch (request.paymentMethod) {
       case 'CashOnDelivery':
@@ -25,6 +28,12 @@ class OrderRepositoryImpl implements OrderRepository {
         break;
       case 'CashInStore':
         paymentMethod = PaymentMethod.cashInStore;
+        break;
+      case 'ExternalBankTransfer':
+        paymentMethod = PaymentMethod.externalBankTransfer;
+        break;
+      case 'PayOs':
+        paymentMethod = PaymentMethod.payOs;
         break;
     }
 
@@ -54,20 +63,32 @@ class OrderRepositoryImpl implements OrderRepository {
       );
     }
 
+    final body = CreateOrderRequest(
+      payment: PaymentInformation(method: paymentMethod),
+      deliveryMethod: deliveryMethod,
+      itemIds: request.itemIds,
+      expectedTotalPrice: request.expectedTotalPrice,
+      voucherCode: request.voucherCode,
+      savedAddressId: request.savedAddressId,
+      recipient: recipient,
+    );
+
     try {
       final response = await _ordersApi.apiOrdersCheckoutPost(
-        createOrderRequest: CreateOrderRequest(
-          payment: PaymentInformation(method: paymentMethod),
-          deliveryMethod: deliveryMethod,
-          itemIds: request.itemIds,
-          expectedTotalPrice: request.expectedTotalPrice,
-          voucherCode: request.voucherCode,
-          savedAddressId: request.savedAddressId,
-          recipient: recipient,
-        ),
+        createOrderRequest: body,
       );
-      return response.data?.payload ?? '';
+      // If deserialization succeeded, payload is a string (old format)
+      return _parseCheckoutPayload(response.data?.payload);
     } on DioException catch (e) {
+      // The generated client expects BaseResponseOfstring but API may return
+      // CreatePaymentResponseDto as payload object. If HTTP was successful
+      // but deserialization failed, parse from the raw response.
+      if (e.response != null &&
+          e.response!.statusCode != null &&
+          e.response!.statusCode! >= 200 &&
+          e.response!.statusCode! < 300) {
+        return _parseRawCheckoutResponse(e.response!.data);
+      }
       final message = e.response?.data is Map
           ? (e.response!.data as Map)['message']?.toString()
           : null;
@@ -339,6 +360,12 @@ class OrderRepositoryImpl implements OrderRepository {
       case 'CashInStore':
         method = PaymentMethod.cashInStore;
         break;
+      case 'ExternalBankTransfer':
+        method = PaymentMethod.externalBankTransfer;
+        break;
+      case 'PayOs':
+        method = PaymentMethod.payOs;
+        break;
     }
 
     final response = await _paymentsApi.apiPaymentsPaymentIdRetryPost(
@@ -361,5 +388,30 @@ class OrderRepositoryImpl implements OrderRepository {
         failureReason: failureReason,
       ),
     );
+  }
+
+  // ─── Checkout response parsing helpers ─────────────────────────
+  CheckoutResult _parseCheckoutPayload(dynamic payload) {
+    if (payload == null) return const CheckoutResult();
+    if (payload is Map<String, dynamic>) {
+      return CheckoutResult.fromJson(payload);
+    }
+    if (payload is String && payload.isNotEmpty) {
+      try {
+        final json = jsonDecode(payload) as Map<String, dynamic>;
+        return CheckoutResult.fromJson(json);
+      } catch (_) {
+        return CheckoutResult(orderId: payload);
+      }
+    }
+    return const CheckoutResult();
+  }
+
+  CheckoutResult _parseRawCheckoutResponse(dynamic responseData) {
+    final data = responseData is String
+        ? jsonDecode(responseData) as Map<String, dynamic>
+        : responseData as Map<String, dynamic>;
+    final payload = data['payload'] ?? data['Payload'];
+    return _parseCheckoutPayload(payload);
   }
 }

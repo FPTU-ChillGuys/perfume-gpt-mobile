@@ -120,6 +120,8 @@ String _paymentMethodLabel(String method) {
       return 'Thanh toán qua MoMo';
     case 'ExternalBankTransfer':
       return 'Chuyển khoản ngân hàng';
+    case 'PayOs':
+      return 'Thanh toán qua PayOS';
     default:
       return method;
   }
@@ -307,6 +309,7 @@ const _retryPaymentMethods = [
   'CashInStore',
   'VnPay',
   'Momo',
+  'PayOs',
 ];
 
 /// Cancel behavior — same logic as order list
@@ -1534,7 +1537,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                             .read(orderRepositoryProvider)
                             .retryPayment(paymentId, selectedMethod);
                         if (selectedMethod == 'VnPay' ||
-                            selectedMethod == 'Momo') {
+                            selectedMethod == 'Momo' ||
+                            selectedMethod == 'PayOs') {
                           if (ctx.mounted) Navigator.pop(ctx);
                           if (url.isNotEmpty && context.mounted) {
                             context.push(

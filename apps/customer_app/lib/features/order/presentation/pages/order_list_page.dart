@@ -55,6 +55,8 @@ const _paymentMethodLabels = {
   'CashInStore': 'Thanh toán tiền mặt tại quầy',
   'VnPay': 'Thanh toán qua VNPay',
   'Momo': 'Thanh toán qua MoMo',
+  'ExternalBankTransfer': 'Chuyển khoản ngân hàng',
+  'PayOs': 'Thanh toán qua PayOS',
 };
 
 const _retryPaymentMethods = [
@@ -62,6 +64,7 @@ const _retryPaymentMethods = [
   'CashInStore',
   'VnPay',
   'Momo',
+  'PayOs',
 ];
 
 // ─── Label / Color helpers ──────────────────────────────────────────────────
@@ -575,7 +578,8 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                             .read(orderRepositoryProvider)
                             .retryPayment(paymentId!, selectedMethod);
                         if (selectedMethod == 'VnPay' ||
-                            selectedMethod == 'Momo') {
+                            selectedMethod == 'Momo' ||
+                            selectedMethod == 'PayOs') {
                           if (ctx.mounted) Navigator.pop(ctx);
                           if (url.isNotEmpty && context.mounted) {
                             context.push(
