@@ -1,12 +1,42 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/voucher.dart';
+import '../../../loyalty/presentation/providers/loyalty_providers.dart';
 import '../providers/voucher_providers.dart';
 
-final _currencyFormat = NumberFormat('#,###', 'vi_VN');
+final _currencyFmt = NumberFormat('#,###', 'vi_VN');
+final _dateFmt = DateFormat('dd/MM/yyyy');
+
+String _extractError(Object e) {
+  if (e is DioException) {
+    final data = e.response?.data;
+    if (data is Map) {
+      return data['message']?.toString() ?? 'Có lỗi xảy ra';
+    }
+  }
+  if (e is Exception) {
+    final s = e.toString();
+    if (s.startsWith('Exception: ')) return s.substring(11);
+    return s;
+  }
+  return 'Có lỗi xảy ra';
+}
+
+String _fmtDiscount(Voucher v) {
+  if (v.discountType == 'Percentage') return '${v.discountValue.toInt()}%';
+  return '${_currencyFmt.format(v.discountValue)}đ';
+}
+
+String _fmtMinOrder(Voucher v) {
+  if (v.minOrderValue == null || v.minOrderValue == 0) return 'Không giới hạn';
+  return '${_currencyFmt.format(v.minOrderValue)}đ';
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
 
 class VoucherListPage extends ConsumerStatefulWidget {
   const VoucherListPage({super.key});
@@ -15,7 +45,8 @@ class VoucherListPage extends ConsumerStatefulWidget {
   ConsumerState<VoucherListPage> createState() => _VoucherListPageState();
 }
 
-class _VoucherListPageState extends ConsumerState<VoucherListPage> with SingleTickerProviderStateMixin {
+class _VoucherListPageState extends ConsumerState<VoucherListPage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabCtrl;
 
   @override
@@ -32,18 +63,51 @@ class _VoucherListPageState extends ConsumerState<VoucherListPage> with SingleTi
 
   @override
   Widget build(BuildContext context) {
+    final loyaltyAsync = ref.watch(loyaltyTotalProvider);
+    final pointBalance = loyaltyAsync.asData?.value.totalPoints ?? 0;
+
     return Scaffold(
       backgroundColor: AppColors.surface,
       body: NestedScrollView(
-        headerSliverBuilder: (_, _) => [
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
-            expandedHeight: 120,
+            expandedHeight: 140,
             pinned: true,
             systemOverlayStyle: SystemUiOverlayStyle.light,
             backgroundColor: AppColors.primaryDark,
+            title: const Text('Kho Voucher',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20)),
+            actions: [
+              if (pointBalance > 0)
+                Center(
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 16),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.amber.shade700,
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.stars_rounded,
+                            size: 14, color: Colors.white),
+                        const SizedBox(width: 4),
+                        Text('${_currencyFmt.format(pointBalance)} điểm',
+                            style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600)),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
             flexibleSpace: FlexibleSpaceBar(
-              title: const Text('Voucher',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
               background: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -60,8 +124,8 @@ class _VoucherListPageState extends ConsumerState<VoucherListPage> with SingleTi
               labelColor: Colors.white,
               unselectedLabelColor: Colors.white60,
               tabs: const [
-                Tab(text: 'Có sẵn'),
                 Tab(text: 'Voucher của tôi'),
+                Tab(text: 'Đổi điểm lấy voucher'),
               ],
             ),
           ),
@@ -69,8 +133,8 @@ class _VoucherListPageState extends ConsumerState<VoucherListPage> with SingleTi
         body: TabBarView(
           controller: _tabCtrl,
           children: [
-            _AvailableTab(),
-            _MyVouchersTab(),
+            _MyVouchersTab(onSwitchTab: () => _tabCtrl.animateTo(1)),
+            _RedeemTab(),
           ],
         ),
       ),
@@ -78,188 +142,725 @@ class _VoucherListPageState extends ConsumerState<VoucherListPage> with SingleTi
   }
 }
 
-class _AvailableTab extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final vouchersAsync = ref.watch(availableVouchersProvider);
-
-    return vouchersAsync.when(
-      data: (vouchers) {
-        if (vouchers.isEmpty) return _EmptyState(icon: Icons.local_offer_outlined, text: 'Không có voucher khả dụng');
-        return ListView.separated(
-          padding: const EdgeInsets.all(16),
-          itemCount: vouchers.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 12),
-          itemBuilder: (_, i) => _VoucherCard(voucher: vouchers[i], showRedeem: true),
-        );
-      },
-      loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
-      error: (e, _) => Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Text('Lỗi khi tải voucher'),
-          TextButton(onPressed: () => ref.invalidate(availableVouchersProvider), child: const Text('Thử lại')),
-        ]),
-      ),
-    );
-  }
-}
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 0 – Voucher của tôi
+// ══════════════════════════════════════════════════════════════════════════════
 
 class _MyVouchersTab extends ConsumerWidget {
+  final VoidCallback onSwitchTab;
+  const _MyVouchersTab({required this.onSwitchTab});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final vouchersAsync = ref.watch(myVouchersProvider);
 
     return vouchersAsync.when(
       data: (vouchers) {
-        if (vouchers.isEmpty) return _EmptyState(icon: Icons.card_giftcard_outlined, text: 'Bạn chưa có voucher nào');
-        return ListView.separated(
-          padding: const EdgeInsets.all(16),
-          itemCount: vouchers.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 12),
-          itemBuilder: (_, i) => _VoucherCard(voucher: vouchers[i], showRedeem: false),
-        );
-      },
-      loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
-      error: (e, _) => Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Text('Lỗi khi tải voucher'),
-          TextButton(onPressed: () => ref.invalidate(myVouchersProvider), child: const Text('Thử lại')),
-        ]),
-      ),
-    );
-  }
-}
-
-class _VoucherCard extends ConsumerWidget {
-  final Voucher voucher;
-  final bool showRedeem;
-
-  const _VoucherCard({required this.voucher, required this.showRedeem});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isExpired = voucher.endDate != null && voucher.endDate!.isBefore(DateTime.now());
-
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: isExpired ? Colors.grey.shade300 : AppColors.border),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2)),
-        ],
-      ),
-      child: Row(
-        children: [
-          // ── Left badge ──
-          Container(
-            width: 80,
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            decoration: BoxDecoration(
-              color: isExpired ? Colors.grey.shade300 : AppColors.primaryLight,
-              borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), bottomLeft: Radius.circular(16)),
-            ),
+        if (vouchers.isEmpty) {
+          return Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.local_offer, color: isExpired ? Colors.grey : AppColors.primary, size: 28),
-                const SizedBox(height: 4),
-                Text(
-                  voucher.discountLabel,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 16,
-                    color: isExpired ? Colors.grey : AppColors.primary,
-                  ),
+                Icon(Icons.local_offer,
+                    size: 48,
+                    color: AppColors.textSecondary.withValues(alpha: 0.4)),
+                const SizedBox(height: 12),
+                const Text('Bạn chưa có voucher nào.',
+                    style: TextStyle(color: AppColors.textSecondary)),
+                const SizedBox(height: 8),
+                TextButton(
+                  onPressed: onSwitchTab,
+                  child: const Text('Đổi điểm lấy voucher'),
                 ),
               ],
             ),
-          ),
+          );
+        }
 
-          // ── Info ──
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(voucher.code,
-                            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.textPrimary, letterSpacing: 1)),
-                      ),
-                      if (isExpired)
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(6)),
-                          child: const Text('Hết hạn', style: TextStyle(fontSize: 10, color: Colors.grey)),
-                        ),
-                    ],
-                  ),
-                  if (voucher.description != null) ...[
-                    const SizedBox(height: 4),
-                    Text(voucher.description!, style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
-                  ],
-                  const SizedBox(height: 6),
-                  Row(
-                    children: [
-                      if (voucher.minOrderValue != null)
-                        Text('Đơn tối thiểu: ${_currencyFormat.format(voucher.minOrderValue)}đ',
-                            style: const TextStyle(fontSize: 11, color: AppColors.textSecondary)),
-                      const Spacer(),
-                      if (voucher.endDate != null)
-                        Text('HSD: ${DateFormat('dd/MM/yyyy').format(voucher.endDate!)}',
-                            style: const TextStyle(fontSize: 11, color: AppColors.textSecondary)),
-                    ],
-                  ),
-                  if (showRedeem && !isExpired) ...[
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      height: 32,
-                      child: ElevatedButton(
-                        onPressed: () => _redeemVoucher(context, ref),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                        ),
-                        child: const Text('Nhận voucher', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
+        final available =
+            vouchers.where((v) => !v.isUsed && !v.isExpired).toList();
+        final usedOrExpired =
+            vouchers.where((v) => v.isUsed || v.isExpired).toList();
+
+        return RefreshIndicator(
+          color: AppColors.primary,
+          onRefresh: () async => ref.invalidate(myVouchersProvider),
+          child: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              if (available.isNotEmpty) ...[
+                _SectionHeader(
+                    title: 'Có thể sử dụng',
+                    count: available.length,
+                    color: Colors.green),
+                const SizedBox(height: 8),
+                ...available.map((v) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: _UserVoucherCard(voucher: v),
+                    )),
+              ],
+              if (usedOrExpired.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                _SectionHeader(
+                    title: 'Đã dùng / Hết hạn',
+                    count: usedOrExpired.length,
+                    color: Colors.grey),
+                const SizedBox(height: 8),
+                ...usedOrExpired.map((v) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: _UserVoucherCard(voucher: v),
+                    )),
+              ],
+            ],
           ),
+        );
+      },
+      loading: () => const Center(
+          child: CircularProgressIndicator(color: AppColors.primary)),
+      error: (e, _) =>
+          _ErrorState(onRetry: () => ref.invalidate(myVouchersProvider)),
+    );
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TAB 1 – Đổi điểm lấy voucher
+// ══════════════════════════════════════════════════════════════════════════════
+
+class _RedeemTab extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final availableAsync = ref.watch(availableVouchersProvider);
+    final redeemableAsync = ref.watch(redeemableVouchersProvider);
+    final loyaltyAsync = ref.watch(loyaltyTotalProvider);
+    final pointBalance = loyaltyAsync.asData?.value.totalPoints ?? 0;
+
+    final isLoading = availableAsync.isLoading || redeemableAsync.isLoading;
+    final hasError = availableAsync.hasError || redeemableAsync.hasError;
+
+    if (isLoading) {
+      return const Center(
+          child: CircularProgressIndicator(color: AppColors.primary));
+    }
+    if (hasError) {
+      return _ErrorState(onRetry: () {
+        ref.invalidate(availableVouchersProvider);
+        ref.invalidate(redeemableVouchersProvider);
+      });
+    }
+
+    final redeemableList = redeemableAsync.asData?.value ?? [];
+    // Filter out available vouchers that are already in redeemable list
+    final redeemIds = redeemableList.map((v) => v.id).toSet();
+    final availableList = (availableAsync.asData?.value ?? [])
+        .where((v) => !redeemIds.contains(v.id))
+        .toList();
+
+    if (availableList.isEmpty && redeemableList.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.redeem,
+                size: 48,
+                color: AppColors.textSecondary.withValues(alpha: 0.4)),
+            const SizedBox(height: 12),
+            const Text('Chưa có voucher nào để đổi.',
+                style: TextStyle(color: AppColors.textSecondary)),
+          ],
+        ),
+      );
+    }
+
+    return RefreshIndicator(
+      color: AppColors.primary,
+      onRefresh: () async {
+        ref.invalidate(availableVouchersProvider);
+        ref.invalidate(redeemableVouchersProvider);
+        ref.invalidate(loyaltyTotalProvider);
+      },
+      child: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          if (availableList.isNotEmpty) ...[
+            _SectionHeader(
+                title: 'Voucher miễn phí',
+                count: availableList.length,
+                color: AppColors.primary),
+            const SizedBox(height: 8),
+            ...availableList.map((v) => Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: _AvailableCard(voucher: v),
+                )),
+          ],
+          if (redeemableList.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            _SectionHeader(
+                title: 'Đổi điểm',
+                count: redeemableList.length,
+                color: Colors.amber.shade800),
+            const SizedBox(height: 8),
+            ...redeemableList.map((v) => Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child:
+                      _RedeemableCard(voucher: v, pointBalance: pointBalance),
+                )),
+          ],
         ],
       ),
     );
   }
+}
 
-  void _redeemVoucher(BuildContext context, WidgetRef ref) async {
-    try {
-      await ref.read(voucherRepositoryProvider).redeem(voucher.code);
-      ref.invalidate(availableVouchersProvider);
-      ref.invalidate(myVouchersProvider);
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Đã nhận voucher ${voucher.code}')),
-        );
-      }
-    } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Lỗi: $e')));
-      }
-    }
+// ══════════════════════════════════════════════════════════════════════════════
+// CARDS — matching React FE design (thin left color bar + prominent discount)
+// ══════════════════════════════════════════════════════════════════════════════
+
+class _UserVoucherCard extends StatelessWidget {
+  final Voucher voucher;
+  const _UserVoucherCard({required this.voucher});
+
+  @override
+  Widget build(BuildContext context) {
+    final inactive = voucher.isUsed || voucher.isExpired;
+    final barColor = inactive ? Colors.grey.shade400 : AppColors.primary;
+
+    return Opacity(
+      opacity: inactive ? 0.6 : 1.0,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: inactive ? Colors.grey.shade300 : AppColors.primary,
+            width: inactive ? 1 : 1.5,
+          ),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withValues(alpha: 0.04),
+                blurRadius: 8,
+                offset: const Offset(0, 2)),
+          ],
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(width: 6, color: barColor),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // ── Header: code + status chip
+                      Row(
+                        children: [
+                          Icon(Icons.local_offer,
+                              size: 16,
+                              color:
+                                  inactive ? Colors.grey : AppColors.primary),
+                          const SizedBox(width: 6),
+                          Expanded(
+                            child: Text(voucher.code,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 13,
+                                    fontFamily: 'monospace',
+                                    letterSpacing: 0.5)),
+                          ),
+                          if (voucher.isUsed)
+                            _Chip(label: 'Đã dùng', color: Colors.grey),
+                          if (voucher.isExpired && !voucher.isUsed)
+                            _Chip(
+                                label: 'Hết hạn',
+                                color: Colors.red,
+                                outlined: true),
+                          if (!inactive)
+                            _Chip(label: 'Có thể dùng', color: Colors.green),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      // ── Discount
+                      Text(
+                        'Giảm ${_fmtDiscount(voucher)}',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: inactive
+                              ? AppColors.textSecondary
+                              : AppColors.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      // ── Min order
+                      Text(
+                        'Đơn tối thiểu: ${_fmtMinOrder(voucher)}',
+                        style: const TextStyle(
+                            fontSize: 12, color: AppColors.textSecondary),
+                      ),
+                      const Divider(height: 16),
+                      // ── Footer: HSD + redeemedAt
+                      Row(
+                        children: [
+                          Text(
+                            'HSD: ${voucher.expiryDate != null ? _dateFmt.format(voucher.expiryDate!) : '—'}',
+                            style: const TextStyle(
+                                fontSize: 12, color: AppColors.textSecondary),
+                          ),
+                          if (voucher.redeemedAt != null) ...[
+                            const SizedBox(width: 12),
+                            Text(
+                              'Nhận: ${_dateFmt.format(voucher.redeemedAt!)}',
+                              style: const TextStyle(
+                                  fontSize: 12,
+                                  color: AppColors.textSecondary),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
-class _EmptyState extends StatelessWidget {
-  final IconData icon;
-  final String text;
-  const _EmptyState({required this.icon, required this.text});
+class _AvailableCard extends ConsumerStatefulWidget {
+  final Voucher voucher;
+  const _AvailableCard({required this.voucher});
+
+  @override
+  ConsumerState<_AvailableCard> createState() => _AvailableCardState();
+}
+
+class _AvailableCardState extends ConsumerState<_AvailableCard> {
+  bool _loading = false;
+
+  Future<void> _handleRedeem() async {
+    setState(() => _loading = true);
+    try {
+      await ref.read(voucherRepositoryProvider).redeem(widget.voucher.id);
+      ref.invalidate(availableVouchersProvider);
+      ref.invalidate(myVouchersProvider);
+      ref.invalidate(redeemableVouchersProvider);
+      ref.invalidate(loyaltyTotalProvider);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Đã nhận voucher ${widget.voucher.code}'),
+          backgroundColor: Colors.green,
+        ));
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(_extractError(e)),
+          backgroundColor: Colors.red,
+        ));
+      }
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final v = widget.voucher;
+    final hasStock = (v.remainingQuantity ?? 1) > 0;
+    final barColor = hasStock ? AppColors.primary : Colors.grey.shade400;
+
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: hasStock ? AppColors.primary : Colors.grey.shade300,
+          width: hasStock ? 1.5 : 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 8,
+              offset: const Offset(0, 2)),
+        ],
+      ),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(width: 6, color: barColor),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // ── Header: code + chip
+                    Row(
+                      children: [
+                        Icon(Icons.local_offer,
+                            size: 16,
+                            color:
+                                hasStock ? AppColors.primary : Colors.grey),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(v.code,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 13,
+                                  fontFamily: 'monospace',
+                                  letterSpacing: 0.5)),
+                        ),
+                        if (!hasStock)
+                          _Chip(label: 'Hết voucher', color: Colors.grey)
+                        else
+                          _Chip(label: 'Miễn phí', color: Colors.green),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    // ── Discount
+                    Text(
+                      'Giảm ${_fmtDiscount(v)}',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: hasStock
+                            ? AppColors.primary
+                            : AppColors.textSecondary,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    // ── Min order
+                    Text(
+                      'Đơn tối thiểu: ${_fmtMinOrder(v)}',
+                      style: const TextStyle(
+                          fontSize: 12, color: AppColors.textSecondary),
+                    ),
+                    const Divider(height: 16),
+                    // ── Footer: HSD + button
+                    Row(
+                      children: [
+                        Text(
+                          'HSD: ${v.expiryDate != null ? _dateFmt.format(v.expiryDate!) : '—'}',
+                          style: const TextStyle(
+                              fontSize: 12, color: AppColors.textSecondary),
+                        ),
+                        const Spacer(),
+                        SizedBox(
+                          height: 32,
+                          child: ElevatedButton.icon(
+                            onPressed:
+                                _loading || !hasStock ? null : _handleRedeem,
+                            icon: _loading
+                                ? const SizedBox(
+                                    width: 14,
+                                    height: 14,
+                                    child: CircularProgressIndicator(
+                                        strokeWidth: 2, color: Colors.white))
+                                : const Icon(Icons.redeem, size: 16),
+                            label: const Text('Nhận ngay',
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.w600)),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                              disabledBackgroundColor: Colors.grey.shade300,
+                              foregroundColor: Colors.white,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RedeemableCard extends ConsumerStatefulWidget {
+  final Voucher voucher;
+  final int pointBalance;
+  const _RedeemableCard({required this.voucher, required this.pointBalance});
+
+  @override
+  ConsumerState<_RedeemableCard> createState() => _RedeemableCardState();
+}
+
+class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
+  bool _loading = false;
+
+  Future<void> _handleRedeem() async {
+    final requiredPts = widget.voucher.requiredPoints ?? 0;
+    if (widget.pointBalance < requiredPts) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Bạn không đủ điểm để đổi voucher này'),
+        backgroundColor: Colors.red,
+      ));
+      return;
+    }
+    setState(() => _loading = true);
+    try {
+      await ref.read(voucherRepositoryProvider).redeem(widget.voucher.id);
+      ref.invalidate(availableVouchersProvider);
+      ref.invalidate(myVouchersProvider);
+      ref.invalidate(redeemableVouchersProvider);
+      ref.invalidate(loyaltyTotalProvider);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Đã đổi voucher ${widget.voucher.code}'),
+          backgroundColor: Colors.green,
+        ));
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(_extractError(e)),
+          backgroundColor: Colors.red,
+        ));
+      }
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final v = widget.voucher;
+    final requiredPts = v.requiredPoints ?? 0;
+    final hasStock = (v.remainingQuantity ?? 1) > 0;
+    final canRedeem =
+        widget.pointBalance >= requiredPts && hasStock && !v.isExpired;
+    final barColor = canRedeem ? Colors.green.shade600 : Colors.grey.shade400;
+
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: canRedeem ? Colors.green.shade600 : Colors.grey.shade300,
+          width: canRedeem ? 1.5 : 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 8,
+              offset: const Offset(0, 2)),
+        ],
+      ),
+      child: Opacity(
+        opacity: v.isExpired ? 0.6 : 1.0,
+        child: IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(width: 6, color: barColor),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // ── Header: code + status chip
+                      Row(
+                        children: [
+                          Icon(Icons.local_offer,
+                              size: 16,
+                              color: canRedeem
+                                  ? Colors.green.shade600
+                                  : Colors.grey),
+                          const SizedBox(width: 6),
+                          Expanded(
+                            child: Text(v.code,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 13,
+                                    fontFamily: 'monospace',
+                                    letterSpacing: 0.5)),
+                          ),
+                          if (v.isExpired)
+                            _Chip(
+                                label: 'Hết hạn',
+                                color: Colors.red,
+                                outlined: true)
+                          else if (!hasStock)
+                            _Chip(label: 'Hết voucher', color: Colors.grey)
+                          else
+                            _Chip(
+                                label:
+                                    'Còn ${v.remainingQuantity ?? '∞'}',
+                                color: Colors.blue,
+                                outlined: true),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      // ── Discount
+                      Text(
+                        'Giảm ${_fmtDiscount(v)}',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: canRedeem
+                              ? Colors.green.shade800
+                              : AppColors.textSecondary,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      // ── Min order
+                      Text(
+                        'Đơn tối thiểu: ${_fmtMinOrder(v)}',
+                        style: const TextStyle(
+                            fontSize: 12, color: AppColors.textSecondary),
+                      ),
+                      const Divider(height: 16),
+                      // ── Footer: points + button
+                      Row(
+                        children: [
+                          Icon(Icons.hourglass_empty,
+                              size: 14, color: Colors.amber.shade700),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${_currencyFmt.format(requiredPts)} điểm',
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.amber.shade800),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            height: 32,
+                            child: Tooltip(
+                              message: !canRedeem &&
+                                      widget.pointBalance < requiredPts
+                                  ? 'Chưa đủ điểm (cần ${_currencyFmt.format(requiredPts)})'
+                                  : '',
+                              child: ElevatedButton.icon(
+                                onPressed: _loading || !canRedeem
+                                    ? null
+                                    : _handleRedeem,
+                                icon: _loading
+                                    ? const SizedBox(
+                                        width: 14,
+                                        height: 14,
+                                        child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            color: Colors.white))
+                                    : const Icon(Icons.redeem, size: 16),
+                                label: const Text('Nhận ngay',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600)),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.green.shade600,
+                                  disabledBackgroundColor:
+                                      Colors.grey.shade300,
+                                  foregroundColor: Colors.white,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8)),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SHARED WIDGETS
+// ══════════════════════════════════════════════════════════════════════════════
+
+class _Chip extends StatelessWidget {
+  final String label;
+  final Color color;
+  final bool outlined;
+  const _Chip(
+      {required this.label, required this.color, this.outlined = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: outlined ? Colors.transparent : color.withValues(alpha: 0.12),
+        border: outlined ? Border.all(color: color, width: 1) : null,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Text(label,
+          style: TextStyle(
+              fontSize: 10, fontWeight: FontWeight.w600, color: color)),
+    );
+  }
+}
+
+class _SectionHeader extends StatelessWidget {
+  final String title;
+  final int count;
+  final Color color;
+  const _SectionHeader(
+      {required this.title, required this.count, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: 4,
+          height: 18,
+          decoration: BoxDecoration(
+              color: color, borderRadius: BorderRadius.circular(2)),
+        ),
+        const SizedBox(width: 8),
+        Text(title,
+            style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 15,
+                color: AppColors.textPrimary)),
+        const SizedBox(width: 6),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.15),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Text('$count',
+              style: TextStyle(
+                  fontSize: 12, fontWeight: FontWeight.w600, color: color)),
+        ),
+      ],
+    );
+  }
+}
+
+class _ErrorState extends StatelessWidget {
+  final VoidCallback onRetry;
+  const _ErrorState({required this.onRetry});
 
   @override
   Widget build(BuildContext context) {
@@ -267,9 +868,8 @@ class _EmptyState extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 64, color: AppColors.textSecondary.withValues(alpha: 0.5)),
-          const SizedBox(height: 16),
-          Text(text, style: const TextStyle(fontSize: 16, color: AppColors.textSecondary)),
+          const Text('Lỗi khi tải voucher'),
+          TextButton(onPressed: onRetry, child: const Text('Thử lại')),
         ],
       ),
     );

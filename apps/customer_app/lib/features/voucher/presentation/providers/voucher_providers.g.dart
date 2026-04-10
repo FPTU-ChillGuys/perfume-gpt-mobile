@@ -133,3 +133,43 @@ final class MyVouchersProvider
 }
 
 String _$myVouchersHash() => r'de180caf3f540a8c5af55c9348681c24134b19e1';
+
+@ProviderFor(redeemableVouchers)
+final redeemableVouchersProvider = RedeemableVouchersProvider._();
+
+final class RedeemableVouchersProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Voucher>>,
+          List<Voucher>,
+          FutureOr<List<Voucher>>
+        >
+    with $FutureModifier<List<Voucher>>, $FutureProvider<List<Voucher>> {
+  RedeemableVouchersProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'redeemableVouchersProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$redeemableVouchersHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Voucher>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Voucher>> create(Ref ref) {
+    return redeemableVouchers(ref);
+  }
+}
+
+String _$redeemableVouchersHash() =>
+    r'30964c6d1d08ac6251b3b7f6bdd2aa1b6f56bf55';

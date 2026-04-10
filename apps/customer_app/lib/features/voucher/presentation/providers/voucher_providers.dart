@@ -21,3 +21,8 @@ FutureOr<List<Voucher>> availableVouchers(Ref ref) {
 FutureOr<List<Voucher>> myVouchers(Ref ref) {
   return ref.watch(voucherRepositoryProvider).getMyVouchers();
 }
+
+@riverpod
+FutureOr<List<Voucher>> redeemableVouchers(Ref ref) {
+  return ref.watch(voucherRepositoryProvider).getRedeemableList();
+}

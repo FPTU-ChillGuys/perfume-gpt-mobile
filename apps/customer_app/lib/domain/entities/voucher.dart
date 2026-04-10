@@ -1,36 +1,48 @@
 class Voucher {
   final String id;
   final String code;
-  final String? description;
   final String discountType; // Percentage, FixedAmount
   final double discountValue;
   final double? minOrderValue;
-  final double? maxDiscount;
-  final DateTime? startDate;
-  final DateTime? endDate;
-  final int? usageLimit;
-  final int? usedCount;
-  final bool isActive;
+  final DateTime? expiryDate;
+  final int? remainingQuantity;
+  final int? requiredPoints;
+  final bool isUsed;
+  final bool isExpired;
+  final String? status;
+  final DateTime? redeemedAt;
 
   const Voucher({
     required this.id,
     required this.code,
-    this.description,
     required this.discountType,
     required this.discountValue,
     this.minOrderValue,
-    this.maxDiscount,
-    this.startDate,
-    this.endDate,
-    this.usageLimit,
-    this.usedCount,
-    this.isActive = true,
+    this.expiryDate,
+    this.remainingQuantity,
+    this.requiredPoints,
+    this.isUsed = false,
+    this.isExpired = false,
+    this.status,
+    this.redeemedAt,
   });
+
+  bool get isActive => !isUsed && !isExpired;
 
   String get discountLabel {
     if (discountType == 'Percentage') {
       return '-${discountValue.toInt()}%';
     }
-    return '-${discountValue.toStringAsFixed(0)}đ';
+    return '-${_formatNumber(discountValue)}đ';
+  }
+
+  static String _formatNumber(double value) {
+    final str = value.toStringAsFixed(0);
+    final buf = StringBuffer();
+    for (var i = 0; i < str.length; i++) {
+      if (i > 0 && (str.length - i) % 3 == 0) buf.write('.');
+      buf.write(str[i]);
+    }
+    return buf.toString();
   }
 }

@@ -65,7 +65,10 @@ class AppRouter {
       GoRoute(path: '/cart', builder: (context, state) => const CartPage()),
       GoRoute(
         path: '/checkout',
-        builder: (context, state) => const CheckoutPage(),
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return CheckoutPage(voucherCodeFromCart: extra?['voucherCode'] as String?);
+        },
       ),
       GoRoute(
         path: '/payment-webview',
