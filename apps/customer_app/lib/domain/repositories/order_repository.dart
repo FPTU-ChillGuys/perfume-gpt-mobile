@@ -1,7 +1,8 @@
+import '../entities/checkout_result.dart';
 import '../entities/order.dart';
 
 class CheckoutRequest {
-  final String paymentMethod; // CashOnDelivery, VnPay, Momo
+  final String paymentMethod; // CashOnDelivery, VnPay, Momo, CashInStore, ExternalBankTransfer, PayOs
   final String deliveryMethod; // Delivery, PickupInStore
   final List<String>? itemIds;
   final double? expectedTotalPrice;
@@ -45,7 +46,7 @@ class RecipientAddress {
 }
 
 abstract class OrderRepository {
-  Future<String> checkout(CheckoutRequest request);
+  Future<CheckoutResult> checkout(CheckoutRequest request);
   Future<PaginatedOrders> getMyOrders({
     String? status,
     String? type,
