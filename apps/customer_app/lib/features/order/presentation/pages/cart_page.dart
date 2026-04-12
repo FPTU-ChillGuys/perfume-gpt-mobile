@@ -1134,6 +1134,31 @@ class _VoucherPickerCard extends StatelessWidget {
                             fontWeight: FontWeight.w600, fontSize: 14),
                       ),
                       const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: voucher.isMemberOnly
+                                  ? Colors.deepPurple.withValues(alpha: 0.12)
+                                  : Colors.teal.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              voucher.isMemberOnly ? 'Member' : 'Public',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w600,
+                                color: voucher.isMemberOnly
+                                    ? Colors.deepPurple
+                                    : Colors.teal,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
                       if ((voucher.minOrderValue ?? 0) > 0)
                         Text(
                           'Đơn tối thiểu: ${fmt.format(voucher.minOrderValue!)}đ',

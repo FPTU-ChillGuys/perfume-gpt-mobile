@@ -122,6 +122,8 @@ class VoucherRepositoryImpl implements VoucherRepository {
         minOrderValue: (j['minOrderValue'] as num?)?.toDouble(),
         expiryDate: DateTime.tryParse(j['expiryDate']?.toString() ?? ''),
         remainingQuantity: j['remainingQuantity'] as int?,
+        isPublic: j['isPublic'] as bool? ?? true,
+        isMemberOnly: j['isMemberOnly'] as bool? ?? false,
       );
 
   Voucher _mapRawUserVoucher(Map<String, dynamic> j) => Voucher(
@@ -137,6 +139,8 @@ class VoucherRepositoryImpl implements VoucherRepository {
         isExpired: j['isExpired'] == true,
         status: j['status']?.toString(),
         redeemedAt: DateTime.tryParse(j['redeemedAt']?.toString() ?? ''),
+        isPublic: j['isPublic'] as bool? ?? true,
+        isMemberOnly: j['isMemberOnly'] as bool? ?? false,
       );
 
   Voucher _mapRawRedeemable(Map<String, dynamic> j) => Voucher(
@@ -151,6 +155,8 @@ class VoucherRepositoryImpl implements VoucherRepository {
         requiredPoints: j['requiredPoints'] as int?,
         remainingQuantity: j['remainingQuantity'] as int?,
         isExpired: j['isExpired'] == true,
+        isPublic: j['isPublic'] as bool? ?? true,
+        isMemberOnly: j['isMemberOnly'] as bool? ?? false,
       );
 
   // ── Typed mappers (happy path) ────────────────────────────────────────────

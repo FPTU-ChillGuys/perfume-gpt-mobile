@@ -184,32 +184,38 @@ class _AuthenticatedView extends ConsumerWidget {
             padding: const EdgeInsets.fromLTRB(24, 16, 24, 28),
             child: Column(
               children: [
-                // Avatar
-                CircleAvatar(
-                  radius: 36,
-                  backgroundColor: Colors.white24,
-                  backgroundImage: profileAsync.whenOrNull(
-                    data: (p) => p.avatarUrl != null && p.avatarUrl!.isNotEmpty
-                        ? NetworkImage(ImageUrlHelper.resolve(p.avatarUrl!))
-                        : null,
-                  ),
-                  child: profileAsync.maybeWhen(
-                    data: (p) => p.avatarUrl != null && p.avatarUrl!.isNotEmpty
-                        ? null
-                        : Text(
-                            initial,
-                            style: const TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                // Avatar (tappable → go to edit)
+                GestureDetector(
+                  onTap: () async {
+                    final updated = await context.push<bool>('/profile/edit');
+                    if (updated == true) ref.invalidate(profileControllerProvider);
+                  },
+                  child: CircleAvatar(
+                    radius: 36,
+                    backgroundColor: Colors.white24,
+                    backgroundImage: profileAsync.whenOrNull(
+                      data: (p) => p.avatarUrl != null && p.avatarUrl!.isNotEmpty
+                          ? NetworkImage(ImageUrlHelper.resolve(p.avatarUrl!))
+                          : null,
+                    ),
+                    child: profileAsync.maybeWhen(
+                      data: (p) => p.avatarUrl != null && p.avatarUrl!.isNotEmpty
+                          ? null
+                          : Text(
+                              initial,
+                              style: const TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                    orElse: () => Text(
-                      initial,
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                      orElse: () => Text(
+                        initial,
+                        style: const TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -231,6 +237,19 @@ class _AuthenticatedView extends ConsumerWidget {
                 Text(
                   userEmail,
                   style: const TextStyle(color: Colors.white60, fontSize: 13),
+                ),
+                // ── Phone number ──
+                profileAsync.maybeWhen(
+                  data: (p) => p.phoneNumber != null && p.phoneNumber!.isNotEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 2),
+                          child: Text(
+                            p.phoneNumber!,
+                            style: const TextStyle(color: Colors.white60, fontSize: 13),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                  orElse: () => const SizedBox.shrink(),
                 ),
                 const SizedBox(height: 12),
                 // ── Loyalty points badge ──
@@ -313,6 +332,15 @@ class _AuthenticatedView extends ConsumerWidget {
                 title: 'Voucher',
                 subtitle: 'Xem và nhận voucher giảm giá',
                 onTap: () => context.push('/vouchers'),
+              ),
+              const SizedBox(height: 10),
+
+              // Scent preferences
+              _MenuCard(
+                icon: Icons.spa_outlined,
+                title: 'Sở thích hương',
+                subtitle: 'Nốt hương, nhóm hương, đặc tính yêu thích',
+                onTap: () => context.push('/scent-preferences'),
               ),
               const SizedBox(height: 10),
 
