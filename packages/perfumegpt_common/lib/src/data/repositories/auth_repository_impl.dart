@@ -18,9 +18,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   Future<void> _ensureGoogleSignInInitialized() async {
     if (!_isGoogleSignInInitialized) {
-      await _googleSignIn.initialize(
-        serverClientId: _serverClientId,
-      );
+      await _googleSignIn.initialize(serverClientId: _serverClientId);
       _isGoogleSignInInitialized = true;
     }
   }
@@ -42,6 +40,11 @@ class AuthRepositoryImpl implements AuthRepository {
       GoogleSignInAccount? googleUser;
 
       try {
+        // Ensure a clean state before authenticating
+        try {
+          await _googleSignIn.signOut();
+        } catch (_) {}
+
         googleUser = await _googleSignIn.authenticate(scopeHint: ['email']);
       } on GoogleSignInException catch (e) {
         if (e.code == GoogleSignInExceptionCode.canceled) {
