@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 
 void main() {
-  runApp(const ProviderScope(child: StaffApp()));
+  runApp(
+    ProviderScope(
+      overrides: [
+        googleSignInServerClientIdProvider.overrideWithValue(
+          'Y1025537944350-q9emi9huhuasommv3q1n9veeoo4j5jmm.apps.googleusercontent.com',
+        ),
+      ],
+      child: const StaffApp(),
+    ),
+  );
 }
 
 class StaffApp extends ConsumerWidget {
