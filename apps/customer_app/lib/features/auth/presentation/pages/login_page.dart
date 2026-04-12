@@ -31,7 +31,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       next.whenOrNull(
         data: (user) async {
           if (user != null) {
-            final guestItems = await ref.read(cartRepositoryProvider).getItems(isAuthenticated: false);
+            final guestItems = await ref
+                .read(cartRepositoryProvider)
+                .getItems(isAuthenticated: false);
             if (guestItems.isNotEmpty && context.mounted) {
               final shouldMerge = await showDialog<bool>(
                 context: context,
@@ -56,7 +58,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               if (shouldMerge == true) {
                 await ref.read(cartProvider.notifier).mergeCart(guestItems);
               } else if (shouldMerge == false) {
-                await ref.read(cartRepositoryProvider).clearCart(isAuthenticated: false);
+                await ref
+                    .read(cartRepositoryProvider)
+                    .clearCart(isAuthenticated: false);
                 // Reload cart from server after discarding guest items
                 await ref.read(cartProvider.notifier).reload();
               }
@@ -85,51 +89,70 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.auto_awesome, size: 80, color: AppColors.primary),
-            const SizedBox(height: 32),
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
+              const Icon(
+                Icons.auto_awesome,
+                size: 80,
+                color: AppColors.primary,
               ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Mật khẩu',
-                border: OutlineInputBorder(),
+              const SizedBox(height: 32),
+              TextField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.emailAddress,
               ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: authState.isLoading
-                    ? null
-                    : () {
-                        ref
-                            .read(authProvider.notifier)
-                            .login(
-                              _emailController.text,
-                              _passwordController.text,
-                            );
-                      },
-                child: authState.isLoading
-                    ? const CircularProgressIndicator()
-                    : const Text('Đăng nhập'),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _passwordController,
+                decoration: const InputDecoration(
+                  labelText: 'Mật khẩu',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
               ),
-            ),
-            TextButton(
-              onPressed: () => context.push('/register'),
-              child: const Text('Chưa có tài khoản? Đăng ký ngay'),
-            ),
-          ],
-        ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: authState.isLoading
+                      ? null
+                      : () {
+                          ref
+                              .read(authProvider.notifier)
+                              .login(
+                                _emailController.text,
+                                _passwordController.text,
+                              );
+                        },
+                  child: authState.isLoading
+                      ? const CircularProgressIndicator()
+                      : const Text('Đăng nhập'),
+                ),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: OutlinedButton.icon(
+                  onPressed: authState.isLoading
+                      ? null
+                      : () {
+                          ref.read(authProvider.notifier).googleLogin();
+                        },
+                  icon: const Icon(Icons.g_mobiledata, size: 32),
+                  label: const Text('Đăng nhập bằng Google'),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextButton(
+                onPressed: () => context.push('/register'),
+                child: const Text('Chưa có tài khoản? Đăng ký ngay'),
+              ),
+            ],
+          ),
         ),
       ),
     );
