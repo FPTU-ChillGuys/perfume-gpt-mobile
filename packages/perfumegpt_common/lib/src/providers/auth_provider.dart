@@ -28,6 +28,13 @@ class Auth extends _$Auth {
     });
   }
 
+  Future<void> googleLogin() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      return ref.read(authRepositoryProvider).googleLogin();
+    });
+  }
+
   Future<void> register(String email, String password, String name) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
