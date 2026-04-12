@@ -140,6 +140,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ),
                 ),
+                const SizedBox(height: 16),
+                OutlinedButton.icon(
+                  onPressed: authState.isLoading
+                      ? null
+                      : () {
+                          ref.read(authProvider.notifier).googleLogin();
+                        },
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                  ),
+                  icon: const Icon(Icons.g_mobiledata, size: 32),
+                  label: const Text(
+                    'SIGN IN WITH GOOGLE',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 const SizedBox(height: 24),
                 Text(
                   'Authorized Staff Only',
