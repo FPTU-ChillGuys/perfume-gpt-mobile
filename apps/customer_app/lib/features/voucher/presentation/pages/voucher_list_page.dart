@@ -146,12 +146,32 @@ class _VoucherListPageState extends ConsumerState<VoucherListPage>
 // TAB 0 – Voucher của tôi
 // ══════════════════════════════════════════════════════════════════════════════
 
-class _MyVouchersTab extends ConsumerWidget {
+class _MyVouchersTab extends ConsumerStatefulWidget {
   final VoidCallback onSwitchTab;
   const _MyVouchersTab({required this.onSwitchTab});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_MyVouchersTab> createState() => _MyVouchersTabState();
+}
+
+enum _VoucherFilter { all, public_, member }
+
+class _MyVouchersTabState extends ConsumerState<_MyVouchersTab> {
+  _VoucherFilter _filter = _VoucherFilter.all;
+
+  List<Voucher> _applyFilter(List<Voucher> list) {
+    switch (_filter) {
+      case _VoucherFilter.public_:
+        return list.where((v) => v.isPublic && !v.isMemberOnly).toList();
+      case _VoucherFilter.member:
+        return list.where((v) => v.isMemberOnly).toList();
+      case _VoucherFilter.all:
+        return list;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final vouchersAsync = ref.watch(myVouchersProvider);
 
     return vouchersAsync.when(
@@ -169,7 +189,7 @@ class _MyVouchersTab extends ConsumerWidget {
                     style: TextStyle(color: AppColors.textSecondary)),
                 const SizedBox(height: 8),
                 TextButton(
-                  onPressed: onSwitchTab,
+                  onPressed: widget.onSwitchTab,
                   child: const Text('Đổi điểm lấy voucher'),
                 ),
               ],
@@ -177,10 +197,11 @@ class _MyVouchersTab extends ConsumerWidget {
           );
         }
 
+        final filtered = _applyFilter(vouchers);
         final available =
-            vouchers.where((v) => !v.isUsed && !v.isExpired).toList();
+            filtered.where((v) => !v.isUsed && !v.isExpired).toList();
         final usedOrExpired =
-            vouchers.where((v) => v.isUsed || v.isExpired).toList();
+            filtered.where((v) => v.isUsed || v.isExpired).toList();
 
         return RefreshIndicator(
           color: AppColors.primary,
@@ -188,6 +209,22 @@ class _MyVouchersTab extends ConsumerWidget {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              // ── Filter row
+              _FilterRow(
+                current: _filter,
+                onChanged: (f) => setState(() => _filter = f),
+              ),
+              const SizedBox(height: 12),
+              if (available.isEmpty && usedOrExpired.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Center(
+                    child: Text(
+                      'Không có voucher ${_filter == _VoucherFilter.public_ ? 'Public' : 'Member'} nào.',
+                      style: const TextStyle(color: AppColors.textSecondary),
+                    ),
+                  ),
+                ),
               if (available.isNotEmpty) ...[
                 _SectionHeader(
                     title: 'Có thể sử dụng',
@@ -227,9 +264,27 @@ class _MyVouchersTab extends ConsumerWidget {
 // TAB 1 – Đổi điểm lấy voucher
 // ══════════════════════════════════════════════════════════════════════════════
 
-class _RedeemTab extends ConsumerWidget {
+class _RedeemTab extends ConsumerStatefulWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_RedeemTab> createState() => _RedeemTabState();
+}
+
+class _RedeemTabState extends ConsumerState<_RedeemTab> {
+  _VoucherFilter _filter = _VoucherFilter.all;
+
+  List<Voucher> _applyFilter(List<Voucher> list) {
+    switch (_filter) {
+      case _VoucherFilter.public_:
+        return list.where((v) => v.isPublic && !v.isMemberOnly).toList();
+      case _VoucherFilter.member:
+        return list.where((v) => v.isMemberOnly).toList();
+      case _VoucherFilter.all:
+        return list;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final availableAsync = ref.watch(availableVouchersProvider);
     final redeemableAsync = ref.watch(redeemableVouchersProvider);
     final loyaltyAsync = ref.watch(loyaltyTotalProvider);
@@ -252,11 +307,14 @@ class _RedeemTab extends ConsumerWidget {
     final redeemableList = redeemableAsync.asData?.value ?? [];
     // Filter out available vouchers that are already in redeemable list
     final redeemIds = redeemableList.map((v) => v.id).toSet();
-    final availableList = (availableAsync.asData?.value ?? [])
+    final availableListRaw = (availableAsync.asData?.value ?? [])
         .where((v) => !redeemIds.contains(v.id))
         .toList();
 
-    if (availableList.isEmpty && redeemableList.isEmpty) {
+    final availableList = _applyFilter(availableListRaw);
+    final filteredRedeemable = _applyFilter(redeemableList);
+
+    if (availableListRaw.isEmpty && redeemableList.isEmpty) {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -282,6 +340,22 @@ class _RedeemTab extends ConsumerWidget {
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          // ── Filter row
+          _FilterRow(
+            current: _filter,
+            onChanged: (f) => setState(() => _filter = f),
+          ),
+          const SizedBox(height: 12),
+          if (availableList.isEmpty && filteredRedeemable.isEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: Center(
+                child: Text(
+                  'Không có voucher ${_filter == _VoucherFilter.public_ ? 'Public' : 'Member'} nào.',
+                  style: const TextStyle(color: AppColors.textSecondary),
+                ),
+              ),
+            ),
           if (availableList.isNotEmpty) ...[
             _SectionHeader(
                 title: 'Voucher miễn phí',
@@ -293,14 +367,14 @@ class _RedeemTab extends ConsumerWidget {
                   child: _AvailableCard(voucher: v),
                 )),
           ],
-          if (redeemableList.isNotEmpty) ...[
+          if (filteredRedeemable.isNotEmpty) ...[
             const SizedBox(height: 8),
             _SectionHeader(
                 title: 'Đổi điểm',
-                count: redeemableList.length,
+                count: filteredRedeemable.length,
                 color: Colors.amber.shade800),
             const SizedBox(height: 8),
-            ...redeemableList.map((v) => Padding(
+            ...filteredRedeemable.map((v) => Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child:
                       _RedeemableCard(voucher: v, pointBalance: pointBalance),
@@ -370,6 +444,21 @@ class _UserVoucherCard extends StatelessWidget {
                                     fontFamily: 'monospace',
                                     letterSpacing: 0.5)),
                           ),
+                          if (voucher.isMemberOnly)
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4),
+                              child: _Chip(
+                                  label: 'Member',
+                                  color: Colors.deepPurple),
+                            )
+                          else
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4),
+                              child: _Chip(
+                                  label: 'Public',
+                                  color: Colors.teal,
+                                  outlined: true),
+                            ),
                           if (voucher.isUsed)
                             _Chip(label: 'Đã dùng', color: Colors.grey),
                           if (voucher.isExpired && !voucher.isUsed)
@@ -518,6 +607,21 @@ class _AvailableCardState extends ConsumerState<_AvailableCard> {
                                   fontFamily: 'monospace',
                                   letterSpacing: 0.5)),
                         ),
+                        if (v.isMemberOnly)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4),
+                            child: _Chip(
+                                label: 'Member',
+                                color: Colors.deepPurple),
+                          )
+                        else
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4),
+                            child: _Chip(
+                                label: 'Public',
+                                color: Colors.teal,
+                                outlined: true),
+                          ),
                         if (!hasStock)
                           _Chip(label: 'Hết voucher', color: Colors.grey)
                         else
@@ -693,6 +797,21 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
                                     fontFamily: 'monospace',
                                     letterSpacing: 0.5)),
                           ),
+                          if (v.isMemberOnly)
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4),
+                              child: _Chip(
+                                  label: 'Member',
+                                  color: Colors.deepPurple),
+                            )
+                          else
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4),
+                              child: _Chip(
+                                  label: 'Public',
+                                  color: Colors.teal,
+                                  outlined: true),
+                            ),
                           if (v.isExpired)
                             _Chip(
                                 label: 'Hết hạn',
@@ -795,6 +914,49 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
 // ══════════════════════════════════════════════════════════════════════════════
 // SHARED WIDGETS
 // ══════════════════════════════════════════════════════════════════════════════
+
+class _FilterRow extends StatelessWidget {
+  final _VoucherFilter current;
+  final ValueChanged<_VoucherFilter> onChanged;
+  const _FilterRow({required this.current, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    Widget chip(_VoucherFilter filter, String label, IconData icon) {
+      final selected = current == filter;
+      return Padding(
+        padding: const EdgeInsets.only(right: 8),
+        child: FilterChip(
+          avatar: Icon(icon,
+              size: 16,
+              color: selected ? Colors.white : AppColors.textSecondary),
+          label: Text(label),
+          selected: selected,
+          onSelected: (_) => onChanged(filter),
+          selectedColor: AppColors.primary,
+          backgroundColor: Colors.white,
+          side: BorderSide(
+              color: selected ? AppColors.primary : Colors.grey.shade300),
+          labelStyle: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: selected ? Colors.white : AppColors.textPrimary,
+          ),
+          showCheckmark: false,
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+        ),
+      );
+    }
+
+    return Row(
+      children: [
+        chip(_VoucherFilter.all, 'Tất cả', Icons.list_alt),
+        chip(_VoucherFilter.public_, 'Public', Icons.public),
+        chip(_VoucherFilter.member, 'Member', Icons.person),
+      ],
+    );
+  }
+}
 
 class _Chip extends StatelessWidget {
   final String label;

@@ -11,6 +11,8 @@ class Voucher {
   final bool isExpired;
   final String? status;
   final DateTime? redeemedAt;
+  final bool isPublic;
+  final bool isMemberOnly;
 
   const Voucher({
     required this.id,
@@ -25,6 +27,8 @@ class Voucher {
     this.isExpired = false,
     this.status,
     this.redeemedAt,
+    this.isPublic = true,
+    this.isMemberOnly = false,
   });
 
   bool get isActive => !isUsed && !isExpired;

@@ -21,6 +21,7 @@ import '../../features/order/presentation/pages/return_request_detail_page.dart'
 import '../../features/order/presentation/pages/return_request_list_page.dart';
 import '../../features/profile/presentation/pages/profile_edit_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/profile/presentation/pages/scent_preferences_page.dart';
 import '../../features/review/presentation/pages/my_reviews_page.dart';
 import '../../features/review/presentation/pages/review_detail_page.dart';
 import '../../features/review/presentation/pages/write_review_page.dart';
@@ -107,6 +108,10 @@ class AppRouter {
       GoRoute(
         path: '/profile/edit',
         builder: (context, state) => const ProfileEditPage(),
+      ),
+      GoRoute(
+        path: '/scent-preferences',
+        builder: (context, state) => const ScentPreferencesPage(),
       ),
       GoRoute(
         path: '/addresses',
