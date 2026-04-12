@@ -7,18 +7,19 @@ import '../../domain/repositories/auth_repository.dart';
 class AuthRepositoryImpl implements AuthRepository {
   final PerfumegptApiClient _apiClient;
   final FlutterSecureStorage _storage;
+  final String? _serverClientId;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
   bool _isGoogleSignInInitialized = false;
   User? _currentUser;
 
   static const _tokenKey = 'auth_token';
 
-  AuthRepositoryImpl(this._apiClient, this._storage);
+  AuthRepositoryImpl(this._apiClient, this._storage, [this._serverClientId]);
 
   Future<void> _ensureGoogleSignInInitialized() async {
     if (!_isGoogleSignInInitialized) {
       await _googleSignIn.initialize(
-        // Note: serverClientId might be needed here depending on exact Google Cloud setup for idToken retrieval.
+        serverClientId: _serverClientId,
       );
       _isGoogleSignInInitialized = true;
     }

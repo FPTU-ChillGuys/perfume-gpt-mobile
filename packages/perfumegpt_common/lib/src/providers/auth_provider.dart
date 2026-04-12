@@ -5,13 +5,16 @@ import '../domain/repositories/auth_repository.dart';
 import 'api_client_provider.dart';
 import 'storage_provider.dart';
 
+import 'google_signin_config_provider.dart';
+
 part 'auth_provider.g.dart';
 
 @riverpod
 AuthRepository authRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
   final storage = ref.watch(flutterSecureStorageProvider);
-  return AuthRepositoryImpl(apiClient, storage);
+  final serverClientId = ref.watch(googleSignInServerClientIdProvider);
+  return AuthRepositoryImpl(apiClient, storage, serverClientId);
 }
 
 @riverpod

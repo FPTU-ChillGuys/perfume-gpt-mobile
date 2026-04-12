@@ -16,4 +16,19 @@ To use Google Sign-In in applications depending on this package:
 1. Register your apps in the Google Cloud Console.
 2. For Android: Provide the SHA-1 fingerprint.
 3. For iOS/macOS: Add the `REVERSED_CLIENT_ID` to `Info.plist`.
-4. (Optional) Provide `serverClientId` during initialization if required by the backend for ID token verification.
+4. **Crucial for Android**: Provide your **Web Client ID** as the `serverClientId` to obtain an `idToken` for the backend.
+
+### Overriding the Server Client ID
+
+In your app's `main.dart`, override the `googleSignInServerClientIdProvider` in the `ProviderScope`:
+
+```dart
+runApp(
+  ProviderScope(
+    overrides: [
+      googleSignInServerClientIdProvider.overrideWithValue('YOUR_WEB_CLIENT_ID.apps.googleusercontent.com'),
+    ],
+    child: const MyApp(),
+  ),
+);
+```
