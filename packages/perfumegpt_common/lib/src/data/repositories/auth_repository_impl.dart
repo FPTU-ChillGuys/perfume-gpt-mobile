@@ -1,4 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -6,11 +7,21 @@ import '../../domain/repositories/auth_repository.dart';
 class AuthRepositoryImpl implements AuthRepository {
   final PerfumegptApiClient _apiClient;
   final FlutterSecureStorage _storage;
+  final String? _serverClientId;
+  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  bool _isGoogleSignInInitialized = false;
   User? _currentUser;
 
   static const _tokenKey = 'auth_token';
 
-  AuthRepositoryImpl(this._apiClient, this._storage);
+  AuthRepositoryImpl(this._apiClient, this._storage, [this._serverClientId]);
+
+  Future<void> _ensureGoogleSignInInitialized() async {
+    if (!_isGoogleSignInInitialized) {
+      await _googleSignIn.initialize(serverClientId: _serverClientId);
+      _isGoogleSignInInitialized = true;
+    }
+  }
 
   @override
   Future<User?> login(String email, String password) async {
@@ -18,7 +29,51 @@ class AuthRepositoryImpl implements AuthRepository {
       loginRequest: LoginRequest(credential: email, password: password),
     );
 
-    final token = response.data?.payload?.accessToken;
+    return _handleTokenResponse(response.data?.payload?.accessToken);
+  }
+
+  @override
+  Future<User?> googleLogin() async {
+    try {
+      await _ensureGoogleSignInInitialized();
+
+      GoogleSignInAccount? googleUser;
+
+      try {
+        // Ensure a clean state before authenticating
+        try {
+          await _googleSignIn.signOut();
+        } catch (_) {}
+
+        googleUser = await _googleSignIn.authenticate(scopeHint: ['email']);
+      } on GoogleSignInException catch (e) {
+        if (e.code == GoogleSignInExceptionCode.canceled) {
+          return null; // User canceled the sign-in flow
+        }
+        rethrow;
+      }
+
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+      final String? idToken = googleAuth.idToken;
+
+      if (idToken == null) {
+        throw Exception('Failed to retrieve ID token from Google.');
+      }
+
+      final response = await _apiClient.getAuthsApi().apiAuthsGoogleLoginPost(
+        googleLoginRequest: GoogleLoginRequest(idToken: idToken),
+      );
+
+      return _handleTokenResponse(response.data?.payload?.accessToken);
+    } catch (e) {
+      try {
+        await _googleSignIn.signOut();
+      } catch (_) {}
+      rethrow;
+    }
+  }
+
+  Future<User?> _handleTokenResponse(String? token) async {
     if (token != null) {
       await _storage.write(key: _tokenKey, value: token);
       _apiClient.setBearerAuth('Bearer', token);
@@ -46,6 +101,11 @@ class AuthRepositoryImpl implements AuthRepository {
     await _storage.delete(key: _tokenKey);
     _apiClient.setBearerAuth('Bearer', '');
     _currentUser = null;
+    try {
+      await _googleSignIn.signOut();
+    } catch (_) {
+      // Ignore errors during Google sign out
+    }
   }
 
   @override
