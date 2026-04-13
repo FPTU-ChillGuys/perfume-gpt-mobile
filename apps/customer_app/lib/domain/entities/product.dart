@@ -1,5 +1,4 @@
 import 'product_variant.dart';
-import 'product_scent_note.dart';
 
 class Product {
   final String id;
@@ -13,7 +12,6 @@ class Product {
   final String imageUrl;
   final List<String> imageUrls;
   final List<String> scentNotes;
-  final List<ProductScentNote> scentNoteDetails;
   final String brand;
   final int? brandId;
   final int? categoryId;
@@ -35,8 +33,7 @@ class Product {
     this.variants = const [],
     required this.imageUrl,
     this.imageUrls = const [],
-    required this.scentNotes,
-    this.scentNoteDetails = const [],
+    this.scentNotes = const [],
     required this.brand,
     this.brandId,
     this.categoryId,

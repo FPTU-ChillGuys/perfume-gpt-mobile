@@ -292,26 +292,19 @@ extension $ProductVariantResponseCopyWith on ProductVariantResponse {
 ProductVariantResponse _$ProductVariantResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProductVariantResponse', json, ($checkedConvert) {
-  $checkKeys(
-    json,
-    requiredKeys: const [
-      'barcode',
-      'sku',
-      'concentrationName',
-      'productName',
-      'media',
-    ],
-  );
   final val = ProductVariantResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    barcode: $checkedConvert('barcode', (v) => v as String),
-    sku: $checkedConvert('sku', (v) => v as String),
+    barcode: $checkedConvert('barcode', (v) => v as String? ?? ''),
+    sku: $checkedConvert('sku', (v) => v as String? ?? ''),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
     concentrationId: $checkedConvert(
       'concentrationId',
       (v) => (v as num?)?.toInt(),
     ),
-    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
+    concentrationName: $checkedConvert(
+      'concentrationName',
+      (v) => v as String? ?? '',
+    ),
     type: $checkedConvert(
       'type',
       (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
@@ -329,12 +322,14 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
     sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
     longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
     productId: $checkedConvert('productId', (v) => v as String?),
-    productName: $checkedConvert('productName', (v) => v as String),
+    productName: $checkedConvert('productName', (v) => v as String? ?? ''),
     media: $checkedConvert(
       'media',
-      (v) => (v as List<dynamic>)
-          .map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      (v) =>
+          (v as List<dynamic>?)
+              ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     ),
     campaignName: $checkedConvert('campaignName', (v) => v as String?),
     voucherCode: $checkedConvert('voucherCode', (v) => v as String?),

@@ -3,8 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../core/utils/image_url_helper.dart';
 import '../../domain/entities/paged_result.dart';
 import '../../domain/entities/product.dart';
+import '../../domain/entities/product_information.dart';
 import '../../domain/entities/product_variant.dart';
-import '../../domain/entities/product_scent_note.dart';
 import '../../domain/repositories/product_repository.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
@@ -40,14 +40,6 @@ class ProductRepositoryImpl implements ProductRepository {
         .map((m) => ImageUrlHelper.resolve(m.url))
         .firstOrNull ?? imageUrls.firstOrNull ?? '';
 
-    final scentNoteDetails = product.scentNotes
-        .map((n) => ProductScentNote(
-              noteId: n.noteId,
-              name: n.name,
-              type: n.type?.value ?? 'Top',
-            ))
-        .toList();
-
     return Product(
       id: product.id ?? '',
       name: product.name ?? '',
@@ -58,8 +50,6 @@ class ProductRepositoryImpl implements ProductRepository {
       variantPrices: variantPrices,
       imageUrl: primaryImage,
       imageUrls: imageUrls,
-      scentNotes: scentNoteDetails.map((n) => n.name).toList(),
-      scentNoteDetails: scentNoteDetails,
       brand: product.brandName,
       rating: 0,
       reviewCount: 0,
@@ -92,6 +82,39 @@ class ProductRepositoryImpl implements ProductRepository {
     return items.map(_mapListItemToProduct).toList();
   }
 
+  @override
+  Future<ProductInformation> getProductInformation(String id) async {
+    final response =
+        await _api.apiProductsProductIdInformationGet(productId: id);
+    final info = response.data?.payload;
+    if (info == null) throw Exception('Product information not found');
+
+    return ProductInformation(
+      productCode: info.productCode,
+      brandName: info.brandName,
+      origin: info.origin,
+      releaseYear: info.releaseYear,
+      gender: info.gender?.value,
+      scentGroup: info.scentGroup,
+      style: info.style,
+      topNotes: info.topNotes,
+      heartNotes: info.heartNotes,
+      baseNotes: info.baseNotes,
+      description: info.description,
+    );
+  }
+
+  @override
+  Future<({double rating, int reviewCount})> getProductRating(String id) async {
+    final response =
+        await _api.apiProductsProductIdFastLookGet(productId: id);
+    final data = response.data?.payload;
+    return (
+      rating: (data?.rating ?? 0).toDouble(),
+      reviewCount: data?.reviewCount ?? 0,
+    );
+  }
+
   ProductVariant _mapVariant(ProductVariantResponse v) {
     final imageUrls = v.media.map((m) => ImageUrlHelper.resolve(m.url)).toList();
     final primaryImage = v.media
@@ -115,6 +138,8 @@ class ProductRepositoryImpl implements ProductRepository {
       longevity: v.longevity,
       imageUrls: imageUrls,
       primaryImageUrl: primaryImage,
+      campaignName: v.campaignName,
+      voucherCode: v.voucherCode,
     );
   }
 

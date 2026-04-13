@@ -2,6 +2,7 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/product_repository_impl.dart';
 import '../../../../domain/entities/product.dart';
+import '../../../../domain/entities/product_information.dart';
 import '../../../../domain/repositories/product_repository.dart';
 
 part 'product_provider.g.dart';
@@ -37,4 +38,14 @@ class ProductList extends _$ProductList {
 @riverpod
 FutureOr<Product> productDetails(Ref ref, String id) {
   return ref.watch(productRepositoryProvider).getProductById(id);
+}
+
+@riverpod
+FutureOr<ProductInformation> productInformation(Ref ref, String id) {
+  return ref.watch(productRepositoryProvider).getProductInformation(id);
+}
+
+@riverpod
+FutureOr<({double rating, int reviewCount})> productRating(Ref ref, String id) {
+  return ref.watch(productRepositoryProvider).getProductRating(id);
 }

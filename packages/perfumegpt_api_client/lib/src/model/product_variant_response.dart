@@ -26,15 +26,15 @@ class ProductVariantResponse {
 
      this.id,
 
-    required  this.barcode,
+     this.barcode = '',
 
-    required  this.sku,
+     this.sku = '',
 
      this.volumeMl,
 
      this.concentrationId,
 
-    required  this.concentrationName,
+     this.concentrationName = '',
 
      this.type,
 
@@ -52,9 +52,9 @@ class ProductVariantResponse {
 
      this.productId,
 
-    required  this.productName,
+     this.productName = '',
 
-    required  this.media,
+     this.media = const [],
 
      this.campaignName,
 
@@ -80,7 +80,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'barcode',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -92,7 +92,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'sku',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -128,7 +128,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'concentrationName',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -236,7 +236,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'productName',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -248,7 +248,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'media',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 

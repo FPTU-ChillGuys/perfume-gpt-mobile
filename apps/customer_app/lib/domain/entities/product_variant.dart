@@ -14,6 +14,8 @@ class ProductVariant {
   final int? longevity;
   final List<String> imageUrls;
   final String? primaryImageUrl;
+  final String? campaignName;
+  final String? voucherCode;
 
   const ProductVariant({
     required this.id,
@@ -31,6 +33,8 @@ class ProductVariant {
     this.longevity,
     required this.imageUrls,
     this.primaryImageUrl,
+    this.campaignName,
+    this.voucherCode,
   });
 
   double get effectivePrice => discountedPrice ?? retailPrice ?? basePrice;
@@ -38,6 +42,12 @@ class ProductVariant {
   bool get isActive => status == 'Active';
 
   bool get isInStock => stockQuantity > 0;
+
+  bool get hasCampaignDiscount =>
+      discountedPrice != null &&
+      discountedPrice! > 0 &&
+      basePrice > 0 &&
+      discountedPrice! < basePrice;
 
   String get displayName {
     final parts = <String>[];
