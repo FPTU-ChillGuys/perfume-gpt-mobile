@@ -15,6 +15,7 @@ dependencies:
   flutter_secure_storage: ^10.0.0
 
   dio: any
+  google_sign_in: ^7.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

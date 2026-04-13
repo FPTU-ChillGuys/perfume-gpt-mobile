@@ -10,7 +10,11 @@ import '../providers/order_provider.dart';
 const _cancelReasons = <(String value, String label, IconData icon)>[
   ('ChangedMind', 'Đổi ý', Icons.psychology_outlined),
   ('FoundBetterPrice', 'Tìm được giá tốt hơn', Icons.price_change_outlined),
-  ('IncorrectShippingInfo', 'Sai thông tin giao hàng', Icons.local_shipping_outlined),
+  (
+    'IncorrectShippingInfo',
+    'Sai thông tin giao hàng',
+    Icons.local_shipping_outlined,
+  ),
   ('PaymentIssue', 'Vấn đề thanh toán', Icons.payment_outlined),
   ('DeliveryTooLate', 'Giao hàng quá chậm', Icons.schedule_outlined),
   ('InsufficientStock', 'Hết hàng', Icons.inventory_2_outlined),
@@ -65,7 +69,10 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
         title: Text(
           widget.mode == 'direct' ? 'Hủy đơn hàng' : 'Yêu cầu hủy đơn',
           style: const TextStyle(
-              fontWeight: FontWeight.w700, fontSize: 17, color: Colors.white),
+            fontWeight: FontWeight.w700,
+            fontSize: 17,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
         backgroundColor: AppColors.primaryDark,
@@ -122,9 +129,10 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
             child: Text(
               widget.note,
               style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.orange.shade900,
-                  height: 1.4),
+                fontSize: 13,
+                color: Colors.orange.shade900,
+                height: 1.4,
+              ),
             ),
           ),
         ],
@@ -153,12 +161,13 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
                 onTap: () => setState(() => _selectedReason = r.$1),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 14, vertical: 12),
+                    horizontal: 14,
+                    vertical: 12,
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color:
-                          selected ? AppColors.primary : AppColors.border,
+                      color: selected ? AppColors.primary : AppColors.border,
                       width: selected ? 1.5 : 1,
                     ),
                   ),
@@ -172,28 +181,35 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
                               : AppColors.skeleton,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Icon(r.$3,
-                            size: 18,
-                            color: selected
-                                ? AppColors.primary
-                                : AppColors.textSecondary),
+                        child: Icon(
+                          r.$3,
+                          size: 18,
+                          color: selected
+                              ? AppColors.primary
+                              : AppColors.textSecondary,
+                        ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
-                        child: Text(r.$2,
-                            style: TextStyle(
-                              fontSize: 13.5,
-                              fontWeight: selected
-                                  ? FontWeight.w600
-                                  : FontWeight.w400,
-                              color: selected
-                                  ? AppColors.primary
-                                  : AppColors.textPrimary,
-                            )),
+                        child: Text(
+                          r.$2,
+                          style: TextStyle(
+                            fontSize: 13.5,
+                            fontWeight: selected
+                                ? FontWeight.w600
+                                : FontWeight.w400,
+                            color: selected
+                                ? AppColors.primary
+                                : AppColors.textPrimary,
+                          ),
+                        ),
                       ),
                       if (selected)
-                        const Icon(Icons.check_circle,
-                            size: 20, color: AppColors.primary),
+                        const Icon(
+                          Icons.check_circle,
+                          size: 20,
+                          color: AppColors.primary,
+                        ),
                     ],
                   ),
                 ),
@@ -217,7 +233,8 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
       child: Column(
         children: [
           banksAsync.when(
-            loading: () => _dropdownPlaceholder('Đang tải danh sách ngân hàng…'),
+            loading: () =>
+                _dropdownPlaceholder('Đang tải danh sách ngân hàng…'),
             error: (e, s) =>
                 _dropdownPlaceholder('Lỗi tải danh sách ngân hàng'),
             data: (banks) => InkWell(
@@ -236,9 +253,10 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
                               height: 28,
                               fit: BoxFit.contain,
                               errorBuilder: (c, e, s) => const Icon(
-                                  Icons.account_balance,
-                                  size: 28,
-                                  color: AppColors.textSecondary),
+                                Icons.account_balance,
+                                size: 28,
+                                color: AppColors.textSecondary,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 10),
@@ -252,10 +270,13 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
                           ),
                         ],
                       )
-                    : const Text('Chọn ngân hàng',
+                    : const Text(
+                        'Chọn ngân hàng',
                         style: TextStyle(
-                            fontSize: 13,
-                            color: AppColors.textSecondary)),
+                          fontSize: 13,
+                          color: AppColors.textSecondary,
+                        ),
+                      ),
               ),
             ),
           ),
@@ -281,8 +302,10 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
   Widget _dropdownPlaceholder(String text) {
     return InputDecorator(
       decoration: _inputDecoration('Ngân hàng'),
-      child: Text(text,
-          style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 13, color: AppColors.textSecondary),
+      ),
     );
   }
 
@@ -330,10 +353,13 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
                       filled: true,
                       fillColor: AppColors.skeleton,
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none),
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
                       contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 10),
+                        horizontal: 14,
+                        vertical: 10,
+                      ),
                     ),
                     onChanged: (v) => setSheetState(() => query = v),
                   ),
@@ -344,8 +370,7 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
                     itemCount: filtered.length,
                     itemBuilder: (_, i) {
                       final bank = filtered[i];
-                      final selected =
-                          _selectedBank?.code == bank.code;
+                      final selected = _selectedBank?.code == bank.code;
                       return ListTile(
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(6),
@@ -358,22 +383,29 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
                                 const Icon(Icons.account_balance, size: 36),
                           ),
                         ),
-                        title: Text(bank.shortName,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                              color:
-                                  selected ? AppColors.primary : null,
-                            )),
-                        subtitle: Text(bank.name,
-                            style: const TextStyle(
-                                fontSize: 12,
-                                color: AppColors.textSecondary),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis),
+                        title: Text(
+                          bank.shortName,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: selected ? AppColors.primary : null,
+                          ),
+                        ),
+                        subtitle: Text(
+                          bank.name,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.textSecondary,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                         trailing: selected
-                            ? const Icon(Icons.check_circle,
-                                color: AppColors.primary, size: 20)
+                            ? const Icon(
+                                Icons.check_circle,
+                                color: AppColors.primary,
+                                size: 20,
+                              )
                             : null,
                         onTap: () {
                           setState(() => _selectedBank = bank);
@@ -406,27 +438,29 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
                 width: 18,
                 height: 18,
                 child: CircularProgressIndicator(
-                    strokeWidth: 2, color: Colors.white),
+                  strokeWidth: 2,
+                  color: Colors.white,
+                ),
               )
             : Icon(
                 widget.mode == 'direct'
                     ? Icons.cancel_outlined
                     : Icons.send_outlined,
-                size: 18),
+                size: 18,
+              ),
         label: Text(
           _isSubmitting
               ? 'Đang gửi…'
               : widget.mode == 'direct'
-                  ? 'Xác nhận hủy đơn'
-                  : 'Gửi yêu cầu hủy đơn',
-          style: const TextStyle(
-              fontSize: 15, fontWeight: FontWeight.w700),
+              ? 'Xác nhận hủy đơn'
+              : 'Gửi yêu cầu hủy đơn',
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
         ),
         style: FilledButton.styleFrom(
-          backgroundColor:
-              widget.mode == 'direct' ? Colors.red : Colors.orange,
+          backgroundColor: widget.mode == 'direct' ? Colors.red : Colors.orange,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12)),
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
       ),
     );
@@ -443,20 +477,24 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
 
     setState(() => _isSubmitting = true);
     try {
-      await ref.read(orderRepositoryProvider).cancelOrder(
+      await ref
+          .read(orderRepositoryProvider)
+          .cancelOrder(
             widget.orderId,
             reasonEnum,
             refundBankName: widget.needRefund && _selectedBank != null
                 ? _selectedBank!.shortName
                 : null,
             refundAccountNumber:
-                widget.needRefund && _bankAccountController.text.trim().isNotEmpty
-                    ? _bankAccountController.text.trim()
-                    : null,
+                widget.needRefund &&
+                    _bankAccountController.text.trim().isNotEmpty
+                ? _bankAccountController.text.trim()
+                : null,
             refundAccountName:
-                widget.needRefund && _bankHolderController.text.trim().isNotEmpty
-                    ? _bankHolderController.text.trim()
-                    : null,
+                widget.needRefund &&
+                    _bankHolderController.text.trim().isNotEmpty
+                ? _bankHolderController.text.trim()
+                : null,
           );
 
       if (mounted) {
@@ -480,9 +518,9 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
 
   void _showError(String msg) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(msg), backgroundColor: Colors.red),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(msg), backgroundColor: Colors.red));
   }
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -493,22 +531,24 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
     return InputDecoration(
       hintText: hint,
       hintStyle: TextStyle(
-          color: AppColors.textSecondary.withValues(alpha: 0.6),
-          fontSize: 13),
+        color: AppColors.textSecondary.withValues(alpha: 0.6),
+        fontSize: 13,
+      ),
       filled: true,
       fillColor: AppColors.surface,
       border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: AppColors.border)),
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: AppColors.border),
+      ),
       enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: AppColors.border)),
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: AppColors.border),
+      ),
       focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide:
-              const BorderSide(color: AppColors.primary, width: 1.5)),
-      contentPadding:
-          const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
     );
   }
 }
@@ -520,7 +560,9 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
 class _UpperCaseTextFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     return newValue.copyWith(text: newValue.text.toUpperCase());
   }
 }
@@ -529,17 +571,16 @@ class _SectionCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final Widget child;
-  final Color? accentColor;
 
-  const _SectionCard(
-      {required this.title,
-      required this.icon,
-      required this.child,
-      this.accentColor});
+  const _SectionCard({
+    required this.title,
+    required this.icon,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final color = accentColor ?? AppColors.primary;
+    final color = AppColors.primary;
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -547,9 +588,10 @@ class _SectionCard extends StatelessWidget {
         border: Border.all(color: AppColors.border),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withValues(alpha: 0.03),
-              blurRadius: 10,
-              offset: const Offset(0, 2))
+            color: Colors.black.withValues(alpha: 0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       child: Column(
@@ -568,17 +610,18 @@ class _SectionCard extends StatelessWidget {
                   child: Icon(icon, size: 16, color: color),
                 ),
                 const SizedBox(width: 10),
-                Text(title,
-                    style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.textPrimary)),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
               ],
             ),
           ),
-          Divider(
-              height: 1,
-              color: AppColors.border.withValues(alpha: 0.6)),
+          Divider(height: 1, color: AppColors.border.withValues(alpha: 0.6)),
           Padding(padding: const EdgeInsets.all(16), child: child),
         ],
       ),
