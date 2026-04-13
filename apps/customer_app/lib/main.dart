@@ -31,7 +31,7 @@ void main() {
     ProviderScope(
       overrides: [
         googleSignInServerClientIdProvider.overrideWithValue(
-          'Y1025537944350-q9emi9huhuasommv3q1n9veeoo4j5jmm.apps.googleusercontent.com',
+          '173433966327-fuvt92u2qgeobctvlni6fl52onvak7e8.apps.googleusercontent.com',
         ),
       ],
       child: const MyApp(),
