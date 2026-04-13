@@ -32,31 +32,31 @@ class ProductResponse {
 
      this.gender,
 
-    required  this.origin,
+     this.origin = '',
 
      this.releaseYear,
 
      this.brandId,
 
-    required  this.brandName,
+     this.brandName = '',
 
      this.categoryId,
 
-    required  this.categoryName,
+     this.categoryName = '',
 
      this.description,
 
      this.numberOfVariants,
 
-    required  this.media,
+     this.media = const [],
 
-    required  this.variants,
+     this.variants = const [],
 
-    required  this.attributes,
+     this.attributes = const [],
 
-    required  this.olfactoryFamilies,
+     this.olfactoryFamilies = const [],
 
-    required  this.scentNotes,
+     this.scentNotes = const [],
   });
 
   @JsonKey(
@@ -98,7 +98,7 @@ class ProductResponse {
   @JsonKey(
     
     name: r'origin',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -134,7 +134,7 @@ class ProductResponse {
   @JsonKey(
     
     name: r'brandName',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -158,7 +158,7 @@ class ProductResponse {
   @JsonKey(
     
     name: r'categoryName',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -194,7 +194,7 @@ class ProductResponse {
   @JsonKey(
     
     name: r'media',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -206,7 +206,7 @@ class ProductResponse {
   @JsonKey(
     
     name: r'variants',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -218,7 +218,7 @@ class ProductResponse {
   @JsonKey(
     
     name: r'attributes',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -230,7 +230,7 @@ class ProductResponse {
   @JsonKey(
     
     name: r'olfactoryFamilies',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
@@ -242,7 +242,7 @@ class ProductResponse {
   @JsonKey(
     
     name: r'scentNotes',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 

@@ -246,19 +246,6 @@ extension $ProductResponseCopyWith on ProductResponse {
 ProductResponse _$ProductResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProductResponse', json, ($checkedConvert) {
-  $checkKeys(
-    json,
-    requiredKeys: const [
-      'origin',
-      'brandName',
-      'categoryName',
-      'media',
-      'variants',
-      'attributes',
-      'olfactoryFamilies',
-      'scentNotes',
-    ],
-  );
   final val = ProductResponse(
     id: $checkedConvert('id', (v) => v as String?),
     name: $checkedConvert('name', (v) => v as String?),
@@ -266,12 +253,12 @@ ProductResponse _$ProductResponseFromJson(
       'gender',
       (v) => $enumDecodeNullable(_$GenderEnumMap, v),
     ),
-    origin: $checkedConvert('origin', (v) => v as String),
+    origin: $checkedConvert('origin', (v) => v as String? ?? ''),
     releaseYear: $checkedConvert('releaseYear', (v) => (v as num?)?.toInt()),
     brandId: $checkedConvert('brandId', (v) => (v as num?)?.toInt()),
-    brandName: $checkedConvert('brandName', (v) => v as String),
+    brandName: $checkedConvert('brandName', (v) => v as String? ?? ''),
     categoryId: $checkedConvert('categoryId', (v) => (v as num?)?.toInt()),
-    categoryName: $checkedConvert('categoryName', (v) => v as String),
+    categoryName: $checkedConvert('categoryName', (v) => v as String? ?? ''),
     description: $checkedConvert('description', (v) => v as String?),
     numberOfVariants: $checkedConvert(
       'numberOfVariants',
@@ -279,43 +266,58 @@ ProductResponse _$ProductResponseFromJson(
     ),
     media: $checkedConvert(
       'media',
-      (v) => (v as List<dynamic>)
-          .map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      (v) =>
+          (v as List<dynamic>?)
+              ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     ),
     variants: $checkedConvert(
       'variants',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => ProductVariantResponse.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
+      (v) =>
+          (v as List<dynamic>?)
+              ?.map(
+                (e) =>
+                    ProductVariantResponse.fromJson(e as Map<String, dynamic>),
+              )
+              .toList() ??
+          const [],
     ),
     attributes: $checkedConvert(
       'attributes',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => ProductAttributeResponse.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
+      (v) =>
+          (v as List<dynamic>?)
+              ?.map(
+                (e) => ProductAttributeResponse.fromJson(
+                  e as Map<String, dynamic>,
+                ),
+              )
+              .toList() ??
+          const [],
     ),
     olfactoryFamilies: $checkedConvert(
       'olfactoryFamilies',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => ProductOlfactoryFamilyResponse.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
+      (v) =>
+          (v as List<dynamic>?)
+              ?.map(
+                (e) => ProductOlfactoryFamilyResponse.fromJson(
+                  e as Map<String, dynamic>,
+                ),
+              )
+              .toList() ??
+          const [],
     ),
     scentNotes: $checkedConvert(
       'scentNotes',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => ProductScentNoteResponse.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
+      (v) =>
+          (v as List<dynamic>?)
+              ?.map(
+                (e) => ProductScentNoteResponse.fromJson(
+                  e as Map<String, dynamic>,
+                ),
+              )
+              .toList() ??
+          const [],
     ),
   );
   return val;

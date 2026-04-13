@@ -168,3 +168,162 @@ final class ProductDetailsFamily extends $Family
   @override
   String toString() => r'productDetailsProvider';
 }
+
+@ProviderFor(productInformation)
+final productInformationProvider = ProductInformationFamily._();
+
+final class ProductInformationProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<ProductInformation>,
+          ProductInformation,
+          FutureOr<ProductInformation>
+        >
+    with
+        $FutureModifier<ProductInformation>,
+        $FutureProvider<ProductInformation> {
+  ProductInformationProvider._({
+    required ProductInformationFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'productInformationProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$productInformationHash();
+
+  @override
+  String toString() {
+    return r'productInformationProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<ProductInformation> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<ProductInformation> create(Ref ref) {
+    final argument = this.argument as String;
+    return productInformation(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ProductInformationProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$productInformationHash() =>
+    r'fe762c282127fb958341a95eff3ff3a79df5630a';
+
+final class ProductInformationFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<ProductInformation>, String> {
+  ProductInformationFamily._()
+    : super(
+        retry: null,
+        name: r'productInformationProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  ProductInformationProvider call(String id) =>
+      ProductInformationProvider._(argument: id, from: this);
+
+  @override
+  String toString() => r'productInformationProvider';
+}
+
+@ProviderFor(productRating)
+final productRatingProvider = ProductRatingFamily._();
+
+final class ProductRatingProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<({double rating, int reviewCount})>,
+          ({double rating, int reviewCount}),
+          FutureOr<({double rating, int reviewCount})>
+        >
+    with
+        $FutureModifier<({double rating, int reviewCount})>,
+        $FutureProvider<({double rating, int reviewCount})> {
+  ProductRatingProvider._({
+    required ProductRatingFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'productRatingProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$productRatingHash();
+
+  @override
+  String toString() {
+    return r'productRatingProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<({double rating, int reviewCount})> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<({double rating, int reviewCount})> create(Ref ref) {
+    final argument = this.argument as String;
+    return productRating(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ProductRatingProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$productRatingHash() => r'a7ef9b39e6f13b35fcd6031d05084ccfa8d669fe';
+
+final class ProductRatingFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<({double rating, int reviewCount})>,
+          String
+        > {
+  ProductRatingFamily._()
+    : super(
+        retry: null,
+        name: r'productRatingProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  ProductRatingProvider call(String id) =>
+      ProductRatingProvider._(argument: id, from: this);
+
+  @override
+  String toString() => r'productRatingProvider';
+}
