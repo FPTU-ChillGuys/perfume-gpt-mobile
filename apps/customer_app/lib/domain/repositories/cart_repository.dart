@@ -8,5 +8,18 @@ abstract class CartRepository {
   Future<void> removeItem(String cartItemId, {bool isAuthenticated = false});
   Future<void> clearCart({bool isAuthenticated = false});
   Future<void> mergeCart(List<CartItem> localItems);
-  Future<CartTotal> getTotal({String? voucherCode, List<String>? itemIds});
+  Future<CartTotal> getTotal({
+    String? voucherCode,
+    List<String>? itemIds,
+    String? savedAddressId,
+    String? recipientContactName,
+    String? recipientContactPhoneNumber,
+    int? recipientDistrictId,
+    String? recipientDistrictName,
+    String? recipientWardCode,
+    String? recipientWardName,
+    int? recipientProvinceId,
+    String? recipientProvinceName,
+    String? recipientFullAddress,
+  });
 }
