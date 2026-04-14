@@ -128,6 +128,16 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       final total = await ref.read(cartRepositoryProvider).getTotal(
             voucherCode: (voucher != null && voucher.isNotEmpty) ? voucher : null,
             itemIds: _shouldQuerySelectedItems(allIds, effectiveIds) ? effectiveIds : null,
+            savedAddressId: (!_isPickupInStore && !_useNewAddress) ? _selectedAddressId : null,
+            recipientContactName: (!_isPickupInStore && _useNewAddress) ? _nameController.text.trim() : null,
+            recipientContactPhoneNumber: (!_isPickupInStore && _useNewAddress) ? _phoneController.text.trim() : null,
+            recipientDistrictId: (!_isPickupInStore && _useNewAddress) ? _selectedDistrict?.districtID : null,
+            recipientDistrictName: (!_isPickupInStore && _useNewAddress) ? _selectedDistrict?.districtName : null,
+            recipientWardCode: (!_isPickupInStore && _useNewAddress) ? _selectedWard?.wardCode : null,
+            recipientWardName: (!_isPickupInStore && _useNewAddress) ? _selectedWard?.wardName : null,
+            recipientProvinceId: (!_isPickupInStore && _useNewAddress) ? _selectedProvince?.provinceID : null,
+            recipientProvinceName: (!_isPickupInStore && _useNewAddress) ? _selectedProvince?.provinceName : null,
+            recipientFullAddress: (!_isPickupInStore && _useNewAddress) ? _streetController.text.trim() : null,
           );
       if (mounted) setState(() => _computedTotal = total);
     } catch (_) {}
@@ -148,6 +158,16 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       final total = await ref.read(cartRepositoryProvider).getTotal(
             voucherCode: code,
             itemIds: _shouldQuerySelectedItems(allIds, effectiveIds) ? effectiveIds : null,
+            savedAddressId: (!_isPickupInStore && !_useNewAddress) ? _selectedAddressId : null,
+            recipientContactName: (!_isPickupInStore && _useNewAddress) ? _nameController.text.trim() : null,
+            recipientContactPhoneNumber: (!_isPickupInStore && _useNewAddress) ? _phoneController.text.trim() : null,
+            recipientDistrictId: (!_isPickupInStore && _useNewAddress) ? _selectedDistrict?.districtID : null,
+            recipientDistrictName: (!_isPickupInStore && _useNewAddress) ? _selectedDistrict?.districtName : null,
+            recipientWardCode: (!_isPickupInStore && _useNewAddress) ? _selectedWard?.wardCode : null,
+            recipientWardName: (!_isPickupInStore && _useNewAddress) ? _selectedWard?.wardName : null,
+            recipientProvinceId: (!_isPickupInStore && _useNewAddress) ? _selectedProvince?.provinceID : null,
+            recipientProvinceName: (!_isPickupInStore && _useNewAddress) ? _selectedProvince?.provinceName : null,
+            recipientFullAddress: (!_isPickupInStore && _useNewAddress) ? _streetController.text.trim() : null,
           );
       if (mounted) {
         setState(() {
@@ -620,6 +640,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       if (mounted) {
                         setState(() => _selectedAddressId = defaultAddr!.id!);
+                        _refreshTotals();
                       }
                     });
                   }
@@ -660,6 +681,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                             _selectedAddressId = value;
                           }
                         });
+                        _refreshTotals();
                       },
                     ),
                     const SizedBox(height: 16),
@@ -754,6 +776,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             _selectedDistrict = null;
             _selectedWard = null;
           });
+          _refreshTotals();
         },
       ),
       loading: () => const _LoadingField(label: 'Tỉnh/Thành phố *'),
@@ -794,6 +817,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             _selectedDistrict = value;
             _selectedWard = null;
           });
+          _refreshTotals();
         },
       ),
       loading: () => const _LoadingField(label: 'Quận/Huyện *'),
@@ -831,6 +855,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             .toList(),
         onChanged: (value) {
           setState(() => _selectedWard = value);
+          _refreshTotals();
         },
       ),
       loading: () => const _LoadingField(label: 'Phường/Xã *'),

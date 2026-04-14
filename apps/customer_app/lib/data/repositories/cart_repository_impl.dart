@@ -125,10 +125,30 @@ class CartRepositoryImpl implements CartRepository {
   Future<CartTotal> getTotal({
     String? voucherCode,
     List<String>? itemIds,
+    String? savedAddressId,
+    String? recipientContactName,
+    String? recipientContactPhoneNumber,
+    int? recipientDistrictId,
+    String? recipientDistrictName,
+    String? recipientWardCode,
+    String? recipientWardName,
+    int? recipientProvinceId,
+    String? recipientProvinceName,
+    String? recipientFullAddress,
   }) async {
     final response = await _api.apiCartTotalGet(
       voucherCode: voucherCode,
       itemIds: itemIds,
+      savedAddressId: savedAddressId,
+      recipientPeriodContactName: recipientContactName,
+      recipientPeriodContactPhoneNumber: recipientContactPhoneNumber,
+      recipientPeriodDistrictId: recipientDistrictId,
+      recipientPeriodDistrictName: recipientDistrictName,
+      recipientPeriodWardCode: recipientWardCode,
+      recipientPeriodWardName: recipientWardName,
+      recipientPeriodProvinceId: recipientProvinceId,
+      recipientPeriodProvinceName: recipientProvinceName,
+      recipientPeriodFullAddress: recipientFullAddress,
     );
     final data = response.data?.payload;
     return CartTotal(
