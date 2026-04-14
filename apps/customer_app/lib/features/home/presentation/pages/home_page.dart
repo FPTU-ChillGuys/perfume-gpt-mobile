@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../../../../domain/entities/product.dart';
+import '../providers/banner_providers.dart';
 import '../providers/home_providers.dart';
+import '../widgets/home_banner_slider.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -13,12 +15,27 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final newArrivalsAsync = ref.watch(newArrivalsProvider);
     final bestSellersAsync = ref.watch(bestSellersProvider);
+    final bannersAsync = ref.watch(homeHeroBannersProvider);
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           // ── Hero ──────────────────────────────────────────────────────
           SliverToBoxAdapter(child: _buildHero(context)),
+
+          // ── Banner Slider ─────────────────────────────────────────────
+          SliverToBoxAdapter(
+            child: bannersAsync.when(
+              data: (banners) => banners.isNotEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: HomeBannerSlider(banners: banners),
+                    )
+                  : const SizedBox.shrink(),
+              loading: () => const _BannerSkeleton(),
+              error: (_, _) => const SizedBox.shrink(),
+            ),
+          ),
 
           // ── AI Feature Card ───────────────────────────────────────────
           SliverToBoxAdapter(child: _buildAiCard(context)),
@@ -92,57 +109,21 @@ class HomePage extends ConsumerWidget {
       child: SafeArea(
         bottom: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 36),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 14),
+          child: Row(
             children: [
-              // Top bar
-              Row(
-                children: [
-                  const Text(
-                    'PerfumeGPT',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const Spacer(),
-                  _circleButton(
-                    Icons.shopping_cart_outlined,
-                    () => context.push('/cart'),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              // Subtitle
-              Text(
-                'CURATED CATALOG 2026',
-                style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.45),
-                  fontSize: 10,
-                  letterSpacing: 3.5,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 10),
               const Text(
-                'Khám phá hương thơm\nhoàn hảo cho bạn',
+                'PerfumeGPT',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
-                  height: 1.3,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 10),
-              Text(
-                'Tìm kiếm nước hoa yêu thích, nhờ AI tư vấn hoặc làm bài quiz để tìm mùi hương phù hợp.',
-                style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.55),
-                  fontSize: 13,
-                  height: 1.5,
-                ),
+              const Spacer(),
+              _circleButton(
+                Icons.shopping_cart_outlined,
+                () => context.push('/cart'),
               ),
             ],
           ),
@@ -648,6 +629,34 @@ class _SkeletonCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Banner Skeleton
+// ═════════════════════════════════════════════════════════════════════════════
+
+class _BannerSkeleton extends StatelessWidget {
+  const _BannerSkeleton();
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final screenWidth = constraints.maxWidth;
+        final isCompact = screenWidth < 360;
+        final isWide = screenWidth >= 600;
+        final height = isWide ? 260.0 : isCompact ? 160.0 : 200.0;
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Container(
+            height: height,
+            color: AppColors.skeleton,
+          ),
+        );
+      },
     );
   }
 }
