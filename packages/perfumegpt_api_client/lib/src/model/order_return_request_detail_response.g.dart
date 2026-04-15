@@ -17,6 +17,12 @@ abstract class _$OrderReturnRequestDetailResponseCWProxy {
 
   OrderReturnRequestDetailResponse unitPrice(num? unitPrice);
 
+  OrderReturnRequestDetailResponse campaignDiscount(num? campaignDiscount);
+
+  OrderReturnRequestDetailResponse campaignPrice(num? campaignPrice);
+
+  OrderReturnRequestDetailResponse voucherDiscount(num? voucherDiscount);
+
   OrderReturnRequestDetailResponse refundableAmount(num? refundableAmount);
 
   /// Creates a new instance with the provided field values.
@@ -32,6 +38,9 @@ abstract class _$OrderReturnRequestDetailResponseCWProxy {
     String? variantId,
     int? requestedQuantity,
     num? unitPrice,
+    num? campaignDiscount,
+    num? campaignPrice,
+    num? voucherDiscount,
     num? refundableAmount,
   });
 }
@@ -64,6 +73,18 @@ class _$OrderReturnRequestDetailResponseCWProxyImpl
       call(unitPrice: unitPrice);
 
   @override
+  OrderReturnRequestDetailResponse campaignDiscount(num? campaignDiscount) =>
+      call(campaignDiscount: campaignDiscount);
+
+  @override
+  OrderReturnRequestDetailResponse campaignPrice(num? campaignPrice) =>
+      call(campaignPrice: campaignPrice);
+
+  @override
+  OrderReturnRequestDetailResponse voucherDiscount(num? voucherDiscount) =>
+      call(voucherDiscount: voucherDiscount);
+
+  @override
   OrderReturnRequestDetailResponse refundableAmount(num? refundableAmount) =>
       call(refundableAmount: refundableAmount);
 
@@ -81,6 +102,9 @@ class _$OrderReturnRequestDetailResponseCWProxyImpl
     Object? variantId = const $CopyWithPlaceholder(),
     Object? requestedQuantity = const $CopyWithPlaceholder(),
     Object? unitPrice = const $CopyWithPlaceholder(),
+    Object? campaignDiscount = const $CopyWithPlaceholder(),
+    Object? campaignPrice = const $CopyWithPlaceholder(),
+    Object? voucherDiscount = const $CopyWithPlaceholder(),
     Object? refundableAmount = const $CopyWithPlaceholder(),
   }) {
     return OrderReturnRequestDetailResponse(
@@ -104,6 +128,18 @@ class _$OrderReturnRequestDetailResponseCWProxyImpl
           ? _value.unitPrice
           // ignore: cast_nullable_to_non_nullable
           : unitPrice as num?,
+      campaignDiscount: campaignDiscount == const $CopyWithPlaceholder()
+          ? _value.campaignDiscount
+          // ignore: cast_nullable_to_non_nullable
+          : campaignDiscount as num?,
+      campaignPrice: campaignPrice == const $CopyWithPlaceholder()
+          ? _value.campaignPrice
+          // ignore: cast_nullable_to_non_nullable
+          : campaignPrice as num?,
+      voucherDiscount: voucherDiscount == const $CopyWithPlaceholder()
+          ? _value.voucherDiscount
+          // ignore: cast_nullable_to_non_nullable
+          : voucherDiscount as num?,
       refundableAmount: refundableAmount == const $CopyWithPlaceholder()
           ? _value.refundableAmount
           // ignore: cast_nullable_to_non_nullable
@@ -138,6 +174,9 @@ OrderReturnRequestDetailResponse _$OrderReturnRequestDetailResponseFromJson(
           (v) => (v as num?)?.toInt(),
         ),
         unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
+        campaignDiscount: $checkedConvert('campaignDiscount', (v) => v as num?),
+        campaignPrice: $checkedConvert('campaignPrice', (v) => v as num?),
+        voucherDiscount: $checkedConvert('voucherDiscount', (v) => v as num?),
         refundableAmount: $checkedConvert('refundableAmount', (v) => v as num?),
       );
       return val;
@@ -151,5 +190,8 @@ Map<String, dynamic> _$OrderReturnRequestDetailResponseToJson(
   'variantId': ?instance.variantId,
   'requestedQuantity': ?instance.requestedQuantity,
   'unitPrice': ?instance.unitPrice,
+  'campaignDiscount': ?instance.campaignDiscount,
+  'campaignPrice': ?instance.campaignPrice,
+  'voucherDiscount': ?instance.voucherDiscount,
   'refundableAmount': ?instance.refundableAmount,
 };

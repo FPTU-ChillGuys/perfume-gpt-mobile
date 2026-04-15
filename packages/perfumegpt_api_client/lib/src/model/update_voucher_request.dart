@@ -32,6 +32,8 @@ class UpdateVoucherRequest {
 
      this.requiredPoints,
 
+     this.maxDiscountAmount,
+
      this.minOrderValue,
 
      this.expiryDate,
@@ -40,7 +42,11 @@ class UpdateVoucherRequest {
 
      this.remainingQuantity,
 
+     this.maxUsagePerUser,
+
      this.isPublic,
+
+     this.isMemberOnly,
   });
 
   @JsonKey(
@@ -105,6 +111,18 @@ class UpdateVoucherRequest {
 
 
 
+  @JsonKey(
+    
+    name: r'maxDiscountAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? maxDiscountAmount;
+
+
+
           // minimum: 0
   @JsonKey(
     
@@ -158,6 +176,18 @@ class UpdateVoucherRequest {
 
   @JsonKey(
     
+    name: r'maxUsagePerUser',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? maxUsagePerUser;
+
+
+
+  @JsonKey(
+    
     name: r'isPublic',
     required: false,
     includeIfNull: false,
@@ -165,6 +195,18 @@ class UpdateVoucherRequest {
 
 
   final bool? isPublic;
+
+
+
+  @JsonKey(
+    
+    name: r'isMemberOnly',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final bool? isMemberOnly;
 
 
 
@@ -177,11 +219,14 @@ class UpdateVoucherRequest {
       other.discountType == discountType &&
       other.applyType == applyType &&
       other.requiredPoints == requiredPoints &&
+      other.maxDiscountAmount == maxDiscountAmount &&
       other.minOrderValue == minOrderValue &&
       other.expiryDate == expiryDate &&
       other.totalQuantity == totalQuantity &&
       other.remainingQuantity == remainingQuantity &&
-      other.isPublic == isPublic;
+      other.maxUsagePerUser == maxUsagePerUser &&
+      other.isPublic == isPublic &&
+      other.isMemberOnly == isMemberOnly;
 
     @override
     int get hashCode =>
@@ -190,11 +235,14 @@ class UpdateVoucherRequest {
         discountType.hashCode +
         applyType.hashCode +
         requiredPoints.hashCode +
+        (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +
         minOrderValue.hashCode +
         expiryDate.hashCode +
         totalQuantity.hashCode +
         remainingQuantity.hashCode +
-        isPublic.hashCode;
+        (maxUsagePerUser == null ? 0 : maxUsagePerUser.hashCode) +
+        isPublic.hashCode +
+        isMemberOnly.hashCode;
 
   factory UpdateVoucherRequest.fromJson(Map<String, dynamic> json) => _$UpdateVoucherRequestFromJson(json);
 

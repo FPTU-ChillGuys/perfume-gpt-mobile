@@ -15,11 +15,15 @@ abstract class _$AvailableVoucherResponseCWProxy {
 
   AvailableVoucherResponse discountType(DiscountType? discountType);
 
+  AvailableVoucherResponse maxDiscountAmount(num? maxDiscountAmount);
+
   AvailableVoucherResponse minOrderValue(num? minOrderValue);
 
   AvailableVoucherResponse expiryDate(DateTime? expiryDate);
 
   AvailableVoucherResponse remainingQuantity(int? remainingQuantity);
+
+  AvailableVoucherResponse maxUsagePerUser(int? maxUsagePerUser);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AvailableVoucherResponse(...).copyWith.fieldName(value)`.
@@ -33,9 +37,11 @@ abstract class _$AvailableVoucherResponseCWProxy {
     String code,
     num? discountValue,
     DiscountType? discountType,
+    num? maxDiscountAmount,
     num? minOrderValue,
     DateTime? expiryDate,
     int? remainingQuantity,
+    int? maxUsagePerUser,
   });
 }
 
@@ -62,6 +68,10 @@ class _$AvailableVoucherResponseCWProxyImpl
       call(discountType: discountType);
 
   @override
+  AvailableVoucherResponse maxDiscountAmount(num? maxDiscountAmount) =>
+      call(maxDiscountAmount: maxDiscountAmount);
+
+  @override
   AvailableVoucherResponse minOrderValue(num? minOrderValue) =>
       call(minOrderValue: minOrderValue);
 
@@ -72,6 +82,10 @@ class _$AvailableVoucherResponseCWProxyImpl
   @override
   AvailableVoucherResponse remainingQuantity(int? remainingQuantity) =>
       call(remainingQuantity: remainingQuantity);
+
+  @override
+  AvailableVoucherResponse maxUsagePerUser(int? maxUsagePerUser) =>
+      call(maxUsagePerUser: maxUsagePerUser);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -86,9 +100,11 @@ class _$AvailableVoucherResponseCWProxyImpl
     Object? code = const $CopyWithPlaceholder(),
     Object? discountValue = const $CopyWithPlaceholder(),
     Object? discountType = const $CopyWithPlaceholder(),
+    Object? maxDiscountAmount = const $CopyWithPlaceholder(),
     Object? minOrderValue = const $CopyWithPlaceholder(),
     Object? expiryDate = const $CopyWithPlaceholder(),
     Object? remainingQuantity = const $CopyWithPlaceholder(),
+    Object? maxUsagePerUser = const $CopyWithPlaceholder(),
   }) {
     return AvailableVoucherResponse(
       id: id == const $CopyWithPlaceholder()
@@ -107,6 +123,10 @@ class _$AvailableVoucherResponseCWProxyImpl
           ? _value.discountType
           // ignore: cast_nullable_to_non_nullable
           : discountType as DiscountType?,
+      maxDiscountAmount: maxDiscountAmount == const $CopyWithPlaceholder()
+          ? _value.maxDiscountAmount
+          // ignore: cast_nullable_to_non_nullable
+          : maxDiscountAmount as num?,
       minOrderValue: minOrderValue == const $CopyWithPlaceholder()
           ? _value.minOrderValue
           // ignore: cast_nullable_to_non_nullable
@@ -119,6 +139,10 @@ class _$AvailableVoucherResponseCWProxyImpl
           ? _value.remainingQuantity
           // ignore: cast_nullable_to_non_nullable
           : remainingQuantity as int?,
+      maxUsagePerUser: maxUsagePerUser == const $CopyWithPlaceholder()
+          ? _value.maxUsagePerUser
+          // ignore: cast_nullable_to_non_nullable
+          : maxUsagePerUser as int?,
     );
   }
 }
@@ -147,6 +171,7 @@ AvailableVoucherResponse _$AvailableVoucherResponseFromJson(
       'discountType',
       (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
     ),
+    maxDiscountAmount: $checkedConvert('maxDiscountAmount', (v) => v as num?),
     minOrderValue: $checkedConvert('minOrderValue', (v) => v as num?),
     expiryDate: $checkedConvert(
       'expiryDate',
@@ -154,6 +179,10 @@ AvailableVoucherResponse _$AvailableVoucherResponseFromJson(
     ),
     remainingQuantity: $checkedConvert(
       'remainingQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    maxUsagePerUser: $checkedConvert(
+      'maxUsagePerUser',
       (v) => (v as num?)?.toInt(),
     ),
   );
@@ -167,9 +196,11 @@ Map<String, dynamic> _$AvailableVoucherResponseToJson(
   'code': instance.code,
   'discountValue': ?instance.discountValue,
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
+  'maxDiscountAmount': ?instance.maxDiscountAmount,
   'minOrderValue': ?instance.minOrderValue,
   'expiryDate': ?instance.expiryDate?.toIso8601String(),
   'remainingQuantity': ?instance.remainingQuantity,
+  'maxUsagePerUser': ?instance.maxUsagePerUser,
 };
 
 const _$DiscountTypeEnumMap = {

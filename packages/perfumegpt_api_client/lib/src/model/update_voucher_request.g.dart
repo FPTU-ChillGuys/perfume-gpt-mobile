@@ -17,6 +17,8 @@ abstract class _$UpdateVoucherRequestCWProxy {
 
   UpdateVoucherRequest requiredPoints(int? requiredPoints);
 
+  UpdateVoucherRequest maxDiscountAmount(num? maxDiscountAmount);
+
   UpdateVoucherRequest minOrderValue(num? minOrderValue);
 
   UpdateVoucherRequest expiryDate(DateTime? expiryDate);
@@ -25,7 +27,11 @@ abstract class _$UpdateVoucherRequestCWProxy {
 
   UpdateVoucherRequest remainingQuantity(int? remainingQuantity);
 
+  UpdateVoucherRequest maxUsagePerUser(int? maxUsagePerUser);
+
   UpdateVoucherRequest isPublic(bool? isPublic);
+
+  UpdateVoucherRequest isMemberOnly(bool? isMemberOnly);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateVoucherRequest(...).copyWith.fieldName(value)`.
@@ -40,11 +46,14 @@ abstract class _$UpdateVoucherRequestCWProxy {
     DiscountType? discountType,
     VoucherType? applyType,
     int? requiredPoints,
+    num? maxDiscountAmount,
     num? minOrderValue,
     DateTime? expiryDate,
     int? totalQuantity,
     int? remainingQuantity,
+    int? maxUsagePerUser,
     bool? isPublic,
+    bool? isMemberOnly,
   });
 }
 
@@ -76,6 +85,10 @@ class _$UpdateVoucherRequestCWProxyImpl
       call(requiredPoints: requiredPoints);
 
   @override
+  UpdateVoucherRequest maxDiscountAmount(num? maxDiscountAmount) =>
+      call(maxDiscountAmount: maxDiscountAmount);
+
+  @override
   UpdateVoucherRequest minOrderValue(num? minOrderValue) =>
       call(minOrderValue: minOrderValue);
 
@@ -92,7 +105,15 @@ class _$UpdateVoucherRequestCWProxyImpl
       call(remainingQuantity: remainingQuantity);
 
   @override
+  UpdateVoucherRequest maxUsagePerUser(int? maxUsagePerUser) =>
+      call(maxUsagePerUser: maxUsagePerUser);
+
+  @override
   UpdateVoucherRequest isPublic(bool? isPublic) => call(isPublic: isPublic);
+
+  @override
+  UpdateVoucherRequest isMemberOnly(bool? isMemberOnly) =>
+      call(isMemberOnly: isMemberOnly);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -108,11 +129,14 @@ class _$UpdateVoucherRequestCWProxyImpl
     Object? discountType = const $CopyWithPlaceholder(),
     Object? applyType = const $CopyWithPlaceholder(),
     Object? requiredPoints = const $CopyWithPlaceholder(),
+    Object? maxDiscountAmount = const $CopyWithPlaceholder(),
     Object? minOrderValue = const $CopyWithPlaceholder(),
     Object? expiryDate = const $CopyWithPlaceholder(),
     Object? totalQuantity = const $CopyWithPlaceholder(),
     Object? remainingQuantity = const $CopyWithPlaceholder(),
+    Object? maxUsagePerUser = const $CopyWithPlaceholder(),
     Object? isPublic = const $CopyWithPlaceholder(),
+    Object? isMemberOnly = const $CopyWithPlaceholder(),
   }) {
     return UpdateVoucherRequest(
       code: code == const $CopyWithPlaceholder() || code == null
@@ -135,6 +159,10 @@ class _$UpdateVoucherRequestCWProxyImpl
           ? _value.requiredPoints
           // ignore: cast_nullable_to_non_nullable
           : requiredPoints as int?,
+      maxDiscountAmount: maxDiscountAmount == const $CopyWithPlaceholder()
+          ? _value.maxDiscountAmount
+          // ignore: cast_nullable_to_non_nullable
+          : maxDiscountAmount as num?,
       minOrderValue: minOrderValue == const $CopyWithPlaceholder()
           ? _value.minOrderValue
           // ignore: cast_nullable_to_non_nullable
@@ -151,10 +179,18 @@ class _$UpdateVoucherRequestCWProxyImpl
           ? _value.remainingQuantity
           // ignore: cast_nullable_to_non_nullable
           : remainingQuantity as int?,
+      maxUsagePerUser: maxUsagePerUser == const $CopyWithPlaceholder()
+          ? _value.maxUsagePerUser
+          // ignore: cast_nullable_to_non_nullable
+          : maxUsagePerUser as int?,
       isPublic: isPublic == const $CopyWithPlaceholder()
           ? _value.isPublic
           // ignore: cast_nullable_to_non_nullable
           : isPublic as bool?,
+      isMemberOnly: isMemberOnly == const $CopyWithPlaceholder()
+          ? _value.isMemberOnly
+          // ignore: cast_nullable_to_non_nullable
+          : isMemberOnly as bool?,
     );
   }
 }
@@ -190,6 +226,7 @@ UpdateVoucherRequest _$UpdateVoucherRequestFromJson(
       'requiredPoints',
       (v) => (v as num?)?.toInt(),
     ),
+    maxDiscountAmount: $checkedConvert('maxDiscountAmount', (v) => v as num?),
     minOrderValue: $checkedConvert('minOrderValue', (v) => v as num?),
     expiryDate: $checkedConvert(
       'expiryDate',
@@ -203,7 +240,12 @@ UpdateVoucherRequest _$UpdateVoucherRequestFromJson(
       'remainingQuantity',
       (v) => (v as num?)?.toInt(),
     ),
+    maxUsagePerUser: $checkedConvert(
+      'maxUsagePerUser',
+      (v) => (v as num?)?.toInt(),
+    ),
     isPublic: $checkedConvert('isPublic', (v) => v as bool?),
+    isMemberOnly: $checkedConvert('isMemberOnly', (v) => v as bool?),
   );
   return val;
 });
@@ -216,11 +258,14 @@ Map<String, dynamic> _$UpdateVoucherRequestToJson(
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
   'applyType': ?_$VoucherTypeEnumMap[instance.applyType],
   'requiredPoints': ?instance.requiredPoints,
+  'maxDiscountAmount': ?instance.maxDiscountAmount,
   'minOrderValue': ?instance.minOrderValue,
   'expiryDate': ?instance.expiryDate?.toIso8601String(),
   'totalQuantity': ?instance.totalQuantity,
   'remainingQuantity': ?instance.remainingQuantity,
+  'maxUsagePerUser': ?instance.maxUsagePerUser,
   'isPublic': ?instance.isPublic,
+  'isMemberOnly': ?instance.isMemberOnly,
 };
 
 const _$DiscountTypeEnumMap = {

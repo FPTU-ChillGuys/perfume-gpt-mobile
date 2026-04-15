@@ -25,6 +25,8 @@ class PreviewPosOrderResponse {
 
      this.subTotal,
 
+     this.shippingFee,
+
      this.discount,
 
      this.totalPrice,
@@ -51,6 +53,18 @@ class PreviewPosOrderResponse {
 
 
   final num? subTotal;
+
+
+
+  @JsonKey(
+    
+    name: r'shippingFee',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? shippingFee;
 
 
 
@@ -84,6 +98,7 @@ class PreviewPosOrderResponse {
     bool operator ==(Object other) => identical(this, other) || other is PreviewPosOrderResponse &&
       other.items == items &&
       other.subTotal == subTotal &&
+      other.shippingFee == shippingFee &&
       other.discount == discount &&
       other.totalPrice == totalPrice;
 
@@ -91,6 +106,7 @@ class PreviewPosOrderResponse {
     int get hashCode =>
         items.hashCode +
         subTotal.hashCode +
+        shippingFee.hashCode +
         discount.hashCode +
         totalPrice.hashCode;
 

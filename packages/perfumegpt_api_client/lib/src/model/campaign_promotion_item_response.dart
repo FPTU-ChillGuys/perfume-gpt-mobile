@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/discount_type.dart';
 import 'package:perfumegpt_api_client/src/model/promotion_type.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -32,6 +33,10 @@ class CampaignPromotionItemResponse {
     required  this.name,
 
      this.itemType,
+
+     this.discountType,
+
+     this.discountValue,
 
      this.startDate,
 
@@ -116,6 +121,30 @@ class CampaignPromotionItemResponse {
 
   @JsonKey(
     
+    name: r'discountType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final DiscountType? discountType;
+
+
+
+  @JsonKey(
+    
+    name: r'discountValue',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? discountValue;
+
+
+
+  @JsonKey(
+    
     name: r'startDate',
     required: false,
     includeIfNull: false,
@@ -172,6 +201,8 @@ class CampaignPromotionItemResponse {
       other.batchId == batchId &&
       other.name == name &&
       other.itemType == itemType &&
+      other.discountType == discountType &&
+      other.discountValue == discountValue &&
       other.startDate == startDate &&
       other.endDate == endDate &&
       other.maxUsage == maxUsage &&
@@ -185,6 +216,8 @@ class CampaignPromotionItemResponse {
         (batchId == null ? 0 : batchId.hashCode) +
         name.hashCode +
         itemType.hashCode +
+        discountType.hashCode +
+        discountValue.hashCode +
         (startDate == null ? 0 : startDate.hashCode) +
         (endDate == null ? 0 : endDate.hashCode) +
         (maxUsage == null ? 0 : maxUsage.hashCode) +

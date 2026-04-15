@@ -249,4 +249,13 @@ const _$ReturnOrderReasonEnumMap = {
   ReturnOrderReason.itemNotAsDescribed: 'ItemNotAsDescribed',
   ReturnOrderReason.changedMind: 'ChangedMind',
   ReturnOrderReason.allergicReaction: 'AllergicReaction',
+  ReturnOrderReason.insufficientStock: 'InsufficientStock',
+  ReturnOrderReason.returnPeriodExpired: 'ReturnPeriodExpired',
+  ReturnOrderReason.productUsedOrUnsealed: 'ProductUsedOrUnsealed',
+  ReturnOrderReason.customerDamage: 'CustomerDamage',
+  ReturnOrderReason.insufficientEvidence: 'InsufficientEvidence',
+  ReturnOrderReason.missingAccessories: 'MissingAccessories',
+  ReturnOrderReason.nonReturnableItem: 'NonReturnableItem',
+  ReturnOrderReason.suspectedFraud: 'SuspectedFraud',
+  ReturnOrderReason.other: 'Other',
 };

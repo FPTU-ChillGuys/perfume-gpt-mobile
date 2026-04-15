@@ -19,7 +19,9 @@ abstract class _$BaseResponseOfListOfProductDailySaleFigureResponseCWProxy {
     List<String>? errors,
   );
 
-  BaseResponseOfListOfProductDailySaleFigureResponse errorType(int? errorType);
+  BaseResponseOfListOfProductDailySaleFigureResponse errorType(
+    ResponseErrorType? errorType,
+  );
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfListOfProductDailySaleFigureResponse(...).copyWith.fieldName(value)`.
@@ -33,7 +35,7 @@ abstract class _$BaseResponseOfListOfProductDailySaleFigureResponseCWProxy {
     bool? success,
     String? message,
     List<String>? errors,
-    int? errorType,
+    ResponseErrorType? errorType,
   });
 }
 
@@ -67,7 +69,7 @@ class _$BaseResponseOfListOfProductDailySaleFigureResponseCWProxyImpl
 
   @override
   BaseResponseOfListOfProductDailySaleFigureResponse errorType(
-    int? errorType,
+    ResponseErrorType? errorType,
   ) => call(errorType: errorType);
 
   @override
@@ -105,7 +107,7 @@ class _$BaseResponseOfListOfProductDailySaleFigureResponseCWProxyImpl
       errorType: errorType == const $CopyWithPlaceholder()
           ? _value.errorType
           // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
+          : errorType as ResponseErrorType?,
     );
   }
 }
@@ -147,7 +149,10 @@ _$BaseResponseOfListOfProductDailySaleFigureResponseFromJson(
         'errors',
         (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
       ),
-      errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+      errorType: $checkedConvert(
+        'errorType',
+        (v) => $enumDecodeNullable(_$ResponseErrorTypeEnumMap, v),
+      ),
     );
     return val;
   },
@@ -160,5 +165,14 @@ Map<String, dynamic> _$BaseResponseOfListOfProductDailySaleFigureResponseToJson(
   'success': ?instance.success,
   'message': ?instance.message,
   'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
+  'errorType': ?_$ResponseErrorTypeEnumMap[instance.errorType],
+};
+
+const _$ResponseErrorTypeEnumMap = {
+  ResponseErrorType.badRequest: 'BadRequest',
+  ResponseErrorType.unauthorized: 'Unauthorized',
+  ResponseErrorType.forbidden: 'Forbidden',
+  ResponseErrorType.notFound: 'NotFound',
+  ResponseErrorType.conflict: 'Conflict',
+  ResponseErrorType.internalError: 'InternalError',
 };

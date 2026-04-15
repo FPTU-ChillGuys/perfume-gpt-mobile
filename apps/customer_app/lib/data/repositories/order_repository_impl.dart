@@ -290,36 +290,6 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<void> updateOrderAddress(
-    String orderId, {
-    String? savedAddressId,
-    RecipientAddress? recipient,
-  }) async {
-    ContactAddressInformation? recipientInfo;
-    if (recipient != null) {
-      recipientInfo = ContactAddressInformation(
-        contactName: recipient.contactName,
-        contactPhoneNumber: recipient.contactPhoneNumber,
-        districtId: recipient.districtId,
-        districtName: recipient.districtName,
-        wardCode: recipient.wardCode,
-        wardName: recipient.wardName,
-        provinceId: recipient.provinceId,
-        provinceName: recipient.provinceName,
-        fullAddress: recipient.fullAddress,
-      );
-    }
-
-    await _ordersApi.apiOrdersOrderIdAddressPut(
-      orderId: orderId,
-      updateOrderAddressRequest: UpdateOrderAddressRequest(
-        savedAddressId: savedAddressId,
-        recipientInformation: recipientInfo,
-      ),
-    );
-  }
-
-  @override
   Future<void> cancelOrder(
     String orderId,
     String reason, {

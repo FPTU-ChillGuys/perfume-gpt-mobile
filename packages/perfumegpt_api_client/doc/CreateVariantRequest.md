@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **basePrice** | **num** |  | [optional] 
 **retailPrice** | **num** |  | [optional] 
 **status** | [**VariantStatus**](VariantStatus.md) |  | [optional] 
+**restockPolicy** | [**ReplenishmentPolicy**](ReplenishmentPolicy.md) |  | [optional] 
 **lowStockThreshold** | **int** |  | [optional] 
 **attributes** | [**List&lt;ProductAttributeDto&gt;**](ProductAttributeDto.md) |  | [optional] 
 **temporaryMediaIds** | **List&lt;String&gt;** |  | [optional] 

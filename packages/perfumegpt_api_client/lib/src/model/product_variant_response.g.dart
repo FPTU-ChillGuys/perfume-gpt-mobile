@@ -47,6 +47,8 @@ abstract class _$ProductVariantResponseCWProxy {
 
   ProductVariantResponse attributes(List<ProductAttributeResponse>? attributes);
 
+  ProductVariantResponse suppliers(List<VariantSupplierResponse>? suppliers);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductVariantResponse(...).copyWith.fieldName(value)`.
   ///
@@ -75,6 +77,7 @@ abstract class _$ProductVariantResponseCWProxy {
     String? voucherCode,
     num? discountedPrice,
     List<ProductAttributeResponse>? attributes,
+    List<VariantSupplierResponse>? suppliers,
   });
 }
 
@@ -160,6 +163,10 @@ class _$ProductVariantResponseCWProxyImpl
   ) => call(attributes: attributes);
 
   @override
+  ProductVariantResponse suppliers(List<VariantSupplierResponse>? suppliers) =>
+      call(suppliers: suppliers);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductVariantResponse(...).copyWith.fieldName(value)`.
   ///
@@ -188,6 +195,7 @@ class _$ProductVariantResponseCWProxyImpl
     Object? voucherCode = const $CopyWithPlaceholder(),
     Object? discountedPrice = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
+    Object? suppliers = const $CopyWithPlaceholder(),
   }) {
     return ProductVariantResponse(
       id: id == const $CopyWithPlaceholder()
@@ -273,6 +281,10 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.attributes
           // ignore: cast_nullable_to_non_nullable
           : attributes as List<ProductAttributeResponse>?,
+      suppliers: suppliers == const $CopyWithPlaceholder()
+          ? _value.suppliers
+          // ignore: cast_nullable_to_non_nullable
+          : suppliers as List<VariantSupplierResponse>?,
     );
   }
 }
@@ -292,19 +304,26 @@ extension $ProductVariantResponseCopyWith on ProductVariantResponse {
 ProductVariantResponse _$ProductVariantResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProductVariantResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'barcode',
+      'sku',
+      'concentrationName',
+      'productName',
+      'media',
+    ],
+  );
   final val = ProductVariantResponse(
     id: $checkedConvert('id', (v) => v as String?),
-    barcode: $checkedConvert('barcode', (v) => v as String? ?? ''),
-    sku: $checkedConvert('sku', (v) => v as String? ?? ''),
+    barcode: $checkedConvert('barcode', (v) => v as String),
+    sku: $checkedConvert('sku', (v) => v as String),
     volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
     concentrationId: $checkedConvert(
       'concentrationId',
       (v) => (v as num?)?.toInt(),
     ),
-    concentrationName: $checkedConvert(
-      'concentrationName',
-      (v) => v as String? ?? '',
-    ),
+    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
     type: $checkedConvert(
       'type',
       (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
@@ -322,14 +341,12 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
     sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
     longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
     productId: $checkedConvert('productId', (v) => v as String?),
-    productName: $checkedConvert('productName', (v) => v as String? ?? ''),
+    productName: $checkedConvert('productName', (v) => v as String),
     media: $checkedConvert(
       'media',
-      (v) =>
-          (v as List<dynamic>?)
-              ?.map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      (v) => (v as List<dynamic>)
+          .map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
     ),
     campaignName: $checkedConvert('campaignName', (v) => v as String?),
     voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
@@ -339,6 +356,14 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
       (v) => (v as List<dynamic>?)
           ?.map(
             (e) => ProductAttributeResponse.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    suppliers: $checkedConvert(
+      'suppliers',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => VariantSupplierResponse.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
     ),
@@ -369,6 +394,7 @@ Map<String, dynamic> _$ProductVariantResponseToJson(
   'voucherCode': ?instance.voucherCode,
   'discountedPrice': ?instance.discountedPrice,
   'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
+  'suppliers': ?instance.suppliers?.map((e) => e.toJson()).toList(),
 };
 
 const _$VariantTypeEnumMap = {

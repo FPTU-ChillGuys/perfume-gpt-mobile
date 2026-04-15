@@ -17,7 +17,9 @@ abstract class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxy {
 
   BaseResponseOfPagedResultOfUserVoucherResponse errors(List<String>? errors);
 
-  BaseResponseOfPagedResultOfUserVoucherResponse errorType(int? errorType);
+  BaseResponseOfPagedResultOfUserVoucherResponse errorType(
+    ResponseErrorType? errorType,
+  );
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfUserVoucherResponse(...).copyWith.fieldName(value)`.
@@ -31,7 +33,7 @@ abstract class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxy {
     bool? success,
     String? message,
     List<String>? errors,
-    int? errorType,
+    ResponseErrorType? errorType,
   });
 }
 
@@ -63,8 +65,9 @@ class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl
       call(errors: errors);
 
   @override
-  BaseResponseOfPagedResultOfUserVoucherResponse errorType(int? errorType) =>
-      call(errorType: errorType);
+  BaseResponseOfPagedResultOfUserVoucherResponse errorType(
+    ResponseErrorType? errorType,
+  ) => call(errorType: errorType);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -101,7 +104,7 @@ class _$BaseResponseOfPagedResultOfUserVoucherResponseCWProxyImpl
       errorType: errorType == const $CopyWithPlaceholder()
           ? _value.errorType
           // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
+          : errorType as ResponseErrorType?,
     );
   }
 }
@@ -140,7 +143,10 @@ _$BaseResponseOfPagedResultOfUserVoucherResponseFromJson(
       'errors',
       (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
     ),
-    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+    errorType: $checkedConvert(
+      'errorType',
+      (v) => $enumDecodeNullable(_$ResponseErrorTypeEnumMap, v),
+    ),
   );
   return val;
 });
@@ -152,5 +158,14 @@ Map<String, dynamic> _$BaseResponseOfPagedResultOfUserVoucherResponseToJson(
   'success': ?instance.success,
   'message': ?instance.message,
   'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
+  'errorType': ?_$ResponseErrorTypeEnumMap[instance.errorType],
+};
+
+const _$ResponseErrorTypeEnumMap = {
+  ResponseErrorType.badRequest: 'BadRequest',
+  ResponseErrorType.unauthorized: 'Unauthorized',
+  ResponseErrorType.forbidden: 'Forbidden',
+  ResponseErrorType.notFound: 'NotFound',
+  ResponseErrorType.conflict: 'Conflict',
+  ResponseErrorType.internalError: 'InternalError',
 };

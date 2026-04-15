@@ -13,6 +13,9 @@ Name | Type | Description | Notes
 **variantId** | **String** |  | [optional] 
 **requestedQuantity** | **int** |  | [optional] 
 **unitPrice** | **num** |  | [optional] 
+**campaignDiscount** | **num** |  | [optional] 
+**campaignPrice** | **num** |  | [optional] 
+**voucherDiscount** | **num** |  | [optional] 
 **refundableAmount** | **num** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

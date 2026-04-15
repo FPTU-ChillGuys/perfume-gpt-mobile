@@ -91,7 +91,7 @@ class ProcessCancelRequest {
     int get hashCode =>
         isApproved.hashCode +
         (staffNote == null ? 0 : staffNote.hashCode) +
-        refundMethod.hashCode +
+        (refundMethod == null ? 0 : refundMethod.hashCode) +
         (manualTransactionReference == null ? 0 : manualTransactionReference.hashCode);
 
   factory ProcessCancelRequest.fromJson(Map<String, dynamic> json) => _$ProcessCancelRequestFromJson(json);

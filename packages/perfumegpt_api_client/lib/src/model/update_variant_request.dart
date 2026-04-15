@@ -6,6 +6,7 @@
 import 'package:perfumegpt_api_client/src/model/variant_status.dart';
 import 'package:perfumegpt_api_client/src/model/variant_type.dart';
 import 'package:perfumegpt_api_client/src/model/product_attribute_dto.dart';
+import 'package:perfumegpt_api_client/src/model/replenishment_policy.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -38,6 +39,8 @@ class UpdateVariantRequest {
      this.retailPrice,
 
      this.status,
+
+     this.restockPolicy,
 
      this.sillage,
 
@@ -151,6 +154,18 @@ class UpdateVariantRequest {
 
   @JsonKey(
     
+    name: r'restockPolicy',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final ReplenishmentPolicy? restockPolicy;
+
+
+
+  @JsonKey(
+    
     name: r'sillage',
     required: false,
     includeIfNull: false,
@@ -221,6 +236,7 @@ class UpdateVariantRequest {
       other.basePrice == basePrice &&
       other.retailPrice == retailPrice &&
       other.status == status &&
+      other.restockPolicy == restockPolicy &&
       other.sillage == sillage &&
       other.longevity == longevity &&
       other.mediaIdsToDelete == mediaIdsToDelete &&
@@ -237,6 +253,7 @@ class UpdateVariantRequest {
         basePrice.hashCode +
         (retailPrice == null ? 0 : retailPrice.hashCode) +
         status.hashCode +
+        restockPolicy.hashCode +
         sillage.hashCode +
         longevity.hashCode +
         (mediaIdsToDelete == null ? 0 : mediaIdsToDelete.hashCode) +

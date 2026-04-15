@@ -37,6 +37,8 @@ abstract class _$OrderReturnRequestResponseCWProxy {
 
   OrderReturnRequestResponse requestedRefundAmount(num? requestedRefundAmount);
 
+  OrderReturnRequestResponse refundedShippingFee(num? refundedShippingFee);
+
   OrderReturnRequestResponse approvedRefundAmount(num? approvedRefundAmount);
 
   OrderReturnRequestResponse isRefunded(bool? isRefunded);
@@ -90,6 +92,7 @@ abstract class _$OrderReturnRequestResponseCWProxy {
     String? inspectionNote,
     ReturnRequestStatus? status,
     num? requestedRefundAmount,
+    num? refundedShippingFee,
     num? approvedRefundAmount,
     bool? isRefunded,
     bool? isRefundOnly,
@@ -173,6 +176,10 @@ class _$OrderReturnRequestResponseCWProxyImpl
   ) => call(requestedRefundAmount: requestedRefundAmount);
 
   @override
+  OrderReturnRequestResponse refundedShippingFee(num? refundedShippingFee) =>
+      call(refundedShippingFee: refundedShippingFee);
+
+  @override
   OrderReturnRequestResponse approvedRefundAmount(num? approvedRefundAmount) =>
       call(approvedRefundAmount: approvedRefundAmount);
 
@@ -250,6 +257,7 @@ class _$OrderReturnRequestResponseCWProxyImpl
     Object? inspectionNote = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
     Object? requestedRefundAmount = const $CopyWithPlaceholder(),
+    Object? refundedShippingFee = const $CopyWithPlaceholder(),
     Object? approvedRefundAmount = const $CopyWithPlaceholder(),
     Object? isRefunded = const $CopyWithPlaceholder(),
     Object? isRefundOnly = const $CopyWithPlaceholder(),
@@ -326,6 +334,10 @@ class _$OrderReturnRequestResponseCWProxyImpl
           ? _value.requestedRefundAmount
           // ignore: cast_nullable_to_non_nullable
           : requestedRefundAmount as num?,
+      refundedShippingFee: refundedShippingFee == const $CopyWithPlaceholder()
+          ? _value.refundedShippingFee
+          // ignore: cast_nullable_to_non_nullable
+          : refundedShippingFee as num?,
       approvedRefundAmount: approvedRefundAmount == const $CopyWithPlaceholder()
           ? _value.approvedRefundAmount
           // ignore: cast_nullable_to_non_nullable
@@ -420,6 +432,10 @@ OrderReturnRequestResponse _$OrderReturnRequestResponseFromJson(
       'requestedRefundAmount',
       (v) => v as num?,
     ),
+    refundedShippingFee: $checkedConvert(
+      'refundedShippingFee',
+      (v) => v as num?,
+    ),
     approvedRefundAmount: $checkedConvert(
       'approvedRefundAmount',
       (v) => v as num?,
@@ -489,6 +505,7 @@ Map<String, dynamic> _$OrderReturnRequestResponseToJson(
   'inspectionNote': ?instance.inspectionNote,
   'status': ?_$ReturnRequestStatusEnumMap[instance.status],
   'requestedRefundAmount': ?instance.requestedRefundAmount,
+  'refundedShippingFee': ?instance.refundedShippingFee,
   'approvedRefundAmount': ?instance.approvedRefundAmount,
   'isRefunded': ?instance.isRefunded,
   'isRefundOnly': ?instance.isRefundOnly,

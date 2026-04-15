@@ -5,10 +5,11 @@
 import 'package:perfumegpt_api_client/api.dart';
 ```
 
-All URIs are relative to *https://localhost:7011*
+All URIs are relative to *https://backend-sep490.vqnofficial.win*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**apiProductvariantsCampaignsCampaignIdGet**](ProductVariantsApi.md#apiproductvariantscampaignscampaignidget) | **GET** /api/productvariants/campaigns/{campaignId} | 
 [**apiProductvariantsForPosGet**](ProductVariantsApi.md#apiproductvariantsforposget) | **GET** /api/productvariants/for-pos | 
 [**apiProductvariantsGet**](ProductVariantsApi.md#apiproductvariantsget) | **GET** /api/productvariants | 
 [**apiProductvariantsImagesMediaIdSetPrimaryPut**](ProductVariantsApi.md#apiproductvariantsimagesmediaidsetprimaryput) | **PUT** /api/productvariants/images/{mediaId}/set-primary | 
@@ -22,8 +23,8 @@ Method | HTTP request | Description
 [**apiProductvariantsVariantIdPut**](ProductVariantsApi.md#apiproductvariantsvariantidput) | **PUT** /api/productvariants/{variantId} | 
 
 
-# **apiProductvariantsForPosGet**
-> BaseResponseOfProductVariantForPosResponse apiProductvariantsForPosGet(barcode, sku, name)
+# **apiProductvariantsCampaignsCampaignIdGet**
+> BaseResponseOfPagedResultOfVariantPagedItem apiProductvariantsCampaignsCampaignIdGet(campaignId, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -32,12 +33,61 @@ Method | HTTP request | Description
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getProductVariantsApi();
-final String barcode = barcode_example; // String | 
-final String sku = sku_example; // String | 
-final String name = name_example; // String | 
+final String campaignId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final int pageNumber = 56; // int | 
+final int pageSize = 56; // int | 
+final String sortBy = sortBy_example; // String | 
+final String sortOrder = sortOrder_example; // String | 
+final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiProductvariantsForPosGet(barcode, sku, name);
+    final response = api.apiProductvariantsCampaignsCampaignIdGet(campaignId, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ProductVariantsApi->apiProductvariantsCampaignsCampaignIdGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **campaignId** | **String**|  | 
+ **pageNumber** | **int**|  | [optional] 
+ **pageSize** | **int**|  | [optional] 
+ **sortBy** | **String**|  | [optional] 
+ **sortOrder** | **String**|  | [optional] 
+ **isDescending** | **bool**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfPagedResultOfVariantPagedItem**](BaseResponseOfPagedResultOfVariantPagedItem.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiProductvariantsForPosGet**
+> BaseResponseOfProductVariantForPosResponse apiProductvariantsForPosGet(keyword)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getProductVariantsApi();
+final String keyword = keyword_example; // String | 
+
+try {
+    final response = api.apiProductvariantsForPosGet(keyword);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ProductVariantsApi->apiProductvariantsForPosGet: $e\n');
@@ -48,9 +98,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **barcode** | **String**|  | [optional] 
- **sku** | **String**|  | [optional] 
- **name** | **String**|  | [optional] 
+ **keyword** | **String**|  | [optional] 
 
 ### Return type
 
@@ -199,7 +247,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiProductvariantsLookupGet**
-> BaseResponseOfListOfVariantLookupItem apiProductvariantsLookupGet(productId)
+> BaseResponseOfListOfVariantLookupItem apiProductvariantsLookupGet(productId, supplierId)
 
 
 
@@ -209,9 +257,10 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getProductVariantsApi();
 final String productId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final int supplierId = 56; // int | 
 
 try {
-    final response = api.apiProductvariantsLookupGet(productId);
+    final response = api.apiProductvariantsLookupGet(productId, supplierId);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ProductVariantsApi->apiProductvariantsLookupGet: $e\n');
@@ -223,6 +272,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **String**|  | [optional] 
+ **supplierId** | **int**|  | [optional] 
 
 ### Return type
 

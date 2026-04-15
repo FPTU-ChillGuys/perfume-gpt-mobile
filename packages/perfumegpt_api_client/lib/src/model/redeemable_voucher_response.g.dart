@@ -17,6 +17,8 @@ abstract class _$RedeemableVoucherResponseCWProxy {
 
   RedeemableVoucherResponse requiredPoints(int? requiredPoints);
 
+  RedeemableVoucherResponse maxDiscountAmount(num? maxDiscountAmount);
+
   RedeemableVoucherResponse minOrderValue(num? minOrderValue);
 
   RedeemableVoucherResponse expiryDate(DateTime? expiryDate);
@@ -24,6 +26,8 @@ abstract class _$RedeemableVoucherResponseCWProxy {
   RedeemableVoucherResponse isExpired(bool? isExpired);
 
   RedeemableVoucherResponse remainingQuantity(int? remainingQuantity);
+
+  RedeemableVoucherResponse maxUsagePerUser(int? maxUsagePerUser);
 
   RedeemableVoucherResponse createdAt(DateTime? createdAt);
 
@@ -40,10 +44,12 @@ abstract class _$RedeemableVoucherResponseCWProxy {
     num? discountValue,
     DiscountType? discountType,
     int? requiredPoints,
+    num? maxDiscountAmount,
     num? minOrderValue,
     DateTime? expiryDate,
     bool? isExpired,
     int? remainingQuantity,
+    int? maxUsagePerUser,
     DateTime? createdAt,
   });
 }
@@ -75,6 +81,10 @@ class _$RedeemableVoucherResponseCWProxyImpl
       call(requiredPoints: requiredPoints);
 
   @override
+  RedeemableVoucherResponse maxDiscountAmount(num? maxDiscountAmount) =>
+      call(maxDiscountAmount: maxDiscountAmount);
+
+  @override
   RedeemableVoucherResponse minOrderValue(num? minOrderValue) =>
       call(minOrderValue: minOrderValue);
 
@@ -89,6 +99,10 @@ class _$RedeemableVoucherResponseCWProxyImpl
   @override
   RedeemableVoucherResponse remainingQuantity(int? remainingQuantity) =>
       call(remainingQuantity: remainingQuantity);
+
+  @override
+  RedeemableVoucherResponse maxUsagePerUser(int? maxUsagePerUser) =>
+      call(maxUsagePerUser: maxUsagePerUser);
 
   @override
   RedeemableVoucherResponse createdAt(DateTime? createdAt) =>
@@ -108,10 +122,12 @@ class _$RedeemableVoucherResponseCWProxyImpl
     Object? discountValue = const $CopyWithPlaceholder(),
     Object? discountType = const $CopyWithPlaceholder(),
     Object? requiredPoints = const $CopyWithPlaceholder(),
+    Object? maxDiscountAmount = const $CopyWithPlaceholder(),
     Object? minOrderValue = const $CopyWithPlaceholder(),
     Object? expiryDate = const $CopyWithPlaceholder(),
     Object? isExpired = const $CopyWithPlaceholder(),
     Object? remainingQuantity = const $CopyWithPlaceholder(),
+    Object? maxUsagePerUser = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
   }) {
     return RedeemableVoucherResponse(
@@ -135,6 +151,10 @@ class _$RedeemableVoucherResponseCWProxyImpl
           ? _value.requiredPoints
           // ignore: cast_nullable_to_non_nullable
           : requiredPoints as int?,
+      maxDiscountAmount: maxDiscountAmount == const $CopyWithPlaceholder()
+          ? _value.maxDiscountAmount
+          // ignore: cast_nullable_to_non_nullable
+          : maxDiscountAmount as num?,
       minOrderValue: minOrderValue == const $CopyWithPlaceholder()
           ? _value.minOrderValue
           // ignore: cast_nullable_to_non_nullable
@@ -151,6 +171,10 @@ class _$RedeemableVoucherResponseCWProxyImpl
           ? _value.remainingQuantity
           // ignore: cast_nullable_to_non_nullable
           : remainingQuantity as int?,
+      maxUsagePerUser: maxUsagePerUser == const $CopyWithPlaceholder()
+          ? _value.maxUsagePerUser
+          // ignore: cast_nullable_to_non_nullable
+          : maxUsagePerUser as int?,
       createdAt: createdAt == const $CopyWithPlaceholder()
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
@@ -187,6 +211,7 @@ RedeemableVoucherResponse _$RedeemableVoucherResponseFromJson(
       'requiredPoints',
       (v) => (v as num?)?.toInt(),
     ),
+    maxDiscountAmount: $checkedConvert('maxDiscountAmount', (v) => v as num?),
     minOrderValue: $checkedConvert('minOrderValue', (v) => v as num?),
     expiryDate: $checkedConvert(
       'expiryDate',
@@ -195,6 +220,10 @@ RedeemableVoucherResponse _$RedeemableVoucherResponseFromJson(
     isExpired: $checkedConvert('isExpired', (v) => v as bool?),
     remainingQuantity: $checkedConvert(
       'remainingQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    maxUsagePerUser: $checkedConvert(
+      'maxUsagePerUser',
       (v) => (v as num?)?.toInt(),
     ),
     createdAt: $checkedConvert(
@@ -213,10 +242,12 @@ Map<String, dynamic> _$RedeemableVoucherResponseToJson(
   'discountValue': ?instance.discountValue,
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
   'requiredPoints': ?instance.requiredPoints,
+  'maxDiscountAmount': ?instance.maxDiscountAmount,
   'minOrderValue': ?instance.minOrderValue,
   'expiryDate': ?instance.expiryDate?.toIso8601String(),
   'isExpired': ?instance.isExpired,
   'remainingQuantity': ?instance.remainingQuantity,
+  'maxUsagePerUser': ?instance.maxUsagePerUser,
   'createdAt': ?instance.createdAt?.toIso8601String(),
 };
 

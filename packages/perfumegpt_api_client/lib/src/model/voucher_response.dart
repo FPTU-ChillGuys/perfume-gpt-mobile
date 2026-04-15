@@ -39,6 +39,8 @@ class VoucherResponse {
 
      this.requiredPoints,
 
+     this.maxDiscountAmount,
+
      this.minOrderValue,
 
      this.expiryDate,
@@ -49,7 +51,11 @@ class VoucherResponse {
 
      this.remainingQuantity,
 
+     this.maxUsagePerUser,
+
      this.isPublic,
+
+     this.isMemberOnly,
 
      this.createdAt,
   });
@@ -152,6 +158,18 @@ class VoucherResponse {
 
   @JsonKey(
     
+    name: r'maxDiscountAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? maxDiscountAmount;
+
+
+
+  @JsonKey(
+    
     name: r'minOrderValue',
     required: false,
     includeIfNull: false,
@@ -212,6 +230,18 @@ class VoucherResponse {
 
   @JsonKey(
     
+    name: r'maxUsagePerUser',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? maxUsagePerUser;
+
+
+
+  @JsonKey(
+    
     name: r'isPublic',
     required: false,
     includeIfNull: false,
@@ -219,6 +249,18 @@ class VoucherResponse {
 
 
   final bool? isPublic;
+
+
+
+  @JsonKey(
+    
+    name: r'isMemberOnly',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final bool? isMemberOnly;
 
 
 
@@ -246,12 +288,15 @@ class VoucherResponse {
       other.applyType == applyType &&
       other.targetItemType == targetItemType &&
       other.requiredPoints == requiredPoints &&
+      other.maxDiscountAmount == maxDiscountAmount &&
       other.minOrderValue == minOrderValue &&
       other.expiryDate == expiryDate &&
       other.isExpired == isExpired &&
       other.totalQuantity == totalQuantity &&
       other.remainingQuantity == remainingQuantity &&
+      other.maxUsagePerUser == maxUsagePerUser &&
       other.isPublic == isPublic &&
+      other.isMemberOnly == isMemberOnly &&
       other.createdAt == createdAt;
 
     @override
@@ -264,12 +309,15 @@ class VoucherResponse {
         applyType.hashCode +
         targetItemType.hashCode +
         (requiredPoints == null ? 0 : requiredPoints.hashCode) +
+        (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +
         (minOrderValue == null ? 0 : minOrderValue.hashCode) +
         expiryDate.hashCode +
         isExpired.hashCode +
         (totalQuantity == null ? 0 : totalQuantity.hashCode) +
         (remainingQuantity == null ? 0 : remainingQuantity.hashCode) +
+        (maxUsagePerUser == null ? 0 : maxUsagePerUser.hashCode) +
         isPublic.hashCode +
+        isMemberOnly.hashCode +
         createdAt.hashCode;
 
   factory VoucherResponse.fromJson(Map<String, dynamic> json) => _$VoucherResponseFromJson(json);

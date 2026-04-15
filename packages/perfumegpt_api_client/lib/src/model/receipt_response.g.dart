@@ -27,6 +27,8 @@ abstract class _$ReceiptResponseCWProxy {
 
   ReceiptResponse subtotal(num? subtotal);
 
+  ReceiptResponse shippingFee(num? shippingFee);
+
   ReceiptResponse discount(num? discount);
 
   ReceiptResponse tax(num? tax);
@@ -55,6 +57,7 @@ abstract class _$ReceiptResponseCWProxy {
     String recipientAddress,
     List<ReceiptItemDto> items,
     num? subtotal,
+    num? shippingFee,
     num? discount,
     num? tax,
     num? total,
@@ -105,6 +108,10 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
   ReceiptResponse subtotal(num? subtotal) => call(subtotal: subtotal);
 
   @override
+  ReceiptResponse shippingFee(num? shippingFee) =>
+      call(shippingFee: shippingFee);
+
+  @override
   ReceiptResponse discount(num? discount) => call(discount: discount);
 
   @override
@@ -139,6 +146,7 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
     Object? recipientAddress = const $CopyWithPlaceholder(),
     Object? items = const $CopyWithPlaceholder(),
     Object? subtotal = const $CopyWithPlaceholder(),
+    Object? shippingFee = const $CopyWithPlaceholder(),
     Object? discount = const $CopyWithPlaceholder(),
     Object? tax = const $CopyWithPlaceholder(),
     Object? total = const $CopyWithPlaceholder(),
@@ -192,6 +200,10 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
           ? _value.subtotal
           // ignore: cast_nullable_to_non_nullable
           : subtotal as num?,
+      shippingFee: shippingFee == const $CopyWithPlaceholder()
+          ? _value.shippingFee
+          // ignore: cast_nullable_to_non_nullable
+          : shippingFee as num?,
       discount: discount == const $CopyWithPlaceholder()
           ? _value.discount
           // ignore: cast_nullable_to_non_nullable
@@ -265,6 +277,7 @@ ReceiptResponse _$ReceiptResponseFromJson(Map<String, dynamic> json) =>
               .toList(),
         ),
         subtotal: $checkedConvert('subtotal', (v) => v as num?),
+        shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
         discount: $checkedConvert('discount', (v) => v as num?),
         tax: $checkedConvert('tax', (v) => v as num?),
         total: $checkedConvert('total', (v) => v as num?),
@@ -286,6 +299,7 @@ Map<String, dynamic> _$ReceiptResponseToJson(ReceiptResponse instance) =>
       'recipientAddress': instance.recipientAddress,
       'items': instance.items.map((e) => e.toJson()).toList(),
       'subtotal': ?instance.subtotal,
+      'shippingFee': ?instance.shippingFee,
       'discount': ?instance.discount,
       'tax': ?instance.tax,
       'total': ?instance.total,

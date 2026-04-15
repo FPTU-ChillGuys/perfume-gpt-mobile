@@ -14,6 +14,10 @@ Name | Type | Description | Notes
 **imageUrl** | **String** |  | [optional] 
 **quantity** | **int** |  | [optional] 
 **unitPrice** | **num** |  | [optional] 
+**campaignDiscount** | **num** |  | [optional] 
+**campaignPrice** | **num** |  | [optional] 
+**voucherDiscount** | **num** |  | [optional] 
+**itemTotal** | **num** |  | [optional] 
 **refunablePrice** | **num** |  | [optional] 
 **total** | **num** |  | [optional] 
 **reservedBatches** | [**List&lt;ReservedBatchResponse&gt;**](ReservedBatchResponse.md) |  | 

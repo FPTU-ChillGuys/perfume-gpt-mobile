@@ -23,6 +23,8 @@ abstract class _$UpdateVariantRequestCWProxy {
 
   UpdateVariantRequest status(VariantStatus? status);
 
+  UpdateVariantRequest restockPolicy(ReplenishmentPolicy? restockPolicy);
+
   UpdateVariantRequest sillage(int? sillage);
 
   UpdateVariantRequest longevity(int? longevity);
@@ -51,6 +53,7 @@ abstract class _$UpdateVariantRequestCWProxy {
     num? basePrice,
     num? retailPrice,
     VariantStatus? status,
+    ReplenishmentPolicy? restockPolicy,
     int? sillage,
     int? longevity,
     List<String>? mediaIdsToDelete,
@@ -94,6 +97,10 @@ class _$UpdateVariantRequestCWProxyImpl
   UpdateVariantRequest status(VariantStatus? status) => call(status: status);
 
   @override
+  UpdateVariantRequest restockPolicy(ReplenishmentPolicy? restockPolicy) =>
+      call(restockPolicy: restockPolicy);
+
+  @override
   UpdateVariantRequest sillage(int? sillage) => call(sillage: sillage);
 
   @override
@@ -129,6 +136,7 @@ class _$UpdateVariantRequestCWProxyImpl
     Object? basePrice = const $CopyWithPlaceholder(),
     Object? retailPrice = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
+    Object? restockPolicy = const $CopyWithPlaceholder(),
     Object? sillage = const $CopyWithPlaceholder(),
     Object? longevity = const $CopyWithPlaceholder(),
     Object? mediaIdsToDelete = const $CopyWithPlaceholder(),
@@ -168,6 +176,10 @@ class _$UpdateVariantRequestCWProxyImpl
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as VariantStatus?,
+      restockPolicy: restockPolicy == const $CopyWithPlaceholder()
+          ? _value.restockPolicy
+          // ignore: cast_nullable_to_non_nullable
+          : restockPolicy as ReplenishmentPolicy?,
       sillage: sillage == const $CopyWithPlaceholder()
           ? _value.sillage
           // ignore: cast_nullable_to_non_nullable
@@ -227,6 +239,10 @@ UpdateVariantRequest _$UpdateVariantRequestFromJson(
       'status',
       (v) => $enumDecodeNullable(_$VariantStatusEnumMap, v),
     ),
+    restockPolicy: $checkedConvert(
+      'restockPolicy',
+      (v) => $enumDecodeNullable(_$ReplenishmentPolicyEnumMap, v),
+    ),
     sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
     longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
     mediaIdsToDelete: $checkedConvert(
@@ -258,6 +274,7 @@ Map<String, dynamic> _$UpdateVariantRequestToJson(
   'basePrice': ?instance.basePrice,
   'retailPrice': ?instance.retailPrice,
   'status': ?_$VariantStatusEnumMap[instance.status],
+  'restockPolicy': ?_$ReplenishmentPolicyEnumMap[instance.restockPolicy],
   'sillage': ?instance.sillage,
   'longevity': ?instance.longevity,
   'mediaIdsToDelete': ?instance.mediaIdsToDelete,
@@ -276,4 +293,10 @@ const _$VariantStatusEnumMap = {
   VariantStatus.active: 'Active',
   VariantStatus.inactive: 'Inactive',
   VariantStatus.discontinued: 'Discontinued',
+};
+
+const _$ReplenishmentPolicyEnumMap = {
+  ReplenishmentPolicy.autoRestock: 'AutoRestock',
+  ReplenishmentPolicy.manualOnly: 'ManualOnly',
+  ReplenishmentPolicy.doNotRestock: 'DoNotRestock',
 };

@@ -39,6 +39,14 @@ abstract class _$PaymentTransactionSummaryResponseCWProxy {
 
   PaymentTransactionSummaryResponse totalPaymentAmount(num? totalPaymentAmount);
 
+  PaymentTransactionSummaryResponse totalShippingFeeDeductedPerOrder(
+    num? totalShippingFeeDeductedPerOrder,
+  );
+
+  PaymentTransactionSummaryResponse totalPaymentAmountExcludingShipping(
+    num? totalPaymentAmountExcludingShipping,
+  );
+
   PaymentTransactionSummaryResponse totalRefundAmount(num? totalRefundAmount);
 
   /// Creates a new instance with the provided field values.
@@ -59,6 +67,8 @@ abstract class _$PaymentTransactionSummaryResponseCWProxy {
     int? failedTransactionsCount,
     int? cancelledTransactionsCount,
     num? totalPaymentAmount,
+    num? totalShippingFeeDeductedPerOrder,
+    num? totalPaymentAmountExcludingShipping,
     num? totalRefundAmount,
   });
 }
@@ -119,6 +129,18 @@ class _$PaymentTransactionSummaryResponseCWProxyImpl
   ) => call(totalPaymentAmount: totalPaymentAmount);
 
   @override
+  PaymentTransactionSummaryResponse totalShippingFeeDeductedPerOrder(
+    num? totalShippingFeeDeductedPerOrder,
+  ) => call(totalShippingFeeDeductedPerOrder: totalShippingFeeDeductedPerOrder);
+
+  @override
+  PaymentTransactionSummaryResponse totalPaymentAmountExcludingShipping(
+    num? totalPaymentAmountExcludingShipping,
+  ) => call(
+    totalPaymentAmountExcludingShipping: totalPaymentAmountExcludingShipping,
+  );
+
+  @override
   PaymentTransactionSummaryResponse totalRefundAmount(num? totalRefundAmount) =>
       call(totalRefundAmount: totalRefundAmount);
 
@@ -141,6 +163,8 @@ class _$PaymentTransactionSummaryResponseCWProxyImpl
     Object? failedTransactionsCount = const $CopyWithPlaceholder(),
     Object? cancelledTransactionsCount = const $CopyWithPlaceholder(),
     Object? totalPaymentAmount = const $CopyWithPlaceholder(),
+    Object? totalShippingFeeDeductedPerOrder = const $CopyWithPlaceholder(),
+    Object? totalPaymentAmountExcludingShipping = const $CopyWithPlaceholder(),
     Object? totalRefundAmount = const $CopyWithPlaceholder(),
   }) {
     return PaymentTransactionSummaryResponse(
@@ -190,6 +214,16 @@ class _$PaymentTransactionSummaryResponseCWProxyImpl
           ? _value.totalPaymentAmount
           // ignore: cast_nullable_to_non_nullable
           : totalPaymentAmount as num?,
+      totalShippingFeeDeductedPerOrder:
+          totalShippingFeeDeductedPerOrder == const $CopyWithPlaceholder()
+          ? _value.totalShippingFeeDeductedPerOrder
+          // ignore: cast_nullable_to_non_nullable
+          : totalShippingFeeDeductedPerOrder as num?,
+      totalPaymentAmountExcludingShipping:
+          totalPaymentAmountExcludingShipping == const $CopyWithPlaceholder()
+          ? _value.totalPaymentAmountExcludingShipping
+          // ignore: cast_nullable_to_non_nullable
+          : totalPaymentAmountExcludingShipping as num?,
       totalRefundAmount: totalRefundAmount == const $CopyWithPlaceholder()
           ? _value.totalRefundAmount
           // ignore: cast_nullable_to_non_nullable
@@ -254,6 +288,14 @@ PaymentTransactionSummaryResponse _$PaymentTransactionSummaryResponseFromJson(
       (v) => (v as num?)?.toInt(),
     ),
     totalPaymentAmount: $checkedConvert('totalPaymentAmount', (v) => v as num?),
+    totalShippingFeeDeductedPerOrder: $checkedConvert(
+      'totalShippingFeeDeductedPerOrder',
+      (v) => v as num?,
+    ),
+    totalPaymentAmountExcludingShipping: $checkedConvert(
+      'totalPaymentAmountExcludingShipping',
+      (v) => v as num?,
+    ),
     totalRefundAmount: $checkedConvert('totalRefundAmount', (v) => v as num?),
   );
   return val;
@@ -272,5 +314,9 @@ Map<String, dynamic> _$PaymentTransactionSummaryResponseToJson(
   'failedTransactionsCount': ?instance.failedTransactionsCount,
   'cancelledTransactionsCount': ?instance.cancelledTransactionsCount,
   'totalPaymentAmount': ?instance.totalPaymentAmount,
+  'totalShippingFeeDeductedPerOrder':
+      ?instance.totalShippingFeeDeductedPerOrder,
+  'totalPaymentAmountExcludingShipping':
+      ?instance.totalPaymentAmountExcludingShipping,
   'totalRefundAmount': ?instance.totalRefundAmount,
 };

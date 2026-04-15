@@ -30,6 +30,12 @@ class OrderReturnRequestDetailResponse {
 
      this.unitPrice,
 
+     this.campaignDiscount,
+
+     this.campaignPrice,
+
+     this.voucherDiscount,
+
      this.refundableAmount,
   });
 
@@ -95,6 +101,42 @@ class OrderReturnRequestDetailResponse {
 
   @JsonKey(
     
+    name: r'campaignDiscount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? campaignDiscount;
+
+
+
+  @JsonKey(
+    
+    name: r'campaignPrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? campaignPrice;
+
+
+
+  @JsonKey(
+    
+    name: r'voucherDiscount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? voucherDiscount;
+
+
+
+  @JsonKey(
+    
     name: r'refundableAmount',
     required: false,
     includeIfNull: false,
@@ -114,6 +156,9 @@ class OrderReturnRequestDetailResponse {
       other.variantId == variantId &&
       other.requestedQuantity == requestedQuantity &&
       other.unitPrice == unitPrice &&
+      other.campaignDiscount == campaignDiscount &&
+      other.campaignPrice == campaignPrice &&
+      other.voucherDiscount == voucherDiscount &&
       other.refundableAmount == refundableAmount;
 
     @override
@@ -123,6 +168,9 @@ class OrderReturnRequestDetailResponse {
         variantId.hashCode +
         requestedQuantity.hashCode +
         unitPrice.hashCode +
+        campaignDiscount.hashCode +
+        campaignPrice.hashCode +
+        voucherDiscount.hashCode +
         refundableAmount.hashCode;
 
   factory OrderReturnRequestDetailResponse.fromJson(Map<String, dynamic> json) => _$OrderReturnRequestDetailResponseFromJson(json);

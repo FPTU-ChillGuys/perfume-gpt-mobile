@@ -117,7 +117,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
     }
   }
 
-  Future<String?> createInStoreOrder({
+  Future<CreatePaymentResponseDto?> createInStoreOrder({
     required List<DraftItem> items,
     required String paymentMethod,
     String? voucherCode,
@@ -152,7 +152,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
         );
       }
 
-      final orderId = await repo.checkoutInStore(
+      final responseDto = await repo.checkoutInStore(
         scannedItems: scannedItems,
         paymentMethod: paymentMethod,
         voucherCode: voucherCode,
@@ -160,6 +160,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
         expectedTotalPrice: ref.read(draftTotalProvider),
       );
 
+      final orderId = responseDto?.orderId;
       if (orderId != null) {
         final order = await repo.getOrderById(orderId);
         if (order != null) {
@@ -170,7 +171,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
       }
 
       state = const AsyncData(null);
-      return orderId;
+      return responseDto;
     } catch (e, s) {
       state = AsyncError(e, s);
       return null;

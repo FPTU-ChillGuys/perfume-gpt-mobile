@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **batchId** | **String** |  | [optional] 
 **name** | **String** |  | 
 **itemType** | [**PromotionType**](PromotionType.md) |  | [optional] 
+**discountType** | [**DiscountType**](DiscountType.md) |  | [optional] 
+**discountValue** | **num** |  | [optional] 
 **startDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **endDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **maxUsage** | **int** |  | [optional] 

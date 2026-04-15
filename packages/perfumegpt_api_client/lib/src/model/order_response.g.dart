@@ -29,9 +29,17 @@ abstract class _$OrderResponseCWProxy {
 
   OrderResponse totalAmount(num? totalAmount);
 
+  OrderResponse subTotal(num? subTotal);
+
+  OrderResponse shippingFee(num? shippingFee);
+
   OrderResponse voucherId(String? voucherId);
 
   OrderResponse voucherCode(String? voucherCode);
+
+  OrderResponse voucherType(VoucherType? voucherType);
+
+  OrderResponse voucherDiscountTotal(num? voucherDiscountTotal);
 
   OrderResponse paymentExpiresAt(DateTime? paymentExpiresAt);
 
@@ -70,8 +78,12 @@ abstract class _$OrderResponseCWProxy {
     OrderStatus? status,
     PaymentStatus? paymentStatus,
     num? totalAmount,
+    num? subTotal,
+    num? shippingFee,
     String? voucherId,
     String? voucherCode,
+    VoucherType? voucherType,
+    num? voucherDiscountTotal,
     DateTime? paymentExpiresAt,
     DateTime? paidAt,
     DateTime? createdAt,
@@ -127,11 +139,25 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
   OrderResponse totalAmount(num? totalAmount) => call(totalAmount: totalAmount);
 
   @override
+  OrderResponse subTotal(num? subTotal) => call(subTotal: subTotal);
+
+  @override
+  OrderResponse shippingFee(num? shippingFee) => call(shippingFee: shippingFee);
+
+  @override
   OrderResponse voucherId(String? voucherId) => call(voucherId: voucherId);
 
   @override
   OrderResponse voucherCode(String? voucherCode) =>
       call(voucherCode: voucherCode);
+
+  @override
+  OrderResponse voucherType(VoucherType? voucherType) =>
+      call(voucherType: voucherType);
+
+  @override
+  OrderResponse voucherDiscountTotal(num? voucherDiscountTotal) =>
+      call(voucherDiscountTotal: voucherDiscountTotal);
 
   @override
   OrderResponse paymentExpiresAt(DateTime? paymentExpiresAt) =>
@@ -183,8 +209,12 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
     Object? status = const $CopyWithPlaceholder(),
     Object? paymentStatus = const $CopyWithPlaceholder(),
     Object? totalAmount = const $CopyWithPlaceholder(),
+    Object? subTotal = const $CopyWithPlaceholder(),
+    Object? shippingFee = const $CopyWithPlaceholder(),
     Object? voucherId = const $CopyWithPlaceholder(),
     Object? voucherCode = const $CopyWithPlaceholder(),
+    Object? voucherType = const $CopyWithPlaceholder(),
+    Object? voucherDiscountTotal = const $CopyWithPlaceholder(),
     Object? paymentExpiresAt = const $CopyWithPlaceholder(),
     Object? paidAt = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
@@ -239,6 +269,14 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
           ? _value.totalAmount
           // ignore: cast_nullable_to_non_nullable
           : totalAmount as num?,
+      subTotal: subTotal == const $CopyWithPlaceholder()
+          ? _value.subTotal
+          // ignore: cast_nullable_to_non_nullable
+          : subTotal as num?,
+      shippingFee: shippingFee == const $CopyWithPlaceholder()
+          ? _value.shippingFee
+          // ignore: cast_nullable_to_non_nullable
+          : shippingFee as num?,
       voucherId: voucherId == const $CopyWithPlaceholder()
           ? _value.voucherId
           // ignore: cast_nullable_to_non_nullable
@@ -247,6 +285,14 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
           ? _value.voucherCode
           // ignore: cast_nullable_to_non_nullable
           : voucherCode as String?,
+      voucherType: voucherType == const $CopyWithPlaceholder()
+          ? _value.voucherType
+          // ignore: cast_nullable_to_non_nullable
+          : voucherType as VoucherType?,
+      voucherDiscountTotal: voucherDiscountTotal == const $CopyWithPlaceholder()
+          ? _value.voucherDiscountTotal
+          // ignore: cast_nullable_to_non_nullable
+          : voucherDiscountTotal as num?,
       paymentExpiresAt: paymentExpiresAt == const $CopyWithPlaceholder()
           ? _value.paymentExpiresAt
           // ignore: cast_nullable_to_non_nullable
@@ -320,8 +366,18 @@ OrderResponse _$OrderResponseFromJson(
       (v) => $enumDecodeNullable(_$PaymentStatusEnumMap, v),
     ),
     totalAmount: $checkedConvert('totalAmount', (v) => v as num?),
+    subTotal: $checkedConvert('subTotal', (v) => v as num?),
+    shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
     voucherId: $checkedConvert('voucherId', (v) => v as String?),
     voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
+    voucherType: $checkedConvert(
+      'voucherType',
+      (v) => $enumDecodeNullable(_$VoucherTypeEnumMap, v),
+    ),
+    voucherDiscountTotal: $checkedConvert(
+      'voucherDiscountTotal',
+      (v) => v as num?,
+    ),
     paymentExpiresAt: $checkedConvert(
       'paymentExpiresAt',
       (v) => v == null ? null : DateTime.parse(v as String),
@@ -379,8 +435,12 @@ Map<String, dynamic> _$OrderResponseToJson(OrderResponse instance) =>
       'status': ?_$OrderStatusEnumMap[instance.status],
       'paymentStatus': ?_$PaymentStatusEnumMap[instance.paymentStatus],
       'totalAmount': ?instance.totalAmount,
+      'subTotal': ?instance.subTotal,
+      'shippingFee': ?instance.shippingFee,
       'voucherId': ?instance.voucherId,
       'voucherCode': ?instance.voucherCode,
+      'voucherType': ?_$VoucherTypeEnumMap[instance.voucherType],
+      'voucherDiscountTotal': ?instance.voucherDiscountTotal,
       'paymentExpiresAt': ?instance.paymentExpiresAt?.toIso8601String(),
       'paidAt': ?instance.paidAt?.toIso8601String(),
       'createdAt': ?instance.createdAt?.toIso8601String(),
@@ -415,4 +475,9 @@ const _$PaymentStatusEnumMap = {
   PaymentStatus.paid: 'Paid',
   PaymentStatus.partialRefunded: 'Partial_Refunded',
   PaymentStatus.refunded: 'Refunded',
+};
+
+const _$VoucherTypeEnumMap = {
+  VoucherType.order: 'Order',
+  VoucherType.product: 'Product',
 };

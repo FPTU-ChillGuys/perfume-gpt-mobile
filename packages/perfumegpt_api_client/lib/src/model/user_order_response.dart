@@ -8,6 +8,7 @@ import 'package:perfumegpt_api_client/src/model/order_detail_response.dart';
 import 'package:perfumegpt_api_client/src/model/shipping_info_response.dart';
 import 'package:perfumegpt_api_client/src/model/payment_status.dart';
 import 'package:perfumegpt_api_client/src/model/recipient_info_response.dart';
+import 'package:perfumegpt_api_client/src/model/voucher_type.dart';
 import 'package:perfumegpt_api_client/src/model/order_status.dart';
 import 'package:perfumegpt_api_client/src/model/order_type.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
@@ -41,7 +42,15 @@ class UserOrderResponse {
 
      this.totalAmount,
 
+     this.subTotal,
+
+     this.shippingFee,
+
      this.voucherCode,
+
+     this.voucherType,
+
+     this.voucherDiscountTotal,
 
      this.paymentExpiresAt,
 
@@ -146,6 +155,30 @@ class UserOrderResponse {
 
   @JsonKey(
     
+    name: r'subTotal',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? subTotal;
+
+
+
+  @JsonKey(
+    
+    name: r'shippingFee',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? shippingFee;
+
+
+
+  @JsonKey(
+    
     name: r'voucherCode',
     required: false,
     includeIfNull: false,
@@ -153,6 +186,30 @@ class UserOrderResponse {
 
 
   final String? voucherCode;
+
+
+
+  @JsonKey(
+    
+    name: r'voucherType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final VoucherType? voucherType;
+
+
+
+  @JsonKey(
+    
+    name: r'voucherDiscountTotal',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? voucherDiscountTotal;
 
 
 
@@ -263,7 +320,11 @@ class UserOrderResponse {
       other.isReturnable == isReturnable &&
       other.paymentStatus == paymentStatus &&
       other.totalAmount == totalAmount &&
+      other.subTotal == subTotal &&
+      other.shippingFee == shippingFee &&
       other.voucherCode == voucherCode &&
+      other.voucherType == voucherType &&
+      other.voucherDiscountTotal == voucherDiscountTotal &&
       other.paymentExpiresAt == paymentExpiresAt &&
       other.paidAt == paidAt &&
       other.createdAt == createdAt &&
@@ -282,7 +343,11 @@ class UserOrderResponse {
         isReturnable.hashCode +
         paymentStatus.hashCode +
         totalAmount.hashCode +
+        subTotal.hashCode +
+        shippingFee.hashCode +
         (voucherCode == null ? 0 : voucherCode.hashCode) +
+        (voucherType == null ? 0 : voucherType.hashCode) +
+        voucherDiscountTotal.hashCode +
         (paymentExpiresAt == null ? 0 : paymentExpiresAt.hashCode) +
         (paidAt == null ? 0 : paidAt.hashCode) +
         createdAt.hashCode +

@@ -19,6 +19,7 @@ import 'package:perfumegpt_api_client/src/model/create_voucher_request.dart';
 import 'package:perfumegpt_api_client/src/model/discount_type.dart';
 import 'package:perfumegpt_api_client/src/model/redeem_voucher_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_voucher_request.dart';
+import 'package:perfumegpt_api_client/src/model/usage_status.dart';
 
 class VouchersApi {
 
@@ -246,7 +247,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfUserVoucherResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfPagedResultOfUserVoucherResponse>> apiVouchersMeGet({ 
-    int? status,
+    UsageStatus? status,
     bool? isUsed,
     bool? isExpired,
     String? code,

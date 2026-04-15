@@ -5,23 +5,27 @@
 import 'package:perfumegpt_api_client/api.dart';
 ```
 
-All URIs are relative to *https://localhost:7011*
+All URIs are relative to *https://backend-sep490.vqnofficial.win*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apiCampaignsCampaignIdDelete**](CampaignsApi.md#apicampaignscampaigniddelete) | **DELETE** /api/campaigns/{campaignId} | 
 [**apiCampaignsCampaignIdGet**](CampaignsApi.md#apicampaignscampaignidget) | **GET** /api/campaigns/{campaignId} | 
 [**apiCampaignsCampaignIdItemsGet**](CampaignsApi.md#apicampaignscampaigniditemsget) | **GET** /api/campaigns/{campaignId}/items | 
+[**apiCampaignsCampaignIdItemsItemIdGet**](CampaignsApi.md#apicampaignscampaigniditemsitemidget) | **GET** /api/campaigns/{campaignId}/items/{itemId} | 
 [**apiCampaignsCampaignIdPut**](CampaignsApi.md#apicampaignscampaignidput) | **PUT** /api/campaigns/{campaignId} | 
 [**apiCampaignsCampaignIdStatusPut**](CampaignsApi.md#apicampaignscampaignidstatusput) | **PUT** /api/campaigns/{campaignId}/status | 
 [**apiCampaignsGet**](CampaignsApi.md#apicampaignsget) | **GET** /api/campaigns | 
+[**apiCampaignsHomeGet**](CampaignsApi.md#apicampaignshomeget) | **GET** /api/campaigns/home | 
 [**apiCampaignsIdItemsItemIdDelete**](CampaignsApi.md#apicampaignsiditemsitemiddelete) | **DELETE** /api/campaigns/{id}/items/{itemId} | 
 [**apiCampaignsIdItemsItemIdPut**](CampaignsApi.md#apicampaignsiditemsitemidput) | **PUT** /api/campaigns/{id}/items/{itemId} | 
 [**apiCampaignsIdItemsPost**](CampaignsApi.md#apicampaignsiditemspost) | **POST** /api/campaigns/{id}/items | 
+[**apiCampaignsIdVouchersGet**](CampaignsApi.md#apicampaignsidvouchersget) | **GET** /api/campaigns/{id}/vouchers | 
 [**apiCampaignsIdVouchersPost**](CampaignsApi.md#apicampaignsidvoucherspost) | **POST** /api/campaigns/{id}/vouchers | 
 [**apiCampaignsIdVouchersVoucherIdDelete**](CampaignsApi.md#apicampaignsidvouchersvoucheriddelete) | **DELETE** /api/campaigns/{id}/vouchers/{voucherId} | 
 [**apiCampaignsIdVouchersVoucherIdGet**](CampaignsApi.md#apicampaignsidvouchersvoucheridget) | **GET** /api/campaigns/{id}/vouchers/{voucherId} | 
 [**apiCampaignsIdVouchersVoucherIdPut**](CampaignsApi.md#apicampaignsidvouchersvoucheridput) | **PUT** /api/campaigns/{id}/vouchers/{voucherId} | 
+[**apiCampaignsLookupActiveGet**](CampaignsApi.md#apicampaignslookupactiveget) | **GET** /api/campaigns/lookup/active | 
 [**apiCampaignsPost**](CampaignsApi.md#apicampaignspost) | **POST** /api/campaigns | 
 
 
@@ -136,6 +140,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BaseResponseOfListOfCampaignPromotionItemResponse**](BaseResponseOfListOfCampaignPromotionItemResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiCampaignsCampaignIdItemsItemIdGet**
+> BaseResponseOfCampaignPromotionItemResponse apiCampaignsCampaignIdItemsItemIdGet(campaignId, itemId)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getCampaignsApi();
+final String campaignId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String itemId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiCampaignsCampaignIdItemsItemIdGet(campaignId, itemId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling CampaignsApi->apiCampaignsCampaignIdItemsItemIdGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **campaignId** | **String**|  | 
+ **itemId** | **String**|  | 
+
+### Return type
+
+[**BaseResponseOfCampaignPromotionItemResponse**](BaseResponseOfCampaignPromotionItemResponse.md)
 
 ### Authorization
 
@@ -289,6 +336,43 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **apiCampaignsHomeGet**
+> BaseResponseOfListOfCampaignResponse apiCampaignsHomeGet()
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getCampaignsApi();
+
+try {
+    final response = api.apiCampaignsHomeGet();
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling CampaignsApi->apiCampaignsHomeGet: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BaseResponseOfListOfCampaignResponse**](BaseResponseOfListOfCampaignResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **apiCampaignsIdItemsItemIdDelete**
 > BaseResponseOfstring apiCampaignsIdItemsItemIdDelete(id, itemId)
 
@@ -416,6 +500,47 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiCampaignsIdVouchersGet**
+> BaseResponseOfListOfVoucherResponse apiCampaignsIdVouchersGet(id)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getCampaignsApi();
+final String id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiCampaignsIdVouchersGet(id);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling CampaignsApi->apiCampaignsIdVouchersGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+[**BaseResponseOfListOfVoucherResponse**](BaseResponseOfListOfVoucherResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -590,6 +715,43 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiCampaignsLookupActiveGet**
+> BaseResponseOfListOfCampaignLookupItem apiCampaignsLookupActiveGet()
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getCampaignsApi();
+
+try {
+    final response = api.apiCampaignsLookupActiveGet();
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling CampaignsApi->apiCampaignsLookupActiveGet: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BaseResponseOfListOfCampaignLookupItem**](BaseResponseOfListOfCampaignLookupItem.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

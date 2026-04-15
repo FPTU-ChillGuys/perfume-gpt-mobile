@@ -54,4 +54,51 @@ final class ApiClientProvider
   }
 }
 
-String _$apiClientHash() => r'490a4d08fa41a61e39f20691cdd0040242da44c4';
+String _$apiClientHash() => r'1aa1333d4588208a26f6a880a46bdaecf95b7f93';
+
+@ProviderFor(aiApiClient)
+final aiApiClientProvider = AiApiClientProvider._();
+
+final class AiApiClientProvider
+    extends
+        $FunctionalProvider<
+          PerfumegptAiApiClient,
+          PerfumegptAiApiClient,
+          PerfumegptAiApiClient
+        >
+    with $Provider<PerfumegptAiApiClient> {
+  AiApiClientProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'aiApiClientProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$aiApiClientHash();
+
+  @$internal
+  @override
+  $ProviderElement<PerfumegptAiApiClient> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  PerfumegptAiApiClient create(Ref ref) {
+    return aiApiClient(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PerfumegptAiApiClient value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PerfumegptAiApiClient>(value),
+    );
+  }
+}
+
+String _$aiApiClientHash() => r'189bb862d9891cc37b2a3ee26a7c77ffe965e60b';

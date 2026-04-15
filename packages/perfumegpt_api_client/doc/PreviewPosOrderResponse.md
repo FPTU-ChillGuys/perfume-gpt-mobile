@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **items** | [**List&lt;PosOrderDetailListItem&gt;**](PosOrderDetailListItem.md) |  | [optional] 
 **subTotal** | **num** |  | [optional] 
+**shippingFee** | **num** |  | [optional] 
 **discount** | **num** |  | [optional] 
 **totalPrice** | **num** |  | [optional] 
 

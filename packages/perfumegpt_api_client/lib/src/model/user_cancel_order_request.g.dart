@@ -138,4 +138,12 @@ const _$CancelOrderReasonEnumMap = {
   CancelOrderReason.paymentIssue: 'PaymentIssue',
   CancelOrderReason.deliveryTooLate: 'DeliveryTooLate',
   CancelOrderReason.insufficientStock: 'InsufficientStock',
+  CancelOrderReason.customerRequested: 'CustomerRequested',
+  CancelOrderReason.suspectedFraud: 'SuspectedFraud',
+  CancelOrderReason.unreachableCustomer: 'UnreachableCustomer',
+  CancelOrderReason.paymentTimeout: 'PaymentTimeout',
+  CancelOrderReason.pricingOrSystemError: 'PricingOrSystemError',
+  CancelOrderReason.damagedOrDefectiveStock: 'DamagedOrDefectiveStock',
+  CancelOrderReason.outOfServiceArea: 'OutOfServiceArea',
+  CancelOrderReason.other: 'Other',
 };

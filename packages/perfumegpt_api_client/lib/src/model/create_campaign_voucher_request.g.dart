@@ -17,6 +17,16 @@ abstract class _$CreateCampaignVoucherRequestCWProxy {
 
   CreateCampaignVoucherRequest applyType(VoucherType? applyType);
 
+  CreateCampaignVoucherRequest maxDiscountAmount(num? maxDiscountAmount);
+
+  CreateCampaignVoucherRequest minOrderValue(num minOrderValue);
+
+  CreateCampaignVoucherRequest totalQuantity(int? totalQuantity);
+
+  CreateCampaignVoucherRequest maxUsagePerUser(int? maxUsagePerUser);
+
+  CreateCampaignVoucherRequest isMemberOnly(bool? isMemberOnly);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateCampaignVoucherRequest(...).copyWith.fieldName(value)`.
   ///
@@ -30,6 +40,11 @@ abstract class _$CreateCampaignVoucherRequestCWProxy {
     PromotionType? targetItemType,
     DiscountType? discountType,
     VoucherType? applyType,
+    num? maxDiscountAmount,
+    num minOrderValue,
+    int? totalQuantity,
+    int? maxUsagePerUser,
+    bool? isMemberOnly,
   });
 }
 
@@ -61,6 +76,26 @@ class _$CreateCampaignVoucherRequestCWProxyImpl
       call(applyType: applyType);
 
   @override
+  CreateCampaignVoucherRequest maxDiscountAmount(num? maxDiscountAmount) =>
+      call(maxDiscountAmount: maxDiscountAmount);
+
+  @override
+  CreateCampaignVoucherRequest minOrderValue(num minOrderValue) =>
+      call(minOrderValue: minOrderValue);
+
+  @override
+  CreateCampaignVoucherRequest totalQuantity(int? totalQuantity) =>
+      call(totalQuantity: totalQuantity);
+
+  @override
+  CreateCampaignVoucherRequest maxUsagePerUser(int? maxUsagePerUser) =>
+      call(maxUsagePerUser: maxUsagePerUser);
+
+  @override
+  CreateCampaignVoucherRequest isMemberOnly(bool? isMemberOnly) =>
+      call(isMemberOnly: isMemberOnly);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CreateCampaignVoucherRequest(...).copyWith.fieldName(value)`.
   ///
@@ -74,6 +109,11 @@ class _$CreateCampaignVoucherRequestCWProxyImpl
     Object? targetItemType = const $CopyWithPlaceholder(),
     Object? discountType = const $CopyWithPlaceholder(),
     Object? applyType = const $CopyWithPlaceholder(),
+    Object? maxDiscountAmount = const $CopyWithPlaceholder(),
+    Object? minOrderValue = const $CopyWithPlaceholder(),
+    Object? totalQuantity = const $CopyWithPlaceholder(),
+    Object? maxUsagePerUser = const $CopyWithPlaceholder(),
+    Object? isMemberOnly = const $CopyWithPlaceholder(),
   }) {
     return CreateCampaignVoucherRequest(
       code: code == const $CopyWithPlaceholder() || code == null
@@ -96,6 +136,27 @@ class _$CreateCampaignVoucherRequestCWProxyImpl
           ? _value.applyType
           // ignore: cast_nullable_to_non_nullable
           : applyType as VoucherType?,
+      maxDiscountAmount: maxDiscountAmount == const $CopyWithPlaceholder()
+          ? _value.maxDiscountAmount
+          // ignore: cast_nullable_to_non_nullable
+          : maxDiscountAmount as num?,
+      minOrderValue:
+          minOrderValue == const $CopyWithPlaceholder() || minOrderValue == null
+          ? _value.minOrderValue
+          // ignore: cast_nullable_to_non_nullable
+          : minOrderValue as num,
+      totalQuantity: totalQuantity == const $CopyWithPlaceholder()
+          ? _value.totalQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : totalQuantity as int?,
+      maxUsagePerUser: maxUsagePerUser == const $CopyWithPlaceholder()
+          ? _value.maxUsagePerUser
+          // ignore: cast_nullable_to_non_nullable
+          : maxUsagePerUser as int?,
+      isMemberOnly: isMemberOnly == const $CopyWithPlaceholder()
+          ? _value.isMemberOnly
+          // ignore: cast_nullable_to_non_nullable
+          : isMemberOnly as bool?,
     );
   }
 }
@@ -116,7 +177,7 @@ extension $CreateCampaignVoucherRequestCopyWith
 CreateCampaignVoucherRequest _$CreateCampaignVoucherRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateCampaignVoucherRequest', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['code']);
+  $checkKeys(json, requiredKeys: const ['code', 'minOrderValue']);
   final val = CreateCampaignVoucherRequest(
     code: $checkedConvert('code', (v) => v as String),
     discountValue: $checkedConvert('discountValue', (v) => v as num?),
@@ -132,6 +193,17 @@ CreateCampaignVoucherRequest _$CreateCampaignVoucherRequestFromJson(
       'applyType',
       (v) => $enumDecodeNullable(_$VoucherTypeEnumMap, v),
     ),
+    maxDiscountAmount: $checkedConvert('maxDiscountAmount', (v) => v as num?),
+    minOrderValue: $checkedConvert('minOrderValue', (v) => v as num),
+    totalQuantity: $checkedConvert(
+      'totalQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    maxUsagePerUser: $checkedConvert(
+      'maxUsagePerUser',
+      (v) => (v as num?)?.toInt(),
+    ),
+    isMemberOnly: $checkedConvert('isMemberOnly', (v) => v as bool?),
   );
   return val;
 });
@@ -144,6 +216,11 @@ Map<String, dynamic> _$CreateCampaignVoucherRequestToJson(
   'targetItemType': ?_$PromotionTypeEnumMap[instance.targetItemType],
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
   'applyType': ?_$VoucherTypeEnumMap[instance.applyType],
+  'maxDiscountAmount': ?instance.maxDiscountAmount,
+  'minOrderValue': instance.minOrderValue,
+  'totalQuantity': ?instance.totalQuantity,
+  'maxUsagePerUser': ?instance.maxUsagePerUser,
+  'isMemberOnly': ?instance.isMemberOnly,
 };
 
 const _$PromotionTypeEnumMap = {

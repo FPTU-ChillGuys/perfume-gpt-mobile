@@ -59,7 +59,7 @@ class PaymentInformation {
 
     @override
     int get hashCode =>
-        method.hashCode +
+        (method == null ? 0 : method.hashCode) +
         (posSessionId == null ? 0 : posSessionId.hashCode);
 
   factory PaymentInformation.fromJson(Map<String, dynamic> json) => _$PaymentInformationFromJson(json);

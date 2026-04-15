@@ -9,7 +9,6 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_bulk_action_result_of_list_of_temporary_media_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_bulk_action_result_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_media_response.dart';
@@ -17,10 +16,10 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_product
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_product_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_media_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_product_list_item.dart';
-import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_product_list_item_with_variants.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_product_fast_look_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_product_infor_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_product_response.dart';
+import 'package:perfumegpt_api_client/src/model/base_response_of_public_product_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/create_product_request.dart';
 import 'package:perfumegpt_api_client/src/model/gender.dart';
@@ -32,6 +31,84 @@ class ProductsApi {
   final Dio _dio;
 
   const ProductsApi(this._dio);
+
+  /// apiAdminProductsProductIdGet
+  /// 
+  ///
+  /// Parameters:
+  /// * [productId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BaseResponseOfProductResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BaseResponseOfProductResponse>> apiAdminProductsProductIdGet({ 
+    required String productId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/admin/products/{productId}'.replaceAll('{' r'productId' '}', productId.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BaseResponseOfProductResponse? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfProductResponse, BaseResponseOfProductResponse>(rawData, 'BaseResponseOfProductResponse', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BaseResponseOfProductResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
 
   /// apiProductsBestSellersGet
   /// 
@@ -339,160 +416,6 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfProduct
     }
 
     return Response<BaseResponseOfListOfProductDailySaleFigureResponse>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// apiProductsEmbeddingsUpdateAllsPost
-  /// 
-  ///
-  /// Parameters:
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [BaseResponse] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponse>> apiProductsEmbeddingsUpdateAllsPost({ 
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/api/products/embeddings/update/alls';
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
-        ],
-        ...?extra,
-      },
-      validateStatus: validateStatus,
-    );
-
-    final _response = await _dio.request<Object>(
-      _path,
-      options: _options,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    BaseResponse? _responseData;
-
-    try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>(rawData, 'BaseResponse', growable: true);
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<BaseResponse>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// apiProductsEmbeddingsUpdateProductIdPost
-  /// 
-  ///
-  /// Parameters:
-  /// * [productId] 
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [BaseResponse] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponse>> apiProductsEmbeddingsUpdateProductIdPost({ 
-    required String productId,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/api/products/embeddings/update/{productId}'.replaceAll('{' r'productId' '}', productId.toString());
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
-        ],
-        ...?extra,
-      },
-      validateStatus: validateStatus,
-    );
-
-    final _response = await _dio.request<Object>(
-      _path,
-      options: _options,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    BaseResponse? _responseData;
-
-    try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>(rawData, 'BaseResponse', growable: true);
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<BaseResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1250,9 +1173,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductFastLo
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BaseResponseOfProductResponse] as data
+  /// Returns a [Future] containing a [Response] with a [BaseResponseOfPublicProductResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfProductResponse>> apiProductsProductIdGet({ 
+  Future<Response<BaseResponseOfPublicProductResponse>> apiProductsProductIdGet({ 
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1288,11 +1211,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductFastLo
       onReceiveProgress: onReceiveProgress,
     );
 
-    BaseResponseOfProductResponse? _responseData;
+    BaseResponseOfPublicProductResponse? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfProductResponse, BaseResponseOfProductResponse>(rawData, 'BaseResponseOfProductResponse', growable: true);
+_responseData = rawData == null ? null : deserialize<BaseResponseOfPublicProductResponse, BaseResponseOfPublicProductResponse>(rawData, 'BaseResponseOfPublicProductResponse', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1304,7 +1227,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfProductRespon
       );
     }
 
-    return Response<BaseResponseOfProductResponse>(
+    return Response<BaseResponseOfPublicProductResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1637,125 +1560,6 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     }
 
     return Response<BaseResponseOfBulkActionResultOfstring>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// apiProductsSearchSemanticGet
-  /// 
-  ///
-  /// Parameters:
-  /// * [searchText] 
-  /// * [gender] 
-  /// * [categoryId] 
-  /// * [brandId] 
-  /// * [volume] 
-  /// * [fromPrice] 
-  /// * [toPrice] 
-  /// * [isAvailable] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfProductListItemWithVariants] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfProductListItemWithVariants>> apiProductsSearchSemanticGet({ 
-    String? searchText,
-    Gender? gender,
-    int? categoryId,
-    int? brandId,
-    int? volume,
-    num? fromPrice,
-    num? toPrice,
-    bool? isAvailable,
-    int? pageNumber,
-    int? pageSize,
-    String? sortBy,
-    String? sortOrder,
-    bool? isDescending,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/api/products/search/semantic';
-    final _options = Options(
-      method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
-        ],
-        ...?extra,
-      },
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{
-      if (searchText != null) r'searchText': searchText,
-      if (gender != null) r'Gender': gender,
-      r'CategoryId': categoryId,
-      r'BrandId': brandId,
-      r'Volume': volume,
-      r'FromPrice': fromPrice,
-      r'ToPrice': toPrice,
-      if (isAvailable != null) r'IsAvailable': isAvailable,
-      if (pageNumber != null) r'PageNumber': pageNumber,
-      if (pageSize != null) r'PageSize': pageSize,
-      if (sortBy != null) r'SortBy': sortBy,
-      if (sortOrder != null) r'SortOrder': sortOrder,
-      if (isDescending != null) r'IsDescending': isDescending,
-    };
-
-    final _response = await _dio.request<Object>(
-      _path,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    BaseResponseOfPagedResultOfProductListItemWithVariants? _responseData;
-
-    try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfProductListItemWithVariants, BaseResponseOfPagedResultOfProductListItemWithVariants>(rawData, 'BaseResponseOfPagedResultOfProductListItemWithVariants', growable: true);
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<BaseResponseOfPagedResultOfProductListItemWithVariants>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

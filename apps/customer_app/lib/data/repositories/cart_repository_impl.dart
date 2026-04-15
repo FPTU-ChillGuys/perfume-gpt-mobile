@@ -24,7 +24,11 @@ class CartRepositoryImpl implements CartRepository {
   }
 
   @override
-  Future<void> addItem(String variantId, {int quantity = 1, bool isAuthenticated = false}) async {
+  Future<void> addItem(
+    String variantId, {
+    int quantity = 1,
+    bool isAuthenticated = false,
+  }) async {
     if (isAuthenticated) {
       await _api.apiCartItemsPost(
         createCartItemRequest: CreateCartItemRequest(
@@ -38,10 +42,11 @@ class CartRepositoryImpl implements CartRepository {
       if (index != -1) {
         cart[index] = cart[index].copyWith(
           quantity: cart[index].quantity + quantity,
-          subTotal: cart[index].variantPrice * (cart[index].quantity + quantity),
+          subTotal:
+              cart[index].variantPrice * (cart[index].quantity + quantity),
         );
       } else {
-        // Guest cart might need full item info, which should be provided via a different method 
+        // Guest cart might need full item info, which should be provided via a different method
         // or fetched from product api. For now, we assume the caller handles this or uses addEntityToCart.
       }
       await _localDataSource.saveCart(cart);
@@ -49,16 +54,24 @@ class CartRepositoryImpl implements CartRepository {
   }
 
   // Helper for adding full entity to local cart
-  Future<void> addEntityToCart(CartItem item, {bool isAuthenticated = false}) async {
+  Future<void> addEntityToCart(
+    CartItem item, {
+    bool isAuthenticated = false,
+  }) async {
     if (isAuthenticated) {
-      await addItem(item.variantId, quantity: item.quantity, isAuthenticated: true);
+      await addItem(
+        item.variantId,
+        quantity: item.quantity,
+        isAuthenticated: true,
+      );
     } else if (_localDataSource != null) {
       final cart = await _localDataSource.getCart();
       final index = cart.indexWhere((i) => i.variantId == item.variantId);
       if (index != -1) {
         cart[index] = cart[index].copyWith(
           quantity: cart[index].quantity + item.quantity,
-          subTotal: cart[index].variantPrice * (cart[index].quantity + item.quantity),
+          subTotal:
+              cart[index].variantPrice * (cart[index].quantity + item.quantity),
         );
       } else {
         cart.add(item);
@@ -68,7 +81,11 @@ class CartRepositoryImpl implements CartRepository {
   }
 
   @override
-  Future<void> updateItem(String cartItemId, int quantity, {bool isAuthenticated = false}) async {
+  Future<void> updateItem(
+    String cartItemId,
+    int quantity, {
+    bool isAuthenticated = false,
+  }) async {
     if (isAuthenticated) {
       await _api.apiCartItemsIdPut(
         id: cartItemId,
@@ -76,7 +93,9 @@ class CartRepositoryImpl implements CartRepository {
       );
     } else if (_localDataSource != null) {
       final cart = await _localDataSource.getCart();
-      final index = cart.indexWhere((item) => item.variantId == cartItemId || item.cartItemId == cartItemId);
+      final index = cart.indexWhere(
+        (item) => item.variantId == cartItemId || item.cartItemId == cartItemId,
+      );
       if (index != -1) {
         if (quantity <= 0) {
           cart.removeAt(index);
@@ -92,12 +111,17 @@ class CartRepositoryImpl implements CartRepository {
   }
 
   @override
-  Future<void> removeItem(String cartItemId, {bool isAuthenticated = false}) async {
+  Future<void> removeItem(
+    String cartItemId, {
+    bool isAuthenticated = false,
+  }) async {
     if (isAuthenticated) {
       await _api.apiCartItemsIdDelete(id: cartItemId);
     } else if (_localDataSource != null) {
       final cart = await _localDataSource.getCart();
-      cart.removeWhere((item) => item.variantId == cartItemId || item.cartItemId == cartItemId);
+      cart.removeWhere(
+        (item) => item.variantId == cartItemId || item.cartItemId == cartItemId,
+      );
       await _localDataSource.saveCart(cart);
     }
   }
@@ -114,7 +138,11 @@ class CartRepositoryImpl implements CartRepository {
   @override
   Future<void> mergeCart(List<CartItem> localItems) async {
     for (final item in localItems) {
-      await addItem(item.variantId, quantity: item.quantity, isAuthenticated: true);
+      await addItem(
+        item.variantId,
+        quantity: item.quantity,
+        isAuthenticated: true,
+      );
     }
     if (_localDataSource != null) {
       await _localDataSource.clearCart();

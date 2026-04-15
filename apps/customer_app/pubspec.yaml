@@ -31,6 +31,8 @@ dependencies:
   image_picker: ^1.1.2
   http_parser: ^4.1.2
   flutter_widget_from_html_core: ^0.17.2
+  perfumegpt_ai_api_client:
+    path: ../../packages/perfumegpt_ai_api_client
 
 dev_dependencies:
   flutter_test:

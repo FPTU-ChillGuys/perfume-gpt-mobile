@@ -5,15 +5,14 @@
 import 'package:perfumegpt_api_client/api.dart';
 ```
 
-All URIs are relative to *https://localhost:7011*
+All URIs are relative to *https://backend-sep490.vqnofficial.win*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**apiAdminProductsProductIdGet**](ProductsApi.md#apiadminproductsproductidget) | **GET** /api/admin/products/{productId} | 
 [**apiProductsBestSellersGet**](ProductsApi.md#apiproductsbestsellersget) | **GET** /api/products/best-sellers | 
 [**apiProductsCampaignsCampaignIdGet**](ProductsApi.md#apiproductscampaignscampaignidget) | **GET** /api/products/campaigns/{campaignId} | 
 [**apiProductsDailySaleFiguresGet**](ProductsApi.md#apiproductsdailysalefiguresget) | **GET** /api/products/daily-sale-figures | 
-[**apiProductsEmbeddingsUpdateAllsPost**](ProductsApi.md#apiproductsembeddingsupdateallspost) | **POST** /api/products/embeddings/update/alls | 
-[**apiProductsEmbeddingsUpdateProductIdPost**](ProductsApi.md#apiproductsembeddingsupdateproductidpost) | **POST** /api/products/embeddings/update/{productId} | 
 [**apiProductsGet**](ProductsApi.md#apiproductsget) | **GET** /api/products | 
 [**apiProductsImagesMediaIdSetPrimaryPut**](ProductsApi.md#apiproductsimagesmediaidsetprimaryput) | **PUT** /api/products/images/{mediaId}/set-primary | 
 [**apiProductsImagesTemporaryPost**](ProductsApi.md#apiproductsimagestemporarypost) | **POST** /api/products/images/temporary | 
@@ -27,8 +26,48 @@ Method | HTTP request | Description
 [**apiProductsProductIdImagesPrimaryGet**](ProductsApi.md#apiproductsproductidimagesprimaryget) | **GET** /api/products/{productId}/images/primary | 
 [**apiProductsProductIdInformationGet**](ProductsApi.md#apiproductsproductidinformationget) | **GET** /api/products/{productId}/information | 
 [**apiProductsProductIdPut**](ProductsApi.md#apiproductsproductidput) | **PUT** /api/products/{productId} | 
-[**apiProductsSearchSemanticGet**](ProductsApi.md#apiproductssearchsemanticget) | **GET** /api/products/search/semantic | 
 
+
+# **apiAdminProductsProductIdGet**
+> BaseResponseOfProductResponse apiAdminProductsProductIdGet(productId)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getProductsApi();
+final String productId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiAdminProductsProductIdGet(productId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ProductsApi->apiAdminProductsProductIdGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **productId** | **String**|  | 
+
+### Return type
+
+[**BaseResponseOfProductResponse**](BaseResponseOfProductResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiProductsBestSellersGet**
 > BaseResponseOfPagedResultOfProductListItem apiProductsBestSellersGet(gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
@@ -187,84 +226,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BaseResponseOfListOfProductDailySaleFigureResponse**](BaseResponseOfListOfProductDailySaleFigureResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiProductsEmbeddingsUpdateAllsPost**
-> BaseResponse apiProductsEmbeddingsUpdateAllsPost()
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getProductsApi();
-
-try {
-    final response = api.apiProductsEmbeddingsUpdateAllsPost();
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling ProductsApi->apiProductsEmbeddingsUpdateAllsPost: $e\n');
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**BaseResponse**](BaseResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiProductsEmbeddingsUpdateProductIdPost**
-> BaseResponse apiProductsEmbeddingsUpdateProductIdPost(productId)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getProductsApi();
-final String productId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-
-try {
-    final response = api.apiProductsEmbeddingsUpdateProductIdPost(productId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling ProductsApi->apiProductsEmbeddingsUpdateProductIdPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **productId** | **String**|  | 
-
-### Return type
-
-[**BaseResponse**](BaseResponse.md)
 
 ### Authorization
 
@@ -646,7 +607,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiProductsProductIdGet**
-> BaseResponseOfProductResponse apiProductsProductIdGet(productId)
+> BaseResponseOfPublicProductResponse apiProductsProductIdGet(productId)
 
 
 
@@ -673,7 +634,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BaseResponseOfProductResponse**](BaseResponseOfProductResponse.md)
+[**BaseResponseOfPublicProductResponse**](BaseResponseOfPublicProductResponse.md)
 
 ### Authorization
 
@@ -848,71 +809,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiProductsSearchSemanticGet**
-> BaseResponseOfPagedResultOfProductListItemWithVariants apiProductsSearchSemanticGet(searchText, gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getProductsApi();
-final String searchText = searchText_example; // String | 
-final Gender gender = ; // Gender | 
-final int categoryId = 56; // int | 
-final int brandId = 56; // int | 
-final int volume = 56; // int | 
-final num fromPrice = 8.14; // num | 
-final num toPrice = 8.14; // num | 
-final bool isAvailable = true; // bool | 
-final int pageNumber = 56; // int | 
-final int pageSize = 56; // int | 
-final String sortBy = sortBy_example; // String | 
-final String sortOrder = sortOrder_example; // String | 
-final bool isDescending = true; // bool | 
-
-try {
-    final response = api.apiProductsSearchSemanticGet(searchText, gender, categoryId, brandId, volume, fromPrice, toPrice, isAvailable, pageNumber, pageSize, sortBy, sortOrder, isDescending);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling ProductsApi->apiProductsSearchSemanticGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **searchText** | **String**|  | [optional] 
- **gender** | [**Gender**](.md)|  | [optional] 
- **categoryId** | **int**|  | [optional] 
- **brandId** | **int**|  | [optional] 
- **volume** | **int**|  | [optional] 
- **fromPrice** | **num**|  | [optional] 
- **toPrice** | **num**|  | [optional] 
- **isAvailable** | **bool**|  | [optional] 
- **pageNumber** | **int**|  | [optional] 
- **pageSize** | **int**|  | [optional] 
- **sortBy** | **String**|  | [optional] 
- **sortOrder** | **String**|  | [optional] 
- **isDescending** | **bool**|  | [optional] 
-
-### Return type
-
-[**BaseResponseOfPagedResultOfProductListItemWithVariants**](BaseResponseOfPagedResultOfProductListItemWithVariants.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
