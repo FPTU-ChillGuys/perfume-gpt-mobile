@@ -19,6 +19,10 @@ abstract class _$CampaignPromotionItemResponseCWProxy {
 
   CampaignPromotionItemResponse itemType(PromotionType? itemType);
 
+  CampaignPromotionItemResponse discountType(DiscountType? discountType);
+
+  CampaignPromotionItemResponse discountValue(num? discountValue);
+
   CampaignPromotionItemResponse startDate(DateTime? startDate);
 
   CampaignPromotionItemResponse endDate(DateTime? endDate);
@@ -41,6 +45,8 @@ abstract class _$CampaignPromotionItemResponseCWProxy {
     String? batchId,
     String name,
     PromotionType? itemType,
+    DiscountType? discountType,
+    num? discountValue,
     DateTime? startDate,
     DateTime? endDate,
     int? maxUsage,
@@ -79,6 +85,14 @@ class _$CampaignPromotionItemResponseCWProxyImpl
       call(itemType: itemType);
 
   @override
+  CampaignPromotionItemResponse discountType(DiscountType? discountType) =>
+      call(discountType: discountType);
+
+  @override
+  CampaignPromotionItemResponse discountValue(num? discountValue) =>
+      call(discountValue: discountValue);
+
+  @override
   CampaignPromotionItemResponse startDate(DateTime? startDate) =>
       call(startDate: startDate);
 
@@ -109,6 +123,8 @@ class _$CampaignPromotionItemResponseCWProxyImpl
     Object? batchId = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? itemType = const $CopyWithPlaceholder(),
+    Object? discountType = const $CopyWithPlaceholder(),
+    Object? discountValue = const $CopyWithPlaceholder(),
     Object? startDate = const $CopyWithPlaceholder(),
     Object? endDate = const $CopyWithPlaceholder(),
     Object? maxUsage = const $CopyWithPlaceholder(),
@@ -139,6 +155,14 @@ class _$CampaignPromotionItemResponseCWProxyImpl
           ? _value.itemType
           // ignore: cast_nullable_to_non_nullable
           : itemType as PromotionType?,
+      discountType: discountType == const $CopyWithPlaceholder()
+          ? _value.discountType
+          // ignore: cast_nullable_to_non_nullable
+          : discountType as DiscountType?,
+      discountValue: discountValue == const $CopyWithPlaceholder()
+          ? _value.discountValue
+          // ignore: cast_nullable_to_non_nullable
+          : discountValue as num?,
       startDate: startDate == const $CopyWithPlaceholder()
           ? _value.startDate
           // ignore: cast_nullable_to_non_nullable
@@ -186,6 +210,11 @@ CampaignPromotionItemResponse _$CampaignPromotionItemResponseFromJson(
       'itemType',
       (v) => $enumDecodeNullable(_$PromotionTypeEnumMap, v),
     ),
+    discountType: $checkedConvert(
+      'discountType',
+      (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
+    ),
+    discountValue: $checkedConvert('discountValue', (v) => v as num?),
     startDate: $checkedConvert(
       'startDate',
       (v) => v == null ? null : DateTime.parse(v as String),
@@ -209,6 +238,8 @@ Map<String, dynamic> _$CampaignPromotionItemResponseToJson(
   'batchId': ?instance.batchId,
   'name': instance.name,
   'itemType': ?_$PromotionTypeEnumMap[instance.itemType],
+  'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
+  'discountValue': ?instance.discountValue,
   'startDate': ?instance.startDate?.toIso8601String(),
   'endDate': ?instance.endDate?.toIso8601String(),
   'maxUsage': ?instance.maxUsage,
@@ -219,4 +250,9 @@ const _$PromotionTypeEnumMap = {
   PromotionType.clearance: 'Clearance',
   PromotionType.newArrival: 'NewArrival',
   PromotionType.regular: 'Regular',
+};
+
+const _$DiscountTypeEnumMap = {
+  DiscountType.percentage: 'Percentage',
+  DiscountType.fixedAmount: 'FixedAmount',
 };

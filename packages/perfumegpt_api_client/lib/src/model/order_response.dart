@@ -8,6 +8,7 @@ import 'package:perfumegpt_api_client/src/model/order_detail_response.dart';
 import 'package:perfumegpt_api_client/src/model/shipping_info_response.dart';
 import 'package:perfumegpt_api_client/src/model/payment_status.dart';
 import 'package:perfumegpt_api_client/src/model/recipient_info_response.dart';
+import 'package:perfumegpt_api_client/src/model/voucher_type.dart';
 import 'package:perfumegpt_api_client/src/model/order_status.dart';
 import 'package:perfumegpt_api_client/src/model/order_type.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
@@ -49,9 +50,17 @@ class OrderResponse {
 
      this.totalAmount,
 
+     this.subTotal,
+
+     this.shippingFee,
+
      this.voucherId,
 
      this.voucherCode,
+
+     this.voucherType,
+
+     this.voucherDiscountTotal,
 
      this.paymentExpiresAt,
 
@@ -204,6 +213,30 @@ class OrderResponse {
 
   @JsonKey(
     
+    name: r'subTotal',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? subTotal;
+
+
+
+  @JsonKey(
+    
+    name: r'shippingFee',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? shippingFee;
+
+
+
+  @JsonKey(
+    
     name: r'voucherId',
     required: false,
     includeIfNull: false,
@@ -223,6 +256,30 @@ class OrderResponse {
 
 
   final String? voucherCode;
+
+
+
+  @JsonKey(
+    
+    name: r'voucherType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final VoucherType? voucherType;
+
+
+
+  @JsonKey(
+    
+    name: r'voucherDiscountTotal',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? voucherDiscountTotal;
 
 
 
@@ -337,8 +394,12 @@ class OrderResponse {
       other.status == status &&
       other.paymentStatus == paymentStatus &&
       other.totalAmount == totalAmount &&
+      other.subTotal == subTotal &&
+      other.shippingFee == shippingFee &&
       other.voucherId == voucherId &&
       other.voucherCode == voucherCode &&
+      other.voucherType == voucherType &&
+      other.voucherDiscountTotal == voucherDiscountTotal &&
       other.paymentExpiresAt == paymentExpiresAt &&
       other.paidAt == paidAt &&
       other.createdAt == createdAt &&
@@ -361,8 +422,12 @@ class OrderResponse {
         status.hashCode +
         paymentStatus.hashCode +
         totalAmount.hashCode +
+        subTotal.hashCode +
+        shippingFee.hashCode +
         (voucherId == null ? 0 : voucherId.hashCode) +
         (voucherCode == null ? 0 : voucherCode.hashCode) +
+        (voucherType == null ? 0 : voucherType.hashCode) +
+        voucherDiscountTotal.hashCode +
         (paymentExpiresAt == null ? 0 : paymentExpiresAt.hashCode) +
         (paidAt == null ? 0 : paidAt.hashCode) +
         createdAt.hashCode +

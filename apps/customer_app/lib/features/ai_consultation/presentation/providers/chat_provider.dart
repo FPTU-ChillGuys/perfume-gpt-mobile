@@ -31,17 +31,28 @@ class ChatSession extends _$ChatSession {
 
     state = [userMessage, ...state];
 
-    // Mock AI response
-    await Future.delayed(const Duration(seconds: 2));
+    try {
+      final aiApi = ref.read(apiClientProvider).getAiApi();
+      final response = await aiApi.aIControllerSearchProductWithAI(prompt: text);
+      final aiResponseText = response.data?.data ??
+          'I am sorry, I could not process that request.';
 
-    final aiMessage = Message.text(
-      authorId: 'ai',
-      createdAt: DateTime.now(),
-      id: const Uuid().v4(),
-      text:
-          'Based on your request, I recommend looking for something with woody and citrus notes. Would you like to see some specific products?',
-    );
+      final aiMessage = Message.text(
+        authorId: 'ai',
+        createdAt: DateTime.now(),
+        id: const Uuid().v4(),
+        text: aiResponseText,
+      );
 
-    state = [aiMessage, ...state];
+      state = [aiMessage, ...state];
+    } catch (e) {
+      final errorMessage = Message.text(
+        authorId: 'ai',
+        createdAt: DateTime.now(),
+        id: const Uuid().v4(),
+        text: 'Sorry, I encountered an error. Please try again later.',
+      );
+      state = [errorMessage, ...state];
+    }
   }
 }

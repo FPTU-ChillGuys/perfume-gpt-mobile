@@ -33,6 +33,14 @@ class OrderDetailResponse {
 
      this.unitPrice,
 
+     this.campaignDiscount,
+
+     this.campaignPrice,
+
+     this.voucherDiscount,
+
+     this.itemTotal,
+
      this.refunablePrice,
 
      this.total,
@@ -114,6 +122,54 @@ class OrderDetailResponse {
 
   @JsonKey(
     
+    name: r'campaignDiscount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? campaignDiscount;
+
+
+
+  @JsonKey(
+    
+    name: r'campaignPrice',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? campaignPrice;
+
+
+
+  @JsonKey(
+    
+    name: r'voucherDiscount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? voucherDiscount;
+
+
+
+  @JsonKey(
+    
+    name: r'itemTotal',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? itemTotal;
+
+
+
+  @JsonKey(
+    
     name: r'refunablePrice',
     required: false,
     includeIfNull: false,
@@ -158,6 +214,10 @@ class OrderDetailResponse {
       other.imageUrl == imageUrl &&
       other.quantity == quantity &&
       other.unitPrice == unitPrice &&
+      other.campaignDiscount == campaignDiscount &&
+      other.campaignPrice == campaignPrice &&
+      other.voucherDiscount == voucherDiscount &&
+      other.itemTotal == itemTotal &&
       other.refunablePrice == refunablePrice &&
       other.total == total &&
       other.reservedBatches == reservedBatches;
@@ -170,6 +230,10 @@ class OrderDetailResponse {
         (imageUrl == null ? 0 : imageUrl.hashCode) +
         quantity.hashCode +
         unitPrice.hashCode +
+        campaignDiscount.hashCode +
+        campaignPrice.hashCode +
+        voucherDiscount.hashCode +
+        itemTotal.hashCode +
         refunablePrice.hashCode +
         total.hashCode +
         reservedBatches.hashCode;

@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **inspectionNote** | **String** |  | [optional] 
 **status** | [**ReturnRequestStatus**](ReturnRequestStatus.md) |  | [optional] 
 **requestedRefundAmount** | **num** |  | [optional] 
+**refundedShippingFee** | **num** |  | [optional] 
 **approvedRefundAmount** | **num** |  | [optional] 
 **isRefunded** | **bool** |  | [optional] 
 **isRefundOnly** | **bool** |  | [optional] 

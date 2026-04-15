@@ -39,6 +39,10 @@ class GetCartItemResponse {
 
      this.isAvailable,
 
+     this.discount,
+
+     this.finalTotal,
+
      this.subTotal,
   });
 
@@ -152,6 +156,30 @@ class GetCartItemResponse {
 
   @JsonKey(
     
+    name: r'discount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? discount;
+
+
+
+  @JsonKey(
+    
+    name: r'finalTotal',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? finalTotal;
+
+
+
+  @JsonKey(
+    
     name: r'subTotal',
     required: false,
     includeIfNull: false,
@@ -175,6 +203,8 @@ class GetCartItemResponse {
       other.variantPrice == variantPrice &&
       other.quantity == quantity &&
       other.isAvailable == isAvailable &&
+      other.discount == discount &&
+      other.finalTotal == finalTotal &&
       other.subTotal == subTotal;
 
     @override
@@ -188,6 +218,8 @@ class GetCartItemResponse {
         variantPrice.hashCode +
         quantity.hashCode +
         isAvailable.hashCode +
+        discount.hashCode +
+        finalTotal.hashCode +
         subTotal.hashCode;
 
   factory GetCartItemResponse.fromJson(Map<String, dynamic> json) => _$GetCartItemResponseFromJson(json);

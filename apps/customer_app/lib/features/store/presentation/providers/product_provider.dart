@@ -10,7 +10,11 @@ part 'product_provider.g.dart';
 @riverpod
 ProductRepository productRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return ProductRepositoryImpl(apiClient.getProductsApi());
+  final aiApiClient = ref.watch(aiApiClientProvider);
+  return ProductRepositoryImpl(
+    apiClient.getProductsApi(),
+    aiApiClient.getProductsApi(),
+  );
 }
 
 @riverpod

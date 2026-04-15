@@ -11,6 +11,8 @@ abstract class _$PreviewPosOrderResponseCWProxy {
 
   PreviewPosOrderResponse subTotal(num? subTotal);
 
+  PreviewPosOrderResponse shippingFee(num? shippingFee);
+
   PreviewPosOrderResponse discount(num? discount);
 
   PreviewPosOrderResponse totalPrice(num? totalPrice);
@@ -25,6 +27,7 @@ abstract class _$PreviewPosOrderResponseCWProxy {
   PreviewPosOrderResponse call({
     List<PosOrderDetailListItem>? items,
     num? subTotal,
+    num? shippingFee,
     num? discount,
     num? totalPrice,
   });
@@ -46,6 +49,10 @@ class _$PreviewPosOrderResponseCWProxyImpl
   PreviewPosOrderResponse subTotal(num? subTotal) => call(subTotal: subTotal);
 
   @override
+  PreviewPosOrderResponse shippingFee(num? shippingFee) =>
+      call(shippingFee: shippingFee);
+
+  @override
   PreviewPosOrderResponse discount(num? discount) => call(discount: discount);
 
   @override
@@ -63,6 +70,7 @@ class _$PreviewPosOrderResponseCWProxyImpl
   PreviewPosOrderResponse call({
     Object? items = const $CopyWithPlaceholder(),
     Object? subTotal = const $CopyWithPlaceholder(),
+    Object? shippingFee = const $CopyWithPlaceholder(),
     Object? discount = const $CopyWithPlaceholder(),
     Object? totalPrice = const $CopyWithPlaceholder(),
   }) {
@@ -75,6 +83,10 @@ class _$PreviewPosOrderResponseCWProxyImpl
           ? _value.subTotal
           // ignore: cast_nullable_to_non_nullable
           : subTotal as num?,
+      shippingFee: shippingFee == const $CopyWithPlaceholder()
+          ? _value.shippingFee
+          // ignore: cast_nullable_to_non_nullable
+          : shippingFee as num?,
       discount: discount == const $CopyWithPlaceholder()
           ? _value.discount
           // ignore: cast_nullable_to_non_nullable
@@ -112,6 +124,7 @@ PreviewPosOrderResponse _$PreviewPosOrderResponseFromJson(
           .toList(),
     ),
     subTotal: $checkedConvert('subTotal', (v) => v as num?),
+    shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
     discount: $checkedConvert('discount', (v) => v as num?),
     totalPrice: $checkedConvert('totalPrice', (v) => v as num?),
   );
@@ -123,6 +136,7 @@ Map<String, dynamic> _$PreviewPosOrderResponseToJson(
 ) => <String, dynamic>{
   'items': ?instance.items?.map((e) => e.toJson()).toList(),
   'subTotal': ?instance.subTotal,
+  'shippingFee': ?instance.shippingFee,
   'discount': ?instance.discount,
   'totalPrice': ?instance.totalPrice,
 };

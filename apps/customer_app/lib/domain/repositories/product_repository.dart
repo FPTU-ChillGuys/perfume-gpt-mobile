@@ -27,12 +27,5 @@ abstract class ProductRepository {
     required String query,
     int pageNumber = 1,
     int pageSize = 12,
-    int? brandId,
-    int? categoryId,
-    int? volume,
-    num? fromPrice,
-    num? toPrice,
-    String? sortBy,
-    bool? isDescending,
   });
 }

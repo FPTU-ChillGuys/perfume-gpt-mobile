@@ -36,15 +36,15 @@ final class BannerRepositoryProvider
 
   @$internal
   @override
-  $ProviderElement<BannerRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<BannerRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
   BannerRepository create(Ref ref) {
     return bannerRepository(ref);
   }
 
+  /// {@macro riverpod.override_with_value}
   Override overrideWithValue(BannerRepository value) {
     return $ProviderOverride(
       origin: this,
@@ -53,7 +53,7 @@ final class BannerRepositoryProvider
   }
 }
 
-String _$bannerRepositoryHash() => r'banner_repository_placeholder_hash';
+String _$bannerRepositoryHash() => r'68e04309d406bbef7b3396c9bc1ea4bff10cadf0';
 
 @ProviderFor(homeHeroBanners)
 final homeHeroBannersProvider = HomeHeroBannersProvider._();
@@ -92,4 +92,4 @@ final class HomeHeroBannersProvider
   }
 }
 
-String _$homeHeroBannersHash() => r'home_hero_banners_placeholder_hash';
+String _$homeHeroBannersHash() => r'41a0d0eb440754ee5986b5debb0ac081339259f6';

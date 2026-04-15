@@ -229,7 +229,7 @@ class PaymentTransactionAdminItemResponse {
         id.hashCode +
         orderId.hashCode +
         orderCode.hashCode +
-        method.hashCode +
+        (method == null ? 0 : method.hashCode) +
         transactionType.hashCode +
         transactionStatus.hashCode +
         amount.hashCode +

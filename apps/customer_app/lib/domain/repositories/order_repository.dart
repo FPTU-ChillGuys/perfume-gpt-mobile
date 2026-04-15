@@ -57,11 +57,6 @@ abstract class OrderRepository {
   });
   Future<OrderDetail> getOrderDetail(String orderId);
   Future<Invoice> getInvoice(String orderId);
-  Future<void> updateOrderAddress(
-    String orderId, {
-    String? savedAddressId,
-    RecipientAddress? recipient,
-  });
   Future<void> cancelOrder(String orderId, String reason, {
     String? refundBankName,
     String? refundAccountNumber,

@@ -585,7 +585,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     final items = ref.read(draftItemsProvider);
     final method = ref.read(selectedPaymentMethodProvider);
 
-    final orderId = await ref
+    final responseDto = await ref
         .read(counterCheckoutNotifier.notifier)
         .createInStoreOrder(
           items: items,
@@ -595,6 +595,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
           recipientPhone: _recipientPhoneController.text.trim(),
           recipientAddress: _recipientAddressController.text.trim(),
         );
+
+    final orderId = responseDto?.orderId;
 
     if (orderId != null && mounted) {
       _orderCodeController.text = orderId;

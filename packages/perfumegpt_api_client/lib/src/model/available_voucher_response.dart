@@ -29,11 +29,15 @@ class AvailableVoucherResponse {
 
      this.discountType,
 
+     this.maxDiscountAmount,
+
      this.minOrderValue,
 
      this.expiryDate,
 
      this.remainingQuantity,
+
+     this.maxUsagePerUser,
   });
 
   @JsonKey(
@@ -86,6 +90,18 @@ class AvailableVoucherResponse {
 
   @JsonKey(
     
+    name: r'maxDiscountAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? maxDiscountAmount;
+
+
+
+  @JsonKey(
+    
     name: r'minOrderValue',
     required: false,
     includeIfNull: false,
@@ -120,6 +136,18 @@ class AvailableVoucherResponse {
 
 
 
+  @JsonKey(
+    
+    name: r'maxUsagePerUser',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? maxUsagePerUser;
+
+
+
 
 
     @override
@@ -128,9 +156,11 @@ class AvailableVoucherResponse {
       other.code == code &&
       other.discountValue == discountValue &&
       other.discountType == discountType &&
+      other.maxDiscountAmount == maxDiscountAmount &&
       other.minOrderValue == minOrderValue &&
       other.expiryDate == expiryDate &&
-      other.remainingQuantity == remainingQuantity;
+      other.remainingQuantity == remainingQuantity &&
+      other.maxUsagePerUser == maxUsagePerUser;
 
     @override
     int get hashCode =>
@@ -138,9 +168,11 @@ class AvailableVoucherResponse {
         code.hashCode +
         discountValue.hashCode +
         discountType.hashCode +
+        (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +
         (minOrderValue == null ? 0 : minOrderValue.hashCode) +
         expiryDate.hashCode +
-        (remainingQuantity == null ? 0 : remainingQuantity.hashCode);
+        (remainingQuantity == null ? 0 : remainingQuantity.hashCode) +
+        (maxUsagePerUser == null ? 0 : maxUsagePerUser.hashCode);
 
   factory AvailableVoucherResponse.fromJson(Map<String, dynamic> json) => _$AvailableVoucherResponseFromJson(json);
 

@@ -1,6 +1,7 @@
 name: perfumegpt_common
 description: Shared code for PerfumeGPT mobile apps.
 version: 0.1.0
+publish_to: none
 resolution: workspace
 
 environment:
@@ -16,6 +17,8 @@ dependencies:
 
   dio: any
   google_sign_in: ^7.2.0
+  perfumegpt_ai_api_client:
+    path: ../perfumegpt_ai_api_client
 dev_dependencies:
   flutter_test:
     sdk: flutter

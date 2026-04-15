@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **basePrice** | **num** |  | [optional] 
 **retailPrice** | **num** |  | [optional] 
 **status** | [**VariantStatus**](VariantStatus.md) |  | [optional] 
+**restockPolicy** | [**ReplenishmentPolicy**](ReplenishmentPolicy.md) |  | [optional] 
 **sillage** | **int** |  | [optional] 
 **longevity** | **int** |  | [optional] 
 **mediaIdsToDelete** | **List&lt;String&gt;** |  | [optional] 

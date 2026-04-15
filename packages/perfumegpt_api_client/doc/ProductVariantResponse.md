@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **voucherCode** | **String** |  | [optional] 
 **discountedPrice** | **num** |  | [optional] 
 **attributes** | [**List&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | [optional] 
+**suppliers** | [**List&lt;VariantSupplierResponse&gt;**](VariantSupplierResponse.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

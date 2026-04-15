@@ -7,6 +7,7 @@ import 'package:perfumegpt_api_client/src/model/variant_status.dart';
 import 'package:perfumegpt_api_client/src/model/variant_type.dart';
 import 'package:perfumegpt_api_client/src/model/media_response.dart';
 import 'package:perfumegpt_api_client/src/model/product_attribute_response.dart';
+import 'package:perfumegpt_api_client/src/model/variant_supplier_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -26,15 +27,15 @@ class ProductVariantResponse {
 
      this.id,
 
-     this.barcode = '',
+    required  this.barcode,
 
-     this.sku = '',
+    required  this.sku,
 
      this.volumeMl,
 
      this.concentrationId,
 
-     this.concentrationName = '',
+    required  this.concentrationName,
 
      this.type,
 
@@ -52,9 +53,9 @@ class ProductVariantResponse {
 
      this.productId,
 
-     this.productName = '',
+    required  this.productName,
 
-     this.media = const [],
+    required  this.media,
 
      this.campaignName,
 
@@ -63,6 +64,8 @@ class ProductVariantResponse {
      this.discountedPrice,
 
      this.attributes,
+
+     this.suppliers,
   });
 
   @JsonKey(
@@ -80,7 +83,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'barcode',
-    required: false,
+    required: true,
     includeIfNull: false,
   )
 
@@ -92,7 +95,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'sku',
-    required: false,
+    required: true,
     includeIfNull: false,
   )
 
@@ -128,7 +131,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'concentrationName',
-    required: false,
+    required: true,
     includeIfNull: false,
   )
 
@@ -236,7 +239,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'productName',
-    required: false,
+    required: true,
     includeIfNull: false,
   )
 
@@ -248,7 +251,7 @@ class ProductVariantResponse {
   @JsonKey(
     
     name: r'media',
-    required: false,
+    required: true,
     includeIfNull: false,
   )
 
@@ -305,6 +308,18 @@ class ProductVariantResponse {
 
 
 
+  @JsonKey(
+    
+    name: r'suppliers',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final List<VariantSupplierResponse>? suppliers;
+
+
+
 
 
     @override
@@ -328,7 +343,8 @@ class ProductVariantResponse {
       other.campaignName == campaignName &&
       other.voucherCode == voucherCode &&
       other.discountedPrice == discountedPrice &&
-      other.attributes == attributes;
+      other.attributes == attributes &&
+      other.suppliers == suppliers;
 
     @override
     int get hashCode =>
@@ -351,7 +367,8 @@ class ProductVariantResponse {
         (campaignName == null ? 0 : campaignName.hashCode) +
         (voucherCode == null ? 0 : voucherCode.hashCode) +
         (discountedPrice == null ? 0 : discountedPrice.hashCode) +
-        (attributes == null ? 0 : attributes.hashCode);
+        (attributes == null ? 0 : attributes.hashCode) +
+        (suppliers == null ? 0 : suppliers.hashCode);
 
   factory ProductVariantResponse.fromJson(Map<String, dynamic> json) => _$ProductVariantResponseFromJson(json);
 

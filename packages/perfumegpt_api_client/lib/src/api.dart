@@ -8,9 +8,11 @@ import 'package:perfumegpt_api_client/src/auth/basic_auth.dart';
 import 'package:perfumegpt_api_client/src/auth/bearer_auth.dart';
 import 'package:perfumegpt_api_client/src/auth/oauth.dart';
 import 'package:perfumegpt_api_client/src/api/address_api.dart';
+import 'package:perfumegpt_api_client/src/api/ai_api.dart';
 import 'package:perfumegpt_api_client/src/api/admin_dashboard_api.dart';
 import 'package:perfumegpt_api_client/src/api/attributes_api.dart';
 import 'package:perfumegpt_api_client/src/api/auths_api.dart';
+import 'package:perfumegpt_api_client/src/api/banners_api.dart';
 import 'package:perfumegpt_api_client/src/api/batches_api.dart';
 import 'package:perfumegpt_api_client/src/api/brands_api.dart';
 import 'package:perfumegpt_api_client/src/api/campaigns_api.dart';
@@ -19,6 +21,7 @@ import 'package:perfumegpt_api_client/src/api/categories_api.dart';
 import 'package:perfumegpt_api_client/src/api/concentrations_api.dart';
 import 'package:perfumegpt_api_client/src/api/import_tickets_api.dart';
 import 'package:perfumegpt_api_client/src/api/inventory_api.dart';
+import 'package:perfumegpt_api_client/src/api/ledgers_api.dart';
 import 'package:perfumegpt_api_client/src/api/loyalty_transactions_api.dart';
 import 'package:perfumegpt_api_client/src/api/notifications_api.dart';
 import 'package:perfumegpt_api_client/src/api/olfactory_families_api.dart';
@@ -26,19 +29,21 @@ import 'package:perfumegpt_api_client/src/api/order_cancel_requests_api.dart';
 import 'package:perfumegpt_api_client/src/api/order_return_requests_api.dart';
 import 'package:perfumegpt_api_client/src/api/orders_api.dart';
 import 'package:perfumegpt_api_client/src/api/payments_api.dart';
+import 'package:perfumegpt_api_client/src/api/policies_api.dart';
 import 'package:perfumegpt_api_client/src/api/product_variants_api.dart';
 import 'package:perfumegpt_api_client/src/api/products_api.dart';
 import 'package:perfumegpt_api_client/src/api/profiles_api.dart';
 import 'package:perfumegpt_api_client/src/api/reviews_api.dart';
 import 'package:perfumegpt_api_client/src/api/scent_notes_api.dart';
 import 'package:perfumegpt_api_client/src/api/shippings_api.dart';
+import 'package:perfumegpt_api_client/src/api/sourcing_catalogs_api.dart';
 import 'package:perfumegpt_api_client/src/api/stock_adjustments_api.dart';
 import 'package:perfumegpt_api_client/src/api/suppliers_api.dart';
 import 'package:perfumegpt_api_client/src/api/users_api.dart';
 import 'package:perfumegpt_api_client/src/api/vouchers_api.dart';
 
 class PerfumegptApiClient {
-  static const String basePath = r'https://localhost:7011';
+  static const String basePath = r'https://backend-sep490.vqnofficial.win';
 
   final Dio dio;
   PerfumegptApiClient({
@@ -94,6 +99,12 @@ class PerfumegptApiClient {
     return AddressApi(dio);
   }
 
+  /// Get AIApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AIApi getAiApi() {
+    return AIApi(dio);
+  }
+
   /// Get AdminDashboardApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   AdminDashboardApi getAdminDashboardApi() {
@@ -110,6 +121,12 @@ class PerfumegptApiClient {
   /// by doing that all interceptors will not be executed
   AuthsApi getAuthsApi() {
     return AuthsApi(dio);
+  }
+
+  /// Get BannersApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BannersApi getBannersApi() {
+    return BannersApi(dio);
   }
 
   /// Get BatchesApi instance, base route and serializer can be overridden by a given but be careful,
@@ -160,6 +177,12 @@ class PerfumegptApiClient {
     return InventoryApi(dio);
   }
 
+  /// Get LedgersApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  LedgersApi getLedgersApi() {
+    return LedgersApi(dio);
+  }
+
   /// Get LoyaltyTransactionsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   LoyaltyTransactionsApi getLoyaltyTransactionsApi() {
@@ -202,6 +225,12 @@ class PerfumegptApiClient {
     return PaymentsApi(dio);
   }
 
+  /// Get PoliciesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  PoliciesApi getPoliciesApi() {
+    return PoliciesApi(dio);
+  }
+
   /// Get ProductVariantsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   ProductVariantsApi getProductVariantsApi() {
@@ -236,6 +265,12 @@ class PerfumegptApiClient {
   /// by doing that all interceptors will not be executed
   ShippingsApi getShippingsApi() {
     return ShippingsApi(dio);
+  }
+
+  /// Get SourcingCatalogsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  SourcingCatalogsApi getSourcingCatalogsApi() {
+    return SourcingCatalogsApi(dio);
   }
 
   /// Get StockAdjustmentsApi instance, base route and serializer can be overridden by a given but be careful,

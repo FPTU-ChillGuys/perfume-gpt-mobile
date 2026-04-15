@@ -15,13 +15,13 @@ class OrderRepositoryImpl {
   PaymentsApi get _paymentsApi => _apiClient.getPaymentsApi();
 
   Future<UserOrderResponse?> getOrderById(String orderCode) async {
-    final response = await _ordersApi.apiOrdersByordercodeGet(
+    final response = await _ordersApi.apiOrdersOrderCodeGet(
       orderCode: orderCode,
     );
     return response.data?.payload;
   }
 
-  Future<String?> checkoutInStore({
+  Future<CreatePaymentResponseDto?> checkoutInStore({
     required List<PosScanItemRequest> scannedItems,
     required String paymentMethod,
     bool isPickupInStore = true,

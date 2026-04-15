@@ -15,6 +15,8 @@ abstract class _$PreviewPosOrderRequestCWProxy {
 
   PreviewPosOrderRequest sessionId(String? sessionId);
 
+  PreviewPosOrderRequest recipient(ContactAddressInformation? recipient);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PreviewPosOrderRequest(...).copyWith.fieldName(value)`.
   ///
@@ -27,6 +29,7 @@ abstract class _$PreviewPosOrderRequestCWProxy {
     String? voucherCode,
     String? customerId,
     String? sessionId,
+    ContactAddressInformation? recipient,
   });
 }
 
@@ -55,6 +58,10 @@ class _$PreviewPosOrderRequestCWProxyImpl
       call(sessionId: sessionId);
 
   @override
+  PreviewPosOrderRequest recipient(ContactAddressInformation? recipient) =>
+      call(recipient: recipient);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PreviewPosOrderRequest(...).copyWith.fieldName(value)`.
   ///
@@ -67,6 +74,7 @@ class _$PreviewPosOrderRequestCWProxyImpl
     Object? voucherCode = const $CopyWithPlaceholder(),
     Object? customerId = const $CopyWithPlaceholder(),
     Object? sessionId = const $CopyWithPlaceholder(),
+    Object? recipient = const $CopyWithPlaceholder(),
   }) {
     return PreviewPosOrderRequest(
       scannedItems:
@@ -86,6 +94,10 @@ class _$PreviewPosOrderRequestCWProxyImpl
           ? _value.sessionId
           // ignore: cast_nullable_to_non_nullable
           : sessionId as String?,
+      recipient: recipient == const $CopyWithPlaceholder()
+          ? _value.recipient
+          // ignore: cast_nullable_to_non_nullable
+          : recipient as ContactAddressInformation?,
     );
   }
 }
@@ -116,6 +128,12 @@ PreviewPosOrderRequest _$PreviewPosOrderRequestFromJson(
     voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
     customerId: $checkedConvert('customerId', (v) => v as String?),
     sessionId: $checkedConvert('sessionId', (v) => v as String?),
+    recipient: $checkedConvert(
+      'recipient',
+      (v) => v == null
+          ? null
+          : ContactAddressInformation.fromJson(v as Map<String, dynamic>),
+    ),
   );
   return val;
 });
@@ -127,4 +145,5 @@ Map<String, dynamic> _$PreviewPosOrderRequestToJson(
   'voucherCode': ?instance.voucherCode,
   'customerId': ?instance.customerId,
   'sessionId': ?instance.sessionId,
+  'recipient': ?instance.recipient?.toJson(),
 };

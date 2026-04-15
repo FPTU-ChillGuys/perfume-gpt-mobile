@@ -40,6 +40,10 @@ class PaymentTransactionSummaryResponse {
 
      this.totalPaymentAmount,
 
+     this.totalShippingFeeDeductedPerOrder,
+
+     this.totalPaymentAmountExcludingShipping,
+
      this.totalRefundAmount,
   });
 
@@ -165,6 +169,30 @@ class PaymentTransactionSummaryResponse {
 
   @JsonKey(
     
+    name: r'totalShippingFeeDeductedPerOrder',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? totalShippingFeeDeductedPerOrder;
+
+
+
+  @JsonKey(
+    
+    name: r'totalPaymentAmountExcludingShipping',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? totalPaymentAmountExcludingShipping;
+
+
+
+  @JsonKey(
+    
     name: r'totalRefundAmount',
     required: false,
     includeIfNull: false,
@@ -189,6 +217,8 @@ class PaymentTransactionSummaryResponse {
       other.failedTransactionsCount == failedTransactionsCount &&
       other.cancelledTransactionsCount == cancelledTransactionsCount &&
       other.totalPaymentAmount == totalPaymentAmount &&
+      other.totalShippingFeeDeductedPerOrder == totalShippingFeeDeductedPerOrder &&
+      other.totalPaymentAmountExcludingShipping == totalPaymentAmountExcludingShipping &&
       other.totalRefundAmount == totalRefundAmount;
 
     @override
@@ -203,6 +233,8 @@ class PaymentTransactionSummaryResponse {
         failedTransactionsCount.hashCode +
         cancelledTransactionsCount.hashCode +
         totalPaymentAmount.hashCode +
+        totalShippingFeeDeductedPerOrder.hashCode +
+        totalPaymentAmountExcludingShipping.hashCode +
         totalRefundAmount.hashCode;
 
   factory PaymentTransactionSummaryResponse.fromJson(Map<String, dynamic> json) => _$PaymentTransactionSummaryResponseFromJson(json);

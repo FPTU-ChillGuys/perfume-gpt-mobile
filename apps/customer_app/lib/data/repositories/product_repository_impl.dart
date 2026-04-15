@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart' as ai;
 import '../../core/utils/image_url_helper.dart';
 import '../../domain/entities/paged_result.dart';
 import '../../domain/entities/product.dart';
@@ -9,15 +10,16 @@ import '../../domain/repositories/product_repository.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
   final ProductsApi _api;
+  final ai.ProductsApi _aiApi;
 
-  ProductRepositoryImpl(this._api);
+  ProductRepositoryImpl(this._api, this._aiApi);
 
   @override
   Future<List<Product>> getProducts({String? query}) async {
+    // Standard API doesn't support query directly, but we can use AI search if query is provided
     if (query != null && query.isNotEmpty) {
       return semanticSearch(query);
     }
-
     final response = await _api.apiProductsGet();
     final items = response.data?.payload?.items ?? [];
     return items.map(_mapListItemToProduct).toList();
@@ -62,13 +64,6 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<List<Product>> semanticSearch(String query) async {
-    final response = await _api.apiProductsSearchSemanticGet(searchText: query);
-    final items = response.data?.payload?.items ?? [];
-    return items.map(_mapListItemWithVariantsToProduct).toList();
-  }
-
-  @override
   Future<List<Product>> getBestSellers() async {
     final response = await _api.apiProductsBestSellersGet();
     final items = response.data?.payload?.items ?? [];
@@ -105,7 +100,7 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<({double rating, int reviewCount})> getProductRating(String id) async {
+  Future<ProductRating> getProductRating(String id) async {
     final response =
         await _api.apiProductsProductIdFastLookGet(productId: id);
     final data = response.data?.payload;
@@ -115,7 +110,36 @@ class ProductRepositoryImpl implements ProductRepository {
     );
   }
 
-  ProductVariant _mapVariant(ProductVariantResponse v) {
+  @override
+  Future<List<Product>> semanticSearch(String query) async {
+    final response = await _aiApi.apiProductsSearchSemanticGet(searchText: query);
+    final payload = response.data?.payload;
+    final items = payload?.items ?? [];
+    return items.map(_mapListItemWithVariantsToProduct).toList();
+  }
+
+  @override
+  Future<PagedResult<Product>> searchProductsPaged({
+    required String query,
+    int pageNumber = 1,
+    int pageSize = 12,
+  }) async {
+    final response = await _aiApi.apiProductsSearchSemanticGet(
+      searchText: query,
+      pageNumber: pageNumber,
+      pageSize: pageSize,
+    );
+    final payload = response.data?.payload;
+    final items = payload?.items ?? [];
+    return PagedResult(
+      items: items.map(_mapListItemWithVariantsToProduct).toList(),
+      totalCount: payload?.totalCount ?? 0,
+      totalPages: payload?.totalPages ?? 0,
+      hasNextPage: payload?.hasNextPage ?? false,
+    );
+  }
+
+  ProductVariant _mapVariant(PublicProductVariantResponse v) {
     final imageUrls = v.media.map((m) => ImageUrlHelper.resolve(m.url)).toList();
     final primaryImage = v.media
         .where((m) => m.isPrimary == true)
@@ -125,17 +149,17 @@ class ProductRepositoryImpl implements ProductRepository {
     return ProductVariant(
       id: v.id ?? '',
       sku: v.sku,
-      barcode: v.barcode,
+      barcode: '', 
       volumeMl: v.volumeMl,
       concentrationName: v.concentrationName,
       type: v.type?.value ?? 'Standard',
       basePrice: (v.basePrice ?? 0).toDouble(),
       retailPrice: v.retailPrice?.toDouble(),
       discountedPrice: v.discountedPrice?.toDouble(),
-      status: v.status?.value ?? 'Active',
+      status: 'Active', 
       stockQuantity: v.stockQuantity ?? 0,
-      sillage: v.sillage,
-      longevity: v.longevity,
+      sillage: null, 
+      longevity: null, 
       imageUrls: imageUrls,
       primaryImageUrl: primaryImage,
       campaignName: v.campaignName,
@@ -170,7 +194,7 @@ class ProductRepositoryImpl implements ProductRepository {
     );
   }
 
-  Product _mapListItemWithVariantsToProduct(ProductListItemWithVariants item) {
+  Product _mapListItemWithVariantsToProduct(ai.ProductListItemWithVariants item) {
     List<double> variantPrices = [];
     if (item.variantPrices.isNotEmpty) {
       variantPrices = item.variantPrices.map((p) => p.toDouble()).toList();
@@ -194,6 +218,18 @@ class ProductRepositoryImpl implements ProductRepository {
       brandId: item.brandId,
       categoryId: item.categoryId,
       categoryName: item.categoryName,
+      variants: item.variants.map((v) => ProductVariant(
+        id: v.id ?? '',
+        sku: '',
+        barcode: '',
+        volumeMl: 0,
+        concentrationName: v.concentrationName,
+        type: 'Standard',
+        basePrice: 0,
+        status: 'Active',
+        stockQuantity: 0,
+        imageUrls: [],
+      )).toList(),
     );
   }
 
@@ -229,39 +265,6 @@ class ProductRepositoryImpl implements ProductRepository {
       hasNextPage: payload?.hasNextPage ?? false,
     );
   }
-
-  @override
-  Future<PagedResult<Product>> searchProductsPaged({
-    required String query,
-    int pageNumber = 1,
-    int pageSize = 12,
-    int? brandId,
-    int? categoryId,
-    int? volume,
-    num? fromPrice,
-    num? toPrice,
-    String? sortBy,
-    bool? isDescending,
-  }) async {
-    final response = await _api.apiProductsSearchSemanticGet(
-      searchText: query,
-      pageNumber: pageNumber,
-      pageSize: pageSize,
-      brandId: brandId,
-      categoryId: categoryId,
-      volume: volume,
-      fromPrice: fromPrice,
-      toPrice: toPrice,
-      sortBy: sortBy,
-      isDescending: isDescending,
-    );
-    final payload = response.data?.payload;
-    final items = payload?.items ?? [];
-    return PagedResult(
-      items: items.map(_mapListItemWithVariantsToProduct).toList(),
-      totalCount: payload?.totalCount ?? 0,
-      totalPages: payload?.totalPages ?? 0,
-      hasNextPage: payload?.hasNextPage ?? false,
-    );
-  }
 }
+
+typedef ProductRating = ({double rating, int reviewCount});

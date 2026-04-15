@@ -24,7 +24,7 @@ abstract class _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWP
   );
 
   BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse errorType(
-    int? errorType,
+    ResponseErrorType? errorType,
   );
 
   /// Creates a new instance with the provided field values.
@@ -39,7 +39,7 @@ abstract class _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWP
     bool? success,
     String? message,
     List<String>? errors,
-    int? errorType,
+    ResponseErrorType? errorType,
   });
 }
 
@@ -76,7 +76,7 @@ class _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl
 
   @override
   BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse errorType(
-    int? errorType,
+    ResponseErrorType? errorType,
   ) => call(errorType: errorType);
 
   @override
@@ -114,7 +114,7 @@ class _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseCWProxyImpl
       errorType: errorType == const $CopyWithPlaceholder()
           ? _value.errorType
           // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
+          : errorType as ResponseErrorType?,
     );
   }
 }
@@ -157,7 +157,10 @@ _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseFromJson(
         'errors',
         (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
       ),
-      errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+      errorType: $checkedConvert(
+        'errorType',
+        (v) => $enumDecodeNullable(_$ResponseErrorTypeEnumMap, v),
+      ),
     );
     return val;
   },
@@ -171,5 +174,14 @@ _$BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponseToJson(
   'success': ?instance.success,
   'message': ?instance.message,
   'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
+  'errorType': ?_$ResponseErrorTypeEnumMap[instance.errorType],
+};
+
+const _$ResponseErrorTypeEnumMap = {
+  ResponseErrorType.badRequest: 'BadRequest',
+  ResponseErrorType.unauthorized: 'Unauthorized',
+  ResponseErrorType.forbidden: 'Forbidden',
+  ResponseErrorType.notFound: 'NotFound',
+  ResponseErrorType.conflict: 'Conflict',
+  ResponseErrorType.internalError: 'InternalError',
 };

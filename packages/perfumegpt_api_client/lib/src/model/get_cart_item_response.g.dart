@@ -25,6 +25,10 @@ abstract class _$GetCartItemResponseCWProxy {
 
   GetCartItemResponse isAvailable(bool? isAvailable);
 
+  GetCartItemResponse discount(num? discount);
+
+  GetCartItemResponse finalTotal(num? finalTotal);
+
   GetCartItemResponse subTotal(num? subTotal);
 
   /// Creates a new instance with the provided field values.
@@ -44,6 +48,8 @@ abstract class _$GetCartItemResponseCWProxy {
     num? variantPrice,
     int? quantity,
     bool? isAvailable,
+    num? discount,
+    num? finalTotal,
     num? subTotal,
   });
 }
@@ -88,6 +94,13 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
       call(isAvailable: isAvailable);
 
   @override
+  GetCartItemResponse discount(num? discount) => call(discount: discount);
+
+  @override
+  GetCartItemResponse finalTotal(num? finalTotal) =>
+      call(finalTotal: finalTotal);
+
+  @override
   GetCartItemResponse subTotal(num? subTotal) => call(subTotal: subTotal);
 
   @override
@@ -108,6 +121,8 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
     Object? variantPrice = const $CopyWithPlaceholder(),
     Object? quantity = const $CopyWithPlaceholder(),
     Object? isAvailable = const $CopyWithPlaceholder(),
+    Object? discount = const $CopyWithPlaceholder(),
+    Object? finalTotal = const $CopyWithPlaceholder(),
     Object? subTotal = const $CopyWithPlaceholder(),
   }) {
     return GetCartItemResponse(
@@ -148,6 +163,14 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
           ? _value.isAvailable
           // ignore: cast_nullable_to_non_nullable
           : isAvailable as bool?,
+      discount: discount == const $CopyWithPlaceholder()
+          ? _value.discount
+          // ignore: cast_nullable_to_non_nullable
+          : discount as num?,
+      finalTotal: finalTotal == const $CopyWithPlaceholder()
+          ? _value.finalTotal
+          // ignore: cast_nullable_to_non_nullable
+          : finalTotal as num?,
       subTotal: subTotal == const $CopyWithPlaceholder()
           ? _value.subTotal
           // ignore: cast_nullable_to_non_nullable
@@ -184,6 +207,8 @@ GetCartItemResponse _$GetCartItemResponseFromJson(Map<String, dynamic> json) =>
         variantPrice: $checkedConvert('variantPrice', (v) => v as num?),
         quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
         isAvailable: $checkedConvert('isAvailable', (v) => v as bool?),
+        discount: $checkedConvert('discount', (v) => v as num?),
+        finalTotal: $checkedConvert('finalTotal', (v) => v as num?),
         subTotal: $checkedConvert('subTotal', (v) => v as num?),
       );
       return val;
@@ -201,6 +226,8 @@ Map<String, dynamic> _$GetCartItemResponseToJson(
   'variantPrice': ?instance.variantPrice,
   'quantity': ?instance.quantity,
   'isAvailable': ?instance.isAvailable,
+  'discount': ?instance.discount,
+  'finalTotal': ?instance.finalTotal,
   'subTotal': ?instance.subTotal,
 };
 

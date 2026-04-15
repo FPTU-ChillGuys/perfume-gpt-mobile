@@ -41,6 +41,8 @@ class ReceiptResponse {
 
      this.subtotal,
 
+     this.shippingFee,
+
      this.discount,
 
      this.tax,
@@ -174,6 +176,18 @@ class ReceiptResponse {
 
   @JsonKey(
     
+    name: r'shippingFee',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? shippingFee;
+
+
+
+  @JsonKey(
+    
     name: r'discount',
     required: false,
     includeIfNull: false,
@@ -246,6 +260,7 @@ class ReceiptResponse {
       other.recipientAddress == recipientAddress &&
       other.items == items &&
       other.subtotal == subtotal &&
+      other.shippingFee == shippingFee &&
       other.discount == discount &&
       other.tax == tax &&
       other.total == total &&
@@ -264,6 +279,7 @@ class ReceiptResponse {
         recipientAddress.hashCode +
         items.hashCode +
         subtotal.hashCode +
+        shippingFee.hashCode +
         discount.hashCode +
         tax.hashCode +
         total.hashCode +

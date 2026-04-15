@@ -107,7 +107,7 @@ class ProductRepositoryImpl implements ProductRepository {
     try {
       final response = await _apiClient
           .getProductVariantsApi()
-          .apiProductvariantsForPosGet(barcode: barcode, sku: sku);
+          .apiProductvariantsForPosGet(keyword: barcode ?? sku);
       final item = response.data?.payload;
 
       if (item == null) return null;

@@ -17,7 +17,9 @@ abstract class _$BaseResponseOfPagedResultOfShippingInfoListItemCWProxy {
 
   BaseResponseOfPagedResultOfShippingInfoListItem errors(List<String>? errors);
 
-  BaseResponseOfPagedResultOfShippingInfoListItem errorType(int? errorType);
+  BaseResponseOfPagedResultOfShippingInfoListItem errorType(
+    ResponseErrorType? errorType,
+  );
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfShippingInfoListItem(...).copyWith.fieldName(value)`.
@@ -31,7 +33,7 @@ abstract class _$BaseResponseOfPagedResultOfShippingInfoListItemCWProxy {
     bool? success,
     String? message,
     List<String>? errors,
-    int? errorType,
+    ResponseErrorType? errorType,
   });
 }
 
@@ -64,8 +66,9 @@ class _$BaseResponseOfPagedResultOfShippingInfoListItemCWProxyImpl
   ) => call(errors: errors);
 
   @override
-  BaseResponseOfPagedResultOfShippingInfoListItem errorType(int? errorType) =>
-      call(errorType: errorType);
+  BaseResponseOfPagedResultOfShippingInfoListItem errorType(
+    ResponseErrorType? errorType,
+  ) => call(errorType: errorType);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -102,7 +105,7 @@ class _$BaseResponseOfPagedResultOfShippingInfoListItemCWProxyImpl
       errorType: errorType == const $CopyWithPlaceholder()
           ? _value.errorType
           // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
+          : errorType as ResponseErrorType?,
     );
   }
 }
@@ -141,7 +144,10 @@ _$BaseResponseOfPagedResultOfShippingInfoListItemFromJson(
       'errors',
       (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
     ),
-    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+    errorType: $checkedConvert(
+      'errorType',
+      (v) => $enumDecodeNullable(_$ResponseErrorTypeEnumMap, v),
+    ),
   );
   return val;
 });
@@ -153,5 +159,14 @@ Map<String, dynamic> _$BaseResponseOfPagedResultOfShippingInfoListItemToJson(
   'success': ?instance.success,
   'message': ?instance.message,
   'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
+  'errorType': ?_$ResponseErrorTypeEnumMap[instance.errorType],
+};
+
+const _$ResponseErrorTypeEnumMap = {
+  ResponseErrorType.badRequest: 'BadRequest',
+  ResponseErrorType.unauthorized: 'Unauthorized',
+  ResponseErrorType.forbidden: 'Forbidden',
+  ResponseErrorType.notFound: 'NotFound',
+  ResponseErrorType.conflict: 'Conflict',
+  ResponseErrorType.internalError: 'InternalError',
 };

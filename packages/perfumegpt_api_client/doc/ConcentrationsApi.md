@@ -5,7 +5,7 @@
 import 'package:perfumegpt_api_client/api.dart';
 ```
 
-All URIs are relative to *https://localhost:7011*
+All URIs are relative to *https://backend-sep490.vqnofficial.win*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

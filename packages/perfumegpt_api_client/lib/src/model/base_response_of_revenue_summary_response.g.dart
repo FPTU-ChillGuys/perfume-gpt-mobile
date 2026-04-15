@@ -15,7 +15,7 @@ abstract class _$BaseResponseOfRevenueSummaryResponseCWProxy {
 
   BaseResponseOfRevenueSummaryResponse errors(List<String>? errors);
 
-  BaseResponseOfRevenueSummaryResponse errorType(int? errorType);
+  BaseResponseOfRevenueSummaryResponse errorType(ResponseErrorType? errorType);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfRevenueSummaryResponse(...).copyWith.fieldName(value)`.
@@ -29,7 +29,7 @@ abstract class _$BaseResponseOfRevenueSummaryResponseCWProxy {
     bool? success,
     String? message,
     List<String>? errors,
-    int? errorType,
+    ResponseErrorType? errorType,
   });
 }
 
@@ -59,8 +59,9 @@ class _$BaseResponseOfRevenueSummaryResponseCWProxyImpl
       call(errors: errors);
 
   @override
-  BaseResponseOfRevenueSummaryResponse errorType(int? errorType) =>
-      call(errorType: errorType);
+  BaseResponseOfRevenueSummaryResponse errorType(
+    ResponseErrorType? errorType,
+  ) => call(errorType: errorType);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -97,7 +98,7 @@ class _$BaseResponseOfRevenueSummaryResponseCWProxyImpl
       errorType: errorType == const $CopyWithPlaceholder()
           ? _value.errorType
           // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
+          : errorType as ResponseErrorType?,
     );
   }
 }
@@ -133,7 +134,10 @@ _$BaseResponseOfRevenueSummaryResponseFromJson(Map<String, dynamic> json) =>
           'errors',
           (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
         ),
-        errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+        errorType: $checkedConvert(
+          'errorType',
+          (v) => $enumDecodeNullable(_$ResponseErrorTypeEnumMap, v),
+        ),
       );
       return val;
     });
@@ -145,5 +149,14 @@ Map<String, dynamic> _$BaseResponseOfRevenueSummaryResponseToJson(
   'success': ?instance.success,
   'message': ?instance.message,
   'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
+  'errorType': ?_$ResponseErrorTypeEnumMap[instance.errorType],
+};
+
+const _$ResponseErrorTypeEnumMap = {
+  ResponseErrorType.badRequest: 'BadRequest',
+  ResponseErrorType.unauthorized: 'Unauthorized',
+  ResponseErrorType.forbidden: 'Forbidden',
+  ResponseErrorType.notFound: 'NotFound',
+  ResponseErrorType.conflict: 'Conflict',
+  ResponseErrorType.internalError: 'InternalError',
 };

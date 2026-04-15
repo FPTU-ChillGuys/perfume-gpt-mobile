@@ -167,20 +167,12 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
         return;
       }
 
-      // --- Semantic search mode: server-side ------------------------------
+      // --- Standard / category listing: server-side -----------------------
       if (_activeSearch.isNotEmpty) {
         final result = await repo.searchProductsPaged(
           query: _activeSearch,
           pageNumber: _page,
           pageSize: _pageSize,
-          brandId: _brandId,
-          categoryId: widget.categoryId,
-          volume: _volume,
-          fromPrice:
-              _priceRange.start > _priceMin ? _priceRange.start : null,
-          toPrice: _priceRange.end < _priceMax ? _priceRange.end : null,
-          sortBy: _sortBy,
-          isDescending: _isDescending,
         );
         if (!mounted) return;
         setState(() {
@@ -192,7 +184,6 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
         return;
       }
 
-      // --- Standard / category listing: server-side -----------------------
       final result = await repo.getProductsPaged(
         pageNumber: _page,
         pageSize: _pageSize,

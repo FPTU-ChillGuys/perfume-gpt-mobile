@@ -8,10 +8,10 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **bool** |  | [optional] 
-**message** | **String** |  | [optional] 
-**errors** | **List&lt;String&gt;** |  | [optional] 
-**errorType** | **int** |  | [optional] 
+**success** | **bool** | Kết quả xử lý | 
+**error** | **Object** | Thông báo lỗi | [optional] 
+**details** | **Object** | Chi tiết lỗi | [optional] 
+**data** | **Object** | Dữ liệu trả về | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

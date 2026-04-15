@@ -54,6 +54,8 @@ class OrderReturnRequestResponse {
 
      this.requestedRefundAmount,
 
+     this.refundedShippingFee,
+
      this.approvedRefundAmount,
 
      this.isRefunded,
@@ -263,6 +265,18 @@ class OrderReturnRequestResponse {
 
   @JsonKey(
     
+    name: r'refundedShippingFee',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? refundedShippingFee;
+
+
+
+  @JsonKey(
+    
     name: r'approvedRefundAmount',
     required: false,
     includeIfNull: false,
@@ -436,6 +450,7 @@ class OrderReturnRequestResponse {
       other.inspectionNote == inspectionNote &&
       other.status == status &&
       other.requestedRefundAmount == requestedRefundAmount &&
+      other.refundedShippingFee == refundedShippingFee &&
       other.approvedRefundAmount == approvedRefundAmount &&
       other.isRefunded == isRefunded &&
       other.isRefundOnly == isRefundOnly &&
@@ -467,6 +482,7 @@ class OrderReturnRequestResponse {
         (inspectionNote == null ? 0 : inspectionNote.hashCode) +
         status.hashCode +
         requestedRefundAmount.hashCode +
+        refundedShippingFee.hashCode +
         (approvedRefundAmount == null ? 0 : approvedRefundAmount.hashCode) +
         isRefunded.hashCode +
         isRefundOnly.hashCode +

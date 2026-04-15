@@ -17,6 +17,10 @@ abstract class _$UpdateCampaignPromotionItemRequestCWProxy {
     PromotionType? promotionType,
   );
 
+  UpdateCampaignPromotionItemRequest discountType(DiscountType? discountType);
+
+  UpdateCampaignPromotionItemRequest discountValue(num? discountValue);
+
   UpdateCampaignPromotionItemRequest maxUsage(int? maxUsage);
 
   /// Creates a new instance with the provided field values.
@@ -31,6 +35,8 @@ abstract class _$UpdateCampaignPromotionItemRequestCWProxy {
     String productVariantId,
     String? batchId,
     PromotionType? promotionType,
+    DiscountType? discountType,
+    num? discountValue,
     int? maxUsage,
   });
 }
@@ -61,6 +67,14 @@ class _$UpdateCampaignPromotionItemRequestCWProxyImpl
   ) => call(promotionType: promotionType);
 
   @override
+  UpdateCampaignPromotionItemRequest discountType(DiscountType? discountType) =>
+      call(discountType: discountType);
+
+  @override
+  UpdateCampaignPromotionItemRequest discountValue(num? discountValue) =>
+      call(discountValue: discountValue);
+
+  @override
   UpdateCampaignPromotionItemRequest maxUsage(int? maxUsage) =>
       call(maxUsage: maxUsage);
 
@@ -77,6 +91,8 @@ class _$UpdateCampaignPromotionItemRequestCWProxyImpl
     Object? productVariantId = const $CopyWithPlaceholder(),
     Object? batchId = const $CopyWithPlaceholder(),
     Object? promotionType = const $CopyWithPlaceholder(),
+    Object? discountType = const $CopyWithPlaceholder(),
+    Object? discountValue = const $CopyWithPlaceholder(),
     Object? maxUsage = const $CopyWithPlaceholder(),
   }) {
     return UpdateCampaignPromotionItemRequest(
@@ -98,6 +114,14 @@ class _$UpdateCampaignPromotionItemRequestCWProxyImpl
           ? _value.promotionType
           // ignore: cast_nullable_to_non_nullable
           : promotionType as PromotionType?,
+      discountType: discountType == const $CopyWithPlaceholder()
+          ? _value.discountType
+          // ignore: cast_nullable_to_non_nullable
+          : discountType as DiscountType?,
+      discountValue: discountValue == const $CopyWithPlaceholder()
+          ? _value.discountValue
+          // ignore: cast_nullable_to_non_nullable
+          : discountValue as num?,
       maxUsage: maxUsage == const $CopyWithPlaceholder()
           ? _value.maxUsage
           // ignore: cast_nullable_to_non_nullable
@@ -133,6 +157,11 @@ UpdateCampaignPromotionItemRequest _$UpdateCampaignPromotionItemRequestFromJson(
       'promotionType',
       (v) => $enumDecodeNullable(_$PromotionTypeEnumMap, v),
     ),
+    discountType: $checkedConvert(
+      'discountType',
+      (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
+    ),
+    discountValue: $checkedConvert('discountValue', (v) => v as num?),
     maxUsage: $checkedConvert('maxUsage', (v) => (v as num?)?.toInt()),
   );
   return val;
@@ -145,6 +174,8 @@ Map<String, dynamic> _$UpdateCampaignPromotionItemRequestToJson(
   'productVariantId': instance.productVariantId,
   'batchId': ?instance.batchId,
   'promotionType': ?_$PromotionTypeEnumMap[instance.promotionType],
+  'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
+  'discountValue': ?instance.discountValue,
   'maxUsage': ?instance.maxUsage,
 };
 
@@ -152,4 +183,9 @@ const _$PromotionTypeEnumMap = {
   PromotionType.clearance: 'Clearance',
   PromotionType.newArrival: 'NewArrival',
   PromotionType.regular: 'Regular',
+};
+
+const _$DiscountTypeEnumMap = {
+  DiscountType.percentage: 'Percentage',
+  DiscountType.fixedAmount: 'FixedAmount',
 };

@@ -34,6 +34,16 @@ class UpdateCampaignVoucherRequest {
      this.discountType,
 
      this.applyType,
+
+     this.maxDiscountAmount,
+
+    required  this.minOrderValue,
+
+     this.totalQuantity,
+
+     this.maxUsagePerUser,
+
+     this.isMemberOnly,
   });
 
   @JsonKey(
@@ -109,6 +119,67 @@ class UpdateCampaignVoucherRequest {
 
 
 
+  @JsonKey(
+    
+    name: r'maxDiscountAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? maxDiscountAmount;
+
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'minOrderValue',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final num minOrderValue;
+
+
+
+  @JsonKey(
+    
+    name: r'totalQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? totalQuantity;
+
+
+
+  @JsonKey(
+    
+    name: r'maxUsagePerUser',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? maxUsagePerUser;
+
+
+
+  @JsonKey(
+    
+    name: r'isMemberOnly',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final bool? isMemberOnly;
+
+
+
 
 
     @override
@@ -118,7 +189,12 @@ class UpdateCampaignVoucherRequest {
       other.discountValue == discountValue &&
       other.targetItemType == targetItemType &&
       other.discountType == discountType &&
-      other.applyType == applyType;
+      other.applyType == applyType &&
+      other.maxDiscountAmount == maxDiscountAmount &&
+      other.minOrderValue == minOrderValue &&
+      other.totalQuantity == totalQuantity &&
+      other.maxUsagePerUser == maxUsagePerUser &&
+      other.isMemberOnly == isMemberOnly;
 
     @override
     int get hashCode =>
@@ -127,7 +203,12 @@ class UpdateCampaignVoucherRequest {
         discountValue.hashCode +
         targetItemType.hashCode +
         discountType.hashCode +
-        applyType.hashCode;
+        applyType.hashCode +
+        (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +
+        minOrderValue.hashCode +
+        (totalQuantity == null ? 0 : totalQuantity.hashCode) +
+        (maxUsagePerUser == null ? 0 : maxUsagePerUser.hashCode) +
+        isMemberOnly.hashCode;
 
   factory UpdateCampaignVoucherRequest.fromJson(Map<String, dynamic> json) => _$UpdateCampaignVoucherRequestFromJson(json);
 

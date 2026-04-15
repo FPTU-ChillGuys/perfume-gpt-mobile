@@ -54,7 +54,7 @@ final class ProductRepositoryProvider
   }
 }
 
-String _$productRepositoryHash() => r'084d726258411d0df7d5658c3afa5a585042fd4e';
+String _$productRepositoryHash() => r'71189434471fbcaa7ac0932e95df949e70203e75';
 
 @ProviderFor(ProductList)
 final productListProvider = ProductListProvider._();

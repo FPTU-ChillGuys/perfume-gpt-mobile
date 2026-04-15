@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/response_error_type.dart';
 import 'package:perfumegpt_api_client/src/model/media_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -88,7 +89,7 @@ class BaseResponseOfMediaResponse {
   )
 
 
-  final int? errorType;
+  final ResponseErrorType? errorType;
 
 
 

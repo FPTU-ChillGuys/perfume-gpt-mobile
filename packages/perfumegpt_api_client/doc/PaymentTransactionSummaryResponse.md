@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **failedTransactionsCount** | **int** |  | [optional] 
 **cancelledTransactionsCount** | **int** |  | [optional] 
 **totalPaymentAmount** | **num** |  | [optional] 
+**totalShippingFeeDeductedPerOrder** | **num** |  | [optional] 
+**totalPaymentAmountExcludingShipping** | **num** |  | [optional] 
 **totalRefundAmount** | **num** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -5,7 +5,7 @@
 import 'package:perfumegpt_api_client/api.dart';
 ```
 
-All URIs are relative to *https://localhost:7011*
+All URIs are relative to *https://backend-sep490.vqnofficial.win*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getVouchersApi();
-final int status = 56; // int | 
+final UsageStatus status = ; // UsageStatus | 
 final bool isUsed = true; // bool | 
 final bool isExpired = true; // bool | 
 final String code = code_example; // String | 
@@ -155,7 +155,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | **int**|  | [optional] 
+ **status** | [**UsageStatus**](.md)|  | [optional] 
  **isUsed** | **bool**|  | [optional] 
  **isExpired** | **bool**|  | [optional] 
  **code** | **String**|  | [optional] 

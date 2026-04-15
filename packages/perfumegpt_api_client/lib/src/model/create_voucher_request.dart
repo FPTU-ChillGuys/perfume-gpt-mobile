@@ -32,13 +32,19 @@ class CreateVoucherRequest {
 
      this.requiredPoints,
 
+     this.maxDiscountAmount,
+
      this.minOrderValue,
 
      this.expiryDate,
 
      this.totalQuantity,
 
+     this.maxUsagePerUser,
+
      this.isPublic,
+
+     this.isMemberOnly,
   });
 
   @JsonKey(
@@ -103,6 +109,18 @@ class CreateVoucherRequest {
 
 
 
+  @JsonKey(
+    
+    name: r'maxDiscountAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? maxDiscountAmount;
+
+
+
           // minimum: 0
   @JsonKey(
     
@@ -143,6 +161,18 @@ class CreateVoucherRequest {
 
   @JsonKey(
     
+    name: r'maxUsagePerUser',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? maxUsagePerUser;
+
+
+
+  @JsonKey(
+    
     name: r'isPublic',
     required: false,
     includeIfNull: false,
@@ -150,6 +180,18 @@ class CreateVoucherRequest {
 
 
   final bool? isPublic;
+
+
+
+  @JsonKey(
+    
+    name: r'isMemberOnly',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final bool? isMemberOnly;
 
 
 
@@ -162,10 +204,13 @@ class CreateVoucherRequest {
       other.discountType == discountType &&
       other.applyType == applyType &&
       other.requiredPoints == requiredPoints &&
+      other.maxDiscountAmount == maxDiscountAmount &&
       other.minOrderValue == minOrderValue &&
       other.expiryDate == expiryDate &&
       other.totalQuantity == totalQuantity &&
-      other.isPublic == isPublic;
+      other.maxUsagePerUser == maxUsagePerUser &&
+      other.isPublic == isPublic &&
+      other.isMemberOnly == isMemberOnly;
 
     @override
     int get hashCode =>
@@ -174,10 +219,13 @@ class CreateVoucherRequest {
         discountType.hashCode +
         applyType.hashCode +
         requiredPoints.hashCode +
+        (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +
         minOrderValue.hashCode +
         expiryDate.hashCode +
         totalQuantity.hashCode +
-        isPublic.hashCode;
+        (maxUsagePerUser == null ? 0 : maxUsagePerUser.hashCode) +
+        isPublic.hashCode +
+        isMemberOnly.hashCode;
 
   factory CreateVoucherRequest.fromJson(Map<String, dynamic> json) => _$CreateVoucherRequestFromJson(json);
 

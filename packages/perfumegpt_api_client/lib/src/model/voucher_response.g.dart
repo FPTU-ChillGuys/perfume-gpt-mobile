@@ -23,6 +23,8 @@ abstract class _$VoucherResponseCWProxy {
 
   VoucherResponse requiredPoints(int? requiredPoints);
 
+  VoucherResponse maxDiscountAmount(num? maxDiscountAmount);
+
   VoucherResponse minOrderValue(num? minOrderValue);
 
   VoucherResponse expiryDate(DateTime? expiryDate);
@@ -33,7 +35,11 @@ abstract class _$VoucherResponseCWProxy {
 
   VoucherResponse remainingQuantity(int? remainingQuantity);
 
+  VoucherResponse maxUsagePerUser(int? maxUsagePerUser);
+
   VoucherResponse isPublic(bool? isPublic);
+
+  VoucherResponse isMemberOnly(bool? isMemberOnly);
 
   VoucherResponse createdAt(DateTime? createdAt);
 
@@ -53,12 +59,15 @@ abstract class _$VoucherResponseCWProxy {
     VoucherType? applyType,
     PromotionType? targetItemType,
     int? requiredPoints,
+    num? maxDiscountAmount,
     num? minOrderValue,
     DateTime? expiryDate,
     bool? isExpired,
     int? totalQuantity,
     int? remainingQuantity,
+    int? maxUsagePerUser,
     bool? isPublic,
+    bool? isMemberOnly,
     DateTime? createdAt,
   });
 }
@@ -101,6 +110,10 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
       call(requiredPoints: requiredPoints);
 
   @override
+  VoucherResponse maxDiscountAmount(num? maxDiscountAmount) =>
+      call(maxDiscountAmount: maxDiscountAmount);
+
+  @override
   VoucherResponse minOrderValue(num? minOrderValue) =>
       call(minOrderValue: minOrderValue);
 
@@ -120,7 +133,15 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
       call(remainingQuantity: remainingQuantity);
 
   @override
+  VoucherResponse maxUsagePerUser(int? maxUsagePerUser) =>
+      call(maxUsagePerUser: maxUsagePerUser);
+
+  @override
   VoucherResponse isPublic(bool? isPublic) => call(isPublic: isPublic);
+
+  @override
+  VoucherResponse isMemberOnly(bool? isMemberOnly) =>
+      call(isMemberOnly: isMemberOnly);
 
   @override
   VoucherResponse createdAt(DateTime? createdAt) => call(createdAt: createdAt);
@@ -142,12 +163,15 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
     Object? applyType = const $CopyWithPlaceholder(),
     Object? targetItemType = const $CopyWithPlaceholder(),
     Object? requiredPoints = const $CopyWithPlaceholder(),
+    Object? maxDiscountAmount = const $CopyWithPlaceholder(),
     Object? minOrderValue = const $CopyWithPlaceholder(),
     Object? expiryDate = const $CopyWithPlaceholder(),
     Object? isExpired = const $CopyWithPlaceholder(),
     Object? totalQuantity = const $CopyWithPlaceholder(),
     Object? remainingQuantity = const $CopyWithPlaceholder(),
+    Object? maxUsagePerUser = const $CopyWithPlaceholder(),
     Object? isPublic = const $CopyWithPlaceholder(),
+    Object? isMemberOnly = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
   }) {
     return VoucherResponse(
@@ -183,6 +207,10 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
           ? _value.requiredPoints
           // ignore: cast_nullable_to_non_nullable
           : requiredPoints as int?,
+      maxDiscountAmount: maxDiscountAmount == const $CopyWithPlaceholder()
+          ? _value.maxDiscountAmount
+          // ignore: cast_nullable_to_non_nullable
+          : maxDiscountAmount as num?,
       minOrderValue: minOrderValue == const $CopyWithPlaceholder()
           ? _value.minOrderValue
           // ignore: cast_nullable_to_non_nullable
@@ -203,10 +231,18 @@ class _$VoucherResponseCWProxyImpl implements _$VoucherResponseCWProxy {
           ? _value.remainingQuantity
           // ignore: cast_nullable_to_non_nullable
           : remainingQuantity as int?,
+      maxUsagePerUser: maxUsagePerUser == const $CopyWithPlaceholder()
+          ? _value.maxUsagePerUser
+          // ignore: cast_nullable_to_non_nullable
+          : maxUsagePerUser as int?,
       isPublic: isPublic == const $CopyWithPlaceholder()
           ? _value.isPublic
           // ignore: cast_nullable_to_non_nullable
           : isPublic as bool?,
+      isMemberOnly: isMemberOnly == const $CopyWithPlaceholder()
+          ? _value.isMemberOnly
+          // ignore: cast_nullable_to_non_nullable
+          : isMemberOnly as bool?,
       createdAt: createdAt == const $CopyWithPlaceholder()
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
@@ -250,6 +286,10 @@ VoucherResponse _$VoucherResponseFromJson(Map<String, dynamic> json) =>
           'requiredPoints',
           (v) => (v as num?)?.toInt(),
         ),
+        maxDiscountAmount: $checkedConvert(
+          'maxDiscountAmount',
+          (v) => v as num?,
+        ),
         minOrderValue: $checkedConvert('minOrderValue', (v) => v as num?),
         expiryDate: $checkedConvert(
           'expiryDate',
@@ -264,7 +304,12 @@ VoucherResponse _$VoucherResponseFromJson(Map<String, dynamic> json) =>
           'remainingQuantity',
           (v) => (v as num?)?.toInt(),
         ),
+        maxUsagePerUser: $checkedConvert(
+          'maxUsagePerUser',
+          (v) => (v as num?)?.toInt(),
+        ),
         isPublic: $checkedConvert('isPublic', (v) => v as bool?),
+        isMemberOnly: $checkedConvert('isMemberOnly', (v) => v as bool?),
         createdAt: $checkedConvert(
           'createdAt',
           (v) => v == null ? null : DateTime.parse(v as String),
@@ -283,12 +328,15 @@ Map<String, dynamic> _$VoucherResponseToJson(VoucherResponse instance) =>
       'applyType': ?_$VoucherTypeEnumMap[instance.applyType],
       'targetItemType': ?_$PromotionTypeEnumMap[instance.targetItemType],
       'requiredPoints': ?instance.requiredPoints,
+      'maxDiscountAmount': ?instance.maxDiscountAmount,
       'minOrderValue': ?instance.minOrderValue,
       'expiryDate': ?instance.expiryDate?.toIso8601String(),
       'isExpired': ?instance.isExpired,
       'totalQuantity': ?instance.totalQuantity,
       'remainingQuantity': ?instance.remainingQuantity,
+      'maxUsagePerUser': ?instance.maxUsagePerUser,
       'isPublic': ?instance.isPublic,
+      'isMemberOnly': ?instance.isMemberOnly,
       'createdAt': ?instance.createdAt?.toIso8601String(),
     };
 

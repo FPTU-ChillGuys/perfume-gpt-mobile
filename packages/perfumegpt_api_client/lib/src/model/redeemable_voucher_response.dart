@@ -31,6 +31,8 @@ class RedeemableVoucherResponse {
 
      this.requiredPoints,
 
+     this.maxDiscountAmount,
+
      this.minOrderValue,
 
      this.expiryDate,
@@ -38,6 +40,8 @@ class RedeemableVoucherResponse {
      this.isExpired,
 
      this.remainingQuantity,
+
+     this.maxUsagePerUser,
 
      this.createdAt,
   });
@@ -104,6 +108,18 @@ class RedeemableVoucherResponse {
 
   @JsonKey(
     
+    name: r'maxDiscountAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? maxDiscountAmount;
+
+
+
+  @JsonKey(
+    
     name: r'minOrderValue',
     required: false,
     includeIfNull: false,
@@ -152,6 +168,18 @@ class RedeemableVoucherResponse {
 
   @JsonKey(
     
+    name: r'maxUsagePerUser',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? maxUsagePerUser;
+
+
+
+  @JsonKey(
+    
     name: r'createdAt',
     required: false,
     includeIfNull: false,
@@ -171,10 +199,12 @@ class RedeemableVoucherResponse {
       other.discountValue == discountValue &&
       other.discountType == discountType &&
       other.requiredPoints == requiredPoints &&
+      other.maxDiscountAmount == maxDiscountAmount &&
       other.minOrderValue == minOrderValue &&
       other.expiryDate == expiryDate &&
       other.isExpired == isExpired &&
       other.remainingQuantity == remainingQuantity &&
+      other.maxUsagePerUser == maxUsagePerUser &&
       other.createdAt == createdAt;
 
     @override
@@ -184,10 +214,12 @@ class RedeemableVoucherResponse {
         discountValue.hashCode +
         discountType.hashCode +
         (requiredPoints == null ? 0 : requiredPoints.hashCode) +
+        (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +
         (minOrderValue == null ? 0 : minOrderValue.hashCode) +
         expiryDate.hashCode +
         isExpired.hashCode +
         (remainingQuantity == null ? 0 : remainingQuantity.hashCode) +
+        (maxUsagePerUser == null ? 0 : maxUsagePerUser.hashCode) +
         createdAt.hashCode;
 
   factory RedeemableVoucherResponse.fromJson(Map<String, dynamic> json) => _$RedeemableVoucherResponseFromJson(json);

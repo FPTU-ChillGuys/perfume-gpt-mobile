@@ -19,6 +19,14 @@ abstract class _$OrderDetailResponseCWProxy {
 
   OrderDetailResponse unitPrice(num? unitPrice);
 
+  OrderDetailResponse campaignDiscount(num? campaignDiscount);
+
+  OrderDetailResponse campaignPrice(num? campaignPrice);
+
+  OrderDetailResponse voucherDiscount(num? voucherDiscount);
+
+  OrderDetailResponse itemTotal(num? itemTotal);
+
   OrderDetailResponse refunablePrice(num? refunablePrice);
 
   OrderDetailResponse total(num? total);
@@ -41,6 +49,10 @@ abstract class _$OrderDetailResponseCWProxy {
     String? imageUrl,
     int? quantity,
     num? unitPrice,
+    num? campaignDiscount,
+    num? campaignPrice,
+    num? voucherDiscount,
+    num? itemTotal,
     num? refunablePrice,
     num? total,
     List<ReservedBatchResponse> reservedBatches,
@@ -75,6 +87,21 @@ class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
   OrderDetailResponse unitPrice(num? unitPrice) => call(unitPrice: unitPrice);
 
   @override
+  OrderDetailResponse campaignDiscount(num? campaignDiscount) =>
+      call(campaignDiscount: campaignDiscount);
+
+  @override
+  OrderDetailResponse campaignPrice(num? campaignPrice) =>
+      call(campaignPrice: campaignPrice);
+
+  @override
+  OrderDetailResponse voucherDiscount(num? voucherDiscount) =>
+      call(voucherDiscount: voucherDiscount);
+
+  @override
+  OrderDetailResponse itemTotal(num? itemTotal) => call(itemTotal: itemTotal);
+
+  @override
   OrderDetailResponse refunablePrice(num? refunablePrice) =>
       call(refunablePrice: refunablePrice);
 
@@ -101,6 +128,10 @@ class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
     Object? imageUrl = const $CopyWithPlaceholder(),
     Object? quantity = const $CopyWithPlaceholder(),
     Object? unitPrice = const $CopyWithPlaceholder(),
+    Object? campaignDiscount = const $CopyWithPlaceholder(),
+    Object? campaignPrice = const $CopyWithPlaceholder(),
+    Object? voucherDiscount = const $CopyWithPlaceholder(),
+    Object? itemTotal = const $CopyWithPlaceholder(),
     Object? refunablePrice = const $CopyWithPlaceholder(),
     Object? total = const $CopyWithPlaceholder(),
     Object? reservedBatches = const $CopyWithPlaceholder(),
@@ -131,6 +162,22 @@ class _$OrderDetailResponseCWProxyImpl implements _$OrderDetailResponseCWProxy {
           ? _value.unitPrice
           // ignore: cast_nullable_to_non_nullable
           : unitPrice as num?,
+      campaignDiscount: campaignDiscount == const $CopyWithPlaceholder()
+          ? _value.campaignDiscount
+          // ignore: cast_nullable_to_non_nullable
+          : campaignDiscount as num?,
+      campaignPrice: campaignPrice == const $CopyWithPlaceholder()
+          ? _value.campaignPrice
+          // ignore: cast_nullable_to_non_nullable
+          : campaignPrice as num?,
+      voucherDiscount: voucherDiscount == const $CopyWithPlaceholder()
+          ? _value.voucherDiscount
+          // ignore: cast_nullable_to_non_nullable
+          : voucherDiscount as num?,
+      itemTotal: itemTotal == const $CopyWithPlaceholder()
+          ? _value.itemTotal
+          // ignore: cast_nullable_to_non_nullable
+          : itemTotal as num?,
       refunablePrice: refunablePrice == const $CopyWithPlaceholder()
           ? _value.refunablePrice
           // ignore: cast_nullable_to_non_nullable
@@ -171,6 +218,10 @@ OrderDetailResponse _$OrderDetailResponseFromJson(Map<String, dynamic> json) =>
         imageUrl: $checkedConvert('imageUrl', (v) => v as String?),
         quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
         unitPrice: $checkedConvert('unitPrice', (v) => v as num?),
+        campaignDiscount: $checkedConvert('campaignDiscount', (v) => v as num?),
+        campaignPrice: $checkedConvert('campaignPrice', (v) => v as num?),
+        voucherDiscount: $checkedConvert('voucherDiscount', (v) => v as num?),
+        itemTotal: $checkedConvert('itemTotal', (v) => v as num?),
         refunablePrice: $checkedConvert('refunablePrice', (v) => v as num?),
         total: $checkedConvert('total', (v) => v as num?),
         reservedBatches: $checkedConvert(
@@ -195,6 +246,10 @@ Map<String, dynamic> _$OrderDetailResponseToJson(
   'imageUrl': ?instance.imageUrl,
   'quantity': ?instance.quantity,
   'unitPrice': ?instance.unitPrice,
+  'campaignDiscount': ?instance.campaignDiscount,
+  'campaignPrice': ?instance.campaignPrice,
+  'voucherDiscount': ?instance.voucherDiscount,
+  'itemTotal': ?instance.itemTotal,
   'refunablePrice': ?instance.refunablePrice,
   'total': ?instance.total,
   'reservedBatches': instance.reservedBatches.map((e) => e.toJson()).toList(),

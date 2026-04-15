@@ -15,7 +15,7 @@ abstract class _$BaseResponseOfCampaignResponseCWProxy {
 
   BaseResponseOfCampaignResponse errors(List<String>? errors);
 
-  BaseResponseOfCampaignResponse errorType(int? errorType);
+  BaseResponseOfCampaignResponse errorType(ResponseErrorType? errorType);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfCampaignResponse(...).copyWith.fieldName(value)`.
@@ -29,7 +29,7 @@ abstract class _$BaseResponseOfCampaignResponseCWProxy {
     bool? success,
     String? message,
     List<String>? errors,
-    int? errorType,
+    ResponseErrorType? errorType,
   });
 }
 
@@ -58,7 +58,7 @@ class _$BaseResponseOfCampaignResponseCWProxyImpl
       call(errors: errors);
 
   @override
-  BaseResponseOfCampaignResponse errorType(int? errorType) =>
+  BaseResponseOfCampaignResponse errorType(ResponseErrorType? errorType) =>
       call(errorType: errorType);
 
   @override
@@ -96,7 +96,7 @@ class _$BaseResponseOfCampaignResponseCWProxyImpl
       errorType: errorType == const $CopyWithPlaceholder()
           ? _value.errorType
           // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
+          : errorType as ResponseErrorType?,
     );
   }
 }
@@ -130,7 +130,10 @@ BaseResponseOfCampaignResponse _$BaseResponseOfCampaignResponseFromJson(
       'errors',
       (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
     ),
-    errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+    errorType: $checkedConvert(
+      'errorType',
+      (v) => $enumDecodeNullable(_$ResponseErrorTypeEnumMap, v),
+    ),
   );
   return val;
 });
@@ -142,5 +145,14 @@ Map<String, dynamic> _$BaseResponseOfCampaignResponseToJson(
   'success': ?instance.success,
   'message': ?instance.message,
   'errors': ?instance.errors,
-  'errorType': ?instance.errorType,
+  'errorType': ?_$ResponseErrorTypeEnumMap[instance.errorType],
+};
+
+const _$ResponseErrorTypeEnumMap = {
+  ResponseErrorType.badRequest: 'BadRequest',
+  ResponseErrorType.unauthorized: 'Unauthorized',
+  ResponseErrorType.forbidden: 'Forbidden',
+  ResponseErrorType.notFound: 'NotFound',
+  ResponseErrorType.conflict: 'Conflict',
+  ResponseErrorType.internalError: 'InternalError',
 };

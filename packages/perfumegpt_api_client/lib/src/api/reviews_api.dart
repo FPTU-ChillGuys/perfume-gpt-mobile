@@ -175,20 +175,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
         ],
         ...?extra,
       },
-      contentType: 'multipart/form-data',
+      contentType: 'application/x-www-form-urlencoded',
       validateStatus: validateStatus,
     );
 
     dynamic _bodyData;
 
     try {
-      final formData = FormData();
-      if (images != null) {
-        for (final i in images) {
-          formData.files.add(MapEntry('images', i));
-        }
-      }
-      _bodyData = formData;
+
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

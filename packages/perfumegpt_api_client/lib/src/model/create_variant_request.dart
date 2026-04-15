@@ -6,6 +6,7 @@
 import 'package:perfumegpt_api_client/src/model/variant_status.dart';
 import 'package:perfumegpt_api_client/src/model/variant_type.dart';
 import 'package:perfumegpt_api_client/src/model/product_attribute_dto.dart';
+import 'package:perfumegpt_api_client/src/model/replenishment_policy.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -44,6 +45,8 @@ class CreateVariantRequest {
      this.retailPrice,
 
      this.status,
+
+     this.restockPolicy,
 
      this.lowStockThreshold,
 
@@ -189,6 +192,18 @@ class CreateVariantRequest {
 
   @JsonKey(
     
+    name: r'restockPolicy',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final ReplenishmentPolicy? restockPolicy;
+
+
+
+  @JsonKey(
+    
     name: r'lowStockThreshold',
     required: false,
     includeIfNull: false,
@@ -238,6 +253,7 @@ class CreateVariantRequest {
       other.basePrice == basePrice &&
       other.retailPrice == retailPrice &&
       other.status == status &&
+      other.restockPolicy == restockPolicy &&
       other.lowStockThreshold == lowStockThreshold &&
       other.attributes == attributes &&
       other.temporaryMediaIds == temporaryMediaIds;
@@ -255,6 +271,7 @@ class CreateVariantRequest {
         basePrice.hashCode +
         (retailPrice == null ? 0 : retailPrice.hashCode) +
         status.hashCode +
+        restockPolicy.hashCode +
         lowStockThreshold.hashCode +
         (attributes == null ? 0 : attributes.hashCode) +
         (temporaryMediaIds == null ? 0 : temporaryMediaIds.hashCode);

@@ -29,6 +29,8 @@ abstract class _$CreateVariantRequestCWProxy {
 
   CreateVariantRequest status(VariantStatus? status);
 
+  CreateVariantRequest restockPolicy(ReplenishmentPolicy? restockPolicy);
+
   CreateVariantRequest lowStockThreshold(int? lowStockThreshold);
 
   CreateVariantRequest attributes(List<ProductAttributeDto>? attributes);
@@ -54,6 +56,7 @@ abstract class _$CreateVariantRequestCWProxy {
     num? basePrice,
     num? retailPrice,
     VariantStatus? status,
+    ReplenishmentPolicy? restockPolicy,
     int? lowStockThreshold,
     List<ProductAttributeDto>? attributes,
     List<String>? temporaryMediaIds,
@@ -105,6 +108,10 @@ class _$CreateVariantRequestCWProxyImpl
   CreateVariantRequest status(VariantStatus? status) => call(status: status);
 
   @override
+  CreateVariantRequest restockPolicy(ReplenishmentPolicy? restockPolicy) =>
+      call(restockPolicy: restockPolicy);
+
+  @override
   CreateVariantRequest lowStockThreshold(int? lowStockThreshold) =>
       call(lowStockThreshold: lowStockThreshold);
 
@@ -136,6 +143,7 @@ class _$CreateVariantRequestCWProxyImpl
     Object? basePrice = const $CopyWithPlaceholder(),
     Object? retailPrice = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
+    Object? restockPolicy = const $CopyWithPlaceholder(),
     Object? lowStockThreshold = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
     Object? temporaryMediaIds = const $CopyWithPlaceholder(),
@@ -185,6 +193,10 @@ class _$CreateVariantRequestCWProxyImpl
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as VariantStatus?,
+      restockPolicy: restockPolicy == const $CopyWithPlaceholder()
+          ? _value.restockPolicy
+          // ignore: cast_nullable_to_non_nullable
+          : restockPolicy as ReplenishmentPolicy?,
       lowStockThreshold: lowStockThreshold == const $CopyWithPlaceholder()
           ? _value.lowStockThreshold
           // ignore: cast_nullable_to_non_nullable
@@ -238,6 +250,10 @@ CreateVariantRequest _$CreateVariantRequestFromJson(
       'status',
       (v) => $enumDecodeNullable(_$VariantStatusEnumMap, v),
     ),
+    restockPolicy: $checkedConvert(
+      'restockPolicy',
+      (v) => $enumDecodeNullable(_$ReplenishmentPolicyEnumMap, v),
+    ),
     lowStockThreshold: $checkedConvert(
       'lowStockThreshold',
       (v) => (v as num?)?.toInt(),
@@ -270,6 +286,7 @@ Map<String, dynamic> _$CreateVariantRequestToJson(
   'basePrice': ?instance.basePrice,
   'retailPrice': ?instance.retailPrice,
   'status': ?_$VariantStatusEnumMap[instance.status],
+  'restockPolicy': ?_$ReplenishmentPolicyEnumMap[instance.restockPolicy],
   'lowStockThreshold': ?instance.lowStockThreshold,
   'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
   'temporaryMediaIds': ?instance.temporaryMediaIds,
@@ -286,4 +303,10 @@ const _$VariantStatusEnumMap = {
   VariantStatus.active: 'Active',
   VariantStatus.inactive: 'Inactive',
   VariantStatus.discontinued: 'Discontinued',
+};
+
+const _$ReplenishmentPolicyEnumMap = {
+  ReplenishmentPolicy.autoRestock: 'AutoRestock',
+  ReplenishmentPolicy.manualOnly: 'ManualOnly',
+  ReplenishmentPolicy.doNotRestock: 'DoNotRestock',
 };

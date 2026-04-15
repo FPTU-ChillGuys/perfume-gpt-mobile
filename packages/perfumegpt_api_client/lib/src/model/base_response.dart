@@ -20,60 +20,64 @@ class BaseResponse {
   /// Returns a new [BaseResponse] instance.
   BaseResponse({
 
-     this.success,
+    required  this.success,
 
-     this.message,
+     this.error,
 
-     this.errors,
+     this.details,
 
-     this.errorType,
+     this.data,
   });
 
+      /// Kết quả xử lý
   @JsonKey(
     
     name: r'success',
-    required: false,
+    required: true,
     includeIfNull: false,
   )
 
 
-  final bool? success;
+  final bool success;
 
 
 
+      /// Thông báo lỗi
   @JsonKey(
     
-    name: r'message',
+    name: r'error',
     required: false,
     includeIfNull: false,
   )
 
 
-  final String? message;
+  final Object? error;
 
 
 
+      /// Chi tiết lỗi
   @JsonKey(
     
-    name: r'errors',
+    name: r'details',
     required: false,
     includeIfNull: false,
   )
 
 
-  final List<String>? errors;
+  final Object? details;
 
 
 
+      /// Dữ liệu trả về
   @JsonKey(
     
-    name: r'errorType',
+    name: r'data',
     required: false,
     includeIfNull: false,
   )
 
 
-  final int? errorType;
+  final Object? data;
 
 
 
@@ -82,16 +86,16 @@ class BaseResponse {
     @override
     bool operator ==(Object other) => identical(this, other) || other is BaseResponse &&
       other.success == success &&
-      other.message == message &&
-      other.errors == errors &&
-      other.errorType == errorType;
+      other.error == error &&
+      other.details == details &&
+      other.data == data;
 
     @override
     int get hashCode =>
         success.hashCode +
-        message.hashCode +
-        (errors == null ? 0 : errors.hashCode) +
-        (errorType == null ? 0 : errorType.hashCode);
+        (error == null ? 0 : error.hashCode) +
+        (details == null ? 0 : details.hashCode) +
+        data.hashCode;
 
   factory BaseResponse.fromJson(Map<String, dynamic> json) => _$BaseResponseFromJson(json);
 
