@@ -9,17 +9,15 @@ part 'cart_providers.g.dart';
 class PosCart extends _$PosCart {
   @override
   Map<String, CartItem> build() => {};
-
-  void addProduct(Product product, {String batchCode = 'DEFAULT'}) {
-    final key = '${product.id}_$batchCode';
-    state = {
-      ...state,
-      key: state.containsKey(key)
-          ? state[key]!.copyWith(quantity: state[key]!.quantity + 1)
-          : CartItem(product: product, batchCode: batchCode, quantity: 1),
-    };
-  }
-
+void addProduct(Product product, {required String batchCode}) {
+  final key = '${product.id}_$batchCode';
+  state = {
+    ...state,
+    key: state.containsKey(key)
+        ? state[key]!.copyWith(quantity: state[key]!.quantity + 1)
+        : CartItem(product: product, batchCode: batchCode, quantity: 1),
+  };
+}
   void removeProduct(String key) {
     final newState = Map<String, CartItem>.from(state);
     newState.remove(key);
