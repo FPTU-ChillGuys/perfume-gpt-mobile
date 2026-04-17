@@ -5,15 +5,21 @@ import '../../../../data/repositories/product_repository_impl.dart';
 import '../providers/cart_providers.dart';
 import '../../../../core/utils/price_formatter.dart';
 import 'scanner_screen.dart';
+import '../../data/services/pos_signalr_service.dart';
 
 class PosScreen extends ConsumerWidget {
   const PosScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Watch cart sync to push to SignalR
+    ref.watch(posCartSyncLegacyProvider);
+
     final cart = ref.watch(posCartProvider);
     final total = ref.watch(cartTotalProvider);
     final skuController = TextEditingController();
+
+    final sessionId = ref.watch(posSignalRServiceProvider).currentSessionId;
 
     return Scaffold(
       appBar: AppBar(
@@ -35,6 +41,32 @@ class PosScreen extends ConsumerWidget {
       ),
       body: Column(
         children: [
+          if (sessionId != null) ...[
+            Container(
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.all(16).copyWith(bottom: 0),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade50,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.cast, color: Colors.blue, size: 20),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: SelectableText(
+                      'Session ID: $sessionId',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
@@ -136,7 +168,10 @@ class PosScreen extends ConsumerWidget {
                               width: 32,
                               height: 32,
                               child: IconButton(
-                                icon: const Icon(Icons.remove_circle_outline, size: 20),
+                                icon: const Icon(
+                                  Icons.remove_circle_outline,
+                                  size: 20,
+                                ),
                                 padding: EdgeInsets.zero,
                                 onPressed: () => ref
                                     .read(posCartProvider.notifier)
@@ -146,12 +181,18 @@ class PosScreen extends ConsumerWidget {
                                     ),
                               ),
                             ),
-                            SizedBox(width: 24, child: Center(child: Text('${item.quantity}'))),
+                            SizedBox(
+                              width: 24,
+                              child: Center(child: Text('${item.quantity}')),
+                            ),
                             SizedBox(
                               width: 32,
                               height: 32,
                               child: IconButton(
-                                icon: const Icon(Icons.add_circle_outline, size: 20),
+                                icon: const Icon(
+                                  Icons.add_circle_outline,
+                                  size: 20,
+                                ),
                                 padding: EdgeInsets.zero,
                                 onPressed: () => ref
                                     .read(posCartProvider.notifier)

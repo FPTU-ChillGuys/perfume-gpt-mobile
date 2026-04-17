@@ -539,39 +539,39 @@ class _ActionsSection extends ConsumerWidget {
           title: const Text('Xử lý yêu cầu'),
           content: SingleChildScrollView(
             child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RadioGroup<_ReviewAction>(
-                groupValue: action,
-                onChanged: (v) => setDialogState(() => action = v),
-                child: Column(
-                  children: [
-                    RadioListTile<_ReviewAction>(
-                      title: const Text('Duyệt'),
-                      value: _ReviewAction.approve,
-                    ),
-                    RadioListTile<_ReviewAction>(
-                      title: const Text('Yêu cầu bổ sung'),
-                      value: _ReviewAction.requestMore,
-                    ),
-                    RadioListTile<_ReviewAction>(
-                      title: const Text('Từ chối'),
-                      value: _ReviewAction.reject,
-                    ),
-                  ],
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RadioGroup<_ReviewAction>(
+                  groupValue: action,
+                  onChanged: (v) => setDialogState(() => action = v),
+                  child: Column(
+                    children: [
+                      RadioListTile<_ReviewAction>(
+                        title: const Text('Duyệt'),
+                        value: _ReviewAction.approve,
+                      ),
+                      RadioListTile<_ReviewAction>(
+                        title: const Text('Yêu cầu bổ sung'),
+                        value: _ReviewAction.requestMore,
+                      ),
+                      RadioListTile<_ReviewAction>(
+                        title: const Text('Từ chối'),
+                        value: _ReviewAction.reject,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                controller: staffNoteController,
-                decoration: const InputDecoration(
-                  labelText: 'Ghi chú nhân viên (tuỳ chọn)',
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: staffNoteController,
+                  decoration: const InputDecoration(
+                    labelText: 'Ghi chú nhân viên (tuỳ chọn)',
+                    border: OutlineInputBorder(),
+                  ),
+                  maxLines: 3,
                 ),
-                maxLines: 3,
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
           actions: [
             TextButton(

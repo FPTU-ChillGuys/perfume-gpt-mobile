@@ -101,3 +101,44 @@ final class CartTotalProvider
 }
 
 String _$cartTotalHash() => r'7c70e3d36de51f75081b3e853b025fab07549fb8';
+
+@ProviderFor(posCartSyncLegacy)
+final posCartSyncLegacyProvider = PosCartSyncLegacyProvider._();
+
+final class PosCartSyncLegacyProvider
+    extends $FunctionalProvider<void, void, void>
+    with $Provider<void> {
+  PosCartSyncLegacyProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'posCartSyncLegacyProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$posCartSyncLegacyHash();
+
+  @$internal
+  @override
+  $ProviderElement<void> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  void create(Ref ref) {
+    return posCartSyncLegacy(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(void value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<void>(value),
+    );
+  }
+}
+
+String _$posCartSyncLegacyHash() => r'cb74f54534d73a9bf61d38f711e8ca504b0157a1';
