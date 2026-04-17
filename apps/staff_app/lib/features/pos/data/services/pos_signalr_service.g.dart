@@ -54,7 +54,7 @@ final class PosSignalRServiceProvider
   }
 }
 
-String _$posSignalRServiceHash() => r'590a79401ff3ffdb61cfa1fe5e1f654e5531df90';
+String _$posSignalRServiceHash() => r'01a0793c6bd72f0092b6168ab40ee935c82d4310';
 
 @ProviderFor(paymentCompletedEvent)
 final paymentCompletedEventProvider = PaymentCompletedEventProvider._();

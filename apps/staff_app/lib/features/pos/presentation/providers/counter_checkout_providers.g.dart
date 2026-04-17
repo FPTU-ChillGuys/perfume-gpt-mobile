@@ -41,7 +41,7 @@ final class DraftItemsProvider
   }
 }
 
-String _$draftItemsHash() => r'd3db5cfb19f354cb6a10fc22df86c90d333d3425';
+String _$draftItemsHash() => r'e3682ed8c9af94d7b09e576e7e439f3fa3e6d90a';
 
 abstract class _$DraftItems extends $Notifier<List<DraftItem>> {
   List<DraftItem> build();
@@ -247,6 +247,84 @@ abstract class _$SelectedPaymentMethod extends $Notifier<String> {
   }
 }
 
+@ProviderFor(productBatches)
+final productBatchesProvider = ProductBatchesFamily._();
+
+final class ProductBatchesProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<BatchDetailResponse>>,
+          List<BatchDetailResponse>,
+          FutureOr<List<BatchDetailResponse>>
+        >
+    with
+        $FutureModifier<List<BatchDetailResponse>>,
+        $FutureProvider<List<BatchDetailResponse>> {
+  ProductBatchesProvider._({
+    required ProductBatchesFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'productBatchesProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$productBatchesHash();
+
+  @override
+  String toString() {
+    return r'productBatchesProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<List<BatchDetailResponse>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<BatchDetailResponse>> create(Ref ref) {
+    final argument = this.argument as String;
+    return productBatches(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ProductBatchesProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$productBatchesHash() => r'00652af003dca73f3153073a1dddcdd0b3076a7b';
+
+final class ProductBatchesFamily extends $Family
+    with
+        $FunctionalFamilyOverride<FutureOr<List<BatchDetailResponse>>, String> {
+  ProductBatchesFamily._()
+    : super(
+        retry: null,
+        name: r'productBatchesProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  ProductBatchesProvider call(String variantId) =>
+      ProductBatchesProvider._(argument: variantId, from: this);
+
+  @override
+  String toString() => r'productBatchesProvider';
+}
+
 @ProviderFor(CounterCheckoutNotifier)
 final counterCheckoutNotifier = CounterCheckoutNotifierProvider._();
 
@@ -280,7 +358,7 @@ final class CounterCheckoutNotifierProvider
 }
 
 String _$counterCheckoutNotifierHash() =>
-    r'01326323ce888cdc85893ff4f44c1468b782c9f5';
+    r'6c1b4e49b5ab12bd605b27c324d23ab88390266d';
 
 abstract class _$CounterCheckoutNotifier extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();
