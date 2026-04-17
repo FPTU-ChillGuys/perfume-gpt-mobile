@@ -3,6 +3,7 @@ class Product {
   final String variantId;
   final String batchId;
   final String sku;
+  final String barcode;
   final String name;
   final String description;
   final double price;
@@ -21,6 +22,7 @@ class Product {
     required this.variantId,
     required this.batchId,
     required this.sku,
+    required this.barcode,
     required this.name,
     required this.description,
     required this.price,
