@@ -410,7 +410,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     );
   }
 
-  Widget _buildOrderInfoSection(UserOrderResponse order) {
+  Widget _buildOrderInfoSection(OrderResponse order) {
     final code = order.code;
     final status = order.status?.value ?? '';
     final paymentStatus = order.paymentStatus?.value ?? '';
@@ -487,7 +487,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     );
   }
 
-  Widget _buildPaymentSection(UserOrderResponse order) {
+  Widget _buildPaymentSection(OrderResponse order) {
     final paymentMethod = ref.watch(selectedPaymentMethodProvider);
     final isPaid = order.paymentStatus == PaymentStatus.paid;
     final transactions = order.paymentTransactions ?? [];

@@ -146,7 +146,7 @@ String _$posCartSyncHash() => r'761401e77f6199d71cb985c88cde4e66fe41c2ac';
 final loadedOrderProvider = LoadedOrderProvider._();
 
 final class LoadedOrderProvider
-    extends $NotifierProvider<LoadedOrder, UserOrderResponse?> {
+    extends $NotifierProvider<LoadedOrder, OrderResponse?> {
   LoadedOrderProvider._()
     : super(
         from: null,
@@ -166,27 +166,27 @@ final class LoadedOrderProvider
   LoadedOrder create() => LoadedOrder();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(UserOrderResponse? value) {
+  Override overrideWithValue(OrderResponse? value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<UserOrderResponse?>(value),
+      providerOverride: $SyncValueProvider<OrderResponse?>(value),
     );
   }
 }
 
-String _$loadedOrderHash() => r'0678b19ddff0f4b6b4df5fb0f9ca82f4faac68bb';
+String _$loadedOrderHash() => r'08132ac2e7de165c6911d00d82926e3a47534ddc';
 
-abstract class _$LoadedOrder extends $Notifier<UserOrderResponse?> {
-  UserOrderResponse? build();
+abstract class _$LoadedOrder extends $Notifier<OrderResponse?> {
+  OrderResponse? build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<UserOrderResponse?, UserOrderResponse?>;
+    final ref = this.ref as $Ref<OrderResponse?, OrderResponse?>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<UserOrderResponse?, UserOrderResponse?>,
-              UserOrderResponse?,
+              AnyNotifier<OrderResponse?, OrderResponse?>,
+              OrderResponse?,
               Object?,
               Object?
             >;
@@ -358,7 +358,7 @@ final class CounterCheckoutNotifierProvider
 }
 
 String _$counterCheckoutNotifierHash() =>
-    r'0b5f6363aefc27422fda0bb6d29e14b553823b99';
+    r'5c468dc8decabf3b9dd4793a91b86011ca60330f';
 
 abstract class _$CounterCheckoutNotifier extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();
