@@ -29,11 +29,11 @@ class DraftItem {
     required this.quantity,
   });
 
-  DraftItem copyWith({int? quantity}) {
+  DraftItem copyWith({int? quantity, String? batchCode}) {
     return DraftItem(
       variantId: variantId,
       barcode: barcode,
-      batchCode: batchCode,
+      batchCode: batchCode ?? this.batchCode,
       sku: sku,
       variantName: variantName,
       imageUrl: imageUrl,
@@ -183,8 +183,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
           .map(
             (i) => PosScanItemRequest(
               barcode: i.barcode,
-              batchCode:
-                  'DEFAULT', // Note: Need batch selection in UI eventually
+              batchCode: i.batchCode,
               quantity: i.quantity,
             ),
           )

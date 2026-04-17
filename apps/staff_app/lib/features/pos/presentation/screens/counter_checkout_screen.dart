@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../providers/counter_checkout_providers.dart';
 import '../../data/services/pos_signalr_service.dart';
+import 'batch_selection_dialog.dart';
 
 class CounterCheckoutScreen extends ConsumerStatefulWidget {
   const CounterCheckoutScreen({super.key});
@@ -632,9 +635,21 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     final item = await ref
         .read(counterCheckoutNotifier.notifier)
         .lookupVariant(variantId);
-    if (item != null) {
-      ref.read(draftItemsProvider.notifier).addItem(item);
-      _variantIdController.clear();
+    if (item != null && mounted) {
+      final selectedBatchCode = await showDialog<String>(
+        context: context,
+        builder: (context) => BatchSelectionDialog(
+          variantId: item.variantId,
+          variantName: item.variantName,
+        ),
+      );
+
+      if (selectedBatchCode != null) {
+        ref
+            .read(draftItemsProvider.notifier)
+            .addItem(item.copyWith(batchCode: selectedBatchCode));
+        _variantIdController.clear();
+      }
     } else if (mounted) {
       ScaffoldMessenger.of(
         context,
@@ -715,22 +730,34 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                   maxWidth: 250,
                   maxHeight: 250,
                 ),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: SelectableText(
-                      url,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 12),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: QrImageView(
+                      data: url,
+                      version: QrVersions.auto,
+                      backgroundColor: Colors.white,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
+              TextButton.icon(
+                onPressed: () async {
+                  final uri = Uri.parse(url);
+                  if (await canLaunchUrl(uri)) {
+                    await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  }
+                },
+                icon: const Icon(Icons.open_in_browser),
+                label: const Text('Mở link thanh toán'),
+              ),
+              const SizedBox(height: 8),
               const Text(
                 'Sau khi khách hàng thanh toán, nhấn xác nhận bên dưới.',
                 textAlign: TextAlign.center,
