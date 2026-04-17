@@ -299,7 +299,11 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
             width: 28,
             height: 28,
             child: IconButton(
-              icon: const Icon(Icons.delete_outline, size: 20, color: Colors.red),
+              icon: const Icon(
+                Icons.delete_outline,
+                size: 20,
+                color: Colors.red,
+              ),
               padding: EdgeInsets.zero,
               onPressed: () =>
                   ref.read(draftItemsProvider.notifier).removeItem(index),
@@ -650,7 +654,10 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
               const Text('Quét mã QR để thanh toán:'),
               const SizedBox(height: 16),
               ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 250, maxHeight: 250),
+                constraints: const BoxConstraints(
+                  maxWidth: 250,
+                  maxHeight: 250,
+                ),
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(

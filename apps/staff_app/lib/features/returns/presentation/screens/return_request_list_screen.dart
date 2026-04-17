@@ -228,7 +228,10 @@ class _ReturnRequestCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         request.customerEmail!,
-                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),

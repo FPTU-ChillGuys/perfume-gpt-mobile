@@ -136,7 +136,10 @@ class PosScreen extends ConsumerWidget {
                               width: 32,
                               height: 32,
                               child: IconButton(
-                                icon: const Icon(Icons.remove_circle_outline, size: 20),
+                                icon: const Icon(
+                                  Icons.remove_circle_outline,
+                                  size: 20,
+                                ),
                                 padding: EdgeInsets.zero,
                                 onPressed: () => ref
                                     .read(posCartProvider.notifier)
@@ -146,12 +149,18 @@ class PosScreen extends ConsumerWidget {
                                     ),
                               ),
                             ),
-                            SizedBox(width: 24, child: Center(child: Text('${item.quantity}'))),
+                            SizedBox(
+                              width: 24,
+                              child: Center(child: Text('${item.quantity}')),
+                            ),
                             SizedBox(
                               width: 32,
                               height: 32,
                               child: IconButton(
-                                icon: const Icon(Icons.add_circle_outline, size: 20),
+                                icon: const Icon(
+                                  Icons.add_circle_outline,
+                                  size: 20,
+                                ),
                                 padding: EdgeInsets.zero,
                                 onPressed: () => ref
                                     .read(posCartProvider.notifier)

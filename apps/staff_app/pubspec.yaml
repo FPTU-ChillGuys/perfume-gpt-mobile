@@ -24,6 +24,8 @@ dependencies:
   intl: ^0.20.2
   perfumegpt_common:
     path: ../../packages/perfumegpt_common
+  signalr_netcore: ^1.4.4
+  uuid: ^4.5.3
 
 dev_dependencies:
   flutter_test:
