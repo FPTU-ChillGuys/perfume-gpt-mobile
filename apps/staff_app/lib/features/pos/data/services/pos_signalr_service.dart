@@ -37,7 +37,7 @@ class PosSignalRService {
       return;
     }
 
-    _sessionId = const Uuid().v4();
+    _sessionId = "COUNTER_01"; //TODO: Change this somehow?
 
     _hubConnection = HubConnectionBuilder()
         .withUrl(serverUrl)
@@ -54,7 +54,6 @@ class PosSignalRService {
     try {
       await _hubConnection?.start();
       await _hubConnection?.invoke('JoinPosSession', args: [_sessionId!]);
-      debugPrint('SignalR Connected. Session ID: $_sessionId');
     } catch (e) {
       debugPrint('Error connecting to SignalR: $e');
     }
