@@ -10,33 +10,29 @@ class PosCart extends _$PosCart {
   @override
   Map<String, CartItem> build() => {};
 
-  void addProduct(Product product) {
+  void addProduct(Product product, {String batchCode = 'DEFAULT'}) {
+    final key = '${product.id}_$batchCode';
     state = {
       ...state,
-      product.id: state.containsKey(product.id)
-          ? state[product.id]!.copyWith(
-              quantity: state[product.id]!.quantity + 1,
-            )
-          : CartItem(product: product, quantity: 1),
+      key: state.containsKey(key)
+          ? state[key]!.copyWith(quantity: state[key]!.quantity + 1)
+          : CartItem(product: product, batchCode: batchCode, quantity: 1),
     };
   }
 
-  void removeProduct(String productId) {
+  void removeProduct(String key) {
     final newState = Map<String, CartItem>.from(state);
-    newState.remove(productId);
+    newState.remove(key);
     state = newState;
   }
 
-  void updateQuantity(String productId, int quantity) {
+  void updateQuantity(String key, int quantity) {
     if (quantity <= 0) {
-      removeProduct(productId);
+      removeProduct(key);
       return;
     }
-    if (state.containsKey(productId)) {
-      state = {
-        ...state,
-        productId: state[productId]!.copyWith(quantity: quantity),
-      };
+    if (state.containsKey(key)) {
+      state = {...state, key: state[key]!.copyWith(quantity: quantity)};
     }
   }
 
@@ -45,13 +41,19 @@ class PosCart extends _$PosCart {
 
 class CartItem {
   final Product product;
+  final String batchCode;
   final int quantity;
 
-  CartItem({required this.product, required this.quantity});
+  CartItem({
+    required this.product,
+    required this.batchCode,
+    required this.quantity,
+  });
 
-  CartItem copyWith({Product? product, int? quantity}) {
+  CartItem copyWith({Product? product, String? batchCode, int? quantity}) {
     return CartItem(
       product: product ?? this.product,
+      batchCode: batchCode ?? this.batchCode,
       quantity: quantity ?? this.quantity,
     );
   }

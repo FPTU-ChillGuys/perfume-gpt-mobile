@@ -155,11 +155,12 @@ class PosScreen extends ConsumerWidget {
                 : ListView.builder(
                     itemCount: cart.length,
                     itemBuilder: (context, index) {
-                      final item = cart.values.elementAt(index);
+                      final key = cart.keys.elementAt(index);
+                      final item = cart[key]!;
                       return ListTile(
                         title: Text(item.product.name),
                         subtitle: Text(
-                          'SKU: ${item.product.sku} | ${PriceFormatter.format(item.product.price)}',
+                          'SKU: ${item.product.sku} | Batch: ${item.batchCode} | ${PriceFormatter.format(item.product.price)}',
                         ),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -175,10 +176,7 @@ class PosScreen extends ConsumerWidget {
                                 padding: EdgeInsets.zero,
                                 onPressed: () => ref
                                     .read(posCartProvider.notifier)
-                                    .updateQuantity(
-                                      item.product.id,
-                                      item.quantity - 1,
-                                    ),
+                                    .updateQuantity(key, item.quantity - 1),
                               ),
                             ),
                             SizedBox(
@@ -196,10 +194,7 @@ class PosScreen extends ConsumerWidget {
                                 padding: EdgeInsets.zero,
                                 onPressed: () => ref
                                     .read(posCartProvider.notifier)
-                                    .updateQuantity(
-                                      item.product.id,
-                                      item.quantity + 1,
-                                    ),
+                                    .updateQuantity(key, item.quantity + 1),
                               ),
                             ),
                           ],

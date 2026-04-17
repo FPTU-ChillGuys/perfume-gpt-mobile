@@ -10,6 +10,7 @@ part 'counter_checkout_providers.g.dart';
 class DraftItem {
   final String variantId;
   final String barcode;
+  final String batchCode;
   final String sku;
   final String variantName;
   final String? imageUrl;
@@ -19,6 +20,7 @@ class DraftItem {
   const DraftItem({
     required this.variantId,
     required this.barcode,
+    required this.batchCode,
     required this.sku,
     required this.variantName,
     this.imageUrl,
@@ -30,6 +32,7 @@ class DraftItem {
     return DraftItem(
       variantId: variantId,
       barcode: barcode,
+      batchCode: batchCode,
       sku: sku,
       variantName: variantName,
       imageUrl: imageUrl,
@@ -45,7 +48,9 @@ class DraftItems extends _$DraftItems {
   List<DraftItem> build() => [];
 
   void addItem(DraftItem item) {
-    final idx = state.indexWhere((e) => e.variantId == item.variantId);
+    final idx = state.indexWhere(
+      (e) => e.variantId == item.variantId && e.batchCode == item.batchCode,
+    );
     if (idx >= 0) {
       final updated = List<DraftItem>.from(state);
       updated[idx] = updated[idx].copyWith(
@@ -248,6 +253,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
         return DraftItem(
           variantId: data.id ?? variantId,
           barcode: data.barcode,
+          batchCode: 'DEFAULT', // Temporary placeholder
           sku: data.sku,
           variantName: data.displayName,
           imageUrl: data.primaryImageUrl,
