@@ -1,5 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../domain/entities/product.dart';
+import '../../data/models/signalr_dtos.dart';
+import '../../data/services/pos_signalr_service.dart';
 
 part 'cart_providers.g.dart';
 
@@ -61,5 +63,32 @@ double cartTotal(Ref ref) {
   return cart.values.fold(
     0,
     (sum, item) => sum + (item.product.price * item.quantity),
+  );
+}
+
+@riverpod
+void posCartSyncLegacy(Ref ref) {
+  final cart = ref.watch(posCartProvider);
+  final signalRService = ref.read(posSignalRServiceProvider);
+
+  if (signalRService.currentSessionId == null) return;
+
+  final dtos = cart.values
+      .map(
+        (i) => CartItemDto(
+          id: i.product.id,
+          name: i.product.name,
+          imageUrl: i.product.imageUrl,
+          quantity: i.quantity,
+          price: i.product.price,
+          total: i.product.price * i.quantity,
+        ),
+      )
+      .toList();
+
+  final total = dtos.fold(0.0, (sum, i) => sum + i.total);
+
+  signalRService.syncCartToCustomerDisplay(
+    CartDisplayDto(items: dtos, totalAmount: total),
   );
 }
