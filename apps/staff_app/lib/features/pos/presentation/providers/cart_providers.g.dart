@@ -41,7 +41,7 @@ final class PosCartProvider
   }
 }
 
-String _$posCartHash() => r'd676a3a33803dec618fd738ea2a8123adce52cfa';
+String _$posCartHash() => r'dbc4a1d50a5ab494f661ae7a01a9d6717a3215fa';
 
 abstract class _$PosCart extends $Notifier<Map<String, CartItem>> {
   Map<String, CartItem> build();

@@ -202,12 +202,17 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
         );
       }
 
+      final totalPrice = items.fold(
+        0.0,
+        (sum, item) => sum + item.price * item.quantity,
+      );
+
       final responseDto = await repo.checkoutInStore(
         scannedItems: scannedItems,
         paymentMethod: paymentMethod,
         voucherCode: voucherCode,
         recipient: recipient,
-        expectedTotalPrice: ref.read(draftTotalProvider),
+        expectedTotalPrice: totalPrice,
       );
 
       final orderId = responseDto?.orderId;
