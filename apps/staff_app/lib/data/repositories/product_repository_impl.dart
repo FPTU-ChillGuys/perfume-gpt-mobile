@@ -70,7 +70,7 @@ class ProductRepositoryImpl implements ProductRepository {
           retailPrice = (variantData.retailPrice ?? 0).toDouble();
           basePrice = (variantData.basePrice ?? 0).toDouble();
           discountedPrice = variantData.discountedPrice?.toDouble();
-          barcode = variantData.barcode ?? '';
+          barcode = variantData.barcode;
         }
       } catch (e, s) {
         // If the variant fetch fails, we proceed with 0 prices rather than crashing

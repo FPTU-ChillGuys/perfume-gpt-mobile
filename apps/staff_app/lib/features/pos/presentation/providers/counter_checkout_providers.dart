@@ -118,9 +118,9 @@ void posCartSync(Ref ref) {
 @riverpod
 class LoadedOrder extends _$LoadedOrder {
   @override
-  UserOrderResponse? build() => null;
+  OrderResponse? build() => null;
 
-  void setOrder(UserOrderResponse? order) => state = order;
+  void setOrder(OrderResponse? order) => state = order;
   void clear() => state = null;
 }
 
@@ -288,7 +288,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
     return null;
   }
 
-  void _syncPaymentMethod(UserOrderResponse order) {
+  void _syncPaymentMethod(OrderResponse order) {
     final transactions = order.paymentTransactions;
     if (transactions != null && transactions.isNotEmpty) {
       final method = transactions.first.paymentMethod;
