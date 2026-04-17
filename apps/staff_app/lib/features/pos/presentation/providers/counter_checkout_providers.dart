@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/order_repository_impl.dart';
+import '../../data/models/signalr_dtos.dart';
+import '../../data/services/pos_signalr_service.dart';
 
 part 'counter_checkout_providers.g.dart';
 
@@ -78,6 +80,33 @@ class DraftItems extends _$DraftItems {
 double draftTotal(Ref ref) {
   final items = ref.watch(draftItemsProvider);
   return items.fold(0.0, (sum, item) => sum + item.price * item.quantity);
+}
+
+@riverpod
+void posCartSync(Ref ref) {
+  final items = ref.watch(draftItemsProvider);
+  final signalRService = ref.read(posSignalRServiceProvider);
+
+  if (signalRService.currentSessionId == null) return;
+
+  final dtos = items
+      .map(
+        (i) => CartItemDto(
+          id: i.variantId,
+          name: i.variantName,
+          imageUrl: i.imageUrl ?? '',
+          quantity: i.quantity,
+          price: i.price,
+          total: i.price * i.quantity,
+        ),
+      )
+      .toList();
+
+  final total = dtos.fold(0.0, (sum, i) => sum + i.total);
+
+  signalRService.syncCartToCustomerDisplay(
+    CartDisplayDto(items: dtos, totalAmount: total),
+  );
 }
 
 @riverpod

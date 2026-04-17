@@ -133,9 +133,25 @@ class PosSignalRService {
 @Riverpod(keepAlive: true)
 PosSignalRService posSignalRService(Ref ref) {
   // In a real app, the serverUrl would likely come from an environment config
-  final service = PosSignalRService(serverUrl: 'https://localhost:7011/posHub');
+  final service = PosSignalRService(serverUrl: 'https://10.0.2.2:7011/posHub');
+  service.connect();
   ref.onDispose(() {
     service.dispose();
   });
   return service;
+}
+
+@riverpod
+Stream<PosPaymentCompletedDto> paymentCompletedEvent(Ref ref) {
+  return ref.watch(posSignalRServiceProvider).onPaymentCompleted;
+}
+
+@riverpod
+Stream<PosPaymentCompletedDto> paymentFailedEvent(Ref ref) {
+  return ref.watch(posSignalRServiceProvider).onPaymentFailed;
+}
+
+@riverpod
+Stream<PosPaymentLinkDto> paymentLinkUpdatedEvent(Ref ref) {
+  return ref.watch(posSignalRServiceProvider).onPaymentLinkUpdated;
 }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../providers/counter_checkout_providers.dart';
+import '../../data/services/pos_signalr_service.dart';
 
 class CounterCheckoutScreen extends ConsumerStatefulWidget {
   const CounterCheckoutScreen({super.key});
@@ -33,9 +34,39 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Watch cart sync to push to SignalR
+    ref.watch(posCartSyncProvider);
+
     final loadedOrder = ref.watch(loadedOrderProvider);
     final checkoutState = ref.watch(counterCheckoutNotifier);
     final isLoading = checkoutState is AsyncLoading;
+    final sessionId = ref.watch(posSignalRServiceProvider).currentSessionId;
+
+    ref.listen(paymentCompletedEventProvider, (prev, next) {
+      next.whenData((paymentData) {
+        if (paymentData.isSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Thanh toán thành công: ${paymentData.orderCode}'),
+              backgroundColor: Colors.green,
+            ),
+          );
+          _reloadCurrentOrder();
+        }
+      });
+    });
+
+    ref.listen(paymentFailedEventProvider, (prev, next) {
+      next.whenData((paymentData) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Thanh toán thất bại: ${paymentData.orderCode}'),
+            backgroundColor: Colors.red,
+          ),
+        );
+        _reloadCurrentOrder();
+      });
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -63,6 +94,32 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (sessionId != null) ...[
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.blue.shade50,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.cast, color: Colors.blue, size: 20),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: SelectableText(
+                              'Session ID: $sessionId',
+                              style: const TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                  ],
                   _buildLoadOrderSection(),
                   const SizedBox(height: 16),
                   if (loadedOrder == null) ...[_buildCreateOrderSection()],

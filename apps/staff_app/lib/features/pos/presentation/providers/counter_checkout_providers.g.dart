@@ -102,6 +102,46 @@ final class DraftTotalProvider
 
 String _$draftTotalHash() => r'e9dd918aa1b84e9538fca1be4845a0477151a391';
 
+@ProviderFor(posCartSync)
+final posCartSyncProvider = PosCartSyncProvider._();
+
+final class PosCartSyncProvider extends $FunctionalProvider<void, void, void>
+    with $Provider<void> {
+  PosCartSyncProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'posCartSyncProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$posCartSyncHash();
+
+  @$internal
+  @override
+  $ProviderElement<void> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  void create(Ref ref) {
+    return posCartSync(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(void value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<void>(value),
+    );
+  }
+}
+
+String _$posCartSyncHash() => r'761401e77f6199d71cb985c88cde4e66fe41c2ac';
+
 @ProviderFor(LoadedOrder)
 final loadedOrderProvider = LoadedOrderProvider._();
 
@@ -240,7 +280,7 @@ final class CounterCheckoutNotifierProvider
 }
 
 String _$counterCheckoutNotifierHash() =>
-    r'48cedc8c00232b16f003bbc3b45155cfc7b3117d';
+    r'01326323ce888cdc85893ff4f44c1468b782c9f5';
 
 abstract class _$CounterCheckoutNotifier extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();
