@@ -25,6 +25,7 @@ class ProductRepositoryImpl implements ProductRepository {
             variantId: item.variantId ?? '',
             batchId: item.id ?? '', // Using id from stock record as batchId
             sku: item.variantSku,
+            barcode: '', // Not in stock response
             name: item.productName,
             description: '', // Not in stock response
             price: 0, // Not in stock response
@@ -53,10 +54,11 @@ class ProductRepositoryImpl implements ProductRepository {
 
     final item = items.first;
 
-    // Fetch detailed variant info for pricing
+    // Fetch detailed variant info for pricing and barcode
     double retailPrice = 0;
     double basePrice = 0;
     double? discountedPrice;
+    String barcode = '';
 
     if (item.variantId != null && item.variantId!.isNotEmpty) {
       try {
@@ -68,6 +70,7 @@ class ProductRepositoryImpl implements ProductRepository {
           retailPrice = (variantData.retailPrice ?? 0).toDouble();
           basePrice = (variantData.basePrice ?? 0).toDouble();
           discountedPrice = variantData.discountedPrice?.toDouble();
+          barcode = variantData.barcode ?? '';
         }
       } catch (e, s) {
         // If the variant fetch fails, we proceed with 0 prices rather than crashing
@@ -85,6 +88,7 @@ class ProductRepositoryImpl implements ProductRepository {
       variantId: item.variantId ?? '',
       batchId: item.id ?? '', // Using id from stock record as batchId
       sku: item.variantSku,
+      barcode: barcode,
       name: item.productName,
       description: '',
       price: retailPrice > 0
@@ -119,6 +123,7 @@ class ProductRepositoryImpl implements ProductRepository {
         variantId: item.id ?? '',
         batchId: '', // Will be assigned during checkout if needed
         sku: item.sku,
+        barcode: item.barcode,
         name: item.displayName,
         description: '',
         price: price,

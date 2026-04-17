@@ -157,8 +157,9 @@ class PosScreen extends ConsumerWidget {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed:
-                        cart.isEmpty ? null : () => _showCheckoutSheet(context),
+                    onPressed: cart.isEmpty
+                        ? null
+                        : () => _showCheckoutSheet(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -353,7 +354,7 @@ class CheckoutBottomSheet extends ConsumerWidget {
         .map(
           (item) => DraftItem(
             variantId: item.product.id,
-            barcode: '', // Repo will handle barcode lookup if needed
+            barcode: item.product.barcode,
             batchCode: item.batchCode,
             sku: item.product.sku,
             variantName: item.product.name,
