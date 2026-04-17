@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/order_repository_impl.dart';
 import '../../data/models/signalr_dtos.dart';
@@ -129,6 +130,22 @@ class SelectedPaymentMethod extends _$SelectedPaymentMethod {
   String build() => 'CashInStore';
 
   void setMethod(String method) => state = method;
+}
+
+@riverpod
+Future<List<BatchDetailResponse>> productBatches(
+  Ref ref,
+  String variantId,
+) async {
+  final dio = ref.read(apiClientProvider).dio;
+  final batchesApi = BatchesApi(dio);
+  final response = await batchesApi.apiBatchesGet(
+    variantId: variantId,
+    pageSize: 100,
+    isDescending: true,
+    sortBy: 'ExpiryDate',
+  );
+  return response.data?.payload?.items ?? [];
 }
 
 @Riverpod(name: 'counterCheckoutNotifier')
