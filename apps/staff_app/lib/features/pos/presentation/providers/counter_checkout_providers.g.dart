@@ -9,139 +9,6 @@ part of 'counter_checkout_providers.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(DraftItems)
-final draftItemsProvider = DraftItemsProvider._();
-
-final class DraftItemsProvider
-    extends $NotifierProvider<DraftItems, List<DraftItem>> {
-  DraftItemsProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'draftItemsProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$draftItemsHash();
-
-  @$internal
-  @override
-  DraftItems create() => DraftItems();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(List<DraftItem> value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<List<DraftItem>>(value),
-    );
-  }
-}
-
-String _$draftItemsHash() => r'e3682ed8c9af94d7b09e576e7e439f3fa3e6d90a';
-
-abstract class _$DraftItems extends $Notifier<List<DraftItem>> {
-  List<DraftItem> build();
-  @$mustCallSuper
-  @override
-  void runBuild() {
-    final ref = this.ref as $Ref<List<DraftItem>, List<DraftItem>>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<List<DraftItem>, List<DraftItem>>,
-              List<DraftItem>,
-              Object?,
-              Object?
-            >;
-    element.handleCreate(ref, build);
-  }
-}
-
-@ProviderFor(draftTotal)
-final draftTotalProvider = DraftTotalProvider._();
-
-final class DraftTotalProvider
-    extends $FunctionalProvider<double, double, double>
-    with $Provider<double> {
-  DraftTotalProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'draftTotalProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$draftTotalHash();
-
-  @$internal
-  @override
-  $ProviderElement<double> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  double create(Ref ref) {
-    return draftTotal(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(double value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<double>(value),
-    );
-  }
-}
-
-String _$draftTotalHash() => r'e9dd918aa1b84e9538fca1be4845a0477151a391';
-
-@ProviderFor(posCartSync)
-final posCartSyncProvider = PosCartSyncProvider._();
-
-final class PosCartSyncProvider extends $FunctionalProvider<void, void, void>
-    with $Provider<void> {
-  PosCartSyncProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'posCartSyncProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$posCartSyncHash();
-
-  @$internal
-  @override
-  $ProviderElement<void> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  void create(Ref ref) {
-    return posCartSync(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(void value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<void>(value),
-    );
-  }
-}
-
-String _$posCartSyncHash() => r'761401e77f6199d71cb985c88cde4e66fe41c2ac';
-
 @ProviderFor(LoadedOrder)
 final loadedOrderProvider = LoadedOrderProvider._();
 
@@ -358,7 +225,7 @@ final class CounterCheckoutNotifierProvider
 }
 
 String _$counterCheckoutNotifierHash() =>
-    r'5c468dc8decabf3b9dd4793a91b86011ca60330f';
+    r'48c44ca191d0326c87ae80faf09e0ed955ce9351';
 
 abstract class _$CounterCheckoutNotifier extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();

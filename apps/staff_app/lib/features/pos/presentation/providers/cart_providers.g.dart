@@ -13,7 +13,7 @@ part of 'cart_providers.dart';
 final posCartProvider = PosCartProvider._();
 
 final class PosCartProvider
-    extends $NotifierProvider<PosCart, Map<String, CartItem>> {
+    extends $NotifierProvider<PosCart, Map<String, DraftItem>> {
   PosCartProvider._()
     : super(
         from: null,
@@ -33,27 +33,28 @@ final class PosCartProvider
   PosCart create() => PosCart();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(Map<String, CartItem> value) {
+  Override overrideWithValue(Map<String, DraftItem> value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<Map<String, CartItem>>(value),
+      providerOverride: $SyncValueProvider<Map<String, DraftItem>>(value),
     );
   }
 }
 
-String _$posCartHash() => r'dbc4a1d50a5ab494f661ae7a01a9d6717a3215fa';
+String _$posCartHash() => r'cb40195fd06e69bd16b34fea7f1d04dfb4875ea7';
 
-abstract class _$PosCart extends $Notifier<Map<String, CartItem>> {
-  Map<String, CartItem> build();
+abstract class _$PosCart extends $Notifier<Map<String, DraftItem>> {
+  Map<String, DraftItem> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<Map<String, CartItem>, Map<String, CartItem>>;
+    final ref =
+        this.ref as $Ref<Map<String, DraftItem>, Map<String, DraftItem>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<Map<String, CartItem>, Map<String, CartItem>>,
-              Map<String, CartItem>,
+              AnyNotifier<Map<String, DraftItem>, Map<String, DraftItem>>,
+              Map<String, DraftItem>,
               Object?,
               Object?
             >;
@@ -100,45 +101,4 @@ final class CartTotalProvider
   }
 }
 
-String _$cartTotalHash() => r'7c70e3d36de51f75081b3e853b025fab07549fb8';
-
-@ProviderFor(posCartSyncLegacy)
-final posCartSyncLegacyProvider = PosCartSyncLegacyProvider._();
-
-final class PosCartSyncLegacyProvider
-    extends $FunctionalProvider<void, void, void>
-    with $Provider<void> {
-  PosCartSyncLegacyProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'posCartSyncLegacyProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$posCartSyncLegacyHash();
-
-  @$internal
-  @override
-  $ProviderElement<void> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  void create(Ref ref) {
-    return posCartSyncLegacy(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(void value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<void>(value),
-    );
-  }
-}
-
-String _$posCartSyncLegacyHash() => r'cb74f54534d73a9bf61d38f711e8ca504b0157a1';
+String _$cartTotalHash() => r'7c1e9890a23b752c38d76c9b97d2ccacb3db133a';
