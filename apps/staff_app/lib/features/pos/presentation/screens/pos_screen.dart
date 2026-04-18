@@ -263,13 +263,14 @@ class PosScreen extends ConsumerWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (context) => const CheckoutBottomSheet(),
+      builder: (_) => CheckoutBottomSheet(screenContext: context),
     );
   }
 }
 
 class CheckoutBottomSheet extends ConsumerWidget {
-  const CheckoutBottomSheet({super.key});
+  final BuildContext screenContext;
+  const CheckoutBottomSheet({super.key, required this.screenContext});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -387,18 +388,18 @@ class CheckoutBottomSheet extends ConsumerWidget {
         final success = await ref
             .read(counterCheckoutNotifier.notifier)
             .confirmPayment(paymentId);
-        if (context.mounted) {
+        if (screenContext.mounted) {
           if (success) {
             ref.read(posCartProvider.notifier).clearCart();
             Navigator.pop(context); // Close sheet
-            ScaffoldMessenger.of(context).showSnackBar(
+            ScaffoldMessenger.of(screenContext).showSnackBar(
               const SnackBar(
                 content: Text('Thanh toán thành công!'),
                 backgroundColor: Colors.green,
               ),
             );
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(
+            ScaffoldMessenger.of(screenContext).showSnackBar(
               const SnackBar(
                 content: Text('Xác nhận thanh toán thất bại'),
                 backgroundColor: Colors.red,
@@ -414,7 +415,7 @@ class CheckoutBottomSheet extends ConsumerWidget {
         ref.read(posCartProvider.notifier).clearCart();
 
         if (paymentId != null) {
-          _showQrPayment(context, ref, paymentId, method);
+          _showQrPayment(screenContext, ref, paymentId, method);
         }
       }
     }
