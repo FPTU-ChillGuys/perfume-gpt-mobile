@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../providers/counter_checkout_providers.dart';
 
 class BatchSelectionDialog extends ConsumerWidget {
