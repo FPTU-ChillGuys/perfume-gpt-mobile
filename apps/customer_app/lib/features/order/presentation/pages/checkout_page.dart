@@ -906,18 +906,73 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.w500)),
                       const SizedBox(height: 4),
-                      Text('x${item.quantity}',
-                          style: TextStyle(
-                              color: Colors.grey.shade600, fontSize: 13)),
+                      Row(
+                        children: [
+                          Text('x${item.quantity}',
+                              style: TextStyle(
+                                  color: Colors.grey.shade600, fontSize: 13)),
+                          const SizedBox(width: 8),
+                          if (item.hasDiscount) ...[
+                            Text(
+                              _formatCurrency(item.unitFinalPrice),
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Theme.of(context).colorScheme.error,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              _formatCurrency(item.variantPrice),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey.shade500,
+                                decoration: TextDecoration.lineThrough,
+                                decorationColor: Colors.grey.shade500,
+                              ),
+                            ),
+                          ] else
+                            Text(
+                              _formatCurrency(item.variantPrice),
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
-                Text(
-                  _formatCurrency(item.subTotal),
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    if (item.hasDiscount) ...[
+                      Text(
+                        _formatCurrency(item.finalTotal),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      ),
+                      Text(
+                        _formatCurrency(item.subTotal),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey.shade500,
+                          decoration: TextDecoration.lineThrough,
+                          decorationColor: Colors.grey.shade500,
+                        ),
+                      ),
+                    ] else
+                      Text(
+                        _formatCurrency(item.subTotal),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      ),
+                  ],
                 ),
               ],
             ),
@@ -1124,27 +1179,26 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     final methods = _isPickupInStore
         ? [
             _PaymentOption('CashInStore', 'Thanh toán tại cửa hàng',
-                'Thanh toán trực tiếp tại cửa hàng', Icons.store, Colors.teal),
+                'Thanh toán trực tiếp tại cửa hàng', icon: Icons.store, color: Colors.teal),
             _PaymentOption('VnPay', 'VNPay', 'Thanh toán qua VNPay',
-                Icons.payment, AppColors.primary),
+                assetPath: 'assets/images/payment_methods/Vnpay.png'),
             _PaymentOption('Momo', 'MoMo', 'Thanh toán qua MoMo',
-                Icons.account_balance_wallet, Colors.pink),
+                assetPath: 'assets/images/payment_methods/Momo.png'),
             _PaymentOption('PayOs', 'PayOS', 'Thanh toán qua PayOS',
-                Icons.account_balance, Colors.blue),
+                assetPath: 'assets/images/payment_methods/payOs.png'),
           ]
         : [
             _PaymentOption(
                 'CashOnDelivery',
                 'Thanh toán khi nhận hàng',
                 'Thanh toán bằng tiền mặt khi nhận hàng',
-                Icons.money,
-                Colors.green),
+                icon: Icons.money, color: Colors.green),
             _PaymentOption('VnPay', 'VNPay', 'Thanh toán qua VNPay',
-                Icons.payment, AppColors.primary),
+                assetPath: 'assets/images/payment_methods/Vnpay.png'),
             _PaymentOption('Momo', 'MoMo', 'Thanh toán qua MoMo',
-                Icons.account_balance_wallet, Colors.pink),
+                assetPath: 'assets/images/payment_methods/Momo.png'),
             _PaymentOption('PayOs', 'PayOS', 'Thanh toán qua PayOS',
-                Icons.account_balance, Colors.blue),
+                assetPath: 'assets/images/payment_methods/payOs.png'),
           ];
 
     return Card(
@@ -1156,7 +1210,19 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             final isSelected = _selectedPayment == m.value;
             return RadioListTile<String>(
               value: m.value,
-              secondary: Icon(m.icon, color: m.color),
+              secondary: m.assetPath != null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.asset(
+                        m.assetPath!,
+                        width: 32,
+                        height: 32,
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, _, _) =>
+                            Icon(Icons.payment, color: Colors.grey.shade400),
+                      ),
+                    )
+                  : Icon(m.icon, color: m.color),
               title: Text(m.label,
                   style: TextStyle(
                       fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal)),
@@ -1217,11 +1283,13 @@ class _PaymentOption {
   final String value;
   final String label;
   final String description;
-  final IconData icon;
-  final Color color;
+  final IconData? icon;
+  final Color? color;
+  final String? assetPath;
 
   const _PaymentOption(
-      this.value, this.label, this.description, this.icon, this.color);
+      this.value, this.label, this.description,
+      {this.icon, this.color, this.assetPath});
 }
 
 class _LoadingField extends StatelessWidget {
