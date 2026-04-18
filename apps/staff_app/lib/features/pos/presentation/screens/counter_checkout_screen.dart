@@ -5,7 +5,9 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../providers/counter_checkout_providers.dart';
+import '../providers/cart_providers.dart';
 import '../../data/services/pos_signalr_service.dart';
+import '../../data/models/signalr_dtos.dart';
 import 'batch_selection_dialog.dart';
 
 class CounterCheckoutScreen extends ConsumerStatefulWidget {
@@ -37,38 +39,37 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Watch cart sync to push to SignalR
-    ref.watch(posCartSyncProvider);
-
     final loadedOrder = ref.watch(loadedOrderProvider);
     final checkoutState = ref.watch(counterCheckoutNotifier);
     final isLoading = checkoutState is AsyncLoading;
     final sessionId = ref.watch(posSignalRServiceProvider).currentSessionId;
 
     ref.listen(paymentCompletedEventProvider, (prev, next) {
-      next.whenData((paymentData) {
-        if (paymentData.isSuccess) {
+      if (next.hasValue && next.value != null) {
+        final paymentData = next.value!;
+        if (paymentData.status == 'Paid') {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Thanh toán thành công: ${paymentData.orderCode}'),
+              content: Text('Thanh toán thành công: ${paymentData.orderId}'),
               backgroundColor: Colors.green,
             ),
           );
           _reloadCurrentOrder();
         }
-      });
+      }
     });
 
     ref.listen(paymentFailedEventProvider, (prev, next) {
-      next.whenData((paymentData) {
+      if (next.hasValue && next.value != null) {
+        final paymentData = next.value!;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Thanh toán thất bại: ${paymentData.orderCode}'),
+            content: Text('Thanh toán thất bại: ${paymentData.orderId}'),
             backgroundColor: Colors.red,
           ),
         );
         _reloadCurrentOrder();
-      });
+      }
     });
 
     return Scaffold(
@@ -180,8 +181,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
   }
 
   Widget _buildCreateOrderSection() {
-    final draftItems = ref.watch(draftItemsProvider);
-    final draftTotal = ref.watch(draftTotalProvider);
+    final cart = ref.watch(posCartProvider);
+    final cartTotal = ref.watch(cartTotalProvider);
     final paymentMethod = ref.watch(selectedPaymentMethodProvider);
 
     return Card(
@@ -219,8 +220,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
               ],
             ),
             const SizedBox(height: 12),
-            if (draftItems.isNotEmpty) ...[
-              ...draftItems.asMap().entries.map(
+            if (cart.isNotEmpty) ...[
+              ...cart.entries.map(
                 (entry) => _buildDraftItemTile(entry.key, entry.value),
               ),
               const Divider(),
@@ -232,7 +233,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   Text(
-                    PriceFormatter.format(draftTotal),
+                    PriceFormatter.format(cartTotal),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.deepOrange,
@@ -291,7 +292,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: draftItems.isEmpty ? null : _createOrder,
+                onPressed: cart.isEmpty ? null : _createOrder,
                 icon: const Icon(Icons.shopping_cart_checkout),
                 label: const Text('Tạo đơn hàng'),
                 style: ElevatedButton.styleFrom(
@@ -307,7 +308,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     );
   }
 
-  Widget _buildDraftItemTile(int index, DraftItem item) {
+  Widget _buildDraftItemTile(String key, DraftItem item) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: item.imageUrl != null
@@ -339,8 +340,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
               icon: const Icon(Icons.remove_circle_outline, size: 20),
               padding: EdgeInsets.zero,
               onPressed: () => ref
-                  .read(draftItemsProvider.notifier)
-                  .updateQuantity(index, item.quantity - 1),
+                  .read(posCartProvider.notifier)
+                  .updateQuantity(key, item.quantity - 1),
             ),
           ),
           SizedBox(width: 24, child: Center(child: Text('${item.quantity}'))),
@@ -351,8 +352,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
               icon: const Icon(Icons.add_circle_outline, size: 20),
               padding: EdgeInsets.zero,
               onPressed: () => ref
-                  .read(draftItemsProvider.notifier)
-                  .updateQuantity(index, item.quantity + 1),
+                  .read(posCartProvider.notifier)
+                  .updateQuantity(key, item.quantity + 1),
             ),
           ),
           SizedBox(
@@ -366,7 +367,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
               ),
               padding: EdgeInsets.zero,
               onPressed: () =>
-                  ref.read(draftItemsProvider.notifier).removeItem(index),
+                  ref.read(posCartProvider.notifier).removeProduct(key),
             ),
           ),
         ],
@@ -537,7 +538,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: paymentId != null
-                      ? () => _confirmCashPayment(paymentId)
+                      ? () => _confirmCashPayment(paymentId, order.id!)
                       : null,
                   icon: const Icon(Icons.check),
                   label: const Text('Xác nhận đã nhận tiền mặt'),
@@ -553,7 +554,7 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: paymentId != null
-                      ? () => _showQrPayment(paymentId, paymentMethod)
+                      ? () => _showQrPayment(paymentId, paymentMethod, order.id!)
                       : null,
                   icon: const Icon(Icons.qr_code),
                   label: Text('Thanh toán bằng $paymentMethod'),
@@ -625,6 +626,10 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Không tìm thấy đơn hàng')));
+    } else if (order != null) {
+      ref
+          .read(posSignalRServiceProvider)
+          .syncOnlineOrderToCustomerDisplay(order.toJson());
     }
   }
 
@@ -646,8 +651,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
 
       if (selectedBatchCode != null) {
         ref
-            .read(draftItemsProvider.notifier)
-            .addItem(item.copyWith(batchCode: selectedBatchCode));
+            .read(posCartProvider.notifier)
+            .addDraftItem(item.copyWith(batchCode: selectedBatchCode));
         _variantIdController.clear();
       }
     } else if (mounted) {
@@ -658,7 +663,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
   }
 
   Future<void> _createOrder() async {
-    final items = ref.read(draftItemsProvider);
+    final cart = ref.read(posCartProvider);
+    final items = cart.values.toList();
     final method = ref.read(selectedPaymentMethodProvider);
 
     final responseDto = await ref
@@ -692,10 +698,31 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     }
   }
 
-  Future<void> _confirmCashPayment(String paymentId) async {
+  Future<void> _confirmCashPayment(String paymentId, String orderId) async {
     final success = await ref
         .read(counterCheckoutNotifier.notifier)
         .confirmPayment(paymentId);
+    
+    if (success) {
+      ref.read(posSignalRServiceProvider).notifyPaymentSuccess(
+        PosPaymentCompletedDto(
+          orderId: orderId,
+          paymentId: paymentId,
+          status: 'Paid',
+          message: 'Thanh toán tiền mặt thành công',
+        ),
+      );
+    } else {
+      ref.read(posSignalRServiceProvider).notifyPaymentFailed(
+        PosPaymentCompletedDto(
+          orderId: orderId,
+          paymentId: paymentId,
+          status: 'Failed',
+          message: 'Xác nhận thanh toán thất bại',
+        ),
+      );
+    }
+
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -710,12 +737,21 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     }
   }
 
-  Future<void> _showQrPayment(String paymentId, String method) async {
+  Future<void> _showQrPayment(String paymentId, String method, String orderId) async {
     final url = await ref
         .read(counterCheckoutNotifier.notifier)
         .retryPayment(paymentId, method);
 
     if (url != null && url.isNotEmpty && mounted) {
+      ref.read(posSignalRServiceProvider).notifyPaymentLinkUpdated(
+        PosPaymentLinkDto(
+          orderId: orderId,
+          paymentId: paymentId,
+          method: method,
+          paymentUrl: url,
+        ),
+      );
+
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(

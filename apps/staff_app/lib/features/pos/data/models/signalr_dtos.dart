@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 part 'signalr_dtos.freezed.dart';
 part 'signalr_dtos.g.dart';
@@ -6,10 +7,14 @@ part 'signalr_dtos.g.dart';
 @freezed
 abstract class CartDisplayDto with _$CartDisplayDto {
   const factory CartDisplayDto({
-    @Default([]) List<CartItemDto> items,
-    @Default(0.0) double totalAmount,
-    @Default(0.0) double taxAmount,
-    @Default(0.0) double discountAmount,
+    required List<PosOrderDetailListItem> items,
+    @Default(0.0) double subTotal,
+    @Default(0.0) double shippingFee,
+    @Default(0.0) double discount,
+    @Default(0.0) double totalPrice,
+    String? paymentUrl,
+    String? message,
+    String? voucherCode,
   }) = _CartDisplayDto;
 
   factory CartDisplayDto.fromJson(Map<String, dynamic> json) =>
@@ -17,28 +22,12 @@ abstract class CartDisplayDto with _$CartDisplayDto {
 }
 
 @freezed
-abstract class CartItemDto with _$CartItemDto {
-  const factory CartItemDto({
-    required String id,
-    required String name,
-    required String imageUrl,
-    required int quantity,
-    required double price,
-    required double total,
-  }) = _CartItemDto;
-
-  factory CartItemDto.fromJson(Map<String, dynamic> json) =>
-      _$CartItemDtoFromJson(json);
-}
-
-@freezed
 abstract class PosPaymentCompletedDto with _$PosPaymentCompletedDto {
   const factory PosPaymentCompletedDto({
     required String orderId,
-    required String orderCode,
-    required double amount,
-    required bool isSuccess,
-    String? message,
+    required String paymentId,
+    required String status,
+    required String message,
   }) = _PosPaymentCompletedDto;
 
   factory PosPaymentCompletedDto.fromJson(Map<String, dynamic> json) =>
@@ -49,9 +38,9 @@ abstract class PosPaymentCompletedDto with _$PosPaymentCompletedDto {
 abstract class PosPaymentLinkDto with _$PosPaymentLinkDto {
   const factory PosPaymentLinkDto({
     required String orderId,
-    required String orderCode,
+    required String paymentId,
+    required String method,
     required String paymentUrl,
-    required double amount,
   }) = _PosPaymentLinkDto;
 
   factory PosPaymentLinkDto.fromJson(Map<String, dynamic> json) =>

@@ -3,8 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/order_repository_impl.dart';
-import '../../data/models/signalr_dtos.dart';
-import '../../data/services/pos_signalr_service.dart';
+import 'cart_providers.dart';
 
 part 'counter_checkout_providers.g.dart';
 
@@ -41,78 +40,6 @@ class DraftItem {
       quantity: quantity ?? this.quantity,
     );
   }
-}
-
-@riverpod
-class DraftItems extends _$DraftItems {
-  @override
-  List<DraftItem> build() => [];
-
-  void addItem(DraftItem item) {
-    final idx = state.indexWhere(
-      (e) => e.variantId == item.variantId && e.batchCode == item.batchCode,
-    );
-    if (idx >= 0) {
-      final updated = List<DraftItem>.from(state);
-      updated[idx] = updated[idx].copyWith(
-        quantity: updated[idx].quantity + item.quantity,
-      );
-      state = updated;
-    } else {
-      state = [...state, item];
-    }
-  }
-
-  void removeItem(int index) {
-    final updated = List<DraftItem>.from(state);
-    updated.removeAt(index);
-    state = updated;
-  }
-
-  void updateQuantity(int index, int quantity) {
-    if (quantity <= 0) {
-      removeItem(index);
-      return;
-    }
-    final updated = List<DraftItem>.from(state);
-    updated[index] = updated[index].copyWith(quantity: quantity);
-    state = updated;
-  }
-
-  void clear() => state = [];
-}
-
-@riverpod
-double draftTotal(Ref ref) {
-  final items = ref.watch(draftItemsProvider);
-  return items.fold(0.0, (sum, item) => sum + item.price * item.quantity);
-}
-
-@riverpod
-void posCartSync(Ref ref) {
-  final items = ref.watch(draftItemsProvider);
-  final signalRService = ref.read(posSignalRServiceProvider);
-
-  if (signalRService.currentSessionId == null) return;
-
-  final dtos = items
-      .map(
-        (i) => CartItemDto(
-          id: i.variantId,
-          name: i.variantName,
-          imageUrl: i.imageUrl ?? '',
-          quantity: i.quantity,
-          price: i.price,
-          total: i.price * i.quantity,
-        ),
-      )
-      .toList();
-
-  final total = dtos.fold(0.0, (sum, i) => sum + i.total);
-
-  signalRService.syncCartToCustomerDisplay(
-    CartDisplayDto(items: dtos, totalAmount: total),
-  );
 }
 
 @riverpod
@@ -222,7 +149,6 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
           ref.read(loadedOrderProvider.notifier).setOrder(order);
           _syncPaymentMethod(order);
         }
-        ref.read(draftItemsProvider.notifier).clear();
       }
 
       state = const AsyncData(null);
@@ -303,7 +229,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
 
   void resetAll() {
     ref.read(loadedOrderProvider.notifier).clear();
-    ref.read(draftItemsProvider.notifier).clear();
+    ref.read(posCartProvider.notifier).clearCart();
     ref.read(selectedPaymentMethodProvider.notifier).setMethod('CashInStore');
   }
 }

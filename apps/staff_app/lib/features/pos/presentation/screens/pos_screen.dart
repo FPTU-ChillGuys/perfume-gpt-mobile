@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:staff_app/features/pos/data/services/pos_signalr_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../data/repositories/product_repository_impl.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../providers/cart_providers.dart';
 import '../providers/counter_checkout_providers.dart';
+import '../../data/models/signalr_dtos.dart';
 import 'scanner_screen.dart';
 import 'batch_selection_dialog.dart';
 
@@ -14,8 +16,37 @@ class PosScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Watch cart sync to push to SignalR
-    ref.watch(posCartSyncLegacyProvider);
+    // Listen for payment completed to show success and clear cart
+    ref.listen(paymentCompletedEventProvider, (previous, next) {
+      if (next.hasValue && next.value != null) {
+        final event = next.value!;
+        if (event.status == 'Paid') { // Updated field and check logic
+          // Clear cart
+          ref.read(posCartProvider.notifier).clearCart();
+          
+          // Show success snackbar
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Thanh toán thành công: ${event.orderId}'),
+              backgroundColor: Colors.green,
+            ),
+          );
+          
+          // If a dialog is open (like the QR one), close it
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          }
+        }
+      }
+    });
+
+    // Listen for barcode from other devices (e.g. tablet receiving from mobile)
+    ref.listen(barcodeReceivedEventProvider, (previous, next) {
+      if (next.hasValue && next.value != null) {
+        final barcode = next.value!;
+        _handleBarcode(context, ref, barcode);
+      }
+    });
 
     final cart = ref.watch(posCartProvider);
     final total = ref.watch(cartTotalProvider);
@@ -73,9 +104,9 @@ class PosScreen extends ConsumerWidget {
                       final key = cart.keys.elementAt(index);
                       final item = cart[key]!;
                       return ListTile(
-                        title: Text(item.product.name),
+                        title: Text(item.variantName),
                         subtitle: Text(
-                          'SKU: ${item.product.sku} | Batch: ${item.batchCode} | ${PriceFormatter.format(item.product.price)}',
+                          'SKU: ${item.sku} | Batch: ${item.batchCode} | ${PriceFormatter.format(item.price)}',
                         ),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -188,6 +219,9 @@ class PosScreen extends ConsumerWidget {
     );
 
     if (barcode != null && context.mounted) {
+      // Notify other clients (like a tablet display) about the scanned barcode
+      ref.read(posSignalRServiceProvider).sendBarcodeFromMobile(barcode);
+      
       _handleBarcode(context, ref, barcode);
     }
   }
@@ -351,19 +385,7 @@ class CheckoutBottomSheet extends ConsumerWidget {
     String method,
   ) async {
     final cart = ref.read(posCartProvider);
-    final draftItems = cart.values
-        .map(
-          (item) => DraftItem(
-            variantId: item.product.id,
-            barcode: item.product.barcode,
-            batchCode: item.batchCode,
-            sku: item.product.sku,
-            variantName: item.product.name,
-            price: item.product.price,
-            quantity: item.quantity,
-          ),
-        )
-        .toList();
+    final draftItems = cart.values.toList();
 
     final responseDto = await ref
         .read(counterCheckoutNotifier.notifier)
@@ -382,40 +404,60 @@ class CheckoutBottomSheet extends ConsumerWidget {
     }
 
     final paymentId = responseDto.paymentId;
+    final orderId = responseDto.orderId;
+
+    final parentContext = screenContext;
+    if (!context.mounted || !parentContext.mounted) return;
 
     if (method == 'CashInStore') {
-      if (paymentId != null) {
+      if (paymentId != null && orderId != null) {
         final success = await ref
             .read(counterCheckoutNotifier.notifier)
             .confirmPayment(paymentId);
-        if (screenContext.mounted) {
-          if (success) {
-            ref.read(posCartProvider.notifier).clearCart();
-            Navigator.pop(context); // Close sheet
-            ScaffoldMessenger.of(screenContext).showSnackBar(
-              const SnackBar(
-                content: Text('Thanh toán thành công!'),
-                backgroundColor: Colors.green,
-              ),
-            );
-          } else {
-            ScaffoldMessenger.of(screenContext).showSnackBar(
-              const SnackBar(
-                content: Text('Xác nhận thanh toán thất bại'),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
+            
+        if (!context.mounted || !parentContext.mounted) return;
+
+        if (success) {
+          ref.read(posSignalRServiceProvider).notifyPaymentSuccess(
+            PosPaymentCompletedDto(
+              orderId: orderId,
+              paymentId: paymentId,
+              status: 'Paid',
+              message: 'Thanh toán tiền mặt thành công',
+            ),
+          );
+          ref.read(posCartProvider.notifier).clearCart();
+          Navigator.pop(context); // Close sheet safely
+          ScaffoldMessenger.of(parentContext).showSnackBar(
+            const SnackBar(
+              content: Text('Thanh toán thành công!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else {
+          ref.read(posSignalRServiceProvider).notifyPaymentFailed(
+            PosPaymentCompletedDto(
+              orderId: orderId,
+              paymentId: paymentId,
+              status: 'Failed',
+              message: 'Xác nhận thanh toán thất bại',
+            ),
+          );
+          ScaffoldMessenger.of(parentContext).showSnackBar(
+            const SnackBar(
+              content: Text('Xác nhận thanh toán thất bại'),
+              backgroundColor: Colors.red,
+            ),
+          );
         }
       }
     } else {
       // For VNPay/Momo
-      if (context.mounted) {
-        Navigator.pop(context); // Close sheet
-        ref.read(posCartProvider.notifier).clearCart();
-
-        if (paymentId != null) {
-          _showQrPayment(screenContext, ref, paymentId, method);
+      if (paymentId != null && orderId != null) {
+        await _showQrPayment(context, ref, paymentId, method, orderId, parentContext);
+      } else {
+        if (context.mounted) {
+          Navigator.pop(context); // Close sheet
         }
       }
     }
@@ -426,74 +468,104 @@ class CheckoutBottomSheet extends ConsumerWidget {
     WidgetRef ref,
     String paymentId,
     String method,
+    String orderId,
+    BuildContext parentContext,
   ) async {
     final url = await ref
         .read(counterCheckoutNotifier.notifier)
         .retryPayment(paymentId, method);
 
-    if (url != null && url.isNotEmpty && context.mounted) {
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: Text('Thanh toán $method'),
-          content: SizedBox(
-            width: 300,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text('Quét mã QR để thanh toán:'),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300),
-                      borderRadius: BorderRadius.circular(12),
+    if (context.mounted) {
+      if (url != null && url.isNotEmpty) {
+        ref.read(posSignalRServiceProvider).notifyPaymentLinkUpdated(
+          PosPaymentLinkDto(
+            orderId: orderId,
+            paymentId: paymentId,
+            method: method,
+            paymentUrl: url,
+          ),
+        );
+
+        Navigator.pop(context); // Close sheet safely
+
+        if (parentContext.mounted) {
+          showDialog(
+            context: parentContext,
+            builder: (ctx) => AlertDialog(
+              title: Text('Thanh toán $method'),
+              content: SizedBox(
+                width: 300,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text('Quét mã QR để thanh toán:'),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: 200,
+                      height: 200,
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade300),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: QrImageView(
+                          data: url,
+                          version: QrVersions.auto,
+                          backgroundColor: Colors.white,
+                        ),
+                      ),
                     ),
-                    child: QrImageView(
-                      data: url,
-                      version: QrVersions.auto,
-                      backgroundColor: Colors.white,
+                    const SizedBox(height: 12),
+                    TextButton.icon(
+                      onPressed: () async {
+                        final uri = Uri.parse(url);
+                        try {
+                          final success = await launchUrl(
+                            uri,
+                            mode: LaunchMode.externalApplication,
+                          );
+                          if (!success && parentContext.mounted) {
+                            ScaffoldMessenger.of(parentContext).showSnackBar(
+                              const SnackBar(
+                                content: Text('Không thể mở trình duyệt'),
+                              ),
+                            );
+                          }
+                        } catch (e) {
+                          if (parentContext.mounted) {
+                            ScaffoldMessenger.of(parentContext)
+                                .showSnackBar(SnackBar(content: Text('Lỗi: $e')));
+                          }
+                        }
+                      },
+                      icon: const Icon(Icons.open_in_browser),
+                      label: const Text('Mở link thanh toán'),
                     ),
-                  ),
+                  ],
                 ),
-                const SizedBox(height: 12),
-                TextButton.icon(
-                  onPressed: () async {
-                    final uri = Uri.parse(url);
-                    try {
-                      final success = await launchUrl(
-                        uri,
-                        mode: LaunchMode.externalApplication,
-                      );
-                      if (!success && context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Không thể mở trình duyệt')),
-                        );
-                      }
-                    } catch (e) {
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Lỗi: $e')),
-                        );
-                      }
-                    }
-                  },                  icon: const Icon(Icons.open_in_browser),
-                  label: const Text('Mở link thanh toán'),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: const Text('Đóng'),
                 ),
               ],
             ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text('Đóng'),
+          );
+        }
+      } else {
+        Navigator.pop(context); // Close sheet safely
+        
+        if (parentContext.mounted) {
+          ScaffoldMessenger.of(parentContext).showSnackBar(
+            const SnackBar(
+              content: Text('Không thể tạo link thanh toán'),
+              backgroundColor: Colors.red,
             ),
-          ],
-        ),
-      );
+          );
+        }
+      }
     }
   }
 }
