@@ -197,6 +197,8 @@ class CartRepositoryImpl implements CartRepository {
     variantPrice: r.variantPrice?.toDouble() ?? 0.0,
     quantity: r.quantity ?? 1,
     isAvailable: r.isAvailable ?? true,
+    discount: r.discount?.toDouble() ?? 0.0,
+    finalTotal: r.finalTotal?.toDouble() ?? 0.0,
     subTotal: r.subTotal?.toDouble() ?? 0.0,
   );
 }

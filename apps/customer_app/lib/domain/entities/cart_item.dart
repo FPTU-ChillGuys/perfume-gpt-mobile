@@ -10,6 +10,8 @@ class CartItem {
   final double variantPrice;
   final int quantity;
   final bool isAvailable;
+  final double discount;
+  final double finalTotal;
   final double subTotal;
 
   const CartItem({
@@ -22,8 +24,13 @@ class CartItem {
     required this.variantPrice,
     required this.quantity,
     this.isAvailable = true,
+    this.discount = 0.0,
+    this.finalTotal = 0.0,
     required this.subTotal,
   });
+
+  bool get hasDiscount => discount > 0 && subTotal > 0;
+  double get unitFinalPrice => quantity > 0 && finalTotal > 0 ? finalTotal / quantity : variantPrice;
 
   CartItem copyWith({
     String? cartItemId,
@@ -35,6 +42,8 @@ class CartItem {
     double? variantPrice,
     int? quantity,
     bool? isAvailable,
+    double? discount,
+    double? finalTotal,
     double? subTotal,
   }) {
     return CartItem(
@@ -47,6 +56,8 @@ class CartItem {
       variantPrice: variantPrice ?? this.variantPrice,
       quantity: quantity ?? this.quantity,
       isAvailable: isAvailable ?? this.isAvailable,
+      discount: discount ?? this.discount,
+      finalTotal: finalTotal ?? this.finalTotal,
       subTotal: subTotal ?? this.subTotal,
     );
   }
@@ -64,22 +75,26 @@ class CartItem {
       'variantPrice': variantPrice,
       'quantity': quantity,
       'isAvailable': isAvailable,
+      'discount': discount,
+      'finalTotal': finalTotal,
       'subTotal': subTotal,
     };
   }
 
   factory CartItem.fromJson(Map<String, dynamic> json) {
     return CartItem(
-      cartItemId: json['cartItemId'],
-      variantId: json['variantId'],
-      variantName: json['variantName'],
-      imageUrl: json['imageUrl'],
-      volumeMl: json['volumeMl'],
-      type: json['type'],
-      variantPrice: (json['variantPrice'] as num).toDouble(),
-      quantity: json['quantity'] as int,
+      cartItemId: json['cartItemId'] as String?,
+      variantId: (json['variantId'] as String?) ?? '',
+      variantName: (json['variantName'] as String?) ?? '',
+      imageUrl: (json['imageUrl'] as String?) ?? '',
+      volumeMl: json['volumeMl'] as int?,
+      type: json['type'] as String?,
+      variantPrice: (json['variantPrice'] as num?)?.toDouble() ?? 0.0,
+      quantity: (json['quantity'] as num?)?.toInt() ?? 1,
       isAvailable: json['isAvailable'] as bool? ?? true,
-      subTotal: (json['subTotal'] as num).toDouble(),
+      discount: (json['discount'] as num?)?.toDouble() ?? 0.0,
+      finalTotal: (json['finalTotal'] as num?)?.toDouble() ?? 0.0,
+      subTotal: (json['subTotal'] as num?)?.toDouble() ?? 0.0,
     );
   }
 }

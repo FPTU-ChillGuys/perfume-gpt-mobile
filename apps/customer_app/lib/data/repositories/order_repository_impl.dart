@@ -77,8 +77,15 @@ class OrderRepositoryImpl implements OrderRepository {
       final response = await _ordersApi.apiOrdersCheckoutPost(
         createOrderRequest: body,
       );
-      // If deserialization succeeded, payload is a string (old format)
-      return _parseCheckoutPayload(response.data?.payload);
+      final payload = response.data?.payload;
+      if (payload != null) {
+        return CheckoutResult(
+          paymentId: payload.paymentId,
+          paymentUrl: payload.paymentUrl,
+          orderId: payload.orderId,
+        );
+      }
+      return const CheckoutResult();
     } on DioException catch (e) {
       // The generated client expects BaseResponseOfstring but API may return
       // CreatePaymentResponseDto as payload object. If HTTP was successful

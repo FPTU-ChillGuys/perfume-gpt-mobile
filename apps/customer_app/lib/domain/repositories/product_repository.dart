@@ -28,4 +28,6 @@ abstract class ProductRepository {
     int pageNumber = 1,
     int pageSize = 12,
   });
+
+  Future<List<String>> getCampaignProductIds(String campaignId);
 }

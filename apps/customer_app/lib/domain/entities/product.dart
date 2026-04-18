@@ -7,6 +7,9 @@ class Product {
   final double price;
   final double? minPrice;
   final double? maxPrice;
+  final double? minRetailPrice;
+  final double? minDiscountedPrice;
+  final String? campaignName;
   final List<double>? variantPrices;
   final List<ProductVariant> variants;
   final String imageUrl;
@@ -29,6 +32,9 @@ class Product {
     required this.price,
     this.minPrice,
     this.maxPrice,
+    this.minRetailPrice,
+    this.minDiscountedPrice,
+    this.campaignName,
     this.variantPrices,
     this.variants = const [],
     required this.imageUrl,
@@ -44,4 +50,15 @@ class Product {
     required this.rating,
     required this.reviewCount,
   });
+
+  /// True when retailPrice > basePrice (has a "was" price to show)
+  bool get hasRetailComparison =>
+      minRetailPrice != null && minPrice != null && minRetailPrice! > minPrice!;
+
+  /// True when a campaign discount is active
+  bool get hasCampaignDiscount =>
+      minDiscountedPrice != null &&
+      minPrice != null &&
+      minDiscountedPrice! > 0 &&
+      minDiscountedPrice! < minPrice!;
 }

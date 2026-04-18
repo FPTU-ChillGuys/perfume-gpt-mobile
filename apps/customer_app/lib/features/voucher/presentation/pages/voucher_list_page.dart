@@ -270,51 +270,36 @@ class _RedeemTab extends ConsumerStatefulWidget {
 }
 
 class _RedeemTabState extends ConsumerState<_RedeemTab> {
-  _VoucherFilter _filter = _VoucherFilter.all;
-
-  List<Voucher> _applyFilter(List<Voucher> list) {
-    switch (_filter) {
-      case _VoucherFilter.public_:
-        return list.where((v) => v.isPublic && !v.isMemberOnly).toList();
-      case _VoucherFilter.member:
-        return list.where((v) => v.isMemberOnly).toList();
-      case _VoucherFilter.all:
-        return list;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final availableAsync = ref.watch(availableVouchersProvider);
     final redeemableAsync = ref.watch(redeemableVouchersProvider);
+    final myVouchersAsync = ref.watch(myVouchersProvider);
     final loyaltyAsync = ref.watch(loyaltyTotalProvider);
     final pointBalance = loyaltyAsync.asData?.value.totalPoints ?? 0;
 
-    final isLoading = availableAsync.isLoading || redeemableAsync.isLoading;
-    final hasError = availableAsync.hasError || redeemableAsync.hasError;
-
-    if (isLoading) {
+    if (redeemableAsync.isLoading) {
       return const Center(
           child: CircularProgressIndicator(color: AppColors.primary));
     }
-    if (hasError) {
+    if (redeemableAsync.hasError) {
       return _ErrorState(onRetry: () {
-        ref.invalidate(availableVouchersProvider);
         ref.invalidate(redeemableVouchersProvider);
       });
     }
 
     final redeemableList = redeemableAsync.asData?.value ?? [];
-    // Filter out available vouchers that are already in redeemable list
-    final redeemIds = redeemableList.map((v) => v.id).toSet();
-    final availableListRaw = (availableAsync.asData?.value ?? [])
-        .where((v) => !redeemIds.contains(v.id))
+    // IDs of vouchers the user already owns
+    final ownedIds = (myVouchersAsync.asData?.value ?? [])
+        .map((v) => v.id)
+        .toSet();
+
+    // Hide already-owned and expired vouchers
+    final filteredRedeemable = redeemableList
+        .where((v) => !ownedIds.contains(v.id))
+        .where((v) => !v.isExpired)
         .toList();
 
-    final availableList = _applyFilter(availableListRaw);
-    final filteredRedeemable = _applyFilter(redeemableList);
-
-    if (availableListRaw.isEmpty && redeemableList.isEmpty) {
+    if (filteredRedeemable.isEmpty) {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -333,53 +318,23 @@ class _RedeemTabState extends ConsumerState<_RedeemTab> {
     return RefreshIndicator(
       color: AppColors.primary,
       onRefresh: () async {
-        ref.invalidate(availableVouchersProvider);
         ref.invalidate(redeemableVouchersProvider);
+        ref.invalidate(myVouchersProvider);
         ref.invalidate(loyaltyTotalProvider);
       },
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // ── Filter row
-          _FilterRow(
-            current: _filter,
-            onChanged: (f) => setState(() => _filter = f),
-          ),
-          const SizedBox(height: 12),
-          if (availableList.isEmpty && filteredRedeemable.isEmpty)
-            Padding(
-              padding: const EdgeInsets.only(top: 40),
-              child: Center(
-                child: Text(
-                  'Không có voucher ${_filter == _VoucherFilter.public_ ? 'Public' : 'Member'} nào.',
-                  style: const TextStyle(color: AppColors.textSecondary),
-                ),
-              ),
-            ),
-          if (availableList.isNotEmpty) ...[
-            _SectionHeader(
-                title: 'Voucher miễn phí',
-                count: availableList.length,
-                color: AppColors.primary),
-            const SizedBox(height: 8),
-            ...availableList.map((v) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: _AvailableCard(voucher: v),
-                )),
-          ],
-          if (filteredRedeemable.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            _SectionHeader(
-                title: 'Đổi điểm',
-                count: filteredRedeemable.length,
-                color: Colors.amber.shade800),
-            const SizedBox(height: 8),
-            ...filteredRedeemable.map((v) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child:
-                      _RedeemableCard(voucher: v, pointBalance: pointBalance),
-                )),
-          ],
+          _SectionHeader(
+              title: 'Đổi điểm',
+              count: filteredRedeemable.length,
+              color: Colors.amber.shade800),
+          const SizedBox(height: 8),
+          ...filteredRedeemable.map((v) => Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child:
+                    _RedeemableCard(voucher: v, pointBalance: pointBalance),
+              )),
         ],
       ),
     );
@@ -521,181 +476,6 @@ class _UserVoucherCard extends StatelessWidget {
   }
 }
 
-class _AvailableCard extends ConsumerStatefulWidget {
-  final Voucher voucher;
-  const _AvailableCard({required this.voucher});
-
-  @override
-  ConsumerState<_AvailableCard> createState() => _AvailableCardState();
-}
-
-class _AvailableCardState extends ConsumerState<_AvailableCard> {
-  bool _loading = false;
-
-  Future<void> _handleRedeem() async {
-    setState(() => _loading = true);
-    try {
-      await ref.read(voucherRepositoryProvider).redeem(widget.voucher.id);
-      ref.invalidate(availableVouchersProvider);
-      ref.invalidate(myVouchersProvider);
-      ref.invalidate(redeemableVouchersProvider);
-      ref.invalidate(loyaltyTotalProvider);
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Đã nhận voucher ${widget.voucher.code}'),
-          backgroundColor: Colors.green,
-        ));
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(_extractError(e)),
-          backgroundColor: Colors.red,
-        ));
-      }
-    } finally {
-      if (mounted) setState(() => _loading = false);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final v = widget.voucher;
-    final hasStock = (v.remainingQuantity ?? 1) > 0;
-    final barColor = hasStock ? AppColors.primary : Colors.grey.shade400;
-
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: hasStock ? AppColors.primary : Colors.grey.shade300,
-          width: hasStock ? 1.5 : 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 8,
-              offset: const Offset(0, 2)),
-        ],
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(width: 6, color: barColor),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // ── Header: code + chip
-                    Row(
-                      children: [
-                        Icon(Icons.local_offer,
-                            size: 16,
-                            color:
-                                hasStock ? AppColors.primary : Colors.grey),
-                        const SizedBox(width: 6),
-                        Expanded(
-                          child: Text(v.code,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 13,
-                                  fontFamily: 'monospace',
-                                  letterSpacing: 0.5)),
-                        ),
-                        if (v.isMemberOnly)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 4),
-                            child: _Chip(
-                                label: 'Member',
-                                color: Colors.deepPurple),
-                          )
-                        else
-                          Padding(
-                            padding: const EdgeInsets.only(right: 4),
-                            child: _Chip(
-                                label: 'Public',
-                                color: Colors.teal,
-                                outlined: true),
-                          ),
-                        if (!hasStock)
-                          _Chip(label: 'Hết voucher', color: Colors.grey)
-                        else
-                          _Chip(label: 'Miễn phí', color: Colors.green),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    // ── Discount
-                    Text(
-                      'Giảm ${_fmtDiscount(v)}',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: hasStock
-                            ? AppColors.primary
-                            : AppColors.textSecondary,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    // ── Min order
-                    Text(
-                      'Đơn tối thiểu: ${_fmtMinOrder(v)}',
-                      style: const TextStyle(
-                          fontSize: 12, color: AppColors.textSecondary),
-                    ),
-                    const Divider(height: 16),
-                    // ── Footer: HSD + button
-                    Row(
-                      children: [
-                        Text(
-                          'HSD: ${v.expiryDate != null ? _dateFmt.format(v.expiryDate!) : '—'}',
-                          style: const TextStyle(
-                              fontSize: 12, color: AppColors.textSecondary),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          height: 32,
-                          child: ElevatedButton.icon(
-                            onPressed:
-                                _loading || !hasStock ? null : _handleRedeem,
-                            icon: _loading
-                                ? const SizedBox(
-                                    width: 14,
-                                    height: 14,
-                                    child: CircularProgressIndicator(
-                                        strokeWidth: 2, color: Colors.white))
-                                : const Icon(Icons.redeem, size: 16),
-                            label: const Text('Nhận ngay',
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w600)),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primary,
-                              disabledBackgroundColor: Colors.grey.shade300,
-                              foregroundColor: Colors.white,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 12),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class _RedeemableCard extends ConsumerStatefulWidget {
   final Voucher voucher;
   final int pointBalance;
@@ -720,7 +500,6 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
     setState(() => _loading = true);
     try {
       await ref.read(voucherRepositoryProvider).redeem(widget.voucher.id);
-      ref.invalidate(availableVouchersProvider);
       ref.invalidate(myVouchersProvider);
       ref.invalidate(redeemableVouchersProvider);
       ref.invalidate(loyaltyTotalProvider);
@@ -797,21 +576,6 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
                                     fontFamily: 'monospace',
                                     letterSpacing: 0.5)),
                           ),
-                          if (v.isMemberOnly)
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4),
-                              child: _Chip(
-                                  label: 'Member',
-                                  color: Colors.deepPurple),
-                            )
-                          else
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4),
-                              child: _Chip(
-                                  label: 'Public',
-                                  color: Colors.teal,
-                                  outlined: true),
-                            ),
                           if (v.isExpired)
                             _Chip(
                                 label: 'Hết hạn',

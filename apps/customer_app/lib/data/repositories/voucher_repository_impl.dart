@@ -124,6 +124,7 @@ class VoucherRepositoryImpl implements VoucherRepository {
         remainingQuantity: j['remainingQuantity'] as int?,
         isPublic: j['isPublic'] as bool? ?? true,
         isMemberOnly: j['isMemberOnly'] as bool? ?? false,
+        campaignId: j['campaignId']?.toString(),
       );
 
   Voucher _mapRawUserVoucher(Map<String, dynamic> j) => Voucher(
@@ -141,6 +142,7 @@ class VoucherRepositoryImpl implements VoucherRepository {
         redeemedAt: DateTime.tryParse(j['redeemedAt']?.toString() ?? ''),
         isPublic: j['isPublic'] as bool? ?? true,
         isMemberOnly: j['isMemberOnly'] as bool? ?? false,
+        campaignId: j['campaignId']?.toString(),
       );
 
   Voucher _mapRawRedeemable(Map<String, dynamic> j) => Voucher(
@@ -155,8 +157,8 @@ class VoucherRepositoryImpl implements VoucherRepository {
         requiredPoints: j['requiredPoints'] as int?,
         remainingQuantity: j['remainingQuantity'] as int?,
         isExpired: j['isExpired'] == true,
-        isPublic: j['isPublic'] as bool? ?? true,
-        isMemberOnly: j['isMemberOnly'] as bool? ?? false,
+        maxDiscountAmount: (j['maxDiscountAmount'] as num?)?.toDouble(),
+        maxUsagePerUser: j['maxUsagePerUser'] as int?,
       );
 
   // ── Typed mappers (happy path) ────────────────────────────────────────────
@@ -197,5 +199,5 @@ class VoucherRepositoryImpl implements VoucherRepository {
         requiredPoints: j.requiredPoints,
         remainingQuantity: j.remainingQuantity,
         isExpired: j.isExpired ?? false,
-      );
+      );  // maxDiscountAmount/maxUsagePerUser not in typed model, handled in raw fallback
 }

@@ -36,6 +36,25 @@ class ProductRepositoryImpl implements ProductRepository {
     final minP = variantPrices.isNotEmpty ? variantPrices.reduce(min) : 0.0;
     final maxP = variantPrices.isNotEmpty ? variantPrices.reduce(max) : 0.0;
 
+    // Retail prices (giá niêm yết)
+    final retailPrices = variants
+        .where((v) => v.retailPrice != null && v.retailPrice! > 0)
+        .map((v) => v.retailPrice!)
+        .toList();
+    final minRetail = retailPrices.isNotEmpty ? retailPrices.reduce(min) : null;
+
+    // Discounted prices (giá sau campaign voucher)
+    final discountedPrices = variants
+        .where((v) => v.discountedPrice != null && v.discountedPrice! > 0)
+        .map((v) => v.discountedPrice!)
+        .toList();
+    final minDiscounted =
+        discountedPrices.isNotEmpty ? discountedPrices.reduce(min) : null;
+
+    // Campaign name from the first variant that has one
+    final campaignName =
+        variants.where((v) => v.campaignName != null).map((v) => v.campaignName!).firstOrNull;
+
     final imageUrls = product.media.map((m) => ImageUrlHelper.resolve(m.url)).toList();
     final primaryImage = product.media
         .where((m) => m.isPrimary == true)
@@ -49,6 +68,9 @@ class ProductRepositoryImpl implements ProductRepository {
       price: minP,
       minPrice: minP > 0 ? minP : null,
       maxPrice: maxP > 0 ? maxP : null,
+      minRetailPrice: minRetail,
+      minDiscountedPrice: minDiscounted,
+      campaignName: campaignName,
       variantPrices: variantPrices,
       imageUrl: primaryImage,
       imageUrls: imageUrls,
@@ -264,6 +286,19 @@ class ProductRepositoryImpl implements ProductRepository {
       totalPages: payload?.totalPages ?? 0,
       hasNextPage: payload?.hasNextPage ?? false,
     );
+  }
+
+  @override
+  Future<List<String>> getCampaignProductIds(String campaignId) async {
+    final response = await _api.apiProductsCampaignsCampaignIdGet(
+      campaignId: campaignId,
+      pageSize: 10,
+    );
+    final items = response.data?.payload?.items ?? [];
+    return items
+        .where((item) => item.id != null)
+        .map((item) => item.id!)
+        .toList();
   }
 }
 

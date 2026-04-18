@@ -16,6 +16,7 @@ class HomePage extends ConsumerWidget {
     final newArrivalsAsync = ref.watch(newArrivalsProvider);
     final bestSellersAsync = ref.watch(bestSellersProvider);
     final bannersAsync = ref.watch(homeHeroBannersProvider);
+    final campaignsAsync = ref.watch(activeCampaignsProvider);
 
     return Scaffold(
       body: CustomScrollView(
@@ -42,6 +43,20 @@ class HomePage extends ConsumerWidget {
 
           // ── Quick links ───────────────────────────────────────────────
           SliverToBoxAdapter(child: _buildQuickLinks(context)),
+
+          // ── Campaign Sections ─────────────────────────────────────────
+          ...campaignsAsync.when(
+            data: (campaigns) => campaigns.map(
+              (campaign) => SliverToBoxAdapter(
+                child: _CampaignSection(
+                  campaignId: campaign.id,
+                  campaignName: campaign.name,
+                ),
+              ),
+            ),
+            loading: () => [const SliverToBoxAdapter(child: SizedBox.shrink())],
+            error: (_, _) => [const SliverToBoxAdapter(child: SizedBox.shrink())],
+          ),
 
           // ── New Arrivals ──────────────────────────────────────────────
           SliverToBoxAdapter(
@@ -366,7 +381,7 @@ class HomePage extends ConsumerWidget {
             data: (products) {
               if (products.isEmpty) return const SizedBox.shrink();
               return SizedBox(
-                height: 230,
+                height: 260,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: products.length,
@@ -379,7 +394,7 @@ class HomePage extends ConsumerWidget {
               );
             },
             loading: () => SizedBox(
-              height: 230,
+              height: 260,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: 4,
@@ -407,6 +422,101 @@ class HomePage extends ConsumerWidget {
                 ],
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Campaign Section (dynamic, per-campaign product list)
+// ═════════════════════════════════════════════════════════════════════════════
+
+class _CampaignSection extends ConsumerWidget {
+  final String campaignId;
+  final String campaignName;
+
+  const _CampaignSection({
+    required this.campaignId,
+    required this.campaignName,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final productsAsync = ref.watch(campaignProductsProvider(campaignId));
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header with campaign badge
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.local_offer, size: 14, color: Colors.white),
+                    const SizedBox(width: 4),
+                    Text(
+                      campaignName,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Expanded(
+                child: Text(
+                  'Ưu đãi đặc biệt',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textPrimary,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          // Content
+          productsAsync.when(
+            data: (products) {
+              if (products.isEmpty) return const SizedBox.shrink();
+              return SizedBox(
+                height: 260,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: products.length,
+                  separatorBuilder: (_, _) => const SizedBox(width: 12),
+                  itemBuilder: (_, index) => _HomeProductCard(
+                    product: products[index],
+                  ),
+                ),
+              );
+            },
+            loading: () => SizedBox(
+              height: 260,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+                separatorBuilder: (_, _) => const SizedBox(width: 12),
+                itemBuilder: (_, _) => const _SkeletonCard(),
+              ),
+            ),
+            error: (_, _) => const SizedBox.shrink(),
           ),
         ],
       ),
@@ -490,6 +600,35 @@ class _HomeProductCard extends StatelessWidget {
                         ),
                       ),
                     ),
+                  if (product.hasCampaignDiscount && product.campaignName != null)
+                    Positioned(
+                      top: isNew ? 30 : 8,
+                      left: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.local_offer,
+                                size: 10, color: Colors.white),
+                            const SizedBox(width: 3),
+                            Text(
+                              product.campaignName!,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 9,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   if (product.gender != null)
                     Positioned(
                       top: 8,
@@ -535,14 +674,7 @@ class _HomeProductCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    _priceText(),
-                    style: const TextStyle(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12,
-                    ),
-                  ),
+                  _buildPriceSection(),
                 ],
               ),
             ),
@@ -552,7 +684,137 @@ class _HomeProductCard extends StatelessWidget {
     );
   }
 
-  String _priceText() {
+  Widget _buildPriceSection() {
+    // Campaign discount: show discountedPrice (red) + strikethrough basePrice
+    if (product.hasCampaignDiscount) {
+      final discountPercent = ((product.minPrice! - product.minDiscountedPrice!) /
+              product.minPrice! * 100)
+          .round();
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Retail strikethrough (if available and > base)
+          if (product.hasRetailComparison)
+            Text(
+              PriceFormatter.format(product.minRetailPrice!),
+              style: TextStyle(
+                fontSize: 10,
+                color: Colors.grey.shade400,
+                decoration: TextDecoration.lineThrough,
+                decorationColor: Colors.grey.shade400,
+              ),
+            ),
+          Row(
+            children: [
+              Flexible(
+                child: Text(
+                  PriceFormatter.format(product.minDiscountedPrice!),
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 12,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const SizedBox(width: 4),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                decoration: BoxDecoration(
+                  color: Colors.red.shade50,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  '-$discountPercent%',
+                  style: TextStyle(
+                    fontSize: 9,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.red.shade700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          // Base price strikethrough
+          Text(
+            PriceFormatter.format(product.minPrice!),
+            style: TextStyle(
+              fontSize: 10,
+              color: Colors.grey.shade500,
+              decoration: TextDecoration.lineThrough,
+              decorationColor: Colors.grey.shade400,
+            ),
+          ),
+        ],
+      );
+    }
+
+    // No campaign but retail > base: show base + strikethrough retail
+    if (product.hasRetailComparison) {
+      final discountPercent = ((product.minRetailPrice! - product.minPrice!) /
+              product.minRetailPrice! * 100)
+          .round();
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Flexible(
+                child: Text(
+                  _basePriceText(),
+                  style: const TextStyle(
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 12,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const SizedBox(width: 4),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                decoration: BoxDecoration(
+                  color: Colors.red.shade50,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  '-$discountPercent%',
+                  style: TextStyle(
+                    fontSize: 9,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.red.shade700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Text(
+            PriceFormatter.format(product.minRetailPrice!),
+            style: TextStyle(
+              fontSize: 10,
+              color: Colors.grey.shade400,
+              decoration: TextDecoration.lineThrough,
+              decorationColor: Colors.grey.shade400,
+            ),
+          ),
+        ],
+      );
+    }
+
+    // Default: just base price
+    return Text(
+      _basePriceText(),
+      style: const TextStyle(
+        color: AppColors.primary,
+        fontWeight: FontWeight.w700,
+        fontSize: 12,
+      ),
+    );
+  }
+
+  String _basePriceText() {
     if (product.minPrice != null &&
         product.maxPrice != null &&
         product.minPrice != product.maxPrice) {

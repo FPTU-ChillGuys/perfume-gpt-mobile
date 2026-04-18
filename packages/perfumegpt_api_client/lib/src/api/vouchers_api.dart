@@ -264,7 +264,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/vouchers/me';
+    final _path = r'/api/user-vouchers/me';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -556,7 +556,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/vouchers/redeemable-list';
+    final _path = r'/api/vouchers/redeemable';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

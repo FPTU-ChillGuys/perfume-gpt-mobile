@@ -13,6 +13,9 @@ class Voucher {
   final DateTime? redeemedAt;
   final bool isPublic;
   final bool isMemberOnly;
+  final String? campaignId;
+  final double? maxDiscountAmount;
+  final int? maxUsagePerUser;
 
   const Voucher({
     required this.id,
@@ -29,9 +32,14 @@ class Voucher {
     this.redeemedAt,
     this.isPublic = true,
     this.isMemberOnly = false,
+    this.campaignId,
+    this.maxDiscountAmount,
+    this.maxUsagePerUser,
   });
 
   bool get isActive => !isUsed && !isExpired;
+
+  bool get isCampaignVoucher => campaignId != null && campaignId!.isNotEmpty;
 
   String get discountLabel {
     if (discountType == 'Percentage') {

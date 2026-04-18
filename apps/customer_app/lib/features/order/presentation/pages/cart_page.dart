@@ -500,11 +500,52 @@ class _CartItemCard extends ConsumerWidget {
                           const SizedBox(height: 4),
 
                           // Price
-                          Text(
-                            PriceFormatter.format(item.variantPrice),
-                            style: theme.textTheme.bodySmall
-                                ?.copyWith(color: Colors.grey),
-                          ),
+                          if (item.hasDiscount) ...[
+                            Row(
+                              children: [
+                                Text(
+                                  PriceFormatter.format(item.unitFinalPrice),
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w700,
+                                    color: theme.colorScheme.error,
+                                  ),
+                                ),
+                                const SizedBox(width: 6),
+                                Text(
+                                  PriceFormatter.format(item.variantPrice),
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: Colors.grey.shade400,
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationColor: Colors.grey.shade400,
+                                  ),
+                                ),
+                                const SizedBox(width: 4),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 4, vertical: 1),
+                                  decoration: BoxDecoration(
+                                    color: Colors.red.shade50,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Text(
+                                    '-${(item.subTotal > 0 ? (item.discount / item.subTotal * 100).round() : 0)}%',
+                                    style: TextStyle(
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.red.shade700,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ] else
+                            Text(
+                              PriceFormatter.format(item.variantPrice),
+                              style: theme.textTheme.bodySmall
+                                  ?.copyWith(color: Colors.grey),
+                            ),
                           const SizedBox(height: 8),
 
                           // Divider
@@ -551,13 +592,36 @@ class _CartItemCard extends ConsumerWidget {
                               const Spacer(),
 
                               // Line total
-                              Text(
-                                PriceFormatter.format(item.subTotal),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: theme.colorScheme.error,
+                              if (item.hasDiscount)
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      PriceFormatter.format(item.finalTotal),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: theme.colorScheme.error,
+                                      ),
+                                    ),
+                                    Text(
+                                      PriceFormatter.format(item.subTotal),
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: Colors.grey.shade400,
+                                        decoration: TextDecoration.lineThrough,
+                                        decorationColor: Colors.grey.shade400,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              else
+                                Text(
+                                  PriceFormatter.format(item.subTotal),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: theme.colorScheme.error,
+                                  ),
                                 ),
-                              ),
                               const SizedBox(width: 8),
 
                               // Delete
@@ -958,7 +1022,7 @@ class _VoucherPickerSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncVouchers = ref.watch(availableVouchersProvider);
+    final asyncVouchers = ref.watch(myVouchersProvider);
     final fmt = NumberFormat('#,###', 'vi_VN');
 
     return Container(
@@ -1020,14 +1084,17 @@ class _VoucherPickerSheet extends ConsumerWidget {
                     const Text('Không thể tải voucher'),
                     const SizedBox(height: 8),
                     TextButton(
-                      onPressed: () => ref.invalidate(availableVouchersProvider),
+                      onPressed: () => ref.invalidate(myVouchersProvider),
                       child: const Text('Thử lại'),
                     ),
                   ],
                 ),
               ),
               data: (vouchers) {
-                if (vouchers.isEmpty) {
+                final active = vouchers
+                    .where((v) => v.isActive)
+                    .toList();
+                if (active.isEmpty) {
                   return const Padding(
                     padding: EdgeInsets.all(32),
                     child: Column(
@@ -1046,10 +1113,10 @@ class _VoucherPickerSheet extends ConsumerWidget {
                   shrinkWrap: true,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  itemCount: vouchers.length,
+                  itemCount: active.length,
                   separatorBuilder: (_, _) => const SizedBox(height: 8),
                   itemBuilder: (_, i) {
-                    final v = vouchers[i];
+                    final v = active[i];
                     return _VoucherPickerCard(
                       voucher: v,
                       fmt: fmt,
