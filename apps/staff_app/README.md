@@ -5,9 +5,11 @@ AI-Powered Staff Mobile App for the PerfumeGPT ecosystem, providing Mobile POS a
 ## Features
 
 -   **Mobile POS:**
-    -   Quick variant/barcode entry and order retrieval interface.
-    -   Real-time draft management with quantity adjustments.
-    -   Type-safe checkout flow supporting multiple payment methods (Cash, VnPay, Momo) integrated with the backend API.
+    -   Quick variant/barcode entry and manual SKU lookup.
+    -   **Batch Selection:** Real-time batch lookup for product variants, ensuring accurate inventory and expiry tracking during sales.
+    -   Real-time cart management with quantity adjustments and persistent sync to customer-facing displays.
+    -   **QR Payment Handling:** Integrated checkout flow with generated QR codes for VnPay and Momo, including deep-link support for direct payment.
+    -   Type-safe checkout flow integrated with backend `OrdersApi`.
 -   **Stock Management:**
     -   Real-time inventory list with search and filtering by SKU, name, or brand.
     -   Detailed product views including current stock levels and pricing fetched from the API.

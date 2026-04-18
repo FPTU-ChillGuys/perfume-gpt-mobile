@@ -1,15 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/order_repository_impl.dart';
-import '../../data/models/signalr_dtos.dart';
-import '../../data/services/pos_signalr_service.dart';
+import 'cart_providers.dart';
 
 part 'counter_checkout_providers.g.dart';
 
 class DraftItem {
   final String variantId;
   final String barcode;
+  final String batchCode;
   final String sku;
   final String variantName;
   final String? imageUrl;
@@ -19,6 +20,7 @@ class DraftItem {
   const DraftItem({
     required this.variantId,
     required this.barcode,
+    required this.batchCode,
     required this.sku,
     required this.variantName,
     this.imageUrl,
@@ -26,10 +28,11 @@ class DraftItem {
     required this.quantity,
   });
 
-  DraftItem copyWith({int? quantity}) {
+  DraftItem copyWith({int? quantity, String? batchCode}) {
     return DraftItem(
       variantId: variantId,
       barcode: barcode,
+      batchCode: batchCode ?? this.batchCode,
       sku: sku,
       variantName: variantName,
       imageUrl: imageUrl,
@@ -40,81 +43,11 @@ class DraftItem {
 }
 
 @riverpod
-class DraftItems extends _$DraftItems {
-  @override
-  List<DraftItem> build() => [];
-
-  void addItem(DraftItem item) {
-    final idx = state.indexWhere((e) => e.variantId == item.variantId);
-    if (idx >= 0) {
-      final updated = List<DraftItem>.from(state);
-      updated[idx] = updated[idx].copyWith(
-        quantity: updated[idx].quantity + item.quantity,
-      );
-      state = updated;
-    } else {
-      state = [...state, item];
-    }
-  }
-
-  void removeItem(int index) {
-    final updated = List<DraftItem>.from(state);
-    updated.removeAt(index);
-    state = updated;
-  }
-
-  void updateQuantity(int index, int quantity) {
-    if (quantity <= 0) {
-      removeItem(index);
-      return;
-    }
-    final updated = List<DraftItem>.from(state);
-    updated[index] = updated[index].copyWith(quantity: quantity);
-    state = updated;
-  }
-
-  void clear() => state = [];
-}
-
-@riverpod
-double draftTotal(Ref ref) {
-  final items = ref.watch(draftItemsProvider);
-  return items.fold(0.0, (sum, item) => sum + item.price * item.quantity);
-}
-
-@riverpod
-void posCartSync(Ref ref) {
-  final items = ref.watch(draftItemsProvider);
-  final signalRService = ref.read(posSignalRServiceProvider);
-
-  if (signalRService.currentSessionId == null) return;
-
-  final dtos = items
-      .map(
-        (i) => CartItemDto(
-          id: i.variantId,
-          name: i.variantName,
-          imageUrl: i.imageUrl ?? '',
-          quantity: i.quantity,
-          price: i.price,
-          total: i.price * i.quantity,
-        ),
-      )
-      .toList();
-
-  final total = dtos.fold(0.0, (sum, i) => sum + i.total);
-
-  signalRService.syncCartToCustomerDisplay(
-    CartDisplayDto(items: dtos, totalAmount: total),
-  );
-}
-
-@riverpod
 class LoadedOrder extends _$LoadedOrder {
   @override
-  UserOrderResponse? build() => null;
+  OrderResponse? build() => null;
 
-  void setOrder(UserOrderResponse? order) => state = order;
+  void setOrder(OrderResponse? order) => state = order;
   void clear() => state = null;
 }
 
@@ -124,6 +57,22 @@ class SelectedPaymentMethod extends _$SelectedPaymentMethod {
   String build() => 'CashInStore';
 
   void setMethod(String method) => state = method;
+}
+
+@riverpod
+Future<List<BatchDetailResponse>> productBatches(
+  Ref ref,
+  String variantId,
+) async {
+  final dio = ref.read(apiClientProvider).dio;
+  final batchesApi = BatchesApi(dio);
+  final response = await batchesApi.apiBatchesGet(
+    variantId: variantId,
+    pageSize: 100,
+    isDescending: true,
+    sortBy: 'ExpiryDate',
+  );
+  return response.data?.payload?.items ?? [];
 }
 
 @Riverpod(name: 'counterCheckoutNotifier')
@@ -161,8 +110,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
           .map(
             (i) => PosScanItemRequest(
               barcode: i.barcode,
-              batchCode:
-                  'DEFAULT', // Note: Need batch selection in UI eventually
+              batchCode: i.batchCode,
               quantity: i.quantity,
             ),
           )
@@ -181,12 +129,17 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
         );
       }
 
+      final totalPrice = items.fold(
+        0.0,
+        (sum, item) => sum + item.price * item.quantity,
+      );
+
       final responseDto = await repo.checkoutInStore(
         scannedItems: scannedItems,
         paymentMethod: paymentMethod,
         voucherCode: voucherCode,
         recipient: recipient,
-        expectedTotalPrice: ref.read(draftTotalProvider),
+        expectedTotalPrice: totalPrice,
       );
 
       final orderId = responseDto?.orderId;
@@ -196,7 +149,6 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
           ref.read(loadedOrderProvider.notifier).setOrder(order);
           _syncPaymentMethod(order);
         }
-        ref.read(draftItemsProvider.notifier).clear();
       }
 
       state = const AsyncData(null);
@@ -248,6 +200,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
         return DraftItem(
           variantId: data.id ?? variantId,
           barcode: data.barcode,
+          batchCode: 'DEFAULT', // Temporary placeholder
           sku: data.sku,
           variantName: data.displayName,
           imageUrl: data.primaryImageUrl,
@@ -261,7 +214,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
     return null;
   }
 
-  void _syncPaymentMethod(UserOrderResponse order) {
+  void _syncPaymentMethod(OrderResponse order) {
     final transactions = order.paymentTransactions;
     if (transactions != null && transactions.isNotEmpty) {
       final method = transactions.first.paymentMethod;
@@ -276,7 +229,7 @@ class CounterCheckoutNotifier extends _$CounterCheckoutNotifier {
 
   void resetAll() {
     ref.read(loadedOrderProvider.notifier).clear();
-    ref.read(draftItemsProvider.notifier).clear();
+    ref.read(posCartProvider.notifier).clearCart();
     ref.read(selectedPaymentMethodProvider.notifier).setMethod('CashInStore');
   }
 }

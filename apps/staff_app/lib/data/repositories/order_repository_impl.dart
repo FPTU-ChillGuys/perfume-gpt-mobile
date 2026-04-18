@@ -14,10 +14,8 @@ class OrderRepositoryImpl {
       _apiClient.getProductVariantsApi();
   PaymentsApi get _paymentsApi => _apiClient.getPaymentsApi();
 
-  Future<UserOrderResponse?> getOrderById(String orderCode) async {
-    final response = await _ordersApi.apiOrdersOrderCodeGet(
-      orderCode: orderCode,
-    );
+  Future<OrderResponse?> getOrderById(String orderCode) async {
+    final response = await _ordersApi.apiOrdersOrderIdGet(orderId: orderCode);
     return response.data?.payload;
   }
 

@@ -12,9 +12,9 @@ part 'api_client_provider.g.dart';
 PerfumegptApiClient apiClient(Ref ref) {
   String baseUrl = 'https://backend-sep490.vqnofficial.win';
 
-  if (!kIsWeb && Platform.isAndroid) {
+  /*if (!kIsWeb && Platform.isAndroid) {
     baseUrl = 'https://10.0.2.2:7011'; // Assuming local dev for now, or match prod
-  }
+  }*/
 
   final dio = Dio(BaseOptions(baseUrl: baseUrl));
 
@@ -32,11 +32,11 @@ PerfumegptApiClient apiClient(Ref ref) {
 
 @Riverpod(keepAlive: true)
 PerfumegptAiApiClient aiApiClient(Ref ref) {
-  String baseUrl = 'https://localhost:7011';
+  String baseUrl = 'https://ai-backend-sep490.vqnofficial.win';
 
-  if (!kIsWeb && Platform.isAndroid) {
+  /*if (!kIsWeb && Platform.isAndroid) {
     baseUrl = 'https://10.0.2.2:7011';
-  }
+  }*/
 
   final dio = Dio(BaseOptions(baseUrl: baseUrl));
 

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductModel {
 
- String get id; String get variantId; String get batchId; String get sku; String get name; String get description; double get price; String get imageUrl; List<String> get scentNotes; String get brand; double get rating; int get reviewCount; int get stockQuantity;
+ String get id; String get variantId; String get batchId; String get sku; String get barcode; String get name; String get description; double get price; String get imageUrl; List<String> get scentNotes; String get brand; double get rating; int get reviewCount; int get stockQuantity;
 /// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ProductModelCopyWith<ProductModel> get copyWith => _$ProductModelCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductModel&&(identical(other.id, id) || other.id == id)&&(identical(other.variantId, variantId) || other.variantId == variantId)&&(identical(other.batchId, batchId) || other.batchId == batchId)&&(identical(other.sku, sku) || other.sku == sku)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other.scentNotes, scentNotes)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.stockQuantity, stockQuantity) || other.stockQuantity == stockQuantity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductModel&&(identical(other.id, id) || other.id == id)&&(identical(other.variantId, variantId) || other.variantId == variantId)&&(identical(other.batchId, batchId) || other.batchId == batchId)&&(identical(other.sku, sku) || other.sku == sku)&&(identical(other.barcode, barcode) || other.barcode == barcode)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other.scentNotes, scentNotes)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.stockQuantity, stockQuantity) || other.stockQuantity == stockQuantity));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,variantId,batchId,sku,name,description,price,imageUrl,const DeepCollectionEquality().hash(scentNotes),brand,rating,reviewCount,stockQuantity);
+int get hashCode => Object.hash(runtimeType,id,variantId,batchId,sku,barcode,name,description,price,imageUrl,const DeepCollectionEquality().hash(scentNotes),brand,rating,reviewCount,stockQuantity);
 
 @override
 String toString() {
-  return 'ProductModel(id: $id, variantId: $variantId, batchId: $batchId, sku: $sku, name: $name, description: $description, price: $price, imageUrl: $imageUrl, scentNotes: $scentNotes, brand: $brand, rating: $rating, reviewCount: $reviewCount, stockQuantity: $stockQuantity)';
+  return 'ProductModel(id: $id, variantId: $variantId, batchId: $batchId, sku: $sku, barcode: $barcode, name: $name, description: $description, price: $price, imageUrl: $imageUrl, scentNotes: $scentNotes, brand: $brand, rating: $rating, reviewCount: $reviewCount, stockQuantity: $stockQuantity)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ProductModelCopyWith<$Res>  {
   factory $ProductModelCopyWith(ProductModel value, $Res Function(ProductModel) _then) = _$ProductModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String variantId, String batchId, String sku, String name, String description, double price, String imageUrl, List<String> scentNotes, String brand, double rating, int reviewCount, int stockQuantity
+ String id, String variantId, String batchId, String sku, String barcode, String name, String description, double price, String imageUrl, List<String> scentNotes, String brand, double rating, int reviewCount, int stockQuantity
 });
 
 
@@ -65,12 +65,13 @@ class _$ProductModelCopyWithImpl<$Res>
 
 /// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? variantId = null,Object? batchId = null,Object? sku = null,Object? name = null,Object? description = null,Object? price = null,Object? imageUrl = null,Object? scentNotes = null,Object? brand = null,Object? rating = null,Object? reviewCount = null,Object? stockQuantity = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? variantId = null,Object? batchId = null,Object? sku = null,Object? barcode = null,Object? name = null,Object? description = null,Object? price = null,Object? imageUrl = null,Object? scentNotes = null,Object? brand = null,Object? rating = null,Object? reviewCount = null,Object? stockQuantity = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,variantId: null == variantId ? _self.variantId : variantId // ignore: cast_nullable_to_non_nullable
 as String,batchId: null == batchId ? _self.batchId : batchId // ignore: cast_nullable_to_non_nullable
 as String,sku: null == sku ? _self.sku : sku // ignore: cast_nullable_to_non_nullable
+as String,barcode: null == barcode ? _self.barcode : barcode // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
@@ -165,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String variantId,  String batchId,  String sku,  String name,  String description,  double price,  String imageUrl,  List<String> scentNotes,  String brand,  double rating,  int reviewCount,  int stockQuantity)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String variantId,  String batchId,  String sku,  String barcode,  String name,  String description,  double price,  String imageUrl,  List<String> scentNotes,  String brand,  double rating,  int reviewCount,  int stockQuantity)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProductModel() when $default != null:
-return $default(_that.id,_that.variantId,_that.batchId,_that.sku,_that.name,_that.description,_that.price,_that.imageUrl,_that.scentNotes,_that.brand,_that.rating,_that.reviewCount,_that.stockQuantity);case _:
+return $default(_that.id,_that.variantId,_that.batchId,_that.sku,_that.barcode,_that.name,_that.description,_that.price,_that.imageUrl,_that.scentNotes,_that.brand,_that.rating,_that.reviewCount,_that.stockQuantity);case _:
   return orElse();
 
 }
@@ -186,10 +187,10 @@ return $default(_that.id,_that.variantId,_that.batchId,_that.sku,_that.name,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String variantId,  String batchId,  String sku,  String name,  String description,  double price,  String imageUrl,  List<String> scentNotes,  String brand,  double rating,  int reviewCount,  int stockQuantity)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String variantId,  String batchId,  String sku,  String barcode,  String name,  String description,  double price,  String imageUrl,  List<String> scentNotes,  String brand,  double rating,  int reviewCount,  int stockQuantity)  $default,) {final _that = this;
 switch (_that) {
 case _ProductModel():
-return $default(_that.id,_that.variantId,_that.batchId,_that.sku,_that.name,_that.description,_that.price,_that.imageUrl,_that.scentNotes,_that.brand,_that.rating,_that.reviewCount,_that.stockQuantity);case _:
+return $default(_that.id,_that.variantId,_that.batchId,_that.sku,_that.barcode,_that.name,_that.description,_that.price,_that.imageUrl,_that.scentNotes,_that.brand,_that.rating,_that.reviewCount,_that.stockQuantity);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -206,10 +207,10 @@ return $default(_that.id,_that.variantId,_that.batchId,_that.sku,_that.name,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String variantId,  String batchId,  String sku,  String name,  String description,  double price,  String imageUrl,  List<String> scentNotes,  String brand,  double rating,  int reviewCount,  int stockQuantity)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String variantId,  String batchId,  String sku,  String barcode,  String name,  String description,  double price,  String imageUrl,  List<String> scentNotes,  String brand,  double rating,  int reviewCount,  int stockQuantity)?  $default,) {final _that = this;
 switch (_that) {
 case _ProductModel() when $default != null:
-return $default(_that.id,_that.variantId,_that.batchId,_that.sku,_that.name,_that.description,_that.price,_that.imageUrl,_that.scentNotes,_that.brand,_that.rating,_that.reviewCount,_that.stockQuantity);case _:
+return $default(_that.id,_that.variantId,_that.batchId,_that.sku,_that.barcode,_that.name,_that.description,_that.price,_that.imageUrl,_that.scentNotes,_that.brand,_that.rating,_that.reviewCount,_that.stockQuantity);case _:
   return null;
 
 }
@@ -221,13 +222,14 @@ return $default(_that.id,_that.variantId,_that.batchId,_that.sku,_that.name,_tha
 @JsonSerializable()
 
 class _ProductModel implements ProductModel {
-  const _ProductModel({required this.id, required this.variantId, required this.batchId, required this.sku, required this.name, required this.description, required this.price, required this.imageUrl, required final  List<String> scentNotes, required this.brand, required this.rating, required this.reviewCount, required this.stockQuantity}): _scentNotes = scentNotes;
+  const _ProductModel({required this.id, required this.variantId, required this.batchId, required this.sku, required this.barcode, required this.name, required this.description, required this.price, required this.imageUrl, required final  List<String> scentNotes, required this.brand, required this.rating, required this.reviewCount, required this.stockQuantity}): _scentNotes = scentNotes;
   factory _ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
 
 @override final  String id;
 @override final  String variantId;
 @override final  String batchId;
 @override final  String sku;
+@override final  String barcode;
 @override final  String name;
 @override final  String description;
 @override final  double price;
@@ -257,16 +259,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductModel&&(identical(other.id, id) || other.id == id)&&(identical(other.variantId, variantId) || other.variantId == variantId)&&(identical(other.batchId, batchId) || other.batchId == batchId)&&(identical(other.sku, sku) || other.sku == sku)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other._scentNotes, _scentNotes)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.stockQuantity, stockQuantity) || other.stockQuantity == stockQuantity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductModel&&(identical(other.id, id) || other.id == id)&&(identical(other.variantId, variantId) || other.variantId == variantId)&&(identical(other.batchId, batchId) || other.batchId == batchId)&&(identical(other.sku, sku) || other.sku == sku)&&(identical(other.barcode, barcode) || other.barcode == barcode)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other._scentNotes, _scentNotes)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.stockQuantity, stockQuantity) || other.stockQuantity == stockQuantity));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,variantId,batchId,sku,name,description,price,imageUrl,const DeepCollectionEquality().hash(_scentNotes),brand,rating,reviewCount,stockQuantity);
+int get hashCode => Object.hash(runtimeType,id,variantId,batchId,sku,barcode,name,description,price,imageUrl,const DeepCollectionEquality().hash(_scentNotes),brand,rating,reviewCount,stockQuantity);
 
 @override
 String toString() {
-  return 'ProductModel(id: $id, variantId: $variantId, batchId: $batchId, sku: $sku, name: $name, description: $description, price: $price, imageUrl: $imageUrl, scentNotes: $scentNotes, brand: $brand, rating: $rating, reviewCount: $reviewCount, stockQuantity: $stockQuantity)';
+  return 'ProductModel(id: $id, variantId: $variantId, batchId: $batchId, sku: $sku, barcode: $barcode, name: $name, description: $description, price: $price, imageUrl: $imageUrl, scentNotes: $scentNotes, brand: $brand, rating: $rating, reviewCount: $reviewCount, stockQuantity: $stockQuantity)';
 }
 
 
@@ -277,7 +279,7 @@ abstract mixin class _$ProductModelCopyWith<$Res> implements $ProductModelCopyWi
   factory _$ProductModelCopyWith(_ProductModel value, $Res Function(_ProductModel) _then) = __$ProductModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String variantId, String batchId, String sku, String name, String description, double price, String imageUrl, List<String> scentNotes, String brand, double rating, int reviewCount, int stockQuantity
+ String id, String variantId, String batchId, String sku, String barcode, String name, String description, double price, String imageUrl, List<String> scentNotes, String brand, double rating, int reviewCount, int stockQuantity
 });
 
 
@@ -294,12 +296,13 @@ class __$ProductModelCopyWithImpl<$Res>
 
 /// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? variantId = null,Object? batchId = null,Object? sku = null,Object? name = null,Object? description = null,Object? price = null,Object? imageUrl = null,Object? scentNotes = null,Object? brand = null,Object? rating = null,Object? reviewCount = null,Object? stockQuantity = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? variantId = null,Object? batchId = null,Object? sku = null,Object? barcode = null,Object? name = null,Object? description = null,Object? price = null,Object? imageUrl = null,Object? scentNotes = null,Object? brand = null,Object? rating = null,Object? reviewCount = null,Object? stockQuantity = null,}) {
   return _then(_ProductModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,variantId: null == variantId ? _self.variantId : variantId // ignore: cast_nullable_to_non_nullable
 as String,batchId: null == batchId ? _self.batchId : batchId // ignore: cast_nullable_to_non_nullable
 as String,sku: null == sku ? _self.sku : sku // ignore: cast_nullable_to_non_nullable
+as String,barcode: null == barcode ? _self.barcode : barcode // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
