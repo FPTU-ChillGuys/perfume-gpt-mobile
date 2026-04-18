@@ -720,18 +720,16 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
         context: context,
         builder: (ctx) => AlertDialog(
           title: Text('Thanh toán $method'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('Quét mã QR để thanh toán:'),
-              const SizedBox(height: 16),
-              ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxWidth: 250,
-                  maxHeight: 250,
-                ),
-                child: AspectRatio(
-                  aspectRatio: 1,
+          content: SizedBox(
+            width: 300,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Quét mã QR để thanh toán:'),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: 200,
+                  height: 200,
                   child: Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
@@ -745,25 +743,25 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 12),
-              TextButton.icon(
-                onPressed: () async {
-                  final uri = Uri.parse(url);
-                  if (await canLaunchUrl(uri)) {
-                    await launchUrl(uri, mode: LaunchMode.externalApplication);
-                  }
-                },
-                icon: const Icon(Icons.open_in_browser),
-                label: const Text('Mở link thanh toán'),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Sau khi khách hàng thanh toán, nhấn xác nhận bên dưới.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 13, color: Colors.grey),
-              ),
-            ],
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () async {
+                    final uri = Uri.parse(url);
+                    if (await canLaunchUrl(uri)) {
+                      await launchUrl(uri, mode: LaunchMode.externalApplication);
+                    }
+                  },
+                  icon: const Icon(Icons.open_in_browser),
+                  label: const Text('Mở link thanh toán'),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Sau khi khách hàng thanh toán, nhấn xác nhận bên dưới.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 13, color: Colors.grey),
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
