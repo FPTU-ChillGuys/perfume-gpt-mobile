@@ -463,11 +463,24 @@ class CheckoutBottomSheet extends ConsumerWidget {
                 TextButton.icon(
                   onPressed: () async {
                     final uri = Uri.parse(url);
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri, mode: LaunchMode.externalApplication);
+                    try {
+                      final success = await launchUrl(
+                        uri,
+                        mode: LaunchMode.externalApplication,
+                      );
+                      if (!success && context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Không thể mở trình duyệt')),
+                        );
+                      }
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Lỗi: $e')),
+                        );
+                      }
                     }
-                  },
-                  icon: const Icon(Icons.open_in_browser),
+                  },                  icon: const Icon(Icons.open_in_browser),
                   label: const Text('Mở link thanh toán'),
                 ),
               ],
