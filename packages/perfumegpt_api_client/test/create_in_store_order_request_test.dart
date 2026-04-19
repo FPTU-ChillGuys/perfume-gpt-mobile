@@ -17,6 +17,11 @@ void main() {
       // TODO
     });
 
+    // String guestEmailOrPhoneNumber
+    test('to test the property `guestEmailOrPhoneNumber`', () async {
+      // TODO
+    });
+
     // String customerId
     test('to test the property `customerId`', () async {
       // TODO
@@ -39,6 +44,11 @@ void main() {
 
     // num expectedTotalPrice
     test('to test the property `expectedTotalPrice`', () async {
+      // TODO
+    });
+
+    // String posSessionId
+    test('to test the property `posSessionId`', () async {
       // TODO
     });
 

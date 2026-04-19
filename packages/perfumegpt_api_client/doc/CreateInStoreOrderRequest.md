@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **scannedItems** | [**List&lt;PosScanItemRequest&gt;**](PosScanItemRequest.md) |  | 
 **voucherCode** | **String** |  | [optional] 
+**guestEmailOrPhoneNumber** | **String** |  | [optional] 
 **customerId** | **String** |  | [optional] 
 **isPickupInStore** | **bool** |  | [optional] 
 **recipient** | [**ContactAddressInformation**](ContactAddressInformation.md) |  | [optional] 

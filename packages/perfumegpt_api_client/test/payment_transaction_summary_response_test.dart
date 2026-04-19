@@ -57,6 +57,16 @@ void main() {
       // TODO
     });
 
+    // num totalShippingFeeDeductedPerOrder
+    test('to test the property `totalShippingFeeDeductedPerOrder`', () async {
+      // TODO
+    });
+
+    // num totalPaymentAmountExcludingShipping
+    test('to test the property `totalPaymentAmountExcludingShipping`', () async {
+      // TODO
+    });
+
     // num totalRefundAmount
     test('to test the property `totalRefundAmount`', () async {
       // TODO

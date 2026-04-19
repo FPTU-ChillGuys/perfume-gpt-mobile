@@ -12,11 +12,11 @@ Name | Type | Description | Notes
 **voucherId** | **String** |  | [optional] 
 **code** | **String** |  | 
 **discountValue** | **num** |  | [optional] 
-**discountType** | **String** |  | 
+**discountType** | [**DiscountType**](DiscountType.md) |  | [optional] 
 **minOrderValue** | **num** |  | [optional] 
 **expiryDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **isUsed** | **bool** |  | [optional] 
-**status** | **String** |  | 
+**status** | [**UsageStatus**](UsageStatus.md) |  | [optional] 
 **isExpired** | **bool** |  | [optional] 
 **redeemedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

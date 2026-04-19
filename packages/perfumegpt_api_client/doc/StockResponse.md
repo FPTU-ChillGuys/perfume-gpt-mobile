@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **variantSku** | **String** |  | 
 **productName** | **String** |  | 
 **variantImageUrl** | **String** |  | 
+**replenishmentPolicy** | [**ReplenishmentPolicy**](ReplenishmentPolicy.md) |  | 
+**variantStatus** | [**VariantStatus**](VariantStatus.md) |  | 
 **volumeMl** | **int** |  | [optional] 
 **concentrationName** | **String** |  | 
 **totalQuantity** | **int** |  | [optional] 

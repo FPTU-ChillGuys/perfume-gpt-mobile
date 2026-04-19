@@ -22,6 +22,11 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfCampaignPromotionItemResponse> apiCampaignsCampaignIdItemsItemIdGet(String campaignId, String itemId) async
+    test('test apiCampaignsCampaignIdItemsItemIdGet', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiCampaignsCampaignIdPut(String campaignId, UpdateCampaignRequest updateCampaignRequest) async
     test('test apiCampaignsCampaignIdPut', () async {
       // TODO
@@ -37,6 +42,11 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfListOfCampaignResponse> apiCampaignsHomeGet() async
+    test('test apiCampaignsHomeGet', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiCampaignsIdItemsItemIdDelete(String id, String itemId) async
     test('test apiCampaignsIdItemsItemIdDelete', () async {
       // TODO
@@ -49,6 +59,11 @@ void main() {
 
     //Future<BaseResponseOfstring> apiCampaignsIdItemsPost(String id, CreateCampaignPromotionItemRequest createCampaignPromotionItemRequest) async
     test('test apiCampaignsIdItemsPost', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfListOfVoucherResponse> apiCampaignsIdVouchersGet(String id) async
+    test('test apiCampaignsIdVouchersGet', () async {
       // TODO
     });
 
@@ -69,6 +84,11 @@ void main() {
 
     //Future<BaseResponseOfstring> apiCampaignsIdVouchersVoucherIdPut(String id, String voucherId, UpdateCampaignVoucherRequest updateCampaignVoucherRequest) async
     test('test apiCampaignsIdVouchersVoucherIdPut', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfListOfCampaignLookupItem> apiCampaignsLookupActiveGet() async
+    test('test apiCampaignsLookupActiveGet', () async {
       // TODO
     });
 

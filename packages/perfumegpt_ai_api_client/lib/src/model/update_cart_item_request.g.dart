@@ -7,7 +7,7 @@ part of 'update_cart_item_request.dart';
 // **************************************************************************
 
 abstract class _$UpdateCartItemRequestCWProxy {
-  UpdateCartItemRequest quantity(int? quantity);
+  UpdateCartItemRequest quantity(num quantity);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `UpdateCartItemRequest(...).copyWith.fieldName(value)`.
@@ -16,7 +16,7 @@ abstract class _$UpdateCartItemRequestCWProxy {
   /// ```dart
   /// UpdateCartItemRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  UpdateCartItemRequest call({int? quantity});
+  UpdateCartItemRequest call({num quantity});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -28,7 +28,7 @@ class _$UpdateCartItemRequestCWProxyImpl
   final UpdateCartItemRequest _value;
 
   @override
-  UpdateCartItemRequest quantity(int? quantity) => call(quantity: quantity);
+  UpdateCartItemRequest quantity(num quantity) => call(quantity: quantity);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -42,10 +42,10 @@ class _$UpdateCartItemRequestCWProxyImpl
     Object? quantity = const $CopyWithPlaceholder(),
   }) {
     return UpdateCartItemRequest(
-      quantity: quantity == const $CopyWithPlaceholder()
+      quantity: quantity == const $CopyWithPlaceholder() || quantity == null
           ? _value.quantity
           // ignore: cast_nullable_to_non_nullable
-          : quantity as int?,
+          : quantity as num,
     );
   }
 }
@@ -65,12 +65,13 @@ extension $UpdateCartItemRequestCopyWith on UpdateCartItemRequest {
 UpdateCartItemRequest _$UpdateCartItemRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('UpdateCartItemRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['quantity']);
   final val = UpdateCartItemRequest(
-    quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
+    quantity: $checkedConvert('quantity', (v) => v as num),
   );
   return val;
 });
 
 Map<String, dynamic> _$UpdateCartItemRequestToJson(
   UpdateCartItemRequest instance,
-) => <String, dynamic>{'quantity': ?instance.quantity};
+) => <String, dynamic>{'quantity': instance.quantity};

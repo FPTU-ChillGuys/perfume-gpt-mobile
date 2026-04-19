@@ -11,6 +11,10 @@ abstract class _$PreviewPosOrderRequestCWProxy {
 
   PreviewPosOrderRequest voucherCode(String? voucherCode);
 
+  PreviewPosOrderRequest guestEmailOrPhoneNumber(
+    String? guestEmailOrPhoneNumber,
+  );
+
   PreviewPosOrderRequest customerId(String? customerId);
 
   PreviewPosOrderRequest sessionId(String? sessionId);
@@ -27,6 +31,7 @@ abstract class _$PreviewPosOrderRequestCWProxy {
   PreviewPosOrderRequest call({
     List<PosScanItemRequest> scannedItems,
     String? voucherCode,
+    String? guestEmailOrPhoneNumber,
     String? customerId,
     String? sessionId,
     ContactAddressInformation? recipient,
@@ -48,6 +53,11 @@ class _$PreviewPosOrderRequestCWProxyImpl
   @override
   PreviewPosOrderRequest voucherCode(String? voucherCode) =>
       call(voucherCode: voucherCode);
+
+  @override
+  PreviewPosOrderRequest guestEmailOrPhoneNumber(
+    String? guestEmailOrPhoneNumber,
+  ) => call(guestEmailOrPhoneNumber: guestEmailOrPhoneNumber);
 
   @override
   PreviewPosOrderRequest customerId(String? customerId) =>
@@ -72,6 +82,7 @@ class _$PreviewPosOrderRequestCWProxyImpl
   PreviewPosOrderRequest call({
     Object? scannedItems = const $CopyWithPlaceholder(),
     Object? voucherCode = const $CopyWithPlaceholder(),
+    Object? guestEmailOrPhoneNumber = const $CopyWithPlaceholder(),
     Object? customerId = const $CopyWithPlaceholder(),
     Object? sessionId = const $CopyWithPlaceholder(),
     Object? recipient = const $CopyWithPlaceholder(),
@@ -86,6 +97,11 @@ class _$PreviewPosOrderRequestCWProxyImpl
           ? _value.voucherCode
           // ignore: cast_nullable_to_non_nullable
           : voucherCode as String?,
+      guestEmailOrPhoneNumber:
+          guestEmailOrPhoneNumber == const $CopyWithPlaceholder()
+          ? _value.guestEmailOrPhoneNumber
+          // ignore: cast_nullable_to_non_nullable
+          : guestEmailOrPhoneNumber as String?,
       customerId: customerId == const $CopyWithPlaceholder()
           ? _value.customerId
           // ignore: cast_nullable_to_non_nullable
@@ -126,6 +142,10 @@ PreviewPosOrderRequest _$PreviewPosOrderRequestFromJson(
           .toList(),
     ),
     voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
+    guestEmailOrPhoneNumber: $checkedConvert(
+      'guestEmailOrPhoneNumber',
+      (v) => v as String?,
+    ),
     customerId: $checkedConvert('customerId', (v) => v as String?),
     sessionId: $checkedConvert('sessionId', (v) => v as String?),
     recipient: $checkedConvert(
@@ -143,6 +163,7 @@ Map<String, dynamic> _$PreviewPosOrderRequestToJson(
 ) => <String, dynamic>{
   'scannedItems': instance.scannedItems.map((e) => e.toJson()).toList(),
   'voucherCode': ?instance.voucherCode,
+  'guestEmailOrPhoneNumber': ?instance.guestEmailOrPhoneNumber,
   'customerId': ?instance.customerId,
   'sessionId': ?instance.sessionId,
   'recipient': ?instance.recipient?.toJson(),

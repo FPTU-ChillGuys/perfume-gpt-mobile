@@ -82,6 +82,11 @@ void main() {
       // TODO
     });
 
+    // num refundedShippingFee
+    test('to test the property `refundedShippingFee`', () async {
+      // TODO
+    });
+
     // num approvedRefundAmount
     test('to test the property `approvedRefundAmount`', () async {
       // TODO

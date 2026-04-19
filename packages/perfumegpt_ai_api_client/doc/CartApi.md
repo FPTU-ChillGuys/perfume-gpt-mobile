@@ -5,36 +5,33 @@
 import 'package:perfumegpt_ai_api_client/api.dart';
 ```
 
-All URIs are relative to *https://localhost:7011*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiCartClearDelete**](CartApi.md#apicartcleardelete) | **DELETE** /api/cart/clear | 
-[**apiCartItemsGet**](CartApi.md#apicartitemsget) | **GET** /api/cart/items | 
-[**apiCartItemsIdDelete**](CartApi.md#apicartitemsiddelete) | **DELETE** /api/cart/items/{id} | 
-[**apiCartItemsIdPut**](CartApi.md#apicartitemsidput) | **PUT** /api/cart/items/{id} | 
-[**apiCartItemsPost**](CartApi.md#apicartitemspost) | **POST** /api/cart/items | 
-[**apiCartPosPreviewPost**](CartApi.md#apicartpospreviewpost) | **POST** /api/cart/pos-preview | 
-[**apiCartTotalGet**](CartApi.md#apicarttotalget) | **GET** /api/cart/total | 
+[**cartControllerAddToCart**](CartApi.md#cartcontrolleraddtocart) | **POST** /cart | Add item to cart
+[**cartControllerClearCart**](CartApi.md#cartcontrollerclearcart) | **DELETE** /cart | Clear current user cart
+[**cartControllerGetCart**](CartApi.md#cartcontrollergetcart) | **GET** /cart | Get current user cart
+[**cartControllerRemoveFromCart**](CartApi.md#cartcontrollerremovefromcart) | **DELETE** /cart/{id} | Remove item from cart
+[**cartControllerUpdateCartItem**](CartApi.md#cartcontrollerupdatecartitem) | **PATCH** /cart/{id} | Update cart item quantity
 
 
-# **apiCartClearDelete**
-> BaseResponseOfstring apiCartClearDelete(itemIds)
+# **cartControllerAddToCart**
+> cartControllerAddToCart(addToCartRequest)
 
-
+Add item to cart
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getCartApi();
-final List<String> itemIds = ; // List<String> | 
+final AddToCartRequest addToCartRequest = ; // AddToCartRequest | 
 
 try {
-    final response = api.apiCartClearDelete(itemIds);
-    print(response);
+    api.cartControllerAddToCart(addToCartRequest);
 } on DioException catch (e) {
-    print('Exception when calling CartApi->apiCartClearDelete: $e\n');
+    print('Exception when calling CartApi->cartControllerAddToCart: $e\n');
 }
 ```
 
@@ -42,91 +39,111 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemIds** | [**List&lt;String&gt;**](String.md)|  | [optional] 
+ **addToCartRequest** | [**AddToCartRequest**](AddToCartRequest.md)|  | 
 
 ### Return type
 
-[**BaseResponseOfstring**](BaseResponseOfstring.md)
+void (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiCartItemsGet**
-> BaseResponseOfGetCartItemsResponse apiCartItemsGet(itemIds, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+# **cartControllerClearCart**
+> cartControllerClearCart()
 
-
+Clear current user cart
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getCartApi();
-final List<String> itemIds = ; // List<String> | 
-final int pageNumber = 56; // int | 
-final int pageSize = 56; // int | 
-final String sortBy = sortBy_example; // String | 
-final String sortOrder = sortOrder_example; // String | 
-final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiCartItemsGet(itemIds, pageNumber, pageSize, sortBy, sortOrder, isDescending);
-    print(response);
+    api.cartControllerClearCart();
 } on DioException catch (e) {
-    print('Exception when calling CartApi->apiCartItemsGet: $e\n');
+    print('Exception when calling CartApi->cartControllerClearCart: $e\n');
 }
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **itemIds** | [**List&lt;String&gt;**](String.md)|  | [optional] 
- **pageNumber** | **int**|  | [optional] 
- **pageSize** | **int**|  | [optional] 
- **sortBy** | **String**|  | [optional] 
- **sortOrder** | **String**|  | [optional] 
- **isDescending** | **bool**|  | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**BaseResponseOfGetCartItemsResponse**](BaseResponseOfGetCartItemsResponse.md)
+void (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiCartItemsIdDelete**
-> BaseResponseOfstring apiCartItemsIdDelete(id)
+# **cartControllerGetCart**
+> cartControllerGetCart()
 
-
+Get current user cart
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getCartApi();
-final String id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 
 try {
-    final response = api.apiCartItemsIdDelete(id);
-    print(response);
+    api.cartControllerGetCart();
 } on DioException catch (e) {
-    print('Exception when calling CartApi->apiCartItemsIdDelete: $e\n');
+    print('Exception when calling CartApi->cartControllerGetCart: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **cartControllerRemoveFromCart**
+> cartControllerRemoveFromCart(id)
+
+Remove item from cart
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getCartApi();
+final String id = id_example; // String | 
+
+try {
+    api.cartControllerRemoveFromCart(id);
+} on DioException catch (e) {
+    print('Exception when calling CartApi->cartControllerRemoveFromCart: $e\n');
 }
 ```
 
@@ -138,37 +155,36 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BaseResponseOfstring**](BaseResponseOfstring.md)
+void (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiCartItemsIdPut**
-> BaseResponseOfstring apiCartItemsIdPut(id, updateCartItemRequest)
+# **cartControllerUpdateCartItem**
+> cartControllerUpdateCartItem(id, updateCartItemRequest)
 
-
+Update cart item quantity
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getCartApi();
-final String id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String id = id_example; // String | 
 final UpdateCartItemRequest updateCartItemRequest = ; // UpdateCartItemRequest | 
 
 try {
-    final response = api.apiCartItemsIdPut(id, updateCartItemRequest);
-    print(response);
+    api.cartControllerUpdateCartItem(id, updateCartItemRequest);
 } on DioException catch (e) {
-    print('Exception when calling CartApi->apiCartItemsIdPut: $e\n');
+    print('Exception when calling CartApi->cartControllerUpdateCartItem: $e\n');
 }
 ```
 
@@ -181,161 +197,16 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BaseResponseOfstring**](BaseResponseOfstring.md)
+void (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiCartItemsPost**
-> BaseResponseOfstring apiCartItemsPost(createCartItemRequest)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getCartApi();
-final CreateCartItemRequest createCartItemRequest = ; // CreateCartItemRequest | 
-
-try {
-    final response = api.apiCartItemsPost(createCartItemRequest);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling CartApi->apiCartItemsPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createCartItemRequest** | [**CreateCartItemRequest**](CreateCartItemRequest.md)|  | 
-
-### Return type
-
-[**BaseResponseOfstring**](BaseResponseOfstring.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiCartPosPreviewPost**
-> BaseResponseOfPreviewPosOrderResponse apiCartPosPreviewPost(previewPosOrderRequest)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getCartApi();
-final PreviewPosOrderRequest previewPosOrderRequest = ; // PreviewPosOrderRequest | 
-
-try {
-    final response = api.apiCartPosPreviewPost(previewPosOrderRequest);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling CartApi->apiCartPosPreviewPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **previewPosOrderRequest** | [**PreviewPosOrderRequest**](PreviewPosOrderRequest.md)|  | 
-
-### Return type
-
-[**BaseResponseOfPreviewPosOrderResponse**](BaseResponseOfPreviewPosOrderResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiCartTotalGet**
-> BaseResponseOfGetCartTotalResponse apiCartTotalGet(voucherCode, itemIds, savedAddressId, recipientPeriodContactName, recipientPeriodContactPhoneNumber, recipientPeriodDistrictId, recipientPeriodDistrictName, recipientPeriodWardCode, recipientPeriodWardName, recipientPeriodProvinceId, recipientPeriodProvinceName, recipientPeriodFullAddress)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getCartApi();
-final String voucherCode = voucherCode_example; // String | 
-final List<String> itemIds = ; // List<String> | 
-final String savedAddressId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final String recipientPeriodContactName = recipientPeriodContactName_example; // String | 
-final String recipientPeriodContactPhoneNumber = recipientPeriodContactPhoneNumber_example; // String | 
-final int recipientPeriodDistrictId = 56; // int | 
-final String recipientPeriodDistrictName = recipientPeriodDistrictName_example; // String | 
-final String recipientPeriodWardCode = recipientPeriodWardCode_example; // String | 
-final String recipientPeriodWardName = recipientPeriodWardName_example; // String | 
-final int recipientPeriodProvinceId = 56; // int | 
-final String recipientPeriodProvinceName = recipientPeriodProvinceName_example; // String | 
-final String recipientPeriodFullAddress = recipientPeriodFullAddress_example; // String | 
-
-try {
-    final response = api.apiCartTotalGet(voucherCode, itemIds, savedAddressId, recipientPeriodContactName, recipientPeriodContactPhoneNumber, recipientPeriodDistrictId, recipientPeriodDistrictName, recipientPeriodWardCode, recipientPeriodWardName, recipientPeriodProvinceId, recipientPeriodProvinceName, recipientPeriodFullAddress);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling CartApi->apiCartTotalGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **voucherCode** | **String**|  | [optional] 
- **itemIds** | [**List&lt;String&gt;**](String.md)|  | [optional] 
- **savedAddressId** | **String**|  | [optional] 
- **recipientPeriodContactName** | **String**|  | [optional] 
- **recipientPeriodContactPhoneNumber** | **String**|  | [optional] 
- **recipientPeriodDistrictId** | **int**|  | [optional] 
- **recipientPeriodDistrictName** | **String**|  | [optional] 
- **recipientPeriodWardCode** | **String**|  | [optional] 
- **recipientPeriodWardName** | **String**|  | [optional] 
- **recipientPeriodProvinceId** | **int**|  | [optional] 
- **recipientPeriodProvinceName** | **String**|  | [optional] 
- **recipientPeriodFullAddress** | **String**|  | [optional] 
-
-### Return type
-
-[**BaseResponseOfGetCartTotalResponse**](BaseResponseOfGetCartTotalResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -32,6 +32,16 @@ void main() {
       // TODO
     });
 
+    // ReplenishmentPolicy replenishmentPolicy
+    test('to test the property `replenishmentPolicy`', () async {
+      // TODO
+    });
+
+    // VariantStatus variantStatus
+    test('to test the property `variantStatus`', () async {
+      // TODO
+    });
+
     // int volumeMl
     test('to test the property `volumeMl`', () async {
       // TODO

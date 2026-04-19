@@ -42,8 +42,28 @@ void main() {
       // TODO
     });
 
+    // num subTotal
+    test('to test the property `subTotal`', () async {
+      // TODO
+    });
+
+    // num shippingFee
+    test('to test the property `shippingFee`', () async {
+      // TODO
+    });
+
     // String voucherCode
     test('to test the property `voucherCode`', () async {
+      // TODO
+    });
+
+    // VoucherType voucherType
+    test('to test the property `voucherType`', () async {
+      // TODO
+    });
+
+    // num voucherDiscountTotal
+    test('to test the property `voucherDiscountTotal`', () async {
       // TODO
     });
 

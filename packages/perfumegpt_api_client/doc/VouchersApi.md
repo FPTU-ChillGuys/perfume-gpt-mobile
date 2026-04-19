@@ -9,19 +9,20 @@ All URIs are relative to *https://backend-sep490.vqnofficial.win*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiVouchersAvailableGet**](VouchersApi.md#apivouchersavailableget) | **GET** /api/vouchers/available | 
+[**apiUserVouchersMeGet**](VouchersApi.md#apiuservouchersmeget) | **GET** /api/user-vouchers/me | 
+[**apiVouchersApplicablePost**](VouchersApi.md#apivouchersapplicablepost) | **POST** /api/vouchers/applicable | 
 [**apiVouchersGet**](VouchersApi.md#apivouchersget) | **GET** /api/vouchers | 
-[**apiVouchersMeGet**](VouchersApi.md#apivouchersmeget) | **GET** /api/vouchers/me | 
 [**apiVouchersPost**](VouchersApi.md#apivoucherspost) | **POST** /api/vouchers | 
 [**apiVouchersRedeemPost**](VouchersApi.md#apivouchersredeempost) | **POST** /api/vouchers/redeem | 
-[**apiVouchersRedeemableListGet**](VouchersApi.md#apivouchersredeemablelistget) | **GET** /api/vouchers/redeemable-list | 
+[**apiVouchersRedeemableGet**](VouchersApi.md#apivouchersredeemableget) | **GET** /api/vouchers/redeemable | 
+[**apiVouchersVariantVariantIdApplicableGet**](VouchersApi.md#apivouchersvariantvariantidapplicableget) | **GET** /api/vouchers/variant/{variantId}/applicable | 
 [**apiVouchersVoucherIdDelete**](VouchersApi.md#apivouchersvoucheriddelete) | **DELETE** /api/vouchers/{voucherId} | 
 [**apiVouchersVoucherIdGet**](VouchersApi.md#apivouchersvoucheridget) | **GET** /api/vouchers/{voucherId} | 
 [**apiVouchersVoucherIdPut**](VouchersApi.md#apivouchersvoucheridput) | **PUT** /api/vouchers/{voucherId} | 
 
 
-# **apiVouchersAvailableGet**
-> BaseResponseOfPagedResultOfAvailableVoucherResponse apiVouchersAvailableGet(pageNumber, pageSize, sortBy, sortOrder, isDescending)
+# **apiUserVouchersMeGet**
+> BaseResponseOfPagedResultOfUserVoucherResponse apiUserVouchersMeGet(status, isUsed, isExpired, code, discountType, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -30,6 +31,11 @@ Method | HTTP request | Description
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getVouchersApi();
+final UsageStatus status = ; // UsageStatus | 
+final bool isUsed = true; // bool | 
+final bool isExpired = true; // bool | 
+final String code = code_example; // String | 
+final DiscountType discountType = ; // DiscountType | 
 final int pageNumber = 56; // int | 
 final int pageSize = 56; // int | 
 final String sortBy = sortBy_example; // String | 
@@ -37,10 +43,10 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiVouchersAvailableGet(pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiUserVouchersMeGet(status, isUsed, isExpired, code, discountType, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling VouchersApi->apiVouchersAvailableGet: $e\n');
+    print('Exception when calling VouchersApi->apiUserVouchersMeGet: $e\n');
 }
 ```
 
@@ -48,6 +54,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **status** | [**UsageStatus**](.md)|  | [optional] 
+ **isUsed** | **bool**|  | [optional] 
+ **isExpired** | **bool**|  | [optional] 
+ **code** | **String**|  | [optional] 
+ **discountType** | [**DiscountType**](.md)|  | [optional] 
  **pageNumber** | **int**|  | [optional] 
  **pageSize** | **int**|  | [optional] 
  **sortBy** | **String**|  | [optional] 
@@ -56,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BaseResponseOfPagedResultOfAvailableVoucherResponse**](BaseResponseOfPagedResultOfAvailableVoucherResponse.md)
+[**BaseResponseOfPagedResultOfUserVoucherResponse**](BaseResponseOfPagedResultOfUserVoucherResponse.md)
 
 ### Authorization
 
@@ -65,6 +76,47 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiVouchersApplicablePost**
+> BaseResponseOfListOfApplicableVoucherResponse apiVouchersApplicablePost(getApplicableVouchersRequest)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getVouchersApi();
+final GetApplicableVouchersRequest getApplicableVouchersRequest = ; // GetApplicableVouchersRequest | 
+
+try {
+    final response = api.apiVouchersApplicablePost(getApplicableVouchersRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling VouchersApi->apiVouchersApplicablePost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **getApplicableVouchersRequest** | [**GetApplicableVouchersRequest**](GetApplicableVouchersRequest.md)|  | 
+
+### Return type
+
+[**BaseResponseOfListOfApplicableVoucherResponse**](BaseResponseOfListOfApplicableVoucherResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -110,65 +162,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BaseResponseOfPagedResultOfVoucherResponse**](BaseResponseOfPagedResultOfVoucherResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiVouchersMeGet**
-> BaseResponseOfPagedResultOfUserVoucherResponse apiVouchersMeGet(status, isUsed, isExpired, code, discountType, pageNumber, pageSize, sortBy, sortOrder, isDescending)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_api_client/api.dart';
-
-final api = PerfumegptApiClient().getVouchersApi();
-final UsageStatus status = ; // UsageStatus | 
-final bool isUsed = true; // bool | 
-final bool isExpired = true; // bool | 
-final String code = code_example; // String | 
-final DiscountType discountType = ; // DiscountType | 
-final int pageNumber = 56; // int | 
-final int pageSize = 56; // int | 
-final String sortBy = sortBy_example; // String | 
-final String sortOrder = sortOrder_example; // String | 
-final bool isDescending = true; // bool | 
-
-try {
-    final response = api.apiVouchersMeGet(status, isUsed, isExpired, code, discountType, pageNumber, pageSize, sortBy, sortOrder, isDescending);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling VouchersApi->apiVouchersMeGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **status** | [**UsageStatus**](.md)|  | [optional] 
- **isUsed** | **bool**|  | [optional] 
- **isExpired** | **bool**|  | [optional] 
- **code** | **String**|  | [optional] 
- **discountType** | [**DiscountType**](.md)|  | [optional] 
- **pageNumber** | **int**|  | [optional] 
- **pageSize** | **int**|  | [optional] 
- **sortBy** | **String**|  | [optional] 
- **sortOrder** | **String**|  | [optional] 
- **isDescending** | **bool**|  | [optional] 
-
-### Return type
-
-[**BaseResponseOfPagedResultOfUserVoucherResponse**](BaseResponseOfPagedResultOfUserVoucherResponse.md)
 
 ### Authorization
 
@@ -263,8 +256,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiVouchersRedeemableListGet**
-> BaseResponseOfListOfRedeemableVoucherResponse apiVouchersRedeemableListGet(pageNumber, pageSize, sortBy, sortOrder, isDescending)
+# **apiVouchersRedeemableGet**
+> BaseResponseOfListOfRedeemableVoucherResponse apiVouchersRedeemableGet(pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -280,10 +273,10 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiVouchersRedeemableListGet(pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiVouchersRedeemableGet(pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling VouchersApi->apiVouchersRedeemableListGet: $e\n');
+    print('Exception when calling VouchersApi->apiVouchersRedeemableGet: $e\n');
 }
 ```
 
@@ -300,6 +293,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BaseResponseOfListOfRedeemableVoucherResponse**](BaseResponseOfListOfRedeemableVoucherResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiVouchersVariantVariantIdApplicableGet**
+> BaseResponseOfListOfApplicableVoucherResponse apiVouchersVariantVariantIdApplicableGet(variantId)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getVouchersApi();
+final String variantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiVouchersVariantVariantIdApplicableGet(variantId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling VouchersApi->apiVouchersVariantVariantIdApplicableGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **variantId** | **String**|  | 
+
+### Return type
+
+[**BaseResponseOfListOfApplicableVoucherResponse**](BaseResponseOfListOfApplicableVoucherResponse.md)
 
 ### Authorization
 

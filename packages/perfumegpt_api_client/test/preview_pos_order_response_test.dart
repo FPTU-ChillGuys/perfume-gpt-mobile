@@ -17,6 +17,11 @@ void main() {
       // TODO
     });
 
+    // num shippingFee
+    test('to test the property `shippingFee`', () async {
+      // TODO
+    });
+
     // num discount
     test('to test the property `discount`', () async {
       // TODO

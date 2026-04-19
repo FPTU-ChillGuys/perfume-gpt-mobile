@@ -62,6 +62,11 @@ void main() {
       // TODO
     });
 
+    // ReplenishmentPolicy restockPolicy
+    test('to test the property `restockPolicy`', () async {
+      // TODO
+    });
+
     // int lowStockThreshold
     test('to test the property `lowStockThreshold`', () async {
       // TODO

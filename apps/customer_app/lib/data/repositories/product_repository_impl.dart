@@ -48,18 +48,26 @@ class ProductRepositoryImpl implements ProductRepository {
         .where((v) => v.discountedPrice != null && v.discountedPrice! > 0)
         .map((v) => v.discountedPrice!)
         .toList();
-    final minDiscounted =
-        discountedPrices.isNotEmpty ? discountedPrices.reduce(min) : null;
+    final minDiscounted = discountedPrices.isNotEmpty
+        ? discountedPrices.reduce(min)
+        : null;
 
     // Campaign name from the first variant that has one
-    final campaignName =
-        variants.where((v) => v.campaignName != null).map((v) => v.campaignName!).firstOrNull;
+    final campaignName = variants
+        .where((v) => v.campaignName != null)
+        .map((v) => v.campaignName!)
+        .firstOrNull;
 
-    final imageUrls = product.media.map((m) => ImageUrlHelper.resolve(m.url)).toList();
-    final primaryImage = product.media
-        .where((m) => m.isPrimary == true)
+    final imageUrls = product.media
         .map((m) => ImageUrlHelper.resolve(m.url))
-        .firstOrNull ?? imageUrls.firstOrNull ?? '';
+        .toList();
+    final primaryImage =
+        product.media
+            .where((m) => m.isPrimary == true)
+            .map((m) => ImageUrlHelper.resolve(m.url))
+            .firstOrNull ??
+        imageUrls.firstOrNull ??
+        '';
 
     return Product(
       id: product.id ?? '',
@@ -101,8 +109,9 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<ProductInformation> getProductInformation(String id) async {
-    final response =
-        await _api.apiProductsProductIdInformationGet(productId: id);
+    final response = await _api.apiProductsProductIdInformationGet(
+      productId: id,
+    );
     final info = response.data?.payload;
     if (info == null) throw Exception('Product information not found');
 
@@ -123,8 +132,7 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<ProductRating> getProductRating(String id) async {
-    final response =
-        await _api.apiProductsProductIdFastLookGet(productId: id);
+    final response = await _api.apiProductsProductIdFastLookGet(productId: id);
     final data = response.data?.payload;
     return (
       rating: (data?.rating ?? 0).toDouble(),
@@ -134,9 +142,14 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<List<Product>> semanticSearch(String query) async {
-    final response = await _aiApi.apiProductsSearchSemanticGet(searchText: query);
-    final payload = response.data?.payload;
-    final items = payload?.items ?? [];
+    final response = await _aiApi.productControllerGetProductsByHybridSearch(
+      searchText: query,
+    );
+    final dynamic payload = response.data?.payload;
+    final List itemsJson = payload?['items'] as List? ?? [];
+    final items = itemsJson
+        .map((e) => ProductListItemWithVariants.fromJson(e as Map<String, dynamic>))
+        .toList();
     return items.map(_mapListItemWithVariantsToProduct).toList();
   }
 
@@ -146,42 +159,50 @@ class ProductRepositoryImpl implements ProductRepository {
     int pageNumber = 1,
     int pageSize = 12,
   }) async {
-    final response = await _aiApi.apiProductsSearchSemanticGet(
+    final response = await _aiApi.productControllerGetProductsByHybridSearch(
       searchText: query,
       pageNumber: pageNumber,
       pageSize: pageSize,
     );
-    final payload = response.data?.payload;
-    final items = payload?.items ?? [];
+    final dynamic payload = response.data?.payload;
+    final List itemsJson = payload?['items'] as List? ?? [];
+    final items = itemsJson
+        .map((e) => ProductListItemWithVariants.fromJson(e as Map<String, dynamic>))
+        .toList();
+    
     return PagedResult(
       items: items.map(_mapListItemWithVariantsToProduct).toList(),
-      totalCount: payload?.totalCount ?? 0,
-      totalPages: payload?.totalPages ?? 0,
-      hasNextPage: payload?.hasNextPage ?? false,
+      totalCount: payload?['totalCount'] ?? 0,
+      totalPages: payload?['totalPages'] ?? 0,
+      hasNextPage: (payload?['pageNumber'] ?? 1) < (payload?['totalPages'] ?? 0),
     );
   }
 
   ProductVariant _mapVariant(PublicProductVariantResponse v) {
-    final imageUrls = v.media.map((m) => ImageUrlHelper.resolve(m.url)).toList();
-    final primaryImage = v.media
-        .where((m) => m.isPrimary == true)
+    final imageUrls = v.media
         .map((m) => ImageUrlHelper.resolve(m.url))
-        .firstOrNull ?? imageUrls.firstOrNull;
+        .toList();
+    final primaryImage =
+        v.media
+            .where((m) => m.isPrimary == true)
+            .map((m) => ImageUrlHelper.resolve(m.url))
+            .firstOrNull ??
+        imageUrls.firstOrNull;
 
     return ProductVariant(
       id: v.id ?? '',
       sku: v.sku,
-      barcode: '', 
+      barcode: '',
       volumeMl: v.volumeMl,
       concentrationName: v.concentrationName,
       type: v.type?.value ?? 'Standard',
       basePrice: (v.basePrice ?? 0).toDouble(),
       retailPrice: v.retailPrice?.toDouble(),
       discountedPrice: v.discountedPrice?.toDouble(),
-      status: 'Active', 
+      status: 'Active',
       stockQuantity: v.stockQuantity ?? 0,
-      sillage: null, 
-      longevity: null, 
+      sillage: null,
+      longevity: null,
       imageUrls: imageUrls,
       primaryImageUrl: primaryImage,
       campaignName: v.campaignName,
@@ -216,7 +237,9 @@ class ProductRepositoryImpl implements ProductRepository {
     );
   }
 
-  Product _mapListItemWithVariantsToProduct(ai.ProductListItemWithVariants item) {
+  Product _mapListItemWithVariantsToProduct(
+    ProductListItemWithVariants item,
+  ) {
     List<double> variantPrices = [];
     if (item.variantPrices.isNotEmpty) {
       variantPrices = item.variantPrices.map((p) => p.toDouble()).toList();
@@ -240,18 +263,22 @@ class ProductRepositoryImpl implements ProductRepository {
       brandId: item.brandId,
       categoryId: item.categoryId,
       categoryName: item.categoryName,
-      variants: item.variants.map((v) => ProductVariant(
-        id: v.id ?? '',
-        sku: '',
-        barcode: '',
-        volumeMl: 0,
-        concentrationName: v.concentrationName,
-        type: 'Standard',
-        basePrice: 0,
-        status: 'Active',
-        stockQuantity: 0,
-        imageUrls: [],
-      )).toList(),
+      variants: item.variants
+          .map(
+            (v) => ProductVariant(
+              id: v.id ?? '',
+              sku: '',
+              barcode: '',
+              volumeMl: 0,
+              concentrationName: v.concentrationName,
+              type: 'Standard',
+              basePrice: 0,
+              status: 'Active',
+              stockQuantity: 0,
+              imageUrls: [],
+            ),
+          )
+          .toList(),
     );
   }
 

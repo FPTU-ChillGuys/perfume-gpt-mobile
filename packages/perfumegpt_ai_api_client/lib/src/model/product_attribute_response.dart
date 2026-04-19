@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_attribute_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,113 +18,65 @@ part 'product_attribute_response.g.dart';
 class ProductAttributeResponse {
   /// Returns a new [ProductAttributeResponse] instance.
   ProductAttributeResponse({
+    required this.id,
 
-     this.id,
+    required this.attributeId,
 
-     this.attributeId,
+    required this.valueId,
 
-     this.valueId,
+    required this.attribute,
 
-    required  this.attribute,
+    required this.description,
 
-     this.description,
-
-    required  this.value,
+    required this.value,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
+  /// ID bản ghi thuộc tính
+  @JsonKey(name: r'id', required: true, includeIfNull: false)
+  final String id;
 
+  /// ID thuộc tính
+  @JsonKey(name: r'attributeId', required: true, includeIfNull: false)
+  final num attributeId;
 
-  final String? id;
+  /// ID giá trị thuộc tính
+  @JsonKey(name: r'valueId', required: true, includeIfNull: false)
+  final num valueId;
 
-
-
-  @JsonKey(
-    
-    name: r'attributeId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? attributeId;
-
-
-
-  @JsonKey(
-    
-    name: r'valueId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? valueId;
-
-
-
-  @JsonKey(
-    
-    name: r'attribute',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Tên thuộc tính
+  @JsonKey(name: r'attribute', required: true, includeIfNull: false)
   final String attribute;
 
+  /// Mô tả thuộc tính
+  @JsonKey(name: r'description', required: true, includeIfNull: false)
+  final String description;
 
-
-  @JsonKey(
-    
-    name: r'description',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? description;
-
-
-
-  @JsonKey(
-    
-    name: r'value',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Giá trị thuộc tính
+  @JsonKey(name: r'value', required: true, includeIfNull: false)
   final String value;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductAttributeResponse &&
+          other.id == id &&
+          other.attributeId == attributeId &&
+          other.valueId == valueId &&
+          other.attribute == attribute &&
+          other.description == description &&
+          other.value == value;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      attributeId.hashCode +
+      valueId.hashCode +
+      attribute.hashCode +
+      description.hashCode +
+      value.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductAttributeResponse &&
-      other.id == id &&
-      other.attributeId == attributeId &&
-      other.valueId == valueId &&
-      other.attribute == attribute &&
-      other.description == description &&
-      other.value == value;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        attributeId.hashCode +
-        valueId.hashCode +
-        attribute.hashCode +
-        (description == null ? 0 : description.hashCode) +
-        value.hashCode;
-
-  factory ProductAttributeResponse.fromJson(Map<String, dynamic> json) => _$ProductAttributeResponseFromJson(json);
+  factory ProductAttributeResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductAttributeResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductAttributeResponseToJson(this);
 
@@ -133,6 +84,4 @@ class ProductAttributeResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

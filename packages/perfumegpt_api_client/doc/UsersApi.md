@@ -18,7 +18,8 @@ Method | HTTP request | Description
 [**apiUsersMePut**](UsersApi.md#apiusersmeput) | **PUT** /api/users/me | 
 [**apiUsersStaffLookupGet**](UsersApi.md#apiusersstafflookupget) | **GET** /api/users/staff-lookup | 
 [**apiUsersStaffManageGet**](UsersApi.md#apiusersstaffmanageget) | **GET** /api/users/staff-manage | 
-[**apiUsersStaffStaffIdInactivePut**](UsersApi.md#apiusersstaffstaffidinactiveput) | **PUT** /api/users/staff/{staffId}/inactive | 
+[**apiUsersUserManageGet**](UsersApi.md#apiusersusermanageget) | **GET** /api/users/user-manage | 
+[**apiUsersUserUserIdInactivePut**](UsersApi.md#apiusersuseruseridinactiveput) | **PUT** /api/users/user/{userId}/inactive | 
 
 
 # **apiUsersAvatarDelete**
@@ -372,8 +373,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiUsersStaffStaffIdInactivePut**
-> BaseResponseOfstring apiUsersStaffStaffIdInactivePut(staffId)
+# **apiUsersUserManageGet**
+> BaseResponseOfListOfUserManageItem apiUsersUserManageGet()
 
 
 
@@ -382,13 +383,50 @@ This endpoint does not need any parameter.
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getUsersApi();
-final String staffId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 
 try {
-    final response = api.apiUsersStaffStaffIdInactivePut(staffId);
+    final response = api.apiUsersUserManageGet();
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling UsersApi->apiUsersStaffStaffIdInactivePut: $e\n');
+    print('Exception when calling UsersApi->apiUsersUserManageGet: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BaseResponseOfListOfUserManageItem**](BaseResponseOfListOfUserManageItem.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiUsersUserUserIdInactivePut**
+> BaseResponseOfstring apiUsersUserUserIdInactivePut(userId)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getUsersApi();
+final String userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.apiUsersUserUserIdInactivePut(userId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling UsersApi->apiUsersUserUserIdInactivePut: $e\n');
 }
 ```
 
@@ -396,7 +434,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **staffId** | **String**|  | 
+ **userId** | **String**|  | 
 
 ### Return type
 

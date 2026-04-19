@@ -15,7 +15,7 @@ abstract class _$UserVoucherResponseCWProxy {
 
   UserVoucherResponse discountValue(num? discountValue);
 
-  UserVoucherResponse discountType(String discountType);
+  UserVoucherResponse discountType(DiscountType? discountType);
 
   UserVoucherResponse minOrderValue(num? minOrderValue);
 
@@ -23,7 +23,7 @@ abstract class _$UserVoucherResponseCWProxy {
 
   UserVoucherResponse isUsed(bool? isUsed);
 
-  UserVoucherResponse status(String status);
+  UserVoucherResponse status(UsageStatus? status);
 
   UserVoucherResponse isExpired(bool? isExpired);
 
@@ -41,11 +41,11 @@ abstract class _$UserVoucherResponseCWProxy {
     String? voucherId,
     String code,
     num? discountValue,
-    String discountType,
+    DiscountType? discountType,
     num? minOrderValue,
     DateTime? expiryDate,
     bool? isUsed,
-    String status,
+    UsageStatus? status,
     bool? isExpired,
     DateTime? redeemedAt,
   });
@@ -73,7 +73,7 @@ class _$UserVoucherResponseCWProxyImpl implements _$UserVoucherResponseCWProxy {
       call(discountValue: discountValue);
 
   @override
-  UserVoucherResponse discountType(String discountType) =>
+  UserVoucherResponse discountType(DiscountType? discountType) =>
       call(discountType: discountType);
 
   @override
@@ -88,7 +88,7 @@ class _$UserVoucherResponseCWProxyImpl implements _$UserVoucherResponseCWProxy {
   UserVoucherResponse isUsed(bool? isUsed) => call(isUsed: isUsed);
 
   @override
-  UserVoucherResponse status(String status) => call(status: status);
+  UserVoucherResponse status(UsageStatus? status) => call(status: status);
 
   @override
   UserVoucherResponse isExpired(bool? isExpired) => call(isExpired: isExpired);
@@ -135,11 +135,10 @@ class _$UserVoucherResponseCWProxyImpl implements _$UserVoucherResponseCWProxy {
           ? _value.discountValue
           // ignore: cast_nullable_to_non_nullable
           : discountValue as num?,
-      discountType:
-          discountType == const $CopyWithPlaceholder() || discountType == null
+      discountType: discountType == const $CopyWithPlaceholder()
           ? _value.discountType
           // ignore: cast_nullable_to_non_nullable
-          : discountType as String,
+          : discountType as DiscountType?,
       minOrderValue: minOrderValue == const $CopyWithPlaceholder()
           ? _value.minOrderValue
           // ignore: cast_nullable_to_non_nullable
@@ -152,10 +151,10 @@ class _$UserVoucherResponseCWProxyImpl implements _$UserVoucherResponseCWProxy {
           ? _value.isUsed
           // ignore: cast_nullable_to_non_nullable
           : isUsed as bool?,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
-          : status as String,
+          : status as UsageStatus?,
       isExpired: isExpired == const $CopyWithPlaceholder()
           ? _value.isExpired
           // ignore: cast_nullable_to_non_nullable
@@ -182,20 +181,26 @@ extension $UserVoucherResponseCopyWith on UserVoucherResponse {
 
 UserVoucherResponse _$UserVoucherResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('UserVoucherResponse', json, ($checkedConvert) {
-      $checkKeys(json, requiredKeys: const ['code', 'discountType', 'status']);
+      $checkKeys(json, requiredKeys: const ['code']);
       final val = UserVoucherResponse(
         id: $checkedConvert('id', (v) => v as String?),
         voucherId: $checkedConvert('voucherId', (v) => v as String?),
         code: $checkedConvert('code', (v) => v as String),
         discountValue: $checkedConvert('discountValue', (v) => v as num?),
-        discountType: $checkedConvert('discountType', (v) => v as String),
+        discountType: $checkedConvert(
+          'discountType',
+          (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
+        ),
         minOrderValue: $checkedConvert('minOrderValue', (v) => v as num?),
         expiryDate: $checkedConvert(
           'expiryDate',
           (v) => v == null ? null : DateTime.parse(v as String),
         ),
         isUsed: $checkedConvert('isUsed', (v) => v as bool?),
-        status: $checkedConvert('status', (v) => v as String),
+        status: $checkedConvert(
+          'status',
+          (v) => $enumDecodeNullable(_$UsageStatusEnumMap, v),
+        ),
         isExpired: $checkedConvert('isExpired', (v) => v as bool?),
         redeemedAt: $checkedConvert(
           'redeemedAt',
@@ -212,11 +217,22 @@ Map<String, dynamic> _$UserVoucherResponseToJson(
   'voucherId': ?instance.voucherId,
   'code': instance.code,
   'discountValue': ?instance.discountValue,
-  'discountType': instance.discountType,
+  'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
   'minOrderValue': ?instance.minOrderValue,
   'expiryDate': ?instance.expiryDate?.toIso8601String(),
   'isUsed': ?instance.isUsed,
-  'status': instance.status,
+  'status': ?_$UsageStatusEnumMap[instance.status],
   'isExpired': ?instance.isExpired,
   'redeemedAt': ?instance.redeemedAt?.toIso8601String(),
+};
+
+const _$DiscountTypeEnumMap = {
+  DiscountType.percentage: 'Percentage',
+  DiscountType.fixedAmount: 'FixedAmount',
+};
+
+const _$UsageStatusEnumMap = {
+  UsageStatus.available: 'Available',
+  UsageStatus.reserved: 'Reserved',
+  UsageStatus.used: 'Used',
 };

@@ -17,6 +17,11 @@ void main() {
       // TODO
     });
 
+    // String guestEmailOrPhoneNumber
+    test('to test the property `guestEmailOrPhoneNumber`', () async {
+      // TODO
+    });
+
     // String customerId
     test('to test the property `customerId`', () async {
       // TODO
@@ -24,6 +29,11 @@ void main() {
 
     // String sessionId
     test('to test the property `sessionId`', () async {
+      // TODO
+    });
+
+    // ContactAddressInformation recipient
+    test('to test the property `recipient`', () async {
       // TODO
     });
 

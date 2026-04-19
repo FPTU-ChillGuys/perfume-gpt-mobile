@@ -150,7 +150,7 @@ Class | Method | HTTP request | Description
 [*ConcentrationsApi*](doc/ConcentrationsApi.md) | [**apiConcentrationsLookupGet**](doc/ConcentrationsApi.md#apiconcentrationslookupget) | **GET** /api/concentrations/lookup | 
 [*ConcentrationsApi*](doc/ConcentrationsApi.md) | [**apiConcentrationsPost**](doc/ConcentrationsApi.md#apiconcentrationspost) | **POST** /api/concentrations | 
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsExcelParserPost**](doc/ImportTicketsApi.md#apiimportticketsexcelparserpost) | **POST** /api/importtickets/excel-parser | 
-[*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsExcelTemplateGet**](doc/ImportTicketsApi.md#apiimportticketsexceltemplateget) | **GET** /api/importtickets/excel-template | 
+[*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsExcelTemplateSupplierIdGet**](doc/ImportTicketsApi.md#apiimportticketsexceltemplatesupplieridget) | **GET** /api/importtickets/excel-template/{supplierId} | 
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsGet**](doc/ImportTicketsApi.md#apiimportticketsget) | **GET** /api/importtickets | 
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsIdDelete**](doc/ImportTicketsApi.md#apiimportticketsiddelete) | **DELETE** /api/importtickets/{id} | 
 [*ImportTicketsApi*](doc/ImportTicketsApi.md) | [**apiImportticketsIdGet**](doc/ImportTicketsApi.md#apiimportticketsidget) | **GET** /api/importtickets/{id} | 
@@ -198,7 +198,7 @@ Class | Method | HTTP request | Description
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersMyOrdersGet**](doc/OrdersApi.md#apiordersmyordersget) | **GET** /api/orders/my-orders | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersMyOrdersOrderIdGet**](doc/OrdersApi.md#apiordersmyordersorderidget) | **GET** /api/orders/my-orders/{orderId} | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersMyOrdersOrderIdInvoiceGet**](doc/OrdersApi.md#apiordersmyordersorderidinvoiceget) | **GET** /api/orders/my-orders/{orderId}/invoice | 
-[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderCodeGet**](doc/OrdersApi.md#apiordersordercodeget) | **GET** /api/orders/order-code | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderCodeCodeGet**](doc/OrdersApi.md#apiordersordercodecodeget) | **GET** /api/orders/order-code/{code} | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdCancelPost**](doc/OrdersApi.md#apiordersorderidcancelpost) | **POST** /api/orders/{orderId}/cancel | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdDeliverInStorePut**](doc/OrdersApi.md#apiordersorderiddeliverinstoreput) | **PUT** /api/orders/{orderId}/deliver-in-store | 
 [*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersOrderIdFulfillPost**](doc/OrdersApi.md#apiordersorderidfulfillpost) | **POST** /api/orders/{orderId}/fulfill | 
@@ -295,13 +295,15 @@ Class | Method | HTTP request | Description
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersMePut**](doc/UsersApi.md#apiusersmeput) | **PUT** /api/users/me | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersStaffLookupGet**](doc/UsersApi.md#apiusersstafflookupget) | **GET** /api/users/staff-lookup | 
 [*UsersApi*](doc/UsersApi.md) | [**apiUsersStaffManageGet**](doc/UsersApi.md#apiusersstaffmanageget) | **GET** /api/users/staff-manage | 
-[*UsersApi*](doc/UsersApi.md) | [**apiUsersStaffStaffIdInactivePut**](doc/UsersApi.md#apiusersstaffstaffidinactiveput) | **PUT** /api/users/staff/{staffId}/inactive | 
-[*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersAvailableGet**](doc/VouchersApi.md#apivouchersavailableget) | **GET** /api/vouchers/available | 
+[*UsersApi*](doc/UsersApi.md) | [**apiUsersUserManageGet**](doc/UsersApi.md#apiusersusermanageget) | **GET** /api/users/user-manage | 
+[*UsersApi*](doc/UsersApi.md) | [**apiUsersUserUserIdInactivePut**](doc/UsersApi.md#apiusersuseruseridinactiveput) | **PUT** /api/users/user/{userId}/inactive | 
+[*VouchersApi*](doc/VouchersApi.md) | [**apiUserVouchersMeGet**](doc/VouchersApi.md#apiuservouchersmeget) | **GET** /api/user-vouchers/me | 
+[*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersApplicablePost**](doc/VouchersApi.md#apivouchersapplicablepost) | **POST** /api/vouchers/applicable | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersGet**](doc/VouchersApi.md#apivouchersget) | **GET** /api/vouchers | 
-[*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersMeGet**](doc/VouchersApi.md#apivouchersmeget) | **GET** /api/vouchers/me | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersPost**](doc/VouchersApi.md#apivoucherspost) | **POST** /api/vouchers | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersRedeemPost**](doc/VouchersApi.md#apivouchersredeempost) | **POST** /api/vouchers/redeem | 
-[*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersRedeemableListGet**](doc/VouchersApi.md#apivouchersredeemablelistget) | **GET** /api/vouchers/redeemable-list | 
+[*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersRedeemableGet**](doc/VouchersApi.md#apivouchersredeemableget) | **GET** /api/vouchers/redeemable | 
+[*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersVariantVariantIdApplicableGet**](doc/VouchersApi.md#apivouchersvariantvariantidapplicableget) | **GET** /api/vouchers/variant/{variantId}/applicable | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersVoucherIdDelete**](doc/VouchersApi.md#apivouchersvoucheriddelete) | **DELETE** /api/vouchers/{voucherId} | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersVoucherIdGet**](doc/VouchersApi.md#apivouchersvoucheridget) | **GET** /api/vouchers/{voucherId} | 
 [*VouchersApi*](doc/VouchersApi.md) | [**apiVouchersVoucherIdPut**](doc/VouchersApi.md#apivouchersvoucheridput) | **PUT** /api/vouchers/{voucherId} | 
@@ -313,9 +315,10 @@ Class | Method | HTTP request | Description
  - [AddressResponse](doc/AddressResponse.md)
  - [AdminDashboardOverviewResponse](doc/AdminDashboardOverviewResponse.md)
  - [AnswerReviewRequest](doc/AnswerReviewRequest.md)
+ - [ApplicableVoucherCartItemRequest](doc/ApplicableVoucherCartItemRequest.md)
+ - [ApplicableVoucherResponse](doc/ApplicableVoucherResponse.md)
  - [AttributeLookupItem](doc/AttributeLookupItem.md)
  - [AttributeValueLookupItem](doc/AttributeValueLookupItem.md)
- - [AvailableVoucherResponse](doc/AvailableVoucherResponse.md)
  - [BannerLinkType](doc/BannerLinkType.md)
  - [BannerPosition](doc/BannerPosition.md)
  - [BannerResponse](doc/BannerResponse.md)
@@ -343,6 +346,7 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfInventoryLevelsResponse](doc/BaseResponseOfInventoryLevelsResponse.md)
  - [BaseResponseOfInventorySummaryResponse](doc/BaseResponseOfInventorySummaryResponse.md)
  - [BaseResponseOfListOfAddressResponse](doc/BaseResponseOfListOfAddressResponse.md)
+ - [BaseResponseOfListOfApplicableVoucherResponse](doc/BaseResponseOfListOfApplicableVoucherResponse.md)
  - [BaseResponseOfListOfAttributeLookupItem](doc/BaseResponseOfListOfAttributeLookupItem.md)
  - [BaseResponseOfListOfAttributeValueLookupItem](doc/BaseResponseOfListOfAttributeValueLookupItem.md)
  - [BaseResponseOfListOfBannerResponse](doc/BaseResponseOfListOfBannerResponse.md)
@@ -372,6 +376,7 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfListOfSupplierLookupItem](doc/BaseResponseOfListOfSupplierLookupItem.md)
  - [BaseResponseOfListOfSupplierResponse](doc/BaseResponseOfListOfSupplierResponse.md)
  - [BaseResponseOfListOfTopProductResponse](doc/BaseResponseOfListOfTopProductResponse.md)
+ - [BaseResponseOfListOfUserManageItem](doc/BaseResponseOfListOfUserManageItem.md)
  - [BaseResponseOfListOfVariantLookupItem](doc/BaseResponseOfListOfVariantLookupItem.md)
  - [BaseResponseOfListOfVoucherResponse](doc/BaseResponseOfListOfVoucherResponse.md)
  - [BaseResponseOfListOfWardResponse](doc/BaseResponseOfListOfWardResponse.md)
@@ -381,7 +386,6 @@ Class | Method | HTTP request | Description
  - [BaseResponseOfOrderCancelRequestResponse](doc/BaseResponseOfOrderCancelRequestResponse.md)
  - [BaseResponseOfOrderResponse](doc/BaseResponseOfOrderResponse.md)
  - [BaseResponseOfOrderReturnRequestResponse](doc/BaseResponseOfOrderReturnRequestResponse.md)
- - [BaseResponseOfPagedResultOfAvailableVoucherResponse](doc/BaseResponseOfPagedResultOfAvailableVoucherResponse.md)
  - [BaseResponseOfPagedResultOfBannerResponse](doc/BaseResponseOfPagedResultOfBannerResponse.md)
  - [BaseResponseOfPagedResultOfBatchDetailResponse](doc/BaseResponseOfPagedResultOfBatchDetailResponse.md)
  - [BaseResponseOfPagedResultOfCampaignResponse](doc/BaseResponseOfPagedResultOfCampaignResponse.md)
@@ -488,6 +492,7 @@ Class | Method | HTTP request | Description
  - [CustomerFamilyPreferenceRespone](doc/CustomerFamilyPreferenceRespone.md)
  - [CustomerForPosResponse](doc/CustomerForPosResponse.md)
  - [CustomerNotePreferenceResponse](doc/CustomerNotePreferenceResponse.md)
+ - [DeliverInStoreRequest](doc/DeliverInStoreRequest.md)
  - [DeliveryMethod](doc/DeliveryMethod.md)
  - [DiscountType](doc/DiscountType.md)
  - [DistrictResponse](doc/DistrictResponse.md)
@@ -498,6 +503,7 @@ Class | Method | HTTP request | Description
  - [FulfillOrderItemRequest](doc/FulfillOrderItemRequest.md)
  - [FulfillOrderRequest](doc/FulfillOrderRequest.md)
  - [Gender](doc/Gender.md)
+ - [GetApplicableVouchersRequest](doc/GetApplicableVouchersRequest.md)
  - [GetCartItemResponse](doc/GetCartItemResponse.md)
  - [GetCartItemsResponse](doc/GetCartItemsResponse.md)
  - [GetCartTotalResponse](doc/GetCartTotalResponse.md)
@@ -531,7 +537,6 @@ Class | Method | HTTP request | Description
  - [OrderReturnRequestResponse](doc/OrderReturnRequestResponse.md)
  - [OrderStatus](doc/OrderStatus.md)
  - [OrderType](doc/OrderType.md)
- - [PagedResultOfAvailableVoucherResponse](doc/PagedResultOfAvailableVoucherResponse.md)
  - [PagedResultOfBannerResponse](doc/PagedResultOfBannerResponse.md)
  - [PagedResultOfBatchDetailResponse](doc/PagedResultOfBatchDetailResponse.md)
  - [PagedResultOfCampaignResponse](doc/PagedResultOfCampaignResponse.md)
@@ -670,6 +675,7 @@ Class | Method | HTTP request | Description
  - [UsageStatus](doc/UsageStatus.md)
  - [UserCancelOrderRequest](doc/UserCancelOrderRequest.md)
  - [UserCredentialsResponse](doc/UserCredentialsResponse.md)
+ - [UserManageItem](doc/UserManageItem.md)
  - [UserOrderResponse](doc/UserOrderResponse.md)
  - [UserRole](doc/UserRole.md)
  - [UserVoucherResponse](doc/UserVoucherResponse.md)

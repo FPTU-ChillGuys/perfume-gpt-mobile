@@ -7,7 +7,12 @@ void main() {
   final instance = PerfumegptApiClient().getProductVariantsApi();
 
   group(ProductVariantsApi, () {
-    //Future<BaseResponseOfProductVariantForPosResponse> apiProductvariantsForPosGet({ String barcode, String sku, String name }) async
+    //Future<BaseResponseOfPagedResultOfVariantPagedItem> apiProductvariantsCampaignsCampaignIdGet(String campaignId, { int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    test('test apiProductvariantsCampaignsCampaignIdGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfProductVariantForPosResponse> apiProductvariantsForPosGet({ String keyword }) async
     test('test apiProductvariantsForPosGet', () async {
       // TODO
     });
@@ -27,7 +32,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfListOfVariantLookupItem> apiProductvariantsLookupGet({ String productId }) async
+    //Future<BaseResponseOfListOfVariantLookupItem> apiProductvariantsLookupGet({ String productId, int supplierId }) async
     test('test apiProductvariantsLookupGet', () async {
       // TODO
     });

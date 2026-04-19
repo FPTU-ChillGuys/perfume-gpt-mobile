@@ -107,5 +107,10 @@ void main() {
       // TODO
     });
 
+    // List<VariantSupplierResponse> suppliers
+    test('to test the property `suppliers`', () async {
+      // TODO
+    });
+
   });
 }

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**apiOrdersMyOrdersGet**](OrdersApi.md#apiordersmyordersget) | **GET** /api/orders/my-orders | 
 [**apiOrdersMyOrdersOrderIdGet**](OrdersApi.md#apiordersmyordersorderidget) | **GET** /api/orders/my-orders/{orderId} | 
 [**apiOrdersMyOrdersOrderIdInvoiceGet**](OrdersApi.md#apiordersmyordersorderidinvoiceget) | **GET** /api/orders/my-orders/{orderId}/invoice | 
-[**apiOrdersOrderCodeGet**](OrdersApi.md#apiordersordercodeget) | **GET** /api/orders/order-code | 
+[**apiOrdersOrderCodeCodeGet**](OrdersApi.md#apiordersordercodecodeget) | **GET** /api/orders/order-code/{code} | 
 [**apiOrdersOrderIdCancelPost**](OrdersApi.md#apiordersorderidcancelpost) | **POST** /api/orders/{orderId}/cancel | 
 [**apiOrdersOrderIdDeliverInStorePut**](OrdersApi.md#apiordersorderiddeliverinstoreput) | **PUT** /api/orders/{orderId}/deliver-in-store | 
 [**apiOrdersOrderIdFulfillPost**](OrdersApi.md#apiordersorderidfulfillpost) | **POST** /api/orders/{orderId}/fulfill | 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiOrdersGet**
-> BaseResponseOfPagedResultOfOrderListItem apiOrdersGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+> BaseResponseOfPagedResultOfOrderListItem apiOrdersGet(userId, orderCode, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -120,6 +120,7 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrdersApi();
 final String userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String orderCode = orderCode_example; // String | 
 final OrderStatus status = ; // OrderStatus | 
 final OrderType type = ; // OrderType | 
 final PaymentStatus paymentStatus = ; // PaymentStatus | 
@@ -133,7 +134,7 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiOrdersGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiOrdersGet(userId, orderCode, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling OrdersApi->apiOrdersGet: $e\n');
@@ -145,6 +146,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **String**|  | [optional] 
+ **orderCode** | **String**|  | [optional] 
  **status** | [**OrderStatus**](.md)|  | [optional] 
  **type** | [**OrderType**](.md)|  | [optional] 
  **paymentStatus** | [**PaymentStatus**](.md)|  | [optional] 
@@ -173,7 +175,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiOrdersMyOrdersGet**
-> BaseResponseOfPagedResultOfOrderListItem apiOrdersMyOrdersGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+> BaseResponseOfPagedResultOfOrderListItem apiOrdersMyOrdersGet(userId, orderCode, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -183,6 +185,7 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrdersApi();
 final String userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String orderCode = orderCode_example; // String | 
 final OrderStatus status = ; // OrderStatus | 
 final OrderType type = ; // OrderType | 
 final PaymentStatus paymentStatus = ; // PaymentStatus | 
@@ -196,7 +199,7 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiOrdersMyOrdersGet(userId, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiOrdersMyOrdersGet(userId, orderCode, status, type, paymentStatus, fromDate, toDate, searchTerm, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling OrdersApi->apiOrdersMyOrdersGet: $e\n');
@@ -208,6 +211,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **String**|  | [optional] 
+ **orderCode** | **String**|  | [optional] 
  **status** | [**OrderStatus**](.md)|  | [optional] 
  **type** | [**OrderType**](.md)|  | [optional] 
  **paymentStatus** | [**PaymentStatus**](.md)|  | [optional] 
@@ -317,8 +321,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiOrdersOrderCodeGet**
-> BaseResponseOfUserOrderResponse apiOrdersOrderCodeGet(orderCode)
+# **apiOrdersOrderCodeCodeGet**
+> BaseResponseOfOrderResponse apiOrdersOrderCodeCodeGet(code)
 
 
 
@@ -327,13 +331,13 @@ Name | Type | Description  | Notes
 import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrdersApi();
-final String orderCode = orderCode_example; // String | 
+final String code = code_example; // String | 
 
 try {
-    final response = api.apiOrdersOrderCodeGet(orderCode);
+    final response = api.apiOrdersOrderCodeCodeGet(code);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling OrdersApi->apiOrdersOrderCodeGet: $e\n');
+    print('Exception when calling OrdersApi->apiOrdersOrderCodeCodeGet: $e\n');
 }
 ```
 
@@ -341,11 +345,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderCode** | **String**|  | [optional] 
+ **code** | **String**|  | 
 
 ### Return type
 
-[**BaseResponseOfUserOrderResponse**](BaseResponseOfUserOrderResponse.md)
+[**BaseResponseOfOrderResponse**](BaseResponseOfOrderResponse.md)
 
 ### Authorization
 
@@ -402,7 +406,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiOrdersOrderIdDeliverInStorePut**
-> BaseResponseOfstring apiOrdersOrderIdDeliverInStorePut(orderId)
+> BaseResponseOfstring apiOrdersOrderIdDeliverInStorePut(orderId, deliverInStoreRequest)
 
 
 
@@ -412,9 +416,10 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getOrdersApi();
 final String orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final DeliverInStoreRequest deliverInStoreRequest = ; // DeliverInStoreRequest | 
 
 try {
-    final response = api.apiOrdersOrderIdDeliverInStorePut(orderId);
+    final response = api.apiOrdersOrderIdDeliverInStorePut(orderId, deliverInStoreRequest);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling OrdersApi->apiOrdersOrderIdDeliverInStorePut: $e\n');
@@ -426,6 +431,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **String**|  | 
+ **deliverInStoreRequest** | [**DeliverInStoreRequest**](DeliverInStoreRequest.md)|  | 
 
 ### Return type
 
@@ -437,7 +443,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -17,6 +17,10 @@ abstract class _$StockResponseCWProxy {
 
   StockResponse variantImageUrl(String variantImageUrl);
 
+  StockResponse replenishmentPolicy(ReplenishmentPolicy replenishmentPolicy);
+
+  StockResponse variantStatus(VariantStatus variantStatus);
+
   StockResponse volumeMl(int? volumeMl);
 
   StockResponse concentrationName(String concentrationName);
@@ -42,6 +46,8 @@ abstract class _$StockResponseCWProxy {
     String variantSku,
     String productName,
     String variantImageUrl,
+    ReplenishmentPolicy replenishmentPolicy,
+    VariantStatus variantStatus,
     int? volumeMl,
     String concentrationName,
     int? totalQuantity,
@@ -74,6 +80,14 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
   @override
   StockResponse variantImageUrl(String variantImageUrl) =>
       call(variantImageUrl: variantImageUrl);
+
+  @override
+  StockResponse replenishmentPolicy(ReplenishmentPolicy replenishmentPolicy) =>
+      call(replenishmentPolicy: replenishmentPolicy);
+
+  @override
+  StockResponse variantStatus(VariantStatus variantStatus) =>
+      call(variantStatus: variantStatus);
 
   @override
   StockResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
@@ -111,6 +125,8 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
     Object? variantSku = const $CopyWithPlaceholder(),
     Object? productName = const $CopyWithPlaceholder(),
     Object? variantImageUrl = const $CopyWithPlaceholder(),
+    Object? replenishmentPolicy = const $CopyWithPlaceholder(),
+    Object? variantStatus = const $CopyWithPlaceholder(),
     Object? volumeMl = const $CopyWithPlaceholder(),
     Object? concentrationName = const $CopyWithPlaceholder(),
     Object? totalQuantity = const $CopyWithPlaceholder(),
@@ -143,6 +159,17 @@ class _$StockResponseCWProxyImpl implements _$StockResponseCWProxy {
           ? _value.variantImageUrl
           // ignore: cast_nullable_to_non_nullable
           : variantImageUrl as String,
+      replenishmentPolicy:
+          replenishmentPolicy == const $CopyWithPlaceholder() ||
+              replenishmentPolicy == null
+          ? _value.replenishmentPolicy
+          // ignore: cast_nullable_to_non_nullable
+          : replenishmentPolicy as ReplenishmentPolicy,
+      variantStatus:
+          variantStatus == const $CopyWithPlaceholder() || variantStatus == null
+          ? _value.variantStatus
+          // ignore: cast_nullable_to_non_nullable
+          : variantStatus as VariantStatus,
       volumeMl: volumeMl == const $CopyWithPlaceholder()
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
@@ -192,6 +219,8 @@ StockResponse _$StockResponseFromJson(Map<String, dynamic> json) =>
           'variantSku',
           'productName',
           'variantImageUrl',
+          'replenishmentPolicy',
+          'variantStatus',
           'concentrationName',
         ],
       );
@@ -201,6 +230,14 @@ StockResponse _$StockResponseFromJson(Map<String, dynamic> json) =>
         variantSku: $checkedConvert('variantSku', (v) => v as String),
         productName: $checkedConvert('productName', (v) => v as String),
         variantImageUrl: $checkedConvert('variantImageUrl', (v) => v as String),
+        replenishmentPolicy: $checkedConvert(
+          'replenishmentPolicy',
+          (v) => $enumDecode(_$ReplenishmentPolicyEnumMap, v),
+        ),
+        variantStatus: $checkedConvert(
+          'variantStatus',
+          (v) => $enumDecode(_$VariantStatusEnumMap, v),
+        ),
         volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
         concentrationName: $checkedConvert(
           'concentrationName',
@@ -233,6 +270,9 @@ Map<String, dynamic> _$StockResponseToJson(StockResponse instance) =>
       'variantSku': instance.variantSku,
       'productName': instance.productName,
       'variantImageUrl': instance.variantImageUrl,
+      'replenishmentPolicy':
+          _$ReplenishmentPolicyEnumMap[instance.replenishmentPolicy]!,
+      'variantStatus': _$VariantStatusEnumMap[instance.variantStatus]!,
       'volumeMl': ?instance.volumeMl,
       'concentrationName': instance.concentrationName,
       'totalQuantity': ?instance.totalQuantity,
@@ -240,6 +280,18 @@ Map<String, dynamic> _$StockResponseToJson(StockResponse instance) =>
       'lowStockThreshold': ?instance.lowStockThreshold,
       'status': ?_$StockStatusEnumMap[instance.status],
     };
+
+const _$ReplenishmentPolicyEnumMap = {
+  ReplenishmentPolicy.autoRestock: 'AutoRestock',
+  ReplenishmentPolicy.manualOnly: 'ManualOnly',
+  ReplenishmentPolicy.doNotRestock: 'DoNotRestock',
+};
+
+const _$VariantStatusEnumMap = {
+  VariantStatus.active: 'Active',
+  VariantStatus.inactive: 'Inactive',
+  VariantStatus.discontinued: 'Discontinued',
+};
 
 const _$StockStatusEnumMap = {
   StockStatus.outOfStock: 'OutOfStock',

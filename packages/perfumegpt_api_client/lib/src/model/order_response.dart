@@ -38,6 +38,8 @@ class OrderResponse {
 
      this.customerEmail,
 
+     this.customerPhoneNumber,
+
      this.staffId,
 
      this.staffName,
@@ -136,6 +138,18 @@ class OrderResponse {
 
 
   final String? customerEmail;
+
+
+
+  @JsonKey(
+    
+    name: r'customerPhoneNumber',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? customerPhoneNumber;
 
 
 
@@ -388,6 +402,7 @@ class OrderResponse {
       other.customerId == customerId &&
       other.customerName == customerName &&
       other.customerEmail == customerEmail &&
+      other.customerPhoneNumber == customerPhoneNumber &&
       other.staffId == staffId &&
       other.staffName == staffName &&
       other.type == type &&
@@ -416,6 +431,7 @@ class OrderResponse {
         (customerId == null ? 0 : customerId.hashCode) +
         (customerName == null ? 0 : customerName.hashCode) +
         (customerEmail == null ? 0 : customerEmail.hashCode) +
+        (customerPhoneNumber == null ? 0 : customerPhoneNumber.hashCode) +
         (staffId == null ? 0 : staffId.hashCode) +
         (staffName == null ? 0 : staffName.hashCode) +
         type.hashCode +

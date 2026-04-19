@@ -26,6 +26,8 @@ class PreviewPosOrderRequest {
 
      this.voucherCode,
 
+     this.guestEmailOrPhoneNumber,
+
      this.customerId,
 
      this.sessionId,
@@ -54,6 +56,18 @@ class PreviewPosOrderRequest {
 
 
   final String? voucherCode;
+
+
+
+  @JsonKey(
+    
+    name: r'guestEmailOrPhoneNumber',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? guestEmailOrPhoneNumber;
 
 
 
@@ -99,6 +113,7 @@ class PreviewPosOrderRequest {
     bool operator ==(Object other) => identical(this, other) || other is PreviewPosOrderRequest &&
       other.scannedItems == scannedItems &&
       other.voucherCode == voucherCode &&
+      other.guestEmailOrPhoneNumber == guestEmailOrPhoneNumber &&
       other.customerId == customerId &&
       other.sessionId == sessionId &&
       other.recipient == recipient;
@@ -107,6 +122,7 @@ class PreviewPosOrderRequest {
     int get hashCode =>
         scannedItems.hashCode +
         (voucherCode == null ? 0 : voucherCode.hashCode) +
+        (guestEmailOrPhoneNumber == null ? 0 : guestEmailOrPhoneNumber.hashCode) +
         (customerId == null ? 0 : customerId.hashCode) +
         (sessionId == null ? 0 : sessionId.hashCode) +
         (recipient == null ? 0 : recipient.hashCode);

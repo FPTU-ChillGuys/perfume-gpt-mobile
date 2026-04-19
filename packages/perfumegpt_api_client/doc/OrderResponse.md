@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **customerId** | **String** |  | [optional] 
 **customerName** | **String** |  | [optional] 
 **customerEmail** | **String** |  | [optional] 
+**customerPhoneNumber** | **String** |  | [optional] 
 **staffId** | **String** |  | [optional] 
 **staffName** | **String** |  | [optional] 
 **type** | [**OrderType**](OrderType.md) |  | [optional] 

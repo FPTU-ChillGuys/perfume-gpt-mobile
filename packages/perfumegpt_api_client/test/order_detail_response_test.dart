@@ -37,6 +37,26 @@ void main() {
       // TODO
     });
 
+    // num campaignDiscount
+    test('to test the property `campaignDiscount`', () async {
+      // TODO
+    });
+
+    // num campaignPrice
+    test('to test the property `campaignPrice`', () async {
+      // TODO
+    });
+
+    // num voucherDiscount
+    test('to test the property `voucherDiscount`', () async {
+      // TODO
+    });
+
+    // num itemTotal
+    test('to test the property `itemTotal`', () async {
+      // TODO
+    });
+
     // num refunablePrice
     test('to test the property `refunablePrice`', () async {
       // TODO

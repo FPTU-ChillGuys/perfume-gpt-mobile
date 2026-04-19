@@ -32,6 +32,11 @@ void main() {
       // TODO
     });
 
+    // num maxDiscountAmount
+    test('to test the property `maxDiscountAmount`', () async {
+      // TODO
+    });
+
     // num minOrderValue
     test('to test the property `minOrderValue`', () async {
       // TODO
@@ -52,8 +57,18 @@ void main() {
       // TODO
     });
 
+    // int maxUsagePerUser
+    test('to test the property `maxUsagePerUser`', () async {
+      // TODO
+    });
+
     // bool isPublic
     test('to test the property `isPublic`', () async {
+      // TODO
+    });
+
+    // bool isMemberOnly
+    test('to test the property `isMemberOnly`', () async {
       // TODO
     });
 

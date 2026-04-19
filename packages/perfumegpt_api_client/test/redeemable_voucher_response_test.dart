@@ -32,6 +32,11 @@ void main() {
       // TODO
     });
 
+    // num maxDiscountAmount
+    test('to test the property `maxDiscountAmount`', () async {
+      // TODO
+    });
+
     // num minOrderValue
     test('to test the property `minOrderValue`', () async {
       // TODO
@@ -49,6 +54,11 @@ void main() {
 
     // int remainingQuantity
     test('to test the property `remainingQuantity`', () async {
+      // TODO
+    });
+
+    // int maxUsagePerUser
+    test('to test the property `maxUsagePerUser`', () async {
       // TODO
     });
 

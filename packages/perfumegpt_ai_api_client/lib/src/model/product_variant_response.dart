@@ -3,15 +3,14 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:perfumegpt_ai_api_client/src/model/media_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/variant_type.dart';
-import 'package:perfumegpt_ai_api_client/src/model/variant_status.dart';
+import 'package:perfumegpt_ai_api_client/src/model/variant_media_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/variant_stock_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/concentration_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_attribute_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'product_variant_response.g.dart';
-
 
 @CopyWith()
 @JsonSerializable(
@@ -23,337 +22,153 @@ part 'product_variant_response.g.dart';
 class ProductVariantResponse {
   /// Returns a new [ProductVariantResponse] instance.
   ProductVariantResponse({
+    required this.id,
 
-     this.id,
+    required this.productId,
 
-    required  this.barcode,
+    required this.sku,
 
-    required  this.sku,
+    required this.barcode,
 
-     this.volumeMl,
+    required this.volumeMl,
 
-     this.concentrationId,
+    required this.type,
 
-    required  this.concentrationName,
+    required this.basePrice,
 
-     this.type,
+    required this.status,
 
-     this.basePrice,
+    required this.concentrationId,
 
-     this.retailPrice,
+    this.concentration,
 
-     this.status,
+    this.stock,
 
-     this.stockQuantity,
+    required this.media,
 
-     this.sillage,
+    required this.attributes,
 
-     this.longevity,
+    this.longevity,
 
-     this.productId,
+    this.sillage,
 
-    required  this.productName,
+    required this.createdAt,
 
-    required  this.media,
-
-     this.campaignName,
-
-     this.voucherCode,
-
-     this.discountedPrice,
-
-     this.attributes,
+    this.updatedAt,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
+  /// ID variant
+  @JsonKey(name: r'id', required: true, includeIfNull: false)
+  final String id;
 
+  /// ID sản phẩm
+  @JsonKey(name: r'productId', required: true, includeIfNull: false)
+  final String productId;
 
-  final String? id;
-
-
-
-  @JsonKey(
-    
-    name: r'barcode',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final String barcode;
-
-
-
-  @JsonKey(
-    
-    name: r'sku',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// SKU
+  @JsonKey(name: r'sku', required: true, includeIfNull: false)
   final String sku;
 
-
-
-  @JsonKey(
-    
-    name: r'volumeMl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? volumeMl;
-
-
-
-  @JsonKey(
-    
-    name: r'concentrationId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? concentrationId;
-
-
-
-  @JsonKey(
-    
-    name: r'concentrationName',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final String concentrationName;
-
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final VariantType? type;
-
-
-
-  @JsonKey(
-    
-    name: r'basePrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? basePrice;
-
-
-
-  @JsonKey(
-    
-    name: r'retailPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? retailPrice;
-
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final VariantStatus? status;
-
-
-
-  @JsonKey(
-    
-    name: r'stockQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? stockQuantity;
-
-
-
-  @JsonKey(
-    
-    name: r'sillage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? sillage;
-
-
-
-  @JsonKey(
-    
-    name: r'longevity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? longevity;
-
-
-
-  @JsonKey(
-    
-    name: r'productId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? productId;
-
-
-
-  @JsonKey(
-    
-    name: r'productName',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final String productName;
-
-
-
-  @JsonKey(
-    
-    name: r'media',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final List<MediaResponse> media;
-
-
-
-  @JsonKey(
-    
-    name: r'campaignName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? campaignName;
-
-
-
-  @JsonKey(
-    
-    name: r'voucherCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? voucherCode;
-
-
-
-  @JsonKey(
-    
-    name: r'discountedPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? discountedPrice;
-
-
-
-  @JsonKey(
-    
-    name: r'attributes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final List<ProductAttributeResponse>? attributes;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductVariantResponse &&
-      other.id == id &&
-      other.barcode == barcode &&
-      other.sku == sku &&
-      other.volumeMl == volumeMl &&
-      other.concentrationId == concentrationId &&
-      other.concentrationName == concentrationName &&
-      other.type == type &&
-      other.basePrice == basePrice &&
-      other.retailPrice == retailPrice &&
-      other.status == status &&
-      other.stockQuantity == stockQuantity &&
-      other.sillage == sillage &&
-      other.longevity == longevity &&
-      other.productId == productId &&
-      other.productName == productName &&
-      other.media == media &&
-      other.campaignName == campaignName &&
-      other.voucherCode == voucherCode &&
-      other.discountedPrice == discountedPrice &&
-      other.attributes == attributes;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        barcode.hashCode +
-        sku.hashCode +
-        volumeMl.hashCode +
-        concentrationId.hashCode +
-        concentrationName.hashCode +
-        type.hashCode +
-        basePrice.hashCode +
-        (retailPrice == null ? 0 : retailPrice.hashCode) +
-        status.hashCode +
-        stockQuantity.hashCode +
-        sillage.hashCode +
-        longevity.hashCode +
-        productId.hashCode +
-        productName.hashCode +
-        media.hashCode +
-        (campaignName == null ? 0 : campaignName.hashCode) +
-        (voucherCode == null ? 0 : voucherCode.hashCode) +
-        (discountedPrice == null ? 0 : discountedPrice.hashCode) +
-        (attributes == null ? 0 : attributes.hashCode);
-
-  factory ProductVariantResponse.fromJson(Map<String, dynamic> json) => _$ProductVariantResponseFromJson(json);
+  /// Barcode
+  @JsonKey(name: r'barcode', required: true, includeIfNull: false)
+  final String barcode;
+
+  /// Dung tích (ml)
+  @JsonKey(name: r'volumeMl', required: true, includeIfNull: false)
+  final num volumeMl;
+
+  /// Loại sản phẩm
+  @JsonKey(name: r'type', required: true, includeIfNull: false)
+  final String type;
+
+  /// Giá gốc
+  @JsonKey(name: r'basePrice', required: true, includeIfNull: false)
+  final num basePrice;
+
+  /// Trạng thái variant
+  @JsonKey(name: r'status', required: true, includeIfNull: false)
+  final String status;
+
+  /// ID nồng độ
+  @JsonKey(name: r'concentrationId', required: true, includeIfNull: false)
+  final num concentrationId;
+
+  /// Thông tin nồng độ
+  @JsonKey(name: r'concentration', required: false, includeIfNull: false)
+  final ConcentrationResponse? concentration;
+
+  /// Thông tin tồn kho
+  @JsonKey(name: r'stock', required: false, includeIfNull: false)
+  final VariantStockResponse? stock;
+
+  /// Danh sách hình ảnh
+  @JsonKey(name: r'media', required: true, includeIfNull: false)
+  final List<VariantMediaResponse> media;
+
+  /// Danh sách thuộc tính variant
+  @JsonKey(name: r'attributes', required: true, includeIfNull: false)
+  final List<ProductAttributeResponse> attributes;
+
+  /// Độ lưu hương (Longevity)
+  @JsonKey(name: r'longevity', required: false, includeIfNull: false)
+  final num? longevity;
+
+  /// Độ tỏa hương (Sillage)
+  @JsonKey(name: r'sillage', required: false, includeIfNull: false)
+  final num? sillage;
+
+  /// Ngày tạo
+  @JsonKey(name: r'createdAt', required: true, includeIfNull: false)
+  final String createdAt;
+
+  /// Ngày cập nhật
+  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
+  final Object? updatedAt;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductVariantResponse &&
+          other.id == id &&
+          other.productId == productId &&
+          other.sku == sku &&
+          other.barcode == barcode &&
+          other.volumeMl == volumeMl &&
+          other.type == type &&
+          other.basePrice == basePrice &&
+          other.status == status &&
+          other.concentrationId == concentrationId &&
+          other.concentration == concentration &&
+          other.stock == stock &&
+          other.media == media &&
+          other.attributes == attributes &&
+          other.longevity == longevity &&
+          other.sillage == sillage &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt;
+
+  @override
+  int get hashCode =>
+      id.hashCode +
+      productId.hashCode +
+      sku.hashCode +
+      barcode.hashCode +
+      volumeMl.hashCode +
+      type.hashCode +
+      basePrice.hashCode +
+      status.hashCode +
+      concentrationId.hashCode +
+      (concentration == null ? 0 : concentration.hashCode) +
+      (stock == null ? 0 : stock.hashCode) +
+      media.hashCode +
+      attributes.hashCode +
+      longevity.hashCode +
+      sillage.hashCode +
+      createdAt.hashCode +
+      (updatedAt == null ? 0 : updatedAt.hashCode);
+
+  factory ProductVariantResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductVariantResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductVariantResponseToJson(this);
 
@@ -361,6 +176,4 @@ class ProductVariantResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

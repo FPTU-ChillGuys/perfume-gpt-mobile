@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,82 +17,42 @@ part 'base_response.g.dart';
 )
 class BaseResponse {
   /// Returns a new [BaseResponse] instance.
-  BaseResponse({
+  BaseResponse({required this.success, this.error, this.details, this.data});
 
-     this.success,
+  /// Kết quả xử lý
+  @JsonKey(name: r'success', required: true, includeIfNull: false)
+  final bool success;
 
-     this.message,
+  /// Thông báo lỗi
+  @JsonKey(name: r'error', required: false, includeIfNull: false)
+  final Object? error;
 
-     this.errors,
+  /// Chi tiết lỗi
+  @JsonKey(name: r'details', required: false, includeIfNull: false)
+  final Object? details;
 
-     this.errorType,
-  });
+  /// Dữ liệu trả về
+  @JsonKey(name: r'data', required: false, includeIfNull: false)
+  final Object? data;
 
-  @JsonKey(
-    
-    name: r'success',
-    required: false,
-    includeIfNull: false,
-  )
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BaseResponse &&
+          other.success == success &&
+          other.error == error &&
+          other.details == details &&
+          other.data == data;
 
+  @override
+  int get hashCode =>
+      success.hashCode +
+      (error == null ? 0 : error.hashCode) +
+      (details == null ? 0 : details.hashCode) +
+      data.hashCode;
 
-  final bool? success;
-
-
-
-  @JsonKey(
-    
-    name: r'message',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? message;
-
-
-
-  @JsonKey(
-    
-    name: r'errors',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final List<String>? errors;
-
-
-
-  @JsonKey(
-    
-    name: r'errorType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? errorType;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BaseResponse &&
-      other.success == success &&
-      other.message == message &&
-      other.errors == errors &&
-      other.errorType == errorType;
-
-    @override
-    int get hashCode =>
-        success.hashCode +
-        message.hashCode +
-        (errors == null ? 0 : errors.hashCode) +
-        (errorType == null ? 0 : errorType.hashCode);
-
-  factory BaseResponse.fromJson(Map<String, dynamic> json) => _$BaseResponseFromJson(json);
+  factory BaseResponse.fromJson(Map<String, dynamic> json) =>
+      _$BaseResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$BaseResponseToJson(this);
 
@@ -101,6 +60,4 @@ class BaseResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

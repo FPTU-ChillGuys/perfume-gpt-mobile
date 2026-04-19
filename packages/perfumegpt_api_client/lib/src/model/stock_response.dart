@@ -3,7 +3,9 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/variant_status.dart';
 import 'package:perfumegpt_api_client/src/model/stock_status.dart';
+import 'package:perfumegpt_api_client/src/model/replenishment_policy.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -30,6 +32,10 @@ class StockResponse {
     required  this.productName,
 
     required  this.variantImageUrl,
+
+    required  this.replenishmentPolicy,
+
+    required  this.variantStatus,
 
      this.volumeMl,
 
@@ -101,6 +107,30 @@ class StockResponse {
 
 
   final String variantImageUrl;
+
+
+
+  @JsonKey(
+    
+    name: r'replenishmentPolicy',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final ReplenishmentPolicy replenishmentPolicy;
+
+
+
+  @JsonKey(
+    
+    name: r'variantStatus',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final VariantStatus variantStatus;
 
 
 
@@ -185,6 +215,8 @@ class StockResponse {
       other.variantSku == variantSku &&
       other.productName == productName &&
       other.variantImageUrl == variantImageUrl &&
+      other.replenishmentPolicy == replenishmentPolicy &&
+      other.variantStatus == variantStatus &&
       other.volumeMl == volumeMl &&
       other.concentrationName == concentrationName &&
       other.totalQuantity == totalQuantity &&
@@ -199,6 +231,8 @@ class StockResponse {
         variantSku.hashCode +
         productName.hashCode +
         variantImageUrl.hashCode +
+        replenishmentPolicy.hashCode +
+        variantStatus.hashCode +
         volumeMl.hashCode +
         concentrationName.hashCode +
         totalQuantity.hashCode +

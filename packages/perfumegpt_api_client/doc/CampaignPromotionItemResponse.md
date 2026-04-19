@@ -11,8 +11,11 @@ Name | Type | Description | Notes
 **id** | **String** |  | [optional] 
 **campaignId** | **String** |  | [optional] 
 **productVariantId** | **String** |  | [optional] 
+**sku** | **String** |  | 
+**primaryImageUrl** | **String** |  | [optional] 
+**productName** | **String** |  | 
 **batchId** | **String** |  | [optional] 
-**name** | **String** |  | 
+**batchCode** | **String** |  | [optional] 
 **itemType** | [**PromotionType**](PromotionType.md) |  | [optional] 
 **discountType** | [**DiscountType**](DiscountType.md) |  | [optional] 
 **discountValue** | **num** |  | [optional] 

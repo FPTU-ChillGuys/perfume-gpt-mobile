@@ -27,7 +27,7 @@ void main() {
       // TODO
     });
 
-    // String discountType
+    // DiscountType discountType
     test('to test the property `discountType`', () async {
       // TODO
     });
@@ -47,7 +47,7 @@ void main() {
       // TODO
     });
 
-    // String status
+    // UsageStatus status
     test('to test the property `status`', () async {
       // TODO
     });

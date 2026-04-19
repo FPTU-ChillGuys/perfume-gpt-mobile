@@ -28,9 +28,15 @@ class CampaignPromotionItemResponse {
 
      this.productVariantId,
 
+    required  this.sku,
+
+     this.primaryImageUrl,
+
+    required  this.productName,
+
      this.batchId,
 
-    required  this.name,
+     this.batchCode,
 
      this.itemType,
 
@@ -85,6 +91,42 @@ class CampaignPromotionItemResponse {
 
   @JsonKey(
     
+    name: r'sku',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String sku;
+
+
+
+  @JsonKey(
+    
+    name: r'primaryImageUrl',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? primaryImageUrl;
+
+
+
+  @JsonKey(
+    
+    name: r'productName',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String productName;
+
+
+
+  @JsonKey(
+    
     name: r'batchId',
     required: false,
     includeIfNull: false,
@@ -97,13 +139,13 @@ class CampaignPromotionItemResponse {
 
   @JsonKey(
     
-    name: r'name',
-    required: true,
+    name: r'batchCode',
+    required: false,
     includeIfNull: false,
   )
 
 
-  final String name;
+  final String? batchCode;
 
 
 
@@ -198,8 +240,11 @@ class CampaignPromotionItemResponse {
       other.id == id &&
       other.campaignId == campaignId &&
       other.productVariantId == productVariantId &&
+      other.sku == sku &&
+      other.primaryImageUrl == primaryImageUrl &&
+      other.productName == productName &&
       other.batchId == batchId &&
-      other.name == name &&
+      other.batchCode == batchCode &&
       other.itemType == itemType &&
       other.discountType == discountType &&
       other.discountValue == discountValue &&
@@ -213,8 +258,11 @@ class CampaignPromotionItemResponse {
         id.hashCode +
         campaignId.hashCode +
         productVariantId.hashCode +
+        sku.hashCode +
+        (primaryImageUrl == null ? 0 : primaryImageUrl.hashCode) +
+        productName.hashCode +
         (batchId == null ? 0 : batchId.hashCode) +
-        name.hashCode +
+        (batchCode == null ? 0 : batchCode.hashCode) +
         itemType.hashCode +
         discountType.hashCode +
         discountValue.hashCode +

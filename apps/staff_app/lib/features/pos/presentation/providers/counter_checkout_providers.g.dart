@@ -225,7 +225,7 @@ final class CounterCheckoutNotifierProvider
 }
 
 String _$counterCheckoutNotifierHash() =>
-    r'48c44ca191d0326c87ae80faf09e0ed955ce9351';
+    r'd1e8b9c9f2818528a7b324f71dd2a488269fdd50';
 
 abstract class _$CounterCheckoutNotifier extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();

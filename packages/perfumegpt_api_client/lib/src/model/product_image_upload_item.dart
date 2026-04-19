@@ -20,17 +20,14 @@ part 'product_image_upload_item.g.dart';
 class ProductImageUploadItem {
   /// Returns a new [ProductImageUploadItem] instance.
   ProductImageUploadItem({
+    required this.imageFile,
 
-    required  this.imageFile,
+    this.altText,
 
-     this.altText,
+    this.displayOrder,
 
-     this.displayOrder,
-
-     this.isPrimary,
+    this.isPrimary,
   });
-
-  factory ProductImageUploadItem.fromJson(Map<String, dynamic> json) => throw UnsupportedError('ProductImageUploadItem is for upload only and cannot be deserialized.');
 
   @JsonKey(ignore: true)
   final MultipartFile imageFile;
@@ -59,6 +56,9 @@ class ProductImageUploadItem {
       (altText == null ? 0 : altText.hashCode) +
       displayOrder.hashCode +
       isPrimary.hashCode;
+
+  factory ProductImageUploadItem.fromJson(Map<String, dynamic> json) =>
+      _$ProductImageUploadItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductImageUploadItemToJson(this);
 

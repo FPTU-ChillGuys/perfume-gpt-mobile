@@ -7,18 +7,18 @@ void main() {
   final instance = PerfumegptApiClient().getVouchersApi();
 
   group(VouchersApi, () {
-    //Future<BaseResponseOfPagedResultOfAvailableVoucherResponse> apiVouchersAvailableGet({ int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
-    test('test apiVouchersAvailableGet', () async {
+    //Future<BaseResponseOfPagedResultOfUserVoucherResponse> apiUserVouchersMeGet({ UsageStatus status, bool isUsed, bool isExpired, String code, DiscountType discountType, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    test('test apiUserVouchersMeGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfListOfApplicableVoucherResponse> apiVouchersApplicablePost(GetApplicableVouchersRequest getApplicableVouchersRequest) async
+    test('test apiVouchersApplicablePost', () async {
       // TODO
     });
 
     //Future<BaseResponseOfPagedResultOfVoucherResponse> apiVouchersGet({ bool isExpired, String code, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiVouchersGet', () async {
-      // TODO
-    });
-
-    //Future<BaseResponseOfPagedResultOfUserVoucherResponse> apiVouchersMeGet({ int status, bool isUsed, bool isExpired, String code, DiscountType discountType, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
-    test('test apiVouchersMeGet', () async {
       // TODO
     });
 
@@ -32,8 +32,13 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfListOfRedeemableVoucherResponse> apiVouchersRedeemableListGet({ int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
-    test('test apiVouchersRedeemableListGet', () async {
+    //Future<BaseResponseOfListOfRedeemableVoucherResponse> apiVouchersRedeemableGet({ int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    test('test apiVouchersRedeemableGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfListOfApplicableVoucherResponse> apiVouchersVariantVariantIdApplicableGet(String variantId) async
+    test('test apiVouchersVariantVariantIdApplicableGet', () async {
       // TODO
     });
 

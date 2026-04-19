@@ -7,27 +7,22 @@ void main() {
   final instance = PerfumegptApiClient().getOrdersApi();
 
   group(OrdersApi, () {
-    //Future<BaseResponseOfUserOrderResponse> apiOrdersByordercodeGet({ String orderCode }) async
-    test('test apiOrdersByordercodeGet', () async {
-      // TODO
-    });
-
-    //Future<BaseResponseOfstring> apiOrdersCheckoutInStorePost(CreateInStoreOrderRequest createInStoreOrderRequest) async
+    //Future<BaseResponseOfCreatePaymentResponseDto> apiOrdersCheckoutInStorePost(CreateInStoreOrderRequest createInStoreOrderRequest) async
     test('test apiOrdersCheckoutInStorePost', () async {
       // TODO
     });
 
-    //Future<BaseResponseOfstring> apiOrdersCheckoutPost(CreateOrderRequest createOrderRequest) async
+    //Future<BaseResponseOfCreatePaymentResponseDto> apiOrdersCheckoutPost(CreateOrderRequest createOrderRequest) async
     test('test apiOrdersCheckoutPost', () async {
       // TODO
     });
 
-    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersGet({ String userId, OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersGet({ String userId, String orderCode, OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiOrdersGet', () async {
       // TODO
     });
 
-    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersMyOrdersGet({ String userId, OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfPagedResultOfOrderListItem> apiOrdersMyOrdersGet({ String userId, String orderCode, OrderStatus status, OrderType type, PaymentStatus paymentStatus, DateTime fromDate, DateTime toDate, String searchTerm, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiOrdersMyOrdersGet', () async {
       // TODO
     });
@@ -42,8 +37,8 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfstring> apiOrdersOrderIdAddressPut(String orderId, UpdateOrderAddressRequest updateOrderAddressRequest) async
-    test('test apiOrdersOrderIdAddressPut', () async {
+    //Future<BaseResponseOfOrderResponse> apiOrdersOrderCodeCodeGet(String code) async
+    test('test apiOrdersOrderCodeCodeGet', () async {
       // TODO
     });
 
@@ -52,7 +47,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfstring> apiOrdersOrderIdDeliverInStorePut(String orderId) async
+    //Future<BaseResponseOfstring> apiOrdersOrderIdDeliverInStorePut(String orderId, DeliverInStoreRequest deliverInStoreRequest) async
     test('test apiOrdersOrderIdDeliverInStorePut', () async {
       // TODO
     });
