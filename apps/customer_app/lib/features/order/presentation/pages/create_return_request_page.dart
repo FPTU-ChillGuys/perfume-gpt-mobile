@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -60,11 +61,30 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   final _contactPhoneController = TextEditingController();
   final _fullAddressController = TextEditingController();
 
-  bool get _canSubmit =>
-      _selectedReason != null &&
-      _selectedItems.values.any((q) => q > 0) &&
-      _videos.isNotEmpty &&
-      !_isSubmitting;
+  bool get _canSubmit {
+    if (_selectedReason == null ||
+        !_selectedItems.values.any((q) => q > 0) ||
+        _videos.isEmpty ||
+        _isSubmitting) {
+      return false;
+    }
+    // Validate address when not refund-only
+    if (!_isRefundOnly) {
+      if (_useCustomAddress) {
+        if (_contactNameController.text.trim().isEmpty ||
+            _contactPhoneController.text.trim().isEmpty ||
+            _selectedProvince == null ||
+            _selectedDistrict == null ||
+            _selectedWard == null ||
+            _fullAddressController.text.trim().isEmpty) {
+          return false;
+        }
+      } else {
+        if (_selectedAddress == null) return false;
+      }
+    }
+    return true;
+  }
 
   double get _estimatedRefund {
     double total = 0;
@@ -831,10 +851,12 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
 
     return Column(
       children: [
-        TextField(controller: _contactNameController, decoration: _inputDecoration('Tên liên hệ')),
+        TextField(controller: _contactNameController, decoration: _inputDecoration('Tên liên hệ'),
+            onChanged: (_) => setState(() {})),
         const SizedBox(height: 12),
         TextField(controller: _contactPhoneController, decoration: _inputDecoration('Số điện thoại'),
-            keyboardType: TextInputType.phone),
+            keyboardType: TextInputType.phone,
+            onChanged: (_) => setState(() {})),
         const SizedBox(height: 12),
         // Province
         provincesAsync.when(
@@ -884,7 +906,8 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
                 ),
               ),
         if (_selectedDistrict != null) const SizedBox(height: 12),
-        TextField(controller: _fullAddressController, decoration: _inputDecoration('Địa chỉ chi tiết')),
+        TextField(controller: _fullAddressController, decoration: _inputDecoration('Địa chỉ chi tiết'),
+            onChanged: (_) => setState(() {})),
       ],
     );
   }
@@ -1008,6 +1031,17 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
           const SnackBar(content: Text('Đã tạo yêu cầu hoàn trả'), backgroundColor: Colors.green),
         );
         context.pop(true);
+      }
+    } on DioException catch (e) {
+      if (mounted) {
+        final body = e.response?.data;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Lỗi ${e.response?.statusCode}: $body'),
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 10),
+          ),
+        );
       }
     } catch (e) {
       if (mounted) {
