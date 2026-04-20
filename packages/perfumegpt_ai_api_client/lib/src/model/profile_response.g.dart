@@ -7,23 +7,25 @@ part of 'profile_response.dart';
 // **************************************************************************
 
 abstract class _$ProfileResponseCWProxy {
-  ProfileResponse dateOfBirth(DateTime? dateOfBirth);
+  ProfileResponse dateOfBirth(Object? dateOfBirth);
 
-  ProfileResponse minBudget(num? minBudget);
+  ProfileResponse createdAt(String createdAt);
 
-  ProfileResponse maxBudget(num? maxBudget);
+  ProfileResponse favoriteNotes(Object? favoriteNotes);
 
-  ProfileResponse notePreferences(
-    List<CustomerNotePreferenceResponse> notePreferences,
-  );
+  ProfileResponse id(String id);
 
-  ProfileResponse familyPreferences(
-    List<CustomerFamilyPreferenceRespone> familyPreferences,
-  );
+  ProfileResponse maxBudget(Object? maxBudget);
 
-  ProfileResponse attributePreferences(
-    List<CustomerAttributePreferenceResponse> attributePreferences,
-  );
+  ProfileResponse minBudget(Object? minBudget);
+
+  ProfileResponse preferredStyle(Object? preferredStyle);
+
+  ProfileResponse scentPreference(Object? scentPreference);
+
+  ProfileResponse updatedAt(Object? updatedAt);
+
+  ProfileResponse userId(String userId);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProfileResponse(...).copyWith.fieldName(value)`.
@@ -33,12 +35,16 @@ abstract class _$ProfileResponseCWProxy {
   /// ProfileResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   ProfileResponse call({
-    DateTime? dateOfBirth,
-    num? minBudget,
-    num? maxBudget,
-    List<CustomerNotePreferenceResponse> notePreferences,
-    List<CustomerFamilyPreferenceRespone> familyPreferences,
-    List<CustomerAttributePreferenceResponse> attributePreferences,
+    Object? dateOfBirth,
+    String createdAt,
+    Object? favoriteNotes,
+    String id,
+    Object? maxBudget,
+    Object? minBudget,
+    Object? preferredStyle,
+    Object? scentPreference,
+    Object? updatedAt,
+    String userId,
   });
 }
 
@@ -50,29 +56,38 @@ class _$ProfileResponseCWProxyImpl implements _$ProfileResponseCWProxy {
   final ProfileResponse _value;
 
   @override
-  ProfileResponse dateOfBirth(DateTime? dateOfBirth) =>
+  ProfileResponse dateOfBirth(Object? dateOfBirth) =>
       call(dateOfBirth: dateOfBirth);
 
   @override
-  ProfileResponse minBudget(num? minBudget) => call(minBudget: minBudget);
+  ProfileResponse createdAt(String createdAt) => call(createdAt: createdAt);
 
   @override
-  ProfileResponse maxBudget(num? maxBudget) => call(maxBudget: maxBudget);
+  ProfileResponse favoriteNotes(Object? favoriteNotes) =>
+      call(favoriteNotes: favoriteNotes);
 
   @override
-  ProfileResponse notePreferences(
-    List<CustomerNotePreferenceResponse> notePreferences,
-  ) => call(notePreferences: notePreferences);
+  ProfileResponse id(String id) => call(id: id);
 
   @override
-  ProfileResponse familyPreferences(
-    List<CustomerFamilyPreferenceRespone> familyPreferences,
-  ) => call(familyPreferences: familyPreferences);
+  ProfileResponse maxBudget(Object? maxBudget) => call(maxBudget: maxBudget);
 
   @override
-  ProfileResponse attributePreferences(
-    List<CustomerAttributePreferenceResponse> attributePreferences,
-  ) => call(attributePreferences: attributePreferences);
+  ProfileResponse minBudget(Object? minBudget) => call(minBudget: minBudget);
+
+  @override
+  ProfileResponse preferredStyle(Object? preferredStyle) =>
+      call(preferredStyle: preferredStyle);
+
+  @override
+  ProfileResponse scentPreference(Object? scentPreference) =>
+      call(scentPreference: scentPreference);
+
+  @override
+  ProfileResponse updatedAt(Object? updatedAt) => call(updatedAt: updatedAt);
+
+  @override
+  ProfileResponse userId(String userId) => call(userId: userId);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -84,43 +99,57 @@ class _$ProfileResponseCWProxyImpl implements _$ProfileResponseCWProxy {
   /// ```
   ProfileResponse call({
     Object? dateOfBirth = const $CopyWithPlaceholder(),
-    Object? minBudget = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
+    Object? favoriteNotes = const $CopyWithPlaceholder(),
+    Object? id = const $CopyWithPlaceholder(),
     Object? maxBudget = const $CopyWithPlaceholder(),
-    Object? notePreferences = const $CopyWithPlaceholder(),
-    Object? familyPreferences = const $CopyWithPlaceholder(),
-    Object? attributePreferences = const $CopyWithPlaceholder(),
+    Object? minBudget = const $CopyWithPlaceholder(),
+    Object? preferredStyle = const $CopyWithPlaceholder(),
+    Object? scentPreference = const $CopyWithPlaceholder(),
+    Object? updatedAt = const $CopyWithPlaceholder(),
+    Object? userId = const $CopyWithPlaceholder(),
   }) {
     return ProfileResponse(
       dateOfBirth: dateOfBirth == const $CopyWithPlaceholder()
           ? _value.dateOfBirth
           // ignore: cast_nullable_to_non_nullable
-          : dateOfBirth as DateTime?,
-      minBudget: minBudget == const $CopyWithPlaceholder()
-          ? _value.minBudget
+          : dateOfBirth as Object?,
+      createdAt: createdAt == const $CopyWithPlaceholder() || createdAt == null
+          ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
-          : minBudget as num?,
+          : createdAt as String,
+      favoriteNotes: favoriteNotes == const $CopyWithPlaceholder()
+          ? _value.favoriteNotes
+          // ignore: cast_nullable_to_non_nullable
+          : favoriteNotes as Object?,
+      id: id == const $CopyWithPlaceholder() || id == null
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String,
       maxBudget: maxBudget == const $CopyWithPlaceholder()
           ? _value.maxBudget
           // ignore: cast_nullable_to_non_nullable
-          : maxBudget as num?,
-      notePreferences:
-          notePreferences == const $CopyWithPlaceholder() ||
-              notePreferences == null
-          ? _value.notePreferences
+          : maxBudget as Object?,
+      minBudget: minBudget == const $CopyWithPlaceholder()
+          ? _value.minBudget
           // ignore: cast_nullable_to_non_nullable
-          : notePreferences as List<CustomerNotePreferenceResponse>,
-      familyPreferences:
-          familyPreferences == const $CopyWithPlaceholder() ||
-              familyPreferences == null
-          ? _value.familyPreferences
+          : minBudget as Object?,
+      preferredStyle: preferredStyle == const $CopyWithPlaceholder()
+          ? _value.preferredStyle
           // ignore: cast_nullable_to_non_nullable
-          : familyPreferences as List<CustomerFamilyPreferenceRespone>,
-      attributePreferences:
-          attributePreferences == const $CopyWithPlaceholder() ||
-              attributePreferences == null
-          ? _value.attributePreferences
+          : preferredStyle as Object?,
+      scentPreference: scentPreference == const $CopyWithPlaceholder()
+          ? _value.scentPreference
           // ignore: cast_nullable_to_non_nullable
-          : attributePreferences as List<CustomerAttributePreferenceResponse>,
+          : scentPreference as Object?,
+      updatedAt: updatedAt == const $CopyWithPlaceholder()
+          ? _value.updatedAt
+          // ignore: cast_nullable_to_non_nullable
+          : updatedAt as Object?,
+      userId: userId == const $CopyWithPlaceholder() || userId == null
+          ? _value.userId
+          // ignore: cast_nullable_to_non_nullable
+          : userId as String,
     );
   }
 }
@@ -136,69 +165,48 @@ extension $ProfileResponseCopyWith on ProfileResponse {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProfileResponse _$ProfileResponseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate('ProfileResponse', json, ($checkedConvert) {
-  $checkKeys(
-    json,
-    requiredKeys: const [
-      'notePreferences',
-      'familyPreferences',
-      'attributePreferences',
-    ],
-  );
-  final val = ProfileResponse(
-    dateOfBirth: $checkedConvert(
-      'dateOfBirth',
-      (v) => v == null ? null : DateTime.parse(v as String),
-    ),
-    minBudget: $checkedConvert('minBudget', (v) => v as num?),
-    maxBudget: $checkedConvert('maxBudget', (v) => v as num?),
-    notePreferences: $checkedConvert(
-      'notePreferences',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => CustomerNotePreferenceResponse.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
-    familyPreferences: $checkedConvert(
-      'familyPreferences',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => CustomerFamilyPreferenceRespone.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
-    attributePreferences: $checkedConvert(
-      'attributePreferences',
-      (v) => (v as List<dynamic>)
-          .map(
-            (e) => CustomerAttributePreferenceResponse.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
-          .toList(),
-    ),
-  );
-  return val;
-});
+ProfileResponse _$ProfileResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('ProfileResponse', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        requiredKeys: const [
+          'dateOfBirth',
+          'createdAt',
+          'favoriteNotes',
+          'id',
+          'maxBudget',
+          'minBudget',
+          'preferredStyle',
+          'scentPreference',
+          'updatedAt',
+          'userId',
+        ],
+      );
+      final val = ProfileResponse(
+        dateOfBirth: $checkedConvert('dateOfBirth', (v) => v),
+        createdAt: $checkedConvert('createdAt', (v) => v as String),
+        favoriteNotes: $checkedConvert('favoriteNotes', (v) => v),
+        id: $checkedConvert('id', (v) => v as String),
+        maxBudget: $checkedConvert('maxBudget', (v) => v),
+        minBudget: $checkedConvert('minBudget', (v) => v),
+        preferredStyle: $checkedConvert('preferredStyle', (v) => v),
+        scentPreference: $checkedConvert('scentPreference', (v) => v),
+        updatedAt: $checkedConvert('updatedAt', (v) => v),
+        userId: $checkedConvert('userId', (v) => v as String),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$ProfileResponseToJson(
-  ProfileResponse instance,
-) => <String, dynamic>{
-  'dateOfBirth': ?instance.dateOfBirth?.toIso8601String(),
-  'minBudget': ?instance.minBudget,
-  'maxBudget': ?instance.maxBudget,
-  'notePreferences': instance.notePreferences.map((e) => e.toJson()).toList(),
-  'familyPreferences': instance.familyPreferences
-      .map((e) => e.toJson())
-      .toList(),
-  'attributePreferences': instance.attributePreferences
-      .map((e) => e.toJson())
-      .toList(),
-};
+Map<String, dynamic> _$ProfileResponseToJson(ProfileResponse instance) =>
+    <String, dynamic>{
+      'dateOfBirth': instance.dateOfBirth,
+      'createdAt': instance.createdAt,
+      'favoriteNotes': instance.favoriteNotes,
+      'id': instance.id,
+      'maxBudget': instance.maxBudget,
+      'minBudget': instance.minBudget,
+      'preferredStyle': instance.preferredStyle,
+      'scentPreference': instance.scentPreference,
+      'updatedAt': instance.updatedAt,
+      'userId': instance.userId,
+    };

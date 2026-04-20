@@ -4,7 +4,6 @@
 
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/discount_type.dart';
-import 'package:perfumegpt_api_client/src/model/voucher_type.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -27,8 +26,6 @@ class UpdateVoucherRequest {
      this.discountValue,
 
      this.discountType,
-
-     this.applyType,
 
      this.requiredPoints,
 
@@ -83,18 +80,6 @@ class UpdateVoucherRequest {
 
 
   final DiscountType? discountType;
-
-
-
-  @JsonKey(
-    
-    name: r'applyType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final VoucherType? applyType;
 
 
 
@@ -217,7 +202,6 @@ class UpdateVoucherRequest {
       other.code == code &&
       other.discountValue == discountValue &&
       other.discountType == discountType &&
-      other.applyType == applyType &&
       other.requiredPoints == requiredPoints &&
       other.maxDiscountAmount == maxDiscountAmount &&
       other.minOrderValue == minOrderValue &&
@@ -233,7 +217,6 @@ class UpdateVoucherRequest {
         code.hashCode +
         discountValue.hashCode +
         discountType.hashCode +
-        applyType.hashCode +
         requiredPoints.hashCode +
         (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +
         minOrderValue.hashCode +

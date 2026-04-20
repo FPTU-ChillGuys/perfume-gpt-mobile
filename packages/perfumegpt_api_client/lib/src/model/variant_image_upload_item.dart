@@ -20,17 +20,14 @@ part 'variant_image_upload_item.g.dart';
 class VariantImageUploadItem {
   /// Returns a new [VariantImageUploadItem] instance.
   VariantImageUploadItem({
+    required this.imageFile,
 
-    required  this.imageFile,
+    this.altText,
 
-     this.altText,
+    this.displayOrder,
 
-     this.displayOrder,
-
-     this.isPrimary,
+    this.isPrimary,
   });
-
-  factory VariantImageUploadItem.fromJson(Map<String, dynamic> json) => throw UnsupportedError('VariantImageUploadItem is for upload only and cannot be deserialized.');
 
   @JsonKey(ignore: true)
   final MultipartFile imageFile;
@@ -59,6 +56,11 @@ class VariantImageUploadItem {
       (altText == null ? 0 : altText.hashCode) +
       displayOrder.hashCode +
       isPrimary.hashCode;
+
+  factory VariantImageUploadItem.fromJson(Map<String, dynamic> json) =>
+      throw UnsupportedError(
+        'VariantImageUploadItem is for upload only and cannot be deserialized.',
+      );
 
   Map<String, dynamic> toJson() => _$VariantImageUploadItemToJson(this);
 

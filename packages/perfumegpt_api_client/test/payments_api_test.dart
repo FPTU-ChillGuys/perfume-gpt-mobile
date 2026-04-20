@@ -27,6 +27,16 @@ void main() {
       // TODO
     });
 
+    //Future apiPaymentsPayosCancelGet() async
+    test('test apiPaymentsPayosCancelGet', () async {
+      // TODO
+    });
+
+    //Future apiPaymentsPayosReturnGet() async
+    test('test apiPaymentsPayosReturnGet', () async {
+      // TODO
+    });
+
     //Future apiPaymentsVnpayReturnGet() async
     test('test apiPaymentsVnpayReturnGet', () async {
       // TODO

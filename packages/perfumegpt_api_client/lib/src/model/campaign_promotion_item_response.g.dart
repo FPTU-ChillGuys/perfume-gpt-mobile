@@ -13,9 +13,15 @@ abstract class _$CampaignPromotionItemResponseCWProxy {
 
   CampaignPromotionItemResponse productVariantId(String? productVariantId);
 
+  CampaignPromotionItemResponse sku(String sku);
+
+  CampaignPromotionItemResponse primaryImageUrl(String? primaryImageUrl);
+
+  CampaignPromotionItemResponse productName(String productName);
+
   CampaignPromotionItemResponse batchId(String? batchId);
 
-  CampaignPromotionItemResponse name(String name);
+  CampaignPromotionItemResponse batchCode(String? batchCode);
 
   CampaignPromotionItemResponse itemType(PromotionType? itemType);
 
@@ -42,8 +48,11 @@ abstract class _$CampaignPromotionItemResponseCWProxy {
     String? id,
     String? campaignId,
     String? productVariantId,
+    String sku,
+    String? primaryImageUrl,
+    String productName,
     String? batchId,
-    String name,
+    String? batchCode,
     PromotionType? itemType,
     DiscountType? discountType,
     num? discountValue,
@@ -74,11 +83,23 @@ class _$CampaignPromotionItemResponseCWProxyImpl
       call(productVariantId: productVariantId);
 
   @override
+  CampaignPromotionItemResponse sku(String sku) => call(sku: sku);
+
+  @override
+  CampaignPromotionItemResponse primaryImageUrl(String? primaryImageUrl) =>
+      call(primaryImageUrl: primaryImageUrl);
+
+  @override
+  CampaignPromotionItemResponse productName(String productName) =>
+      call(productName: productName);
+
+  @override
   CampaignPromotionItemResponse batchId(String? batchId) =>
       call(batchId: batchId);
 
   @override
-  CampaignPromotionItemResponse name(String name) => call(name: name);
+  CampaignPromotionItemResponse batchCode(String? batchCode) =>
+      call(batchCode: batchCode);
 
   @override
   CampaignPromotionItemResponse itemType(PromotionType? itemType) =>
@@ -120,8 +141,11 @@ class _$CampaignPromotionItemResponseCWProxyImpl
     Object? id = const $CopyWithPlaceholder(),
     Object? campaignId = const $CopyWithPlaceholder(),
     Object? productVariantId = const $CopyWithPlaceholder(),
+    Object? sku = const $CopyWithPlaceholder(),
+    Object? primaryImageUrl = const $CopyWithPlaceholder(),
+    Object? productName = const $CopyWithPlaceholder(),
     Object? batchId = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
+    Object? batchCode = const $CopyWithPlaceholder(),
     Object? itemType = const $CopyWithPlaceholder(),
     Object? discountType = const $CopyWithPlaceholder(),
     Object? discountValue = const $CopyWithPlaceholder(),
@@ -143,14 +167,27 @@ class _$CampaignPromotionItemResponseCWProxyImpl
           ? _value.productVariantId
           // ignore: cast_nullable_to_non_nullable
           : productVariantId as String?,
+      sku: sku == const $CopyWithPlaceholder() || sku == null
+          ? _value.sku
+          // ignore: cast_nullable_to_non_nullable
+          : sku as String,
+      primaryImageUrl: primaryImageUrl == const $CopyWithPlaceholder()
+          ? _value.primaryImageUrl
+          // ignore: cast_nullable_to_non_nullable
+          : primaryImageUrl as String?,
+      productName:
+          productName == const $CopyWithPlaceholder() || productName == null
+          ? _value.productName
+          // ignore: cast_nullable_to_non_nullable
+          : productName as String,
       batchId: batchId == const $CopyWithPlaceholder()
           ? _value.batchId
           // ignore: cast_nullable_to_non_nullable
           : batchId as String?,
-      name: name == const $CopyWithPlaceholder() || name == null
-          ? _value.name
+      batchCode: batchCode == const $CopyWithPlaceholder()
+          ? _value.batchCode
           // ignore: cast_nullable_to_non_nullable
-          : name as String,
+          : batchCode as String?,
       itemType: itemType == const $CopyWithPlaceholder()
           ? _value.itemType
           // ignore: cast_nullable_to_non_nullable
@@ -199,13 +236,16 @@ extension $CampaignPromotionItemResponseCopyWith
 CampaignPromotionItemResponse _$CampaignPromotionItemResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CampaignPromotionItemResponse', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['name']);
+  $checkKeys(json, requiredKeys: const ['sku', 'productName']);
   final val = CampaignPromotionItemResponse(
     id: $checkedConvert('id', (v) => v as String?),
     campaignId: $checkedConvert('campaignId', (v) => v as String?),
     productVariantId: $checkedConvert('productVariantId', (v) => v as String?),
+    sku: $checkedConvert('sku', (v) => v as String),
+    primaryImageUrl: $checkedConvert('primaryImageUrl', (v) => v as String?),
+    productName: $checkedConvert('productName', (v) => v as String),
     batchId: $checkedConvert('batchId', (v) => v as String?),
-    name: $checkedConvert('name', (v) => v as String),
+    batchCode: $checkedConvert('batchCode', (v) => v as String?),
     itemType: $checkedConvert(
       'itemType',
       (v) => $enumDecodeNullable(_$PromotionTypeEnumMap, v),
@@ -235,8 +275,11 @@ Map<String, dynamic> _$CampaignPromotionItemResponseToJson(
   'id': ?instance.id,
   'campaignId': ?instance.campaignId,
   'productVariantId': ?instance.productVariantId,
+  'sku': instance.sku,
+  'primaryImageUrl': ?instance.primaryImageUrl,
+  'productName': instance.productName,
   'batchId': ?instance.batchId,
-  'name': instance.name,
+  'batchCode': ?instance.batchCode,
   'itemType': ?_$PromotionTypeEnumMap[instance.itemType],
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
   'discountValue': ?instance.discountValue,

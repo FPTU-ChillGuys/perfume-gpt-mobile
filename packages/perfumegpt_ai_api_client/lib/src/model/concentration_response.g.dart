@@ -7,7 +7,7 @@ part of 'concentration_response.dart';
 // **************************************************************************
 
 abstract class _$ConcentrationResponseCWProxy {
-  ConcentrationResponse id(int? id);
+  ConcentrationResponse id(num id);
 
   ConcentrationResponse name(String name);
 
@@ -18,7 +18,7 @@ abstract class _$ConcentrationResponseCWProxy {
   /// ```dart
   /// ConcentrationResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  ConcentrationResponse call({int? id, String name});
+  ConcentrationResponse call({num id, String name});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -30,7 +30,7 @@ class _$ConcentrationResponseCWProxyImpl
   final ConcentrationResponse _value;
 
   @override
-  ConcentrationResponse id(int? id) => call(id: id);
+  ConcentrationResponse id(num id) => call(id: id);
 
   @override
   ConcentrationResponse name(String name) => call(name: name);
@@ -48,10 +48,10 @@ class _$ConcentrationResponseCWProxyImpl
     Object? name = const $CopyWithPlaceholder(),
   }) {
     return ConcentrationResponse(
-      id: id == const $CopyWithPlaceholder()
+      id: id == const $CopyWithPlaceholder() || id == null
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
-          : id as int?,
+          : id as num,
       name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -75,9 +75,9 @@ extension $ConcentrationResponseCopyWith on ConcentrationResponse {
 ConcentrationResponse _$ConcentrationResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ConcentrationResponse', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['name']);
+  $checkKeys(json, requiredKeys: const ['id', 'name']);
   final val = ConcentrationResponse(
-    id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+    id: $checkedConvert('id', (v) => v as num),
     name: $checkedConvert('name', (v) => v as String),
   );
   return val;
@@ -85,4 +85,4 @@ ConcentrationResponse _$ConcentrationResponseFromJson(
 
 Map<String, dynamic> _$ConcentrationResponseToJson(
   ConcentrationResponse instance,
-) => <String, dynamic>{'id': ?instance.id, 'name': instance.name};
+) => <String, dynamic>{'id': instance.id, 'name': instance.name};

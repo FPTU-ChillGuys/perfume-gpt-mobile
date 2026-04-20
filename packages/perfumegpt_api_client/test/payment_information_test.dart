@@ -12,5 +12,10 @@ void main() {
       // TODO
     });
 
+    // String posSessionId
+    test('to test the property `posSessionId`', () async {
+      // TODO
+    });
+
   });
 }

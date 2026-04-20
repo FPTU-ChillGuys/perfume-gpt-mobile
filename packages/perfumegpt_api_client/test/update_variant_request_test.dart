@@ -47,6 +47,11 @@ void main() {
       // TODO
     });
 
+    // ReplenishmentPolicy restockPolicy
+    test('to test the property `restockPolicy`', () async {
+      // TODO
+    });
+
     // int sillage
     test('to test the property `sillage`', () async {
       // TODO

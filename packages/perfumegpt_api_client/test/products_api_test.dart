@@ -7,6 +7,11 @@ void main() {
   final instance = PerfumegptApiClient().getProductsApi();
 
   group(ProductsApi, () {
+    //Future<BaseResponseOfProductResponse> apiAdminProductsProductIdGet(String productId) async
+    test('test apiAdminProductsProductIdGet', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfPagedResultOfProductListItem> apiProductsBestSellersGet({ Gender gender, int categoryId, int brandId, int volume, num fromPrice, num toPrice, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiProductsBestSellersGet', () async {
       // TODO
@@ -19,16 +24,6 @@ void main() {
 
     //Future<BaseResponseOfListOfProductDailySaleFigureResponse> apiProductsDailySaleFiguresGet({ DateTime date }) async
     test('test apiProductsDailySaleFiguresGet', () async {
-      // TODO
-    });
-
-    //Future<BaseResponse> apiProductsEmbeddingsUpdateAllsPost() async
-    test('test apiProductsEmbeddingsUpdateAllsPost', () async {
-      // TODO
-    });
-
-    //Future<BaseResponse> apiProductsEmbeddingsUpdateProductIdPost(String productId) async
-    test('test apiProductsEmbeddingsUpdateProductIdPost', () async {
       // TODO
     });
 
@@ -72,7 +67,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfProductResponse> apiProductsProductIdGet(String productId) async
+    //Future<BaseResponseOfPublicProductResponse> apiProductsProductIdGet(String productId) async
     test('test apiProductsProductIdGet', () async {
       // TODO
     });
@@ -94,11 +89,6 @@ void main() {
 
     //Future<BaseResponseOfBulkActionResultOfstring> apiProductsProductIdPut(String productId, UpdateProductRequest updateProductRequest) async
     test('test apiProductsProductIdPut', () async {
-      // TODO
-    });
-
-    //Future<BaseResponseOfPagedResultOfProductListItemWithVariants> apiProductsSearchSemanticGet({ String searchText, Gender gender, int categoryId, int brandId, int volume, num fromPrice, num toPrice, bool isAvailable, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
-    test('test apiProductsSearchSemanticGet', () async {
       // TODO
     });
 

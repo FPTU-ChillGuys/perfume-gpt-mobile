@@ -22,6 +22,16 @@ void main() {
       // TODO
     });
 
+    // DiscountType discountType
+    test('to test the property `discountType`', () async {
+      // TODO
+    });
+
+    // num discountValue
+    test('to test the property `discountValue`', () async {
+      // TODO
+    });
+
     // int maxUsage
     test('to test the property `maxUsage`', () async {
       // TODO

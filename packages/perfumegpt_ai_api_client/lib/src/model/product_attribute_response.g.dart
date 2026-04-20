@@ -7,15 +7,15 @@ part of 'product_attribute_response.dart';
 // **************************************************************************
 
 abstract class _$ProductAttributeResponseCWProxy {
-  ProductAttributeResponse id(String? id);
+  ProductAttributeResponse id(String id);
 
-  ProductAttributeResponse attributeId(int? attributeId);
+  ProductAttributeResponse attributeId(num attributeId);
 
-  ProductAttributeResponse valueId(int? valueId);
+  ProductAttributeResponse valueId(num valueId);
 
   ProductAttributeResponse attribute(String attribute);
 
-  ProductAttributeResponse description(String? description);
+  ProductAttributeResponse description(String description);
 
   ProductAttributeResponse value(String value);
 
@@ -27,11 +27,11 @@ abstract class _$ProductAttributeResponseCWProxy {
   /// ProductAttributeResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   ProductAttributeResponse call({
-    String? id,
-    int? attributeId,
-    int? valueId,
+    String id,
+    num attributeId,
+    num valueId,
     String attribute,
-    String? description,
+    String description,
     String value,
   });
 }
@@ -45,21 +45,21 @@ class _$ProductAttributeResponseCWProxyImpl
   final ProductAttributeResponse _value;
 
   @override
-  ProductAttributeResponse id(String? id) => call(id: id);
+  ProductAttributeResponse id(String id) => call(id: id);
 
   @override
-  ProductAttributeResponse attributeId(int? attributeId) =>
+  ProductAttributeResponse attributeId(num attributeId) =>
       call(attributeId: attributeId);
 
   @override
-  ProductAttributeResponse valueId(int? valueId) => call(valueId: valueId);
+  ProductAttributeResponse valueId(num valueId) => call(valueId: valueId);
 
   @override
   ProductAttributeResponse attribute(String attribute) =>
       call(attribute: attribute);
 
   @override
-  ProductAttributeResponse description(String? description) =>
+  ProductAttributeResponse description(String description) =>
       call(description: description);
 
   @override
@@ -82,26 +82,28 @@ class _$ProductAttributeResponseCWProxyImpl
     Object? value = const $CopyWithPlaceholder(),
   }) {
     return ProductAttributeResponse(
-      id: id == const $CopyWithPlaceholder()
+      id: id == const $CopyWithPlaceholder() || id == null
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      attributeId: attributeId == const $CopyWithPlaceholder()
+          : id as String,
+      attributeId:
+          attributeId == const $CopyWithPlaceholder() || attributeId == null
           ? _value.attributeId
           // ignore: cast_nullable_to_non_nullable
-          : attributeId as int?,
-      valueId: valueId == const $CopyWithPlaceholder()
+          : attributeId as num,
+      valueId: valueId == const $CopyWithPlaceholder() || valueId == null
           ? _value.valueId
           // ignore: cast_nullable_to_non_nullable
-          : valueId as int?,
+          : valueId as num,
       attribute: attribute == const $CopyWithPlaceholder() || attribute == null
           ? _value.attribute
           // ignore: cast_nullable_to_non_nullable
           : attribute as String,
-      description: description == const $CopyWithPlaceholder()
+      description:
+          description == const $CopyWithPlaceholder() || description == null
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
-          : description as String?,
+          : description as String,
       value: value == const $CopyWithPlaceholder() || value == null
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
@@ -125,13 +127,23 @@ extension $ProductAttributeResponseCopyWith on ProductAttributeResponse {
 ProductAttributeResponse _$ProductAttributeResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProductAttributeResponse', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['attribute', 'value']);
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'id',
+      'attributeId',
+      'valueId',
+      'attribute',
+      'description',
+      'value',
+    ],
+  );
   final val = ProductAttributeResponse(
-    id: $checkedConvert('id', (v) => v as String?),
-    attributeId: $checkedConvert('attributeId', (v) => (v as num?)?.toInt()),
-    valueId: $checkedConvert('valueId', (v) => (v as num?)?.toInt()),
+    id: $checkedConvert('id', (v) => v as String),
+    attributeId: $checkedConvert('attributeId', (v) => v as num),
+    valueId: $checkedConvert('valueId', (v) => v as num),
     attribute: $checkedConvert('attribute', (v) => v as String),
-    description: $checkedConvert('description', (v) => v as String?),
+    description: $checkedConvert('description', (v) => v as String),
     value: $checkedConvert('value', (v) => v as String),
   );
   return val;
@@ -140,10 +152,10 @@ ProductAttributeResponse _$ProductAttributeResponseFromJson(
 Map<String, dynamic> _$ProductAttributeResponseToJson(
   ProductAttributeResponse instance,
 ) => <String, dynamic>{
-  'id': ?instance.id,
-  'attributeId': ?instance.attributeId,
-  'valueId': ?instance.valueId,
+  'id': instance.id,
+  'attributeId': instance.attributeId,
+  'valueId': instance.valueId,
   'attribute': instance.attribute,
-  'description': ?instance.description,
+  'description': instance.description,
   'value': instance.value,
 };

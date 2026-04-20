@@ -12,6 +12,7 @@ import 'package:dio/dio.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_customer_for_pos_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_staff_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_staff_manage_item.dart';
+import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_user_manage_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_media_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_user_credentials_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
@@ -758,11 +759,87 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfStaffMa
     );
   }
 
-  /// apiUsersStaffStaffIdInactivePut
+  /// apiUsersUserManageGet
   /// 
   ///
   /// Parameters:
-  /// * [staffId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfUserManageItem] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BaseResponseOfListOfUserManageItem>> apiUsersUserManageGet({ 
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/users/user-manage';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BaseResponseOfListOfUserManageItem? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfUserManageItem, BaseResponseOfListOfUserManageItem>(rawData, 'BaseResponseOfListOfUserManageItem', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BaseResponseOfListOfUserManageItem>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiUsersUserUserIdInactivePut
+  /// 
+  ///
+  /// Parameters:
+  /// * [userId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -772,8 +849,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfStaffMa
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiUsersStaffStaffIdInactivePut({ 
-    required String staffId,
+  Future<Response<BaseResponseOfstring>> apiUsersUserUserIdInactivePut({ 
+    required String userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -781,7 +858,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfStaffMa
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/users/staff/{staffId}/inactive'.replaceAll('{' r'staffId' '}', staffId.toString());
+    final _path = r'/api/users/user/{userId}/inactive'.replaceAll('{' r'userId' '}', userId.toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{

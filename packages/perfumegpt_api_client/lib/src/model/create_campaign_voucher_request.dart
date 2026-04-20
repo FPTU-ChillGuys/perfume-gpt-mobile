@@ -185,7 +185,7 @@ class CreateCampaignVoucherRequest {
     int get hashCode =>
         code.hashCode +
         discountValue.hashCode +
-        targetItemType.hashCode +
+        (targetItemType == null ? 0 : targetItemType.hashCode) +
         discountType.hashCode +
         applyType.hashCode +
         (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +

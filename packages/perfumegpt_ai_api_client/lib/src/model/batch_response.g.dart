@@ -7,19 +7,19 @@ part of 'batch_response.dart';
 // **************************************************************************
 
 abstract class _$BatchResponseCWProxy {
-  BatchResponse id(String? id);
-
   BatchResponse batchCode(String batchCode);
 
-  BatchResponse manufactureDate(DateTime? manufactureDate);
+  BatchResponse createdAt(DateTime createdAt);
 
-  BatchResponse expiryDate(DateTime? expiryDate);
+  BatchResponse expiryDate(DateTime expiryDate);
 
-  BatchResponse importQuantity(int? importQuantity);
+  BatchResponse id(String id);
 
-  BatchResponse remainingQuantity(int? remainingQuantity);
+  BatchResponse importQuantity(num importQuantity);
 
-  BatchResponse createdAt(DateTime? createdAt);
+  BatchResponse manufactureDate(DateTime manufactureDate);
+
+  BatchResponse remainingQuantity(num remainingQuantity);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BatchResponse(...).copyWith.fieldName(value)`.
@@ -29,13 +29,13 @@ abstract class _$BatchResponseCWProxy {
   /// BatchResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   BatchResponse call({
-    String? id,
     String batchCode,
-    DateTime? manufactureDate,
-    DateTime? expiryDate,
-    int? importQuantity,
-    int? remainingQuantity,
-    DateTime? createdAt,
+    DateTime createdAt,
+    DateTime expiryDate,
+    String id,
+    num importQuantity,
+    DateTime manufactureDate,
+    num remainingQuantity,
   });
 }
 
@@ -47,29 +47,28 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
   final BatchResponse _value;
 
   @override
-  BatchResponse id(String? id) => call(id: id);
-
-  @override
   BatchResponse batchCode(String batchCode) => call(batchCode: batchCode);
 
   @override
-  BatchResponse manufactureDate(DateTime? manufactureDate) =>
-      call(manufactureDate: manufactureDate);
+  BatchResponse createdAt(DateTime createdAt) => call(createdAt: createdAt);
 
   @override
-  BatchResponse expiryDate(DateTime? expiryDate) =>
-      call(expiryDate: expiryDate);
+  BatchResponse expiryDate(DateTime expiryDate) => call(expiryDate: expiryDate);
 
   @override
-  BatchResponse importQuantity(int? importQuantity) =>
+  BatchResponse id(String id) => call(id: id);
+
+  @override
+  BatchResponse importQuantity(num importQuantity) =>
       call(importQuantity: importQuantity);
 
   @override
-  BatchResponse remainingQuantity(int? remainingQuantity) =>
-      call(remainingQuantity: remainingQuantity);
+  BatchResponse manufactureDate(DateTime manufactureDate) =>
+      call(manufactureDate: manufactureDate);
 
   @override
-  BatchResponse createdAt(DateTime? createdAt) => call(createdAt: createdAt);
+  BatchResponse remainingQuantity(num remainingQuantity) =>
+      call(remainingQuantity: remainingQuantity);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -80,43 +79,50 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
   /// BatchResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   BatchResponse call({
-    Object? id = const $CopyWithPlaceholder(),
     Object? batchCode = const $CopyWithPlaceholder(),
-    Object? manufactureDate = const $CopyWithPlaceholder(),
-    Object? expiryDate = const $CopyWithPlaceholder(),
-    Object? importQuantity = const $CopyWithPlaceholder(),
-    Object? remainingQuantity = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
+    Object? expiryDate = const $CopyWithPlaceholder(),
+    Object? id = const $CopyWithPlaceholder(),
+    Object? importQuantity = const $CopyWithPlaceholder(),
+    Object? manufactureDate = const $CopyWithPlaceholder(),
+    Object? remainingQuantity = const $CopyWithPlaceholder(),
   }) {
     return BatchResponse(
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
       batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
           ? _value.batchCode
           // ignore: cast_nullable_to_non_nullable
           : batchCode as String,
-      manufactureDate: manufactureDate == const $CopyWithPlaceholder()
-          ? _value.manufactureDate
-          // ignore: cast_nullable_to_non_nullable
-          : manufactureDate as DateTime?,
-      expiryDate: expiryDate == const $CopyWithPlaceholder()
-          ? _value.expiryDate
-          // ignore: cast_nullable_to_non_nullable
-          : expiryDate as DateTime?,
-      importQuantity: importQuantity == const $CopyWithPlaceholder()
-          ? _value.importQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : importQuantity as int?,
-      remainingQuantity: remainingQuantity == const $CopyWithPlaceholder()
-          ? _value.remainingQuantity
-          // ignore: cast_nullable_to_non_nullable
-          : remainingQuantity as int?,
-      createdAt: createdAt == const $CopyWithPlaceholder()
+      createdAt: createdAt == const $CopyWithPlaceholder() || createdAt == null
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
-          : createdAt as DateTime?,
+          : createdAt as DateTime,
+      expiryDate:
+          expiryDate == const $CopyWithPlaceholder() || expiryDate == null
+          ? _value.expiryDate
+          // ignore: cast_nullable_to_non_nullable
+          : expiryDate as DateTime,
+      id: id == const $CopyWithPlaceholder() || id == null
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String,
+      importQuantity:
+          importQuantity == const $CopyWithPlaceholder() ||
+              importQuantity == null
+          ? _value.importQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : importQuantity as num,
+      manufactureDate:
+          manufactureDate == const $CopyWithPlaceholder() ||
+              manufactureDate == null
+          ? _value.manufactureDate
+          // ignore: cast_nullable_to_non_nullable
+          : manufactureDate as DateTime,
+      remainingQuantity:
+          remainingQuantity == const $CopyWithPlaceholder() ||
+              remainingQuantity == null
+          ? _value.remainingQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : remainingQuantity as num,
     );
   }
 }
@@ -132,43 +138,46 @@ extension $BatchResponseCopyWith on BatchResponse {
 // JsonSerializableGenerator
 // **************************************************************************
 
-BatchResponse _$BatchResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('BatchResponse', json, ($checkedConvert) {
-      $checkKeys(json, requiredKeys: const ['batchCode']);
-      final val = BatchResponse(
-        id: $checkedConvert('id', (v) => v as String?),
-        batchCode: $checkedConvert('batchCode', (v) => v as String),
-        manufactureDate: $checkedConvert(
-          'manufactureDate',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-        expiryDate: $checkedConvert(
-          'expiryDate',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-        importQuantity: $checkedConvert(
-          'importQuantity',
-          (v) => (v as num?)?.toInt(),
-        ),
-        remainingQuantity: $checkedConvert(
-          'remainingQuantity',
-          (v) => (v as num?)?.toInt(),
-        ),
-        createdAt: $checkedConvert(
-          'createdAt',
-          (v) => v == null ? null : DateTime.parse(v as String),
-        ),
-      );
-      return val;
-    });
+BatchResponse _$BatchResponseFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('BatchResponse', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    requiredKeys: const [
+      'batchCode',
+      'createdAt',
+      'expiryDate',
+      'id',
+      'importQuantity',
+      'manufactureDate',
+      'remainingQuantity',
+    ],
+  );
+  final val = BatchResponse(
+    batchCode: $checkedConvert('batchCode', (v) => v as String),
+    createdAt: $checkedConvert('createdAt', (v) => DateTime.parse(v as String)),
+    expiryDate: $checkedConvert(
+      'expiryDate',
+      (v) => DateTime.parse(v as String),
+    ),
+    id: $checkedConvert('id', (v) => v as String),
+    importQuantity: $checkedConvert('importQuantity', (v) => v as num),
+    manufactureDate: $checkedConvert(
+      'manufactureDate',
+      (v) => DateTime.parse(v as String),
+    ),
+    remainingQuantity: $checkedConvert('remainingQuantity', (v) => v as num),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$BatchResponseToJson(BatchResponse instance) =>
     <String, dynamic>{
-      'id': ?instance.id,
       'batchCode': instance.batchCode,
-      'manufactureDate': ?instance.manufactureDate?.toIso8601String(),
-      'expiryDate': ?instance.expiryDate?.toIso8601String(),
-      'importQuantity': ?instance.importQuantity,
-      'remainingQuantity': ?instance.remainingQuantity,
-      'createdAt': ?instance.createdAt?.toIso8601String(),
+      'createdAt': instance.createdAt.toIso8601String(),
+      'expiryDate': instance.expiryDate.toIso8601String(),
+      'id': instance.id,
+      'importQuantity': instance.importQuantity,
+      'manufactureDate': instance.manufactureDate.toIso8601String(),
+      'remainingQuantity': instance.remainingQuantity,
     };

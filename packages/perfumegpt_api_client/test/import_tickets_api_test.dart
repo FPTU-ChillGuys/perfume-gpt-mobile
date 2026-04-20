@@ -7,13 +7,13 @@ void main() {
   final instance = PerfumegptApiClient().getImportTicketsApi();
 
   group(ImportTicketsApi, () {
-    //Future<BaseResponseOfCreateImportTicketRequest> apiImportticketsExcelParserPost({ MultipartFile excelFile, int supplierId, DateTime expectedArrivalDate }) async
+    //Future<BaseResponseOfCreateImportTicketRequest> apiImportticketsExcelParserPost({ MultipartFile excelFile, DateTime expectedArrivalDate }) async
     test('test apiImportticketsExcelParserPost', () async {
       // TODO
     });
 
-    //Future<FileContentResult> apiImportticketsExcelTemplateGet() async
-    test('test apiImportticketsExcelTemplateGet', () async {
+    //Future<FileContentResult> apiImportticketsExcelTemplateSupplierIdGet(int supplierId) async
+    test('test apiImportticketsExcelTemplateSupplierIdGet', () async {
       // TODO
     });
 

@@ -8,11 +8,12 @@ doc/AddressResponse.md
 doc/AdminDashboardApi.md
 doc/AdminDashboardOverviewResponse.md
 doc/AnswerReviewRequest.md
+doc/ApplicableVoucherCartItemRequest.md
+doc/ApplicableVoucherResponse.md
 doc/AttributeLookupItem.md
 doc/AttributeValueLookupItem.md
 doc/AttributesApi.md
 doc/AuthsApi.md
-doc/AvailableVoucherResponse.md
 doc/BannerLinkType.md
 doc/BannerPosition.md
 doc/BannerResponse.md
@@ -41,6 +42,7 @@ doc/BaseResponseOfImportTicketResponse.md
 doc/BaseResponseOfInventoryLevelsResponse.md
 doc/BaseResponseOfInventorySummaryResponse.md
 doc/BaseResponseOfListOfAddressResponse.md
+doc/BaseResponseOfListOfApplicableVoucherResponse.md
 doc/BaseResponseOfListOfAttributeLookupItem.md
 doc/BaseResponseOfListOfAttributeValueLookupItem.md
 doc/BaseResponseOfListOfBannerResponse.md
@@ -70,6 +72,7 @@ doc/BaseResponseOfListOfStaffManageItem.md
 doc/BaseResponseOfListOfSupplierLookupItem.md
 doc/BaseResponseOfListOfSupplierResponse.md
 doc/BaseResponseOfListOfTopProductResponse.md
+doc/BaseResponseOfListOfUserManageItem.md
 doc/BaseResponseOfListOfVariantLookupItem.md
 doc/BaseResponseOfListOfVoucherResponse.md
 doc/BaseResponseOfListOfWardResponse.md
@@ -79,7 +82,6 @@ doc/BaseResponseOfOlfactoryFamilyResponse.md
 doc/BaseResponseOfOrderCancelRequestResponse.md
 doc/BaseResponseOfOrderResponse.md
 doc/BaseResponseOfOrderReturnRequestResponse.md
-doc/BaseResponseOfPagedResultOfAvailableVoucherResponse.md
 doc/BaseResponseOfPagedResultOfBannerResponse.md
 doc/BaseResponseOfPagedResultOfBatchDetailResponse.md
 doc/BaseResponseOfPagedResultOfCampaignResponse.md
@@ -192,6 +194,7 @@ doc/CustomerAttributePreferenceResponse.md
 doc/CustomerFamilyPreferenceRespone.md
 doc/CustomerForPosResponse.md
 doc/CustomerNotePreferenceResponse.md
+doc/DeliverInStoreRequest.md
 doc/DeliveryMethod.md
 doc/DiscountType.md
 doc/DistrictResponse.md
@@ -202,6 +205,7 @@ doc/ForgotPasswordRequest.md
 doc/FulfillOrderItemRequest.md
 doc/FulfillOrderRequest.md
 doc/Gender.md
+doc/GetApplicableVouchersRequest.md
 doc/GetCartItemResponse.md
 doc/GetCartItemsResponse.md
 doc/GetCartTotalResponse.md
@@ -244,7 +248,6 @@ doc/OrderReturnRequestsApi.md
 doc/OrderStatus.md
 doc/OrderType.md
 doc/OrdersApi.md
-doc/PagedResultOfAvailableVoucherResponse.md
 doc/PagedResultOfBannerResponse.md
 doc/PagedResultOfBatchDetailResponse.md
 doc/PagedResultOfCampaignResponse.md
@@ -394,6 +397,7 @@ doc/UpdateVoucherRequest.md
 doc/UsageStatus.md
 doc/UserCancelOrderRequest.md
 doc/UserCredentialsResponse.md
+doc/UserManageItem.md
 doc/UserOrderResponse.md
 doc/UserRole.md
 doc/UserVoucherResponse.md
@@ -459,9 +463,10 @@ lib/src/model/address_level4_response.dart
 lib/src/model/address_response.dart
 lib/src/model/admin_dashboard_overview_response.dart
 lib/src/model/answer_review_request.dart
+lib/src/model/applicable_voucher_cart_item_request.dart
+lib/src/model/applicable_voucher_response.dart
 lib/src/model/attribute_lookup_item.dart
 lib/src/model/attribute_value_lookup_item.dart
-lib/src/model/available_voucher_response.dart
 lib/src/model/banner_link_type.dart
 lib/src/model/banner_position.dart
 lib/src/model/banner_response.dart
@@ -489,6 +494,7 @@ lib/src/model/base_response_of_import_ticket_response.dart
 lib/src/model/base_response_of_inventory_levels_response.dart
 lib/src/model/base_response_of_inventory_summary_response.dart
 lib/src/model/base_response_of_list_of_address_response.dart
+lib/src/model/base_response_of_list_of_applicable_voucher_response.dart
 lib/src/model/base_response_of_list_of_attribute_lookup_item.dart
 lib/src/model/base_response_of_list_of_attribute_value_lookup_item.dart
 lib/src/model/base_response_of_list_of_banner_response.dart
@@ -518,6 +524,7 @@ lib/src/model/base_response_of_list_of_staff_manage_item.dart
 lib/src/model/base_response_of_list_of_supplier_lookup_item.dart
 lib/src/model/base_response_of_list_of_supplier_response.dart
 lib/src/model/base_response_of_list_of_top_product_response.dart
+lib/src/model/base_response_of_list_of_user_manage_item.dart
 lib/src/model/base_response_of_list_of_variant_lookup_item.dart
 lib/src/model/base_response_of_list_of_voucher_response.dart
 lib/src/model/base_response_of_list_of_ward_response.dart
@@ -527,7 +534,6 @@ lib/src/model/base_response_of_olfactory_family_response.dart
 lib/src/model/base_response_of_order_cancel_request_response.dart
 lib/src/model/base_response_of_order_response.dart
 lib/src/model/base_response_of_order_return_request_response.dart
-lib/src/model/base_response_of_paged_result_of_available_voucher_response.dart
 lib/src/model/base_response_of_paged_result_of_banner_response.dart
 lib/src/model/base_response_of_paged_result_of_batch_detail_response.dart
 lib/src/model/base_response_of_paged_result_of_campaign_response.dart
@@ -634,6 +640,7 @@ lib/src/model/customer_attribute_preference_response.dart
 lib/src/model/customer_family_preference_respone.dart
 lib/src/model/customer_for_pos_response.dart
 lib/src/model/customer_note_preference_response.dart
+lib/src/model/deliver_in_store_request.dart
 lib/src/model/delivery_method.dart
 lib/src/model/discount_type.dart
 lib/src/model/district_response.dart
@@ -644,6 +651,7 @@ lib/src/model/forgot_password_request.dart
 lib/src/model/fulfill_order_item_request.dart
 lib/src/model/fulfill_order_request.dart
 lib/src/model/gender.dart
+lib/src/model/get_applicable_vouchers_request.dart
 lib/src/model/get_cart_item_response.dart
 lib/src/model/get_cart_items_response.dart
 lib/src/model/get_cart_total_response.dart
@@ -677,7 +685,6 @@ lib/src/model/order_return_request_detail_response.dart
 lib/src/model/order_return_request_response.dart
 lib/src/model/order_status.dart
 lib/src/model/order_type.dart
-lib/src/model/paged_result_of_available_voucher_response.dart
 lib/src/model/paged_result_of_banner_response.dart
 lib/src/model/paged_result_of_batch_detail_response.dart
 lib/src/model/paged_result_of_campaign_response.dart
@@ -720,6 +727,7 @@ lib/src/model/product_attribute_dto.dart
 lib/src/model/product_attribute_response.dart
 lib/src/model/product_daily_sale_figure_response.dart
 lib/src/model/product_fast_look_response.dart
+lib/src/model/product_image_upload_item.dart
 lib/src/model/product_infor_response.dart
 lib/src/model/product_list_item.dart
 lib/src/model/product_lookup_item.dart
@@ -815,11 +823,13 @@ lib/src/model/update_voucher_request.dart
 lib/src/model/usage_status.dart
 lib/src/model/user_cancel_order_request.dart
 lib/src/model/user_credentials_response.dart
+lib/src/model/user_manage_item.dart
 lib/src/model/user_order_response.dart
 lib/src/model/user_role.dart
 lib/src/model/user_voucher_response.dart
 lib/src/model/variant_daily_sale_figure.dart
 lib/src/model/variant_fast_look_response.dart
+lib/src/model/variant_image_upload_item.dart
 lib/src/model/variant_lookup_item.dart
 lib/src/model/variant_paged_item.dart
 lib/src/model/variant_status.dart

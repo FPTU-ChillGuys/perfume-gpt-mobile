@@ -3,14 +3,10 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:perfumegpt_ai_api_client/src/model/customer_family_preference_respone.dart';
-import 'package:perfumegpt_ai_api_client/src/model/customer_note_preference_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/customer_attribute_preference_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'profile_response.g.dart';
-
 
 @CopyWith()
 @JsonSerializable(
@@ -22,113 +18,97 @@ part 'profile_response.g.dart';
 class ProfileResponse {
   /// Returns a new [ProfileResponse] instance.
   ProfileResponse({
+    required this.dateOfBirth,
 
-     this.dateOfBirth,
+    required this.createdAt,
 
-     this.minBudget,
+    required this.favoriteNotes,
 
-     this.maxBudget,
+    required this.id,
 
-    required  this.notePreferences,
+    required this.maxBudget,
 
-    required  this.familyPreferences,
+    required this.minBudget,
 
-    required  this.attributePreferences,
+    required this.preferredStyle,
+
+    required this.scentPreference,
+
+    required this.updatedAt,
+
+    required this.userId,
   });
 
-  @JsonKey(
-    
-    name: r'dateOfBirth',
-    required: false,
-    includeIfNull: false,
-  )
+  /// User date of birth
+  @JsonKey(name: r'dateOfBirth', required: true, includeIfNull: true)
+  final Object? dateOfBirth;
 
+  /// Profile creation date
+  @JsonKey(name: r'createdAt', required: true, includeIfNull: false)
+  final String createdAt;
 
-  final DateTime? dateOfBirth;
+  /// Favorite perfume notes
+  @JsonKey(name: r'favoriteNotes', required: true, includeIfNull: true)
+  final Object? favoriteNotes;
 
+  /// Profile ID
+  @JsonKey(name: r'id', required: true, includeIfNull: false)
+  final String id;
 
+  /// Maximum budget
+  @JsonKey(name: r'maxBudget', required: true, includeIfNull: true)
+  final Object? maxBudget;
 
-  @JsonKey(
-    
-    name: r'minBudget',
-    required: false,
-    includeIfNull: false,
-  )
+  /// Minimum budget
+  @JsonKey(name: r'minBudget', required: true, includeIfNull: true)
+  final Object? minBudget;
 
+  /// Preferred perfume style
+  @JsonKey(name: r'preferredStyle', required: true, includeIfNull: true)
+  final Object? preferredStyle;
 
-  final num? minBudget;
+  /// Scent preference
+  @JsonKey(name: r'scentPreference', required: true, includeIfNull: true)
+  final Object? scentPreference;
 
+  /// Last update date
+  @JsonKey(name: r'updatedAt', required: true, includeIfNull: true)
+  final Object? updatedAt;
 
+  /// Associated user ID
+  @JsonKey(name: r'userId', required: true, includeIfNull: false)
+  final String userId;
 
-  @JsonKey(
-    
-    name: r'maxBudget',
-    required: false,
-    includeIfNull: false,
-  )
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProfileResponse &&
+          other.dateOfBirth == dateOfBirth &&
+          other.createdAt == createdAt &&
+          other.favoriteNotes == favoriteNotes &&
+          other.id == id &&
+          other.maxBudget == maxBudget &&
+          other.minBudget == minBudget &&
+          other.preferredStyle == preferredStyle &&
+          other.scentPreference == scentPreference &&
+          other.updatedAt == updatedAt &&
+          other.userId == userId;
 
+  @override
+  int get hashCode =>
+      (dateOfBirth == null ? 0 : dateOfBirth.hashCode) +
+      createdAt.hashCode +
+      (favoriteNotes == null ? 0 : favoriteNotes.hashCode) +
+      id.hashCode +
+      (maxBudget == null ? 0 : maxBudget.hashCode) +
+      (minBudget == null ? 0 : minBudget.hashCode) +
+      (preferredStyle == null ? 0 : preferredStyle.hashCode) +
+      (scentPreference == null ? 0 : scentPreference.hashCode) +
+      (updatedAt == null ? 0 : updatedAt.hashCode) +
+      userId.hashCode;
 
-  final num? maxBudget;
-
-
-
-  @JsonKey(
-    
-    name: r'notePreferences',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final List<CustomerNotePreferenceResponse> notePreferences;
-
-
-
-  @JsonKey(
-    
-    name: r'familyPreferences',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final List<CustomerFamilyPreferenceRespone> familyPreferences;
-
-
-
-  @JsonKey(
-    
-    name: r'attributePreferences',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final List<CustomerAttributePreferenceResponse> attributePreferences;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProfileResponse &&
-      other.dateOfBirth == dateOfBirth &&
-      other.minBudget == minBudget &&
-      other.maxBudget == maxBudget &&
-      other.notePreferences == notePreferences &&
-      other.familyPreferences == familyPreferences &&
-      other.attributePreferences == attributePreferences;
-
-    @override
-    int get hashCode =>
-        (dateOfBirth == null ? 0 : dateOfBirth.hashCode) +
-        (minBudget == null ? 0 : minBudget.hashCode) +
-        (maxBudget == null ? 0 : maxBudget.hashCode) +
-        notePreferences.hashCode +
-        familyPreferences.hashCode +
-        attributePreferences.hashCode;
-
-  factory ProfileResponse.fromJson(Map<String, dynamic> json) => _$ProfileResponseFromJson(json);
+  factory ProfileResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProfileResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileResponseToJson(this);
 
@@ -136,6 +116,4 @@ class ProfileResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

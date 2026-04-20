@@ -11,6 +11,8 @@ abstract class _$ConfirmPaymentRequestCWProxy {
 
   ConfirmPaymentRequest failureReason(String? failureReason);
 
+  ConfirmPaymentRequest posSessionId(String? posSessionId);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConfirmPaymentRequest(...).copyWith.fieldName(value)`.
   ///
@@ -18,7 +20,11 @@ abstract class _$ConfirmPaymentRequestCWProxy {
   /// ```dart
   /// ConfirmPaymentRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  ConfirmPaymentRequest call({bool isSuccess, String? failureReason});
+  ConfirmPaymentRequest call({
+    bool isSuccess,
+    String? failureReason,
+    String? posSessionId,
+  });
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -37,6 +43,10 @@ class _$ConfirmPaymentRequestCWProxyImpl
       call(failureReason: failureReason);
 
   @override
+  ConfirmPaymentRequest posSessionId(String? posSessionId) =>
+      call(posSessionId: posSessionId);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConfirmPaymentRequest(...).copyWith.fieldName(value)`.
   ///
@@ -47,6 +57,7 @@ class _$ConfirmPaymentRequestCWProxyImpl
   ConfirmPaymentRequest call({
     Object? isSuccess = const $CopyWithPlaceholder(),
     Object? failureReason = const $CopyWithPlaceholder(),
+    Object? posSessionId = const $CopyWithPlaceholder(),
   }) {
     return ConfirmPaymentRequest(
       isSuccess: isSuccess == const $CopyWithPlaceholder() || isSuccess == null
@@ -57,6 +68,10 @@ class _$ConfirmPaymentRequestCWProxyImpl
           ? _value.failureReason
           // ignore: cast_nullable_to_non_nullable
           : failureReason as String?,
+      posSessionId: posSessionId == const $CopyWithPlaceholder()
+          ? _value.posSessionId
+          // ignore: cast_nullable_to_non_nullable
+          : posSessionId as String?,
     );
   }
 }
@@ -80,6 +95,7 @@ ConfirmPaymentRequest _$ConfirmPaymentRequestFromJson(
   final val = ConfirmPaymentRequest(
     isSuccess: $checkedConvert('isSuccess', (v) => v as bool),
     failureReason: $checkedConvert('failureReason', (v) => v as String?),
+    posSessionId: $checkedConvert('posSessionId', (v) => v as String?),
   );
   return val;
 });
@@ -89,4 +105,5 @@ Map<String, dynamic> _$ConfirmPaymentRequestToJson(
 ) => <String, dynamic>{
   'isSuccess': instance.isSuccess,
   'failureReason': ?instance.failureReason,
+  'posSessionId': ?instance.posSessionId,
 };

@@ -7,45 +7,39 @@ part of 'product_variant_response.dart';
 // **************************************************************************
 
 abstract class _$ProductVariantResponseCWProxy {
-  ProductVariantResponse id(String? id);
+  ProductVariantResponse id(String id);
 
-  ProductVariantResponse barcode(String barcode);
+  ProductVariantResponse productId(String productId);
 
   ProductVariantResponse sku(String sku);
 
-  ProductVariantResponse volumeMl(int? volumeMl);
+  ProductVariantResponse barcode(String barcode);
 
-  ProductVariantResponse concentrationId(int? concentrationId);
+  ProductVariantResponse volumeMl(num volumeMl);
 
-  ProductVariantResponse concentrationName(String concentrationName);
+  ProductVariantResponse type(String type);
 
-  ProductVariantResponse type(VariantType? type);
+  ProductVariantResponse basePrice(num basePrice);
 
-  ProductVariantResponse basePrice(num? basePrice);
+  ProductVariantResponse status(String status);
 
-  ProductVariantResponse retailPrice(num? retailPrice);
+  ProductVariantResponse concentrationId(num concentrationId);
 
-  ProductVariantResponse status(VariantStatus? status);
+  ProductVariantResponse concentration(ConcentrationResponse? concentration);
 
-  ProductVariantResponse stockQuantity(int? stockQuantity);
+  ProductVariantResponse stock(VariantStockResponse? stock);
 
-  ProductVariantResponse sillage(int? sillage);
+  ProductVariantResponse media(List<VariantMediaResponse> media);
 
-  ProductVariantResponse longevity(int? longevity);
+  ProductVariantResponse attributes(List<ProductAttributeResponse> attributes);
 
-  ProductVariantResponse productId(String? productId);
+  ProductVariantResponse longevity(num? longevity);
 
-  ProductVariantResponse productName(String productName);
+  ProductVariantResponse sillage(num? sillage);
 
-  ProductVariantResponse media(List<MediaResponse> media);
+  ProductVariantResponse createdAt(String createdAt);
 
-  ProductVariantResponse campaignName(String? campaignName);
-
-  ProductVariantResponse voucherCode(String? voucherCode);
-
-  ProductVariantResponse discountedPrice(num? discountedPrice);
-
-  ProductVariantResponse attributes(List<ProductAttributeResponse>? attributes);
+  ProductVariantResponse updatedAt(Object? updatedAt);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductVariantResponse(...).copyWith.fieldName(value)`.
@@ -55,26 +49,23 @@ abstract class _$ProductVariantResponseCWProxy {
   /// ProductVariantResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   ProductVariantResponse call({
-    String? id,
-    String barcode,
+    String id,
+    String productId,
     String sku,
-    int? volumeMl,
-    int? concentrationId,
-    String concentrationName,
-    VariantType? type,
-    num? basePrice,
-    num? retailPrice,
-    VariantStatus? status,
-    int? stockQuantity,
-    int? sillage,
-    int? longevity,
-    String? productId,
-    String productName,
-    List<MediaResponse> media,
-    String? campaignName,
-    String? voucherCode,
-    num? discountedPrice,
-    List<ProductAttributeResponse>? attributes,
+    String barcode,
+    num volumeMl,
+    String type,
+    num basePrice,
+    String status,
+    num concentrationId,
+    ConcentrationResponse? concentration,
+    VariantStockResponse? stock,
+    List<VariantMediaResponse> media,
+    List<ProductAttributeResponse> attributes,
+    num? longevity,
+    num? sillage,
+    String createdAt,
+    Object? updatedAt,
   });
 }
 
@@ -87,77 +78,65 @@ class _$ProductVariantResponseCWProxyImpl
   final ProductVariantResponse _value;
 
   @override
-  ProductVariantResponse id(String? id) => call(id: id);
+  ProductVariantResponse id(String id) => call(id: id);
 
   @override
-  ProductVariantResponse barcode(String barcode) => call(barcode: barcode);
+  ProductVariantResponse productId(String productId) =>
+      call(productId: productId);
 
   @override
   ProductVariantResponse sku(String sku) => call(sku: sku);
 
   @override
-  ProductVariantResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
+  ProductVariantResponse barcode(String barcode) => call(barcode: barcode);
 
   @override
-  ProductVariantResponse concentrationId(int? concentrationId) =>
+  ProductVariantResponse volumeMl(num volumeMl) => call(volumeMl: volumeMl);
+
+  @override
+  ProductVariantResponse type(String type) => call(type: type);
+
+  @override
+  ProductVariantResponse basePrice(num basePrice) => call(basePrice: basePrice);
+
+  @override
+  ProductVariantResponse status(String status) => call(status: status);
+
+  @override
+  ProductVariantResponse concentrationId(num concentrationId) =>
       call(concentrationId: concentrationId);
 
   @override
-  ProductVariantResponse concentrationName(String concentrationName) =>
-      call(concentrationName: concentrationName);
+  ProductVariantResponse concentration(ConcentrationResponse? concentration) =>
+      call(concentration: concentration);
 
   @override
-  ProductVariantResponse type(VariantType? type) => call(type: type);
+  ProductVariantResponse stock(VariantStockResponse? stock) =>
+      call(stock: stock);
 
   @override
-  ProductVariantResponse basePrice(num? basePrice) =>
-      call(basePrice: basePrice);
-
-  @override
-  ProductVariantResponse retailPrice(num? retailPrice) =>
-      call(retailPrice: retailPrice);
-
-  @override
-  ProductVariantResponse status(VariantStatus? status) => call(status: status);
-
-  @override
-  ProductVariantResponse stockQuantity(int? stockQuantity) =>
-      call(stockQuantity: stockQuantity);
-
-  @override
-  ProductVariantResponse sillage(int? sillage) => call(sillage: sillage);
-
-  @override
-  ProductVariantResponse longevity(int? longevity) =>
-      call(longevity: longevity);
-
-  @override
-  ProductVariantResponse productId(String? productId) =>
-      call(productId: productId);
-
-  @override
-  ProductVariantResponse productName(String productName) =>
-      call(productName: productName);
-
-  @override
-  ProductVariantResponse media(List<MediaResponse> media) => call(media: media);
-
-  @override
-  ProductVariantResponse campaignName(String? campaignName) =>
-      call(campaignName: campaignName);
-
-  @override
-  ProductVariantResponse voucherCode(String? voucherCode) =>
-      call(voucherCode: voucherCode);
-
-  @override
-  ProductVariantResponse discountedPrice(num? discountedPrice) =>
-      call(discountedPrice: discountedPrice);
+  ProductVariantResponse media(List<VariantMediaResponse> media) =>
+      call(media: media);
 
   @override
   ProductVariantResponse attributes(
-    List<ProductAttributeResponse>? attributes,
+    List<ProductAttributeResponse> attributes,
   ) => call(attributes: attributes);
+
+  @override
+  ProductVariantResponse longevity(num? longevity) =>
+      call(longevity: longevity);
+
+  @override
+  ProductVariantResponse sillage(num? sillage) => call(sillage: sillage);
+
+  @override
+  ProductVariantResponse createdAt(String createdAt) =>
+      call(createdAt: createdAt);
+
+  @override
+  ProductVariantResponse updatedAt(Object? updatedAt) =>
+      call(updatedAt: updatedAt);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -169,110 +148,95 @@ class _$ProductVariantResponseCWProxyImpl
   /// ```
   ProductVariantResponse call({
     Object? id = const $CopyWithPlaceholder(),
-    Object? barcode = const $CopyWithPlaceholder(),
+    Object? productId = const $CopyWithPlaceholder(),
     Object? sku = const $CopyWithPlaceholder(),
+    Object? barcode = const $CopyWithPlaceholder(),
     Object? volumeMl = const $CopyWithPlaceholder(),
-    Object? concentrationId = const $CopyWithPlaceholder(),
-    Object? concentrationName = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
     Object? basePrice = const $CopyWithPlaceholder(),
-    Object? retailPrice = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
-    Object? stockQuantity = const $CopyWithPlaceholder(),
-    Object? sillage = const $CopyWithPlaceholder(),
-    Object? longevity = const $CopyWithPlaceholder(),
-    Object? productId = const $CopyWithPlaceholder(),
-    Object? productName = const $CopyWithPlaceholder(),
+    Object? concentrationId = const $CopyWithPlaceholder(),
+    Object? concentration = const $CopyWithPlaceholder(),
+    Object? stock = const $CopyWithPlaceholder(),
     Object? media = const $CopyWithPlaceholder(),
-    Object? campaignName = const $CopyWithPlaceholder(),
-    Object? voucherCode = const $CopyWithPlaceholder(),
-    Object? discountedPrice = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
+    Object? longevity = const $CopyWithPlaceholder(),
+    Object? sillage = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
+    Object? updatedAt = const $CopyWithPlaceholder(),
   }) {
     return ProductVariantResponse(
-      id: id == const $CopyWithPlaceholder()
+      id: id == const $CopyWithPlaceholder() || id == null
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      barcode: barcode == const $CopyWithPlaceholder() || barcode == null
-          ? _value.barcode
+          : id as String,
+      productId: productId == const $CopyWithPlaceholder() || productId == null
+          ? _value.productId
           // ignore: cast_nullable_to_non_nullable
-          : barcode as String,
+          : productId as String,
       sku: sku == const $CopyWithPlaceholder() || sku == null
           ? _value.sku
           // ignore: cast_nullable_to_non_nullable
           : sku as String,
-      volumeMl: volumeMl == const $CopyWithPlaceholder()
+      barcode: barcode == const $CopyWithPlaceholder() || barcode == null
+          ? _value.barcode
+          // ignore: cast_nullable_to_non_nullable
+          : barcode as String,
+      volumeMl: volumeMl == const $CopyWithPlaceholder() || volumeMl == null
           ? _value.volumeMl
           // ignore: cast_nullable_to_non_nullable
-          : volumeMl as int?,
-      concentrationId: concentrationId == const $CopyWithPlaceholder()
-          ? _value.concentrationId
-          // ignore: cast_nullable_to_non_nullable
-          : concentrationId as int?,
-      concentrationName:
-          concentrationName == const $CopyWithPlaceholder() ||
-              concentrationName == null
-          ? _value.concentrationName
-          // ignore: cast_nullable_to_non_nullable
-          : concentrationName as String,
-      type: type == const $CopyWithPlaceholder()
+          : volumeMl as num,
+      type: type == const $CopyWithPlaceholder() || type == null
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
-          : type as VariantType?,
-      basePrice: basePrice == const $CopyWithPlaceholder()
+          : type as String,
+      basePrice: basePrice == const $CopyWithPlaceholder() || basePrice == null
           ? _value.basePrice
           // ignore: cast_nullable_to_non_nullable
-          : basePrice as num?,
-      retailPrice: retailPrice == const $CopyWithPlaceholder()
-          ? _value.retailPrice
-          // ignore: cast_nullable_to_non_nullable
-          : retailPrice as num?,
-      status: status == const $CopyWithPlaceholder()
+          : basePrice as num,
+      status: status == const $CopyWithPlaceholder() || status == null
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
-          : status as VariantStatus?,
-      stockQuantity: stockQuantity == const $CopyWithPlaceholder()
-          ? _value.stockQuantity
+          : status as String,
+      concentrationId:
+          concentrationId == const $CopyWithPlaceholder() ||
+              concentrationId == null
+          ? _value.concentrationId
           // ignore: cast_nullable_to_non_nullable
-          : stockQuantity as int?,
-      sillage: sillage == const $CopyWithPlaceholder()
-          ? _value.sillage
+          : concentrationId as num,
+      concentration: concentration == const $CopyWithPlaceholder()
+          ? _value.concentration
           // ignore: cast_nullable_to_non_nullable
-          : sillage as int?,
-      longevity: longevity == const $CopyWithPlaceholder()
-          ? _value.longevity
+          : concentration as ConcentrationResponse?,
+      stock: stock == const $CopyWithPlaceholder()
+          ? _value.stock
           // ignore: cast_nullable_to_non_nullable
-          : longevity as int?,
-      productId: productId == const $CopyWithPlaceholder()
-          ? _value.productId
-          // ignore: cast_nullable_to_non_nullable
-          : productId as String?,
-      productName:
-          productName == const $CopyWithPlaceholder() || productName == null
-          ? _value.productName
-          // ignore: cast_nullable_to_non_nullable
-          : productName as String,
+          : stock as VariantStockResponse?,
       media: media == const $CopyWithPlaceholder() || media == null
           ? _value.media
           // ignore: cast_nullable_to_non_nullable
-          : media as List<MediaResponse>,
-      campaignName: campaignName == const $CopyWithPlaceholder()
-          ? _value.campaignName
-          // ignore: cast_nullable_to_non_nullable
-          : campaignName as String?,
-      voucherCode: voucherCode == const $CopyWithPlaceholder()
-          ? _value.voucherCode
-          // ignore: cast_nullable_to_non_nullable
-          : voucherCode as String?,
-      discountedPrice: discountedPrice == const $CopyWithPlaceholder()
-          ? _value.discountedPrice
-          // ignore: cast_nullable_to_non_nullable
-          : discountedPrice as num?,
-      attributes: attributes == const $CopyWithPlaceholder()
+          : media as List<VariantMediaResponse>,
+      attributes:
+          attributes == const $CopyWithPlaceholder() || attributes == null
           ? _value.attributes
           // ignore: cast_nullable_to_non_nullable
-          : attributes as List<ProductAttributeResponse>?,
+          : attributes as List<ProductAttributeResponse>,
+      longevity: longevity == const $CopyWithPlaceholder()
+          ? _value.longevity
+          // ignore: cast_nullable_to_non_nullable
+          : longevity as num?,
+      sillage: sillage == const $CopyWithPlaceholder()
+          ? _value.sillage
+          // ignore: cast_nullable_to_non_nullable
+          : sillage as num?,
+      createdAt: createdAt == const $CopyWithPlaceholder() || createdAt == null
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as String,
+      updatedAt: updatedAt == const $CopyWithPlaceholder()
+          ? _value.updatedAt
+          // ignore: cast_nullable_to_non_nullable
+          : updatedAt as Object?,
     );
   }
 }
@@ -295,58 +259,60 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
   $checkKeys(
     json,
     requiredKeys: const [
-      'barcode',
+      'id',
+      'productId',
       'sku',
-      'concentrationName',
-      'productName',
+      'barcode',
+      'volumeMl',
+      'type',
+      'basePrice',
+      'status',
+      'concentrationId',
       'media',
+      'attributes',
+      'createdAt',
     ],
   );
   final val = ProductVariantResponse(
-    id: $checkedConvert('id', (v) => v as String?),
-    barcode: $checkedConvert('barcode', (v) => v as String),
+    id: $checkedConvert('id', (v) => v as String),
+    productId: $checkedConvert('productId', (v) => v as String),
     sku: $checkedConvert('sku', (v) => v as String),
-    volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
-    concentrationId: $checkedConvert(
-      'concentrationId',
-      (v) => (v as num?)?.toInt(),
+    barcode: $checkedConvert('barcode', (v) => v as String),
+    volumeMl: $checkedConvert('volumeMl', (v) => v as num),
+    type: $checkedConvert('type', (v) => v as String),
+    basePrice: $checkedConvert('basePrice', (v) => v as num),
+    status: $checkedConvert('status', (v) => v as String),
+    concentrationId: $checkedConvert('concentrationId', (v) => v as num),
+    concentration: $checkedConvert(
+      'concentration',
+      (v) => v == null
+          ? null
+          : ConcentrationResponse.fromJson(v as Map<String, dynamic>),
     ),
-    concentrationName: $checkedConvert('concentrationName', (v) => v as String),
-    type: $checkedConvert(
-      'type',
-      (v) => $enumDecodeNullable(_$VariantTypeEnumMap, v),
+    stock: $checkedConvert(
+      'stock',
+      (v) => v == null
+          ? null
+          : VariantStockResponse.fromJson(v as Map<String, dynamic>),
     ),
-    basePrice: $checkedConvert('basePrice', (v) => v as num?),
-    retailPrice: $checkedConvert('retailPrice', (v) => v as num?),
-    status: $checkedConvert(
-      'status',
-      (v) => $enumDecodeNullable(_$VariantStatusEnumMap, v),
-    ),
-    stockQuantity: $checkedConvert(
-      'stockQuantity',
-      (v) => (v as num?)?.toInt(),
-    ),
-    sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
-    longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
-    productId: $checkedConvert('productId', (v) => v as String?),
-    productName: $checkedConvert('productName', (v) => v as String),
     media: $checkedConvert(
       'media',
       (v) => (v as List<dynamic>)
-          .map((e) => MediaResponse.fromJson(e as Map<String, dynamic>))
+          .map((e) => VariantMediaResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
-    campaignName: $checkedConvert('campaignName', (v) => v as String?),
-    voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
-    discountedPrice: $checkedConvert('discountedPrice', (v) => v as num?),
     attributes: $checkedConvert(
       'attributes',
-      (v) => (v as List<dynamic>?)
-          ?.map(
+      (v) => (v as List<dynamic>)
+          .map(
             (e) => ProductAttributeResponse.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
     ),
+    longevity: $checkedConvert('longevity', (v) => v as num?),
+    sillage: $checkedConvert('sillage', (v) => v as num?),
+    createdAt: $checkedConvert('createdAt', (v) => v as String),
+    updatedAt: $checkedConvert('updatedAt', (v) => v),
   );
   return val;
 });
@@ -354,37 +320,21 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
 Map<String, dynamic> _$ProductVariantResponseToJson(
   ProductVariantResponse instance,
 ) => <String, dynamic>{
-  'id': ?instance.id,
-  'barcode': instance.barcode,
+  'id': instance.id,
+  'productId': instance.productId,
   'sku': instance.sku,
-  'volumeMl': ?instance.volumeMl,
-  'concentrationId': ?instance.concentrationId,
-  'concentrationName': instance.concentrationName,
-  'type': ?_$VariantTypeEnumMap[instance.type],
-  'basePrice': ?instance.basePrice,
-  'retailPrice': ?instance.retailPrice,
-  'status': ?_$VariantStatusEnumMap[instance.status],
-  'stockQuantity': ?instance.stockQuantity,
-  'sillage': ?instance.sillage,
-  'longevity': ?instance.longevity,
-  'productId': ?instance.productId,
-  'productName': instance.productName,
+  'barcode': instance.barcode,
+  'volumeMl': instance.volumeMl,
+  'type': instance.type,
+  'basePrice': instance.basePrice,
+  'status': instance.status,
+  'concentrationId': instance.concentrationId,
+  'concentration': ?instance.concentration?.toJson(),
+  'stock': ?instance.stock?.toJson(),
   'media': instance.media.map((e) => e.toJson()).toList(),
-  'campaignName': ?instance.campaignName,
-  'voucherCode': ?instance.voucherCode,
-  'discountedPrice': ?instance.discountedPrice,
-  'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
-};
-
-const _$VariantTypeEnumMap = {
-  VariantType.standard: 'Standard',
-  VariantType.fullBox: 'FullBox',
-  VariantType.tester: 'Tester',
-  VariantType.mini: 'Mini',
-};
-
-const _$VariantStatusEnumMap = {
-  VariantStatus.active: 'Active',
-  VariantStatus.inactive: 'Inactive',
-  VariantStatus.discontinued: 'Discontinued',
+  'attributes': instance.attributes.map((e) => e.toJson()).toList(),
+  'longevity': ?instance.longevity,
+  'sillage': ?instance.sillage,
+  'createdAt': instance.createdAt,
+  'updatedAt': ?instance.updatedAt,
 };

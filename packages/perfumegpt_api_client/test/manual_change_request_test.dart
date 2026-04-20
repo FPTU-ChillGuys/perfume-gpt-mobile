@@ -7,11 +7,6 @@ void main() {
   // TODO add properties to the entity
 
   group(ManualChangeRequest, () {
-    // String userId
-    test('to test the property `userId`', () async {
-      // TODO
-    });
-
     // LoyaltyTransactionType transactionType
     test('to test the property `transactionType`', () async {
       // TODO

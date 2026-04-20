@@ -52,6 +52,16 @@ void main() {
       // TODO
     });
 
+    // num discount
+    test('to test the property `discount`', () async {
+      // TODO
+    });
+
+    // num finalTotal
+    test('to test the property `finalTotal`', () async {
+      // TODO
+    });
+
     // num subTotal
     test('to test the property `subTotal`', () async {
       // TODO

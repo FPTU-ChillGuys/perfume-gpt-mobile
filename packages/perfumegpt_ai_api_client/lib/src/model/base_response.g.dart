@@ -7,13 +7,13 @@ part of 'base_response.dart';
 // **************************************************************************
 
 abstract class _$BaseResponseCWProxy {
-  BaseResponse success(bool? success);
+  BaseResponse success(bool success);
 
-  BaseResponse message(String? message);
+  BaseResponse error(Object? error);
 
-  BaseResponse errors(List<String>? errors);
+  BaseResponse details(Object? details);
 
-  BaseResponse errorType(int? errorType);
+  BaseResponse data(Object? data);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponse(...).copyWith.fieldName(value)`.
@@ -23,10 +23,10 @@ abstract class _$BaseResponseCWProxy {
   /// BaseResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   BaseResponse call({
-    bool? success,
-    String? message,
-    List<String>? errors,
-    int? errorType,
+    bool success,
+    Object? error,
+    Object? details,
+    Object? data,
   });
 }
 
@@ -38,16 +38,16 @@ class _$BaseResponseCWProxyImpl implements _$BaseResponseCWProxy {
   final BaseResponse _value;
 
   @override
-  BaseResponse success(bool? success) => call(success: success);
+  BaseResponse success(bool success) => call(success: success);
 
   @override
-  BaseResponse message(String? message) => call(message: message);
+  BaseResponse error(Object? error) => call(error: error);
 
   @override
-  BaseResponse errors(List<String>? errors) => call(errors: errors);
+  BaseResponse details(Object? details) => call(details: details);
 
   @override
-  BaseResponse errorType(int? errorType) => call(errorType: errorType);
+  BaseResponse data(Object? data) => call(data: data);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -59,27 +59,27 @@ class _$BaseResponseCWProxyImpl implements _$BaseResponseCWProxy {
   /// ```
   BaseResponse call({
     Object? success = const $CopyWithPlaceholder(),
-    Object? message = const $CopyWithPlaceholder(),
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? errorType = const $CopyWithPlaceholder(),
+    Object? error = const $CopyWithPlaceholder(),
+    Object? details = const $CopyWithPlaceholder(),
+    Object? data = const $CopyWithPlaceholder(),
   }) {
     return BaseResponse(
-      success: success == const $CopyWithPlaceholder()
+      success: success == const $CopyWithPlaceholder() || success == null
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool?,
-      message: message == const $CopyWithPlaceholder()
-          ? _value.message
+          : success as bool,
+      error: error == const $CopyWithPlaceholder()
+          ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : message as String?,
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
+          : error as Object?,
+      details: details == const $CopyWithPlaceholder()
+          ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : errors as List<String>?,
-      errorType: errorType == const $CopyWithPlaceholder()
-          ? _value.errorType
+          : details as Object?,
+      data: data == const $CopyWithPlaceholder()
+          ? _value.data
           // ignore: cast_nullable_to_non_nullable
-          : errorType as int?,
+          : data as Object?,
     );
   }
 }
@@ -97,22 +97,20 @@ extension $BaseResponseCopyWith on BaseResponse {
 
 BaseResponse _$BaseResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('BaseResponse', json, ($checkedConvert) {
+      $checkKeys(json, requiredKeys: const ['success']);
       final val = BaseResponse(
-        success: $checkedConvert('success', (v) => v as bool?),
-        message: $checkedConvert('message', (v) => v as String?),
-        errors: $checkedConvert(
-          'errors',
-          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
-        ),
-        errorType: $checkedConvert('errorType', (v) => (v as num?)?.toInt()),
+        success: $checkedConvert('success', (v) => v as bool),
+        error: $checkedConvert('error', (v) => v),
+        details: $checkedConvert('details', (v) => v),
+        data: $checkedConvert('data', (v) => v),
       );
       return val;
     });
 
 Map<String, dynamic> _$BaseResponseToJson(BaseResponse instance) =>
     <String, dynamic>{
-      'success': ?instance.success,
-      'message': ?instance.message,
-      'errors': ?instance.errors,
-      'errorType': ?instance.errorType,
+      'success': instance.success,
+      'error': ?instance.error,
+      'details': ?instance.details,
+      'data': ?instance.data,
     };

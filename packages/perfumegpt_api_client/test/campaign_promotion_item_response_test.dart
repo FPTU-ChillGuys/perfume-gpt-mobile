@@ -22,18 +22,43 @@ void main() {
       // TODO
     });
 
+    // String sku
+    test('to test the property `sku`', () async {
+      // TODO
+    });
+
+    // String primaryImageUrl
+    test('to test the property `primaryImageUrl`', () async {
+      // TODO
+    });
+
+    // String productName
+    test('to test the property `productName`', () async {
+      // TODO
+    });
+
     // String batchId
     test('to test the property `batchId`', () async {
       // TODO
     });
 
-    // String name
-    test('to test the property `name`', () async {
+    // String batchCode
+    test('to test the property `batchCode`', () async {
       // TODO
     });
 
     // PromotionType itemType
     test('to test the property `itemType`', () async {
+      // TODO
+    });
+
+    // DiscountType discountType
+    test('to test the property `discountType`', () async {
+      // TODO
+    });
+
+    // num discountValue
+    test('to test the property `discountValue`', () async {
       // TODO
     });
 

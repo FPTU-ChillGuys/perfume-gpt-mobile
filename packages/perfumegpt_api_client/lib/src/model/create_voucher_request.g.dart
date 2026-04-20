@@ -13,8 +13,6 @@ abstract class _$CreateVoucherRequestCWProxy {
 
   CreateVoucherRequest discountType(DiscountType? discountType);
 
-  CreateVoucherRequest applyType(VoucherType? applyType);
-
   CreateVoucherRequest requiredPoints(int? requiredPoints);
 
   CreateVoucherRequest maxDiscountAmount(num? maxDiscountAmount);
@@ -42,7 +40,6 @@ abstract class _$CreateVoucherRequestCWProxy {
     String code,
     num? discountValue,
     DiscountType? discountType,
-    VoucherType? applyType,
     int? requiredPoints,
     num? maxDiscountAmount,
     num? minOrderValue,
@@ -72,10 +69,6 @@ class _$CreateVoucherRequestCWProxyImpl
   @override
   CreateVoucherRequest discountType(DiscountType? discountType) =>
       call(discountType: discountType);
-
-  @override
-  CreateVoucherRequest applyType(VoucherType? applyType) =>
-      call(applyType: applyType);
 
   @override
   CreateVoucherRequest requiredPoints(int? requiredPoints) =>
@@ -120,7 +113,6 @@ class _$CreateVoucherRequestCWProxyImpl
     Object? code = const $CopyWithPlaceholder(),
     Object? discountValue = const $CopyWithPlaceholder(),
     Object? discountType = const $CopyWithPlaceholder(),
-    Object? applyType = const $CopyWithPlaceholder(),
     Object? requiredPoints = const $CopyWithPlaceholder(),
     Object? maxDiscountAmount = const $CopyWithPlaceholder(),
     Object? minOrderValue = const $CopyWithPlaceholder(),
@@ -143,10 +135,6 @@ class _$CreateVoucherRequestCWProxyImpl
           ? _value.discountType
           // ignore: cast_nullable_to_non_nullable
           : discountType as DiscountType?,
-      applyType: applyType == const $CopyWithPlaceholder()
-          ? _value.applyType
-          // ignore: cast_nullable_to_non_nullable
-          : applyType as VoucherType?,
       requiredPoints: requiredPoints == const $CopyWithPlaceholder()
           ? _value.requiredPoints
           // ignore: cast_nullable_to_non_nullable
@@ -206,10 +194,6 @@ CreateVoucherRequest _$CreateVoucherRequestFromJson(
       'discountType',
       (v) => $enumDecodeNullable(_$DiscountTypeEnumMap, v),
     ),
-    applyType: $checkedConvert(
-      'applyType',
-      (v) => $enumDecodeNullable(_$VoucherTypeEnumMap, v),
-    ),
     requiredPoints: $checkedConvert(
       'requiredPoints',
       (v) => (v as num?)?.toInt(),
@@ -240,7 +224,6 @@ Map<String, dynamic> _$CreateVoucherRequestToJson(
   'code': instance.code,
   'discountValue': ?instance.discountValue,
   'discountType': ?_$DiscountTypeEnumMap[instance.discountType],
-  'applyType': ?_$VoucherTypeEnumMap[instance.applyType],
   'requiredPoints': ?instance.requiredPoints,
   'maxDiscountAmount': ?instance.maxDiscountAmount,
   'minOrderValue': ?instance.minOrderValue,
@@ -254,9 +237,4 @@ Map<String, dynamic> _$CreateVoucherRequestToJson(
 const _$DiscountTypeEnumMap = {
   DiscountType.percentage: 'Percentage',
   DiscountType.fixedAmount: 'FixedAmount',
-};
-
-const _$VoucherTypeEnumMap = {
-  VoucherType.order: 'Order',
-  VoucherType.product: 'Product',
 };

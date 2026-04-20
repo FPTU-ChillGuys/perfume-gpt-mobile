@@ -2,9 +2,10 @@ import 'package:perfumegpt_api_client/src/model/address_level4_response.dart';
 import 'package:perfumegpt_api_client/src/model/address_response.dart';
 import 'package:perfumegpt_api_client/src/model/admin_dashboard_overview_response.dart';
 import 'package:perfumegpt_api_client/src/model/answer_review_request.dart';
+import 'package:perfumegpt_api_client/src/model/applicable_voucher_cart_item_request.dart';
+import 'package:perfumegpt_api_client/src/model/applicable_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/attribute_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/attribute_value_lookup_item.dart';
-import 'package:perfumegpt_api_client/src/model/available_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/banner_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_address_level4_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_address_response.dart';
@@ -30,6 +31,7 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_import_ticket_r
 import 'package:perfumegpt_api_client/src/model/base_response_of_inventory_levels_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_inventory_summary_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_address_response.dart';
+import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_applicable_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_attribute_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_attribute_value_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_banner_response.dart';
@@ -59,6 +61,7 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_staff_m
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_supplier_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_supplier_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_top_product_response.dart';
+import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_user_manage_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_variant_lookup_item.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_ward_response.dart';
@@ -68,7 +71,6 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_olfactory_famil
 import 'package:perfumegpt_api_client/src/model/base_response_of_order_cancel_request_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_order_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_order_return_request_response.dart';
-import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_available_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_banner_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_batch_detail_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_campaign_response.dart';
@@ -168,6 +170,7 @@ import 'package:perfumegpt_api_client/src/model/customer_attribute_preference_re
 import 'package:perfumegpt_api_client/src/model/customer_family_preference_respone.dart';
 import 'package:perfumegpt_api_client/src/model/customer_for_pos_response.dart';
 import 'package:perfumegpt_api_client/src/model/customer_note_preference_response.dart';
+import 'package:perfumegpt_api_client/src/model/deliver_in_store_request.dart';
 import 'package:perfumegpt_api_client/src/model/district_response.dart';
 import 'package:perfumegpt_api_client/src/model/entity_tag_header_value.dart';
 import 'package:perfumegpt_api_client/src/model/excel_template_response.dart';
@@ -175,6 +178,7 @@ import 'package:perfumegpt_api_client/src/model/file_content_result.dart';
 import 'package:perfumegpt_api_client/src/model/forgot_password_request.dart';
 import 'package:perfumegpt_api_client/src/model/fulfill_order_item_request.dart';
 import 'package:perfumegpt_api_client/src/model/fulfill_order_request.dart';
+import 'package:perfumegpt_api_client/src/model/get_applicable_vouchers_request.dart';
 import 'package:perfumegpt_api_client/src/model/get_cart_item_response.dart';
 import 'package:perfumegpt_api_client/src/model/get_cart_items_response.dart';
 import 'package:perfumegpt_api_client/src/model/get_cart_total_response.dart';
@@ -201,7 +205,6 @@ import 'package:perfumegpt_api_client/src/model/order_list_item.dart';
 import 'package:perfumegpt_api_client/src/model/order_response.dart';
 import 'package:perfumegpt_api_client/src/model/order_return_request_detail_response.dart';
 import 'package:perfumegpt_api_client/src/model/order_return_request_response.dart';
-import 'package:perfumegpt_api_client/src/model/paged_result_of_available_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/paged_result_of_banner_response.dart';
 import 'package:perfumegpt_api_client/src/model/paged_result_of_batch_detail_response.dart';
 import 'package:perfumegpt_api_client/src/model/paged_result_of_campaign_response.dart';
@@ -324,6 +327,7 @@ import 'package:perfumegpt_api_client/src/model/update_variant_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_voucher_request.dart';
 import 'package:perfumegpt_api_client/src/model/user_cancel_order_request.dart';
 import 'package:perfumegpt_api_client/src/model/user_credentials_response.dart';
+import 'package:perfumegpt_api_client/src/model/user_manage_item.dart';
 import 'package:perfumegpt_api_client/src/model/user_order_response.dart';
 import 'package:perfumegpt_api_client/src/model/user_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/variant_daily_sale_figure.dart';
@@ -365,12 +369,14 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return AdminDashboardOverviewResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'AnswerReviewRequest':
           return AnswerReviewRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'ApplicableVoucherCartItemRequest':
+          return ApplicableVoucherCartItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'ApplicableVoucherResponse':
+          return ApplicableVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'AttributeLookupItem':
           return AttributeLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'AttributeValueLookupItem':
           return AttributeValueLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'AvailableVoucherResponse':
-          return AvailableVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BannerLinkType':
           
           
@@ -427,6 +433,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return BaseResponseOfInventorySummaryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfListOfAddressResponse':
           return BaseResponseOfListOfAddressResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'BaseResponseOfListOfApplicableVoucherResponse':
+          return BaseResponseOfListOfApplicableVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfListOfAttributeLookupItem':
           return BaseResponseOfListOfAttributeLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfListOfAttributeValueLookupItem':
@@ -485,6 +493,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return BaseResponseOfListOfSupplierResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfListOfTopProductResponse':
           return BaseResponseOfListOfTopProductResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'BaseResponseOfListOfUserManageItem':
+          return BaseResponseOfListOfUserManageItem.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfListOfVariantLookupItem':
           return BaseResponseOfListOfVariantLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfListOfVoucherResponse':
@@ -503,8 +513,6 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return BaseResponseOfOrderResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfOrderReturnRequestResponse':
           return BaseResponseOfOrderReturnRequestResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfAvailableVoucherResponse':
-          return BaseResponseOfPagedResultOfAvailableVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfPagedResultOfBannerResponse':
           return BaseResponseOfPagedResultOfBannerResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'BaseResponseOfPagedResultOfBatchDetailResponse':
@@ -724,6 +732,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return CustomerForPosResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'CustomerNotePreferenceResponse':
           return CustomerNotePreferenceResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'DeliverInStoreRequest':
+          return DeliverInStoreRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'DeliveryMethod':
           
           
@@ -747,6 +757,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
         case 'Gender':
           
           
+        case 'GetApplicableVouchersRequest':
+          return GetApplicableVouchersRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'GetCartItemResponse':
           return GetCartItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'GetCartItemsResponse':
@@ -820,8 +832,6 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
         case 'OrderType':
           
           
-        case 'PagedResultOfAvailableVoucherResponse':
-          return PagedResultOfAvailableVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'PagedResultOfBannerResponse':
           return PagedResultOfBannerResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'PagedResultOfBatchDetailResponse':
@@ -1114,6 +1124,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return UserCancelOrderRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'UserCredentialsResponse':
           return UserCredentialsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'UserManageItem':
+          return UserManageItem.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'UserOrderResponse':
           return UserOrderResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'UserRole':

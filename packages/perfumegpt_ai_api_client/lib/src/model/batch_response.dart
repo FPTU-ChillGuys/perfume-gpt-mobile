@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'batch_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,129 +18,73 @@ part 'batch_response.g.dart';
 class BatchResponse {
   /// Returns a new [BatchResponse] instance.
   BatchResponse({
+    required this.batchCode,
 
-     this.id,
+    required this.createdAt,
 
-    required  this.batchCode,
+    required this.expiryDate,
 
-     this.manufactureDate,
+    required this.id,
 
-     this.expiryDate,
+    required this.importQuantity,
 
-     this.importQuantity,
+    required this.manufactureDate,
 
-     this.remainingQuantity,
-
-     this.createdAt,
+    required this.remainingQuantity,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? id;
-
-
-
-  @JsonKey(
-    
-    name: r'batchCode',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Batch code
+  @JsonKey(name: r'batchCode', required: true, includeIfNull: false)
   final String batchCode;
 
+  /// The date-time notation as defined by RFC 3339, section 5.6, for example, 2017-07-21T17:32:28Z
+  @JsonKey(name: r'createdAt', required: true, includeIfNull: false)
+  final DateTime createdAt;
 
+  /// The date-time notation as defined by RFC 3339, section 5.6, for example, 2017-07-21T17:32:28Z
+  @JsonKey(name: r'expiryDate', required: true, includeIfNull: false)
+  final DateTime expiryDate;
 
-  @JsonKey(
-    
-    name: r'manufactureDate',
-    required: false,
-    includeIfNull: false,
-  )
+  /// Unique identifier
+  @JsonKey(name: r'id', required: true, includeIfNull: false)
+  final String id;
 
+  /// Signed 32-bit integers (commonly used integer type).
+  @JsonKey(name: r'importQuantity', required: true, includeIfNull: false)
+  final num importQuantity;
 
-  final DateTime? manufactureDate;
+  /// The date-time notation as defined by RFC 3339, section 5.6, for example, 2017-07-21T17:32:28Z
+  @JsonKey(name: r'manufactureDate', required: true, includeIfNull: false)
+  final DateTime manufactureDate;
 
+  /// Signed 32-bit integers (commonly used integer type).
+  @JsonKey(name: r'remainingQuantity', required: true, includeIfNull: false)
+  final num remainingQuantity;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BatchResponse &&
+          other.batchCode == batchCode &&
+          other.createdAt == createdAt &&
+          other.expiryDate == expiryDate &&
+          other.id == id &&
+          other.importQuantity == importQuantity &&
+          other.manufactureDate == manufactureDate &&
+          other.remainingQuantity == remainingQuantity;
 
-  @JsonKey(
-    
-    name: r'expiryDate',
-    required: false,
-    includeIfNull: false,
-  )
+  @override
+  int get hashCode =>
+      batchCode.hashCode +
+      createdAt.hashCode +
+      expiryDate.hashCode +
+      id.hashCode +
+      importQuantity.hashCode +
+      manufactureDate.hashCode +
+      remainingQuantity.hashCode;
 
-
-  final DateTime? expiryDate;
-
-
-
-  @JsonKey(
-    
-    name: r'importQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? importQuantity;
-
-
-
-  @JsonKey(
-    
-    name: r'remainingQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final int? remainingQuantity;
-
-
-
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final DateTime? createdAt;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BatchResponse &&
-      other.id == id &&
-      other.batchCode == batchCode &&
-      other.manufactureDate == manufactureDate &&
-      other.expiryDate == expiryDate &&
-      other.importQuantity == importQuantity &&
-      other.remainingQuantity == remainingQuantity &&
-      other.createdAt == createdAt;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        batchCode.hashCode +
-        manufactureDate.hashCode +
-        expiryDate.hashCode +
-        importQuantity.hashCode +
-        remainingQuantity.hashCode +
-        createdAt.hashCode;
-
-  factory BatchResponse.fromJson(Map<String, dynamic> json) => _$BatchResponseFromJson(json);
+  factory BatchResponse.fromJson(Map<String, dynamic> json) =>
+      _$BatchResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$BatchResponseToJson(this);
 
@@ -149,6 +92,4 @@ class BatchResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

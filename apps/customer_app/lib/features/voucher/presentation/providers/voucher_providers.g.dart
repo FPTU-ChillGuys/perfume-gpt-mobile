@@ -56,45 +56,6 @@ final class VoucherRepositoryProvider
 
 String _$voucherRepositoryHash() => r'e4b40aceefdb9b727294e2b05a7704333a161d6c';
 
-@ProviderFor(availableVouchers)
-final availableVouchersProvider = AvailableVouchersProvider._();
-
-final class AvailableVouchersProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<Voucher>>,
-          List<Voucher>,
-          FutureOr<List<Voucher>>
-        >
-    with $FutureModifier<List<Voucher>>, $FutureProvider<List<Voucher>> {
-  AvailableVouchersProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'availableVouchersProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$availableVouchersHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<List<Voucher>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<List<Voucher>> create(Ref ref) {
-    return availableVouchers(ref);
-  }
-}
-
-String _$availableVouchersHash() => r'2f67525e902db0df4106891c4613a349a04a940d';
-
 @ProviderFor(myVouchers)
 final myVouchersProvider = MyVouchersProvider._();
 

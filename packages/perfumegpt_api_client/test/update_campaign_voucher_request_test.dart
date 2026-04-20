@@ -37,5 +37,30 @@ void main() {
       // TODO
     });
 
+    // num maxDiscountAmount
+    test('to test the property `maxDiscountAmount`', () async {
+      // TODO
+    });
+
+    // num minOrderValue
+    test('to test the property `minOrderValue`', () async {
+      // TODO
+    });
+
+    // int totalQuantity
+    test('to test the property `totalQuantity`', () async {
+      // TODO
+    });
+
+    // int maxUsagePerUser
+    test('to test the property `maxUsagePerUser`', () async {
+      // TODO
+    });
+
+    // bool isMemberOnly
+    test('to test the property `isMemberOnly`', () async {
+      // TODO
+    });
+
   });
 }

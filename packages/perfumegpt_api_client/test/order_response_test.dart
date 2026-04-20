@@ -32,6 +32,11 @@ void main() {
       // TODO
     });
 
+    // String customerPhoneNumber
+    test('to test the property `customerPhoneNumber`', () async {
+      // TODO
+    });
+
     // String staffId
     test('to test the property `staffId`', () async {
       // TODO
@@ -62,6 +67,16 @@ void main() {
       // TODO
     });
 
+    // num subTotal
+    test('to test the property `subTotal`', () async {
+      // TODO
+    });
+
+    // num shippingFee
+    test('to test the property `shippingFee`', () async {
+      // TODO
+    });
+
     // String voucherId
     test('to test the property `voucherId`', () async {
       // TODO
@@ -69,6 +84,16 @@ void main() {
 
     // String voucherCode
     test('to test the property `voucherCode`', () async {
+      // TODO
+    });
+
+    // VoucherType voucherType
+    test('to test the property `voucherType`', () async {
+      // TODO
+    });
+
+    // num voucherDiscountTotal
+    test('to test the property `voucherDiscountTotal`', () async {
       // TODO
     });
 

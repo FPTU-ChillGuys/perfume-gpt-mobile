@@ -8,7 +8,6 @@ import 'package:perfumegpt_api_client/src/auth/basic_auth.dart';
 import 'package:perfumegpt_api_client/src/auth/bearer_auth.dart';
 import 'package:perfumegpt_api_client/src/auth/oauth.dart';
 import 'package:perfumegpt_api_client/src/api/address_api.dart';
-import 'package:perfumegpt_api_client/src/api/ai_api.dart';
 import 'package:perfumegpt_api_client/src/api/admin_dashboard_api.dart';
 import 'package:perfumegpt_api_client/src/api/attributes_api.dart';
 import 'package:perfumegpt_api_client/src/api/auths_api.dart';
@@ -97,12 +96,6 @@ class PerfumegptApiClient {
   /// by doing that all interceptors will not be executed
   AddressApi getAddressApi() {
     return AddressApi(dio);
-  }
-
-  /// Get AIApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  AIApi getAiApi() {
-    return AIApi(dio);
   }
 
   /// Get AdminDashboardApi instance, base route and serializer can be overridden by a given but be careful,

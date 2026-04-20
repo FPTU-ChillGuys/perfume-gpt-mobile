@@ -27,6 +27,8 @@ class CreateInStoreOrderRequest {
 
      this.voucherCode,
 
+     this.guestEmailOrPhoneNumber,
+
      this.customerId,
 
      this.isPickupInStore,
@@ -61,6 +63,18 @@ class CreateInStoreOrderRequest {
 
 
   final String? voucherCode;
+
+
+
+  @JsonKey(
+    
+    name: r'guestEmailOrPhoneNumber',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? guestEmailOrPhoneNumber;
 
 
 
@@ -142,6 +156,7 @@ class CreateInStoreOrderRequest {
     bool operator ==(Object other) => identical(this, other) || other is CreateInStoreOrderRequest &&
       other.scannedItems == scannedItems &&
       other.voucherCode == voucherCode &&
+      other.guestEmailOrPhoneNumber == guestEmailOrPhoneNumber &&
       other.customerId == customerId &&
       other.isPickupInStore == isPickupInStore &&
       other.recipient == recipient &&
@@ -153,6 +168,7 @@ class CreateInStoreOrderRequest {
     int get hashCode =>
         scannedItems.hashCode +
         (voucherCode == null ? 0 : voucherCode.hashCode) +
+        (guestEmailOrPhoneNumber == null ? 0 : guestEmailOrPhoneNumber.hashCode) +
         (customerId == null ? 0 : customerId.hashCode) +
         isPickupInStore.hashCode +
         (recipient == null ? 0 : recipient.hashCode) +

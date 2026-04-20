@@ -33,7 +33,6 @@ class ImportTicketsApi {
   ///
   /// Parameters:
   /// * [excelFile] 
-  /// * [supplierId] 
   /// * [expectedArrivalDate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -46,7 +45,6 @@ class ImportTicketsApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfCreateImportTicketRequest>> apiImportticketsExcelParserPost({ 
     MultipartFile? excelFile,
-    int? supplierId,
     DateTime? expectedArrivalDate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -128,10 +126,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCreateImportT
     );
   }
 
-  /// apiImportticketsExcelTemplateGet
+  /// apiImportticketsExcelTemplateSupplierIdGet
   /// 
   ///
   /// Parameters:
+  /// * [supplierId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -141,7 +140,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCreateImportT
   ///
   /// Returns a [Future] containing a [Response] with a [FileContentResult] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<FileContentResult>> apiImportticketsExcelTemplateGet({ 
+  Future<Response<FileContentResult>> apiImportticketsExcelTemplateSupplierIdGet({ 
+    required int supplierId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -149,7 +149,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCreateImportT
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/importtickets/excel-template';
+    final _path = r'/api/importtickets/excel-template/{supplierId}'.replaceAll('{' r'supplierId' '}', supplierId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

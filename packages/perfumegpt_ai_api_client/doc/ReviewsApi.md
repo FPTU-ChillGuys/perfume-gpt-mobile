@@ -5,126 +5,27 @@
 import 'package:perfumegpt_ai_api_client/api.dart';
 ```
 
-All URIs are relative to *https://localhost:7011*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiReviewsGet**](ReviewsApi.md#apireviewsget) | **GET** /api/reviews | 
-[**apiReviewsImagesTemporaryPost**](ReviewsApi.md#apireviewsimagestemporarypost) | **POST** /api/reviews/images/temporary | 
-[**apiReviewsMeGet**](ReviewsApi.md#apireviewsmeget) | **GET** /api/reviews/me | 
-[**apiReviewsPost**](ReviewsApi.md#apireviewspost) | **POST** /api/reviews | 
-[**apiReviewsReviewIdAnswerPost**](ReviewsApi.md#apireviewsreviewidanswerpost) | **POST** /api/reviews/{reviewId}/answer | 
-[**apiReviewsReviewIdDelete**](ReviewsApi.md#apireviewsreviewiddelete) | **DELETE** /api/reviews/{reviewId} | 
-[**apiReviewsReviewIdGet**](ReviewsApi.md#apireviewsreviewidget) | **GET** /api/reviews/{reviewId} | 
-[**apiReviewsReviewIdImagesGet**](ReviewsApi.md#apireviewsreviewidimagesget) | **GET** /api/reviews/{reviewId}/images | 
-[**apiReviewsVariantVariantIdGet**](ReviewsApi.md#apireviewsvariantvariantidget) | **GET** /api/reviews/variant/{variantId} | 
-[**apiReviewsVariantVariantIdStatisticsGet**](ReviewsApi.md#apireviewsvariantvariantidstatisticsget) | **GET** /api/reviews/variant/{variantId}/statistics | 
+[**reviewControllerAddReviewLog**](ReviewsApi.md#reviewcontrolleraddreviewlog) | **POST** /reviews/logs | Thêm review log
+[**reviewControllerCreateReviewSummaryJob**](ReviewsApi.md#reviewcontrollercreatereviewsummaryjob) | **GET** /reviews/summary/job/{variantId} | Khởi tạo job để tóm tắt đánh giá theo variant ID
+[**reviewControllerGetAllReviewLogs**](ReviewsApi.md#reviewcontrollergetallreviewlogs) | **GET** /reviews/logs | Lấy tất cả review logs
+[**reviewControllerGetLatestReviewLogByVariantId**](ReviewsApi.md#reviewcontrollergetlatestreviewlogbyvariantid) | **GET** /reviews/logs/latest/variant/{variantId} | Lấy review log mới nhất theo variant ID
+[**reviewControllerGetReviewLogById**](ReviewsApi.md#reviewcontrollergetreviewlogbyid) | **GET** /reviews/logs/{id} | Lấy review log theo ID
+[**reviewControllerGetReviewLogsByVariantId**](ReviewsApi.md#reviewcontrollergetreviewlogsbyvariantid) | **GET** /reviews/logs/variant/{variantId} | Lấy review logs theo variant ID
+[**reviewControllerGetReviewSummaryByVariantId**](ReviewsApi.md#reviewcontrollergetreviewsummarybyvariantid) | **GET** /reviews/summary/{variantId} | Tóm tắt đánh giá bằng AI theo variant ID
+[**reviewControllerGetReviewSummaryFromAllVariant**](ReviewsApi.md#reviewcontrollergetreviewsummaryfromallvariant) | **GET** /reviews/summary/all | Tóm tắt đánh giá bằng AI cho tất cả variant
+[**reviewControllerGetReviewSummaryJobResult**](ReviewsApi.md#reviewcontrollergetreviewsummaryjobresult) | **GET** /reviews/summary/job/result/{jobId} | Kiểm tra trạng thái hoàn thành của job tóm tắt đánh giá
+[**reviewControllerGetReviews**](ReviewsApi.md#reviewcontrollergetreviews) | **GET** /reviews | Lấy danh sách đánh giá (phân trang)
+[**reviewControllerGetStructuredReviewSummaryByVariantId**](ReviewsApi.md#reviewcontrollergetstructuredreviewsummarybyvariantid) | **GET** /reviews/summary/structured/{variantId} | Tóm tắt đánh giá có cấu trúc theo variant ID
 
 
-# **apiReviewsGet**
-> BaseResponseOfPagedResultOfReviewListItem apiReviewsGet(variantId, userId, minRating, maxRating, hasImages, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+# **reviewControllerAddReviewLog**
+> ReviewControllerGetAllReviewLogs200Response reviewControllerAddReviewLog()
 
-
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getReviewsApi();
-final String variantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final String userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final int minRating = 56; // int | 
-final int maxRating = 56; // int | 
-final bool hasImages = true; // bool | 
-final int pageNumber = 56; // int | 
-final int pageSize = 56; // int | 
-final String sortBy = sortBy_example; // String | 
-final String sortOrder = sortOrder_example; // String | 
-final bool isDescending = true; // bool | 
-
-try {
-    final response = api.apiReviewsGet(variantId, userId, minRating, maxRating, hasImages, pageNumber, pageSize, sortBy, sortOrder, isDescending);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **variantId** | **String**|  | [optional] 
- **userId** | **String**|  | [optional] 
- **minRating** | **int**|  | [optional] 
- **maxRating** | **int**|  | [optional] 
- **hasImages** | **bool**|  | [optional] 
- **pageNumber** | **int**|  | [optional] 
- **pageSize** | **int**|  | [optional] 
- **sortBy** | **String**|  | [optional] 
- **sortOrder** | **String**|  | [optional] 
- **isDescending** | **bool**|  | [optional] 
-
-### Return type
-
-[**BaseResponseOfPagedResultOfReviewListItem**](BaseResponseOfPagedResultOfReviewListItem.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiReviewsImagesTemporaryPost**
-> BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse apiReviewsImagesTemporaryPost(images)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getReviewsApi();
-final List<MultipartFile> images = /path/to/file.txt; // List<MultipartFile> | 
-
-try {
-    final response = api.apiReviewsImagesTemporaryPost(images);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsImagesTemporaryPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **images** | [**List&lt;MultipartFile&gt;**](MultipartFile.md)|  | [optional] 
-
-### Return type
-
-[**BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse**](BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiReviewsMeGet**
-> BaseResponseOfListOfReviewResponse apiReviewsMeGet()
-
-
+Thêm review log
 
 ### Example
 ```dart
@@ -133,10 +34,10 @@ import 'package:perfumegpt_ai_api_client/api.dart';
 final api = PerfumegptAiApiClient().getReviewsApi();
 
 try {
-    final response = api.apiReviewsMeGet();
+    final response = api.reviewControllerAddReviewLog();
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsMeGet: $e\n');
+    print('Exception when calling ReviewsApi->reviewControllerAddReviewLog: $e\n');
 }
 ```
 
@@ -145,36 +46,36 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BaseResponseOfListOfReviewResponse**](BaseResponseOfListOfReviewResponse.md)
+[**ReviewControllerGetAllReviewLogs200Response**](ReviewControllerGetAllReviewLogs200Response.md)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[jwt](../README.md#jwt)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiReviewsPost**
-> BaseResponseOfBulkActionResultOfGuid apiReviewsPost(createReviewRequest)
+# **reviewControllerCreateReviewSummaryJob**
+> EmailControllerSendEmail200Response reviewControllerCreateReviewSummaryJob(variantId)
 
-
+Khởi tạo job để tóm tắt đánh giá theo variant ID
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getReviewsApi();
-final CreateReviewRequest createReviewRequest = ; // CreateReviewRequest | 
+final String variantId = variantId_example; // String | ID của variant sản phẩm
 
 try {
-    final response = api.apiReviewsPost(createReviewRequest);
+    final response = api.reviewControllerCreateReviewSummaryJob(variantId);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsPost: $e\n');
+    print('Exception when calling ReviewsApi->reviewControllerCreateReviewSummaryJob: $e\n');
 }
 ```
 
@@ -182,124 +83,77 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createReviewRequest** | [**CreateReviewRequest**](CreateReviewRequest.md)|  | 
+ **variantId** | **String**| ID của variant sản phẩm | 
 
 ### Return type
 
-[**BaseResponseOfBulkActionResultOfGuid**](BaseResponseOfBulkActionResultOfGuid.md)
+[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiReviewsReviewIdAnswerPost**
-> BaseResponseOfstring apiReviewsReviewIdAnswerPost(reviewId, answerReviewRequest)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getReviewsApi();
-final String reviewId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final AnswerReviewRequest answerReviewRequest = ; // AnswerReviewRequest | 
-
-try {
-    final response = api.apiReviewsReviewIdAnswerPost(reviewId, answerReviewRequest);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsReviewIdAnswerPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **reviewId** | **String**|  | 
- **answerReviewRequest** | [**AnswerReviewRequest**](AnswerReviewRequest.md)|  | 
-
-### Return type
-
-[**BaseResponseOfstring**](BaseResponseOfstring.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiReviewsReviewIdDelete**
-> BaseResponseOfstring apiReviewsReviewIdDelete(reviewId)
-
-
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getReviewsApi();
-final String reviewId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-
-try {
-    final response = api.apiReviewsReviewIdDelete(reviewId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsReviewIdDelete: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **reviewId** | **String**|  | 
-
-### Return type
-
-[**BaseResponseOfstring**](BaseResponseOfstring.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
+[jwt](../README.md#jwt)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiReviewsReviewIdGet**
-> BaseResponseOfReviewDetailResponse apiReviewsReviewIdGet(reviewId)
+# **reviewControllerGetAllReviewLogs**
+> ReviewControllerGetAllReviewLogs200Response reviewControllerGetAllReviewLogs()
 
-
+Lấy tất cả review logs
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getReviewsApi();
-final String reviewId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 
 try {
-    final response = api.apiReviewsReviewIdGet(reviewId);
+    final response = api.reviewControllerGetAllReviewLogs();
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsReviewIdGet: $e\n');
+    print('Exception when calling ReviewsApi->reviewControllerGetAllReviewLogs: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ReviewControllerGetAllReviewLogs200Response**](ReviewControllerGetAllReviewLogs200Response.md)
+
+### Authorization
+
+[jwt](../README.md#jwt)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **reviewControllerGetLatestReviewLogByVariantId**
+> ReviewControllerGetAllReviewLogs200Response reviewControllerGetLatestReviewLogByVariantId(variantId)
+
+Lấy review log mới nhất theo variant ID
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getReviewsApi();
+final String variantId = variantId_example; // String | ID của variant sản phẩm
+
+try {
+    final response = api.reviewControllerGetLatestReviewLogByVariantId(variantId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ReviewsApi->reviewControllerGetLatestReviewLogByVariantId: $e\n');
 }
 ```
 
@@ -307,40 +161,40 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **reviewId** | **String**|  | 
+ **variantId** | **String**| ID của variant sản phẩm | 
 
 ### Return type
 
-[**BaseResponseOfReviewDetailResponse**](BaseResponseOfReviewDetailResponse.md)
+[**ReviewControllerGetAllReviewLogs200Response**](ReviewControllerGetAllReviewLogs200Response.md)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[jwt](../README.md#jwt)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiReviewsReviewIdImagesGet**
-> BaseResponseOfListOfMediaResponse apiReviewsReviewIdImagesGet(reviewId)
+# **reviewControllerGetReviewLogById**
+> ReviewControllerGetAllReviewLogs200Response reviewControllerGetReviewLogById(id)
 
-
+Lấy review log theo ID
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getReviewsApi();
-final String reviewId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String id = id_example; // String | ID của review log
 
 try {
-    final response = api.apiReviewsReviewIdImagesGet(reviewId);
+    final response = api.reviewControllerGetReviewLogById(id);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsReviewIdImagesGet: $e\n');
+    print('Exception when calling ReviewsApi->reviewControllerGetReviewLogById: $e\n');
 }
 ```
 
@@ -348,40 +202,40 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **reviewId** | **String**|  | 
+ **id** | **String**| ID của review log | 
 
 ### Return type
 
-[**BaseResponseOfListOfMediaResponse**](BaseResponseOfListOfMediaResponse.md)
+[**ReviewControllerGetAllReviewLogs200Response**](ReviewControllerGetAllReviewLogs200Response.md)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[jwt](../README.md#jwt)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiReviewsVariantVariantIdGet**
-> BaseResponseOfListOfReviewResponse apiReviewsVariantVariantIdGet(variantId)
+# **reviewControllerGetReviewLogsByVariantId**
+> ReviewControllerGetAllReviewLogs200Response reviewControllerGetReviewLogsByVariantId(variantId)
 
-
+Lấy review logs theo variant ID
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getReviewsApi();
-final String variantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String variantId = variantId_example; // String | ID của variant sản phẩm
 
 try {
-    final response = api.apiReviewsVariantVariantIdGet(variantId);
+    final response = api.reviewControllerGetReviewLogsByVariantId(variantId);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsVariantVariantIdGet: $e\n');
+    print('Exception when calling ReviewsApi->reviewControllerGetReviewLogsByVariantId: $e\n');
 }
 ```
 
@@ -389,40 +243,40 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **variantId** | **String**|  | 
+ **variantId** | **String**| ID của variant sản phẩm | 
 
 ### Return type
 
-[**BaseResponseOfListOfReviewResponse**](BaseResponseOfListOfReviewResponse.md)
+[**ReviewControllerGetAllReviewLogs200Response**](ReviewControllerGetAllReviewLogs200Response.md)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[jwt](../README.md#jwt)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiReviewsVariantVariantIdStatisticsGet**
-> BaseResponseOfReviewStatisticsResponse apiReviewsVariantVariantIdStatisticsGet(variantId)
+# **reviewControllerGetReviewSummaryByVariantId**
+> EmailControllerSendEmail200Response reviewControllerGetReviewSummaryByVariantId(variantId)
 
-
+Tóm tắt đánh giá bằng AI theo variant ID
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getReviewsApi();
-final String variantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String variantId = variantId_example; // String | ID của variant sản phẩm
 
 try {
-    final response = api.apiReviewsVariantVariantIdStatisticsGet(variantId);
+    final response = api.reviewControllerGetReviewSummaryByVariantId(variantId);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ReviewsApi->apiReviewsVariantVariantIdStatisticsGet: $e\n');
+    print('Exception when calling ReviewsApi->reviewControllerGetReviewSummaryByVariantId: $e\n');
 }
 ```
 
@@ -430,20 +284,200 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **variantId** | **String**|  | 
+ **variantId** | **String**| ID của variant sản phẩm | 
 
 ### Return type
 
-[**BaseResponseOfReviewStatisticsResponse**](BaseResponseOfReviewStatisticsResponse.md)
+[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[jwt](../README.md#jwt)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **reviewControllerGetReviewSummaryFromAllVariant**
+> EmailControllerSendEmail200Response reviewControllerGetReviewSummaryFromAllVariant()
+
+Tóm tắt đánh giá bằng AI cho tất cả variant
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getReviewsApi();
+
+try {
+    final response = api.reviewControllerGetReviewSummaryFromAllVariant();
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ReviewsApi->reviewControllerGetReviewSummaryFromAllVariant: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+
+### Authorization
+
+[jwt](../README.md#jwt)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **reviewControllerGetReviewSummaryJobResult**
+> TrendControllerGetProductTrendJobResult200Response reviewControllerGetReviewSummaryJobResult(jobId, variantId)
+
+Kiểm tra trạng thái hoàn thành của job tóm tắt đánh giá
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getReviewsApi();
+final String jobId = jobId_example; // String | 
+final String variantId = variantId_example; // String | ID của variant sản phẩm đã dùng tạo job
+
+try {
+    final response = api.reviewControllerGetReviewSummaryJobResult(jobId, variantId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ReviewsApi->reviewControllerGetReviewSummaryJobResult: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **jobId** | **String**|  | 
+ **variantId** | **String**| ID của variant sản phẩm đã dùng tạo job | 
+
+### Return type
+
+[**TrendControllerGetProductTrendJobResult200Response**](TrendControllerGetProductTrendJobResult200Response.md)
+
+### Authorization
+
+[jwt](../README.md#jwt)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **reviewControllerGetReviews**
+> ReviewControllerGetReviews200Response reviewControllerGetReviews(pageNumber, pageSize, sortOrder, isDescending, variantId, userId, status, minRating, maxRating, hasImages)
+
+Lấy danh sách đánh giá (phân trang)
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getReviewsApi();
+final num pageNumber = 8.14; // num | Số trang
+final num pageSize = 8.14; // num | Số bản ghi mỗi trang
+final String sortOrder = sortOrder_example; // String | Thứ tự sắp xếp
+final bool isDescending = true; // bool | Sắp xếp giảm dần
+final String variantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | ID variant sản phẩm
+final String userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | ID người dùng
+final String status = status_example; // String | Trạng thái đánh giá
+final num minRating = 8.14; // num | Số sao tối thiểu
+final num maxRating = 8.14; // num | Số sao tối đa
+final bool hasImages = true; // bool | Chỉ lấy đánh giá có hình ảnh
+
+try {
+    final response = api.reviewControllerGetReviews(pageNumber, pageSize, sortOrder, isDescending, variantId, userId, status, minRating, maxRating, hasImages);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ReviewsApi->reviewControllerGetReviews: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageNumber** | **num**| Số trang | [default to 1]
+ **pageSize** | **num**| Số bản ghi mỗi trang | [default to 10]
+ **sortOrder** | **String**| Thứ tự sắp xếp | [default to 'asc']
+ **isDescending** | **bool**| Sắp xếp giảm dần | [default to false]
+ **variantId** | **String**| ID variant sản phẩm | [optional] 
+ **userId** | **String**| ID người dùng | [optional] 
+ **status** | **String**| Trạng thái đánh giá | [optional] 
+ **minRating** | **num**| Số sao tối thiểu | [optional] 
+ **maxRating** | **num**| Số sao tối đa | [optional] 
+ **hasImages** | **bool**| Chỉ lấy đánh giá có hình ảnh | [optional] 
+
+### Return type
+
+[**ReviewControllerGetReviews200Response**](ReviewControllerGetReviews200Response.md)
+
+### Authorization
+
+[jwt](../README.md#jwt)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **reviewControllerGetStructuredReviewSummaryByVariantId**
+> ReviewControllerGetStructuredReviewSummaryByVariantId200Response reviewControllerGetStructuredReviewSummaryByVariantId(variantId)
+
+Tóm tắt đánh giá có cấu trúc theo variant ID
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getReviewsApi();
+final String variantId = variantId_example; // String | ID của variant sản phẩm
+
+try {
+    final response = api.reviewControllerGetStructuredReviewSummaryByVariantId(variantId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ReviewsApi->reviewControllerGetStructuredReviewSummaryByVariantId: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **variantId** | **String**| ID của variant sản phẩm | 
+
+### Return type
+
+[**ReviewControllerGetStructuredReviewSummaryByVariantId200Response**](ReviewControllerGetStructuredReviewSummaryByVariantId200Response.md)
+
+### Authorization
+
+[jwt](../README.md#jwt)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

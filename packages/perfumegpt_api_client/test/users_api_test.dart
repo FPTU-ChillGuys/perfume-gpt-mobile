@@ -22,6 +22,11 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfCustomerForPosResponse> apiUsersForPosGet({ String phoneOrEmail }) async
+    test('test apiUsersForPosGet', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfstring> apiUsersIdGet(String id) async
     test('test apiUsersIdGet', () async {
       // TODO
@@ -32,8 +37,28 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfstring> apiUsersMePut(UpdateUserBasicInfoRequest updateUserBasicInfoRequest) async
+    test('test apiUsersMePut', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfListOfStaffLookupItem> apiUsersStaffLookupGet() async
     test('test apiUsersStaffLookupGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfListOfStaffManageItem> apiUsersStaffManageGet() async
+    test('test apiUsersStaffManageGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfListOfUserManageItem> apiUsersUserManageGet() async
+    test('test apiUsersUserManageGet', () async {
+      // TODO
+    });
+
+    //Future<BaseResponseOfstring> apiUsersUserUserIdInactivePut(String userId) async
+    test('test apiUsersUserUserIdInactivePut', () async {
       // TODO
     });
 

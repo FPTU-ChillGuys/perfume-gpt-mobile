@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/discount_type.dart';
+import 'package:perfumegpt_api_client/src/model/usage_status.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -28,7 +30,7 @@ class UserVoucherResponse {
 
      this.discountValue,
 
-    required  this.discountType,
+     this.discountType,
 
      this.minOrderValue,
 
@@ -36,7 +38,7 @@ class UserVoucherResponse {
 
      this.isUsed,
 
-    required  this.status,
+     this.status,
 
      this.isExpired,
 
@@ -94,12 +96,12 @@ class UserVoucherResponse {
   @JsonKey(
     
     name: r'discountType',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
 
-  final String discountType;
+  final DiscountType? discountType;
 
 
 
@@ -142,12 +144,12 @@ class UserVoucherResponse {
   @JsonKey(
     
     name: r'status',
-    required: true,
+    required: false,
     includeIfNull: false,
   )
 
 
-  final String status;
+  final UsageStatus? status;
 
 
 

@@ -54,7 +54,7 @@ final class ApiClientProvider
   }
 }
 
-String _$apiClientHash() => r'1aa1333d4588208a26f6a880a46bdaecf95b7f93';
+String _$apiClientHash() => r'659942630ddf853917dd78aaa463beb3b16c5392';
 
 @ProviderFor(aiApiClient)
 final aiApiClientProvider = AiApiClientProvider._();
@@ -101,4 +101,4 @@ final class AiApiClientProvider
   }
 }
 
-String _$aiApiClientHash() => r'189bb862d9891cc37b2a3ee26a7c77ffe965e60b';
+String _$aiApiClientHash() => r'5ad6f6e414a260ac9a2ed58dd6e42ef8da1d13d5';

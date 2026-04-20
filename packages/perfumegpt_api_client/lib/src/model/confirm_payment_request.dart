@@ -23,6 +23,8 @@ class ConfirmPaymentRequest {
     required  this.isSuccess,
 
      this.failureReason,
+
+     this.posSessionId,
   });
 
   @JsonKey(
@@ -49,17 +51,31 @@ class ConfirmPaymentRequest {
 
 
 
+  @JsonKey(
+    
+    name: r'posSessionId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? posSessionId;
+
+
+
 
 
     @override
     bool operator ==(Object other) => identical(this, other) || other is ConfirmPaymentRequest &&
       other.isSuccess == isSuccess &&
-      other.failureReason == failureReason;
+      other.failureReason == failureReason &&
+      other.posSessionId == posSessionId;
 
     @override
     int get hashCode =>
         isSuccess.hashCode +
-        (failureReason == null ? 0 : failureReason.hashCode);
+        (failureReason == null ? 0 : failureReason.hashCode) +
+        (posSessionId == null ? 0 : posSessionId.hashCode);
 
   factory ConfirmPaymentRequest.fromJson(Map<String, dynamic> json) => _$ConfirmPaymentRequestFromJson(json);
 

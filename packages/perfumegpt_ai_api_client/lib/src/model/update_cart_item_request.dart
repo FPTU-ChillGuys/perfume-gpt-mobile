@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_cart_item_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,35 +17,21 @@ part 'update_cart_item_request.g.dart';
 )
 class UpdateCartItemRequest {
   /// Returns a new [UpdateCartItemRequest] instance.
-  UpdateCartItemRequest({
+  UpdateCartItemRequest({required this.quantity});
 
-     this.quantity,
-  });
+  @JsonKey(name: r'quantity', required: true, includeIfNull: false)
+  final num quantity;
 
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'quantity',
-    required: false,
-    includeIfNull: false,
-  )
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateCartItemRequest && other.quantity == quantity;
 
+  @override
+  int get hashCode => quantity.hashCode;
 
-  final int? quantity;
-
-
-
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateCartItemRequest &&
-      other.quantity == quantity;
-
-    @override
-    int get hashCode =>
-        quantity.hashCode;
-
-  factory UpdateCartItemRequest.fromJson(Map<String, dynamic> json) => _$UpdateCartItemRequestFromJson(json);
+  factory UpdateCartItemRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateCartItemRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateCartItemRequestToJson(this);
 
@@ -54,6 +39,4 @@ class UpdateCartItemRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

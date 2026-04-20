@@ -1,312 +1,116 @@
-import 'package:perfumegpt_ai_api_client/src/model/address_level4_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/address_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/admin_dashboard_overview_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/answer_review_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/attribute_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/attribute_value_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/available_voucher_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_create_pending_response_acceptance200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_get_ai_acceptance_rate200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_inventory_report_structured_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_order_summary_structured_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_response_metadata.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_review_summary_structured_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_trend_forecast_structured_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/add_to_cart_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_controller_create_instruction200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_controller_get_all_instructions200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/all_user_log_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/base_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_address_level4_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_address_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_admin_dashboard_overview_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_batch_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_brand_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_bulk_action_result_of_guid.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_bulk_action_result_of_list_of_temporary_media_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_bulk_action_result_ofstring.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_campaign_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_category_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_concentration_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_create_import_ticket_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_customer_for_pos_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_excel_template_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_get_cart_items_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_get_cart_total_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_import_ticket_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_inventory_levels_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_inventory_summary_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_address_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_attribute_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_attribute_value_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_batch_lookup_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_brand_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_brand_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_campaign_promotion_item_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_categories_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_category_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_concentration_lookup_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_concentration_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_district_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_media_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_olfactory_family_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_olfactory_lookup_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_product_daily_sale_figure_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_product_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_province_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_redeemable_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_review_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_scent_note_lookup_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_scent_note_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_staff_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_supplier_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_supplier_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_top_product_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_variant_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_list_of_ward_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_loyalty_transaction_totals_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_media_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_olfactory_family_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_order_cancel_request_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_order_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_order_return_request_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_available_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_batch_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_campaign_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_import_ticket_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_loyalty_transaction_history_item_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_order_cancel_request_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_order_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_order_return_request_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_product_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_product_list_item_with_variants.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_review_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_shipping_info_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_stock_adjustment_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_stock_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_user_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_variant_paged_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_paged_result_of_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_payment_transaction_overview_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_pick_list_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_preview_pos_order_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_product_fast_look_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_product_infor_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_product_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_product_variant_for_pos_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_product_variant_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_profile_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_receipt_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_revenue_summary_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_review_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_review_statistics_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_scent_note_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_stock_adjustment_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_stock_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_supplier_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_swap_damaged_stock_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_token_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_user_credentials_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_user_order_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_of_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_ofboolean.dart';
-import 'package:perfumegpt_ai_api_client/src/model/base_response_ofstring.dart';
-import 'package:perfumegpt_ai_api_client/src/model/batch_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/batch_lookup_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/base_response_api.dart';
 import 'package:perfumegpt_ai_api_client/src/model/batch_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/brand_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/brand_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/bulk_action_error.dart';
-import 'package:perfumegpt_ai_api_client/src/model/bulk_action_metadata.dart';
-import 'package:perfumegpt_ai_api_client/src/model/bulk_action_result_of_guid.dart';
-import 'package:perfumegpt_ai_api_client/src/model/bulk_action_result_of_list_of_temporary_media_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/bulk_action_result_ofstring.dart';
-import 'package:perfumegpt_ai_api_client/src/model/bulk_operation_result.dart';
-import 'package:perfumegpt_ai_api_client/src/model/campaign_promotion_item_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/campaign_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/categories_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/category_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/concentration_lookup_dto.dart';
 import 'package:perfumegpt_ai_api_client/src/model/concentration_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/confirm_payment_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/contact_address_information.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_address_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_attribute_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_attribute_value_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_batch_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_brand_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_campaign_promotion_item_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_campaign_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_campaign_voucher_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_cart_item_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_category_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_concentration_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_import_detail_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_import_ticket_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_in_store_order_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_olfactory_family_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_order_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_product_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_return_request_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_review_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_scent_note_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_stock_adjustment_detail_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_stock_adjustment_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_supplier_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_variant_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/create_voucher_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/customer_attribute_preference_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/customer_family_preference_respone.dart';
-import 'package:perfumegpt_ai_api_client/src/model/customer_for_pos_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/customer_note_preference_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/district_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/entity_tag_header_value.dart';
-import 'package:perfumegpt_ai_api_client/src/model/excel_template_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/file_content_result.dart';
-import 'package:perfumegpt_ai_api_client/src/model/forgot_password_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/fulfill_order_item_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/fulfill_order_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/get_cart_item_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/get_cart_items_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/get_cart_total_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/get_order_info_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/google_login_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/import_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/import_ticket_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/import_ticket_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/inventory_levels_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/inventory_summary_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/login_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/loyalty_transaction_history_item_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/loyalty_transaction_totals_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/manual_change_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/media_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/olfactory_family_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/olfactory_lookup_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/order_cancel_request_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/order_detail_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/order_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/order_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/order_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/order_return_request_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/order_return_request_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_available_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_batch_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_campaign_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_import_ticket_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_loyalty_transaction_history_item_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_order_cancel_request_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_order_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_order_return_request_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_payment_transaction_admin_item_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_product_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_product_list_item_with_variants.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_review_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_shipping_info_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_stock_adjustment_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_stock_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_user_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_variant_paged_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/paged_result_of_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/payment_info_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/payment_information.dart';
-import 'package:perfumegpt_ai_api_client/src/model/payment_transaction_admin_item_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/payment_transaction_overview_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/payment_transaction_summary_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/pick_list_batch_info.dart';
-import 'package:perfumegpt_ai_api_client/src/model/pick_list_item_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/pick_list_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/pos_order_detail_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/pos_scan_item_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/preview_pos_order_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/preview_pos_order_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/problem_details.dart';
-import 'package:perfumegpt_ai_api_client/src/model/process_cancel_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/process_initial_return_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/process_refund_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_attribute_dto.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_conversation_v8200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations_paginated200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations_paginated200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_dto.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_request_dto.dart';
+import 'package:perfumegpt_ai_api_client/src/model/create_admin_instruction_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/create_response_ai_acceptance_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/daily_sales_record.dart';
+import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/event_log.dart';
+import 'package:perfumegpt_ai_api_client/src/model/event_log_create_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/event_log_summary_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/event_log_time_series_point_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/event_log_time_series_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/gender_normalizer_output.dart';
+import 'package:perfumegpt_ai_api_client/src/model/grouped_survey_question_answer_detail_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/hybrid_search_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_batch200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_batch200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_log_by_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_report_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_report_logs200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_stock200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_stock200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_by_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_for_restock200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_structured_ai_inventory_report200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_log.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_stock_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_aggregated_user_summary_report200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_all_user_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_all_user_logs_summaries200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_event_logs_summary200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_event_logs_time_series200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/message_dto.dart';
+import 'package:perfumegpt_ai_api_client/src/model/message_request_dto.dart';
+import 'package:perfumegpt_ai_api_client/src/model/normalized_query_filters.dart';
+import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_all_orders200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_all_orders200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_structured_ai_order_summary200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/order_list_item_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/origin_normalizer_output.dart';
+import 'package:perfumegpt_ai_api_client/src/model/paged_result.dart';
+import 'package:perfumegpt_ai_api_client/src/model/price_normalizer_output.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_attribute_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_daily_sale_figure_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_fast_look_response.dart';
-// import 'package:perfumegpt_ai_api_client/src/model/product_image_upload_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_infor_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_list_item_with_variants.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_olfactory_family_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_card_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_card_variant_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_best_selling_products200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_best_selling_products200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_product_with_variants200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_hybrid_search200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_semantic_search200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_semantic_search200_response_all_of_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_scent_note_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_variant_for_pos_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_variant_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_view_log_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_with_variants_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/profile_controller_get_own_profile200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/profile_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/province_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/receipt_item_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/receipt_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/recipient_info_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/record_inspection_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/redeem_voucher_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/redeemable_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/register_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/reject_inspection_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/reserved_batch_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/reset_password_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/return_item_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/return_shipping_info_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/revenue_summary_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/review_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/review_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/review_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/review_statistics_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/scent_note_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/scent_note_lookup_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/scent_note_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/shipping_info_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/shipping_info_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/staff_cancel_order_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/staff_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/start_inspection_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/stock_adjustment_detail_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/stock_adjustment_list_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/stock_adjustment_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/stock_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/string_segment.dart';
-import 'package:perfumegpt_ai_api_client/src/model/supplier_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/supplier_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/swap_damaged_stock_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/swap_damaged_stock_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/temporary_media_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/token_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/top_product_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_address_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_attribute_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_attribute_value_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_brand_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_campaign_promotion_item_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_campaign_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_campaign_status_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_campaign_voucher_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_all_review_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_reviews200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_reviews200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_structured_review_summary_by_variant_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_list_item_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_log.dart';
+import 'package:perfumegpt_ai_api_client/src/model/sales_metrics.dart';
+import 'package:perfumegpt_ai_api_client/src/model/search_text_log_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/send_email_request_dto.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_answer_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_answer_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_delete_survey_question200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_history_list_by_user_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_ques_anws_by_user_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_ques_by_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_grouped_answer_item.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_ques_ans_detail_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_question_answer_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_question_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_question_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/trend_controller_get_product_from_trend_caching200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/trend_controller_get_product_trend_job_result200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/trend_controller_summarize_logs_structured200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/update_admin_instruction_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/update_cart_item_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_category_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_concentration_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_import_detail_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_import_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_import_status_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_note_preference_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_olfactory_family_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_order_address_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_product_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_profile_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_return_request_dto.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_scent_note_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_stock_adjustment_status_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_supplier_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_variant_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/update_voucher_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/user_cancel_order_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/user_credentials_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/user_order_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/user_voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/variant_daily_sale_figure.dart';
-import 'package:perfumegpt_ai_api_client/src/model/variant_fast_look_response.dart';
-// import 'package:perfumegpt_ai_api_client/src/model/variant_image_upload_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/variant_lookup_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/variant_paged_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/variant_summary_item.dart';
-import 'package:perfumegpt_ai_api_client/src/model/verify_import_detail_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/verify_import_ticket_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/verify_stock_adjustment_detail_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/verify_stock_adjustment_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/voucher_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/ward_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/user_log_summary_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/user_log_summary_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/variant_media_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/variant_sales_analytics_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/variant_stock_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/year_normalizer_output.dart';
 
 final _regList = RegExp(r'^List<(.*)>$');
 final _regSet = RegExp(r'^Set<(.*)>$');
@@ -330,1214 +134,459 @@ ReturnType deserialize<ReturnType, BaseType>(
       return (valueString == 'true' || valueString == '1') as ReturnType;
     case 'double':
       return (value is double ? value : double.parse('$value')) as ReturnType;
-    case 'AddressLevel4Response':
-      return AddressLevel4Response.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'AddressResponse':
-      return AddressResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'AdminDashboardOverviewResponse':
-      return AdminDashboardOverviewResponse.fromJson(
+    case 'AIAcceptance':
+      return AIAcceptance.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'AIAcceptanceControllerCreatePendingResponseAcceptance200Response':
+      return AIAcceptanceControllerCreatePendingResponseAcceptance200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'AnswerReviewRequest':
-      return AnswerReviewRequest.fromJson(value as Map<String, dynamic>)
+    case 'AIAcceptanceControllerGetAIAcceptanceRate200Response':
+      return AIAcceptanceControllerGetAIAcceptanceRate200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'AttributeLookupItem':
-      return AttributeLookupItem.fromJson(value as Map<String, dynamic>)
+    case 'AIInventoryReportStructuredResponse':
+      return AIInventoryReportStructuredResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'AttributeValueLookupItem':
-      return AttributeValueLookupItem.fromJson(value as Map<String, dynamic>)
+    case 'AIOrderSummaryStructuredResponse':
+      return AIOrderSummaryStructuredResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'AvailableVoucherResponse':
-      return AvailableVoucherResponse.fromJson(value as Map<String, dynamic>)
+    case 'AIResponseMetadata':
+      return AIResponseMetadata.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'AIReviewSummaryStructuredResponse':
+      return AIReviewSummaryStructuredResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'AITrendForecastStructuredResponse':
+      return AITrendForecastStructuredResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'AddToCartRequest':
+      return AddToCartRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'AdminInstructionControllerCreateInstruction200Response':
+      return AdminInstructionControllerCreateInstruction200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'AdminInstructionControllerGetAllInstructions200Response':
+      return AdminInstructionControllerGetAllInstructions200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'AdminInstructionResponse':
+      return AdminInstructionResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'AllUserLogRequest':
+      return AllUserLogRequest.fromJson(value as Map<String, dynamic>)
           as ReturnType;
     case 'BaseResponse':
       return BaseResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-    case 'BaseResponseOfAddressLevel4Response':
-      return BaseResponseOfAddressLevel4Response.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfAddressResponse':
-      return BaseResponseOfAddressResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfAdminDashboardOverviewResponse':
-      return BaseResponseOfAdminDashboardOverviewResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfBatchDetailResponse':
-      return BaseResponseOfBatchDetailResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfBrandResponse':
-      return BaseResponseOfBrandResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BaseResponseOfBulkActionResultOfGuid':
-      return BaseResponseOfBulkActionResultOfGuid.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse':
-      return BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfBulkActionResultOfstring':
-      return BaseResponseOfBulkActionResultOfstring.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfCampaignResponse':
-      return BaseResponseOfCampaignResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfCategoryResponse':
-      return BaseResponseOfCategoryResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfConcentrationResponse':
-      return BaseResponseOfConcentrationResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfCreateImportTicketRequest':
-      return BaseResponseOfCreateImportTicketRequest.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfCustomerForPosResponse':
-      return BaseResponseOfCustomerForPosResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfExcelTemplateResponse':
-      return BaseResponseOfExcelTemplateResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfGetCartItemsResponse':
-      return BaseResponseOfGetCartItemsResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfGetCartTotalResponse':
-      return BaseResponseOfGetCartTotalResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfImportTicketResponse':
-      return BaseResponseOfImportTicketResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfInventoryLevelsResponse':
-      return BaseResponseOfInventoryLevelsResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfInventorySummaryResponse':
-      return BaseResponseOfInventorySummaryResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfAddressResponse':
-      return BaseResponseOfListOfAddressResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfAttributeLookupItem':
-      return BaseResponseOfListOfAttributeLookupItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfAttributeValueLookupItem':
-      return BaseResponseOfListOfAttributeValueLookupItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfBatchLookupResponse':
-      return BaseResponseOfListOfBatchLookupResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfBrandLookupItem':
-      return BaseResponseOfListOfBrandLookupItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfBrandResponse':
-      return BaseResponseOfListOfBrandResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfCampaignPromotionItemResponse':
-      return BaseResponseOfListOfCampaignPromotionItemResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfCategoriesLookupItem':
-      return BaseResponseOfListOfCategoriesLookupItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfCategoryResponse':
-      return BaseResponseOfListOfCategoryResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfConcentrationLookupDto':
-      return BaseResponseOfListOfConcentrationLookupDto.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfConcentrationResponse':
-      return BaseResponseOfListOfConcentrationResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfDistrictResponse':
-      return BaseResponseOfListOfDistrictResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfMediaResponse':
-      return BaseResponseOfListOfMediaResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfOlfactoryFamilyResponse':
-      return BaseResponseOfListOfOlfactoryFamilyResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfOlfactoryLookupResponse':
-      return BaseResponseOfListOfOlfactoryLookupResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfProductDailySaleFigureResponse':
-      return BaseResponseOfListOfProductDailySaleFigureResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfProductLookupItem':
-      return BaseResponseOfListOfProductLookupItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfProvinceResponse':
-      return BaseResponseOfListOfProvinceResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfRedeemableVoucherResponse':
-      return BaseResponseOfListOfRedeemableVoucherResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfReviewResponse':
-      return BaseResponseOfListOfReviewResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfScentNoteLookupResponse':
-      return BaseResponseOfListOfScentNoteLookupResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfScentNoteResponse':
-      return BaseResponseOfListOfScentNoteResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfStaffLookupItem':
-      return BaseResponseOfListOfStaffLookupItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfSupplierLookupItem':
-      return BaseResponseOfListOfSupplierLookupItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfSupplierResponse':
-      return BaseResponseOfListOfSupplierResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfTopProductResponse':
-      return BaseResponseOfListOfTopProductResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfVariantLookupItem':
-      return BaseResponseOfListOfVariantLookupItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfListOfWardResponse':
-      return BaseResponseOfListOfWardResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfLoyaltyTransactionTotalsResponse':
-      return BaseResponseOfLoyaltyTransactionTotalsResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfMediaResponse':
-      return BaseResponseOfMediaResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BaseResponseOfOlfactoryFamilyResponse':
-      return BaseResponseOfOlfactoryFamilyResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfOrderCancelRequestResponse':
-      return BaseResponseOfOrderCancelRequestResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfOrderResponse':
-      return BaseResponseOfOrderResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BaseResponseOfOrderReturnRequestResponse':
-      return BaseResponseOfOrderReturnRequestResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfAvailableVoucherResponse':
-      return BaseResponseOfPagedResultOfAvailableVoucherResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfBatchDetailResponse':
-      return BaseResponseOfPagedResultOfBatchDetailResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfCampaignResponse':
-      return BaseResponseOfPagedResultOfCampaignResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfImportTicketListItem':
-      return BaseResponseOfPagedResultOfImportTicketListItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse':
-      return BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfOrderCancelRequestResponse':
-      return BaseResponseOfPagedResultOfOrderCancelRequestResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfOrderListItem':
-      return BaseResponseOfPagedResultOfOrderListItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfOrderReturnRequestResponse':
-      return BaseResponseOfPagedResultOfOrderReturnRequestResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfProductListItem':
-      return BaseResponseOfPagedResultOfProductListItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfProductListItemWithVariants':
-      return BaseResponseOfPagedResultOfProductListItemWithVariants.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfReviewListItem':
-      return BaseResponseOfPagedResultOfReviewListItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfShippingInfoListItem':
-      return BaseResponseOfPagedResultOfShippingInfoListItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfStockAdjustmentListItem':
-      return BaseResponseOfPagedResultOfStockAdjustmentListItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfStockResponse':
-      return BaseResponseOfPagedResultOfStockResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfUserVoucherResponse':
-      return BaseResponseOfPagedResultOfUserVoucherResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfVariantPagedItem':
-      return BaseResponseOfPagedResultOfVariantPagedItem.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPagedResultOfVoucherResponse':
-      return BaseResponseOfPagedResultOfVoucherResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPaymentTransactionOverviewResponse':
-      return BaseResponseOfPaymentTransactionOverviewResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPickListResponse':
-      return BaseResponseOfPickListResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfPreviewPosOrderResponse':
-      return BaseResponseOfPreviewPosOrderResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfProductFastLookResponse':
-      return BaseResponseOfProductFastLookResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfProductInforResponse':
-      return BaseResponseOfProductInforResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfProductResponse':
-      return BaseResponseOfProductResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfProductVariantForPosResponse':
-      return BaseResponseOfProductVariantForPosResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfProductVariantResponse':
-      return BaseResponseOfProductVariantResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfProfileResponse':
-      return BaseResponseOfProfileResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfReceiptResponse':
-      return BaseResponseOfReceiptResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfRevenueSummaryResponse':
-      return BaseResponseOfRevenueSummaryResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfReviewDetailResponse':
-      return BaseResponseOfReviewDetailResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfReviewStatisticsResponse':
-      return BaseResponseOfReviewStatisticsResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfScentNoteResponse':
-      return BaseResponseOfScentNoteResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfStockAdjustmentResponse':
-      return BaseResponseOfStockAdjustmentResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfStockResponse':
-      return BaseResponseOfStockResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BaseResponseOfSupplierResponse':
-      return BaseResponseOfSupplierResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfSwapDamagedStockResponse':
-      return BaseResponseOfSwapDamagedStockResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfTokenResponse':
-      return BaseResponseOfTokenResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BaseResponseOfUserCredentialsResponse':
-      return BaseResponseOfUserCredentialsResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfUserOrderResponse':
-      return BaseResponseOfUserOrderResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfVoucherResponse':
-      return BaseResponseOfVoucherResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BaseResponseOfboolean':
-      return BaseResponseOfboolean.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BaseResponseOfstring':
-      return BaseResponseOfstring.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BatchDetailResponse':
-      return BatchDetailResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BatchLookupResponse':
-      return BatchLookupResponse.fromJson(value as Map<String, dynamic>)
+    case 'BaseResponseAPI':
+      return BaseResponseAPI.fromJson(value as Map<String, dynamic>)
           as ReturnType;
     case 'BatchResponse':
       return BatchResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'BrandLookupItem':
-      return BrandLookupItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BrandResponse':
-      return BrandResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BulkActionError':
-      return BulkActionError.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BulkActionMetadata':
-      return BulkActionMetadata.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BulkActionResultOfGuid':
-      return BulkActionResultOfGuid.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BulkActionResultOfListOfTemporaryMediaResponse':
-      return BulkActionResultOfListOfTemporaryMediaResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'BulkActionResultOfstring':
-      return BulkActionResultOfstring.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'BulkOperationResult':
-      return BulkOperationResult.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CampaignPromotionItemResponse':
-      return CampaignPromotionItemResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'CampaignResponse':
-      return CampaignResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CampaignStatus':
-    case 'CampaignType':
-    case 'CancelOrderReason':
-    case 'CancelRequestStatus':
-    case 'CarrierName':
-    case 'CategoriesLookupItem':
-      return CategoriesLookupItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CategoryResponse':
-      return CategoryResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ConcentrationLookupDto':
-      return ConcentrationLookupDto.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
     case 'ConcentrationResponse':
       return ConcentrationResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'ConfirmPaymentRequest':
-      return ConfirmPaymentRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ContactAddressInformation':
-      return ContactAddressInformation.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateAddressRequest':
-      return CreateAddressRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateAttributeRequest':
-      return CreateAttributeRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateAttributeValueRequest':
-      return CreateAttributeValueRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateBatchRequest':
-      return CreateBatchRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateBrandRequest':
-      return CreateBrandRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateCampaignPromotionItemRequest':
-      return CreateCampaignPromotionItemRequest.fromJson(
+    case 'ConversationControllerConversationV8200Response':
+      return ConversationControllerConversationV8200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'CreateCampaignRequest':
-      return CreateCampaignRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateCampaignVoucherRequest':
-      return CreateCampaignVoucherRequest.fromJson(
+    case 'ConversationControllerGetAllConversations200Response':
+      return ConversationControllerGetAllConversations200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'CreateCartItemRequest':
-      return CreateCartItemRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateCategoryRequest':
-      return CreateCategoryRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateConcentrationRequest':
-      return CreateConcentrationRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateImportDetailRequest':
-      return CreateImportDetailRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateImportTicketRequest':
-      return CreateImportTicketRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateInStoreOrderRequest':
-      return CreateInStoreOrderRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateOlfactoryFamilyRequest':
-      return CreateOlfactoryFamilyRequest.fromJson(
+    case 'ConversationControllerGetAllConversationsPaginated200Response':
+      return ConversationControllerGetAllConversationsPaginated200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'CreateOrderRequest':
-      return CreateOrderRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateProductRequest':
-      return CreateProductRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateReturnRequestDto':
-      return CreateReturnRequestDto.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateReviewRequest':
-      return CreateReviewRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateScentNoteRequest':
-      return CreateScentNoteRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateStockAdjustmentDetailRequest':
-      return CreateStockAdjustmentDetailRequest.fromJson(
+    case 'ConversationControllerGetAllConversationsPaginated200ResponseAllOfPayload':
+      return ConversationControllerGetAllConversationsPaginated200ResponseAllOfPayload.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'CreateStockAdjustmentRequest':
-      return CreateStockAdjustmentRequest.fromJson(
+    case 'ConversationDto':
+      return ConversationDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ConversationRequestDto':
+      return ConversationRequestDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateAdminInstructionRequest':
+      return CreateAdminInstructionRequest.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'CreateSupplierRequest':
-      return CreateSupplierRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateVariantRequest':
-      return CreateVariantRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CreateVoucherRequest':
-      return CreateVoucherRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'CustomerAttributePreferenceResponse':
-      return CustomerAttributePreferenceResponse.fromJson(
+    case 'CreateResponseAIAcceptanceRequest':
+      return CreateResponseAIAcceptanceRequest.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'CustomerFamilyPreferenceRespone':
-      return CustomerFamilyPreferenceRespone.fromJson(
+    case 'DailySalesRecord':
+      return DailySalesRecord.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'EmailControllerSendEmail200Response':
+      return EmailControllerSendEmail200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'CustomerForPosResponse':
-      return CustomerForPosResponse.fromJson(value as Map<String, dynamic>)
+    case 'EventLog':
+      return EventLog.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'EventLogCreateRequest':
+      return EventLogCreateRequest.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'CustomerNotePreferenceResponse':
-      return CustomerNotePreferenceResponse.fromJson(
+    case 'EventLogSummaryResponse':
+      return EventLogSummaryResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'EventLogTimeSeriesPointResponse':
+      return EventLogTimeSeriesPointResponse.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'DeliveryMethod':
-    case 'DiscountType':
-    case 'DistrictResponse':
-      return DistrictResponse.fromJson(value as Map<String, dynamic>)
+    case 'EventLogTimeSeriesResponse':
+      return EventLogTimeSeriesResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'EntityTagHeaderValue':
-      return EntityTagHeaderValue.fromJson(value as Map<String, dynamic>)
+    case 'GenderNormalizerOutput':
+      return GenderNormalizerOutput.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'ExcelTemplateResponse':
-      return ExcelTemplateResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'FileContentResult':
-      return FileContentResult.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ForgotPasswordRequest':
-      return ForgotPasswordRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'FulfillOrderItemRequest':
-      return FulfillOrderItemRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'FulfillOrderRequest':
-      return FulfillOrderRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'Gender':
-    case 'GetCartItemResponse':
-      return GetCartItemResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'GetCartItemsResponse':
-      return GetCartItemsResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'GetCartTotalResponse':
-      return GetCartTotalResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'GetOrderInfoRequest':
-      return GetOrderInfoRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'GoogleLoginRequest':
-      return GoogleLoginRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ImportDetailResponse':
-      return ImportDetailResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ImportStatus':
-    case 'ImportTicketListItem':
-      return ImportTicketListItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ImportTicketResponse':
-      return ImportTicketResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'InventoryLevelsResponse':
-      return InventoryLevelsResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'InventorySummaryResponse':
-      return InventorySummaryResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'LoginRequest':
-      return LoginRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-    case 'LoyaltyTransactionHistoryItemResponse':
-      return LoyaltyTransactionHistoryItemResponse.fromJson(
+    case 'GroupedSurveyQuestionAnswerDetailResponse':
+      return GroupedSurveyQuestionAnswerDetailResponse.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'LoyaltyTransactionTotalsResponse':
-      return LoyaltyTransactionTotalsResponse.fromJson(
+    case 'HybridSearchResponse':
+      return HybridSearchResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'InventoryControllerGetBatch200Response':
+      return InventoryControllerGetBatch200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'LoyaltyTransactionType':
-    case 'ManualChangeRequest':
-      return ManualChangeRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'MediaResponse':
-      return MediaResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'NoteType':
-    case 'OlfactoryFamilyResponse':
-      return OlfactoryFamilyResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'OlfactoryLookupResponse':
-      return OlfactoryLookupResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'OrderCancelRequestResponse':
-      return OrderCancelRequestResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'OrderDetailListItem':
-      return OrderDetailListItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'OrderDetailResponse':
-      return OrderDetailResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'OrderListItem':
-      return OrderListItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'OrderResponse':
-      return OrderResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'OrderReturnRequestDetailResponse':
-      return OrderReturnRequestDetailResponse.fromJson(
+    case 'InventoryControllerGetBatch200ResponseAllOfPayload':
+      return InventoryControllerGetBatch200ResponseAllOfPayload.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'OrderReturnRequestResponse':
-      return OrderReturnRequestResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'OrderStatus':
-    case 'OrderType':
-    case 'PagedResultOfAvailableVoucherResponse':
-      return PagedResultOfAvailableVoucherResponse.fromJson(
+    case 'InventoryControllerGetInventoryLogById200Response':
+      return InventoryControllerGetInventoryLogById200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfBatchDetailResponse':
-      return PagedResultOfBatchDetailResponse.fromJson(
+    case 'InventoryControllerGetInventoryReportLogs200Response':
+      return InventoryControllerGetInventoryReportLogs200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfCampaignResponse':
-      return PagedResultOfCampaignResponse.fromJson(
+    case 'InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload':
+      return InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfImportTicketListItem':
-      return PagedResultOfImportTicketListItem.fromJson(
+    case 'InventoryControllerGetInventoryStock200Response':
+      return InventoryControllerGetInventoryStock200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfLoyaltyTransactionHistoryItemResponse':
-      return PagedResultOfLoyaltyTransactionHistoryItemResponse.fromJson(
+    case 'InventoryControllerGetInventoryStock200ResponseAllOfPayload':
+      return InventoryControllerGetInventoryStock200ResponseAllOfPayload.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfOrderCancelRequestResponse':
-      return PagedResultOfOrderCancelRequestResponse.fromJson(
+    case 'InventoryControllerGetProductSalesAnalyticsById200Response':
+      return InventoryControllerGetProductSalesAnalyticsById200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfOrderListItem':
-      return PagedResultOfOrderListItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'PagedResultOfOrderReturnRequestResponse':
-      return PagedResultOfOrderReturnRequestResponse.fromJson(
+    case 'InventoryControllerGetProductSalesAnalyticsForRestock200Response':
+      return InventoryControllerGetProductSalesAnalyticsForRestock200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfPaymentTransactionAdminItemResponse':
-      return PagedResultOfPaymentTransactionAdminItemResponse.fromJson(
+    case 'InventoryControllerGetStructuredAIInventoryReport200Response':
+      return InventoryControllerGetStructuredAIInventoryReport200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfProductListItem':
-      return PagedResultOfProductListItem.fromJson(
+    case 'InventoryLog':
+      return InventoryLog.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'InventoryStockResponse':
+      return InventoryStockResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'LogControllerGetAggregatedUserSummaryReport200Response':
+      return LogControllerGetAggregatedUserSummaryReport200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfProductListItemWithVariants':
-      return PagedResultOfProductListItemWithVariants.fromJson(
+    case 'LogControllerGetAllUserLogs200Response':
+      return LogControllerGetAllUserLogs200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfReviewListItem':
-      return PagedResultOfReviewListItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'PagedResultOfShippingInfoListItem':
-      return PagedResultOfShippingInfoListItem.fromJson(
+    case 'LogControllerGetAllUserLogsSummaries200Response':
+      return LogControllerGetAllUserLogsSummaries200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfStockAdjustmentListItem':
-      return PagedResultOfStockAdjustmentListItem.fromJson(
+    case 'LogControllerGetEventLogsSummary200Response':
+      return LogControllerGetEventLogsSummary200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfStockResponse':
-      return PagedResultOfStockResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'PagedResultOfUserVoucherResponse':
-      return PagedResultOfUserVoucherResponse.fromJson(
+    case 'LogControllerGetEventLogsTimeSeries200Response':
+      return LogControllerGetEventLogsTimeSeries200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfVariantPagedItem':
-      return PagedResultOfVariantPagedItem.fromJson(
+    case 'LogControllerGetPagedEventLogs200Response':
+      return LogControllerGetPagedEventLogs200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PagedResultOfVoucherResponse':
-      return PagedResultOfVoucherResponse.fromJson(
+    case 'LogControllerGetPagedEventLogs200ResponseAllOfPayload':
+      return LogControllerGetPagedEventLogs200ResponseAllOfPayload.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PaymentInfoResponse':
-      return PaymentInfoResponse.fromJson(value as Map<String, dynamic>)
+    case 'MessageDto':
+      return MessageDto.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'MessageRequestDto':
+      return MessageRequestDto.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'PaymentInformation':
-      return PaymentInformation.fromJson(value as Map<String, dynamic>)
+    case 'NormalizedQueryFilters':
+      return NormalizedQueryFilters.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'PaymentMethod':
-    case 'PaymentStatus':
-    case 'PaymentTransactionAdminItemResponse':
-      return PaymentTransactionAdminItemResponse.fromJson(
+    case 'OrderControllerGetAllOrders200Response':
+      return OrderControllerGetAllOrders200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PaymentTransactionOverviewResponse':
-      return PaymentTransactionOverviewResponse.fromJson(
+    case 'OrderControllerGetAllOrders200ResponseAllOfPayload':
+      return OrderControllerGetAllOrders200ResponseAllOfPayload.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PaymentTransactionSummaryResponse':
-      return PaymentTransactionSummaryResponse.fromJson(
+    case 'OrderControllerGetStructuredAIOrderSummary200Response':
+      return OrderControllerGetStructuredAIOrderSummary200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'PickListBatchInfo':
-      return PickListBatchInfo.fromJson(value as Map<String, dynamic>)
+    case 'OrderListItemResponse':
+      return OrderListItemResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'PickListItemResponse':
-      return PickListItemResponse.fromJson(value as Map<String, dynamic>)
+    case 'OriginNormalizerOutput':
+      return OriginNormalizerOutput.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'PickListResponse':
-      return PickListResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'PosOrderDetailListItem':
-      return PosOrderDetailListItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'PosScanItemRequest':
-      return PosScanItemRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'PreviewPosOrderRequest':
-      return PreviewPosOrderRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'PreviewPosOrderResponse':
-      return PreviewPosOrderResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ProblemDetails':
-      return ProblemDetails.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ProcessCancelRequest':
-      return ProcessCancelRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ProcessInitialReturnDto':
-      return ProcessInitialReturnDto.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ProcessRefundRequest':
-      return ProcessRefundRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ProductAttributeDto':
-      return ProductAttributeDto.fromJson(value as Map<String, dynamic>)
+    case 'PagedResult':
+      return PagedResult.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'PriceNormalizerOutput':
+      return PriceNormalizerOutput.fromJson(value as Map<String, dynamic>)
           as ReturnType;
     case 'ProductAttributeResponse':
       return ProductAttributeResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'ProductDailySaleFigureResponse':
-      return ProductDailySaleFigureResponse.fromJson(
+    case 'ProductCardResponse':
+      return ProductCardResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductCardVariantResponse':
+      return ProductCardVariantResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductControllerGetAllProducts200Response':
+      return ProductControllerGetAllProducts200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'ProductFastLookResponse':
-      return ProductFastLookResponse.fromJson(value as Map<String, dynamic>)
+    case 'ProductControllerGetAllProducts200ResponseAllOfPayload':
+      return ProductControllerGetAllProducts200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'ProductImageUploadItem':
-      throw UnimplementedError('ProductImageUploadItem.fromJson is not supported');
-    case 'ProductInforResponse':
-      return ProductInforResponse.fromJson(value as Map<String, dynamic>)
+    case 'ProductControllerGetBestSellingProducts200Response':
+      return ProductControllerGetBestSellingProducts200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'ProductListItem':
-      return ProductListItem.fromJson(value as Map<String, dynamic>)
+    case 'ProductControllerGetBestSellingProducts200ResponseAllOfPayload':
+      return ProductControllerGetBestSellingProducts200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'ProductListItemWithVariants':
-      return ProductListItemWithVariants.fromJson(value as Map<String, dynamic>)
+    case 'ProductControllerGetProductWithVariants200Response':
+      return ProductControllerGetProductWithVariants200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'ProductLookupItem':
-      return ProductLookupItem.fromJson(value as Map<String, dynamic>)
+    case 'ProductControllerGetProductsByHybridSearch200Response':
+      return ProductControllerGetProductsByHybridSearch200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'ProductOlfactoryFamilyResponse':
-      return ProductOlfactoryFamilyResponse.fromJson(
+    case 'ProductControllerGetProductsBySemanticSearch200Response':
+      return ProductControllerGetProductsBySemanticSearch200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProductControllerGetProductsBySemanticSearch200ResponseAllOfPayload':
+      return ProductControllerGetProductsBySemanticSearch200ResponseAllOfPayload.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
     case 'ProductResponse':
       return ProductResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'ProductScentNoteResponse':
-      return ProductScentNoteResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ProductVariantForPosResponse':
-      return ProductVariantForPosResponse.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
     case 'ProductVariantResponse':
       return ProductVariantResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductViewLogRequest':
+      return ProductViewLogRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductWithVariantsResponse':
+      return ProductWithVariantsResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProfileControllerGetOwnProfile200Response':
+      return ProfileControllerGetOwnProfile200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
     case 'ProfileResponse':
       return ProfileResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'PromotionType':
-    case 'ProvinceResponse':
-      return ProvinceResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ReceiptItemDto':
-      return ReceiptItemDto.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ReceiptResponse':
-      return ReceiptResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'RecipientInfoResponse':
-      return RecipientInfoResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'RecordInspectionDto':
-      return RecordInspectionDto.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'RedeemVoucherRequest':
-      return RedeemVoucherRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'RedeemableVoucherResponse':
-      return RedeemableVoucherResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'RegisterRequest':
-      return RegisterRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'RejectInspectionDto':
-      return RejectInspectionDto.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ReservedBatchResponse':
-      return ReservedBatchResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ResetPasswordRequest':
-      return ResetPasswordRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ReturnItemDto':
-      return ReturnItemDto.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ReturnOrderReason':
-    case 'ReturnRequestStatus':
-    case 'ReturnShippingInfoResponse':
-      return ReturnShippingInfoResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'RevenueSummaryResponse':
-      return RevenueSummaryResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ReviewDetailResponse':
-      return ReviewDetailResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ReviewListItem':
-      return ReviewListItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ReviewResponse':
-      return ReviewResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ReviewStatisticsResponse':
-      return ReviewStatisticsResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ScentNoteDto':
-      return ScentNoteDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-    case 'ScentNoteLookupResponse':
-      return ScentNoteLookupResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ScentNoteResponse':
-      return ScentNoteResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ShippingInfoListItem':
-      return ShippingInfoListItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ShippingInfoResponse':
-      return ShippingInfoResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'ShippingStatus':
-    case 'ShippingType':
-    case 'StaffCancelOrderRequest':
-      return StaffCancelOrderRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'StaffLookupItem':
-      return StaffLookupItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'StartInspectionDto':
-      return StartInspectionDto.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'StockAdjustmentDetailResponse':
-      return StockAdjustmentDetailResponse.fromJson(
+    case 'ReviewControllerGetAllReviewLogs200Response':
+      return ReviewControllerGetAllReviewLogs200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'StockAdjustmentListItem':
-      return StockAdjustmentListItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'StockAdjustmentReason':
-    case 'StockAdjustmentResponse':
-      return StockAdjustmentResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'StockAdjustmentStatus':
-    case 'StockResponse':
-      return StockResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'StockStatus':
-    case 'StringSegment':
-      return StringSegment.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'SupplierLookupItem':
-      return SupplierLookupItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'SupplierResponse':
-      return SupplierResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'SwapDamagedStockRequest':
-      return SwapDamagedStockRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'SwapDamagedStockResponse':
-      return SwapDamagedStockResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'TemporaryMediaResponse':
-      return TemporaryMediaResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'TokenResponse':
-      return TokenResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'TopProductResponse':
-      return TopProductResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'TransactionStatus':
-    case 'TransactionType':
-    case 'UpdateAddressRequest':
-      return UpdateAddressRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateAttributeRequest':
-      return UpdateAttributeRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateAttributeValueRequest':
-      return UpdateAttributeValueRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateBrandRequest':
-      return UpdateBrandRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateCampaignPromotionItemRequest':
-      return UpdateCampaignPromotionItemRequest.fromJson(
+    case 'ReviewControllerGetReviews200Response':
+      return ReviewControllerGetReviews200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'UpdateCampaignRequest':
-      return UpdateCampaignRequest.fromJson(value as Map<String, dynamic>)
+    case 'ReviewControllerGetReviews200ResponseAllOfPayload':
+      return ReviewControllerGetReviews200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'UpdateCampaignStatusRequest':
-      return UpdateCampaignStatusRequest.fromJson(value as Map<String, dynamic>)
+    case 'ReviewControllerGetStructuredReviewSummaryByVariantId200Response':
+      return ReviewControllerGetStructuredReviewSummaryByVariantId200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
-    case 'UpdateCampaignVoucherRequest':
-      return UpdateCampaignVoucherRequest.fromJson(
+    case 'ReviewListItemResponse':
+      return ReviewListItemResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ReviewLog':
+      return ReviewLog.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'SalesMetrics':
+      return SalesMetrics.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'SearchTextLogRequest':
+      return SearchTextLogRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SendEmailRequestDto':
+      return SendEmailRequestDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SurveyAnswerRequest':
+      return SurveyAnswerRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SurveyAnswerResponse':
+      return SurveyAnswerResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SurveyControllerDeleteSurveyQuestion200Response':
+      return SurveyControllerDeleteSurveyQuestion200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'SurveyControllerGetAllSurveys200Response':
+      return SurveyControllerGetAllSurveys200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'SurveyControllerGetSurveyHistoryListByUserId200Response':
+      return SurveyControllerGetSurveyHistoryListByUserId200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'SurveyControllerGetSurveyQuesAnwsByUserId200Response':
+      return SurveyControllerGetSurveyQuesAnwsByUserId200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'SurveyControllerGetSurveyQuesById200Response':
+      return SurveyControllerGetSurveyQuesById200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'SurveyGroupedAnswerItem':
+      return SurveyGroupedAnswerItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SurveyQuesAnsDetailRequest':
+      return SurveyQuesAnsDetailRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SurveyQuestionAnswerResponse':
+      return SurveyQuestionAnswerResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'SurveyQuestionRequest':
+      return SurveyQuestionRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SurveyQuestionResponse':
+      return SurveyQuestionResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'TrendControllerGetProductFromTrendCaching200Response':
+      return TrendControllerGetProductFromTrendCaching200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'TrendControllerGetProductTrendJobResult200Response':
+      return TrendControllerGetProductTrendJobResult200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'TrendControllerSummarizeLogsStructured200Response':
+      return TrendControllerSummarizeLogsStructured200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'UpdateAdminInstructionRequest':
+      return UpdateAdminInstructionRequest.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
     case 'UpdateCartItemRequest':
       return UpdateCartItemRequest.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'UpdateCategoryRequest':
-      return UpdateCategoryRequest.fromJson(value as Map<String, dynamic>)
+    case 'UserLogSummaryRequest':
+      return UserLogSummaryRequest.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'UpdateConcentrationRequest':
-      return UpdateConcentrationRequest.fromJson(value as Map<String, dynamic>)
+    case 'UserLogSummaryResponse':
+      return UserLogSummaryResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'UpdateImportDetailRequest':
-      return UpdateImportDetailRequest.fromJson(value as Map<String, dynamic>)
+    case 'VariantMediaResponse':
+      return VariantMediaResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'UpdateImportRequest':
-      return UpdateImportRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateImportStatusRequest':
-      return UpdateImportStatusRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateNotePreferenceRequest':
-      return UpdateNotePreferenceRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateOlfactoryFamilyRequest':
-      return UpdateOlfactoryFamilyRequest.fromJson(
+    case 'VariantSalesAnalyticsResponse':
+      return VariantSalesAnalyticsResponse.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
-    case 'UpdateOrderAddressRequest':
-      return UpdateOrderAddressRequest.fromJson(value as Map<String, dynamic>)
+    case 'VariantStockResponse':
+      return VariantStockResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'UpdateProductRequest':
-      return UpdateProductRequest.fromJson(value as Map<String, dynamic>)
+    case 'YearNormalizerOutput':
+      return YearNormalizerOutput.fromJson(value as Map<String, dynamic>)
           as ReturnType;
-    case 'UpdateProfileRequest':
-      return UpdateProfileRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateReturnRequestDto':
-      return UpdateReturnRequestDto.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateScentNoteRequest':
-      return UpdateScentNoteRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateStockAdjustmentStatusRequest':
-      return UpdateStockAdjustmentStatusRequest.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'UpdateSupplierRequest':
-      return UpdateSupplierRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateVariantRequest':
-      return UpdateVariantRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UpdateVoucherRequest':
-      return UpdateVoucherRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UserCancelOrderRequest':
-      return UserCancelOrderRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UserCredentialsResponse':
-      return UserCredentialsResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UserOrderResponse':
-      return UserOrderResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'UserRole':
-    case 'UserVoucherResponse':
-      return UserVoucherResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'VariantDailySaleFigure':
-      return VariantDailySaleFigure.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'VariantFastLookResponse':
-      return VariantFastLookResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'VariantImageUploadItem':
-      throw UnimplementedError('VariantImageUploadItem.fromJson is not supported');
-    case 'VariantLookupItem':
-      return VariantLookupItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'VariantPagedItem':
-      return VariantPagedItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'VariantStatus':
-    case 'VariantSummaryItem':
-      return VariantSummaryItem.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'VariantType':
-    case 'VerifyImportDetailRequest':
-      return VerifyImportDetailRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'VerifyImportTicketRequest':
-      return VerifyImportTicketRequest.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'VerifyStockAdjustmentDetailRequest':
-      return VerifyStockAdjustmentDetailRequest.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'VerifyStockAdjustmentRequest':
-      return VerifyStockAdjustmentRequest.fromJson(
-            value as Map<String, dynamic>,
-          )
-          as ReturnType;
-    case 'VoucherResponse':
-      return VoucherResponse.fromJson(value as Map<String, dynamic>)
-          as ReturnType;
-    case 'VoucherType':
-    case 'WardResponse':
-      return WardResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
     default:
       RegExpMatch? match;
 

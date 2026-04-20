@@ -479,8 +479,22 @@
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -567,8 +581,22 @@
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -645,8 +673,22 @@
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -723,8 +765,22 @@
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -801,8 +857,22 @@
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/BestSellingProductResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -889,8 +959,22 @@
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -977,8 +1061,22 @@
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -1065,8 +1163,22 @@
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -1143,7 +1255,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The base response of PagedResult",
+            "description": "The base response of HybridSearchResponse",
             "content": {
               "application/json": {
                 "schema": {
@@ -1153,8 +1265,8 @@
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "$ref": "#/components/schemas/HybridSearchResponse"
                         }
                       }
                     }
@@ -1197,7 +1309,7 @@
                     },
                     {
                       "properties": {
-                        "data": {
+                        "payload": {
                           "$ref": "#/components/schemas/ProductWithVariantsResponse"
                         }
                       }
@@ -1733,6 +1845,135 @@
         ]
       }
     },
+    "/surveys/user/v4": {
+      "post": {
+        "operationId": "SurveyController_chatSurveyV4",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": false,
+            "in": "query",
+            "description": "ID của người dùng",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SurveyQuesAnsDetailRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The base response of String",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BaseResponse"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Trả lời survey V4 — query-based (no AI analysis, trực tiếp query sản phẩm)",
+        "tags": [
+          "Surveys"
+        ]
+      }
+    },
+    "/surveys/attributes": {
+      "get": {
+        "operationId": "SurveyController_getAttributeTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Lấy danh sách loại thuộc tính cho survey",
+        "tags": [
+          "Surveys"
+        ]
+      }
+    },
+    "/surveys/attributes/{type}/values": {
+      "get": {
+        "operationId": "SurveyController_getAttributeValues",
+        "parameters": [
+          {
+            "name": "type",
+            "required": true,
+            "in": "path",
+            "description": "Loại thuộc tính (gender, brand, category, origin, concentration, note, family, attribute, budget)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Lấy giá trị của 1 loại thuộc tính",
+        "tags": [
+          "Surveys"
+        ]
+      }
+    },
+    "/surveys/questions/from-attribute": {
+      "post": {
+        "operationId": "SurveyController_createQuestionFromAttribute",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The base response of String",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BaseResponse"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Tạo câu hỏi survey từ thuộc tính (auto-generate query answers)",
+        "tags": [
+          "Surveys"
+        ]
+      }
+    },
     "/surveys/user/{userId}": {
       "get": {
         "operationId": "SurveyController_getSurveyQuesAnwsByUserId",
@@ -1771,6 +2012,52 @@
           }
         },
         "summary": "Lấy tất cả câu hỏi và câu trả lời survey của người dùng",
+        "tags": [
+          "Surveys"
+        ]
+      }
+    },
+    "/surveys/user/{userId}/history": {
+      "get": {
+        "operationId": "SurveyController_getSurveyHistoryListByUserId",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "description": "ID của người dùng",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The base response of SurveyQuestionAnswerResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BaseResponse"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/SurveyQuestionAnswerResponse"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Lấy danh sách lịch sử tất cả các lần trả lời survey của người dùng",
         "tags": [
           "Surveys"
         ]
@@ -1927,7 +2214,7 @@
             "description": "Ngày kết thúc",
             "schema": {
               "format": "date-time",
-              "default": "2026-04-15T23:59:59.999Z",
+              "default": "2026-04-20T23:59:59.999Z",
               "type": "string"
             }
           },
@@ -2246,12 +2533,26 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BaseResponse"
+                      "$ref": "#/components/schemas/BaseResponseAPI"
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/EventLog"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -2618,7 +2919,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-04-15T04:51:08.536Z",
+              "example": "2026-04-20T05:02:04.766Z",
               "type": "string"
             }
           },
@@ -3043,12 +3344,26 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BaseResponse"
+                      "$ref": "#/components/schemas/BaseResponseAPI"
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/ConversationDto"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -3155,6 +3470,54 @@
           }
         ],
         "summary": "Chat V10 (Profile-first + Structured Search)",
+        "tags": [
+          "Conversation"
+        ]
+      }
+    },
+    "/conversation/chat/v10-staff": {
+      "post": {
+        "operationId": "ConversationController_conversationV10Staff",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConversationRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The base response of ConversationRequestDto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BaseResponse"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/ConversationRequestDto"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Chat V10 Staff (Quick Counter Consultation Mode)",
         "tags": [
           "Conversation"
         ]
@@ -3752,12 +4115,26 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BaseResponse"
+                      "$ref": "#/components/schemas/BaseResponseAPI"
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/ReviewListItemResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -4100,6 +4477,54 @@
         ]
       }
     },
+    "/reviews/logs/latest/variant/{variantId}": {
+      "get": {
+        "operationId": "ReviewController_getLatestReviewLogByVariantId",
+        "parameters": [
+          {
+            "name": "variantId",
+            "required": true,
+            "in": "path",
+            "description": "ID của variant sản phẩm",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The base response of ReviewLog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BaseResponse"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "$ref": "#/components/schemas/ReviewLog"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Lấy review log mới nhất theo variant ID",
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
     "/reviews/logs/{id}": {
       "get": {
         "operationId": "ReviewController_getReviewLogById",
@@ -4417,12 +4842,26 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BaseResponse"
+                      "$ref": "#/components/schemas/BaseResponseAPI"
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/InventoryStockResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -4635,12 +5074,26 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BaseResponse"
+                      "$ref": "#/components/schemas/BaseResponseAPI"
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/BatchResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -4919,12 +5372,26 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BaseResponse"
+                      "$ref": "#/components/schemas/BaseResponseAPI"
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -4963,12 +5430,26 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BaseResponse"
+                      "$ref": "#/components/schemas/BaseResponseAPI"
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -5289,7 +5770,7 @@
                     },
                     {
                       "properties": {
-                        "data": {
+                        "payload": {
                           "type": "array",
                           "items": {
                             "$ref": "#/components/schemas/VariantSalesAnalyticsResponse"
@@ -5348,7 +5829,7 @@
                     },
                     {
                       "properties": {
-                        "data": {
+                        "payload": {
                           "$ref": "#/components/schemas/VariantSalesAnalyticsResponse"
                         }
                       }
@@ -5434,15 +5915,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "userId",
-            "required": false,
-            "in": "query",
-            "description": "ID user để kiểm tra quyền sở hữu (optional)",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -5480,15 +5952,7 @@
     "/ai-acceptance/status/all": {
       "get": {
         "operationId": "AIAcceptanceController_getAllAIAcceptanceStatus",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "description": "ID của người dùng",
-            "schema": {}
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "The base response of AIAcceptance",
@@ -5515,7 +5979,7 @@
             "description": "Token JWT không hợp lệ hoặc không được cung cấp"
           }
         },
-        "summary": "Lấy trạng thái chấp nhận AI của tất cả người dùng",
+        "summary": "Lấy trạng thái chấp nhận AI của tất cả gợi ý",
         "tags": [
           "AI Acceptance"
         ]
@@ -5530,15 +5994,6 @@
             "required": true,
             "in": "path",
             "description": "ID bản ghi AI acceptance",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "cartItemId",
-            "required": false,
-            "in": "query",
-            "description": "ID cart item liên quan (tùy chọn)",
             "schema": {
               "type": "string"
             }
@@ -5580,179 +6035,6 @@
           }
         },
         "summary": "Cập nhật trạng thái chấp nhận AI theo ID",
-        "tags": [
-          "AI Acceptance"
-        ]
-      }
-    },
-    "/ai-acceptance/user/{userId}": {
-      "put": {
-        "operationId": "AIAcceptanceController_updateAIAcceptanceDataByUserIdAndCartId",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "description": "ID của người dùng",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "cartItemId",
-            "required": false,
-            "in": "query",
-            "description": "ID cart item liên quan (tùy chọn)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "status",
-            "required": true,
-            "in": "query",
-            "description": "Trạng thái (true/false)",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The base response of AIAcceptance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
-                    },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIAcceptance"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Token JWT không hợp lệ hoặc không được cung cấp"
-          }
-        },
-        "summary": "Cập nhật trạng thái chấp nhận AI theo ID người dùng và ID cart item",
-        "tags": [
-          "AI Acceptance"
-        ]
-      }
-    },
-    "/ai-acceptance/status/{userId}": {
-      "get": {
-        "operationId": "AIAcceptanceController_getAIAcceptanceStatus",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "description": "ID của người dùng",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The base response of AIAcceptance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
-                    },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIAcceptance"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Token JWT không hợp lệ hoặc không được cung cấp"
-          }
-        },
-        "summary": "Lấy trạng thái chấp nhận AI theo user ID",
-        "tags": [
-          "AI Acceptance"
-        ]
-      }
-    },
-    "/ai-acceptance/visible/{userId}": {
-      "get": {
-        "operationId": "AIAcceptanceController_getVisibleAIAcceptanceStatus",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "description": "ID của người dùng",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contextType",
-            "required": false,
-            "in": "query",
-            "description": "Lọc theo ngữ cảnh",
-            "schema": {
-              "enum": [
-                "cart_legacy",
-                "chatbot",
-                "survey",
-                "trend",
-                "recommendation",
-                "repurchase"
-              ],
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The base response of AIAcceptance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
-                    },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIAcceptance"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Token JWT không hợp lệ hoặc không được cung cấp"
-          }
-        },
-        "summary": "Lấy trạng thái AI acceptance có thể hiển thị (accepted ngay, false sau 24h)",
         "tags": [
           "AI Acceptance"
         ]
@@ -5821,69 +6103,6 @@
         ]
       }
     },
-    "/ai-acceptance/rate/{userId}": {
-      "get": {
-        "operationId": "AIAcceptanceController_getAIAcceptanceRateByUserId",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "description": "ID của người dùng",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contextType",
-            "required": false,
-            "in": "query",
-            "description": "Lọc theo ngữ cảnh",
-            "schema": {
-              "enum": [
-                "cart_legacy",
-                "chatbot",
-                "survey",
-                "trend",
-                "recommendation",
-                "repurchase"
-              ],
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The base response of Number",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
-                    },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "number"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Token JWT không hợp lệ hoặc không được cung cấp"
-          }
-        },
-        "summary": "Lấy tỷ lệ chấp nhận AI theo user ID",
-        "tags": [
-          "AI Acceptance"
-        ]
-      }
-    },
     "/ai-acceptance/metrics": {
       "get": {
         "operationId": "AIAcceptanceController_getAIAcceptanceMetrics",
@@ -5901,14 +6120,6 @@
                 "recommendation",
                 "repurchase"
               ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "required": false,
-            "in": "query",
-            "schema": {
               "type": "string"
             }
           }
@@ -5939,71 +6150,7 @@
             "description": "Token JWT không hợp lệ hoặc không được cung cấp"
           }
         },
-        "summary": "Lấy metrics acceptance theo context/user (accepted/pending/no-click)",
-        "tags": [
-          "AI Acceptance"
-        ]
-      }
-    },
-    "/ai-acceptance/record/{userId}": {
-      "post": {
-        "operationId": "AIAcceptanceController_createAIAcceptanceRecord",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "description": "ID của người dùng",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "cartItemId",
-            "required": false,
-            "in": "query",
-            "description": "ID cart item liên quan (tùy chọn)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "status",
-            "required": true,
-            "in": "query",
-            "description": "Trạng thái chấp nhận (true/false)",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The base response of AIAcceptance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
-                    },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIAcceptance"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Token JWT không hợp lệ hoặc không được cung cấp"
-          }
-        },
-        "summary": "Tạo bản ghi chấp nhận AI mới",
+        "summary": "Lấy metrics acceptance theo context (accepted/pending/no-click)",
         "tags": [
           "AI Acceptance"
         ]
@@ -6522,12 +6669,26 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BaseResponse"
+                      "$ref": "#/components/schemas/BaseResponseAPI"
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/OrderListItemResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -6695,12 +6856,26 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BaseResponse"
+                      "$ref": "#/components/schemas/BaseResponseAPI"
                     },
                     {
                       "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/PagedResult"
+                        "payload": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/PagedResult"
+                            },
+                            {
+                              "properties": {
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/OrderListItemResponse"
+                                  }
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -6930,6 +7105,38 @@
         "summary": "Remove item from cart",
         "tags": [
           "Cart"
+        ]
+      }
+    },
+    "/sourcing/catalogs/{variantId}": {
+      "get": {
+        "description": "Sends a catalog_request to the main backend and awaits a response.",
+        "operationId": "SourcingController_getCatalogs",
+        "parameters": [
+          {
+            "name": "variantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponseAPI"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Test get catalogs for a specific variant via Redis Pub/Sub",
+        "tags": [
+          "Sourcing"
         ]
       }
     },
@@ -7203,6 +7410,104 @@
           "totalPages"
         ]
       },
+      "ProductAttributeResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID bản ghi thuộc tính",
+            "format": "uuid"
+          },
+          "attributeId": {
+            "type": "number",
+            "description": "ID thuộc tính"
+          },
+          "valueId": {
+            "type": "number",
+            "description": "ID giá trị thuộc tính"
+          },
+          "attribute": {
+            "type": "string",
+            "description": "Tên thuộc tính",
+            "example": "Weather"
+          },
+          "description": {
+            "type": "string",
+            "description": "Mô tả thuộc tính",
+            "example": "Suitable weather or season for the product"
+          },
+          "value": {
+            "type": "string",
+            "description": "Giá trị thuộc tính",
+            "example": "Winter"
+          }
+        },
+        "required": [
+          "id",
+          "attributeId",
+          "valueId",
+          "attribute",
+          "description",
+          "value"
+        ]
+      },
+      "ProductResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID sản phẩm",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "Tên sản phẩm"
+          },
+          "brandId": {
+            "type": "number",
+            "description": "ID thương hiệu"
+          },
+          "brandName": {
+            "type": "string",
+            "description": "Tên thương hiệu"
+          },
+          "categoryId": {
+            "type": "number",
+            "description": "ID danh mục"
+          },
+          "categoryName": {
+            "type": "string",
+            "description": "Tên danh mục"
+          },
+          "description": {
+            "type": "string",
+            "description": "Mô tả sản phẩm"
+          },
+          "primaryImage": {
+            "type": "object",
+            "description": "URL hình ảnh chính",
+            "nullable": true
+          },
+          "attributes": {
+            "description": "Danh sách thuộc tính sản phẩm",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductAttributeResponse"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "brandId",
+          "brandName",
+          "categoryId",
+          "categoryName",
+          "description",
+          "primaryImage",
+          "attributes"
+        ]
+      },
       "ConcentrationResponse": {
         "type": "object",
         "properties": {
@@ -7280,47 +7585,6 @@
           "url",
           "isPrimary",
           "displayOrder"
-        ]
-      },
-      "ProductAttributeResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "ID bản ghi thuộc tính",
-            "format": "uuid"
-          },
-          "attributeId": {
-            "type": "number",
-            "description": "ID thuộc tính"
-          },
-          "valueId": {
-            "type": "number",
-            "description": "ID giá trị thuộc tính"
-          },
-          "attribute": {
-            "type": "string",
-            "description": "Tên thuộc tính",
-            "example": "Weather"
-          },
-          "description": {
-            "type": "string",
-            "description": "Mô tả thuộc tính",
-            "example": "Suitable weather or season for the product"
-          },
-          "value": {
-            "type": "string",
-            "description": "Giá trị thuộc tính",
-            "example": "Winter"
-          }
-        },
-        "required": [
-          "id",
-          "attributeId",
-          "valueId",
-          "attribute",
-          "description",
-          "value"
         ]
       },
       "ProductVariantResponse": {
@@ -7527,6 +7791,146 @@
           "createdAt"
         ]
       },
+      "BestSellingProductResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "PriceNormalizerOutput": {
+        "type": "object",
+        "properties": {
+          "min": {
+            "type": "number",
+            "description": "Giá tối thiểu (VND)"
+          },
+          "max": {
+            "type": "number",
+            "description": "Giá tối đa (VND)"
+          },
+          "operator": {
+            "type": "string",
+            "description": "Toán tử so sánh",
+            "enum": [
+              "lt",
+              "lte",
+              "gt",
+              "gte",
+              "between"
+            ]
+          }
+        }
+      },
+      "GenderNormalizerOutput": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Giới tính nước hoa",
+            "enum": [
+              "Nam",
+              "Nữ",
+              "Unisex"
+            ]
+          }
+        }
+      },
+      "YearNormalizerOutput": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "number",
+            "description": "Năm ra mắt"
+          },
+          "operator": {
+            "type": "string",
+            "description": "Toán tử so sánh",
+            "enum": [
+              "eq",
+              "gte",
+              "lte",
+              "newer",
+              "older"
+            ]
+          }
+        }
+      },
+      "OriginNormalizerOutput": {
+        "type": "object",
+        "properties": {
+          "origins": {
+            "description": "Danh sách nguồn gốc",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "NormalizedQueryFilters": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "$ref": "#/components/schemas/PriceNormalizerOutput"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderNormalizerOutput"
+          },
+          "year": {
+            "$ref": "#/components/schemas/YearNormalizerOutput"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/OriginNormalizerOutput"
+          }
+        }
+      },
+      "HybridSearchResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "description": "Danh sách bản ghi",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductWithVariantsResponse"
+            }
+          },
+          "pageNumber": {
+            "type": "number",
+            "description": "Số trang hiện tại"
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "Số bản ghi mỗi trang"
+          },
+          "totalCount": {
+            "type": "number",
+            "description": "Tổng số bản ghi"
+          },
+          "totalPages": {
+            "type": "number",
+            "description": "Tổng số trang"
+          },
+          "queryFilters": {
+            "description": "Filters found in query",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NormalizedQueryFilters"
+              }
+            ]
+          },
+          "vectorSimilarity": {
+            "type": "boolean",
+            "description": "Whether vector similarity was used"
+          }
+        },
+        "required": [
+          "items",
+          "pageNumber",
+          "pageSize",
+          "totalCount",
+          "totalPages",
+          "vectorSimilarity"
+        ]
+      },
       "ProductViewLogRequest": {
         "type": "object",
         "properties": {
@@ -7664,6 +8068,10 @@
           "answer": {
             "type": "string",
             "description": "Nội dung câu trả lời"
+          },
+          "queryFragment": {
+            "type": "object",
+            "description": "Query fragment cho survey v4"
           }
         },
         "required": [
@@ -7718,36 +8126,13 @@
           "answerId"
         ]
       },
-      "SurveyQuestionAnswerDetailResponse": {
+      "SurveyGroupedAnswerItem": {
         "type": "object",
         "properties": {
-          "id": {
+          "detailId": {
             "type": "string",
-            "description": "ID bản ghi",
+            "description": "ID detail tương ứng",
             "format": "uuid"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Ngày tạo"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Ngày cập nhật gần nhất"
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": "Trạng thái hoạt động"
-          },
-          "questionId": {
-            "type": "string",
-            "description": "ID câu hỏi",
-            "format": "uuid"
-          },
-          "question": {
-            "type": "string",
-            "description": "Câu hỏi"
           },
           "answerId": {
             "type": "string",
@@ -7760,14 +8145,35 @@
           }
         },
         "required": [
-          "id",
-          "createdAt",
-          "updatedAt",
-          "isActive",
-          "questionId",
-          "question",
+          "detailId",
           "answerId",
           "answer"
+        ]
+      },
+      "GroupedSurveyQuestionAnswerDetailResponse": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "string",
+            "description": "ID câu hỏi",
+            "format": "uuid"
+          },
+          "question": {
+            "type": "string",
+            "description": "Câu hỏi"
+          },
+          "answers": {
+            "description": "Danh sách các câu trả lời do người dùng chọn",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SurveyGroupedAnswerItem"
+            }
+          }
+        },
+        "required": [
+          "questionId",
+          "question",
+          "answers"
         ]
       },
       "SurveyQuestionAnswerResponse": {
@@ -7801,7 +8207,7 @@
             "description": "Danh sách chi tiết câu hỏi - câu trả lời",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SurveyQuestionAnswerDetailResponse"
+              "$ref": "#/components/schemas/GroupedSurveyQuestionAnswerDetailResponse"
             }
           }
         },
@@ -7817,6 +8223,82 @@
       "Array": {
         "type": "object",
         "properties": {}
+      },
+      "EventLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID duy nhất (UUID)",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Ngày tạo bản ghi"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Ngày cập nhật gần nhất"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Trạng thái hoạt động"
+          },
+          "userId": {
+            "type": "string",
+            "description": "ID người dùng (nullable cho anonymous/system)",
+            "nullable": true
+          },
+          "eventType": {
+            "type": "string",
+            "description": "Loại sự kiện log",
+            "enum": [
+              "message",
+              "search",
+              "survey",
+              "product"
+            ]
+          },
+          "entityType": {
+            "type": "string",
+            "description": "Loại thực thể liên quan",
+            "enum": [
+              "conversation",
+              "search",
+              "survey",
+              "product"
+            ]
+          },
+          "entityId": {
+            "type": "string",
+            "description": "ID thực thể liên quan (nullable)",
+            "nullable": true
+          },
+          "contentText": {
+            "type": "string",
+            "description": "Nội dung text cho message/search",
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Metadata dạng JSONB cho survey và dữ liệu mở rộng",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "updatedAt",
+          "isActive",
+          "userId",
+          "eventType",
+          "entityType",
+          "entityId",
+          "contentText",
+          "metadata"
+        ]
       },
       "EventLogCreateRequest": {
         "type": "object",
@@ -8217,6 +8699,10 @@
             "items": {
               "$ref": "#/components/schemas/MessageRequestDto"
             }
+          },
+          "isStaff": {
+            "type": "boolean",
+            "description": "Chế độ nhân viên tư vấn tại quầy"
           }
         },
         "required": [
@@ -8390,6 +8876,80 @@
           "generatedAt"
         ]
       },
+      "ReviewListItemResponse": {
+        "type": "object",
+        "properties": {
+          "commentPreview": {
+            "type": "string",
+            "description": "Xem trước nội dung đánh giá"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Ngày tạo đánh giá",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "string",
+            "description": "ID đánh giá",
+            "format": "uuid"
+          },
+          "imageCount": {
+            "type": "number",
+            "description": "Số lượng hình ảnh"
+          },
+          "rating": {
+            "type": "number",
+            "description": "Số sao đánh giá",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "status": {
+            "type": "string",
+            "description": "Trạng thái đánh giá",
+            "enum": [
+              "Pending",
+              "Approved",
+              "Rejected"
+            ]
+          },
+          "userFullName": {
+            "type": "string",
+            "description": "Tên người đánh giá"
+          },
+          "userId": {
+            "type": "string",
+            "description": "ID người đánh giá",
+            "format": "uuid"
+          },
+          "userProfilePictureUrl": {
+            "type": "object",
+            "description": "URL ảnh đại diện",
+            "nullable": true
+          },
+          "variantId": {
+            "type": "string",
+            "description": "ID variant sản phẩm",
+            "format": "uuid"
+          },
+          "variantName": {
+            "type": "string",
+            "description": "Tên variant sản phẩm"
+          }
+        },
+        "required": [
+          "commentPreview",
+          "createdAt",
+          "id",
+          "imageCount",
+          "rating",
+          "status",
+          "userFullName",
+          "userId",
+          "userProfilePictureUrl",
+          "variantId",
+          "variantName"
+        ]
+      },
       "AIReviewSummaryStructuredResponse": {
         "type": "object",
         "properties": {
@@ -8469,6 +9029,122 @@
           "typeReview",
           "variantId",
           "reviewLog"
+        ]
+      },
+      "InventoryStockResponse": {
+        "type": "object",
+        "properties": {
+          "concentrationName": {
+            "type": "string",
+            "description": "Concentration name",
+            "example": "Eau de Parfum"
+          },
+          "id": {
+            "type": "string",
+            "description": "Inventory stock ID",
+            "example": "550e8400-e29b-41d4-a716-446655440000"
+          },
+          "isLowStock": {
+            "type": "boolean",
+            "description": "Whether the stock is low",
+            "example": false
+          },
+          "lowStockThreshold": {
+            "type": "number",
+            "description": "Low stock threshold",
+            "example": 10
+          },
+          "productName": {
+            "type": "string",
+            "description": "Product name",
+            "example": "Chanel No.5"
+          },
+          "totalQuantity": {
+            "type": "number",
+            "description": "Total quantity in stock",
+            "example": 100
+          },
+          "variantId": {
+            "type": "string",
+            "description": "Variant ID",
+            "example": "550e8400-e29b-41d4-a716-446655440001"
+          },
+          "variantSku": {
+            "type": "string",
+            "description": "Variant SKU",
+            "example": "CHN5-EDP-100ML"
+          },
+          "volumeMl": {
+            "type": "number",
+            "description": "Volume in milliliters",
+            "example": 100
+          }
+        },
+        "required": [
+          "concentrationName",
+          "id",
+          "isLowStock",
+          "lowStockThreshold",
+          "productName",
+          "totalQuantity",
+          "variantId",
+          "variantSku",
+          "volumeMl"
+        ]
+      },
+      "BatchResponse": {
+        "type": "object",
+        "properties": {
+          "batchCode": {
+            "type": "string",
+            "description": "Batch code",
+            "example": "BATCH-001"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date-time notation as defined by RFC 3339, section 5.6, for example, 2017-07-21T17:32:28Z",
+            "example": "2017-07-21T17:32:28Z"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date-time notation as defined by RFC 3339, section 5.6, for example, 2017-07-21T17:32:28Z",
+            "example": "2017-07-21T17:32:28Z"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier",
+            "example": "550e8400-e29b-41d4-a716-446655440000"
+          },
+          "importQuantity": {
+            "type": "number",
+            "format": "int32",
+            "description": "Signed 32-bit integers (commonly used integer type).",
+            "example": 100
+          },
+          "manufactureDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date-time notation as defined by RFC 3339, section 5.6, for example, 2017-07-21T17:32:28Z",
+            "example": "2017-07-21T17:32:28Z"
+          },
+          "remainingQuantity": {
+            "type": "number",
+            "format": "int32",
+            "description": "Signed 32-bit integers (commonly used integer type).",
+            "example": 50
+          }
+        },
+        "required": [
+          "batchCode",
+          "createdAt",
+          "expiryDate",
+          "id",
+          "importQuantity",
+          "manufactureDate",
+          "remainingQuantity"
         ]
       },
       "AIInventoryReportStructuredResponse": {
@@ -8742,17 +9418,6 @@
             "type": "boolean",
             "description": "Trạng thái hoạt động"
           },
-          "userId": {
-            "type": "object",
-            "description": "ID người dùng",
-            "format": "uuid"
-          },
-          "cartItemId": {
-            "type": "object",
-            "description": "Id của cart item nếu có liên quan",
-            "format": "string",
-            "nullable": true
-          },
           "responseId": {
             "type": "object",
             "description": "ID acceptance cho một response (dùng để nhóm theo lần phản hồi)",
@@ -8798,8 +9463,6 @@
           "createdAt",
           "updatedAt",
           "isActive",
-          "userId",
-          "cartItemId",
           "responseId",
           "contextType",
           "sourceRefId",
@@ -8813,10 +9476,6 @@
       "CreateResponseAIAcceptanceRequest": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "string",
-            "description": "ID người dùng (optional trong trường hợp nguồn không có user cụ thể)"
-          },
           "contextType": {
             "type": "string",
             "description": "Ngữ cảnh phát sinh AI acceptance",
@@ -8910,7 +9569,8 @@
               "conversation",
               "survey",
               "restock",
-              "search_extraction"
+              "search_extraction",
+              "staff_consultation"
             ]
           }
         },
@@ -8940,10 +9600,126 @@
               "conversation",
               "survey",
               "restock",
-              "search_extraction"
+              "search_extraction",
+              "staff_consultation"
             ]
           }
         }
+      },
+      "OrderListItemResponse": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "description": "Order creation date",
+            "example": "2024-01-01T00:00:00.000Z"
+          },
+          "customerId": {
+            "type": "object",
+            "description": "Customer ID",
+            "example": "550e8400-e29b-41d4-a716-446655440000",
+            "nullable": true
+          },
+          "customerName": {
+            "type": "object",
+            "description": "Customer name",
+            "example": "John Doe",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "Order ID",
+            "example": "550e8400-e29b-41d4-a716-446655440001"
+          },
+          "code": {
+            "type": "string",
+            "description": "Order code",
+            "example": "ORD-20260408-0001"
+          },
+          "itemCount": {
+            "type": "number",
+            "description": "Number of items in the order",
+            "example": 3
+          },
+          "paymentStatus": {
+            "type": "string",
+            "description": "Payment status of the order",
+            "enum": [
+              "Unpaid",
+              "Paid",
+              "Refunded"
+            ],
+            "example": "Unpaid"
+          },
+          "shippingStatus": {
+            "type": "object",
+            "description": "Shipping status code",
+            "example": 1,
+            "nullable": true
+          },
+          "staffId": {
+            "type": "object",
+            "description": "Staff ID",
+            "example": "550e8400-e29b-41d4-a716-446655440002",
+            "nullable": true
+          },
+          "staffName": {
+            "type": "object",
+            "description": "Staff name",
+            "example": "Jane Smith",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Order status",
+            "enum": [
+              "Pending",
+              "Processing",
+              "Shipped",
+              "Delivered",
+              "Canceled",
+              "Returned"
+            ],
+            "example": "Pending"
+          },
+          "totalAmount": {
+            "type": "number",
+            "description": "Total amount of the order",
+            "example": 150000
+          },
+          "type": {
+            "type": "string",
+            "description": "Order type",
+            "enum": [
+              "Online",
+              "Offline",
+              "Shoppe"
+            ],
+            "example": "Online"
+          },
+          "updatedAt": {
+            "type": "object",
+            "description": "Order last updated date",
+            "example": "2024-01-02T00:00:00.000Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "createdAt",
+          "customerId",
+          "customerName",
+          "id",
+          "code",
+          "itemCount",
+          "paymentStatus",
+          "shippingStatus",
+          "staffId",
+          "staffName",
+          "status",
+          "totalAmount",
+          "type",
+          "updatedAt"
+        ]
       },
       "AIOrderSummaryStructuredResponse": {
         "type": "object",

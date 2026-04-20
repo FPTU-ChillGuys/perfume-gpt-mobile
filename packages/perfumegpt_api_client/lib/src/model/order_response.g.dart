@@ -17,6 +17,8 @@ abstract class _$OrderResponseCWProxy {
 
   OrderResponse customerEmail(String? customerEmail);
 
+  OrderResponse customerPhoneNumber(String? customerPhoneNumber);
+
   OrderResponse staffId(String? staffId);
 
   OrderResponse staffName(String? staffName);
@@ -72,6 +74,7 @@ abstract class _$OrderResponseCWProxy {
     String? customerId,
     String? customerName,
     String? customerEmail,
+    String? customerPhoneNumber,
     String? staffId,
     String? staffName,
     OrderType? type,
@@ -118,6 +121,10 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
   @override
   OrderResponse customerEmail(String? customerEmail) =>
       call(customerEmail: customerEmail);
+
+  @override
+  OrderResponse customerPhoneNumber(String? customerPhoneNumber) =>
+      call(customerPhoneNumber: customerPhoneNumber);
 
   @override
   OrderResponse staffId(String? staffId) => call(staffId: staffId);
@@ -203,6 +210,7 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
     Object? customerId = const $CopyWithPlaceholder(),
     Object? customerName = const $CopyWithPlaceholder(),
     Object? customerEmail = const $CopyWithPlaceholder(),
+    Object? customerPhoneNumber = const $CopyWithPlaceholder(),
     Object? staffId = const $CopyWithPlaceholder(),
     Object? staffName = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
@@ -245,6 +253,10 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
           ? _value.customerEmail
           // ignore: cast_nullable_to_non_nullable
           : customerEmail as String?,
+      customerPhoneNumber: customerPhoneNumber == const $CopyWithPlaceholder()
+          ? _value.customerPhoneNumber
+          // ignore: cast_nullable_to_non_nullable
+          : customerPhoneNumber as String?,
       staffId: staffId == const $CopyWithPlaceholder()
           ? _value.staffId
           // ignore: cast_nullable_to_non_nullable
@@ -351,6 +363,10 @@ OrderResponse _$OrderResponseFromJson(
     customerId: $checkedConvert('customerId', (v) => v as String?),
     customerName: $checkedConvert('customerName', (v) => v as String?),
     customerEmail: $checkedConvert('customerEmail', (v) => v as String?),
+    customerPhoneNumber: $checkedConvert(
+      'customerPhoneNumber',
+      (v) => v as String?,
+    ),
     staffId: $checkedConvert('staffId', (v) => v as String?),
     staffName: $checkedConvert('staffName', (v) => v as String?),
     type: $checkedConvert(
@@ -429,6 +445,7 @@ Map<String, dynamic> _$OrderResponseToJson(OrderResponse instance) =>
       'customerId': ?instance.customerId,
       'customerName': ?instance.customerName,
       'customerEmail': ?instance.customerEmail,
+      'customerPhoneNumber': ?instance.customerPhoneNumber,
       'staffId': ?instance.staffId,
       'staffName': ?instance.staffName,
       'type': ?_$OrderTypeEnumMap[instance.type],

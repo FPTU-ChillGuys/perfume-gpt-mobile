@@ -80,7 +80,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     _nameController.dispose();
     _phoneController.dispose();
     _streetController.dispose();
-    _voucherController.dispose(); 
+    _voucherController.dispose();
     super.dispose();
   }
 
@@ -96,8 +96,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     final selectedIds = ref.read(selectedCartItemIdsProvider);
 
     if (selectedIds.isNotEmpty) {
-      final validSelected =
-          selectedIds.where((id) => allIds.contains(id)).toList();
+      final validSelected = selectedIds
+          .where((id) => allIds.contains(id))
+          .toList();
       if (validSelected.isNotEmpty && validSelected.length < allIds.length) {
         return (allIds, validSelected);
       }
@@ -106,7 +107,10 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   }
 
   /// Only pass itemIds to API when it's a proper subset of all items.
-  bool _shouldQuerySelectedItems(List<String> allIds, List<String> effectiveIds) {
+  bool _shouldQuerySelectedItems(
+    List<String> allIds,
+    List<String> effectiveIds,
+  ) {
     return effectiveIds.isNotEmpty && effectiveIds.length < allIds.length;
   }
 
@@ -125,19 +129,45 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     final voucher = voucherOverride ?? _appliedVoucherCode;
 
     try {
-      final total = await ref.read(cartRepositoryProvider).getTotal(
-            voucherCode: (voucher != null && voucher.isNotEmpty) ? voucher : null,
-            itemIds: _shouldQuerySelectedItems(allIds, effectiveIds) ? effectiveIds : null,
-            savedAddressId: (!_isPickupInStore && !_useNewAddress) ? _selectedAddressId : null,
-            recipientContactName: (!_isPickupInStore && _useNewAddress) ? _nameController.text.trim() : null,
-            recipientContactPhoneNumber: (!_isPickupInStore && _useNewAddress) ? _phoneController.text.trim() : null,
-            recipientDistrictId: (!_isPickupInStore && _useNewAddress) ? _selectedDistrict?.districtID : null,
-            recipientDistrictName: (!_isPickupInStore && _useNewAddress) ? _selectedDistrict?.districtName : null,
-            recipientWardCode: (!_isPickupInStore && _useNewAddress) ? _selectedWard?.wardCode : null,
-            recipientWardName: (!_isPickupInStore && _useNewAddress) ? _selectedWard?.wardName : null,
-            recipientProvinceId: (!_isPickupInStore && _useNewAddress) ? _selectedProvince?.provinceID : null,
-            recipientProvinceName: (!_isPickupInStore && _useNewAddress) ? _selectedProvince?.provinceName : null,
-            recipientFullAddress: (!_isPickupInStore && _useNewAddress) ? _streetController.text.trim() : null,
+      final total = await ref
+          .read(cartRepositoryProvider)
+          .getTotal(
+            voucherCode: (voucher != null && voucher.isNotEmpty)
+                ? voucher
+                : null,
+            itemIds: _shouldQuerySelectedItems(allIds, effectiveIds)
+                ? effectiveIds
+                : null,
+            savedAddressId: (!_isPickupInStore && !_useNewAddress)
+                ? _selectedAddressId
+                : null,
+            recipientContactName: (!_isPickupInStore && _useNewAddress)
+                ? _nameController.text.trim()
+                : null,
+            recipientContactPhoneNumber: (!_isPickupInStore && _useNewAddress)
+                ? _phoneController.text.trim()
+                : null,
+            recipientDistrictId: (!_isPickupInStore && _useNewAddress)
+                ? _selectedDistrict?.districtID
+                : null,
+            recipientDistrictName: (!_isPickupInStore && _useNewAddress)
+                ? _selectedDistrict?.districtName
+                : null,
+            recipientWardCode: (!_isPickupInStore && _useNewAddress)
+                ? _selectedWard?.wardCode
+                : null,
+            recipientWardName: (!_isPickupInStore && _useNewAddress)
+                ? _selectedWard?.wardName
+                : null,
+            recipientProvinceId: (!_isPickupInStore && _useNewAddress)
+                ? _selectedProvince?.provinceID
+                : null,
+            recipientProvinceName: (!_isPickupInStore && _useNewAddress)
+                ? _selectedProvince?.provinceName
+                : null,
+            recipientFullAddress: (!_isPickupInStore && _useNewAddress)
+                ? _streetController.text.trim()
+                : null,
           );
       if (mounted) setState(() => _computedTotal = total);
     } catch (_) {}
@@ -155,19 +185,43 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 
     try {
       final (allIds, effectiveIds) = _computeEffectiveItemIds();
-      final total = await ref.read(cartRepositoryProvider).getTotal(
+      final total = await ref
+          .read(cartRepositoryProvider)
+          .getTotal(
             voucherCode: code,
-            itemIds: _shouldQuerySelectedItems(allIds, effectiveIds) ? effectiveIds : null,
-            savedAddressId: (!_isPickupInStore && !_useNewAddress) ? _selectedAddressId : null,
-            recipientContactName: (!_isPickupInStore && _useNewAddress) ? _nameController.text.trim() : null,
-            recipientContactPhoneNumber: (!_isPickupInStore && _useNewAddress) ? _phoneController.text.trim() : null,
-            recipientDistrictId: (!_isPickupInStore && _useNewAddress) ? _selectedDistrict?.districtID : null,
-            recipientDistrictName: (!_isPickupInStore && _useNewAddress) ? _selectedDistrict?.districtName : null,
-            recipientWardCode: (!_isPickupInStore && _useNewAddress) ? _selectedWard?.wardCode : null,
-            recipientWardName: (!_isPickupInStore && _useNewAddress) ? _selectedWard?.wardName : null,
-            recipientProvinceId: (!_isPickupInStore && _useNewAddress) ? _selectedProvince?.provinceID : null,
-            recipientProvinceName: (!_isPickupInStore && _useNewAddress) ? _selectedProvince?.provinceName : null,
-            recipientFullAddress: (!_isPickupInStore && _useNewAddress) ? _streetController.text.trim() : null,
+            itemIds: _shouldQuerySelectedItems(allIds, effectiveIds)
+                ? effectiveIds
+                : null,
+            savedAddressId: (!_isPickupInStore && !_useNewAddress)
+                ? _selectedAddressId
+                : null,
+            recipientContactName: (!_isPickupInStore && _useNewAddress)
+                ? _nameController.text.trim()
+                : null,
+            recipientContactPhoneNumber: (!_isPickupInStore && _useNewAddress)
+                ? _phoneController.text.trim()
+                : null,
+            recipientDistrictId: (!_isPickupInStore && _useNewAddress)
+                ? _selectedDistrict?.districtID
+                : null,
+            recipientDistrictName: (!_isPickupInStore && _useNewAddress)
+                ? _selectedDistrict?.districtName
+                : null,
+            recipientWardCode: (!_isPickupInStore && _useNewAddress)
+                ? _selectedWard?.wardCode
+                : null,
+            recipientWardName: (!_isPickupInStore && _useNewAddress)
+                ? _selectedWard?.wardName
+                : null,
+            recipientProvinceId: (!_isPickupInStore && _useNewAddress)
+                ? _selectedProvince?.provinceID
+                : null,
+            recipientProvinceName: (!_isPickupInStore && _useNewAddress)
+                ? _selectedProvince?.provinceName
+                : null,
+            recipientFullAddress: (!_isPickupInStore && _useNewAddress)
+                ? _streetController.text.trim()
+                : null,
           );
       if (mounted) {
         setState(() {
@@ -200,16 +254,17 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     });
     await _refreshTotals();
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đã bỏ mã giảm giá')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Đã bỏ mã giảm giá')));
     }
   }
 
   Future<void> _placeOrder() async {
     // Validate
     if (!_isPickupInStore) {
-      if (!_useNewAddress && (_selectedAddressId == null || _selectedAddressId!.isEmpty)) {
+      if (!_useNewAddress &&
+          (_selectedAddressId == null || _selectedAddressId!.isEmpty)) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Vui lòng chọn địa chỉ giao hàng'),
@@ -292,14 +347,17 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       if (!mounted) return;
 
       // Handle payment redirect based on payment method (matching React FE)
-      final isOnlinePayment = _selectedPayment == 'VnPay' ||
+      final isOnlinePayment =
+          _selectedPayment == 'VnPay' ||
           _selectedPayment == 'Momo' ||
           _selectedPayment == 'PayOs';
 
       if (isOnlinePayment) {
         if (result.paymentUrl != null && result.paymentUrl!.isNotEmpty) {
           if (mounted) {
-            context.push('/payment-webview?url=${Uri.encodeComponent(result.paymentUrl!)}');
+            context.push(
+              '/payment-webview?url=${Uri.encodeComponent(result.paymentUrl!)}',
+            );
           }
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -393,12 +451,13 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
           final validSelected = selectedIds.isNotEmpty
               ? selectedIds.intersection(allIds)
               : allIds;
-          final effectiveIds =
-              validSelected.isNotEmpty ? validSelected : allIds;
+          final effectiveIds = validSelected.isNotEmpty
+              ? validSelected
+              : allIds;
           final visibleItems = effectiveIds.length < allIds.length
               ? cartItems
-                  .where((item) => effectiveIds.contains(item.cartItemId))
-                  .toList()
+                    .where((item) => effectiveIds.contains(item.cartItemId))
+                    .toList()
               : cartItems;
 
           final total = _computedTotal ?? cartTotalAsync.value;
@@ -508,8 +567,10 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         children: [
           Icon(Icons.shopping_cart_outlined, size: 64, color: Colors.grey),
           SizedBox(height: 16),
-          Text('Giỏ hàng trống',
-              style: TextStyle(fontSize: 18, color: Colors.grey)),
+          Text(
+            'Giỏ hàng trống',
+            style: TextStyle(fontSize: 18, color: Colors.grey),
+          ),
         ],
       ),
     );
@@ -519,10 +580,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   Widget _buildSectionTitle(String text) {
     return Text(
       text,
-      style: Theme.of(context)
-          .textTheme
-          .titleMedium
-          ?.copyWith(fontWeight: FontWeight.bold),
+      style: Theme.of(
+        context,
+      ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
     );
   }
 
@@ -579,29 +639,39 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                Icon(icon, size: 40,
-                    color: selected ? colorScheme.primary : Colors.grey),
+                Icon(
+                  icon,
+                  size: 40,
+                  color: selected ? colorScheme.primary : Colors.grey,
+                ),
                 if (selected)
                   Positioned(
                     right: -4,
                     top: -4,
-                    child: Icon(Icons.check_circle,
-                        size: 18, color: colorScheme.primary),
+                    child: Icon(
+                      Icons.check_circle,
+                      size: 18,
+                      color: colorScheme.primary,
+                    ),
                   ),
               ],
             ),
             const SizedBox(height: 8),
-            Text(title,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 13,
-                  color: selected ? colorScheme.primary : null,
-                ),
-                textAlign: TextAlign.center),
+            Text(
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 13,
+                color: selected ? colorScheme.primary : null,
+              ),
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: 2),
-            Text(subtitle,
-                style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
-                textAlign: TextAlign.center),
+            Text(
+              subtitle,
+              style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),
@@ -658,14 +728,16 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                         border: OutlineInputBorder(),
                       ),
                       items: [
-                        ...addresses.map((addr) => DropdownMenuItem(
-                              value: addr.id,
-                              child: Text(
-                                '${addr.street}, ${addr.ward}, ${addr.district}, ${addr.city}'
-                                '${addr.isDefault == true ? " (Mặc định)" : ""}',
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            )),
+                        ...addresses.map(
+                          (addr) => DropdownMenuItem(
+                            value: addr.id,
+                            child: Text(
+                              '${addr.street}, ${addr.ward}, ${addr.district}, ${addr.city}'
+                              '${addr.isDefault == true ? " (Mặc định)" : ""}',
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
                         const DropdownMenuItem(
                           value: 'new',
                           child: Text('+ Nhập địa chỉ mới'),
@@ -765,10 +837,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
           border: OutlineInputBorder(),
         ),
         items: provinces
-            .map((p) => DropdownMenuItem(
-                  value: p,
-                  child: Text(p.provinceName, overflow: TextOverflow.ellipsis),
-                ))
+            .map(
+              (p) => DropdownMenuItem(
+                value: p,
+                child: Text(p.provinceName, overflow: TextOverflow.ellipsis),
+              ),
+            )
             .toList(),
         onChanged: (value) {
           setState(() {
@@ -795,8 +869,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       );
     }
 
-    final districtsAsync =
-        ref.watch(districtsProvider(_selectedProvince!.provinceID!));
+    final districtsAsync = ref.watch(
+      districtsProvider(_selectedProvince!.provinceID!),
+    );
     return districtsAsync.when(
       data: (districts) => DropdownButtonFormField<DistrictResponse>(
         initialValue: _selectedDistrict,
@@ -807,10 +882,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
           border: OutlineInputBorder(),
         ),
         items: districts
-            .map((d) => DropdownMenuItem(
-                  value: d,
-                  child: Text(d.districtName, overflow: TextOverflow.ellipsis),
-                ))
+            .map(
+              (d) => DropdownMenuItem(
+                value: d,
+                child: Text(d.districtName, overflow: TextOverflow.ellipsis),
+              ),
+            )
             .toList(),
         onChanged: (value) {
           setState(() {
@@ -836,8 +913,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       );
     }
 
-    final wardsAsync =
-        ref.watch(wardsProvider(_selectedDistrict!.districtID!));
+    final wardsAsync = ref.watch(wardsProvider(_selectedDistrict!.districtID!));
     return wardsAsync.when(
       data: (wards) => DropdownButtonFormField<WardResponse>(
         initialValue: _selectedWard,
@@ -848,10 +924,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
           border: OutlineInputBorder(),
         ),
         items: wards
-            .map((w) => DropdownMenuItem(
-                  value: w,
-                  child: Text(w.wardName, overflow: TextOverflow.ellipsis),
-                ))
+            .map(
+              (w) => DropdownMenuItem(
+                value: w,
+                child: Text(w.wardName, overflow: TextOverflow.ellipsis),
+              ),
+            )
             .toList(),
         onChanged: (value) {
           setState(() => _selectedWard = value);
@@ -901,16 +979,22 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(item.variantName ?? '',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontWeight: FontWeight.w500)),
+                      Text(
+                        item.variantName ?? '',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                      ),
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          Text('x${item.quantity}',
-                              style: TextStyle(
-                                  color: Colors.grey.shade600, fontSize: 13)),
+                          Text(
+                            'x${item.quantity}',
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: 13,
+                            ),
+                          ),
                           const SizedBox(width: 8),
                           if (item.hasDiscount) ...[
                             Text(
@@ -1000,7 +1084,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                       hintText: 'Mã giảm giá',
                       border: const OutlineInputBorder(),
                       contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 12),
+                        horizontal: 12,
+                        vertical: 12,
+                      ),
                       errorText: _voucherError,
                       isDense: true,
                     ),
@@ -1011,7 +1097,8 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                   SizedBox(
                     height: 44,
                     child: FilledButton(
-                      onPressed: _isApplyingVoucher ||
+                      onPressed:
+                          _isApplyingVoucher ||
                               _voucherController.text.trim().isEmpty
                           ? null
                           : _applyVoucher,
@@ -1020,7 +1107,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                               width: 18,
                               height: 18,
                               child: CircularProgressIndicator(
-                                  strokeWidth: 2, color: Colors.white),
+                                strokeWidth: 2,
+                                color: Colors.white,
+                              ),
                             )
                           : const Text('Áp dụng'),
                     ),
@@ -1038,9 +1127,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                   label: const Text('Chọn voucher của bạn'),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: AppColors.primary,
-                    side: BorderSide(color: AppColors.primary.withValues(alpha: 0.4)),
+                    side: BorderSide(
+                      color: AppColors.primary.withValues(alpha: 0.4),
+                    ),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                 ),
               ),
@@ -1055,7 +1147,11 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.check_circle, color: Colors.green.shade700, size: 18),
+                    Icon(
+                      Icons.check_circle,
+                      color: Colors.green.shade700,
+                      size: 18,
+                    ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
@@ -1077,12 +1173,14 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                     const SizedBox(width: 8),
                     InkWell(
                       onTap: _isApplyingVoucher ? null : _removeVoucher,
-                      child: Text('Xóa',
-                          style: TextStyle(
-                            color: Colors.red.shade600,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          )),
+                      child: Text(
+                        'Xóa',
+                        style: TextStyle(
+                          color: Colors.red.shade600,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -1110,7 +1208,10 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   }
 
   // ─── Price Breakdown ────────────────────────────────────────────
-  Widget _buildPriceBreakdown(CartTotal? total, AsyncValue<CartTotal> cartTotalAsync) {
+  Widget _buildPriceBreakdown(
+    CartTotal? total,
+    AsyncValue<CartTotal> cartTotalAsync,
+  ) {
     if (total == null) {
       return cartTotalAsync.when(
         data: (_) => const SizedBox.shrink(),
@@ -1132,8 +1233,11 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             _priceRow('Tạm tính', total.subtotal),
             if (total.discount > 0)
               _priceRow('Giảm giá', -total.discount, color: Colors.green),
-            _priceRow('Phí vận chuyển', total.shippingFee,
-                freeLabel: total.shippingFee == 0),
+            _priceRow(
+              'Phí vận chuyển',
+              total.shippingFee,
+              freeLabel: total.shippingFee == 0,
+            ),
             const Divider(height: 16),
             _priceRow('Tổng cộng', total.totalPrice, bold: true),
           ],
@@ -1142,30 +1246,40 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     );
   }
 
-  Widget _priceRow(String label, double amount,
-      {bool bold = false, Color? color, bool freeLabel = false}) {
+  Widget _priceRow(
+    String label,
+    double amount, {
+    bool bold = false,
+    Color? color,
+    bool freeLabel = false,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label,
-              style: TextStyle(
-                fontSize: bold ? 16 : 14,
-                fontWeight: bold ? FontWeight.bold : FontWeight.normal,
-              )),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: bold ? 16 : 14,
+              fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
           freeLabel
-              ? Text('FREE',
+              ? Text(
+                  'FREE',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.green.shade700,
-                  ))
+                  ),
+                )
               : Text(
                   '${color != null ? "-" : ""}${_formatCurrency(amount.abs())}',
                   style: TextStyle(
                     fontSize: bold ? 16 : 14,
                     fontWeight: bold ? FontWeight.bold : FontWeight.w600,
-                    color: color ??
+                    color:
+                        color ??
                         (bold ? Theme.of(context).colorScheme.error : null),
                   ),
                 ),
@@ -1178,33 +1292,66 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   Widget _buildPaymentMethods() {
     final methods = _isPickupInStore
         ? [
-            _PaymentOption('CashInStore', 'Thanh toán tại cửa hàng',
-                'Thanh toán trực tiếp tại cửa hàng', icon: Icons.store, color: Colors.teal),
-            _PaymentOption('VnPay', 'VNPay', 'Thanh toán qua VNPay',
-                assetPath: 'assets/images/payment_methods/Vnpay.png'),
-            _PaymentOption('Momo', 'MoMo', 'Thanh toán qua MoMo',
-                assetPath: 'assets/images/payment_methods/Momo.png'),
-            _PaymentOption('PayOs', 'PayOS', 'Thanh toán qua PayOS',
-                assetPath: 'assets/images/payment_methods/payOs.png'),
+            _PaymentOption(
+              'CashInStore',
+              'Thanh toán tại cửa hàng',
+              'Thanh toán trực tiếp tại cửa hàng',
+              icon: Icons.store,
+              color: Colors.teal,
+            ),
+            _PaymentOption(
+              'VnPay',
+              'VNPay',
+              'Thanh toán qua VNPay',
+              assetPath: 'assets/images/payment_methods/Vnpay.png',
+            ),
+            _PaymentOption(
+              'Momo',
+              'MoMo',
+              'Thanh toán qua MoMo',
+              assetPath: 'assets/images/payment_methods/Momo.png',
+            ),
+            _PaymentOption(
+              'PayOs',
+              'PayOS',
+              'Thanh toán qua PayOS',
+              assetPath: 'assets/images/payment_methods/payOs.png',
+            ),
           ]
         : [
             _PaymentOption(
-                'CashOnDelivery',
-                'Thanh toán khi nhận hàng',
-                'Thanh toán bằng tiền mặt khi nhận hàng',
-                icon: Icons.money, color: Colors.green),
-            _PaymentOption('VnPay', 'VNPay', 'Thanh toán qua VNPay',
-                assetPath: 'assets/images/payment_methods/Vnpay.png'),
-            _PaymentOption('Momo', 'MoMo', 'Thanh toán qua MoMo',
-                assetPath: 'assets/images/payment_methods/Momo.png'),
-            _PaymentOption('PayOs', 'PayOS', 'Thanh toán qua PayOS',
-                assetPath: 'assets/images/payment_methods/payOs.png'),
+              'CashOnDelivery',
+              'Thanh toán khi nhận hàng',
+              'Thanh toán bằng tiền mặt khi nhận hàng',
+              icon: Icons.money,
+              color: Colors.green,
+            ),
+            _PaymentOption(
+              'VnPay',
+              'VNPay',
+              'Thanh toán qua VNPay',
+              assetPath: 'assets/images/payment_methods/Vnpay.png',
+            ),
+            _PaymentOption(
+              'Momo',
+              'MoMo',
+              'Thanh toán qua MoMo',
+              assetPath: 'assets/images/payment_methods/Momo.png',
+            ),
+            _PaymentOption(
+              'PayOs',
+              'PayOS',
+              'Thanh toán qua PayOS',
+              assetPath: 'assets/images/payment_methods/payOs.png',
+            ),
           ];
 
     return Card(
       child: RadioGroup<String>(
         groupValue: _selectedPayment,
-        onChanged: (v) { if (v != null) setState(() => _selectedPayment = v); },
+        onChanged: (v) {
+          if (v != null) setState(() => _selectedPayment = v);
+        },
         child: Column(
           children: methods.map((m) {
             final isSelected = _selectedPayment == m.value;
@@ -1223,11 +1370,16 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                       ),
                     )
                   : Icon(m.icon, color: m.color),
-              title: Text(m.label,
-                  style: TextStyle(
-                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal)),
-              subtitle: Text(m.description,
-                  style: const TextStyle(fontSize: 12)),
+              title: Text(
+                m.label,
+                style: TextStyle(
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                ),
+              ),
+              subtitle: Text(
+                m.description,
+                style: const TextStyle(fontSize: 12),
+              ),
             );
           }).toList(),
         ),
@@ -1263,12 +1415,16 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                     width: 24,
                     height: 24,
                     child: CircularProgressIndicator(
-                        strokeWidth: 2, color: Colors.white),
+                      strokeWidth: 2,
+                      color: Colors.white,
+                    ),
                   )
                 : Text(
                     'Đặt hàng - ${_formatCurrency(totalPrice)}',
                     style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w600),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
           ),
         ),
@@ -1288,8 +1444,13 @@ class _PaymentOption {
   final String? assetPath;
 
   const _PaymentOption(
-      this.value, this.label, this.description,
-      {this.icon, this.color, this.assetPath});
+    this.value,
+    this.label,
+    this.description, {
+    this.icon,
+    this.color,
+    this.assetPath,
+  });
 }
 
 class _LoadingField extends StatelessWidget {
@@ -1324,8 +1485,10 @@ class _ErrorField extends StatelessWidget {
         labelText: label,
         border: const OutlineInputBorder(),
       ),
-      child: Text(message,
-          style: TextStyle(color: Theme.of(context).colorScheme.error)),
+      child: Text(
+        message,
+        style: TextStyle(color: Theme.of(context).colorScheme.error),
+      ),
     );
   }
 }
@@ -1385,9 +1548,10 @@ class _VoucherPickerSheet extends ConsumerWidget {
                 const Icon(Icons.local_offer, color: AppColors.primary),
                 const SizedBox(width: 8),
                 const Expanded(
-                  child: Text('Chọn voucher',
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
+                  child: Text(
+                    'Chọn voucher',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                  ),
                 ),
                 IconButton(
                   onPressed: () => Navigator.pop(context),
@@ -1401,44 +1565,50 @@ class _VoucherPickerSheet extends ConsumerWidget {
           const Divider(height: 1),
           Flexible(
             child: asyncVouchers.when(
-              loading: () =>
-                  const Center(child: Padding(
-                    padding: EdgeInsets.all(32),
-                    child: CircularProgressIndicator(),
-                  )),
+              loading: () => const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(32),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
               error: (e, _) => Padding(
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.error_outline,
-                        size: 40, color: Colors.red.shade300),
+                    Icon(
+                      Icons.error_outline,
+                      size: 40,
+                      color: Colors.red.shade300,
+                    ),
                     const SizedBox(height: 8),
                     const Text('Không thể tải voucher'),
                     const SizedBox(height: 8),
                     TextButton(
-                      onPressed: () =>
-                          ref.invalidate(myVouchersProvider),
+                      onPressed: () => ref.invalidate(myVouchersProvider),
                       child: const Text('Thử lại'),
                     ),
                   ],
                 ),
               ),
               data: (vouchers) {
-                final active = vouchers
-                    .where((v) => v.isActive)
-                    .toList();
+                final active = vouchers.where((v) => v.isActive).toList();
                 if (active.isEmpty) {
                   return const Padding(
                     padding: EdgeInsets.all(32),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.sentiment_dissatisfied,
-                            size: 48, color: Colors.grey),
+                        Icon(
+                          Icons.sentiment_dissatisfied,
+                          size: 48,
+                          color: Colors.grey,
+                        ),
                         SizedBox(height: 12),
-                        Text('Bạn chưa có voucher nào',
-                            style: TextStyle(color: Colors.grey)),
+                        Text(
+                          'Bạn chưa có voucher nào',
+                          style: TextStyle(color: Colors.grey),
+                        ),
                       ],
                     ),
                   );
@@ -1446,10 +1616,11 @@ class _VoucherPickerSheet extends ConsumerWidget {
                 return ListView.separated(
                   shrinkWrap: true,
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 12),
+                    horizontal: 12,
+                    vertical: 12,
+                  ),
                   itemCount: active.length,
-                  separatorBuilder: (_, _) =>
-                      const SizedBox(height: 8),
+                  separatorBuilder: (_, _) => const SizedBox(height: 8),
                   itemBuilder: (_, i) {
                     final v = active[i];
                     return _VoucherPickerCard(
@@ -1509,8 +1680,7 @@ class _VoucherPickerCard extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.local_offer,
-                        color: AppColors.primary, size: 22),
+                    Icon(Icons.local_offer, color: AppColors.primary, size: 22),
                     const SizedBox(height: 4),
                     Text(
                       voucher.discountLabel,
@@ -1528,28 +1698,36 @@ class _VoucherPickerCard extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 10),
+                    horizontal: 12,
+                    vertical: 10,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         voucher.code,
                         style: const TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 14),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       if ((voucher.minOrderValue ?? 0) > 0)
                         Text(
                           'Đơn tối thiểu: ${fmt.format(voucher.minOrderValue!)}đ',
                           style: TextStyle(
-                              fontSize: 12, color: Colors.grey.shade600),
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       if (voucher.expiryDate != null) ...[
                         const SizedBox(height: 2),
                         Text(
                           'HSD: ${DateFormat('dd/MM/yyyy').format(voucher.expiryDate!)}',
                           style: TextStyle(
-                              fontSize: 12, color: Colors.grey.shade600),
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       ],
                     ],
@@ -1559,8 +1737,7 @@ class _VoucherPickerCard extends StatelessWidget {
               // Select icon
               Padding(
                 padding: const EdgeInsets.only(right: 12),
-                child: Icon(Icons.chevron_right,
-                    color: Colors.grey.shade400),
+                child: Icon(Icons.chevron_right, color: Colors.grey.shade400),
               ),
             ],
           ),

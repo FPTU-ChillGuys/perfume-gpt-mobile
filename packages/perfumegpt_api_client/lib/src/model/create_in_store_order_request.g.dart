@@ -11,6 +11,10 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
 
   CreateInStoreOrderRequest voucherCode(String? voucherCode);
 
+  CreateInStoreOrderRequest guestEmailOrPhoneNumber(
+    String? guestEmailOrPhoneNumber,
+  );
+
   CreateInStoreOrderRequest customerId(String? customerId);
 
   CreateInStoreOrderRequest isPickupInStore(bool? isPickupInStore);
@@ -33,6 +37,7 @@ abstract class _$CreateInStoreOrderRequestCWProxy {
   CreateInStoreOrderRequest call({
     List<PosScanItemRequest> scannedItems,
     String? voucherCode,
+    String? guestEmailOrPhoneNumber,
     String? customerId,
     bool? isPickupInStore,
     ContactAddressInformation? recipient,
@@ -58,6 +63,11 @@ class _$CreateInStoreOrderRequestCWProxyImpl
   @override
   CreateInStoreOrderRequest voucherCode(String? voucherCode) =>
       call(voucherCode: voucherCode);
+
+  @override
+  CreateInStoreOrderRequest guestEmailOrPhoneNumber(
+    String? guestEmailOrPhoneNumber,
+  ) => call(guestEmailOrPhoneNumber: guestEmailOrPhoneNumber);
 
   @override
   CreateInStoreOrderRequest customerId(String? customerId) =>
@@ -94,6 +104,7 @@ class _$CreateInStoreOrderRequestCWProxyImpl
   CreateInStoreOrderRequest call({
     Object? scannedItems = const $CopyWithPlaceholder(),
     Object? voucherCode = const $CopyWithPlaceholder(),
+    Object? guestEmailOrPhoneNumber = const $CopyWithPlaceholder(),
     Object? customerId = const $CopyWithPlaceholder(),
     Object? isPickupInStore = const $CopyWithPlaceholder(),
     Object? recipient = const $CopyWithPlaceholder(),
@@ -111,6 +122,11 @@ class _$CreateInStoreOrderRequestCWProxyImpl
           ? _value.voucherCode
           // ignore: cast_nullable_to_non_nullable
           : voucherCode as String?,
+      guestEmailOrPhoneNumber:
+          guestEmailOrPhoneNumber == const $CopyWithPlaceholder()
+          ? _value.guestEmailOrPhoneNumber
+          // ignore: cast_nullable_to_non_nullable
+          : guestEmailOrPhoneNumber as String?,
       customerId: customerId == const $CopyWithPlaceholder()
           ? _value.customerId
           // ignore: cast_nullable_to_non_nullable
@@ -163,6 +179,10 @@ CreateInStoreOrderRequest _$CreateInStoreOrderRequestFromJson(
           .toList(),
     ),
     voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
+    guestEmailOrPhoneNumber: $checkedConvert(
+      'guestEmailOrPhoneNumber',
+      (v) => v as String?,
+    ),
     customerId: $checkedConvert('customerId', (v) => v as String?),
     isPickupInStore: $checkedConvert('isPickupInStore', (v) => v as bool?),
     recipient: $checkedConvert(
@@ -186,6 +206,7 @@ Map<String, dynamic> _$CreateInStoreOrderRequestToJson(
 ) => <String, dynamic>{
   'scannedItems': instance.scannedItems.map((e) => e.toJson()).toList(),
   'voucherCode': ?instance.voucherCode,
+  'guestEmailOrPhoneNumber': ?instance.guestEmailOrPhoneNumber,
   'customerId': ?instance.customerId,
   'isPickupInStore': ?instance.isPickupInStore,
   'recipient': ?instance.recipient?.toJson(),

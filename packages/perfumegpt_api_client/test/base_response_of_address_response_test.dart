@@ -27,7 +27,7 @@ void main() {
       // TODO
     });
 
-    // int errorType
+    // ResponseErrorType errorType
     test('to test the property `errorType`', () async {
       // TODO
     });
