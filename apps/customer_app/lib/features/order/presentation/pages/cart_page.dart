@@ -84,7 +84,8 @@ class _CartPageState extends ConsumerState<CartPage> {
       builder: (ctx) => AlertDialog(
         title: const Text('Xóa toàn bộ giỏ hàng'),
         content: const Text(
-            'Toàn bộ sản phẩm trong giỏ hàng sẽ bị xóa. Bạn có chắc chắn không?'),
+          'Toàn bộ sản phẩm trong giỏ hàng sẽ bị xóa. Bạn có chắc chắn không?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
@@ -92,8 +93,7 @@ class _CartPageState extends ConsumerState<CartPage> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child:
-                const Text('Xóa hết', style: TextStyle(color: Colors.red)),
+            child: const Text('Xóa hết', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -121,8 +121,9 @@ class _CartPageState extends ConsumerState<CartPage> {
     final selectedIds = ref.read(selectedCartItemIdsProvider);
 
     if (selectedIds.isNotEmpty) {
-      final validSelected =
-          selectedIds.where((id) => allIds.contains(id)).toList();
+      final validSelected = selectedIds
+          .where((id) => allIds.contains(id))
+          .toList();
       if (validSelected.isNotEmpty && validSelected.length < allIds.length) {
         return (allIds, validSelected);
       }
@@ -143,9 +144,12 @@ class _CartPageState extends ConsumerState<CartPage> {
     final isSubset = effectiveIds.length < allIds.length;
 
     try {
-      final total = await ref.read(cartRepositoryProvider).getTotal(
-            voucherCode:
-                (activeVoucher != null && activeVoucher.isNotEmpty) ? activeVoucher : null,
+      final total = await ref
+          .read(cartRepositoryProvider)
+          .getTotal(
+            voucherCode: (activeVoucher != null && activeVoucher.isNotEmpty)
+                ? activeVoucher
+                : null,
             itemIds: isSubset ? effectiveIds : null,
           );
       if (mounted) setState(() => _computedTotal = total);
@@ -304,16 +308,21 @@ class _CartPageState extends ConsumerState<CartPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.shopping_cart_outlined,
-                      size: 80, color: Colors.grey.shade400),
+                  Icon(
+                    Icons.shopping_cart_outlined,
+                    size: 80,
+                    color: Colors.grey.shade400,
+                  ),
                   const SizedBox(height: 16),
-                  Text('Giỏ hàng đang trống',
-                      style: TextStyle(
-                          fontSize: 18, color: Colors.grey.shade600)),
+                  Text(
+                    'Giỏ hàng đang trống',
+                    style: TextStyle(fontSize: 18, color: Colors.grey.shade600),
+                  ),
                   const SizedBox(height: 8),
-                  Text('Khám phá các sản phẩm mới của chúng tôi.',
-                      style: TextStyle(
-                          fontSize: 14, color: Colors.grey.shade500)),
+                  Text(
+                    'Khám phá các sản phẩm mới của chúng tôi.',
+                    style: TextStyle(fontSize: 14, color: Colors.grey.shade500),
+                  ),
                   const SizedBox(height: 24),
                   FilledButton(
                     onPressed: () => context.go('/store'),
@@ -327,7 +336,8 @@ class _CartPageState extends ConsumerState<CartPage> {
           final allIds = _getSelectableItemIds(items);
           final isAllSelected =
               allIds.isNotEmpty && selectedIds.containsAll(allIds);
-          final isIndeterminate = selectedIds.isNotEmpty &&
+          final isIndeterminate =
+              selectedIds.isNotEmpty &&
               !isAllSelected &&
               selectedIds.intersection(allIds).isNotEmpty;
 
@@ -335,29 +345,35 @@ class _CartPageState extends ConsumerState<CartPage> {
             children: [
               // Select all row
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
                 child: Row(
                   children: [
                     Checkbox(
                       value: isAllSelected
                           ? true
                           : isIndeterminate
-                              ? null
-                              : false,
+                          ? null
+                          : false,
                       tristate: true,
                       onChanged: (val) =>
                           _handleToggleSelectAll(val == true, allIds),
                       shape: const CircleBorder(),
                       activeColor: Theme.of(context).colorScheme.error,
                     ),
-                    const Text('Chọn tất cả',
-                        style: TextStyle(fontWeight: FontWeight.w500)),
+                    const Text(
+                      'Chọn tất cả',
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
                     const Spacer(),
                     Text(
                       'Đã chọn ${selectedIds.intersection(allIds).length}/${allIds.length}',
                       style: TextStyle(
-                          fontSize: 13, color: Colors.grey.shade600),
+                        fontSize: 13,
+                        color: Colors.grey.shade600,
+                      ),
                     ),
                   ],
                 ),
@@ -371,7 +387,8 @@ class _CartPageState extends ConsumerState<CartPage> {
                   itemCount: items.length,
                   itemBuilder: (context, index) {
                     final item = items[index];
-                    final isSelected = item.cartItemId != null &&
+                    final isSelected =
+                        item.cartItemId != null &&
                         selectedIds.contains(item.cartItemId);
                     return _CartItemCard(
                       item: item,
@@ -391,10 +408,13 @@ class _CartPageState extends ConsumerState<CartPage> {
           : _CartBottomBar(
               selectedTotalAsync: selectedTotalAsync,
               computedTotal: _computedTotal,
-              selectedCount: selectedIds.intersection(
-                  _getSelectableItemIds(items)).length,
-              onCheckout: () => context.push('/checkout',
-                  extra: {'voucherCode': _appliedVoucherCode}),
+              selectedCount: selectedIds
+                  .intersection(_getSelectableItemIds(items))
+                  .length,
+              onCheckout: () => context.push(
+                '/checkout',
+                extra: {'voucherCode': _appliedVoucherCode},
+              ),
               // Voucher props
               voucherController: _voucherController,
               isApplyingVoucher: _isApplyingVoucher,
@@ -427,8 +447,8 @@ class _CartItemCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final notifier = ref.read(cartProvider.notifier);
-    final idToUse = (item.cartItemId == null || item.cartItemId!.isEmpty) 
-        ? item.variantId 
+    final idToUse = (item.cartItemId == null || item.cartItemId!.isEmpty)
+        ? item.variantId
         : item.cartItemId!;
     final quantity = item.quantity < 1 ? 1 : item.quantity;
 
@@ -477,8 +497,9 @@ class _CartItemCard extends ConsumerWidget {
                         children: [
                           Text(
                             item.variantName,
-                            style: theme.textTheme.bodyMedium
-                                ?.copyWith(fontWeight: FontWeight.bold),
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -492,9 +513,11 @@ class _CartItemCard extends ConsumerWidget {
                                 _Tag('${item.volumeMl} ml'),
                               if (item.type != null) _Tag(item.type!),
                               if (!item.isAvailable)
-                                _Tag('Hết hàng',
-                                    color: Colors.red.shade100,
-                                    textColor: Colors.red),
+                                _Tag(
+                                  'Hết hàng',
+                                  color: Colors.red.shade100,
+                                  textColor: Colors.red,
+                                ),
                             ],
                           ),
                           const SizedBox(height: 4),
@@ -524,7 +547,9 @@ class _CartItemCard extends ConsumerWidget {
                                 const SizedBox(width: 4),
                                 Container(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 4, vertical: 1),
+                                    horizontal: 4,
+                                    vertical: 1,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.red.shade50,
                                     borderRadius: BorderRadius.circular(4),
@@ -543,8 +568,9 @@ class _CartItemCard extends ConsumerWidget {
                           ] else
                             Text(
                               PriceFormatter.format(item.variantPrice),
-                              style: theme.textTheme.bodySmall
-                                  ?.copyWith(color: Colors.grey),
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: Colors.grey,
+                              ),
                             ),
                           const SizedBox(height: 8),
 
@@ -559,7 +585,8 @@ class _CartItemCard extends ConsumerWidget {
                               Container(
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: Colors.grey.shade300),
+                                    color: Colors.grey.shade300,
+                                  ),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Row(
@@ -570,21 +597,27 @@ class _CartItemCard extends ConsumerWidget {
                                       onTap: quantity <= 1
                                           ? null
                                           : () => notifier.updateItem(
-                                              idToUse, quantity - 1),
+                                              idToUse,
+                                              quantity - 1,
+                                            ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
+                                        horizontal: 10,
+                                      ),
                                       child: Text(
                                         '$quantity',
                                         style: const TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                     _QtyButton(
                                       icon: Icons.add,
                                       onTap: () => notifier.updateItem(
-                                          idToUse, quantity + 1),
+                                        idToUse,
+                                        quantity + 1,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -626,12 +659,17 @@ class _CartItemCard extends ConsumerWidget {
 
                               // Delete
                               IconButton(
-                                icon: Icon(Icons.delete_outline,
-                                    color: Colors.red.shade400, size: 20),
+                                icon: Icon(
+                                  Icons.delete_outline,
+                                  color: Colors.red.shade400,
+                                  size: 20,
+                                ),
                                 onPressed: onDelete,
                                 padding: EdgeInsets.zero,
                                 constraints: const BoxConstraints(
-                                    minWidth: 32, minHeight: 32),
+                                  minWidth: 32,
+                                  minHeight: 32,
+                                ),
                               ),
                             ],
                           ),
@@ -649,12 +687,11 @@ class _CartItemCard extends ConsumerWidget {
   }
 
   Widget _imageFallback() => Container(
-        width: 80,
-        height: 80,
-        color: Colors.grey.shade100,
-        child: const Icon(Icons.image_not_supported,
-            color: Colors.grey, size: 32),
-      );
+    width: 80,
+    height: 80,
+    color: Colors.grey.shade100,
+    child: const Icon(Icons.image_not_supported, color: Colors.grey, size: 32),
+  );
 }
 
 // ─── Bottom bar with totals ────────────────────────────────────────────────
@@ -717,8 +754,10 @@ class _CartBottomBar extends StatelessWidget {
             if (total != null) ...[
               _TotalRow('Tạm tính', PriceFormatter.format(total.subtotal)),
               if (total.shippingFee > 0)
-                _TotalRow('Phí vận chuyển',
-                    PriceFormatter.format(total.shippingFee)),
+                _TotalRow(
+                  'Phí vận chuyển',
+                  PriceFormatter.format(total.shippingFee),
+                ),
               if (total.discount > 0)
                 _TotalRow(
                   'Giảm giá',
@@ -730,7 +769,9 @@ class _CartBottomBar extends StatelessWidget {
                 'Tổng',
                 PriceFormatter.format(total.totalPrice),
                 labelStyle: const TextStyle(
-                    fontSize: 16, fontWeight: FontWeight.bold),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
                 valueColor: theme.colorScheme.error,
                 valueFontSize: 18,
               ),
@@ -743,8 +784,10 @@ class _CartBottomBar extends StatelessWidget {
                   children: [
                     _TotalRow('Tạm tính', PriceFormatter.format(t.subtotal)),
                     if (t.shippingFee > 0)
-                      _TotalRow('Phí vận chuyển',
-                          PriceFormatter.format(t.shippingFee)),
+                      _TotalRow(
+                        'Phí vận chuyển',
+                        PriceFormatter.format(t.shippingFee),
+                      ),
                     if (t.discount > 0)
                       _TotalRow(
                         'Giảm giá',
@@ -756,7 +799,9 @@ class _CartBottomBar extends StatelessWidget {
                       'Tổng',
                       PriceFormatter.format(t.totalPrice),
                       labelStyle: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                       valueColor: theme.colorScheme.error,
                       valueFontSize: 18,
                     ),
@@ -775,12 +820,15 @@ class _CartBottomBar extends StatelessWidget {
                 foregroundColor: Colors.white,
                 disabledBackgroundColor: Colors.grey.shade300,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
               child: Text(
                 'Thanh toán ($selectedCount)',
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
@@ -807,7 +855,9 @@ class _CartBottomBar extends StatelessWidget {
                     hintText: 'Mã giảm giá',
                     border: const OutlineInputBorder(),
                     contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 8),
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                     isDense: true,
                     errorText: voucherError,
                     errorMaxLines: 2,
@@ -822,8 +872,8 @@ class _CartBottomBar extends StatelessWidget {
               SizedBox(
                 height: 40,
                 child: FilledButton(
-                  onPressed: isApplyingVoucher ||
-                          voucherController.text.trim().isEmpty
+                  onPressed:
+                      isApplyingVoucher || voucherController.text.trim().isEmpty
                       ? null
                       : onApplyVoucher,
                   child: isApplyingVoucher
@@ -831,7 +881,9 @@ class _CartBottomBar extends StatelessWidget {
                           width: 18,
                           height: 18,
                           child: CircularProgressIndicator(
-                              strokeWidth: 2, color: Colors.white),
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
                         )
                       : const Text('Áp dụng'),
                 ),
@@ -853,9 +905,11 @@ class _CartBottomBar extends StatelessWidget {
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.primary,
                 side: BorderSide(
-                    color: AppColors.primary.withValues(alpha: 0.4)),
+                  color: AppColors.primary.withValues(alpha: 0.4),
+                ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
             ),
           ),
@@ -872,8 +926,11 @@ class _CartBottomBar extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(Icons.check_circle,
-                    color: Colors.green.shade700, size: 18),
+                Icon(
+                  Icons.check_circle,
+                  color: Colors.green.shade700,
+                  size: 18,
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Column(
@@ -887,8 +944,7 @@ class _CartBottomBar extends StatelessWidget {
                           color: Colors.green.shade700,
                         ),
                       ),
-                      if (computedTotal != null &&
-                          computedTotal!.discount > 0)
+                      if (computedTotal != null && computedTotal!.discount > 0)
                         Text(
                           '-${PriceFormatter.format(computedTotal!.discount)}',
                           style: TextStyle(
@@ -901,12 +957,14 @@ class _CartBottomBar extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: isApplyingVoucher ? null : onRemoveVoucher,
-                  child: Text('Xóa',
-                      style: TextStyle(
-                        color: Colors.red.shade600,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                      )),
+                  child: Text(
+                    'Xóa',
+                    style: TextStyle(
+                      color: Colors.red.shade600,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -964,12 +1022,16 @@ class _QtyButton extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-              color: isDisabled
-                  ? Colors.grey.shade200
-                  : Theme.of(context).colorScheme.outline),
+            color: isDisabled
+                ? Colors.grey.shade200
+                : Theme.of(context).colorScheme.outline,
+          ),
         ),
-        child: Icon(icon, size: 16,
-            color: isDisabled ? Colors.grey.shade300 : null),
+        child: Icon(
+          icon,
+          size: 16,
+          color: isDisabled ? Colors.grey.shade300 : null,
+        ),
       ),
     );
   }
@@ -997,9 +1059,11 @@ class _TotalRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label,
-              style: labelStyle ??
-                  const TextStyle(fontSize: 14, color: Colors.grey)),
+          Text(
+            label,
+            style:
+                labelStyle ?? const TextStyle(fontSize: 14, color: Colors.grey),
+          ),
           Text(
             value,
             style: TextStyle(
@@ -1052,9 +1116,10 @@ class _VoucherPickerSheet extends ConsumerWidget {
                 const Icon(Icons.local_offer, color: AppColors.primary),
                 const SizedBox(width: 8),
                 const Expanded(
-                  child: Text('Chọn voucher',
-                      style: TextStyle(
-                          fontSize: 17, fontWeight: FontWeight.w600)),
+                  child: Text(
+                    'Chọn voucher',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                  ),
                 ),
                 IconButton(
                   onPressed: () => Navigator.pop(context),
@@ -1069,17 +1134,21 @@ class _VoucherPickerSheet extends ConsumerWidget {
           Flexible(
             child: asyncVouchers.when(
               loading: () => const Center(
-                  child: Padding(
-                padding: EdgeInsets.all(32),
-                child: CircularProgressIndicator(),
-              )),
+                child: Padding(
+                  padding: EdgeInsets.all(32),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
               error: (e, _) => Padding(
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.error_outline,
-                        size: 40, color: Colors.red.shade300),
+                    Icon(
+                      Icons.error_outline,
+                      size: 40,
+                      color: Colors.red.shade300,
+                    ),
                     const SizedBox(height: 8),
                     const Text('Không thể tải voucher'),
                     const SizedBox(height: 8),
@@ -1091,28 +1160,33 @@ class _VoucherPickerSheet extends ConsumerWidget {
                 ),
               ),
               data: (vouchers) {
-                final active = vouchers
-                    .where((v) => v.isActive)
-                    .toList();
+                final active = vouchers.where((v) => v.isActive).toList();
                 if (active.isEmpty) {
                   return const Padding(
                     padding: EdgeInsets.all(32),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.sentiment_dissatisfied,
-                            size: 48, color: Colors.grey),
+                        Icon(
+                          Icons.sentiment_dissatisfied,
+                          size: 48,
+                          color: Colors.grey,
+                        ),
                         SizedBox(height: 12),
-                        Text('Bạn chưa có voucher nào',
-                            style: TextStyle(color: Colors.grey)),
+                        Text(
+                          'Bạn chưa có voucher nào',
+                          style: TextStyle(color: Colors.grey),
+                        ),
                       ],
                     ),
                   );
                 }
                 return ListView.separated(
                   shrinkWrap: true,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 12,
+                  ),
                   itemCount: active.length,
                   separatorBuilder: (_, _) => const SizedBox(height: 8),
                   itemBuilder: (_, i) {
@@ -1173,8 +1247,11 @@ class _VoucherPickerCard extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.local_offer,
-                        color: AppColors.primary, size: 22),
+                    const Icon(
+                      Icons.local_offer,
+                      color: AppColors.primary,
+                      size: 22,
+                    ),
                     const SizedBox(height: 4),
                     Text(
                       voucher.discountLabel,
@@ -1190,22 +1267,28 @@ class _VoucherPickerCard extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 10,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         voucher.code,
                         style: const TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 14),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Row(
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 2),
+                              horizontal: 6,
+                              vertical: 2,
+                            ),
                             decoration: BoxDecoration(
                               color: voucher.isMemberOnly
                                   ? Colors.deepPurple.withValues(alpha: 0.12)
@@ -1230,14 +1313,18 @@ class _VoucherPickerCard extends StatelessWidget {
                         Text(
                           'Đơn tối thiểu: ${fmt.format(voucher.minOrderValue!)}đ',
                           style: TextStyle(
-                              fontSize: 12, color: Colors.grey.shade600),
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       if (voucher.expiryDate != null) ...[
                         const SizedBox(height: 2),
                         Text(
                           'HSD: ${DateFormat('dd/MM/yyyy').format(voucher.expiryDate!)}',
                           style: TextStyle(
-                              fontSize: 12, color: Colors.grey.shade600),
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       ],
                     ],
@@ -1246,12 +1333,14 @@ class _VoucherPickerCard extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 12),
-                child: Text('Dùng',
-                    style: TextStyle(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                    )),
+                child: Text(
+                  'Dùng',
+                  style: TextStyle(
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 13,
+                  ),
+                ),
               ),
             ],
           ),

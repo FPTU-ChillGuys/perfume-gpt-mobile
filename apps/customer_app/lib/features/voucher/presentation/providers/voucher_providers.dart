@@ -13,11 +13,6 @@ VoucherRepository voucherRepository(Ref ref) {
 }
 
 @riverpod
-FutureOr<List<Voucher>> availableVouchers(Ref ref) {
-  return ref.watch(voucherRepositoryProvider).getAvailable();
-}
-
-@riverpod
 FutureOr<List<Voucher>> myVouchers(Ref ref) {
   return ref.watch(voucherRepositoryProvider).getMyVouchers();
 }

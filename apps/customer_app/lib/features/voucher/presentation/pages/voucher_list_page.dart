@@ -75,18 +75,23 @@ class _VoucherListPageState extends ConsumerState<VoucherListPage>
             pinned: true,
             systemOverlayStyle: SystemUiOverlayStyle.light,
             backgroundColor: AppColors.primaryDark,
-            title: const Text('Kho Voucher',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20)),
+            title: const Text(
+              'Kho Voucher',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
             actions: [
               if (pointBalance > 0)
                 Center(
                   child: Container(
                     margin: const EdgeInsets.only(right: 16),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 4),
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.amber.shade700,
                       borderRadius: BorderRadius.circular(14),
@@ -94,14 +99,20 @@ class _VoucherListPageState extends ConsumerState<VoucherListPage>
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.stars_rounded,
-                            size: 14, color: Colors.white),
+                        const Icon(
+                          Icons.stars_rounded,
+                          size: 14,
+                          color: Colors.white,
+                        ),
                         const SizedBox(width: 4),
-                        Text('${_currencyFmt.format(pointBalance)} điểm',
-                            style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600)),
+                        Text(
+                          '${_currencyFmt.format(pointBalance)} điểm',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -181,12 +192,16 @@ class _MyVouchersTabState extends ConsumerState<_MyVouchersTab> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.local_offer,
-                    size: 48,
-                    color: AppColors.textSecondary.withValues(alpha: 0.4)),
+                Icon(
+                  Icons.local_offer,
+                  size: 48,
+                  color: AppColors.textSecondary.withValues(alpha: 0.4),
+                ),
                 const SizedBox(height: 12),
-                const Text('Bạn chưa có voucher nào.',
-                    style: TextStyle(color: AppColors.textSecondary)),
+                const Text(
+                  'Bạn chưa có voucher nào.',
+                  style: TextStyle(color: AppColors.textSecondary),
+                ),
                 const SizedBox(height: 8),
                 TextButton(
                   onPressed: widget.onSwitchTab,
@@ -198,10 +213,12 @@ class _MyVouchersTabState extends ConsumerState<_MyVouchersTab> {
         }
 
         final filtered = _applyFilter(vouchers);
-        final available =
-            filtered.where((v) => !v.isUsed && !v.isExpired).toList();
-        final usedOrExpired =
-            filtered.where((v) => v.isUsed || v.isExpired).toList();
+        final available = filtered
+            .where((v) => !v.isUsed && !v.isExpired)
+            .toList();
+        final usedOrExpired = filtered
+            .where((v) => v.isUsed || v.isExpired)
+            .toList();
 
         return RefreshIndicator(
           color: AppColors.primary,
@@ -227,33 +244,40 @@ class _MyVouchersTabState extends ConsumerState<_MyVouchersTab> {
                 ),
               if (available.isNotEmpty) ...[
                 _SectionHeader(
-                    title: 'Có thể sử dụng',
-                    count: available.length,
-                    color: Colors.green),
+                  title: 'Có thể sử dụng',
+                  count: available.length,
+                  color: Colors.green,
+                ),
                 const SizedBox(height: 8),
-                ...available.map((v) => Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: _UserVoucherCard(voucher: v),
-                    )),
+                ...available.map(
+                  (v) => Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: _UserVoucherCard(voucher: v),
+                  ),
+                ),
               ],
               if (usedOrExpired.isNotEmpty) ...[
                 const SizedBox(height: 8),
                 _SectionHeader(
-                    title: 'Đã dùng / Hết hạn',
-                    count: usedOrExpired.length,
-                    color: Colors.grey),
+                  title: 'Đã dùng / Hết hạn',
+                  count: usedOrExpired.length,
+                  color: Colors.grey,
+                ),
                 const SizedBox(height: 8),
-                ...usedOrExpired.map((v) => Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: _UserVoucherCard(voucher: v),
-                    )),
+                ...usedOrExpired.map(
+                  (v) => Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: _UserVoucherCard(voucher: v),
+                  ),
+                ),
               ],
             ],
           ),
         );
       },
       loading: () => const Center(
-          child: CircularProgressIndicator(color: AppColors.primary)),
+        child: CircularProgressIndicator(color: AppColors.primary),
+      ),
       error: (e, _) =>
           _ErrorState(onRetry: () => ref.invalidate(myVouchersProvider)),
     );
@@ -279,12 +303,15 @@ class _RedeemTabState extends ConsumerState<_RedeemTab> {
 
     if (redeemableAsync.isLoading) {
       return const Center(
-          child: CircularProgressIndicator(color: AppColors.primary));
+        child: CircularProgressIndicator(color: AppColors.primary),
+      );
     }
     if (redeemableAsync.hasError) {
-      return _ErrorState(onRetry: () {
-        ref.invalidate(redeemableVouchersProvider);
-      });
+      return _ErrorState(
+        onRetry: () {
+          ref.invalidate(redeemableVouchersProvider);
+        },
+      );
     }
 
     final redeemableList = redeemableAsync.asData?.value ?? [];
@@ -304,12 +331,16 @@ class _RedeemTabState extends ConsumerState<_RedeemTab> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.redeem,
-                size: 48,
-                color: AppColors.textSecondary.withValues(alpha: 0.4)),
+            Icon(
+              Icons.redeem,
+              size: 48,
+              color: AppColors.textSecondary.withValues(alpha: 0.4),
+            ),
             const SizedBox(height: 12),
-            const Text('Chưa có voucher nào để đổi.',
-                style: TextStyle(color: AppColors.textSecondary)),
+            const Text(
+              'Chưa có voucher nào để đổi.',
+              style: TextStyle(color: AppColors.textSecondary),
+            ),
           ],
         ),
       );
@@ -326,15 +357,17 @@ class _RedeemTabState extends ConsumerState<_RedeemTab> {
         padding: const EdgeInsets.all(16),
         children: [
           _SectionHeader(
-              title: 'Đổi điểm',
-              count: filteredRedeemable.length,
-              color: Colors.amber.shade800),
+            title: 'Đổi điểm',
+            count: filteredRedeemable.length,
+            color: Colors.amber.shade800,
+          ),
           const SizedBox(height: 8),
-          ...filteredRedeemable.map((v) => Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child:
-                    _RedeemableCard(voucher: v, pointBalance: pointBalance),
-              )),
+          ...filteredRedeemable.map(
+            (v) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: _RedeemableCard(voucher: v, pointBalance: pointBalance),
+            ),
+          ),
         ],
       ),
     );
@@ -367,9 +400,10 @@ class _UserVoucherCard extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-                color: Colors.black.withValues(alpha: 0.04),
-                blurRadius: 8,
-                offset: const Offset(0, 2)),
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
           ],
         ),
         child: IntrinsicHeight(
@@ -386,41 +420,48 @@ class _UserVoucherCard extends StatelessWidget {
                       // ── Header: code + status chip
                       Row(
                         children: [
-                          Icon(Icons.local_offer,
-                              size: 16,
-                              color:
-                                  inactive ? Colors.grey : AppColors.primary),
+                          Icon(
+                            Icons.local_offer,
+                            size: 16,
+                            color: inactive ? Colors.grey : AppColors.primary,
+                          ),
                           const SizedBox(width: 6),
                           Expanded(
-                            child: Text(voucher.code,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 13,
-                                    fontFamily: 'monospace',
-                                    letterSpacing: 0.5)),
+                            child: Text(
+                              voucher.code,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 13,
+                                fontFamily: 'monospace',
+                                letterSpacing: 0.5,
+                              ),
+                            ),
                           ),
                           if (voucher.isMemberOnly)
                             Padding(
                               padding: const EdgeInsets.only(right: 4),
                               child: _Chip(
-                                  label: 'Member',
-                                  color: Colors.deepPurple),
+                                label: 'Member',
+                                color: Colors.deepPurple,
+                              ),
                             )
                           else
                             Padding(
                               padding: const EdgeInsets.only(right: 4),
                               child: _Chip(
-                                  label: 'Public',
-                                  color: Colors.teal,
-                                  outlined: true),
+                                label: 'Public',
+                                color: Colors.teal,
+                                outlined: true,
+                              ),
                             ),
                           if (voucher.isUsed)
                             _Chip(label: 'Đã dùng', color: Colors.grey),
                           if (voucher.isExpired && !voucher.isUsed)
                             _Chip(
-                                label: 'Hết hạn',
-                                color: Colors.red,
-                                outlined: true),
+                              label: 'Hết hạn',
+                              color: Colors.red,
+                              outlined: true,
+                            ),
                           if (!inactive)
                             _Chip(label: 'Có thể dùng', color: Colors.green),
                         ],
@@ -442,7 +483,9 @@ class _UserVoucherCard extends StatelessWidget {
                       Text(
                         'Đơn tối thiểu: ${_fmtMinOrder(voucher)}',
                         style: const TextStyle(
-                            fontSize: 12, color: AppColors.textSecondary),
+                          fontSize: 12,
+                          color: AppColors.textSecondary,
+                        ),
                       ),
                       const Divider(height: 16),
                       // ── Footer: HSD + redeemedAt
@@ -451,15 +494,18 @@ class _UserVoucherCard extends StatelessWidget {
                           Text(
                             'HSD: ${voucher.expiryDate != null ? _dateFmt.format(voucher.expiryDate!) : '—'}',
                             style: const TextStyle(
-                                fontSize: 12, color: AppColors.textSecondary),
+                              fontSize: 12,
+                              color: AppColors.textSecondary,
+                            ),
                           ),
                           if (voucher.redeemedAt != null) ...[
                             const SizedBox(width: 12),
                             Text(
                               'Nhận: ${_dateFmt.format(voucher.redeemedAt!)}',
                               style: const TextStyle(
-                                  fontSize: 12,
-                                  color: AppColors.textSecondary),
+                                fontSize: 12,
+                                color: AppColors.textSecondary,
+                              ),
                             ),
                           ],
                         ],
@@ -491,10 +537,12 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
   Future<void> _handleRedeem() async {
     final requiredPts = widget.voucher.requiredPoints ?? 0;
     if (widget.pointBalance < requiredPts) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Bạn không đủ điểm để đổi voucher này'),
-        backgroundColor: Colors.red,
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Bạn không đủ điểm để đổi voucher này'),
+          backgroundColor: Colors.red,
+        ),
+      );
       return;
     }
     setState(() => _loading = true);
@@ -504,17 +552,21 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
       ref.invalidate(redeemableVouchersProvider);
       ref.invalidate(loyaltyTotalProvider);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Đã đổi voucher ${widget.voucher.code}'),
-          backgroundColor: Colors.green,
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Đã đổi voucher ${widget.voucher.code}'),
+            backgroundColor: Colors.green,
+          ),
+        );
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(_extractError(e)),
-          backgroundColor: Colors.red,
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(_extractError(e)),
+            backgroundColor: Colors.red,
+          ),
+        );
       }
     } finally {
       if (mounted) setState(() => _loading = false);
@@ -541,9 +593,10 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
         ),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 8,
-              offset: const Offset(0, 2)),
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       child: Opacity(
@@ -562,33 +615,39 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
                       // ── Header: code + status chip
                       Row(
                         children: [
-                          Icon(Icons.local_offer,
-                              size: 16,
-                              color: canRedeem
-                                  ? Colors.green.shade600
-                                  : Colors.grey),
+                          Icon(
+                            Icons.local_offer,
+                            size: 16,
+                            color: canRedeem
+                                ? Colors.green.shade600
+                                : Colors.grey,
+                          ),
                           const SizedBox(width: 6),
                           Expanded(
-                            child: Text(v.code,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 13,
-                                    fontFamily: 'monospace',
-                                    letterSpacing: 0.5)),
+                            child: Text(
+                              v.code,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 13,
+                                fontFamily: 'monospace',
+                                letterSpacing: 0.5,
+                              ),
+                            ),
                           ),
                           if (v.isExpired)
                             _Chip(
-                                label: 'Hết hạn',
-                                color: Colors.red,
-                                outlined: true)
+                              label: 'Hết hạn',
+                              color: Colors.red,
+                              outlined: true,
+                            )
                           else if (!hasStock)
                             _Chip(label: 'Hết voucher', color: Colors.grey)
                           else
                             _Chip(
-                                label:
-                                    'Còn ${v.remainingQuantity ?? '∞'}',
-                                color: Colors.blue,
-                                outlined: true),
+                              label: 'Còn ${v.remainingQuantity ?? '∞'}',
+                              color: Colors.blue,
+                              outlined: true,
+                            ),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -608,27 +667,34 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
                       Text(
                         'Đơn tối thiểu: ${_fmtMinOrder(v)}',
                         style: const TextStyle(
-                            fontSize: 12, color: AppColors.textSecondary),
+                          fontSize: 12,
+                          color: AppColors.textSecondary,
+                        ),
                       ),
                       const Divider(height: 16),
                       // ── Footer: points + button
                       Row(
                         children: [
-                          Icon(Icons.hourglass_empty,
-                              size: 14, color: Colors.amber.shade700),
+                          Icon(
+                            Icons.hourglass_empty,
+                            size: 14,
+                            color: Colors.amber.shade700,
+                          ),
                           const SizedBox(width: 4),
                           Text(
                             '${_currencyFmt.format(requiredPts)} điểm',
                             style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.amber.shade800),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.amber.shade800,
+                            ),
                           ),
                           const Spacer(),
                           SizedBox(
                             height: 32,
                             child: Tooltip(
-                              message: !canRedeem &&
+                              message:
+                                  !canRedeem &&
                                       widget.pointBalance < requiredPts
                                   ? 'Chưa đủ điểm (cần ${_currencyFmt.format(requiredPts)})'
                                   : '',
@@ -641,22 +707,28 @@ class _RedeemableCardState extends ConsumerState<_RedeemableCard> {
                                         width: 14,
                                         height: 14,
                                         child: CircularProgressIndicator(
-                                            strokeWidth: 2,
-                                            color: Colors.white))
+                                          strokeWidth: 2,
+                                          color: Colors.white,
+                                        ),
+                                      )
                                     : const Icon(Icons.redeem, size: 16),
-                                label: const Text('Nhận ngay',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600)),
+                                label: const Text(
+                                  'Nhận ngay',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green.shade600,
-                                  disabledBackgroundColor:
-                                      Colors.grey.shade300,
+                                  disabledBackgroundColor: Colors.grey.shade300,
                                   foregroundColor: Colors.white,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 12),
+                                    horizontal: 12,
+                                  ),
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
                                 ),
                               ),
                             ),
@@ -691,16 +763,19 @@ class _FilterRow extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.only(right: 8),
         child: FilterChip(
-          avatar: Icon(icon,
-              size: 16,
-              color: selected ? Colors.white : AppColors.textSecondary),
+          avatar: Icon(
+            icon,
+            size: 16,
+            color: selected ? Colors.white : AppColors.textSecondary,
+          ),
           label: Text(label),
           selected: selected,
           onSelected: (_) => onChanged(filter),
           selectedColor: AppColors.primary,
           backgroundColor: Colors.white,
           side: BorderSide(
-              color: selected ? AppColors.primary : Colors.grey.shade300),
+            color: selected ? AppColors.primary : Colors.grey.shade300,
+          ),
           labelStyle: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w600,
@@ -726,8 +801,11 @@ class _Chip extends StatelessWidget {
   final String label;
   final Color color;
   final bool outlined;
-  const _Chip(
-      {required this.label, required this.color, this.outlined = false});
+  const _Chip({
+    required this.label,
+    required this.color,
+    this.outlined = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -738,9 +816,14 @@ class _Chip extends StatelessWidget {
         border: outlined ? Border.all(color: color, width: 1) : null,
         borderRadius: BorderRadius.circular(6),
       ),
-      child: Text(label,
-          style: TextStyle(
-              fontSize: 10, fontWeight: FontWeight.w600, color: color)),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+          color: color,
+        ),
+      ),
     );
   }
 }
@@ -749,8 +832,11 @@ class _SectionHeader extends StatelessWidget {
   final String title;
   final int count;
   final Color color;
-  const _SectionHeader(
-      {required this.title, required this.count, required this.color});
+  const _SectionHeader({
+    required this.title,
+    required this.count,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -760,14 +846,19 @@ class _SectionHeader extends StatelessWidget {
           width: 4,
           height: 18,
           decoration: BoxDecoration(
-              color: color, borderRadius: BorderRadius.circular(2)),
+            color: color,
+            borderRadius: BorderRadius.circular(2),
+          ),
         ),
         const SizedBox(width: 8),
-        Text(title,
-            style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 15,
-                color: AppColors.textPrimary)),
+        Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 15,
+            color: AppColors.textPrimary,
+          ),
+        ),
         const SizedBox(width: 6),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -775,9 +866,14 @@ class _SectionHeader extends StatelessWidget {
             color: color.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Text('$count',
-              style: TextStyle(
-                  fontSize: 12, fontWeight: FontWeight.w600, color: color)),
+          child: Text(
+            '$count',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: color,
+            ),
+          ),
         ),
       ],
     );
