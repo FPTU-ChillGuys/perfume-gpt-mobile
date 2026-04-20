@@ -36,6 +36,8 @@ class LoyaltyTransactionHistoryItemResponse {
      this.absolutePoints,
 
     required  this.reason,
+
+     this.createdAt,
   });
 
   @JsonKey(
@@ -134,6 +136,18 @@ class LoyaltyTransactionHistoryItemResponse {
 
 
 
+  @JsonKey(
+    
+    name: r'createdAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final DateTime? createdAt;
+
+
+
 
 
     @override
@@ -145,7 +159,8 @@ class LoyaltyTransactionHistoryItemResponse {
       other.transactionType == transactionType &&
       other.pointsChanged == pointsChanged &&
       other.absolutePoints == absolutePoints &&
-      other.reason == reason;
+      other.reason == reason &&
+      other.createdAt == createdAt;
 
     @override
     int get hashCode =>
@@ -156,7 +171,8 @@ class LoyaltyTransactionHistoryItemResponse {
         transactionType.hashCode +
         pointsChanged.hashCode +
         absolutePoints.hashCode +
-        reason.hashCode;
+        reason.hashCode +
+        createdAt.hashCode;
 
   factory LoyaltyTransactionHistoryItemResponse.fromJson(Map<String, dynamic> json) => _$LoyaltyTransactionHistoryItemResponseFromJson(json);
 

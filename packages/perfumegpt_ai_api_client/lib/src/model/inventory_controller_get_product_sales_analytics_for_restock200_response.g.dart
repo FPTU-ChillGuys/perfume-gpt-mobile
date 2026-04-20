@@ -16,11 +16,7 @@ abstract class _$InventoryControllerGetProductSalesAnalyticsForRestock200Respons
   );
 
   InventoryControllerGetProductSalesAnalyticsForRestock200Response payload(
-    Object? payload,
-  );
-
-  InventoryControllerGetProductSalesAnalyticsForRestock200Response data(
-    List<VariantSalesAnalyticsResponse>? data,
+    List<VariantSalesAnalyticsResponse>? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -33,8 +29,7 @@ abstract class _$InventoryControllerGetProductSalesAnalyticsForRestock200Respons
   InventoryControllerGetProductSalesAnalyticsForRestock200Response call({
     bool success,
     Object? error,
-    Object? payload,
-    List<VariantSalesAnalyticsResponse>? data,
+    List<VariantSalesAnalyticsResponse>? payload,
   });
 }
 
@@ -61,13 +56,8 @@ class _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseCWProxyI
 
   @override
   InventoryControllerGetProductSalesAnalyticsForRestock200Response payload(
-    Object? payload,
+    List<VariantSalesAnalyticsResponse>? payload,
   ) => call(payload: payload);
-
-  @override
-  InventoryControllerGetProductSalesAnalyticsForRestock200Response data(
-    List<VariantSalesAnalyticsResponse>? data,
-  ) => call(data: data);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -81,7 +71,6 @@ class _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseCWProxyI
     Object? success = const $CopyWithPlaceholder(),
     Object? error = const $CopyWithPlaceholder(),
     Object? payload = const $CopyWithPlaceholder(),
-    Object? data = const $CopyWithPlaceholder(),
   }) {
     return InventoryControllerGetProductSalesAnalyticsForRestock200Response(
       success: success == const $CopyWithPlaceholder() || success == null
@@ -95,11 +84,7 @@ class _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseCWProxyI
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as Object?,
-      data: data == const $CopyWithPlaceholder()
-          ? _value.data
-          // ignore: cast_nullable_to_non_nullable
-          : data as List<VariantSalesAnalyticsResponse>?,
+          : payload as List<VariantSalesAnalyticsResponse>?,
     );
   }
 }
@@ -132,9 +117,8 @@ _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseFromJson(
         InventoryControllerGetProductSalesAnalyticsForRestock200Response(
           success: $checkedConvert('success', (v) => v as bool),
           error: $checkedConvert('error', (v) => v),
-          payload: $checkedConvert('payload', (v) => v),
-          data: $checkedConvert(
-            'data',
+          payload: $checkedConvert(
+            'payload',
             (v) => (v as List<dynamic>?)
                 ?.map(
                   (e) => VariantSalesAnalyticsResponse.fromJson(
@@ -154,6 +138,5 @@ _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseToJson(
 ) => <String, dynamic>{
   'success': instance.success,
   'error': ?instance.error,
-  'payload': ?instance.payload,
-  'data': ?instance.data?.map((e) => e.toJson()).toList(),
+  'payload': ?instance.payload?.map((e) => e.toJson()).toList(),
 };

@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:perfumegpt_ai_api_client/src/model/paged_result.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response_all_of_payload.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -24,8 +24,6 @@ class ProductControllerGetAllProducts200Response {
     this.error,
 
     this.payload,
-
-    this.data,
   });
 
   /// Kết quả xử lý
@@ -36,12 +34,8 @@ class ProductControllerGetAllProducts200Response {
   @JsonKey(name: r'error', required: false, includeIfNull: false)
   final Object? error;
 
-  /// Dữ liệu trả về
   @JsonKey(name: r'payload', required: false, includeIfNull: false)
-  final Object? payload;
-
-  @JsonKey(name: r'data', required: false, includeIfNull: false)
-  final PagedResult? data;
+  final ProductControllerGetAllProducts200ResponseAllOfPayload? payload;
 
   @override
   bool operator ==(Object other) =>
@@ -49,15 +43,13 @@ class ProductControllerGetAllProducts200Response {
       other is ProductControllerGetAllProducts200Response &&
           other.success == success &&
           other.error == error &&
-          other.payload == payload &&
-          other.data == data;
+          other.payload == payload;
 
   @override
   int get hashCode =>
       success.hashCode +
       (error == null ? 0 : error.hashCode) +
-      payload.hashCode +
-      data.hashCode;
+      payload.hashCode;
 
   factory ProductControllerGetAllProducts200Response.fromJson(
     Map<String, dynamic> json,

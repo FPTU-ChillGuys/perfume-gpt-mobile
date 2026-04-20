@@ -11,10 +11,8 @@ abstract class _$ProductControllerGetProductWithVariants200ResponseCWProxy {
 
   ProductControllerGetProductWithVariants200Response error(Object? error);
 
-  ProductControllerGetProductWithVariants200Response payload(Object? payload);
-
-  ProductControllerGetProductWithVariants200Response data(
-    ProductWithVariantsResponse? data,
+  ProductControllerGetProductWithVariants200Response payload(
+    ProductWithVariantsResponse? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -27,8 +25,7 @@ abstract class _$ProductControllerGetProductWithVariants200ResponseCWProxy {
   ProductControllerGetProductWithVariants200Response call({
     bool success,
     Object? error,
-    Object? payload,
-    ProductWithVariantsResponse? data,
+    ProductWithVariantsResponse? payload,
   });
 }
 
@@ -51,13 +48,9 @@ class _$ProductControllerGetProductWithVariants200ResponseCWProxyImpl
       call(error: error);
 
   @override
-  ProductControllerGetProductWithVariants200Response payload(Object? payload) =>
-      call(payload: payload);
-
-  @override
-  ProductControllerGetProductWithVariants200Response data(
-    ProductWithVariantsResponse? data,
-  ) => call(data: data);
+  ProductControllerGetProductWithVariants200Response payload(
+    ProductWithVariantsResponse? payload,
+  ) => call(payload: payload);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -71,7 +64,6 @@ class _$ProductControllerGetProductWithVariants200ResponseCWProxyImpl
     Object? success = const $CopyWithPlaceholder(),
     Object? error = const $CopyWithPlaceholder(),
     Object? payload = const $CopyWithPlaceholder(),
-    Object? data = const $CopyWithPlaceholder(),
   }) {
     return ProductControllerGetProductWithVariants200Response(
       success: success == const $CopyWithPlaceholder() || success == null
@@ -85,11 +77,7 @@ class _$ProductControllerGetProductWithVariants200ResponseCWProxyImpl
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as Object?,
-      data: data == const $CopyWithPlaceholder()
-          ? _value.data
-          // ignore: cast_nullable_to_non_nullable
-          : data as ProductWithVariantsResponse?,
+          : payload as ProductWithVariantsResponse?,
     );
   }
 }
@@ -118,9 +106,8 @@ _$ProductControllerGetProductWithVariants200ResponseFromJson(
     final val = ProductControllerGetProductWithVariants200Response(
       success: $checkedConvert('success', (v) => v as bool),
       error: $checkedConvert('error', (v) => v),
-      payload: $checkedConvert('payload', (v) => v),
-      data: $checkedConvert(
-        'data',
+      payload: $checkedConvert(
+        'payload',
         (v) => v == null
             ? null
             : ProductWithVariantsResponse.fromJson(v as Map<String, dynamic>),
@@ -135,6 +122,5 @@ Map<String, dynamic> _$ProductControllerGetProductWithVariants200ResponseToJson(
 ) => <String, dynamic>{
   'success': instance.success,
   'error': ?instance.error,
-  'payload': ?instance.payload,
-  'data': ?instance.data?.toJson(),
+  'payload': ?instance.payload?.toJson(),
 };

@@ -58,7 +58,9 @@ class VariantImageUploadItem {
       isPrimary.hashCode;
 
   factory VariantImageUploadItem.fromJson(Map<String, dynamic> json) =>
-      _$VariantImageUploadItemFromJson(json);
+      throw UnsupportedError(
+        'VariantImageUploadItem is for upload only and cannot be deserialized.',
+      );
 
   Map<String, dynamic> toJson() => _$VariantImageUploadItemToJson(this);
 

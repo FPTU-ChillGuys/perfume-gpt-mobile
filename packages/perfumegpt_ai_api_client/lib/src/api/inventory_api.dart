@@ -10,11 +10,13 @@ import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_batch200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_log_by_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_report_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_stock200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_by_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_for_restock200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_structured_ai_inventory_report200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/trend_controller_get_product_trend_job_result200_response.dart';
 
 class InventoryApi {
@@ -473,9 +475,9 @@ class InventoryApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [LogControllerGetPagedEventLogs200Response] as data
+  /// Returns a [Future] containing a [Response] with a [InventoryControllerGetBatch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetPagedEventLogs200Response>>
+  Future<Response<InventoryControllerGetBatch200Response>>
   inventoryControllerGetBatch({
     num pageNumber = 1,
     num pageSize = 10,
@@ -545,18 +547,18 @@ class InventoryApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LogControllerGetPagedEventLogs200Response? _responseData;
+    InventoryControllerGetBatch200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              LogControllerGetPagedEventLogs200Response,
-              LogControllerGetPagedEventLogs200Response
+              InventoryControllerGetBatch200Response,
+              InventoryControllerGetBatch200Response
             >(
               rawData,
-              'LogControllerGetPagedEventLogs200Response',
+              'InventoryControllerGetBatch200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -569,7 +571,7 @@ class InventoryApi {
       );
     }
 
-    return Response<LogControllerGetPagedEventLogs200Response>(
+    return Response<InventoryControllerGetBatch200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -839,9 +841,9 @@ class InventoryApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [LogControllerGetPagedEventLogs200Response] as data
+  /// Returns a [Future] containing a [Response] with a [InventoryControllerGetInventoryReportLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetPagedEventLogs200Response>>
+  Future<Response<InventoryControllerGetInventoryReportLogs200Response>>
   inventoryControllerGetInventoryReportLogs({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -871,18 +873,18 @@ class InventoryApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LogControllerGetPagedEventLogs200Response? _responseData;
+    InventoryControllerGetInventoryReportLogs200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              LogControllerGetPagedEventLogs200Response,
-              LogControllerGetPagedEventLogs200Response
+              InventoryControllerGetInventoryReportLogs200Response,
+              InventoryControllerGetInventoryReportLogs200Response
             >(
               rawData,
-              'LogControllerGetPagedEventLogs200Response',
+              'InventoryControllerGetInventoryReportLogs200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -895,7 +897,7 @@ class InventoryApi {
       );
     }
 
-    return Response<LogControllerGetPagedEventLogs200Response>(
+    return Response<InventoryControllerGetInventoryReportLogs200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -918,9 +920,9 @@ class InventoryApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [LogControllerGetPagedEventLogs200Response] as data
+  /// Returns a [Future] containing a [Response] with a [InventoryControllerGetInventoryReportLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetPagedEventLogs200Response>>
+  Future<Response<InventoryControllerGetInventoryReportLogs200Response>>
   inventoryControllerGetInventoryRestockLogs({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -950,18 +952,18 @@ class InventoryApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LogControllerGetPagedEventLogs200Response? _responseData;
+    InventoryControllerGetInventoryReportLogs200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              LogControllerGetPagedEventLogs200Response,
-              LogControllerGetPagedEventLogs200Response
+              InventoryControllerGetInventoryReportLogs200Response,
+              InventoryControllerGetInventoryReportLogs200Response
             >(
               rawData,
-              'LogControllerGetPagedEventLogs200Response',
+              'InventoryControllerGetInventoryReportLogs200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -974,7 +976,7 @@ class InventoryApi {
       );
     }
 
-    return Response<LogControllerGetPagedEventLogs200Response>(
+    return Response<InventoryControllerGetInventoryReportLogs200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1004,9 +1006,9 @@ class InventoryApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [LogControllerGetPagedEventLogs200Response] as data
+  /// Returns a [Future] containing a [Response] with a [InventoryControllerGetInventoryStock200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetPagedEventLogs200Response>>
+  Future<Response<InventoryControllerGetInventoryStock200Response>>
   inventoryControllerGetInventoryStock({
     num pageNumber = 1,
     num pageSize = 10,
@@ -1054,18 +1056,18 @@ class InventoryApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LogControllerGetPagedEventLogs200Response? _responseData;
+    InventoryControllerGetInventoryStock200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              LogControllerGetPagedEventLogs200Response,
-              LogControllerGetPagedEventLogs200Response
+              InventoryControllerGetInventoryStock200Response,
+              InventoryControllerGetInventoryStock200Response
             >(
               rawData,
-              'LogControllerGetPagedEventLogs200Response',
+              'InventoryControllerGetInventoryStock200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -1078,7 +1080,7 @@ class InventoryApi {
       );
     }
 
-    return Response<LogControllerGetPagedEventLogs200Response>(
+    return Response<InventoryControllerGetInventoryStock200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

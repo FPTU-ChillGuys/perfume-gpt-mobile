@@ -25,6 +25,8 @@ abstract class _$LoyaltyTransactionHistoryItemResponseCWProxy {
 
   LoyaltyTransactionHistoryItemResponse reason(String reason);
 
+  LoyaltyTransactionHistoryItemResponse createdAt(DateTime? createdAt);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoyaltyTransactionHistoryItemResponse(...).copyWith.fieldName(value)`.
   ///
@@ -41,6 +43,7 @@ abstract class _$LoyaltyTransactionHistoryItemResponseCWProxy {
     int? pointsChanged,
     int? absolutePoints,
     String reason,
+    DateTime? createdAt,
   });
 }
 
@@ -85,6 +88,10 @@ class _$LoyaltyTransactionHistoryItemResponseCWProxyImpl
       call(reason: reason);
 
   @override
+  LoyaltyTransactionHistoryItemResponse createdAt(DateTime? createdAt) =>
+      call(createdAt: createdAt);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LoyaltyTransactionHistoryItemResponse(...).copyWith.fieldName(value)`.
   ///
@@ -101,6 +108,7 @@ class _$LoyaltyTransactionHistoryItemResponseCWProxyImpl
     Object? pointsChanged = const $CopyWithPlaceholder(),
     Object? absolutePoints = const $CopyWithPlaceholder(),
     Object? reason = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
   }) {
     return LoyaltyTransactionHistoryItemResponse(
       id: id == const $CopyWithPlaceholder()
@@ -135,6 +143,10 @@ class _$LoyaltyTransactionHistoryItemResponseCWProxyImpl
           ? _value.reason
           // ignore: cast_nullable_to_non_nullable
           : reason as String,
+      createdAt: createdAt == const $CopyWithPlaceholder()
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as DateTime?,
     );
   }
 }
@@ -176,6 +188,10 @@ _$LoyaltyTransactionHistoryItemResponseFromJson(Map<String, dynamic> json) =>
           (v) => (v as num?)?.toInt(),
         ),
         reason: $checkedConvert('reason', (v) => v as String),
+        createdAt: $checkedConvert(
+          'createdAt',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
       );
       return val;
     });
@@ -191,6 +207,7 @@ Map<String, dynamic> _$LoyaltyTransactionHistoryItemResponseToJson(
   'pointsChanged': ?instance.pointsChanged,
   'absolutePoints': ?instance.absolutePoints,
   'reason': instance.reason,
+  'createdAt': ?instance.createdAt?.toIso8601String(),
 };
 
 const _$LoyaltyTransactionTypeEnumMap = {

@@ -727,6 +727,7 @@ lib/src/model/product_attribute_dto.dart
 lib/src/model/product_attribute_response.dart
 lib/src/model/product_daily_sale_figure_response.dart
 lib/src/model/product_fast_look_response.dart
+lib/src/model/product_image_upload_item.dart
 lib/src/model/product_infor_response.dart
 lib/src/model/product_list_item.dart
 lib/src/model/product_lookup_item.dart
@@ -828,6 +829,7 @@ lib/src/model/user_role.dart
 lib/src/model/user_voucher_response.dart
 lib/src/model/variant_daily_sale_figure.dart
 lib/src/model/variant_fast_look_response.dart
+lib/src/model/variant_image_upload_item.dart
 lib/src/model/variant_lookup_item.dart
 lib/src/model/variant_paged_item.dart
 lib/src/model/variant_status.dart

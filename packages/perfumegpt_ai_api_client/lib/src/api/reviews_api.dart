@@ -10,8 +10,8 @@ import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_all_review_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_reviews200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_structured_review_summary_by_variant_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/trend_controller_get_product_trend_job_result200_response.dart';
 
@@ -787,9 +787,9 @@ class ReviewsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [LogControllerGetPagedEventLogs200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ReviewControllerGetReviews200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetPagedEventLogs200Response>>
+  Future<Response<ReviewControllerGetReviews200Response>>
   reviewControllerGetReviews({
     num pageNumber = 1,
     num pageSize = 10,
@@ -843,20 +843,16 @@ class ReviewsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LogControllerGetPagedEventLogs200Response? _responseData;
+    ReviewControllerGetReviews200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              LogControllerGetPagedEventLogs200Response,
-              LogControllerGetPagedEventLogs200Response
-            >(
-              rawData,
-              'LogControllerGetPagedEventLogs200Response',
-              growable: true,
-            );
+              ReviewControllerGetReviews200Response,
+              ReviewControllerGetReviews200Response
+            >(rawData, 'ReviewControllerGetReviews200Response', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -867,7 +863,7 @@ class ReviewsApi {
       );
     }
 
-    return Response<LogControllerGetPagedEventLogs200Response>(
+    return Response<ReviewControllerGetReviews200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

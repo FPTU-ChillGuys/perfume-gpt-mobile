@@ -24,6 +24,8 @@ class ConversationRequestDto {
     this.userId,
 
     required this.messages,
+
+    this.isStaff,
   });
 
   /// ID cuộc hội thoại
@@ -38,16 +40,22 @@ class ConversationRequestDto {
   @JsonKey(name: r'messages', required: true, includeIfNull: false)
   final List<MessageRequestDto> messages;
 
+  /// Chế độ nhân viên tư vấn tại quầy
+  @JsonKey(name: r'isStaff', required: false, includeIfNull: false)
+  final bool? isStaff;
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is ConversationRequestDto &&
           other.id == id &&
           other.userId == userId &&
-          other.messages == messages;
+          other.messages == messages &&
+          other.isStaff == isStaff;
 
   @override
-  int get hashCode => id.hashCode + userId.hashCode + messages.hashCode;
+  int get hashCode =>
+      id.hashCode + userId.hashCode + messages.hashCode + isStaff.hashCode;
 
   factory ConversationRequestDto.fromJson(Map<String, dynamic> json) =>
       _$ConversationRequestDtoFromJson(json);

@@ -265,7 +265,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerGetBatch**
-> LogControllerGetPagedEventLogs200Response inventoryControllerGetBatch(pageNumber, pageSize, sortOrder, isDescending, id, variantId, variantSku, productName, volumeMl, concentrationName, batchCode, manufactureDate, expiryDate, importQuantity, remainingQuantity, isExpired, daysUntilExpiry, createdAt)
+> InventoryControllerGetBatch200Response inventoryControllerGetBatch(pageNumber, pageSize, sortOrder, isDescending, id, variantId, variantSku, productName, volumeMl, concentrationName, batchCode, manufactureDate, expiryDate, importQuantity, remainingQuantity, isExpired, daysUntilExpiry, createdAt)
 
 Lấy danh sách batch
 
@@ -326,7 +326,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogControllerGetPagedEventLogs200Response**](LogControllerGetPagedEventLogs200Response.md)
+[**InventoryControllerGetBatch200Response**](InventoryControllerGetBatch200Response.md)
 
 ### Authorization
 
@@ -459,7 +459,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerGetInventoryReportLogs**
-> LogControllerGetPagedEventLogs200Response inventoryControllerGetInventoryReportLogs()
+> InventoryControllerGetInventoryReportLogs200Response inventoryControllerGetInventoryReportLogs()
 
 Lấy lịch sử báo cáo tồn kho tổng quan
 
@@ -482,7 +482,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**LogControllerGetPagedEventLogs200Response**](LogControllerGetPagedEventLogs200Response.md)
+[**InventoryControllerGetInventoryReportLogs200Response**](InventoryControllerGetInventoryReportLogs200Response.md)
 
 ### Authorization
 
@@ -496,7 +496,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerGetInventoryRestockLogs**
-> LogControllerGetPagedEventLogs200Response inventoryControllerGetInventoryRestockLogs()
+> InventoryControllerGetInventoryReportLogs200Response inventoryControllerGetInventoryRestockLogs()
 
 Lấy lịch sử phân tích nhu cầu nhập hàng (restock)
 
@@ -519,7 +519,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**LogControllerGetPagedEventLogs200Response**](LogControllerGetPagedEventLogs200Response.md)
+[**InventoryControllerGetInventoryReportLogs200Response**](InventoryControllerGetInventoryReportLogs200Response.md)
 
 ### Authorization
 
@@ -533,7 +533,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerGetInventoryStock**
-> LogControllerGetPagedEventLogs200Response inventoryControllerGetInventoryStock(pageNumber, pageSize, sortOrder, isDescending, variantId, searchTerm, isLowStock)
+> InventoryControllerGetInventoryStock200Response inventoryControllerGetInventoryStock(pageNumber, pageSize, sortOrder, isDescending, variantId, searchTerm, isLowStock)
 
 Lấy thông tin tồn kho
 
@@ -572,7 +572,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogControllerGetPagedEventLogs200Response**](LogControllerGetPagedEventLogs200Response.md)
+[**InventoryControllerGetInventoryStock200Response**](InventoryControllerGetInventoryStock200Response.md)
 
 ### Authorization
 

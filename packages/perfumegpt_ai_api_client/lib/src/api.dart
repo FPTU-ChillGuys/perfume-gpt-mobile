@@ -28,7 +28,7 @@ import 'package:perfumegpt_ai_api_client/src/api/surveys_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/trends_api.dart';
 
 class PerfumegptAiApiClient {
-  static const String basePath = r'https://ai-backend-sep490.vqnofficial.win';
+  static const String basePath = r'http://localhost';
 
   final Dio dio;
   PerfumegptAiApiClient({

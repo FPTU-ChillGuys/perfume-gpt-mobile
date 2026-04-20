@@ -121,4 +121,6 @@ const _$UpdateAdminInstructionRequestInstructionTypeEnumEnumMap = {
   UpdateAdminInstructionRequestInstructionTypeEnum.restock: 'restock',
   UpdateAdminInstructionRequestInstructionTypeEnum.searchExtraction:
       'search_extraction',
+  UpdateAdminInstructionRequestInstructionTypeEnum.staffConsultation:
+      'staff_consultation',
 };

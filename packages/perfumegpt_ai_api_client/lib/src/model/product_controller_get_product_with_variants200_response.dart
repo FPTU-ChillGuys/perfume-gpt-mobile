@@ -24,8 +24,6 @@ class ProductControllerGetProductWithVariants200Response {
     this.error,
 
     this.payload,
-
-    this.data,
   });
 
   /// Kết quả xử lý
@@ -36,12 +34,8 @@ class ProductControllerGetProductWithVariants200Response {
   @JsonKey(name: r'error', required: false, includeIfNull: false)
   final Object? error;
 
-  /// Dữ liệu trả về
   @JsonKey(name: r'payload', required: false, includeIfNull: false)
-  final Object? payload;
-
-  @JsonKey(name: r'data', required: false, includeIfNull: false)
-  final ProductWithVariantsResponse? data;
+  final ProductWithVariantsResponse? payload;
 
   @override
   bool operator ==(Object other) =>
@@ -49,15 +43,13 @@ class ProductControllerGetProductWithVariants200Response {
       other is ProductControllerGetProductWithVariants200Response &&
           other.success == success &&
           other.error == error &&
-          other.payload == payload &&
-          other.data == data;
+          other.payload == payload;
 
   @override
   int get hashCode =>
       success.hashCode +
       (error == null ? 0 : error.hashCode) +
-      payload.hashCode +
-      data.hashCode;
+      payload.hashCode;
 
   factory ProductControllerGetProductWithVariants200Response.fromJson(
     Map<String, dynamic> json,

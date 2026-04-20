@@ -11,9 +11,9 @@ abstract class _$LogControllerGetPagedEventLogs200ResponseCWProxy {
 
   LogControllerGetPagedEventLogs200Response error(Object? error);
 
-  LogControllerGetPagedEventLogs200Response details(Object? details);
-
-  LogControllerGetPagedEventLogs200Response data(PagedResult? data);
+  LogControllerGetPagedEventLogs200Response payload(
+    LogControllerGetPagedEventLogs200ResponseAllOfPayload? payload,
+  );
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LogControllerGetPagedEventLogs200Response(...).copyWith.fieldName(value)`.
@@ -25,8 +25,7 @@ abstract class _$LogControllerGetPagedEventLogs200ResponseCWProxy {
   LogControllerGetPagedEventLogs200Response call({
     bool success,
     Object? error,
-    Object? details,
-    PagedResult? data,
+    LogControllerGetPagedEventLogs200ResponseAllOfPayload? payload,
   });
 }
 
@@ -47,12 +46,9 @@ class _$LogControllerGetPagedEventLogs200ResponseCWProxyImpl
       call(error: error);
 
   @override
-  LogControllerGetPagedEventLogs200Response details(Object? details) =>
-      call(details: details);
-
-  @override
-  LogControllerGetPagedEventLogs200Response data(PagedResult? data) =>
-      call(data: data);
+  LogControllerGetPagedEventLogs200Response payload(
+    LogControllerGetPagedEventLogs200ResponseAllOfPayload? payload,
+  ) => call(payload: payload);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -65,8 +61,7 @@ class _$LogControllerGetPagedEventLogs200ResponseCWProxyImpl
   LogControllerGetPagedEventLogs200Response call({
     Object? success = const $CopyWithPlaceholder(),
     Object? error = const $CopyWithPlaceholder(),
-    Object? details = const $CopyWithPlaceholder(),
-    Object? data = const $CopyWithPlaceholder(),
+    Object? payload = const $CopyWithPlaceholder(),
   }) {
     return LogControllerGetPagedEventLogs200Response(
       success: success == const $CopyWithPlaceholder() || success == null
@@ -77,14 +72,10 @@ class _$LogControllerGetPagedEventLogs200ResponseCWProxyImpl
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
           : error as Object?,
-      details: details == const $CopyWithPlaceholder()
-          ? _value.details
+      payload: payload == const $CopyWithPlaceholder()
+          ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
-      data: data == const $CopyWithPlaceholder()
-          ? _value.data
-          // ignore: cast_nullable_to_non_nullable
-          : data as PagedResult?,
+          : payload as LogControllerGetPagedEventLogs200ResponseAllOfPayload?,
     );
   }
 }
@@ -112,10 +103,13 @@ _$LogControllerGetPagedEventLogs200ResponseFromJson(
   final val = LogControllerGetPagedEventLogs200Response(
     success: $checkedConvert('success', (v) => v as bool),
     error: $checkedConvert('error', (v) => v),
-    details: $checkedConvert('details', (v) => v),
-    data: $checkedConvert(
-      'data',
-      (v) => v == null ? null : PagedResult.fromJson(v as Map<String, dynamic>),
+    payload: $checkedConvert(
+      'payload',
+      (v) => v == null
+          ? null
+          : LogControllerGetPagedEventLogs200ResponseAllOfPayload.fromJson(
+              v as Map<String, dynamic>,
+            ),
     ),
   );
   return val;
@@ -126,6 +120,5 @@ Map<String, dynamic> _$LogControllerGetPagedEventLogs200ResponseToJson(
 ) => <String, dynamic>{
   'success': instance.success,
   'error': ?instance.error,
-  'details': ?instance.details,
-  'data': ?instance.data?.toJson(),
+  'payload': ?instance.payload?.toJson(),
 };

@@ -58,7 +58,9 @@ class ProductImageUploadItem {
       isPrimary.hashCode;
 
   factory ProductImageUploadItem.fromJson(Map<String, dynamic> json) =>
-      _$ProductImageUploadItemFromJson(json);
+      throw UnsupportedError(
+        'ProductImageUploadItem is for upload only and cannot be deserialized.',
+      );
 
   Map<String, dynamic> toJson() => _$ProductImageUploadItemToJson(this);
 

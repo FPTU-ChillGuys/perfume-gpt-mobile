@@ -96,7 +96,11 @@ enum CreateAdminInstructionRequestInstructionTypeEnum {
 
   /// Loại chỉ thị
   @JsonValue(r'search_extraction')
-  searchExtraction(r'search_extraction');
+  searchExtraction(r'search_extraction'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'staff_consultation')
+  staffConsultation(r'staff_consultation');
 
   const CreateAdminInstructionRequestInstructionTypeEnum(this.value);
 

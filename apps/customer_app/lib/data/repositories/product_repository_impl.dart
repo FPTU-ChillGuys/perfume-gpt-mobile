@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/rendering.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart' as ai;
 import '../../core/utils/image_url_helper.dart';
@@ -145,12 +146,8 @@ class ProductRepositoryImpl implements ProductRepository {
     final response = await _aiApi.productControllerGetProductsByHybridSearch(
       searchText: query,
     );
-    final dynamic payload = response.data?.payload;
-    final List itemsJson = payload?['items'] as List? ?? [];
-    final items = itemsJson
-        .map((e) => ProductListItemWithVariants.fromJson(e as Map<String, dynamic>))
-        .toList();
-    return items.map(_mapListItemWithVariantsToProduct).toList();
+    final items = response.data?.payload?.items ?? [];
+    return items.map(_mapAiProductToProduct).toList();
   }
 
   @override
@@ -164,17 +161,14 @@ class ProductRepositoryImpl implements ProductRepository {
       pageNumber: pageNumber,
       pageSize: pageSize,
     );
-    final dynamic payload = response.data?.payload;
-    final List itemsJson = payload?['items'] as List? ?? [];
-    final items = itemsJson
-        .map((e) => ProductListItemWithVariants.fromJson(e as Map<String, dynamic>))
-        .toList();
-    
+    final payload = response.data?.payload;
+    final items = payload?.items ?? [];
+
     return PagedResult(
-      items: items.map(_mapListItemWithVariantsToProduct).toList(),
-      totalCount: payload?['totalCount'] ?? 0,
-      totalPages: payload?['totalPages'] ?? 0,
-      hasNextPage: (payload?['pageNumber'] ?? 1) < (payload?['totalPages'] ?? 0),
+      items: items.map(_mapAiProductToProduct).toList(),
+      totalCount: (payload?.totalCount ?? 0).toInt(),
+      totalPages: (payload?.totalPages ?? 0).toInt(),
+      hasNextPage: (payload?.pageNumber ?? 1) < (payload?.totalPages ?? 0),
     );
   }
 
@@ -237,48 +231,61 @@ class ProductRepositoryImpl implements ProductRepository {
     );
   }
 
-  Product _mapListItemWithVariantsToProduct(
-    ProductListItemWithVariants item,
-  ) {
-    List<double> variantPrices = [];
-    if (item.variantPrices.isNotEmpty) {
-      variantPrices = item.variantPrices.map((p) => p.toDouble()).toList();
-    }
+  Product _mapAiProductToProduct(ai.ProductWithVariantsResponse item) {
+    final variants = item.variants.map((v) {
+      final imageUrls = v.media
+          .map((m) => ImageUrlHelper.resolve(m.url))
+          .toList();
+      final primaryImage =
+          v.media
+              .where((m) => m.isPrimary == true)
+              .map((m) => ImageUrlHelper.resolve(m.url))
+              .firstOrNull ??
+          imageUrls.firstOrNull;
+
+      return ProductVariant(
+        id: v.id,
+        sku: v.sku,
+        barcode: v.barcode,
+        volumeMl: v.volumeMl.toInt(),
+        concentrationName: v.concentration?.name ?? '',
+        type: v.type,
+        basePrice: v.basePrice.toDouble(),
+        status: v.status,
+        stockQuantity: (v.stock?.totalQuantity ?? 0).toInt(),
+        imageUrls: imageUrls,
+        primaryImageUrl: primaryImage,
+        longevity: v.longevity?.toInt(),
+        sillage: v.sillage?.toInt(),
+      );
+    }).toList();
+
+    final variantPrices = variants.map((v) => v.basePrice).toList();
     final minP = variantPrices.isNotEmpty ? variantPrices.reduce(min) : 0.0;
     final maxP = variantPrices.isNotEmpty ? variantPrices.reduce(max) : 0.0;
 
+    String primaryImage = '';
+    if (item.primaryImage is String) {
+      primaryImage = ImageUrlHelper.resolve(item.primaryImage as String);
+    }
+
     return Product(
-      id: item.id ?? '',
-      name: item.name ?? '',
-      description: item.description ?? '',
+      id: item.id,
+      name: item.name,
+      description: item.description,
       price: minP,
       minPrice: minP > 0 ? minP : null,
       maxPrice: maxP > 0 ? maxP : null,
       variantPrices: variantPrices,
-      imageUrl: ImageUrlHelper.resolve(item.primaryImage?.url ?? ''),
-      scentNotes: item.tags ?? [],
+      imageUrl: primaryImage,
+      scentNotes: item.scentNotes,
       brand: item.brandName,
+      brandId: item.brandId.toInt(),
+      categoryId: item.categoryId.toInt(),
+      categoryName: item.categoryName,
       rating: 0,
       reviewCount: 0,
-      brandId: item.brandId,
-      categoryId: item.categoryId,
-      categoryName: item.categoryName,
-      variants: item.variants
-          .map(
-            (v) => ProductVariant(
-              id: v.id ?? '',
-              sku: '',
-              barcode: '',
-              volumeMl: 0,
-              concentrationName: v.concentrationName,
-              type: 'Standard',
-              basePrice: 0,
-              status: 'Active',
-              stockQuantity: 0,
-              imageUrls: [],
-            ),
-          )
-          .toList(),
+      variants: variants,
     );
   }
 

@@ -124,4 +124,6 @@ const _$CreateAdminInstructionRequestInstructionTypeEnumEnumMap = {
   CreateAdminInstructionRequestInstructionTypeEnum.restock: 'restock',
   CreateAdminInstructionRequestInstructionTypeEnum.searchExtraction:
       'search_extraction',
+  CreateAdminInstructionRequestInstructionTypeEnum.staffConsultation:
+      'staff_consultation',
 };

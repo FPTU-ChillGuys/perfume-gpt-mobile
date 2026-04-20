@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reviewControllerGetReviews**
-> LogControllerGetPagedEventLogs200Response reviewControllerGetReviews(pageNumber, pageSize, sortOrder, isDescending, variantId, userId, status, minRating, maxRating, hasImages)
+> ReviewControllerGetReviews200Response reviewControllerGetReviews(pageNumber, pageSize, sortOrder, isDescending, variantId, userId, status, minRating, maxRating, hasImages)
 
 Lấy danh sách đánh giá (phân trang)
 
@@ -427,7 +427,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogControllerGetPagedEventLogs200Response**](LogControllerGetPagedEventLogs200Response.md)
+[**ReviewControllerGetReviews200Response**](ReviewControllerGetReviews200Response.md)
 
 ### Authorization
 

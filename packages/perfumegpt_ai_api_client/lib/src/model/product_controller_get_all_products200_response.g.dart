@@ -11,9 +11,9 @@ abstract class _$ProductControllerGetAllProducts200ResponseCWProxy {
 
   ProductControllerGetAllProducts200Response error(Object? error);
 
-  ProductControllerGetAllProducts200Response payload(Object? payload);
-
-  ProductControllerGetAllProducts200Response data(PagedResult? data);
+  ProductControllerGetAllProducts200Response payload(
+    ProductControllerGetAllProducts200ResponseAllOfPayload? payload,
+  );
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductControllerGetAllProducts200Response(...).copyWith.fieldName(value)`.
@@ -25,8 +25,7 @@ abstract class _$ProductControllerGetAllProducts200ResponseCWProxy {
   ProductControllerGetAllProducts200Response call({
     bool success,
     Object? error,
-    Object? payload,
-    PagedResult? data,
+    ProductControllerGetAllProducts200ResponseAllOfPayload? payload,
   });
 }
 
@@ -47,12 +46,9 @@ class _$ProductControllerGetAllProducts200ResponseCWProxyImpl
       call(error: error);
 
   @override
-  ProductControllerGetAllProducts200Response payload(Object? payload) =>
-      call(payload: payload);
-
-  @override
-  ProductControllerGetAllProducts200Response data(PagedResult? data) =>
-      call(data: data);
+  ProductControllerGetAllProducts200Response payload(
+    ProductControllerGetAllProducts200ResponseAllOfPayload? payload,
+  ) => call(payload: payload);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -66,7 +62,6 @@ class _$ProductControllerGetAllProducts200ResponseCWProxyImpl
     Object? success = const $CopyWithPlaceholder(),
     Object? error = const $CopyWithPlaceholder(),
     Object? payload = const $CopyWithPlaceholder(),
-    Object? data = const $CopyWithPlaceholder(),
   }) {
     return ProductControllerGetAllProducts200Response(
       success: success == const $CopyWithPlaceholder() || success == null
@@ -80,11 +75,7 @@ class _$ProductControllerGetAllProducts200ResponseCWProxyImpl
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as Object?,
-      data: data == const $CopyWithPlaceholder()
-          ? _value.data
-          // ignore: cast_nullable_to_non_nullable
-          : data as PagedResult?,
+          : payload as ProductControllerGetAllProducts200ResponseAllOfPayload?,
     );
   }
 }
@@ -112,10 +103,13 @@ _$ProductControllerGetAllProducts200ResponseFromJson(
   final val = ProductControllerGetAllProducts200Response(
     success: $checkedConvert('success', (v) => v as bool),
     error: $checkedConvert('error', (v) => v),
-    payload: $checkedConvert('payload', (v) => v),
-    data: $checkedConvert(
-      'data',
-      (v) => v == null ? null : PagedResult.fromJson(v as Map<String, dynamic>),
+    payload: $checkedConvert(
+      'payload',
+      (v) => v == null
+          ? null
+          : ProductControllerGetAllProducts200ResponseAllOfPayload.fromJson(
+              v as Map<String, dynamic>,
+            ),
     ),
   );
   return val;
@@ -126,6 +120,5 @@ Map<String, dynamic> _$ProductControllerGetAllProducts200ResponseToJson(
 ) => <String, dynamic>{
   'success': instance.success,
   'error': ?instance.error,
-  'payload': ?instance.payload,
-  'data': ?instance.data?.toJson(),
+  'payload': ?instance.payload?.toJson(),
 };

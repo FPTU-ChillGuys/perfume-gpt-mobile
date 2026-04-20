@@ -10,7 +10,7 @@ import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_all_orders200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_structured_ai_order_summary200_response.dart';
 
 class OrdersApi {
@@ -119,9 +119,9 @@ class OrdersApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [LogControllerGetPagedEventLogs200Response] as data
+  /// Returns a [Future] containing a [Response] with a [OrderControllerGetAllOrders200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetPagedEventLogs200Response>>
+  Future<Response<OrderControllerGetAllOrders200Response>>
   orderControllerGetAllOrders({
     num pageNumber = 1,
     num pageSize = 10,
@@ -175,18 +175,18 @@ class OrdersApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LogControllerGetPagedEventLogs200Response? _responseData;
+    OrderControllerGetAllOrders200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              LogControllerGetPagedEventLogs200Response,
-              LogControllerGetPagedEventLogs200Response
+              OrderControllerGetAllOrders200Response,
+              OrderControllerGetAllOrders200Response
             >(
               rawData,
-              'LogControllerGetPagedEventLogs200Response',
+              'OrderControllerGetAllOrders200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -199,7 +199,7 @@ class OrdersApi {
       );
     }
 
-    return Response<LogControllerGetPagedEventLogs200Response>(
+    return Response<OrderControllerGetAllOrders200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -233,9 +233,9 @@ class OrdersApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [LogControllerGetPagedEventLogs200Response] as data
+  /// Returns a [Future] containing a [Response] with a [OrderControllerGetAllOrders200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetPagedEventLogs200Response>>
+  Future<Response<OrderControllerGetAllOrders200Response>>
   orderControllerGetOrdersByUserId({
     required String userId,
     num pageNumber = 1,
@@ -295,18 +295,18 @@ class OrdersApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LogControllerGetPagedEventLogs200Response? _responseData;
+    OrderControllerGetAllOrders200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              LogControllerGetPagedEventLogs200Response,
-              LogControllerGetPagedEventLogs200Response
+              OrderControllerGetAllOrders200Response,
+              OrderControllerGetAllOrders200Response
             >(
               rawData,
-              'LogControllerGetPagedEventLogs200Response',
+              'OrderControllerGetAllOrders200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -319,7 +319,7 @@ class OrdersApi {
       );
     }
 
-    return Response<LogControllerGetPagedEventLogs200Response>(
+    return Response<OrderControllerGetAllOrders200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

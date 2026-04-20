@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**conversationControllerConversationV10**](ConversationApi.md#conversationcontrollerconversationv10) | **POST** /conversation/chat/v10 | Chat V10 (Profile-first + Structured Search)
+[**conversationControllerConversationV10Staff**](ConversationApi.md#conversationcontrollerconversationv10staff) | **POST** /conversation/chat/v10-staff | Chat V10 Staff (Quick Counter Consultation Mode)
 [**conversationControllerConversationV8**](ConversationApi.md#conversationcontrollerconversationv8) | **POST** /conversation/chat/v8 | Chat V8
 [**conversationControllerGetAllConversations**](ConversationApi.md#conversationcontrollergetallconversations) | **GET** /conversation | Lấy tất cả cuộc hội thoại
 [**conversationControllerGetAllConversationsPaginated**](ConversationApi.md#conversationcontrollergetallconversationspaginated) | **GET** /conversation/list/paged | Lấy danh sách cuộc hội thoại có phân trang
@@ -33,6 +34,47 @@ try {
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ConversationApi->conversationControllerConversationV10: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conversationRequestDto** | [**ConversationRequestDto**](ConversationRequestDto.md)|  | 
+
+### Return type
+
+[**ConversationControllerConversationV8200Response**](ConversationControllerConversationV8200Response.md)
+
+### Authorization
+
+[jwt](../README.md#jwt)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conversationControllerConversationV10Staff**
+> ConversationControllerConversationV8200Response conversationControllerConversationV10Staff(conversationRequestDto)
+
+Chat V10 Staff (Quick Counter Consultation Mode)
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getConversationApi();
+final ConversationRequestDto conversationRequestDto = ; // ConversationRequestDto | 
+
+try {
+    final response = api.conversationControllerConversationV10Staff(conversationRequestDto);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ConversationApi->conversationControllerConversationV10Staff: $e\n');
 }
 ```
 
@@ -136,7 +178,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **conversationControllerGetAllConversationsPaginated**
-> LogControllerGetPagedEventLogs200Response conversationControllerGetAllConversationsPaginated(pageNumber, pageSize, userId)
+> ConversationControllerGetAllConversationsPaginated200Response conversationControllerGetAllConversationsPaginated(pageNumber, pageSize, userId)
 
 Lấy danh sách cuộc hội thoại có phân trang
 
@@ -167,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogControllerGetPagedEventLogs200Response**](LogControllerGetPagedEventLogs200Response.md)
+[**ConversationControllerGetAllConversationsPaginated200Response**](ConversationControllerGetAllConversationsPaginated200Response.md)
 
 ### Authorization
 

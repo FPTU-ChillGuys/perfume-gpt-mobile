@@ -32,7 +32,7 @@ class ChatSession extends _$ChatSession {
     state = [userMessage, ...state];
 
     try {
-      final aiApi = ref.read(apiClientProvider).getAiApi();
+      final aiApi = ref.read(aiApiClientProvider).getAIApi();
       final response = await aiApi.aIControllerSearchProductWithAI(prompt: text);
       final aiResponseText = response.data?.data ??
           'I am sorry, I could not process that request.';

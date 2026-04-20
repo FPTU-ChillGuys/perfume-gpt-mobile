@@ -10,7 +10,10 @@ import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_best_selling_products200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_product_with_variants200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_hybrid_search200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_semantic_search200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_view_log_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/search_text_log_request.dart';
 
@@ -124,9 +127,9 @@ class ProductsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ProductControllerGetAllProducts200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ProductControllerGetProductsBySemanticSearch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetAllProducts200Response>>
+  Future<Response<ProductControllerGetProductsBySemanticSearch200Response>>
   productControllerGetAllProductsWithVariants({
     num pageNumber = 1,
     num pageSize = 10,
@@ -163,18 +166,18 @@ class ProductsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProductControllerGetAllProducts200Response? _responseData;
+    ProductControllerGetProductsBySemanticSearch200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              ProductControllerGetAllProducts200Response,
-              ProductControllerGetAllProducts200Response
+              ProductControllerGetProductsBySemanticSearch200Response,
+              ProductControllerGetProductsBySemanticSearch200Response
             >(
               rawData,
-              'ProductControllerGetAllProducts200Response',
+              'ProductControllerGetProductsBySemanticSearch200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -187,7 +190,7 @@ class ProductsApi {
       );
     }
 
-    return Response<ProductControllerGetAllProducts200Response>(
+    return Response<ProductControllerGetProductsBySemanticSearch200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -214,9 +217,9 @@ class ProductsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ProductControllerGetAllProducts200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ProductControllerGetBestSellingProducts200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetAllProducts200Response>>
+  Future<Response<ProductControllerGetBestSellingProducts200Response>>
   productControllerGetBestSellingProducts({
     num pageNumber = 1,
     num pageSize = 10,
@@ -253,18 +256,18 @@ class ProductsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProductControllerGetAllProducts200Response? _responseData;
+    ProductControllerGetBestSellingProducts200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              ProductControllerGetAllProducts200Response,
-              ProductControllerGetAllProducts200Response
+              ProductControllerGetBestSellingProducts200Response,
+              ProductControllerGetBestSellingProducts200Response
             >(
               rawData,
-              'ProductControllerGetAllProducts200Response',
+              'ProductControllerGetBestSellingProducts200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -277,7 +280,7 @@ class ProductsApi {
       );
     }
 
-    return Response<ProductControllerGetAllProducts200Response>(
+    return Response<ProductControllerGetBestSellingProducts200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -304,9 +307,9 @@ class ProductsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ProductControllerGetAllProducts200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ProductControllerGetProductsBySemanticSearch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetAllProducts200Response>>
+  Future<Response<ProductControllerGetProductsBySemanticSearch200Response>>
   productControllerGetNewestProductsWithVariants({
     num pageNumber = 1,
     num pageSize = 10,
@@ -343,18 +346,18 @@ class ProductsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProductControllerGetAllProducts200Response? _responseData;
+    ProductControllerGetProductsBySemanticSearch200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              ProductControllerGetAllProducts200Response,
-              ProductControllerGetAllProducts200Response
+              ProductControllerGetProductsBySemanticSearch200Response,
+              ProductControllerGetProductsBySemanticSearch200Response
             >(
               rawData,
-              'ProductControllerGetAllProducts200Response',
+              'ProductControllerGetProductsBySemanticSearch200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -367,7 +370,7 @@ class ProductsApi {
       );
     }
 
-    return Response<ProductControllerGetAllProducts200Response>(
+    return Response<ProductControllerGetProductsBySemanticSearch200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -476,9 +479,9 @@ class ProductsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ProductControllerGetAllProducts200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ProductControllerGetProductsBySemanticSearch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetAllProducts200Response>>
+  Future<Response<ProductControllerGetProductsBySemanticSearch200Response>>
   productControllerGetProductsByAiSearch({
     num pageNumber = 1,
     num pageSize = 10,
@@ -517,18 +520,18 @@ class ProductsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProductControllerGetAllProducts200Response? _responseData;
+    ProductControllerGetProductsBySemanticSearch200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              ProductControllerGetAllProducts200Response,
-              ProductControllerGetAllProducts200Response
+              ProductControllerGetProductsBySemanticSearch200Response,
+              ProductControllerGetProductsBySemanticSearch200Response
             >(
               rawData,
-              'ProductControllerGetAllProducts200Response',
+              'ProductControllerGetProductsBySemanticSearch200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -541,7 +544,7 @@ class ProductsApi {
       );
     }
 
-    return Response<ProductControllerGetAllProducts200Response>(
+    return Response<ProductControllerGetProductsBySemanticSearch200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -569,9 +572,9 @@ class ProductsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ProductControllerGetAllProducts200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ProductControllerGetProductsByHybridSearch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetAllProducts200Response>>
+  Future<Response<ProductControllerGetProductsByHybridSearch200Response>>
   productControllerGetProductsByHybridSearch({
     num pageNumber = 1,
     num pageSize = 10,
@@ -610,18 +613,18 @@ class ProductsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProductControllerGetAllProducts200Response? _responseData;
+    ProductControllerGetProductsByHybridSearch200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              ProductControllerGetAllProducts200Response,
-              ProductControllerGetAllProducts200Response
+              ProductControllerGetProductsByHybridSearch200Response,
+              ProductControllerGetProductsByHybridSearch200Response
             >(
               rawData,
-              'ProductControllerGetAllProducts200Response',
+              'ProductControllerGetProductsByHybridSearch200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -634,7 +637,7 @@ class ProductsApi {
       );
     }
 
-    return Response<ProductControllerGetAllProducts200Response>(
+    return Response<ProductControllerGetProductsByHybridSearch200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -662,9 +665,9 @@ class ProductsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ProductControllerGetAllProducts200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ProductControllerGetProductsBySemanticSearch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetAllProducts200Response>>
+  Future<Response<ProductControllerGetProductsBySemanticSearch200Response>>
   productControllerGetProductsByParsedSearch({
     num pageNumber = 1,
     num pageSize = 10,
@@ -703,18 +706,18 @@ class ProductsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProductControllerGetAllProducts200Response? _responseData;
+    ProductControllerGetProductsBySemanticSearch200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              ProductControllerGetAllProducts200Response,
-              ProductControllerGetAllProducts200Response
+              ProductControllerGetProductsBySemanticSearch200Response,
+              ProductControllerGetProductsBySemanticSearch200Response
             >(
               rawData,
-              'ProductControllerGetAllProducts200Response',
+              'ProductControllerGetProductsBySemanticSearch200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -727,7 +730,7 @@ class ProductsApi {
       );
     }
 
-    return Response<ProductControllerGetAllProducts200Response>(
+    return Response<ProductControllerGetProductsBySemanticSearch200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -755,9 +758,9 @@ class ProductsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ProductControllerGetAllProducts200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ProductControllerGetProductsBySemanticSearch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetAllProducts200Response>>
+  Future<Response<ProductControllerGetProductsBySemanticSearch200Response>>
   productControllerGetProductsBySemanticSearch({
     num pageNumber = 1,
     num pageSize = 10,
@@ -796,18 +799,18 @@ class ProductsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProductControllerGetAllProducts200Response? _responseData;
+    ProductControllerGetProductsBySemanticSearch200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              ProductControllerGetAllProducts200Response,
-              ProductControllerGetAllProducts200Response
+              ProductControllerGetProductsBySemanticSearch200Response,
+              ProductControllerGetProductsBySemanticSearch200Response
             >(
               rawData,
-              'ProductControllerGetAllProducts200Response',
+              'ProductControllerGetProductsBySemanticSearch200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -820,7 +823,7 @@ class ProductsApi {
       );
     }
 
-    return Response<ProductControllerGetAllProducts200Response>(
+    return Response<ProductControllerGetProductsBySemanticSearch200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -848,9 +851,9 @@ class ProductsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ProductControllerGetAllProducts200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ProductControllerGetProductsBySemanticSearch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetAllProducts200Response>>
+  Future<Response<ProductControllerGetProductsBySemanticSearch200Response>>
   productControllerGetProductsBySemanticSearchWithVariants({
     num pageNumber = 1,
     num pageSize = 10,
@@ -889,18 +892,18 @@ class ProductsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ProductControllerGetAllProducts200Response? _responseData;
+    ProductControllerGetProductsBySemanticSearch200Response? _responseData;
 
     try {
       final rawData = _response.data;
       _responseData = rawData == null
           ? null
           : deserialize<
-              ProductControllerGetAllProducts200Response,
-              ProductControllerGetAllProducts200Response
+              ProductControllerGetProductsBySemanticSearch200Response,
+              ProductControllerGetProductsBySemanticSearch200Response
             >(
               rawData,
-              'ProductControllerGetAllProducts200Response',
+              'ProductControllerGetProductsBySemanticSearch200Response',
               growable: true,
             );
     } catch (error, stackTrace) {
@@ -913,7 +916,7 @@ class ProductsApi {
       );
     }
 
-    return Response<ProductControllerGetAllProducts200Response>(
+    return Response<ProductControllerGetProductsBySemanticSearch200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

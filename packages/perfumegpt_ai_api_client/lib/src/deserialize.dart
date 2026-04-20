@@ -13,47 +13,77 @@ import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_response.da
 import 'package:perfumegpt_ai_api_client/src/model/all_user_log_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/base_response_api.dart';
+import 'package:perfumegpt_ai_api_client/src/model/batch_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/concentration_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_conversation_v8200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations_paginated200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations_paginated200_response_all_of_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_dto.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_request_dto.dart';
 import 'package:perfumegpt_ai_api_client/src/model/create_admin_instruction_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/create_response_ai_acceptance_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/daily_sales_record.dart';
 import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/event_log.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_create_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_summary_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_time_series_point_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_time_series_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/gender_normalizer_output.dart';
 import 'package:perfumegpt_ai_api_client/src/model/grouped_survey_question_answer_detail_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/hybrid_search_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_batch200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_batch200_response_all_of_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_log_by_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_report_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_report_logs200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_stock200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_stock200_response_all_of_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_by_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_for_restock200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_structured_ai_inventory_report200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_log.dart';
+import 'package:perfumegpt_ai_api_client/src/model/inventory_stock_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_aggregated_user_summary_report200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_all_user_logs200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_all_user_logs_summaries200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_event_logs_summary200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_event_logs_time_series200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response_all_of_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/message_dto.dart';
 import 'package:perfumegpt_ai_api_client/src/model/message_request_dto.dart';
+import 'package:perfumegpt_ai_api_client/src/model/normalized_query_filters.dart';
+import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_all_orders200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_all_orders200_response_all_of_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_structured_ai_order_summary200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/order_list_item_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/origin_normalizer_output.dart';
 import 'package:perfumegpt_ai_api_client/src/model/paged_result.dart';
+import 'package:perfumegpt_ai_api_client/src/model/price_normalizer_output.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_attribute_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_card_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_card_variant_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_best_selling_products200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_best_selling_products200_response_all_of_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_product_with_variants200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_hybrid_search200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_semantic_search200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_semantic_search200_response_all_of_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_variant_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_view_log_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_with_variants_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/profile_controller_get_own_profile200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/profile_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_all_review_logs200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_reviews200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_reviews200_response_all_of_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_structured_review_summary_by_variant_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/review_list_item_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/review_log.dart';
 import 'package:perfumegpt_ai_api_client/src/model/sales_metrics.dart';
 import 'package:perfumegpt_ai_api_client/src/model/search_text_log_request.dart';
@@ -80,6 +110,7 @@ import 'package:perfumegpt_ai_api_client/src/model/user_log_summary_response.dar
 import 'package:perfumegpt_ai_api_client/src/model/variant_media_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/variant_sales_analytics_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/variant_stock_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/year_normalizer_output.dart';
 
 final _regList = RegExp(r'^List<(.*)>$');
 final _regSet = RegExp(r'^Set<(.*)>$');
@@ -162,6 +193,9 @@ ReturnType deserialize<ReturnType, BaseType>(
     case 'BaseResponseAPI':
       return BaseResponseAPI.fromJson(value as Map<String, dynamic>)
           as ReturnType;
+    case 'BatchResponse':
+      return BatchResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
     case 'ConcentrationResponse':
       return ConcentrationResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
@@ -172,6 +206,16 @@ ReturnType deserialize<ReturnType, BaseType>(
           as ReturnType;
     case 'ConversationControllerGetAllConversations200Response':
       return ConversationControllerGetAllConversations200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ConversationControllerGetAllConversationsPaginated200Response':
+      return ConversationControllerGetAllConversationsPaginated200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ConversationControllerGetAllConversationsPaginated200ResponseAllOfPayload':
+      return ConversationControllerGetAllConversationsPaginated200ResponseAllOfPayload.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
@@ -199,6 +243,8 @@ ReturnType deserialize<ReturnType, BaseType>(
             value as Map<String, dynamic>,
           )
           as ReturnType;
+    case 'EventLog':
+      return EventLog.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'EventLogCreateRequest':
       return EventLogCreateRequest.fromJson(value as Map<String, dynamic>)
           as ReturnType;
@@ -213,13 +259,49 @@ ReturnType deserialize<ReturnType, BaseType>(
     case 'EventLogTimeSeriesResponse':
       return EventLogTimeSeriesResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
+    case 'GenderNormalizerOutput':
+      return GenderNormalizerOutput.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
     case 'GroupedSurveyQuestionAnswerDetailResponse':
       return GroupedSurveyQuestionAnswerDetailResponse.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
+    case 'HybridSearchResponse':
+      return HybridSearchResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'InventoryControllerGetBatch200Response':
+      return InventoryControllerGetBatch200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'InventoryControllerGetBatch200ResponseAllOfPayload':
+      return InventoryControllerGetBatch200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
     case 'InventoryControllerGetInventoryLogById200Response':
       return InventoryControllerGetInventoryLogById200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'InventoryControllerGetInventoryReportLogs200Response':
+      return InventoryControllerGetInventoryReportLogs200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload':
+      return InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'InventoryControllerGetInventoryStock200Response':
+      return InventoryControllerGetInventoryStock200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'InventoryControllerGetInventoryStock200ResponseAllOfPayload':
+      return InventoryControllerGetInventoryStock200ResponseAllOfPayload.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
@@ -240,6 +322,9 @@ ReturnType deserialize<ReturnType, BaseType>(
           as ReturnType;
     case 'InventoryLog':
       return InventoryLog.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'InventoryStockResponse':
+      return InventoryStockResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
     case 'LogControllerGetAggregatedUserSummaryReport200Response':
       return LogControllerGetAggregatedUserSummaryReport200Response.fromJson(
             value as Map<String, dynamic>,
@@ -270,18 +355,45 @@ ReturnType deserialize<ReturnType, BaseType>(
             value as Map<String, dynamic>,
           )
           as ReturnType;
+    case 'LogControllerGetPagedEventLogs200ResponseAllOfPayload':
+      return LogControllerGetPagedEventLogs200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
     case 'MessageDto':
       return MessageDto.fromJson(value as Map<String, dynamic>) as ReturnType;
     case 'MessageRequestDto':
       return MessageRequestDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'NormalizedQueryFilters':
+      return NormalizedQueryFilters.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OrderControllerGetAllOrders200Response':
+      return OrderControllerGetAllOrders200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'OrderControllerGetAllOrders200ResponseAllOfPayload':
+      return OrderControllerGetAllOrders200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
           as ReturnType;
     case 'OrderControllerGetStructuredAIOrderSummary200Response':
       return OrderControllerGetStructuredAIOrderSummary200Response.fromJson(
             value as Map<String, dynamic>,
           )
           as ReturnType;
+    case 'OrderListItemResponse':
+      return OrderListItemResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OriginNormalizerOutput':
+      return OriginNormalizerOutput.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
     case 'PagedResult':
       return PagedResult.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'PriceNormalizerOutput':
+      return PriceNormalizerOutput.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
     case 'ProductAttributeResponse':
       return ProductAttributeResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
@@ -296,10 +408,43 @@ ReturnType deserialize<ReturnType, BaseType>(
             value as Map<String, dynamic>,
           )
           as ReturnType;
+    case 'ProductControllerGetAllProducts200ResponseAllOfPayload':
+      return ProductControllerGetAllProducts200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProductControllerGetBestSellingProducts200Response':
+      return ProductControllerGetBestSellingProducts200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProductControllerGetBestSellingProducts200ResponseAllOfPayload':
+      return ProductControllerGetBestSellingProducts200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
     case 'ProductControllerGetProductWithVariants200Response':
       return ProductControllerGetProductWithVariants200Response.fromJson(
             value as Map<String, dynamic>,
           )
+          as ReturnType;
+    case 'ProductControllerGetProductsByHybridSearch200Response':
+      return ProductControllerGetProductsByHybridSearch200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProductControllerGetProductsBySemanticSearch200Response':
+      return ProductControllerGetProductsBySemanticSearch200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProductControllerGetProductsBySemanticSearch200ResponseAllOfPayload':
+      return ProductControllerGetProductsBySemanticSearch200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProductResponse':
+      return ProductResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
     case 'ProductVariantResponse':
       return ProductVariantResponse.fromJson(value as Map<String, dynamic>)
@@ -323,10 +468,23 @@ ReturnType deserialize<ReturnType, BaseType>(
             value as Map<String, dynamic>,
           )
           as ReturnType;
+    case 'ReviewControllerGetReviews200Response':
+      return ReviewControllerGetReviews200Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ReviewControllerGetReviews200ResponseAllOfPayload':
+      return ReviewControllerGetReviews200ResponseAllOfPayload.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
     case 'ReviewControllerGetStructuredReviewSummaryByVariantId200Response':
       return ReviewControllerGetStructuredReviewSummaryByVariantId200Response.fromJson(
             value as Map<String, dynamic>,
           )
+          as ReturnType;
+    case 'ReviewListItemResponse':
+      return ReviewListItemResponse.fromJson(value as Map<String, dynamic>)
           as ReturnType;
     case 'ReviewLog':
       return ReviewLog.fromJson(value as Map<String, dynamic>) as ReturnType;
@@ -425,6 +583,9 @@ ReturnType deserialize<ReturnType, BaseType>(
           as ReturnType;
     case 'VariantStockResponse':
       return VariantStockResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'YearNormalizerOutput':
+      return YearNormalizerOutput.fromJson(value as Map<String, dynamic>)
           as ReturnType;
     default:
       RegExpMatch? match;

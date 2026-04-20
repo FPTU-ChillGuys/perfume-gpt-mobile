@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **code** | **String** |  | 
 **discountValue** | **num** |  | [optional] 
 **discountType** | [**DiscountType**](DiscountType.md) |  | [optional] 
-**applyType** | [**VoucherType**](VoucherType.md) |  | [optional] 
 **requiredPoints** | **int** |  | [optional] 
 **maxDiscountAmount** | **num** |  | [optional] 
 **minOrderValue** | **num** |  | [optional] 

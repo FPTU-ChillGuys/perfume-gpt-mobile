@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **orderControllerGetAllOrders**
-> LogControllerGetPagedEventLogs200Response orderControllerGetAllOrders(pageNumber, pageSize, sortOrder, isDescending, status, type, paymentStatus, fromDate, toDate, searchTerm)
+> OrderControllerGetAllOrders200Response orderControllerGetAllOrders(pageNumber, pageSize, sortOrder, isDescending, status, type, paymentStatus, fromDate, toDate, searchTerm)
 
 Lấy danh sách tất cả đơn hàng
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogControllerGetPagedEventLogs200Response**](LogControllerGetPagedEventLogs200Response.md)
+[**OrderControllerGetAllOrders200Response**](OrderControllerGetAllOrders200Response.md)
 
 ### Authorization
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **orderControllerGetOrdersByUserId**
-> LogControllerGetPagedEventLogs200Response orderControllerGetOrdersByUserId(userId, pageNumber, pageSize, sortOrder, isDescending, status, type, paymentStatus, fromDate, toDate, searchTerm)
+> OrderControllerGetAllOrders200Response orderControllerGetOrdersByUserId(userId, pageNumber, pageSize, sortOrder, isDescending, status, type, paymentStatus, fromDate, toDate, searchTerm)
 
 Lấy đơn hàng theo user ID
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogControllerGetPagedEventLogs200Response**](LogControllerGetPagedEventLogs200Response.md)
+[**OrderControllerGetAllOrders200Response**](OrderControllerGetAllOrders200Response.md)
 
 ### Authorization
 

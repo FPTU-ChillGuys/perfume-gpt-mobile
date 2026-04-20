@@ -71,7 +71,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **productControllerGetAllProductsWithVariants**
-> ProductControllerGetAllProducts200Response productControllerGetAllProductsWithVariants(pageNumber, pageSize, sortOrder, isDescending)
+> ProductControllerGetProductsBySemanticSearch200Response productControllerGetAllProductsWithVariants(pageNumber, pageSize, sortOrder, isDescending)
 
 [TEST] Lấy danh sách sản phẩm kèm toàn bộ variants
 
@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProductControllerGetAllProducts200Response**](ProductControllerGetAllProducts200Response.md)
+[**ProductControllerGetProductsBySemanticSearch200Response**](ProductControllerGetProductsBySemanticSearch200Response.md)
 
 ### Authorization
 
@@ -118,7 +118,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **productControllerGetBestSellingProducts**
-> ProductControllerGetAllProducts200Response productControllerGetBestSellingProducts(pageNumber, pageSize, sortOrder, isDescending)
+> ProductControllerGetBestSellingProducts200Response productControllerGetBestSellingProducts(pageNumber, pageSize, sortOrder, isDescending)
 
 [TEST] Lấy danh sách sản phẩm bán chạy
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProductControllerGetAllProducts200Response**](ProductControllerGetAllProducts200Response.md)
+[**ProductControllerGetBestSellingProducts200Response**](ProductControllerGetBestSellingProducts200Response.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **productControllerGetNewestProductsWithVariants**
-> ProductControllerGetAllProducts200Response productControllerGetNewestProductsWithVariants(pageNumber, pageSize, sortOrder, isDescending)
+> ProductControllerGetProductsBySemanticSearch200Response productControllerGetNewestProductsWithVariants(pageNumber, pageSize, sortOrder, isDescending)
 
 [TEST] Lấy danh sách sản phẩm mới nhất
 
@@ -198,7 +198,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProductControllerGetAllProducts200Response**](ProductControllerGetAllProducts200Response.md)
+[**ProductControllerGetProductsBySemanticSearch200Response**](ProductControllerGetProductsBySemanticSearch200Response.md)
 
 ### Authorization
 
@@ -253,7 +253,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **productControllerGetProductsByAiSearch**
-> ProductControllerGetAllProducts200Response productControllerGetProductsByAiSearch(pageNumber, pageSize, sortOrder, isDescending, searchText)
+> ProductControllerGetProductsBySemanticSearch200Response productControllerGetProductsByAiSearch(pageNumber, pageSize, sortOrder, isDescending, searchText)
 
 Tìm kiếm sản phẩm bằng semantic search v2 (AI extraction)
 
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProductControllerGetAllProducts200Response**](ProductControllerGetAllProducts200Response.md)
+[**ProductControllerGetProductsBySemanticSearch200Response**](ProductControllerGetProductsBySemanticSearch200Response.md)
 
 ### Authorization
 
@@ -302,7 +302,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **productControllerGetProductsByHybridSearch**
-> ProductControllerGetAllProducts200Response productControllerGetProductsByHybridSearch(pageNumber, pageSize, sortOrder, isDescending, searchText)
+> ProductControllerGetProductsByHybridSearch200Response productControllerGetProductsByHybridSearch(pageNumber, pageSize, sortOrder, isDescending, searchText)
 
 Hybrid Search v4 - Kết hợp Query Layer (hard filters) và Vector Layer (similarity)
 
@@ -337,7 +337,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProductControllerGetAllProducts200Response**](ProductControllerGetAllProducts200Response.md)
+[**ProductControllerGetProductsByHybridSearch200Response**](ProductControllerGetProductsByHybridSearch200Response.md)
 
 ### Authorization
 
@@ -351,7 +351,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **productControllerGetProductsByParsedSearch**
-> ProductControllerGetAllProducts200Response productControllerGetProductsByParsedSearch(pageNumber, pageSize, sortOrder, isDescending, searchText)
+> ProductControllerGetProductsBySemanticSearch200Response productControllerGetProductsByParsedSearch(pageNumber, pageSize, sortOrder, isDescending, searchText)
 
 Tìm kiếm sản phẩm bằng parser path (parse -> query)
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProductControllerGetAllProducts200Response**](ProductControllerGetAllProducts200Response.md)
+[**ProductControllerGetProductsBySemanticSearch200Response**](ProductControllerGetProductsBySemanticSearch200Response.md)
 
 ### Authorization
 
@@ -400,7 +400,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **productControllerGetProductsBySemanticSearch**
-> ProductControllerGetAllProducts200Response productControllerGetProductsBySemanticSearch(pageNumber, pageSize, sortOrder, isDescending, searchText)
+> ProductControllerGetProductsBySemanticSearch200Response productControllerGetProductsBySemanticSearch(pageNumber, pageSize, sortOrder, isDescending, searchText)
 
 Tìm kiếm sản phẩm bằng semantic search
 
@@ -435,7 +435,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProductControllerGetAllProducts200Response**](ProductControllerGetAllProducts200Response.md)
+[**ProductControllerGetProductsBySemanticSearch200Response**](ProductControllerGetProductsBySemanticSearch200Response.md)
 
 ### Authorization
 
@@ -449,7 +449,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **productControllerGetProductsBySemanticSearchWithVariants**
-> ProductControllerGetAllProducts200Response productControllerGetProductsBySemanticSearchWithVariants(pageNumber, pageSize, sortOrder, isDescending, searchText)
+> ProductControllerGetProductsBySemanticSearch200Response productControllerGetProductsBySemanticSearchWithVariants(pageNumber, pageSize, sortOrder, isDescending, searchText)
 
 Tìm kiếm sản phẩm bằng semantic search, kết quả kèm toàn bộ variants
 
@@ -484,7 +484,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProductControllerGetAllProducts200Response**](ProductControllerGetAllProducts200Response.md)
+[**ProductControllerGetProductsBySemanticSearch200Response**](ProductControllerGetProductsBySemanticSearch200Response.md)
 
 ### Authorization
 

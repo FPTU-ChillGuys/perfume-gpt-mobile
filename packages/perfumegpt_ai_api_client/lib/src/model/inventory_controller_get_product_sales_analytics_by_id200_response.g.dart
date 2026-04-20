@@ -16,11 +16,7 @@ abstract class _$InventoryControllerGetProductSalesAnalyticsById200ResponseCWPro
   );
 
   InventoryControllerGetProductSalesAnalyticsById200Response payload(
-    Object? payload,
-  );
-
-  InventoryControllerGetProductSalesAnalyticsById200Response data(
-    VariantSalesAnalyticsResponse? data,
+    VariantSalesAnalyticsResponse? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -33,8 +29,7 @@ abstract class _$InventoryControllerGetProductSalesAnalyticsById200ResponseCWPro
   InventoryControllerGetProductSalesAnalyticsById200Response call({
     bool success,
     Object? error,
-    Object? payload,
-    VariantSalesAnalyticsResponse? data,
+    VariantSalesAnalyticsResponse? payload,
   });
 }
 
@@ -61,13 +56,8 @@ class _$InventoryControllerGetProductSalesAnalyticsById200ResponseCWProxyImpl
 
   @override
   InventoryControllerGetProductSalesAnalyticsById200Response payload(
-    Object? payload,
+    VariantSalesAnalyticsResponse? payload,
   ) => call(payload: payload);
-
-  @override
-  InventoryControllerGetProductSalesAnalyticsById200Response data(
-    VariantSalesAnalyticsResponse? data,
-  ) => call(data: data);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -81,7 +71,6 @@ class _$InventoryControllerGetProductSalesAnalyticsById200ResponseCWProxyImpl
     Object? success = const $CopyWithPlaceholder(),
     Object? error = const $CopyWithPlaceholder(),
     Object? payload = const $CopyWithPlaceholder(),
-    Object? data = const $CopyWithPlaceholder(),
   }) {
     return InventoryControllerGetProductSalesAnalyticsById200Response(
       success: success == const $CopyWithPlaceholder() || success == null
@@ -95,11 +84,7 @@ class _$InventoryControllerGetProductSalesAnalyticsById200ResponseCWProxyImpl
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as Object?,
-      data: data == const $CopyWithPlaceholder()
-          ? _value.data
-          // ignore: cast_nullable_to_non_nullable
-          : data as VariantSalesAnalyticsResponse?,
+          : payload as VariantSalesAnalyticsResponse?,
     );
   }
 }
@@ -131,9 +116,8 @@ _$InventoryControllerGetProductSalesAnalyticsById200ResponseFromJson(
     final val = InventoryControllerGetProductSalesAnalyticsById200Response(
       success: $checkedConvert('success', (v) => v as bool),
       error: $checkedConvert('error', (v) => v),
-      payload: $checkedConvert('payload', (v) => v),
-      data: $checkedConvert(
-        'data',
+      payload: $checkedConvert(
+        'payload',
         (v) => v == null
             ? null
             : VariantSalesAnalyticsResponse.fromJson(v as Map<String, dynamic>),
@@ -149,6 +133,5 @@ _$InventoryControllerGetProductSalesAnalyticsById200ResponseToJson(
 ) => <String, dynamic>{
   'success': instance.success,
   'error': ?instance.error,
-  'payload': ?instance.payload,
-  'data': ?instance.data?.toJson(),
+  'payload': ?instance.payload?.toJson(),
 };

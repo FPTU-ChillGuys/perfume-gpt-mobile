@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:perfumegpt_ai_api_client/src/model/paged_result.dart';
+import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response_all_of_payload.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -23,9 +23,7 @@ class LogControllerGetPagedEventLogs200Response {
 
     this.error,
 
-    this.details,
-
-    this.data,
+    this.payload,
   });
 
   /// Kết quả xử lý
@@ -36,12 +34,8 @@ class LogControllerGetPagedEventLogs200Response {
   @JsonKey(name: r'error', required: false, includeIfNull: false)
   final Object? error;
 
-  /// Chi tiết lỗi
-  @JsonKey(name: r'details', required: false, includeIfNull: false)
-  final Object? details;
-
-  @JsonKey(name: r'data', required: false, includeIfNull: false)
-  final PagedResult? data;
+  @JsonKey(name: r'payload', required: false, includeIfNull: false)
+  final LogControllerGetPagedEventLogs200ResponseAllOfPayload? payload;
 
   @override
   bool operator ==(Object other) =>
@@ -49,15 +43,13 @@ class LogControllerGetPagedEventLogs200Response {
       other is LogControllerGetPagedEventLogs200Response &&
           other.success == success &&
           other.error == error &&
-          other.details == details &&
-          other.data == data;
+          other.payload == payload;
 
   @override
   int get hashCode =>
       success.hashCode +
       (error == null ? 0 : error.hashCode) +
-      (details == null ? 0 : details.hashCode) +
-      data.hashCode;
+      payload.hashCode;
 
   factory LogControllerGetPagedEventLogs200Response.fromJson(
     Map<String, dynamic> json,
