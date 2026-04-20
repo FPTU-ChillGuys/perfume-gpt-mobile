@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:flutter/rendering.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart' as ai;
 import '../../core/utils/image_url_helper.dart';
