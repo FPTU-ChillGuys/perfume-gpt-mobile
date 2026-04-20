@@ -671,7 +671,9 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
     setState(() => _isSyncing = true);
     try {
       await ref.read(returnRequestRepositoryProvider).syncShippingStatus();
+      ref.invalidate(returnRequestDetailProvider(widget.requestId));
       ref.invalidate(returnRequestWithOrderProvider(widget.requestId));
+      await ref.read(returnRequestWithOrderProvider(widget.requestId).future);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Đã đồng bộ trạng thái vận chuyển'), backgroundColor: Colors.green),

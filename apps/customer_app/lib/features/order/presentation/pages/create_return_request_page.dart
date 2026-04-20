@@ -494,9 +494,9 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
           const SizedBox(height: 14),
           Row(
             children: [
-              Expanded(child: _pickBtn(Icons.photo_rounded, 'Ảnh (${_images.length})', _pickImages)),
+              Expanded(child: _pickBtn(Icons.photo_rounded, 'Ảnh', _pickImages)),
               const SizedBox(width: 10),
-              Expanded(child: _pickBtn(Icons.videocam_rounded, 'Video (${_videos.length})', _pickVideos,
+              Expanded(child: _pickBtn(Icons.videocam_rounded, 'Video', _pickVideos,
                   highlight: _videos.isEmpty)),
             ],
           ),
