@@ -8,6 +8,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/image_url_helper.dart';
 import '../../../../domain/entities/order.dart';
 import '../../../../domain/entities/return_request.dart';
+import '../../../../domain/repositories/return_request_repository.dart';
 import '../providers/return_request_providers.dart';
 
 final _currencyFmt = NumberFormat.currency(locale: 'vi_VN', symbol: '₫', decimalDigits: 0);
@@ -23,8 +24,8 @@ class ReturnRequestDetailPage extends ConsumerStatefulWidget {
 
 class _State extends ConsumerState<ReturnRequestDetailPage> {
   final _noteController = TextEditingController();
-  final List<({String filename, Uint8List bytes})> _newImages = [];
-  final List<({String filename, Uint8List bytes})> _newVideos = [];
+  final List<PendingUploadMedia> _newImages = [];
+  final List<PendingUploadMedia> _newVideos = [];
   final Set<String> _removeMediaIds = {};
   bool _isSubmitting = false;
   bool _isSyncing = false;
@@ -540,7 +541,7 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
     );
   }
 
-  Widget _thumbPicked(Uint8List bytes, {required bool isVideo, required VoidCallback onRemove}) {
+  Widget _thumbPicked(Uint8List? bytes, {required bool isVideo, required VoidCallback onRemove}) {
     return Stack(
       children: [
         Container(
@@ -553,7 +554,14 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
           child: isVideo
               ? Container(color: Colors.grey.shade100,
                   child: const Center(child: Icon(Icons.videocam_rounded, size: 24, color: AppColors.textSecondary)))
-              : Image.memory(bytes, fit: BoxFit.cover),
+              : (bytes != null
+                  ? Image.memory(bytes, fit: BoxFit.cover)
+                  : Container(
+                      color: Colors.grey.shade100,
+                      child: const Center(
+                        child: Icon(Icons.image_rounded, size: 24, color: AppColors.textSecondary),
+                      ),
+                    )),
         ),
         Positioned(
           top: -2, right: -2,
@@ -615,17 +623,20 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
 
   Future<void> _pickImages() async {
     final files = await ImagePicker().pickMultiImage(imageQuality: 80);
+    final picked = <PendingUploadMedia>[];
     for (final f in files) {
       final bytes = await f.readAsBytes();
-      setState(() => _newImages.add((filename: f.name, bytes: bytes)));
+      picked.add((filename: f.name, bytes: bytes, filePath: f.path));
+    }
+    if (picked.isNotEmpty && mounted) {
+      setState(() => _newImages.addAll(picked));
     }
   }
 
   Future<void> _pickVideos() async {
     final file = await ImagePicker().pickVideo(source: ImageSource.gallery);
     if (file != null) {
-      final bytes = await file.readAsBytes();
-      setState(() => _newVideos.add((filename: file.name, bytes: bytes)));
+      setState(() => _newVideos.add((filename: file.name, bytes: null, filePath: file.path)));
     }
   }
 

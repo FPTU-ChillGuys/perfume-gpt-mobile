@@ -9,6 +9,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/image_url_helper.dart';
 import '../../../../domain/entities/order.dart';
+import '../../../../domain/repositories/return_request_repository.dart';
 import '../providers/address_provider.dart';
 import '../providers/bank_provider.dart';
 import '../providers/return_request_providers.dart';
@@ -41,8 +42,8 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   String? _selectedReason;
   final _noteController = TextEditingController();
   final Map<String, int> _selectedItems = {};
-  final List<({String filename, Uint8List bytes})> _images = [];
-  final List<({String filename, Uint8List bytes})> _videos = [];
+  final List<PendingUploadMedia> _images = [];
+  final List<PendingUploadMedia> _videos = [];
   bool _isSubmitting = false;
   bool _isRefundOnly = false;
 
@@ -533,7 +534,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
     );
   }
 
-  Widget _thumb(Uint8List bytes, {required bool isVideo, required VoidCallback onRemove}) {
+  Widget _thumb(Uint8List? bytes, {required bool isVideo, required VoidCallback onRemove}) {
     return Stack(
       children: [
         Container(
@@ -546,7 +547,14 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
           child: isVideo
               ? Container(color: Colors.grey.shade100,
                   child: const Center(child: Icon(Icons.videocam_rounded, size: 24, color: AppColors.textSecondary)))
-              : Image.memory(bytes, fit: BoxFit.cover),
+              : (bytes != null
+                  ? Image.memory(bytes, fit: BoxFit.cover)
+                  : Container(
+                      color: Colors.grey.shade100,
+                      child: const Center(
+                        child: Icon(Icons.image_rounded, size: 24, color: AppColors.textSecondary),
+                      ),
+                    )),
         ),
         Positioned(
           top: -2, right: -2,
@@ -565,17 +573,20 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
 
   Future<void> _pickImages() async {
     final files = await ImagePicker().pickMultiImage(imageQuality: 80);
+    final picked = <PendingUploadMedia>[];
     for (final f in files) {
       final bytes = await f.readAsBytes();
-      setState(() => _images.add((filename: f.name, bytes: bytes)));
+      picked.add((filename: f.name, bytes: bytes, filePath: f.path));
+    }
+    if (picked.isNotEmpty && mounted) {
+      setState(() => _images.addAll(picked));
     }
   }
 
   Future<void> _pickVideos() async {
     final file = await ImagePicker().pickVideo(source: ImageSource.gallery);
     if (file != null) {
-      final bytes = await file.readAsBytes();
-      setState(() => _videos.add((filename: file.name, bytes: bytes)));
+      setState(() => _videos.add((filename: file.name, bytes: null, filePath: file.path)));
     }
   }
 
@@ -862,7 +873,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
         provincesAsync.when(
           loading: () => _dropdownPlaceholder('Đang tải tỉnh/thành…'),
           error: (_, s) => _dropdownPlaceholder('Lỗi tải tỉnh/thành'),
-          data: (provinces) => _dropdown<ProvinceResponse>(
+          data: (provinces) => _searchableSelectField<ProvinceResponse>(
             hint: 'Tỉnh/Thành phố',
             value: _selectedProvince,
             items: provinces,
@@ -880,7 +891,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
           ref.watch(districtsProvider(_selectedProvince!.provinceID ?? 0)).when(
                 loading: () => _dropdownPlaceholder('Đang tải quận/huyện…'),
                 error: (_, s) => _dropdownPlaceholder('Lỗi tải quận/huyện'),
-                data: (districts) => _dropdown<DistrictResponse>(
+                data: (districts) => _searchableSelectField<DistrictResponse>(
                   hint: 'Quận/Huyện',
                   value: _selectedDistrict,
                   items: districts,
@@ -897,7 +908,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
           ref.watch(wardsProvider(_selectedDistrict!.districtID ?? 0)).when(
                 loading: () => _dropdownPlaceholder('Đang tải phường/xã…'),
                 error: (_, s) => _dropdownPlaceholder('Lỗi tải phường/xã'),
-                data: (wards) => _dropdown<WardResponse>(
+                data: (wards) => _searchableSelectField<WardResponse>(
                   hint: 'Phường/Xã',
                   value: _selectedWard,
                   items: wards,
@@ -912,19 +923,130 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
     );
   }
 
-  Widget _dropdown<T>({
+  Widget _searchableSelectField<T>({
     required String hint,
     required T? value,
     required List<T> items,
     required String Function(T) labelOf,
     required ValueChanged<T?> onChanged,
   }) {
-    return DropdownButtonFormField<T>(
-      initialValue: value,
-      decoration: _inputDecoration(hint),
-      isExpanded: true,
-      items: items.map((item) => DropdownMenuItem(value: item, child: Text(labelOf(item), style: const TextStyle(fontSize: 13)))).toList(),
-      onChanged: onChanged,
+    return InkWell(
+      borderRadius: BorderRadius.circular(10),
+      onTap: () async {
+        final picked = await _showSearchableSelector<T>(
+          title: hint,
+          items: items,
+          labelOf: labelOf,
+        );
+        if (picked != null) {
+          onChanged(picked);
+        }
+      },
+      child: InputDecorator(
+        decoration: _inputDecoration(hint),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                value == null ? hint : labelOf(value),
+                style: TextStyle(
+                  fontSize: 13,
+                  color: value == null ? AppColors.textSecondary : AppColors.textPrimary,
+                ),
+              ),
+            ),
+            const Icon(Icons.expand_more_rounded, color: AppColors.textSecondary),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<T?> _showSearchableSelector<T>({
+    required String title,
+    required List<T> items,
+    required String Function(T) labelOf,
+  }) async {
+    return showModalBottomSheet<T>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (ctx) {
+        var query = '';
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final filtered = items.where((item) {
+              final label = labelOf(item).toLowerCase();
+              return label.contains(query.toLowerCase());
+            }).toList();
+
+            return SafeArea(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.75,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              title,
+                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            icon: const Icon(Icons.close_rounded),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextField(
+                        autofocus: true,
+                        decoration: const InputDecoration(
+                          hintText: 'Tìm kiếm…',
+                          prefixIcon: Icon(Icons.search_rounded),
+                          border: OutlineInputBorder(),
+                          isDense: true,
+                        ),
+                        onChanged: (value) => setSheetState(() => query = value),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Expanded(
+                      child: filtered.isEmpty
+                          ? const Center(
+                              child: Text(
+                                'Không có kết quả',
+                                style: TextStyle(color: AppColors.textSecondary),
+                              ),
+                            )
+                          : ListView.separated(
+                              itemCount: filtered.length,
+                              separatorBuilder: (_, __) => const Divider(height: 1),
+                              itemBuilder: (_, index) {
+                                final item = filtered[index];
+                                return ListTile(
+                                  dense: true,
+                                  title: Text(labelOf(item), style: const TextStyle(fontSize: 14)),
+                                  onTap: () => Navigator.of(context).pop(item),
+                                );
+                              },
+                            ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 

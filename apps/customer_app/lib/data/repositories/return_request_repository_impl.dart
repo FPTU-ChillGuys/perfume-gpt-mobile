@@ -82,18 +82,22 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
 
   @override
   Future<List<String>> uploadTemporaryMedia({
-    List<({String filename, Uint8List bytes})>? images,
-    List<({String filename, Uint8List bytes})>? videos,
+    List<PendingUploadMedia>? images,
+    List<PendingUploadMedia>? videos,
   }) async {
     final formData = FormData();
     if (images != null) {
       for (final img in images) {
-        formData.files.add(MapEntry('images', MultipartFile.fromBytes(img.bytes, filename: img.filename, contentType: MediaType('image', 'jpeg'))));
+        formData.files.add(
+          MapEntry('images', await _buildMultipartFile(img, MediaType('image', 'jpeg'))),
+        );
       }
     }
     if (videos != null) {
       for (final vid in videos) {
-        formData.files.add(MapEntry('videos', MultipartFile.fromBytes(vid.bytes, filename: vid.filename, contentType: MediaType('video', 'mp4'))));
+        formData.files.add(
+          MapEntry('videos', await _buildMultipartFile(vid, MediaType('video', 'mp4'))),
+        );
       }
     }
     final response = await _dio.post(
@@ -114,6 +118,27 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
       if (data is List) items = data;
     }
     return items.map<String>((m) => (m['id'] ?? '').toString()).where((id) => id.isNotEmpty).toList();
+  }
+
+  Future<MultipartFile> _buildMultipartFile(
+    PendingUploadMedia media,
+    MediaType contentType,
+  ) async {
+    if (media.filePath != null && media.filePath!.isNotEmpty) {
+      return MultipartFile.fromFile(
+        media.filePath!,
+        filename: media.filename,
+        contentType: contentType,
+      );
+    }
+    if (media.bytes != null) {
+      return MultipartFile.fromBytes(
+        media.bytes!,
+        filename: media.filename,
+        contentType: contentType,
+      );
+    }
+    throw ArgumentError('Media must provide bytes or filePath');
   }
 
   @override

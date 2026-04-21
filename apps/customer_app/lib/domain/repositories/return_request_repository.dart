@@ -1,6 +1,12 @@
 import 'dart:typed_data';
 import '../entities/return_request.dart';
 
+typedef PendingUploadMedia = ({
+  String filename,
+  Uint8List? bytes,
+  String? filePath,
+});
+
 abstract class ReturnRequestRepository {
   Future<PaginatedReturnRequests> getMyRequests({
     String? status,
@@ -16,8 +22,8 @@ abstract class ReturnRequestRepository {
     List<String>? removeMediaIds,
   });
   Future<List<String>> uploadTemporaryMedia({
-    List<({String filename, Uint8List bytes})>? images,
-    List<({String filename, Uint8List bytes})>? videos,
+    List<PendingUploadMedia>? images,
+    List<PendingUploadMedia>? videos,
   });
   Future<void> syncShippingStatus();
   Future<String?> getOrderInfoUrl(String trackingNumber);

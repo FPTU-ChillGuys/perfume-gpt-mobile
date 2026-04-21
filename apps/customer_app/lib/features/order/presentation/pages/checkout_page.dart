@@ -828,22 +828,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   Widget _buildProvinceDropdown() {
     final provincesAsync = ref.watch(provincesProvider);
     return provincesAsync.when(
-      data: (provinces) => DropdownButtonFormField<ProvinceResponse>(
-        initialValue: _selectedProvince,
-        isExpanded: true,
-        decoration: const InputDecoration(
-          labelText: 'Tỉnh/Thành phố *',
-          prefixIcon: Icon(Icons.location_city_outlined),
-          border: OutlineInputBorder(),
-        ),
-        items: provinces
-            .map(
-              (p) => DropdownMenuItem(
-                value: p,
-                child: Text(p.provinceName, overflow: TextOverflow.ellipsis),
-              ),
-            )
-            .toList(),
+      data: (provinces) => _searchableAddressField<ProvinceResponse>(
+        label: 'Tỉnh/Thành phố *',
+        icon: Icons.location_city_outlined,
+        value: _selectedProvince,
+        items: provinces,
+        labelOf: (p) => p.provinceName,
         onChanged: (value) {
           setState(() {
             _selectedProvince = value;
@@ -873,22 +863,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       districtsProvider(_selectedProvince!.provinceID!),
     );
     return districtsAsync.when(
-      data: (districts) => DropdownButtonFormField<DistrictResponse>(
-        initialValue: _selectedDistrict,
-        isExpanded: true,
-        decoration: const InputDecoration(
-          labelText: 'Quận/Huyện *',
-          prefixIcon: Icon(Icons.map_outlined),
-          border: OutlineInputBorder(),
-        ),
-        items: districts
-            .map(
-              (d) => DropdownMenuItem(
-                value: d,
-                child: Text(d.districtName, overflow: TextOverflow.ellipsis),
-              ),
-            )
-            .toList(),
+      data: (districts) => _searchableAddressField<DistrictResponse>(
+        label: 'Quận/Huyện *',
+        icon: Icons.map_outlined,
+        value: _selectedDistrict,
+        items: districts,
+        labelOf: (d) => d.districtName,
         onChanged: (value) {
           setState(() {
             _selectedDistrict = value;
@@ -915,22 +895,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 
     final wardsAsync = ref.watch(wardsProvider(_selectedDistrict!.districtID!));
     return wardsAsync.when(
-      data: (wards) => DropdownButtonFormField<WardResponse>(
-        initialValue: _selectedWard,
-        isExpanded: true,
-        decoration: const InputDecoration(
-          labelText: 'Phường/Xã *',
-          prefixIcon: Icon(Icons.place_outlined),
-          border: OutlineInputBorder(),
-        ),
-        items: wards
-            .map(
-              (w) => DropdownMenuItem(
-                value: w,
-                child: Text(w.wardName, overflow: TextOverflow.ellipsis),
-              ),
-            )
-            .toList(),
+      data: (wards) => _searchableAddressField<WardResponse>(
+        label: 'Phường/Xã *',
+        icon: Icons.place_outlined,
+        value: _selectedWard,
+        items: wards,
+        labelOf: (w) => w.wardName,
         onChanged: (value) {
           setState(() => _selectedWard = value);
           _refreshTotals();
@@ -941,6 +911,140 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         label: 'Phường/Xã *',
         message: 'Không thể tải danh sách phường/xã',
       ),
+    );
+  }
+
+  Widget _searchableAddressField<T>({
+    required String label,
+    required IconData icon,
+    required T? value,
+    required List<T> items,
+    required String Function(T) labelOf,
+    required ValueChanged<T?> onChanged,
+  }) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(4),
+      onTap: () async {
+        final picked = await _showSearchableAddressPicker<T>(
+          title: label,
+          items: items,
+          labelOf: labelOf,
+        );
+        if (picked != null) {
+          onChanged(picked);
+        }
+      },
+      child: InputDecorator(
+        decoration: InputDecoration(
+          labelText: label,
+          prefixIcon: Icon(icon),
+          border: const OutlineInputBorder(),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                value == null ? 'Chọn $label' : labelOf(value),
+                style: TextStyle(
+                  color: value == null ? Colors.grey.shade600 : Colors.black87,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            const Icon(Icons.expand_more_rounded, color: Colors.grey),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<T?> _showSearchableAddressPicker<T>({
+    required String title,
+    required List<T> items,
+    required String Function(T) labelOf,
+  }) async {
+    return showModalBottomSheet<T>(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (ctx) {
+        var query = '';
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final filtered = items.where((item) {
+              final label = labelOf(item).toLowerCase();
+              return label.contains(query.toLowerCase());
+            }).toList();
+
+            return SafeArea(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.75,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 12, 8, 8),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              title,
+                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            icon: const Icon(Icons.close_rounded),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextField(
+                        autofocus: true,
+                        decoration: const InputDecoration(
+                          hintText: 'Tìm kiếm…',
+                          prefixIcon: Icon(Icons.search_rounded),
+                          border: OutlineInputBorder(),
+                          isDense: true,
+                        ),
+                        onChanged: (value) => setSheetState(() => query = value),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Expanded(
+                      child: filtered.isEmpty
+                          ? const Center(
+                              child: Text(
+                                'Không có kết quả',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            )
+                          : ListView.separated(
+                              itemCount: filtered.length,
+                              separatorBuilder: (_, __) => const Divider(height: 1),
+                              itemBuilder: (_, index) {
+                                final item = filtered[index];
+                                return ListTile(
+                                  title: Text(
+                                    labelOf(item),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  onTap: () => Navigator.of(context).pop(item),
+                                );
+                              },
+                            ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
