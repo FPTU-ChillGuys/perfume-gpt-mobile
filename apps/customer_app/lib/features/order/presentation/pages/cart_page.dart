@@ -1291,7 +1291,7 @@ class _VoucherPickerCard extends StatelessWidget {
                             ),
                             decoration: BoxDecoration(
                               color: voucher.isMemberOnly
-                                  ? Colors.deepPurple.withValues(alpha: 0.12)
+                                  ? AppColors.primaryLight
                                   : Colors.teal.withValues(alpha: 0.12),
                               borderRadius: BorderRadius.circular(4),
                             ),
@@ -1301,7 +1301,7 @@ class _VoucherPickerCard extends StatelessWidget {
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600,
                                 color: voucher.isMemberOnly
-                                    ? Colors.deepPurple
+                                    ? AppColors.primaryDark
                                     : Colors.teal,
                               ),
                             ),

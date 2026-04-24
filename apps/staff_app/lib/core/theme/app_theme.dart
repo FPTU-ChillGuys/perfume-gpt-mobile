@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const Color _seedColor = Colors.deepPurple;
+  static const Color _seedColor = Color(0xFFC8372D);
 
   static ThemeData get lightTheme {
     return ThemeData(

@@ -6,12 +6,12 @@ class AppColors {
   AppColors._();
 
   // ── Brand ─────────────────────────────────────────────────────────────
-  static const Color primary = Color(0xFF5E35B1);       // Deep Purple 600
-  static const Color primaryDark = Color(0xFF4527A0);    // Deep Purple 800
-  static const Color primaryDarker = Color(0xFF311B92);  // Deep Purple 900
-  static const Color accent = Color(0xFF7C4DFF);         // Deep Purple Accent
-  static const Color primaryLight = Color(0xFFEDE7F6);   // Deep Purple 50
-  static const Color primaryBorder = Color(0xFFD1C4E9);  // Deep Purple 100
+  static const Color primary = Color(0xFFC8372D);       // Red
+  static const Color primaryDark = Color(0xFFAA2D23);    // Red Dark
+  static const Color primaryDarker = Color(0xFF8C221A);  // Red Darker
+  static const Color accent = Color(0xFFE53935);         // Red Accent
+  static const Color primaryLight = Color(0xFFFFEBEA);   // Red 50
+  static const Color primaryBorder = Color(0xFFFFCDD2);  // Red 100
 
   // ── Surface / neutral ─────────────────────────────────────────────────
   static const Color surface = Color(0xFFF8FAFC);
@@ -22,15 +22,15 @@ class AppColors {
   static const Color skeleton = Color(0xFFF1F5F9);
 
   // ── Hero gradient ─────────────────────────────────────────────────────
-  static const Color heroStart = Color(0xFF4527A0);
-  static const Color heroEnd = Color(0xFF311B92);
+  static const Color heroStart = Color(0xFFAA2D23);
+  static const Color heroEnd = Color(0xFF8C221A);
 
   // ── Status colors (semantic — keep these separate) ────────────────────
   static const Color statusPending = Colors.orange;
-  static const Color statusPreparing = Color(0xFF5E35B1);
+  static const Color statusPreparing = Color(0xFFC8372D);
   static const Color statusReadyToPick = Color(0xFF1565C0);   // Blue 800
-  static const Color statusProcessing = Color(0xFF5E35B1);
-  static const Color statusDelivering = Color(0xFF7C4DFF);
+  static const Color statusProcessing = Color(0xFFC8372D);
+  static const Color statusDelivering = Color(0xFFE53935);
   static const Color statusDelivered = Colors.green;
   static const Color statusCancelled = Colors.red;
   static const Color statusReturning = Colors.deepOrange;

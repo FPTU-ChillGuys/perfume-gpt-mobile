@@ -442,7 +442,7 @@ class _UserVoucherCard extends StatelessWidget {
                               padding: const EdgeInsets.only(right: 4),
                               child: _Chip(
                                 label: 'Member',
-                                color: Colors.deepPurple,
+                                color: AppColors.primaryDark,
                               ),
                             )
                           else

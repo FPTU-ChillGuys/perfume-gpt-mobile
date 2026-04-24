@@ -335,7 +335,7 @@ class _PaginationBar extends StatelessWidget {
     case ReturnRequestStatus.inspecting:
       return (label: 'Đang kiểm tra', color: Colors.blue.shade600);
     case ReturnRequestStatus.readyForRefund:
-      return (label: 'Chờ hoàn tiền', color: Colors.purple.shade600);
+      return (label: 'Chờ hoàn tiền', color: Colors.deepOrange);
     case ReturnRequestStatus.completed:
       return (label: 'Đã hoàn tiền', color: Colors.teal.shade600);
     case ReturnRequestStatus.rejected:

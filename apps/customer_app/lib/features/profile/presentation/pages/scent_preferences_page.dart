@@ -332,7 +332,7 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
           // ── Olfactory Families Card ──
           if (hasFamilies) ...[
             _ReadCard(
-              color: Colors.deepPurple,
+              color: AppColors.primary,
               icon: Icons.local_florist_outlined,
               label: 'NHÓM HƯƠNG YÊU THÍCH',
               child: Wrap(
@@ -343,7 +343,7 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                           label: Text(f.name),
                           labelStyle: const TextStyle(
                               fontSize: 12, fontWeight: FontWeight.w500),
-                          backgroundColor: Colors.deepPurple.shade50,
+                          backgroundColor: AppColors.primaryLight,
                           side: BorderSide.none,
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
@@ -559,7 +559,7 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
 
           // ═══ OLFACTORY FAMILIES ═══
           _EditCard(
-            color: Colors.deepPurple,
+            color: AppColors.primary,
             icon: Icons.local_florist_outlined,
             title: 'Nhóm hương yêu thích',
             subtitle: 'Chọn các nhóm hương bạn yêu thích',
@@ -574,7 +574,7 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                       return _ToggleChip(
                         label: f.name,
                         selected: selected,
-                        color: Colors.deepPurple,
+                        color: AppColors.primary,
                         onTap: () => _toggleFamily(f.id),
                       );
                     }).toList(),
