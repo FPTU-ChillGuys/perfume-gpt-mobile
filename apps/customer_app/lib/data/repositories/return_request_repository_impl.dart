@@ -30,6 +30,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
         pageNumber: page,
         pageSize: pageSize,
         sortBy: 'CreatedAt',
+        sortOrder: 'desc',
         isDescending: true,
       );
       final paged = response.data?.payload;

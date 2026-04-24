@@ -32,6 +32,8 @@ class _State extends ConsumerState<ReturnRequestListPage>
   late final TabController _tabCtrl;
   int _page = 1;
   int _pageSize = 10;
+  // Track previous index to detect real tab changes
+  int _prevTabIndex = 0;
 
   String? get _status => _statusTabs[_tabCtrl.index].$1;
 
@@ -39,13 +41,22 @@ class _State extends ConsumerState<ReturnRequestListPage>
   void initState() {
     super.initState();
     _tabCtrl = TabController(length: _statusTabs.length, vsync: this);
-    _tabCtrl.addListener(() {
-      if (!_tabCtrl.indexIsChanging) setState(() => _page = 1);
-    });
+    // Use animation listener for immediate index-change detection
+    _tabCtrl.animation?.addListener(_onTabAnimated);
+  }
+
+  void _onTabAnimated() {
+    final newIndex = _tabCtrl.index;
+    if (newIndex != _prevTabIndex) {
+      _prevTabIndex = newIndex;
+      // Reset to page 1 immediately when the active tab changes
+      setState(() => _page = 1);
+    }
   }
 
   @override
   void dispose() {
+    _tabCtrl.animation?.removeListener(_onTabAnimated);
     _tabCtrl.dispose();
     super.dispose();
   }

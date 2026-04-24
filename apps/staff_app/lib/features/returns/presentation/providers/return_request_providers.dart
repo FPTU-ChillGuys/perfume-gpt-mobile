@@ -18,6 +18,8 @@ Future<PagedResultOfOrderReturnRequestResponse> staffReturnRequests(
         status: status,
         pageNumber: pageNumber,
         pageSize: pageSize,
+        sortBy: 'CreatedAt',
+        sortOrder: 'desc',
         isDescending: true,
       );
   return response.data!.payload!;
