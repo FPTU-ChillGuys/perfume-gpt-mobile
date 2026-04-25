@@ -68,7 +68,13 @@ class AppRouter {
         path: '/checkout',
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>?;
-          return CheckoutPage(voucherCodeFromCart: extra?['voucherCode'] as String?);
+          return CheckoutPage(
+            voucherCodeFromCart: extra?['voucherCode'] as String?,
+            selectedItemIdsFromCart:
+                (extra?['selectedItemIds'] as List?)
+                    ?.map((e) => e.toString())
+                    .toList(),
+          );
         },
       ),
       GoRoute(
@@ -95,9 +101,12 @@ class AppRouter {
           final extra = state.extra as Map<String, dynamic>;
           return CancelOrderPage(
             orderId: extra['orderId'] as String,
+            orderStatus: extra['orderStatus'] as String?,
+            showBankInfoForStatus: extra['showBankInfoForStatus'] as bool?,
             mode: extra['mode'] as String,
             note: extra['note'] as String,
             needRefund: extra['needRefund'] as bool,
+            loseDepositWarning: (extra['loseDepositWarning'] as bool?) ?? false,
           );
         },
       ),

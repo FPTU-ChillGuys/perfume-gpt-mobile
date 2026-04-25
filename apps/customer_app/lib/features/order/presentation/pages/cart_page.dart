@@ -41,12 +41,36 @@ class _CartPageState extends ConsumerState<CartPage> {
         .toSet();
   }
 
+  void _clearVoucherOnCartChange() {
+    if (_appliedVoucherCode == null) return;
+    setState(() {
+      _appliedVoucherCode = null;
+      _voucherError = null;
+      _voucherController.clear();
+      _computedTotal = null;
+    });
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Mã giảm giá đã bị xóa do thay đổi giỏ hàng'),
+        ),
+      );
+    }
+  }
+
   void _handleToggleItem(String? cartItemId) {
     if (cartItemId == null || cartItemId.isEmpty) return;
+    final selectedIds = ref.read(selectedCartItemIdsProvider);
+    if (selectedIds.contains(cartItemId)) {
+      _clearVoucherOnCartChange();
+    }
     ref.read(selectedCartItemIdsProvider.notifier).toggle(cartItemId);
   }
 
   void _handleToggleSelectAll(bool checked, Set<String> allIds) {
+    if (!checked) {
+      _clearVoucherOnCartChange();
+    }
     ref
         .read(selectedCartItemIdsProvider.notifier)
         .update(checked ? allIds : {});
@@ -74,6 +98,7 @@ class _CartPageState extends ConsumerState<CartPage> {
       ),
     );
     if (confirm == true) {
+      _clearVoucherOnCartChange();
       await ref.read(cartProvider.notifier).removeItem(cartItemId);
     }
   }
@@ -101,6 +126,7 @@ class _CartPageState extends ConsumerState<CartPage> {
     if (confirm == true) {
       setState(() => _isClearing = true);
       try {
+        _clearVoucherOnCartChange();
         await ref.read(cartProvider.notifier).clearCart();
         ref.read(selectedCartItemIdsProvider.notifier).clear();
         _hasInitializedSelection = false;
@@ -395,6 +421,7 @@ class _CartPageState extends ConsumerState<CartPage> {
                       isSelected: isSelected,
                       onToggle: () => _handleToggleItem(item.cartItemId),
                       onDelete: () => _confirmDeleteItem(item),
+                      onBeforeDecrease: _clearVoucherOnCartChange,
                     );
                   },
                 ),
@@ -413,7 +440,10 @@ class _CartPageState extends ConsumerState<CartPage> {
                   .length,
               onCheckout: () => context.push(
                 '/checkout',
-                extra: {'voucherCode': _appliedVoucherCode},
+                extra: {
+                  'voucherCode': _appliedVoucherCode,
+                  'selectedItemIds': selectedIds.toList(),
+                },
               ),
               // Voucher props
               voucherController: _voucherController,
@@ -435,12 +465,14 @@ class _CartItemCard extends ConsumerWidget {
   final bool isSelected;
   final VoidCallback onToggle;
   final VoidCallback onDelete;
+  final VoidCallback onBeforeDecrease;
 
   const _CartItemCard({
     required this.item,
     required this.isSelected,
     required this.onToggle,
     required this.onDelete,
+    required this.onBeforeDecrease,
   });
 
   @override
@@ -596,10 +628,13 @@ class _CartItemCard extends ConsumerWidget {
                                       icon: Icons.remove,
                                       onTap: quantity <= 1
                                           ? null
-                                          : () => notifier.updateItem(
-                                              idToUse,
-                                              quantity - 1,
-                                            ),
+                                          : () {
+                                              onBeforeDecrease();
+                                              notifier.updateItem(
+                                                idToUse,
+                                                quantity - 1,
+                                              );
+                                            },
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(

@@ -20,7 +20,7 @@ CartRepository cartRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
   final cartApi = apiClient.getCartApi();
   final localDataSource = ref.watch(localCartDataSourceProvider);
-  return CartRepositoryImpl(cartApi, localDataSource);
+  return CartRepositoryImpl(cartApi, apiClient.dio, localDataSource);
 }
 
 @Riverpod(keepAlive: true)
@@ -28,10 +28,23 @@ class Cart extends _$Cart {
   static const _tokenKey = 'auth_token';
   int _generation = 0;
 
+  String _normalizeToken(String token) {
+    var normalized = token.trim();
+    if (normalized.toLowerCase().startsWith('bearer ')) {
+      normalized = normalized.substring(7).trim();
+    }
+    if (normalized.startsWith('"') && normalized.endsWith('"') && normalized.length > 1) {
+      normalized = normalized.substring(1, normalized.length - 1);
+    }
+    return normalized;
+  }
+
   Future<bool> _checkAuth(dynamic storage, dynamic apiClient) async {
     final token = await storage.read(key: _tokenKey);
     if (token != null && token.isNotEmpty) {
-      apiClient.setBearerAuth('Bearer', token);
+      final normalizedToken = _normalizeToken(token);
+      if (normalizedToken.isEmpty) return false;
+      apiClient.setBearerAuth('Bearer', normalizedToken);
       return true;
     }
     return false;
@@ -46,7 +59,7 @@ class Cart extends _$Cart {
     final token = await storage.read(key: _tokenKey);
     final isAuthenticated = token != null && token.isNotEmpty;
     if (isAuthenticated) {
-      apiClient.setBearerAuth('Bearer', token);
+      apiClient.setBearerAuth('Bearer', _normalizeToken(token));
       localDs.clearCart();
     }
     return repository.getItems(isAuthenticated: isAuthenticated);

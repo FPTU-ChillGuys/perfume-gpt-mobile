@@ -3,6 +3,7 @@ import '../entities/order.dart';
 
 class CheckoutRequest {
   final String paymentMethod; // CashOnDelivery, VnPay, Momo, CashInStore, ExternalBankTransfer, PayOs
+  final String? depositGateway; // VnPay, Momo, PayOs (used when CashOnDelivery requires deposit)
   final String deliveryMethod; // Delivery, PickupInStore
   final List<String>? itemIds;
   final double? expectedTotalPrice;
@@ -12,6 +13,7 @@ class CheckoutRequest {
 
   const CheckoutRequest({
     required this.paymentMethod,
+    this.depositGateway,
     this.deliveryMethod = 'Delivery',
     this.itemIds,
     this.expectedTotalPrice,
@@ -62,6 +64,11 @@ abstract class OrderRepository {
     String? refundAccountNumber,
     String? refundAccountName,
   });
-  Future<String> retryPayment(String paymentId, String paymentMethod);
+  Future<String> retryPayment(
+    String paymentId,
+    String paymentMethod, {
+    String? newDepositMethod,
+    String? posSessionId,
+  });
   Future<void> confirmPayment(String paymentId, {required bool isSuccess, String? failureReason});
 }

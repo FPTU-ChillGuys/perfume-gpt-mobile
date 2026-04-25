@@ -25,7 +25,12 @@ String _formatCurrency(double value) {
 
 class CheckoutPage extends ConsumerStatefulWidget {
   final String? voucherCodeFromCart;
-  const CheckoutPage({super.key, this.voucherCodeFromCart});
+  final List<String>? selectedItemIdsFromCart;
+  const CheckoutPage({
+    super.key,
+    this.voucherCodeFromCart,
+    this.selectedItemIdsFromCart,
+  });
 
   @override
   ConsumerState<CheckoutPage> createState() => _CheckoutPageState();
@@ -37,6 +42,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 
   // Payment
   String _selectedPayment = 'CashOnDelivery';
+  String _depositGateway = 'VnPay';
 
   // Address
   String? _selectedAddressId;
@@ -65,6 +71,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   @override
   void initState() {
     super.initState();
+    final selectedFromCart = widget.selectedItemIdsFromCart;
+    if (selectedFromCart != null && selectedFromCart.isNotEmpty) {
+      ref
+          .read(selectedCartItemIdsProvider.notifier)
+          .update(selectedFromCart.toSet());
+    }
     // Auto-populate voucher from cart navigation (matching React FE pattern)
     final code = widget.voucherCodeFromCart;
     if (code != null && code.isNotEmpty) {
@@ -328,8 +340,29 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         }
       }
 
+      final requireDeposit =
+          (total?.depositPolicy?.isDepositRequired == true) ||
+          ((total?.depositPolicy?.depositAmount ?? 0) > 0);
+      
+      // If deposit is required but gateway is still COD, default to VnPay or show error
+      String effectiveDepositGateway = _depositGateway;
+      if (_selectedPayment == 'CashOnDelivery' &&
+          requireDeposit &&
+          effectiveDepositGateway == 'CashOnDelivery') {
+        effectiveDepositGateway = 'VnPay';
+      }
+
+      final normalizedDepositGateway =
+          (effectiveDepositGateway == 'CashOnDelivery' ||
+              effectiveDepositGateway == 'CashInStore')
+          ? 'VnPay'
+          : effectiveDepositGateway;
+
       final request = CheckoutRequest(
         paymentMethod: _selectedPayment,
+        depositGateway: _selectedPayment == 'CashOnDelivery'
+            ? normalizedDepositGateway
+            : null,
         deliveryMethod: _isPickupInStore ? 'PickupInStore' : 'Delivery',
         itemIds: effectiveIds,
         expectedTotalPrice: total?.totalPrice,
@@ -346,29 +379,15 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 
       if (!mounted) return;
 
-      // Handle payment redirect based on payment method (matching React FE)
-      final isOnlinePayment =
-          _selectedPayment == 'VnPay' ||
-          _selectedPayment == 'Momo' ||
-          _selectedPayment == 'PayOs';
-
-      if (isOnlinePayment) {
-        if (result.paymentUrl != null && result.paymentUrl!.isNotEmpty) {
-          if (mounted) {
-            context.push(
-              '/payment-webview?url=${Uri.encodeComponent(result.paymentUrl!)}',
-            );
-          }
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Không thể chuyển đến trang thanh toán'),
-              backgroundColor: Colors.red,
-            ),
+      // Handle payment redirect based on paymentUrl
+      if (result.paymentUrl != null && result.paymentUrl!.isNotEmpty) {
+        if (mounted) {
+          context.push(
+            '/payment-webview?url=${Uri.encodeComponent(result.paymentUrl!)}',
           );
         }
       } else {
-        // COD / CashInStore — show success
+        // COD (no deposit) / CashInStore — show success
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -502,7 +521,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                       // --- Payment Method ---
                       _buildSectionTitle('Phương thức thanh toán'),
                       const SizedBox(height: 8),
-                      _buildPaymentMethods(),
+                      _buildPaymentMethods(total),
                       const SizedBox(height: 24),
                     ],
                   ),
@@ -1024,7 +1043,8 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                             )
                           : ListView.separated(
                               itemCount: filtered.length,
-                              separatorBuilder: (_, __) => const Divider(height: 1),
+                              separatorBuilder: (context, index) =>
+                                  const Divider(height: 1),
                               itemBuilder: (_, index) {
                                 final item = filtered[index];
                                 return ListTile(
@@ -1344,6 +1364,34 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             ),
             const Divider(height: 16),
             _priceRow('Tổng cộng', total.totalPrice, bold: true),
+            if ((total.depositPolicy?.isDepositRequired == true) ||
+                ((total.depositPolicy?.depositAmount ?? 0) > 0)) ...[
+              const Divider(height: 16),
+              _priceRow(
+                'Số tiền cần thanh toán ngay',
+                total.depositPolicy?.depositAmount ?? 0,
+                bold: true,
+                color: Colors.deepOrange,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(
+                  '(* Còn lại ${_formatCurrency(total.depositPolicy?.remainingAmount ?? 0)} thanh toán khi nhận hàng)',
+                  style: TextStyle(fontSize: 12, color: Colors.grey[600], fontStyle: FontStyle.italic),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ],
+            if ((total.warningMessage ?? '').trim().isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  total.warningMessage!,
+                  style: TextStyle(fontSize: 12, color: Colors.orange.shade800),
+                ),
+              ),
+            ],
           ],
         ),
       ),
@@ -1393,7 +1441,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   }
 
   // ─── Payment Methods ────────────────────────────────────────────
-  Widget _buildPaymentMethods() {
+  Widget _buildPaymentMethods(CartTotal? total) {
     final methods = _isPickupInStore
         ? [
             _PaymentOption(
@@ -1459,31 +1507,97 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         child: Column(
           children: methods.map((m) {
             final isSelected = _selectedPayment == m.value;
-            return RadioListTile<String>(
-              value: m.value,
-              secondary: m.assetPath != null
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        m.assetPath!,
-                        width: 32,
-                        height: 32,
-                        fit: BoxFit.contain,
-                        errorBuilder: (_, _, _) =>
-                            Icon(Icons.payment, color: Colors.grey.shade400),
-                      ),
-                    )
-                  : Icon(m.icon, color: m.color),
-              title: Text(
-                m.label,
-                style: TextStyle(
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                RadioListTile<String>(
+                  value: m.value,
+                  secondary: m.assetPath != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(
+                            m.assetPath!,
+                            width: 32,
+                            height: 32,
+                            fit: BoxFit.contain,
+                            errorBuilder: (_, _, _) =>
+                                Icon(Icons.payment, color: Colors.grey.shade400),
+                          ),
+                        )
+                      : Icon(m.icon, color: m.color),
+                  title: Text(
+                    m.label,
+                    style: TextStyle(
+                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                    ),
+                  ),
+                  subtitle: Text(
+                    m.description,
+                    style: const TextStyle(fontSize: 12),
+                  ),
                 ),
-              ),
-              subtitle: Text(
-                m.description,
-                style: const TextStyle(fontSize: 12),
-              ),
+                if (isSelected &&
+                    m.value == 'CashOnDelivery' &&
+                    total != null &&
+                    ((total.depositPolicy?.isDepositRequired == true) ||
+                        ((total.depositPolicy?.depositAmount ?? 0) > 0)))
+                  Padding(
+                    padding: const EdgeInsets.only(left: 72, right: 16, bottom: 12),
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.orange.shade50,
+                        border: Border.all(color: Colors.orange.shade200),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.info_outline, size: 16, color: Colors.orange.shade800),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  'Đơn hàng yêu cầu đặt cọc: ${_formatCurrency(total.depositPolicy?.depositAmount ?? 0)}',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.orange.shade900,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Vui lòng chọn cổng thanh toán để đặt cọc:',
+                            style: TextStyle(fontSize: 12, color: Colors.grey.shade800),
+                          ),
+                          const SizedBox(height: 8),
+                          DropdownButtonFormField<String>(
+                            initialValue: _depositGateway == 'CashOnDelivery' ? 'VnPay' : _depositGateway,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                            items: const [
+                              DropdownMenuItem(value: 'VnPay', child: Text('VNPay', style: TextStyle(fontSize: 13))),
+                              DropdownMenuItem(value: 'Momo', child: Text('MoMo', style: TextStyle(fontSize: 13))),
+                              DropdownMenuItem(value: 'PayOs', child: Text('PayOS', style: TextStyle(fontSize: 13))),
+                            ],
+                            onChanged: (v) {
+                              if (v != null) setState(() => _depositGateway = v);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
             );
           }).toList(),
         ),

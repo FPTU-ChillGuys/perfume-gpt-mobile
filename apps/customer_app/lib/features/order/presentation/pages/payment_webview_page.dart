@@ -34,6 +34,8 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
   static const _returnPatterns = [
     '/api/payments/vnpay-return',
     '/api/payments/momo-return',
+    '/api/payments/payos-return',
+    '/api/payments/payos-cancel',
   ];
 
   @override
@@ -134,8 +136,20 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
       // Parse payment result from URL query params
       final queryParams = uri.queryParameters;
       final responseCode = queryParams['vnp_ResponseCode'];
-      final isSuccess = responseCode == '00';
-      final paymentId = queryParams['vnp_TxnRef'];
+      final isPayOsReturn = returnUrl.contains('/api/payments/payos-return');
+      final isPayOsCancel = returnUrl.contains('/api/payments/payos-cancel');
+      final payOsStatus = queryParams['status']?.toLowerCase();
+      final isSuccess = isPayOsCancel
+          ? false
+          : isPayOsReturn
+              ? (payOsStatus == null ||
+                  payOsStatus == 'paid' ||
+                  payOsStatus == 'success')
+              : responseCode == '00';
+      final paymentId =
+          queryParams['vnp_TxnRef'] ??
+          queryParams['paymentId'] ??
+          _paymentIdFromUrl;
 
       // Confirm payment status with backend
       if (paymentId != null && paymentId.isNotEmpty) {
@@ -179,7 +193,10 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
       final uri = Uri.tryParse(returnUrl);
       final responseCode = uri?.queryParameters['vnp_ResponseCode'];
       final isSuccess = responseCode == '00';
-      final paymentId = uri?.queryParameters['vnp_TxnRef'];
+      final paymentId =
+          uri?.queryParameters['vnp_TxnRef'] ??
+          uri?.queryParameters['paymentId'] ??
+          _paymentIdFromUrl;
 
       // Try to confirm payment even on error
       if (paymentId != null && paymentId.isNotEmpty) {

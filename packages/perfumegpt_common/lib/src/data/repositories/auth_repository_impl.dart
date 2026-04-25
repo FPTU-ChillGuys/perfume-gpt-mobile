@@ -14,6 +14,17 @@ class AuthRepositoryImpl implements AuthRepository {
 
   static const _tokenKey = 'auth_token';
 
+  String _normalizeToken(String token) {
+    var normalized = token.trim();
+    if (normalized.toLowerCase().startsWith('bearer ')) {
+      normalized = normalized.substring(7).trim();
+    }
+    if (normalized.startsWith('"') && normalized.endsWith('"') && normalized.length > 1) {
+      normalized = normalized.substring(1, normalized.length - 1);
+    }
+    return normalized;
+  }
+
   AuthRepositoryImpl(this._apiClient, this._storage, [this._serverClientId]);
 
   Future<void> _ensureGoogleSignInInitialized() async {
@@ -75,8 +86,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   Future<User?> _handleTokenResponse(String? token) async {
     if (token != null) {
-      await _storage.write(key: _tokenKey, value: token);
-      _apiClient.setBearerAuth('Bearer', token);
+      final normalizedToken = _normalizeToken(token);
+      await _storage.write(key: _tokenKey, value: normalizedToken);
+      _apiClient.setBearerAuth('Bearer', normalizedToken);
       _currentUser = null; // Force refresh
       return await getCurrentUser();
     }
@@ -114,8 +126,12 @@ class AuthRepositoryImpl implements AuthRepository {
 
     final token = await _storage.read(key: _tokenKey);
     if (token == null) return null;
-
-    _apiClient.setBearerAuth('Bearer', token);
+    final normalizedToken = _normalizeToken(token);
+    if (normalizedToken.isEmpty) {
+      await logout();
+      return null;
+    }
+    _apiClient.setBearerAuth('Bearer', normalizedToken);
 
     try {
       final response = await _apiClient.getUsersApi().apiUsersMeGet();

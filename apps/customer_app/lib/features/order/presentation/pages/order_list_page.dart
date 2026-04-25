@@ -67,6 +67,17 @@ const _retryPaymentMethods = [
   'PayOs',
 ];
 
+const _returnRequestBlockedStatuses = {
+  'Pending',
+  'ApprovedForReturn',
+  'RequestMoreInfo',
+  'Inspecting',
+  'ReadyForRefund',
+  'Refunded',
+};
+
+const _cancelRequestBlockedStatuses = {'Pending'};
+
 // ─── Label / Color helpers ──────────────────────────────────────────────────
 
 String _orderTypeLabel(String type) {
@@ -143,8 +154,11 @@ String _paymentStatusLabel(String status) {
   switch (status) {
     case 'Unpaid':
       return 'Chưa thanh toán';
+    case 'PartialPaid':
+      return 'Đã cọc một phần';
     case 'Paid':
       return 'Đã thanh toán';
+    case 'PartialRefunded':
     case 'Partial_Refunded':
       return 'Hoàn tiền một phần';
     case 'Refunded':
@@ -158,8 +172,11 @@ Color _paymentStatusColor(String status) {
   switch (status) {
     case 'Unpaid':
       return AppColors.paymentUnpaid;
+    case 'PartialPaid':
+      return Colors.blue;
     case 'Paid':
       return AppColors.paymentPaid;
+    case 'PartialRefunded':
     case 'Partial_Refunded':
       return AppColors.paymentPartialRefund;
     case 'Refunded':
@@ -170,38 +187,51 @@ Color _paymentStatusColor(String status) {
 }
 
 /// Cancel behavior: direct cancel vs request-based
-({String mode, String buttonLabel, String note})? _getCancelBehavior(
+({String mode, String buttonLabel, String note, bool needRefund, bool loseDepositWarning})? _getCancelBehavior(
     OrderSummary order) {
   final isPending = order.status == 'Pending';
   final isPreparing = order.status == 'Preparing';
   final isReadyToPick = order.status == 'ReadyToPick';
-  final isPaid = order.paymentStatus == 'Paid';
+  final isFullyPaid = order.paymentStatus == 'Paid';
+  final hasDepositPaid = order.requiredDepositAmount > 0 &&
+      (order.paidAmount > 0 || order.depositAmount > 0) &&
+      !isFullyPaid;
 
-  // Pending + chưa thanh toán → hủy trực tiếp, không cần gửi request
-  if (isPending && !isPaid) {
+  // Pending + chưa cọc/chưa thanh toán 100% -> hủy trực tiếp.
+  if (isPending && !isFullyPaid && !hasDepositPaid) {
     return (
       mode: 'direct',
       buttonLabel: 'Hủy đơn hàng',
       note:
-          'Đơn hàng đang ở trạng thái chờ xử lý và chưa thanh toán, hệ thống sẽ hủy ngay sau khi bạn xác nhận.',
+          'Đơn hàng ở trạng thái chờ xử lý và chưa cọc/chưa thanh toán đầy đủ, hệ thống sẽ hủy ngay sau khi bạn xác nhận.',
+      needRefund: false,
+      loseDepositWarning: false,
     );
   }
-  // Đã thanh toán (bất kỳ trạng thái nào cho phép hủy) → gửi yêu cầu hủy + hoàn tiền
-  if (isPaid && (isPending || isPreparing || isReadyToPick)) {
+
+  // Pending + đã cọc hoặc đã thanh toán 100% -> gửi yêu cầu hủy, không mất cọc.
+  if (isPending && (hasDepositPaid || isFullyPaid)) {
     return (
       mode: 'request',
       buttonLabel: 'Yêu cầu hủy đơn',
       note:
-          'Đơn hàng đã thanh toán, yêu cầu hủy sẽ được Staff/Admin xem xét. Vui lòng cung cấp thông tin ngân hàng để hoàn tiền.',
+          isFullyPaid
+              ? 'Đơn hàng đã thanh toán 100%, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc và cần cung cấp thông tin ngân hàng để hoàn tiền.'
+              : 'Đơn hàng đã đặt cọc, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc.',
+      needRefund: isFullyPaid,
+      loseDepositWarning: false,
     );
   }
-  // Đang chuẩn bị trở đi + chưa thanh toán → gửi yêu cầu hủy, không hoàn tiền
-  if (!isPaid && (isPreparing || isReadyToPick)) {
+
+  // Preparing/ReadyToPick -> luôn gửi yêu cầu hủy, cần cảnh báo mất cọc.
+  if (isPreparing || isReadyToPick) {
     return (
       mode: 'request',
       buttonLabel: 'Yêu cầu hủy đơn',
       note:
-          'Đơn hàng đã vào xử lý, yêu cầu hủy sẽ được Staff/Admin xem xét. Do chưa thanh toán nên không cần hoàn tiền.',
+          'Đơn hàng đã vào giai đoạn xử lý, yêu cầu hủy sẽ được Staff/Admin xem xét. Lưu ý: khách sẽ bị mất tiền cọc nếu đơn có đặt cọc.',
+      needRefund: isFullyPaid,
+      loseDepositWarning: true,
     );
   }
   return null;
@@ -359,6 +389,34 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                 ),
               ),
               data: (result) {
+                final myReturns =
+                    ref.watch(myReturnRequestsProvider(pageSize: 100)).value;
+                final latestReturnStatusByOrderId = <String, String>{};
+                if (myReturns != null) {
+                  for (final request in myReturns.items) {
+                    if (!latestReturnStatusByOrderId.containsKey(request.orderId)) {
+                      latestReturnStatusByOrderId[request.orderId] = request.status;
+                    }
+                  }
+                }
+
+                final myCancels =
+                    ref.watch(myCancelRequestsProvider(pageSize: 100)).value;
+                final latestCancelStatusByOrderId = <String, String>{};
+                if (myCancels != null) {
+                  for (final request in myCancels.items) {
+                    if (!latestCancelStatusByOrderId.containsKey(request.orderId)) {
+                      latestCancelStatusByOrderId[request.orderId] = request.status;
+                    }
+                  }
+                }
+
+                final myReviews = ref.watch(myReviewsProvider).asData?.value ?? [];
+                final reviewedDetailIds = myReviews
+                    .where((r) => r.orderDetailId != null)
+                    .map((r) => r.orderDetailId!)
+                    .toSet();
+
                 if (result.items.isEmpty) {
                   return Center(
                     child: Column(
@@ -399,22 +457,22 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                               const SizedBox(height: 12),
                           itemBuilder: (context, index) {
                             final order = result.items[index];
-                            final myReturns = ref.watch(myReturnRequestsProvider(pageSize: 100)).value;
-                            final hasReturnReq = (myReturns != null &&
-                                myReturns.items.any((r) => r.orderId == order.id)) ||
+                            final returnStatus =
+                                latestReturnStatusByOrderId[order.id];
+                            final hasBlockingReturnReq = returnStatus != null &&
+                                _returnRequestBlockedStatuses.contains(returnStatus);
+                            final isReturnRejected = returnStatus == 'Rejected';
+                            final hasReturnReq = hasBlockingReturnReq ||
                                 order.paymentStatus == 'Partial_Refunded' ||
                                 order.paymentStatus == 'Refunded' ||
                                 order.status == 'Returning' ||
                                 order.status == 'Returned' ||
                                 order.status == 'Partial_Returned';
-                            final myCancels = ref.watch(myCancelRequestsProvider(pageSize: 100)).value;
-                            final hasCancelReq = myCancels != null &&
-                                myCancels.items.any((r) => r.orderId == order.id);
-                            final myReviews = ref.watch(myReviewsProvider).asData?.value ?? [];
-                            final reviewedDetailIds = myReviews
-                                .where((r) => r.orderDetailId != null)
-                                .map((r) => r.orderDetailId!)
-                                .toSet();
+                            final cancelStatus =
+                                latestCancelStatusByOrderId[order.id];
+                            final hasCancelReq = cancelStatus != null &&
+                                _cancelRequestBlockedStatuses.contains(cancelStatus);
+                            final isCancelRejected = cancelStatus == 'Rejected';
                             final allReviewed = order.status == 'Delivered' &&
                                 order.orderDetails.isNotEmpty &&
                                 order.orderDetails.every((item) => reviewedDetailIds.contains(item.id));
@@ -422,17 +480,24 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                               order: order,
                               hasReturnRequest: hasReturnReq,
                               hasCancelRequest: hasCancelReq,
+                              isCancelRejected: isCancelRejected,
+                              isReturnRejected: isReturnRejected,
                               allReviewed: allReviewed,
                               onViewDetail: () =>
                                   context.push('/orders/${order.id}'),
                               onCancel: () async {
                                 final behavior = _getCancelBehavior(order);
                                 if (behavior == null) return;
+                                final normalizedStatus =
+                                    (order.status ?? '').trim().toLowerCase();
                                 final result = await context.push('/orders/${order.id}/cancel', extra: {
                                   'orderId': order.id,
+                                  'orderStatus': order.status,
+                                  'showBankInfoForStatus': normalizedStatus == 'pending',
                                   'mode': behavior.mode,
                                   'note': behavior.note,
-                                  'needRefund': order.paymentStatus == 'Paid',
+                                  'needRefund': behavior.needRefund,
+                                  'loseDepositWarning': behavior.loseDepositWarning,
                                 });
                                 if (result == true) {
                                   _invalidateOrders();
@@ -481,6 +546,7 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
         .toList();
     String selectedMethod =
         allowedMethods.isNotEmpty ? allowedMethods.first : 'VnPay';
+    String selectedDepositGateway = 'VnPay';
     bool isSubmitting = false;
     bool isLoadingPaymentId = true;
     String? paymentId;
@@ -556,6 +622,28 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                       ),
                     ),
                   ),
+                  if (selectedMethod == 'CashOnDelivery' ||
+                      selectedMethod == 'CashInStore') ...[
+                    const SizedBox(height: 6),
+                    DropdownButtonFormField<String>(
+                      initialValue: selectedDepositGateway,
+                      decoration: const InputDecoration(
+                        labelText: 'Cổng thanh toán tiền cọc',
+                        border: OutlineInputBorder(),
+                        isDense: true,
+                      ),
+                      items: const [
+                        DropdownMenuItem(value: 'VnPay', child: Text('VNPay')),
+                        DropdownMenuItem(value: 'Momo', child: Text('MoMo')),
+                        DropdownMenuItem(value: 'PayOs', child: Text('PayOS')),
+                      ],
+                      onChanged: (v) {
+                        if (v != null && !isSubmitting) {
+                          setDialogState(() => selectedDepositGateway = v);
+                        }
+                      },
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -576,7 +664,16 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                       try {
                         final url = await ref
                             .read(orderRepositoryProvider)
-                            .retryPayment(paymentId!, selectedMethod);
+                            .retryPayment(
+                              paymentId!,
+                              selectedMethod,
+                              newDepositMethod:
+                                  (selectedMethod == 'CashOnDelivery' ||
+                                          selectedMethod == 'CashInStore')
+                                      ? selectedDepositGateway
+                                      : 'CashOnDelivery',
+                              posSessionId: null,
+                            );
                         if (selectedMethod == 'VnPay' ||
                             selectedMethod == 'Momo' ||
                             selectedMethod == 'PayOs') {
@@ -634,6 +731,8 @@ class _OrderCard extends StatelessWidget {
   final VoidCallback onReturn;
   final bool hasReturnRequest;
   final bool hasCancelRequest;
+  final bool isCancelRejected;
+  final bool isReturnRejected;
   final bool allReviewed;
 
   const _OrderCard({
@@ -644,6 +743,8 @@ class _OrderCard extends StatelessWidget {
     required this.onReturn,
     this.hasReturnRequest = false,
     this.hasCancelRequest = false,
+    this.isCancelRejected = false,
+    this.isReturnRejected = false,
     this.allReviewed = false,
   });
 
@@ -654,6 +755,20 @@ class _OrderCard extends StatelessWidget {
         order.status == 'Pending' && order.paymentStatus == 'Unpaid';
     final isDelivered = order.status == 'Delivered';
     final canReturn = isDelivered && order.isReturnable == true && !hasReturnRequest;
+    final requiredDeposit = order.requiredDepositAmount > 0
+        ? order.requiredDepositAmount
+        : order.depositAmount;
+    final inferredPaidDeposit = requiredDeposit > 0
+        ? (order.paidAmount > 0 ? order.paidAmount : order.depositAmount)
+        : 0.0;
+    final paidDeposit = requiredDeposit > 0
+        ? (inferredPaidDeposit > requiredDeposit
+            ? requiredDeposit
+            : inferredPaidDeposit)
+        : inferredPaidDeposit;
+    final remainingAmount = order.remainingAmount > 0
+        ? order.remainingAmount
+        : (order.totalAmount - order.paidAmount);
 
     return Card(
       elevation: 0,
@@ -831,6 +946,37 @@ class _OrderCard extends StatelessWidget {
                 ),
               ],
             ),
+            if (requiredDeposit > 0 || paidDeposit > 0 || remainingAmount > 0) ...[
+              const SizedBox(height: 10),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.blue.shade200),
+                ),
+                child: Column(
+                  children: [
+                    _miniPaymentRow(
+                      'Cần cọc',
+                      _fmt(requiredDeposit),
+                    ),
+                    _miniPaymentRow(
+                      'Đã cọc',
+                      _fmt(paidDeposit),
+                      valueColor: Colors.green.shade700,
+                    ),
+                    _miniPaymentRow(
+                      'Còn cần thu',
+                      _fmt(remainingAmount < 0 ? 0 : remainingAmount),
+                      isBold: true,
+                      valueColor: Colors.deepOrange,
+                    ),
+                  ],
+                ),
+              ),
+            ],
 
             const Divider(height: 20),
 
@@ -856,7 +1002,7 @@ class _OrderCard extends StatelessWidget {
                   )
                 else if (cancelBehavior != null)
                   _ActionBtn(
-                    label: cancelBehavior.buttonLabel,
+                    label: isCancelRejected ? 'Yêu cầu hủy lại' : cancelBehavior.buttonLabel,
                     color: cancelBehavior.mode == 'direct'
                         ? Colors.red
                         : Colors.orange,
@@ -869,7 +1015,9 @@ class _OrderCard extends StatelessWidget {
                 ),
                 if (isDelivered)
                   _ActionBtn(
-                    label: hasReturnRequest ? 'Đã yêu cầu trả hàng' : 'Yêu cầu trả hàng',
+                    label: hasReturnRequest
+                        ? 'Đã yêu cầu trả hàng'
+                        : (isReturnRejected ? 'Yêu cầu trả hàng lại' : 'Yêu cầu trả hàng'),
                     color: canReturn ? Colors.orange : Colors.grey,
                     onTap: onReturn,
                     enabled: canReturn,
@@ -886,6 +1034,38 @@ class _OrderCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _miniPaymentRow(
+    String label,
+    String value, {
+    Color? valueColor,
+    bool isBold = false,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.grey[700],
+              fontWeight: isBold ? FontWeight.w600 : FontWeight.w400,
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 12.5,
+              fontWeight: isBold ? FontWeight.w700 : FontWeight.w600,
+              color: valueColor ?? Colors.black87,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -84,6 +84,12 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
         if (_selectedAddress == null) return false;
       }
     }
+    // Bank info is required for return request creation (will be Pending after submit)
+    if (_selectedBank == null ||
+        _bankAccountController.text.trim().isEmpty ||
+        _bankHolderController.text.trim().isEmpty) {
+      return false;
+    }
     return true;
   }
 
@@ -597,7 +603,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   Widget _bankInfoSection() {
     final banksAsync = ref.watch(vnBanksProvider);
     return _SectionCard(
-      title: 'Thông tin nhận tiền hoàn trả',
+      title: 'Thông tin nhận tiền hoàn trả (bắt buộc)',
       icon: Icons.account_balance_outlined,
       child: Column(
         children: [
@@ -1029,7 +1035,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
                             )
                           : ListView.separated(
                               itemCount: filtered.length,
-                              separatorBuilder: (_, __) => const Divider(height: 1),
+                              separatorBuilder: (context, index) => const Divider(height: 1),
                               itemBuilder: (_, index) {
                                 final item = filtered[index];
                                 return ListTile(

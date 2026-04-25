@@ -12,6 +12,7 @@ OrderRepository orderRepository(Ref ref) {
   return OrderRepositoryImpl(
     apiClient.getOrdersApi(),
     apiClient.getPaymentsApi(),
+    apiClient.dio,
   );
 }
 

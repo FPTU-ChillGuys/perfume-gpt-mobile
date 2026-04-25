@@ -23,6 +23,10 @@ class OrderSummary {
   final String? status;
   final String? paymentStatus;
   final double totalAmount;
+  final double requiredDepositAmount;
+  final double depositAmount;
+  final double paidAmount;
+  final double remainingAmount;
   final int? itemCount;
   final bool? isReturnable;
   final String? shippingStatus;
@@ -36,6 +40,10 @@ class OrderSummary {
     this.status,
     this.paymentStatus,
     required this.totalAmount,
+    this.requiredDepositAmount = 0.0,
+    this.depositAmount = 0.0,
+    this.paidAmount = 0.0,
+    this.remainingAmount = 0.0,
     this.itemCount,
     this.isReturnable,
     this.shippingStatus,
@@ -129,7 +137,15 @@ class OrderDetail {
   final bool? isReturnable;
   final String? paymentStatus;
   final double totalAmount;
+  final double requiredDepositAmount;
+  final double depositAmount;
+  final double paidAmount;
+  final double remainingAmount;
+  final double subTotal;
+  final double shippingFee;
   final String? voucherCode;
+  final String? voucherType;
+  final double voucherDiscountTotal;
   final DateTime? paymentExpiresAt;
   final DateTime? paidAt;
   final DateTime? createdAt;
@@ -147,7 +163,15 @@ class OrderDetail {
     this.isReturnable,
     this.paymentStatus,
     required this.totalAmount,
+    this.requiredDepositAmount = 0.0,
+    this.depositAmount = 0.0,
+    this.paidAmount = 0.0,
+    this.remainingAmount = 0.0,
+    this.subTotal = 0.0,
+    this.shippingFee = 0.0,
     this.voucherCode,
+    this.voucherType,
+    this.voucherDiscountTotal = 0.0,
     this.paymentExpiresAt,
     this.paidAt,
     this.createdAt,
@@ -188,6 +212,9 @@ class Invoice {
   final String recipientAddress;
   final List<InvoiceItem> items;
   final double subtotal;
+  final double depositAmount;
+  final double remainingAmount;
+  final double shippingFee;
   final double discount;
   final double tax;
   final double total;
@@ -205,6 +232,9 @@ class Invoice {
     required this.recipientAddress,
     required this.items,
     required this.subtotal,
+    this.depositAmount = 0.0,
+    this.remainingAmount = 0.0,
+    this.shippingFee = 0.0,
     required this.discount,
     required this.tax,
     required this.total,

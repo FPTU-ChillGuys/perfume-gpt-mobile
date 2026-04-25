@@ -27,16 +27,22 @@ String? _mapCancelReasonToEnum(String value) {
 
 class CancelOrderPage extends ConsumerStatefulWidget {
   final String orderId;
+  final String? orderStatus;
+  final bool? showBankInfoForStatus;
   final String mode; // 'direct' or 'request'
   final String note;
   final bool needRefund;
+  final bool loseDepositWarning;
 
   const CancelOrderPage({
     super.key,
     required this.orderId,
+    this.orderStatus,
+    this.showBankInfoForStatus,
     required this.mode,
     required this.note,
     required this.needRefund,
+    this.loseDepositWarning = false,
   });
 
   @override
@@ -52,7 +58,30 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
   final _bankAccountController = TextEditingController();
   final _bankHolderController = TextEditingController();
 
-  bool get _canSubmit => _selectedReason != null && !_isSubmitting;
+  bool get _isPendingStatus {
+    final s = widget.orderStatus?.trim().toLowerCase();
+    if (s == null || s.isEmpty) return false;
+    return s == 'pending';
+  }
+
+  // Show bank info only for Pending cancel-request flow.
+  // If source screen provides explicit flag, trust it.
+  bool get _showBankInfo {
+    final byStatus = widget.showBankInfoForStatus ?? _isPendingStatus;
+    // Fallback by business rule:
+    // - Pending branches use loseDepositWarning = false -> show bank info
+    // - Preparing/ReadyToPick use loseDepositWarning = true -> hide bank info
+    final byFlowRule = !widget.loseDepositWarning;
+    return byStatus || byFlowRule;
+  }
+  bool get _bankInfoValid {
+    if (!widget.needRefund || !_showBankInfo) return true;
+    return _selectedBank != null &&
+        _bankAccountController.text.trim().isNotEmpty &&
+        _bankHolderController.text.trim().isNotEmpty;
+  }
+
+  bool get _canSubmit => _selectedReason != null && _bankInfoValid && !_isSubmitting;
 
   @override
   void dispose() {
@@ -93,10 +122,14 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
         child: Column(
           children: [
             _noteCard(),
+            if (widget.loseDepositWarning) ...[
+              const SizedBox(height: 10),
+              _loseDepositWarningCard(),
+            ],
             const SizedBox(height: 16),
             _reasonSection(),
             const SizedBox(height: 16),
-            if (widget.needRefund) ...[
+            if (_showBankInfo) ...[
               _bankInfoSection(),
               const SizedBox(height: 16),
             ],
@@ -132,6 +165,36 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
                 fontSize: 13,
                 color: Colors.orange.shade900,
                 height: 1.4,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _loseDepositWarningCard() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.red.shade50,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.red.shade200),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.warning_amber_rounded, color: Colors.red.shade700, size: 20),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              'Lưu ý: Với đơn ở trạng thái đang chuẩn bị/chờ lấy hàng, bạn sẽ bị mất tiền cọc khi gửi yêu cầu hủy.',
+              style: TextStyle(
+                fontSize: 13,
+                color: Colors.red.shade800,
+                height: 1.4,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
@@ -227,8 +290,11 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
 
   Widget _bankInfoSection() {
     final banksAsync = ref.watch(vnBanksProvider);
+    final isRequired = widget.needRefund;
     return _SectionCard(
-      title: 'Thông tin hoàn tiền',
+      title: isRequired
+          ? 'Thông tin hoàn tiền (bắt buộc)'
+          : 'Thông tin hoàn tiền (không bắt buộc)',
       icon: Icons.account_balance_outlined,
       child: Column(
         children: [
@@ -475,6 +541,9 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
       return;
     }
 
+    final confirmed = await _showConfirmDialog();
+    if (!confirmed) return;
+
     setState(() => _isSubmitting = true);
     try {
       await ref
@@ -482,17 +551,11 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
           .cancelOrder(
             widget.orderId,
             reasonEnum,
-            refundBankName: widget.needRefund && _selectedBank != null
-                ? _selectedBank!.shortName
-                : null,
-            refundAccountNumber:
-                widget.needRefund &&
-                    _bankAccountController.text.trim().isNotEmpty
+            refundBankName: _selectedBank?.shortName,
+            refundAccountNumber: _bankAccountController.text.trim().isNotEmpty
                 ? _bankAccountController.text.trim()
                 : null,
-            refundAccountName:
-                widget.needRefund &&
-                    _bankHolderController.text.trim().isNotEmpty
+            refundAccountName: _bankHolderController.text.trim().isNotEmpty
                 ? _bankHolderController.text.trim()
                 : null,
           );
@@ -514,6 +577,34 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
       setState(() => _isSubmitting = false);
       _showError('Không thể hủy đơn hàng: $e');
     }
+  }
+
+  Future<bool> _showConfirmDialog() async {
+    final title = widget.mode == 'direct' ? 'Xác nhận hủy đơn' : 'Xác nhận gửi yêu cầu hủy';
+    final content = widget.mode == 'direct'
+        ? 'Bạn có chắc chắn muốn hủy đơn hàng này không?'
+        : 'Bạn có chắc chắn muốn gửi yêu cầu hủy đơn hàng này không?';
+    final warning = widget.loseDepositWarning
+        ? '\n\nLưu ý: Bạn sẽ bị mất tiền cọc với đơn ở trạng thái đang chuẩn bị/chờ lấy hàng.'
+        : '';
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(title),
+        content: Text('$content$warning'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Đóng'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('Xác nhận'),
+          ),
+        ],
+      ),
+    );
+    return result == true;
   }
 
   void _showError(String msg) {

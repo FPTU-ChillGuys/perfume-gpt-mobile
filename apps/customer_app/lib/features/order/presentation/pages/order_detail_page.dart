@@ -312,39 +312,63 @@ const _retryPaymentMethods = [
   'PayOs',
 ];
 
+const _returnRequestBlockedStatuses = {
+  'Pending',
+  'ApprovedForReturn',
+  'RequestMoreInfo',
+  'Inspecting',
+  'ReadyForRefund',
+  'Refunded',
+};
+
+const _cancelRequestBlockedStatuses = {'Pending'};
+
 /// Cancel behavior — same logic as order list
-({String mode, String buttonLabel, String note})? _getCancelBehavior(
+({String mode, String buttonLabel, String note, bool needRefund, bool loseDepositWarning})? _getCancelBehavior(
     OrderDetail order) {
   final isPending = order.status == 'Pending';
   final isPreparing = order.status == 'Preparing';
   final isReadyToPick = order.status == 'ReadyToPick';
-  final isPaid = order.paymentStatus == 'Paid';
+  final isFullyPaid = order.paymentStatus == 'Paid';
+  final hasDepositPaid = order.requiredDepositAmount > 0 &&
+      (order.paidAmount > 0 || order.depositAmount > 0) &&
+      !isFullyPaid;
 
-  // Pending + chưa thanh toán → hủy trực tiếp, không cần gửi request
-  if (isPending && !isPaid) {
+  // Pending + chưa cọc/chưa thanh toán 100% -> hủy trực tiếp.
+  if (isPending && !isFullyPaid && !hasDepositPaid) {
     return (
       mode: 'direct',
       buttonLabel: 'Hủy đơn hàng',
       note:
-          'Đơn hàng đang ở trạng thái chờ xử lý và chưa thanh toán, hệ thống sẽ hủy ngay sau khi bạn xác nhận.',
+          'Đơn hàng ở trạng thái chờ xử lý và chưa cọc/chưa thanh toán đầy đủ, hệ thống sẽ hủy ngay sau khi bạn xác nhận.',
+      needRefund: false,
+      loseDepositWarning: false,
     );
   }
-  // Đã thanh toán (bất kỳ trạng thái nào cho phép hủy) → gửi yêu cầu hủy + hoàn tiền
-  if (isPaid && (isPending || isPreparing || isReadyToPick)) {
+
+  // Pending + đã cọc hoặc đã thanh toán 100% -> gửi yêu cầu hủy, không mất cọc.
+  if (isPending && (hasDepositPaid || isFullyPaid)) {
     return (
       mode: 'request',
       buttonLabel: 'Yêu cầu hủy đơn',
       note:
-          'Đơn hàng đã thanh toán, yêu cầu hủy sẽ được Staff/Admin xem xét. Vui lòng cung cấp thông tin ngân hàng để hoàn tiền.',
+          isFullyPaid
+              ? 'Đơn hàng đã thanh toán 100%, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc và cần cung cấp thông tin ngân hàng để hoàn tiền.'
+              : 'Đơn hàng đã đặt cọc, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc.',
+      needRefund: isFullyPaid,
+      loseDepositWarning: false,
     );
   }
-  // Đang chuẩn bị trở đi + chưa thanh toán → gửi yêu cầu hủy, không hoàn tiền
-  if (!isPaid && (isPreparing || isReadyToPick)) {
+
+  // Preparing/ReadyToPick -> luôn gửi yêu cầu hủy, cần cảnh báo mất cọc.
+  if (isPreparing || isReadyToPick) {
     return (
       mode: 'request',
       buttonLabel: 'Yêu cầu hủy đơn',
       note:
-          'Đơn hàng đã vào xử lý, yêu cầu hủy sẽ được Staff/Admin xem xét. Do chưa thanh toán nên không cần hoàn tiền.',
+          'Đơn hàng đã vào giai đoạn xử lý, yêu cầu hủy sẽ được Staff/Admin xem xét. Lưu ý: khách sẽ bị mất tiền cọc nếu đơn có đặt cọc.',
+      needRefund: isFullyPaid,
+      loseDepositWarning: true,
     );
   }
   return null;
@@ -444,8 +468,19 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         order.status == 'Pending' && order.paymentStatus == 'Unpaid';
     final isDelivered = order.status == 'Delivered';
     final myReturns = ref.watch(myReturnRequestsProvider(pageSize: 100)).value;
-    final hasReturnRequest = (myReturns != null &&
-        myReturns.items.any((r) => r.orderId == order.id)) ||
+    String? latestReturnStatus;
+    if (myReturns != null) {
+      for (final request in myReturns.items) {
+        if (request.orderId == order.id) {
+          latestReturnStatus = request.status;
+          break;
+        }
+      }
+    }
+    final hasBlockingReturnRequest = latestReturnStatus != null &&
+        _returnRequestBlockedStatuses.contains(latestReturnStatus);
+    final isReturnRejected = latestReturnStatus == 'Rejected';
+    final hasReturnRequest = hasBlockingReturnRequest ||
         order.paymentStatus == 'Partial_Refunded' ||
         order.paymentStatus == 'Refunded' ||
         order.status == 'Returning' ||
@@ -453,8 +488,18 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         order.status == 'Partial_Returned';
     final canReturn = isDelivered && order.isReturnable == true && !hasReturnRequest;
     final myCancels = ref.watch(myCancelRequestsProvider(pageSize: 100)).value;
-    final hasCancelRequest = myCancels != null &&
-        myCancels.items.any((r) => r.orderId == order.id);
+    String? latestCancelStatus;
+    if (myCancels != null) {
+      for (final request in myCancels.items) {
+        if (request.orderId == order.id) {
+          latestCancelStatus = request.status;
+          break;
+        }
+      }
+    }
+    final hasCancelRequest = latestCancelStatus != null &&
+        _cancelRequestBlockedStatuses.contains(latestCancelStatus);
+    final isCancelRejected = latestCancelStatus == 'Rejected';
     final cancelBehavior = hasCancelRequest ? null : _getCancelBehavior(order);
 
     // Pre-fetch reviews to know which items are already reviewed
@@ -544,6 +589,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
           isPendingUnpaid: isPendingUnpaid,
           cancelBehavior: cancelBehavior,
           hasCancelRequest: hasCancelRequest,
+          isCancelRejected: isCancelRejected,
+          isReturnRejected: isReturnRejected,
           canReturn: canReturn,
           isDelivered: isDelivered,
           allReviewed: allReviewed,
@@ -1185,10 +1232,28 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
 
   Widget _buildPriceSummary(
       OrderDetail order, PaymentTransaction? latestPayment) {
-    final subtotal =
-        order.orderDetails.fold<double>(0, (s, i) => s + i.total);
-    final shippingFee = order.shippingInfo?.shippingFee ?? 0;
-    final voucherDiscount = subtotal + shippingFee - order.totalAmount;
+    final subtotal = order.subTotal > 0
+        ? order.subTotal
+        : order.orderDetails.fold<double>(0, (s, i) => s + i.total);
+    final shippingFee =
+        order.shippingFee > 0 ? order.shippingFee : (order.shippingInfo?.shippingFee ?? 0);
+    final voucherDiscount = order.voucherDiscountTotal > 0
+        ? order.voucherDiscountTotal
+        : (subtotal + shippingFee - order.totalAmount);
+    final requiredDeposit = order.requiredDepositAmount > 0
+        ? order.requiredDepositAmount
+        : order.depositAmount;
+    final inferredPaidDeposit = requiredDeposit > 0
+        ? (order.paidAmount > 0 ? order.paidAmount : order.depositAmount)
+        : order.depositAmount;
+    final paidDeposit = requiredDeposit > 0
+        ? (inferredPaidDeposit > requiredDeposit
+            ? requiredDeposit
+            : inferredPaidDeposit)
+        : inferredPaidDeposit;
+    final remainingAmount = order.remainingAmount > 0
+        ? order.remainingAmount
+        : (order.totalAmount - order.paidAmount);
 
     return Card(
       elevation: 0,
@@ -1235,6 +1300,17 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               isBold: true,
               valueColor: _accent,
             ),
+            if (requiredDeposit > 0) ...[
+              const SizedBox(height: 10),
+              _buildDepositInfoCard(
+                requiredDeposit: requiredDeposit,
+                paidDeposit: paidDeposit,
+                remainingAmount: remainingAmount < 0 ? 0 : remainingAmount,
+                depositGatewayLabel: latestPayment?.paymentMethod != null
+                    ? _paymentMethodLabel(latestPayment!.paymentMethod!)
+                    : null,
+              ),
+            ],
             const SizedBox(height: 8),
             if (latestPayment?.paymentMethod != null)
               _PriceRow(
@@ -1264,14 +1340,95 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     );
   }
 
+  Widget _buildDepositInfoCard({
+    required double requiredDeposit,
+    required double paidDeposit,
+    required double remainingAmount,
+    String? depositGatewayLabel,
+  }) {
+    final isDepositPaid = paidDeposit > 0;
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.blue.shade300),
+        color: Colors.blue.shade50,
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: Colors.blue.shade600,
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(9)),
+            ),
+            child: Row(
+              children: [
+                const Expanded(
+                  child: Text(
+                    'Thông tin đặt cọc',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.25),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    isDepositPaid ? 'Đã đặt cọc' : 'Chưa đặt cọc',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              children: [
+                _PriceRow(label: 'Tiền cọc yêu cầu', value: _fmt(requiredDeposit)),
+                _PriceRow(
+                  label: 'Khách đã thanh toán cọc',
+                  value: _fmt(paidDeposit),
+                  valueColor: Colors.green.shade700,
+                ),
+                if (depositGatewayLabel != null && depositGatewayLabel.isNotEmpty)
+                  _PriceRow(label: 'Cổng thanh toán cọc', value: depositGatewayLabel),
+                const Divider(height: 12),
+                _PriceRow(
+                  label: 'Còn cần thu',
+                  value: _fmt(remainingAmount),
+                  isBold: true,
+                  valueColor: Colors.deepOrange,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   // ── Bottom action bar ─────────────────────────────────────────────────────
 
   Widget _buildBottomBar(
     BuildContext context, {
     required OrderDetail order,
     required bool isPendingUnpaid,
-    required ({String mode, String buttonLabel, String note})? cancelBehavior,
+    required ({String mode, String buttonLabel, String note, bool needRefund, bool loseDepositWarning})? cancelBehavior,
     required bool hasCancelRequest,
+    required bool isCancelRejected,
+    required bool isReturnRejected,
     required bool canReturn,
     required bool isDelivered,
     required bool allReviewed,
@@ -1327,11 +1484,16 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   ),
                 ),
                 onPressed: () async {
+                  final normalizedStatus =
+                      (order.status ?? '').trim().toLowerCase();
                   final result = await context.push('/orders/${order.id}/cancel', extra: {
                     'orderId': order.id,
+                    'orderStatus': order.status,
+                    'showBankInfoForStatus': normalizedStatus == 'pending',
                     'mode': cancelBehavior.mode,
                     'note': cancelBehavior.note,
-                    'needRefund': order.paymentStatus == 'Paid',
+                    'needRefund': cancelBehavior.needRefund,
+                    'loseDepositWarning': cancelBehavior.loseDepositWarning,
                   });
                   if (result == true) {
                     ref.invalidate(orderDetailProvider(widget.orderId));
@@ -1339,6 +1501,14 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   }
                 },
                 child: Text(cancelBehavior.buttonLabel),
+              ),
+            if (!hasCancelRequest && cancelBehavior != null && isCancelRejected)
+              Padding(
+                padding: const EdgeInsets.only(left: 2),
+                child: Text(
+                  'Yêu cầu trước đã bị từ chối, bạn có thể gửi lại.',
+                  style: TextStyle(fontSize: 11, color: Colors.orange.shade800),
+                ),
               ),
             if (isDelivered)
               OutlinedButton(
@@ -1358,7 +1528,11 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         }
                       }
                     : null,
-                child: Text(hasReturnRequest ? 'Đã yêu cầu trả hàng' : 'Yêu cầu trả hàng'),
+                child: Text(
+                  hasReturnRequest
+                      ? 'Đã yêu cầu trả hàng'
+                      : (isReturnRejected ? 'Yêu cầu trả hàng lại' : 'Yêu cầu trả hàng'),
+                ),
               ),
             if (isDelivered)
               FilledButton.icon(
@@ -1453,6 +1627,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         .toList();
     String selectedMethod =
         allowedMethods.isNotEmpty ? allowedMethods.first : 'VnPay';
+    String selectedDepositGateway = 'VnPay';
     bool isSubmitting = false;
 
     showDialog(
@@ -1498,6 +1673,28 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                       ),
                     ),
                   ),
+                  if (selectedMethod == 'CashOnDelivery' ||
+                      selectedMethod == 'CashInStore') ...[
+                    const SizedBox(height: 6),
+                    DropdownButtonFormField<String>(
+                      initialValue: selectedDepositGateway,
+                      decoration: const InputDecoration(
+                        labelText: 'Cổng thanh toán tiền cọc',
+                        border: OutlineInputBorder(),
+                        isDense: true,
+                      ),
+                      items: const [
+                        DropdownMenuItem(value: 'VnPay', child: Text('VNPay')),
+                        DropdownMenuItem(value: 'Momo', child: Text('MoMo')),
+                        DropdownMenuItem(value: 'PayOs', child: Text('PayOS')),
+                      ],
+                      onChanged: (v) {
+                        if (v != null && !isSubmitting) {
+                          setDialogState(() => selectedDepositGateway = v);
+                        }
+                      },
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -1535,7 +1732,16 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         }
                         final url = await ref
                             .read(orderRepositoryProvider)
-                            .retryPayment(paymentId, selectedMethod);
+                            .retryPayment(
+                              paymentId,
+                              selectedMethod,
+                              newDepositMethod:
+                                  (selectedMethod == 'CashOnDelivery' ||
+                                          selectedMethod == 'CashInStore')
+                                      ? selectedDepositGateway
+                                      : 'CashOnDelivery',
+                              posSessionId: null,
+                            );
                         if (selectedMethod == 'VnPay' ||
                             selectedMethod == 'Momo' ||
                             selectedMethod == 'PayOs') {

@@ -108,6 +108,10 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
                 const SizedBox(height: 16),
                 _infoCard(req),
                 const SizedBox(height: 16),
+                if (req.status == 'Pending') ...[
+                  _refundBankCard(req),
+                  const SizedBox(height: 16),
+                ],
                 if (req.returnShippingInfo != null) ...[
                   _shippingCard(req.returnShippingInfo!),
                   const SizedBox(height: 16),
@@ -288,6 +292,20 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
           if (s.trackingNumber != null) _Row('Mã vận đơn', s.trackingNumber!),
           if (s.status != null) _Row('Trạng thái', _shippingStatusLabel(s.status!)),
           _Row('Phí vận chuyển', _currencyFmt.format(s.shippingFee)),
+        ],
+      ),
+    );
+  }
+
+  Widget _refundBankCard(ReturnRequest req) {
+    return _Card(
+      title: 'Thông tin ngân hàng hoàn tiền',
+      icon: Icons.account_balance_outlined,
+      child: Column(
+        children: [
+          _Row('Ngân hàng', req.refundBankName?.isNotEmpty == true ? req.refundBankName! : '-'),
+          _Row('Số tài khoản', req.refundAccountNumber?.isNotEmpty == true ? req.refundAccountNumber! : '-'),
+          _Row('Chủ tài khoản', req.refundAccountName?.isNotEmpty == true ? req.refundAccountName! : '-'),
         ],
       ),
     );
