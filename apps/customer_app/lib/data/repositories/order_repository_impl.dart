@@ -400,25 +400,95 @@ class OrderRepositoryImpl implements OrderRepository {
         break;
     }
 
-    final payload = <String, dynamic>{
-      'newPaymentMethod': method?.value,
+    final paymentValue = method?.value;
+    final basePayload = <String, dynamic>{
+      'newPaymentMethod': paymentValue,
       'newDepositMethod': newDepositMethod,
       'posSessionId': posSessionId,
     };
-    final response = await _dio.post(
-      '/api/payments/$paymentId/retry',
-      data: payload,
-      options: Options(extra: const {'secure': [_bearerSecure]}),
-    );
-    final payloadData = (response.data as Map<String, dynamic>?)?['payload'];
-    if (payloadData is String) {
-      return _normalizePaymentUrl(payloadData);
+    final fallbackPayloads = <Map<String, dynamic>>[
+      basePayload,
+      // Common BE variant: full payment can omit newDepositMethod.
+      if (paymentValue == 'VnPay' || paymentValue == 'Momo' || paymentValue == 'PayOs')
+        <String, dynamic>{
+          'newPaymentMethod': paymentValue,
+          'newDepositMethod': null,
+          'posSessionId': posSessionId,
+        },
+      // Common BE variant: both fields should match chosen gateway/method.
+      if (paymentValue != null)
+        <String, dynamic>{
+          'newPaymentMethod': paymentValue,
+          'newDepositMethod': paymentValue,
+          'posSessionId': posSessionId,
+        },
+      // Legacy variant: API expects gateway in newDepositMethod and base in newPaymentMethod (or vice versa).
+      if (newDepositMethod != null && newDepositMethod.isNotEmpty)
+        <String, dynamic>{
+          'newPaymentMethod': newDepositMethod,
+          'newDepositMethod': paymentValue,
+          'posSessionId': posSessionId,
+        },
+      if (newDepositMethod != null && newDepositMethod.isNotEmpty)
+        <String, dynamic>{
+          'newPaymentMethod': newDepositMethod,
+          'newDepositMethod': newDepositMethod,
+          'posSessionId': posSessionId,
+        },
+    ];
+
+    final seen = <String>{};
+    final candidates = fallbackPayloads.where((p) {
+      final key =
+          '${p['newPaymentMethod'] ?? ''}|${p['newDepositMethod'] ?? ''}|${p['posSessionId'] ?? ''}';
+      if (seen.contains(key)) return false;
+      seen.add(key);
+      return true;
+    }).toList();
+    try {
+      DioException? lastDioError;
+      for (final payload in candidates) {
+        try {
+          final response = await _dio.post(
+            '/api/payments/$paymentId/retry',
+            data: payload,
+            options: Options(extra: const {'secure': [_bearerSecure]}),
+          );
+          final payloadData = (response.data as Map<String, dynamic>?)?['payload'];
+          if (payloadData is String) {
+            return _normalizePaymentUrl(payloadData);
+          }
+          if (payloadData is Map<String, dynamic>) {
+            final paymentUrl = payloadData['paymentUrl']?.toString();
+            return _normalizePaymentUrl(paymentUrl ?? '');
+          }
+          return '';
+        } on DioException catch (e) {
+          lastDioError = e;
+          final code = e.response?.statusCode ?? 0;
+          // Retry payload variants only for validation-style client errors.
+          if (code != 400 && code != 422) rethrow;
+        }
+      }
+      throw lastDioError ?? Exception('Retry payment failed');
+    } on DioException catch (e) {
+      final data = e.response?.data;
+      if (data is Map<String, dynamic>) {
+        final msg = data['message']?.toString();
+        final errors = (data['errors'] as List?)
+            ?.map((x) => x.toString())
+            .where((x) => x.isNotEmpty)
+            .join('; ');
+        throw Exception(
+          (msg != null && msg.isNotEmpty)
+              ? msg
+              : (errors != null && errors.isNotEmpty
+                    ? errors
+                    : 'Retry payment failed'),
+        );
+      }
+      throw Exception('Retry payment failed: ${e.message ?? 'unknown error'}');
     }
-    if (payloadData is Map<String, dynamic>) {
-      final paymentUrl = payloadData['paymentUrl']?.toString();
-      return _normalizePaymentUrl(paymentUrl ?? '');
-    }
-    return '';
   }
 
   @override

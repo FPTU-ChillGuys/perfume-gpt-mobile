@@ -304,14 +304,6 @@ List<_ReturnStep> _buildReturnSteps(OrderDetail order) {
 
 // ─── Retry payment methods ──────────────────────────────────────────────────
 
-const _retryPaymentMethods = [
-  'CashOnDelivery',
-  'CashInStore',
-  'VnPay',
-  'Momo',
-  'PayOs',
-];
-
 const _returnRequestBlockedStatuses = {
   'Pending',
   'ApprovedForReturn',
@@ -1621,61 +1613,60 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
   void _showRetryPaymentDialog(BuildContext context, OrderDetail order,
       PaymentTransaction? latestPayment) {
     final isOffline = order.type == 'Offline';
-    final allowedMethods = _retryPaymentMethods
-        .where(
-            (m) => isOffline ? m != 'CashOnDelivery' : m != 'CashInStore')
-        .toList();
-    String selectedMethod =
-        allowedMethods.isNotEmpty ? allowedMethods.first : 'VnPay';
+    final selectedBaseMethod = isOffline ? 'CashInStore' : 'CashOnDelivery';
+    final fullPaymentMethods = const ['VnPay', 'Momo', 'PayOs'];
+    String paymentMode = 'deposit'; // deposit | full
+    String selectedFullGateway = 'VnPay';
     String selectedDepositGateway = 'VnPay';
     bool isSubmitting = false;
 
     showDialog(
       context: context,
       builder: (ctx) => StatefulBuilder(
-        builder: (ctx, setDialogState) => AlertDialog(
+        builder: (ctx, setDialogState) {
+          final selectedMethod =
+              paymentMode == 'full' ? selectedFullGateway : selectedBaseMethod;
+          final selectedDepositMethod =
+              paymentMode == 'full' ? selectedBaseMethod : selectedDepositGateway;
+          return AlertDialog(
           title: const Text('Thanh toán lại đơn hàng'),
           content: SingleChildScrollView(
-            child: RadioGroup<String>(
-              groupValue: selectedMethod,
-              onChanged: (v) {
-                    if (!isSubmitting && v != null) setDialogState(() => selectedMethod = v);
-                  },
-              child: Column(
+            child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Chọn phương thức thanh toán để tiếp tục.',
+                    'Chọn cách thanh toán lại đơn hàng.',
                     style: TextStyle(color: Colors.grey[600], fontSize: 13),
                   ),
                   const SizedBox(height: 16),
-                  ...allowedMethods.map(
-                    (method) => Container(
-                      margin: const EdgeInsets.only(bottom: 6),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: selectedMethod == method
-                              ? _accent
-                              : Colors.grey[300]!,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 8),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: paymentMode == 'deposit' ? _accent : Colors.grey[300]!,
                       ),
-                      child: RadioListTile<String>(
-                        title: Text(
-                          _paymentMethodLabel(method),
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                        value: method,
-                        dense: true,
-                        activeColor: _accent,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: RadioListTile<String>(
+                      value: 'deposit',
+                      groupValue: paymentMode,
+                      dense: true,
+                      activeColor: _accent,
+                      title: const Text(
+                        'Thanh toán tiền đặt cọc',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                       ),
+                      subtitle: Text(
+                        'Giữ đơn với ${_paymentMethodLabel(selectedBaseMethod)}, chọn cổng thu tiền cọc bên dưới.',
+                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                      ),
+                      onChanged: isSubmitting
+                          ? null
+                          : (v) => setDialogState(() => paymentMode = v ?? 'deposit'),
                     ),
                   ),
-                  if (selectedMethod == 'CashOnDelivery' ||
-                      selectedMethod == 'CashInStore') ...[
-                    const SizedBox(height: 6),
+                  if (paymentMode == 'deposit') ...[
                     DropdownButtonFormField<String>(
                       initialValue: selectedDepositGateway,
                       decoration: const InputDecoration(
@@ -1694,10 +1685,50 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         }
                       },
                     ),
+                    const SizedBox(height: 6),
                   ],
+                  Container(
+                    margin: const EdgeInsets.only(top: 6, bottom: 8),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: paymentMode == 'full' ? _accent : Colors.grey[300]!,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: RadioListTile<String>(
+                      value: 'full',
+                      groupValue: paymentMode,
+                      dense: true,
+                      activeColor: _accent,
+                      title: const Text(
+                        'Chuyển sang thanh toán toàn phần',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                      ),
+                      subtitle: Text(
+                        'Thanh toán toàn bộ còn lại ngay qua VNPay/MoMo/PayOS.',
+                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                      ),
+                      onChanged: isSubmitting
+                          ? null
+                          : (v) => setDialogState(() => paymentMode = v ?? 'full'),
+                    ),
+                  ),
+                  if (paymentMode == 'full')
+                    Wrap(
+                      spacing: 8,
+                      children: fullPaymentMethods.map((method) {
+                        final selected = selectedFullGateway == method;
+                        return ChoiceChip(
+                          label: Text(_paymentMethodLabel(method)),
+                          selected: selected,
+                          onSelected: isSubmitting
+                              ? null
+                              : (_) => setDialogState(() => selectedFullGateway = method),
+                        );
+                      }).toList(),
+                    ),
                 ],
               ),
-            ),
           ),
           actions: [
             TextButton(
@@ -1735,16 +1766,17 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                             .retryPayment(
                               paymentId,
                               selectedMethod,
-                              newDepositMethod:
-                                  (selectedMethod == 'CashOnDelivery' ||
-                                          selectedMethod == 'CashInStore')
-                                      ? selectedDepositGateway
-                                      : 'CashOnDelivery',
+                              newDepositMethod: selectedDepositMethod,
                               posSessionId: null,
                             );
-                        if (selectedMethod == 'VnPay' ||
-                            selectedMethod == 'Momo' ||
-                            selectedMethod == 'PayOs') {
+                        final gatewayMethod = paymentMode == 'full'
+                            ? selectedMethod
+                            : selectedDepositMethod;
+                        final shouldOpenGateway =
+                            gatewayMethod == 'VnPay' ||
+                            gatewayMethod == 'Momo' ||
+                            gatewayMethod == 'PayOs';
+                        if (shouldOpenGateway) {
                           if (ctx.mounted) Navigator.pop(ctx);
                           if (url.isNotEmpty && context.mounted) {
                             context.push(
@@ -1781,7 +1813,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   isSubmitting ? 'Đang xử lý...' : 'Thanh toán ngay'),
             ),
           ],
-        ),
+        );
+        },
       ),
     );
   }
