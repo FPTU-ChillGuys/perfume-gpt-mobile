@@ -73,9 +73,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     super.initState();
     final selectedFromCart = widget.selectedItemIdsFromCart;
     if (selectedFromCart != null && selectedFromCart.isNotEmpty) {
-      ref
-          .read(selectedCartItemIdsProvider.notifier)
-          .update(selectedFromCart.toSet());
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        ref
+            .read(selectedCartItemIdsProvider.notifier)
+            .update(selectedFromCart.toSet());
+      });
     }
     // Auto-populate voucher from cart navigation (matching React FE pattern)
     final code = widget.voucherCodeFromCart;
