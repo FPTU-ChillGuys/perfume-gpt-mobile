@@ -74,7 +74,7 @@ final class StaffReturnRequestsProvider
 }
 
 String _$staffReturnRequestsHash() =>
-    r'c6fc0914e5d64d7590e6b6c6061ab3d14a0cbea4';
+    r'5fc34bfb2ce8dc2119cefd1eccff096e426d8cb5';
 
 final class StaffReturnRequestsFamily extends $Family
     with

@@ -2,13 +2,53 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
+import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 part 'chat_provider.g.dart';
 
 @riverpod
 class ChatSession extends _$ChatSession {
+  String? _conversationId;
+
   @override
-  List<Message> build() {
+  Future<List<Message>> build() async {
+    final aiApiClient = ref.read(aiApiClientProvider);
+    final conversationApi = aiApiClient.getConversationApi();
+
+    try {
+      final response =
+          await conversationApi.conversationControllerGetAllConversationsPaginated(
+            pageSize: 1,
+          );
+
+      final latestConversation = response.data?.payload?.items.firstOrNull;
+
+      if (latestConversation != null) {
+        _conversationId = latestConversation.id;
+        final messages =
+            latestConversation.messages?.map((m) {
+              return Message.text(
+                authorId:
+                    m.sender == 'assistant'
+                        ? 'ai'
+                        : (latestConversation.userId ?? 'user'),
+                createdAt: m.createdAt,
+                id: m.id,
+                text: m.message,
+              );
+            }).toList() ??
+            [];
+
+        // flutter_chat_ui expects newest messages first
+        if (messages.isNotEmpty) {
+          return messages.reversed.toList();
+        }
+      }
+    } catch (e) {
+      // Fallback to new conversation if failed to fetch or no previous conversations
+    }
+
+    _conversationId = const Uuid().v4();
     return [
       Message.text(
         authorId: 'ai',
@@ -21,6 +61,8 @@ class ChatSession extends _$ChatSession {
   }
 
   void sendMessage(String text) async {
+    if (state.value == null) return;
+
     final user = ref.read(authProvider).value;
     final userMessage = Message.text(
       authorId: user?.id ?? 'user',
@@ -29,22 +71,52 @@ class ChatSession extends _$ChatSession {
       text: text,
     );
 
-    state = [userMessage, ...state];
+    final previousMessages = state.value!;
+    state = AsyncData([userMessage, ...previousMessages]);
 
     try {
-      final aiApi = ref.read(aiApiClientProvider).getAIApi();
-      final response = await aiApi.aIControllerSearchProductWithAI(prompt: text);
-      final aiResponseText = response.data?.data ??
-          'I am sorry, I could not process that request.';
+      final aiApiClient = ref.read(aiApiClientProvider);
+      final conversationApi = aiApiClient.getConversationApi();
 
-      final aiMessage = Message.text(
-        authorId: 'ai',
-        createdAt: DateTime.now(),
-        id: const Uuid().v4(),
-        text: aiResponseText,
+      _conversationId ??= const Uuid().v4();
+
+      // Construct history for V10 API
+      // Backend expects oldest first, but our state is newest first
+      final history =
+          [userMessage, ...previousMessages].reversed.map((m) {
+            return MessageRequestDto(
+              sender:
+                  m.authorId == 'ai'
+                      ? MessageRequestDtoSenderEnum.assistant
+                      : MessageRequestDtoSenderEnum.user,
+              message: (m as TextMessage).text,
+            );
+          }).toList();
+
+      final request = ConversationRequestDto(
+        id: _conversationId!,
+        messages: history,
       );
 
-      state = [aiMessage, ...state];
+      final response =
+          await conversationApi.conversationControllerConversationV10(
+            conversationRequestDto: request,
+          );
+
+      final conversationResponse = response.data?.data;
+      final aiLastMessage = conversationResponse?.messages.lastOrNull;
+
+      if (aiLastMessage != null) {
+        final aiMessage = Message.text(
+          authorId: 'ai',
+          createdAt: DateTime.now(),
+          id: const Uuid().v4(),
+          text: aiLastMessage.message,
+        );
+        state = AsyncData([aiMessage, ...state.value!]);
+      } else {
+        throw Exception('No response from AI');
+      }
     } catch (e) {
       final errorMessage = Message.text(
         authorId: 'ai',
@@ -52,7 +124,7 @@ class ChatSession extends _$ChatSession {
         id: const Uuid().v4(),
         text: 'Sorry, I encountered an error. Please try again later.',
       );
-      state = [errorMessage, ...state];
+      state = AsyncData([errorMessage, ...state.value!]);
     }
   }
 }

@@ -37,35 +37,41 @@ class _ChatPageState extends ConsumerState<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    final messages = ref.watch(chatSessionProvider);
+    final messagesAsync = ref.watch(chatSessionProvider);
     final user = ref.watch(common.authProvider).value;
-
-    // Sync messages with controller
-    _chatController.setMessages(messages);
 
     return Scaffold(
       appBar: AppBar(title: const Text('AI Consultation')),
-      body: Chat(
-        chatController: _chatController,
-        currentUserId: user?.id ?? 'user',
-        resolveUser: _resolveUser,
-        onMessageSend: (String text) {
-          ref.read(chatSessionProvider.notifier).sendMessage(text);
+      body: messagesAsync.when(
+        data: (messages) {
+          // Sync messages with controller
+          _chatController.setMessages(messages);
+          return Chat(
+            chatController: _chatController,
+            currentUserId: user?.id ?? 'user',
+            resolveUser: _resolveUser,
+            onMessageSend: (String text) {
+              ref.read(chatSessionProvider.notifier).sendMessage(text);
+            },
+            theme:
+                ChatTheme.light(
+                  fontFamily:
+                      Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                ).copyWith(
+                  colors: ChatColors.light().copyWith(
+                    primary: Theme.of(context).colorScheme.primary,
+                    onPrimary: Theme.of(context).colorScheme.onPrimary,
+                    surface: Theme.of(context).colorScheme.surface,
+                    onSurface: Theme.of(context).colorScheme.onSurface,
+                    surfaceContainer: Theme.of(
+                      context,
+                    ).colorScheme.surfaceContainerHighest,
+                  ),
+                ),
+          );
         },
-        theme:
-            ChatTheme.light(
-              fontFamily: Theme.of(context).textTheme.bodyMedium?.fontFamily,
-            ).copyWith(
-              colors: ChatColors.light().copyWith(
-                primary: Theme.of(context).colorScheme.primary,
-                onPrimary: Theme.of(context).colorScheme.onPrimary,
-                surface: Theme.of(context).colorScheme.surface,
-                onSurface: Theme.of(context).colorScheme.onSurface,
-                surfaceContainer: Theme.of(
-                  context,
-                ).colorScheme.surfaceContainerHighest,
-              ),
-            ),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(child: Text('Error: $err')),
       ),
     );
   }
