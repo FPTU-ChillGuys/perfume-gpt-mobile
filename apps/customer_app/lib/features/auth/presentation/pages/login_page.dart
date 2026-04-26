@@ -126,14 +126,14 @@ class _LoginPageState extends ConsumerState<LoginPage>
                   color: Color(0xFFF8FAFC),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
+                  padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // Card
                       Container(
                         margin: const EdgeInsets.only(top: 0),
-                        transform: Matrix4.translationValues(0, -24, 0),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(28),
@@ -292,31 +292,28 @@ class _LoginPageState extends ConsumerState<LoginPage>
                       ),
 
                       // Register link
-                      Transform.translate(
-                        offset: const Offset(0, -16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Chưa có tài khoản? ',
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Chưa có tài khoản? ',
+                            style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 14,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => context.push('/register'),
+                            child: const Text(
+                              'Đăng ký ngay',
                               style: TextStyle(
-                                color: Colors.grey.shade500,
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 14,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () => context.push('/register'),
-                              child: const Text(
-                                'Đăng ký ngay',
-                                style: TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
