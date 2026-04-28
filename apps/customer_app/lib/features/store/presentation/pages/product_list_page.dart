@@ -17,6 +17,8 @@ const _pageSizeOptions = [12, 24, 36];
 const _priceMin = 0.0;
 const _priceMax = 20000000.0;
 const _volumeOptions = [5, 10, 30, 50, 75, 100, 125, 150, 200];
+const _moduleHorizontalPadding = 16.0;
+const _moduleGap = 12.0;
 
 const _categoryLabels = <String, String>{
   'for women': 'Nước hoa cho Nữ',
@@ -345,16 +347,30 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
             // Content
             if (_isLoading)
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: _moduleHorizontalPadding,
+                ),
                 sliver: _buildSkeletonGrid(),
               )
             else if (_error != null)
-              SliverToBoxAdapter(child: _buildError())
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: _moduleHorizontalPadding,
+                ),
+                sliver: SliverToBoxAdapter(child: _buildError()),
+              )
             else if (_displayedProducts.isEmpty)
-              SliverToBoxAdapter(child: _buildEmpty())
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: _moduleHorizontalPadding,
+                ),
+                sliver: SliverToBoxAdapter(child: _buildEmpty()),
+              )
             else
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: _moduleHorizontalPadding,
+                ),
                 sliver: _buildProductGrid(),
               ),
             // Pagination
@@ -382,7 +398,12 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
       child: SafeArea(
         bottom: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 36),
+          padding: const EdgeInsets.fromLTRB(
+            _moduleHorizontalPadding,
+            8,
+            _moduleHorizontalPadding,
+            20,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -470,8 +491,12 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
 
   Widget _buildToolbar() {
     return Container(
-      margin: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-      transform: Matrix4.translationValues(0, -20, 0),
+      margin: const EdgeInsets.fromLTRB(
+        _moduleHorizontalPadding,
+        _moduleGap,
+        _moduleHorizontalPadding,
+        _moduleGap,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
@@ -670,7 +695,12 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
 
   Widget _buildActiveFilterChips() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+      padding: const EdgeInsets.fromLTRB(
+        _moduleHorizontalPadding,
+        0,
+        _moduleHorizontalPadding,
+        _moduleGap,
+      ),
       child: Wrap(
         spacing: 8,
         runSpacing: 8,
@@ -875,7 +905,12 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
         : _displayedProducts.length == _pageSize;
 
     return Container(
-      margin: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+      margin: const EdgeInsets.fromLTRB(
+        _moduleHorizontalPadding,
+        _moduleGap,
+        _moduleHorizontalPadding,
+        0,
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.95),

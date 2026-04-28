@@ -23,9 +23,32 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          // ── Hero ──────────────────────────────────────────────────────
-          SliverToBoxAdapter(child: _buildHero(context, cartItemCount)),
-
+          SliverAppBar(
+            pinned: true,
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            backgroundColor: AppColors.heroStart,
+            titleSpacing: 16,
+            title: const Text(
+              'PerfumeGPT',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: _circleButton(
+                  Icons.shopping_cart_outlined,
+                  () => context.push('/cart'),
+                  context: context,
+                  badgeCount: cartItemCount,
+                ),
+              ),
+            ],
+          ),
           // ── Banner Slider ─────────────────────────────────────────────
           SliverToBoxAdapter(
             child: bannersAsync.when(
@@ -117,43 +140,6 @@ class HomePage extends ConsumerWidget {
   // ═══════════════════════════════════════════════════════════════════════
   // Hero
   // ═══════════════════════════════════════════════════════════════════════
-
-  Widget _buildHero(BuildContext context, int cartItemCount) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [AppColors.heroStart, AppColors.heroEnd],
-        ),
-      ),
-      child: SafeArea(
-        bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 12, 20, 14),
-          child: Row(
-            children: [
-              const Text(
-                'PerfumeGPT',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const Spacer(),
-              _circleButton(
-                Icons.shopping_cart_outlined,
-                () => context.push('/cart'),
-                context: context,
-                badgeCount: cartItemCount,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget _circleButton(
     IconData icon,
