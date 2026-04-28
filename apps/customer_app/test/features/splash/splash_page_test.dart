@@ -13,7 +13,12 @@ class MockAuthRepository implements AuthRepository {
   Future<User?> getCurrentUser() async => currentUser;
 
   @override
-  Future<User?> login(String email, String password) async => currentUser;
+  Future<User?> login(
+    String email,
+    String password, {
+    String? deviceType,
+    String? fcmToken,
+  }) async => currentUser;
 
   @override
   Future<User?> googleLogin() async => currentUser;
