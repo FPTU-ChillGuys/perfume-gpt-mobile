@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "854882232373",
+    "project_id": "perfumegpt-1a598",
+    "storage_bucket": "perfumegpt-1a598.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854882232373:android:b10503d9a9bd90929ca97c",
+        "android_client_info": {
+          "package_name": "com.example.customer_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANJmtyr_8pzU8a1cW5qkrG_5-UDtvuMT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

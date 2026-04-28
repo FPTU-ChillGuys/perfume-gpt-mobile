@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:perfumegpt_common/perfumegpt_common.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +18,21 @@ class LoginPage extends ConsumerStatefulWidget {
 
 class _LoginPageState extends ConsumerState<LoginPage>
     with SingleTickerProviderStateMixin {
+  String _deviceType() {
+    if (kIsWeb) return 'Web';
+    if (Platform.isAndroid) return 'Android';
+    if (Platform.isIOS) return 'iOS';
+    return 'Unknown';
+  }
+
+  Future<String?> _safeGetFcmToken() async {
+    try {
+      return await FirebaseMessaging.instance.getToken();
+    } catch (_) {
+      return null;
+    }
+  }
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
@@ -199,12 +218,17 @@ class _LoginPageState extends ConsumerState<LoginPage>
                               child: ElevatedButton(
                                 onPressed: authState.isLoading
                                     ? null
-                                    : () {
+                                    : () async {
+                                        final fcmToken =
+                                            await _safeGetFcmToken();
+                                        if (!mounted) return;
                                         ref
                                             .read(authProvider.notifier)
                                             .login(
                                               _emailController.text,
                                               _passwordController.text,
+                                              deviceType: _deviceType(),
+                                              fcmToken: fcmToken,
                                             );
                                       },
                                 style: ElevatedButton.styleFrom(

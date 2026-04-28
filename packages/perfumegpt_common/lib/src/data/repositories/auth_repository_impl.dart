@@ -1,6 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import 'package:dio/dio.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 
@@ -35,12 +36,34 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<User?> login(String email, String password) async {
-    final response = await _apiClient.getAuthsApi().apiAuthsLoginPost(
-      loginRequest: LoginRequest(credential: email, password: password),
+  Future<User?> login(
+    String credential,
+    String password, {
+    String? deviceType,
+    String? fcmToken,
+  }) async {
+    final response = await _apiClient.dio.post(
+      '/api/auths/login',
+      data: <String, dynamic>{
+        'credential': credential,
+        'password': password,
+        'deviceType': deviceType,
+        'fcmToken': fcmToken,
+      },
+      options: Options(contentType: Headers.jsonContentType),
     );
-
-    return _handleTokenResponse(response.data?.payload?.accessToken);
+    final data = response.data;
+    final payload = data is Map<String, dynamic>
+        ? data['payload'] as Map<String, dynamic>?
+        : null;
+    final token = payload?['accessToken']?.toString();
+    if (token == null || token.isEmpty) {
+      final message = data is Map<String, dynamic>
+          ? data['message']?.toString()
+          : 'Đăng nhập thất bại';
+      throw Exception(message ?? 'Đăng nhập thất bại');
+    }
+    return _handleTokenResponse(token);
   }
 
   @override
