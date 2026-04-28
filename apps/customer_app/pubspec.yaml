@@ -34,6 +34,9 @@ dependencies:
   flutter_widget_from_html_core: ^0.17.2
   perfumegpt_ai_api_client:
     path: ../../packages/perfumegpt_ai_api_client
+  firebase_core: ^4.7.0
+  firebase_messaging: ^16.2.0
+  flutter_local_notifications: ^21.0.0
 
 dev_dependencies:
   flutter_test:
