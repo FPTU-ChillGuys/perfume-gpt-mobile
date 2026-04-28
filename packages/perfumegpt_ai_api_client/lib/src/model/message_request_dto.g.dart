@@ -9,7 +9,7 @@ part of 'message_request_dto.dart';
 abstract class _$MessageRequestDtoCWProxy {
   MessageRequestDto sender(MessageRequestDtoSenderEnum sender);
 
-  MessageRequestDto message(String message);
+  MessageRequestDto message(MessageRequestDtoMessage message);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `MessageRequestDto(...).copyWith.fieldName(value)`.
@@ -18,7 +18,10 @@ abstract class _$MessageRequestDtoCWProxy {
   /// ```dart
   /// MessageRequestDto(...).copyWith(id: 12, name: "My name")
   /// ```
-  MessageRequestDto call({MessageRequestDtoSenderEnum sender, String message});
+  MessageRequestDto call({
+    MessageRequestDtoSenderEnum sender,
+    MessageRequestDtoMessage message,
+  });
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -33,7 +36,8 @@ class _$MessageRequestDtoCWProxyImpl implements _$MessageRequestDtoCWProxy {
       call(sender: sender);
 
   @override
-  MessageRequestDto message(String message) => call(message: message);
+  MessageRequestDto message(MessageRequestDtoMessage message) =>
+      call(message: message);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -55,7 +59,7 @@ class _$MessageRequestDtoCWProxyImpl implements _$MessageRequestDtoCWProxy {
       message: message == const $CopyWithPlaceholder() || message == null
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
-          : message as String,
+          : message as MessageRequestDtoMessage,
     );
   }
 }
@@ -80,7 +84,10 @@ MessageRequestDto _$MessageRequestDtoFromJson(Map<String, dynamic> json) =>
           'sender',
           (v) => $enumDecode(_$MessageRequestDtoSenderEnumEnumMap, v),
         ),
-        message: $checkedConvert('message', (v) => v as String),
+        message: $checkedConvert(
+          'message',
+          (v) => MessageRequestDtoMessage.fromJson(v as Map<String, dynamic>),
+        ),
       );
       return val;
     });
@@ -88,7 +95,7 @@ MessageRequestDto _$MessageRequestDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$MessageRequestDtoToJson(MessageRequestDto instance) =>
     <String, dynamic>{
       'sender': _$MessageRequestDtoSenderEnumEnumMap[instance.sender]!,
-      'message': instance.message,
+      'message': instance.message.toJson(),
     };
 
 const _$MessageRequestDtoSenderEnumEnumMap = {

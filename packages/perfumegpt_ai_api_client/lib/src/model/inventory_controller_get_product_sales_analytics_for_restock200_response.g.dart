@@ -8,11 +8,11 @@ part of 'inventory_controller_get_product_sales_analytics_for_restock200_respons
 
 abstract class _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseCWProxy {
   InventoryControllerGetProductSalesAnalyticsForRestock200Response success(
-    bool success,
+    bool? success,
   );
 
   InventoryControllerGetProductSalesAnalyticsForRestock200Response error(
-    Object? error,
+    String? error,
   );
 
   InventoryControllerGetProductSalesAnalyticsForRestock200Response payload(
@@ -27,8 +27,8 @@ abstract class _$InventoryControllerGetProductSalesAnalyticsForRestock200Respons
   /// InventoryControllerGetProductSalesAnalyticsForRestock200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   InventoryControllerGetProductSalesAnalyticsForRestock200Response call({
-    bool success,
-    Object? error,
+    bool? success,
+    String? error,
     List<VariantSalesAnalyticsResponse>? payload,
   });
 }
@@ -46,12 +46,12 @@ class _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseCWProxyI
 
   @override
   InventoryControllerGetProductSalesAnalyticsForRestock200Response success(
-    bool success,
+    bool? success,
   ) => call(success: success);
 
   @override
   InventoryControllerGetProductSalesAnalyticsForRestock200Response error(
-    Object? error,
+    String? error,
   ) => call(error: error);
 
   @override
@@ -73,14 +73,14 @@ class _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseCWProxyI
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return InventoryControllerGetProductSalesAnalyticsForRestock200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
@@ -112,11 +112,10 @@ _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseFromJson(
   'InventoryControllerGetProductSalesAnalyticsForRestock200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val =
         InventoryControllerGetProductSalesAnalyticsForRestock200Response(
-          success: $checkedConvert('success', (v) => v as bool),
-          error: $checkedConvert('error', (v) => v),
+          success: $checkedConvert('success', (v) => v as bool?),
+          error: $checkedConvert('error', (v) => v as String?),
           payload: $checkedConvert(
             'payload',
             (v) => (v as List<dynamic>?)
@@ -136,7 +135,7 @@ Map<String, dynamic>
 _$InventoryControllerGetProductSalesAnalyticsForRestock200ResponseToJson(
   InventoryControllerGetProductSalesAnalyticsForRestock200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.map((e) => e.toJson()).toList(),
 };

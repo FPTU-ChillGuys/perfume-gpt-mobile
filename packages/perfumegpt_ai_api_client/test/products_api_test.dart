@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for ProductsApi
 void main() {
   final instance = PerfumegptAiApiClient().getProductsApi();
@@ -15,21 +16,21 @@ void main() {
 
     // [TEST] Lấy danh sách sản phẩm kèm toàn bộ variants
     //
-    //Future<ProductControllerGetAllProducts200Response> productControllerGetAllProductsWithVariants(num pageNumber, num pageSize, String sortOrder, bool isDescending) async
+    //Future<ProductControllerGetProductsBySemanticSearch200Response> productControllerGetAllProductsWithVariants(num pageNumber, num pageSize, String sortOrder, bool isDescending) async
     test('test productControllerGetAllProductsWithVariants', () async {
       // TODO
     });
 
     // [TEST] Lấy danh sách sản phẩm bán chạy
     //
-    //Future<ProductControllerGetAllProducts200Response> productControllerGetBestSellingProducts(num pageNumber, num pageSize, String sortOrder, bool isDescending) async
+    //Future<ProductControllerGetBestSellingProducts200Response> productControllerGetBestSellingProducts(num pageNumber, num pageSize, String sortOrder, bool isDescending) async
     test('test productControllerGetBestSellingProducts', () async {
       // TODO
     });
 
     // [TEST] Lấy danh sách sản phẩm mới nhất
     //
-    //Future<ProductControllerGetAllProducts200Response> productControllerGetNewestProductsWithVariants(num pageNumber, num pageSize, String sortOrder, bool isDescending) async
+    //Future<ProductControllerGetProductsBySemanticSearch200Response> productControllerGetNewestProductsWithVariants(num pageNumber, num pageSize, String sortOrder, bool isDescending) async
     test('test productControllerGetNewestProductsWithVariants', () async {
       // TODO
     });
@@ -43,41 +44,38 @@ void main() {
 
     // Tìm kiếm sản phẩm bằng semantic search v2 (AI extraction)
     //
-    //Future<ProductControllerGetAllProducts200Response> productControllerGetProductsByAiSearch(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
+    //Future<ProductControllerGetProductsBySemanticSearch200Response> productControllerGetProductsByAiSearch(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
     test('test productControllerGetProductsByAiSearch', () async {
       // TODO
     });
 
     // Hybrid Search v4 - Kết hợp Query Layer (hard filters) và Vector Layer (similarity)
     //
-    //Future<ProductControllerGetAllProducts200Response> productControllerGetProductsByHybridSearch(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
+    //Future<ProductControllerGetProductsByHybridSearch200Response> productControllerGetProductsByHybridSearch(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
     test('test productControllerGetProductsByHybridSearch', () async {
       // TODO
     });
 
     // Tìm kiếm sản phẩm bằng parser path (parse -> query)
     //
-    //Future<ProductControllerGetAllProducts200Response> productControllerGetProductsByParsedSearch(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
+    //Future<ProductControllerGetProductsBySemanticSearch200Response> productControllerGetProductsByParsedSearch(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
     test('test productControllerGetProductsByParsedSearch', () async {
       // TODO
     });
 
     // Tìm kiếm sản phẩm bằng semantic search
     //
-    //Future<ProductControllerGetAllProducts200Response> productControllerGetProductsBySemanticSearch(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
+    //Future<ProductControllerGetProductsBySemanticSearch200Response> productControllerGetProductsBySemanticSearch(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
     test('test productControllerGetProductsBySemanticSearch', () async {
       // TODO
     });
 
     // Tìm kiếm sản phẩm bằng semantic search, kết quả kèm toàn bộ variants
     //
-    //Future<ProductControllerGetAllProducts200Response> productControllerGetProductsBySemanticSearchWithVariants(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
-    test(
-      'test productControllerGetProductsBySemanticSearchWithVariants',
-      () async {
-        // TODO
-      },
-    );
+    //Future<ProductControllerGetProductsBySemanticSearch200Response> productControllerGetProductsBySemanticSearchWithVariants(num pageNumber, num pageSize, String sortOrder, bool isDescending, String searchText) async
+    test('test productControllerGetProductsBySemanticSearchWithVariants', () async {
+      // TODO
+    });
 
     // Ghi log khi người dùng xem / click vào product hoặc variant
     //
@@ -92,5 +90,6 @@ void main() {
     test('test productControllerLogSearchText', () async {
       // TODO
     });
+
   });
 }

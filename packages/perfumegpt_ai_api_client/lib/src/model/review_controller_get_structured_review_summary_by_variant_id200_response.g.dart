@@ -8,15 +8,15 @@ part of 'review_controller_get_structured_review_summary_by_variant_id200_respon
 
 abstract class _$ReviewControllerGetStructuredReviewSummaryByVariantId200ResponseCWProxy {
   ReviewControllerGetStructuredReviewSummaryByVariantId200Response success(
-    bool success,
+    bool? success,
   );
 
   ReviewControllerGetStructuredReviewSummaryByVariantId200Response error(
-    Object? error,
+    String? error,
   );
 
   ReviewControllerGetStructuredReviewSummaryByVariantId200Response details(
-    Object? details,
+    String? details,
   );
 
   ReviewControllerGetStructuredReviewSummaryByVariantId200Response data(
@@ -31,9 +31,9 @@ abstract class _$ReviewControllerGetStructuredReviewSummaryByVariantId200Respons
   /// ReviewControllerGetStructuredReviewSummaryByVariantId200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ReviewControllerGetStructuredReviewSummaryByVariantId200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     AIReviewSummaryStructuredResponse? data,
   });
 }
@@ -51,17 +51,17 @@ class _$ReviewControllerGetStructuredReviewSummaryByVariantId200ResponseCWProxyI
 
   @override
   ReviewControllerGetStructuredReviewSummaryByVariantId200Response success(
-    bool success,
+    bool? success,
   ) => call(success: success);
 
   @override
   ReviewControllerGetStructuredReviewSummaryByVariantId200Response error(
-    Object? error,
+    String? error,
   ) => call(error: error);
 
   @override
   ReviewControllerGetStructuredReviewSummaryByVariantId200Response details(
-    Object? details,
+    String? details,
   ) => call(details: details);
 
   @override
@@ -84,18 +84,18 @@ class _$ReviewControllerGetStructuredReviewSummaryByVariantId200ResponseCWProxyI
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return ReviewControllerGetStructuredReviewSummaryByVariantId200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -127,12 +127,11 @@ _$ReviewControllerGetStructuredReviewSummaryByVariantId200ResponseFromJson(
   'ReviewControllerGetStructuredReviewSummaryByVariantId200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val =
         ReviewControllerGetStructuredReviewSummaryByVariantId200Response(
-          success: $checkedConvert('success', (v) => v as bool),
-          error: $checkedConvert('error', (v) => v),
-          details: $checkedConvert('details', (v) => v),
+          success: $checkedConvert('success', (v) => v as bool?),
+          error: $checkedConvert('error', (v) => v as String?),
+          details: $checkedConvert('details', (v) => v as String?),
           data: $checkedConvert(
             'data',
             (v) => v == null
@@ -150,7 +149,7 @@ Map<String, dynamic>
 _$ReviewControllerGetStructuredReviewSummaryByVariantId200ResponseToJson(
   ReviewControllerGetStructuredReviewSummaryByVariantId200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),

@@ -13,10 +13,10 @@ void main() {
       // TODO
     });
 
-    // Nội dung tin nhắn
-    // String message
+    // MessageRequestDtoMessage message
     test('to test the property `message`', () async {
       // TODO
     });
+
   });
 }

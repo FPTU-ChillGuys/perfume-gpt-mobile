@@ -17,7 +17,7 @@ abstract class _$MessageDtoCWProxy {
 
   MessageDto sender(String sender);
 
-  MessageDto message(String message);
+  MessageDto message(MessageDtoMessage message);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `MessageDto(...).copyWith.fieldName(value)`.
@@ -32,7 +32,7 @@ abstract class _$MessageDtoCWProxy {
     DateTime updatedAt,
     bool isActive,
     String sender,
-    String message,
+    MessageDtoMessage message,
   });
 }
 
@@ -59,7 +59,7 @@ class _$MessageDtoCWProxyImpl implements _$MessageDtoCWProxy {
   MessageDto sender(String sender) => call(sender: sender);
 
   @override
-  MessageDto message(String message) => call(message: message);
+  MessageDto message(MessageDtoMessage message) => call(message: message);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -101,7 +101,7 @@ class _$MessageDtoCWProxyImpl implements _$MessageDtoCWProxy {
       message: message == const $CopyWithPlaceholder() || message == null
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
-          : message as String,
+          : message as MessageDtoMessage,
     );
   }
 }
@@ -137,7 +137,10 @@ MessageDto _$MessageDtoFromJson(
     updatedAt: $checkedConvert('updatedAt', (v) => DateTime.parse(v as String)),
     isActive: $checkedConvert('isActive', (v) => v as bool),
     sender: $checkedConvert('sender', (v) => v as String),
-    message: $checkedConvert('message', (v) => v as String),
+    message: $checkedConvert(
+      'message',
+      (v) => MessageDtoMessage.fromJson(v as Map<String, dynamic>),
+    ),
   );
   return val;
 });
@@ -149,5 +152,5 @@ Map<String, dynamic> _$MessageDtoToJson(MessageDto instance) =>
       'updatedAt': instance.updatedAt.toIso8601String(),
       'isActive': instance.isActive,
       'sender': instance.sender,
-      'message': instance.message,
+      'message': instance.message.toJson(),
     };

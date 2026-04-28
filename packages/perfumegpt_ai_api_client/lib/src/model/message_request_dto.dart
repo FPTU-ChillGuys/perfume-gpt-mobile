@@ -3,10 +3,12 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_ai_api_client/src/model/message_request_dto_message.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'message_request_dto.g.dart';
+
 
 @CopyWith()
 @JsonSerializable(
@@ -17,28 +19,51 @@ part 'message_request_dto.g.dart';
 )
 class MessageRequestDto {
   /// Returns a new [MessageRequestDto] instance.
-  MessageRequestDto({required this.sender, required this.message});
+  MessageRequestDto({
 
-  /// Người gửi tin nhắn
-  @JsonKey(name: r'sender', required: true, includeIfNull: false)
+    required  this.sender,
+
+    required  this.message,
+  });
+
+      /// Người gửi tin nhắn
+  @JsonKey(
+    
+    name: r'sender',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final MessageRequestDtoSenderEnum sender;
 
-  /// Nội dung tin nhắn
-  @JsonKey(name: r'message', required: true, includeIfNull: false)
-  final String message;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MessageRequestDto &&
-          other.sender == sender &&
-          other.message == message;
 
-  @override
-  int get hashCode => sender.hashCode + message.hashCode;
+  @JsonKey(
+    
+    name: r'message',
+    required: true,
+    includeIfNull: false,
+  )
 
-  factory MessageRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$MessageRequestDtoFromJson(json);
+
+  final MessageRequestDtoMessage message;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is MessageRequestDto &&
+      other.sender == sender &&
+      other.message == message;
+
+    @override
+    int get hashCode =>
+        sender.hashCode +
+        message.hashCode;
+
+  factory MessageRequestDto.fromJson(Map<String, dynamic> json) => _$MessageRequestDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$MessageRequestDtoToJson(this);
 
@@ -46,22 +71,24 @@ class MessageRequestDto {
   String toString() {
     return toJson().toString();
   }
+
 }
 
 /// Người gửi tin nhắn
 enum MessageRequestDtoSenderEnum {
-  /// Người gửi tin nhắn
-  @JsonValue(r'user')
-  user(r'user'),
+    /// Người gửi tin nhắn
+@JsonValue(r'user')
+user(r'user'),
+    /// Người gửi tin nhắn
+@JsonValue(r'assistant')
+assistant(r'assistant');
 
-  /// Người gửi tin nhắn
-  @JsonValue(r'assistant')
-  assistant(r'assistant');
+const MessageRequestDtoSenderEnum(this.value);
 
-  const MessageRequestDtoSenderEnum(this.value);
+final String value;
 
-  final String value;
-
-  @override
-  String toString() => value;
+@override
+String toString() => value;
 }
+
+

@@ -7,12 +7,12 @@ part of 'order_controller_get_all_orders200_response.dart';
 // **************************************************************************
 
 abstract class _$OrderControllerGetAllOrders200ResponseCWProxy {
-  OrderControllerGetAllOrders200Response success(bool success);
+  OrderControllerGetAllOrders200Response success(bool? success);
 
-  OrderControllerGetAllOrders200Response error(Object? error);
+  OrderControllerGetAllOrders200Response error(String? error);
 
   OrderControllerGetAllOrders200Response payload(
-    OrderControllerGetAllOrders200ResponseAllOfPayload? payload,
+    OrderControllerGetAllOrders200ResponsePayload? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -23,9 +23,9 @@ abstract class _$OrderControllerGetAllOrders200ResponseCWProxy {
   /// OrderControllerGetAllOrders200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   OrderControllerGetAllOrders200Response call({
-    bool success,
-    Object? error,
-    OrderControllerGetAllOrders200ResponseAllOfPayload? payload,
+    bool? success,
+    String? error,
+    OrderControllerGetAllOrders200ResponsePayload? payload,
   });
 }
 
@@ -38,16 +38,16 @@ class _$OrderControllerGetAllOrders200ResponseCWProxyImpl
   final OrderControllerGetAllOrders200Response _value;
 
   @override
-  OrderControllerGetAllOrders200Response success(bool success) =>
+  OrderControllerGetAllOrders200Response success(bool? success) =>
       call(success: success);
 
   @override
-  OrderControllerGetAllOrders200Response error(Object? error) =>
+  OrderControllerGetAllOrders200Response error(String? error) =>
       call(error: error);
 
   @override
   OrderControllerGetAllOrders200Response payload(
-    OrderControllerGetAllOrders200ResponseAllOfPayload? payload,
+    OrderControllerGetAllOrders200ResponsePayload? payload,
   ) => call(payload: payload);
 
   @override
@@ -64,18 +64,18 @@ class _$OrderControllerGetAllOrders200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return OrderControllerGetAllOrders200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as OrderControllerGetAllOrders200ResponseAllOfPayload?,
+          : payload as OrderControllerGetAllOrders200ResponsePayload?,
     );
   }
 }
@@ -98,15 +98,14 @@ _$OrderControllerGetAllOrders200ResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('OrderControllerGetAllOrders200Response', json, (
       $checkedConvert,
     ) {
-      $checkKeys(json, requiredKeys: const ['success']);
       final val = OrderControllerGetAllOrders200Response(
-        success: $checkedConvert('success', (v) => v as bool),
-        error: $checkedConvert('error', (v) => v),
+        success: $checkedConvert('success', (v) => v as bool?),
+        error: $checkedConvert('error', (v) => v as String?),
         payload: $checkedConvert(
           'payload',
           (v) => v == null
               ? null
-              : OrderControllerGetAllOrders200ResponseAllOfPayload.fromJson(
+              : OrderControllerGetAllOrders200ResponsePayload.fromJson(
                   v as Map<String, dynamic>,
                 ),
         ),
@@ -117,7 +116,7 @@ _$OrderControllerGetAllOrders200ResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$OrderControllerGetAllOrders200ResponseToJson(
   OrderControllerGetAllOrders200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

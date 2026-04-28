@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'trend_controller_get_product_from_trend_caching200_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,55 +20,91 @@ part 'trend_controller_get_product_from_trend_caching200_response.g.dart';
 class TrendControllerGetProductFromTrendCaching200Response {
   /// Returns a new [TrendControllerGetProductFromTrendCaching200Response] instance.
   TrendControllerGetProductFromTrendCaching200Response({
-    required this.success,
 
-    this.error,
+     this.success,
 
-    this.details,
+     this.error,
 
-    this.data,
+     this.details,
+
+     this.data,
   });
 
-  /// Kết quả xử lý
-  @JsonKey(name: r'success', required: true, includeIfNull: false)
-  final bool success;
+      /// Kết quả xử lý
+  @JsonKey(
+    
+    name: r'success',
+    required: false,
+    includeIfNull: false,
+  )
 
-  /// Thông báo lỗi
-  @JsonKey(name: r'error', required: false, includeIfNull: false)
-  final Object? error;
 
-  /// Chi tiết lỗi
-  @JsonKey(name: r'details', required: false, includeIfNull: false)
-  final Object? details;
+  final bool? success;
 
-  @JsonKey(name: r'data', required: false, includeIfNull: false)
+
+
+      /// Thông báo lỗi
+  @JsonKey(
+    
+    name: r'error',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? error;
+
+
+
+      /// Chi tiết lỗi
+  @JsonKey(
+    
+    name: r'details',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? details;
+
+
+
+  @JsonKey(
+    
+    name: r'data',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final ProductCardResponse? data;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is TrendControllerGetProductFromTrendCaching200Response &&
-          other.success == success &&
-          other.error == error &&
-          other.details == details &&
-          other.data == data;
 
-  @override
-  int get hashCode =>
-      success.hashCode +
-      (error == null ? 0 : error.hashCode) +
-      (details == null ? 0 : details.hashCode) +
-      data.hashCode;
 
-  factory TrendControllerGetProductFromTrendCaching200Response.fromJson(
-    Map<String, dynamic> json,
-  ) => _$TrendControllerGetProductFromTrendCaching200ResponseFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$TrendControllerGetProductFromTrendCaching200ResponseToJson(this);
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is TrendControllerGetProductFromTrendCaching200Response &&
+      other.success == success &&
+      other.error == error &&
+      other.details == details &&
+      other.data == data;
+
+    @override
+    int get hashCode =>
+        success.hashCode +
+        (error == null ? 0 : error.hashCode) +
+        (details == null ? 0 : details.hashCode) +
+        data.hashCode;
+
+  factory TrendControllerGetProductFromTrendCaching200Response.fromJson(Map<String, dynamic> json) => _$TrendControllerGetProductFromTrendCaching200ResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TrendControllerGetProductFromTrendCaching200ResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
+
 }
+

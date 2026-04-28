@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **isActive** | **bool** | Trạng thái hoạt động | 
 **userId** | **String** | ID người dùng | [optional] 
 **messages** | [**List&lt;MessageDto&gt;**](MessageDto.md) | Danh sách tin nhắn | [optional] 
+**isMobile** | **bool** | Đánh dấu response cho Mobile | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

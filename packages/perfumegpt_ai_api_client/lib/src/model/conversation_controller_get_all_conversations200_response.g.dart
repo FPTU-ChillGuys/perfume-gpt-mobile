@@ -7,11 +7,11 @@ part of 'conversation_controller_get_all_conversations200_response.dart';
 // **************************************************************************
 
 abstract class _$ConversationControllerGetAllConversations200ResponseCWProxy {
-  ConversationControllerGetAllConversations200Response success(bool success);
+  ConversationControllerGetAllConversations200Response success(bool? success);
 
-  ConversationControllerGetAllConversations200Response error(Object? error);
+  ConversationControllerGetAllConversations200Response error(String? error);
 
-  ConversationControllerGetAllConversations200Response details(Object? details);
+  ConversationControllerGetAllConversations200Response details(String? details);
 
   ConversationControllerGetAllConversations200Response data(
     ConversationDto? data,
@@ -25,9 +25,9 @@ abstract class _$ConversationControllerGetAllConversations200ResponseCWProxy {
   /// ConversationControllerGetAllConversations200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ConversationControllerGetAllConversations200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     ConversationDto? data,
   });
 }
@@ -43,16 +43,16 @@ class _$ConversationControllerGetAllConversations200ResponseCWProxyImpl
   final ConversationControllerGetAllConversations200Response _value;
 
   @override
-  ConversationControllerGetAllConversations200Response success(bool success) =>
+  ConversationControllerGetAllConversations200Response success(bool? success) =>
       call(success: success);
 
   @override
-  ConversationControllerGetAllConversations200Response error(Object? error) =>
+  ConversationControllerGetAllConversations200Response error(String? error) =>
       call(error: error);
 
   @override
   ConversationControllerGetAllConversations200Response details(
-    Object? details,
+    String? details,
   ) => call(details: details);
 
   @override
@@ -75,18 +75,18 @@ class _$ConversationControllerGetAllConversations200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return ConversationControllerGetAllConversations200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -115,11 +115,10 @@ _$ConversationControllerGetAllConversations200ResponseFromJson(
   'ConversationControllerGetAllConversations200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = ConversationControllerGetAllConversations200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
-      details: $checkedConvert('details', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
+      details: $checkedConvert('details', (v) => v as String?),
       data: $checkedConvert(
         'data',
         (v) => v == null
@@ -135,7 +134,7 @@ Map<String, dynamic>
 _$ConversationControllerGetAllConversations200ResponseToJson(
   ConversationControllerGetAllConversations200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),

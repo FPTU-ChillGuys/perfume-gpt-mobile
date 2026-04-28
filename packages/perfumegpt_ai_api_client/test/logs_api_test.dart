@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for LogsApi
 void main() {
   final instance = PerfumegptAiApiClient().getLogsApi();
@@ -117,5 +118,6 @@ void main() {
     test('test logControllerRebuildUserSummary', () async {
       // TODO
     });
+
   });
 }

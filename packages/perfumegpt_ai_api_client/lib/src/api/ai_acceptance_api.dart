@@ -15,12 +15,13 @@ import 'package:perfumegpt_ai_api_client/src/model/create_response_ai_acceptance
 import 'package:perfumegpt_ai_api_client/src/model/trend_controller_get_product_trend_job_result200_response.dart';
 
 class AIAcceptanceApi {
+
   final Dio _dio;
 
   const AIAcceptanceApi(this._dio);
 
   /// Đánh dấu click chấp nhận theo aiAcceptanceId
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [aiAcceptanceId] - ID bản ghi AI acceptance
@@ -33,10 +34,7 @@ class AIAcceptanceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AIAcceptanceControllerCreatePendingResponseAcceptance200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<
-    Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>
-  >
-  aIAcceptanceControllerClickAIAcceptance({
+  Future<Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>> aIAcceptanceControllerClickAIAcceptance({ 
     required String aiAcceptanceId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -45,16 +43,16 @@ class AIAcceptanceApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ai-acceptance/click/{aiAcceptanceId}'.replaceAll(
-      '{'
-      r'aiAcceptanceId'
-      '}',
-      aiAcceptanceId.toString(),
-    );
+    final _path = r'/ai-acceptance/click/{aiAcceptanceId}'.replaceAll('{' r'aiAcceptanceId' '}', aiAcceptanceId.toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -66,21 +64,12 @@ class AIAcceptanceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    AIAcceptanceControllerCreatePendingResponseAcceptance200Response?
-    _responseData;
+    AIAcceptanceControllerCreatePendingResponseAcceptance200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              AIAcceptanceControllerCreatePendingResponseAcceptance200Response,
-              AIAcceptanceControllerCreatePendingResponseAcceptance200Response
-            >(
-              rawData,
-              'AIAcceptanceControllerCreatePendingResponseAcceptance200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<AIAcceptanceControllerCreatePendingResponseAcceptance200Response, AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(rawData, 'AIAcceptanceControllerCreatePendingResponseAcceptance200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -91,9 +80,7 @@ class AIAcceptanceApi {
       );
     }
 
-    return Response<
-      AIAcceptanceControllerCreatePendingResponseAcceptance200Response
-    >(
+    return Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -106,10 +93,10 @@ class AIAcceptanceApi {
   }
 
   /// Tạo AI acceptance pending theo response-level (backend-first)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [createResponseAIAcceptanceRequest]
+  /// * [createResponseAIAcceptanceRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -119,12 +106,8 @@ class AIAcceptanceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AIAcceptanceControllerCreatePendingResponseAcceptance200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<
-    Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>
-  >
-  aIAcceptanceControllerCreatePendingResponseAcceptance({
-    required CreateResponseAIAcceptanceRequest
-    createResponseAIAcceptanceRequest,
+  Future<Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>> aIAcceptanceControllerCreatePendingResponseAcceptance({ 
+    required CreateResponseAIAcceptanceRequest createResponseAIAcceptanceRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -135,8 +118,13 @@ class AIAcceptanceApi {
     final _path = r'/ai-acceptance/response';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -144,10 +132,13 @@ class AIAcceptanceApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(createResponseAIAcceptanceRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(createResponseAIAcceptanceRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -163,21 +154,12 @@ class AIAcceptanceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    AIAcceptanceControllerCreatePendingResponseAcceptance200Response?
-    _responseData;
+    AIAcceptanceControllerCreatePendingResponseAcceptance200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              AIAcceptanceControllerCreatePendingResponseAcceptance200Response,
-              AIAcceptanceControllerCreatePendingResponseAcceptance200Response
-            >(
-              rawData,
-              'AIAcceptanceControllerCreatePendingResponseAcceptance200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<AIAcceptanceControllerCreatePendingResponseAcceptance200Response, AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(rawData, 'AIAcceptanceControllerCreatePendingResponseAcceptance200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -188,9 +170,7 @@ class AIAcceptanceApi {
       );
     }
 
-    return Response<
-      AIAcceptanceControllerCreatePendingResponseAcceptance200Response
-    >(
+    return Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -203,10 +183,10 @@ class AIAcceptanceApi {
   }
 
   /// Lấy metrics acceptance theo context (accepted/pending/no-click)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [contextType]
+  /// * [contextType] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -216,8 +196,7 @@ class AIAcceptanceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductTrendJobResult200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductTrendJobResult200Response>>
-  aIAcceptanceControllerGetAIAcceptanceMetrics({
+  Future<Response<TrendControllerGetProductTrendJobResult200Response>> aIAcceptanceControllerGetAIAcceptanceMetrics({ 
     String? contextType,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -229,8 +208,13 @@ class AIAcceptanceApi {
     final _path = r'/ai-acceptance/metrics';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -250,17 +234,9 @@ class AIAcceptanceApi {
     TrendControllerGetProductTrendJobResult200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              TrendControllerGetProductTrendJobResult200Response,
-              TrendControllerGetProductTrendJobResult200Response
-            >(
-              rawData,
-              'TrendControllerGetProductTrendJobResult200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<TrendControllerGetProductTrendJobResult200Response, TrendControllerGetProductTrendJobResult200Response>(rawData, 'TrendControllerGetProductTrendJobResult200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -284,7 +260,7 @@ class AIAcceptanceApi {
   }
 
   /// Lấy tỷ lệ chấp nhận AI theo trạng thái
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [isAccepted] - Trạng thái chấp nhận (true/false)
@@ -298,8 +274,7 @@ class AIAcceptanceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AIAcceptanceControllerGetAIAcceptanceRate200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AIAcceptanceControllerGetAIAcceptanceRate200Response>>
-  aIAcceptanceControllerGetAIAcceptanceRate({
+  Future<Response<AIAcceptanceControllerGetAIAcceptanceRate200Response>> aIAcceptanceControllerGetAIAcceptanceRate({ 
     required String isAccepted,
     String? contextType,
     CancelToken? cancelToken,
@@ -312,8 +287,13 @@ class AIAcceptanceApi {
     final _path = r'/ai-acceptance/rate';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -334,17 +314,9 @@ class AIAcceptanceApi {
     AIAcceptanceControllerGetAIAcceptanceRate200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              AIAcceptanceControllerGetAIAcceptanceRate200Response,
-              AIAcceptanceControllerGetAIAcceptanceRate200Response
-            >(
-              rawData,
-              'AIAcceptanceControllerGetAIAcceptanceRate200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<AIAcceptanceControllerGetAIAcceptanceRate200Response, AIAcceptanceControllerGetAIAcceptanceRate200Response>(rawData, 'AIAcceptanceControllerGetAIAcceptanceRate200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -368,7 +340,7 @@ class AIAcceptanceApi {
   }
 
   /// Lấy trạng thái chấp nhận AI của tất cả gợi ý
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -380,10 +352,7 @@ class AIAcceptanceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AIAcceptanceControllerCreatePendingResponseAcceptance200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<
-    Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>
-  >
-  aIAcceptanceControllerGetAllAIAcceptanceStatus({
+  Future<Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>> aIAcceptanceControllerGetAllAIAcceptanceStatus({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -394,8 +363,13 @@ class AIAcceptanceApi {
     final _path = r'/ai-acceptance/status/all';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -407,21 +381,12 @@ class AIAcceptanceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    AIAcceptanceControllerCreatePendingResponseAcceptance200Response?
-    _responseData;
+    AIAcceptanceControllerCreatePendingResponseAcceptance200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              AIAcceptanceControllerCreatePendingResponseAcceptance200Response,
-              AIAcceptanceControllerCreatePendingResponseAcceptance200Response
-            >(
-              rawData,
-              'AIAcceptanceControllerCreatePendingResponseAcceptance200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<AIAcceptanceControllerCreatePendingResponseAcceptance200Response, AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(rawData, 'AIAcceptanceControllerCreatePendingResponseAcceptance200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -432,9 +397,7 @@ class AIAcceptanceApi {
       );
     }
 
-    return Response<
-      AIAcceptanceControllerCreatePendingResponseAcceptance200Response
-    >(
+    return Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -447,7 +410,7 @@ class AIAcceptanceApi {
   }
 
   /// Cập nhật trạng thái chấp nhận AI theo ID
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [id] - ID bản ghi AI acceptance
@@ -461,10 +424,7 @@ class AIAcceptanceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AIAcceptanceControllerCreatePendingResponseAcceptance200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<
-    Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>
-  >
-  aIAcceptanceControllerUpdateAIAcceptanceData({
+  Future<Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>> aIAcceptanceControllerUpdateAIAcceptanceData({ 
     required String id,
     required String status,
     CancelToken? cancelToken,
@@ -474,20 +434,22 @@ class AIAcceptanceApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ai-acceptance/{id}'.replaceAll(
-      '{'
-      r'id'
-      '}',
-      id.toString(),
-    );
+    final _path = r'/ai-acceptance/{id}'.replaceAll('{' r'id' '}', id.toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{r'status': status};
+    final _queryParameters = <String, dynamic>{
+      r'status': status,
+    };
 
     final _response = await _dio.request<Object>(
       _path,
@@ -498,21 +460,12 @@ class AIAcceptanceApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    AIAcceptanceControllerCreatePendingResponseAcceptance200Response?
-    _responseData;
+    AIAcceptanceControllerCreatePendingResponseAcceptance200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              AIAcceptanceControllerCreatePendingResponseAcceptance200Response,
-              AIAcceptanceControllerCreatePendingResponseAcceptance200Response
-            >(
-              rawData,
-              'AIAcceptanceControllerCreatePendingResponseAcceptance200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<AIAcceptanceControllerCreatePendingResponseAcceptance200Response, AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(rawData, 'AIAcceptanceControllerCreatePendingResponseAcceptance200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -523,9 +476,7 @@ class AIAcceptanceApi {
       );
     }
 
-    return Response<
-      AIAcceptanceControllerCreatePendingResponseAcceptance200Response
-    >(
+    return Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -536,4 +487,5 @@ class AIAcceptanceApi {
       extra: _response.extra,
     );
   }
+
 }

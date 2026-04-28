@@ -7,11 +7,11 @@ part of 'trend_controller_get_product_trend_job_result200_response.dart';
 // **************************************************************************
 
 abstract class _$TrendControllerGetProductTrendJobResult200ResponseCWProxy {
-  TrendControllerGetProductTrendJobResult200Response success(bool success);
+  TrendControllerGetProductTrendJobResult200Response success(bool? success);
 
-  TrendControllerGetProductTrendJobResult200Response error(Object? error);
+  TrendControllerGetProductTrendJobResult200Response error(String? error);
 
-  TrendControllerGetProductTrendJobResult200Response details(Object? details);
+  TrendControllerGetProductTrendJobResult200Response details(String? details);
 
   TrendControllerGetProductTrendJobResult200Response data(Object? data);
 
@@ -23,9 +23,9 @@ abstract class _$TrendControllerGetProductTrendJobResult200ResponseCWProxy {
   /// TrendControllerGetProductTrendJobResult200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   TrendControllerGetProductTrendJobResult200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     Object? data,
   });
 }
@@ -41,15 +41,15 @@ class _$TrendControllerGetProductTrendJobResult200ResponseCWProxyImpl
   final TrendControllerGetProductTrendJobResult200Response _value;
 
   @override
-  TrendControllerGetProductTrendJobResult200Response success(bool success) =>
+  TrendControllerGetProductTrendJobResult200Response success(bool? success) =>
       call(success: success);
 
   @override
-  TrendControllerGetProductTrendJobResult200Response error(Object? error) =>
+  TrendControllerGetProductTrendJobResult200Response error(String? error) =>
       call(error: error);
 
   @override
-  TrendControllerGetProductTrendJobResult200Response details(Object? details) =>
+  TrendControllerGetProductTrendJobResult200Response details(String? details) =>
       call(details: details);
 
   @override
@@ -71,18 +71,18 @@ class _$TrendControllerGetProductTrendJobResult200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return TrendControllerGetProductTrendJobResult200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -111,11 +111,10 @@ _$TrendControllerGetProductTrendJobResult200ResponseFromJson(
   'TrendControllerGetProductTrendJobResult200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = TrendControllerGetProductTrendJobResult200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
-      details: $checkedConvert('details', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
+      details: $checkedConvert('details', (v) => v as String?),
       data: $checkedConvert('data', (v) => v),
     );
     return val;
@@ -125,7 +124,7 @@ _$TrendControllerGetProductTrendJobResult200ResponseFromJson(
 Map<String, dynamic> _$TrendControllerGetProductTrendJobResult200ResponseToJson(
   TrendControllerGetProductTrendJobResult200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data,

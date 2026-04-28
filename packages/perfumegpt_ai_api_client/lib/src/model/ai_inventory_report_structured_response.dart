@@ -9,6 +9,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'ai_inventory_report_structured_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,46 +20,75 @@ part 'ai_inventory_report_structured_response.g.dart';
 class AIInventoryReportStructuredResponse {
   /// Returns a new [AIInventoryReportStructuredResponse] instance.
   AIInventoryReportStructuredResponse({
-    required this.report,
 
-    required this.generatedAt,
+    required  this.report,
 
-    this.metadata,
+    required  this.generatedAt,
+
+     this.metadata,
   });
 
-  /// Nội dung báo cáo tồn kho AI
-  @JsonKey(name: r'report', required: true, includeIfNull: false)
+      /// Nội dung báo cáo tồn kho AI
+  @JsonKey(
+    
+    name: r'report',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String report;
 
-  /// Thời điểm tạo kết quả
-  @JsonKey(name: r'generatedAt', required: true, includeIfNull: false)
+
+
+      /// Thời điểm tạo kết quả
+  @JsonKey(
+    
+    name: r'generatedAt',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final DateTime generatedAt;
 
-  /// Thông tin bổ sung
-  @JsonKey(name: r'metadata', required: false, includeIfNull: false)
+
+
+      /// Thông tin bổ sung
+  @JsonKey(
+    
+    name: r'metadata',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final AIResponseMetadata? metadata;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AIInventoryReportStructuredResponse &&
-          other.report == report &&
-          other.generatedAt == generatedAt &&
-          other.metadata == metadata;
 
-  @override
-  int get hashCode =>
-      report.hashCode + generatedAt.hashCode + metadata.hashCode;
 
-  factory AIInventoryReportStructuredResponse.fromJson(
-    Map<String, dynamic> json,
-  ) => _$AIInventoryReportStructuredResponseFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$AIInventoryReportStructuredResponseToJson(this);
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is AIInventoryReportStructuredResponse &&
+      other.report == report &&
+      other.generatedAt == generatedAt &&
+      other.metadata == metadata;
+
+    @override
+    int get hashCode =>
+        report.hashCode +
+        generatedAt.hashCode +
+        metadata.hashCode;
+
+  factory AIInventoryReportStructuredResponse.fromJson(Map<String, dynamic> json) => _$AIInventoryReportStructuredResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AIInventoryReportStructuredResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
+
 }
+

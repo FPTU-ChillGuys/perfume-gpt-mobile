@@ -3,8 +3,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for AITrendForecastStructuredResponse
 void main() {
-  final AITrendForecastStructuredResponse?
-  instance = /* AITrendForecastStructuredResponse(...) */ null;
+  final AITrendForecastStructuredResponse? instance = /* AITrendForecastStructuredResponse(...) */ null;
   // TODO add properties to the entity
 
   group(AITrendForecastStructuredResponse, () {
@@ -37,5 +36,6 @@ void main() {
     test('to test the property `metadata`', () async {
       // TODO
     });
+
   });
 }

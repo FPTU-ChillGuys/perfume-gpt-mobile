@@ -7,11 +7,11 @@ part of 'log_controller_get_all_user_logs200_response.dart';
 // **************************************************************************
 
 abstract class _$LogControllerGetAllUserLogs200ResponseCWProxy {
-  LogControllerGetAllUserLogs200Response success(bool success);
+  LogControllerGetAllUserLogs200Response success(bool? success);
 
-  LogControllerGetAllUserLogs200Response error(Object? error);
+  LogControllerGetAllUserLogs200Response error(String? error);
 
-  LogControllerGetAllUserLogs200Response details(Object? details);
+  LogControllerGetAllUserLogs200Response details(String? details);
 
   LogControllerGetAllUserLogs200Response data(Object? data);
 
@@ -23,9 +23,9 @@ abstract class _$LogControllerGetAllUserLogs200ResponseCWProxy {
   /// LogControllerGetAllUserLogs200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   LogControllerGetAllUserLogs200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     Object? data,
   });
 }
@@ -39,15 +39,15 @@ class _$LogControllerGetAllUserLogs200ResponseCWProxyImpl
   final LogControllerGetAllUserLogs200Response _value;
 
   @override
-  LogControllerGetAllUserLogs200Response success(bool success) =>
+  LogControllerGetAllUserLogs200Response success(bool? success) =>
       call(success: success);
 
   @override
-  LogControllerGetAllUserLogs200Response error(Object? error) =>
+  LogControllerGetAllUserLogs200Response error(String? error) =>
       call(error: error);
 
   @override
-  LogControllerGetAllUserLogs200Response details(Object? details) =>
+  LogControllerGetAllUserLogs200Response details(String? details) =>
       call(details: details);
 
   @override
@@ -68,18 +68,18 @@ class _$LogControllerGetAllUserLogs200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return LogControllerGetAllUserLogs200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -106,11 +106,10 @@ _$LogControllerGetAllUserLogs200ResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('LogControllerGetAllUserLogs200Response', json, (
       $checkedConvert,
     ) {
-      $checkKeys(json, requiredKeys: const ['success']);
       final val = LogControllerGetAllUserLogs200Response(
-        success: $checkedConvert('success', (v) => v as bool),
-        error: $checkedConvert('error', (v) => v),
-        details: $checkedConvert('details', (v) => v),
+        success: $checkedConvert('success', (v) => v as bool?),
+        error: $checkedConvert('error', (v) => v as String?),
+        details: $checkedConvert('details', (v) => v as String?),
         data: $checkedConvert('data', (v) => v),
       );
       return val;
@@ -119,7 +118,7 @@ _$LogControllerGetAllUserLogs200ResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$LogControllerGetAllUserLogs200ResponseToJson(
   LogControllerGetAllUserLogs200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data,

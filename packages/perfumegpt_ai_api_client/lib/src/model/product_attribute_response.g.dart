@@ -15,7 +15,7 @@ abstract class _$ProductAttributeResponseCWProxy {
 
   ProductAttributeResponse attribute(String attribute);
 
-  ProductAttributeResponse description(String description);
+  ProductAttributeResponse description(String? description);
 
   ProductAttributeResponse value(String value);
 
@@ -31,7 +31,7 @@ abstract class _$ProductAttributeResponseCWProxy {
     num attributeId,
     num valueId,
     String attribute,
-    String description,
+    String? description,
     String value,
   });
 }
@@ -59,7 +59,7 @@ class _$ProductAttributeResponseCWProxyImpl
       call(attribute: attribute);
 
   @override
-  ProductAttributeResponse description(String description) =>
+  ProductAttributeResponse description(String? description) =>
       call(description: description);
 
   @override
@@ -99,11 +99,10 @@ class _$ProductAttributeResponseCWProxyImpl
           ? _value.attribute
           // ignore: cast_nullable_to_non_nullable
           : attribute as String,
-      description:
-          description == const $CopyWithPlaceholder() || description == null
+      description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
-          : description as String,
+          : description as String?,
       value: value == const $CopyWithPlaceholder() || value == null
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
@@ -129,21 +128,14 @@ ProductAttributeResponse _$ProductAttributeResponseFromJson(
 ) => $checkedCreate('ProductAttributeResponse', json, ($checkedConvert) {
   $checkKeys(
     json,
-    requiredKeys: const [
-      'id',
-      'attributeId',
-      'valueId',
-      'attribute',
-      'description',
-      'value',
-    ],
+    requiredKeys: const ['id', 'attributeId', 'valueId', 'attribute', 'value'],
   );
   final val = ProductAttributeResponse(
     id: $checkedConvert('id', (v) => v as String),
     attributeId: $checkedConvert('attributeId', (v) => v as num),
     valueId: $checkedConvert('valueId', (v) => v as num),
     attribute: $checkedConvert('attribute', (v) => v as String),
-    description: $checkedConvert('description', (v) => v as String),
+    description: $checkedConvert('description', (v) => v as String?),
     value: $checkedConvert('value', (v) => v as String),
   );
   return val;
@@ -156,6 +148,6 @@ Map<String, dynamic> _$ProductAttributeResponseToJson(
   'attributeId': instance.attributeId,
   'valueId': instance.valueId,
   'attribute': instance.attribute,
-  'description': instance.description,
+  'description': ?instance.description,
   'value': instance.value,
 };

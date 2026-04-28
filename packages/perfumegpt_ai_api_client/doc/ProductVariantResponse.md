@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **sillage** | **num** | Độ tỏa hương (Sillage) | [optional] 
 **createdAt** | **String** | Ngày tạo | 
 **updatedAt** | **Object** | Ngày cập nhật | [optional] 
+**url** | **Object** | URL hình ảnh chính của variant | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

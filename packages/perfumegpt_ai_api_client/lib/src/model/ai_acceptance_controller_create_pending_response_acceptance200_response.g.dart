@@ -8,15 +8,15 @@ part of 'ai_acceptance_controller_create_pending_response_acceptance200_response
 
 abstract class _$AIAcceptanceControllerCreatePendingResponseAcceptance200ResponseCWProxy {
   AIAcceptanceControllerCreatePendingResponseAcceptance200Response success(
-    bool success,
+    bool? success,
   );
 
   AIAcceptanceControllerCreatePendingResponseAcceptance200Response error(
-    Object? error,
+    String? error,
   );
 
   AIAcceptanceControllerCreatePendingResponseAcceptance200Response details(
-    Object? details,
+    String? details,
   );
 
   AIAcceptanceControllerCreatePendingResponseAcceptance200Response data(
@@ -31,9 +31,9 @@ abstract class _$AIAcceptanceControllerCreatePendingResponseAcceptance200Respons
   /// AIAcceptanceControllerCreatePendingResponseAcceptance200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   AIAcceptanceControllerCreatePendingResponseAcceptance200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     AIAcceptance? data,
   });
 }
@@ -51,17 +51,17 @@ class _$AIAcceptanceControllerCreatePendingResponseAcceptance200ResponseCWProxyI
 
   @override
   AIAcceptanceControllerCreatePendingResponseAcceptance200Response success(
-    bool success,
+    bool? success,
   ) => call(success: success);
 
   @override
   AIAcceptanceControllerCreatePendingResponseAcceptance200Response error(
-    Object? error,
+    String? error,
   ) => call(error: error);
 
   @override
   AIAcceptanceControllerCreatePendingResponseAcceptance200Response details(
-    Object? details,
+    String? details,
   ) => call(details: details);
 
   @override
@@ -84,18 +84,18 @@ class _$AIAcceptanceControllerCreatePendingResponseAcceptance200ResponseCWProxyI
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return AIAcceptanceControllerCreatePendingResponseAcceptance200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -127,12 +127,11 @@ _$AIAcceptanceControllerCreatePendingResponseAcceptance200ResponseFromJson(
   'AIAcceptanceControllerCreatePendingResponseAcceptance200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val =
         AIAcceptanceControllerCreatePendingResponseAcceptance200Response(
-          success: $checkedConvert('success', (v) => v as bool),
-          error: $checkedConvert('error', (v) => v),
-          details: $checkedConvert('details', (v) => v),
+          success: $checkedConvert('success', (v) => v as bool?),
+          error: $checkedConvert('error', (v) => v as String?),
+          details: $checkedConvert('details', (v) => v as String?),
           data: $checkedConvert(
             'data',
             (v) => v == null
@@ -148,7 +147,7 @@ Map<String, dynamic>
 _$AIAcceptanceControllerCreatePendingResponseAcceptance200ResponseToJson(
   AIAcceptanceControllerCreatePendingResponseAcceptance200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),

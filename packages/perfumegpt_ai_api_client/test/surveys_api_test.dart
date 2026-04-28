@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for SurveysApi
 void main() {
   final instance = PerfumegptAiApiClient().getSurveysApi();
@@ -34,6 +35,13 @@ void main() {
       // TODO
     });
 
+    // Trả lời survey V5 — Hybrid (AI phân tích + Query-based + Ranking score)
+    //
+    //Future<EmailControllerSendEmail200Response> surveyControllerChatSurveyV5(List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest, { String userId }) async
+    test('test surveyControllerChatSurveyV5', () async {
+      // TODO
+    });
+
     // Kiểm tra người dùng đã làm survey lần đầu chưa
     //
     //Future<SurveyControllerDeleteSurveyQuestion200Response> surveyControllerCheckFirstTime(String userId) async
@@ -43,7 +51,7 @@ void main() {
 
     // Tạo câu hỏi survey từ thuộc tính (auto-generate query answers)
     //
-    //Future<EmailControllerSendEmail200Response> surveyControllerCreateQuestionFromAttribute() async
+    //Future<EmailControllerSendEmail200Response> surveyControllerCreateQuestionFromAttribute(CreateQuestionFromAttributeRequest createQuestionFromAttributeRequest) async
     test('test surveyControllerCreateQuestionFromAttribute', () async {
       // TODO
     });
@@ -78,14 +86,14 @@ void main() {
 
     // Lấy danh sách loại thuộc tính cho survey
     //
-    //Future surveyControllerGetAttributeTypes() async
+    //Future<SurveyControllerGetAttributeTypes200Response> surveyControllerGetAttributeTypes() async
     test('test surveyControllerGetAttributeTypes', () async {
       // TODO
     });
 
     // Lấy giá trị của 1 loại thuộc tính
     //
-    //Future surveyControllerGetAttributeValues(String type) async
+    //Future<SurveyControllerGetAttributeValues200Response> surveyControllerGetAttributeValues(String type) async
     test('test surveyControllerGetAttributeValues', () async {
       // TODO
     });
@@ -117,5 +125,6 @@ void main() {
     test('test surveyControllerUpdateSurveyAnswer', () async {
       // TODO
     });
+
   });
 }

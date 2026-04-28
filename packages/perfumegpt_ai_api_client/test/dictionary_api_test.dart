@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for DictionaryApi
 void main() {
   final instance = PerfumegptAiApiClient().getDictionaryApi();
@@ -59,5 +60,6 @@ void main() {
     test('test dictionaryControllerRebuildDictionary', () async {
       // TODO
     });
+
   });
 }

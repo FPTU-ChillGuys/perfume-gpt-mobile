@@ -9,7 +9,7 @@ import 'package:perfumegpt_ai_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sender** | **String** | Người gửi tin nhắn | 
-**message** | **String** | Nội dung tin nhắn | 
+**message** | [**MessageRequestDtoMessage**](MessageRequestDtoMessage.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

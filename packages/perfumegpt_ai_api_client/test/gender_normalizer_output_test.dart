@@ -3,8 +3,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for GenderNormalizerOutput
 void main() {
-  final GenderNormalizerOutput? instance = /* GenderNormalizerOutput(...) */
-      null;
+  final GenderNormalizerOutput? instance = /* GenderNormalizerOutput(...) */ null;
   // TODO add properties to the entity
 
   group(GenderNormalizerOutput, () {
@@ -13,5 +12,6 @@ void main() {
     test('to test the property `value`', () async {
       // TODO
     });
+
   });
 }

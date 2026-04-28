@@ -3,8 +3,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ReviewControllerGetReviews200Response
 void main() {
-  final ReviewControllerGetReviews200Response?
-  instance = /* ReviewControllerGetReviews200Response(...) */ null;
+  final ReviewControllerGetReviews200Response? instance = /* ReviewControllerGetReviews200Response(...) */ null;
   // TODO add properties to the entity
 
   group(ReviewControllerGetReviews200Response, () {
@@ -15,14 +14,15 @@ void main() {
     });
 
     // Thông báo lỗi
-    // Object error
+    // String error
     test('to test the property `error`', () async {
       // TODO
     });
 
-    // ReviewControllerGetReviews200ResponseAllOfPayload payload
+    // ReviewControllerGetReviews200ResponsePayload payload
     test('to test the property `payload`', () async {
       // TODO
     });
+
   });
 }

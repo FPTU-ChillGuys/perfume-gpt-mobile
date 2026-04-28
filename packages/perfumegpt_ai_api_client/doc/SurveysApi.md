@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**surveyControllerChatSurveyV2**](SurveysApi.md#surveycontrollerchatsurveyv2) | **POST** /surveys/user/v2 | Trả lời survey và nhận gợi ý AI (v2 - monolithic query)
 [**surveyControllerChatSurveyV3**](SurveysApi.md#surveycontrollerchatsurveyv3) | **POST** /surveys/user/v3 | Trả lời survey và nhận gợi ý AI (v3 - per-question query, skip 0 products)
 [**surveyControllerChatSurveyV4**](SurveysApi.md#surveycontrollerchatsurveyv4) | **POST** /surveys/user/v4 | Trả lời survey V4 — query-based (no AI analysis, trực tiếp query sản phẩm)
+[**surveyControllerChatSurveyV5**](SurveysApi.md#surveycontrollerchatsurveyv5) | **POST** /surveys/user/v5 | Trả lời survey V5 — Hybrid (AI phân tích + Query-based + Ranking score)
 [**surveyControllerCheckFirstTime**](SurveysApi.md#surveycontrollercheckfirsttime) | **GET** /surveys/user/{userId}/check-first-time | Kiểm tra người dùng đã làm survey lần đầu chưa
 [**surveyControllerCreateQuestionFromAttribute**](SurveysApi.md#surveycontrollercreatequestionfromattribute) | **POST** /surveys/questions/from-attribute | Tạo câu hỏi survey từ thuộc tính (auto-generate query answers)
 [**surveyControllerCreateSurveyQues**](SurveysApi.md#surveycontrollercreatesurveyques) | **POST** /surveys/questions | Tạo câu hỏi survey mới
@@ -199,6 +200,49 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **surveyControllerChatSurveyV5**
+> EmailControllerSendEmail200Response surveyControllerChatSurveyV5(surveyQuesAnsDetailRequest, userId)
+
+Trả lời survey V5 — Hybrid (AI phân tích + Query-based + Ranking score)
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getSurveysApi();
+final List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest = ; // List<SurveyQuesAnsDetailRequest> | 
+final String userId = userId_example; // String | ID của người dùng
+
+try {
+    final response = api.surveyControllerChatSurveyV5(surveyQuesAnsDetailRequest, userId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SurveysApi->surveyControllerChatSurveyV5: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **surveyQuesAnsDetailRequest** | [**List&lt;SurveyQuesAnsDetailRequest&gt;**](SurveyQuesAnsDetailRequest.md)|  | 
+ **userId** | **String**| ID của người dùng | [optional] 
+
+### Return type
+
+[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **surveyControllerCheckFirstTime**
 > SurveyControllerDeleteSurveyQuestion200Response surveyControllerCheckFirstTime(userId)
 
@@ -241,7 +285,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **surveyControllerCreateQuestionFromAttribute**
-> EmailControllerSendEmail200Response surveyControllerCreateQuestionFromAttribute()
+> EmailControllerSendEmail200Response surveyControllerCreateQuestionFromAttribute(createQuestionFromAttributeRequest)
 
 Tạo câu hỏi survey từ thuộc tính (auto-generate query answers)
 
@@ -250,9 +294,10 @@ Tạo câu hỏi survey từ thuộc tính (auto-generate query answers)
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getSurveysApi();
+final CreateQuestionFromAttributeRequest createQuestionFromAttributeRequest = ; // CreateQuestionFromAttributeRequest | 
 
 try {
-    final response = api.surveyControllerCreateQuestionFromAttribute();
+    final response = api.surveyControllerCreateQuestionFromAttribute(createQuestionFromAttributeRequest);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling SurveysApi->surveyControllerCreateQuestionFromAttribute: $e\n');
@@ -260,7 +305,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createQuestionFromAttributeRequest** | [**CreateQuestionFromAttributeRequest**](CreateQuestionFromAttributeRequest.md)|  | 
 
 ### Return type
 
@@ -272,7 +320,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -438,7 +486,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **surveyControllerGetAttributeTypes**
-> surveyControllerGetAttributeTypes()
+> SurveyControllerGetAttributeTypes200Response surveyControllerGetAttributeTypes()
 
 Lấy danh sách loại thuộc tính cho survey
 
@@ -449,7 +497,8 @@ import 'package:perfumegpt_ai_api_client/api.dart';
 final api = PerfumegptAiApiClient().getSurveysApi();
 
 try {
-    api.surveyControllerGetAttributeTypes();
+    final response = api.surveyControllerGetAttributeTypes();
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SurveysApi->surveyControllerGetAttributeTypes: $e\n');
 }
@@ -460,7 +509,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**SurveyControllerGetAttributeTypes200Response**](SurveyControllerGetAttributeTypes200Response.md)
 
 ### Authorization
 
@@ -469,12 +518,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **surveyControllerGetAttributeValues**
-> surveyControllerGetAttributeValues(type)
+> SurveyControllerGetAttributeValues200Response surveyControllerGetAttributeValues(type)
 
 Lấy giá trị của 1 loại thuộc tính
 
@@ -486,7 +535,8 @@ final api = PerfumegptAiApiClient().getSurveysApi();
 final String type = type_example; // String | Loại thuộc tính (gender, brand, category, origin, concentration, note, family, attribute, budget)
 
 try {
-    api.surveyControllerGetAttributeValues(type);
+    final response = api.surveyControllerGetAttributeValues(type);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling SurveysApi->surveyControllerGetAttributeValues: $e\n');
 }
@@ -500,7 +550,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**SurveyControllerGetAttributeValues200Response**](SurveyControllerGetAttributeValues200Response.md)
 
 ### Authorization
 
@@ -509,7 +559,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

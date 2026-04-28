@@ -14,12 +14,13 @@ import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_all_orde
 import 'package:perfumegpt_ai_api_client/src/model/order_controller_get_structured_ai_order_summary200_response.dart';
 
 class OrdersApi {
+
   final Dio _dio;
 
   const OrdersApi(this._dio);
 
   /// Tạo báo cáo tóm tắt đơn hàng bằng AI
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID của người dùng
@@ -32,8 +33,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  orderControllerGetAIOrderSummary({
+  Future<Response<EmailControllerSendEmail200Response>> orderControllerGetAIOrderSummary({ 
     required String userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -45,17 +45,25 @@ class OrdersApi {
     final _path = r'/orders/summary/ai';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{r'userId': userId};
+    final _queryParameters = <String, dynamic>{
+      r'userId': userId,
+    };
 
     final _response = await _dio.request<Object>(
       _path,
@@ -69,13 +77,9 @@ class OrdersApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -99,7 +103,7 @@ class OrdersApi {
   }
 
   /// Lấy danh sách tất cả đơn hàng
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -121,8 +125,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [OrderControllerGetAllOrders200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<OrderControllerGetAllOrders200Response>>
-  orderControllerGetAllOrders({
+  Future<Response<OrderControllerGetAllOrders200Response>> orderControllerGetAllOrders({ 
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -143,10 +146,16 @@ class OrdersApi {
     final _path = r'/orders';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -178,17 +187,9 @@ class OrdersApi {
     OrderControllerGetAllOrders200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              OrderControllerGetAllOrders200Response,
-              OrderControllerGetAllOrders200Response
-            >(
-              rawData,
-              'OrderControllerGetAllOrders200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<OrderControllerGetAllOrders200Response, OrderControllerGetAllOrders200Response>(rawData, 'OrderControllerGetAllOrders200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -212,7 +213,7 @@ class OrdersApi {
   }
 
   /// Lấy đơn hàng theo user ID
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID của người dùng
@@ -235,8 +236,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [OrderControllerGetAllOrders200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<OrderControllerGetAllOrders200Response>>
-  orderControllerGetOrdersByUserId({
+  Future<Response<OrderControllerGetAllOrders200Response>> orderControllerGetOrdersByUserId({ 
     required String userId,
     num pageNumber = 1,
     num pageSize = 10,
@@ -255,18 +255,19 @@ class OrdersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/orders/user/{userId}'.replaceAll(
-      '{'
-      r'userId'
-      '}',
-      userId.toString(),
-    );
+    final _path = r'/orders/user/{userId}'.replaceAll('{' r'userId' '}', userId.toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -298,17 +299,9 @@ class OrdersApi {
     OrderControllerGetAllOrders200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              OrderControllerGetAllOrders200Response,
-              OrderControllerGetAllOrders200Response
-            >(
-              rawData,
-              'OrderControllerGetAllOrders200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<OrderControllerGetAllOrders200Response, OrderControllerGetAllOrders200Response>(rawData, 'OrderControllerGetAllOrders200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -332,7 +325,7 @@ class OrdersApi {
   }
 
   /// Tạo báo cáo tóm tắt đơn hàng AI có cấu trúc
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID của người dùng
@@ -345,8 +338,7 @@ class OrdersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [OrderControllerGetStructuredAIOrderSummary200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<OrderControllerGetStructuredAIOrderSummary200Response>>
-  orderControllerGetStructuredAIOrderSummary({
+  Future<Response<OrderControllerGetStructuredAIOrderSummary200Response>> orderControllerGetStructuredAIOrderSummary({ 
     required String userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -358,17 +350,25 @@ class OrdersApi {
     final _path = r'/orders/summary/ai/structured';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{r'userId': userId};
+    final _queryParameters = <String, dynamic>{
+      r'userId': userId,
+    };
 
     final _response = await _dio.request<Object>(
       _path,
@@ -382,17 +382,9 @@ class OrdersApi {
     OrderControllerGetStructuredAIOrderSummary200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              OrderControllerGetStructuredAIOrderSummary200Response,
-              OrderControllerGetStructuredAIOrderSummary200Response
-            >(
-              rawData,
-              'OrderControllerGetStructuredAIOrderSummary200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<OrderControllerGetStructuredAIOrderSummary200Response, OrderControllerGetStructuredAIOrderSummary200Response>(rawData, 'OrderControllerGetStructuredAIOrderSummary200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -414,4 +406,5 @@ class OrdersApi {
       extra: _response.extra,
     );
   }
+
 }

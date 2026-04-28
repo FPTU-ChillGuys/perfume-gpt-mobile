@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'inventory_log.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,65 +19,119 @@ part 'inventory_log.g.dart';
 class InventoryLog {
   /// Returns a new [InventoryLog] instance.
   InventoryLog({
-    required this.id,
 
-    required this.createdAt,
+    required  this.id,
 
-    required this.updatedAt,
+    required  this.createdAt,
 
-    required this.isActive,
+    required  this.updatedAt,
 
-    required this.inventoryLog,
+    required  this.isActive,
 
-    required this.type,
+    required  this.inventoryLog,
+
+    required  this.type,
   });
 
-  /// ID duy nhất (UUID)
-  @JsonKey(name: r'id', required: true, includeIfNull: false)
+      /// ID duy nhất (UUID)
+  @JsonKey(
+    
+    name: r'id',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String id;
 
-  /// Ngày tạo bản ghi
-  @JsonKey(name: r'createdAt', required: true, includeIfNull: false)
+
+
+      /// Ngày tạo bản ghi
+  @JsonKey(
+    
+    name: r'createdAt',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final DateTime createdAt;
 
-  /// Ngày cập nhật gần nhất
-  @JsonKey(name: r'updatedAt', required: true, includeIfNull: false)
+
+
+      /// Ngày cập nhật gần nhất
+  @JsonKey(
+    
+    name: r'updatedAt',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final DateTime updatedAt;
 
-  /// Trạng thái hoạt động
-  @JsonKey(name: r'isActive', required: true, includeIfNull: false)
+
+
+      /// Trạng thái hoạt động
+  @JsonKey(
+    
+    name: r'isActive',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final bool isActive;
 
-  /// Nội dung log tồn kho
-  @JsonKey(name: r'inventoryLog', required: true, includeIfNull: false)
+
+
+      /// Nội dung log tồn kho
+  @JsonKey(
+    
+    name: r'inventoryLog',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String inventoryLog;
 
-  /// Loại log tồn kho
-  @JsonKey(name: r'type', required: true, includeIfNull: false)
+
+
+      /// Loại log tồn kho
+  @JsonKey(
+    
+    name: r'type',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final InventoryLogTypeEnum type;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is InventoryLog &&
-          other.id == id &&
-          other.createdAt == createdAt &&
-          other.updatedAt == updatedAt &&
-          other.isActive == isActive &&
-          other.inventoryLog == inventoryLog &&
-          other.type == type;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      createdAt.hashCode +
-      updatedAt.hashCode +
-      isActive.hashCode +
-      inventoryLog.hashCode +
-      type.hashCode;
 
-  factory InventoryLog.fromJson(Map<String, dynamic> json) =>
-      _$InventoryLogFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is InventoryLog &&
+      other.id == id &&
+      other.createdAt == createdAt &&
+      other.updatedAt == updatedAt &&
+      other.isActive == isActive &&
+      other.inventoryLog == inventoryLog &&
+      other.type == type;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        createdAt.hashCode +
+        updatedAt.hashCode +
+        isActive.hashCode +
+        inventoryLog.hashCode +
+        type.hashCode;
+
+  factory InventoryLog.fromJson(Map<String, dynamic> json) => _$InventoryLogFromJson(json);
 
   Map<String, dynamic> toJson() => _$InventoryLogToJson(this);
 
@@ -84,22 +139,24 @@ class InventoryLog {
   String toString() {
     return toJson().toString();
   }
+
 }
 
 /// Loại log tồn kho
 enum InventoryLogTypeEnum {
-  /// Loại log tồn kho
-  @JsonValue(r'REPORT')
-  REPORT(r'REPORT'),
+    /// Loại log tồn kho
+@JsonValue(r'REPORT')
+REPORT(r'REPORT'),
+    /// Loại log tồn kho
+@JsonValue(r'RESTOCK')
+RESTOCK(r'RESTOCK');
 
-  /// Loại log tồn kho
-  @JsonValue(r'RESTOCK')
-  RESTOCK(r'RESTOCK');
+const InventoryLogTypeEnum(this.value);
 
-  const InventoryLogTypeEnum(this.value);
+final String value;
 
-  final String value;
-
-  @override
-  String toString() => value;
+@override
+String toString() => value;
 }
+
+

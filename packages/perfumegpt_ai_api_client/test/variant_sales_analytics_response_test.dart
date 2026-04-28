@@ -3,8 +3,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for VariantSalesAnalyticsResponse
 void main() {
-  final VariantSalesAnalyticsResponse?
-  instance = /* VariantSalesAnalyticsResponse(...) */ null;
+  final VariantSalesAnalyticsResponse? instance = /* VariantSalesAnalyticsResponse(...) */ null;
   // TODO add properties to the entity
 
   group(VariantSalesAnalyticsResponse, () {
@@ -103,5 +102,6 @@ void main() {
     test('to test the property `salesMetrics`', () async {
       // TODO
     });
+
   });
 }

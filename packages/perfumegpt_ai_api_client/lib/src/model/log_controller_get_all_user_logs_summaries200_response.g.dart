@@ -7,11 +7,11 @@ part of 'log_controller_get_all_user_logs_summaries200_response.dart';
 // **************************************************************************
 
 abstract class _$LogControllerGetAllUserLogsSummaries200ResponseCWProxy {
-  LogControllerGetAllUserLogsSummaries200Response success(bool success);
+  LogControllerGetAllUserLogsSummaries200Response success(bool? success);
 
-  LogControllerGetAllUserLogsSummaries200Response error(Object? error);
+  LogControllerGetAllUserLogsSummaries200Response error(String? error);
 
-  LogControllerGetAllUserLogsSummaries200Response details(Object? details);
+  LogControllerGetAllUserLogsSummaries200Response details(String? details);
 
   LogControllerGetAllUserLogsSummaries200Response data(
     List<UserLogSummaryResponse>? data,
@@ -25,9 +25,9 @@ abstract class _$LogControllerGetAllUserLogsSummaries200ResponseCWProxy {
   /// LogControllerGetAllUserLogsSummaries200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   LogControllerGetAllUserLogsSummaries200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     List<UserLogSummaryResponse>? data,
   });
 }
@@ -43,15 +43,15 @@ class _$LogControllerGetAllUserLogsSummaries200ResponseCWProxyImpl
   final LogControllerGetAllUserLogsSummaries200Response _value;
 
   @override
-  LogControllerGetAllUserLogsSummaries200Response success(bool success) =>
+  LogControllerGetAllUserLogsSummaries200Response success(bool? success) =>
       call(success: success);
 
   @override
-  LogControllerGetAllUserLogsSummaries200Response error(Object? error) =>
+  LogControllerGetAllUserLogsSummaries200Response error(String? error) =>
       call(error: error);
 
   @override
-  LogControllerGetAllUserLogsSummaries200Response details(Object? details) =>
+  LogControllerGetAllUserLogsSummaries200Response details(String? details) =>
       call(details: details);
 
   @override
@@ -74,18 +74,18 @@ class _$LogControllerGetAllUserLogsSummaries200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return LogControllerGetAllUserLogsSummaries200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -113,11 +113,10 @@ _$LogControllerGetAllUserLogsSummaries200ResponseFromJson(
 ) => $checkedCreate('LogControllerGetAllUserLogsSummaries200Response', json, (
   $checkedConvert,
 ) {
-  $checkKeys(json, requiredKeys: const ['success']);
   final val = LogControllerGetAllUserLogsSummaries200Response(
-    success: $checkedConvert('success', (v) => v as bool),
-    error: $checkedConvert('error', (v) => v),
-    details: $checkedConvert('details', (v) => v),
+    success: $checkedConvert('success', (v) => v as bool?),
+    error: $checkedConvert('error', (v) => v as String?),
+    details: $checkedConvert('details', (v) => v as String?),
     data: $checkedConvert(
       'data',
       (v) => (v as List<dynamic>?)
@@ -133,7 +132,7 @@ _$LogControllerGetAllUserLogsSummaries200ResponseFromJson(
 Map<String, dynamic> _$LogControllerGetAllUserLogsSummaries200ResponseToJson(
   LogControllerGetAllUserLogsSummaries200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.map((e) => e.toJson()).toList(),

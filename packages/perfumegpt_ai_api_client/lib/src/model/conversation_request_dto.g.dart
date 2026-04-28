@@ -15,6 +15,8 @@ abstract class _$ConversationRequestDtoCWProxy {
 
   ConversationRequestDto isStaff(bool? isStaff);
 
+  ConversationRequestDto isMobile(bool? isMobile);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConversationRequestDto(...).copyWith.fieldName(value)`.
   ///
@@ -27,6 +29,7 @@ abstract class _$ConversationRequestDtoCWProxy {
     String? userId,
     List<MessageRequestDto> messages,
     bool? isStaff,
+    bool? isMobile,
   });
 }
 
@@ -52,6 +55,9 @@ class _$ConversationRequestDtoCWProxyImpl
   ConversationRequestDto isStaff(bool? isStaff) => call(isStaff: isStaff);
 
   @override
+  ConversationRequestDto isMobile(bool? isMobile) => call(isMobile: isMobile);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConversationRequestDto(...).copyWith.fieldName(value)`.
   ///
@@ -64,6 +70,7 @@ class _$ConversationRequestDtoCWProxyImpl
     Object? userId = const $CopyWithPlaceholder(),
     Object? messages = const $CopyWithPlaceholder(),
     Object? isStaff = const $CopyWithPlaceholder(),
+    Object? isMobile = const $CopyWithPlaceholder(),
   }) {
     return ConversationRequestDto(
       id: id == const $CopyWithPlaceholder() || id == null
@@ -82,6 +89,10 @@ class _$ConversationRequestDtoCWProxyImpl
           ? _value.isStaff
           // ignore: cast_nullable_to_non_nullable
           : isStaff as bool?,
+      isMobile: isMobile == const $CopyWithPlaceholder()
+          ? _value.isMobile
+          // ignore: cast_nullable_to_non_nullable
+          : isMobile as bool?,
     );
   }
 }
@@ -112,6 +123,7 @@ ConversationRequestDto _$ConversationRequestDtoFromJson(
           .toList(),
     ),
     isStaff: $checkedConvert('isStaff', (v) => v as bool?),
+    isMobile: $checkedConvert('isMobile', (v) => v as bool?),
   );
   return val;
 });
@@ -123,4 +135,5 @@ Map<String, dynamic> _$ConversationRequestDtoToJson(
   'userId': ?instance.userId,
   'messages': instance.messages.map((e) => e.toJson()).toList(),
   'isStaff': ?instance.isStaff,
+  'isMobile': ?instance.isMobile,
 };

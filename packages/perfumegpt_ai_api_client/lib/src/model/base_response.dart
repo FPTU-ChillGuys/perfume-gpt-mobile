@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -17,42 +18,86 @@ part 'base_response.g.dart';
 )
 class BaseResponse {
   /// Returns a new [BaseResponse] instance.
-  BaseResponse({required this.success, this.error, this.details, this.data});
+  BaseResponse({
 
-  /// Kết quả xử lý
-  @JsonKey(name: r'success', required: true, includeIfNull: false)
+    required  this.success,
+
+     this.error,
+
+     this.details,
+
+     this.data,
+  });
+
+      /// Kết quả xử lý
+  @JsonKey(
+    
+    name: r'success',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final bool success;
 
-  /// Thông báo lỗi
-  @JsonKey(name: r'error', required: false, includeIfNull: false)
+
+
+      /// Thông báo lỗi
+  @JsonKey(
+    
+    name: r'error',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final Object? error;
 
-  /// Chi tiết lỗi
-  @JsonKey(name: r'details', required: false, includeIfNull: false)
+
+
+      /// Chi tiết lỗi
+  @JsonKey(
+    
+    name: r'details',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final Object? details;
 
-  /// Dữ liệu trả về
-  @JsonKey(name: r'data', required: false, includeIfNull: false)
+
+
+      /// Dữ liệu trả về
+  @JsonKey(
+    
+    name: r'data',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final Object? data;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BaseResponse &&
-          other.success == success &&
-          other.error == error &&
-          other.details == details &&
-          other.data == data;
 
-  @override
-  int get hashCode =>
-      success.hashCode +
-      (error == null ? 0 : error.hashCode) +
-      (details == null ? 0 : details.hashCode) +
-      data.hashCode;
 
-  factory BaseResponse.fromJson(Map<String, dynamic> json) =>
-      _$BaseResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is BaseResponse &&
+      other.success == success &&
+      other.error == error &&
+      other.details == details &&
+      other.data == data;
+
+    @override
+    int get hashCode =>
+        success.hashCode +
+        (error == null ? 0 : error.hashCode) +
+        (details == null ? 0 : details.hashCode) +
+        data.hashCode;
+
+  factory BaseResponse.fromJson(Map<String, dynamic> json) => _$BaseResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$BaseResponseToJson(this);
 
@@ -60,4 +105,6 @@ class BaseResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

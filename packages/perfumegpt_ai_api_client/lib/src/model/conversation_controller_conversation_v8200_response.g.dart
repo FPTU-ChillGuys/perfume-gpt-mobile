@@ -7,11 +7,11 @@ part of 'conversation_controller_conversation_v8200_response.dart';
 // **************************************************************************
 
 abstract class _$ConversationControllerConversationV8200ResponseCWProxy {
-  ConversationControllerConversationV8200Response success(bool success);
+  ConversationControllerConversationV8200Response success(bool? success);
 
-  ConversationControllerConversationV8200Response error(Object? error);
+  ConversationControllerConversationV8200Response error(String? error);
 
-  ConversationControllerConversationV8200Response details(Object? details);
+  ConversationControllerConversationV8200Response details(String? details);
 
   ConversationControllerConversationV8200Response data(
     ConversationRequestDto? data,
@@ -25,9 +25,9 @@ abstract class _$ConversationControllerConversationV8200ResponseCWProxy {
   /// ConversationControllerConversationV8200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ConversationControllerConversationV8200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     ConversationRequestDto? data,
   });
 }
@@ -43,15 +43,15 @@ class _$ConversationControllerConversationV8200ResponseCWProxyImpl
   final ConversationControllerConversationV8200Response _value;
 
   @override
-  ConversationControllerConversationV8200Response success(bool success) =>
+  ConversationControllerConversationV8200Response success(bool? success) =>
       call(success: success);
 
   @override
-  ConversationControllerConversationV8200Response error(Object? error) =>
+  ConversationControllerConversationV8200Response error(String? error) =>
       call(error: error);
 
   @override
-  ConversationControllerConversationV8200Response details(Object? details) =>
+  ConversationControllerConversationV8200Response details(String? details) =>
       call(details: details);
 
   @override
@@ -74,18 +74,18 @@ class _$ConversationControllerConversationV8200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return ConversationControllerConversationV8200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -113,11 +113,10 @@ _$ConversationControllerConversationV8200ResponseFromJson(
 ) => $checkedCreate('ConversationControllerConversationV8200Response', json, (
   $checkedConvert,
 ) {
-  $checkKeys(json, requiredKeys: const ['success']);
   final val = ConversationControllerConversationV8200Response(
-    success: $checkedConvert('success', (v) => v as bool),
-    error: $checkedConvert('error', (v) => v),
-    details: $checkedConvert('details', (v) => v),
+    success: $checkedConvert('success', (v) => v as bool?),
+    error: $checkedConvert('error', (v) => v as String?),
+    details: $checkedConvert('details', (v) => v as String?),
     data: $checkedConvert(
       'data',
       (v) => v == null
@@ -131,7 +130,7 @@ _$ConversationControllerConversationV8200ResponseFromJson(
 Map<String, dynamic> _$ConversationControllerConversationV8200ResponseToJson(
   ConversationControllerConversationV8200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),

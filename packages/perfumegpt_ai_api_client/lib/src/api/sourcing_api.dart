@@ -12,6 +12,7 @@ import 'package:dio/dio.dart';
 import 'package:perfumegpt_ai_api_client/src/model/base_response_api.dart';
 
 class SourcingApi {
+
   final Dio _dio;
 
   const SourcingApi(this._dio);
@@ -20,7 +21,7 @@ class SourcingApi {
   /// Sends a catalog_request to the main backend and awaits a response.
   ///
   /// Parameters:
-  /// * [variantId]
+  /// * [variantId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -30,7 +31,7 @@ class SourcingApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseAPI] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseAPI>> sourcingControllerGetCatalogs({
+  Future<Response<BaseResponseAPI>> sourcingControllerGetCatalogs({ 
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -39,16 +40,16 @@ class SourcingApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/sourcing/catalogs/{variantId}'.replaceAll(
-      '{'
-      r'variantId'
-      '}',
-      variantId.toString(),
-    );
+    final _path = r'/sourcing/catalogs/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -63,14 +64,9 @@ class SourcingApi {
     BaseResponseAPI? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<BaseResponseAPI, BaseResponseAPI>(
-              rawData,
-              'BaseResponseAPI',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseAPI, BaseResponseAPI>(rawData, 'BaseResponseAPI', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -92,4 +88,5 @@ class SourcingApi {
       extra: _response.extra,
     );
   }
+
 }

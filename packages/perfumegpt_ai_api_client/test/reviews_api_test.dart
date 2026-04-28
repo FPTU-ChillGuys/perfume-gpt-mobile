@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for ReviewsApi
 void main() {
   final instance = PerfumegptAiApiClient().getReviewsApi();
@@ -71,7 +72,7 @@ void main() {
 
     // Lấy danh sách đánh giá (phân trang)
     //
-    //Future<LogControllerGetPagedEventLogs200Response> reviewControllerGetReviews(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String variantId, String userId, String status, num minRating, num maxRating, bool hasImages }) async
+    //Future<ReviewControllerGetReviews200Response> reviewControllerGetReviews(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String variantId, String userId, String status, num minRating, num maxRating, bool hasImages }) async
     test('test reviewControllerGetReviews', () async {
       // TODO
     });
@@ -79,11 +80,9 @@ void main() {
     // Tóm tắt đánh giá có cấu trúc theo variant ID
     //
     //Future<ReviewControllerGetStructuredReviewSummaryByVariantId200Response> reviewControllerGetStructuredReviewSummaryByVariantId(String variantId) async
-    test(
-      'test reviewControllerGetStructuredReviewSummaryByVariantId',
-      () async {
-        // TODO
-      },
-    );
+    test('test reviewControllerGetStructuredReviewSummaryByVariantId', () async {
+      // TODO
+    });
+
   });
 }

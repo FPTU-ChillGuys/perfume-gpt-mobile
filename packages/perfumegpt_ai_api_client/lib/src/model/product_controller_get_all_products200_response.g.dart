@@ -7,12 +7,12 @@ part of 'product_controller_get_all_products200_response.dart';
 // **************************************************************************
 
 abstract class _$ProductControllerGetAllProducts200ResponseCWProxy {
-  ProductControllerGetAllProducts200Response success(bool success);
+  ProductControllerGetAllProducts200Response success(bool? success);
 
-  ProductControllerGetAllProducts200Response error(Object? error);
+  ProductControllerGetAllProducts200Response error(String? error);
 
   ProductControllerGetAllProducts200Response payload(
-    ProductControllerGetAllProducts200ResponseAllOfPayload? payload,
+    ProductControllerGetAllProducts200ResponsePayload? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -23,9 +23,9 @@ abstract class _$ProductControllerGetAllProducts200ResponseCWProxy {
   /// ProductControllerGetAllProducts200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ProductControllerGetAllProducts200Response call({
-    bool success,
-    Object? error,
-    ProductControllerGetAllProducts200ResponseAllOfPayload? payload,
+    bool? success,
+    String? error,
+    ProductControllerGetAllProducts200ResponsePayload? payload,
   });
 }
 
@@ -38,16 +38,16 @@ class _$ProductControllerGetAllProducts200ResponseCWProxyImpl
   final ProductControllerGetAllProducts200Response _value;
 
   @override
-  ProductControllerGetAllProducts200Response success(bool success) =>
+  ProductControllerGetAllProducts200Response success(bool? success) =>
       call(success: success);
 
   @override
-  ProductControllerGetAllProducts200Response error(Object? error) =>
+  ProductControllerGetAllProducts200Response error(String? error) =>
       call(error: error);
 
   @override
   ProductControllerGetAllProducts200Response payload(
-    ProductControllerGetAllProducts200ResponseAllOfPayload? payload,
+    ProductControllerGetAllProducts200ResponsePayload? payload,
   ) => call(payload: payload);
 
   @override
@@ -64,18 +64,18 @@ class _$ProductControllerGetAllProducts200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return ProductControllerGetAllProducts200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as ProductControllerGetAllProducts200ResponseAllOfPayload?,
+          : payload as ProductControllerGetAllProducts200ResponsePayload?,
     );
   }
 }
@@ -99,15 +99,14 @@ _$ProductControllerGetAllProducts200ResponseFromJson(
 ) => $checkedCreate('ProductControllerGetAllProducts200Response', json, (
   $checkedConvert,
 ) {
-  $checkKeys(json, requiredKeys: const ['success']);
   final val = ProductControllerGetAllProducts200Response(
-    success: $checkedConvert('success', (v) => v as bool),
-    error: $checkedConvert('error', (v) => v),
+    success: $checkedConvert('success', (v) => v as bool?),
+    error: $checkedConvert('error', (v) => v as String?),
     payload: $checkedConvert(
       'payload',
       (v) => v == null
           ? null
-          : ProductControllerGetAllProducts200ResponseAllOfPayload.fromJson(
+          : ProductControllerGetAllProducts200ResponsePayload.fromJson(
               v as Map<String, dynamic>,
             ),
     ),
@@ -118,7 +117,7 @@ _$ProductControllerGetAllProducts200ResponseFromJson(
 Map<String, dynamic> _$ProductControllerGetAllProducts200ResponseToJson(
   ProductControllerGetAllProducts200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

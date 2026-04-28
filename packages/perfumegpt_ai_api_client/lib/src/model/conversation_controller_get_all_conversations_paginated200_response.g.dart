@@ -8,15 +8,15 @@ part of 'conversation_controller_get_all_conversations_paginated200_response.dar
 
 abstract class _$ConversationControllerGetAllConversationsPaginated200ResponseCWProxy {
   ConversationControllerGetAllConversationsPaginated200Response success(
-    bool success,
+    bool? success,
   );
 
   ConversationControllerGetAllConversationsPaginated200Response error(
-    Object? error,
+    String? error,
   );
 
   ConversationControllerGetAllConversationsPaginated200Response payload(
-    ConversationControllerGetAllConversationsPaginated200ResponseAllOfPayload?
+    ConversationControllerGetAllConversationsPaginated200ResponsePayload?
     payload,
   );
 
@@ -28,9 +28,9 @@ abstract class _$ConversationControllerGetAllConversationsPaginated200ResponseCW
   /// ConversationControllerGetAllConversationsPaginated200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ConversationControllerGetAllConversationsPaginated200Response call({
-    bool success,
-    Object? error,
-    ConversationControllerGetAllConversationsPaginated200ResponseAllOfPayload?
+    bool? success,
+    String? error,
+    ConversationControllerGetAllConversationsPaginated200ResponsePayload?
     payload,
   });
 }
@@ -48,17 +48,17 @@ class _$ConversationControllerGetAllConversationsPaginated200ResponseCWProxyImpl
 
   @override
   ConversationControllerGetAllConversationsPaginated200Response success(
-    bool success,
+    bool? success,
   ) => call(success: success);
 
   @override
   ConversationControllerGetAllConversationsPaginated200Response error(
-    Object? error,
+    String? error,
   ) => call(error: error);
 
   @override
   ConversationControllerGetAllConversationsPaginated200Response payload(
-    ConversationControllerGetAllConversationsPaginated200ResponseAllOfPayload?
+    ConversationControllerGetAllConversationsPaginated200ResponsePayload?
     payload,
   ) => call(payload: payload);
 
@@ -76,19 +76,19 @@ class _$ConversationControllerGetAllConversationsPaginated200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return ConversationControllerGetAllConversationsPaginated200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
           : payload
-                as ConversationControllerGetAllConversationsPaginated200ResponseAllOfPayload?,
+                as ConversationControllerGetAllConversationsPaginated200ResponsePayload?,
     );
   }
 }
@@ -116,15 +116,14 @@ _$ConversationControllerGetAllConversationsPaginated200ResponseFromJson(
   'ConversationControllerGetAllConversationsPaginated200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = ConversationControllerGetAllConversationsPaginated200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
       payload: $checkedConvert(
         'payload',
         (v) => v == null
             ? null
-            : ConversationControllerGetAllConversationsPaginated200ResponseAllOfPayload.fromJson(
+            : ConversationControllerGetAllConversationsPaginated200ResponsePayload.fromJson(
                 v as Map<String, dynamic>,
               ),
       ),
@@ -137,7 +136,7 @@ Map<String, dynamic>
 _$ConversationControllerGetAllConversationsPaginated200ResponseToJson(
   ConversationControllerGetAllConversationsPaginated200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

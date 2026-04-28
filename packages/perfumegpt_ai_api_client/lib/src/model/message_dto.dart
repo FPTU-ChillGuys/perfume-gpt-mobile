@@ -3,10 +3,12 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_ai_api_client/src/model/message_dto_message.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'message_dto.g.dart';
+
 
 @CopyWith()
 @JsonSerializable(
@@ -18,65 +20,118 @@ part 'message_dto.g.dart';
 class MessageDto {
   /// Returns a new [MessageDto] instance.
   MessageDto({
-    required this.id,
 
-    required this.createdAt,
+    required  this.id,
 
-    required this.updatedAt,
+    required  this.createdAt,
 
-    required this.isActive,
+    required  this.updatedAt,
 
-    required this.sender,
+    required  this.isActive,
 
-    required this.message,
+    required  this.sender,
+
+    required  this.message,
   });
 
-  /// ID bản ghi
-  @JsonKey(name: r'id', required: true, includeIfNull: false)
+      /// ID bản ghi
+  @JsonKey(
+    
+    name: r'id',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String id;
 
-  /// Ngày tạo
-  @JsonKey(name: r'createdAt', required: true, includeIfNull: false)
+
+
+      /// Ngày tạo
+  @JsonKey(
+    
+    name: r'createdAt',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final DateTime createdAt;
 
-  /// Ngày cập nhật gần nhất
-  @JsonKey(name: r'updatedAt', required: true, includeIfNull: false)
+
+
+      /// Ngày cập nhật gần nhất
+  @JsonKey(
+    
+    name: r'updatedAt',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final DateTime updatedAt;
 
-  /// Trạng thái hoạt động
-  @JsonKey(name: r'isActive', required: true, includeIfNull: false)
+
+
+      /// Trạng thái hoạt động
+  @JsonKey(
+    
+    name: r'isActive',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final bool isActive;
 
-  /// Người gửi tin nhắn (user hoặc assistant)
-  @JsonKey(name: r'sender', required: true, includeIfNull: false)
+
+
+      /// Người gửi tin nhắn (user hoặc assistant)
+  @JsonKey(
+    
+    name: r'sender',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String sender;
 
-  /// Nội dung tin nhắn
-  @JsonKey(name: r'message', required: true, includeIfNull: false)
-  final String message;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MessageDto &&
-          other.id == id &&
-          other.createdAt == createdAt &&
-          other.updatedAt == updatedAt &&
-          other.isActive == isActive &&
-          other.sender == sender &&
-          other.message == message;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      createdAt.hashCode +
-      updatedAt.hashCode +
-      isActive.hashCode +
-      sender.hashCode +
-      message.hashCode;
+  @JsonKey(
+    
+    name: r'message',
+    required: true,
+    includeIfNull: false,
+  )
 
-  factory MessageDto.fromJson(Map<String, dynamic> json) =>
-      _$MessageDtoFromJson(json);
+
+  final MessageDtoMessage message;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is MessageDto &&
+      other.id == id &&
+      other.createdAt == createdAt &&
+      other.updatedAt == updatedAt &&
+      other.isActive == isActive &&
+      other.sender == sender &&
+      other.message == message;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        createdAt.hashCode +
+        updatedAt.hashCode +
+        isActive.hashCode +
+        sender.hashCode +
+        message.hashCode;
+
+  factory MessageDto.fromJson(Map<String, dynamic> json) => _$MessageDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$MessageDtoToJson(this);
 
@@ -84,4 +139,6 @@ class MessageDto {
   String toString() {
     return toJson().toString();
   }
+
 }
+

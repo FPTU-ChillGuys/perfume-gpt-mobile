@@ -7,12 +7,12 @@ part of 'inventory_controller_get_inventory_report_logs200_response.dart';
 // **************************************************************************
 
 abstract class _$InventoryControllerGetInventoryReportLogs200ResponseCWProxy {
-  InventoryControllerGetInventoryReportLogs200Response success(bool success);
+  InventoryControllerGetInventoryReportLogs200Response success(bool? success);
 
-  InventoryControllerGetInventoryReportLogs200Response error(Object? error);
+  InventoryControllerGetInventoryReportLogs200Response error(String? error);
 
   InventoryControllerGetInventoryReportLogs200Response payload(
-    InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload? payload,
+    InventoryControllerGetInventoryReportLogs200ResponsePayload? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -23,9 +23,9 @@ abstract class _$InventoryControllerGetInventoryReportLogs200ResponseCWProxy {
   /// InventoryControllerGetInventoryReportLogs200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   InventoryControllerGetInventoryReportLogs200Response call({
-    bool success,
-    Object? error,
-    InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload? payload,
+    bool? success,
+    String? error,
+    InventoryControllerGetInventoryReportLogs200ResponsePayload? payload,
   });
 }
 
@@ -40,16 +40,16 @@ class _$InventoryControllerGetInventoryReportLogs200ResponseCWProxyImpl
   final InventoryControllerGetInventoryReportLogs200Response _value;
 
   @override
-  InventoryControllerGetInventoryReportLogs200Response success(bool success) =>
+  InventoryControllerGetInventoryReportLogs200Response success(bool? success) =>
       call(success: success);
 
   @override
-  InventoryControllerGetInventoryReportLogs200Response error(Object? error) =>
+  InventoryControllerGetInventoryReportLogs200Response error(String? error) =>
       call(error: error);
 
   @override
   InventoryControllerGetInventoryReportLogs200Response payload(
-    InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload? payload,
+    InventoryControllerGetInventoryReportLogs200ResponsePayload? payload,
   ) => call(payload: payload);
 
   @override
@@ -66,19 +66,19 @@ class _$InventoryControllerGetInventoryReportLogs200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return InventoryControllerGetInventoryReportLogs200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
           : payload
-                as InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload?,
+                as InventoryControllerGetInventoryReportLogs200ResponsePayload?,
     );
   }
 }
@@ -103,15 +103,14 @@ _$InventoryControllerGetInventoryReportLogs200ResponseFromJson(
   'InventoryControllerGetInventoryReportLogs200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = InventoryControllerGetInventoryReportLogs200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
       payload: $checkedConvert(
         'payload',
         (v) => v == null
             ? null
-            : InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload.fromJson(
+            : InventoryControllerGetInventoryReportLogs200ResponsePayload.fromJson(
                 v as Map<String, dynamic>,
               ),
       ),
@@ -124,7 +123,7 @@ Map<String, dynamic>
 _$InventoryControllerGetInventoryReportLogs200ResponseToJson(
   InventoryControllerGetInventoryReportLogs200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

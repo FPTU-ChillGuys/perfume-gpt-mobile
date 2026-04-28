@@ -7,9 +7,9 @@ part of 'product_controller_get_product_with_variants200_response.dart';
 // **************************************************************************
 
 abstract class _$ProductControllerGetProductWithVariants200ResponseCWProxy {
-  ProductControllerGetProductWithVariants200Response success(bool success);
+  ProductControllerGetProductWithVariants200Response success(bool? success);
 
-  ProductControllerGetProductWithVariants200Response error(Object? error);
+  ProductControllerGetProductWithVariants200Response error(String? error);
 
   ProductControllerGetProductWithVariants200Response payload(
     ProductWithVariantsResponse? payload,
@@ -23,8 +23,8 @@ abstract class _$ProductControllerGetProductWithVariants200ResponseCWProxy {
   /// ProductControllerGetProductWithVariants200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ProductControllerGetProductWithVariants200Response call({
-    bool success,
-    Object? error,
+    bool? success,
+    String? error,
     ProductWithVariantsResponse? payload,
   });
 }
@@ -40,11 +40,11 @@ class _$ProductControllerGetProductWithVariants200ResponseCWProxyImpl
   final ProductControllerGetProductWithVariants200Response _value;
 
   @override
-  ProductControllerGetProductWithVariants200Response success(bool success) =>
+  ProductControllerGetProductWithVariants200Response success(bool? success) =>
       call(success: success);
 
   @override
-  ProductControllerGetProductWithVariants200Response error(Object? error) =>
+  ProductControllerGetProductWithVariants200Response error(String? error) =>
       call(error: error);
 
   @override
@@ -66,14 +66,14 @@ class _$ProductControllerGetProductWithVariants200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return ProductControllerGetProductWithVariants200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
@@ -102,10 +102,9 @@ _$ProductControllerGetProductWithVariants200ResponseFromJson(
   'ProductControllerGetProductWithVariants200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = ProductControllerGetProductWithVariants200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
       payload: $checkedConvert(
         'payload',
         (v) => v == null
@@ -120,7 +119,7 @@ _$ProductControllerGetProductWithVariants200ResponseFromJson(
 Map<String, dynamic> _$ProductControllerGetProductWithVariants200ResponseToJson(
   ProductControllerGetProductWithVariants200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

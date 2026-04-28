@@ -41,6 +41,8 @@ abstract class _$ProductVariantResponseCWProxy {
 
   ProductVariantResponse updatedAt(Object? updatedAt);
 
+  ProductVariantResponse url(Object? url);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductVariantResponse(...).copyWith.fieldName(value)`.
   ///
@@ -66,6 +68,7 @@ abstract class _$ProductVariantResponseCWProxy {
     num? sillage,
     String createdAt,
     Object? updatedAt,
+    Object? url,
   });
 }
 
@@ -139,6 +142,9 @@ class _$ProductVariantResponseCWProxyImpl
       call(updatedAt: updatedAt);
 
   @override
+  ProductVariantResponse url(Object? url) => call(url: url);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ProductVariantResponse(...).copyWith.fieldName(value)`.
   ///
@@ -164,6 +170,7 @@ class _$ProductVariantResponseCWProxyImpl
     Object? sillage = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? updatedAt = const $CopyWithPlaceholder(),
+    Object? url = const $CopyWithPlaceholder(),
   }) {
     return ProductVariantResponse(
       id: id == const $CopyWithPlaceholder() || id == null
@@ -237,6 +244,10 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.updatedAt
           // ignore: cast_nullable_to_non_nullable
           : updatedAt as Object?,
+      url: url == const $CopyWithPlaceholder()
+          ? _value.url
+          // ignore: cast_nullable_to_non_nullable
+          : url as Object?,
     );
   }
 }
@@ -313,6 +324,7 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
     sillage: $checkedConvert('sillage', (v) => v as num?),
     createdAt: $checkedConvert('createdAt', (v) => v as String),
     updatedAt: $checkedConvert('updatedAt', (v) => v),
+    url: $checkedConvert('url', (v) => v),
   );
   return val;
 });
@@ -337,4 +349,5 @@ Map<String, dynamic> _$ProductVariantResponseToJson(
   'sillage': ?instance.sillage,
   'createdAt': instance.createdAt,
   'updatedAt': ?instance.updatedAt,
+  'url': ?instance.url,
 };

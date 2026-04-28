@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'paged_result.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,57 +19,102 @@ part 'paged_result.g.dart';
 class PagedResult {
   /// Returns a new [PagedResult] instance.
   PagedResult({
-    required this.items,
 
-    required this.pageNumber,
+    required  this.items,
 
-    required this.pageSize,
+    required  this.pageNumber,
 
-    required this.totalCount,
+    required  this.pageSize,
 
-    required this.totalPages,
+    required  this.totalCount,
+
+    required  this.totalPages,
   });
 
-  /// Danh sách bản ghi
-  @JsonKey(name: r'items', required: true, includeIfNull: false)
+      /// Danh sách bản ghi
+  @JsonKey(
+    
+    name: r'items',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<String> items;
 
-  /// Số trang hiện tại
-  @JsonKey(name: r'pageNumber', required: true, includeIfNull: false)
+
+
+      /// Số trang hiện tại
+  @JsonKey(
+    
+    name: r'pageNumber',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final num pageNumber;
 
-  /// Số bản ghi mỗi trang
-  @JsonKey(name: r'pageSize', required: true, includeIfNull: false)
+
+
+      /// Số bản ghi mỗi trang
+  @JsonKey(
+    
+    name: r'pageSize',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final num pageSize;
 
-  /// Tổng số bản ghi
-  @JsonKey(name: r'totalCount', required: true, includeIfNull: false)
+
+
+      /// Tổng số bản ghi
+  @JsonKey(
+    
+    name: r'totalCount',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final num totalCount;
 
-  /// Tổng số trang
-  @JsonKey(name: r'totalPages', required: true, includeIfNull: false)
+
+
+      /// Tổng số trang
+  @JsonKey(
+    
+    name: r'totalPages',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final num totalPages;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PagedResult &&
-          other.items == items &&
-          other.pageNumber == pageNumber &&
-          other.pageSize == pageSize &&
-          other.totalCount == totalCount &&
-          other.totalPages == totalPages;
 
-  @override
-  int get hashCode =>
-      items.hashCode +
-      pageNumber.hashCode +
-      pageSize.hashCode +
-      totalCount.hashCode +
-      totalPages.hashCode;
 
-  factory PagedResult.fromJson(Map<String, dynamic> json) =>
-      _$PagedResultFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is PagedResult &&
+      other.items == items &&
+      other.pageNumber == pageNumber &&
+      other.pageSize == pageSize &&
+      other.totalCount == totalCount &&
+      other.totalPages == totalPages;
+
+    @override
+    int get hashCode =>
+        items.hashCode +
+        pageNumber.hashCode +
+        pageSize.hashCode +
+        totalCount.hashCode +
+        totalPages.hashCode;
+
+  factory PagedResult.fromJson(Map<String, dynamic> json) => _$PagedResultFromJson(json);
 
   Map<String, dynamic> toJson() => _$PagedResultToJson(this);
 
@@ -76,4 +122,6 @@ class PagedResult {
   String toString() {
     return toJson().toString();
   }
+
 }
+

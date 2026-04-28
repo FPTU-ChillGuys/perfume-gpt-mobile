@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **brandName** | **String** | Tên thương hiệu | 
 **categoryId** | **num** | ID danh mục | 
 **categoryName** | **String** | Tên danh mục | 
-**description** | **String** | Mô tả sản phẩm | 
+**description** | **String** | Mô tả sản phẩm | [optional] 
 **primaryImage** | **Object** | URL hình ảnh chính | 
 **attributes** | [**List&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) | Danh sách thuộc tính sản phẩm | 
 

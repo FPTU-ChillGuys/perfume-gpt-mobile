@@ -7,11 +7,11 @@ part of 'profile_controller_get_own_profile200_response.dart';
 // **************************************************************************
 
 abstract class _$ProfileControllerGetOwnProfile200ResponseCWProxy {
-  ProfileControllerGetOwnProfile200Response success(bool success);
+  ProfileControllerGetOwnProfile200Response success(bool? success);
 
-  ProfileControllerGetOwnProfile200Response error(Object? error);
+  ProfileControllerGetOwnProfile200Response error(String? error);
 
-  ProfileControllerGetOwnProfile200Response details(Object? details);
+  ProfileControllerGetOwnProfile200Response details(String? details);
 
   ProfileControllerGetOwnProfile200Response data(ProfileResponse? data);
 
@@ -23,9 +23,9 @@ abstract class _$ProfileControllerGetOwnProfile200ResponseCWProxy {
   /// ProfileControllerGetOwnProfile200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ProfileControllerGetOwnProfile200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     ProfileResponse? data,
   });
 }
@@ -39,15 +39,15 @@ class _$ProfileControllerGetOwnProfile200ResponseCWProxyImpl
   final ProfileControllerGetOwnProfile200Response _value;
 
   @override
-  ProfileControllerGetOwnProfile200Response success(bool success) =>
+  ProfileControllerGetOwnProfile200Response success(bool? success) =>
       call(success: success);
 
   @override
-  ProfileControllerGetOwnProfile200Response error(Object? error) =>
+  ProfileControllerGetOwnProfile200Response error(String? error) =>
       call(error: error);
 
   @override
-  ProfileControllerGetOwnProfile200Response details(Object? details) =>
+  ProfileControllerGetOwnProfile200Response details(String? details) =>
       call(details: details);
 
   @override
@@ -69,18 +69,18 @@ class _$ProfileControllerGetOwnProfile200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return ProfileControllerGetOwnProfile200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -108,11 +108,10 @@ _$ProfileControllerGetOwnProfile200ResponseFromJson(
 ) => $checkedCreate('ProfileControllerGetOwnProfile200Response', json, (
   $checkedConvert,
 ) {
-  $checkKeys(json, requiredKeys: const ['success']);
   final val = ProfileControllerGetOwnProfile200Response(
-    success: $checkedConvert('success', (v) => v as bool),
-    error: $checkedConvert('error', (v) => v),
-    details: $checkedConvert('details', (v) => v),
+    success: $checkedConvert('success', (v) => v as bool?),
+    error: $checkedConvert('error', (v) => v as String?),
+    details: $checkedConvert('details', (v) => v as String?),
     data: $checkedConvert(
       'data',
       (v) => v == null
@@ -126,7 +125,7 @@ _$ProfileControllerGetOwnProfile200ResponseFromJson(
 Map<String, dynamic> _$ProfileControllerGetOwnProfile200ResponseToJson(
   ProfileControllerGetOwnProfile200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),
