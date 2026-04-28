@@ -44,19 +44,29 @@ class ProfileRepositoryImpl implements ProfileRepository {
       gender: null,
       minBudget: prof?.minBudget,
       maxBudget: prof?.maxBudget,
-      notePreferences: (prof?.notePreferences ?? []).map((n) => NotePreference(
-        noteId: n.noteId ?? 0,
-        name: n.noteName,
-        type: n.noteType?.value,
-      )).toList(),
-      familyPreferences: (prof?.familyPreferences ?? []).map((f) => FamilyPreference(
-        familyId: f.familyId ?? 0,
-        name: f.familyName,
-      )).toList(),
-      attributePreferences: (prof?.attributePreferences ?? []).map((a) => AttributePreference(
-        attributeValueId: a.attributeValueId ?? 0,
-        name: a.attributeValueName,
-      )).toList(),
+      notePreferences: (prof?.notePreferences ?? [])
+          .map(
+            (n) => NotePreference(
+              noteId: n.noteId ?? 0,
+              name: n.noteName,
+              type: n.noteType?.value,
+            ),
+          )
+          .toList(),
+      familyPreferences: (prof?.familyPreferences ?? [])
+          .map(
+            (f) =>
+                FamilyPreference(familyId: f.familyId ?? 0, name: f.familyName),
+          )
+          .toList(),
+      attributePreferences: (prof?.attributePreferences ?? [])
+          .map(
+            (a) => AttributePreference(
+              attributeValueId: a.attributeValueId ?? 0,
+              name: a.attributeValueName,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -153,10 +163,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
     try {
       final response = await _scentNotesApi.apiScentnotesLookupGet();
       final list = response.data?.payload ?? [];
-      return list.map((n) => ScentNoteLookup(
-        id: n.id ?? 0,
-        name: n.name,
-      )).toList();
+      return list
+          .map((n) => ScentNoteLookup(id: n.id ?? 0, name: n.name))
+          .toList();
     } on DioException catch (e) {
       if (_isOk(e)) {
         return _parseScentNotesRaw(e.response?.data);
@@ -171,10 +180,12 @@ class ProfileRepositoryImpl implements ProfileRepository {
     if (payload is List) {
       return payload
           .whereType<Map<String, dynamic>>()
-          .map((j) => ScentNoteLookup(
-                id: j['id'] as int? ?? 0,
-                name: j['name']?.toString() ?? '',
-              ))
+          .map(
+            (j) => ScentNoteLookup(
+              id: j['id'] as int? ?? 0,
+              name: j['name']?.toString() ?? '',
+            ),
+          )
           .toList();
     }
     return [];
@@ -185,38 +196,43 @@ class ProfileRepositoryImpl implements ProfileRepository {
     try {
       final response = await _familiesApi.apiOlfactoryfamiliesLookupGet();
       final list = response.data?.payload ?? [];
-      return list.map((f) => OlfactoryFamilyLookup(
-        id: f.id ?? 0,
-        name: f.name,
-      )).toList();
+      return list
+          .map((f) => OlfactoryFamilyLookup(id: f.id ?? 0, name: f.name))
+          .toList();
     } on DioException catch (e) {
       if (_isOk(e)) {
-        return _parseListRaw(e.response?.data, (j) => OlfactoryFamilyLookup(
-          id: j['id'] as int? ?? 0,
-          name: j['name']?.toString() ?? '',
-        ));
+        return _parseListRaw(
+          e.response?.data,
+          (j) => OlfactoryFamilyLookup(
+            id: j['id'] as int? ?? 0,
+            name: j['name']?.toString() ?? '',
+          ),
+        );
       }
       rethrow;
     }
   }
 
   @override
-  Future<List<AttributeValueLookup>> getAttributeValuesLookup(int attributeId) async {
+  Future<List<AttributeValueLookup>> getAttributeValuesLookup(
+    int attributeId,
+  ) async {
     try {
-      final response = await _attributesApi.apiAttributesAttributeIdValuesLookupGet(
-        attributeId: attributeId,
-      );
+      final response = await _attributesApi
+          .apiAttributesAttributeIdValuesLookupGet(attributeId: attributeId);
       final list = response.data?.payload ?? [];
-      return list.map((a) => AttributeValueLookup(
-        id: a.id ?? 0,
-        name: a.value,
-      )).toList();
+      return list
+          .map((a) => AttributeValueLookup(id: a.id ?? 0, name: a.value))
+          .toList();
     } on DioException catch (e) {
       if (_isOk(e)) {
-        return _parseListRaw(e.response?.data, (j) => AttributeValueLookup(
-          id: j['id'] as int? ?? 0,
-          name: j['value']?.toString() ?? '',
-        ));
+        return _parseListRaw(
+          e.response?.data,
+          (j) => AttributeValueLookup(
+            id: j['id'] as int? ?? 0,
+            name: j['value']?.toString() ?? '',
+          ),
+        );
       }
       rethrow;
     }
@@ -230,16 +246,19 @@ class ProfileRepositoryImpl implements ProfileRepository {
       return list.map((a) => (id: a.id ?? 0, name: a.name)).toList();
     } on DioException catch (e) {
       if (_isOk(e)) {
-        return _parseListRaw(e.response?.data, (j) => (
-          id: j['id'] as int? ?? 0,
-          name: j['name']?.toString() ?? '',
-        ));
+        return _parseListRaw(
+          e.response?.data,
+          (j) => (id: j['id'] as int? ?? 0, name: j['name']?.toString() ?? ''),
+        );
       }
       rethrow;
     }
   }
 
-  List<T> _parseListRaw<T>(dynamic data, T Function(Map<String, dynamic>) mapper) {
+  List<T> _parseListRaw<T>(
+    dynamic data,
+    T Function(Map<String, dynamic>) mapper,
+  ) {
     final raw = data is Map<String, dynamic> ? data : <String, dynamic>{};
     final payload = raw['payload'];
     if (payload is List) {

@@ -25,13 +25,34 @@ class ChatSession extends _$ChatSession {
         _conversationId = latestConversation.id;
         final messages =
             latestConversation.messages?.map((m) {
+              final isAi = m.sender == 'assistant';
+              final authorId = isAi
+                  ? 'ai'
+                  : (latestConversation.userId ?? 'user');
+
+              if (isAi &&
+                  (m.message.products != null &&
+                          m.message.products!.isNotEmpty ||
+                      m.message.suggestedQuestions.isNotEmpty)) {
+                return Message.custom(
+                  authorId: authorId,
+                  createdAt: m.createdAt,
+                  id: m.id,
+                  metadata: {
+                    'text': m.message.message,
+                    'products': m.message.products
+                        ?.map((p) => p.toJson())
+                        .toList(),
+                    'suggestedQuestions': m.message.suggestedQuestions,
+                  },
+                );
+              }
+
               return Message.text(
-                authorId: m.sender == 'assistant'
-                    ? 'ai'
-                    : (latestConversation.userId ?? 'user'),
+                authorId: authorId,
                 createdAt: m.createdAt,
                 id: m.id,
-                text: m.message,
+                text: m.message.message,
               );
             }).toList() ??
             [];
@@ -76,11 +97,23 @@ class ChatSession extends _$ChatSession {
 
       // Construct history for V10 API - state is already oldest first
       final history = state.value!.map((m) {
+        String msgText;
+        if (m is TextMessage) {
+          msgText = m.text;
+        } else if (m is CustomMessage && m.metadata?['text'] != null) {
+          msgText = m.metadata!['text'] as String;
+        } else {
+          msgText = '';
+        }
+
         return MessageRequestDto(
           sender: m.authorId == 'ai'
               ? MessageRequestDtoSenderEnum.assistant
               : MessageRequestDtoSenderEnum.user,
-          message: (m as TextMessage).text,
+          message: MessageRequestDtoMessage(
+            message: msgText,
+            suggestedQuestions: [],
+          ),
         );
       }).toList();
 
@@ -95,15 +128,33 @@ class ChatSession extends _$ChatSession {
           );
 
       final conversationResponse = response.data?.data;
-      final aiLastMessage = conversationResponse?.messages.lastOrNull;
+      final aiLastMessage = conversationResponse?.messages?.lastOrNull;
 
       if (aiLastMessage != null) {
-        final aiMessage = Message.text(
-          authorId: 'ai',
-          createdAt: DateTime.now(),
-          id: const Uuid().v4(),
-          text: aiLastMessage.message,
-        );
+        final messageData = aiLastMessage.message;
+        Message aiMessage;
+
+        if ((messageData.products != null && messageData.products!.isNotEmpty) ||
+            messageData.suggestedQuestions.isNotEmpty) {
+          aiMessage = Message.custom(
+            authorId: 'ai',
+            createdAt: DateTime.now(),
+            id: const Uuid().v4(),
+            metadata: {
+              'text': messageData.message,
+              'products': messageData.products?.map((p) => p.toJson()).toList(),
+              'suggestedQuestions': messageData.suggestedQuestions,
+            },
+          );
+        } else {
+          aiMessage = Message.text(
+            authorId: 'ai',
+            createdAt: DateTime.now(),
+            id: const Uuid().v4(),
+            text: messageData.message,
+          );
+        }
+
         state = AsyncData([...state.value!, aiMessage]);
       } else {
         throw Exception('No response from AI');

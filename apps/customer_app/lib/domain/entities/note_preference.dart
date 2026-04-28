@@ -3,11 +3,7 @@ class NotePreference {
   final String name;
   final String? type; // 'Top', 'Heart', 'Base'
 
-  const NotePreference({
-    required this.noteId,
-    required this.name,
-    this.type,
-  });
+  const NotePreference({required this.noteId, required this.name, this.type});
 }
 
 class FamilyPreference {
@@ -21,7 +17,10 @@ class AttributePreference {
   final int attributeValueId;
   final String name;
 
-  const AttributePreference({required this.attributeValueId, required this.name});
+  const AttributePreference({
+    required this.attributeValueId,
+    required this.name,
+  });
 }
 
 class ScentNoteLookup {

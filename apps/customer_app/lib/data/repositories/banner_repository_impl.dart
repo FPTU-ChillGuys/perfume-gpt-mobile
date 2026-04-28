@@ -34,10 +34,7 @@ class BannerRepositoryImpl implements BannerRepository {
     if (data is! Map<String, dynamic>) return [];
     final payload = data['payload'];
     if (payload is! List) return [];
-    return payload
-        .whereType<Map<String, dynamic>>()
-        .map(_mapBanner)
-        .toList();
+    return payload.whereType<Map<String, dynamic>>().map(_mapBanner).toList();
   }
 
   HomeBanner _mapBanner(Map<String, dynamic> json) {

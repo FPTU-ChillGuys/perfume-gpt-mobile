@@ -41,8 +41,7 @@ class ProductDetailsPage extends ConsumerStatefulWidget {
   const ProductDetailsPage({super.key, required this.productId});
 
   @override
-  ConsumerState<ProductDetailsPage> createState() =>
-      _ProductDetailsPageState();
+  ConsumerState<ProductDetailsPage> createState() => _ProductDetailsPageState();
 }
 
 class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
@@ -98,7 +97,9 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
     }
     try {
       // Use addProduct to support guest mode (provides full entity info)
-      await ref.read(cartProvider.notifier).addProduct(product, variantId: variantId);
+      await ref
+          .read(cartProvider.notifier)
+          .addProduct(product, variantId: variantId);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -137,8 +138,8 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
 
         final List<String> displayImages =
             _selectedVariant?.imageUrls.isNotEmpty == true
-                ? _selectedVariant!.imageUrls
-                : [product.imageUrl];
+            ? _selectedVariant!.imageUrls
+            : [product.imageUrl];
 
         return LayoutBuilder(
           builder: (context, constraints) {
@@ -307,7 +308,9 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
       return;
     }
     try {
-      await ref.read(cartProvider.notifier).addProduct(product, variantId: variantId);
+      await ref
+          .read(cartProvider.notifier)
+          .addProduct(product, variantId: variantId);
       if (mounted) {
         context.push('/checkout');
       }
@@ -342,30 +345,33 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
     final discountedPrice = variant?.discountedPrice ?? 0;
     final retailPrice = variant?.retailPrice ?? 0;
     final hasCampaignDiscount = variant != null && variant.hasCampaignDiscount;
-    final campaignDisplayedPrice =
-        hasCampaignDiscount ? discountedPrice : basePrice;
+    final campaignDisplayedPrice = hasCampaignDiscount
+        ? discountedPrice
+        : basePrice;
     final hasRetailComparison = basePrice > 0 && retailPrice > basePrice;
     final savingAmount = hasCampaignDiscount
         ? basePrice - discountedPrice
         : hasRetailComparison
-            ? retailPrice - basePrice
-            : 0.0;
+        ? retailPrice - basePrice
+        : 0.0;
     final savingPercent = hasCampaignDiscount && basePrice > 0
         ? (savingAmount / basePrice) * 100
         : hasRetailComparison && retailPrice > 0
-            ? (savingAmount / retailPrice) * 100
-            : 0.0;
+        ? (savingAmount / retailPrice) * 100
+        : 0.0;
     final campaignName = variant?.campaignName?.trim() ?? '';
     final voucherCode = variant?.voucherCode?.trim() ?? '';
-    final showCampaignCard = hasCampaignDiscount &&
+    final showCampaignCard =
+        hasCampaignDiscount &&
         (campaignName.isNotEmpty || voucherCode.isNotEmpty);
 
     return [
       // ── Product name ──
       Text(
         product.name,
-        style: theme.textTheme.headlineSmall
-            ?.copyWith(fontWeight: FontWeight.bold),
+        style: theme.textTheme.headlineSmall?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
       ),
       const SizedBox(height: 8),
 
@@ -385,8 +391,9 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
       if (product.variants.isNotEmpty) ...[
         Text(
           'Lựa chọn size',
-          style:
-              theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 10),
         _VariantSelector(
@@ -537,18 +544,16 @@ class _InfoLine extends StatelessWidget {
         children: [
           Text(
             '$label: ',
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(color: Colors.grey),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
           ),
           Flexible(
             child: Text(
               value,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(fontWeight: FontWeight.w600),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -631,8 +636,10 @@ class _CampaignCard extends StatelessWidget {
             children: [
               if (campaignName.isNotEmpty)
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(6),
@@ -662,16 +669,18 @@ class _CampaignCard extends StatelessWidget {
             const SizedBox(height: 8),
             RichText(
               text: TextSpan(
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Colors.grey.shade700,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: Colors.grey.shade700),
                 children: [
                   const TextSpan(text: 'Áp dụng mã '),
                   WidgetSpan(
                     alignment: PlaceholderAlignment.middle,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 2),
+                        horizontal: 8,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.red.withValues(alpha: 0.08),
                         borderRadius: BorderRadius.circular(4),
@@ -731,33 +740,33 @@ class _ImageGallery extends StatelessWidget {
           itemCount: images.length,
           onPageChanged: onPageChanged,
           itemBuilder: (context, index) => Image.network(
-              images[index],
-              fit: BoxFit.cover,
-              width: double.infinity,
-              gaplessPlayback: true,
-              loadingBuilder: (context, child, progress) {
-                if (progress == null) return child;
-                final percent = progress.expectedTotalBytes != null
-                    ? progress.cumulativeBytesLoaded /
+            images[index],
+            fit: BoxFit.cover,
+            width: double.infinity,
+            gaplessPlayback: true,
+            loadingBuilder: (context, child, progress) {
+              if (progress == null) return child;
+              final percent = progress.expectedTotalBytes != null
+                  ? progress.cumulativeBytesLoaded /
                         progress.expectedTotalBytes!
-                    : null;
-                return Container(
-                  color: Colors.grey.shade100,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      value: percent,
-                      strokeWidth: 2,
-                    ),
+                  : null;
+              return Container(
+                color: Colors.grey.shade100,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    value: percent,
+                    strokeWidth: 2,
                   ),
-                );
-              },
-              errorBuilder: (_, _, _) => Container(
-                color: Colors.grey.shade200,
-                child: const Center(
-                  child: Icon(Icons.broken_image, size: 60, color: Colors.grey),
                 ),
+              );
+            },
+            errorBuilder: (_, _, _) => Container(
+              color: Colors.grey.shade200,
+              child: const Center(
+                child: Icon(Icons.broken_image, size: 60, color: Colors.grey),
               ),
             ),
+          ),
         ),
         if (images.length > 1)
           Positioned(
@@ -835,13 +844,13 @@ class _VariantSelector extends StatelessWidget {
                   Text(
                     variant.displayName,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: isSelected
-                          ? theme.colorScheme.onPrimary
+                      color: isSelected ? theme.colorScheme.onPrimary : null,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.w600,
+                      decoration: outOfStock
+                          ? TextDecoration.lineThrough
                           : null,
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.w600,
-                      decoration:
-                          outOfStock ? TextDecoration.lineThrough : null,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -934,12 +943,14 @@ class _DetailsTab extends StatelessWidget {
     final fields = [
       ('Thương hiệu', info?.brandName ?? product.brand),
       ('Xuất xứ', info?.origin ?? product.origin ?? ''),
-      ('Năm phát hành',
-          info?.releaseYear != null
-              ? '${info!.releaseYear}'
-              : product.releaseYear != null
-                  ? '${product.releaseYear}'
-                  : ''),
+      (
+        'Năm phát hành',
+        info?.releaseYear != null
+            ? '${info!.releaseYear}'
+            : product.releaseYear != null
+            ? '${product.releaseYear}'
+            : '',
+      ),
       ('Giới tính', _convertGenderToVietnamese(info?.gender ?? product.gender)),
       ('Phong cách', info?.style ?? ''),
       ('Nhóm hương', info?.scentGroup ?? ''),
@@ -958,18 +969,17 @@ class _DetailsTab extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             'Mô tả sản phẩm',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           HtmlWidget(
             description,
-            textStyle: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(height: 1.8, color: Colors.grey.shade700),
+            textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              height: 1.8,
+              color: Colors.grey.shade700,
+            ),
           ),
         ],
       ],
@@ -987,9 +997,7 @@ class _DetailFieldRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: Colors.grey.shade200),
-        ),
+        border: Border(bottom: BorderSide(color: Colors.grey.shade200)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1062,7 +1070,9 @@ class _AiReviewSummary extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.primaryLight,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.primaryBorder.withValues(alpha: 0.5)),
+        border: Border.all(
+          color: AppColors.primaryBorder.withValues(alpha: 0.5),
+        ),
       ),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1145,10 +1155,12 @@ class _AddToCartBar extends StatelessWidget {
                   needsSelection
                       ? 'Chọn phân loại'
                       : isOutOfStock
-                          ? 'Hết hàng'
-                          : 'Thêm vào giỏ',
+                      ? 'Hết hàng'
+                      : 'Thêm vào giỏ',
                   style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -1168,7 +1180,9 @@ class _AddToCartBar extends StatelessWidget {
                 child: Text(
                   isOutOfStock ? 'Hết hàng' : 'Mua ngay',
                   style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -1195,7 +1209,9 @@ class _VariantReviewsSection extends ConsumerWidget {
       children: [
         Text(
           'Đánh giá sản phẩm',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
 
@@ -1213,9 +1229,19 @@ class _VariantReviewsSection extends ConsumerWidget {
                 ),
                 child: const Column(
                   children: [
-                    Icon(Icons.rate_review_outlined, size: 36, color: AppColors.textSecondary),
+                    Icon(
+                      Icons.rate_review_outlined,
+                      size: 36,
+                      color: AppColors.textSecondary,
+                    ),
                     SizedBox(height: 8),
-                    Text('Chưa có đánh giá nào', style: TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+                    Text(
+                      'Chưa có đánh giá nào',
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 14,
+                      ),
+                    ),
                   ],
                 ),
               );
@@ -1236,20 +1262,34 @@ class _VariantReviewsSection extends ConsumerWidget {
                       children: [
                         Text(
                           stats.averageRating.toStringAsFixed(1),
-                          style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
+                          style: const TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textPrimary,
+                          ),
                         ),
-                      Row(
-                        children: List.generate(5, (i) => Icon(
-                          i < stats.averageRating.round() ? Icons.star_rounded : Icons.star_outline_rounded,
-                          color: Colors.amber,
-                          size: 16,
-                        )),
-                      ),
-                      const SizedBox(height: 4),
-                      Text('${stats.totalReviews} đánh giá',
-                          style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
-                    ],
-                  ),
+                        Row(
+                          children: List.generate(
+                            5,
+                            (i) => Icon(
+                              i < stats.averageRating.round()
+                                  ? Icons.star_rounded
+                                  : Icons.star_outline_rounded,
+                              color: Colors.amber,
+                              size: 16,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          '${stats.totalReviews} đánh giá',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.textSecondary,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(width: 20),
                   // Rating distribution bars
@@ -1258,14 +1298,26 @@ class _VariantReviewsSection extends ConsumerWidget {
                       children: List.generate(5, (i) {
                         final star = 5 - i;
                         final count = stats.ratingDistribution[star] ?? 0;
-                        final ratio = stats.totalReviews > 0 ? count / stats.totalReviews : 0.0;
+                        final ratio = stats.totalReviews > 0
+                            ? count / stats.totalReviews
+                            : 0.0;
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 2),
                           child: Row(
                             children: [
-                              Text('$star', style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                              Text(
+                                '$star',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: AppColors.textSecondary,
+                                ),
+                              ),
                               const SizedBox(width: 4),
-                              const Icon(Icons.star_rounded, size: 12, color: Colors.amber),
+                              const Icon(
+                                Icons.star_rounded,
+                                size: 12,
+                                color: Colors.amber,
+                              ),
                               const SizedBox(width: 6),
                               Expanded(
                                 child: ClipRRect(
@@ -1274,14 +1326,22 @@ class _VariantReviewsSection extends ConsumerWidget {
                                     value: ratio,
                                     minHeight: 6,
                                     backgroundColor: Colors.grey.shade200,
-                                    valueColor: const AlwaysStoppedAnimation(Colors.amber),
+                                    valueColor: const AlwaysStoppedAnimation(
+                                      Colors.amber,
+                                    ),
                                   ),
                                 ),
                               ),
                               const SizedBox(width: 6),
                               SizedBox(
                                 width: 24,
-                                child: Text('$count', style: const TextStyle(fontSize: 11, color: AppColors.textSecondary)),
+                                child: Text(
+                                  '$count',
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    color: AppColors.textSecondary,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -1303,13 +1363,18 @@ class _VariantReviewsSection extends ConsumerWidget {
           data: (reviews) {
             if (reviews.isEmpty) return const SizedBox.shrink();
             return Column(
-              children: reviews.map((review) => _buildReviewTile(context, review)).toList(),
+              children: reviews
+                  .map((review) => _buildReviewTile(context, review))
+                  .toList(),
             );
           },
           loading: () => const Center(
             child: Padding(
               padding: EdgeInsets.all(16),
-              child: CircularProgressIndicator(color: AppColors.primary, strokeWidth: 2),
+              child: CircularProgressIndicator(
+                color: AppColors.primary,
+                strokeWidth: 2,
+              ),
             ),
           ),
           error: (_, _) => const SizedBox.shrink(),
@@ -1336,43 +1401,72 @@ class _VariantReviewsSection extends ConsumerWidget {
               CircleAvatar(
                 radius: 14,
                 backgroundColor: AppColors.primaryLight,
-                backgroundImage: review.userProfilePictureUrl != null && review.userProfilePictureUrl!.isNotEmpty
-                    ? NetworkImage(ImageUrlHelper.resolve(review.userProfilePictureUrl!))
+                backgroundImage:
+                    review.userProfilePictureUrl != null &&
+                        review.userProfilePictureUrl!.isNotEmpty
+                    ? NetworkImage(
+                        ImageUrlHelper.resolve(review.userProfilePictureUrl!),
+                      )
                     : null,
-                child: review.userProfilePictureUrl == null || review.userProfilePictureUrl!.isEmpty
+                child:
+                    review.userProfilePictureUrl == null ||
+                        review.userProfilePictureUrl!.isEmpty
                     ? Text(
                         (review.userName ?? 'U')[0].toUpperCase(),
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primary),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primary,
+                        ),
                       )
                     : null,
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: Text(review.userName ?? 'Người dùng',
-                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+                child: Text(
+                  review.userName ?? 'Người dùng',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 13,
+                  ),
+                ),
               ),
               Text(
                 DateFormat('dd/MM/yyyy').format(review.createdAt),
-                style: const TextStyle(fontSize: 11, color: AppColors.textSecondary),
+                style: const TextStyle(
+                  fontSize: 11,
+                  color: AppColors.textSecondary,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 8),
           // Stars
           Row(
-            children: List.generate(5, (i) => Icon(
-              i < review.rating ? Icons.star_rounded : Icons.star_outline_rounded,
-              color: i < review.rating ? Colors.amber : AppColors.border,
-              size: 16,
-            )),
+            children: List.generate(
+              5,
+              (i) => Icon(
+                i < review.rating
+                    ? Icons.star_rounded
+                    : Icons.star_outline_rounded,
+                color: i < review.rating ? Colors.amber : AppColors.border,
+                size: 16,
+              ),
+            ),
           ),
           // Comment
           if (review.comment != null && review.comment!.isNotEmpty) ...[
             const SizedBox(height: 6),
-            Text(review.comment!,
-                style: const TextStyle(fontSize: 13, color: AppColors.textPrimary, height: 1.4),
-                maxLines: 4,
-                overflow: TextOverflow.ellipsis),
+            Text(
+              review.comment!,
+              style: const TextStyle(
+                fontSize: 13,
+                color: AppColors.textPrimary,
+                height: 1.4,
+              ),
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
+            ),
           ],
           // Images
           if (review.imageUrls.isNotEmpty) ...[
@@ -1387,10 +1481,18 @@ class _VariantReviewsSection extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(6),
                   child: Image.network(
                     ImageUrlHelper.resolve(review.imageUrls[i]),
-                    width: 56, height: 56, fit: BoxFit.cover,
+                    width: 56,
+                    height: 56,
+                    fit: BoxFit.cover,
                     errorBuilder: (_, _, _) => Container(
-                      width: 56, height: 56, color: Colors.grey.shade200,
-                      child: const Icon(Icons.broken_image, size: 16, color: Colors.grey),
+                      width: 56,
+                      height: 56,
+                      color: Colors.grey.shade200,
+                      child: const Icon(
+                        Icons.broken_image,
+                        size: 16,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ),
@@ -1398,7 +1500,8 @@ class _VariantReviewsSection extends ConsumerWidget {
             ),
           ],
           // Staff feedback
-          if (review.staffFeedbackComment != null && review.staffFeedbackComment!.isNotEmpty) ...[
+          if (review.staffFeedbackComment != null &&
+              review.staffFeedbackComment!.isNotEmpty) ...[
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.all(10),
@@ -1412,8 +1515,13 @@ class _VariantReviewsSection extends ConsumerWidget {
                   const Icon(Icons.store, size: 14, color: AppColors.primary),
                   const SizedBox(width: 6),
                   Expanded(
-                    child: Text(review.staffFeedbackComment!,
-                        style: const TextStyle(fontSize: 12, color: AppColors.textPrimary)),
+                    child: Text(
+                      review.staffFeedbackComment!,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
                   ),
                 ],
               ),

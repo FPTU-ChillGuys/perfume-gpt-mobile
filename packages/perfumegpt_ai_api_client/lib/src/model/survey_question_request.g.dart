@@ -104,7 +104,7 @@ SurveyQuestionRequest _$SurveyQuestionRequestFromJson(
             _$SurveyQuestionRequestQuestionTypeEnumEnumMap,
             v,
           ) ??
-          'single',
+          SurveyQuestionRequestQuestionTypeEnum.single,
     ),
     answers: $checkedConvert(
       'answers',

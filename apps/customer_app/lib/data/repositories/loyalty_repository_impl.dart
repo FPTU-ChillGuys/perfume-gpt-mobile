@@ -79,11 +79,15 @@ class LoyaltyRepositoryImpl implements LoyaltyRepository {
       final items = payload['items'] as List?;
       if (items != null) list = items.cast<Map<String, dynamic>>();
     }
-    return list.map((j) => LoyaltyTransaction(
-          id: j['id'] as String? ?? '',
-          points: j['pointsChanged'] as int? ?? 0,
-          type: j['transactionType'] as String? ?? '',
-          description: j['reason'] as String?,
-        )).toList();
+    return list
+        .map(
+          (j) => LoyaltyTransaction(
+            id: j['id'] as String? ?? '',
+            points: j['pointsChanged'] as int? ?? 0,
+            type: j['transactionType'] as String? ?? '',
+            description: j['reason'] as String?,
+          ),
+        )
+        .toList();
   }
 }

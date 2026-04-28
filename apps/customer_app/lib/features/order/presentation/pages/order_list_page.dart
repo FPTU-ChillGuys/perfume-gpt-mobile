@@ -179,13 +179,20 @@ Color _paymentStatusColor(String status) {
 }
 
 /// Cancel behavior: direct cancel vs request-based
-({String mode, String buttonLabel, String note, bool needRefund, bool loseDepositWarning})? _getCancelBehavior(
-    OrderSummary order) {
+({
+  String mode,
+  String buttonLabel,
+  String note,
+  bool needRefund,
+  bool loseDepositWarning,
+})?
+_getCancelBehavior(OrderSummary order) {
   final isPending = order.status == 'Pending';
   final isPreparing = order.status == 'Preparing';
   final isReadyToPick = order.status == 'ReadyToPick';
   final isFullyPaid = order.paymentStatus == 'Paid';
-  final hasDepositPaid = order.requiredDepositAmount > 0 &&
+  final hasDepositPaid =
+      order.requiredDepositAmount > 0 &&
       (order.paidAmount > 0 || order.depositAmount > 0) &&
       !isFullyPaid;
 
@@ -206,10 +213,9 @@ Color _paymentStatusColor(String status) {
     return (
       mode: 'request',
       buttonLabel: 'Yêu cầu hủy đơn',
-      note:
-          isFullyPaid
-              ? 'Đơn hàng đã thanh toán 100%, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc và cần cung cấp thông tin ngân hàng để hoàn tiền.'
-              : 'Đơn hàng đã đặt cọc, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc.',
+      note: isFullyPaid
+          ? 'Đơn hàng đã thanh toán 100%, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc và cần cung cấp thông tin ngân hàng để hoàn tiền.'
+          : 'Đơn hàng đã đặt cọc, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc.',
       needRefund: isFullyPaid,
       loseDepositWarning: false,
     );
@@ -346,9 +352,12 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                       )
                     : null,
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 0,
+                  horizontal: 12,
+                ),
                 isDense: true,
               ),
               textInputAction: TextInputAction.search,
@@ -368,8 +377,11 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.error_outline,
-                        size: 48, color: Colors.red),
+                    const Icon(
+                      Icons.error_outline,
+                      size: 48,
+                      color: Colors.red,
+                    ),
                     const SizedBox(height: 12),
                     const Text('Không thể tải đơn hàng'),
                     const SizedBox(height: 8),
@@ -381,29 +393,38 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                 ),
               ),
               data: (result) {
-                final myReturns =
-                    ref.watch(myReturnRequestsProvider(pageSize: 100)).value;
+                final myReturns = ref
+                    .watch(myReturnRequestsProvider(pageSize: 100))
+                    .value;
                 final latestReturnStatusByOrderId = <String, String>{};
                 if (myReturns != null) {
                   for (final request in myReturns.items) {
-                    if (!latestReturnStatusByOrderId.containsKey(request.orderId)) {
-                      latestReturnStatusByOrderId[request.orderId] = request.status;
+                    if (!latestReturnStatusByOrderId.containsKey(
+                      request.orderId,
+                    )) {
+                      latestReturnStatusByOrderId[request.orderId] =
+                          request.status;
                     }
                   }
                 }
 
-                final myCancels =
-                    ref.watch(myCancelRequestsProvider(pageSize: 100)).value;
+                final myCancels = ref
+                    .watch(myCancelRequestsProvider(pageSize: 100))
+                    .value;
                 final latestCancelStatusByOrderId = <String, String>{};
                 if (myCancels != null) {
                   for (final request in myCancels.items) {
-                    if (!latestCancelStatusByOrderId.containsKey(request.orderId)) {
-                      latestCancelStatusByOrderId[request.orderId] = request.status;
+                    if (!latestCancelStatusByOrderId.containsKey(
+                      request.orderId,
+                    )) {
+                      latestCancelStatusByOrderId[request.orderId] =
+                          request.status;
                     }
                   }
                 }
 
-                final myReviews = ref.watch(myReviewsProvider).asData?.value ?? [];
+                final myReviews =
+                    ref.watch(myReviewsProvider).asData?.value ?? [];
                 final reviewedDetailIds = myReviews
                     .where((r) => r.orderDetailId != null)
                     .map((r) => r.orderDetailId!)
@@ -414,8 +435,11 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.receipt_long_outlined,
-                            size: 80, color: Colors.grey[400]),
+                        Icon(
+                          Icons.receipt_long_outlined,
+                          size: 80,
+                          color: Colors.grey[400],
+                        ),
                         const SizedBox(height: 16),
                         Text(
                           'Chưa có đơn hàng nào',
@@ -428,8 +452,10 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                         const SizedBox(height: 6),
                         Text(
                           'Khi đặt hàng, bạn có thể theo dõi trạng thái tại đây.',
-                          style:
-                              TextStyle(fontSize: 13, color: Colors.grey[500]),
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey[500],
+                          ),
                         ),
                       ],
                     ),
@@ -451,10 +477,14 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                             final order = result.items[index];
                             final returnStatus =
                                 latestReturnStatusByOrderId[order.id];
-                            final hasBlockingReturnReq = returnStatus != null &&
-                                _returnRequestBlockedStatuses.contains(returnStatus);
+                            final hasBlockingReturnReq =
+                                returnStatus != null &&
+                                _returnRequestBlockedStatuses.contains(
+                                  returnStatus,
+                                );
                             final isReturnRejected = returnStatus == 'Rejected';
-                            final hasReturnReq = hasBlockingReturnReq ||
+                            final hasReturnReq =
+                                hasBlockingReturnReq ||
                                 order.paymentStatus == 'Partial_Refunded' ||
                                 order.paymentStatus == 'Refunded' ||
                                 order.status == 'Returning' ||
@@ -462,12 +492,18 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                                 order.status == 'Partial_Returned';
                             final cancelStatus =
                                 latestCancelStatusByOrderId[order.id];
-                            final hasCancelReq = cancelStatus != null &&
-                                _cancelRequestBlockedStatuses.contains(cancelStatus);
+                            final hasCancelReq =
+                                cancelStatus != null &&
+                                _cancelRequestBlockedStatuses.contains(
+                                  cancelStatus,
+                                );
                             final isCancelRejected = cancelStatus == 'Rejected';
-                            final allReviewed = order.status == 'Delivered' &&
+                            final allReviewed =
+                                order.status == 'Delivered' &&
                                 order.orderDetails.isNotEmpty &&
-                                order.orderDetails.every((item) => reviewedDetailIds.contains(item.id));
+                                order.orderDetails.every(
+                                  (item) => reviewedDetailIds.contains(item.id),
+                                );
                             return _OrderCard(
                               order: order,
                               hasReturnRequest: hasReturnReq,
@@ -480,20 +516,28 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                               onCancel: () async {
                                 final behavior = _getCancelBehavior(order);
                                 if (behavior == null) return;
-                                final normalizedStatus =
-                                    (order.status ?? '').trim().toLowerCase();
-                                final result = await context.push('/orders/${order.id}/cancel', extra: {
-                                  'orderId': order.id,
-                                  'orderStatus': order.status,
-                                  'showBankInfoForStatus': normalizedStatus == 'pending',
-                                  'mode': behavior.mode,
-                                  'note': behavior.note,
-                                  'needRefund': behavior.needRefund,
-                                  'loseDepositWarning': behavior.loseDepositWarning,
-                                });
+                                final normalizedStatus = (order.status ?? '')
+                                    .trim()
+                                    .toLowerCase();
+                                final result = await context.push(
+                                  '/orders/${order.id}/cancel',
+                                  extra: {
+                                    'orderId': order.id,
+                                    'orderStatus': order.status,
+                                    'showBankInfoForStatus':
+                                        normalizedStatus == 'pending',
+                                    'mode': behavior.mode,
+                                    'note': behavior.note,
+                                    'needRefund': behavior.needRefund,
+                                    'loseDepositWarning':
+                                        behavior.loseDepositWarning,
+                                  },
+                                );
                                 if (result == true) {
                                   _invalidateOrders();
-                                  ref.invalidate(myCancelRequestsProvider(pageSize: 100));
+                                  ref.invalidate(
+                                    myCancelRequestsProvider(pageSize: 100),
+                                  );
                                 }
                               },
                               onRetryPayment: () =>
@@ -511,8 +555,7 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                         totalPages: result.totalPages,
                         totalCount: result.totalCount,
                         pageSize: _pageSize,
-                        onPageChanged: (p) =>
-                            setState(() => _currentPage = p),
+                        onPageChanged: (p) => setState(() => _currentPage = p),
                         onPageSizeChanged: (s) => setState(() {
                           _pageSize = s;
                           _currentPage = 1;
@@ -547,39 +590,46 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
         builder: (ctx, setDialogState) {
           // Fetch order detail to get paymentId on first build
           if (isLoadingPaymentId && paymentId == null) {
-            ref.read(orderRepositoryProvider).getOrderDetail(order.id).then((detail) {
-              // Use the latest non-cancelled Payment transaction (after retry COD→VNPay, COD is cancelled)
-              final paymentTxns = detail.paymentTransactions
-                  .where((t) => t.transactionType == 'Payment')
-                  .toList();
-              final paymentTxn = paymentTxns
-                  .where((t) => t.status != 'Cancelled')
-                  .lastOrNull
-                  ?? paymentTxns.lastOrNull
-                  ?? detail.paymentTransactions.lastOrNull;
-              final pid = paymentTxn?.id;
-              if (ctx.mounted) {
-                setDialogState(() {
-                  paymentId = pid;
-                  isLoadingPaymentId = false;
+            ref
+                .read(orderRepositoryProvider)
+                .getOrderDetail(order.id)
+                .then((detail) {
+                  // Use the latest non-cancelled Payment transaction (after retry COD→VNPay, COD is cancelled)
+                  final paymentTxns = detail.paymentTransactions
+                      .where((t) => t.transactionType == 'Payment')
+                      .toList();
+                  final paymentTxn =
+                      paymentTxns
+                          .where((t) => t.status != 'Cancelled')
+                          .lastOrNull ??
+                      paymentTxns.lastOrNull ??
+                      detail.paymentTransactions.lastOrNull;
+                  final pid = paymentTxn?.id;
+                  if (ctx.mounted) {
+                    setDialogState(() {
+                      paymentId = pid;
+                      isLoadingPaymentId = false;
+                    });
+                  }
+                })
+                .catchError((e) {
+                  if (ctx.mounted) {
+                    setDialogState(() => isLoadingPaymentId = false);
+                  }
                 });
-              }
-            }).catchError((e) {
-              if (ctx.mounted) {
-                setDialogState(() => isLoadingPaymentId = false);
-              }
-            });
             isLoadingPaymentId = false; // prevent re-triggering
           }
 
-          final selectedMethod =
-              paymentMode == 'full' ? selectedFullGateway : selectedBaseMethod;
-          final selectedDepositMethod =
-              paymentMode == 'full' ? selectedBaseMethod : selectedDepositGateway;
+          final selectedMethod = paymentMode == 'full'
+              ? selectedFullGateway
+              : selectedBaseMethod;
+          final selectedDepositMethod = paymentMode == 'full'
+              ? selectedBaseMethod
+              : selectedDepositGateway;
           return AlertDialog(
-          title: const Text('Thanh toán lại đơn hàng'),
-          content: SingleChildScrollView(
-            child: Column(
+            title: const Text('Thanh toán lại đơn hàng'),
+            content: SingleChildScrollView(
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -592,7 +642,9 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                     margin: const EdgeInsets.only(bottom: 8),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: paymentMode == 'deposit' ? _accent : Colors.grey[300]!,
+                        color: paymentMode == 'deposit'
+                            ? _accent
+                            : Colors.grey[300]!,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -603,7 +655,10 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                       activeColor: _accent,
                       title: const Text(
                         'Thanh toán tiền đặt cọc',
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       subtitle: Text(
                         'Giữ đơn với ${_paymentMethodLabels[selectedBaseMethod] ?? selectedBaseMethod}, chọn cổng thu tiền cọc bên dưới.',
@@ -611,7 +666,9 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                       ),
                       onChanged: isSubmitting
                           ? null
-                          : (v) => setDialogState(() => paymentMode = v ?? 'deposit'),
+                          : (v) => setDialogState(
+                              () => paymentMode = v ?? 'deposit',
+                            ),
                     ),
                   ),
                   if (paymentMode == 'deposit') ...[
@@ -639,7 +696,9 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                     margin: const EdgeInsets.only(top: 6, bottom: 8),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: paymentMode == 'full' ? _accent : Colors.grey[300]!,
+                        color: paymentMode == 'full'
+                            ? _accent
+                            : Colors.grey[300]!,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -650,7 +709,10 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                       activeColor: _accent,
                       title: const Text(
                         'Chuyển sang thanh toán toàn phần',
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       subtitle: Text(
                         'Thanh toán toàn bộ còn lại ngay qua VNPay/MoMo/PayOS.',
@@ -658,7 +720,8 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                       ),
                       onChanged: isSubmitting
                           ? null
-                          : (v) => setDialogState(() => paymentMode = v ?? 'full'),
+                          : (v) =>
+                                setDialogState(() => paymentMode = v ?? 'full'),
                     ),
                   ),
                   if (paymentMode == 'full')
@@ -671,79 +734,83 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
                           selected: selected,
                           onSelected: isSubmitting
                               ? null
-                              : (_) => setDialogState(() => selectedFullGateway = method),
+                              : (_) => setDialogState(
+                                  () => selectedFullGateway = method,
+                                ),
                         );
                       }).toList(),
                     ),
                 ],
               ),
-          ),
-          actions: [
-            TextButton(
-              onPressed:
-                  isSubmitting ? null : () => Navigator.pop(ctx),
-              child: const Text('Đóng'),
             ),
-            FilledButton(
-              style:
-                  FilledButton.styleFrom(backgroundColor: Colors.orange),
-              onPressed: isSubmitting || paymentId == null
-                  ? null
-                  : () async {
-                      setDialogState(() => isSubmitting = true);
-                      try {
-                        final url = await ref
-                            .read(orderRepositoryProvider)
-                            .retryPayment(
-                              paymentId!,
-                              selectedMethod,
-                              newDepositMethod: selectedDepositMethod,
-                              posSessionId: null,
-                            );
-                        final gatewayMethod = paymentMode == 'full'
-                            ? selectedMethod
-                            : selectedDepositMethod;
-                        final shouldOpenGateway =
-                            gatewayMethod == 'VnPay' ||
-                            gatewayMethod == 'Momo' ||
-                            gatewayMethod == 'PayOs';
-                        if (shouldOpenGateway) {
-                          if (ctx.mounted) Navigator.pop(ctx);
-                          if (url.isNotEmpty && context.mounted) {
-                            context.push(
-                                '/payment-webview?url=${Uri.encodeComponent(url)}');
+            actions: [
+              TextButton(
+                onPressed: isSubmitting ? null : () => Navigator.pop(ctx),
+                child: const Text('Đóng'),
+              ),
+              FilledButton(
+                style: FilledButton.styleFrom(backgroundColor: Colors.orange),
+                onPressed: isSubmitting || paymentId == null
+                    ? null
+                    : () async {
+                        setDialogState(() => isSubmitting = true);
+                        try {
+                          final url = await ref
+                              .read(orderRepositoryProvider)
+                              .retryPayment(
+                                paymentId!,
+                                selectedMethod,
+                                newDepositMethod: selectedDepositMethod,
+                                posSessionId: null,
+                              );
+                          final gatewayMethod = paymentMode == 'full'
+                              ? selectedMethod
+                              : selectedDepositMethod;
+                          final shouldOpenGateway =
+                              gatewayMethod == 'VnPay' ||
+                              gatewayMethod == 'Momo' ||
+                              gatewayMethod == 'PayOs';
+                          if (shouldOpenGateway) {
+                            if (ctx.mounted) Navigator.pop(ctx);
+                            if (url.isNotEmpty && context.mounted) {
+                              context.push(
+                                '/payment-webview?url=${Uri.encodeComponent(url)}',
+                              );
+                            }
+                          } else {
+                            if (ctx.mounted) Navigator.pop(ctx);
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Đơn hàng đã được xác nhận!'),
+                                  backgroundColor: Colors.green,
+                                ),
+                              );
+                            }
                           }
-                        } else {
-                          if (ctx.mounted) Navigator.pop(ctx);
+                          _invalidateOrders();
+                        } catch (e) {
+                          setDialogState(() => isSubmitting = false);
                           if (context.mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                    'Đơn hàng đã được xác nhận!'),
-                                backgroundColor: Colors.green,
+                              SnackBar(
+                                content: Text('Không thể thanh toán lại: $e'),
+                                backgroundColor: Colors.red,
                               ),
                             );
                           }
                         }
-                        _invalidateOrders();
-                      } catch (e) {
-                        setDialogState(() => isSubmitting = false);
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                  'Không thể thanh toán lại: $e'),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
-                      }
-                    },
-              child: Text(
-                  isSubmitting ? 'Đang xử lý...' : paymentId == null ? 'Đang tải...' : 'Thanh toán ngay'),
-            ),
-          ],
-        );
+                      },
+                child: Text(
+                  isSubmitting
+                      ? 'Đang xử lý...'
+                      : paymentId == null
+                      ? 'Đang tải...'
+                      : 'Thanh toán ngay',
+                ),
+              ),
+            ],
+          );
         },
       ),
     );
@@ -785,7 +852,8 @@ class _OrderCard extends StatelessWidget {
     final isPendingUnpaid =
         order.status == 'Pending' && order.paymentStatus == 'Unpaid';
     final isDelivered = order.status == 'Delivered';
-    final canReturn = isDelivered && order.isReturnable == true && !hasReturnRequest;
+    final canReturn =
+        isDelivered && order.isReturnable == true && !hasReturnRequest;
     final requiredDeposit = order.requiredDepositAmount > 0
         ? order.requiredDepositAmount
         : order.depositAmount;
@@ -794,8 +862,8 @@ class _OrderCard extends StatelessWidget {
         : 0.0;
     final paidDeposit = requiredDeposit > 0
         ? (inferredPaidDeposit > requiredDeposit
-            ? requiredDeposit
-            : inferredPaidDeposit)
+              ? requiredDeposit
+              : inferredPaidDeposit)
         : inferredPaidDeposit;
     final remainingAmount = order.remainingAmount > 0
         ? order.remainingAmount
@@ -829,8 +897,7 @@ class _OrderCard extends StatelessWidget {
                 const SizedBox(width: 4),
                 GestureDetector(
                   onTap: () {
-                    final code =
-                        order.code.isNotEmpty ? order.code : order.id;
+                    final code = order.code.isNotEmpty ? order.code : order.id;
                     Clipboard.setData(ClipboardData(text: code));
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -843,8 +910,7 @@ class _OrderCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 6),
-                  child:
-                      Text('·', style: TextStyle(color: Colors.grey[500])),
+                  child: Text('·', style: TextStyle(color: Colors.grey[500])),
                 ),
                 Text(
                   _fmtDate(order.createdAt),
@@ -890,8 +956,10 @@ class _OrderCard extends StatelessWidget {
 
             // ── Product items ──
             ...order.orderDetails.map((detail) {
-              final unitPriceLabel =
-                  _fmtUnitPrice(detail.unitPrice, detail.total);
+              final unitPriceLabel = _fmtUnitPrice(
+                detail.unitPrice,
+                detail.total,
+              );
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Row(
@@ -900,15 +968,15 @@ class _OrderCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6),
                       child:
                           detail.imageUrl != null && detail.imageUrl!.isNotEmpty
-                              ? Image.network(
-                                  detail.imageUrl!,
-                                  width: 56,
-                                  height: 56,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (_, _, _) =>
-                                      const _ImagePlaceholder(),
-                                )
-                              : const _ImagePlaceholder(),
+                          ? Image.network(
+                              detail.imageUrl!,
+                              width: 56,
+                              height: 56,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, _, _) =>
+                                  const _ImagePlaceholder(),
+                            )
+                          : const _ImagePlaceholder(),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
@@ -920,13 +988,17 @@ class _OrderCard extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.w500),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           const SizedBox(height: 2),
                           Text(
                             'x${detail.quantity}',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.grey[600]),
+                              fontSize: 12,
+                              color: Colors.grey[600],
+                            ),
                           ),
                         ],
                       ),
@@ -977,7 +1049,9 @@ class _OrderCard extends StatelessWidget {
                 ),
               ],
             ),
-            if (requiredDeposit > 0 || paidDeposit > 0 || remainingAmount > 0) ...[
+            if (requiredDeposit > 0 ||
+                paidDeposit > 0 ||
+                remainingAmount > 0) ...[
               const SizedBox(height: 10),
               Container(
                 width: double.infinity,
@@ -989,10 +1063,7 @@ class _OrderCard extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    _miniPaymentRow(
-                      'Cần cọc',
-                      _fmt(requiredDeposit),
-                    ),
+                    _miniPaymentRow('Cần cọc', _fmt(requiredDeposit)),
                     _miniPaymentRow(
                       'Đã cọc',
                       _fmt(paidDeposit),
@@ -1033,7 +1104,9 @@ class _OrderCard extends StatelessWidget {
                   )
                 else if (cancelBehavior != null)
                   _ActionBtn(
-                    label: isCancelRejected ? 'Yêu cầu hủy lại' : cancelBehavior.buttonLabel,
+                    label: isCancelRejected
+                        ? 'Yêu cầu hủy lại'
+                        : cancelBehavior.buttonLabel,
                     color: cancelBehavior.mode == 'direct'
                         ? Colors.red
                         : Colors.orange,
@@ -1048,7 +1121,9 @@ class _OrderCard extends StatelessWidget {
                   _ActionBtn(
                     label: hasReturnRequest
                         ? 'Đã yêu cầu trả hàng'
-                        : (isReturnRejected ? 'Yêu cầu trả hàng lại' : 'Yêu cầu trả hàng'),
+                        : (isReturnRejected
+                              ? 'Yêu cầu trả hàng lại'
+                              : 'Yêu cầu trả hàng'),
                     color: canReturn ? Colors.orange : Colors.grey,
                     onTap: onReturn,
                     enabled: canReturn,
@@ -1119,8 +1194,11 @@ class _ImagePlaceholder extends StatelessWidget {
         borderRadius: BorderRadius.circular(6),
         border: Border.all(color: Colors.grey[300]!),
       ),
-      child: Icon(Icons.image_not_supported_outlined,
-          color: Colors.grey[400], size: 22),
+      child: Icon(
+        Icons.image_not_supported_outlined,
+        color: Colors.grey[400],
+        size: 22,
+      ),
     );
   }
 }
@@ -1138,9 +1216,14 @@ class _OutlinedChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: color.withAlpha(100)),
       ),
-      child: Text(label,
-          style: TextStyle(
-              color: color, fontSize: 11, fontWeight: FontWeight.w600)),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: color,
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }
@@ -1159,9 +1242,14 @@ class _FilledChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: color.withAlpha(60)),
       ),
-      child: Text(label,
-          style: TextStyle(
-              color: color, fontSize: 11, fontWeight: FontWeight.w600)),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: color,
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }
@@ -1248,28 +1336,30 @@ class _PaginationBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text('Hiển thị ',
-              style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+          Text(
+            'Hiển thị ',
+            style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+          ),
           DropdownButton<int>(
             value: pageSize,
             isDense: true,
             underline: const SizedBox(),
             items: [5, 10, 20, 50]
-                .map((s) =>
-                    DropdownMenuItem(value: s, child: Text('$s')))
+                .map((s) => DropdownMenuItem(value: s, child: Text('$s')))
                 .toList(),
             onChanged: (v) {
               if (v != null) onPageSizeChanged(v);
             },
             style: const TextStyle(fontSize: 13, color: Colors.black87),
           ),
-          Text(' / $totalCount đơn hàng',
-              style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+          Text(
+            ' / $totalCount đơn hàng',
+            style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+          ),
           const Spacer(),
           IconButton(
             icon: const Icon(Icons.first_page, size: 20),
-            onPressed:
-                currentPage > 1 ? () => onPageChanged(1) : null,
+            onPressed: currentPage > 1 ? () => onPageChanged(1) : null,
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
           ),
@@ -1282,8 +1372,7 @@ class _PaginationBar extends StatelessWidget {
             constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
           ),
           Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
               color: _accent,
               borderRadius: BorderRadius.circular(4),
@@ -1291,9 +1380,10 @@ class _PaginationBar extends StatelessWidget {
             child: Text(
               '$currentPage',
               style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
+                color: Colors.white,
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           IconButton(

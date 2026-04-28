@@ -30,7 +30,8 @@ class CartItem {
   });
 
   bool get hasDiscount => discount > 0 && subTotal > 0;
-  double get unitFinalPrice => quantity > 0 && finalTotal > 0 ? finalTotal / quantity : variantPrice;
+  double get unitFinalPrice =>
+      quantity > 0 && finalTotal > 0 ? finalTotal / quantity : variantPrice;
 
   CartItem copyWith({
     String? cartItemId,

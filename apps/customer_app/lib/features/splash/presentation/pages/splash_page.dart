@@ -27,12 +27,14 @@ class _SplashPageState extends ConsumerState<SplashPage>
     );
 
     _fade = CurvedAnimation(parent: _ctrl, curve: Curves.easeOut);
-    _scale = Tween<double>(begin: 0.75, end: 1.0).animate(
-      CurvedAnimation(parent: _ctrl, curve: Curves.elasticOut),
-    );
-    _slideY = Tween<double>(begin: 30, end: 0).animate(
-      CurvedAnimation(parent: _ctrl, curve: Curves.easeOut),
-    );
+    _scale = Tween<double>(
+      begin: 0.75,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.elasticOut));
+    _slideY = Tween<double>(
+      begin: 30,
+      end: 0,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
 
     _ctrl.forward();
     _checkAuth();
@@ -101,10 +103,7 @@ class _SplashPageState extends ConsumerState<SplashPage>
                     animation: _ctrl,
                     builder: (context, child) => Transform.translate(
                       offset: Offset(0, _slideY.value),
-                      child: Transform.scale(
-                        scale: _scale.value,
-                        child: child,
-                      ),
+                      child: Transform.scale(scale: _scale.value, child: child),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'survey_question_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,68 +19,44 @@ part 'survey_question_request.g.dart';
 class SurveyQuestionRequest {
   /// Returns a new [SurveyQuestionRequest] instance.
   SurveyQuestionRequest({
+    required this.question,
 
-    required  this.question,
+    this.questionType = SurveyQuestionRequestQuestionTypeEnum.single,
 
-     this.questionType = SurveyQuestionRequestQuestionTypeEnum.single
-
-    required  this.answers,
+    required this.answers,
   });
 
-      /// Nội dung câu hỏi survey
-  @JsonKey(
-    
-    name: r'question',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Nội dung câu hỏi survey
+  @JsonKey(name: r'question', required: true, includeIfNull: false)
   final String question;
 
-
-
-      /// Loại câu hỏi
+  /// Loại câu hỏi
   @JsonKey(
     defaultValue: SurveyQuestionRequestQuestionTypeEnum.single,
     name: r'questionType',
     required: false,
     includeIfNull: false,
   )
-
-
   final SurveyQuestionRequestQuestionTypeEnum? questionType;
 
-
-
-      /// Danh sách câu trả lời
-  @JsonKey(
-    
-    name: r'answers',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Danh sách câu trả lời
+  @JsonKey(name: r'answers', required: true, includeIfNull: false)
   final List<SurveyAnswerRequest> answers;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SurveyQuestionRequest &&
+          other.question == question &&
+          other.questionType == questionType &&
+          other.answers == answers;
 
+  @override
+  int get hashCode =>
+      question.hashCode + questionType.hashCode + answers.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is SurveyQuestionRequest &&
-      other.question == question &&
-      other.questionType == questionType &&
-      other.answers == answers;
-
-    @override
-    int get hashCode =>
-        question.hashCode +
-        questionType.hashCode +
-        answers.hashCode;
-
-  factory SurveyQuestionRequest.fromJson(Map<String, dynamic> json) => _$SurveyQuestionRequestFromJson(json);
+  factory SurveyQuestionRequest.fromJson(Map<String, dynamic> json) =>
+      _$SurveyQuestionRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$SurveyQuestionRequestToJson(this);
 
@@ -89,24 +64,22 @@ class SurveyQuestionRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
 
 /// Loại câu hỏi
 enum SurveyQuestionRequestQuestionTypeEnum {
-    /// Loại câu hỏi
-@JsonValue(r'single')
-single(r'single'),
-    /// Loại câu hỏi
-@JsonValue(r'multiple')
-multiple(r'multiple');
+  /// Loại câu hỏi
+  @JsonValue(r'single')
+  single(r'single'),
 
-const SurveyQuestionRequestQuestionTypeEnum(this.value);
+  /// Loại câu hỏi
+  @JsonValue(r'multiple')
+  multiple(r'multiple');
 
-final String value;
+  const SurveyQuestionRequestQuestionTypeEnum(this.value);
 
-@override
-String toString() => value;
+  final String value;
+
+  @override
+  String toString() => value;
 }
-
-

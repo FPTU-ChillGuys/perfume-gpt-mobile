@@ -70,10 +70,9 @@ class AppRouter {
           final extra = state.extra as Map<String, dynamic>?;
           return CheckoutPage(
             voucherCodeFromCart: extra?['voucherCode'] as String?,
-            selectedItemIdsFromCart:
-                (extra?['selectedItemIds'] as List?)
-                    ?.map((e) => e.toString())
-                    .toList(),
+            selectedItemIdsFromCart: (extra?['selectedItemIds'] as List?)
+                ?.map((e) => e.toString())
+                .toList(),
           );
         },
       ),

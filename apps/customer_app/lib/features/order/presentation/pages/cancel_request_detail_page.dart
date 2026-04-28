@@ -8,7 +8,11 @@ import '../../../../domain/entities/order.dart';
 import '../../../../core/utils/image_url_helper.dart';
 import '../providers/cancel_request_providers.dart';
 
-final _currencyFmt = NumberFormat.currency(locale: 'vi_VN', symbol: '₫', decimalDigits: 0);
+final _currencyFmt = NumberFormat.currency(
+  locale: 'vi_VN',
+  symbol: '₫',
+  decimalDigits: 0,
+);
 final _dateFmt = DateFormat('dd/MM/yyyy HH:mm');
 
 class CancelRequestDetailPage extends ConsumerWidget {
@@ -27,7 +31,9 @@ class CancelRequestDetailPage extends ConsumerWidget {
           slivers: [
             _appBar(null),
             const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+              child: Center(
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
             ),
           ],
         ),
@@ -41,16 +47,30 @@ class CancelRequestDetailPage extends ConsumerWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.cloud_off_rounded, size: 48, color: AppColors.textSecondary),
+                      const Icon(
+                        Icons.cloud_off_rounded,
+                        size: 48,
+                        color: AppColors.textSecondary,
+                      ),
                       const SizedBox(height: 16),
-                      const Text('Không thể tải chi tiết',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
+                      const Text(
+                        'Không thể tải chi tiết',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textPrimary,
+                        ),
+                      ),
                       const SizedBox(height: 12),
                       FilledButton.icon(
-                        onPressed: () => ref.invalidate(cancelRequestWithOrderProvider(requestId)),
+                        onPressed: () => ref.invalidate(
+                          cancelRequestWithOrderProvider(requestId),
+                        ),
                         icon: const Icon(Icons.refresh, size: 18),
                         label: const Text('Thử lại'),
-                        style: FilledButton.styleFrom(backgroundColor: AppColors.primary),
+                        style: FilledButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                        ),
                       ),
                     ],
                   ),
@@ -63,12 +83,18 @@ class CancelRequestDetailPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildBody(BuildContext context, WidgetRef ref, CancelRequest req, OrderDetail? order) {
+  Widget _buildBody(
+    BuildContext context,
+    WidgetRef ref,
+    CancelRequest req,
+    OrderDetail? order,
+  ) {
     final si = _statusInfo(req.status);
 
     return RefreshIndicator(
       color: AppColors.primary,
-      onRefresh: () async => ref.invalidate(cancelRequestWithOrderProvider(requestId)),
+      onRefresh: () async =>
+          ref.invalidate(cancelRequestWithOrderProvider(requestId)),
       child: CustomScrollView(
         slivers: [
           _appBar(req),
@@ -105,7 +131,11 @@ class CancelRequestDetailPage extends ConsumerWidget {
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
           req?.orderCode ?? 'Chi tiết yêu cầu hủy',
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+          ),
         ),
         background: Container(
           decoration: const BoxDecoration(
@@ -122,12 +152,18 @@ class CancelRequestDetailPage extends ConsumerWidget {
 
   // ─── Status banner ──────────────────────────────────────────────────────
 
-  Widget _statusBanner(CancelRequest req, ({String label, Color color, IconData icon}) si) {
+  Widget _statusBanner(
+    CancelRequest req,
+    ({String label, Color color, IconData icon}) si,
+  ) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [si.color.withValues(alpha: 0.08), si.color.withValues(alpha: 0.03)],
+          colors: [
+            si.color.withValues(alpha: 0.08),
+            si.color.withValues(alpha: 0.03),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -149,11 +185,22 @@ class CancelRequestDetailPage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(si.label,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: si.color)),
+                Text(
+                  si.label,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: si.color,
+                  ),
+                ),
                 const SizedBox(height: 3),
-                Text('Mã đơn: ${req.orderCode}',
-                    style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+                Text(
+                  'Mã đơn: ${req.orderCode}',
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: AppColors.textSecondary,
+                  ),
+                ),
               ],
             ),
           ),
@@ -170,17 +217,25 @@ class CancelRequestDetailPage extends ConsumerWidget {
       icon: Icons.info_outline_rounded,
       child: Column(
         children: [
-          _Row('Mã yêu cầu', req.id.length > 8 ? '${req.id.substring(0, 8)}…' : req.id),
+          _Row(
+            'Mã yêu cầu',
+            req.id.length > 8 ? '${req.id.substring(0, 8)}…' : req.id,
+          ),
           _Row('Trạng thái', _statusInfo(req.status).label),
-          if (req.requestedByEmail != null) _Row('Người yêu cầu', req.requestedByEmail!),
+          if (req.requestedByEmail != null)
+            _Row('Người yêu cầu', req.requestedByEmail!),
           _Row('Ngày tạo', _dateFmt.format(req.createdAt)),
-          if (req.updatedAt != null) _Row('Cập nhật', _dateFmt.format(req.updatedAt!)),
+          if (req.updatedAt != null)
+            _Row('Cập nhật', _dateFmt.format(req.updatedAt!)),
           const Divider(height: 20),
           _Row('Lý do', _reasonLabel(req.reason)),
           if (req.staffNote != null && req.staffNote!.isNotEmpty) ...[
             const SizedBox(height: 4),
-            _NoteBlock(label: 'Ghi chú nhân viên', text: req.staffNote!,
-                color: req.status == 'Rejected' ? Colors.red : Colors.orange),
+            _NoteBlock(
+              label: 'Ghi chú nhân viên',
+              text: req.staffNote!,
+              color: req.status == 'Rejected' ? Colors.red : Colors.orange,
+            ),
           ],
         ],
       ),
@@ -197,12 +252,17 @@ class CancelRequestDetailPage extends ConsumerWidget {
         children: [
           if ((req.refundAmount ?? 0) > 0)
             _AmountRow('Số tiền hoàn', req.refundAmount!),
-          _Row('Trạng thái hoàn tiền', req.isRefunded ? 'Đã hoàn tiền' : 'Chưa hoàn tiền'),
+          _Row(
+            'Trạng thái hoàn tiền',
+            req.isRefunded ? 'Đã hoàn tiền' : 'Chưa hoàn tiền',
+          ),
           if (req.refundBankName != null && req.refundBankName!.isNotEmpty)
             _Row('Ngân hàng', req.refundBankName!),
-          if (req.refundAccountName != null && req.refundAccountName!.isNotEmpty)
+          if (req.refundAccountName != null &&
+              req.refundAccountName!.isNotEmpty)
             _Row('Chủ tài khoản', req.refundAccountName!),
-          if (req.refundAccountNumber != null && req.refundAccountNumber!.isNotEmpty)
+          if (req.refundAccountNumber != null &&
+              req.refundAccountNumber!.isNotEmpty)
             _Row('Số tài khoản', req.refundAccountNumber!),
           if (req.vnpTransactionNo != null && req.vnpTransactionNo!.isNotEmpty)
             _Row('Mã giao dịch VNPay', req.vnpTransactionNo!),
@@ -232,7 +292,9 @@ class CancelRequestDetailPage extends ConsumerWidget {
                     child: item.imageUrl != null && item.imageUrl!.isNotEmpty
                         ? Image.network(
                             ImageUrlHelper.resolve(item.imageUrl!),
-                            width: 56, height: 56, fit: BoxFit.cover,
+                            width: 56,
+                            height: 56,
+                            fit: BoxFit.cover,
                             errorBuilder: (_, _, _) => _imgPlaceholder(),
                           )
                         : _imgPlaceholder(),
@@ -242,18 +304,33 @@ class CancelRequestDetailPage extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(item.variantName,
-                            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13.5),
-                            maxLines: 2, overflow: TextOverflow.ellipsis),
+                        Text(
+                          item.variantName,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13.5,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                         const SizedBox(height: 4),
-                        Text('x${item.quantity}',
-                            style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+                        Text(
+                          'x${item.quantity}',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.textSecondary,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                   Text(
                     _currencyFmt.format(item.total),
-                    style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.primary),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      color: AppColors.primary,
+                    ),
                   ),
                 ],
               ),
@@ -266,12 +343,17 @@ class CancelRequestDetailPage extends ConsumerWidget {
 
   Widget _imgPlaceholder() {
     return Container(
-      width: 56, height: 56,
+      width: 56,
+      height: 56,
       decoration: BoxDecoration(
         color: AppColors.skeleton,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: const Icon(Icons.image_outlined, color: AppColors.textSecondary, size: 22),
+      child: const Icon(
+        Icons.image_outlined,
+        color: AppColors.textSecondary,
+        size: 22,
+      ),
     );
   }
 }
@@ -310,8 +392,14 @@ class _Card extends StatelessWidget {
                   child: Icon(icon, size: 16, color: AppColors.primary),
                 ),
                 const SizedBox(width: 8),
-                Text(title,
-                    style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.textPrimary)),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
               ],
             ),
           ),
@@ -339,12 +427,23 @@ class _Row extends StatelessWidget {
         children: [
           SizedBox(
             width: 130,
-            child: Text(label,
-                style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+            child: Text(
+              label,
+              style: const TextStyle(
+                fontSize: 13,
+                color: AppColors.textSecondary,
+              ),
+            ),
           ),
           Expanded(
-            child: Text(value,
-                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.textPrimary)),
+            child: Text(
+              value,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textPrimary,
+              ),
+            ),
           ),
         ],
       ),
@@ -365,13 +464,22 @@ class _AmountRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 130,
-            child: Text(label,
-                style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+            child: Text(
+              label,
+              style: const TextStyle(
+                fontSize: 13,
+                color: AppColors.textSecondary,
+              ),
+            ),
           ),
           Expanded(
             child: Text(
               _currencyFmt.format(amount),
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.primary),
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: AppColors.primary,
+              ),
             ),
           ),
         ],
@@ -383,7 +491,11 @@ class _AmountRow extends StatelessWidget {
 class _NoteBlock extends StatelessWidget {
   final String label, text;
   final Color color;
-  const _NoteBlock({required this.label, required this.text, this.color = AppColors.textSecondary});
+  const _NoteBlock({
+    required this.label,
+    required this.text,
+    this.color = AppColors.textSecondary,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -398,10 +510,23 @@ class _NoteBlock extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label,
-              style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w600, color: color)),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11.5,
+              fontWeight: FontWeight.w600,
+              color: color,
+            ),
+          ),
           const SizedBox(height: 4),
-          Text(text, style: const TextStyle(fontSize: 13, height: 1.5, color: AppColors.textPrimary)),
+          Text(
+            text,
+            style: const TextStyle(
+              fontSize: 13,
+              height: 1.5,
+              color: AppColors.textPrimary,
+            ),
+          ),
         ],
       ),
     );
@@ -413,11 +538,23 @@ class _NoteBlock extends StatelessWidget {
 ({String label, Color color, IconData icon}) _statusInfo(String status) {
   switch (status) {
     case 'Pending':
-      return (label: 'Chờ duyệt', color: AppColors.statusPending, icon: Icons.hourglass_empty_rounded);
+      return (
+        label: 'Chờ duyệt',
+        color: AppColors.statusPending,
+        icon: Icons.hourglass_empty_rounded,
+      );
     case 'Approved':
-      return (label: 'Đã duyệt', color: AppColors.statusDelivered, icon: Icons.check_circle_outline_rounded);
+      return (
+        label: 'Đã duyệt',
+        color: AppColors.statusDelivered,
+        icon: Icons.check_circle_outline_rounded,
+      );
     case 'Rejected':
-      return (label: 'Từ chối', color: AppColors.statusCancelled, icon: Icons.cancel_outlined);
+      return (
+        label: 'Từ chối',
+        color: AppColors.statusCancelled,
+        icon: Icons.cancel_outlined,
+      );
     default:
       return (label: status, color: Colors.grey, icon: Icons.help_outline);
   }
@@ -425,12 +562,19 @@ class _NoteBlock extends StatelessWidget {
 
 String _reasonLabel(String? reason) {
   switch (reason) {
-    case 'ChangedMind':                 return 'Đổi ý';
-    case 'FoundBetterPrice':            return 'Tìm được giá tốt hơn';
-    case 'WrongShippingInformation':    return 'Sai thông tin giao hàng';
-    case 'PaymentIssue':                return 'Vấn đề thanh toán';
-    case 'DeliveryTooLate':             return 'Giao hàng quá chậm';
-    case 'InsufficientStock':           return 'Hết hàng';
-    default:                            return reason ?? '-';
+    case 'ChangedMind':
+      return 'Đổi ý';
+    case 'FoundBetterPrice':
+      return 'Tìm được giá tốt hơn';
+    case 'WrongShippingInformation':
+      return 'Sai thông tin giao hàng';
+    case 'PaymentIssue':
+      return 'Vấn đề thanh toán';
+    case 'DeliveryTooLate':
+      return 'Giao hàng quá chậm';
+    case 'InsufficientStock':
+      return 'Hết hàng';
+    default:
+      return reason ?? '-';
   }
 }

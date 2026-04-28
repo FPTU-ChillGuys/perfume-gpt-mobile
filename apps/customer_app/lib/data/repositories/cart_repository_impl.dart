@@ -182,43 +182,49 @@ class CartRepositoryImpl implements CartRepository {
           : null,
       'Recipient.ContactName':
           (recipientContactName != null && recipientContactName.isNotEmpty)
-              ? recipientContactName
-              : null,
-      'Recipient.ContactPhoneNumber': (recipientContactPhoneNumber != null &&
+          ? recipientContactName
+          : null,
+      'Recipient.ContactPhoneNumber':
+          (recipientContactPhoneNumber != null &&
               recipientContactPhoneNumber.isNotEmpty)
           ? recipientContactPhoneNumber
           : null,
       'Recipient.DistrictId': recipientDistrictId,
       'Recipient.DistrictName':
           (recipientDistrictName != null && recipientDistrictName.isNotEmpty)
-              ? recipientDistrictName
-              : null,
+          ? recipientDistrictName
+          : null,
       'Recipient.WardCode':
           (recipientWardCode != null && recipientWardCode.isNotEmpty)
-              ? recipientWardCode
-              : null,
+          ? recipientWardCode
+          : null,
       'Recipient.WardName':
           (recipientWardName != null && recipientWardName.isNotEmpty)
-              ? recipientWardName
-              : null,
+          ? recipientWardName
+          : null,
       'Recipient.ProvinceId': recipientProvinceId,
       'Recipient.ProvinceName':
           (recipientProvinceName != null && recipientProvinceName.isNotEmpty)
-              ? recipientProvinceName
-              : null,
+          ? recipientProvinceName
+          : null,
       'Recipient.FullAddress':
           (recipientFullAddress != null && recipientFullAddress.isNotEmpty)
-              ? recipientFullAddress
-              : null,
+          ? recipientFullAddress
+          : null,
     }..removeWhere((key, value) => value == null);
 
     final response = await _dio.get(
       '/api/cart/total',
       queryParameters: queryParameters,
-      options: Options(extra: const {'secure': [_bearerSecure]}),
+      options: Options(
+        extra: const {
+          'secure': [_bearerSecure],
+        },
+      ),
     );
-    final payload = (response.data as Map<String, dynamic>?)?['payload']
-        as Map<String, dynamic>?;
+    final payload =
+        (response.data as Map<String, dynamic>?)?['payload']
+            as Map<String, dynamic>?;
     final deposit = payload?['depositPolicy'] as Map<String, dynamic>?;
     final requiredDepositAmount =
         (payload?['requiredDepositAmount'] as num?)?.toDouble() ?? 0.0;
@@ -245,9 +251,7 @@ class CartRepositoryImpl implements CartRepository {
                   (fallbackDepositAmount > 0),
               depositRate:
                   (deposit?['depositRate'] as num?)?.toDouble() ??
-                  (totalPrice > 0
-                      ? (fallbackDepositAmount / totalPrice)
-                      : 0.0),
+                  (totalPrice > 0 ? (fallbackDepositAmount / totalPrice) : 0.0),
               depositAmount:
                   (deposit?['depositAmount'] as num?)?.toDouble() ??
                   fallbackDepositAmount,

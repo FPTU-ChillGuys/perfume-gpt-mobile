@@ -45,9 +45,9 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
 
   Future<void> _submit() async {
     if (_rating == 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Vui lòng chọn số sao')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Vui lòng chọn số sao')));
       return;
     }
     final comment = _commentCtrl.text.trim();
@@ -80,14 +80,16 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
         ref.invalidate(variantReviewStatsProvider(widget.variantId!));
       }
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Đã gửi đánh giá')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Đã gửi đánh giá')));
         context.pop(true);
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Lỗi: $e')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Lỗi: $e')));
       }
     } finally {
       if (mounted) setState(() => _saving = false);
@@ -118,11 +120,20 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.inventory_2_outlined, color: AppColors.primary),
+                  const Icon(
+                    Icons.inventory_2_outlined,
+                    color: AppColors.primary,
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: Text(widget.variantName!,
-                        style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15, color: AppColors.textPrimary)),
+                    child: Text(
+                      widget.variantName!,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -140,8 +151,14 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
             ),
             child: Column(
               children: [
-                const Text('Bạn thấy sản phẩm thế nào?',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
+                const Text(
+                  'Bạn thấy sản phẩm thế nào?',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
                 const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -152,8 +169,12 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: Icon(
-                          star <= _rating ? Icons.star_rounded : Icons.star_outline_rounded,
-                          color: star <= _rating ? Colors.amber : AppColors.border,
+                          star <= _rating
+                              ? Icons.star_rounded
+                              : Icons.star_outline_rounded,
+                          color: star <= _rating
+                              ? Colors.amber
+                              : AppColors.border,
                           size: 40,
                         ),
                       ),
@@ -163,7 +184,10 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
                 const SizedBox(height: 8),
                 Text(
                   _ratingLabel(_rating),
-                  style: const TextStyle(fontSize: 13, color: AppColors.textSecondary),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -182,10 +206,14 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
               maxLines: 5,
               maxLength: 2000,
               decoration: const InputDecoration(
-                hintText: 'Chia sẻ trải nghiệm của bạn về sản phẩm (tối thiểu 10 ký tự)...',
+                hintText:
+                    'Chia sẻ trải nghiệm của bạn về sản phẩm (tối thiểu 10 ký tự)...',
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.all(16),
-                counterStyle: TextStyle(fontSize: 11, color: AppColors.textSecondary),
+                counterStyle: TextStyle(
+                  fontSize: 11,
+                  color: AppColors.textSecondary,
+                ),
               ),
             ),
           ),
@@ -204,17 +232,32 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.camera_alt_outlined, size: 20, color: AppColors.textSecondary),
+                    const Icon(
+                      Icons.camera_alt_outlined,
+                      size: 20,
+                      color: AppColors.textSecondary,
+                    ),
                     const SizedBox(width: 8),
                     const Expanded(
-                      child: Text('Thêm hình ảnh',
-                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: AppColors.textPrimary)),
+                      child: Text(
+                        'Thêm hình ảnh',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                          color: AppColors.textPrimary,
+                        ),
+                      ),
                     ),
                     TextButton.icon(
                       onPressed: _pickImages,
-                      icon: const Icon(Icons.add_photo_alternate_outlined, size: 18),
+                      icon: const Icon(
+                        Icons.add_photo_alternate_outlined,
+                        size: 18,
+                      ),
                       label: const Text('Chọn ảnh'),
-                      style: TextButton.styleFrom(foregroundColor: AppColors.primary),
+                      style: TextButton.styleFrom(
+                        foregroundColor: AppColors.primary,
+                      ),
                     ),
                   ],
                 ),
@@ -239,11 +282,19 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
                             top: 0,
                             right: 0,
                             child: GestureDetector(
-                              onTap: () => setState(() => _images.removeAt(entry.key)),
+                              onTap: () =>
+                                  setState(() => _images.removeAt(entry.key)),
                               child: Container(
                                 padding: const EdgeInsets.all(2),
-                                decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
-                                child: const Icon(Icons.close, size: 12, color: Colors.white),
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.close,
+                                  size: 12,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -264,11 +315,23 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
               child: _saving
-                  ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                  : const Text('Gửi đánh giá', style: TextStyle(fontWeight: FontWeight.w600)),
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.white,
+                      ),
+                    )
+                  : const Text(
+                      'Gửi đánh giá',
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
             ),
           ),
         ],
@@ -278,12 +341,18 @@ class _WriteReviewPageState extends ConsumerState<WriteReviewPage> {
 
   String _ratingLabel(int r) {
     switch (r) {
-      case 1: return 'Rất không hài lòng';
-      case 2: return 'Không hài lòng';
-      case 3: return 'Bình thường';
-      case 4: return 'Hài lòng';
-      case 5: return 'Rất hài lòng';
-      default: return '';
+      case 1:
+        return 'Rất không hài lòng';
+      case 2:
+        return 'Không hài lòng';
+      case 3:
+        return 'Bình thường';
+      case 4:
+        return 'Hài lòng';
+      case 5:
+        return 'Rất hài lòng';
+      default:
+        return '';
     }
   }
 }

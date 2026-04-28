@@ -24,7 +24,9 @@ FutureOr<PaginatedOrders> myOrders(
   int page = 1,
   int pageSize = 10,
 }) {
-  return ref.read(orderRepositoryProvider).getMyOrders(
+  return ref
+      .read(orderRepositoryProvider)
+      .getMyOrders(
         status: status,
         searchTerm: searchTerm,
         page: page,

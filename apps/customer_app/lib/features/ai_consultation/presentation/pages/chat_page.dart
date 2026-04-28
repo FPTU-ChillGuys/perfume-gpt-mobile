@@ -55,8 +55,9 @@ class _ChatPageState extends ConsumerState<ChatPage> {
             },
             theme:
                 ChatTheme.light(
-                  fontFamily:
-                      Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                  fontFamily: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.fontFamily,
                 ).copyWith(
                   colors: ChatColors.light().copyWith(
                     primary: Theme.of(context).colorScheme.primary,

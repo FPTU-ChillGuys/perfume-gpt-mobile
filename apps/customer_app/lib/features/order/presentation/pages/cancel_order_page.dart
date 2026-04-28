@@ -74,6 +74,7 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
     final byFlowRule = !widget.loseDepositWarning;
     return byStatus || byFlowRule;
   }
+
   bool get _bankInfoValid {
     if (!widget.needRefund || !_showBankInfo) return true;
     return _selectedBank != null &&
@@ -81,7 +82,8 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
         _bankHolderController.text.trim().isNotEmpty;
   }
 
-  bool get _canSubmit => _selectedReason != null && _bankInfoValid && !_isSubmitting;
+  bool get _canSubmit =>
+      _selectedReason != null && _bankInfoValid && !_isSubmitting;
 
   @override
   void dispose() {
@@ -185,7 +187,11 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.warning_amber_rounded, color: Colors.red.shade700, size: 20),
+          Icon(
+            Icons.warning_amber_rounded,
+            color: Colors.red.shade700,
+            size: 20,
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
@@ -580,7 +586,9 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
   }
 
   Future<bool> _showConfirmDialog() async {
-    final title = widget.mode == 'direct' ? 'Xác nhận hủy đơn' : 'Xác nhận gửi yêu cầu hủy';
+    final title = widget.mode == 'direct'
+        ? 'Xác nhận hủy đơn'
+        : 'Xác nhận gửi yêu cầu hủy';
     final content = widget.mode == 'direct'
         ? 'Bạn có chắc chắn muốn hủy đơn hàng này không?'
         : 'Bạn có chắc chắn muốn gửi yêu cầu hủy đơn hàng này không?';

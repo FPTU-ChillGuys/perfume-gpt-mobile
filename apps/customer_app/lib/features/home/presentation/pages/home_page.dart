@@ -55,7 +55,9 @@ class HomePage extends ConsumerWidget {
               ),
             ),
             loading: () => [const SliverToBoxAdapter(child: SizedBox.shrink())],
-            error: (_, _) => [const SliverToBoxAdapter(child: SizedBox.shrink())],
+            error: (_, _) => [
+              const SliverToBoxAdapter(child: SizedBox.shrink()),
+            ],
           ),
 
           // ── New Arrivals ──────────────────────────────────────────────
@@ -65,7 +67,8 @@ class HomePage extends ConsumerWidget {
               title: 'Hàng mới về',
               asyncValue: newArrivalsAsync,
               onViewAll: () => context.push(
-                  '/store?source=new-arrivals&sourceLabel=H%C3%A0ng%20m%E1%BB%9Bi%20v%E1%BB%81'),
+                '/store?source=new-arrivals&sourceLabel=H%C3%A0ng%20m%E1%BB%9Bi%20v%E1%BB%81',
+              ),
               isNew: true,
             ),
           ),
@@ -77,7 +80,8 @@ class HomePage extends ConsumerWidget {
               title: 'Bán chạy nhất',
               asyncValue: bestSellersAsync,
               onViewAll: () => context.push(
-                  '/store?source=bestsellers&sourceLabel=B%C3%A1n%20ch%E1%BA%A1y%20nh%E1%BA%A5t'),
+                '/store?source=bestsellers&sourceLabel=B%C3%A1n%20ch%E1%BA%A1y%20nh%E1%BA%A5t',
+              ),
             ),
           ),
 
@@ -193,8 +197,11 @@ class HomePage extends ConsumerWidget {
                 color: AppColors.primaryLight,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: const Icon(Icons.auto_awesome,
-                  color: AppColors.primary, size: 28),
+              child: const Icon(
+                Icons.auto_awesome,
+                color: AppColors.primary,
+                size: 28,
+              ),
             ),
             const SizedBox(height: 14),
             const Text(
@@ -209,10 +216,7 @@ class HomePage extends ConsumerWidget {
             const SizedBox(height: 6),
             Text(
               'AI sẽ gợi ý mùi hương phù hợp dựa trên sở thích của bạn',
-              style: TextStyle(
-                fontSize: 13,
-                color: Colors.grey.shade500,
-              ),
+              style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 18),
@@ -227,7 +231,8 @@ class HomePage extends ConsumerWidget {
                       backgroundColor: AppColors.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                     ),
                   ),
                 ),
@@ -241,7 +246,8 @@ class HomePage extends ConsumerWidget {
                       foregroundColor: AppColors.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                       side: const BorderSide(color: AppColors.primaryBorder),
                     ),
                   ),
@@ -267,14 +273,16 @@ class HomePage extends ConsumerWidget {
             icon: Icons.local_fire_department,
             label: 'Bán chạy',
             onTap: () => context.push(
-                '/store?source=bestsellers&sourceLabel=B%C3%A1n%20ch%E1%BA%A1y%20nh%E1%BA%A5t'),
+              '/store?source=bestsellers&sourceLabel=B%C3%A1n%20ch%E1%BA%A1y%20nh%E1%BA%A5t',
+            ),
           ),
           const SizedBox(width: 12),
           _quickLink(
             icon: Icons.fiber_new_outlined,
             label: 'Hàng mới',
             onTap: () => context.push(
-                '/store?source=new-arrivals&sourceLabel=H%C3%A0ng%20m%E1%BB%9Bi%20v%E1%BB%81'),
+              '/store?source=new-arrivals&sourceLabel=H%C3%A0ng%20m%E1%BB%9Bi%20v%E1%BB%81',
+            ),
           ),
           const SizedBox(width: 12),
           _quickLink(
@@ -368,8 +376,11 @@ class HomePage extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(width: 2),
-                    const Icon(Icons.arrow_forward_ios,
-                        size: 12, color: AppColors.primary),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 12,
+                      color: AppColors.primary,
+                    ),
                   ],
                 ),
               ),
@@ -386,10 +397,8 @@ class HomePage extends ConsumerWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: products.length,
                   separatorBuilder: (_, _) => const SizedBox(width: 12),
-                  itemBuilder: (_, index) => _HomeProductCard(
-                    product: products[index],
-                    isNew: isNew,
-                  ),
+                  itemBuilder: (_, index) =>
+                      _HomeProductCard(product: products[index], isNew: isNew),
                 ),
               );
             },
@@ -411,13 +420,15 @@ class HomePage extends ConsumerWidget {
               ),
               child: Column(
                 children: [
-                  const Icon(Icons.error_outline,
-                      size: 36, color: Colors.redAccent),
+                  const Icon(
+                    Icons.error_outline,
+                    size: 36,
+                    color: Colors.redAccent,
+                  ),
                   const SizedBox(height: 8),
                   Text(
                     'Không thể tải dữ liệu',
-                    style: TextStyle(
-                        fontSize: 13, color: Colors.grey.shade600),
+                    style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
                   ),
                 ],
               ),
@@ -463,7 +474,11 @@ class _CampaignSection extends ConsumerWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.local_offer, size: 14, color: Colors.white),
+                    const Icon(
+                      Icons.local_offer,
+                      size: 14,
+                      color: Colors.white,
+                    ),
                     const SizedBox(width: 4),
                     Text(
                       campaignName,
@@ -501,9 +516,8 @@ class _CampaignSection extends ConsumerWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: products.length,
                   separatorBuilder: (_, _) => const SizedBox(width: 12),
-                  itemBuilder: (_, index) => _HomeProductCard(
-                    product: products[index],
-                  ),
+                  itemBuilder: (_, index) =>
+                      _HomeProductCard(product: products[index]),
                 ),
               );
             },
@@ -554,30 +568,32 @@ class _HomeProductCard extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   ClipRRect(
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(16)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(16),
+                    ),
                     child: product.imageUrl.isNotEmpty
-                          ? Image.network(
-                              product.imageUrl,
-                              fit: BoxFit.cover,
-                              gaplessPlayback: true,
-                              loadingBuilder: (_, child, progress) {
-                                if (progress == null) return child;
-                                return Container(
-                                  color: AppColors.surface,
-                                  child: const Center(
-                                    child: SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: CircularProgressIndicator(
-                                          strokeWidth: 2),
+                        ? Image.network(
+                            product.imageUrl,
+                            fit: BoxFit.cover,
+                            gaplessPlayback: true,
+                            loadingBuilder: (_, child, progress) {
+                              if (progress == null) return child;
+                              return Container(
+                                color: AppColors.surface,
+                                child: const Center(
+                                  child: SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
                                     ),
                                   ),
-                                );
-                              },
-                              errorBuilder: (_, _, _) => _placeholder(),
-                            )
-                          : _placeholder(),
+                                ),
+                              );
+                            },
+                            errorBuilder: (_, _, _) => _placeholder(),
+                          )
+                        : _placeholder(),
                   ),
                   if (isNew)
                     Positioned(
@@ -585,7 +601,9 @@ class _HomeProductCard extends StatelessWidget {
                       left: 8,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 3),
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.accent,
                           borderRadius: BorderRadius.circular(8),
@@ -600,13 +618,16 @@ class _HomeProductCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                  if (product.hasCampaignDiscount && product.campaignName != null)
+                  if (product.hasCampaignDiscount &&
+                      product.campaignName != null)
                     Positioned(
                       top: isNew ? 30 : 8,
                       left: 8,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 6, vertical: 3),
+                          horizontal: 6,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(8),
@@ -614,8 +635,11 @@ class _HomeProductCard extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(Icons.local_offer,
-                                size: 10, color: Colors.white),
+                            const Icon(
+                              Icons.local_offer,
+                              size: 10,
+                              color: Colors.white,
+                            ),
                             const SizedBox(width: 3),
                             Text(
                               product.campaignName!,
@@ -635,7 +659,9 @@ class _HomeProductCard extends StatelessWidget {
                       right: 8,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 3),
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.black54,
                           borderRadius: BorderRadius.circular(8),
@@ -643,7 +669,9 @@ class _HomeProductCard extends StatelessWidget {
                         child: Text(
                           product.gender!,
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 10),
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
                         ),
                       ),
                     ),
@@ -687,9 +715,11 @@ class _HomeProductCard extends StatelessWidget {
   Widget _buildPriceSection() {
     // Campaign discount: show discountedPrice (red) + strikethrough basePrice
     if (product.hasCampaignDiscount) {
-      final discountPercent = ((product.minPrice! - product.minDiscountedPrice!) /
-              product.minPrice! * 100)
-          .round();
+      final discountPercent =
+          ((product.minPrice! - product.minDiscountedPrice!) /
+                  product.minPrice! *
+                  100)
+              .round();
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -752,9 +782,11 @@ class _HomeProductCard extends StatelessWidget {
 
     // No campaign but retail > base: show base + strikethrough retail
     if (product.hasRetailComparison) {
-      final discountPercent = ((product.minRetailPrice! - product.minPrice!) /
-              product.minRetailPrice! * 100)
-          .round();
+      final discountPercent =
+          ((product.minRetailPrice! - product.minPrice!) /
+                  product.minRetailPrice! *
+                  100)
+              .round();
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -828,8 +860,11 @@ class _HomeProductCard extends StatelessWidget {
     return Container(
       color: AppColors.borderLight,
       child: const Center(
-        child: Icon(Icons.image_not_supported_outlined,
-            color: Colors.grey, size: 28),
+        child: Icon(
+          Icons.image_not_supported_outlined,
+          color: Colors.grey,
+          size: 28,
+        ),
       ),
     );
   }
@@ -909,14 +944,15 @@ class _BannerSkeleton extends StatelessWidget {
         final screenWidth = constraints.maxWidth;
         final isCompact = screenWidth < 360;
         final isWide = screenWidth >= 600;
-        final height = isWide ? 260.0 : isCompact ? 160.0 : 200.0;
+        final height = isWide
+            ? 260.0
+            : isCompact
+            ? 160.0
+            : 200.0;
 
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
-          child: Container(
-            height: height,
-            color: AppColors.skeleton,
-          ),
+          child: Container(height: height, color: AppColors.skeleton),
         );
       },
     );

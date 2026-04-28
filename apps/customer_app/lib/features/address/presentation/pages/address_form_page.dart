@@ -58,9 +58,15 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
 
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
-    if (_selectedProvinceId == null || _selectedDistrictId == null || _selectedWardCode == null) {
+    if (_selectedProvinceId == null ||
+        _selectedDistrictId == null ||
+        _selectedWardCode == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Vui lòng chọn đầy đủ tỉnh/thành, quận/huyện, phường/xã')),
+        const SnackBar(
+          content: Text(
+            'Vui lòng chọn đầy đủ tỉnh/thành, quận/huyện, phường/xã',
+          ),
+        ),
       );
       return;
     }
@@ -90,9 +96,9 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
       if (mounted) context.pop(true);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Lỗi: $e')));
       }
     } finally {
       if (mounted) setState(() => _saving = false);
@@ -134,12 +140,22 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
             // ── Recipient info ──
             _SectionTitle('Thông tin người nhận'),
             const SizedBox(height: 8),
-            _buildField(_nameCtrl, 'Họ và tên', Icons.person_outline,
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Vui lòng nhập tên' : null),
+            _buildField(
+              _nameCtrl,
+              'Họ và tên',
+              Icons.person_outline,
+              validator: (v) =>
+                  (v == null || v.trim().isEmpty) ? 'Vui lòng nhập tên' : null,
+            ),
             const SizedBox(height: 12),
-            _buildField(_phoneCtrl, 'Số điện thoại', Icons.phone_outlined,
-                keyboard: TextInputType.phone,
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Vui lòng nhập SĐT' : null),
+            _buildField(
+              _phoneCtrl,
+              'Số điện thoại',
+              Icons.phone_outlined,
+              keyboard: TextInputType.phone,
+              validator: (v) =>
+                  (v == null || v.trim().isEmpty) ? 'Vui lòng nhập SĐT' : null,
+            ),
 
             const SizedBox(height: 24),
             _SectionTitle('Địa chỉ'),
@@ -150,16 +166,24 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
               data: (provinces) => _DropdownCard(
                 label: 'Tỉnh/Thành phố',
                 value: _selectedProvinceId?.toString(),
-                items: provinces.map((p) => DropdownMenuItem(
-                  value: p.provinceID.toString(),
-                  child: Text(p.provinceName),
-                )).toList(),
+                items: provinces
+                    .map(
+                      (p) => DropdownMenuItem(
+                        value: p.provinceID.toString(),
+                        child: Text(p.provinceName),
+                      ),
+                    )
+                    .toList(),
                 onChanged: (val) {
                   final id = int.tryParse(val ?? '');
-                  final prov = provinces.where((p) => p.provinceID.toString() == val);
+                  final prov = provinces.where(
+                    (p) => p.provinceID.toString() == val,
+                  );
                   setState(() {
                     _selectedProvinceId = id;
-                    _selectedProvinceName = prov.isNotEmpty ? prov.first.provinceName : null;
+                    _selectedProvinceName = prov.isNotEmpty
+                        ? prov.first.provinceName
+                        : null;
                     _selectedDistrictId = null;
                     _selectedDistrictName = null;
                     _selectedWardCode = null;
@@ -178,16 +202,24 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
                 data: (districts) => _DropdownCard(
                   label: 'Quận/Huyện',
                   value: _selectedDistrictId?.toString(),
-                  items: districts.map((d) => DropdownMenuItem(
-                    value: d.districtID.toString(),
-                    child: Text(d.districtName),
-                  )).toList(),
+                  items: districts
+                      .map(
+                        (d) => DropdownMenuItem(
+                          value: d.districtID.toString(),
+                          child: Text(d.districtName),
+                        ),
+                      )
+                      .toList(),
                   onChanged: (val) {
                     final id = int.tryParse(val ?? '');
-                    final dist = districts.where((d) => d.districtID.toString() == val);
+                    final dist = districts.where(
+                      (d) => d.districtID.toString() == val,
+                    );
                     setState(() {
                       _selectedDistrictId = id;
-                      _selectedDistrictName = dist.isNotEmpty ? dist.first.districtName : null;
+                      _selectedDistrictName = dist.isNotEmpty
+                          ? dist.first.districtName
+                          : null;
                       _selectedWardCode = null;
                       _selectedWardName = null;
                     });
@@ -206,15 +238,21 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
                 data: (wards) => _DropdownCard(
                   label: 'Phường/Xã',
                   value: _selectedWardCode,
-                  items: wards.map((w) => DropdownMenuItem(
-                    value: w.wardCode,
-                    child: Text(w.wardName),
-                  )).toList(),
+                  items: wards
+                      .map(
+                        (w) => DropdownMenuItem(
+                          value: w.wardCode,
+                          child: Text(w.wardName),
+                        ),
+                      )
+                      .toList(),
                   onChanged: (val) {
                     final ward = wards.where((w) => w.wardCode == val);
                     setState(() {
                       _selectedWardCode = val;
-                      _selectedWardName = ward.isNotEmpty ? ward.first.wardName : '';
+                      _selectedWardName = ward.isNotEmpty
+                          ? ward.first.wardName
+                          : '';
                     });
                   },
                 ),
@@ -226,8 +264,14 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
             const SizedBox(height: 12),
 
             // ── Street ──
-            _buildField(_streetCtrl, 'Số nhà, đường', Icons.home_outlined,
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Vui lòng nhập địa chỉ' : null),
+            _buildField(
+              _streetCtrl,
+              'Số nhà, đường',
+              Icons.home_outlined,
+              validator: (v) => (v == null || v.trim().isEmpty)
+                  ? 'Vui lòng nhập địa chỉ'
+                  : null,
+            ),
 
             const SizedBox(height: 16),
             // ── Default switch ──
@@ -238,8 +282,10 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
                 border: Border.all(color: AppColors.border),
               ),
               child: SwitchListTile(
-                title: const Text('Đặt làm địa chỉ mặc định',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                title: const Text(
+                  'Đặt làm địa chỉ mặc định',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                ),
                 value: _isDefault,
                 activeThumbColor: AppColors.primary,
                 onChanged: (v) => setState(() => _isDefault = v),
@@ -255,11 +301,23 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 child: _saving
-                    ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                    : Text(widget.isEditing ? 'Cập nhật' : 'Thêm địa chỉ', style: const TextStyle(fontWeight: FontWeight.w600)),
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Colors.white,
+                        ),
+                      )
+                    : Text(
+                        widget.isEditing ? 'Cập nhật' : 'Thêm địa chỉ',
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
               ),
             ),
           ],
@@ -268,8 +326,13 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
     );
   }
 
-  Widget _buildField(TextEditingController ctrl, String label, IconData icon,
-      {TextInputType? keyboard, String? Function(String?)? validator}) {
+  Widget _buildField(
+    TextEditingController ctrl,
+    String label,
+    IconData icon, {
+    TextInputType? keyboard,
+    String? Function(String?)? validator,
+  }) {
     return TextFormField(
       controller: ctrl,
       keyboardType: keyboard,
@@ -279,43 +342,76 @@ class _AddressFormPageState extends ConsumerState<AddressFormPage> {
         prefixIcon: Icon(icon, size: 20),
         filled: true,
         fillColor: Colors.white,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.border)),
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.border)),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.primary, width: 1.5)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.border),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.border),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.primary, width: 1.5),
+        ),
       ),
     );
   }
 
-  Widget _loadingDropdown(String text) =>
-      Container(
-        height: 56,
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: AppColors.border)),
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(children: [
-          const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2)),
-          const SizedBox(width: 12),
-          Text(text, style: const TextStyle(color: AppColors.textSecondary, fontSize: 14)),
-        ]),
-      );
+  Widget _loadingDropdown(String text) => Container(
+    height: 56,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: AppColors.border),
+    ),
+    alignment: Alignment.centerLeft,
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    child: Row(
+      children: [
+        const SizedBox(
+          width: 16,
+          height: 16,
+          child: CircularProgressIndicator(strokeWidth: 2),
+        ),
+        const SizedBox(width: 12),
+        Text(
+          text,
+          style: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+        ),
+      ],
+    ),
+  );
 
-  Widget _disabledDropdown(String text) =>
-      Container(
-        height: 56,
-        decoration: BoxDecoration(color: AppColors.skeleton, borderRadius: BorderRadius.circular(12), border: Border.all(color: AppColors.border)),
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Text(text, style: const TextStyle(color: AppColors.textSecondary, fontSize: 14)),
-      );
+  Widget _disabledDropdown(String text) => Container(
+    height: 56,
+    decoration: BoxDecoration(
+      color: AppColors.skeleton,
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: AppColors.border),
+    ),
+    alignment: Alignment.centerLeft,
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    child: Text(
+      text,
+      style: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+    ),
+  );
 
-  Widget _errorDropdown(String text) =>
-      Container(
-        height: 56,
-        decoration: BoxDecoration(color: Colors.red.shade50, borderRadius: BorderRadius.circular(12), border: Border.all(color: Colors.red.shade200)),
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Text(text, style: TextStyle(color: Colors.red.shade700, fontSize: 14)),
-      );
+  Widget _errorDropdown(String text) => Container(
+    height: 56,
+    decoration: BoxDecoration(
+      color: Colors.red.shade50,
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: Colors.red.shade200),
+    ),
+    alignment: Alignment.centerLeft,
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    child: Text(
+      text,
+      style: TextStyle(color: Colors.red.shade700, fontSize: 14),
+    ),
+  );
 }
 
 class _SectionTitle extends StatelessWidget {
@@ -324,8 +420,14 @@ class _SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,
-        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.textPrimary));
+    return Text(
+      text,
+      style: const TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w700,
+        color: AppColors.textPrimary,
+      ),
+    );
   }
 }
 
@@ -335,7 +437,12 @@ class _DropdownCard extends StatelessWidget {
   final List<DropdownMenuItem<String>> items;
   final ValueChanged<String?> onChanged;
 
-  const _DropdownCard({required this.label, this.value, required this.items, required this.onChanged});
+  const _DropdownCard({
+    required this.label,
+    this.value,
+    required this.items,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

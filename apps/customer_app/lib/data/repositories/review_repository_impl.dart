@@ -39,13 +39,15 @@ class ReviewRepositoryImpl implements ReviewRepository {
       rating: j.rating ?? 0,
       comment: j.comment,
       images: j.images
-          .map((i) => ReviewImage(
-                id: i.id ?? '',
-                url: i.url,
-                altText: i.altText,
-                displayOrder: i.displayOrder,
-                isPrimary: i.isPrimary ?? false,
-              ))
+          .map(
+            (i) => ReviewImage(
+              id: i.id ?? '',
+              url: i.url,
+              altText: i.altText,
+              displayOrder: i.displayOrder,
+              isPrimary: i.isPrimary ?? false,
+            ),
+          )
           .toList(),
       staffFeedbackComment: j.staffFeedbackComment,
       staffFeedbackAt: j.staffFeedbackAt,
@@ -117,25 +119,33 @@ class ReviewRepositoryImpl implements ReviewRepository {
     List<({String filename, Uint8List bytes})> images,
   ) async {
     final response = await _api.apiReviewsImagesTemporaryPost(
-      images: images.map((e) => MultipartFile.fromBytes(e.bytes, filename: e.filename, contentType: MediaType('image', 'jpeg'))).toList(),
+      images: images
+          .map(
+            (e) => MultipartFile.fromBytes(
+              e.bytes,
+              filename: e.filename,
+              contentType: MediaType('image', 'jpeg'),
+            ),
+          )
+          .toList(),
     );
     final data = response.data?.payload?.data ?? [];
     return data.map((m) => m.id ?? '').where((id) => id.isNotEmpty).toList();
   }
 
   Review _mapResponse(ReviewResponse j) => Review(
-        id: j.id ?? '',
-        userId: j.userId,
-        userName: j.userFullName,
-        userProfilePictureUrl: j.userProfilePictureUrl,
-        orderDetailId: j.orderDetailId,
-        variantId: j.variantId ?? '',
-        variantName: j.variantName,
-        rating: j.rating ?? 0,
-        comment: j.comment,
-        staffFeedbackComment: j.staffFeedbackComment,
-        staffFeedbackAt: j.staffFeedbackAt,
-        createdAt: j.createdAt ?? DateTime.now(),
-        imageUrls: j.images.map((i) => i.url).toList(),
-      );
+    id: j.id ?? '',
+    userId: j.userId,
+    userName: j.userFullName,
+    userProfilePictureUrl: j.userProfilePictureUrl,
+    orderDetailId: j.orderDetailId,
+    variantId: j.variantId ?? '',
+    variantName: j.variantName,
+    rating: j.rating ?? 0,
+    comment: j.comment,
+    staffFeedbackComment: j.staffFeedbackComment,
+    staffFeedbackAt: j.staffFeedbackAt,
+    createdAt: j.createdAt ?? DateTime.now(),
+    imageUrls: j.images.map((i) => i.url).toList(),
+  );
 }

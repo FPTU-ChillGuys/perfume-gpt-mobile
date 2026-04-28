@@ -11,9 +11,7 @@ part 'cancel_request_providers.g.dart';
 @riverpod
 CancelRequestRepository cancelRequestRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return CancelRequestRepositoryImpl(
-    apiClient.getOrderCancelRequestsApi(),
-  );
+  return CancelRequestRepositoryImpl(apiClient.getOrderCancelRequestsApi());
 }
 
 @riverpod
@@ -23,11 +21,9 @@ FutureOr<PaginatedCancelRequests> myCancelRequests(
   int page = 1,
   int pageSize = 10,
 }) {
-  return ref.read(cancelRequestRepositoryProvider).getMyRequests(
-        status: status,
-        page: page,
-        pageSize: pageSize,
-      );
+  return ref
+      .read(cancelRequestRepositoryProvider)
+      .getMyRequests(status: status, page: page, pageSize: pageSize);
 }
 
 @riverpod
@@ -37,12 +33,13 @@ FutureOr<CancelRequest> cancelRequestDetail(Ref ref, String id) {
 
 @riverpod
 FutureOr<(CancelRequest, OrderDetail?)> cancelRequestWithOrder(
-    Ref ref, String id) async {
+  Ref ref,
+  String id,
+) async {
   final request = await ref.watch(cancelRequestDetailProvider(id).future);
   if (request.orderId.isEmpty) return (request, null);
   try {
-    final order =
-        await ref.watch(orderDetailProvider(request.orderId).future);
+    final order = await ref.watch(orderDetailProvider(request.orderId).future);
     return (request, order);
   } catch (_) {
     return (request, null);
