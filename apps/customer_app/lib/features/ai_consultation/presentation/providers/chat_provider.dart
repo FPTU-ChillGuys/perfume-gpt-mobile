@@ -16,10 +16,8 @@ class ChatSession extends _$ChatSession {
     final conversationApi = aiApiClient.getConversationApi();
 
     try {
-      final response =
-          await conversationApi.conversationControllerGetAllConversationsPaginated(
-            pageSize: 1,
-          );
+      final response = await conversationApi
+          .conversationControllerGetAllConversationsPaginated(pageSize: 1);
 
       final latestConversation = response.data?.payload?.items.firstOrNull;
 
@@ -28,10 +26,9 @@ class ChatSession extends _$ChatSession {
         final messages =
             latestConversation.messages?.map((m) {
               return Message.text(
-                authorId:
-                    m.sender == 'assistant'
-                        ? 'ai'
-                        : (latestConversation.userId ?? 'user'),
+                authorId: m.sender == 'assistant'
+                    ? 'ai'
+                    : (latestConversation.userId ?? 'user'),
                 createdAt: m.createdAt,
                 id: m.id,
                 text: m.message,
@@ -39,10 +36,7 @@ class ChatSession extends _$ChatSession {
             }).toList() ??
             [];
 
-        // flutter_chat_ui expects newest messages first
-        if (messages.isNotEmpty) {
-          return messages.reversed.toList();
-        }
+        return messages;
       }
     } catch (e) {
       // Fallback to new conversation if failed to fetch or no previous conversations
@@ -72,7 +66,7 @@ class ChatSession extends _$ChatSession {
     );
 
     final previousMessages = state.value!;
-    state = AsyncData([userMessage, ...previousMessages]);
+    state = AsyncData([...previousMessages, userMessage]);
 
     try {
       final aiApiClient = ref.read(aiApiClientProvider);
@@ -80,26 +74,23 @@ class ChatSession extends _$ChatSession {
 
       _conversationId ??= const Uuid().v4();
 
-      // Construct history for V10 API
-      // Backend expects oldest first, but our state is newest first
-      final history =
-          [userMessage, ...previousMessages].reversed.map((m) {
-            return MessageRequestDto(
-              sender:
-                  m.authorId == 'ai'
-                      ? MessageRequestDtoSenderEnum.assistant
-                      : MessageRequestDtoSenderEnum.user,
-              message: (m as TextMessage).text,
-            );
-          }).toList();
+      // Construct history for V10 API - state is already oldest first
+      final history = state.value!.map((m) {
+        return MessageRequestDto(
+          sender: m.authorId == 'ai'
+              ? MessageRequestDtoSenderEnum.assistant
+              : MessageRequestDtoSenderEnum.user,
+          message: (m as TextMessage).text,
+        );
+      }).toList();
 
       final request = ConversationRequestDto(
         id: _conversationId!,
         messages: history,
       );
 
-      final response =
-          await conversationApi.conversationControllerConversationV10(
+      final response = await conversationApi
+          .conversationControllerConversationV10(
             conversationRequestDto: request,
           );
 
@@ -113,7 +104,7 @@ class ChatSession extends _$ChatSession {
           id: const Uuid().v4(),
           text: aiLastMessage.message,
         );
-        state = AsyncData([aiMessage, ...state.value!]);
+        state = AsyncData([...state.value!, aiMessage]);
       } else {
         throw Exception('No response from AI');
       }
@@ -124,7 +115,7 @@ class ChatSession extends _$ChatSession {
         id: const Uuid().v4(),
         text: 'Sorry, I encountered an error. Please try again later.',
       );
-      state = AsyncData([errorMessage, ...state.value!]);
+      state = AsyncData([...state.value!, errorMessage]);
     }
   }
 }
