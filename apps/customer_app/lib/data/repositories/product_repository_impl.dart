@@ -271,7 +271,7 @@ class ProductRepositoryImpl implements ProductRepository {
     return Product(
       id: item.id,
       name: item.name,
-      description: item.description,
+      description: item.description ?? '',
       price: minP,
       minPrice: minP > 0 ? minP : null,
       maxPrice: maxP > 0 ? maxP : null,
