@@ -24,10 +24,20 @@ class Auth extends _$Auth {
     return ref.watch(authRepositoryProvider).getCurrentUser();
   }
 
-  Future<void> login(String email, String password) async {
+  Future<void> login(
+    String credential,
+    String password, {
+    String? deviceType,
+    String? fcmToken,
+  }) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      return ref.read(authRepositoryProvider).login(email, password);
+      return ref.read(authRepositoryProvider).login(
+            credential,
+            password,
+            deviceType: deviceType,
+            fcmToken: fcmToken,
+          );
     });
   }
 
