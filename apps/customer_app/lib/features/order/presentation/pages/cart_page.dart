@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:dio/dio.dart';
+import 'dart:convert';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../../../../domain/entities/cart_item.dart';
@@ -628,11 +631,13 @@ class _CartItemCard extends ConsumerWidget {
                                       icon: Icons.remove,
                                       onTap: quantity <= 1
                                           ? null
-                                          : () {
+                                          : () async {
                                               onBeforeDecrease();
-                                              notifier.updateItem(
-                                                idToUse,
-                                                quantity - 1,
+                                              await _updateQuantityWithFeedback(
+                                                context: context,
+                                                notifier: notifier,
+                                                idToUse: idToUse,
+                                                quantity: quantity - 1,
                                               );
                                             },
                                     ),
@@ -640,57 +645,92 @@ class _CartItemCard extends ConsumerWidget {
                                       padding: const EdgeInsets.symmetric(
                                         horizontal: 10,
                                       ),
-                                      child: Text(
-                                        '$quantity',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          final manualQty =
+                                              await _showManualQuantityDialog(
+                                            context,
+                                            currentQuantity: quantity,
+                                          );
+                                          if (manualQty == null ||
+                                              manualQty == quantity) {
+                                            return;
+                                          }
+                                          onBeforeDecrease();
+                                          if (context.mounted) {
+                                            await _updateQuantityWithFeedback(
+                                              context: context,
+                                              notifier: notifier,
+                                              idToUse: idToUse,
+                                              quantity: manualQty,
+                                            );
+                                          }
+                                        },
+                                        child: Text(
+                                          '$quantity',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
                                     _QtyButton(
                                       icon: Icons.add,
-                                      onTap: () => notifier.updateItem(
-                                        idToUse,
-                                        quantity + 1,
-                                      ),
+                                      onTap: () async {
+                                        onBeforeDecrease();
+                                        await _updateQuantityWithFeedback(
+                                          context: context,
+                                          notifier: notifier,
+                                          idToUse: idToUse,
+                                          quantity: quantity + 1,
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),
                               ),
-                              const Spacer(),
+                              const SizedBox(width: 8),
 
                               // Line total
-                              if (item.hasDiscount)
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      PriceFormatter.format(item.finalTotal),
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: theme.colorScheme.error,
-                                      ),
-                                    ),
-                                    Text(
-                                      PriceFormatter.format(item.subTotal),
-                                      style: TextStyle(
-                                        fontSize: 11,
-                                        color: Colors.grey.shade400,
-                                        decoration: TextDecoration.lineThrough,
-                                        decorationColor: Colors.grey.shade400,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              else
-                                Text(
-                                  PriceFormatter.format(item.subTotal),
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: theme.colorScheme.error,
-                                  ),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: item.hasDiscount
+                                      ? Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              PriceFormatter.format(item.finalTotal),
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: theme.colorScheme.error,
+                                              ),
+                                            ),
+                                            Text(
+                                              PriceFormatter.format(item.subTotal),
+                                              style: TextStyle(
+                                                fontSize: 11,
+                                                color: Colors.grey.shade400,
+                                                decoration:
+                                                    TextDecoration.lineThrough,
+                                                decorationColor:
+                                                    Colors.grey.shade400,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Text(
+                                          PriceFormatter.format(item.subTotal),
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: theme.colorScheme.error,
+                                          ),
+                                        ),
                                 ),
-                              const SizedBox(width: 8),
+                              ),
+                              const SizedBox(width: 6),
 
                               // Delete
                               IconButton(
@@ -727,6 +767,159 @@ class _CartItemCard extends ConsumerWidget {
     color: Colors.grey.shade100,
     child: const Icon(Icons.image_not_supported, color: Colors.grey, size: 32),
   );
+
+  Future<int?> _showManualQuantityDialog(
+    BuildContext context, {
+    required int currentQuantity,
+  }) async {
+    var inputValue = currentQuantity.toString();
+    final result = await showDialog<int>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Nhập số lượng'),
+        content: TextFormField(
+          initialValue: inputValue,
+          autofocus: true,
+          keyboardType: TextInputType.number,
+          onChanged: (v) => inputValue = v,
+          decoration: const InputDecoration(
+            hintText: 'Ví dụ: 2',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('Hủy'),
+          ),
+          FilledButton(
+            onPressed: () {
+              final parsed = int.tryParse(inputValue.trim());
+              Navigator.of(ctx).pop(parsed);
+            },
+            child: const Text('Cập nhật'),
+          ),
+        ],
+      ),
+    );
+    if (!context.mounted) return null;
+    if (result == null) return null;
+    if (result <= 0) {
+      _showSnackSafe(context, 'Số lượng phải lớn hơn 0');
+      return null;
+    }
+    return result;
+  }
+
+  Future<void> _updateQuantityWithFeedback(
+    {
+    required BuildContext context,
+    required Cart notifier,
+    required String idToUse,
+    required int quantity,
+  }) async {
+    try {
+      await notifier.updateItem(idToUse, quantity);
+    } catch (e) {
+      if (!context.mounted) return;
+      _showSnackSafe(
+        context,
+        _extractApiErrorMessage(e),
+        isError: true,
+      );
+    }
+  }
+
+  void _showSnackSafe(
+    BuildContext context,
+    String message, {
+    bool isError = false,
+  }) {
+    if (!context.mounted) return;
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (!context.mounted) return;
+      final messenger = ScaffoldMessenger.maybeOf(context);
+      if (messenger == null) return;
+      messenger.hideCurrentSnackBar();
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: isError ? Colors.red.shade700 : null,
+        ),
+      );
+    });
+  }
+
+  String _extractApiErrorMessage(Object error) {
+    String? extractFromMap(Map<String, dynamic> map) {
+      final message = map['message']?.toString().trim();
+      if (message != null && message.isNotEmpty) {
+        return message;
+      }
+      final errors = map['errors'];
+      if (errors is List && errors.isNotEmpty) {
+        final joined = errors
+            .map((e) => e.toString().trim())
+            .where((e) => e.isNotEmpty)
+            .join('\n');
+        if (joined.isNotEmpty) return joined;
+      }
+      return null;
+    }
+
+    String normalizeStockMessage(String raw) {
+      final lower = raw.toLowerCase();
+      final isStockIssue = lower.contains('stock') ||
+          lower.contains('insufficient') ||
+          lower.contains('out of stock') ||
+          lower.contains('khong du') ||
+          lower.contains('không đủ') ||
+          lower.contains('vuot qua') ||
+          lower.contains('vượt quá');
+      if (isStockIssue) {
+        return 'Số lượng vượt quá tồn kho hiện có.';
+      }
+      return raw;
+    }
+
+    if (error is DioException) {
+      final data = error.response?.data;
+      if (data is Map<String, dynamic>) {
+        final parsed = extractFromMap(data);
+        if (parsed != null && parsed.isNotEmpty) {
+          return normalizeStockMessage(parsed);
+        }
+      }
+      if (data is String && data.trim().isNotEmpty) {
+        try {
+          final decoded = jsonDecode(data);
+          if (decoded is Map<String, dynamic>) {
+            final parsed = extractFromMap(decoded);
+            if (parsed != null && parsed.isNotEmpty) {
+              return normalizeStockMessage(parsed);
+            }
+          }
+        } catch (_) {
+          // plain string body
+        }
+        return normalizeStockMessage(data.trim());
+      }
+
+      final statusCode = error.response?.statusCode;
+      if (statusCode == 400) {
+        final fallback = error.message?.trim() ?? '';
+        if (fallback.isNotEmpty) {
+          return normalizeStockMessage(fallback);
+        }
+        return 'Số lượng vượt quá tồn kho hiện có.';
+      }
+
+      if (error.message != null && error.message!.isNotEmpty) {
+        return normalizeStockMessage(error.message!);
+      }
+    }
+    return 'Không thể cập nhật số lượng. Vui lòng kiểm tra tồn kho.';
+  }
 }
 
 // ─── Bottom bar with totals ────────────────────────────────────────────────

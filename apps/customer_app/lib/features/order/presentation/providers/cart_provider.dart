@@ -1,4 +1,5 @@
 import 'package:perfumegpt_common/perfumegpt_common.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' show Provider;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/datasources/local_cart_data_source.dart';
 import '../../../../data/repositories/cart_repository_impl.dart';
@@ -391,3 +392,11 @@ FutureOr<CartTotal> cartTotal(Ref ref) async {
     );
   }
 }
+
+final cartItemCountProvider = Provider<int>((ref) {
+  final items = ref.watch(cartProvider).asData?.value ?? const <CartItem>[];
+  return items.fold<int>(0, (sum, item) {
+    final qty = item.quantity < 0 ? 0 : item.quantity;
+    return sum + qty;
+  });
+});

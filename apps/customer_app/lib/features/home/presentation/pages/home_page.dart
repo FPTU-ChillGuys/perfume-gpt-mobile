@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../order/presentation/providers/cart_provider.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../../../../domain/entities/product.dart';
@@ -13,6 +14,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final cartItemCount = ref.watch(cartItemCountProvider);
     final newArrivalsAsync = ref.watch(newArrivalsProvider);
     final bestSellersAsync = ref.watch(bestSellersProvider);
     final bannersAsync = ref.watch(homeHeroBannersProvider);
@@ -22,7 +24,7 @@ class HomePage extends ConsumerWidget {
       body: CustomScrollView(
         slivers: [
           // ── Hero ──────────────────────────────────────────────────────
-          SliverToBoxAdapter(child: _buildHero(context)),
+          SliverToBoxAdapter(child: _buildHero(context, cartItemCount)),
 
           // ── Banner Slider ─────────────────────────────────────────────
           SliverToBoxAdapter(
@@ -116,7 +118,7 @@ class HomePage extends ConsumerWidget {
   // Hero
   // ═══════════════════════════════════════════════════════════════════════
 
-  Widget _buildHero(BuildContext context) {
+  Widget _buildHero(BuildContext context, int cartItemCount) {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -143,6 +145,8 @@ class HomePage extends ConsumerWidget {
               _circleButton(
                 Icons.shopping_cart_outlined,
                 () => context.push('/cart'),
+                context: context,
+                badgeCount: cartItemCount,
               ),
             ],
           ),
@@ -151,7 +155,13 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-  Widget _circleButton(IconData icon, VoidCallback onTap) {
+  Widget _circleButton(
+    IconData icon,
+    VoidCallback onTap, {
+    required BuildContext context,
+    int badgeCount = 0,
+  }) {
+    final displayCount = badgeCount > 99 ? '99+' : '$badgeCount';
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -161,7 +171,35 @@ class HomePage extends ConsumerWidget {
           color: Colors.white.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Icon(icon, color: Colors.white, size: 18),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Center(child: Icon(icon, color: Colors.white, size: 18)),
+            if (badgeCount > 0)
+              Positioned(
+                right: -4,
+                top: -4,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.error,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.white, width: 1.2),
+                  ),
+                  constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+                  alignment: Alignment.center,
+                  child: Text(
+                    displayCount,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 9,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

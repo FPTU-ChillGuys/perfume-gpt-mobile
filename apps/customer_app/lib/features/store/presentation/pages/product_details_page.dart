@@ -181,12 +181,16 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
     Product product,
     List<String> displayImages,
   ) {
+    final cartItemCount = ref.watch(cartItemCountProvider);
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 320,
+            expandedHeight: 340,
             pinned: true,
+            elevation: 0,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             flexibleSpace: FlexibleSpaceBar(
               background: _ImageGallery(
                 images: displayImages,
@@ -198,15 +202,40 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
               ),
             ),
             actions: [
-              IconButton(
-                onPressed: () => context.push('/cart'),
-                icon: const Icon(Icons.shopping_cart_outlined),
+              Container(
+                margin: const EdgeInsets.only(right: 8),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.92),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: IconButton(
+                  onPressed: () => context.push('/cart'),
+                  icon: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      const Icon(
+                        Icons.shopping_bag_outlined,
+                        color: AppColors.primary,
+                      ),
+                      if (cartItemCount > 0)
+                        Positioned(
+                          right: -6,
+                          top: -6,
+                          child: _CartBadge(count: cartItemCount),
+                        ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(16, 20, 16, 24),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -233,13 +262,25 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
     Product product,
     List<String> displayImages,
   ) {
+    final cartItemCount = ref.watch(cartItemCountProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(product.name),
         actions: [
           IconButton(
             onPressed: () => context.push('/cart'),
-            icon: const Icon(Icons.shopping_cart_outlined),
+            icon: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                const Icon(Icons.shopping_cart_outlined),
+                if (cartItemCount > 0)
+                  Positioned(
+                    right: -6,
+                    top: -6,
+                    child: _CartBadge(count: cartItemCount),
+                  ),
+              ],
+            ),
           ),
         ],
       ),
@@ -605,6 +646,34 @@ class _ProductRatingRow extends ConsumerWidget {
   }
 }
 
+class _CartBadge extends StatelessWidget {
+  final int count;
+  const _CartBadge({required this.count});
+
+  @override
+  Widget build(BuildContext context) {
+    final text = count > 99 ? '99+' : '$count';
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.error,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.white, width: 1.2),
+      ),
+      constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+      alignment: Alignment.center,
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 9,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+}
+
 class _CampaignCard extends StatelessWidget {
   final String campaignName;
   final String voucherCode;
@@ -622,9 +691,9 @@ class _CampaignCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF5F5),
+        color: AppColors.primaryLight,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.red),
+        border: Border.all(color: AppColors.primaryBorder),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -641,7 +710,7 @@ class _CampaignCard extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: AppColors.primary,
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -658,7 +727,7 @@ class _CampaignCard extends StatelessWidget {
                 Text(
                   'Giảm ${_formatSavingPercent(savingPercent)}',
                   style: const TextStyle(
-                    color: Colors.red,
+                    color: AppColors.primaryDark,
                     fontWeight: FontWeight.bold,
                     fontSize: 13,
                   ),
@@ -682,14 +751,14 @@ class _CampaignCard extends StatelessWidget {
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.red.withValues(alpha: 0.08),
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(4),
-                        border: Border.all(color: Colors.red),
+                        border: Border.all(color: AppColors.primaryBorder),
                       ),
                       child: Text(
                         voucherCode,
                         style: const TextStyle(
-                          color: Colors.red,
+                          color: AppColors.primaryDark,
                           fontWeight: FontWeight.w800,
                           fontSize: 13,
                         ),
@@ -733,65 +802,79 @@ class _ImageGallery extends StatelessWidget {
       );
     }
 
-    return Stack(
-      children: [
-        PageView.builder(
-          controller: pageController,
-          itemCount: images.length,
-          onPageChanged: onPageChanged,
-          itemBuilder: (context, index) => Image.network(
-            images[index],
-            fit: BoxFit.cover,
-            width: double.infinity,
-            gaplessPlayback: true,
-            loadingBuilder: (context, child, progress) {
-              if (progress == null) return child;
-              final percent = progress.expectedTotalBytes != null
-                  ? progress.cumulativeBytesLoaded /
-                        progress.expectedTotalBytes!
-                  : null;
-              return Container(
-                color: Colors.grey.shade100,
-                child: Center(
-                  child: CircularProgressIndicator(
-                    value: percent,
-                    strokeWidth: 2,
-                  ),
-                ),
-              );
-            },
-            errorBuilder: (_, _, _) => Container(
-              color: Colors.grey.shade200,
-              child: const Center(
-                child: Icon(Icons.broken_image, size: 60, color: Colors.grey),
-              ),
-            ),
-          ),
-        ),
-        if (images.length > 1)
-          Positioned(
-            bottom: 12,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                images.length,
-                (i) => Container(
-                  width: i == currentIndex ? 16 : 8,
-                  height: 8,
-                  margin: const EdgeInsets.symmetric(horizontal: 3),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color: i == currentIndex
-                        ? Colors.white
-                        : Colors.white.withValues(alpha: 0.5),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        12,
+        MediaQuery.of(context).padding.top + kToolbarHeight + 6,
+        12,
+        12,
+      ),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(22),
+            child: Container(
+              color: Colors.white,
+              child: PageView.builder(
+                controller: pageController,
+                itemCount: images.length,
+                onPageChanged: onPageChanged,
+                itemBuilder: (context, index) => Image.network(
+                  images[index],
+                  fit: BoxFit.contain,
+                  width: double.infinity,
+                  gaplessPlayback: true,
+                  loadingBuilder: (context, child, progress) {
+                    if (progress == null) return child;
+                    final percent = progress.expectedTotalBytes != null
+                        ? progress.cumulativeBytesLoaded /
+                            progress.expectedTotalBytes!
+                        : null;
+                    return Container(
+                      color: Colors.grey.shade100,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          value: percent,
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    );
+                  },
+                  errorBuilder: (_, _, _) => Container(
+                    color: Colors.grey.shade200,
+                    child: const Center(
+                      child: Icon(Icons.broken_image, size: 60, color: Colors.grey),
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-      ],
+          if (images.length > 1)
+            Positioned(
+              bottom: 12,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  images.length,
+                  (i) => Container(
+                    width: i == currentIndex ? 16 : 8,
+                    height: 8,
+                    margin: const EdgeInsets.symmetric(horizontal: 3),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: i == currentIndex
+                          ? AppColors.primary
+                          : Colors.grey.shade300,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
@@ -825,14 +908,14 @@ class _VariantSelector extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
               color: isSelected
-                  ? theme.colorScheme.primary
-                  : theme.colorScheme.surface,
-              borderRadius: BorderRadius.circular(10),
+                  ? AppColors.primary
+                  : Colors.white,
+              borderRadius: BorderRadius.circular(18),
               border: Border.all(
                 color: isSelected
-                    ? theme.colorScheme.primary
-                    : theme.colorScheme.outline,
-                width: isSelected ? 2 : 1,
+                    ? AppColors.primary
+                    : Colors.grey.shade300,
+                width: isSelected ? 1.5 : 1,
               ),
             ),
             child: Opacity(
@@ -844,13 +927,13 @@ class _VariantSelector extends StatelessWidget {
                   Text(
                     variant.displayName,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: isSelected ? theme.colorScheme.onPrimary : null,
-                      fontWeight: isSelected
-                          ? FontWeight.bold
-                          : FontWeight.w600,
-                      decoration: outOfStock
-                          ? TextDecoration.lineThrough
+                      color: isSelected
+                          ? Colors.white
                           : null,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.w600,
+                      decoration:
+                          outOfStock ? TextDecoration.lineThrough : null,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -858,8 +941,8 @@ class _VariantSelector extends StatelessWidget {
                     PriceFormatter.format(variant.effectivePrice),
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: isSelected
-                          ? theme.colorScheme.onPrimary.withValues(alpha: 0.85)
-                          : theme.colorScheme.primary,
+                          ? Colors.white.withValues(alpha: 0.9)
+                          : AppColors.primary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -1145,7 +1228,7 @@ class _AddToCartBar extends StatelessWidget {
                   side: BorderSide(
                     color: disabled
                         ? Colors.grey.shade300
-                        : Theme.of(context).colorScheme.primary,
+                        : AppColors.primary,
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -1170,7 +1253,7 @@ class _AddToCartBar extends StatelessWidget {
                 onPressed: disabled ? null : onBuyNow,
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(0, 50),
-                  backgroundColor: Colors.red.shade600,
+                  backgroundColor: Theme.of(context).colorScheme.error,
                   foregroundColor: Colors.white,
                   disabledBackgroundColor: Colors.grey.shade300,
                   shape: RoundedRectangleBorder(
