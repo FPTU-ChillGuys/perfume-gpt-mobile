@@ -188,8 +188,9 @@ class _AuthenticatedView extends ConsumerWidget {
                 GestureDetector(
                   onTap: () async {
                     final updated = await context.push<bool>('/profile/edit');
-                    if (updated == true)
+                    if (updated == true) {
                       ref.invalidate(profileControllerProvider);
+                    }
                   },
                   child: CircleAvatar(
                     radius: 36,
@@ -310,8 +311,9 @@ class _AuthenticatedView extends ConsumerWidget {
                 subtitle: 'Cập nhật thông tin cá nhân',
                 onTap: () async {
                   final updated = await context.push<bool>('/profile/edit');
-                  if (updated == true)
+                  if (updated == true) {
                     ref.invalidate(profileControllerProvider);
+                  }
                 },
               ),
               const SizedBox(height: 10),

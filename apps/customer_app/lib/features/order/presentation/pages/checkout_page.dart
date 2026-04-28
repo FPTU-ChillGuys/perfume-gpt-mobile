@@ -1641,8 +1641,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                               ),
                             ],
                             onChanged: (v) {
-                              if (v != null)
+                              if (v != null) {
                                 setState(() => _depositGateway = v);
+                              }
                             },
                           ),
                         ],

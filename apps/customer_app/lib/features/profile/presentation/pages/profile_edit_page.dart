@@ -337,10 +337,12 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                 Icons.phone_outlined,
                 keyboard: TextInputType.phone,
                 validator: (v) {
-                  if (v == null || v.trim().isEmpty)
+                  if (v == null || v.trim().isEmpty) {
                     return 'Vui lòng nhập số điện thoại';
-                  if (!RegExp(r'^[0-9+]{8,15}$').hasMatch(v.trim()))
+                  }
+                  if (!RegExp(r'^[0-9+]{8,15}$').hasMatch(v.trim())) {
                     return 'Số điện thoại không hợp lệ';
+                  }
                   return null;
                 },
               ),
