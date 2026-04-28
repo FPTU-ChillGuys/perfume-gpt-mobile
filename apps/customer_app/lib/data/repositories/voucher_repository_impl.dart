@@ -124,7 +124,9 @@ class VoucherRepositoryImpl implements VoucherRepository {
   Voucher _mapUserVoucher(UserVoucherResponse j) => Voucher(
     id: j.voucherId?.toString() ?? j.id?.toString() ?? '',
     code: j.code,
-    discountType: j.discountType?.name == 'Percentage' ? 'Percentage' : 'FixedAmount',
+    discountType: j.discountType?.name == 'Percentage'
+        ? 'Percentage'
+        : 'FixedAmount',
     discountValue: j.discountValue?.toDouble() ?? 0,
     minOrderValue: j.minOrderValue?.toDouble(),
     expiryDate: j.expiryDate,

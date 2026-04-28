@@ -7,12 +7,12 @@ part of 'inventory_controller_get_batch200_response.dart';
 // **************************************************************************
 
 abstract class _$InventoryControllerGetBatch200ResponseCWProxy {
-  InventoryControllerGetBatch200Response success(bool success);
+  InventoryControllerGetBatch200Response success(bool? success);
 
-  InventoryControllerGetBatch200Response error(Object? error);
+  InventoryControllerGetBatch200Response error(String? error);
 
   InventoryControllerGetBatch200Response payload(
-    InventoryControllerGetBatch200ResponseAllOfPayload? payload,
+    InventoryControllerGetBatch200ResponsePayload? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -23,9 +23,9 @@ abstract class _$InventoryControllerGetBatch200ResponseCWProxy {
   /// InventoryControllerGetBatch200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   InventoryControllerGetBatch200Response call({
-    bool success,
-    Object? error,
-    InventoryControllerGetBatch200ResponseAllOfPayload? payload,
+    bool? success,
+    String? error,
+    InventoryControllerGetBatch200ResponsePayload? payload,
   });
 }
 
@@ -38,16 +38,16 @@ class _$InventoryControllerGetBatch200ResponseCWProxyImpl
   final InventoryControllerGetBatch200Response _value;
 
   @override
-  InventoryControllerGetBatch200Response success(bool success) =>
+  InventoryControllerGetBatch200Response success(bool? success) =>
       call(success: success);
 
   @override
-  InventoryControllerGetBatch200Response error(Object? error) =>
+  InventoryControllerGetBatch200Response error(String? error) =>
       call(error: error);
 
   @override
   InventoryControllerGetBatch200Response payload(
-    InventoryControllerGetBatch200ResponseAllOfPayload? payload,
+    InventoryControllerGetBatch200ResponsePayload? payload,
   ) => call(payload: payload);
 
   @override
@@ -64,18 +64,18 @@ class _$InventoryControllerGetBatch200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return InventoryControllerGetBatch200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as InventoryControllerGetBatch200ResponseAllOfPayload?,
+          : payload as InventoryControllerGetBatch200ResponsePayload?,
     );
   }
 }
@@ -98,15 +98,14 @@ _$InventoryControllerGetBatch200ResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('InventoryControllerGetBatch200Response', json, (
       $checkedConvert,
     ) {
-      $checkKeys(json, requiredKeys: const ['success']);
       final val = InventoryControllerGetBatch200Response(
-        success: $checkedConvert('success', (v) => v as bool),
-        error: $checkedConvert('error', (v) => v),
+        success: $checkedConvert('success', (v) => v as bool?),
+        error: $checkedConvert('error', (v) => v as String?),
         payload: $checkedConvert(
           'payload',
           (v) => v == null
               ? null
-              : InventoryControllerGetBatch200ResponseAllOfPayload.fromJson(
+              : InventoryControllerGetBatch200ResponsePayload.fromJson(
                   v as Map<String, dynamic>,
                 ),
         ),
@@ -117,7 +116,7 @@ _$InventoryControllerGetBatch200ResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$InventoryControllerGetBatch200ResponseToJson(
   InventoryControllerGetBatch200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

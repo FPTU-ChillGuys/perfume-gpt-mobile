@@ -13,7 +13,7 @@ part of 'chat_provider.dart';
 final chatSessionProvider = ChatSessionProvider._();
 
 final class ChatSessionProvider
-    extends $NotifierProvider<ChatSession, List<Message>> {
+    extends $AsyncNotifierProvider<ChatSession, List<Message>> {
   ChatSessionProvider._()
     : super(
         from: null,
@@ -31,29 +31,21 @@ final class ChatSessionProvider
   @$internal
   @override
   ChatSession create() => ChatSession();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(List<Message> value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<List<Message>>(value),
-    );
-  }
 }
 
-String _$chatSessionHash() => r'b7b48c82d2ed6dc3334c8c414d5671428065491f';
+String _$chatSessionHash() => r'1bade914f681e632fb16b208ada79d9c37608788';
 
-abstract class _$ChatSession extends $Notifier<List<Message>> {
-  List<Message> build();
+abstract class _$ChatSession extends $AsyncNotifier<List<Message>> {
+  FutureOr<List<Message>> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<List<Message>, List<Message>>;
+    final ref = this.ref as $Ref<AsyncValue<List<Message>>, List<Message>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<List<Message>, List<Message>>,
-              List<Message>,
+              AnyNotifier<AsyncValue<List<Message>>, List<Message>>,
+              AsyncValue<List<Message>>,
               Object?,
               Object?
             >;

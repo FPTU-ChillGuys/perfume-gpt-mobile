@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **brandName** | **String** | Tên thương hiệu | 
 **categoryId** | **num** | ID danh mục | 
 **categoryName** | **String** | Tên danh mục | 
-**description** | **String** | Mô tả sản phẩm | 
+**description** | **String** | Mô tả sản phẩm | [optional] 
 **primaryImage** | **Object** | URL hình ảnh chính | [optional] 
 **variants** | [**List&lt;ProductVariantResponse&gt;**](ProductVariantResponse.md) | Danh sách biến thể | 
 **scentNotes** | **List&lt;String&gt;** | Danh sách nốt hương | 

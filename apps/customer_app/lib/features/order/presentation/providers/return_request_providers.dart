@@ -25,11 +25,9 @@ FutureOr<PaginatedReturnRequests> myReturnRequests(
   int page = 1,
   int pageSize = 10,
 }) {
-  return ref.read(returnRequestRepositoryProvider).getMyRequests(
-        status: status,
-        page: page,
-        pageSize: pageSize,
-      );
+  return ref
+      .read(returnRequestRepositoryProvider)
+      .getMyRequests(status: status, page: page, pageSize: pageSize);
 }
 
 @riverpod
@@ -39,12 +37,13 @@ FutureOr<ReturnRequest> returnRequestDetail(Ref ref, String id) {
 
 @riverpod
 FutureOr<(ReturnRequest, OrderDetail?)> returnRequestWithOrder(
-    Ref ref, String id) async {
+  Ref ref,
+  String id,
+) async {
   final request = await ref.watch(returnRequestDetailProvider(id).future);
   if (request.orderId.isEmpty) return (request, null);
   try {
-    final order =
-        await ref.watch(orderDetailProvider(request.orderId).future);
+    final order = await ref.watch(orderDetailProvider(request.orderId).future);
     return (request, order);
   } catch (_) {
     return (request, null);

@@ -54,7 +54,9 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
         context.push('/product/${banner.linkTarget}');
         break;
       case 'Campaign':
-        context.push('/store?source=campaign&sourceLabel=${Uri.encodeComponent(banner.title)}');
+        context.push(
+          '/store?source=campaign&sourceLabel=${Uri.encodeComponent(banner.title)}',
+        );
         break;
       case 'Brand':
         context.push('/store?brandId=${banner.linkTarget}');
@@ -78,13 +80,13 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
         final bannerHeight = isWide
             ? 260.0
             : isCompact
-                ? 160.0
-                : 200.0;
+            ? 160.0
+            : 200.0;
         final titleFontSize = isWide
             ? 18.0
             : isCompact
-                ? 12.0
-                : 14.0;
+            ? 12.0
+            : 14.0;
         final gradientHeight = isWide ? 80.0 : 60.0;
         final titlePadding = isWide ? 18.0 : 14.0;
         final dotSize = isWide ? 8.0 : 6.0;
@@ -103,8 +105,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
                 itemBuilder: (context, index) {
                   final banner = widget.banners[index];
                   // Always prefer mobile image on mobile app
-                  final imageUrl =
-                      banner.mobileImageUrl ?? banner.imageUrl;
+                  final imageUrl = banner.mobileImageUrl ?? banner.imageUrl;
 
                   return GestureDetector(
                     onTap: () => _onBannerTap(banner),
@@ -124,7 +125,8 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
                                   width: 24,
                                   height: 24,
                                   child: CircularProgressIndicator(
-                                      strokeWidth: 2),
+                                    strokeWidth: 2,
+                                  ),
                                 ),
                               ),
                             );
@@ -171,10 +173,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
                               fontSize: titleFontSize,
                               fontWeight: FontWeight.w600,
                               shadows: const [
-                                Shadow(
-                                  blurRadius: 8,
-                                  color: Colors.black45,
-                                ),
+                                Shadow(blurRadius: 8, color: Colors.black45),
                               ],
                             ),
                             maxLines: 2,

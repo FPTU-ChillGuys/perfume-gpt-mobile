@@ -3,8 +3,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for TrendControllerGetProductTrendJobResult200Response
 void main() {
-  final TrendControllerGetProductTrendJobResult200Response?
-  instance = /* TrendControllerGetProductTrendJobResult200Response(...) */ null;
+  final TrendControllerGetProductTrendJobResult200Response? instance = /* TrendControllerGetProductTrendJobResult200Response(...) */ null;
   // TODO add properties to the entity
 
   group(TrendControllerGetProductTrendJobResult200Response, () {
@@ -15,13 +14,13 @@ void main() {
     });
 
     // Thông báo lỗi
-    // Object error
+    // String error
     test('to test the property `error`', () async {
       // TODO
     });
 
     // Chi tiết lỗi
-    // Object details
+    // String details
     test('to test the property `details`', () async {
       // TODO
     });
@@ -30,5 +29,6 @@ void main() {
     test('to test the property `data`', () async {
       // TODO
     });
+
   });
 }

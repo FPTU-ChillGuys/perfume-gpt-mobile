@@ -20,12 +20,13 @@ import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_even
 import 'package:perfumegpt_ai_api_client/src/model/user_log_summary_request.dart';
 
 class LogsApi {
+
   final Dio _dio;
 
   const LogsApi(this._dio);
 
   /// Lấy báo cáo log hoạt động người dùng
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID người dùng
@@ -41,8 +42,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  logControllerCollectLogs({
+  Future<Response<EmailControllerSendEmail200Response>> logControllerCollectLogs({ 
     required String userId,
     required DateTime endDate,
     String? period,
@@ -57,10 +57,16 @@ class LogsApi {
     final _path = r'/logs/report/activity/user';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -86,13 +92,9 @@ class LogsApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -116,10 +118,10 @@ class LogsApi {
   }
 
   /// Tạo event log theo contract mới
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [eventLogCreateRequest]
+  /// * [eventLogCreateRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -129,8 +131,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  logControllerCreateEventLog({
+  Future<Response<EmailControllerSendEmail200Response>> logControllerCreateEventLog({ 
     required EventLogCreateRequest eventLogCreateRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -142,10 +143,16 @@ class LogsApi {
     final _path = r'/logs/events';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -156,10 +163,13 @@ class LogsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(eventLogCreateRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(eventLogCreateRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -178,13 +188,9 @@ class LogsApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -208,10 +214,10 @@ class LogsApi {
   }
 
   /// Tạo bản tóm tắt log người dùng thủ công
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [userLogSummaryRequest]
+  /// * [userLogSummaryRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -221,8 +227,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  logControllerCreateUserLogSummary({
+  Future<Response<EmailControllerSendEmail200Response>> logControllerCreateUserLogSummary({ 
     required UserLogSummaryRequest userLogSummaryRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -234,10 +239,16 @@ class LogsApi {
     final _path = r'/logs';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -248,10 +259,13 @@ class LogsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(userLogSummaryRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(userLogSummaryRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -270,13 +284,9 @@ class LogsApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -300,7 +310,7 @@ class LogsApi {
   }
 
   /// Tổng hợp summary của nhiều người dùng (runtime only), gồm overall và daily breakdown
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [period] - Khoảng thời gian lọc
@@ -315,8 +325,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [LogControllerGetAggregatedUserSummaryReport200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetAggregatedUserSummaryReport200Response>>
-  logControllerGetAggregatedUserSummaryReport({
+  Future<Response<LogControllerGetAggregatedUserSummaryReport200Response>> logControllerGetAggregatedUserSummaryReport({ 
     String? period,
     DateTime? endDate,
     DateTime? startDate,
@@ -330,10 +339,16 @@ class LogsApi {
     final _path = r'/logs/report/summary/aggregate';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -358,17 +373,9 @@ class LogsApi {
     LogControllerGetAggregatedUserSummaryReport200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              LogControllerGetAggregatedUserSummaryReport200Response,
-              LogControllerGetAggregatedUserSummaryReport200Response
-            >(
-              rawData,
-              'LogControllerGetAggregatedUserSummaryReport200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<LogControllerGetAggregatedUserSummaryReport200Response, LogControllerGetAggregatedUserSummaryReport200Response>(rawData, 'LogControllerGetAggregatedUserSummaryReport200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -392,7 +399,7 @@ class LogsApi {
   }
 
   /// Lấy tất cả log hoạt động người dùng
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -404,8 +411,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [LogControllerGetAllUserLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetAllUserLogs200Response>>
-  logControllerGetAllUserLogs({
+  Future<Response<LogControllerGetAllUserLogs200Response>> logControllerGetAllUserLogs({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -416,10 +422,16 @@ class LogsApi {
     final _path = r'/logs/all';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -437,17 +449,9 @@ class LogsApi {
     LogControllerGetAllUserLogs200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              LogControllerGetAllUserLogs200Response,
-              LogControllerGetAllUserLogs200Response
-            >(
-              rawData,
-              'LogControllerGetAllUserLogs200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<LogControllerGetAllUserLogs200Response, LogControllerGetAllUserLogs200Response>(rawData, 'LogControllerGetAllUserLogs200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -471,7 +475,7 @@ class LogsApi {
   }
 
   /// Xem chi tiết tất cả các bản tóm tắt log người dùng, gồm overall và daily breakdown
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [period] - Khoảng thời gian lọc
@@ -486,8 +490,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [LogControllerGetAllUserLogsSummaries200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetAllUserLogsSummaries200Response>>
-  logControllerGetAllUserLogsSummaries({
+  Future<Response<LogControllerGetAllUserLogsSummaries200Response>> logControllerGetAllUserLogsSummaries({ 
     String? period,
     DateTime? endDate,
     DateTime? startDate,
@@ -501,10 +504,16 @@ class LogsApi {
     final _path = r'/logs/summaries';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -529,17 +538,9 @@ class LogsApi {
     LogControllerGetAllUserLogsSummaries200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              LogControllerGetAllUserLogsSummaries200Response,
-              LogControllerGetAllUserLogsSummaries200Response
-            >(
-              rawData,
-              'LogControllerGetAllUserLogsSummaries200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<LogControllerGetAllUserLogsSummaries200Response, LogControllerGetAllUserLogsSummaries200Response>(rawData, 'LogControllerGetAllUserLogsSummaries200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -563,7 +564,7 @@ class LogsApi {
   }
 
   /// Lấy event log dạng mới
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID người dùng
@@ -579,8 +580,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [LogControllerGetAllUserLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetAllUserLogs200Response>>
-  logControllerGetEventLogs({
+  Future<Response<LogControllerGetAllUserLogs200Response>> logControllerGetEventLogs({ 
     String? userId,
     String? eventType,
     DateTime? startDate,
@@ -595,10 +595,16 @@ class LogsApi {
     final _path = r'/logs/events';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -624,17 +630,9 @@ class LogsApi {
     LogControllerGetAllUserLogs200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              LogControllerGetAllUserLogs200Response,
-              LogControllerGetAllUserLogs200Response
-            >(
-              rawData,
-              'LogControllerGetAllUserLogs200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<LogControllerGetAllUserLogs200Response, LogControllerGetAllUserLogs200Response>(rawData, 'LogControllerGetAllUserLogs200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -658,7 +656,7 @@ class LogsApi {
   }
 
   /// Thống kê nhanh event log cho dashboard
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID người dùng
@@ -674,8 +672,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [LogControllerGetEventLogsSummary200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetEventLogsSummary200Response>>
-  logControllerGetEventLogsSummary({
+  Future<Response<LogControllerGetEventLogsSummary200Response>> logControllerGetEventLogsSummary({ 
     String? userId,
     DateTime? startDate,
     DateTime? endDate,
@@ -690,10 +687,16 @@ class LogsApi {
     final _path = r'/logs/events/summary';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -719,17 +722,9 @@ class LogsApi {
     LogControllerGetEventLogsSummary200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              LogControllerGetEventLogsSummary200Response,
-              LogControllerGetEventLogsSummary200Response
-            >(
-              rawData,
-              'LogControllerGetEventLogsSummary200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<LogControllerGetEventLogsSummary200Response, LogControllerGetEventLogsSummary200Response>(rawData, 'LogControllerGetEventLogsSummary200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -753,7 +748,7 @@ class LogsApi {
   }
 
   /// Thống kê time-series event log cho dashboard chart
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID người dùng
@@ -769,8 +764,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [LogControllerGetEventLogsTimeSeries200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetEventLogsTimeSeries200Response>>
-  logControllerGetEventLogsTimeSeries({
+  Future<Response<LogControllerGetEventLogsTimeSeries200Response>> logControllerGetEventLogsTimeSeries({ 
     String? userId,
     DateTime? startDate,
     DateTime? endDate,
@@ -785,10 +779,16 @@ class LogsApi {
     final _path = r'/logs/events/summary/timeseries';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -814,17 +814,9 @@ class LogsApi {
     LogControllerGetEventLogsTimeSeries200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              LogControllerGetEventLogsTimeSeries200Response,
-              LogControllerGetEventLogsTimeSeries200Response
-            >(
-              rawData,
-              'LogControllerGetEventLogsTimeSeries200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<LogControllerGetEventLogsTimeSeries200Response, LogControllerGetEventLogsTimeSeries200Response>(rawData, 'LogControllerGetEventLogsTimeSeries200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -848,7 +840,7 @@ class LogsApi {
   }
 
   /// Lấy event log dạng mới có phân trang
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -868,8 +860,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [LogControllerGetPagedEventLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetPagedEventLogs200Response>>
-  logControllerGetPagedEventLogs({
+  Future<Response<LogControllerGetPagedEventLogs200Response>> logControllerGetPagedEventLogs({ 
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -888,10 +879,16 @@ class LogsApi {
     final _path = r'/logs/events/paged';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -921,17 +918,9 @@ class LogsApi {
     LogControllerGetPagedEventLogs200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              LogControllerGetPagedEventLogs200Response,
-              LogControllerGetPagedEventLogs200Response
-            >(
-              rawData,
-              'LogControllerGetPagedEventLogs200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<LogControllerGetPagedEventLogs200Response, LogControllerGetPagedEventLogs200Response>(rawData, 'LogControllerGetPagedEventLogs200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -955,7 +944,7 @@ class LogsApi {
   }
 
   /// Lấy báo cáo tất cả log hoạt động người dùng
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
@@ -970,8 +959,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  logControllerGetReportFromAllLogs({
+  Future<Response<EmailControllerSendEmail200Response>> logControllerGetReportFromAllLogs({ 
     required DateTime endDate,
     String? period,
     DateTime? startDate,
@@ -985,10 +973,16 @@ class LogsApi {
     final _path = r'/logs/report/activity/all';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -1013,13 +1007,9 @@ class LogsApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1043,13 +1033,13 @@ class LogsApi {
   }
 
   /// Xem chi tiết các bản tóm tắt log người dùng, gồm overall và daily breakdown
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [userId]
-  /// * [period]
-  /// * [endDate]
-  /// * [startDate]
+  /// * [userId] 
+  /// * [period] 
+  /// * [endDate] 
+  /// * [startDate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1059,8 +1049,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [LogControllerGetAllUserLogsSummaries200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetAllUserLogsSummaries200Response>>
-  logControllerGetUserLogsSummariesById({
+  Future<Response<LogControllerGetAllUserLogsSummaries200Response>> logControllerGetUserLogsSummariesById({ 
     required String userId,
     String? period,
     DateTime? endDate,
@@ -1072,18 +1061,19 @@ class LogsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/logs/summaries/{userId}'.replaceAll(
-      '{'
-      r'userId'
-      '}',
-      userId.toString(),
-    );
+    final _path = r'/logs/summaries/{userId}'.replaceAll('{' r'userId' '}', userId.toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -1108,17 +1098,9 @@ class LogsApi {
     LogControllerGetAllUserLogsSummaries200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              LogControllerGetAllUserLogsSummaries200Response,
-              LogControllerGetAllUserLogsSummaries200Response
-            >(
-              rawData,
-              'LogControllerGetAllUserLogsSummaries200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<LogControllerGetAllUserLogsSummaries200Response, LogControllerGetAllUserLogsSummaries200Response>(rawData, 'LogControllerGetAllUserLogsSummaries200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1142,7 +1124,7 @@ class LogsApi {
   }
 
   /// Xem báo cáo tóm tắt log người dùng theo ID
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID của người dùng
@@ -1157,8 +1139,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  logControllerGetUserLogsSummaryReportById({
+  Future<Response<EmailControllerSendEmail200Response>> logControllerGetUserLogsSummaryReportById({ 
     required String userId,
     required DateTime endDate,
     required DateTime startDate,
@@ -1172,10 +1153,16 @@ class LogsApi {
     final _path = r'/logs/report/summary';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -1200,13 +1187,9 @@ class LogsApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1230,7 +1213,7 @@ class LogsApi {
   }
 
   /// Lấy tất cả log hoạt động người dùng theo khoảng thời gian
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
@@ -1245,8 +1228,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [LogControllerGetAllUserLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<LogControllerGetAllUserLogs200Response>>
-  logControllerGetUserLogsWithPeriod({
+  Future<Response<LogControllerGetAllUserLogs200Response>> logControllerGetUserLogsWithPeriod({ 
     required DateTime endDate,
     String? period,
     DateTime? startDate,
@@ -1260,10 +1242,16 @@ class LogsApi {
     final _path = r'/logs/all/period';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -1288,17 +1276,9 @@ class LogsApi {
     LogControllerGetAllUserLogs200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              LogControllerGetAllUserLogs200Response,
-              LogControllerGetAllUserLogs200Response
-            >(
-              rawData,
-              'LogControllerGetAllUserLogs200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<LogControllerGetAllUserLogs200Response, LogControllerGetAllUserLogs200Response>(rawData, 'LogControllerGetAllUserLogs200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1322,7 +1302,7 @@ class LogsApi {
   }
 
   /// Rebuild rolling summary cho tất cả users có logs
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -1334,8 +1314,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  logControllerRebuildAllUsersSummary({
+  Future<Response<EmailControllerSendEmail200Response>> logControllerRebuildAllUsersSummary({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1346,10 +1325,16 @@ class LogsApi {
     final _path = r'/logs/rebuild-summary-all';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -1367,13 +1352,9 @@ class LogsApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1397,10 +1378,10 @@ class LogsApi {
   }
 
   /// Rebuild rolling summary cho user cụ thể từ logs
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [userId]
+  /// * [userId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1410,8 +1391,7 @@ class LogsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  logControllerRebuildUserSummary({
+  Future<Response<EmailControllerSendEmail200Response>> logControllerRebuildUserSummary({ 
     required String userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1420,18 +1400,19 @@ class LogsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/logs/rebuild-summary/{userId}'.replaceAll(
-      '{'
-      r'userId'
-      '}',
-      userId.toString(),
-    );
+    final _path = r'/logs/rebuild-summary/{userId}'.replaceAll('{' r'userId' '}', userId.toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -1449,13 +1430,9 @@ class LogsApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1477,4 +1454,5 @@ class LogsApi {
       extra: _response.extra,
     );
   }
+
 }

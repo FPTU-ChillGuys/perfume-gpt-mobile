@@ -13,12 +13,13 @@ import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email20
 import 'package:perfumegpt_ai_api_client/src/model/profile_controller_get_own_profile200_response.dart';
 
 class ProfileApi {
+
   final Dio _dio;
 
   const ProfileApi(this._dio);
 
   /// Lấy thông tin profile của người dùng hiện tại
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -30,8 +31,7 @@ class ProfileApi {
   ///
   /// Returns a [Future] containing a [Response] with a [ProfileControllerGetOwnProfile200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProfileControllerGetOwnProfile200Response>>
-  profileControllerGetOwnProfile({
+  Future<Response<ProfileControllerGetOwnProfile200Response>> profileControllerGetOwnProfile({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -42,8 +42,13 @@ class ProfileApi {
     final _path = r'/profile/me';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -58,17 +63,9 @@ class ProfileApi {
     ProfileControllerGetOwnProfile200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              ProfileControllerGetOwnProfile200Response,
-              ProfileControllerGetOwnProfile200Response
-            >(
-              rawData,
-              'ProfileControllerGetOwnProfile200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<ProfileControllerGetOwnProfile200Response, ProfileControllerGetOwnProfile200Response>(rawData, 'ProfileControllerGetOwnProfile200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -92,7 +89,7 @@ class ProfileApi {
   }
 
   /// Tạo báo cáo profile dưới dạng text
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -104,8 +101,7 @@ class ProfileApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  profileControllerGetProfileReport({
+  Future<Response<EmailControllerSendEmail200Response>> profileControllerGetProfileReport({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -116,8 +112,13 @@ class ProfileApi {
     final _path = r'/profile/report';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -132,13 +133,9 @@ class ProfileApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -160,4 +157,5 @@ class ProfileApi {
       extra: _response.extra,
     );
   }
+
 }

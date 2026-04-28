@@ -18,8 +18,7 @@ class PaymentWebViewPage extends ConsumerStatefulWidget {
   const PaymentWebViewPage({super.key, required this.paymentUrl});
 
   @override
-  ConsumerState<PaymentWebViewPage> createState() =>
-      _PaymentWebViewPageState();
+  ConsumerState<PaymentWebViewPage> createState() => _PaymentWebViewPageState();
 }
 
 class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
@@ -142,10 +141,10 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
       final isSuccess = isPayOsCancel
           ? false
           : isPayOsReturn
-              ? (payOsStatus == null ||
-                  payOsStatus == 'paid' ||
-                  payOsStatus == 'success')
-              : responseCode == '00';
+          ? (payOsStatus == null ||
+                payOsStatus == 'paid' ||
+                payOsStatus == 'success')
+          : responseCode == '00';
       final paymentId =
           queryParams['vnp_TxnRef'] ??
           queryParams['paymentId'] ??
@@ -154,10 +153,14 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
       // Confirm payment status with backend
       if (paymentId != null && paymentId.isNotEmpty) {
         try {
-          await ref.read(orderRepositoryProvider).confirmPayment(
+          await ref
+              .read(orderRepositoryProvider)
+              .confirmPayment(
                 paymentId,
                 isSuccess: isSuccess,
-                failureReason: isSuccess ? null : 'VNPay response code: $responseCode',
+                failureReason: isSuccess
+                    ? null
+                    : 'VNPay response code: $responseCode',
               );
         } catch (_) {
           // Confirm payment is best-effort
@@ -201,10 +204,14 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
       // Try to confirm payment even on error
       if (paymentId != null && paymentId.isNotEmpty) {
         try {
-          await ref.read(orderRepositoryProvider).confirmPayment(
+          await ref
+              .read(orderRepositoryProvider)
+              .confirmPayment(
                 paymentId,
                 isSuccess: isSuccess,
-                failureReason: isSuccess ? null : 'VNPay response code: $responseCode',
+                failureReason: isSuccess
+                    ? null
+                    : 'VNPay response code: $responseCode',
               );
         } catch (_) {}
       }
@@ -298,7 +305,10 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
                     const SizedBox(height: 24),
                     const Text(
                       'Thanh toán qua trình duyệt',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
@@ -397,7 +407,9 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
               final pid = _paymentIdFromUrl;
               if (pid != null && pid.isNotEmpty) {
                 try {
-                  await ref.read(orderRepositoryProvider).confirmPayment(
+                  await ref
+                      .read(orderRepositoryProvider)
+                      .confirmPayment(
                         pid,
                         isSuccess: false,
                         failureReason: 'User cancelled payment',

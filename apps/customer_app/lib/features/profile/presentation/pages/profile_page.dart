@@ -188,18 +188,22 @@ class _AuthenticatedView extends ConsumerWidget {
                 GestureDetector(
                   onTap: () async {
                     final updated = await context.push<bool>('/profile/edit');
-                    if (updated == true) ref.invalidate(profileControllerProvider);
+                    if (updated == true) {
+                      ref.invalidate(profileControllerProvider);
+                    }
                   },
                   child: CircleAvatar(
                     radius: 36,
                     backgroundColor: Colors.white24,
                     backgroundImage: profileAsync.whenOrNull(
-                      data: (p) => p.avatarUrl != null && p.avatarUrl!.isNotEmpty
+                      data: (p) =>
+                          p.avatarUrl != null && p.avatarUrl!.isNotEmpty
                           ? NetworkImage(ImageUrlHelper.resolve(p.avatarUrl!))
                           : null,
                     ),
                     child: profileAsync.maybeWhen(
-                      data: (p) => p.avatarUrl != null && p.avatarUrl!.isNotEmpty
+                      data: (p) =>
+                          p.avatarUrl != null && p.avatarUrl!.isNotEmpty
                           ? null
                           : Text(
                               initial,
@@ -240,12 +244,16 @@ class _AuthenticatedView extends ConsumerWidget {
                 ),
                 // ── Phone number ──
                 profileAsync.maybeWhen(
-                  data: (p) => p.phoneNumber != null && p.phoneNumber!.isNotEmpty
+                  data: (p) =>
+                      p.phoneNumber != null && p.phoneNumber!.isNotEmpty
                       ? Padding(
                           padding: const EdgeInsets.only(top: 2),
                           child: Text(
                             p.phoneNumber!,
-                            style: const TextStyle(color: Colors.white60, fontSize: 13),
+                            style: const TextStyle(
+                              color: Colors.white60,
+                              fontSize: 13,
+                            ),
                           ),
                         )
                       : const SizedBox.shrink(),
@@ -303,7 +311,9 @@ class _AuthenticatedView extends ConsumerWidget {
                 subtitle: 'Cập nhật thông tin cá nhân',
                 onTap: () async {
                   final updated = await context.push<bool>('/profile/edit');
-                  if (updated == true) ref.invalidate(profileControllerProvider);
+                  if (updated == true) {
+                    ref.invalidate(profileControllerProvider);
+                  }
                 },
               ),
               const SizedBox(height: 10),

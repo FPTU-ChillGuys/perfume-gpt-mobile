@@ -3,7 +3,10 @@ import '../entities/user_profile.dart';
 
 abstract class ProfileRepository {
   Future<UserProfile> getMe();
-  Future<void> updateMe({required String fullName, required String phoneNumber});
+  Future<void> updateMe({
+    required String fullName,
+    required String phoneNumber,
+  });
   Future<void> updateProfile({
     DateTime? dateOfBirth,
     num? minBudget,

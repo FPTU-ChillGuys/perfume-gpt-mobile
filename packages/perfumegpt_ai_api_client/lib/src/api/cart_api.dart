@@ -6,21 +6,23 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
+import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/add_to_cart_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/update_cart_item_request.dart';
 
 class CartApi {
+
   final Dio _dio;
 
   const CartApi(this._dio);
 
   /// Add item to cart
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [addToCartRequest]
+  /// * [addToCartRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -30,7 +32,7 @@ class CartApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> cartControllerAddToCart({
+  Future<Response<void>> cartControllerAddToCart({ 
     required AddToCartRequest addToCartRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -42,8 +44,13 @@ class CartApi {
     final _path = r'/cart';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -51,10 +58,13 @@ class CartApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(addToCartRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(addToCartRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -74,7 +84,7 @@ class CartApi {
   }
 
   /// Clear current user cart
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -86,7 +96,7 @@ class CartApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> cartControllerClearCart({
+  Future<Response<void>> cartControllerClearCart({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -97,8 +107,13 @@ class CartApi {
     final _path = r'/cart';
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -114,7 +129,7 @@ class CartApi {
   }
 
   /// Get current user cart
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -126,7 +141,7 @@ class CartApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> cartControllerGetCart({
+  Future<Response<void>> cartControllerGetCart({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -137,8 +152,13 @@ class CartApi {
     final _path = r'/cart';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -154,10 +174,10 @@ class CartApi {
   }
 
   /// Remove item from cart
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
+  /// * [id] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -167,7 +187,7 @@ class CartApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> cartControllerRemoveFromCart({
+  Future<Response<void>> cartControllerRemoveFromCart({ 
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -176,16 +196,16 @@ class CartApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/cart/{id}'.replaceAll(
-      '{'
-      r'id'
-      '}',
-      id.toString(),
-    );
+    final _path = r'/cart/{id}'.replaceAll('{' r'id' '}', id.toString());
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -201,11 +221,11 @@ class CartApi {
   }
 
   /// Update cart item quantity
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
-  /// * [updateCartItemRequest]
+  /// * [id] 
+  /// * [updateCartItemRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -215,7 +235,7 @@ class CartApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> cartControllerUpdateCartItem({
+  Future<Response<void>> cartControllerUpdateCartItem({ 
     required String id,
     required UpdateCartItemRequest updateCartItemRequest,
     CancelToken? cancelToken,
@@ -225,16 +245,16 @@ class CartApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/cart/{id}'.replaceAll(
-      '{'
-      r'id'
-      '}',
-      id.toString(),
-    );
+    final _path = r'/cart/{id}'.replaceAll('{' r'id' '}', id.toString());
     final _options = Options(
       method: r'PATCH',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -242,10 +262,13 @@ class CartApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(updateCartItemRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(updateCartItemRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -263,4 +286,5 @@ class CartApi {
 
     return _response;
   }
+
 }

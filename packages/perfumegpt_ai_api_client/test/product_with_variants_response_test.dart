@@ -3,8 +3,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ProductWithVariantsResponse
 void main() {
-  final ProductWithVariantsResponse?
-  instance = /* ProductWithVariantsResponse(...) */ null;
+  final ProductWithVariantsResponse? instance = /* ProductWithVariantsResponse(...) */ null;
   // TODO add properties to the entity
 
   group(ProductWithVariantsResponse, () {
@@ -91,5 +90,6 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
+
   });
 }

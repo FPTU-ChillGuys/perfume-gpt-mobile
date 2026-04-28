@@ -7,11 +7,11 @@ part of 'log_controller_get_event_logs_time_series200_response.dart';
 // **************************************************************************
 
 abstract class _$LogControllerGetEventLogsTimeSeries200ResponseCWProxy {
-  LogControllerGetEventLogsTimeSeries200Response success(bool success);
+  LogControllerGetEventLogsTimeSeries200Response success(bool? success);
 
-  LogControllerGetEventLogsTimeSeries200Response error(Object? error);
+  LogControllerGetEventLogsTimeSeries200Response error(String? error);
 
-  LogControllerGetEventLogsTimeSeries200Response details(Object? details);
+  LogControllerGetEventLogsTimeSeries200Response details(String? details);
 
   LogControllerGetEventLogsTimeSeries200Response data(
     EventLogTimeSeriesResponse? data,
@@ -25,9 +25,9 @@ abstract class _$LogControllerGetEventLogsTimeSeries200ResponseCWProxy {
   /// LogControllerGetEventLogsTimeSeries200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   LogControllerGetEventLogsTimeSeries200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     EventLogTimeSeriesResponse? data,
   });
 }
@@ -43,15 +43,15 @@ class _$LogControllerGetEventLogsTimeSeries200ResponseCWProxyImpl
   final LogControllerGetEventLogsTimeSeries200Response _value;
 
   @override
-  LogControllerGetEventLogsTimeSeries200Response success(bool success) =>
+  LogControllerGetEventLogsTimeSeries200Response success(bool? success) =>
       call(success: success);
 
   @override
-  LogControllerGetEventLogsTimeSeries200Response error(Object? error) =>
+  LogControllerGetEventLogsTimeSeries200Response error(String? error) =>
       call(error: error);
 
   @override
-  LogControllerGetEventLogsTimeSeries200Response details(Object? details) =>
+  LogControllerGetEventLogsTimeSeries200Response details(String? details) =>
       call(details: details);
 
   @override
@@ -74,18 +74,18 @@ class _$LogControllerGetEventLogsTimeSeries200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return LogControllerGetEventLogsTimeSeries200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -113,11 +113,10 @@ _$LogControllerGetEventLogsTimeSeries200ResponseFromJson(
 ) => $checkedCreate('LogControllerGetEventLogsTimeSeries200Response', json, (
   $checkedConvert,
 ) {
-  $checkKeys(json, requiredKeys: const ['success']);
   final val = LogControllerGetEventLogsTimeSeries200Response(
-    success: $checkedConvert('success', (v) => v as bool),
-    error: $checkedConvert('error', (v) => v),
-    details: $checkedConvert('details', (v) => v),
+    success: $checkedConvert('success', (v) => v as bool?),
+    error: $checkedConvert('error', (v) => v as String?),
+    details: $checkedConvert('details', (v) => v as String?),
     data: $checkedConvert(
       'data',
       (v) => v == null
@@ -131,7 +130,7 @@ _$LogControllerGetEventLogsTimeSeries200ResponseFromJson(
 Map<String, dynamic> _$LogControllerGetEventLogsTimeSeries200ResponseToJson(
   LogControllerGetEventLogsTimeSeries200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),

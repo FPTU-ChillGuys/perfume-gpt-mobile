@@ -80,16 +80,16 @@ class AddressRepositoryImpl implements AddressRepository {
   }
 
   Address _map(AddressResponse j) => Address(
-        id: j.id ?? '',
-        recipientName: j.recipientName,
-        recipientPhoneNumber: j.recipientPhoneNumber,
-        street: j.street,
-        ward: j.ward,
-        district: j.district,
-        city: j.city,
-        wardCode: j.wardCode,
-        districtId: j.districtId ?? 0,
-        provinceId: j.provinceId ?? 0,
-        isDefault: j.isDefault ?? false,
-      );
+    id: j.id ?? '',
+    recipientName: j.recipientName,
+    recipientPhoneNumber: j.recipientPhoneNumber,
+    street: j.street,
+    ward: j.ward,
+    district: j.district,
+    city: j.city,
+    wardCode: j.wardCode,
+    districtId: j.districtId ?? 0,
+    provinceId: j.provinceId ?? 0,
+    isDefault: j.isDefault ?? false,
+  );
 }

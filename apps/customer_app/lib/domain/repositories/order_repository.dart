@@ -2,8 +2,10 @@ import '../entities/checkout_result.dart';
 import '../entities/order.dart';
 
 class CheckoutRequest {
-  final String paymentMethod; // CashOnDelivery, VnPay, Momo, CashInStore, ExternalBankTransfer, PayOs
-  final String? depositGateway; // VnPay, Momo, PayOs (used when CashOnDelivery requires deposit)
+  final String
+  paymentMethod; // CashOnDelivery, VnPay, Momo, CashInStore, ExternalBankTransfer, PayOs
+  final String?
+  depositGateway; // VnPay, Momo, PayOs (used when CashOnDelivery requires deposit)
   final String deliveryMethod; // Delivery, PickupInStore
   final List<String>? itemIds;
   final double? expectedTotalPrice;
@@ -59,7 +61,9 @@ abstract class OrderRepository {
   });
   Future<OrderDetail> getOrderDetail(String orderId);
   Future<Invoice> getInvoice(String orderId);
-  Future<void> cancelOrder(String orderId, String reason, {
+  Future<void> cancelOrder(
+    String orderId,
+    String reason, {
     String? refundBankName,
     String? refundAccountNumber,
     String? refundAccountName,
@@ -70,5 +74,9 @@ abstract class OrderRepository {
     String? newDepositMethod,
     String? posSessionId,
   });
-  Future<void> confirmPayment(String paymentId, {required bool isSuccess, String? failureReason});
+  Future<void> confirmPayment(
+    String paymentId, {
+    required bool isSuccess,
+    String? failureReason,
+  });
 }

@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for RecommendationApi
 void main() {
   final instance = PerfumegptAiApiClient().getRecommendationApi();
@@ -16,12 +17,9 @@ void main() {
     // Manual trigger gửi daily recommendation cho user active (sync)
     //
     //Future<TrendControllerGetProductTrendJobResult200Response> recommendationControllerSendDailyRecommendationManual() async
-    test(
-      'test recommendationControllerSendDailyRecommendationManual',
-      () async {
-        // TODO
-      },
-    );
+    test('test recommendationControllerSendDailyRecommendationManual', () async {
+      // TODO
+    });
 
     // Test sinh recommendation cho user và gửi email
     //
@@ -36,5 +34,6 @@ void main() {
     test('test recommendationControllerTestRepurchase', () async {
       // TODO
     });
+
   });
 }

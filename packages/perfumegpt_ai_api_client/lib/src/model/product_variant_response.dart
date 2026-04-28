@@ -12,6 +12,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_variant_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,153 +23,323 @@ part 'product_variant_response.g.dart';
 class ProductVariantResponse {
   /// Returns a new [ProductVariantResponse] instance.
   ProductVariantResponse({
-    required this.id,
 
-    required this.productId,
+    required  this.id,
 
-    required this.sku,
+    required  this.productId,
 
-    required this.barcode,
+    required  this.sku,
 
-    required this.volumeMl,
+    required  this.barcode,
 
-    required this.type,
+    required  this.volumeMl,
 
-    required this.basePrice,
+    required  this.type,
 
-    required this.status,
+    required  this.basePrice,
 
-    required this.concentrationId,
+    required  this.status,
 
-    this.concentration,
+    required  this.concentrationId,
 
-    this.stock,
+     this.concentration,
 
-    required this.media,
+     this.stock,
 
-    required this.attributes,
+    required  this.media,
 
-    this.longevity,
+    required  this.attributes,
 
-    this.sillage,
+     this.longevity,
 
-    required this.createdAt,
+     this.sillage,
 
-    this.updatedAt,
+    required  this.createdAt,
+
+     this.updatedAt,
+
+     this.url,
   });
 
-  /// ID variant
-  @JsonKey(name: r'id', required: true, includeIfNull: false)
+      /// ID variant
+  @JsonKey(
+    
+    name: r'id',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String id;
 
-  /// ID sản phẩm
-  @JsonKey(name: r'productId', required: true, includeIfNull: false)
+
+
+      /// ID sản phẩm
+  @JsonKey(
+    
+    name: r'productId',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String productId;
 
-  /// SKU
-  @JsonKey(name: r'sku', required: true, includeIfNull: false)
+
+
+      /// SKU
+  @JsonKey(
+    
+    name: r'sku',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String sku;
 
-  /// Barcode
-  @JsonKey(name: r'barcode', required: true, includeIfNull: false)
+
+
+      /// Barcode
+  @JsonKey(
+    
+    name: r'barcode',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String barcode;
 
-  /// Dung tích (ml)
-  @JsonKey(name: r'volumeMl', required: true, includeIfNull: false)
+
+
+      /// Dung tích (ml)
+  @JsonKey(
+    
+    name: r'volumeMl',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final num volumeMl;
 
-  /// Loại sản phẩm
-  @JsonKey(name: r'type', required: true, includeIfNull: false)
+
+
+      /// Loại sản phẩm
+  @JsonKey(
+    
+    name: r'type',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String type;
 
-  /// Giá gốc
-  @JsonKey(name: r'basePrice', required: true, includeIfNull: false)
+
+
+      /// Giá gốc
+  @JsonKey(
+    
+    name: r'basePrice',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final num basePrice;
 
-  /// Trạng thái variant
-  @JsonKey(name: r'status', required: true, includeIfNull: false)
+
+
+      /// Trạng thái variant
+  @JsonKey(
+    
+    name: r'status',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String status;
 
-  /// ID nồng độ
-  @JsonKey(name: r'concentrationId', required: true, includeIfNull: false)
+
+
+      /// ID nồng độ
+  @JsonKey(
+    
+    name: r'concentrationId',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final num concentrationId;
 
-  /// Thông tin nồng độ
-  @JsonKey(name: r'concentration', required: false, includeIfNull: false)
+
+
+      /// Thông tin nồng độ
+  @JsonKey(
+    
+    name: r'concentration',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final ConcentrationResponse? concentration;
 
-  /// Thông tin tồn kho
-  @JsonKey(name: r'stock', required: false, includeIfNull: false)
+
+
+      /// Thông tin tồn kho
+  @JsonKey(
+    
+    name: r'stock',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final VariantStockResponse? stock;
 
-  /// Danh sách hình ảnh
-  @JsonKey(name: r'media', required: true, includeIfNull: false)
+
+
+      /// Danh sách hình ảnh
+  @JsonKey(
+    
+    name: r'media',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<VariantMediaResponse> media;
 
-  /// Danh sách thuộc tính variant
-  @JsonKey(name: r'attributes', required: true, includeIfNull: false)
+
+
+      /// Danh sách thuộc tính variant
+  @JsonKey(
+    
+    name: r'attributes',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final List<ProductAttributeResponse> attributes;
 
-  /// Độ lưu hương (Longevity)
-  @JsonKey(name: r'longevity', required: false, includeIfNull: false)
+
+
+      /// Độ lưu hương (Longevity)
+  @JsonKey(
+    
+    name: r'longevity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? longevity;
 
-  /// Độ tỏa hương (Sillage)
-  @JsonKey(name: r'sillage', required: false, includeIfNull: false)
+
+
+      /// Độ tỏa hương (Sillage)
+  @JsonKey(
+    
+    name: r'sillage',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final num? sillage;
 
-  /// Ngày tạo
-  @JsonKey(name: r'createdAt', required: true, includeIfNull: false)
+
+
+      /// Ngày tạo
+  @JsonKey(
+    
+    name: r'createdAt',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String createdAt;
 
-  /// Ngày cập nhật
-  @JsonKey(name: r'updatedAt', required: false, includeIfNull: false)
+
+
+      /// Ngày cập nhật
+  @JsonKey(
+    
+    name: r'updatedAt',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final Object? updatedAt;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProductVariantResponse &&
-          other.id == id &&
-          other.productId == productId &&
-          other.sku == sku &&
-          other.barcode == barcode &&
-          other.volumeMl == volumeMl &&
-          other.type == type &&
-          other.basePrice == basePrice &&
-          other.status == status &&
-          other.concentrationId == concentrationId &&
-          other.concentration == concentration &&
-          other.stock == stock &&
-          other.media == media &&
-          other.attributes == attributes &&
-          other.longevity == longevity &&
-          other.sillage == sillage &&
-          other.createdAt == createdAt &&
-          other.updatedAt == updatedAt;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      productId.hashCode +
-      sku.hashCode +
-      barcode.hashCode +
-      volumeMl.hashCode +
-      type.hashCode +
-      basePrice.hashCode +
-      status.hashCode +
-      concentrationId.hashCode +
-      (concentration == null ? 0 : concentration.hashCode) +
-      (stock == null ? 0 : stock.hashCode) +
-      media.hashCode +
-      attributes.hashCode +
-      longevity.hashCode +
-      sillage.hashCode +
-      createdAt.hashCode +
-      (updatedAt == null ? 0 : updatedAt.hashCode);
 
-  factory ProductVariantResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductVariantResponseFromJson(json);
+      /// URL hình ảnh chính của variant
+  @JsonKey(
+    
+    name: r'url',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final Object? url;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ProductVariantResponse &&
+      other.id == id &&
+      other.productId == productId &&
+      other.sku == sku &&
+      other.barcode == barcode &&
+      other.volumeMl == volumeMl &&
+      other.type == type &&
+      other.basePrice == basePrice &&
+      other.status == status &&
+      other.concentrationId == concentrationId &&
+      other.concentration == concentration &&
+      other.stock == stock &&
+      other.media == media &&
+      other.attributes == attributes &&
+      other.longevity == longevity &&
+      other.sillage == sillage &&
+      other.createdAt == createdAt &&
+      other.updatedAt == updatedAt &&
+      other.url == url;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        productId.hashCode +
+        sku.hashCode +
+        barcode.hashCode +
+        volumeMl.hashCode +
+        type.hashCode +
+        basePrice.hashCode +
+        status.hashCode +
+        concentrationId.hashCode +
+        (concentration == null ? 0 : concentration.hashCode) +
+        (stock == null ? 0 : stock.hashCode) +
+        media.hashCode +
+        attributes.hashCode +
+        longevity.hashCode +
+        sillage.hashCode +
+        createdAt.hashCode +
+        (updatedAt == null ? 0 : updatedAt.hashCode) +
+        (url == null ? 0 : url.hashCode);
+
+  factory ProductVariantResponse.fromJson(Map<String, dynamic> json) => _$ProductVariantResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductVariantResponseToJson(this);
 
@@ -176,4 +347,6 @@ class ProductVariantResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

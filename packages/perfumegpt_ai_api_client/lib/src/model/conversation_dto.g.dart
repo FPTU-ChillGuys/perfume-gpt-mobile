@@ -19,6 +19,8 @@ abstract class _$ConversationDtoCWProxy {
 
   ConversationDto messages(List<MessageDto>? messages);
 
+  ConversationDto isMobile(bool? isMobile);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConversationDto(...).copyWith.fieldName(value)`.
   ///
@@ -33,6 +35,7 @@ abstract class _$ConversationDtoCWProxy {
     bool isActive,
     String? userId,
     List<MessageDto>? messages,
+    bool? isMobile,
   });
 }
 
@@ -63,6 +66,9 @@ class _$ConversationDtoCWProxyImpl implements _$ConversationDtoCWProxy {
       call(messages: messages);
 
   @override
+  ConversationDto isMobile(bool? isMobile) => call(isMobile: isMobile);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConversationDto(...).copyWith.fieldName(value)`.
   ///
@@ -77,6 +83,7 @@ class _$ConversationDtoCWProxyImpl implements _$ConversationDtoCWProxy {
     Object? isActive = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
     Object? messages = const $CopyWithPlaceholder(),
+    Object? isMobile = const $CopyWithPlaceholder(),
   }) {
     return ConversationDto(
       id: id == const $CopyWithPlaceholder() || id == null
@@ -103,6 +110,10 @@ class _$ConversationDtoCWProxyImpl implements _$ConversationDtoCWProxy {
           ? _value.messages
           // ignore: cast_nullable_to_non_nullable
           : messages as List<MessageDto>?,
+      isMobile: isMobile == const $CopyWithPlaceholder()
+          ? _value.isMobile
+          // ignore: cast_nullable_to_non_nullable
+          : isMobile as bool?,
     );
   }
 }
@@ -137,6 +148,7 @@ ConversationDto _$ConversationDtoFromJson(
           ?.map((e) => MessageDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
+    isMobile: $checkedConvert('isMobile', (v) => v as bool?),
   );
   return val;
 });
@@ -149,4 +161,5 @@ Map<String, dynamic> _$ConversationDtoToJson(ConversationDto instance) =>
       'isActive': instance.isActive,
       'userId': ?instance.userId,
       'messages': ?instance.messages?.map((e) => e.toJson()).toList(),
+      'isMobile': ?instance.isMobile,
     };

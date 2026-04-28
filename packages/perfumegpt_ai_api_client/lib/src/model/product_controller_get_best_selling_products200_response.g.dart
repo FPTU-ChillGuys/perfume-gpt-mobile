@@ -7,12 +7,12 @@ part of 'product_controller_get_best_selling_products200_response.dart';
 // **************************************************************************
 
 abstract class _$ProductControllerGetBestSellingProducts200ResponseCWProxy {
-  ProductControllerGetBestSellingProducts200Response success(bool success);
+  ProductControllerGetBestSellingProducts200Response success(bool? success);
 
-  ProductControllerGetBestSellingProducts200Response error(Object? error);
+  ProductControllerGetBestSellingProducts200Response error(String? error);
 
   ProductControllerGetBestSellingProducts200Response payload(
-    ProductControllerGetBestSellingProducts200ResponseAllOfPayload? payload,
+    ProductControllerGetBestSellingProducts200ResponsePayload? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -23,9 +23,9 @@ abstract class _$ProductControllerGetBestSellingProducts200ResponseCWProxy {
   /// ProductControllerGetBestSellingProducts200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ProductControllerGetBestSellingProducts200Response call({
-    bool success,
-    Object? error,
-    ProductControllerGetBestSellingProducts200ResponseAllOfPayload? payload,
+    bool? success,
+    String? error,
+    ProductControllerGetBestSellingProducts200ResponsePayload? payload,
   });
 }
 
@@ -40,16 +40,16 @@ class _$ProductControllerGetBestSellingProducts200ResponseCWProxyImpl
   final ProductControllerGetBestSellingProducts200Response _value;
 
   @override
-  ProductControllerGetBestSellingProducts200Response success(bool success) =>
+  ProductControllerGetBestSellingProducts200Response success(bool? success) =>
       call(success: success);
 
   @override
-  ProductControllerGetBestSellingProducts200Response error(Object? error) =>
+  ProductControllerGetBestSellingProducts200Response error(String? error) =>
       call(error: error);
 
   @override
   ProductControllerGetBestSellingProducts200Response payload(
-    ProductControllerGetBestSellingProducts200ResponseAllOfPayload? payload,
+    ProductControllerGetBestSellingProducts200ResponsePayload? payload,
   ) => call(payload: payload);
 
   @override
@@ -66,19 +66,19 @@ class _$ProductControllerGetBestSellingProducts200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return ProductControllerGetBestSellingProducts200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
           : payload
-                as ProductControllerGetBestSellingProducts200ResponseAllOfPayload?,
+                as ProductControllerGetBestSellingProducts200ResponsePayload?,
     );
   }
 }
@@ -102,15 +102,14 @@ _$ProductControllerGetBestSellingProducts200ResponseFromJson(
 ) => $checkedCreate('ProductControllerGetBestSellingProducts200Response', json, (
   $checkedConvert,
 ) {
-  $checkKeys(json, requiredKeys: const ['success']);
   final val = ProductControllerGetBestSellingProducts200Response(
-    success: $checkedConvert('success', (v) => v as bool),
-    error: $checkedConvert('error', (v) => v),
+    success: $checkedConvert('success', (v) => v as bool?),
+    error: $checkedConvert('error', (v) => v as String?),
     payload: $checkedConvert(
       'payload',
       (v) => v == null
           ? null
-          : ProductControllerGetBestSellingProducts200ResponseAllOfPayload.fromJson(
+          : ProductControllerGetBestSellingProducts200ResponsePayload.fromJson(
               v as Map<String, dynamic>,
             ),
     ),
@@ -121,7 +120,7 @@ _$ProductControllerGetBestSellingProducts200ResponseFromJson(
 Map<String, dynamic> _$ProductControllerGetBestSellingProducts200ResponseToJson(
   ProductControllerGetBestSellingProducts200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

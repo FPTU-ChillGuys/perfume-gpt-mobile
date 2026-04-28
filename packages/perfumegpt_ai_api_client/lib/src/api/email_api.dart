@@ -13,15 +13,16 @@ import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email20
 import 'package:perfumegpt_ai_api_client/src/model/send_email_request_dto.dart';
 
 class EmailApi {
+
   final Dio _dio;
 
   const EmailApi(this._dio);
 
   /// Gửi email text cơ bản
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [sendEmailRequestDto]
+  /// * [sendEmailRequestDto] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -31,8 +32,7 @@ class EmailApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  emailControllerSendEmail({
+  Future<Response<EmailControllerSendEmail200Response>> emailControllerSendEmail({ 
     required SendEmailRequestDto sendEmailRequestDto,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -44,8 +44,13 @@ class EmailApi {
     final _path = r'/email/send';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -53,10 +58,13 @@ class EmailApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(sendEmailRequestDto);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(sendEmailRequestDto);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -75,13 +83,9 @@ class EmailApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -103,4 +107,5 @@ class EmailApi {
       extra: _response.extra,
     );
   }
+
 }

@@ -3,8 +3,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ConversationRequestDto
 void main() {
-  final ConversationRequestDto? instance = /* ConversationRequestDto(...) */
-      null;
+  final ConversationRequestDto? instance = /* ConversationRequestDto(...) */ null;
   // TODO add properties to the entity
 
   group(ConversationRequestDto, () {
@@ -25,5 +24,18 @@ void main() {
     test('to test the property `messages`', () async {
       // TODO
     });
+
+    // Chế độ nhân viên tư vấn tại quầy
+    // bool isStaff
+    test('to test the property `isStaff`', () async {
+      // TODO
+    });
+
+    // Client là Mobile App
+    // bool isMobile
+    test('to test the property `isMobile`', () async {
+      // TODO
+    });
+
   });
 }

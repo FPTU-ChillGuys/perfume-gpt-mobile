@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for AppApi
 void main() {
   final instance = PerfumegptAiApiClient().getAppApi();
@@ -12,5 +13,6 @@ void main() {
     test('test appControllerCheckHealth', () async {
       // TODO
     });
+
   });
 }

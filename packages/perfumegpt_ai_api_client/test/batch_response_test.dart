@@ -48,5 +48,12 @@ void main() {
     test('to test the property `remainingQuantity`', () async {
       // TODO
     });
+
+    // Variant SKU
+    // String variantSku
+    test('to test the property `variantSku`', () async {
+      // TODO
+    });
+
   });
 }

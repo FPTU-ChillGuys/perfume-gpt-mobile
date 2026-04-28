@@ -19,7 +19,7 @@ abstract class _$ProductResponseCWProxy {
 
   ProductResponse categoryName(String categoryName);
 
-  ProductResponse description(String description);
+  ProductResponse description(String? description);
 
   ProductResponse primaryImage(Object? primaryImage);
 
@@ -39,7 +39,7 @@ abstract class _$ProductResponseCWProxy {
     String brandName,
     num categoryId,
     String categoryName,
-    String description,
+    String? description,
     Object? primaryImage,
     List<ProductAttributeResponse> attributes,
   });
@@ -72,7 +72,7 @@ class _$ProductResponseCWProxyImpl implements _$ProductResponseCWProxy {
       call(categoryName: categoryName);
 
   @override
-  ProductResponse description(String description) =>
+  ProductResponse description(String? description) =>
       call(description: description);
 
   @override
@@ -129,11 +129,10 @@ class _$ProductResponseCWProxyImpl implements _$ProductResponseCWProxy {
           ? _value.categoryName
           // ignore: cast_nullable_to_non_nullable
           : categoryName as String,
-      description:
-          description == const $CopyWithPlaceholder() || description == null
+      description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
-          : description as String,
+          : description as String?,
       primaryImage: primaryImage == const $CopyWithPlaceholder()
           ? _value.primaryImage
           // ignore: cast_nullable_to_non_nullable
@@ -169,7 +168,6 @@ ProductResponse _$ProductResponseFromJson(Map<String, dynamic> json) =>
           'brandName',
           'categoryId',
           'categoryName',
-          'description',
           'primaryImage',
           'attributes',
         ],
@@ -181,7 +179,7 @@ ProductResponse _$ProductResponseFromJson(Map<String, dynamic> json) =>
         brandName: $checkedConvert('brandName', (v) => v as String),
         categoryId: $checkedConvert('categoryId', (v) => v as num),
         categoryName: $checkedConvert('categoryName', (v) => v as String),
-        description: $checkedConvert('description', (v) => v as String),
+        description: $checkedConvert('description', (v) => v as String?),
         primaryImage: $checkedConvert('primaryImage', (v) => v),
         attributes: $checkedConvert(
           'attributes',
@@ -205,7 +203,7 @@ Map<String, dynamic> _$ProductResponseToJson(ProductResponse instance) =>
       'brandName': instance.brandName,
       'categoryId': instance.categoryId,
       'categoryName': instance.categoryName,
-      'description': instance.description,
+      'description': ?instance.description,
       'primaryImage': instance.primaryImage,
       'attributes': instance.attributes.map((e) => e.toJson()).toList(),
     };

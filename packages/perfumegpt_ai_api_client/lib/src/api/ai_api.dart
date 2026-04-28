@@ -12,12 +12,13 @@ import 'package:dio/dio.dart';
 import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email200_response.dart';
 
 class AIApi {
+
   final Dio _dio;
 
   const AIApi(this._dio);
 
   /// Tìm kiếm sản phẩm bằng AI
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [prompt] - Nội dung yêu cầu tìm kiếm
@@ -30,8 +31,7 @@ class AIApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  aIControllerSearchProductWithAI({
+  Future<Response<EmailControllerSendEmail200Response>> aIControllerSearchProductWithAI({ 
     required String prompt,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -43,12 +43,19 @@ class AIApi {
     final _path = r'/ai/search';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{r'prompt': prompt};
+    final _queryParameters = <String, dynamic>{
+      r'prompt': prompt,
+    };
 
     final _response = await _dio.request<Object>(
       _path,
@@ -62,13 +69,9 @@ class AIApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -90,4 +93,5 @@ class AIApi {
       extra: _response.extra,
     );
   }
+
 }

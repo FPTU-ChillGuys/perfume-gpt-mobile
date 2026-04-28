@@ -82,7 +82,8 @@ class OrderRepositoryImpl implements OrderRepository {
 
     try {
       final bodyJson = body.toJson();
-      if (request.depositGateway != null && request.depositGateway!.isNotEmpty) {
+      if (request.depositGateway != null &&
+          request.depositGateway!.isNotEmpty) {
         bodyJson['payment'] = {
           ...(bodyJson['payment'] as Map<String, dynamic>? ??
               <String, dynamic>{}),
@@ -92,7 +93,11 @@ class OrderRepositoryImpl implements OrderRepository {
       final response = await _dio.post(
         '/api/orders/checkout',
         data: bodyJson,
-        options: Options(extra: const {'secure': [_bearerSecure]}),
+        options: Options(
+          extra: const {
+            'secure': [_bearerSecure],
+          },
+        ),
       );
       final payload = (response.data as Map<String, dynamic>?)?['payload'];
       if (payload != null) {
@@ -137,17 +142,23 @@ class OrderRepositoryImpl implements OrderRepository {
         if (type != null && type.isNotEmpty) 'Type': type,
         if (paymentStatus != null && paymentStatus.isNotEmpty)
           'PaymentStatus': paymentStatus,
-        if (searchTerm != null && searchTerm.isNotEmpty) 'SearchTerm': searchTerm,
+        if (searchTerm != null && searchTerm.isNotEmpty)
+          'SearchTerm': searchTerm,
         'PageNumber': page ?? 1,
         'PageSize': pageSize ?? 20,
         'SortBy': 'CreatedAt',
         'SortOrder': 'desc',
         'IsDescending': true,
       },
-      options: Options(extra: const {'secure': [_bearerSecure]}),
+      options: Options(
+        extra: const {
+          'secure': [_bearerSecure],
+        },
+      ),
     );
-    final payload = (response.data as Map<String, dynamic>?)?['payload']
-        as Map<String, dynamic>?;
+    final payload =
+        (response.data as Map<String, dynamic>?)?['payload']
+            as Map<String, dynamic>?;
     if (payload == null) {
       return const PaginatedOrders(
         items: [],
@@ -187,7 +198,9 @@ class OrderRepositoryImpl implements OrderRepository {
                 id: d['id']?.toString() ?? '',
                 variantId: d['variantId']?.toString() ?? '',
                 variantName: d['variantName']?.toString() ?? '',
-                imageUrl: ImageUrlHelper.resolve(d['imageUrl']?.toString() ?? ''),
+                imageUrl: ImageUrlHelper.resolve(
+                  d['imageUrl']?.toString() ?? '',
+                ),
                 quantity: (d['quantity'] as num?)?.toInt() ?? 0,
                 unitPrice: (d['unitPrice'] as num?)?.toDouble() ?? 0.0,
                 total:
@@ -212,10 +225,16 @@ class OrderRepositoryImpl implements OrderRepository {
   Future<OrderDetail> getOrderDetail(String orderId) async {
     final response = await _dio.get(
       '/api/orders/my-orders/$orderId',
-      options: Options(extra: const {'secure': [_bearerSecure]}),
+      options: Options(
+        extra: const {
+          'secure': [_bearerSecure],
+        },
+      ),
     );
-    final o = (response.data as Map<String, dynamic>?)?['payload']
-        as Map<String, dynamic>? ?? <String, dynamic>{};
+    final o =
+        (response.data as Map<String, dynamic>?)?['payload']
+            as Map<String, dynamic>? ??
+        <String, dynamic>{};
     final paymentTransactions =
         (o['paymentTransactions'] as List?)?.cast<Map<String, dynamic>>() ??
         const <Map<String, dynamic>>[];
@@ -243,7 +262,9 @@ class OrderRepositoryImpl implements OrderRepository {
       voucherType: o['voucherType']?.toString(),
       voucherDiscountTotal:
           (o['voucherDiscountTotal'] as num?)?.toDouble() ?? 0.0,
-      paymentExpiresAt: DateTime.tryParse(o['paymentExpiresAt']?.toString() ?? ''),
+      paymentExpiresAt: DateTime.tryParse(
+        o['paymentExpiresAt']?.toString() ?? '',
+      ),
       paidAt: DateTime.tryParse(o['paidAt']?.toString() ?? ''),
       createdAt: DateTime.tryParse(o['createdAt']?.toString() ?? ''),
       updatedAt: DateTime.tryParse(o['updatedAt']?.toString() ?? ''),
@@ -304,10 +325,16 @@ class OrderRepositoryImpl implements OrderRepository {
   Future<Invoice> getInvoice(String orderId) async {
     final response = await _dio.get(
       '/api/orders/my-orders/$orderId/invoice',
-      options: Options(extra: const {'secure': [_bearerSecure]}),
+      options: Options(
+        extra: const {
+          'secure': [_bearerSecure],
+        },
+      ),
     );
-    final payload = (response.data as Map<String, dynamic>?)?['payload']
-        as Map<String, dynamic>? ?? <String, dynamic>{};
+    final payload =
+        (response.data as Map<String, dynamic>?)?['payload']
+            as Map<String, dynamic>? ??
+        <String, dynamic>{};
     final itemsPayload =
         (payload['items'] as List?)?.cast<Map<String, dynamic>>() ??
         const <Map<String, dynamic>>[];
@@ -409,7 +436,9 @@ class OrderRepositoryImpl implements OrderRepository {
     final fallbackPayloads = <Map<String, dynamic>>[
       basePayload,
       // Common BE variant: full payment can omit newDepositMethod.
-      if (paymentValue == 'VnPay' || paymentValue == 'Momo' || paymentValue == 'PayOs')
+      if (paymentValue == 'VnPay' ||
+          paymentValue == 'Momo' ||
+          paymentValue == 'PayOs')
         <String, dynamic>{
           'newPaymentMethod': paymentValue,
           'newDepositMethod': null,
@@ -452,9 +481,14 @@ class OrderRepositoryImpl implements OrderRepository {
           final response = await _dio.post(
             '/api/payments/$paymentId/retry',
             data: payload,
-            options: Options(extra: const {'secure': [_bearerSecure]}),
+            options: Options(
+              extra: const {
+                'secure': [_bearerSecure],
+              },
+            ),
           );
-          final payloadData = (response.data as Map<String, dynamic>?)?['payload'];
+          final payloadData =
+              (response.data as Map<String, dynamic>?)?['payload'];
           if (payloadData is String) {
             return _normalizePaymentUrl(payloadData);
           }

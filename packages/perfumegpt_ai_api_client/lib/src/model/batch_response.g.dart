@@ -21,6 +21,8 @@ abstract class _$BatchResponseCWProxy {
 
   BatchResponse remainingQuantity(num remainingQuantity);
 
+  BatchResponse variantSku(String variantSku);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BatchResponse(...).copyWith.fieldName(value)`.
   ///
@@ -36,6 +38,7 @@ abstract class _$BatchResponseCWProxy {
     num importQuantity,
     DateTime manufactureDate,
     num remainingQuantity,
+    String variantSku,
   });
 }
 
@@ -71,6 +74,9 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
       call(remainingQuantity: remainingQuantity);
 
   @override
+  BatchResponse variantSku(String variantSku) => call(variantSku: variantSku);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BatchResponse(...).copyWith.fieldName(value)`.
   ///
@@ -86,6 +92,7 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
     Object? importQuantity = const $CopyWithPlaceholder(),
     Object? manufactureDate = const $CopyWithPlaceholder(),
     Object? remainingQuantity = const $CopyWithPlaceholder(),
+    Object? variantSku = const $CopyWithPlaceholder(),
   }) {
     return BatchResponse(
       batchCode: batchCode == const $CopyWithPlaceholder() || batchCode == null
@@ -123,6 +130,11 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
           ? _value.remainingQuantity
           // ignore: cast_nullable_to_non_nullable
           : remainingQuantity as num,
+      variantSku:
+          variantSku == const $CopyWithPlaceholder() || variantSku == null
+          ? _value.variantSku
+          // ignore: cast_nullable_to_non_nullable
+          : variantSku as String,
     );
   }
 }
@@ -151,6 +163,7 @@ BatchResponse _$BatchResponseFromJson(
       'importQuantity',
       'manufactureDate',
       'remainingQuantity',
+      'variantSku',
     ],
   );
   final val = BatchResponse(
@@ -167,6 +180,7 @@ BatchResponse _$BatchResponseFromJson(
       (v) => DateTime.parse(v as String),
     ),
     remainingQuantity: $checkedConvert('remainingQuantity', (v) => v as num),
+    variantSku: $checkedConvert('variantSku', (v) => v as String),
   );
   return val;
 });
@@ -180,4 +194,5 @@ Map<String, dynamic> _$BatchResponseToJson(BatchResponse instance) =>
       'importQuantity': instance.importQuantity,
       'manufactureDate': instance.manufactureDate.toIso8601String(),
       'remainingQuantity': instance.remainingQuantity,
+      'variantSku': instance.variantSku,
     };

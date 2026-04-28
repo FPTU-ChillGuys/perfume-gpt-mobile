@@ -33,8 +33,13 @@ class LoyaltyPage extends ConsumerWidget {
               pinned: true,
               systemOverlayStyle: SystemUiOverlayStyle.light,
               backgroundColor: AppColors.primaryDark,
-              title: const Text('Điểm tích lũy',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
+              title: const Text(
+                'Điểm tích lũy',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
                   decoration: const BoxDecoration(
@@ -65,8 +70,13 @@ class LoyaltyPage extends ConsumerWidget {
                               ),
                             ),
                             const SizedBox(height: 2),
-                            const Text('điểm hiện có',
-                                style: TextStyle(color: Colors.white70, fontSize: 13)),
+                            const Text(
+                              'điểm hiện có',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 13,
+                              ),
+                            ),
                             const SizedBox(height: 16),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -96,15 +106,27 @@ class LoyaltyPage extends ConsumerWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(Icons.error_outline, color: Colors.white70, size: 32),
+                            const Icon(
+                              Icons.error_outline,
+                              color: Colors.white70,
+                              size: 32,
+                            ),
                             const SizedBox(height: 8),
-                            const Text('Không thể tải điểm',
-                                style: TextStyle(color: Colors.white70, fontSize: 14)),
+                            const Text(
+                              'Không thể tải điểm',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 14,
+                              ),
+                            ),
                             const SizedBox(height: 8),
                             TextButton(
-                              onPressed: () => ref.invalidate(loyaltyTotalProvider),
-                              child: const Text('Thử lại',
-                                  style: TextStyle(color: Colors.white)),
+                              onPressed: () =>
+                                  ref.invalidate(loyaltyTotalProvider),
+                              child: const Text(
+                                'Thử lại',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ],
                         ),
@@ -119,11 +141,14 @@ class LoyaltyPage extends ConsumerWidget {
             const SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(16, 20, 16, 8),
-                child: Text('Lịch sử giao dịch',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.textPrimary)),
+                child: Text(
+                  'Lịch sử giao dịch',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
               ),
             ),
 
@@ -136,11 +161,19 @@ class LoyaltyPage extends ConsumerWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.history, size: 64, color: AppColors.textSecondary),
+                          Icon(
+                            Icons.history,
+                            size: 64,
+                            color: AppColors.textSecondary,
+                          ),
                           SizedBox(height: 16),
-                          Text('Chưa có giao dịch nào',
-                              style: TextStyle(
-                                  fontSize: 16, color: AppColors.textSecondary)),
+                          Text(
+                            'Chưa có giao dịch nào',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -158,18 +191,24 @@ class LoyaltyPage extends ConsumerWidget {
               },
               loading: () => const SliverFillRemaining(
                 child: Center(
-                    child: CircularProgressIndicator(color: AppColors.primary)),
+                  child: CircularProgressIndicator(color: AppColors.primary),
+                ),
               ),
               error: (e, _) => SliverFillRemaining(
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.error_outline,
-                          size: 48, color: AppColors.textSecondary),
+                      const Icon(
+                        Icons.error_outline,
+                        size: 48,
+                        color: AppColors.textSecondary,
+                      ),
                       const SizedBox(height: 12),
-                      const Text('Lỗi khi tải lịch sử',
-                          style: TextStyle(color: AppColors.textSecondary)),
+                      const Text(
+                        'Lỗi khi tải lịch sử',
+                        style: TextStyle(color: AppColors.textSecondary),
+                      ),
                       const SizedBox(height: 8),
                       TextButton(
                         onPressed: () => ref.invalidate(loyaltyHistoryProvider),
@@ -198,11 +237,12 @@ class _PointBadge extends StatelessWidget {
   final IconData icon;
   final Color color;
 
-  const _PointBadge(
-      {required this.label,
-      required this.points,
-      required this.icon,
-      required this.color});
+  const _PointBadge({
+    required this.label,
+    required this.points,
+    required this.icon,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -211,11 +251,18 @@ class _PointBadge extends StatelessWidget {
       children: [
         Icon(icon, size: 16, color: color),
         const SizedBox(width: 4),
-        Text('$label: ',
-            style: const TextStyle(color: Colors.white60, fontSize: 13)),
-        Text(_numberFormat.format(points),
-            style: TextStyle(
-                color: color, fontWeight: FontWeight.w700, fontSize: 14)),
+        Text(
+          '$label: ',
+          style: const TextStyle(color: Colors.white60, fontSize: 13),
+        ),
+        Text(
+          _numberFormat.format(points),
+          style: TextStyle(
+            color: color,
+            fontWeight: FontWeight.w700,
+            fontSize: 14,
+          ),
+        ),
       ],
     );
   }
@@ -231,8 +278,9 @@ class _TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isEarned = transaction.type == 'Earn';
     final isSpent = transaction.type == 'Spend';
-    final color =
-        isEarned ? Colors.green : (isSpent ? Colors.red : Colors.orange);
+    final color = isEarned
+        ? Colors.green
+        : (isSpent ? Colors.red : Colors.orange);
     final sign = isEarned ? '+' : '-';
     final icon = isEarned
         ? Icons.add_circle_outline
@@ -264,34 +312,48 @@ class _TransactionCard extends StatelessWidget {
                 Text(
                   _typeLabel(transaction.type),
                   style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13,
-                      color: AppColors.textPrimary),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 13,
+                    color: AppColors.textPrimary,
+                  ),
                 ),
                 if (transaction.description != null &&
                     transaction.description!.isNotEmpty) ...[
                   const SizedBox(height: 2),
-                  Text(transaction.description!,
-                      style: const TextStyle(
-                          fontSize: 12, color: AppColors.textSecondary),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis),
+                  Text(
+                    transaction.description!,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.textSecondary,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
                 if (transaction.createdAt != null) ...[
                   const SizedBox(height: 2),
                   Text(
-                      DateFormat('dd/MM/yyyy HH:mm')
-                          .format(transaction.createdAt!),
-                      style: const TextStyle(
-                          fontSize: 11, color: AppColors.textSecondary)),
+                    DateFormat(
+                      'dd/MM/yyyy HH:mm',
+                    ).format(transaction.createdAt!),
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
                 ],
               ],
             ),
           ),
           const SizedBox(width: 8),
-          Text('$sign${_numberFormat.format(transaction.points.abs())}',
-              style: TextStyle(
-                  fontWeight: FontWeight.w700, fontSize: 15, color: color)),
+          Text(
+            '$sign${_numberFormat.format(transaction.points.abs())}',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 15,
+              color: color,
+            ),
+          ),
         ],
       ),
     );

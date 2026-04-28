@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for EmailApi
 void main() {
   final instance = PerfumegptAiApiClient().getEmailApi();
@@ -12,5 +13,6 @@ void main() {
     test('test emailControllerSendEmail', () async {
       // TODO
     });
+
   });
 }

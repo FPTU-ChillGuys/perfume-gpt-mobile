@@ -7,9 +7,9 @@ part of 'product_controller_get_products_by_hybrid_search200_response.dart';
 // **************************************************************************
 
 abstract class _$ProductControllerGetProductsByHybridSearch200ResponseCWProxy {
-  ProductControllerGetProductsByHybridSearch200Response success(bool success);
+  ProductControllerGetProductsByHybridSearch200Response success(bool? success);
 
-  ProductControllerGetProductsByHybridSearch200Response error(Object? error);
+  ProductControllerGetProductsByHybridSearch200Response error(String? error);
 
   ProductControllerGetProductsByHybridSearch200Response payload(
     HybridSearchResponse? payload,
@@ -23,8 +23,8 @@ abstract class _$ProductControllerGetProductsByHybridSearch200ResponseCWProxy {
   /// ProductControllerGetProductsByHybridSearch200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ProductControllerGetProductsByHybridSearch200Response call({
-    bool success,
-    Object? error,
+    bool? success,
+    String? error,
     HybridSearchResponse? payload,
   });
 }
@@ -40,11 +40,12 @@ class _$ProductControllerGetProductsByHybridSearch200ResponseCWProxyImpl
   final ProductControllerGetProductsByHybridSearch200Response _value;
 
   @override
-  ProductControllerGetProductsByHybridSearch200Response success(bool success) =>
-      call(success: success);
+  ProductControllerGetProductsByHybridSearch200Response success(
+    bool? success,
+  ) => call(success: success);
 
   @override
-  ProductControllerGetProductsByHybridSearch200Response error(Object? error) =>
+  ProductControllerGetProductsByHybridSearch200Response error(String? error) =>
       call(error: error);
 
   @override
@@ -66,14 +67,14 @@ class _$ProductControllerGetProductsByHybridSearch200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return ProductControllerGetProductsByHybridSearch200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
@@ -102,10 +103,9 @@ _$ProductControllerGetProductsByHybridSearch200ResponseFromJson(
   'ProductControllerGetProductsByHybridSearch200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = ProductControllerGetProductsByHybridSearch200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
       payload: $checkedConvert(
         'payload',
         (v) => v == null
@@ -121,7 +121,7 @@ Map<String, dynamic>
 _$ProductControllerGetProductsByHybridSearch200ResponseToJson(
   ProductControllerGetProductsByHybridSearch200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

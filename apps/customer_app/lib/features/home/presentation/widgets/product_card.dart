@@ -23,15 +23,15 @@ class ProductCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Image.network(
-                    product.imageUrl,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return const Center(child: CircularProgressIndicator());
-                    },
-                    errorBuilder: (context, error, stackTrace) =>
-                        const Center(child: Icon(Icons.image_not_supported)),
+                  product.imageUrl,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                  errorBuilder: (context, error, stackTrace) =>
+                      const Center(child: Icon(Icons.image_not_supported)),
                 ),
               ),
               Padding(

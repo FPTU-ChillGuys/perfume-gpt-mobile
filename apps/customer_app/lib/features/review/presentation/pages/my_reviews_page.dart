@@ -25,8 +25,14 @@ class MyReviewsPage extends ConsumerWidget {
             systemOverlayStyle: SystemUiOverlayStyle.light,
             backgroundColor: AppColors.primaryDark,
             flexibleSpace: FlexibleSpaceBar(
-              title: const Text('Đánh giá của tôi',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+              title: const Text(
+                'Đánh giá của tôi',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
               background: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -46,14 +52,29 @@ class MyReviewsPage extends ConsumerWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.rate_review_outlined, size: 64,
-                            color: AppColors.textSecondary.withValues(alpha: 0.5)),
+                        Icon(
+                          Icons.rate_review_outlined,
+                          size: 64,
+                          color: AppColors.textSecondary.withValues(alpha: 0.5),
+                        ),
                         const SizedBox(height: 16),
-                        const Text('Chưa có đánh giá nào',
-                            style: TextStyle(fontSize: 16, color: AppColors.textSecondary)),
+                        const Text(
+                          'Chưa có đánh giá nào',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.textSecondary,
+                          ),
+                        ),
                         const SizedBox(height: 8),
-                        Text('Đánh giá sản phẩm sau khi nhận hàng',
-                            style: TextStyle(fontSize: 13, color: AppColors.textSecondary.withValues(alpha: 0.7))),
+                        Text(
+                          'Đánh giá sản phẩm sau khi nhận hàng',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: AppColors.textSecondary.withValues(
+                              alpha: 0.7,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -69,14 +90,19 @@ class MyReviewsPage extends ConsumerWidget {
               );
             },
             loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+              child: Center(
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
             ),
             error: (e, _) => SliverFillRemaining(
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Lỗi khi tải đánh giá', style: TextStyle(color: AppColors.textSecondary)),
+                    const Text(
+                      'Lỗi khi tải đánh giá',
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: () => ref.invalidate(myReviewsProvider),
@@ -107,7 +133,11 @@ class _ReviewCard extends ConsumerWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: AppColors.border),
           boxShadow: [
-            BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2)),
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
           ],
         ),
         padding: const EdgeInsets.all(16),
@@ -118,12 +148,21 @@ class _ReviewCard extends ConsumerWidget {
             Row(
               children: [
                 Expanded(
-                  child: Text(review.variantName ?? 'Sản phẩm',
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: AppColors.textPrimary)),
+                  child: Text(
+                    review.variantName ?? 'Sản phẩm',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
                 ),
                 Text(
                   DateFormat('dd/MM/yyyy').format(review.createdAt),
-                  style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -132,16 +171,25 @@ class _ReviewCard extends ConsumerWidget {
             // ── Stars ──
             Row(
               children: [
-                ...List.generate(5, (i) => Icon(
-                  i < review.rating ? Icons.star_rounded : Icons.star_outline_rounded,
-                  color: i < review.rating ? Colors.amber : AppColors.border,
-                  size: 20,
-                )),
+                ...List.generate(
+                  5,
+                  (i) => Icon(
+                    i < review.rating
+                        ? Icons.star_rounded
+                        : Icons.star_outline_rounded,
+                    color: i < review.rating ? Colors.amber : AppColors.border,
+                    size: 20,
+                  ),
+                ),
                 const Spacer(),
                 // Delete button
                 GestureDetector(
                   onTap: () => _confirmDelete(context, ref),
-                  child: const Icon(Icons.delete_outline, size: 20, color: AppColors.textSecondary),
+                  child: const Icon(
+                    Icons.delete_outline,
+                    size: 20,
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -149,10 +197,16 @@ class _ReviewCard extends ConsumerWidget {
 
             // ── Comment ──
             if (review.comment != null && review.comment!.isNotEmpty)
-              Text(review.comment!,
-                  style: const TextStyle(fontSize: 13, color: AppColors.textPrimary, height: 1.5),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis),
+              Text(
+                review.comment!,
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: AppColors.textPrimary,
+                  height: 1.5,
+                ),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
 
             // ── Images ──
             if (review.imageUrls.isNotEmpty) ...[
@@ -171,9 +225,14 @@ class _ReviewCard extends ConsumerWidget {
                       height: 60,
                       fit: BoxFit.cover,
                       errorBuilder: (_, _, _) => Container(
-                        width: 60, height: 60,
+                        width: 60,
+                        height: 60,
                         color: Colors.grey.shade200,
-                        child: const Icon(Icons.broken_image, size: 20, color: Colors.grey),
+                        child: const Icon(
+                          Icons.broken_image,
+                          size: 20,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ),
@@ -182,7 +241,8 @@ class _ReviewCard extends ConsumerWidget {
             ],
 
             // ── Shop answer ──
-            if (review.staffFeedbackComment != null && review.staffFeedbackComment!.isNotEmpty) ...[
+            if (review.staffFeedbackComment != null &&
+                review.staffFeedbackComment!.isNotEmpty) ...[
               const SizedBox(height: 12),
               Container(
                 padding: const EdgeInsets.all(12),
@@ -197,15 +257,26 @@ class _ReviewCard extends ConsumerWidget {
                       children: [
                         Icon(Icons.store, size: 14, color: AppColors.primary),
                         SizedBox(width: 4),
-                        Text('Phản hồi từ shop',
-                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.primary)),
+                        Text(
+                          'Phản hồi từ shop',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.primary,
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 6),
-                    Text(review.staffFeedbackComment!,
-                        style: const TextStyle(fontSize: 13, color: AppColors.textPrimary),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis),
+                    Text(
+                      review.staffFeedbackComment!,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: AppColors.textPrimary,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ],
                 ),
               ),
@@ -231,7 +302,9 @@ class _ReviewCard extends ConsumerWidget {
             onPressed: () async {
               Navigator.pop(ctx);
               try {
-                await ref.read(reviewRepositoryProvider).deleteReview(review.id);
+                await ref
+                    .read(reviewRepositoryProvider)
+                    .deleteReview(review.id);
                 ref.invalidate(myReviewsProvider);
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -240,9 +313,9 @@ class _ReviewCard extends ConsumerWidget {
                 }
               } catch (e) {
                 if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Lỗi: $e')),
-                  );
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('Lỗi: $e')));
                 }
               }
             },

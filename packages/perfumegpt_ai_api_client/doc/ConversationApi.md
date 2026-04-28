@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **conversationControllerConversationV10**
-> ConversationControllerConversationV8200Response conversationControllerConversationV10(conversationRequestDto)
+> ConversationControllerGetAllConversations200Response conversationControllerConversationV10(conversationRequestDto)
 
 Chat V10 (Profile-first + Structured Search)
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConversationControllerConversationV8200Response**](ConversationControllerConversationV8200Response.md)
+[**ConversationControllerGetAllConversations200Response**](ConversationControllerGetAllConversations200Response.md)
 
 ### Authorization
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **conversationControllerConversationV10Staff**
-> ConversationControllerConversationV8200Response conversationControllerConversationV10Staff(conversationRequestDto)
+> ConversationControllerGetAllConversations200Response conversationControllerConversationV10Staff(conversationRequestDto)
 
 Chat V10 Staff (Quick Counter Consultation Mode)
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConversationControllerConversationV8200Response**](ConversationControllerConversationV8200Response.md)
+[**ConversationControllerGetAllConversations200Response**](ConversationControllerGetAllConversations200Response.md)
 
 ### Authorization
 

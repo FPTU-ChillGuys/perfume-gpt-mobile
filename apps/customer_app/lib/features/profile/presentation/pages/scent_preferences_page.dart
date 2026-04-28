@@ -43,10 +43,12 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
     _selectedNotes = profile.notePreferences
         .map((n) => _NoteWithType(n.noteId, n.type ?? 'Top', n.name))
         .toList();
-    _selectedFamilyIds =
-        profile.familyPreferences.map((f) => f.familyId).toList();
-    _selectedAttrValueIds =
-        profile.attributePreferences.map((a) => a.attributeValueId).toList();
+    _selectedFamilyIds = profile.familyPreferences
+        .map((f) => f.familyId)
+        .toList();
+    _selectedAttrValueIds = profile.attributePreferences
+        .map((a) => a.attributeValueId)
+        .toList();
   }
 
   Future<void> _loadLookups() async {
@@ -62,11 +64,13 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
     _allAttributes = results[2] as List<({int id, String name})>;
 
     final valuesMap = <int, List<AttributeValueLookup>>{};
-    await Future.wait(_allAttributes.map((attr) async {
-      try {
-        valuesMap[attr.id] = await repo.getAttributeValuesLookup(attr.id);
-      } catch (_) {}
-    }));
+    await Future.wait(
+      _allAttributes.map((attr) async {
+        try {
+          valuesMap[attr.id] = await repo.getAttributeValuesLookup(attr.id);
+        } catch (_) {}
+      }),
+    );
     _allAttrValues = valuesMap;
     _lookupsLoaded = true;
   }
@@ -89,23 +93,27 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
     setState(() => _isSaving = true);
     try {
       final profile = ref.read(profileControllerProvider).value;
-      await ref.read(profileControllerProvider.notifier).updateProfile(
+      await ref
+          .read(profileControllerProvider.notifier)
+          .updateProfile(
             dateOfBirth: profile?.dateOfBirth,
-            minBudget:
-                _minBudget.isNotEmpty ? num.tryParse(_minBudget) : null,
-            maxBudget:
-                _maxBudget.isNotEmpty ? num.tryParse(_maxBudget) : null,
+            minBudget: _minBudget.isNotEmpty ? num.tryParse(_minBudget) : null,
+            maxBudget: _maxBudget.isNotEmpty ? num.tryParse(_maxBudget) : null,
             notePreferences: _selectedNotes
-                .map((n) => NotePreference(
-                      noteId: n.noteId,
-                      name: n.noteName,
-                      type: n.noteType,
-                    ))
+                .map(
+                  (n) => NotePreference(
+                    noteId: n.noteId,
+                    name: n.noteName,
+                    type: n.noteType,
+                  ),
+                )
                 .toList(),
-            familyPreferenceIds:
-                _selectedFamilyIds.isNotEmpty ? _selectedFamilyIds : null,
-            attributePreferenceIds:
-                _selectedAttrValueIds.isNotEmpty ? _selectedAttrValueIds : null,
+            familyPreferenceIds: _selectedFamilyIds.isNotEmpty
+                ? _selectedFamilyIds
+                : null,
+            attributePreferenceIds: _selectedAttrValueIds.isNotEmpty
+                ? _selectedAttrValueIds
+                : null,
           );
       if (mounted) {
         setState(() => _isEditing = false);
@@ -141,7 +149,8 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
   void _toggleNote(int noteId, String noteType, String noteName) {
     setState(() {
       final idx = _selectedNotes.indexWhere(
-          (s) => s.noteId == noteId && s.noteType == noteType);
+        (s) => s.noteId == noteId && s.noteType == noteType,
+      );
       if (idx >= 0) {
         _selectedNotes.removeAt(idx);
       } else {
@@ -175,8 +184,10 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
             backgroundColor: AppColors.primaryDark,
             foregroundColor: Colors.white,
             systemOverlayStyle: SystemUiOverlayStyle.light,
-            title: const Text('Sở thích & Ngân sách',
-                style: TextStyle(fontWeight: FontWeight.w600)),
+            title: const Text(
+              'Sở thích & Ngân sách',
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 decoration: const BoxDecoration(
@@ -192,7 +203,11 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(Icons.spa_rounded, size: 36, color: Colors.white70),
+                        Icon(
+                          Icons.spa_rounded,
+                          size: 36,
+                          color: Colors.white70,
+                        ),
                         SizedBox(height: 6),
                         Text(
                           'Sở thích & Ngân sách',
@@ -219,17 +234,15 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
 
           // ── Content ──
           profileAsync.when(
-            data: (profile) => _isEditing
-                ? _buildEditView()
-                : _buildReadView(profile),
+            data: (profile) =>
+                _isEditing ? _buildEditView() : _buildReadView(profile),
             loading: () => const SliverFillRemaining(
               child: Center(
                 child: CircularProgressIndicator(color: AppColors.primary),
               ),
             ),
-            error: (e, _) => SliverFillRemaining(
-              child: Center(child: Text('Lỗi: $e')),
-            ),
+            error: (e, _) =>
+                SliverFillRemaining(child: Center(child: Text('Lỗi: $e'))),
           ),
         ],
       ),
@@ -241,10 +254,12 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
   // ═══════════════════════════════════════════════════════════════════════
 
   Widget _buildReadView(dynamic profile) {
-    final budgetMin =
-        profile.minBudget != null ? _fmtCurrency(profile.minBudget!) : null;
-    final budgetMax =
-        profile.maxBudget != null ? _fmtCurrency(profile.maxBudget!) : null;
+    final budgetMin = profile.minBudget != null
+        ? _fmtCurrency(profile.minBudget!)
+        : null;
+    final budgetMax = profile.maxBudget != null
+        ? _fmtCurrency(profile.maxBudget!)
+        : null;
     String? budgetText;
     if (budgetMin != null && budgetMax != null) {
       budgetText = '$budgetMin – $budgetMax';
@@ -279,17 +294,21 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: AppColors.border, style: BorderStyle.none),
+              border: Border.all(
+                color: AppColors.border,
+                style: BorderStyle.none,
+              ),
             ),
             child: Column(
               children: [
-                Icon(Icons.eco_outlined,
-                    size: 52, color: Colors.grey.shade400),
+                Icon(Icons.eco_outlined, size: 52, color: Colors.grey.shade400),
                 const SizedBox(height: 12),
                 const Text(
                   'Chưa thiết lập sở thích hương và ngân sách.',
-                  style:
-                      TextStyle(color: AppColors.textSecondary, fontSize: 14),
+                  style: TextStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 14,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
@@ -322,8 +341,10 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
               label: 'NGÂN SÁCH NƯỚC HOA',
               child: Text(
                 budgetText,
-                style:
-                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -339,18 +360,22 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                 spacing: 6,
                 runSpacing: 6,
                 children: profile.familyPreferences
-                    .map<Widget>((FamilyPreference f) => Chip(
-                          label: Text(f.name),
-                          labelStyle: const TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w500),
-                          backgroundColor: AppColors.primaryLight,
-                          side: BorderSide.none,
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          visualDensity: VisualDensity.compact,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                        ))
+                    .map<Widget>(
+                      (FamilyPreference f) => Chip(
+                        label: Text(f.name),
+                        labelStyle: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        backgroundColor: AppColors.primaryLight,
+                        side: BorderSide.none,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.compact,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    )
                     .toList(),
               ),
             ),
@@ -404,18 +429,22 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                 spacing: 6,
                 runSpacing: 6,
                 children: profile.attributePreferences
-                    .map<Widget>((AttributePreference a) => Chip(
-                          label: Text(a.name),
-                          labelStyle: const TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w500),
-                          backgroundColor: Colors.blue.shade50,
-                          side: BorderSide.none,
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          visualDensity: VisualDensity.compact,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                        ))
+                    .map<Widget>(
+                      (AttributePreference a) => Chip(
+                        label: Text(a.name),
+                        labelStyle: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        backgroundColor: Colors.blue.shade50,
+                        side: BorderSide.none,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.compact,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    )
                     .toList(),
               ),
             ),
@@ -438,8 +467,10 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
             children: [
               CircularProgressIndicator(color: AppColors.primary),
               SizedBox(height: 12),
-              Text('Đang tải danh mục...',
-                  style: TextStyle(color: AppColors.textSecondary)),
+              Text(
+                'Đang tải danh mục...',
+                style: TextStyle(color: AppColors.textSecondary),
+              ),
             ],
           ),
         ),
@@ -462,7 +493,8 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                   foregroundColor: AppColors.textSecondary,
                   side: const BorderSide(color: AppColors.border),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
               const SizedBox(width: 8),
@@ -473,7 +505,9 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                         width: 16,
                         height: 16,
                         child: CircularProgressIndicator(
-                            strokeWidth: 2, color: Colors.white),
+                          strokeWidth: 2,
+                          color: Colors.white,
+                        ),
                       )
                     : const Icon(Icons.save_outlined, size: 18),
                 label: const Text('Lưu thay đổi'),
@@ -481,7 +515,8 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
             ],
@@ -513,13 +548,13 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                   children: [
                     Expanded(
                       child: TextField(
-                        controller:
-                            TextEditingController(text: _minBudget)
-                              ..selection = TextSelection.collapsed(
-                                  offset: _minBudget.length),
+                        controller: TextEditingController(text: _minBudget)
+                          ..selection = TextSelection.collapsed(
+                            offset: _minBudget.length,
+                          ),
                         keyboardType: TextInputType.number,
                         inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly
+                          FilteringTextInputFormatter.digitsOnly,
                         ],
                         decoration: const InputDecoration(
                           labelText: 'Tối thiểu',
@@ -533,13 +568,13 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: TextField(
-                        controller:
-                            TextEditingController(text: _maxBudget)
-                              ..selection = TextSelection.collapsed(
-                                  offset: _maxBudget.length),
+                        controller: TextEditingController(text: _maxBudget)
+                          ..selection = TextSelection.collapsed(
+                            offset: _maxBudget.length,
+                          ),
                         keyboardType: TextInputType.number,
                         inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly
+                          FilteringTextInputFormatter.digitsOnly,
                         ],
                         decoration: const InputDecoration(
                           labelText: 'Tối đa',
@@ -564,8 +599,10 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
             title: 'Nhóm hương yêu thích',
             subtitle: 'Chọn các nhóm hương bạn yêu thích',
             child: _allFamilies.isEmpty
-                ? const Text('Không có dữ liệu',
-                    style: TextStyle(color: AppColors.textSecondary))
+                ? const Text(
+                    'Không có dữ liệu',
+                    style: TextStyle(color: AppColors.textSecondary),
+                  )
                 : Wrap(
                     spacing: 8,
                     runSpacing: 8,
@@ -599,22 +636,22 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
                   _NoteTypeHeader(label: entry.$2, dotColor: entry.$3),
                   const SizedBox(height: 8),
                   _allNotes.isEmpty
-                      ? const Text('Không có dữ liệu',
-                          style:
-                              TextStyle(color: AppColors.textSecondary))
+                      ? const Text(
+                          'Không có dữ liệu',
+                          style: TextStyle(color: AppColors.textSecondary),
+                        )
                       : Wrap(
                           spacing: 8,
                           runSpacing: 8,
                           children: _allNotes.map((n) {
-                            final selected = _selectedNotes.any((s) =>
-                                s.noteId == n.id &&
-                                s.noteType == entry.$1);
+                            final selected = _selectedNotes.any(
+                              (s) => s.noteId == n.id && s.noteType == entry.$1,
+                            );
                             return _ToggleChip(
                               label: n.name,
                               selected: selected,
                               color: AppColors.primary,
-                              onTap: () => _toggleNote(
-                                  n.id, entry.$1, n.name),
+                              onTap: () => _toggleNote(n.id, entry.$1, n.name),
                             );
                           }).toList(),
                         ),
@@ -662,10 +699,7 @@ class _ScentPreferencesPageState extends ConsumerState<ScentPreferencesPage> {
       children: [
         Text(
           attr.name,
-          style: const TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 13,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
         ),
         const SizedBox(height: 8),
         Wrap(
@@ -794,13 +828,17 @@ class _EditCard extends StatelessWidget {
                     Text(
                       title,
                       style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 14),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
                     ),
                     if (subtitle != null)
                       Text(
                         subtitle!,
                         style: const TextStyle(
-                            fontSize: 12, color: AppColors.textSecondary),
+                          fontSize: 12,
+                          color: AppColors.textSecondary,
+                        ),
                       ),
                   ],
                 ),
@@ -845,19 +883,23 @@ class _NoteGroup extends StatelessWidget {
           spacing: 6,
           runSpacing: 6,
           children: notes
-              .map((n) => Chip(
-                    label: Text(n.name),
-                    labelStyle: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: color),
-                    backgroundColor: color.withValues(alpha: 0.08),
-                    side: BorderSide(color: color.withValues(alpha: 0.3)),
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    visualDensity: VisualDensity.compact,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ))
+              .map(
+                (n) => Chip(
+                  label: Text(n.name),
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: color,
+                  ),
+                  backgroundColor: color.withValues(alpha: 0.08),
+                  side: BorderSide(color: color.withValues(alpha: 0.3)),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity.compact,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              )
               .toList(),
         ),
       ],
@@ -938,14 +980,14 @@ class _BudgetSlider extends StatelessWidget {
     final hi = max.clamp(_budgetMin, _budgetMax);
 
     return RangeSlider(
-      values: RangeValues(lo <= hi ? lo : _budgetMin, hi >= lo ? hi : _budgetMax),
+      values: RangeValues(
+        lo <= hi ? lo : _budgetMin,
+        hi >= lo ? hi : _budgetMax,
+      ),
       min: _budgetMin,
       max: _budgetMax,
       divisions: (_budgetMax / _step).round(),
-      labels: RangeLabels(
-        _fmtCurrency(lo),
-        _fmtCurrency(hi),
-      ),
+      labels: RangeLabels(_fmtCurrency(lo), _fmtCurrency(hi)),
       activeColor: Colors.orange,
       onChanged: (values) => onChanged(values.start, values.end),
     );
@@ -966,10 +1008,7 @@ class _NoteTypeHeader extends StatelessWidget {
         Container(
           width: 8,
           height: 8,
-          decoration: BoxDecoration(
-            color: dotColor,
-            shape: BoxShape.circle,
-          ),
+          decoration: BoxDecoration(color: dotColor, shape: BoxShape.circle),
         ),
         const SizedBox(width: 8),
         Text(

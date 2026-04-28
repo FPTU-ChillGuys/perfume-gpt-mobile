@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **updatedAt** | [**DateTime**](DateTime.md) | Ngày cập nhật gần nhất | 
 **isActive** | **bool** | Trạng thái hoạt động | 
 **sender** | **String** | Người gửi tin nhắn (user hoặc assistant) | 
-**message** | **String** | Nội dung tin nhắn | 
+**message** | [**MessageDtoMessage**](MessageDtoMessage.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

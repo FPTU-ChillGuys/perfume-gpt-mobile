@@ -7,11 +7,11 @@ part of 'survey_controller_get_survey_ques_anws_by_user_id200_response.dart';
 // **************************************************************************
 
 abstract class _$SurveyControllerGetSurveyQuesAnwsByUserId200ResponseCWProxy {
-  SurveyControllerGetSurveyQuesAnwsByUserId200Response success(bool success);
+  SurveyControllerGetSurveyQuesAnwsByUserId200Response success(bool? success);
 
-  SurveyControllerGetSurveyQuesAnwsByUserId200Response error(Object? error);
+  SurveyControllerGetSurveyQuesAnwsByUserId200Response error(String? error);
 
-  SurveyControllerGetSurveyQuesAnwsByUserId200Response details(Object? details);
+  SurveyControllerGetSurveyQuesAnwsByUserId200Response details(String? details);
 
   SurveyControllerGetSurveyQuesAnwsByUserId200Response data(
     SurveyQuestionAnswerResponse? data,
@@ -25,9 +25,9 @@ abstract class _$SurveyControllerGetSurveyQuesAnwsByUserId200ResponseCWProxy {
   /// SurveyControllerGetSurveyQuesAnwsByUserId200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   SurveyControllerGetSurveyQuesAnwsByUserId200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     SurveyQuestionAnswerResponse? data,
   });
 }
@@ -43,16 +43,16 @@ class _$SurveyControllerGetSurveyQuesAnwsByUserId200ResponseCWProxyImpl
   final SurveyControllerGetSurveyQuesAnwsByUserId200Response _value;
 
   @override
-  SurveyControllerGetSurveyQuesAnwsByUserId200Response success(bool success) =>
+  SurveyControllerGetSurveyQuesAnwsByUserId200Response success(bool? success) =>
       call(success: success);
 
   @override
-  SurveyControllerGetSurveyQuesAnwsByUserId200Response error(Object? error) =>
+  SurveyControllerGetSurveyQuesAnwsByUserId200Response error(String? error) =>
       call(error: error);
 
   @override
   SurveyControllerGetSurveyQuesAnwsByUserId200Response details(
-    Object? details,
+    String? details,
   ) => call(details: details);
 
   @override
@@ -75,18 +75,18 @@ class _$SurveyControllerGetSurveyQuesAnwsByUserId200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return SurveyControllerGetSurveyQuesAnwsByUserId200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -115,11 +115,10 @@ _$SurveyControllerGetSurveyQuesAnwsByUserId200ResponseFromJson(
   'SurveyControllerGetSurveyQuesAnwsByUserId200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = SurveyControllerGetSurveyQuesAnwsByUserId200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
-      details: $checkedConvert('details', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
+      details: $checkedConvert('details', (v) => v as String?),
       data: $checkedConvert(
         'data',
         (v) => v == null
@@ -135,7 +134,7 @@ Map<String, dynamic>
 _$SurveyControllerGetSurveyQuesAnwsByUserId200ResponseToJson(
   SurveyControllerGetSurveyQuesAnwsByUserId200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),

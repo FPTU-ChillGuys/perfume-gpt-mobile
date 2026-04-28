@@ -24,8 +24,14 @@ class AddressListPage extends ConsumerWidget {
             systemOverlayStyle: SystemUiOverlayStyle.light,
             backgroundColor: AppColors.primaryDark,
             flexibleSpace: FlexibleSpaceBar(
-              title: const Text('Sổ địa chỉ',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+              title: const Text(
+                'Sổ địa chỉ',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
               background: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -47,13 +53,29 @@ class AddressListPage extends ConsumerWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.location_off_outlined, size: 64, color: AppColors.textSecondary.withValues(alpha: 0.5)),
+                        Icon(
+                          Icons.location_off_outlined,
+                          size: 64,
+                          color: AppColors.textSecondary.withValues(alpha: 0.5),
+                        ),
                         const SizedBox(height: 16),
-                        Text('Chưa có địa chỉ nào',
-                            style: TextStyle(fontSize: 16, color: AppColors.textSecondary)),
+                        Text(
+                          'Chưa có địa chỉ nào',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.textSecondary,
+                          ),
+                        ),
                         const SizedBox(height: 8),
-                        Text('Thêm địa chỉ mới để sử dụng khi đặt hàng',
-                            style: TextStyle(fontSize: 13, color: AppColors.textSecondary.withValues(alpha: 0.7))),
+                        Text(
+                          'Thêm địa chỉ mới để sử dụng khi đặt hàng',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: AppColors.textSecondary.withValues(
+                              alpha: 0.7,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -69,14 +91,19 @@ class AddressListPage extends ConsumerWidget {
               );
             },
             loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+              child: Center(
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
             ),
             error: (e, _) => SliverFillRemaining(
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('Không thể tải địa chỉ', style: TextStyle(color: AppColors.textSecondary)),
+                    Text(
+                      'Không thể tải địa chỉ',
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: () => ref.invalidate(addressListProvider),
@@ -117,7 +144,11 @@ class _AddressCard extends ConsumerWidget {
             ? Border.all(color: AppColors.primary, width: 1.5)
             : Border.all(color: AppColors.border),
         boxShadow: [
-          BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2)),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       child: Padding(
@@ -128,30 +159,61 @@ class _AddressCard extends ConsumerWidget {
             // ── Header row ──
             Row(
               children: [
-                Icon(Icons.location_on, color: address.isDefault ? AppColors.primary : AppColors.textSecondary, size: 20),
+                Icon(
+                  Icons.location_on,
+                  color: address.isDefault
+                      ? AppColors.primary
+                      : AppColors.textSecondary,
+                  size: 20,
+                ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: Text(address.recipientName,
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15, color: AppColors.textPrimary)),
+                  child: Text(
+                    address.recipientName,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
                 ),
                 if (address.isDefault)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 3,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.primaryLight,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Text('Mặc định',
-                        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: AppColors.primary)),
+                    child: const Text(
+                      'Mặc định',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primary,
+                      ),
+                    ),
                   ),
               ],
             ),
             const SizedBox(height: 8),
-            Text(address.recipientPhoneNumber,
-                style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+            Text(
+              address.recipientPhoneNumber,
+              style: const TextStyle(
+                fontSize: 13,
+                color: AppColors.textSecondary,
+              ),
+            ),
             const SizedBox(height: 4),
-            Text(address.fullAddress,
-                style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+            Text(
+              address.fullAddress,
+              style: const TextStyle(
+                fontSize: 13,
+                color: AppColors.textSecondary,
+              ),
+            ),
             const SizedBox(height: 12),
             // ── Action row ──
             Row(
@@ -160,14 +222,18 @@ class _AddressCard extends ConsumerWidget {
                   _ActionButton(
                     icon: Icons.check_circle_outline,
                     label: 'Đặt mặc định',
-                    onTap: () => ref.read(addressListProvider.notifier).setDefault(address.id),
+                    onTap: () => ref
+                        .read(addressListProvider.notifier)
+                        .setDefault(address.id),
                   ),
                 const Spacer(),
                 _ActionButton(
                   icon: Icons.edit_outlined,
                   label: 'Sửa',
                   onTap: () async {
-                    final updated = await context.push<bool>('/addresses/${address.id}/edit');
+                    final updated = await context.push<bool>(
+                      '/addresses/${address.id}/edit',
+                    );
                     if (updated == true) ref.invalidate(addressListProvider);
                   },
                 ),
@@ -193,7 +259,10 @@ class _AddressCard extends ConsumerWidget {
         title: const Text('Xóa địa chỉ'),
         content: const Text('Bạn có chắc muốn xóa địa chỉ này?'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Hủy')),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Hủy'),
+          ),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
@@ -213,7 +282,12 @@ class _ActionButton extends StatelessWidget {
   final VoidCallback onTap;
   final Color? color;
 
-  const _ActionButton({required this.icon, required this.label, required this.onTap, this.color});
+  const _ActionButton({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -228,7 +302,14 @@ class _ActionButton extends StatelessWidget {
           children: [
             Icon(icon, size: 16, color: c),
             const SizedBox(width: 4),
-            Text(label, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: c)),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: c,
+              ),
+            ),
           ],
         ),
       ),

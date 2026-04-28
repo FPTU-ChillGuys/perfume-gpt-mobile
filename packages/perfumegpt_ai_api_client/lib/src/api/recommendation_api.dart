@@ -13,12 +13,13 @@ import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email20
 import 'package:perfumegpt_ai_api_client/src/model/trend_controller_get_product_trend_job_result200_response.dart';
 
 class RecommendationApi {
+
   final Dio _dio;
 
   const RecommendationApi(this._dio);
 
   /// Recommend đơn giản và ổn định dựa trên Order và Best Sellers (không fallback mảng rỗng)
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID của user cần recommend
@@ -32,8 +33,7 @@ class RecommendationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductTrendJobResult200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductTrendJobResult200Response>>
-  recommendationControllerGetRecommendationsV3Simple({
+  Future<Response<TrendControllerGetProductTrendJobResult200Response>> recommendationControllerGetRecommendationsV3Simple({ 
     required String userId,
     num? size,
     CancelToken? cancelToken,
@@ -46,8 +46,13 @@ class RecommendationApi {
     final _path = r'/recommendation/v3/simple';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -68,17 +73,9 @@ class RecommendationApi {
     TrendControllerGetProductTrendJobResult200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              TrendControllerGetProductTrendJobResult200Response,
-              TrendControllerGetProductTrendJobResult200Response
-            >(
-              rawData,
-              'TrendControllerGetProductTrendJobResult200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<TrendControllerGetProductTrendJobResult200Response, TrendControllerGetProductTrendJobResult200Response>(rawData, 'TrendControllerGetProductTrendJobResult200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -102,7 +99,7 @@ class RecommendationApi {
   }
 
   /// Manual trigger gửi daily recommendation cho user active (sync)
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -114,8 +111,7 @@ class RecommendationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductTrendJobResult200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductTrendJobResult200Response>>
-  recommendationControllerSendDailyRecommendationManual({
+  Future<Response<TrendControllerGetProductTrendJobResult200Response>> recommendationControllerSendDailyRecommendationManual({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -126,10 +122,16 @@ class RecommendationApi {
     final _path = r'/recommendation/daily/send';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
         ],
         ...?extra,
       },
@@ -147,17 +149,9 @@ class RecommendationApi {
     TrendControllerGetProductTrendJobResult200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              TrendControllerGetProductTrendJobResult200Response,
-              TrendControllerGetProductTrendJobResult200Response
-            >(
-              rawData,
-              'TrendControllerGetProductTrendJobResult200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<TrendControllerGetProductTrendJobResult200Response, TrendControllerGetProductTrendJobResult200Response>(rawData, 'TrendControllerGetProductTrendJobResult200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -181,7 +175,7 @@ class RecommendationApi {
   }
 
   /// Test sinh recommendation cho user và gửi email
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID của user để test recommendation
@@ -194,8 +188,7 @@ class RecommendationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  recommendationControllerTestRecommendation({
+  Future<Response<EmailControllerSendEmail200Response>> recommendationControllerTestRecommendation({ 
     required String userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -207,12 +200,19 @@ class RecommendationApi {
     final _path = r'/recommendation/test-recommendation';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{r'userId': userId};
+    final _queryParameters = <String, dynamic>{
+      r'userId': userId,
+    };
 
     final _response = await _dio.request<Object>(
       _path,
@@ -226,13 +226,9 @@ class RecommendationApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -256,7 +252,7 @@ class RecommendationApi {
   }
 
   /// Test sinh repurchase recommendation cho user và gửi email
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [userId] - ID của user để test repurchase recommendation
@@ -270,8 +266,7 @@ class RecommendationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  recommendationControllerTestRepurchase({
+  Future<Response<EmailControllerSendEmail200Response>> recommendationControllerTestRepurchase({ 
     required String userId,
     required String orderId,
     CancelToken? cancelToken,
@@ -284,8 +279,13 @@ class RecommendationApi {
     final _path = r'/recommendation/test-repurchase';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -306,13 +306,9 @@ class RecommendationApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -334,4 +330,5 @@ class RecommendationApi {
       extra: _response.extra,
     );
   }
+
 }

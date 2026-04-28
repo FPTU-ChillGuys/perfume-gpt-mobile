@@ -7,11 +7,11 @@ part of 'trend_controller_summarize_logs_structured200_response.dart';
 // **************************************************************************
 
 abstract class _$TrendControllerSummarizeLogsStructured200ResponseCWProxy {
-  TrendControllerSummarizeLogsStructured200Response success(bool success);
+  TrendControllerSummarizeLogsStructured200Response success(bool? success);
 
-  TrendControllerSummarizeLogsStructured200Response error(Object? error);
+  TrendControllerSummarizeLogsStructured200Response error(String? error);
 
-  TrendControllerSummarizeLogsStructured200Response details(Object? details);
+  TrendControllerSummarizeLogsStructured200Response details(String? details);
 
   TrendControllerSummarizeLogsStructured200Response data(
     AITrendForecastStructuredResponse? data,
@@ -25,9 +25,9 @@ abstract class _$TrendControllerSummarizeLogsStructured200ResponseCWProxy {
   /// TrendControllerSummarizeLogsStructured200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   TrendControllerSummarizeLogsStructured200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     AITrendForecastStructuredResponse? data,
   });
 }
@@ -43,15 +43,15 @@ class _$TrendControllerSummarizeLogsStructured200ResponseCWProxyImpl
   final TrendControllerSummarizeLogsStructured200Response _value;
 
   @override
-  TrendControllerSummarizeLogsStructured200Response success(bool success) =>
+  TrendControllerSummarizeLogsStructured200Response success(bool? success) =>
       call(success: success);
 
   @override
-  TrendControllerSummarizeLogsStructured200Response error(Object? error) =>
+  TrendControllerSummarizeLogsStructured200Response error(String? error) =>
       call(error: error);
 
   @override
-  TrendControllerSummarizeLogsStructured200Response details(Object? details) =>
+  TrendControllerSummarizeLogsStructured200Response details(String? details) =>
       call(details: details);
 
   @override
@@ -74,18 +74,18 @@ class _$TrendControllerSummarizeLogsStructured200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return TrendControllerSummarizeLogsStructured200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -113,11 +113,10 @@ _$TrendControllerSummarizeLogsStructured200ResponseFromJson(
 ) => $checkedCreate('TrendControllerSummarizeLogsStructured200Response', json, (
   $checkedConvert,
 ) {
-  $checkKeys(json, requiredKeys: const ['success']);
   final val = TrendControllerSummarizeLogsStructured200Response(
-    success: $checkedConvert('success', (v) => v as bool),
-    error: $checkedConvert('error', (v) => v),
-    details: $checkedConvert('details', (v) => v),
+    success: $checkedConvert('success', (v) => v as bool?),
+    error: $checkedConvert('error', (v) => v as String?),
+    details: $checkedConvert('details', (v) => v as String?),
     data: $checkedConvert(
       'data',
       (v) => v == null
@@ -133,7 +132,7 @@ _$TrendControllerSummarizeLogsStructured200ResponseFromJson(
 Map<String, dynamic> _$TrendControllerSummarizeLogsStructured200ResponseToJson(
   TrendControllerSummarizeLogsStructured200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),

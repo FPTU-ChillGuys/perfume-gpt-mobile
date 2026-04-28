@@ -3,9 +3,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for InventoryControllerGetInventoryReportLogs200Response
 void main() {
-  final InventoryControllerGetInventoryReportLogs200Response?
-  instance = /* InventoryControllerGetInventoryReportLogs200Response(...) */
-      null;
+  final InventoryControllerGetInventoryReportLogs200Response? instance = /* InventoryControllerGetInventoryReportLogs200Response(...) */ null;
   // TODO add properties to the entity
 
   group(InventoryControllerGetInventoryReportLogs200Response, () {
@@ -16,14 +14,15 @@ void main() {
     });
 
     // Thông báo lỗi
-    // Object error
+    // String error
     test('to test the property `error`', () async {
       // TODO
     });
 
-    // InventoryControllerGetInventoryReportLogs200ResponseAllOfPayload payload
+    // InventoryControllerGetInventoryReportLogs200ResponsePayload payload
     test('to test the property `payload`', () async {
       // TODO
     });
+
   });
 }

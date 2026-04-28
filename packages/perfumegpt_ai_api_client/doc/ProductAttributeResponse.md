@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **attributeId** | **num** | ID thuộc tính | 
 **valueId** | **num** | ID giá trị thuộc tính | 
 **attribute** | **String** | Tên thuộc tính | 
-**description** | **String** | Mô tả thuộc tính | 
+**description** | **String** | Mô tả thuộc tính | [optional] 
 **value** | **String** | Giá trị thuộc tính | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

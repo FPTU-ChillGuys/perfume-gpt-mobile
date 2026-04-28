@@ -3,8 +3,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ProductVariantResponse
 void main() {
-  final ProductVariantResponse? instance = /* ProductVariantResponse(...) */
-      null;
+  final ProductVariantResponse? instance = /* ProductVariantResponse(...) */ null;
   // TODO add properties to the entity
 
   group(ProductVariantResponse, () {
@@ -109,5 +108,12 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
+
+    // URL hình ảnh chính của variant
+    // Object url
+    test('to test the property `url`', () async {
+      // TODO
+    });
+
   });
 }

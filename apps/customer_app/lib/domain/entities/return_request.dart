@@ -2,7 +2,8 @@ class ReturnRequest {
   final String id;
   final String orderId;
   final String? orderCode;
-  final String status; // Pending, RequestMoreInfo, ApprovedForReturn, Inspecting, ReadyForRefund, Completed, Rejected
+  final String
+  status; // Pending, RequestMoreInfo, ApprovedForReturn, Inspecting, ReadyForRefund, Completed, Rejected
   final String? reason;
   final String? customerNote;
   final String? staffNote;

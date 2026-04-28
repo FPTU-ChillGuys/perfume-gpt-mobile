@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for AIAcceptanceApi
 void main() {
   final instance = PerfumegptAiApiClient().getAIAcceptanceApi();
@@ -16,12 +17,9 @@ void main() {
     // Tạo AI acceptance pending theo response-level (backend-first)
     //
     //Future<AIAcceptanceControllerCreatePendingResponseAcceptance200Response> aIAcceptanceControllerCreatePendingResponseAcceptance(CreateResponseAIAcceptanceRequest createResponseAIAcceptanceRequest) async
-    test(
-      'test aIAcceptanceControllerCreatePendingResponseAcceptance',
-      () async {
-        // TODO
-      },
-    );
+    test('test aIAcceptanceControllerCreatePendingResponseAcceptance', () async {
+      // TODO
+    });
 
     // Lấy metrics acceptance theo context (accepted/pending/no-click)
     //
@@ -50,5 +48,6 @@ void main() {
     test('test aIAcceptanceControllerUpdateAIAcceptanceData', () async {
       // TODO
     });
+
   });
 }

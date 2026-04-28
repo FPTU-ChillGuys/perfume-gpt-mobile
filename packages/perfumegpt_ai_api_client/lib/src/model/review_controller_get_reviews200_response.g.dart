@@ -7,12 +7,12 @@ part of 'review_controller_get_reviews200_response.dart';
 // **************************************************************************
 
 abstract class _$ReviewControllerGetReviews200ResponseCWProxy {
-  ReviewControllerGetReviews200Response success(bool success);
+  ReviewControllerGetReviews200Response success(bool? success);
 
-  ReviewControllerGetReviews200Response error(Object? error);
+  ReviewControllerGetReviews200Response error(String? error);
 
   ReviewControllerGetReviews200Response payload(
-    ReviewControllerGetReviews200ResponseAllOfPayload? payload,
+    ReviewControllerGetReviews200ResponsePayload? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -23,9 +23,9 @@ abstract class _$ReviewControllerGetReviews200ResponseCWProxy {
   /// ReviewControllerGetReviews200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ReviewControllerGetReviews200Response call({
-    bool success,
-    Object? error,
-    ReviewControllerGetReviews200ResponseAllOfPayload? payload,
+    bool? success,
+    String? error,
+    ReviewControllerGetReviews200ResponsePayload? payload,
   });
 }
 
@@ -38,16 +38,16 @@ class _$ReviewControllerGetReviews200ResponseCWProxyImpl
   final ReviewControllerGetReviews200Response _value;
 
   @override
-  ReviewControllerGetReviews200Response success(bool success) =>
+  ReviewControllerGetReviews200Response success(bool? success) =>
       call(success: success);
 
   @override
-  ReviewControllerGetReviews200Response error(Object? error) =>
+  ReviewControllerGetReviews200Response error(String? error) =>
       call(error: error);
 
   @override
   ReviewControllerGetReviews200Response payload(
-    ReviewControllerGetReviews200ResponseAllOfPayload? payload,
+    ReviewControllerGetReviews200ResponsePayload? payload,
   ) => call(payload: payload);
 
   @override
@@ -64,18 +64,18 @@ class _$ReviewControllerGetReviews200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return ReviewControllerGetReviews200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as ReviewControllerGetReviews200ResponseAllOfPayload?,
+          : payload as ReviewControllerGetReviews200ResponsePayload?,
     );
   }
 }
@@ -98,15 +98,14 @@ _$ReviewControllerGetReviews200ResponseFromJson(Map<String, dynamic> json) =>
     $checkedCreate('ReviewControllerGetReviews200Response', json, (
       $checkedConvert,
     ) {
-      $checkKeys(json, requiredKeys: const ['success']);
       final val = ReviewControllerGetReviews200Response(
-        success: $checkedConvert('success', (v) => v as bool),
-        error: $checkedConvert('error', (v) => v),
+        success: $checkedConvert('success', (v) => v as bool?),
+        error: $checkedConvert('error', (v) => v as String?),
         payload: $checkedConvert(
           'payload',
           (v) => v == null
               ? null
-              : ReviewControllerGetReviews200ResponseAllOfPayload.fromJson(
+              : ReviewControllerGetReviews200ResponsePayload.fromJson(
                   v as Map<String, dynamic>,
                 ),
         ),
@@ -117,7 +116,7 @@ _$ReviewControllerGetReviews200ResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ReviewControllerGetReviews200ResponseToJson(
   ReviewControllerGetReviews200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

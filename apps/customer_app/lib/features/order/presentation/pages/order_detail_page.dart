@@ -209,7 +209,9 @@ List<_TrackingStep> _buildTrackingSteps(OrderDetail order) {
     ),
     _TrackingStep(
       title: 'Đã Thanh\nToán',
-      subtitle: order.paidAt != null ? _fmtDateTime(order.paidAt) : (step >= 1 ? _fmtDateTime(order.updatedAt) : null),
+      subtitle: order.paidAt != null
+          ? _fmtDateTime(order.paidAt)
+          : (step >= 1 ? _fmtDateTime(order.updatedAt) : null),
       icon: Icons.payments_outlined,
       isActive: step >= 1,
       isCurrent: step == 1,
@@ -316,13 +318,20 @@ const _returnRequestBlockedStatuses = {
 const _cancelRequestBlockedStatuses = {'Pending'};
 
 /// Cancel behavior — same logic as order list
-({String mode, String buttonLabel, String note, bool needRefund, bool loseDepositWarning})? _getCancelBehavior(
-    OrderDetail order) {
+({
+  String mode,
+  String buttonLabel,
+  String note,
+  bool needRefund,
+  bool loseDepositWarning,
+})?
+_getCancelBehavior(OrderDetail order) {
   final isPending = order.status == 'Pending';
   final isPreparing = order.status == 'Preparing';
   final isReadyToPick = order.status == 'ReadyToPick';
   final isFullyPaid = order.paymentStatus == 'Paid';
-  final hasDepositPaid = order.requiredDepositAmount > 0 &&
+  final hasDepositPaid =
+      order.requiredDepositAmount > 0 &&
       (order.paidAmount > 0 || order.depositAmount > 0) &&
       !isFullyPaid;
 
@@ -343,10 +352,9 @@ const _cancelRequestBlockedStatuses = {'Pending'};
     return (
       mode: 'request',
       buttonLabel: 'Yêu cầu hủy đơn',
-      note:
-          isFullyPaid
-              ? 'Đơn hàng đã thanh toán 100%, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc và cần cung cấp thông tin ngân hàng để hoàn tiền.'
-              : 'Đơn hàng đã đặt cọc, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc.',
+      note: isFullyPaid
+          ? 'Đơn hàng đã thanh toán 100%, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc và cần cung cấp thông tin ngân hàng để hoàn tiền.'
+          : 'Đơn hàng đã đặt cọc, yêu cầu hủy sẽ được Staff/Admin xem xét. Bạn sẽ không bị mất tiền cọc.',
       needRefund: isFullyPaid,
       loseDepositWarning: false,
     );
@@ -415,7 +423,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 ? const SizedBox(
                     width: 20,
                     height: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2, color: _accent),
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: _accent,
+                    ),
                   )
                 : const Icon(Icons.sync),
             tooltip: 'Đồng bộ trạng thái vận chuyển',
@@ -469,16 +480,19 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         }
       }
     }
-    final hasBlockingReturnRequest = latestReturnStatus != null &&
+    final hasBlockingReturnRequest =
+        latestReturnStatus != null &&
         _returnRequestBlockedStatuses.contains(latestReturnStatus);
     final isReturnRejected = latestReturnStatus == 'Rejected';
-    final hasReturnRequest = hasBlockingReturnRequest ||
+    final hasReturnRequest =
+        hasBlockingReturnRequest ||
         order.paymentStatus == 'Partial_Refunded' ||
         order.paymentStatus == 'Refunded' ||
         order.status == 'Returning' ||
         order.status == 'Returned' ||
         order.status == 'Partial_Returned';
-    final canReturn = isDelivered && order.isReturnable == true && !hasReturnRequest;
+    final canReturn =
+        isDelivered && order.isReturnable == true && !hasReturnRequest;
     final myCancels = ref.watch(myCancelRequestsProvider(pageSize: 100)).value;
     String? latestCancelStatus;
     if (myCancels != null) {
@@ -489,7 +503,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         }
       }
     }
-    final hasCancelRequest = latestCancelStatus != null &&
+    final hasCancelRequest =
+        latestCancelStatus != null &&
         _cancelRequestBlockedStatuses.contains(latestCancelStatus);
     final isCancelRejected = latestCancelStatus == 'Rejected';
     final cancelBehavior = hasCancelRequest ? null : _getCancelBehavior(order);
@@ -500,18 +515,18 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         .where((r) => r.orderDetailId != null)
         .map((r) => r.orderDetailId!)
         .toSet();
-    final allReviewed = isDelivered &&
+    final allReviewed =
+        isDelivered &&
         order.orderDetails.every((item) => reviewedDetailIds.contains(item.id));
 
     // Use the latest non-cancelled Payment transaction (after retry, COD is cancelled, VNPay is the active one)
     final paymentTxns = order.paymentTransactions
         .where((t) => t.transactionType == 'Payment')
         .toList();
-    final latestPayment = paymentTxns
-        .where((t) => t.status != 'Cancelled')
-        .lastOrNull
-        ?? paymentTxns.lastOrNull
-        ?? order.paymentTransactions.lastOrNull;
+    final latestPayment =
+        paymentTxns.where((t) => t.status != 'Cancelled').lastOrNull ??
+        paymentTxns.lastOrNull ??
+        order.paymentTransactions.lastOrNull;
 
     return Column(
       children: [
@@ -533,7 +548,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     icon: Icons.cancel,
                     color: Colors.red,
                     title: 'Đơn hàng đã bị hủy',
-                    subtitle: 'Đơn hàng đã được hủy bởi hệ thống hoặc người dùng.',
+                    subtitle:
+                        'Đơn hàng đã được hủy bởi hệ thống hoặc người dùng.',
                   )
                 else if (isReturned)
                   _buildReturnTimeline(order)
@@ -615,8 +631,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   const SizedBox(width: 6),
                   GestureDetector(
                     onTap: () {
-                      final code =
-                          order.code.isNotEmpty ? order.code : order.id;
+                      final code = order.code.isNotEmpty
+                          ? order.code
+                          : order.id;
                       Clipboard.setData(ClipboardData(text: code));
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -625,8 +642,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         ),
                       );
                     },
-                    child:
-                        Icon(Icons.copy, size: 15, color: Colors.grey[500]),
+                    child: Icon(Icons.copy, size: 15, color: Colors.grey[500]),
                   ),
                 ],
               ),
@@ -643,13 +659,16 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
           children: [
             if (order.status != null)
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: _statusColor(order.status!).withAlpha(25),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                      color: _statusColor(order.status!).withAlpha(60)),
+                    color: _statusColor(order.status!).withAlpha(60),
+                  ),
                 ),
                 child: Text(
                   _orderStatusLabel(order.status!),
@@ -663,14 +682,20 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
             if (order.paymentStatus != null) ...[
               const SizedBox(height: 6),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
-                  color: _paymentStatusColor(order.paymentStatus!).withAlpha(25),
+                  color: _paymentStatusColor(
+                    order.paymentStatus!,
+                  ).withAlpha(25),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                      color:
-                          _paymentStatusColor(order.paymentStatus!).withAlpha(60)),
+                    color: _paymentStatusColor(
+                      order.paymentStatus!,
+                    ).withAlpha(60),
+                  ),
                 ),
                 child: Text(
                   _paymentStatusLabel(order.paymentStatus!),
@@ -720,7 +745,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         Expanded(
                           child: Container(
                             height: 3,
-                            color: step.isActive ? activeColor : Colors.grey[300],
+                            color: step.isActive
+                                ? activeColor
+                                : Colors.grey[300],
                           ),
                         )
                       else
@@ -731,9 +758,13 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         height: 40,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: step.isActive ? Colors.white : Colors.grey[100],
+                          color: step.isActive
+                              ? Colors.white
+                              : Colors.grey[100],
                           border: Border.all(
-                            color: step.isActive ? activeColor : Colors.grey[350]!,
+                            color: step.isActive
+                                ? activeColor
+                                : Colors.grey[350]!,
                             width: 2.5,
                           ),
                         ),
@@ -748,7 +779,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         Expanded(
                           child: Container(
                             height: 3,
-                            color: (i + 1 < steps.length && steps[i + 1].isActive)
+                            color:
+                                (i + 1 < steps.length && steps[i + 1].isActive)
                                 ? activeColor
                                 : Colors.grey[300],
                           ),
@@ -764,8 +796,12 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 10,
-                      fontWeight: step.isActive ? FontWeight.w600 : FontWeight.w500,
-                      color: step.isActive ? Colors.green.shade800 : Colors.grey[500],
+                      fontWeight: step.isActive
+                          ? FontWeight.w600
+                          : FontWeight.w500,
+                      color: step.isActive
+                          ? Colors.green.shade800
+                          : Colors.grey[500],
                       height: 1.3,
                     ),
                   ),
@@ -777,7 +813,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 9,
-                        color: step.isActive ? Colors.green.shade600 : Colors.grey[400],
+                        color: step.isActive
+                            ? Colors.green.shade600
+                            : Colors.grey[400],
                       ),
                     ),
                   ],
@@ -810,14 +848,18 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
             Row(
               children: [
                 const SizedBox(width: 8),
-                Icon(Icons.assignment_return, size: 18, color: Colors.deepOrange[700]),
+                Icon(
+                  Icons.assignment_return,
+                  size: 18,
+                  color: Colors.deepOrange[700],
+                ),
                 const SizedBox(width: 6),
                 Text(
                   order.status == 'Returned'
                       ? 'Đã hoàn trả'
                       : order.status == 'Partial_Returned'
-                          ? 'Hoàn trả một phần'
-                          : 'Đang trả hàng',
+                      ? 'Hoàn trả một phần'
+                      : 'Đang trả hàng',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
@@ -844,7 +886,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                             Expanded(
                               child: Container(
                                 height: 3,
-                                color: step.isActive ? activeColor : Colors.grey[300],
+                                color: step.isActive
+                                    ? activeColor
+                                    : Colors.grey[300],
                               ),
                             )
                           else
@@ -854,23 +898,31 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                             height: 36,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: step.isActive ? Colors.white : Colors.grey[100],
+                              color: step.isActive
+                                  ? Colors.white
+                                  : Colors.grey[100],
                               border: Border.all(
-                                color: step.isActive ? activeColor : Colors.grey[350]!,
+                                color: step.isActive
+                                    ? activeColor
+                                    : Colors.grey[350]!,
                                 width: 2.5,
                               ),
                             ),
                             child: Icon(
                               step.icon,
                               size: 18,
-                              color: step.isActive ? activeColor : Colors.grey[400],
+                              color: step.isActive
+                                  ? activeColor
+                                  : Colors.grey[400],
                             ),
                           ),
                           if (!isLast)
                             Expanded(
                               child: Container(
                                 height: 3,
-                                color: (i + 1 < steps.length && steps[i + 1].isActive)
+                                color:
+                                    (i + 1 < steps.length &&
+                                        steps[i + 1].isActive)
                                     ? activeColor
                                     : Colors.grey[300],
                               ),
@@ -885,8 +937,12 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 9.5,
-                          fontWeight: step.isActive ? FontWeight.w600 : FontWeight.w500,
-                          color: step.isActive ? Colors.deepOrange[800] : Colors.grey[500],
+                          fontWeight: step.isActive
+                              ? FontWeight.w600
+                              : FontWeight.w500,
+                          color: step.isActive
+                              ? Colors.deepOrange[800]
+                              : Colors.grey[500],
                           height: 1.3,
                         ),
                       ),
@@ -924,14 +980,19 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14,
-                        color: color)),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    color: color,
+                  ),
+                ),
                 const SizedBox(height: 2),
-                Text(subtitle,
-                    style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+                Text(
+                  subtitle,
+                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                ),
               ],
             ),
           ),
@@ -977,7 +1038,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   Text(
                     'Hạn thanh toán: ${_fmtDateTime(expiresAt)}',
                     style: TextStyle(
-                        fontSize: 12, color: Colors.orange.shade700),
+                      fontSize: 12,
+                      color: Colors.orange.shade700,
+                    ),
                   ),
                 ],
               ],
@@ -1004,8 +1067,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
           children: [
             const Row(
               children: [
-                Icon(Icons.local_shipping_outlined,
-                    size: 18, color: _accent),
+                Icon(Icons.local_shipping_outlined, size: 18, color: _accent),
                 SizedBox(width: 6),
                 Text(
                   'Thông tin nhận hàng',
@@ -1115,8 +1177,11 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
           children: [
             Row(
               children: [
-                const Icon(Icons.shopping_bag_outlined,
-                    size: 18, color: _accent),
+                const Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 18,
+                  color: _accent,
+                ),
                 const SizedBox(width: 6),
                 const Text(
                   'Sản phẩm',
@@ -1153,8 +1218,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     width: 60,
                     height: 60,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, _, _) =>
-                        _imagePlaceholder(60),
+                    errorBuilder: (_, _, _) => _imagePlaceholder(60),
                   )
                 : _imagePlaceholder(60),
           ),
@@ -1166,7 +1230,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 Text(
                   item.variantName,
                   style: const TextStyle(
-                      fontSize: 13, fontWeight: FontWeight.w500),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -1175,8 +1241,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   children: [
                     Text(
                       'x${item.quantity}',
-                      style:
-                          TextStyle(fontSize: 12, color: Colors.grey[600]),
+                      style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                     ),
                     const SizedBox(width: 8),
                     if (hasDiscount)
@@ -1215,20 +1280,26 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Colors.grey[300]!),
       ),
-      child: Icon(Icons.image_not_supported_outlined,
-          color: Colors.grey[400], size: 22),
+      child: Icon(
+        Icons.image_not_supported_outlined,
+        color: Colors.grey[400],
+        size: 22,
+      ),
     );
   }
 
   // ── Price summary ─────────────────────────────────────────────────────────
 
   Widget _buildPriceSummary(
-      OrderDetail order, PaymentTransaction? latestPayment) {
+    OrderDetail order,
+    PaymentTransaction? latestPayment,
+  ) {
     final subtotal = order.subTotal > 0
         ? order.subTotal
         : order.orderDetails.fold<double>(0, (s, i) => s + i.total);
-    final shippingFee =
-        order.shippingFee > 0 ? order.shippingFee : (order.shippingInfo?.shippingFee ?? 0);
+    final shippingFee = order.shippingFee > 0
+        ? order.shippingFee
+        : (order.shippingInfo?.shippingFee ?? 0);
     final voucherDiscount = order.voucherDiscountTotal > 0
         ? order.voucherDiscountTotal
         : (subtotal + shippingFee - order.totalAmount);
@@ -1240,8 +1311,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         : order.depositAmount;
     final paidDeposit = requiredDeposit > 0
         ? (inferredPaidDeposit > requiredDeposit
-            ? requiredDeposit
-            : inferredPaidDeposit)
+              ? requiredDeposit
+              : inferredPaidDeposit)
         : inferredPaidDeposit;
     final remainingAmount = order.remainingAmount > 0
         ? order.remainingAmount
@@ -1268,10 +1339,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               ],
             ),
             const Divider(height: 18),
-            _PriceRow(
-              label: 'Tạm tính',
-              value: _fmt(subtotal),
-            ),
+            _PriceRow(label: 'Tạm tính', value: _fmt(subtotal)),
             _PriceRow(
               label: 'Phí vận chuyển',
               value: shippingFee > 0 ? _fmt(shippingFee) : 'Miễn phí',
@@ -1352,7 +1420,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
               color: Colors.blue.shade600,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(9)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(9),
+              ),
             ),
             child: Row(
               children: [
@@ -1367,7 +1437,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.25),
                     borderRadius: BorderRadius.circular(10),
@@ -1388,14 +1461,21 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
             padding: const EdgeInsets.all(12),
             child: Column(
               children: [
-                _PriceRow(label: 'Tiền cọc yêu cầu', value: _fmt(requiredDeposit)),
+                _PriceRow(
+                  label: 'Tiền cọc yêu cầu',
+                  value: _fmt(requiredDeposit),
+                ),
                 _PriceRow(
                   label: 'Khách đã thanh toán cọc',
                   value: _fmt(paidDeposit),
                   valueColor: Colors.green.shade700,
                 ),
-                if (depositGatewayLabel != null && depositGatewayLabel.isNotEmpty)
-                  _PriceRow(label: 'Cổng thanh toán cọc', value: depositGatewayLabel),
+                if (depositGatewayLabel != null &&
+                    depositGatewayLabel.isNotEmpty)
+                  _PriceRow(
+                    label: 'Cổng thanh toán cọc',
+                    value: depositGatewayLabel,
+                  ),
                 const Divider(height: 12),
                 _PriceRow(
                   label: 'Còn cần thu',
@@ -1417,7 +1497,14 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     BuildContext context, {
     required OrderDetail order,
     required bool isPendingUnpaid,
-    required ({String mode, String buttonLabel, String note, bool needRefund, bool loseDepositWarning})? cancelBehavior,
+    required ({
+      String mode,
+      String buttonLabel,
+      String note,
+      bool needRefund,
+      bool loseDepositWarning,
+    })?
+    cancelBehavior,
     required bool hasCancelRequest,
     required bool isCancelRejected,
     required bool isReturnRejected,
@@ -1428,7 +1515,11 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     required PaymentTransaction? latestPayment,
   }) {
     final hasActions =
-        isPendingUnpaid || cancelBehavior != null || hasCancelRequest || canReturn || isDelivered;
+        isPendingUnpaid ||
+        cancelBehavior != null ||
+        hasCancelRequest ||
+        canReturn ||
+        isDelivered;
     if (!hasActions) return const SizedBox.shrink();
 
     return Container(
@@ -1448,9 +1539,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               FilledButton.icon(
                 icon: const Icon(Icons.payment, size: 16),
                 label: const Text('Thanh toán lại'),
-                style: FilledButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                ),
+                style: FilledButton.styleFrom(backgroundColor: Colors.orange),
                 onPressed: () =>
                     _showRetryPaymentDialog(context, order, latestPayment),
               ),
@@ -1476,17 +1565,21 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   ),
                 ),
                 onPressed: () async {
-                  final normalizedStatus =
-                      (order.status ?? '').trim().toLowerCase();
-                  final result = await context.push('/orders/${order.id}/cancel', extra: {
-                    'orderId': order.id,
-                    'orderStatus': order.status,
-                    'showBankInfoForStatus': normalizedStatus == 'pending',
-                    'mode': cancelBehavior.mode,
-                    'note': cancelBehavior.note,
-                    'needRefund': cancelBehavior.needRefund,
-                    'loseDepositWarning': cancelBehavior.loseDepositWarning,
-                  });
+                  final normalizedStatus = (order.status ?? '')
+                      .trim()
+                      .toLowerCase();
+                  final result = await context.push(
+                    '/orders/${order.id}/cancel',
+                    extra: {
+                      'orderId': order.id,
+                      'orderStatus': order.status,
+                      'showBankInfoForStatus': normalizedStatus == 'pending',
+                      'mode': cancelBehavior.mode,
+                      'note': cancelBehavior.note,
+                      'needRefund': cancelBehavior.needRefund,
+                      'loseDepositWarning': cancelBehavior.loseDepositWarning,
+                    },
+                  );
                   if (result == true) {
                     ref.invalidate(orderDetailProvider(widget.orderId));
                     ref.invalidate(myCancelRequestsProvider(pageSize: 100));
@@ -1506,16 +1599,23 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   foregroundColor: canReturn ? Colors.orange : Colors.grey,
-                  side: BorderSide(color: canReturn ? Colors.orange : Colors.grey),
+                  side: BorderSide(
+                    color: canReturn ? Colors.orange : Colors.grey,
+                  ),
                 ),
                 onPressed: canReturn
                     ? () async {
-                        final result = await context.push('/return-requests/create', extra: {
-                          'orderId': order.id,
-                          'orderItems': order.orderDetails,
-                        });
+                        final result = await context.push(
+                          '/return-requests/create',
+                          extra: {
+                            'orderId': order.id,
+                            'orderItems': order.orderDetails,
+                          },
+                        );
                         if (result == true) {
-                          ref.invalidate(myReturnRequestsProvider(pageSize: 100));
+                          ref.invalidate(
+                            myReturnRequestsProvider(pageSize: 100),
+                          );
                           ref.invalidate(orderDetailProvider(widget.orderId));
                         }
                       }
@@ -1523,17 +1623,24 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 child: Text(
                   hasReturnRequest
                       ? 'Đã yêu cầu trả hàng'
-                      : (isReturnRejected ? 'Yêu cầu trả hàng lại' : 'Yêu cầu trả hàng'),
+                      : (isReturnRejected
+                            ? 'Yêu cầu trả hàng lại'
+                            : 'Yêu cầu trả hàng'),
                 ),
               ),
             if (isDelivered)
               FilledButton.icon(
-                icon: Icon(allReviewed ? Icons.check_circle : Icons.star_outline, size: 16),
+                icon: Icon(
+                  allReviewed ? Icons.check_circle : Icons.star_outline,
+                  size: 16,
+                ),
                 label: Text(allReviewed ? 'Đã đánh giá' : 'Đánh giá'),
                 style: FilledButton.styleFrom(
                   backgroundColor: allReviewed ? Colors.grey : _accent,
                 ),
-                onPressed: allReviewed ? null : () => _showReviewItemsSheet(context, order),
+                onPressed: allReviewed
+                    ? null
+                    : () => _showReviewItemsSheet(context, order),
               ),
           ],
         ),
@@ -1562,8 +1669,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Chọn sản phẩm để đánh giá',
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+              const Text(
+                'Chọn sản phẩm để đánh giá',
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+              ),
               const SizedBox(height: 12),
               ...order.orderDetails.map((item) {
                 final alreadyReviewed = reviewedDetailIds.contains(item.id);
@@ -1571,26 +1680,44 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: item.imageUrl != null && item.imageUrl!.isNotEmpty
-                        ? Image.network(item.imageUrl!, width: 48, height: 48, fit: BoxFit.cover,
-                            errorBuilder: (_, _, _) => _imagePlaceholder(48))
+                        ? Image.network(
+                            item.imageUrl!,
+                            width: 48,
+                            height: 48,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, _, _) => _imagePlaceholder(48),
+                          )
                         : _imagePlaceholder(48),
                   ),
-                  title: Text(item.variantName,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: alreadyReviewed ? Colors.grey : null,
-                      ),
-                      maxLines: 2, overflow: TextOverflow.ellipsis),
+                  title: Text(
+                    item.variantName,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: alreadyReviewed ? Colors.grey : null,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   subtitle: Text(
                     alreadyReviewed
                         ? 'Đã đánh giá'
                         : 'x${item.quantity} · ${_fmt(item.total)}',
-                    style: TextStyle(fontSize: 12, color: alreadyReviewed ? Colors.green : Colors.grey[600]),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: alreadyReviewed ? Colors.green : Colors.grey[600],
+                    ),
                   ),
                   trailing: alreadyReviewed
-                      ? const Icon(Icons.check_circle, color: Colors.green, size: 20)
-                      : const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+                      ? const Icon(
+                          Icons.check_circle,
+                          color: Colors.green,
+                          size: 20,
+                        )
+                      : const Icon(
+                          Icons.chevron_right,
+                          color: AppColors.textSecondary,
+                        ),
                   contentPadding: EdgeInsets.zero,
                   enabled: !alreadyReviewed,
                   onTap: alreadyReviewed
@@ -1610,8 +1737,11 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     );
   }
 
-  void _showRetryPaymentDialog(BuildContext context, OrderDetail order,
-      PaymentTransaction? latestPayment) {
+  void _showRetryPaymentDialog(
+    BuildContext context,
+    OrderDetail order,
+    PaymentTransaction? latestPayment,
+  ) {
     final isOffline = order.type == 'Offline';
     final selectedBaseMethod = isOffline ? 'CashInStore' : 'CashOnDelivery';
     final fullPaymentMethods = const ['VnPay', 'Momo', 'PayOs'];
@@ -1624,14 +1754,16 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setDialogState) {
-          final selectedMethod =
-              paymentMode == 'full' ? selectedFullGateway : selectedBaseMethod;
-          final selectedDepositMethod =
-              paymentMode == 'full' ? selectedBaseMethod : selectedDepositGateway;
+          final selectedMethod = paymentMode == 'full'
+              ? selectedFullGateway
+              : selectedBaseMethod;
+          final selectedDepositMethod = paymentMode == 'full'
+              ? selectedBaseMethod
+              : selectedDepositGateway;
           return AlertDialog(
-          title: const Text('Thanh toán lại đơn hàng'),
-          content: SingleChildScrollView(
-            child: Column(
+            title: const Text('Thanh toán lại đơn hàng'),
+            content: SingleChildScrollView(
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -1644,7 +1776,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     margin: const EdgeInsets.only(bottom: 8),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: paymentMode == 'deposit' ? _accent : Colors.grey[300]!,
+                        color: paymentMode == 'deposit'
+                            ? _accent
+                            : Colors.grey[300]!,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -1655,7 +1789,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                       activeColor: _accent,
                       title: const Text(
                         'Thanh toán tiền đặt cọc',
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       subtitle: Text(
                         'Giữ đơn với ${_paymentMethodLabel(selectedBaseMethod)}, chọn cổng thu tiền cọc bên dưới.',
@@ -1663,7 +1800,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                       ),
                       onChanged: isSubmitting
                           ? null
-                          : (v) => setDialogState(() => paymentMode = v ?? 'deposit'),
+                          : (v) => setDialogState(
+                              () => paymentMode = v ?? 'deposit',
+                            ),
                     ),
                   ),
                   if (paymentMode == 'deposit') ...[
@@ -1691,7 +1830,9 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     margin: const EdgeInsets.only(top: 6, bottom: 8),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: paymentMode == 'full' ? _accent : Colors.grey[300]!,
+                        color: paymentMode == 'full'
+                            ? _accent
+                            : Colors.grey[300]!,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -1702,7 +1843,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                       activeColor: _accent,
                       title: const Text(
                         'Chuyển sang thanh toán toàn phần',
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       subtitle: Text(
                         'Thanh toán toàn bộ còn lại ngay qua VNPay/MoMo/PayOS.',
@@ -1710,7 +1854,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                       ),
                       onChanged: isSubmitting
                           ? null
-                          : (v) => setDialogState(() => paymentMode = v ?? 'full'),
+                          : (v) =>
+                                setDialogState(() => paymentMode = v ?? 'full'),
                     ),
                   ),
                   if (paymentMode == 'full')
@@ -1723,97 +1868,97 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                           selected: selected,
                           onSelected: isSubmitting
                               ? null
-                              : (_) => setDialogState(() => selectedFullGateway = method),
+                              : (_) => setDialogState(
+                                  () => selectedFullGateway = method,
+                                ),
                         );
                       }).toList(),
                     ),
                 ],
               ),
-          ),
-          actions: [
-            TextButton(
-              onPressed:
-                  isSubmitting ? null : () => Navigator.pop(ctx),
-              child: const Text('Đóng'),
             ),
-            FilledButton(
-              style:
-                  FilledButton.styleFrom(backgroundColor: Colors.orange),
-              onPressed: isSubmitting
-                  ? null
-                  : () async {
-                      setDialogState(() => isSubmitting = true);
-                      try {
-                        // Fetch fresh order to get the latest payment transaction ID
-                        final freshOrder = await ref
-                            .read(orderRepositoryProvider)
-                            .getOrderDetail(order.id);
-                        // Get the latest non-cancelled Payment transaction
-                        final paymentTxns = freshOrder.paymentTransactions
-                            .where((t) => t.transactionType == 'Payment')
-                            .toList();
-                        final freshPayment = paymentTxns
-                            .where((t) => t.status != 'Cancelled')
-                            .lastOrNull
-                            ?? paymentTxns.lastOrNull
-                            ?? freshOrder.paymentTransactions.lastOrNull;
-                        final paymentId = freshPayment?.id;
-                        if (paymentId == null || paymentId.isEmpty) {
-                          throw Exception('Không tìm thấy giao dịch thanh toán');
-                        }
-                        final url = await ref
-                            .read(orderRepositoryProvider)
-                            .retryPayment(
-                              paymentId,
-                              selectedMethod,
-                              newDepositMethod: selectedDepositMethod,
-                              posSessionId: null,
+            actions: [
+              TextButton(
+                onPressed: isSubmitting ? null : () => Navigator.pop(ctx),
+                child: const Text('Đóng'),
+              ),
+              FilledButton(
+                style: FilledButton.styleFrom(backgroundColor: Colors.orange),
+                onPressed: isSubmitting
+                    ? null
+                    : () async {
+                        setDialogState(() => isSubmitting = true);
+                        try {
+                          // Fetch fresh order to get the latest payment transaction ID
+                          final freshOrder = await ref
+                              .read(orderRepositoryProvider)
+                              .getOrderDetail(order.id);
+                          // Get the latest non-cancelled Payment transaction
+                          final paymentTxns = freshOrder.paymentTransactions
+                              .where((t) => t.transactionType == 'Payment')
+                              .toList();
+                          final freshPayment =
+                              paymentTxns
+                                  .where((t) => t.status != 'Cancelled')
+                                  .lastOrNull ??
+                              paymentTxns.lastOrNull ??
+                              freshOrder.paymentTransactions.lastOrNull;
+                          final paymentId = freshPayment?.id;
+                          if (paymentId == null || paymentId.isEmpty) {
+                            throw Exception(
+                              'Không tìm thấy giao dịch thanh toán',
                             );
-                        final gatewayMethod = paymentMode == 'full'
-                            ? selectedMethod
-                            : selectedDepositMethod;
-                        final shouldOpenGateway =
-                            gatewayMethod == 'VnPay' ||
-                            gatewayMethod == 'Momo' ||
-                            gatewayMethod == 'PayOs';
-                        if (shouldOpenGateway) {
-                          if (ctx.mounted) Navigator.pop(ctx);
-                          if (url.isNotEmpty && context.mounted) {
-                            context.push(
-                                '/payment-webview?url=${Uri.encodeComponent(url)}');
                           }
-                        } else {
-                          if (ctx.mounted) Navigator.pop(ctx);
+                          final url = await ref
+                              .read(orderRepositoryProvider)
+                              .retryPayment(
+                                paymentId,
+                                selectedMethod,
+                                newDepositMethod: selectedDepositMethod,
+                                posSessionId: null,
+                              );
+                          final gatewayMethod = paymentMode == 'full'
+                              ? selectedMethod
+                              : selectedDepositMethod;
+                          final shouldOpenGateway =
+                              gatewayMethod == 'VnPay' ||
+                              gatewayMethod == 'Momo' ||
+                              gatewayMethod == 'PayOs';
+                          if (shouldOpenGateway) {
+                            if (ctx.mounted) Navigator.pop(ctx);
+                            if (url.isNotEmpty && context.mounted) {
+                              context.push(
+                                '/payment-webview?url=${Uri.encodeComponent(url)}',
+                              );
+                            }
+                          } else {
+                            if (ctx.mounted) Navigator.pop(ctx);
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Đơn hàng đã được xác nhận!'),
+                                  backgroundColor: Colors.green,
+                                ),
+                              );
+                            }
+                          }
+                          ref.invalidate(orderDetailProvider(widget.orderId));
+                        } catch (e) {
+                          setDialogState(() => isSubmitting = false);
                           if (context.mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                    'Đơn hàng đã được xác nhận!'),
-                                backgroundColor: Colors.green,
+                              SnackBar(
+                                content: Text('Không thể thanh toán lại: $e'),
+                                backgroundColor: Colors.red,
                               ),
                             );
                           }
                         }
-                        ref.invalidate(
-                            orderDetailProvider(widget.orderId));
-                      } catch (e) {
-                        setDialogState(() => isSubmitting = false);
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                  'Không thể thanh toán lại: $e'),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
-                      }
-                    },
-              child: Text(
-                  isSubmitting ? 'Đang xử lý...' : 'Thanh toán ngay'),
-            ),
-          ],
-        );
+                      },
+                child: Text(isSubmitting ? 'Đang xử lý...' : 'Thanh toán ngay'),
+              ),
+            ],
+          );
         },
       ),
     );
@@ -1834,11 +1979,13 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         maxChildSize: 0.95,
         builder: (ctx, scrollController) => Consumer(
           builder: (_, ref, _) {
-            final invoiceAsync =
-                ref.watch(orderInvoiceProvider(widget.orderId));
+            final invoiceAsync = ref.watch(
+              orderInvoiceProvider(widget.orderId),
+            );
             return invoiceAsync.when(
               loading: () => const Center(
-                  child: CircularProgressIndicator(color: _accent)),
+                child: CircularProgressIndicator(color: _accent),
+              ),
               error: (e, _) => Center(
                 child: Padding(
                   padding: const EdgeInsets.all(24),
@@ -1891,8 +2038,7 @@ class _InfoRow extends StatelessWidget {
           Expanded(
             child: Text(
               value.isNotEmpty ? value : '-',
-              style:
-                  const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
             ),
           ),
         ],
@@ -1953,10 +2099,7 @@ class _InvoiceSheet extends StatelessWidget {
   final Invoice invoice;
   final ScrollController scrollController;
 
-  const _InvoiceSheet({
-    required this.invoice,
-    required this.scrollController,
-  });
+  const _InvoiceSheet({required this.invoice, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -1989,7 +2132,9 @@ class _InvoiceSheet extends StatelessWidget {
               Text(
                 '#${invoice.code}',
                 style: TextStyle(
-                    color: Colors.grey[600], fontFamily: 'monospace'),
+                  color: Colors.grey[600],
+                  fontFamily: 'monospace',
+                ),
               ),
               const SizedBox(width: 6),
               GestureDetector(
@@ -2019,27 +2164,35 @@ class _InvoiceSheet extends StatelessWidget {
         Row(
           children: [
             const Expanded(
-                flex: 4,
-                child: Text('Sản phẩm',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: 12))),
+              flex: 4,
+              child: Text(
+                'Sản phẩm',
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+              ),
+            ),
             const Expanded(
-                child: Text('SL',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: 12))),
+              child: Text(
+                'SL',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+              ),
+            ),
             const Expanded(
-                flex: 2,
-                child: Text('Đơn giá',
-                    textAlign: TextAlign.end,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: 12))),
+              flex: 2,
+              child: Text(
+                'Đơn giá',
+                textAlign: TextAlign.end,
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+              ),
+            ),
             const Expanded(
-                flex: 2,
-                child: Text('Thành tiền',
-                    textAlign: TextAlign.end,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: 12))),
+              flex: 2,
+              child: Text(
+                'Thành tiền',
+                textAlign: TextAlign.end,
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+              ),
+            ),
           ],
         ),
         const Divider(height: 8),
@@ -2049,32 +2202,48 @@ class _InvoiceSheet extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                    flex: 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(item.productName,
-                            style: const TextStyle(fontSize: 12)),
-                        if (item.variantInfo.isNotEmpty)
-                          Text(item.variantInfo,
-                              style: TextStyle(
-                                  fontSize: 10, color: Colors.grey[500])),
-                      ],
-                    )),
+                  flex: 4,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.productName,
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                      if (item.variantInfo.isNotEmpty)
+                        Text(
+                          item.variantInfo,
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
                 Expanded(
-                    child: Text('${item.quantity}',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 12))),
+                  child: Text(
+                    '${item.quantity}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
                 Expanded(
-                    flex: 2,
-                    child: Text(_fmt(item.unitPrice),
-                        textAlign: TextAlign.end,
-                        style: const TextStyle(fontSize: 12))),
+                  flex: 2,
+                  child: Text(
+                    _fmt(item.unitPrice),
+                    textAlign: TextAlign.end,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
                 Expanded(
-                    flex: 2,
-                    child: Text(_fmt(item.subtotal),
-                        textAlign: TextAlign.end,
-                        style: const TextStyle(fontSize: 12))),
+                  flex: 2,
+                  child: Text(
+                    _fmt(item.subtotal),
+                    textAlign: TextAlign.end,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
               ],
             ),
           ),
@@ -2087,7 +2256,9 @@ class _InvoiceSheet extends StatelessWidget {
         _invoiceTotalLine('Tổng cộng', _fmt(invoice.total), bold: true),
         const SizedBox(height: 8),
         _invoiceInfoLine(
-            'Thanh toán', _paymentMethodLabel(invoice.paymentMethod)),
+          'Thanh toán',
+          _paymentMethodLabel(invoice.paymentMethod),
+        ),
         if (invoice.note != null && invoice.note!.isNotEmpty)
           _invoiceInfoLine('Ghi chú', invoice.note!),
       ],
@@ -2102,13 +2273,16 @@ class _InvoiceSheet extends StatelessWidget {
         children: [
           SizedBox(
             width: 90,
-            child: Text(label,
-                style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+            child: Text(
+              label,
+              style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+            ),
           ),
           Expanded(
-            child: Text(value,
-                style: const TextStyle(
-                    fontSize: 13, fontWeight: FontWeight.w500)),
+            child: Text(
+              value,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+            ),
           ),
         ],
       ),
@@ -2121,18 +2295,22 @@ class _InvoiceSheet extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label,
-              style: TextStyle(
-                fontSize: bold ? 14 : 13,
-                fontWeight: bold ? FontWeight.w700 : FontWeight.w400,
-                color: Colors.grey[700],
-              )),
-          Text(value,
-              style: TextStyle(
-                fontSize: bold ? 16 : 13,
-                fontWeight: bold ? FontWeight.w700 : FontWeight.w500,
-                color: bold ? _accent : Colors.black87,
-              )),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: bold ? 14 : 13,
+              fontWeight: bold ? FontWeight.w700 : FontWeight.w400,
+              color: Colors.grey[700],
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: bold ? 16 : 13,
+              fontWeight: bold ? FontWeight.w700 : FontWeight.w500,
+              color: bold ? _accent : Colors.black87,
+            ),
+          ),
         ],
       ),
     );

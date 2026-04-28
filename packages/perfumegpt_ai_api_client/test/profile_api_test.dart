@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for ProfileApi
 void main() {
   final instance = PerfumegptAiApiClient().getProfileApi();
@@ -19,5 +20,6 @@ void main() {
     test('test profileControllerGetProfileReport', () async {
       // TODO
     });
+
   });
 }

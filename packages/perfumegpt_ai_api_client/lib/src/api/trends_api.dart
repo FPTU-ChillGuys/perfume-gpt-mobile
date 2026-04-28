@@ -16,12 +16,13 @@ import 'package:perfumegpt_ai_api_client/src/model/trend_controller_get_product_
 import 'package:perfumegpt_ai_api_client/src/model/trend_controller_summarize_logs_structured200_response.dart';
 
 class TrendsApi {
+
   final Dio _dio;
 
   const TrendsApi(this._dio);
 
   /// Khởi tạo job để lấy product từ xu hướng
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
@@ -37,8 +38,7 @@ class TrendsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  trendControllerCreateProductTrendJob({
+  Future<Response<EmailControllerSendEmail200Response>> trendControllerCreateProductTrendJob({ 
     required DateTime endDate,
     bool forceRefresh = false,
     String? period,
@@ -53,8 +53,13 @@ class TrendsApi {
     final _path = r'/trends/product/job';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -77,13 +82,9 @@ class TrendsApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -107,11 +108,11 @@ class TrendsApi {
   }
 
   /// Lấy product từ xu hướng người dùng (caching)
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
-  /// * [allUserLogRequest]
+  /// * [allUserLogRequest] 
   /// * [period] - Khoảng thời gian lọc
   /// * [startDate] - Ngày bắt đầu
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -123,8 +124,7 @@ class TrendsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductFromTrendCaching200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductFromTrendCaching200Response>>
-  trendControllerGetProductFromTrendCaching({
+  Future<Response<TrendControllerGetProductFromTrendCaching200Response>> trendControllerGetProductFromTrendCaching({ 
     required DateTime endDate,
     required AllUserLogRequest allUserLogRequest,
     String? period,
@@ -139,8 +139,13 @@ class TrendsApi {
     final _path = r'/trends/product/caching';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -154,10 +159,10 @@ class TrendsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(allUserLogRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(allUserLogRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(
+         requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -181,17 +186,9 @@ class TrendsApi {
     TrendControllerGetProductFromTrendCaching200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              TrendControllerGetProductFromTrendCaching200Response,
-              TrendControllerGetProductFromTrendCaching200Response
-            >(
-              rawData,
-              'TrendControllerGetProductFromTrendCaching200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<TrendControllerGetProductFromTrendCaching200Response, TrendControllerGetProductFromTrendCaching200Response>(rawData, 'TrendControllerGetProductFromTrendCaching200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -215,11 +212,11 @@ class TrendsApi {
   }
 
   /// Lấy product từ xu hướng người dùng
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
-  /// * [allUserLogRequest]
+  /// * [allUserLogRequest] 
   /// * [period] - Khoảng thời gian lọc
   /// * [startDate] - Ngày bắt đầu
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -231,8 +228,7 @@ class TrendsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductFromTrendCaching200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductFromTrendCaching200Response>>
-  trendControllerGetProductNoCaching({
+  Future<Response<TrendControllerGetProductFromTrendCaching200Response>> trendControllerGetProductNoCaching({ 
     required DateTime endDate,
     required AllUserLogRequest allUserLogRequest,
     String? period,
@@ -247,8 +243,13 @@ class TrendsApi {
     final _path = r'/trends/product';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -262,10 +263,10 @@ class TrendsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(allUserLogRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(allUserLogRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(
+         requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -289,17 +290,9 @@ class TrendsApi {
     TrendControllerGetProductFromTrendCaching200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              TrendControllerGetProductFromTrendCaching200Response,
-              TrendControllerGetProductFromTrendCaching200Response
-            >(
-              rawData,
-              'TrendControllerGetProductFromTrendCaching200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<TrendControllerGetProductFromTrendCaching200Response, TrendControllerGetProductFromTrendCaching200Response>(rawData, 'TrendControllerGetProductFromTrendCaching200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -323,10 +316,10 @@ class TrendsApi {
   }
 
   /// Kiểm tra trạng thái hoàn thành của job
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [jobId]
+  /// * [jobId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -336,8 +329,7 @@ class TrendsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductTrendJobResult200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductTrendJobResult200Response>>
-  trendControllerGetProductTrendJobResult({
+  Future<Response<TrendControllerGetProductTrendJobResult200Response>> trendControllerGetProductTrendJobResult({ 
     required String jobId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -346,16 +338,16 @@ class TrendsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/trends/product/job/{jobId}'.replaceAll(
-      '{'
-      r'jobId'
-      '}',
-      jobId.toString(),
-    );
+    final _path = r'/trends/product/job/{jobId}'.replaceAll('{' r'jobId' '}', jobId.toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -370,17 +362,9 @@ class TrendsApi {
     TrendControllerGetProductTrendJobResult200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              TrendControllerGetProductTrendJobResult200Response,
-              TrendControllerGetProductTrendJobResult200Response
-            >(
-              rawData,
-              'TrendControllerGetProductTrendJobResult200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<TrendControllerGetProductTrendJobResult200Response, TrendControllerGetProductTrendJobResult200Response>(rawData, 'TrendControllerGetProductTrendJobResult200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -404,11 +388,11 @@ class TrendsApi {
   }
 
   /// Dự đoán xu hướng dựa trên tổng hợp log người dùng
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
-  /// * [allUserLogRequest]
+  /// * [allUserLogRequest] 
   /// * [period] - Khoảng thời gian lọc
   /// * [startDate] - Ngày bắt đầu
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -420,8 +404,7 @@ class TrendsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>>
-  trendControllerSummarizeLogs({
+  Future<Response<EmailControllerSendEmail200Response>> trendControllerSummarizeLogs({ 
     required DateTime endDate,
     required AllUserLogRequest allUserLogRequest,
     String? period,
@@ -436,8 +419,13 @@ class TrendsApi {
     final _path = r'/trends/summary';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -451,10 +439,10 @@ class TrendsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(allUserLogRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(allUserLogRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(
+         requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -478,13 +466,9 @@ class TrendsApi {
     EmailControllerSendEmail200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              EmailControllerSendEmail200Response,
-              EmailControllerSendEmail200Response
-            >(rawData, 'EmailControllerSendEmail200Response', growable: true);
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -508,11 +492,11 @@ class TrendsApi {
   }
 
   /// Dự đoán xu hướng có cấu trúc với metadata
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
-  /// * [allUserLogRequest]
+  /// * [allUserLogRequest] 
   /// * [period] - Khoảng thời gian lọc
   /// * [startDate] - Ngày bắt đầu
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -524,8 +508,7 @@ class TrendsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerSummarizeLogsStructured200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerSummarizeLogsStructured200Response>>
-  trendControllerSummarizeLogsStructured({
+  Future<Response<TrendControllerSummarizeLogsStructured200Response>> trendControllerSummarizeLogsStructured({ 
     required DateTime endDate,
     required AllUserLogRequest allUserLogRequest,
     String? period,
@@ -540,8 +523,13 @@ class TrendsApi {
     final _path = r'/trends/summary/structured';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -555,10 +543,10 @@ class TrendsApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = jsonEncode(allUserLogRequest);
-    } catch (error, stackTrace) {
+_bodyData=jsonEncode(allUserLogRequest);
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(
+         requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -582,17 +570,9 @@ class TrendsApi {
     TrendControllerSummarizeLogsStructured200Response? _responseData;
 
     try {
-      final rawData = _response.data;
-      _responseData = rawData == null
-          ? null
-          : deserialize<
-              TrendControllerSummarizeLogsStructured200Response,
-              TrendControllerSummarizeLogsStructured200Response
-            >(
-              rawData,
-              'TrendControllerSummarizeLogsStructured200Response',
-              growable: true,
-            );
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<TrendControllerSummarizeLogsStructured200Response, TrendControllerSummarizeLogsStructured200Response>(rawData, 'TrendControllerSummarizeLogsStructured200Response', growable: true);
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -614,4 +594,5 @@ class TrendsApi {
       extra: _response.extra,
     );
   }
+
 }

@@ -50,7 +50,9 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
       firstDate: DateTime(1920),
       lastDate: DateTime.now(),
       builder: (ctx, child) => Theme(
-        data: Theme.of(ctx).copyWith(colorScheme: ColorScheme.light(primary: AppColors.primary)),
+        data: Theme.of(
+          ctx,
+        ).copyWith(colorScheme: ColorScheme.light(primary: AppColors.primary)),
         child: child!,
       ),
     );
@@ -80,15 +82,25 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
     );
     if (source == null) return;
 
-    final xFile = await _picker.pickImage(source: source, maxWidth: 512, maxHeight: 512, imageQuality: 85);
+    final xFile = await _picker.pickImage(
+      source: source,
+      maxWidth: 512,
+      maxHeight: 512,
+      imageQuality: 85,
+    );
     if (xFile == null) return;
 
     setState(() => _uploadingAvatar = true);
     try {
-      await ref.read(profileControllerProvider.notifier).uploadAvatar(xFile.path);
+      await ref
+          .read(profileControllerProvider.notifier)
+          .uploadAvatar(xFile.path);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Cập nhật ảnh đại diện thành công'), backgroundColor: Colors.green),
+          const SnackBar(
+            content: Text('Cập nhật ảnh đại diện thành công'),
+            backgroundColor: Colors.green,
+          ),
         );
       }
     } catch (e) {
@@ -109,7 +121,10 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
         title: const Text('Xóa ảnh đại diện?'),
         content: const Text('Bạn có chắc muốn xóa ảnh đại diện hiện tại?'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Hủy')),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Hủy'),
+          ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
             child: const Text('Xóa', style: TextStyle(color: Colors.red)),
@@ -124,7 +139,10 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
       await ref.read(profileControllerProvider.notifier).deleteAvatar();
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Đã xóa ảnh đại diện'), backgroundColor: Colors.green),
+          const SnackBar(
+            content: Text('Đã xóa ảnh đại diện'),
+            backgroundColor: Colors.green,
+          ),
         );
       }
     } catch (e) {
@@ -143,24 +161,33 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
     setState(() => _saving = true);
     try {
       // Update user credentials (name + phone)
-      await ref.read(profileControllerProvider.notifier).updateMe(
-        fullName: _nameCtrl.text.trim(),
-        phoneNumber: _phoneCtrl.text.trim(),
-      );
+      await ref
+          .read(profileControllerProvider.notifier)
+          .updateMe(
+            fullName: _nameCtrl.text.trim(),
+            phoneNumber: _phoneCtrl.text.trim(),
+          );
       // Update profile preferences (date of birth, scent notes)
-      await ref.read(profileControllerProvider.notifier).updateProfile(
-        dateOfBirth: _dateOfBirth,
-        notePreferences: _selectedNotes,
-      );
+      await ref
+          .read(profileControllerProvider.notifier)
+          .updateProfile(
+            dateOfBirth: _dateOfBirth,
+            notePreferences: _selectedNotes,
+          );
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Cập nhật hồ sơ thành công'), backgroundColor: Colors.green),
+          const SnackBar(
+            content: Text('Cập nhật hồ sơ thành công'),
+            backgroundColor: Colors.green,
+          ),
         );
         context.pop(true);
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Lỗi: $e'), backgroundColor: Colors.red));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Lỗi: $e'), backgroundColor: Colors.red),
+        );
       }
     } finally {
       if (mounted) setState(() => _saving = false);
@@ -203,29 +230,47 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                   children: [
                     profileAsync.maybeWhen(
                       data: (p) {
-                        final hasAvatar = p.avatarUrl != null && p.avatarUrl!.isNotEmpty;
+                        final hasAvatar =
+                            p.avatarUrl != null && p.avatarUrl!.isNotEmpty;
                         return CircleAvatar(
                           radius: 48,
                           backgroundColor: AppColors.primaryLight,
                           backgroundImage: hasAvatar
-                              ? NetworkImage(ImageUrlHelper.resolve(p.avatarUrl!))
+                              ? NetworkImage(
+                                  ImageUrlHelper.resolve(p.avatarUrl!),
+                                )
                               : null,
                           child: _uploadingAvatar
-                              ? const CircularProgressIndicator(strokeWidth: 2, color: AppColors.primary)
+                              ? const CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: AppColors.primary,
+                                )
                               : hasAvatar
-                                  ? null
-                                  : Text(
-                                      (_nameCtrl.text.isNotEmpty ? _nameCtrl.text[0] : '?').toUpperCase(),
-                                      style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.primary),
-                                    ),
+                              ? null
+                              : Text(
+                                  (_nameCtrl.text.isNotEmpty
+                                          ? _nameCtrl.text[0]
+                                          : '?')
+                                      .toUpperCase(),
+                                  style: const TextStyle(
+                                    fontSize: 36,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primary,
+                                  ),
+                                ),
                         );
                       },
                       orElse: () => CircleAvatar(
                         radius: 48,
                         backgroundColor: AppColors.primaryLight,
                         child: Text(
-                          (_nameCtrl.text.isNotEmpty ? _nameCtrl.text[0] : '?').toUpperCase(),
-                          style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.primary),
+                          (_nameCtrl.text.isNotEmpty ? _nameCtrl.text[0] : '?')
+                              .toUpperCase(),
+                          style: const TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primary,
+                          ),
                         ),
                       ),
                     ),
@@ -243,7 +288,11 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.white, width: 2),
                           ),
-                          child: const Icon(Icons.camera_alt, size: 16, color: Colors.white),
+                          child: const Icon(
+                            Icons.camera_alt,
+                            size: 16,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -256,8 +305,15 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                     ? Center(
                         child: TextButton.icon(
                           onPressed: _uploadingAvatar ? null : _deleteAvatar,
-                          icon: const Icon(Icons.delete_outline, size: 16, color: Colors.red),
-                          label: const Text('Xóa ảnh', style: TextStyle(color: Colors.red, fontSize: 12)),
+                          icon: const Icon(
+                            Icons.delete_outline,
+                            size: 16,
+                            color: Colors.red,
+                          ),
+                          label: const Text(
+                            'Xóa ảnh',
+                            style: TextStyle(color: Colors.red, fontSize: 12),
+                          ),
                         ),
                       )
                     : const SizedBox(height: 8),
@@ -265,17 +321,31 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
               ),
               const SizedBox(height: 24),
 
-              _buildField(_nameCtrl, 'Họ và tên', Icons.person_outline,
-                  validator: (v) => (v == null || v.trim().isEmpty) ? 'Vui lòng nhập tên' : null),
+              _buildField(
+                _nameCtrl,
+                'Họ và tên',
+                Icons.person_outline,
+                validator: (v) => (v == null || v.trim().isEmpty)
+                    ? 'Vui lòng nhập tên'
+                    : null,
+              ),
               const SizedBox(height: 16),
 
-              _buildField(_phoneCtrl, 'Số điện thoại', Icons.phone_outlined,
-                  keyboard: TextInputType.phone,
-                  validator: (v) {
-                    if (v == null || v.trim().isEmpty) return 'Vui lòng nhập số điện thoại';
-                    if (!RegExp(r'^[0-9+]{8,15}$').hasMatch(v.trim())) return 'Số điện thoại không hợp lệ';
-                    return null;
-                  }),
+              _buildField(
+                _phoneCtrl,
+                'Số điện thoại',
+                Icons.phone_outlined,
+                keyboard: TextInputType.phone,
+                validator: (v) {
+                  if (v == null || v.trim().isEmpty) {
+                    return 'Vui lòng nhập số điện thoại';
+                  }
+                  if (!RegExp(r'^[0-9+]{8,15}$').hasMatch(v.trim())) {
+                    return 'Số điện thoại không hợp lệ';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 16),
 
               // ── Date of birth ──
@@ -291,18 +361,29 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Row(
                     children: [
-                      const Icon(Icons.calendar_today_outlined, size: 20, color: AppColors.textSecondary),
+                      const Icon(
+                        Icons.calendar_today_outlined,
+                        size: 20,
+                        color: AppColors.textSecondary,
+                      ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          _dateOfBirth != null ? DateFormat('dd/MM/yyyy').format(_dateOfBirth!) : 'Ngày sinh',
+                          _dateOfBirth != null
+                              ? DateFormat('dd/MM/yyyy').format(_dateOfBirth!)
+                              : 'Ngày sinh',
                           style: TextStyle(
                             fontSize: 14,
-                            color: _dateOfBirth != null ? AppColors.textPrimary : AppColors.textSecondary,
+                            color: _dateOfBirth != null
+                                ? AppColors.textPrimary
+                                : AppColors.textSecondary,
                           ),
                         ),
                       ),
-                      const Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
+                      const Icon(
+                        Icons.arrow_drop_down,
+                        color: AppColors.textSecondary,
+                      ),
                     ],
                   ),
                 ),
@@ -320,17 +401,31 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                   child: _saving
-                      ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                      : const Text('Lưu thay đổi', style: TextStyle(fontWeight: FontWeight.w600)),
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : const Text(
+                          'Lưu thay đổi',
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
                 ),
               ),
             ],
           ),
         ),
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const Center(
+          child: CircularProgressIndicator(color: AppColors.primary),
+        ),
         error: (e, _) => Center(child: Text('Lỗi: $e')),
       ),
     );
@@ -342,12 +437,20 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
       children: [
         Row(
           children: [
-            const Icon(Icons.spa_outlined, size: 20, color: AppColors.textSecondary),
+            const Icon(
+              Icons.spa_outlined,
+              size: 20,
+              color: AppColors.textSecondary,
+            ),
             const SizedBox(width: 8),
             const Expanded(
               child: Text(
                 'Nốt hương yêu thích',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textPrimary,
+                ),
               ),
             ),
             TextButton.icon(
@@ -383,13 +486,20 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
             runSpacing: 8,
             children: _selectedNotes.map((note) {
               return Chip(
-                label: Text('${note.name} (${_noteTypeLabels[note.type] ?? note.type})'),
+                label: Text(
+                  '${note.name} (${_noteTypeLabels[note.type] ?? note.type})',
+                ),
                 deleteIcon: const Icon(Icons.close, size: 16),
                 onDeleted: () => setState(() => _selectedNotes.remove(note)),
                 backgroundColor: AppColors.primaryLight,
-                labelStyle: const TextStyle(fontSize: 12, color: AppColors.textPrimary),
+                labelStyle: const TextStyle(
+                  fontSize: 12,
+                  color: AppColors.textPrimary,
+                ),
                 side: BorderSide.none,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
               );
             }).toList(),
           ),
@@ -419,8 +529,13 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
     );
   }
 
-  Widget _buildField(TextEditingController ctrl, String label, IconData icon,
-      {TextInputType? keyboard, String? Function(String?)? validator}) {
+  Widget _buildField(
+    TextEditingController ctrl,
+    String label,
+    IconData icon, {
+    TextInputType? keyboard,
+    String? Function(String?)? validator,
+  }) {
     return TextFormField(
       controller: ctrl,
       keyboardType: keyboard,
@@ -430,9 +545,18 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
         prefixIcon: Icon(icon, size: 20),
         filled: true,
         fillColor: Colors.white,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.border)),
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.border)),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.primary, width: 1.5)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.border),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.border),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.primary, width: 1.5),
+        ),
       ),
     );
   }
@@ -474,7 +598,10 @@ class _AddNoteSheetState extends ConsumerState<_AddNoteSheet> {
           Container(
             width: 40,
             height: 4,
-            decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(2)),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(2),
+            ),
           ),
           const SizedBox(height: 12),
           const Text(
@@ -501,7 +628,9 @@ class _AddNoteSheetState extends ConsumerState<_AddNoteSheet> {
                         color: selected ? Colors.white : AppColors.textPrimary,
                       ),
                       showCheckmark: false,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
                   ),
                 );
@@ -519,8 +648,14 @@ class _AddNoteSheetState extends ConsumerState<_AddNoteSheet> {
                 prefixIcon: const Icon(Icons.search, size: 20),
                 isDense: true,
                 contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.border)),
-                enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: AppColors.border)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: AppColors.border),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: AppColors.border),
+                ),
               ),
             ),
           ),
@@ -529,13 +664,24 @@ class _AddNoteSheetState extends ConsumerState<_AddNoteSheet> {
           Expanded(
             child: lookupAsync.when(
               data: (notes) {
-                final alreadyIds = widget.selectedNotes.map((e) => e.noteId).toSet();
+                final alreadyIds = widget.selectedNotes
+                    .map((e) => e.noteId)
+                    .toSet();
                 final filtered = notes
                     .where((n) => !alreadyIds.contains(n.id))
-                    .where((n) => _searchQuery.isEmpty || n.name.toLowerCase().contains(_searchQuery))
+                    .where(
+                      (n) =>
+                          _searchQuery.isEmpty ||
+                          n.name.toLowerCase().contains(_searchQuery),
+                    )
                     .toList();
                 if (filtered.isEmpty) {
-                  return const Center(child: Text('Không tìm thấy nốt hương', style: TextStyle(color: AppColors.textSecondary)));
+                  return const Center(
+                    child: Text(
+                      'Không tìm thấy nốt hương',
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
+                  );
                 }
                 return ListView.separated(
                   controller: scrollCtrl,
@@ -547,20 +693,27 @@ class _AddNoteSheetState extends ConsumerState<_AddNoteSheet> {
                     return ListTile(
                       dense: true,
                       title: Text(note.name),
-                      trailing: const Icon(Icons.add_circle_outline, color: AppColors.primary),
+                      trailing: const Icon(
+                        Icons.add_circle_outline,
+                        color: AppColors.primary,
+                      ),
                       onTap: () {
-                        widget.onAdd(NotePreference(
-                          noteId: note.id,
-                          name: note.name,
-                          type: _selectedType,
-                        ));
+                        widget.onAdd(
+                          NotePreference(
+                            noteId: note.id,
+                            name: note.name,
+                            type: _selectedType,
+                          ),
+                        );
                         Navigator.pop(context);
                       },
                     );
                   },
                 );
               },
-              loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+              loading: () => const Center(
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
               error: (e, _) => Center(child: Text('Lỗi: $e')),
             ),
           ),

@@ -134,9 +134,7 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
       final res = await api.apiBrandsLookupGet();
       if (!mounted) return;
       setState(() {
-        _brands = (res.data?.payload ?? [])
-            .where((b) => b.id != null)
-            .toList()
+        _brands = (res.data?.payload ?? []).where((b) => b.id != null).toList()
           ..sort((a, b) => a.name.compareTo(b.name));
       });
     } catch (_) {}
@@ -270,19 +268,19 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
   // ========================================================================
 
   String? get _sortBy => switch (_sort) {
-        _SortValue.featured => null,
-        _SortValue.newest || _SortValue.oldest => 'CreatedAt',
-        _SortValue.priceAsc || _SortValue.priceDesc => 'Price',
-        _SortValue.nameAsc || _SortValue.nameDesc => 'Name',
-      };
+    _SortValue.featured => null,
+    _SortValue.newest || _SortValue.oldest => 'CreatedAt',
+    _SortValue.priceAsc || _SortValue.priceDesc => 'Price',
+    _SortValue.nameAsc || _SortValue.nameDesc => 'Name',
+  };
 
   bool? get _isDescending => switch (_sort) {
-        _SortValue.featured => null,
-        _SortValue.newest => true,
-        _SortValue.oldest => false,
-        _SortValue.priceAsc || _SortValue.nameAsc => false,
-        _SortValue.priceDesc || _SortValue.nameDesc => true,
-      };
+    _SortValue.featured => null,
+    _SortValue.newest => true,
+    _SortValue.oldest => false,
+    _SortValue.priceAsc || _SortValue.nameAsc => false,
+    _SortValue.priceDesc || _SortValue.nameDesc => true,
+  };
 
   // ========================================================================
   // Event handlers
@@ -329,8 +327,8 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
     final title = _isSourceMode
         ? 'Danh sách nước hoa — ${widget.sourceLabel ?? _sourceLabels[widget.source] ?? ''}'
         : widget.categoryName != null
-            ? 'Danh sách nước hoa — ${_categoryLabel(widget.categoryName)}'
-            : 'Danh sách nước hoa';
+        ? 'Danh sách nước hoa — ${_categoryLabel(widget.categoryName)}'
+        : 'Danh sách nước hoa';
 
     return Scaffold(
       body: RefreshIndicator(
@@ -391,16 +389,13 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
               // Navigation row
               Row(
                 children: [
-                  _circleButton(
-                    Icons.arrow_back_ios_new,
-                    () {
-                      if (context.canPop()) {
-                        context.pop();
-                      } else {
-                        context.go('/');
-                      }
-                    },
-                  ),
+                  _circleButton(Icons.arrow_back_ios_new, () {
+                    if (context.canPop()) {
+                      context.pop();
+                    } else {
+                      context.go('/');
+                    }
+                  }),
                   const Spacer(),
                   _circleButton(Icons.tune, _showFilterSheet),
                 ],
@@ -501,10 +496,12 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
               onChanged: (_) => setState(() {}),
               decoration: InputDecoration(
                 hintText: 'Tìm theo tên hoặc thương hiệu',
-                hintStyle:
-                    TextStyle(color: Colors.grey.shade400, fontSize: 14),
-                prefixIcon: Icon(Icons.search,
-                    color: Colors.grey.shade400, size: 20),
+                hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.grey.shade400,
+                  size: 20,
+                ),
                 suffixIcon: _searchCtrl.text.isNotEmpty
                     ? IconButton(
                         icon: const Icon(Icons.clear, size: 18),
@@ -522,8 +519,10 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                     : null,
                 filled: true,
                 fillColor: AppColors.surface,
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 16,
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide(color: Colors.grey.shade200),
@@ -546,8 +545,10 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.primaryLight,
                     borderRadius: BorderRadius.circular(20),
@@ -612,8 +613,8 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
             child: Text(
               _totalCount > 0
                   ? 'Hiển thị ${(_page - 1) * _pageSize + 1} – '
-                      '${((_page - 1) * _pageSize + _displayedProducts.length).clamp(0, _totalCount)} '
-                      'trong tổng $_totalCount sản phẩm'
+                        '${((_page - 1) * _pageSize + _displayedProducts.length).clamp(0, _totalCount)} '
+                        'trong tổng $_totalCount sản phẩm'
                   : 'Chưa có sản phẩm để hiển thị',
               style: TextStyle(color: Colors.grey.shade500, fontSize: 13),
             ),
@@ -676,10 +677,7 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
         children: [
           if (_brandId != null)
             _filterChip(
-              _brands
-                      .where((b) => b.id == _brandId)
-                      .firstOrNull
-                      ?.name ??
+              _brands.where((b) => b.id == _brandId).firstOrNull?.name ??
                   'Brand #$_brandId',
               () {
                 setState(() => _brandId = null);
@@ -690,19 +688,17 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
             _filterChip(
               '${_formatVnd(_priceRange.start)} – ${_formatVnd(_priceRange.end)}',
               () {
-                setState(() =>
-                    _priceRange = const RangeValues(_priceMin, _priceMax));
+                setState(
+                  () => _priceRange = const RangeValues(_priceMin, _priceMax),
+                );
                 _onFilterChanged();
               },
             ),
           if (_volume != null)
-            _filterChip(
-              '$_volume ml',
-              () {
-                setState(() => _volume = null);
-                _onFilterChanged();
-              },
-            ),
+            _filterChip('$_volume ml', () {
+              setState(() => _volume = null);
+              _onFilterChanged();
+            }),
         ],
       ),
     );
@@ -736,8 +732,11 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                 color: AppColors.primaryBorder,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child:
-                  const Icon(Icons.close, size: 12, color: AppColors.primaryDark),
+              child: const Icon(
+                Icons.close,
+                size: 12,
+                color: AppColors.primaryDark,
+              ),
             ),
           ),
         ],
@@ -795,7 +794,8 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
             style: FilledButton.styleFrom(
               backgroundColor: AppColors.primary,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
           ),
         ],
@@ -814,8 +814,11 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
       ),
       child: Column(
         children: [
-          const Icon(Icons.search_off_rounded,
-              size: 48, color: AppColors.border),
+          const Icon(
+            Icons.search_off_rounded,
+            size: 48,
+            color: AppColors.border,
+          ),
           const SizedBox(height: 16),
           Text(
             'Không tìm thấy sản phẩm phù hợp',
@@ -879,10 +882,7 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppColors.borderLight),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 8,
-          ),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 8),
         ],
       ),
       child: Row(
@@ -914,9 +914,7 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
             )
           else
             Text(
-              _totalPages > 0
-                  ? 'Trang $_page / $_totalPages'
-                  : 'Trang $_page',
+              _totalPages > 0 ? 'Trang $_page / $_totalPages' : 'Trang $_page',
               style: TextStyle(
                 color: Colors.grey.shade600,
                 fontSize: 13,
@@ -985,8 +983,11 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                   // Header
                   Row(
                     children: [
-                      const Icon(Icons.tune,
-                          size: 16, color: AppColors.textSecondary),
+                      const Icon(
+                        Icons.tune,
+                        size: 16,
+                        color: AppColors.textSecondary,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         'BỘ LỌC',
@@ -1001,11 +1002,14 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                   ),
                   const SizedBox(height: 24),
                   // Brand
-                  const Text('Thương hiệu',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textPrimary)),
+                  const Text(
+                    'Thương hiệu',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Container(
                     width: double.infinity,
@@ -1020,17 +1024,22 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                         value: tempBrand,
                         isExpanded: true,
                         style: const TextStyle(
-                            fontSize: 14, color: AppColors.textPrimary),
+                          fontSize: 14,
+                          color: AppColors.textPrimary,
+                        ),
                         items: [
                           const DropdownMenuItem(
-                              value: null,
-                              child: Text('Tất cả thương hiệu')),
-                          ..._brands.map((b) => DropdownMenuItem(
-                                value: b.id,
-                                child: Text(b.name.isNotEmpty
-                                    ? b.name
-                                    : 'Brand #${b.id}'),
-                              )),
+                            value: null,
+                            child: Text('Tất cả thương hiệu'),
+                          ),
+                          ..._brands.map(
+                            (b) => DropdownMenuItem(
+                              value: b.id,
+                              child: Text(
+                                b.name.isNotEmpty ? b.name : 'Brand #${b.id}',
+                              ),
+                            ),
+                          ),
                         ],
                         onChanged: (v) => setSheet(() => tempBrand = v),
                       ),
@@ -1038,15 +1047,20 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                   ),
                   const SizedBox(height: 24),
                   // Price
-                  const Text('Mức giá (đ)',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textPrimary)),
+                  const Text(
+                    'Mức giá (đ)',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 8),
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.surface,
                       borderRadius: BorderRadius.circular(12),
@@ -1058,32 +1072,35 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                           values: tempPrice,
                           min: _priceMin,
                           max: _priceMax,
-                          divisions:
-                              ((_priceMax - _priceMin) / 100000).round(),
+                          divisions: ((_priceMax - _priceMin) / 100000).round(),
                           activeColor: AppColors.accent,
                           inactiveColor: AppColors.border,
                           labels: RangeLabels(
                             _formatVnd(tempPrice.start),
                             _formatVnd(tempPrice.end),
                           ),
-                          onChanged: (v) =>
-                              setSheet(() => tempPrice = v),
+                          onChanged: (v) => setSheet(() => tempPrice = v),
                         ),
                         Text(
                           '${_formatVnd(tempPrice.start)} – ${_formatVnd(tempPrice.end)}',
                           style: TextStyle(
-                              fontSize: 13, color: Colors.grey.shade600),
+                            fontSize: 13,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 24),
                   // Volume
-                  const Text('Dung tích (ml)',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textPrimary)),
+                  const Text(
+                    'Dung tích (ml)',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Container(
                     width: double.infinity,
@@ -1098,15 +1115,20 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                         value: tempVolume,
                         isExpanded: true,
                         style: const TextStyle(
-                            fontSize: 14, color: AppColors.textPrimary),
+                          fontSize: 14,
+                          color: AppColors.textPrimary,
+                        ),
                         items: [
                           const DropdownMenuItem(
-                              value: null,
-                              child: Text('Tất cả dung tích')),
-                          ..._volumeOptions.map((v) => DropdownMenuItem(
-                                value: v,
-                                child: Text('$v ml'),
-                              )),
+                            value: null,
+                            child: Text('Tất cả dung tích'),
+                          ),
+                          ..._volumeOptions.map(
+                            (v) => DropdownMenuItem(
+                              value: v,
+                              child: Text('$v ml'),
+                            ),
+                          ),
                         ],
                         onChanged: (v) => setSheet(() => tempVolume = v),
                       ),
@@ -1121,23 +1143,27 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                           onPressed: () {
                             setSheet(() {
                               tempBrand = null;
-                              tempPrice =
-                                  const RangeValues(_priceMin, _priceMax);
+                              tempPrice = const RangeValues(
+                                _priceMin,
+                                _priceMax,
+                              );
                               tempVolume = null;
                             });
                           },
                           style: OutlinedButton.styleFrom(
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 14),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                            side: const BorderSide(
-                                color: AppColors.border),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            side: const BorderSide(color: AppColors.border),
                           ),
-                          child: const Text('Đặt lại bộ lọc',
-                              style: TextStyle(
-                                  color: AppColors.textPrimary,
-                                  fontWeight: FontWeight.w600)),
+                          child: const Text(
+                            'Đặt lại bộ lọc',
+                            style: TextStyle(
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -1153,10 +1179,10 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
                             _onFilterChanged();
                           },
                           style: FilledButton.styleFrom(
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 14),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                             backgroundColor: AppColors.primary,
                           ),
                           child: const Text('Áp dụng'),
@@ -1203,30 +1229,32 @@ class _ProductCard extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   ClipRRect(
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(16)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(16),
+                    ),
                     child: product.imageUrl.isNotEmpty
-                          ? Image.network(
-                              product.imageUrl,
-                              fit: BoxFit.cover,
-                              gaplessPlayback: true,
-                              loadingBuilder: (_, child, progress) {
-                                if (progress == null) return child;
-                                return Container(
-                                  color: AppColors.surface,
-                                  child: const Center(
-                                    child: SizedBox(
-                                      width: 24,
-                                      height: 24,
-                                      child: CircularProgressIndicator(
-                                          strokeWidth: 2),
+                        ? Image.network(
+                            product.imageUrl,
+                            fit: BoxFit.cover,
+                            gaplessPlayback: true,
+                            loadingBuilder: (_, child, progress) {
+                              if (progress == null) return child;
+                              return Container(
+                                color: AppColors.surface,
+                                child: const Center(
+                                  child: SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
                                     ),
                                   ),
-                                );
-                              },
-                              errorBuilder: (_, _, _) => _placeholder(),
-                            )
-                          : _placeholder(),
+                                ),
+                              );
+                            },
+                            errorBuilder: (_, _, _) => _placeholder(),
+                          )
+                        : _placeholder(),
                   ),
                   // "New" badge
                   if (isNew)
@@ -1235,7 +1263,9 @@ class _ProductCard extends StatelessWidget {
                       left: 8,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 3),
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.accent,
                           borderRadius: BorderRadius.circular(8),
@@ -1257,7 +1287,9 @@ class _ProductCard extends StatelessWidget {
                       right: 8,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 3),
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.black54,
                           borderRadius: BorderRadius.circular(8),
@@ -1265,7 +1297,9 @@ class _ProductCard extends StatelessWidget {
                         child: Text(
                           product.gender!,
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 10),
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
                         ),
                       ),
                     ),
@@ -1281,8 +1315,7 @@ class _ProductCard extends StatelessWidget {
                   // Brand
                   Text(
                     product.brand,
-                    style:
-                        TextStyle(fontSize: 11, color: Colors.grey.shade500),
+                    style: TextStyle(fontSize: 11, color: Colors.grey.shade500),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -1331,8 +1364,11 @@ class _ProductCard extends StatelessWidget {
     return Container(
       color: AppColors.borderLight,
       child: const Center(
-        child: Icon(Icons.image_not_supported_outlined,
-            color: Colors.grey, size: 36),
+        child: Icon(
+          Icons.image_not_supported_outlined,
+          color: Colors.grey,
+          size: 36,
+        ),
       ),
     );
   }

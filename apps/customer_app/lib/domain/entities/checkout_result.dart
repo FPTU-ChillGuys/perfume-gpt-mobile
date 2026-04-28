@@ -3,11 +3,7 @@ class CheckoutResult {
   final String? paymentUrl;
   final String? orderId;
 
-  const CheckoutResult({
-    this.paymentId,
-    this.paymentUrl,
-    this.orderId,
-  });
+  const CheckoutResult({this.paymentId, this.paymentUrl, this.orderId});
 
   factory CheckoutResult.fromJson(Map<String, dynamic> json) {
     // Support both camelCase and PascalCase keys from API

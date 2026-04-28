@@ -7,12 +7,14 @@ part of 'survey_controller_get_survey_history_list_by_user_id200_response.dart';
 // **************************************************************************
 
 abstract class _$SurveyControllerGetSurveyHistoryListByUserId200ResponseCWProxy {
-  SurveyControllerGetSurveyHistoryListByUserId200Response success(bool success);
+  SurveyControllerGetSurveyHistoryListByUserId200Response success(
+    bool? success,
+  );
 
-  SurveyControllerGetSurveyHistoryListByUserId200Response error(Object? error);
+  SurveyControllerGetSurveyHistoryListByUserId200Response error(String? error);
 
   SurveyControllerGetSurveyHistoryListByUserId200Response details(
-    Object? details,
+    String? details,
   );
 
   SurveyControllerGetSurveyHistoryListByUserId200Response data(
@@ -27,9 +29,9 @@ abstract class _$SurveyControllerGetSurveyHistoryListByUserId200ResponseCWProxy 
   /// SurveyControllerGetSurveyHistoryListByUserId200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   SurveyControllerGetSurveyHistoryListByUserId200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     List<SurveyQuestionAnswerResponse>? data,
   });
 }
@@ -47,17 +49,17 @@ class _$SurveyControllerGetSurveyHistoryListByUserId200ResponseCWProxyImpl
 
   @override
   SurveyControllerGetSurveyHistoryListByUserId200Response success(
-    bool success,
+    bool? success,
   ) => call(success: success);
 
   @override
   SurveyControllerGetSurveyHistoryListByUserId200Response error(
-    Object? error,
+    String? error,
   ) => call(error: error);
 
   @override
   SurveyControllerGetSurveyHistoryListByUserId200Response details(
-    Object? details,
+    String? details,
   ) => call(details: details);
 
   @override
@@ -80,18 +82,18 @@ class _$SurveyControllerGetSurveyHistoryListByUserId200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return SurveyControllerGetSurveyHistoryListByUserId200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -123,11 +125,10 @@ _$SurveyControllerGetSurveyHistoryListByUserId200ResponseFromJson(
   'SurveyControllerGetSurveyHistoryListByUserId200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = SurveyControllerGetSurveyHistoryListByUserId200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
-      details: $checkedConvert('details', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
+      details: $checkedConvert('details', (v) => v as String?),
       data: $checkedConvert(
         'data',
         (v) => (v as List<dynamic>?)
@@ -147,7 +148,7 @@ Map<String, dynamic>
 _$SurveyControllerGetSurveyHistoryListByUserId200ResponseToJson(
   SurveyControllerGetSurveyHistoryListByUserId200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.map((e) => e.toJson()).toList(),

@@ -7,12 +7,12 @@ part of 'log_controller_get_paged_event_logs200_response.dart';
 // **************************************************************************
 
 abstract class _$LogControllerGetPagedEventLogs200ResponseCWProxy {
-  LogControllerGetPagedEventLogs200Response success(bool success);
+  LogControllerGetPagedEventLogs200Response success(bool? success);
 
-  LogControllerGetPagedEventLogs200Response error(Object? error);
+  LogControllerGetPagedEventLogs200Response error(String? error);
 
   LogControllerGetPagedEventLogs200Response payload(
-    LogControllerGetPagedEventLogs200ResponseAllOfPayload? payload,
+    LogControllerGetPagedEventLogs200ResponsePayload? payload,
   );
 
   /// Creates a new instance with the provided field values.
@@ -23,9 +23,9 @@ abstract class _$LogControllerGetPagedEventLogs200ResponseCWProxy {
   /// LogControllerGetPagedEventLogs200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   LogControllerGetPagedEventLogs200Response call({
-    bool success,
-    Object? error,
-    LogControllerGetPagedEventLogs200ResponseAllOfPayload? payload,
+    bool? success,
+    String? error,
+    LogControllerGetPagedEventLogs200ResponsePayload? payload,
   });
 }
 
@@ -38,16 +38,16 @@ class _$LogControllerGetPagedEventLogs200ResponseCWProxyImpl
   final LogControllerGetPagedEventLogs200Response _value;
 
   @override
-  LogControllerGetPagedEventLogs200Response success(bool success) =>
+  LogControllerGetPagedEventLogs200Response success(bool? success) =>
       call(success: success);
 
   @override
-  LogControllerGetPagedEventLogs200Response error(Object? error) =>
+  LogControllerGetPagedEventLogs200Response error(String? error) =>
       call(error: error);
 
   @override
   LogControllerGetPagedEventLogs200Response payload(
-    LogControllerGetPagedEventLogs200ResponseAllOfPayload? payload,
+    LogControllerGetPagedEventLogs200ResponsePayload? payload,
   ) => call(payload: payload);
 
   @override
@@ -64,18 +64,18 @@ class _$LogControllerGetPagedEventLogs200ResponseCWProxyImpl
     Object? payload = const $CopyWithPlaceholder(),
   }) {
     return LogControllerGetPagedEventLogs200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as LogControllerGetPagedEventLogs200ResponseAllOfPayload?,
+          : payload as LogControllerGetPagedEventLogs200ResponsePayload?,
     );
   }
 }
@@ -99,15 +99,14 @@ _$LogControllerGetPagedEventLogs200ResponseFromJson(
 ) => $checkedCreate('LogControllerGetPagedEventLogs200Response', json, (
   $checkedConvert,
 ) {
-  $checkKeys(json, requiredKeys: const ['success']);
   final val = LogControllerGetPagedEventLogs200Response(
-    success: $checkedConvert('success', (v) => v as bool),
-    error: $checkedConvert('error', (v) => v),
+    success: $checkedConvert('success', (v) => v as bool?),
+    error: $checkedConvert('error', (v) => v as String?),
     payload: $checkedConvert(
       'payload',
       (v) => v == null
           ? null
-          : LogControllerGetPagedEventLogs200ResponseAllOfPayload.fromJson(
+          : LogControllerGetPagedEventLogs200ResponsePayload.fromJson(
               v as Map<String, dynamic>,
             ),
     ),
@@ -118,7 +117,7 @@ _$LogControllerGetPagedEventLogs200ResponseFromJson(
 Map<String, dynamic> _$LogControllerGetPagedEventLogs200ResponseToJson(
   LogControllerGetPagedEventLogs200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'payload': ?instance.payload?.toJson(),
 };

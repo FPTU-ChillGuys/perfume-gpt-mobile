@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for InventoryApi
 void main() {
   final instance = PerfumegptAiApiClient().getInventoryApi();
@@ -50,7 +51,7 @@ void main() {
 
     // Lấy danh sách batch
     //
-    //Future<LogControllerGetPagedEventLogs200Response> inventoryControllerGetBatch(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String id, String variantId, String variantSku, String productName, num volumeMl, String concentrationName, String batchCode, String manufactureDate, String expiryDate, num importQuantity, num remainingQuantity, bool isExpired, num daysUntilExpiry, String createdAt }) async
+    //Future<InventoryControllerGetBatch200Response> inventoryControllerGetBatch(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String id, String variantId, String variantSku, String productName, num volumeMl, String concentrationName, String batchCode, String manufactureDate, String expiryDate, num importQuantity, num remainingQuantity, bool isExpired, num daysUntilExpiry, String createdAt }) async
     test('test inventoryControllerGetBatch', () async {
       // TODO
     });
@@ -78,21 +79,21 @@ void main() {
 
     // Lấy lịch sử báo cáo tồn kho tổng quan
     //
-    //Future<LogControllerGetPagedEventLogs200Response> inventoryControllerGetInventoryReportLogs() async
+    //Future<InventoryControllerGetInventoryReportLogs200Response> inventoryControllerGetInventoryReportLogs() async
     test('test inventoryControllerGetInventoryReportLogs', () async {
       // TODO
     });
 
     // Lấy lịch sử phân tích nhu cầu nhập hàng (restock)
     //
-    //Future<LogControllerGetPagedEventLogs200Response> inventoryControllerGetInventoryRestockLogs() async
+    //Future<InventoryControllerGetInventoryReportLogs200Response> inventoryControllerGetInventoryRestockLogs() async
     test('test inventoryControllerGetInventoryRestockLogs', () async {
       // TODO
     });
 
     // Lấy thông tin tồn kho
     //
-    //Future<LogControllerGetPagedEventLogs200Response> inventoryControllerGetInventoryStock(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String variantId, String searchTerm, bool isLowStock }) async
+    //Future<InventoryControllerGetInventoryStock200Response> inventoryControllerGetInventoryStock(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String variantId, String searchTerm, bool isLowStock }) async
     test('test inventoryControllerGetInventoryStock', () async {
       // TODO
     });
@@ -111,12 +112,9 @@ void main() {
     // Lấy thông tin variant kèm dữ liệu bán hàng theo ngày từ 2 tháng gần nhất, sử dụng cho tool dự đoán tái cấp hàng
     //
     //Future<InventoryControllerGetProductSalesAnalyticsForRestock200Response> inventoryControllerGetProductSalesAnalyticsForRestock() async
-    test(
-      'test inventoryControllerGetProductSalesAnalyticsForRestock',
-      () async {
-        // TODO
-      },
-    );
+    test('test inventoryControllerGetProductSalesAnalyticsForRestock', () async {
+      // TODO
+    });
 
     // Kiểm tra trạng thái hoàn thành của job phân tích nhu cầu nhập hàng (restock)
     //
@@ -131,5 +129,6 @@ void main() {
     test('test inventoryControllerGetStructuredAIInventoryReport', () async {
       // TODO
     });
+
   });
 }

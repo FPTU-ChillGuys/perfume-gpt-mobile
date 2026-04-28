@@ -33,7 +33,9 @@ class Cart extends _$Cart {
     if (normalized.toLowerCase().startsWith('bearer ')) {
       normalized = normalized.substring(7).trim();
     }
-    if (normalized.startsWith('"') && normalized.endsWith('"') && normalized.length > 1) {
+    if (normalized.startsWith('"') &&
+        normalized.endsWith('"') &&
+        normalized.length > 1) {
       normalized = normalized.substring(1, normalized.length - 1);
     }
     return normalized;
@@ -97,7 +99,11 @@ class Cart extends _$Cart {
     if (_generation != gen) return;
 
     try {
-      await repository.addItem(variantId, quantity: quantity, isAuthenticated: isAuthenticated);
+      await repository.addItem(
+        variantId,
+        quantity: quantity,
+        isAuthenticated: isAuthenticated,
+      );
       if (_generation != gen) return;
       final items = await repository.getItems(isAuthenticated: isAuthenticated);
       if (_generation != gen) return;
@@ -131,7 +137,9 @@ class Cart extends _$Cart {
       subTotal: product.price,
     );
 
-    final existingIndex = currentItems.indexWhere((item) => item.variantId == targetVariantId);
+    final existingIndex = currentItems.indexWhere(
+      (item) => item.variantId == targetVariantId,
+    );
     List<CartItem> updatedItems;
     if (existingIndex != -1) {
       updatedItems = [
@@ -139,7 +147,8 @@ class Cart extends _$Cart {
           if (i == existingIndex)
             currentItems[i].copyWith(
               quantity: currentItems[i].quantity + 1,
-              subTotal: currentItems[i].variantPrice * (currentItems[i].quantity + 1),
+              subTotal:
+                  currentItems[i].variantPrice * (currentItems[i].quantity + 1),
             )
           else
             currentItems[i],
@@ -152,9 +161,16 @@ class Cart extends _$Cart {
 
     try {
       if (repository is CartRepositoryImpl) {
-        await repository.addEntityToCart(newItem, isAuthenticated: isAuthenticated);
+        await repository.addEntityToCart(
+          newItem,
+          isAuthenticated: isAuthenticated,
+        );
       } else {
-        await repository.addItem(targetVariantId, quantity: 1, isAuthenticated: isAuthenticated);
+        await repository.addItem(
+          targetVariantId,
+          quantity: 1,
+          isAuthenticated: isAuthenticated,
+        );
       }
       if (_generation != gen) return;
       final items = await repository.getItems(isAuthenticated: isAuthenticated);
@@ -186,13 +202,20 @@ class Cart extends _$Cart {
     state = AsyncValue.data([
       for (final item in currentItems)
         if (item.cartItemId == cartItemId || item.variantId == cartItemId)
-          item.copyWith(quantity: quantity, subTotal: item.variantPrice * quantity)
+          item.copyWith(
+            quantity: quantity,
+            subTotal: item.variantPrice * quantity,
+          )
         else
           item,
     ]);
 
     try {
-      await repository.updateItem(cartItemId, quantity, isAuthenticated: isAuthenticated);
+      await repository.updateItem(
+        cartItemId,
+        quantity,
+        isAuthenticated: isAuthenticated,
+      );
       if (_generation != gen) return;
       final items = await repository.getItems(isAuthenticated: isAuthenticated);
       if (_generation != gen) return;
@@ -215,9 +238,14 @@ class Cart extends _$Cart {
     final isAuthenticated = await _checkAuth(storage, apiClient);
     if (_generation != gen) return;
 
-    state = AsyncValue.data(currentItems.where(
-      (item) => item.cartItemId != cartItemId && item.variantId != cartItemId,
-    ).toList());
+    state = AsyncValue.data(
+      currentItems
+          .where(
+            (item) =>
+                item.cartItemId != cartItemId && item.variantId != cartItemId,
+          )
+          .toList(),
+    );
 
     try {
       await repository.removeItem(cartItemId, isAuthenticated: isAuthenticated);
@@ -259,7 +287,8 @@ class Cart extends _$Cart {
     final storage = ref.read(flutterSecureStorageProvider);
     final apiClient = ref.read(apiClientProvider);
 
-    final itemsToMerge = guestItems ?? await repository.getItems(isAuthenticated: false);
+    final itemsToMerge =
+        guestItems ?? await repository.getItems(isAuthenticated: false);
     if (_generation != gen || itemsToMerge.isEmpty) return;
 
     state = const AsyncValue.loading();
@@ -280,7 +309,8 @@ class Cart extends _$Cart {
     }
   }
 
-  double get totalAmount => (state.asData?.value ?? []).fold(0, (sum, item) => sum + item.totalPrice);
+  double get totalAmount =>
+      (state.asData?.value ?? []).fold(0, (sum, item) => sum + item.totalPrice);
 }
 
 // ─── Selected cart item IDs ─────────────────────────────────────────────────
@@ -319,16 +349,25 @@ FutureOr<CartTotal> selectedCartTotal(Ref ref) async {
   final isSubset = selectedIds.isNotEmpty && selectedIds.length < allIds.length;
 
   if (isAuthenticated) {
-    return ref.read(cartRepositoryProvider).getTotal(
-      itemIds: isSubset ? selectedIds.toList() : null,
-    );
+    return ref
+        .read(cartRepositoryProvider)
+        .getTotal(itemIds: isSubset ? selectedIds.toList() : null);
   } else {
     final items = selectedIds.isEmpty
         ? cartItems
-        : cartItems.where((e) =>
-            e.cartItemId != null && selectedIds.contains(e.cartItemId)).toList();
+        : cartItems
+              .where(
+                (e) =>
+                    e.cartItemId != null && selectedIds.contains(e.cartItemId),
+              )
+              .toList();
     final subtotal = items.fold(0.0, (sum, item) => sum + item.totalPrice);
-    return CartTotal(subtotal: subtotal, shippingFee: 0, discount: 0, totalPrice: subtotal);
+    return CartTotal(
+      subtotal: subtotal,
+      shippingFee: 0,
+      discount: 0,
+      totalPrice: subtotal,
+    );
   }
 }
 
@@ -344,6 +383,11 @@ FutureOr<CartTotal> cartTotal(Ref ref) async {
     return ref.read(cartRepositoryProvider).getTotal();
   } else {
     final subtotal = cartItems.fold(0.0, (sum, item) => sum + item.totalPrice);
-    return CartTotal(subtotal: subtotal, shippingFee: 0, discount: 0, totalPrice: subtotal);
+    return CartTotal(
+      subtotal: subtotal,
+      shippingFee: 0,
+      discount: 0,
+      totalPrice: subtotal,
+    );
   }
 }

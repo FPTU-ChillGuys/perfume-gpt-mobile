@@ -36,8 +36,13 @@ FutureOr<List<({int id, String name})>> attributesLookup(Ref ref) {
 }
 
 @riverpod
-FutureOr<List<AttributeValueLookup>> attributeValuesLookup(Ref ref, int attributeId) {
-  return ref.watch(profileRepositoryProvider).getAttributeValuesLookup(attributeId);
+FutureOr<List<AttributeValueLookup>> attributeValuesLookup(
+  Ref ref,
+  int attributeId,
+) {
+  return ref
+      .watch(profileRepositoryProvider)
+      .getAttributeValuesLookup(attributeId);
 }
 
 @riverpod
@@ -51,10 +56,9 @@ class ProfileController extends _$ProfileController {
     required String fullName,
     required String phoneNumber,
   }) async {
-    await ref.read(profileRepositoryProvider).updateMe(
-      fullName: fullName,
-      phoneNumber: phoneNumber,
-    );
+    await ref
+        .read(profileRepositoryProvider)
+        .updateMe(fullName: fullName, phoneNumber: phoneNumber);
     ref.invalidateSelf();
   }
 
@@ -66,19 +70,23 @@ class ProfileController extends _$ProfileController {
     List<int>? familyPreferenceIds,
     List<int>? attributePreferenceIds,
   }) async {
-    await ref.read(profileRepositoryProvider).updateProfile(
-      dateOfBirth: dateOfBirth,
-      minBudget: minBudget,
-      maxBudget: maxBudget,
-      notePreferences: notePreferences,
-      familyPreferenceIds: familyPreferenceIds,
-      attributePreferenceIds: attributePreferenceIds,
-    );
+    await ref
+        .read(profileRepositoryProvider)
+        .updateProfile(
+          dateOfBirth: dateOfBirth,
+          minBudget: minBudget,
+          maxBudget: maxBudget,
+          notePreferences: notePreferences,
+          familyPreferenceIds: familyPreferenceIds,
+          attributePreferenceIds: attributePreferenceIds,
+        );
     ref.invalidateSelf();
   }
 
   Future<String?> uploadAvatar(String filePath) async {
-    final url = await ref.read(profileRepositoryProvider).uploadAvatar(filePath);
+    final url = await ref
+        .read(profileRepositoryProvider)
+        .uploadAvatar(filePath);
     ref.invalidateSelf();
     return url;
   }

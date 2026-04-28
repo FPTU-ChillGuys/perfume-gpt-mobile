@@ -7,11 +7,11 @@ part of 'ai_acceptance_controller_get_ai_acceptance_rate200_response.dart';
 // **************************************************************************
 
 abstract class _$AIAcceptanceControllerGetAIAcceptanceRate200ResponseCWProxy {
-  AIAcceptanceControllerGetAIAcceptanceRate200Response success(bool success);
+  AIAcceptanceControllerGetAIAcceptanceRate200Response success(bool? success);
 
-  AIAcceptanceControllerGetAIAcceptanceRate200Response error(Object? error);
+  AIAcceptanceControllerGetAIAcceptanceRate200Response error(String? error);
 
-  AIAcceptanceControllerGetAIAcceptanceRate200Response details(Object? details);
+  AIAcceptanceControllerGetAIAcceptanceRate200Response details(String? details);
 
   AIAcceptanceControllerGetAIAcceptanceRate200Response data(num? data);
 
@@ -23,9 +23,9 @@ abstract class _$AIAcceptanceControllerGetAIAcceptanceRate200ResponseCWProxy {
   /// AIAcceptanceControllerGetAIAcceptanceRate200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   AIAcceptanceControllerGetAIAcceptanceRate200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     num? data,
   });
 }
@@ -41,16 +41,16 @@ class _$AIAcceptanceControllerGetAIAcceptanceRate200ResponseCWProxyImpl
   final AIAcceptanceControllerGetAIAcceptanceRate200Response _value;
 
   @override
-  AIAcceptanceControllerGetAIAcceptanceRate200Response success(bool success) =>
+  AIAcceptanceControllerGetAIAcceptanceRate200Response success(bool? success) =>
       call(success: success);
 
   @override
-  AIAcceptanceControllerGetAIAcceptanceRate200Response error(Object? error) =>
+  AIAcceptanceControllerGetAIAcceptanceRate200Response error(String? error) =>
       call(error: error);
 
   @override
   AIAcceptanceControllerGetAIAcceptanceRate200Response details(
-    Object? details,
+    String? details,
   ) => call(details: details);
 
   @override
@@ -72,18 +72,18 @@ class _$AIAcceptanceControllerGetAIAcceptanceRate200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return AIAcceptanceControllerGetAIAcceptanceRate200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -112,11 +112,10 @@ _$AIAcceptanceControllerGetAIAcceptanceRate200ResponseFromJson(
   'AIAcceptanceControllerGetAIAcceptanceRate200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = AIAcceptanceControllerGetAIAcceptanceRate200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
-      details: $checkedConvert('details', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
+      details: $checkedConvert('details', (v) => v as String?),
       data: $checkedConvert('data', (v) => v as num?),
     );
     return val;
@@ -127,7 +126,7 @@ Map<String, dynamic>
 _$AIAcceptanceControllerGetAIAcceptanceRate200ResponseToJson(
   AIAcceptanceControllerGetAIAcceptanceRate200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data,

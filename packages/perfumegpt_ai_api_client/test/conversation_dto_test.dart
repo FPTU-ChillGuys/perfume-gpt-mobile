@@ -42,5 +42,12 @@ void main() {
     test('to test the property `messages`', () async {
       // TODO
     });
+
+    // Đánh dấu response cho Mobile
+    // bool isMobile
+    test('to test the property `isMobile`', () async {
+      // TODO
+    });
+
   });
 }

@@ -133,17 +133,13 @@ class _LoginPageState extends ConsumerState<LoginPage>
         child: CustomScrollView(
           slivers: [
             // ── Hero header ──────────────────────────────────────────────
-            SliverToBoxAdapter(
-              child: _buildHero(context),
-            ),
+            SliverToBoxAdapter(child: _buildHero(context)),
 
             // ── Form card ────────────────────────────────────────────────
             SliverFillRemaining(
               hasScrollBody: false,
               child: Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xFFF8FAFC),
-                ),
+                decoration: const BoxDecoration(color: Color(0xFFF8FAFC)),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
                   child: Column(
@@ -223,9 +219,12 @@ class _LoginPageState extends ConsumerState<LoginPage>
                                 onPressed: authState.isLoading
                                     ? null
                                     : () async {
-                                        final fcmToken = await _safeGetFcmToken();
+                                        final fcmToken =
+                                            await _safeGetFcmToken();
                                         if (!mounted) return;
-                                        ref.read(authProvider.notifier).login(
+                                        ref
+                                            .read(authProvider.notifier)
+                                            .login(
                                               _emailController.text,
                                               _passwordController.text,
                                               deviceType: _deviceType(),
@@ -268,7 +267,8 @@ class _LoginPageState extends ConsumerState<LoginPage>
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 12),
+                                    horizontal: 12,
+                                  ),
                                   child: Text(
                                     'hoặc',
                                     style: TextStyle(
@@ -302,8 +302,7 @@ class _LoginPageState extends ConsumerState<LoginPage>
                                 ),
                                 style: OutlinedButton.styleFrom(
                                   foregroundColor: AppColors.textPrimary,
-                                  side: BorderSide(
-                                      color: Colors.grey.shade300),
+                                  side: BorderSide(color: Colors.grey.shade300),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(16),
                                   ),
@@ -450,10 +449,7 @@ class _LoginPageState extends ConsumerState<LoginPage>
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
-      style: const TextStyle(
-        fontSize: 15,
-        color: AppColors.textPrimary,
-      ),
+      style: const TextStyle(fontSize: 15, color: AppColors.textPrimary),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
@@ -461,8 +457,10 @@ class _LoginPageState extends ConsumerState<LoginPage>
         suffixIcon: suffixIcon,
         filled: true,
         fillColor: const Color(0xFFF8FAFC),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 14,
+          horizontal: 16,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(color: Colors.grey.shade200),

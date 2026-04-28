@@ -346,7 +346,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       final requireDeposit =
           (total?.depositPolicy?.isDepositRequired == true) ||
           ((total?.depositPolicy?.depositAmount ?? 0) > 0);
-      
+
       // If deposit is required but gateway is still COD, default to VnPay or show error
       String effectiveDepositGateway = _depositGateway;
       if (_selectedPayment == 'CashOnDelivery' &&
@@ -1012,7 +1012,10 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                           Expanded(
                             child: Text(
                               title,
-                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                           IconButton(
@@ -1032,7 +1035,8 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                           border: OutlineInputBorder(),
                           isDense: true,
                         ),
-                        onChanged: (value) => setSheetState(() => query = value),
+                        onChanged: (value) =>
+                            setSheetState(() => query = value),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -1380,7 +1384,11 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
                   '(* Còn lại ${_formatCurrency(total.depositPolicy?.remainingAmount ?? 0)} thanh toán khi nhận hàng)',
-                  style: TextStyle(fontSize: 12, color: Colors.grey[600], fontStyle: FontStyle.italic),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[600],
+                    fontStyle: FontStyle.italic,
+                  ),
                   textAlign: TextAlign.right,
                 ),
               ),
@@ -1523,15 +1531,19 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                             width: 32,
                             height: 32,
                             fit: BoxFit.contain,
-                            errorBuilder: (_, _, _) =>
-                                Icon(Icons.payment, color: Colors.grey.shade400),
+                            errorBuilder: (_, _, _) => Icon(
+                              Icons.payment,
+                              color: Colors.grey.shade400,
+                            ),
                           ),
                         )
                       : Icon(m.icon, color: m.color),
                   title: Text(
                     m.label,
                     style: TextStyle(
-                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.normal,
                     ),
                   ),
                   subtitle: Text(
@@ -1545,7 +1557,11 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                     ((total.depositPolicy?.isDepositRequired == true) ||
                         ((total.depositPolicy?.depositAmount ?? 0) > 0)))
                   Padding(
-                    padding: const EdgeInsets.only(left: 72, right: 16, bottom: 12),
+                    padding: const EdgeInsets.only(
+                      left: 72,
+                      right: 16,
+                      bottom: 12,
+                    ),
                     child: Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
@@ -1558,7 +1574,11 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.info_outline, size: 16, color: Colors.orange.shade800),
+                              Icon(
+                                Icons.info_outline,
+                                size: 16,
+                                color: Colors.orange.shade800,
+                              ),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
@@ -1575,25 +1595,55 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                           const SizedBox(height: 8),
                           Text(
                             'Vui lòng chọn cổng thanh toán để đặt cọc:',
-                            style: TextStyle(fontSize: 12, color: Colors.grey.shade800),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey.shade800,
+                            ),
                           ),
                           const SizedBox(height: 8),
                           DropdownButtonFormField<String>(
-                            initialValue: _depositGateway == 'CashOnDelivery' ? 'VnPay' : _depositGateway,
+                            initialValue: _depositGateway == 'CashOnDelivery'
+                                ? 'VnPay'
+                                : _depositGateway,
                             decoration: InputDecoration(
                               isDense: true,
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
                               filled: true,
                               fillColor: Colors.white,
                             ),
                             items: const [
-                              DropdownMenuItem(value: 'VnPay', child: Text('VNPay', style: TextStyle(fontSize: 13))),
-                              DropdownMenuItem(value: 'Momo', child: Text('MoMo', style: TextStyle(fontSize: 13))),
-                              DropdownMenuItem(value: 'PayOs', child: Text('PayOS', style: TextStyle(fontSize: 13))),
+                              DropdownMenuItem(
+                                value: 'VnPay',
+                                child: Text(
+                                  'VNPay',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'Momo',
+                                child: Text(
+                                  'MoMo',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'PayOs',
+                                child: Text(
+                                  'PayOS',
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                              ),
                             ],
                             onChanged: (v) {
-                              if (v != null) setState(() => _depositGateway = v);
+                              if (v != null) {
+                                setState(() => _depositGateway = v);
+                              }
                             },
                           ),
                         ],

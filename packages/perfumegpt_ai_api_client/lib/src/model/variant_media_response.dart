@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'variant_media_response.g.dart';
 
+
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,57 +19,102 @@ part 'variant_media_response.g.dart';
 class VariantMediaResponse {
   /// Returns a new [VariantMediaResponse] instance.
   VariantMediaResponse({
-    required this.id,
 
-    required this.url,
+    required  this.id,
 
-    this.altText,
+    required  this.url,
 
-    required this.isPrimary,
+     this.altText,
 
-    required this.displayOrder,
+    required  this.isPrimary,
+
+    required  this.displayOrder,
   });
 
-  /// ID media
-  @JsonKey(name: r'id', required: true, includeIfNull: false)
+      /// ID media
+  @JsonKey(
+    
+    name: r'id',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String id;
 
-  /// URL hình ảnh
-  @JsonKey(name: r'url', required: true, includeIfNull: false)
+
+
+      /// URL hình ảnh
+  @JsonKey(
+    
+    name: r'url',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final String url;
 
-  /// Alt text
-  @JsonKey(name: r'altText', required: false, includeIfNull: false)
+
+
+      /// Alt text
+  @JsonKey(
+    
+    name: r'altText',
+    required: false,
+    includeIfNull: false,
+  )
+
+
   final Object? altText;
 
-  /// Có phải hình ảnh chính không
-  @JsonKey(name: r'isPrimary', required: true, includeIfNull: false)
+
+
+      /// Có phải hình ảnh chính không
+  @JsonKey(
+    
+    name: r'isPrimary',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final bool isPrimary;
 
-  /// Thứ tự hiển thị
-  @JsonKey(name: r'displayOrder', required: true, includeIfNull: false)
+
+
+      /// Thứ tự hiển thị
+  @JsonKey(
+    
+    name: r'displayOrder',
+    required: true,
+    includeIfNull: false,
+  )
+
+
   final num displayOrder;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is VariantMediaResponse &&
-          other.id == id &&
-          other.url == url &&
-          other.altText == altText &&
-          other.isPrimary == isPrimary &&
-          other.displayOrder == displayOrder;
 
-  @override
-  int get hashCode =>
-      id.hashCode +
-      url.hashCode +
-      (altText == null ? 0 : altText.hashCode) +
-      isPrimary.hashCode +
-      displayOrder.hashCode;
 
-  factory VariantMediaResponse.fromJson(Map<String, dynamic> json) =>
-      _$VariantMediaResponseFromJson(json);
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is VariantMediaResponse &&
+      other.id == id &&
+      other.url == url &&
+      other.altText == altText &&
+      other.isPrimary == isPrimary &&
+      other.displayOrder == displayOrder;
+
+    @override
+    int get hashCode =>
+        id.hashCode +
+        url.hashCode +
+        (altText == null ? 0 : altText.hashCode) +
+        isPrimary.hashCode +
+        displayOrder.hashCode;
+
+  factory VariantMediaResponse.fromJson(Map<String, dynamic> json) => _$VariantMediaResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$VariantMediaResponseToJson(this);
 
@@ -76,4 +122,6 @@ class VariantMediaResponse {
   String toString() {
     return toJson().toString();
   }
+
 }
+

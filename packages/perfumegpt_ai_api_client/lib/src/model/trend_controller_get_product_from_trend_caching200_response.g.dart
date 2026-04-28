@@ -7,11 +7,11 @@ part of 'trend_controller_get_product_from_trend_caching200_response.dart';
 // **************************************************************************
 
 abstract class _$TrendControllerGetProductFromTrendCaching200ResponseCWProxy {
-  TrendControllerGetProductFromTrendCaching200Response success(bool success);
+  TrendControllerGetProductFromTrendCaching200Response success(bool? success);
 
-  TrendControllerGetProductFromTrendCaching200Response error(Object? error);
+  TrendControllerGetProductFromTrendCaching200Response error(String? error);
 
-  TrendControllerGetProductFromTrendCaching200Response details(Object? details);
+  TrendControllerGetProductFromTrendCaching200Response details(String? details);
 
   TrendControllerGetProductFromTrendCaching200Response data(
     ProductCardResponse? data,
@@ -25,9 +25,9 @@ abstract class _$TrendControllerGetProductFromTrendCaching200ResponseCWProxy {
   /// TrendControllerGetProductFromTrendCaching200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   TrendControllerGetProductFromTrendCaching200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     ProductCardResponse? data,
   });
 }
@@ -43,16 +43,16 @@ class _$TrendControllerGetProductFromTrendCaching200ResponseCWProxyImpl
   final TrendControllerGetProductFromTrendCaching200Response _value;
 
   @override
-  TrendControllerGetProductFromTrendCaching200Response success(bool success) =>
+  TrendControllerGetProductFromTrendCaching200Response success(bool? success) =>
       call(success: success);
 
   @override
-  TrendControllerGetProductFromTrendCaching200Response error(Object? error) =>
+  TrendControllerGetProductFromTrendCaching200Response error(String? error) =>
       call(error: error);
 
   @override
   TrendControllerGetProductFromTrendCaching200Response details(
-    Object? details,
+    String? details,
   ) => call(details: details);
 
   @override
@@ -75,18 +75,18 @@ class _$TrendControllerGetProductFromTrendCaching200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return TrendControllerGetProductFromTrendCaching200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -115,11 +115,10 @@ _$TrendControllerGetProductFromTrendCaching200ResponseFromJson(
   'TrendControllerGetProductFromTrendCaching200Response',
   json,
   ($checkedConvert) {
-    $checkKeys(json, requiredKeys: const ['success']);
     final val = TrendControllerGetProductFromTrendCaching200Response(
-      success: $checkedConvert('success', (v) => v as bool),
-      error: $checkedConvert('error', (v) => v),
-      details: $checkedConvert('details', (v) => v),
+      success: $checkedConvert('success', (v) => v as bool?),
+      error: $checkedConvert('error', (v) => v as String?),
+      details: $checkedConvert('details', (v) => v as String?),
       data: $checkedConvert(
         'data',
         (v) => v == null
@@ -135,7 +134,7 @@ Map<String, dynamic>
 _$TrendControllerGetProductFromTrendCaching200ResponseToJson(
   TrendControllerGetProductFromTrendCaching200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),

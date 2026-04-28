@@ -43,18 +43,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -362,18 +370,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ProfileResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ProfileResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -395,18 +411,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -473,32 +497,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/ProductResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ProductResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -575,32 +602,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ProductWithVariantsResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -667,32 +697,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ProductWithVariantsResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -759,32 +792,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ProductWithVariantsResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -851,32 +887,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/BestSellingProductResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/BestSellingProductResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -953,32 +992,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ProductWithVariantsResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1055,32 +1097,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ProductWithVariantsResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1157,32 +1202,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/ProductWithVariantsResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ProductWithVariantsResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1259,18 +1307,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "$ref": "#/components/schemas/HybridSearchResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "$ref": "#/components/schemas/HybridSearchResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1303,18 +1354,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "$ref": "#/components/schemas/ProductWithVariantsResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "$ref": "#/components/schemas/ProductWithVariantsResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1386,21 +1440,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/SurveyQuestionResponse"
-                          }
-                        }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyQuestionResponse"
                       }
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1430,18 +1492,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1473,18 +1543,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/SurveyQuestionResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/SurveyQuestionResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1524,18 +1602,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/SurveyQuestionResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/SurveyQuestionResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1565,18 +1651,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "boolean"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "boolean"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1608,18 +1702,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "boolean"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "boolean"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1654,18 +1756,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1710,18 +1820,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1766,18 +1884,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1822,18 +1948,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1878,18 +2012,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1901,13 +2043,106 @@
         ]
       }
     },
+    "/surveys/user/v5": {
+      "post": {
+        "operationId": "SurveyController_chatSurveyV5",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": false,
+            "in": "query",
+            "description": "ID của người dùng",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SurveyQuesAnsDetailRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The base response of String",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
+                    },
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Trả lời survey V5 — Hybrid (AI phân tích + Query-based + Ranking score)",
+        "tags": [
+          "Surveys"
+        ]
+      }
+    },
     "/surveys/attributes": {
       "get": {
         "operationId": "SurveyController_getAttributeTypes",
         "parameters": [],
         "responses": {
           "200": {
-            "description": ""
+            "description": "The base response of SurveyAttributeTypeInfo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
+                    },
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyAttributeTypeInfo"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "summary": "Lấy danh sách loại thuộc tính cho survey",
@@ -1932,7 +2167,36 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "The base response of SurveyAttributeValuesResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
+                    },
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyAttributeValuesResponse"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "summary": "Lấy giá trị của 1 loại thuộc tính",
@@ -1945,24 +2209,42 @@
       "post": {
         "operationId": "SurveyController_createQuestionFromAttribute",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateQuestionFromAttributeRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The base response of String",
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1994,18 +2276,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/SurveyQuestionAnswerResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/SurveyQuestionAnswerResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2037,21 +2327,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/SurveyQuestionAnswerResponse"
-                          }
-                        }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyQuestionAnswerResponse"
                       }
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2083,18 +2381,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2151,18 +2457,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2214,7 +2528,7 @@
             "description": "Ngày kết thúc",
             "schema": {
               "format": "date-time",
-              "default": "2026-04-20T23:59:59.999Z",
+              "default": "2026-04-27T23:59:59.999Z",
               "type": "string"
             }
           },
@@ -2235,18 +2549,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2273,18 +2595,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Array"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Array"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2357,18 +2687,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Array"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Array"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2403,18 +2741,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2531,32 +2877,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/EventLog"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/EventLog"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2628,18 +2977,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/EventLogSummaryResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventLogSummaryResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2711,18 +3068,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/EventLogTimeSeriesResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventLogTimeSeriesResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2784,18 +3149,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Array"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Array"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2857,21 +3230,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/UserLogSummaryResponse"
-                          }
-                        }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserLogSummaryResponse"
                       }
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2919,7 +3300,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-04-20T05:02:04.766Z",
+              "example": "2026-04-27T01:43:40.996Z",
               "type": "string"
             }
           },
@@ -2939,21 +3320,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/UserLogSummaryResponse"
-                          }
-                        }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserLogSummaryResponse"
                       }
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3010,18 +3399,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3083,18 +3480,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/UserLogSummaryResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/UserLogSummaryResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3131,18 +3536,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3178,18 +3591,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3216,18 +3637,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3254,18 +3683,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ConversationDto"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationDto"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3342,32 +3779,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/ConversationDto"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ConversationDto"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3399,18 +3839,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ConversationRequestDto"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationRequestDto"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3443,22 +3891,30 @@
         },
         "responses": {
           "200": {
-            "description": "The base response of ConversationRequestDto",
+            "description": "The base response of ConversationDto",
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ConversationRequestDto"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationDto"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3491,22 +3947,30 @@
         },
         "responses": {
           "200": {
-            "description": "The base response of ConversationRequestDto",
+            "description": "The base response of ConversationDto",
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ConversationRequestDto"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ConversationDto"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3578,18 +4042,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3656,18 +4128,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ProductCardResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ProductCardResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3734,18 +4214,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3776,18 +4264,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Object"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Object"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3854,18 +4350,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ProductCardResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ProductCardResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3932,18 +4436,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AITrendForecastStructuredResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AITrendForecastStructuredResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -3965,18 +4477,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4113,32 +4633,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/ReviewListItemResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ReviewListItemResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4175,18 +4698,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4231,18 +4762,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Object"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Object"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4279,18 +4818,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4327,18 +4874,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIReviewSummaryStructuredResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AIReviewSummaryStructuredResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4365,18 +4920,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ReviewLog"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ReviewLog"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4401,18 +4964,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ReviewLog"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ReviewLog"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4449,18 +5020,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ReviewLog"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ReviewLog"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4497,18 +5076,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ReviewLog"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ReviewLog"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4545,18 +5132,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/ReviewLog"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ReviewLog"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4593,18 +5188,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4645,18 +5248,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4678,18 +5289,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Object"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Object"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4735,18 +5354,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Object"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Object"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -4840,32 +5467,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/InventoryStockResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/InventoryStockResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5072,32 +5702,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/BatchResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/BatchResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5130,18 +5763,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5174,18 +5815,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5218,18 +5867,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIInventoryReportStructuredResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AIInventoryReportStructuredResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5272,18 +5929,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5326,18 +5991,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Object"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Object"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5370,32 +6043,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "string"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5428,32 +6104,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "string"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5495,18 +6174,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/InventoryLog"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/InventoryLog"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5611,18 +6298,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Object"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Object"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5665,18 +6360,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5719,18 +6422,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Object"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Object"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5764,21 +6475,24 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/VariantSalesAnalyticsResponse"
-                          }
-                        }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VariantSalesAnalyticsResponse"
                       }
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5823,18 +6537,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "$ref": "#/components/schemas/VariantSalesAnalyticsResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "$ref": "#/components/schemas/VariantSalesAnalyticsResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5877,18 +6594,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIAcceptance"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AIAcceptance"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5923,18 +6648,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIAcceptance"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AIAcceptance"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -5959,18 +6692,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIAcceptance"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AIAcceptance"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6014,18 +6755,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIAcceptance"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AIAcceptance"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6077,18 +6826,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "number"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "number"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6130,18 +6887,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Object"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Object"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6166,21 +6931,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/AdminInstructionResponse"
-                          }
-                        }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdminInstructionResponse"
                       }
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6221,18 +6994,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AdminInstructionResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AdminInstructionResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6275,18 +7056,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AdminInstructionResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AdminInstructionResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6337,18 +7126,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AdminInstructionResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AdminInstructionResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6389,18 +7186,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "boolean"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "boolean"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6443,21 +7248,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/AdminInstructionResponse"
-                          }
-                        }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdminInstructionResponse"
                       }
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6500,18 +7313,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6667,32 +7488,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/OrderListItemResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/OrderListItemResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6854,32 +7678,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponseAPI"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "payload": {
-                          "allOf": [
-                            {
-                              "$ref": "#/components/schemas/PagedResult"
-                            },
-                            {
-                              "properties": {
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "$ref": "#/components/schemas/OrderListItemResponse"
-                                  }
-                                }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "payload": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PagedResult"
+                        },
+                        {
+                          "properties": {
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/OrderListItemResponse"
                               }
                             }
-                          ]
+                          }
                         }
-                      }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6919,18 +7746,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "type": "string"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -6970,18 +7805,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BaseResponse"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
                     },
-                    {
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/AIOrderSummaryStructuredResponse"
-                        }
-                      }
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/AIOrderSummaryStructuredResponse"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -7434,7 +8277,8 @@
           "description": {
             "type": "string",
             "description": "Mô tả thuộc tính",
-            "example": "Suitable weather or season for the product"
+            "example": "Suitable weather or season for the product",
+            "nullable": true
           },
           "value": {
             "type": "string",
@@ -7447,7 +8291,6 @@
           "attributeId",
           "valueId",
           "attribute",
-          "description",
           "value"
         ]
       },
@@ -7481,7 +8324,8 @@
           },
           "description": {
             "type": "string",
-            "description": "Mô tả sản phẩm"
+            "description": "Mô tả sản phẩm",
+            "nullable": true
           },
           "primaryImage": {
             "type": "object",
@@ -7503,7 +8347,6 @@
           "brandName",
           "categoryId",
           "categoryName",
-          "description",
           "primaryImage",
           "attributes"
         ]
@@ -7684,6 +8527,11 @@
             "type": "object",
             "description": "Ngày cập nhật",
             "nullable": true
+          },
+          "url": {
+            "type": "object",
+            "description": "URL hình ảnh chính của variant",
+            "nullable": true
           }
         },
         "required": [
@@ -7731,7 +8579,8 @@
           },
           "description": {
             "type": "string",
-            "description": "Mô tả sản phẩm"
+            "description": "Mô tả sản phẩm",
+            "nullable": true
           },
           "primaryImage": {
             "type": "object",
@@ -7783,7 +8632,6 @@
           "brandName",
           "categoryId",
           "categoryName",
-          "description",
           "variants",
           "scentNotes",
           "olfactoryFamilies",
@@ -7974,6 +8822,80 @@
           "searchText"
         ]
       },
+      "QueryFragmentMatch": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "gender",
+              "origin",
+              "brand",
+              "category",
+              "concentration",
+              "note",
+              "family",
+              "attribute",
+              "budget"
+            ],
+            "description": "Loại thuộc tính (trừ attribute và budget)"
+          },
+          "match": {
+            "type": "string",
+            "description": "Giá trị cần khớp chính xác"
+          }
+        },
+        "required": [
+          "type",
+          "match"
+        ]
+      },
+      "QueryFragmentAttribute": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "attribute"
+            ]
+          },
+          "attributeName": {
+            "type": "string",
+            "description": "Tên loại thuộc tính (ví dụ: Nồng độ, Độ lưu hương)"
+          },
+          "match": {
+            "type": "string",
+            "description": "Giá trị thuộc tính cần khớp"
+          }
+        },
+        "required": [
+          "type",
+          "attributeName",
+          "match"
+        ]
+      },
+      "QueryFragmentBudget": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "budget"
+            ]
+          },
+          "min": {
+            "type": "number",
+            "description": "Giá tối thiểu"
+          },
+          "max": {
+            "type": "number",
+            "description": "Giá tối đa"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
       "SurveyAnswerResponse": {
         "type": "object",
         "properties": {
@@ -8124,6 +9046,148 @@
         "required": [
           "questionId",
           "answerId"
+        ]
+      },
+      "SurveyAttributeTypeInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "gender",
+              "origin",
+              "brand",
+              "category",
+              "concentration",
+              "note",
+              "family",
+              "attribute",
+              "budget"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "label",
+          "description"
+        ]
+      },
+      "SurveyAttributeValueItem": {
+        "type": "object",
+        "properties": {
+          "displayText": {
+            "type": "string"
+          },
+          "queryFragment": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/QueryFragmentMatch"
+              },
+              {
+                "$ref": "#/components/schemas/QueryFragmentAttribute"
+              },
+              {
+                "$ref": "#/components/schemas/QueryFragmentBudget"
+              }
+            ]
+          }
+        },
+        "required": [
+          "displayText",
+          "queryFragment"
+        ]
+      },
+      "SurveyAttributeValuesResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "gender",
+              "origin",
+              "brand",
+              "category",
+              "concentration",
+              "note",
+              "family",
+              "attribute",
+              "budget"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SurveyAttributeValueItem"
+            }
+          },
+          "subGroups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "label"
+        ]
+      },
+      "CreateQuestionFromAttributeRequest": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "questionType": {
+            "type": "string",
+            "enum": [
+              "single",
+              "multiple"
+            ]
+          },
+          "attributeType": {
+            "type": "string",
+            "enum": [
+              "gender",
+              "origin",
+              "brand",
+              "category",
+              "concentration",
+              "note",
+              "family",
+              "attribute",
+              "budget"
+            ]
+          },
+          "attributeName": {
+            "type": "string"
+          },
+          "selectedValues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "budgetRanges": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "question",
+          "questionType",
+          "attributeType"
         ]
       },
       "SurveyGroupedAnswerItem": {
@@ -8577,6 +9641,142 @@
           "logSummary"
         ]
       },
+      "ProductCardVariantOutputDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sku": {
+            "type": "string"
+          },
+          "volumeMl": {
+            "type": "number"
+          },
+          "basePrice": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "sku",
+          "volumeMl",
+          "basePrice"
+        ]
+      },
+      "ProductCardOutputItemDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "brandName": {
+            "type": "string"
+          },
+          "primaryImage": {
+            "type": "object",
+            "nullable": true
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCardVariantOutputDto"
+            }
+          },
+          "reasoning": {
+            "type": "object",
+            "nullable": true
+          },
+          "source": {
+            "type": "object",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "brandName",
+          "variants"
+        ]
+      },
+      "ProductTempItemDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "object",
+            "nullable": true
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                }
+              }
+            },
+            "nullable": true
+          },
+          "reasoning": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "reasoning",
+          "source"
+        ]
+      },
+      "ConversationOutputDto": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Nội dung tin nhắn văn bản"
+          },
+          "products": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCardOutputItemDto"
+            }
+          },
+          "productTemp": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductTempItemDto"
+            }
+          },
+          "suggestedQuestions": {
+            "description": "Gợi ý 3-4 câu hỏi tiếp theo",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "suggestedQuestions"
+        ]
+      },
       "MessageDto": {
         "type": "object",
         "properties": {
@@ -8604,8 +9804,15 @@
             "description": "Người gửi tin nhắn (user hoặc assistant)"
           },
           "message": {
-            "type": "string",
-            "description": "Nội dung tin nhắn"
+            "description": "Nội dung tin nhắn (chuỗi hoặc object cho assistant)",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/ConversationOutputDto"
+              }
+            ]
           }
         },
         "required": [
@@ -8650,6 +9857,10 @@
             "items": {
               "$ref": "#/components/schemas/MessageDto"
             }
+          },
+          "isMobile": {
+            "type": "boolean",
+            "description": "Đánh dấu response cho Mobile"
           }
         },
         "required": [
@@ -8671,8 +9882,15 @@
             ]
           },
           "message": {
-            "type": "string",
-            "description": "Nội dung tin nhắn"
+            "description": "Nội dung tin nhắn",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/ConversationOutputDto"
+              }
+            ]
           }
         },
         "required": [
@@ -8703,6 +9921,10 @@
           "isStaff": {
             "type": "boolean",
             "description": "Chế độ nhân viên tư vấn tại quầy"
+          },
+          "isMobile": {
+            "type": "boolean",
+            "description": "Client là Mobile App"
           }
         },
         "required": [
@@ -9135,6 +10357,11 @@
             "format": "int32",
             "description": "Signed 32-bit integers (commonly used integer type).",
             "example": 50
+          },
+          "variantSku": {
+            "type": "string",
+            "description": "Variant SKU",
+            "example": "SKU-001"
           }
         },
         "required": [
@@ -9144,7 +10371,8 @@
           "id",
           "importQuantity",
           "manufactureDate",
-          "remainingQuantity"
+          "remainingQuantity",
+          "variantSku"
         ]
       },
       "AIInventoryReportStructuredResponse": {

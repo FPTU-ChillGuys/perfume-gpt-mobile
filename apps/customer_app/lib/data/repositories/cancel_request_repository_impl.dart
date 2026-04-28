@@ -15,10 +15,9 @@ class CancelRequestRepositoryImpl implements CancelRequestRepository {
   }) async {
     CancelRequestStatus? statusEnum;
     if (status != null) {
-      statusEnum = CancelRequestStatus.values.cast<CancelRequestStatus?>().firstWhere(
-        (e) => e!.value == status,
-        orElse: () => null,
-      );
+      statusEnum = CancelRequestStatus.values
+          .cast<CancelRequestStatus?>()
+          .firstWhere((e) => e!.value == status, orElse: () => null);
     }
 
     final response = await _api.apiOrdercancelrequestsMyRequestsGet(
@@ -46,7 +45,9 @@ class CancelRequestRepositoryImpl implements CancelRequestRepository {
       final response = await _api.apiOrdercancelrequestsIdGet(id: id);
       final payload = response.data?.payload;
       if (payload != null) return _map(payload);
-      debugPrint('[CancelRequestRepo] getById: payload is null for cancel request $id');
+      debugPrint(
+        '[CancelRequestRepo] getById: payload is null for cancel request $id',
+      );
       throw Exception('API returned null payload for cancel request $id');
     } catch (e) {
       debugPrint('[CancelRequestRepo] getById unexpected error: $e');

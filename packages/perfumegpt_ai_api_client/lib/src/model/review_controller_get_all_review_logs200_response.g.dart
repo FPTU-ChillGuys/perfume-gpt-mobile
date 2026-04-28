@@ -7,11 +7,11 @@ part of 'review_controller_get_all_review_logs200_response.dart';
 // **************************************************************************
 
 abstract class _$ReviewControllerGetAllReviewLogs200ResponseCWProxy {
-  ReviewControllerGetAllReviewLogs200Response success(bool success);
+  ReviewControllerGetAllReviewLogs200Response success(bool? success);
 
-  ReviewControllerGetAllReviewLogs200Response error(Object? error);
+  ReviewControllerGetAllReviewLogs200Response error(String? error);
 
-  ReviewControllerGetAllReviewLogs200Response details(Object? details);
+  ReviewControllerGetAllReviewLogs200Response details(String? details);
 
   ReviewControllerGetAllReviewLogs200Response data(ReviewLog? data);
 
@@ -23,9 +23,9 @@ abstract class _$ReviewControllerGetAllReviewLogs200ResponseCWProxy {
   /// ReviewControllerGetAllReviewLogs200Response(...).copyWith(id: 12, name: "My name")
   /// ```
   ReviewControllerGetAllReviewLogs200Response call({
-    bool success,
-    Object? error,
-    Object? details,
+    bool? success,
+    String? error,
+    String? details,
     ReviewLog? data,
   });
 }
@@ -39,15 +39,15 @@ class _$ReviewControllerGetAllReviewLogs200ResponseCWProxyImpl
   final ReviewControllerGetAllReviewLogs200Response _value;
 
   @override
-  ReviewControllerGetAllReviewLogs200Response success(bool success) =>
+  ReviewControllerGetAllReviewLogs200Response success(bool? success) =>
       call(success: success);
 
   @override
-  ReviewControllerGetAllReviewLogs200Response error(Object? error) =>
+  ReviewControllerGetAllReviewLogs200Response error(String? error) =>
       call(error: error);
 
   @override
-  ReviewControllerGetAllReviewLogs200Response details(Object? details) =>
+  ReviewControllerGetAllReviewLogs200Response details(String? details) =>
       call(details: details);
 
   @override
@@ -69,18 +69,18 @@ class _$ReviewControllerGetAllReviewLogs200ResponseCWProxyImpl
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return ReviewControllerGetAllReviewLogs200Response(
-      success: success == const $CopyWithPlaceholder() || success == null
+      success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
-          : success as bool,
+          : success as bool?,
       error: error == const $CopyWithPlaceholder()
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : error as Object?,
+          : error as String?,
       details: details == const $CopyWithPlaceholder()
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : details as Object?,
+          : details as String?,
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
@@ -108,11 +108,10 @@ _$ReviewControllerGetAllReviewLogs200ResponseFromJson(
 ) => $checkedCreate('ReviewControllerGetAllReviewLogs200Response', json, (
   $checkedConvert,
 ) {
-  $checkKeys(json, requiredKeys: const ['success']);
   final val = ReviewControllerGetAllReviewLogs200Response(
-    success: $checkedConvert('success', (v) => v as bool),
-    error: $checkedConvert('error', (v) => v),
-    details: $checkedConvert('details', (v) => v),
+    success: $checkedConvert('success', (v) => v as bool?),
+    error: $checkedConvert('error', (v) => v as String?),
+    details: $checkedConvert('details', (v) => v as String?),
     data: $checkedConvert(
       'data',
       (v) => v == null ? null : ReviewLog.fromJson(v as Map<String, dynamic>),
@@ -124,7 +123,7 @@ _$ReviewControllerGetAllReviewLogs200ResponseFromJson(
 Map<String, dynamic> _$ReviewControllerGetAllReviewLogs200ResponseToJson(
   ReviewControllerGetAllReviewLogs200Response instance,
 ) => <String, dynamic>{
-  'success': instance.success,
+  'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
   'data': ?instance.data?.toJson(),

@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
+
 /// tests for OrdersApi
 void main() {
   final instance = PerfumegptAiApiClient().getOrdersApi();
@@ -15,14 +16,14 @@ void main() {
 
     // Lấy danh sách tất cả đơn hàng
     //
-    //Future<LogControllerGetPagedEventLogs200Response> orderControllerGetAllOrders(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String status, String type, String paymentStatus, String fromDate, String toDate, String searchTerm }) async
+    //Future<OrderControllerGetAllOrders200Response> orderControllerGetAllOrders(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String status, String type, String paymentStatus, String fromDate, String toDate, String searchTerm }) async
     test('test orderControllerGetAllOrders', () async {
       // TODO
     });
 
     // Lấy đơn hàng theo user ID
     //
-    //Future<LogControllerGetPagedEventLogs200Response> orderControllerGetOrdersByUserId(String userId, num pageNumber, num pageSize, String sortOrder, bool isDescending, { String status, String type, String paymentStatus, String fromDate, String toDate, String searchTerm }) async
+    //Future<OrderControllerGetAllOrders200Response> orderControllerGetOrdersByUserId(String userId, num pageNumber, num pageSize, String sortOrder, bool isDescending, { String status, String type, String paymentStatus, String fromDate, String toDate, String searchTerm }) async
     test('test orderControllerGetOrdersByUserId', () async {
       // TODO
     });
@@ -33,5 +34,6 @@ void main() {
     test('test orderControllerGetStructuredAIOrderSummary', () async {
       // TODO
     });
+
   });
 }

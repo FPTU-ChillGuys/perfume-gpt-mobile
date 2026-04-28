@@ -37,10 +37,10 @@ void main() {
       // TODO
     });
 
-    // Nội dung tin nhắn
-    // String message
+    // MessageDtoMessage message
     test('to test the property `message`', () async {
       // TODO
     });
+
   });
 }

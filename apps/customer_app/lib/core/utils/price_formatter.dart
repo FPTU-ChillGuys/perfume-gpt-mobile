@@ -25,26 +25,29 @@ String stripHtml(String html) {
 
   return html
       // Block-level elements → newlines
-      .replaceAll(RegExp(r'<br\s*/?>',                      caseSensitive: false), '\n')
-      .replaceAll(RegExp(r'</?(?:p|div|section|article)\b[^>]*>', caseSensitive: false), '\n')
-      .replaceAll(RegExp(r'</?(?:h[1-6])\b[^>]*>',         caseSensitive: false), '\n')
+      .replaceAll(RegExp(r'<br\s*/?>', caseSensitive: false), '\n')
+      .replaceAll(
+        RegExp(r'</?(?:p|div|section|article)\b[^>]*>', caseSensitive: false),
+        '\n',
+      )
+      .replaceAll(RegExp(r'</?(?:h[1-6])\b[^>]*>', caseSensitive: false), '\n')
       // List items → bullet
-      .replaceAll(RegExp(r'<li\b[^>]*>',                    caseSensitive: false), '\n• ')
-      .replaceAll(RegExp(r'</li>',                          caseSensitive: false), '')
-      .replaceAll(RegExp(r'</?(?:ul|ol)\b[^>]*>',          caseSensitive: false), '\n')
+      .replaceAll(RegExp(r'<li\b[^>]*>', caseSensitive: false), '\n• ')
+      .replaceAll(RegExp(r'</li>', caseSensitive: false), '')
+      .replaceAll(RegExp(r'</?(?:ul|ol)\b[^>]*>', caseSensitive: false), '\n')
       // Strip all remaining tags
       .replaceAll(RegExp(r'<[^>]+>'), '')
       // Decode common HTML entities
-      .replaceAll('&nbsp;',  ' ')
-      .replaceAll('&amp;',   '&')
-      .replaceAll('&lt;',    '<')
-      .replaceAll('&gt;',    '>')
-      .replaceAll('&quot;',  '"')
-      .replaceAll('&#39;',   "'")
-      .replaceAll('&apos;',  "'")
+      .replaceAll('&nbsp;', ' ')
+      .replaceAll('&amp;', '&')
+      .replaceAll('&lt;', '<')
+      .replaceAll('&gt;', '>')
+      .replaceAll('&quot;', '"')
+      .replaceAll('&#39;', "'")
+      .replaceAll('&apos;', "'")
       .replaceAll('&ndash;', '–')
       .replaceAll('&mdash;', '—')
-      .replaceAll('&hellip;','…')
+      .replaceAll('&hellip;', '…')
       // Collapse 3+ consecutive newlines to at most 2
       .replaceAll(RegExp(r'\n{3,}'), '\n\n')
       // Collapse runs of spaces/tabs (but not newlines)
