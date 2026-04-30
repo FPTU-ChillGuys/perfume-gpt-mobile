@@ -9,6 +9,7 @@ part 'chat_provider.g.dart';
 @riverpod
 class ChatSession extends _$ChatSession {
   String? _conversationId;
+  String? _guestUserId;
 
   @override
   Future<List<Message>> build() async {
@@ -23,6 +24,7 @@ class ChatSession extends _$ChatSession {
 
       if (latestConversation != null) {
         _conversationId = latestConversation.id;
+        _guestUserId = latestConversation.userId;
         final messages =
             latestConversation.messages?.map((m) {
               final isAi = m.sender == 'assistant';
@@ -64,23 +66,17 @@ class ChatSession extends _$ChatSession {
     }
 
     _conversationId = const Uuid().v4();
-    return [
-      Message.text(
-        authorId: 'ai',
-        createdAt: DateTime.now(),
-        id: const Uuid().v4(),
-        text:
-            'Hello! I am your AI fragrance expert. How can I help you find your perfect scent today?',
-      ),
-    ];
+    return [];
   }
 
   void sendMessage(String text) async {
     if (state.value == null) return;
 
     final user = ref.read(authProvider).value;
+    final userId = user?.id ?? (_guestUserId ??= const Uuid().v4());
+
     final userMessage = Message.text(
-      authorId: user?.id ?? 'user',
+      authorId: userId,
       createdAt: DateTime.now(),
       id: const Uuid().v4(),
       text: text,
@@ -119,6 +115,7 @@ class ChatSession extends _$ChatSession {
 
       final request = ConversationRequestDto(
         id: _conversationId!,
+        userId: userId,
         messages: history,
       );
 
@@ -134,7 +131,8 @@ class ChatSession extends _$ChatSession {
         final messageData = aiLastMessage.message;
         Message aiMessage;
 
-        if ((messageData.products != null && messageData.products!.isNotEmpty) ||
+        if ((messageData.products != null &&
+                messageData.products!.isNotEmpty) ||
             messageData.suggestedQuestions.isNotEmpty) {
           aiMessage = Message.custom(
             authorId: 'ai',

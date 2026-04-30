@@ -12,9 +12,10 @@ part 'auth_provider.g.dart';
 @riverpod
 AuthRepository authRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
+  final aiApiClient = ref.watch(aiApiClientProvider);
   final storage = ref.watch(flutterSecureStorageProvider);
   final serverClientId = ref.watch(googleSignInServerClientIdProvider);
-  return AuthRepositoryImpl(apiClient, storage, serverClientId);
+  return AuthRepositoryImpl(apiClient, aiApiClient, storage, serverClientId);
 }
 
 @riverpod
@@ -32,7 +33,9 @@ class Auth extends _$Auth {
   }) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      return ref.read(authRepositoryProvider).login(
+      return ref
+          .read(authRepositoryProvider)
+          .login(
             credential,
             password,
             deviceType: deviceType,

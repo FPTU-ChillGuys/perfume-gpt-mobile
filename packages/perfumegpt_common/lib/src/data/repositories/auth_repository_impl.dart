@@ -1,5 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:dio/dio.dart';
 import '../../domain/entities/user.dart';
@@ -7,6 +8,7 @@ import '../../domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final PerfumegptApiClient _apiClient;
+  final PerfumegptAiApiClient _aiApiClient;
   final FlutterSecureStorage _storage;
   final String? _serverClientId;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
@@ -20,13 +22,20 @@ class AuthRepositoryImpl implements AuthRepository {
     if (normalized.toLowerCase().startsWith('bearer ')) {
       normalized = normalized.substring(7).trim();
     }
-    if (normalized.startsWith('"') && normalized.endsWith('"') && normalized.length > 1) {
+    if (normalized.startsWith('"') &&
+        normalized.endsWith('"') &&
+        normalized.length > 1) {
       normalized = normalized.substring(1, normalized.length - 1);
     }
     return normalized;
   }
 
-  AuthRepositoryImpl(this._apiClient, this._storage, [this._serverClientId]);
+  AuthRepositoryImpl(
+    this._apiClient,
+    this._aiApiClient,
+    this._storage, [
+    this._serverClientId,
+  ]);
 
   Future<void> _ensureGoogleSignInInitialized() async {
     if (!_isGoogleSignInInitialized) {
@@ -112,6 +121,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final normalizedToken = _normalizeToken(token);
       await _storage.write(key: _tokenKey, value: normalizedToken);
       _apiClient.setBearerAuth('Bearer', normalizedToken);
+      _aiApiClient.setBearerAuth('Bearer', normalizedToken);
       _currentUser = null; // Force refresh
       return await getCurrentUser();
     }
