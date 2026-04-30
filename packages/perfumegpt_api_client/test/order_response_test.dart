@@ -67,6 +67,21 @@ void main() {
       // TODO
     });
 
+    // num requiredDepositAmount
+    test('to test the property `requiredDepositAmount`', () async {
+      // TODO
+    });
+
+    // num paidAmount
+    test('to test the property `paidAmount`', () async {
+      // TODO
+    });
+
+    // num remainingAmount
+    test('to test the property `remainingAmount`', () async {
+      // TODO
+    });
+
     // num subTotal
     test('to test the property `subTotal`', () async {
       // TODO

@@ -3,12 +3,12 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:perfumegpt_api_client/src/model/excel_template_response.dart';
 import 'package:perfumegpt_api_client/src/model/response_error_type.dart';
+import 'package:perfumegpt_api_client/src/model/store_policy_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'base_response_of_excel_template_response.g.dart';
+part 'base_response_of_store_policy_response.g.dart';
 
 
 @CopyWith()
@@ -18,9 +18,9 @@ part 'base_response_of_excel_template_response.g.dart';
   disallowUnrecognizedKeys: false,
   explicitToJson: true,
 )
-class BaseResponseOfExcelTemplateResponse {
-  /// Returns a new [BaseResponseOfExcelTemplateResponse] instance.
-  BaseResponseOfExcelTemplateResponse({
+class BaseResponseOfStorePolicyResponse {
+  /// Returns a new [BaseResponseOfStorePolicyResponse] instance.
+  BaseResponseOfStorePolicyResponse({
 
      this.payload,
 
@@ -41,7 +41,7 @@ class BaseResponseOfExcelTemplateResponse {
   )
 
 
-  final ExcelTemplateResponse? payload;
+  final StorePolicyResponse? payload;
 
 
 
@@ -96,7 +96,7 @@ class BaseResponseOfExcelTemplateResponse {
 
 
     @override
-    bool operator ==(Object other) => identical(this, other) || other is BaseResponseOfExcelTemplateResponse &&
+    bool operator ==(Object other) => identical(this, other) || other is BaseResponseOfStorePolicyResponse &&
       other.payload == payload &&
       other.success == success &&
       other.message == message &&
@@ -111,9 +111,9 @@ class BaseResponseOfExcelTemplateResponse {
         (errors == null ? 0 : errors.hashCode) +
         (errorType == null ? 0 : errorType.hashCode);
 
-  factory BaseResponseOfExcelTemplateResponse.fromJson(Map<String, dynamic> json) => _$BaseResponseOfExcelTemplateResponseFromJson(json);
+  factory BaseResponseOfStorePolicyResponse.fromJson(Map<String, dynamic> json) => _$BaseResponseOfStorePolicyResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$BaseResponseOfExcelTemplateResponseToJson(this);
+  Map<String, dynamic> toJson() => _$BaseResponseOfStorePolicyResponseToJson(this);
 
   @override
   String toString() {

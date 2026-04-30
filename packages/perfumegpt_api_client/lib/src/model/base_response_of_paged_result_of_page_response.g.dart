@@ -1,31 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'base_response_of_excel_template_response.dart';
+part of 'base_response_of_paged_result_of_page_response.dart';
 
 // **************************************************************************
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$BaseResponseOfExcelTemplateResponseCWProxy {
-  BaseResponseOfExcelTemplateResponse payload(ExcelTemplateResponse? payload);
+abstract class _$BaseResponseOfPagedResultOfPageResponseCWProxy {
+  BaseResponseOfPagedResultOfPageResponse payload(
+    PagedResultOfPageResponse? payload,
+  );
 
-  BaseResponseOfExcelTemplateResponse success(bool? success);
+  BaseResponseOfPagedResultOfPageResponse success(bool? success);
 
-  BaseResponseOfExcelTemplateResponse message(String? message);
+  BaseResponseOfPagedResultOfPageResponse message(String? message);
 
-  BaseResponseOfExcelTemplateResponse errors(List<String>? errors);
+  BaseResponseOfPagedResultOfPageResponse errors(List<String>? errors);
 
-  BaseResponseOfExcelTemplateResponse errorType(ResponseErrorType? errorType);
+  BaseResponseOfPagedResultOfPageResponse errorType(
+    ResponseErrorType? errorType,
+  );
 
   /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfExcelTemplateResponse(...).copyWith.fieldName(value)`.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfPageResponse(...).copyWith.fieldName(value)`.
   ///
   /// Example:
   /// ```dart
-  /// BaseResponseOfExcelTemplateResponse(...).copyWith(id: 12, name: "My name")
+  /// BaseResponseOfPagedResultOfPageResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  BaseResponseOfExcelTemplateResponse call({
-    ExcelTemplateResponse? payload,
+  BaseResponseOfPagedResultOfPageResponse call({
+    PagedResultOfPageResponse? payload,
     bool? success,
     String? message,
     List<String>? errors,
@@ -34,53 +38,55 @@ abstract class _$BaseResponseOfExcelTemplateResponseCWProxy {
 }
 
 /// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfBaseResponseOfExcelTemplateResponse.copyWith(...)` or call `instanceOfBaseResponseOfExcelTemplateResponse.copyWith.fieldName(value)` for a single field.
-class _$BaseResponseOfExcelTemplateResponseCWProxyImpl
-    implements _$BaseResponseOfExcelTemplateResponseCWProxy {
-  const _$BaseResponseOfExcelTemplateResponseCWProxyImpl(this._value);
+/// Use as `instanceOfBaseResponseOfPagedResultOfPageResponse.copyWith(...)` or call `instanceOfBaseResponseOfPagedResultOfPageResponse.copyWith.fieldName(value)` for a single field.
+class _$BaseResponseOfPagedResultOfPageResponseCWProxyImpl
+    implements _$BaseResponseOfPagedResultOfPageResponseCWProxy {
+  const _$BaseResponseOfPagedResultOfPageResponseCWProxyImpl(this._value);
 
-  final BaseResponseOfExcelTemplateResponse _value;
-
-  @override
-  BaseResponseOfExcelTemplateResponse payload(ExcelTemplateResponse? payload) =>
-      call(payload: payload);
+  final BaseResponseOfPagedResultOfPageResponse _value;
 
   @override
-  BaseResponseOfExcelTemplateResponse success(bool? success) =>
+  BaseResponseOfPagedResultOfPageResponse payload(
+    PagedResultOfPageResponse? payload,
+  ) => call(payload: payload);
+
+  @override
+  BaseResponseOfPagedResultOfPageResponse success(bool? success) =>
       call(success: success);
 
   @override
-  BaseResponseOfExcelTemplateResponse message(String? message) =>
+  BaseResponseOfPagedResultOfPageResponse message(String? message) =>
       call(message: message);
 
   @override
-  BaseResponseOfExcelTemplateResponse errors(List<String>? errors) =>
+  BaseResponseOfPagedResultOfPageResponse errors(List<String>? errors) =>
       call(errors: errors);
 
   @override
-  BaseResponseOfExcelTemplateResponse errorType(ResponseErrorType? errorType) =>
-      call(errorType: errorType);
+  BaseResponseOfPagedResultOfPageResponse errorType(
+    ResponseErrorType? errorType,
+  ) => call(errorType: errorType);
 
   @override
   /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfExcelTemplateResponse(...).copyWith.fieldName(value)`.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `BaseResponseOfPagedResultOfPageResponse(...).copyWith.fieldName(value)`.
   ///
   /// Example:
   /// ```dart
-  /// BaseResponseOfExcelTemplateResponse(...).copyWith(id: 12, name: "My name")
+  /// BaseResponseOfPagedResultOfPageResponse(...).copyWith(id: 12, name: "My name")
   /// ```
-  BaseResponseOfExcelTemplateResponse call({
+  BaseResponseOfPagedResultOfPageResponse call({
     Object? payload = const $CopyWithPlaceholder(),
     Object? success = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? errors = const $CopyWithPlaceholder(),
     Object? errorType = const $CopyWithPlaceholder(),
   }) {
-    return BaseResponseOfExcelTemplateResponse(
+    return BaseResponseOfPagedResultOfPageResponse(
       payload: payload == const $CopyWithPlaceholder()
           ? _value.payload
           // ignore: cast_nullable_to_non_nullable
-          : payload as ExcelTemplateResponse?,
+          : payload as PagedResultOfPageResponse?,
       success: success == const $CopyWithPlaceholder()
           ? _value.success
           // ignore: cast_nullable_to_non_nullable
@@ -101,30 +107,30 @@ class _$BaseResponseOfExcelTemplateResponseCWProxyImpl
   }
 }
 
-extension $BaseResponseOfExcelTemplateResponseCopyWith
-    on BaseResponseOfExcelTemplateResponse {
+extension $BaseResponseOfPagedResultOfPageResponseCopyWith
+    on BaseResponseOfPagedResultOfPageResponse {
   /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfBaseResponseOfExcelTemplateResponse.copyWith(...)` or `instanceOfBaseResponseOfExcelTemplateResponse.copyWith.fieldName(...)`.
+  /// Example: `instanceOfBaseResponseOfPagedResultOfPageResponse.copyWith(...)` or `instanceOfBaseResponseOfPagedResultOfPageResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$BaseResponseOfExcelTemplateResponseCWProxy get copyWith =>
-      _$BaseResponseOfExcelTemplateResponseCWProxyImpl(this);
+  _$BaseResponseOfPagedResultOfPageResponseCWProxy get copyWith =>
+      _$BaseResponseOfPagedResultOfPageResponseCWProxyImpl(this);
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-BaseResponseOfExcelTemplateResponse
-_$BaseResponseOfExcelTemplateResponseFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('BaseResponseOfExcelTemplateResponse', json, (
+BaseResponseOfPagedResultOfPageResponse
+_$BaseResponseOfPagedResultOfPageResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('BaseResponseOfPagedResultOfPageResponse', json, (
       $checkedConvert,
     ) {
-      final val = BaseResponseOfExcelTemplateResponse(
+      final val = BaseResponseOfPagedResultOfPageResponse(
         payload: $checkedConvert(
           'payload',
           (v) => v == null
               ? null
-              : ExcelTemplateResponse.fromJson(v as Map<String, dynamic>),
+              : PagedResultOfPageResponse.fromJson(v as Map<String, dynamic>),
         ),
         success: $checkedConvert('success', (v) => v as bool?),
         message: $checkedConvert('message', (v) => v as String?),
@@ -140,8 +146,8 @@ _$BaseResponseOfExcelTemplateResponseFromJson(Map<String, dynamic> json) =>
       return val;
     });
 
-Map<String, dynamic> _$BaseResponseOfExcelTemplateResponseToJson(
-  BaseResponseOfExcelTemplateResponse instance,
+Map<String, dynamic> _$BaseResponseOfPagedResultOfPageResponseToJson(
+  BaseResponseOfPagedResultOfPageResponse instance,
 ) => <String, dynamic>{
   'payload': ?instance.payload?.toJson(),
   'success': ?instance.success,

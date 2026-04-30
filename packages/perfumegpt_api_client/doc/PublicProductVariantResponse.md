@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **productName** | **String** |  | 
 **media** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
 **campaignName** | **String** |  | [optional] 
+**campaignQuota** | **int** |  | [optional] 
 **voucherCode** | **String** |  | [optional] 
 **discountedPrice** | **num** |  | [optional] 
 

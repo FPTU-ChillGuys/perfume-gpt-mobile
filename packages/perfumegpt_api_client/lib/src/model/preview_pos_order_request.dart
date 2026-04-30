@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:perfumegpt_api_client/src/model/pos_scan_item_request.dart';
 import 'package:perfumegpt_api_client/src/model/contact_address_information.dart';
+import 'package:perfumegpt_api_client/src/model/payment_method.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -31,6 +32,8 @@ class PreviewPosOrderRequest {
      this.customerId,
 
      this.sessionId,
+
+     this.paymentMethod,
 
      this.recipient,
   });
@@ -97,6 +100,18 @@ class PreviewPosOrderRequest {
 
   @JsonKey(
     
+    name: r'paymentMethod',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final PaymentMethod? paymentMethod;
+
+
+
+  @JsonKey(
+    
     name: r'recipient',
     required: false,
     includeIfNull: false,
@@ -116,6 +131,7 @@ class PreviewPosOrderRequest {
       other.guestEmailOrPhoneNumber == guestEmailOrPhoneNumber &&
       other.customerId == customerId &&
       other.sessionId == sessionId &&
+      other.paymentMethod == paymentMethod &&
       other.recipient == recipient;
 
     @override
@@ -125,6 +141,7 @@ class PreviewPosOrderRequest {
         (guestEmailOrPhoneNumber == null ? 0 : guestEmailOrPhoneNumber.hashCode) +
         (customerId == null ? 0 : customerId.hashCode) +
         (sessionId == null ? 0 : sessionId.hashCode) +
+        (paymentMethod == null ? 0 : paymentMethod.hashCode) +
         (recipient == null ? 0 : recipient.hashCode);
 
   factory PreviewPosOrderRequest.fromJson(Map<String, dynamic> json) => _$PreviewPosOrderRequestFromJson(json);

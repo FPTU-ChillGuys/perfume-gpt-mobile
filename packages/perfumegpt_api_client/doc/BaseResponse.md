@@ -1,4 +1,4 @@
-# perfumegpt_api_client.model.BaseResponseOfExcelTemplateResponse
+# perfumegpt_api_client.model.BaseResponse
 
 ## Load the model package
 ```dart
@@ -8,7 +8,6 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payload** | [**ExcelTemplateResponse**](ExcelTemplateResponse.md) |  | [optional] 
 **success** | **bool** |  | [optional] 
 **message** | **String** |  | [optional] 
 **errors** | **List&lt;String&gt;** |  | [optional] 

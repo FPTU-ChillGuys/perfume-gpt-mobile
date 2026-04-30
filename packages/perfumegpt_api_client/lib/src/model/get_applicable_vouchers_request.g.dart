@@ -7,8 +7,6 @@ part of 'get_applicable_vouchers_request.dart';
 // **************************************************************************
 
 abstract class _$GetApplicableVouchersRequestCWProxy {
-  GetApplicableVouchersRequest customerId(String? customerId);
-
   GetApplicableVouchersRequest cartItems(
     List<ApplicableVoucherCartItemRequest> cartItems,
   );
@@ -21,7 +19,6 @@ abstract class _$GetApplicableVouchersRequestCWProxy {
   /// GetApplicableVouchersRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   GetApplicableVouchersRequest call({
-    String? customerId,
     List<ApplicableVoucherCartItemRequest> cartItems,
   });
 }
@@ -33,10 +30,6 @@ class _$GetApplicableVouchersRequestCWProxyImpl
   const _$GetApplicableVouchersRequestCWProxyImpl(this._value);
 
   final GetApplicableVouchersRequest _value;
-
-  @override
-  GetApplicableVouchersRequest customerId(String? customerId) =>
-      call(customerId: customerId);
 
   @override
   GetApplicableVouchersRequest cartItems(
@@ -52,14 +45,9 @@ class _$GetApplicableVouchersRequestCWProxyImpl
   /// GetApplicableVouchersRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   GetApplicableVouchersRequest call({
-    Object? customerId = const $CopyWithPlaceholder(),
     Object? cartItems = const $CopyWithPlaceholder(),
   }) {
     return GetApplicableVouchersRequest(
-      customerId: customerId == const $CopyWithPlaceholder()
-          ? _value.customerId
-          // ignore: cast_nullable_to_non_nullable
-          : customerId as String?,
       cartItems: cartItems == const $CopyWithPlaceholder() || cartItems == null
           ? _value.cartItems
           // ignore: cast_nullable_to_non_nullable
@@ -86,7 +74,6 @@ GetApplicableVouchersRequest _$GetApplicableVouchersRequestFromJson(
 ) => $checkedCreate('GetApplicableVouchersRequest', json, ($checkedConvert) {
   $checkKeys(json, requiredKeys: const ['cartItems']);
   final val = GetApplicableVouchersRequest(
-    customerId: $checkedConvert('customerId', (v) => v as String?),
     cartItems: $checkedConvert(
       'cartItems',
       (v) => (v as List<dynamic>)
@@ -104,6 +91,5 @@ GetApplicableVouchersRequest _$GetApplicableVouchersRequestFromJson(
 Map<String, dynamic> _$GetApplicableVouchersRequestToJson(
   GetApplicableVouchersRequest instance,
 ) => <String, dynamic>{
-  'customerId': ?instance.customerId,
   'cartItems': instance.cartItems.map((e) => e.toJson()).toList(),
 };

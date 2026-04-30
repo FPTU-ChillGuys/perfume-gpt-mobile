@@ -27,6 +27,7 @@ import 'package:perfumegpt_api_client/src/api/olfactory_families_api.dart';
 import 'package:perfumegpt_api_client/src/api/order_cancel_requests_api.dart';
 import 'package:perfumegpt_api_client/src/api/order_return_requests_api.dart';
 import 'package:perfumegpt_api_client/src/api/orders_api.dart';
+import 'package:perfumegpt_api_client/src/api/pages_api.dart';
 import 'package:perfumegpt_api_client/src/api/payments_api.dart';
 import 'package:perfumegpt_api_client/src/api/policies_api.dart';
 import 'package:perfumegpt_api_client/src/api/product_variants_api.dart';
@@ -37,6 +38,7 @@ import 'package:perfumegpt_api_client/src/api/scent_notes_api.dart';
 import 'package:perfumegpt_api_client/src/api/shippings_api.dart';
 import 'package:perfumegpt_api_client/src/api/sourcing_catalogs_api.dart';
 import 'package:perfumegpt_api_client/src/api/stock_adjustments_api.dart';
+import 'package:perfumegpt_api_client/src/api/store_policies_api.dart';
 import 'package:perfumegpt_api_client/src/api/suppliers_api.dart';
 import 'package:perfumegpt_api_client/src/api/users_api.dart';
 import 'package:perfumegpt_api_client/src/api/vouchers_api.dart';
@@ -212,6 +214,12 @@ class PerfumegptApiClient {
     return OrdersApi(dio);
   }
 
+  /// Get PagesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  PagesApi getPagesApi() {
+    return PagesApi(dio);
+  }
+
   /// Get PaymentsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   PaymentsApi getPaymentsApi() {
@@ -270,6 +278,12 @@ class PerfumegptApiClient {
   /// by doing that all interceptors will not be executed
   StockAdjustmentsApi getStockAdjustmentsApi() {
     return StockAdjustmentsApi(dio);
+  }
+
+  /// Get StorePoliciesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  StorePoliciesApi getStorePoliciesApi() {
+    return StorePoliciesApi(dio);
   }
 
   /// Get SuppliersApi instance, base route and serializer can be overridden by a given but be careful,

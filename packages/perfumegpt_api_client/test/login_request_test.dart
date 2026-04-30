@@ -17,5 +17,15 @@ void main() {
       // TODO
     });
 
+    // String fcmToken
+    test('to test the property `fcmToken`', () async {
+      // TODO
+    });
+
+    // String deviceType
+    test('to test the property `deviceType`', () async {
+      // TODO
+    });
+
   });
 }

@@ -9,12 +9,14 @@ import 'package:json_annotation/json_annotation.dart';
 enum PaymentStatus {
       @JsonValue(r'Unpaid')
       unpaid(r'Unpaid'),
+      @JsonValue(r'PartialPaid')
+      partialPaid(r'PartialPaid'),
       @JsonValue(r'Paid')
       paid(r'Paid'),
-      @JsonValue(r'Partial_Refunded')
-      partialRefunded(r'Partial_Refunded'),
       @JsonValue(r'Refunded')
-      refunded(r'Refunded');
+      refunded(r'Refunded'),
+      @JsonValue(r'PartialRefunded')
+      partialRefunded(r'PartialRefunded');
 
   const PaymentStatus(this.value);
 

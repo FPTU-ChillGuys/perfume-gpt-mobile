@@ -29,6 +29,8 @@ abstract class _$PublicProductVariantResponseCWProxy {
 
   PublicProductVariantResponse campaignName(String? campaignName);
 
+  PublicProductVariantResponse campaignQuota(int? campaignQuota);
+
   PublicProductVariantResponse voucherCode(String? voucherCode);
 
   PublicProductVariantResponse discountedPrice(num? discountedPrice);
@@ -52,6 +54,7 @@ abstract class _$PublicProductVariantResponseCWProxy {
     String productName,
     List<MediaResponse> media,
     String? campaignName,
+    int? campaignQuota,
     String? voucherCode,
     num? discountedPrice,
   });
@@ -107,6 +110,10 @@ class _$PublicProductVariantResponseCWProxyImpl
       call(campaignName: campaignName);
 
   @override
+  PublicProductVariantResponse campaignQuota(int? campaignQuota) =>
+      call(campaignQuota: campaignQuota);
+
+  @override
   PublicProductVariantResponse voucherCode(String? voucherCode) =>
       call(voucherCode: voucherCode);
 
@@ -134,6 +141,7 @@ class _$PublicProductVariantResponseCWProxyImpl
     Object? productName = const $CopyWithPlaceholder(),
     Object? media = const $CopyWithPlaceholder(),
     Object? campaignName = const $CopyWithPlaceholder(),
+    Object? campaignQuota = const $CopyWithPlaceholder(),
     Object? voucherCode = const $CopyWithPlaceholder(),
     Object? discountedPrice = const $CopyWithPlaceholder(),
   }) {
@@ -185,6 +193,10 @@ class _$PublicProductVariantResponseCWProxyImpl
           ? _value.campaignName
           // ignore: cast_nullable_to_non_nullable
           : campaignName as String?,
+      campaignQuota: campaignQuota == const $CopyWithPlaceholder()
+          ? _value.campaignQuota
+          // ignore: cast_nullable_to_non_nullable
+          : campaignQuota as int?,
       voucherCode: voucherCode == const $CopyWithPlaceholder()
           ? _value.voucherCode
           // ignore: cast_nullable_to_non_nullable
@@ -240,6 +252,10 @@ PublicProductVariantResponse _$PublicProductVariantResponseFromJson(
           .toList(),
     ),
     campaignName: $checkedConvert('campaignName', (v) => v as String?),
+    campaignQuota: $checkedConvert(
+      'campaignQuota',
+      (v) => (v as num?)?.toInt(),
+    ),
     voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
     discountedPrice: $checkedConvert('discountedPrice', (v) => v as num?),
   );
@@ -260,6 +276,7 @@ Map<String, dynamic> _$PublicProductVariantResponseToJson(
   'productName': instance.productName,
   'media': instance.media.map((e) => e.toJson()).toList(),
   'campaignName': ?instance.campaignName,
+  'campaignQuota': ?instance.campaignQuota,
   'voucherCode': ?instance.voucherCode,
   'discountedPrice': ?instance.discountedPrice,
 };

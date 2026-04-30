@@ -7,6 +7,11 @@ void main() {
   // TODO add properties to the entity
 
   group(ProcessRefundRequest, () {
+    // num approvedRefundAmount
+    test('to test the property `approvedRefundAmount`', () async {
+      // TODO
+    });
+
     // PaymentMethod refundMethod
     test('to test the property `refundMethod`', () async {
       // TODO

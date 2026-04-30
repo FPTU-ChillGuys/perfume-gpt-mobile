@@ -1,13 +1,13 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-// tests for BaseResponseOfExcelTemplateResponse
+// tests for BaseResponseOfPagedResultOfPageResponse
 void main() {
-  final BaseResponseOfExcelTemplateResponse? instance = /* BaseResponseOfExcelTemplateResponse(...) */ null;
+  final BaseResponseOfPagedResultOfPageResponse? instance = /* BaseResponseOfPagedResultOfPageResponse(...) */ null;
   // TODO add properties to the entity
 
-  group(BaseResponseOfExcelTemplateResponse, () {
-    // ExcelTemplateResponse payload
+  group(BaseResponseOfPagedResultOfPageResponse, () {
+    // PagedResultOfPageResponse payload
     test('to test the property `payload`', () async {
       // TODO
     });

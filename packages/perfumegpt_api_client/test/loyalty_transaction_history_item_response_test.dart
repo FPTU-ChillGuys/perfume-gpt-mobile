@@ -47,5 +47,10 @@ void main() {
       // TODO
     });
 
+    // DateTime createdAt
+    test('to test the property `createdAt`', () async {
+      // TODO
+    });
+
   });
 }

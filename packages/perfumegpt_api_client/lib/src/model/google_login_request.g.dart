@@ -9,6 +9,10 @@ part of 'google_login_request.dart';
 abstract class _$GoogleLoginRequestCWProxy {
   GoogleLoginRequest idToken(String idToken);
 
+  GoogleLoginRequest fcmToken(String? fcmToken);
+
+  GoogleLoginRequest deviceType(String? deviceType);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleLoginRequest(...).copyWith.fieldName(value)`.
   ///
@@ -16,7 +20,11 @@ abstract class _$GoogleLoginRequestCWProxy {
   /// ```dart
   /// GoogleLoginRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  GoogleLoginRequest call({String idToken});
+  GoogleLoginRequest call({
+    String idToken,
+    String? fcmToken,
+    String? deviceType,
+  });
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -30,6 +38,13 @@ class _$GoogleLoginRequestCWProxyImpl implements _$GoogleLoginRequestCWProxy {
   GoogleLoginRequest idToken(String idToken) => call(idToken: idToken);
 
   @override
+  GoogleLoginRequest fcmToken(String? fcmToken) => call(fcmToken: fcmToken);
+
+  @override
+  GoogleLoginRequest deviceType(String? deviceType) =>
+      call(deviceType: deviceType);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleLoginRequest(...).copyWith.fieldName(value)`.
   ///
@@ -37,12 +52,24 @@ class _$GoogleLoginRequestCWProxyImpl implements _$GoogleLoginRequestCWProxy {
   /// ```dart
   /// GoogleLoginRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  GoogleLoginRequest call({Object? idToken = const $CopyWithPlaceholder()}) {
+  GoogleLoginRequest call({
+    Object? idToken = const $CopyWithPlaceholder(),
+    Object? fcmToken = const $CopyWithPlaceholder(),
+    Object? deviceType = const $CopyWithPlaceholder(),
+  }) {
     return GoogleLoginRequest(
       idToken: idToken == const $CopyWithPlaceholder() || idToken == null
           ? _value.idToken
           // ignore: cast_nullable_to_non_nullable
           : idToken as String,
+      fcmToken: fcmToken == const $CopyWithPlaceholder()
+          ? _value.fcmToken
+          // ignore: cast_nullable_to_non_nullable
+          : fcmToken as String?,
+      deviceType: deviceType == const $CopyWithPlaceholder()
+          ? _value.deviceType
+          // ignore: cast_nullable_to_non_nullable
+          : deviceType as String?,
     );
   }
 }
@@ -64,9 +91,15 @@ GoogleLoginRequest _$GoogleLoginRequestFromJson(Map<String, dynamic> json) =>
       $checkKeys(json, requiredKeys: const ['idToken']);
       final val = GoogleLoginRequest(
         idToken: $checkedConvert('idToken', (v) => v as String),
+        fcmToken: $checkedConvert('fcmToken', (v) => v as String?),
+        deviceType: $checkedConvert('deviceType', (v) => v as String?),
       );
       return val;
     });
 
 Map<String, dynamic> _$GoogleLoginRequestToJson(GoogleLoginRequest instance) =>
-    <String, dynamic>{'idToken': instance.idToken};
+    <String, dynamic>{
+      'idToken': instance.idToken,
+      'fcmToken': ?instance.fcmToken,
+      'deviceType': ?instance.deviceType,
+    };

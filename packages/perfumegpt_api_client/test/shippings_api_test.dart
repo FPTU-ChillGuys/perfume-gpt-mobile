@@ -22,6 +22,11 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfstring> apiShippingsSyncShippingStatusTrackingNumberPost(String trackingNumber) async
+    test('test apiShippingsSyncShippingStatusTrackingNumberPost', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfPagedResultOfShippingInfoListItem> apiShippingsUserUserIdGet(String userId, { ShippingStatus status, CarrierName carrierName, ShippingType shippingType, String orderId, String trackingNumber, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiShippingsUserUserIdGet', () async {
       // TODO

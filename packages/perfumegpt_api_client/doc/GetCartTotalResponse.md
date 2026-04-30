@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **shippingFee** | **num** |  | [optional] 
 **discount** | **num** |  | [optional] 
 **totalPrice** | **num** |  | [optional] 
+**depositPolicy** | [**DepositPolicyPreviewResponse**](DepositPolicyPreviewResponse.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

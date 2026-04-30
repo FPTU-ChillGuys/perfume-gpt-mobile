@@ -23,6 +23,10 @@ class LoginRequest {
     required  this.credential,
 
     required  this.password,
+
+     this.fcmToken,
+
+     this.deviceType,
   });
 
   @JsonKey(
@@ -49,17 +53,45 @@ class LoginRequest {
 
 
 
+  @JsonKey(
+    
+    name: r'fcmToken',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? fcmToken;
+
+
+
+  @JsonKey(
+    
+    name: r'deviceType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? deviceType;
+
+
+
 
 
     @override
     bool operator ==(Object other) => identical(this, other) || other is LoginRequest &&
       other.credential == credential &&
-      other.password == password;
+      other.password == password &&
+      other.fcmToken == fcmToken &&
+      other.deviceType == deviceType;
 
     @override
     int get hashCode =>
         credential.hashCode +
-        password.hashCode;
+        password.hashCode +
+        (fcmToken == null ? 0 : fcmToken.hashCode) +
+        (deviceType == null ? 0 : deviceType.hashCode);
 
   factory LoginRequest.fromJson(Map<String, dynamic> json) => _$LoginRequestFromJson(json);
 

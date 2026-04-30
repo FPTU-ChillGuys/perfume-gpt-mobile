@@ -46,6 +46,12 @@ class OrderListItem {
 
      this.totalAmount,
 
+     this.requiredDepositAmount,
+
+     this.paidAmount,
+
+     this.remainingAmount,
+
      this.itemCount,
 
      this.isReturnalbe,
@@ -185,6 +191,42 @@ class OrderListItem {
 
   @JsonKey(
     
+    name: r'requiredDepositAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? requiredDepositAmount;
+
+
+
+  @JsonKey(
+    
+    name: r'paidAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? paidAmount;
+
+
+
+  @JsonKey(
+    
+    name: r'remainingAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? remainingAmount;
+
+
+
+  @JsonKey(
+    
     name: r'itemCount',
     required: false,
     includeIfNull: false,
@@ -293,6 +335,9 @@ class OrderListItem {
       other.status == status &&
       other.paymentStatus == paymentStatus &&
       other.totalAmount == totalAmount &&
+      other.requiredDepositAmount == requiredDepositAmount &&
+      other.paidAmount == paidAmount &&
+      other.remainingAmount == remainingAmount &&
       other.itemCount == itemCount &&
       other.isReturnalbe == isReturnalbe &&
       other.shippingStatus == shippingStatus &&
@@ -314,6 +359,9 @@ class OrderListItem {
         status.hashCode +
         paymentStatus.hashCode +
         totalAmount.hashCode +
+        requiredDepositAmount.hashCode +
+        paidAmount.hashCode +
+        remainingAmount.hashCode +
         itemCount.hashCode +
         isReturnalbe.hashCode +
         (shippingStatus == null ? 0 : shippingStatus.hashCode) +

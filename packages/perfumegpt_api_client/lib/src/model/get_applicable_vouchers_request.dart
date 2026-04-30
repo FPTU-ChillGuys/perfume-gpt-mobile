@@ -21,22 +21,8 @@ class GetApplicableVouchersRequest {
   /// Returns a new [GetApplicableVouchersRequest] instance.
   GetApplicableVouchersRequest({
 
-     this.customerId,
-
     required  this.cartItems,
   });
-
-  @JsonKey(
-    
-    name: r'customerId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final String? customerId;
-
-
 
   @JsonKey(
     
@@ -54,12 +40,10 @@ class GetApplicableVouchersRequest {
 
     @override
     bool operator ==(Object other) => identical(this, other) || other is GetApplicableVouchersRequest &&
-      other.customerId == customerId &&
       other.cartItems == cartItems;
 
     @override
     int get hashCode =>
-        (customerId == null ? 0 : customerId.hashCode) +
         cartItems.hashCode;
 
   factory GetApplicableVouchersRequest.fromJson(Map<String, dynamic> json) => _$GetApplicableVouchersRequestFromJson(json);

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **guestEmailOrPhoneNumber** | **String** |  | [optional] 
 **customerId** | **String** |  | [optional] 
 **sessionId** | **String** |  | [optional] 
+**paymentMethod** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
 **recipient** | [**ContactAddressInformation**](ContactAddressInformation.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

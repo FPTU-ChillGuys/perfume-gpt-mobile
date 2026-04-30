@@ -52,6 +52,21 @@ void main() {
       // TODO
     });
 
+    // num subTotal
+    test('to test the property `subTotal`', () async {
+      // TODO
+    });
+
+    // int promotionalQuantity
+    test('to test the property `promotionalQuantity`', () async {
+      // TODO
+    });
+
+    // int regularQuantity
+    test('to test the property `regularQuantity`', () async {
+      // TODO
+    });
+
     // num discount
     test('to test the property `discount`', () async {
       // TODO
@@ -59,11 +74,6 @@ void main() {
 
     // num finalTotal
     test('to test the property `finalTotal`', () async {
-      // TODO
-    });
-
-    // num subTotal
-    test('to test the property `subTotal`', () async {
       // TODO
     });
 

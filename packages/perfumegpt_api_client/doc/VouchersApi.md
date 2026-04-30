@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiVouchersGet**
-> BaseResponseOfPagedResultOfVoucherResponse apiVouchersGet(isExpired, code, pageNumber, pageSize, sortBy, sortOrder, isDescending)
+> BaseResponseOfPagedResultOfVoucherResponse apiVouchersGet(isExpired, isRegular, code, pageNumber, pageSize, sortBy, sortOrder, isDescending)
 
 
 
@@ -132,6 +132,7 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getVouchersApi();
 final bool isExpired = true; // bool | 
+final bool isRegular = true; // bool | 
 final String code = code_example; // String | 
 final int pageNumber = 56; // int | 
 final int pageSize = 56; // int | 
@@ -140,7 +141,7 @@ final String sortOrder = sortOrder_example; // String |
 final bool isDescending = true; // bool | 
 
 try {
-    final response = api.apiVouchersGet(isExpired, code, pageNumber, pageSize, sortBy, sortOrder, isDescending);
+    final response = api.apiVouchersGet(isExpired, isRegular, code, pageNumber, pageSize, sortBy, sortOrder, isDescending);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling VouchersApi->apiVouchersGet: $e\n');
@@ -152,6 +153,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **isExpired** | **bool**|  | [optional] 
+ **isRegular** | **bool**|  | [optional] 
  **code** | **String**|  | [optional] 
  **pageNumber** | **int**|  | [optional] 
  **pageSize** | **int**|  | [optional] 

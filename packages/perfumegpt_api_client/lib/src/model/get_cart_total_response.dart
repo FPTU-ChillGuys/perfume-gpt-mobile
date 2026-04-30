@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/deposit_policy_preview_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -27,6 +28,8 @@ class GetCartTotalResponse {
      this.discount,
 
      this.totalPrice,
+
+     this.depositPolicy,
   });
 
   @JsonKey(
@@ -77,6 +80,18 @@ class GetCartTotalResponse {
 
 
 
+  @JsonKey(
+    
+    name: r'depositPolicy',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final DepositPolicyPreviewResponse? depositPolicy;
+
+
+
 
 
     @override
@@ -84,14 +99,16 @@ class GetCartTotalResponse {
       other.subtotal == subtotal &&
       other.shippingFee == shippingFee &&
       other.discount == discount &&
-      other.totalPrice == totalPrice;
+      other.totalPrice == totalPrice &&
+      other.depositPolicy == depositPolicy;
 
     @override
     int get hashCode =>
         subtotal.hashCode +
         shippingFee.hashCode +
         discount.hashCode +
-        totalPrice.hashCode;
+        totalPrice.hashCode +
+        depositPolicy.hashCode;
 
   factory GetCartTotalResponse.fromJson(Map<String, dynamic> json) => _$GetCartTotalResponseFromJson(json);
 

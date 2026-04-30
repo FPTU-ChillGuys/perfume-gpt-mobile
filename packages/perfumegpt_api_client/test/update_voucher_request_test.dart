@@ -22,11 +22,6 @@ void main() {
       // TODO
     });
 
-    // VoucherType applyType
-    test('to test the property `applyType`', () async {
-      // TODO
-    });
-
     // int requiredPoints
     test('to test the property `requiredPoints`', () async {
       // TODO

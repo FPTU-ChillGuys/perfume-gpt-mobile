@@ -12,6 +12,11 @@ void main() {
       // TODO
     });
 
+    // PaymentMethod depositGateway
+    test('to test the property `depositGateway`', () async {
+      // TODO
+    });
+
     // String posSessionId
     test('to test the property `posSessionId`', () async {
       // TODO

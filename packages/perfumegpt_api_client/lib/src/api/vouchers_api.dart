@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_applicable_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_redeemable_voucher_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_user_voucher_response.dart';
@@ -239,6 +240,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfApplica
   ///
   /// Parameters:
   /// * [isExpired] 
+  /// * [isRegular] 
   /// * [code] 
   /// * [pageNumber] 
   /// * [pageSize] 
@@ -256,6 +258,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfApplica
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfPagedResultOfVoucherResponse>> apiVouchersGet({ 
     bool? isExpired,
+    bool? isRegular,
     String? code,
     int? pageNumber,
     int? pageSize,
@@ -290,6 +293,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfApplica
 
     final _queryParameters = <String, dynamic>{
       if (isExpired != null) r'IsExpired': isExpired,
+      if (isRegular != null) r'IsRegular': isRegular,
       if (code != null) r'Code': code,
       if (pageNumber != null) r'PageNumber': pageNumber,
       if (pageSize != null) r'PageSize': pageSize,

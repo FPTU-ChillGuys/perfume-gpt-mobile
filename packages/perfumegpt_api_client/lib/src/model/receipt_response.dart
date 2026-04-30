@@ -41,6 +41,10 @@ class ReceiptResponse {
 
      this.subtotal,
 
+     this.depositeAmount,
+
+     this.remainingAmount,
+
      this.shippingFee,
 
      this.discount,
@@ -176,6 +180,30 @@ class ReceiptResponse {
 
   @JsonKey(
     
+    name: r'depositeAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? depositeAmount;
+
+
+
+  @JsonKey(
+    
+    name: r'remainingAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? remainingAmount;
+
+
+
+  @JsonKey(
+    
     name: r'shippingFee',
     required: false,
     includeIfNull: false,
@@ -260,6 +288,8 @@ class ReceiptResponse {
       other.recipientAddress == recipientAddress &&
       other.items == items &&
       other.subtotal == subtotal &&
+      other.depositeAmount == depositeAmount &&
+      other.remainingAmount == remainingAmount &&
       other.shippingFee == shippingFee &&
       other.discount == discount &&
       other.tax == tax &&
@@ -279,6 +309,8 @@ class ReceiptResponse {
         recipientAddress.hashCode +
         items.hashCode +
         subtotal.hashCode +
+        depositeAmount.hashCode +
+        remainingAmount.hashCode +
         shippingFee.hashCode +
         discount.hashCode +
         tax.hashCode +

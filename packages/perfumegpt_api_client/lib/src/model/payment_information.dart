@@ -23,6 +23,8 @@ class PaymentInformation {
 
      this.method,
 
+     this.depositGateway,
+
      this.posSessionId,
   });
 
@@ -35,6 +37,18 @@ class PaymentInformation {
 
 
   final PaymentMethod? method;
+
+
+
+  @JsonKey(
+    
+    name: r'depositGateway',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final PaymentMethod? depositGateway;
 
 
 
@@ -55,11 +69,13 @@ class PaymentInformation {
     @override
     bool operator ==(Object other) => identical(this, other) || other is PaymentInformation &&
       other.method == method &&
+      other.depositGateway == depositGateway &&
       other.posSessionId == posSessionId;
 
     @override
     int get hashCode =>
         (method == null ? 0 : method.hashCode) +
+        (depositGateway == null ? 0 : depositGateway.hashCode) +
         (posSessionId == null ? 0 : posSessionId.hashCode);
 
   factory PaymentInformation.fromJson(Map<String, dynamic> json) => _$PaymentInformationFromJson(json);

@@ -32,5 +32,10 @@ void main() {
       // TODO
     });
 
+    // num requiredDepositAmount
+    test('to test the property `requiredDepositAmount`', () async {
+      // TODO
+    });
+
   });
 }

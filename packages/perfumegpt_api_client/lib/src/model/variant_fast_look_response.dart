@@ -23,9 +23,13 @@ class VariantFastLookResponse {
 
      this.id,
 
+    required  this.barcode,
+
     required  this.sku,
 
     required  this.displayName,
+
+     this.volumeMl,
 
      this.price,
 
@@ -50,6 +54,18 @@ class VariantFastLookResponse {
 
   @JsonKey(
     
+    name: r'barcode',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String barcode;
+
+
+
+  @JsonKey(
+    
     name: r'sku',
     required: true,
     includeIfNull: false,
@@ -69,6 +85,18 @@ class VariantFastLookResponse {
 
 
   final String displayName;
+
+
+
+  @JsonKey(
+    
+    name: r'volumeMl',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? volumeMl;
 
 
 
@@ -125,8 +153,10 @@ class VariantFastLookResponse {
     @override
     bool operator ==(Object other) => identical(this, other) || other is VariantFastLookResponse &&
       other.id == id &&
+      other.barcode == barcode &&
       other.sku == sku &&
       other.displayName == displayName &&
+      other.volumeMl == volumeMl &&
       other.price == price &&
       other.retailPrice == retailPrice &&
       other.stockQuantity == stockQuantity &&
@@ -135,8 +165,10 @@ class VariantFastLookResponse {
     @override
     int get hashCode =>
         id.hashCode +
+        barcode.hashCode +
         sku.hashCode +
         displayName.hashCode +
+        volumeMl.hashCode +
         price.hashCode +
         (retailPrice == null ? 0 : retailPrice.hashCode) +
         stockQuantity.hashCode +

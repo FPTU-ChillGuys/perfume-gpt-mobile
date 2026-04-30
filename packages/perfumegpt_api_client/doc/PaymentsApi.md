@@ -11,6 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apiPaymentsManagementTransactionsGet**](PaymentsApi.md#apipaymentsmanagementtransactionsget) | **GET** /api/payments/management-transactions | 
 [**apiPaymentsMomoReturnGet**](PaymentsApi.md#apipaymentsmomoreturnget) | **GET** /api/payments/momo-return | 
+[**apiPaymentsOrderIdPickupPaymentPost**](PaymentsApi.md#apipaymentsorderidpickuppaymentpost) | **POST** /api/payments/{orderId}/pickup-payment | 
 [**apiPaymentsPaymentIdConfirmPut**](PaymentsApi.md#apipaymentspaymentidconfirmput) | **PUT** /api/payments/{paymentId}/confirm | 
 [**apiPaymentsPaymentIdRetryPost**](PaymentsApi.md#apipaymentspaymentidretrypost) | **POST** /api/payments/{paymentId}/retry | 
 [**apiPaymentsPayosCancelGet**](PaymentsApi.md#apipaymentspayoscancelget) | **GET** /api/payments/payos-cancel | 
@@ -111,6 +112,49 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **apiPaymentsOrderIdPickupPaymentPost**
+> BaseResponseOfstring apiPaymentsOrderIdPickupPaymentPost(orderId, createPickupPaymentRequest)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getPaymentsApi();
+final String orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final CreatePickupPaymentRequest createPickupPaymentRequest = ; // CreatePickupPaymentRequest | 
+
+try {
+    final response = api.apiPaymentsOrderIdPickupPaymentPost(orderId, createPickupPaymentRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PaymentsApi->apiPaymentsOrderIdPickupPaymentPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**|  | 
+ **createPickupPaymentRequest** | [**CreatePickupPaymentRequest**](CreatePickupPaymentRequest.md)|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **apiPaymentsPaymentIdConfirmPut**
 > BaseResponseOfboolean apiPaymentsPaymentIdConfirmPut(paymentId, confirmPaymentRequest)
 
@@ -155,7 +199,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiPaymentsPaymentIdRetryPost**
-> BaseResponseOfstring apiPaymentsPaymentIdRetryPost(paymentId, paymentInformation)
+> BaseResponseOfstring apiPaymentsPaymentIdRetryPost(paymentId, retryOrChangePaymentRequest)
 
 
 
@@ -165,10 +209,10 @@ import 'package:perfumegpt_api_client/api.dart';
 
 final api = PerfumegptApiClient().getPaymentsApi();
 final String paymentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final PaymentInformation paymentInformation = ; // PaymentInformation | 
+final RetryOrChangePaymentRequest retryOrChangePaymentRequest = ; // RetryOrChangePaymentRequest | 
 
 try {
-    final response = api.apiPaymentsPaymentIdRetryPost(paymentId, paymentInformation);
+    final response = api.apiPaymentsPaymentIdRetryPost(paymentId, retryOrChangePaymentRequest);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling PaymentsApi->apiPaymentsPaymentIdRetryPost: $e\n');
@@ -180,7 +224,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **paymentId** | **String**|  | 
- **paymentInformation** | [**PaymentInformation**](PaymentInformation.md)|  | [optional] 
+ **retryOrChangePaymentRequest** | [**RetryOrChangePaymentRequest**](RetryOrChangePaymentRequest.md)|  | 
 
 ### Return type
 
@@ -229,7 +273,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

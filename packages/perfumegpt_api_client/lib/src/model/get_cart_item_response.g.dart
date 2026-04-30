@@ -25,11 +25,15 @@ abstract class _$GetCartItemResponseCWProxy {
 
   GetCartItemResponse isAvailable(bool? isAvailable);
 
+  GetCartItemResponse subTotal(num? subTotal);
+
+  GetCartItemResponse promotionalQuantity(int? promotionalQuantity);
+
+  GetCartItemResponse regularQuantity(int? regularQuantity);
+
   GetCartItemResponse discount(num? discount);
 
   GetCartItemResponse finalTotal(num? finalTotal);
-
-  GetCartItemResponse subTotal(num? subTotal);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartItemResponse(...).copyWith.fieldName(value)`.
@@ -48,9 +52,11 @@ abstract class _$GetCartItemResponseCWProxy {
     num? variantPrice,
     int? quantity,
     bool? isAvailable,
+    num? subTotal,
+    int? promotionalQuantity,
+    int? regularQuantity,
     num? discount,
     num? finalTotal,
-    num? subTotal,
   });
 }
 
@@ -94,14 +100,22 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
       call(isAvailable: isAvailable);
 
   @override
+  GetCartItemResponse subTotal(num? subTotal) => call(subTotal: subTotal);
+
+  @override
+  GetCartItemResponse promotionalQuantity(int? promotionalQuantity) =>
+      call(promotionalQuantity: promotionalQuantity);
+
+  @override
+  GetCartItemResponse regularQuantity(int? regularQuantity) =>
+      call(regularQuantity: regularQuantity);
+
+  @override
   GetCartItemResponse discount(num? discount) => call(discount: discount);
 
   @override
   GetCartItemResponse finalTotal(num? finalTotal) =>
       call(finalTotal: finalTotal);
-
-  @override
-  GetCartItemResponse subTotal(num? subTotal) => call(subTotal: subTotal);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -121,9 +135,11 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
     Object? variantPrice = const $CopyWithPlaceholder(),
     Object? quantity = const $CopyWithPlaceholder(),
     Object? isAvailable = const $CopyWithPlaceholder(),
+    Object? subTotal = const $CopyWithPlaceholder(),
+    Object? promotionalQuantity = const $CopyWithPlaceholder(),
+    Object? regularQuantity = const $CopyWithPlaceholder(),
     Object? discount = const $CopyWithPlaceholder(),
     Object? finalTotal = const $CopyWithPlaceholder(),
-    Object? subTotal = const $CopyWithPlaceholder(),
   }) {
     return GetCartItemResponse(
       cartItemId: cartItemId == const $CopyWithPlaceholder()
@@ -163,6 +179,18 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
           ? _value.isAvailable
           // ignore: cast_nullable_to_non_nullable
           : isAvailable as bool?,
+      subTotal: subTotal == const $CopyWithPlaceholder()
+          ? _value.subTotal
+          // ignore: cast_nullable_to_non_nullable
+          : subTotal as num?,
+      promotionalQuantity: promotionalQuantity == const $CopyWithPlaceholder()
+          ? _value.promotionalQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : promotionalQuantity as int?,
+      regularQuantity: regularQuantity == const $CopyWithPlaceholder()
+          ? _value.regularQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : regularQuantity as int?,
       discount: discount == const $CopyWithPlaceholder()
           ? _value.discount
           // ignore: cast_nullable_to_non_nullable
@@ -171,10 +199,6 @@ class _$GetCartItemResponseCWProxyImpl implements _$GetCartItemResponseCWProxy {
           ? _value.finalTotal
           // ignore: cast_nullable_to_non_nullable
           : finalTotal as num?,
-      subTotal: subTotal == const $CopyWithPlaceholder()
-          ? _value.subTotal
-          // ignore: cast_nullable_to_non_nullable
-          : subTotal as num?,
     );
   }
 }
@@ -207,9 +231,17 @@ GetCartItemResponse _$GetCartItemResponseFromJson(Map<String, dynamic> json) =>
         variantPrice: $checkedConvert('variantPrice', (v) => v as num?),
         quantity: $checkedConvert('quantity', (v) => (v as num?)?.toInt()),
         isAvailable: $checkedConvert('isAvailable', (v) => v as bool?),
+        subTotal: $checkedConvert('subTotal', (v) => v as num?),
+        promotionalQuantity: $checkedConvert(
+          'promotionalQuantity',
+          (v) => (v as num?)?.toInt(),
+        ),
+        regularQuantity: $checkedConvert(
+          'regularQuantity',
+          (v) => (v as num?)?.toInt(),
+        ),
         discount: $checkedConvert('discount', (v) => v as num?),
         finalTotal: $checkedConvert('finalTotal', (v) => v as num?),
-        subTotal: $checkedConvert('subTotal', (v) => v as num?),
       );
       return val;
     });
@@ -226,9 +258,11 @@ Map<String, dynamic> _$GetCartItemResponseToJson(
   'variantPrice': ?instance.variantPrice,
   'quantity': ?instance.quantity,
   'isAvailable': ?instance.isAvailable,
+  'subTotal': ?instance.subTotal,
+  'promotionalQuantity': ?instance.promotionalQuantity,
+  'regularQuantity': ?instance.regularQuantity,
   'discount': ?instance.discount,
   'finalTotal': ?instance.finalTotal,
-  'subTotal': ?instance.subTotal,
 };
 
 const _$VariantTypeEnumMap = {

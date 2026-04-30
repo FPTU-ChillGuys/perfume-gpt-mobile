@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**apiShippingsMeGet**](ShippingsApi.md#apishippingsmeget) | **GET** /api/shippings/me | 
 [**apiShippingsMeSyncShippingStatusPost**](ShippingsApi.md#apishippingsmesyncshippingstatuspost) | **POST** /api/shippings/me/sync-shipping-status | 
 [**apiShippingsOrderInfoUrlPost**](ShippingsApi.md#apishippingsorderinfourlpost) | **POST** /api/shippings/order-info-url | 
+[**apiShippingsSyncShippingStatusTrackingNumberPost**](ShippingsApi.md#apishippingssyncshippingstatustrackingnumberpost) | **POST** /api/shippings/sync/shipping-status/{trackingNumber} | 
 [**apiShippingsUserUserIdGet**](ShippingsApi.md#apishippingsuseruseridget) | **GET** /api/shippings/user/{userId} | 
 [**apiShippingsUserUserIdSyncShippingStatusPost**](ShippingsApi.md#apishippingsuseruseridsyncshippingstatuspost) | **POST** /api/shippings/user/{userId}/sync-shipping-status | 
 
@@ -149,6 +150,47 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiShippingsSyncShippingStatusTrackingNumberPost**
+> BaseResponseOfstring apiShippingsSyncShippingStatusTrackingNumberPost(trackingNumber)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getShippingsApi();
+final String trackingNumber = trackingNumber_example; // String | 
+
+try {
+    final response = api.apiShippingsSyncShippingStatusTrackingNumberPost(trackingNumber);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ShippingsApi->apiShippingsSyncShippingStatusTrackingNumberPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trackingNumber** | **String**|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

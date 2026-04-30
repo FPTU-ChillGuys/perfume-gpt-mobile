@@ -21,6 +21,10 @@ class GoogleLoginRequest {
   GoogleLoginRequest({
 
     required  this.idToken,
+
+     this.fcmToken,
+
+     this.deviceType,
   });
 
   @JsonKey(
@@ -35,15 +39,43 @@ class GoogleLoginRequest {
 
 
 
+  @JsonKey(
+    
+    name: r'fcmToken',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? fcmToken;
+
+
+
+  @JsonKey(
+    
+    name: r'deviceType',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? deviceType;
+
+
+
 
 
     @override
     bool operator ==(Object other) => identical(this, other) || other is GoogleLoginRequest &&
-      other.idToken == idToken;
+      other.idToken == idToken &&
+      other.fcmToken == fcmToken &&
+      other.deviceType == deviceType;
 
     @override
     int get hashCode =>
-        idToken.hashCode;
+        idToken.hashCode +
+        (fcmToken == null ? 0 : fcmToken.hashCode) +
+        (deviceType == null ? 0 : deviceType.hashCode);
 
   factory GoogleLoginRequest.fromJson(Map<String, dynamic> json) => _$GoogleLoginRequestFromJson(json);
 

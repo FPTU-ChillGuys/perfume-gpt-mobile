@@ -39,11 +39,15 @@ class GetCartItemResponse {
 
      this.isAvailable,
 
+     this.subTotal,
+
+     this.promotionalQuantity,
+
+     this.regularQuantity,
+
      this.discount,
 
      this.finalTotal,
-
-     this.subTotal,
   });
 
   @JsonKey(
@@ -156,6 +160,42 @@ class GetCartItemResponse {
 
   @JsonKey(
     
+    name: r'subTotal',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? subTotal;
+
+
+
+  @JsonKey(
+    
+    name: r'promotionalQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? promotionalQuantity;
+
+
+
+  @JsonKey(
+    
+    name: r'regularQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? regularQuantity;
+
+
+
+  @JsonKey(
+    
     name: r'discount',
     required: false,
     includeIfNull: false,
@@ -178,18 +218,6 @@ class GetCartItemResponse {
 
 
 
-  @JsonKey(
-    
-    name: r'subTotal',
-    required: false,
-    includeIfNull: false,
-  )
-
-
-  final num? subTotal;
-
-
-
 
 
     @override
@@ -203,9 +231,11 @@ class GetCartItemResponse {
       other.variantPrice == variantPrice &&
       other.quantity == quantity &&
       other.isAvailable == isAvailable &&
+      other.subTotal == subTotal &&
+      other.promotionalQuantity == promotionalQuantity &&
+      other.regularQuantity == regularQuantity &&
       other.discount == discount &&
-      other.finalTotal == finalTotal &&
-      other.subTotal == subTotal;
+      other.finalTotal == finalTotal;
 
     @override
     int get hashCode =>
@@ -218,9 +248,11 @@ class GetCartItemResponse {
         variantPrice.hashCode +
         quantity.hashCode +
         isAvailable.hashCode +
+        subTotal.hashCode +
+        promotionalQuantity.hashCode +
+        regularQuantity.hashCode +
         discount.hashCode +
-        finalTotal.hashCode +
-        subTotal.hashCode;
+        finalTotal.hashCode;
 
   factory GetCartItemResponse.fromJson(Map<String, dynamic> json) => _$GetCartItemResponseFromJson(json);
 

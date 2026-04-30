@@ -12,6 +12,11 @@ void main() {
       // TODO
     });
 
+    // String barcode
+    test('to test the property `barcode`', () async {
+      // TODO
+    });
+
     // String sku
     test('to test the property `sku`', () async {
       // TODO
@@ -19,6 +24,11 @@ void main() {
 
     // String displayName
     test('to test the property `displayName`', () async {
+      // TODO
+    });
+
+    // int volumeMl
+    test('to test the property `volumeMl`', () async {
       // TODO
     });
 

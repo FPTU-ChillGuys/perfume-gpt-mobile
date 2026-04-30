@@ -9,8 +9,10 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
+**barcode** | **String** |  | 
 **sku** | **String** |  | 
 **displayName** | **String** |  | 
+**volumeMl** | **int** |  | [optional] 
 **price** | **num** |  | [optional] 
 **retailPrice** | **num** |  | [optional] 
 **stockQuantity** | **int** |  | [optional] 

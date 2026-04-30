@@ -62,6 +62,11 @@ void main() {
       // TODO
     });
 
+    // int campaignQuota
+    test('to test the property `campaignQuota`', () async {
+      // TODO
+    });
+
     // String voucherCode
     test('to test the property `voucherCode`', () async {
       // TODO

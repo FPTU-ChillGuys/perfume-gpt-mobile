@@ -9,9 +9,13 @@ part of 'variant_fast_look_response.dart';
 abstract class _$VariantFastLookResponseCWProxy {
   VariantFastLookResponse id(String? id);
 
+  VariantFastLookResponse barcode(String barcode);
+
   VariantFastLookResponse sku(String sku);
 
   VariantFastLookResponse displayName(String displayName);
+
+  VariantFastLookResponse volumeMl(int? volumeMl);
 
   VariantFastLookResponse price(num? price);
 
@@ -30,8 +34,10 @@ abstract class _$VariantFastLookResponseCWProxy {
   /// ```
   VariantFastLookResponse call({
     String? id,
+    String barcode,
     String sku,
     String displayName,
+    int? volumeMl,
     num? price,
     num? retailPrice,
     int? stockQuantity,
@@ -51,11 +57,17 @@ class _$VariantFastLookResponseCWProxyImpl
   VariantFastLookResponse id(String? id) => call(id: id);
 
   @override
+  VariantFastLookResponse barcode(String barcode) => call(barcode: barcode);
+
+  @override
   VariantFastLookResponse sku(String sku) => call(sku: sku);
 
   @override
   VariantFastLookResponse displayName(String displayName) =>
       call(displayName: displayName);
+
+  @override
+  VariantFastLookResponse volumeMl(int? volumeMl) => call(volumeMl: volumeMl);
 
   @override
   VariantFastLookResponse price(num? price) => call(price: price);
@@ -81,8 +93,10 @@ class _$VariantFastLookResponseCWProxyImpl
   /// ```
   VariantFastLookResponse call({
     Object? id = const $CopyWithPlaceholder(),
+    Object? barcode = const $CopyWithPlaceholder(),
     Object? sku = const $CopyWithPlaceholder(),
     Object? displayName = const $CopyWithPlaceholder(),
+    Object? volumeMl = const $CopyWithPlaceholder(),
     Object? price = const $CopyWithPlaceholder(),
     Object? retailPrice = const $CopyWithPlaceholder(),
     Object? stockQuantity = const $CopyWithPlaceholder(),
@@ -93,6 +107,10 @@ class _$VariantFastLookResponseCWProxyImpl
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
+      barcode: barcode == const $CopyWithPlaceholder() || barcode == null
+          ? _value.barcode
+          // ignore: cast_nullable_to_non_nullable
+          : barcode as String,
       sku: sku == const $CopyWithPlaceholder() || sku == null
           ? _value.sku
           // ignore: cast_nullable_to_non_nullable
@@ -102,6 +120,10 @@ class _$VariantFastLookResponseCWProxyImpl
           ? _value.displayName
           // ignore: cast_nullable_to_non_nullable
           : displayName as String,
+      volumeMl: volumeMl == const $CopyWithPlaceholder()
+          ? _value.volumeMl
+          // ignore: cast_nullable_to_non_nullable
+          : volumeMl as int?,
       price: price == const $CopyWithPlaceholder()
           ? _value.price
           // ignore: cast_nullable_to_non_nullable
@@ -137,11 +159,13 @@ extension $VariantFastLookResponseCopyWith on VariantFastLookResponse {
 VariantFastLookResponse _$VariantFastLookResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('VariantFastLookResponse', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['sku', 'displayName']);
+  $checkKeys(json, requiredKeys: const ['barcode', 'sku', 'displayName']);
   final val = VariantFastLookResponse(
     id: $checkedConvert('id', (v) => v as String?),
+    barcode: $checkedConvert('barcode', (v) => v as String),
     sku: $checkedConvert('sku', (v) => v as String),
     displayName: $checkedConvert('displayName', (v) => v as String),
+    volumeMl: $checkedConvert('volumeMl', (v) => (v as num?)?.toInt()),
     price: $checkedConvert('price', (v) => v as num?),
     retailPrice: $checkedConvert('retailPrice', (v) => v as num?),
     stockQuantity: $checkedConvert(
@@ -161,8 +185,10 @@ Map<String, dynamic> _$VariantFastLookResponseToJson(
   VariantFastLookResponse instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
+  'barcode': instance.barcode,
   'sku': instance.sku,
   'displayName': instance.displayName,
+  'volumeMl': ?instance.volumeMl,
   'price': ?instance.price,
   'retailPrice': ?instance.retailPrice,
   'stockQuantity': ?instance.stockQuantity,

@@ -7,6 +7,8 @@ part of 'process_refund_request.dart';
 // **************************************************************************
 
 abstract class _$ProcessRefundRequestCWProxy {
+  ProcessRefundRequest approvedRefundAmount(num? approvedRefundAmount);
+
   ProcessRefundRequest refundMethod(PaymentMethod? refundMethod);
 
   ProcessRefundRequest manualTransactionReference(
@@ -23,6 +25,7 @@ abstract class _$ProcessRefundRequestCWProxy {
   /// ProcessRefundRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   ProcessRefundRequest call({
+    num? approvedRefundAmount,
     PaymentMethod? refundMethod,
     String? manualTransactionReference,
     String? note,
@@ -36,6 +39,10 @@ class _$ProcessRefundRequestCWProxyImpl
   const _$ProcessRefundRequestCWProxyImpl(this._value);
 
   final ProcessRefundRequest _value;
+
+  @override
+  ProcessRefundRequest approvedRefundAmount(num? approvedRefundAmount) =>
+      call(approvedRefundAmount: approvedRefundAmount);
 
   @override
   ProcessRefundRequest refundMethod(PaymentMethod? refundMethod) =>
@@ -58,11 +65,16 @@ class _$ProcessRefundRequestCWProxyImpl
   /// ProcessRefundRequest(...).copyWith(id: 12, name: "My name")
   /// ```
   ProcessRefundRequest call({
+    Object? approvedRefundAmount = const $CopyWithPlaceholder(),
     Object? refundMethod = const $CopyWithPlaceholder(),
     Object? manualTransactionReference = const $CopyWithPlaceholder(),
     Object? note = const $CopyWithPlaceholder(),
   }) {
     return ProcessRefundRequest(
+      approvedRefundAmount: approvedRefundAmount == const $CopyWithPlaceholder()
+          ? _value.approvedRefundAmount
+          // ignore: cast_nullable_to_non_nullable
+          : approvedRefundAmount as num?,
       refundMethod: refundMethod == const $CopyWithPlaceholder()
           ? _value.refundMethod
           // ignore: cast_nullable_to_non_nullable
@@ -96,6 +108,10 @@ ProcessRefundRequest _$ProcessRefundRequestFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ProcessRefundRequest', json, ($checkedConvert) {
   final val = ProcessRefundRequest(
+    approvedRefundAmount: $checkedConvert(
+      'approvedRefundAmount',
+      (v) => v as num?,
+    ),
     refundMethod: $checkedConvert(
       'refundMethod',
       (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
@@ -112,6 +128,7 @@ ProcessRefundRequest _$ProcessRefundRequestFromJson(
 Map<String, dynamic> _$ProcessRefundRequestToJson(
   ProcessRefundRequest instance,
 ) => <String, dynamic>{
+  'approvedRefundAmount': ?instance.approvedRefundAmount,
   'refundMethod': ?_$PaymentMethodEnumMap[instance.refundMethod],
   'manualTransactionReference': ?instance.manualTransactionReference,
   'note': ?instance.note,

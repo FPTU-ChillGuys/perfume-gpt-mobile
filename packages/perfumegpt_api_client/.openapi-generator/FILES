@@ -18,6 +18,7 @@ doc/BannerLinkType.md
 doc/BannerPosition.md
 doc/BannerResponse.md
 doc/BannersApi.md
+doc/BaseResponse.md
 doc/BaseResponseOfAddressLevel4Response.md
 doc/BaseResponseOfAddressResponse.md
 doc/BaseResponseOfAdminDashboardOverviewResponse.md
@@ -34,7 +35,6 @@ doc/BaseResponseOfConcentrationResponse.md
 doc/BaseResponseOfCreateImportTicketRequest.md
 doc/BaseResponseOfCreatePaymentResponseDto.md
 doc/BaseResponseOfCustomerForPosResponse.md
-doc/BaseResponseOfExcelTemplateResponse.md
 doc/BaseResponseOfGetCartItemsResponse.md
 doc/BaseResponseOfGetCartTotalResponse.md
 doc/BaseResponseOfIEnumerableOfCatalogItemResponse.md
@@ -82,6 +82,7 @@ doc/BaseResponseOfOlfactoryFamilyResponse.md
 doc/BaseResponseOfOrderCancelRequestResponse.md
 doc/BaseResponseOfOrderResponse.md
 doc/BaseResponseOfOrderReturnRequestResponse.md
+doc/BaseResponseOfPageResponse.md
 doc/BaseResponseOfPagedResultOfBannerResponse.md
 doc/BaseResponseOfPagedResultOfBatchDetailResponse.md
 doc/BaseResponseOfPagedResultOfCampaignResponse.md
@@ -93,6 +94,7 @@ doc/BaseResponseOfPagedResultOfNotificationListItemResponse.md
 doc/BaseResponseOfPagedResultOfOrderCancelRequestResponse.md
 doc/BaseResponseOfPagedResultOfOrderListItem.md
 doc/BaseResponseOfPagedResultOfOrderReturnRequestResponse.md
+doc/BaseResponseOfPagedResultOfPageResponse.md
 doc/BaseResponseOfPagedResultOfProductListItem.md
 doc/BaseResponseOfPagedResultOfReviewListItem.md
 doc/BaseResponseOfPagedResultOfShippingInfoListItem.md
@@ -118,6 +120,7 @@ doc/BaseResponseOfReviewStatisticsResponse.md
 doc/BaseResponseOfScentNoteResponse.md
 doc/BaseResponseOfStockAdjustmentResponse.md
 doc/BaseResponseOfStockResponse.md
+doc/BaseResponseOfStorePolicyResponse.md
 doc/BaseResponseOfSupplierResponse.md
 doc/BaseResponseOfSwapDamagedStockResponse.md
 doc/BaseResponseOfSystemPolicyResponse.md
@@ -180,7 +183,9 @@ doc/CreateImportTicketRequest.md
 doc/CreateInStoreOrderRequest.md
 doc/CreateOlfactoryFamilyRequest.md
 doc/CreateOrderRequest.md
+doc/CreatePageRequest.md
 doc/CreatePaymentResponseDto.md
+doc/CreatePickupPaymentRequest.md
 doc/CreateProductRequest.md
 doc/CreateReturnRequestDto.md
 doc/CreateReviewRequest.md
@@ -196,10 +201,10 @@ doc/CustomerForPosResponse.md
 doc/CustomerNotePreferenceResponse.md
 doc/DeliverInStoreRequest.md
 doc/DeliveryMethod.md
+doc/DepositPolicyPreviewResponse.md
 doc/DiscountType.md
 doc/DistrictResponse.md
 doc/EntityTagHeaderValue.md
-doc/ExcelTemplateResponse.md
 doc/FileContentResult.md
 doc/ForgotPasswordRequest.md
 doc/FulfillOrderItemRequest.md
@@ -248,6 +253,7 @@ doc/OrderReturnRequestsApi.md
 doc/OrderStatus.md
 doc/OrderType.md
 doc/OrdersApi.md
+doc/PageResponse.md
 doc/PagedResultOfBannerResponse.md
 doc/PagedResultOfBatchDetailResponse.md
 doc/PagedResultOfCampaignResponse.md
@@ -259,6 +265,7 @@ doc/PagedResultOfNotificationListItemResponse.md
 doc/PagedResultOfOrderCancelRequestResponse.md
 doc/PagedResultOfOrderListItem.md
 doc/PagedResultOfOrderReturnRequestResponse.md
+doc/PagedResultOfPageResponse.md
 doc/PagedResultOfPaymentTransactionAdminItemResponse.md
 doc/PagedResultOfProductListItem.md
 doc/PagedResultOfReviewListItem.md
@@ -268,6 +275,7 @@ doc/PagedResultOfStockResponse.md
 doc/PagedResultOfUserVoucherResponse.md
 doc/PagedResultOfVariantPagedItem.md
 doc/PagedResultOfVoucherResponse.md
+doc/PagesApi.md
 doc/PaymentInfoResponse.md
 doc/PaymentInformation.md
 doc/PaymentMethod.md
@@ -321,6 +329,7 @@ doc/ReplenishmentPolicy.md
 doc/ReservedBatchResponse.md
 doc/ResetPasswordRequest.md
 doc/ResponseErrorType.md
+doc/RetryOrChangePaymentRequest.md
 doc/ReturnItemDto.md
 doc/ReturnOrderReason.md
 doc/ReturnRequestStatus.md
@@ -354,6 +363,8 @@ doc/StockAdjustmentsApi.md
 doc/StockResponse.md
 doc/StockStatus.md
 doc/StockTransactionType.md
+doc/StorePoliciesApi.md
+doc/StorePolicyResponse.md
 doc/StringSegment.md
 doc/SupplierLookupItem.md
 doc/SupplierResponse.md
@@ -385,11 +396,13 @@ doc/UpdateImportRequest.md
 doc/UpdateImportStatusRequest.md
 doc/UpdateNotePreferenceRequest.md
 doc/UpdateOlfactoryFamilyRequest.md
+doc/UpdatePageRequest.md
 doc/UpdateProductRequest.md
 doc/UpdateProfileRequest.md
 doc/UpdateReturnRequestDto.md
 doc/UpdateScentNoteRequest.md
 doc/UpdateStockAdjustmentStatusRequest.md
+doc/UpdateStorePolicyRequest.md
 doc/UpdateSupplierRequest.md
 doc/UpdateUserBasicInfoRequest.md
 doc/UpdateVariantRequest.md
@@ -440,6 +453,7 @@ lib/src/api/olfactory_families_api.dart
 lib/src/api/order_cancel_requests_api.dart
 lib/src/api/order_return_requests_api.dart
 lib/src/api/orders_api.dart
+lib/src/api/pages_api.dart
 lib/src/api/payments_api.dart
 lib/src/api/policies_api.dart
 lib/src/api/product_variants_api.dart
@@ -450,6 +464,7 @@ lib/src/api/scent_notes_api.dart
 lib/src/api/shippings_api.dart
 lib/src/api/sourcing_catalogs_api.dart
 lib/src/api/stock_adjustments_api.dart
+lib/src/api/store_policies_api.dart
 lib/src/api/suppliers_api.dart
 lib/src/api/users_api.dart
 lib/src/api/vouchers_api.dart
@@ -470,6 +485,7 @@ lib/src/model/attribute_value_lookup_item.dart
 lib/src/model/banner_link_type.dart
 lib/src/model/banner_position.dart
 lib/src/model/banner_response.dart
+lib/src/model/base_response.dart
 lib/src/model/base_response_of_address_level4_response.dart
 lib/src/model/base_response_of_address_response.dart
 lib/src/model/base_response_of_admin_dashboard_overview_response.dart
@@ -486,7 +502,6 @@ lib/src/model/base_response_of_concentration_response.dart
 lib/src/model/base_response_of_create_import_ticket_request.dart
 lib/src/model/base_response_of_create_payment_response_dto.dart
 lib/src/model/base_response_of_customer_for_pos_response.dart
-lib/src/model/base_response_of_excel_template_response.dart
 lib/src/model/base_response_of_get_cart_items_response.dart
 lib/src/model/base_response_of_get_cart_total_response.dart
 lib/src/model/base_response_of_i_enumerable_of_catalog_item_response.dart
@@ -534,6 +549,7 @@ lib/src/model/base_response_of_olfactory_family_response.dart
 lib/src/model/base_response_of_order_cancel_request_response.dart
 lib/src/model/base_response_of_order_response.dart
 lib/src/model/base_response_of_order_return_request_response.dart
+lib/src/model/base_response_of_page_response.dart
 lib/src/model/base_response_of_paged_result_of_banner_response.dart
 lib/src/model/base_response_of_paged_result_of_batch_detail_response.dart
 lib/src/model/base_response_of_paged_result_of_campaign_response.dart
@@ -545,6 +561,7 @@ lib/src/model/base_response_of_paged_result_of_notification_list_item_response.d
 lib/src/model/base_response_of_paged_result_of_order_cancel_request_response.dart
 lib/src/model/base_response_of_paged_result_of_order_list_item.dart
 lib/src/model/base_response_of_paged_result_of_order_return_request_response.dart
+lib/src/model/base_response_of_paged_result_of_page_response.dart
 lib/src/model/base_response_of_paged_result_of_product_list_item.dart
 lib/src/model/base_response_of_paged_result_of_review_list_item.dart
 lib/src/model/base_response_of_paged_result_of_shipping_info_list_item.dart
@@ -570,6 +587,7 @@ lib/src/model/base_response_of_review_statistics_response.dart
 lib/src/model/base_response_of_scent_note_response.dart
 lib/src/model/base_response_of_stock_adjustment_response.dart
 lib/src/model/base_response_of_stock_response.dart
+lib/src/model/base_response_of_store_policy_response.dart
 lib/src/model/base_response_of_supplier_response.dart
 lib/src/model/base_response_of_swap_damaged_stock_response.dart
 lib/src/model/base_response_of_system_policy_response.dart
@@ -626,7 +644,9 @@ lib/src/model/create_import_ticket_request.dart
 lib/src/model/create_in_store_order_request.dart
 lib/src/model/create_olfactory_family_request.dart
 lib/src/model/create_order_request.dart
+lib/src/model/create_page_request.dart
 lib/src/model/create_payment_response_dto.dart
+lib/src/model/create_pickup_payment_request.dart
 lib/src/model/create_product_request.dart
 lib/src/model/create_return_request_dto.dart
 lib/src/model/create_review_request.dart
@@ -642,10 +662,10 @@ lib/src/model/customer_for_pos_response.dart
 lib/src/model/customer_note_preference_response.dart
 lib/src/model/deliver_in_store_request.dart
 lib/src/model/delivery_method.dart
+lib/src/model/deposit_policy_preview_response.dart
 lib/src/model/discount_type.dart
 lib/src/model/district_response.dart
 lib/src/model/entity_tag_header_value.dart
-lib/src/model/excel_template_response.dart
 lib/src/model/file_content_result.dart
 lib/src/model/forgot_password_request.dart
 lib/src/model/fulfill_order_item_request.dart
@@ -685,6 +705,7 @@ lib/src/model/order_return_request_detail_response.dart
 lib/src/model/order_return_request_response.dart
 lib/src/model/order_status.dart
 lib/src/model/order_type.dart
+lib/src/model/page_response.dart
 lib/src/model/paged_result_of_banner_response.dart
 lib/src/model/paged_result_of_batch_detail_response.dart
 lib/src/model/paged_result_of_campaign_response.dart
@@ -696,6 +717,7 @@ lib/src/model/paged_result_of_notification_list_item_response.dart
 lib/src/model/paged_result_of_order_cancel_request_response.dart
 lib/src/model/paged_result_of_order_list_item.dart
 lib/src/model/paged_result_of_order_return_request_response.dart
+lib/src/model/paged_result_of_page_response.dart
 lib/src/model/paged_result_of_payment_transaction_admin_item_response.dart
 lib/src/model/paged_result_of_product_list_item.dart
 lib/src/model/paged_result_of_review_list_item.dart
@@ -753,6 +775,7 @@ lib/src/model/replenishment_policy.dart
 lib/src/model/reserved_batch_response.dart
 lib/src/model/reset_password_request.dart
 lib/src/model/response_error_type.dart
+lib/src/model/retry_or_change_payment_request.dart
 lib/src/model/return_item_dto.dart
 lib/src/model/return_order_reason.dart
 lib/src/model/return_request_status.dart
@@ -781,6 +804,7 @@ lib/src/model/stock_adjustment_status.dart
 lib/src/model/stock_response.dart
 lib/src/model/stock_status.dart
 lib/src/model/stock_transaction_type.dart
+lib/src/model/store_policy_response.dart
 lib/src/model/string_segment.dart
 lib/src/model/supplier_lookup_item.dart
 lib/src/model/supplier_response.dart
@@ -811,11 +835,13 @@ lib/src/model/update_import_request.dart
 lib/src/model/update_import_status_request.dart
 lib/src/model/update_note_preference_request.dart
 lib/src/model/update_olfactory_family_request.dart
+lib/src/model/update_page_request.dart
 lib/src/model/update_product_request.dart
 lib/src/model/update_profile_request.dart
 lib/src/model/update_return_request_dto.dart
 lib/src/model/update_scent_note_request.dart
 lib/src/model/update_stock_adjustment_status_request.dart
+lib/src/model/update_store_policy_request.dart
 lib/src/model/update_supplier_request.dart
 lib/src/model/update_user_basic_info_request.dart
 lib/src/model/update_variant_request.dart

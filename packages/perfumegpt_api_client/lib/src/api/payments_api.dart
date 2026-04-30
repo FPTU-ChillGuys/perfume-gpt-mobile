@@ -9,13 +9,15 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_payment_transaction_overview_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofboolean.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/confirm_payment_request.dart';
-import 'package:perfumegpt_api_client/src/model/payment_information.dart';
+import 'package:perfumegpt_api_client/src/model/create_pickup_payment_request.dart';
 import 'package:perfumegpt_api_client/src/model/payment_method.dart';
 import 'package:perfumegpt_api_client/src/model/problem_details.dart';
+import 'package:perfumegpt_api_client/src/model/retry_or_change_payment_request.dart';
 import 'package:perfumegpt_api_client/src/model/transaction_type.dart';
 
 class PaymentsApi {
@@ -182,6 +184,104 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPaymentTransa
     return _response;
   }
 
+  /// apiPaymentsOrderIdPickupPaymentPost
+  /// 
+  ///
+  /// Parameters:
+  /// * [orderId] 
+  /// * [createPickupPaymentRequest] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BaseResponseOfstring>> apiPaymentsOrderIdPickupPaymentPost({ 
+    required String orderId,
+    required CreatePickupPaymentRequest createPickupPaymentRequest,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/payments/{orderId}/pickup-payment'.replaceAll('{' r'orderId' '}', orderId.toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+_bodyData=jsonEncode(createPickupPaymentRequest);
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BaseResponseOfstring? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BaseResponseOfstring>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// apiPaymentsPaymentIdConfirmPut
   /// 
   ///
@@ -285,7 +385,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   ///
   /// Parameters:
   /// * [paymentId] 
-  /// * [paymentInformation] 
+  /// * [retryOrChangePaymentRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -297,7 +397,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BaseResponseOfstring>> apiPaymentsPaymentIdRetryPost({ 
     required String paymentId,
-    PaymentInformation? paymentInformation,
+    required RetryOrChangePaymentRequest retryOrChangePaymentRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -328,7 +428,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(paymentInformation);
+_bodyData=jsonEncode(retryOrChangePaymentRequest);
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

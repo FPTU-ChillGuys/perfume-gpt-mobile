@@ -30,6 +30,8 @@ class PreviewPosOrderResponse {
      this.discount,
 
      this.totalPrice,
+
+     this.requiredDepositAmount,
   });
 
   @JsonKey(
@@ -92,6 +94,18 @@ class PreviewPosOrderResponse {
 
 
 
+  @JsonKey(
+    
+    name: r'requiredDepositAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? requiredDepositAmount;
+
+
+
 
 
     @override
@@ -100,7 +114,8 @@ class PreviewPosOrderResponse {
       other.subTotal == subTotal &&
       other.shippingFee == shippingFee &&
       other.discount == discount &&
-      other.totalPrice == totalPrice;
+      other.totalPrice == totalPrice &&
+      other.requiredDepositAmount == requiredDepositAmount;
 
     @override
     int get hashCode =>
@@ -108,7 +123,8 @@ class PreviewPosOrderResponse {
         subTotal.hashCode +
         shippingFee.hashCode +
         discount.hashCode +
-        totalPrice.hashCode;
+        totalPrice.hashCode +
+        requiredDepositAmount.hashCode;
 
   factory PreviewPosOrderResponse.fromJson(Map<String, dynamic> json) => _$PreviewPosOrderResponseFromJson(json);
 

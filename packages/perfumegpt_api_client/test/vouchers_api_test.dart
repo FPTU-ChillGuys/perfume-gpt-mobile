@@ -17,7 +17,7 @@ void main() {
       // TODO
     });
 
-    //Future<BaseResponseOfPagedResultOfVoucherResponse> apiVouchersGet({ bool isExpired, String code, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
+    //Future<BaseResponseOfPagedResultOfVoucherResponse> apiVouchersGet({ bool isExpired, bool isRegular, String code, int pageNumber, int pageSize, String sortBy, String sortOrder, bool isDescending }) async
     test('test apiVouchersGet', () async {
       // TODO
     });

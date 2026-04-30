@@ -27,6 +27,10 @@ abstract class _$ReceiptResponseCWProxy {
 
   ReceiptResponse subtotal(num? subtotal);
 
+  ReceiptResponse depositeAmount(num? depositeAmount);
+
+  ReceiptResponse remainingAmount(num? remainingAmount);
+
   ReceiptResponse shippingFee(num? shippingFee);
 
   ReceiptResponse discount(num? discount);
@@ -57,6 +61,8 @@ abstract class _$ReceiptResponseCWProxy {
     String recipientAddress,
     List<ReceiptItemDto> items,
     num? subtotal,
+    num? depositeAmount,
+    num? remainingAmount,
     num? shippingFee,
     num? discount,
     num? tax,
@@ -108,6 +114,14 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
   ReceiptResponse subtotal(num? subtotal) => call(subtotal: subtotal);
 
   @override
+  ReceiptResponse depositeAmount(num? depositeAmount) =>
+      call(depositeAmount: depositeAmount);
+
+  @override
+  ReceiptResponse remainingAmount(num? remainingAmount) =>
+      call(remainingAmount: remainingAmount);
+
+  @override
   ReceiptResponse shippingFee(num? shippingFee) =>
       call(shippingFee: shippingFee);
 
@@ -146,6 +160,8 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
     Object? recipientAddress = const $CopyWithPlaceholder(),
     Object? items = const $CopyWithPlaceholder(),
     Object? subtotal = const $CopyWithPlaceholder(),
+    Object? depositeAmount = const $CopyWithPlaceholder(),
+    Object? remainingAmount = const $CopyWithPlaceholder(),
     Object? shippingFee = const $CopyWithPlaceholder(),
     Object? discount = const $CopyWithPlaceholder(),
     Object? tax = const $CopyWithPlaceholder(),
@@ -200,6 +216,14 @@ class _$ReceiptResponseCWProxyImpl implements _$ReceiptResponseCWProxy {
           ? _value.subtotal
           // ignore: cast_nullable_to_non_nullable
           : subtotal as num?,
+      depositeAmount: depositeAmount == const $CopyWithPlaceholder()
+          ? _value.depositeAmount
+          // ignore: cast_nullable_to_non_nullable
+          : depositeAmount as num?,
+      remainingAmount: remainingAmount == const $CopyWithPlaceholder()
+          ? _value.remainingAmount
+          // ignore: cast_nullable_to_non_nullable
+          : remainingAmount as num?,
       shippingFee: shippingFee == const $CopyWithPlaceholder()
           ? _value.shippingFee
           // ignore: cast_nullable_to_non_nullable
@@ -277,6 +301,8 @@ ReceiptResponse _$ReceiptResponseFromJson(Map<String, dynamic> json) =>
               .toList(),
         ),
         subtotal: $checkedConvert('subtotal', (v) => v as num?),
+        depositeAmount: $checkedConvert('depositeAmount', (v) => v as num?),
+        remainingAmount: $checkedConvert('remainingAmount', (v) => v as num?),
         shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
         discount: $checkedConvert('discount', (v) => v as num?),
         tax: $checkedConvert('tax', (v) => v as num?),
@@ -299,6 +325,8 @@ Map<String, dynamic> _$ReceiptResponseToJson(ReceiptResponse instance) =>
       'recipientAddress': instance.recipientAddress,
       'items': instance.items.map((e) => e.toJson()).toList(),
       'subtotal': ?instance.subtotal,
+      'depositeAmount': ?instance.depositeAmount,
+      'remainingAmount': ?instance.remainingAmount,
       'shippingFee': ?instance.shippingFee,
       'discount': ?instance.discount,
       'tax': ?instance.tax,

@@ -33,7 +33,7 @@ final class ChatSessionProvider
   ChatSession create() => ChatSession();
 }
 
-String _$chatSessionHash() => r'1bade914f681e632fb16b208ada79d9c37608788';
+String _$chatSessionHash() => r'7c825e0cb8e45e50fb6dc1ff167833ea0f29b196';
 
 abstract class _$ChatSession extends $AsyncNotifier<List<Message>> {
   FutureOr<List<Message>> build();

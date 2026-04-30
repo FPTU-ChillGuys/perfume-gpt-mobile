@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **recipientAddress** | **String** |  | 
 **items** | [**List&lt;ReceiptItemDto&gt;**](ReceiptItemDto.md) |  | 
 **subtotal** | **num** |  | [optional] 
+**depositeAmount** | **num** |  | [optional] 
+**remainingAmount** | **num** |  | [optional] 
 **shippingFee** | **num** |  | [optional] 
 **discount** | **num** |  | [optional] 
 **tax** | **num** |  | [optional] 

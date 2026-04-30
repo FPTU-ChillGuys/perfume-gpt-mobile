@@ -8,6 +8,7 @@ import 'package:perfumegpt_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**approvedRefundAmount** | **num** |  | [optional] 
 **refundMethod** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
 **manualTransactionReference** | **String** |  | [optional] 
 **note** | **String** |  | [optional] 

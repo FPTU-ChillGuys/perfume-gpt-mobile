@@ -19,6 +19,8 @@ abstract class _$PreviewPosOrderRequestCWProxy {
 
   PreviewPosOrderRequest sessionId(String? sessionId);
 
+  PreviewPosOrderRequest paymentMethod(PaymentMethod? paymentMethod);
+
   PreviewPosOrderRequest recipient(ContactAddressInformation? recipient);
 
   /// Creates a new instance with the provided field values.
@@ -34,6 +36,7 @@ abstract class _$PreviewPosOrderRequestCWProxy {
     String? guestEmailOrPhoneNumber,
     String? customerId,
     String? sessionId,
+    PaymentMethod? paymentMethod,
     ContactAddressInformation? recipient,
   });
 }
@@ -68,6 +71,10 @@ class _$PreviewPosOrderRequestCWProxyImpl
       call(sessionId: sessionId);
 
   @override
+  PreviewPosOrderRequest paymentMethod(PaymentMethod? paymentMethod) =>
+      call(paymentMethod: paymentMethod);
+
+  @override
   PreviewPosOrderRequest recipient(ContactAddressInformation? recipient) =>
       call(recipient: recipient);
 
@@ -85,6 +92,7 @@ class _$PreviewPosOrderRequestCWProxyImpl
     Object? guestEmailOrPhoneNumber = const $CopyWithPlaceholder(),
     Object? customerId = const $CopyWithPlaceholder(),
     Object? sessionId = const $CopyWithPlaceholder(),
+    Object? paymentMethod = const $CopyWithPlaceholder(),
     Object? recipient = const $CopyWithPlaceholder(),
   }) {
     return PreviewPosOrderRequest(
@@ -110,6 +118,10 @@ class _$PreviewPosOrderRequestCWProxyImpl
           ? _value.sessionId
           // ignore: cast_nullable_to_non_nullable
           : sessionId as String?,
+      paymentMethod: paymentMethod == const $CopyWithPlaceholder()
+          ? _value.paymentMethod
+          // ignore: cast_nullable_to_non_nullable
+          : paymentMethod as PaymentMethod?,
       recipient: recipient == const $CopyWithPlaceholder()
           ? _value.recipient
           // ignore: cast_nullable_to_non_nullable
@@ -148,6 +160,10 @@ PreviewPosOrderRequest _$PreviewPosOrderRequestFromJson(
     ),
     customerId: $checkedConvert('customerId', (v) => v as String?),
     sessionId: $checkedConvert('sessionId', (v) => v as String?),
+    paymentMethod: $checkedConvert(
+      'paymentMethod',
+      (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
+    ),
     recipient: $checkedConvert(
       'recipient',
       (v) => v == null
@@ -166,5 +182,15 @@ Map<String, dynamic> _$PreviewPosOrderRequestToJson(
   'guestEmailOrPhoneNumber': ?instance.guestEmailOrPhoneNumber,
   'customerId': ?instance.customerId,
   'sessionId': ?instance.sessionId,
+  'paymentMethod': ?_$PaymentMethodEnumMap[instance.paymentMethod],
   'recipient': ?instance.recipient?.toJson(),
+};
+
+const _$PaymentMethodEnumMap = {
+  PaymentMethod.cashOnDelivery: 'CashOnDelivery',
+  PaymentMethod.vnPay: 'VnPay',
+  PaymentMethod.momo: 'Momo',
+  PaymentMethod.cashInStore: 'CashInStore',
+  PaymentMethod.externalBankTransfer: 'ExternalBankTransfer',
+  PaymentMethod.payOs: 'PayOs',
 };

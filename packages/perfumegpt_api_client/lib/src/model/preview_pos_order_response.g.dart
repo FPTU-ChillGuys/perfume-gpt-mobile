@@ -17,6 +17,8 @@ abstract class _$PreviewPosOrderResponseCWProxy {
 
   PreviewPosOrderResponse totalPrice(num? totalPrice);
 
+  PreviewPosOrderResponse requiredDepositAmount(num? requiredDepositAmount);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PreviewPosOrderResponse(...).copyWith.fieldName(value)`.
   ///
@@ -30,6 +32,7 @@ abstract class _$PreviewPosOrderResponseCWProxy {
     num? shippingFee,
     num? discount,
     num? totalPrice,
+    num? requiredDepositAmount,
   });
 }
 
@@ -60,6 +63,10 @@ class _$PreviewPosOrderResponseCWProxyImpl
       call(totalPrice: totalPrice);
 
   @override
+  PreviewPosOrderResponse requiredDepositAmount(num? requiredDepositAmount) =>
+      call(requiredDepositAmount: requiredDepositAmount);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PreviewPosOrderResponse(...).copyWith.fieldName(value)`.
   ///
@@ -73,6 +80,7 @@ class _$PreviewPosOrderResponseCWProxyImpl
     Object? shippingFee = const $CopyWithPlaceholder(),
     Object? discount = const $CopyWithPlaceholder(),
     Object? totalPrice = const $CopyWithPlaceholder(),
+    Object? requiredDepositAmount = const $CopyWithPlaceholder(),
   }) {
     return PreviewPosOrderResponse(
       items: items == const $CopyWithPlaceholder()
@@ -95,6 +103,11 @@ class _$PreviewPosOrderResponseCWProxyImpl
           ? _value.totalPrice
           // ignore: cast_nullable_to_non_nullable
           : totalPrice as num?,
+      requiredDepositAmount:
+          requiredDepositAmount == const $CopyWithPlaceholder()
+          ? _value.requiredDepositAmount
+          // ignore: cast_nullable_to_non_nullable
+          : requiredDepositAmount as num?,
     );
   }
 }
@@ -127,6 +140,10 @@ PreviewPosOrderResponse _$PreviewPosOrderResponseFromJson(
     shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
     discount: $checkedConvert('discount', (v) => v as num?),
     totalPrice: $checkedConvert('totalPrice', (v) => v as num?),
+    requiredDepositAmount: $checkedConvert(
+      'requiredDepositAmount',
+      (v) => v as num?,
+    ),
   );
   return val;
 });
@@ -139,4 +156,5 @@ Map<String, dynamic> _$PreviewPosOrderResponseToJson(
   'shippingFee': ?instance.shippingFee,
   'discount': ?instance.discount,
   'totalPrice': ?instance.totalPrice,
+  'requiredDepositAmount': ?instance.requiredDepositAmount,
 };

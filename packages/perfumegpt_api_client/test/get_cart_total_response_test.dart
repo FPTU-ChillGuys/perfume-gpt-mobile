@@ -27,5 +27,10 @@ void main() {
       // TODO
     });
 
+    // DepositPolicyPreviewResponse depositPolicy
+    test('to test the property `depositPolicy`', () async {
+      // TODO
+    });
+
   });
 }

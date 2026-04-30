@@ -92,8 +92,8 @@ void main() {
       // TODO
     });
 
-    // String voucherCode
-    test('to test the property `voucherCode`', () async {
+    // int promotionalStockQuantity
+    test('to test the property `promotionalStockQuantity`', () async {
       // TODO
     });
 

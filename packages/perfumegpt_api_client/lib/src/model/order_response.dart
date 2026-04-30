@@ -52,6 +52,12 @@ class OrderResponse {
 
      this.totalAmount,
 
+     this.requiredDepositAmount,
+
+     this.paidAmount,
+
+     this.remainingAmount,
+
      this.subTotal,
 
      this.shippingFee,
@@ -222,6 +228,42 @@ class OrderResponse {
 
 
   final num? totalAmount;
+
+
+
+  @JsonKey(
+    
+    name: r'requiredDepositAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? requiredDepositAmount;
+
+
+
+  @JsonKey(
+    
+    name: r'paidAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? paidAmount;
+
+
+
+  @JsonKey(
+    
+    name: r'remainingAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? remainingAmount;
 
 
 
@@ -409,6 +451,9 @@ class OrderResponse {
       other.status == status &&
       other.paymentStatus == paymentStatus &&
       other.totalAmount == totalAmount &&
+      other.requiredDepositAmount == requiredDepositAmount &&
+      other.paidAmount == paidAmount &&
+      other.remainingAmount == remainingAmount &&
       other.subTotal == subTotal &&
       other.shippingFee == shippingFee &&
       other.voucherId == voucherId &&
@@ -438,6 +483,9 @@ class OrderResponse {
         status.hashCode +
         paymentStatus.hashCode +
         totalAmount.hashCode +
+        requiredDepositAmount.hashCode +
+        paidAmount.hashCode +
+        remainingAmount.hashCode +
         subTotal.hashCode +
         shippingFee.hashCode +
         (voucherId == null ? 0 : voucherId.hashCode) +

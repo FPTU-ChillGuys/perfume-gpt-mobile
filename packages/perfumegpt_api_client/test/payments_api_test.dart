@@ -17,12 +17,17 @@ void main() {
       // TODO
     });
 
+    //Future<BaseResponseOfstring> apiPaymentsOrderIdPickupPaymentPost(String orderId, CreatePickupPaymentRequest createPickupPaymentRequest) async
+    test('test apiPaymentsOrderIdPickupPaymentPost', () async {
+      // TODO
+    });
+
     //Future<BaseResponseOfboolean> apiPaymentsPaymentIdConfirmPut(String paymentId, ConfirmPaymentRequest confirmPaymentRequest) async
     test('test apiPaymentsPaymentIdConfirmPut', () async {
       // TODO
     });
 
-    //Future<BaseResponseOfstring> apiPaymentsPaymentIdRetryPost(String paymentId, { PaymentInformation paymentInformation }) async
+    //Future<BaseResponseOfstring> apiPaymentsPaymentIdRetryPost(String paymentId, RetryOrChangePaymentRequest retryOrChangePaymentRequest) async
     test('test apiPaymentsPaymentIdRetryPost', () async {
       // TODO
     });

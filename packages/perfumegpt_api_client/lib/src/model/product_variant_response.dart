@@ -59,7 +59,7 @@ class ProductVariantResponse {
 
      this.campaignName,
 
-     this.voucherCode,
+     this.promotionalStockQuantity,
 
      this.discountedPrice,
 
@@ -274,13 +274,13 @@ class ProductVariantResponse {
 
   @JsonKey(
     
-    name: r'voucherCode',
+    name: r'promotionalStockQuantity',
     required: false,
     includeIfNull: false,
   )
 
 
-  final String? voucherCode;
+  final int? promotionalStockQuantity;
 
 
 
@@ -341,7 +341,7 @@ class ProductVariantResponse {
       other.productName == productName &&
       other.media == media &&
       other.campaignName == campaignName &&
-      other.voucherCode == voucherCode &&
+      other.promotionalStockQuantity == promotionalStockQuantity &&
       other.discountedPrice == discountedPrice &&
       other.attributes == attributes &&
       other.suppliers == suppliers;
@@ -365,7 +365,7 @@ class ProductVariantResponse {
         productName.hashCode +
         media.hashCode +
         (campaignName == null ? 0 : campaignName.hashCode) +
-        (voucherCode == null ? 0 : voucherCode.hashCode) +
+        promotionalStockQuantity.hashCode +
         (discountedPrice == null ? 0 : discountedPrice.hashCode) +
         (attributes == null ? 0 : attributes.hashCode) +
         (suppliers == null ? 0 : suppliers.hashCode);

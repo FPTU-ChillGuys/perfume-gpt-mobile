@@ -57,6 +57,16 @@ void main() {
       // TODO
     });
 
+    // num depositeAmount
+    test('to test the property `depositeAmount`', () async {
+      // TODO
+    });
+
+    // num remainingAmount
+    test('to test the property `remainingAmount`', () async {
+      // TODO
+    });
+
     // num shippingFee
     test('to test the property `shippingFee`', () async {
       // TODO

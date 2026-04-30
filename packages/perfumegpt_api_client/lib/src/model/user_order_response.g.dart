@@ -21,6 +21,14 @@ abstract class _$UserOrderResponseCWProxy {
 
   UserOrderResponse totalAmount(num? totalAmount);
 
+  UserOrderResponse requiredDepositAmount(num? requiredDepositAmount);
+
+  UserOrderResponse depositAmount(num? depositAmount);
+
+  UserOrderResponse paidAmount(num? paidAmount);
+
+  UserOrderResponse remainingAmount(num? remainingAmount);
+
   UserOrderResponse subTotal(num? subTotal);
 
   UserOrderResponse shippingFee(num? shippingFee);
@@ -64,6 +72,10 @@ abstract class _$UserOrderResponseCWProxy {
     bool? isReturnable,
     PaymentStatus? paymentStatus,
     num? totalAmount,
+    num? requiredDepositAmount,
+    num? depositAmount,
+    num? paidAmount,
+    num? remainingAmount,
     num? subTotal,
     num? shippingFee,
     String? voucherCode,
@@ -110,6 +122,21 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
   @override
   UserOrderResponse totalAmount(num? totalAmount) =>
       call(totalAmount: totalAmount);
+
+  @override
+  UserOrderResponse requiredDepositAmount(num? requiredDepositAmount) =>
+      call(requiredDepositAmount: requiredDepositAmount);
+
+  @override
+  UserOrderResponse depositAmount(num? depositAmount) =>
+      call(depositAmount: depositAmount);
+
+  @override
+  UserOrderResponse paidAmount(num? paidAmount) => call(paidAmount: paidAmount);
+
+  @override
+  UserOrderResponse remainingAmount(num? remainingAmount) =>
+      call(remainingAmount: remainingAmount);
 
   @override
   UserOrderResponse subTotal(num? subTotal) => call(subTotal: subTotal);
@@ -178,6 +205,10 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
     Object? isReturnable = const $CopyWithPlaceholder(),
     Object? paymentStatus = const $CopyWithPlaceholder(),
     Object? totalAmount = const $CopyWithPlaceholder(),
+    Object? requiredDepositAmount = const $CopyWithPlaceholder(),
+    Object? depositAmount = const $CopyWithPlaceholder(),
+    Object? paidAmount = const $CopyWithPlaceholder(),
+    Object? remainingAmount = const $CopyWithPlaceholder(),
     Object? subTotal = const $CopyWithPlaceholder(),
     Object? shippingFee = const $CopyWithPlaceholder(),
     Object? voucherCode = const $CopyWithPlaceholder(),
@@ -221,6 +252,23 @@ class _$UserOrderResponseCWProxyImpl implements _$UserOrderResponseCWProxy {
           ? _value.totalAmount
           // ignore: cast_nullable_to_non_nullable
           : totalAmount as num?,
+      requiredDepositAmount:
+          requiredDepositAmount == const $CopyWithPlaceholder()
+          ? _value.requiredDepositAmount
+          // ignore: cast_nullable_to_non_nullable
+          : requiredDepositAmount as num?,
+      depositAmount: depositAmount == const $CopyWithPlaceholder()
+          ? _value.depositAmount
+          // ignore: cast_nullable_to_non_nullable
+          : depositAmount as num?,
+      paidAmount: paidAmount == const $CopyWithPlaceholder()
+          ? _value.paidAmount
+          // ignore: cast_nullable_to_non_nullable
+          : paidAmount as num?,
+      remainingAmount: remainingAmount == const $CopyWithPlaceholder()
+          ? _value.remainingAmount
+          // ignore: cast_nullable_to_non_nullable
+          : remainingAmount as num?,
       subTotal: subTotal == const $CopyWithPlaceholder()
           ? _value.subTotal
           // ignore: cast_nullable_to_non_nullable
@@ -311,6 +359,13 @@ UserOrderResponse _$UserOrderResponseFromJson(
       (v) => $enumDecodeNullable(_$PaymentStatusEnumMap, v),
     ),
     totalAmount: $checkedConvert('totalAmount', (v) => v as num?),
+    requiredDepositAmount: $checkedConvert(
+      'requiredDepositAmount',
+      (v) => v as num?,
+    ),
+    depositAmount: $checkedConvert('depositAmount', (v) => v as num?),
+    paidAmount: $checkedConvert('paidAmount', (v) => v as num?),
+    remainingAmount: $checkedConvert('remainingAmount', (v) => v as num?),
     subTotal: $checkedConvert('subTotal', (v) => v as num?),
     shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
     voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
@@ -375,6 +430,10 @@ Map<String, dynamic> _$UserOrderResponseToJson(UserOrderResponse instance) =>
       'isReturnable': ?instance.isReturnable,
       'paymentStatus': ?_$PaymentStatusEnumMap[instance.paymentStatus],
       'totalAmount': ?instance.totalAmount,
+      'requiredDepositAmount': ?instance.requiredDepositAmount,
+      'depositAmount': ?instance.depositAmount,
+      'paidAmount': ?instance.paidAmount,
+      'remainingAmount': ?instance.remainingAmount,
       'subTotal': ?instance.subTotal,
       'shippingFee': ?instance.shippingFee,
       'voucherCode': ?instance.voucherCode,
@@ -411,9 +470,10 @@ const _$OrderStatusEnumMap = {
 
 const _$PaymentStatusEnumMap = {
   PaymentStatus.unpaid: 'Unpaid',
+  PaymentStatus.partialPaid: 'PartialPaid',
   PaymentStatus.paid: 'Paid',
-  PaymentStatus.partialRefunded: 'Partial_Refunded',
   PaymentStatus.refunded: 'Refunded',
+  PaymentStatus.partialRefunded: 'PartialRefunded',
 };
 
 const _$VoucherTypeEnumMap = {

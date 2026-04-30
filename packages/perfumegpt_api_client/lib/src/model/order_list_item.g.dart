@@ -27,6 +27,12 @@ abstract class _$OrderListItemCWProxy {
 
   OrderListItem totalAmount(num? totalAmount);
 
+  OrderListItem requiredDepositAmount(num? requiredDepositAmount);
+
+  OrderListItem paidAmount(num? paidAmount);
+
+  OrderListItem remainingAmount(num? remainingAmount);
+
   OrderListItem itemCount(int? itemCount);
 
   OrderListItem isReturnalbe(bool? isReturnalbe);
@@ -63,6 +69,9 @@ abstract class _$OrderListItemCWProxy {
     OrderStatus? status,
     PaymentStatus? paymentStatus,
     num? totalAmount,
+    num? requiredDepositAmount,
+    num? paidAmount,
+    num? remainingAmount,
     int? itemCount,
     bool? isReturnalbe,
     ShippingStatus? shippingStatus,
@@ -114,6 +123,17 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
   OrderListItem totalAmount(num? totalAmount) => call(totalAmount: totalAmount);
 
   @override
+  OrderListItem requiredDepositAmount(num? requiredDepositAmount) =>
+      call(requiredDepositAmount: requiredDepositAmount);
+
+  @override
+  OrderListItem paidAmount(num? paidAmount) => call(paidAmount: paidAmount);
+
+  @override
+  OrderListItem remainingAmount(num? remainingAmount) =>
+      call(remainingAmount: remainingAmount);
+
+  @override
   OrderListItem itemCount(int? itemCount) => call(itemCount: itemCount);
 
   @override
@@ -162,6 +182,9 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
     Object? status = const $CopyWithPlaceholder(),
     Object? paymentStatus = const $CopyWithPlaceholder(),
     Object? totalAmount = const $CopyWithPlaceholder(),
+    Object? requiredDepositAmount = const $CopyWithPlaceholder(),
+    Object? paidAmount = const $CopyWithPlaceholder(),
+    Object? remainingAmount = const $CopyWithPlaceholder(),
     Object? itemCount = const $CopyWithPlaceholder(),
     Object? isReturnalbe = const $CopyWithPlaceholder(),
     Object? shippingStatus = const $CopyWithPlaceholder(),
@@ -212,6 +235,19 @@ class _$OrderListItemCWProxyImpl implements _$OrderListItemCWProxy {
           ? _value.totalAmount
           // ignore: cast_nullable_to_non_nullable
           : totalAmount as num?,
+      requiredDepositAmount:
+          requiredDepositAmount == const $CopyWithPlaceholder()
+          ? _value.requiredDepositAmount
+          // ignore: cast_nullable_to_non_nullable
+          : requiredDepositAmount as num?,
+      paidAmount: paidAmount == const $CopyWithPlaceholder()
+          ? _value.paidAmount
+          // ignore: cast_nullable_to_non_nullable
+          : paidAmount as num?,
+      remainingAmount: remainingAmount == const $CopyWithPlaceholder()
+          ? _value.remainingAmount
+          // ignore: cast_nullable_to_non_nullable
+          : remainingAmount as num?,
       itemCount: itemCount == const $CopyWithPlaceholder()
           ? _value.itemCount
           // ignore: cast_nullable_to_non_nullable
@@ -284,6 +320,12 @@ OrderListItem _$OrderListItemFromJson(
       (v) => $enumDecodeNullable(_$PaymentStatusEnumMap, v),
     ),
     totalAmount: $checkedConvert('totalAmount', (v) => v as num?),
+    requiredDepositAmount: $checkedConvert(
+      'requiredDepositAmount',
+      (v) => v as num?,
+    ),
+    paidAmount: $checkedConvert('paidAmount', (v) => v as num?),
+    remainingAmount: $checkedConvert('remainingAmount', (v) => v as num?),
     itemCount: $checkedConvert('itemCount', (v) => (v as num?)?.toInt()),
     isReturnalbe: $checkedConvert('isReturnalbe', (v) => v as bool?),
     shippingStatus: $checkedConvert(
@@ -330,6 +372,9 @@ Map<String, dynamic> _$OrderListItemToJson(OrderListItem instance) =>
       'status': ?_$OrderStatusEnumMap[instance.status],
       'paymentStatus': ?_$PaymentStatusEnumMap[instance.paymentStatus],
       'totalAmount': ?instance.totalAmount,
+      'requiredDepositAmount': ?instance.requiredDepositAmount,
+      'paidAmount': ?instance.paidAmount,
+      'remainingAmount': ?instance.remainingAmount,
       'itemCount': ?instance.itemCount,
       'isReturnalbe': ?instance.isReturnalbe,
       'shippingStatus': ?_$ShippingStatusEnumMap[instance.shippingStatus],
@@ -361,9 +406,10 @@ const _$OrderStatusEnumMap = {
 
 const _$PaymentStatusEnumMap = {
   PaymentStatus.unpaid: 'Unpaid',
+  PaymentStatus.partialPaid: 'PartialPaid',
   PaymentStatus.paid: 'Paid',
-  PaymentStatus.partialRefunded: 'Partial_Refunded',
   PaymentStatus.refunded: 'Refunded',
+  PaymentStatus.partialRefunded: 'PartialRefunded',
 };
 
 const _$ShippingStatusEnumMap = {

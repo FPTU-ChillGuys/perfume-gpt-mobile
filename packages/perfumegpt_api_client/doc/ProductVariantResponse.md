@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **productName** | **String** |  | 
 **media** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | 
 **campaignName** | **String** |  | [optional] 
-**voucherCode** | **String** |  | [optional] 
+**promotionalStockQuantity** | **int** |  | [optional] 
 **discountedPrice** | **num** |  | [optional] 
 **attributes** | [**List&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) |  | [optional] 
 **suppliers** | [**List&lt;VariantSupplierResponse&gt;**](VariantSupplierResponse.md) |  | [optional] 

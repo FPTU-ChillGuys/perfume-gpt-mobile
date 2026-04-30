@@ -7,11 +7,6 @@ void main() {
   // TODO add properties to the entity
 
   group(GetApplicableVouchersRequest, () {
-    // String customerId
-    test('to test the property `customerId`', () async {
-      // TODO
-    });
-
     // List<ApplicableVoucherCartItemRequest> cartItems
     test('to test the property `cartItems`', () async {
       // TODO

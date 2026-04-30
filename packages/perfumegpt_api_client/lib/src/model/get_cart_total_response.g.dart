@@ -15,6 +15,10 @@ abstract class _$GetCartTotalResponseCWProxy {
 
   GetCartTotalResponse totalPrice(num? totalPrice);
 
+  GetCartTotalResponse depositPolicy(
+    DepositPolicyPreviewResponse? depositPolicy,
+  );
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartTotalResponse(...).copyWith.fieldName(value)`.
   ///
@@ -27,6 +31,7 @@ abstract class _$GetCartTotalResponseCWProxy {
     num? shippingFee,
     num? discount,
     num? totalPrice,
+    DepositPolicyPreviewResponse? depositPolicy,
   });
 }
 
@@ -53,6 +58,11 @@ class _$GetCartTotalResponseCWProxyImpl
       call(totalPrice: totalPrice);
 
   @override
+  GetCartTotalResponse depositPolicy(
+    DepositPolicyPreviewResponse? depositPolicy,
+  ) => call(depositPolicy: depositPolicy);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GetCartTotalResponse(...).copyWith.fieldName(value)`.
   ///
@@ -65,6 +75,7 @@ class _$GetCartTotalResponseCWProxyImpl
     Object? shippingFee = const $CopyWithPlaceholder(),
     Object? discount = const $CopyWithPlaceholder(),
     Object? totalPrice = const $CopyWithPlaceholder(),
+    Object? depositPolicy = const $CopyWithPlaceholder(),
   }) {
     return GetCartTotalResponse(
       subtotal: subtotal == const $CopyWithPlaceholder()
@@ -83,6 +94,10 @@ class _$GetCartTotalResponseCWProxyImpl
           ? _value.totalPrice
           // ignore: cast_nullable_to_non_nullable
           : totalPrice as num?,
+      depositPolicy: depositPolicy == const $CopyWithPlaceholder()
+          ? _value.depositPolicy
+          // ignore: cast_nullable_to_non_nullable
+          : depositPolicy as DepositPolicyPreviewResponse?,
     );
   }
 }
@@ -107,6 +122,12 @@ GetCartTotalResponse _$GetCartTotalResponseFromJson(
     shippingFee: $checkedConvert('shippingFee', (v) => v as num?),
     discount: $checkedConvert('discount', (v) => v as num?),
     totalPrice: $checkedConvert('totalPrice', (v) => v as num?),
+    depositPolicy: $checkedConvert(
+      'depositPolicy',
+      (v) => v == null
+          ? null
+          : DepositPolicyPreviewResponse.fromJson(v as Map<String, dynamic>),
+    ),
   );
   return val;
 });
@@ -118,4 +139,5 @@ Map<String, dynamic> _$GetCartTotalResponseToJson(
   'shippingFee': ?instance.shippingFee,
   'discount': ?instance.discount,
   'totalPrice': ?instance.totalPrice,
+  'depositPolicy': ?instance.depositPolicy?.toJson(),
 };

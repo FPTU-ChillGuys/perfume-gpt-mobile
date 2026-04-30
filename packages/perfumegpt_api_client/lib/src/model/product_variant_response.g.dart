@@ -41,7 +41,9 @@ abstract class _$ProductVariantResponseCWProxy {
 
   ProductVariantResponse campaignName(String? campaignName);
 
-  ProductVariantResponse voucherCode(String? voucherCode);
+  ProductVariantResponse promotionalStockQuantity(
+    int? promotionalStockQuantity,
+  );
 
   ProductVariantResponse discountedPrice(num? discountedPrice);
 
@@ -74,7 +76,7 @@ abstract class _$ProductVariantResponseCWProxy {
     String productName,
     List<MediaResponse> media,
     String? campaignName,
-    String? voucherCode,
+    int? promotionalStockQuantity,
     num? discountedPrice,
     List<ProductAttributeResponse>? attributes,
     List<VariantSupplierResponse>? suppliers,
@@ -150,8 +152,9 @@ class _$ProductVariantResponseCWProxyImpl
       call(campaignName: campaignName);
 
   @override
-  ProductVariantResponse voucherCode(String? voucherCode) =>
-      call(voucherCode: voucherCode);
+  ProductVariantResponse promotionalStockQuantity(
+    int? promotionalStockQuantity,
+  ) => call(promotionalStockQuantity: promotionalStockQuantity);
 
   @override
   ProductVariantResponse discountedPrice(num? discountedPrice) =>
@@ -192,7 +195,7 @@ class _$ProductVariantResponseCWProxyImpl
     Object? productName = const $CopyWithPlaceholder(),
     Object? media = const $CopyWithPlaceholder(),
     Object? campaignName = const $CopyWithPlaceholder(),
-    Object? voucherCode = const $CopyWithPlaceholder(),
+    Object? promotionalStockQuantity = const $CopyWithPlaceholder(),
     Object? discountedPrice = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
     Object? suppliers = const $CopyWithPlaceholder(),
@@ -269,10 +272,11 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.campaignName
           // ignore: cast_nullable_to_non_nullable
           : campaignName as String?,
-      voucherCode: voucherCode == const $CopyWithPlaceholder()
-          ? _value.voucherCode
+      promotionalStockQuantity:
+          promotionalStockQuantity == const $CopyWithPlaceholder()
+          ? _value.promotionalStockQuantity
           // ignore: cast_nullable_to_non_nullable
-          : voucherCode as String?,
+          : promotionalStockQuantity as int?,
       discountedPrice: discountedPrice == const $CopyWithPlaceholder()
           ? _value.discountedPrice
           // ignore: cast_nullable_to_non_nullable
@@ -349,7 +353,10 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
           .toList(),
     ),
     campaignName: $checkedConvert('campaignName', (v) => v as String?),
-    voucherCode: $checkedConvert('voucherCode', (v) => v as String?),
+    promotionalStockQuantity: $checkedConvert(
+      'promotionalStockQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
     discountedPrice: $checkedConvert('discountedPrice', (v) => v as num?),
     attributes: $checkedConvert(
       'attributes',
@@ -391,7 +398,7 @@ Map<String, dynamic> _$ProductVariantResponseToJson(
   'productName': instance.productName,
   'media': instance.media.map((e) => e.toJson()).toList(),
   'campaignName': ?instance.campaignName,
-  'voucherCode': ?instance.voucherCode,
+  'promotionalStockQuantity': ?instance.promotionalStockQuantity,
   'discountedPrice': ?instance.discountedPrice,
   'attributes': ?instance.attributes?.map((e) => e.toJson()).toList(),
   'suppliers': ?instance.suppliers?.map((e) => e.toJson()).toList(),

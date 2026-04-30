@@ -44,6 +44,8 @@ class PublicProductVariantResponse {
 
      this.campaignName,
 
+     this.campaignQuota,
+
      this.voucherCode,
 
      this.discountedPrice,
@@ -183,6 +185,18 @@ class PublicProductVariantResponse {
 
   @JsonKey(
     
+    name: r'campaignQuota',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? campaignQuota;
+
+
+
+  @JsonKey(
+    
     name: r'voucherCode',
     required: false,
     includeIfNull: false,
@@ -220,6 +234,7 @@ class PublicProductVariantResponse {
       other.productName == productName &&
       other.media == media &&
       other.campaignName == campaignName &&
+      other.campaignQuota == campaignQuota &&
       other.voucherCode == voucherCode &&
       other.discountedPrice == discountedPrice;
 
@@ -236,6 +251,7 @@ class PublicProductVariantResponse {
         productName.hashCode +
         media.hashCode +
         (campaignName == null ? 0 : campaignName.hashCode) +
+        (campaignQuota == null ? 0 : campaignQuota.hashCode) +
         (voucherCode == null ? 0 : voucherCode.hashCode) +
         (discountedPrice == null ? 0 : discountedPrice.hashCode);
 

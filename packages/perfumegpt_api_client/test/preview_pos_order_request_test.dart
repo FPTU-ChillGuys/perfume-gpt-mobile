@@ -32,6 +32,11 @@ void main() {
       // TODO
     });
 
+    // PaymentMethod paymentMethod
+    test('to test the property `paymentMethod`', () async {
+      // TODO
+    });
+
     // ContactAddressInformation recipient
     test('to test the property `recipient`', () async {
       // TODO

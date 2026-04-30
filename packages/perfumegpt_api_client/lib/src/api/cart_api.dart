@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
+import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_get_cart_items_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_get_cart_total_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_preview_pos_order_response.dart';

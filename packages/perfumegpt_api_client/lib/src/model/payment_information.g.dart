@@ -9,6 +9,8 @@ part of 'payment_information.dart';
 abstract class _$PaymentInformationCWProxy {
   PaymentInformation method(PaymentMethod? method);
 
+  PaymentInformation depositGateway(PaymentMethod? depositGateway);
+
   PaymentInformation posSessionId(String? posSessionId);
 
   /// Creates a new instance with the provided field values.
@@ -18,7 +20,11 @@ abstract class _$PaymentInformationCWProxy {
   /// ```dart
   /// PaymentInformation(...).copyWith(id: 12, name: "My name")
   /// ```
-  PaymentInformation call({PaymentMethod? method, String? posSessionId});
+  PaymentInformation call({
+    PaymentMethod? method,
+    PaymentMethod? depositGateway,
+    String? posSessionId,
+  });
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -30,6 +36,10 @@ class _$PaymentInformationCWProxyImpl implements _$PaymentInformationCWProxy {
 
   @override
   PaymentInformation method(PaymentMethod? method) => call(method: method);
+
+  @override
+  PaymentInformation depositGateway(PaymentMethod? depositGateway) =>
+      call(depositGateway: depositGateway);
 
   @override
   PaymentInformation posSessionId(String? posSessionId) =>
@@ -45,6 +55,7 @@ class _$PaymentInformationCWProxyImpl implements _$PaymentInformationCWProxy {
   /// ```
   PaymentInformation call({
     Object? method = const $CopyWithPlaceholder(),
+    Object? depositGateway = const $CopyWithPlaceholder(),
     Object? posSessionId = const $CopyWithPlaceholder(),
   }) {
     return PaymentInformation(
@@ -52,6 +63,10 @@ class _$PaymentInformationCWProxyImpl implements _$PaymentInformationCWProxy {
           ? _value.method
           // ignore: cast_nullable_to_non_nullable
           : method as PaymentMethod?,
+      depositGateway: depositGateway == const $CopyWithPlaceholder()
+          ? _value.depositGateway
+          // ignore: cast_nullable_to_non_nullable
+          : depositGateway as PaymentMethod?,
       posSessionId: posSessionId == const $CopyWithPlaceholder()
           ? _value.posSessionId
           // ignore: cast_nullable_to_non_nullable
@@ -79,6 +94,10 @@ PaymentInformation _$PaymentInformationFromJson(Map<String, dynamic> json) =>
           'method',
           (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
         ),
+        depositGateway: $checkedConvert(
+          'depositGateway',
+          (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
+        ),
         posSessionId: $checkedConvert('posSessionId', (v) => v as String?),
       );
       return val;
@@ -87,6 +106,7 @@ PaymentInformation _$PaymentInformationFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PaymentInformationToJson(PaymentInformation instance) =>
     <String, dynamic>{
       'method': ?_$PaymentMethodEnumMap[instance.method],
+      'depositGateway': ?_$PaymentMethodEnumMap[instance.depositGateway],
       'posSessionId': ?instance.posSessionId,
     };
 
