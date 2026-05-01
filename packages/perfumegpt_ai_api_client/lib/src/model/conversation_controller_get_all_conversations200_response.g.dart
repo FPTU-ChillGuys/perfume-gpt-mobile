@@ -14,7 +14,7 @@ abstract class _$ConversationControllerGetAllConversations200ResponseCWProxy {
   ConversationControllerGetAllConversations200Response details(String? details);
 
   ConversationControllerGetAllConversations200Response data(
-    ConversationDto? data,
+    ConversationResponse? data,
   );
 
   /// Creates a new instance with the provided field values.
@@ -28,7 +28,7 @@ abstract class _$ConversationControllerGetAllConversations200ResponseCWProxy {
     bool? success,
     String? error,
     String? details,
-    ConversationDto? data,
+    ConversationResponse? data,
   });
 }
 
@@ -57,7 +57,7 @@ class _$ConversationControllerGetAllConversations200ResponseCWProxyImpl
 
   @override
   ConversationControllerGetAllConversations200Response data(
-    ConversationDto? data,
+    ConversationResponse? data,
   ) => call(data: data);
 
   @override
@@ -90,7 +90,7 @@ class _$ConversationControllerGetAllConversations200ResponseCWProxyImpl
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
-          : data as ConversationDto?,
+          : data as ConversationResponse?,
     );
   }
 }
@@ -123,7 +123,7 @@ _$ConversationControllerGetAllConversations200ResponseFromJson(
         'data',
         (v) => v == null
             ? null
-            : ConversationDto.fromJson(v as Map<String, dynamic>),
+            : ConversationResponse.fromJson(v as Map<String, dynamic>),
       ),
     );
     return val;

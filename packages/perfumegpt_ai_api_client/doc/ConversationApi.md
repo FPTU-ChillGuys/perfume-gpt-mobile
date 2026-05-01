@@ -9,31 +9,33 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**conversationControllerConversationV10**](ConversationApi.md#conversationcontrollerconversationv10) | **POST** /conversation/chat/v10 | Chat V10 (Profile-first + Structured Search)
-[**conversationControllerConversationV10Staff**](ConversationApi.md#conversationcontrollerconversationv10staff) | **POST** /conversation/chat/v10-staff | Chat V10 Staff (Quick Counter Consultation Mode)
-[**conversationControllerConversationV8**](ConversationApi.md#conversationcontrollerconversationv8) | **POST** /conversation/chat/v8 | Chat V8
+[**conversationControllerChat**](ConversationApi.md#conversationcontrollerchat) | **POST** /conversation/chat/v10 | Chat với AI (Advanced V10 logic)
+[**conversationControllerChatStaff**](ConversationApi.md#conversationcontrollerchatstaff) | **POST** /conversation/chat/v10-staff | Chat V10 Staff (Quick Counter Consultation Mode)
+[**conversationControllerChatV11**](ConversationApi.md#conversationcontrollerchatv11) | **POST** /conversation/chat/v11 | Chat với AI (V11 — individual message persistence)
+[**conversationControllerChatV11Staff**](ConversationApi.md#conversationcontrollerchatv11staff) | **POST** /conversation/chat/v11-staff | Chat V11 Staff (Quick Counter Consultation Mode)
 [**conversationControllerGetAllConversations**](ConversationApi.md#conversationcontrollergetallconversations) | **GET** /conversation | Lấy tất cả cuộc hội thoại
-[**conversationControllerGetAllConversationsPaginated**](ConversationApi.md#conversationcontrollergetallconversationspaginated) | **GET** /conversation/list/paged | Lấy danh sách cuộc hội thoại có phân trang
+[**conversationControllerGetAllConversationsPaginated**](ConversationApi.md#conversationcontrollergetallconversationspaginated) | **GET** /conversation/list/paged | Lấy danh sách hội thoại có phân trang
 [**conversationControllerGetConversationById**](ConversationApi.md#conversationcontrollergetconversationbyid) | **GET** /conversation/{id} | Lấy cuộc hội thoại theo ID
+[**conversationControllerGetMyConversationHistory**](ConversationApi.md#conversationcontrollergetmyconversationhistory) | **GET** /conversation/my/history | Lấy lịch sử chat của user hiện tại
 
 
-# **conversationControllerConversationV10**
-> ConversationControllerGetAllConversations200Response conversationControllerConversationV10(conversationRequestDto)
+# **conversationControllerChat**
+> ConversationControllerGetAllConversations200Response conversationControllerChat(chatRequest)
 
-Chat V10 (Profile-first + Structured Search)
+Chat với AI (Advanced V10 logic)
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getConversationApi();
-final ConversationRequestDto conversationRequestDto = ; // ConversationRequestDto | 
+final ChatRequest chatRequest = ; // ChatRequest | 
 
 try {
-    final response = api.conversationControllerConversationV10(conversationRequestDto);
+    final response = api.conversationControllerChat(chatRequest);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ConversationApi->conversationControllerConversationV10: $e\n');
+    print('Exception when calling ConversationApi->conversationControllerChat: $e\n');
 }
 ```
 
@@ -41,7 +43,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **conversationRequestDto** | [**ConversationRequestDto**](ConversationRequestDto.md)|  | 
+ **chatRequest** | [**ChatRequest**](ChatRequest.md)|  | 
 
 ### Return type
 
@@ -58,8 +60,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **conversationControllerConversationV10Staff**
-> ConversationControllerGetAllConversations200Response conversationControllerConversationV10Staff(conversationRequestDto)
+# **conversationControllerChatStaff**
+> ConversationControllerGetAllConversations200Response conversationControllerChatStaff(chatRequest)
 
 Chat V10 Staff (Quick Counter Consultation Mode)
 
@@ -68,13 +70,13 @@ Chat V10 Staff (Quick Counter Consultation Mode)
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getConversationApi();
-final ConversationRequestDto conversationRequestDto = ; // ConversationRequestDto | 
+final ChatRequest chatRequest = ; // ChatRequest | 
 
 try {
-    final response = api.conversationControllerConversationV10Staff(conversationRequestDto);
+    final response = api.conversationControllerChatStaff(chatRequest);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ConversationApi->conversationControllerConversationV10Staff: $e\n');
+    print('Exception when calling ConversationApi->conversationControllerChatStaff: $e\n');
 }
 ```
 
@@ -82,7 +84,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **conversationRequestDto** | [**ConversationRequestDto**](ConversationRequestDto.md)|  | 
+ **chatRequest** | [**ChatRequest**](ChatRequest.md)|  | 
 
 ### Return type
 
@@ -99,23 +101,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **conversationControllerConversationV8**
-> ConversationControllerConversationV8200Response conversationControllerConversationV8(conversationRequestDto)
+# **conversationControllerChatV11**
+> ConversationControllerChatV11200Response conversationControllerChatV11(chatRequest)
 
-Chat V8
+Chat với AI (V11 — individual message persistence)
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getConversationApi();
-final ConversationRequestDto conversationRequestDto = ; // ConversationRequestDto | 
+final ChatRequest chatRequest = ; // ChatRequest | 
 
 try {
-    final response = api.conversationControllerConversationV8(conversationRequestDto);
+    final response = api.conversationControllerChatV11(chatRequest);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling ConversationApi->conversationControllerConversationV8: $e\n');
+    print('Exception when calling ConversationApi->conversationControllerChatV11: $e\n');
 }
 ```
 
@@ -123,11 +125,52 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **conversationRequestDto** | [**ConversationRequestDto**](ConversationRequestDto.md)|  | 
+ **chatRequest** | [**ChatRequest**](ChatRequest.md)|  | 
 
 ### Return type
 
-[**ConversationControllerConversationV8200Response**](ConversationControllerConversationV8200Response.md)
+[**ConversationControllerChatV11200Response**](ConversationControllerChatV11200Response.md)
+
+### Authorization
+
+[jwt](../README.md#jwt)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conversationControllerChatV11Staff**
+> ConversationControllerChatV11200Response conversationControllerChatV11Staff(chatRequest)
+
+Chat V11 Staff (Quick Counter Consultation Mode)
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getConversationApi();
+final ChatRequest chatRequest = ; // ChatRequest | 
+
+try {
+    final response = api.conversationControllerChatV11Staff(chatRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ConversationApi->conversationControllerChatV11Staff: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chatRequest** | [**ChatRequest**](ChatRequest.md)|  | 
+
+### Return type
+
+[**ConversationControllerChatV11200Response**](ConversationControllerChatV11200Response.md)
 
 ### Authorization
 
@@ -178,21 +221,23 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **conversationControllerGetAllConversationsPaginated**
-> ConversationControllerGetAllConversationsPaginated200Response conversationControllerGetAllConversationsPaginated(pageNumber, pageSize, userId)
+> ConversationControllerGetMyConversationHistory200Response conversationControllerGetAllConversationsPaginated(pageNumber, pageSize, sortOrder, isDescending, userId)
 
-Lấy danh sách cuộc hội thoại có phân trang
+Lấy danh sách hội thoại có phân trang
 
 ### Example
 ```dart
 import 'package:perfumegpt_ai_api_client/api.dart';
 
 final api = PerfumegptAiApiClient().getConversationApi();
-final num pageNumber = 8.14; // num | Số trang (bắt đầu từ 1)
+final num pageNumber = 8.14; // num | Số trang
 final num pageSize = 8.14; // num | Số bản ghi mỗi trang
-final String userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Lọc theo user ID
+final String sortOrder = sortOrder_example; // String | Thứ tự sắp xếp
+final bool isDescending = true; // bool | Sắp xếp giảm dần
+final String userId = userId_example; // String | ID người dùng
 
 try {
-    final response = api.conversationControllerGetAllConversationsPaginated(pageNumber, pageSize, userId);
+    final response = api.conversationControllerGetAllConversationsPaginated(pageNumber, pageSize, sortOrder, isDescending, userId);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ConversationApi->conversationControllerGetAllConversationsPaginated: $e\n');
@@ -203,13 +248,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageNumber** | **num**| Số trang (bắt đầu từ 1) | [default to 1]
+ **pageNumber** | **num**| Số trang | [default to 1]
  **pageSize** | **num**| Số bản ghi mỗi trang | [default to 10]
- **userId** | **String**| Lọc theo user ID | [optional] 
+ **sortOrder** | **String**| Thứ tự sắp xếp | [default to 'asc']
+ **isDescending** | **bool**| Sắp xếp giảm dần | [default to false]
+ **userId** | **String**| ID người dùng | [optional] 
 
 ### Return type
 
-[**ConversationControllerGetAllConversationsPaginated200Response**](ConversationControllerGetAllConversationsPaginated200Response.md)
+[**ConversationControllerGetMyConversationHistory200Response**](ConversationControllerGetMyConversationHistory200Response.md)
 
 ### Authorization
 
@@ -258,7 +305,56 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conversationControllerGetMyConversationHistory**
+> ConversationControllerGetMyConversationHistory200Response conversationControllerGetMyConversationHistory(pageNumber, pageSize, sortOrder, isDescending, userId)
+
+Lấy lịch sử chat của user hiện tại
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getConversationApi();
+final num pageNumber = 8.14; // num | Số trang
+final num pageSize = 8.14; // num | Số bản ghi mỗi trang
+final String sortOrder = sortOrder_example; // String | Thứ tự sắp xếp
+final bool isDescending = true; // bool | Sắp xếp giảm dần
+final String userId = userId_example; // String | Guest userId (nếu chưa đăng nhập)
+
+try {
+    final response = api.conversationControllerGetMyConversationHistory(pageNumber, pageSize, sortOrder, isDescending, userId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ConversationApi->conversationControllerGetMyConversationHistory: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageNumber** | **num**| Số trang | [default to 1]
+ **pageSize** | **num**| Số bản ghi mỗi trang | [default to 10]
+ **sortOrder** | **String**| Thứ tự sắp xếp | [default to 'asc']
+ **isDescending** | **bool**| Sắp xếp giảm dần | [default to false]
+ **userId** | **String**| Guest userId (nếu chưa đăng nhập) | [optional] 
+
+### Return type
+
+[**ConversationControllerGetMyConversationHistory200Response**](ConversationControllerGetMyConversationHistory200Response.md)
+
+### Authorization
+
+[jwt](../README.md#jwt)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -23,28 +23,28 @@ void main() {
 
     // Khởi tạo job để tạo báo cáo tồn kho bằng AI
     //
-    //Future<EmailControllerSendEmail200Response> inventoryControllerCreateInventoryReportJob({ bool forceRefresh }) async
+    //Future<SurveyControllerCreateSurveyQues200Response> inventoryControllerCreateInventoryReportJob({ bool forceRefresh }) async
     test('test inventoryControllerCreateInventoryReportJob', () async {
       // TODO
     });
 
     // Khởi tạo job để phân tích nhu cầu nhập hàng (restock)
     //
-    //Future<EmailControllerSendEmail200Response> inventoryControllerCreateRestockReportJob({ bool forceRefresh }) async
+    //Future<SurveyControllerCreateSurveyQues200Response> inventoryControllerCreateRestockReportJob({ bool forceRefresh }) async
     test('test inventoryControllerCreateRestockReportJob', () async {
       // TODO
     });
 
     // Tạo báo cáo tồn kho bằng AI
     //
-    //Future<EmailControllerSendEmail200Response> inventoryControllerGetAIInventoryReport() async
+    //Future<SurveyControllerCreateSurveyQues200Response> inventoryControllerGetAIInventoryReport() async
     test('test inventoryControllerGetAIInventoryReport', () async {
       // TODO
     });
 
     // Phân tích nhu cầu nhập hàng dựa trên xu hướng (AI)
     //
-    //Future<TrendControllerGetProductTrendJobResult200Response> inventoryControllerGetAIRestockingNeeds() async
+    //Future<SurveyControllerReorderQuestions200Response> inventoryControllerGetAIRestockingNeeds() async
     test('test inventoryControllerGetAIRestockingNeeds', () async {
       // TODO
     });
@@ -65,14 +65,14 @@ void main() {
 
     // Lấy báo cáo tồn kho
     //
-    //Future<EmailControllerSendEmail200Response> inventoryControllerGetInventoryReport() async
+    //Future<SurveyControllerCreateSurveyQues200Response> inventoryControllerGetInventoryReport() async
     test('test inventoryControllerGetInventoryReport', () async {
       // TODO
     });
 
     // Kiểm tra trạng thái hoàn thành của job báo cáo tồn kho
     //
-    //Future<TrendControllerGetProductTrendJobResult200Response> inventoryControllerGetInventoryReportJobResult(String jobId) async
+    //Future<SurveyControllerReorderQuestions200Response> inventoryControllerGetInventoryReportJobResult(String jobId) async
     test('test inventoryControllerGetInventoryReportJobResult', () async {
       // TODO
     });
@@ -118,7 +118,7 @@ void main() {
 
     // Kiểm tra trạng thái hoàn thành của job phân tích nhu cầu nhập hàng (restock)
     //
-    //Future<TrendControllerGetProductTrendJobResult200Response> inventoryControllerGetRestockJobResult(String jobId) async
+    //Future<SurveyControllerReorderQuestions200Response> inventoryControllerGetRestockJobResult(String jobId) async
     test('test inventoryControllerGetRestockJobResult', () async {
       // TODO
     });

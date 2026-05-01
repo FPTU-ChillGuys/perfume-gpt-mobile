@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **isActive** | **bool** | Trạng thái hoạt động | 
 **questionType** | **String** | Loại câu hỏi | [optional] 
 **question** | **String** | Nội dung câu hỏi | [optional] 
+**order** | **num** | Thứ tự hiển thị | [optional] 
 **answers** | [**List&lt;SurveyAnswerResponse&gt;**](SurveyAnswerResponse.md) | Danh sách câu trả lời | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

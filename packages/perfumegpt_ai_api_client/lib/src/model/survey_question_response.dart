@@ -33,6 +33,8 @@ class SurveyQuestionResponse {
 
      this.question,
 
+     this.order,
+
      this.answers,
   });
 
@@ -114,6 +116,19 @@ class SurveyQuestionResponse {
 
 
 
+      /// Thứ tự hiển thị
+  @JsonKey(
+    
+    name: r'order',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? order;
+
+
+
       /// Danh sách câu trả lời
   @JsonKey(
     
@@ -137,6 +152,7 @@ class SurveyQuestionResponse {
       other.isActive == isActive &&
       other.questionType == questionType &&
       other.question == question &&
+      other.order == order &&
       other.answers == answers;
 
     @override
@@ -147,6 +163,7 @@ class SurveyQuestionResponse {
         isActive.hashCode +
         questionType.hashCode +
         question.hashCode +
+        order.hashCode +
         answers.hashCode;
 
   factory SurveyQuestionResponse.fromJson(Map<String, dynamic> json) => _$SurveyQuestionResponseFromJson(json);

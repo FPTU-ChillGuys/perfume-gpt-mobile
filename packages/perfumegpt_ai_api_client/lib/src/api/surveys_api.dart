@@ -10,14 +10,20 @@ import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/create_question_from_attribute_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot404_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot500_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/reorder_questions_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_delete_survey_question200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_attribute_types200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_attribute_values200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_history_list_by_user_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_ques_anws_by_user_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_ques_by_id200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_reorder_questions200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_ques_ans_detail_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_question_request.dart';
 
@@ -26,398 +32,6 @@ class SurveysApi {
   final Dio _dio;
 
   const SurveysApi(this._dio);
-
-  /// Trả lời survey và nhận gợi ý AI
-  /// 
-  ///
-  /// Parameters:
-  /// * [surveyQuesAnsDetailRequest] 
-  /// * [userId] - ID của người dùng (optional, fallback from request fingerprint)
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> surveyControllerChatSurvey({ 
-    required List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest,
-    String? userId,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/surveys/user';
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
-      contentType: 'application/json',
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{
-      if (userId != null) r'userId': userId,
-    };
-
-    dynamic _bodyData;
-
-    try {
-_bodyData=jsonEncode(surveyQuesAnsDetailRequest);
-    } catch(error, stackTrace) {
-      throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-          queryParameters: _queryParameters,
-        ),
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    final _response = await _dio.request<Object>(
-      _path,
-      data: _bodyData,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    EmailControllerSendEmail200Response? _responseData;
-
-    try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<EmailControllerSendEmail200Response>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// Trả lời survey và nhận gợi ý AI (v2 - monolithic query)
-  /// 
-  ///
-  /// Parameters:
-  /// * [surveyQuesAnsDetailRequest] 
-  /// * [userId] - ID của người dùng (optional, fallback from request fingerprint)
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> surveyControllerChatSurveyV2({ 
-    required List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest,
-    String? userId,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/surveys/user/v2';
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
-      contentType: 'application/json',
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{
-      if (userId != null) r'userId': userId,
-    };
-
-    dynamic _bodyData;
-
-    try {
-_bodyData=jsonEncode(surveyQuesAnsDetailRequest);
-    } catch(error, stackTrace) {
-      throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-          queryParameters: _queryParameters,
-        ),
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    final _response = await _dio.request<Object>(
-      _path,
-      data: _bodyData,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    EmailControllerSendEmail200Response? _responseData;
-
-    try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<EmailControllerSendEmail200Response>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// Trả lời survey và nhận gợi ý AI (v3 - per-question query, skip 0 products)
-  /// 
-  ///
-  /// Parameters:
-  /// * [surveyQuesAnsDetailRequest] 
-  /// * [userId] - ID của người dùng (optional, fallback from request fingerprint)
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> surveyControllerChatSurveyV3({ 
-    required List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest,
-    String? userId,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/surveys/user/v3';
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
-      contentType: 'application/json',
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{
-      if (userId != null) r'userId': userId,
-    };
-
-    dynamic _bodyData;
-
-    try {
-_bodyData=jsonEncode(surveyQuesAnsDetailRequest);
-    } catch(error, stackTrace) {
-      throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-          queryParameters: _queryParameters,
-        ),
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    final _response = await _dio.request<Object>(
-      _path,
-      data: _bodyData,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    EmailControllerSendEmail200Response? _responseData;
-
-    try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<EmailControllerSendEmail200Response>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// Trả lời survey V4 — query-based (no AI analysis, trực tiếp query sản phẩm)
-  /// 
-  ///
-  /// Parameters:
-  /// * [surveyQuesAnsDetailRequest] 
-  /// * [userId] - ID của người dùng
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> surveyControllerChatSurveyV4({ 
-    required List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest,
-    String? userId,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/surveys/user/v4';
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
-      contentType: 'application/json',
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{
-      if (userId != null) r'userId': userId,
-    };
-
-    dynamic _bodyData;
-
-    try {
-_bodyData=jsonEncode(surveyQuesAnsDetailRequest);
-    } catch(error, stackTrace) {
-      throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-          queryParameters: _queryParameters,
-        ),
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    final _response = await _dio.request<Object>(
-      _path,
-      data: _bodyData,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    EmailControllerSendEmail200Response? _responseData;
-
-    try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<EmailControllerSendEmail200Response>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
 
   /// Trả lời survey V5 — Hybrid (AI phân tích + Query-based + Ranking score)
   /// 
@@ -432,9 +46,9 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> surveyControllerChatSurveyV5({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>> surveyControllerChatSurveyV5({ 
     required List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest,
     String? userId,
     CancelToken? cancelToken,
@@ -489,11 +103,11 @@ _bodyData=jsonEncode(surveyQuesAnsDetailRequest);
       onReceiveProgress: onReceiveProgress,
     );
 
-    EmailControllerSendEmail200Response? _responseData;
+    SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -505,7 +119,7 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       );
     }
 
-    return Response<EmailControllerSendEmail200Response>(
+    return Response<SurveyControllerCreateSurveyQues200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -601,9 +215,9 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerDeleteSurve
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> surveyControllerCreateQuestionFromAttribute({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>> surveyControllerCreateQuestionFromAttribute({ 
     required CreateQuestionFromAttributeRequest createQuestionFromAttributeRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -651,11 +265,11 @@ _bodyData=jsonEncode(createQuestionFromAttributeRequest);
       onReceiveProgress: onReceiveProgress,
     );
 
-    EmailControllerSendEmail200Response? _responseData;
+    SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -667,7 +281,7 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       );
     }
 
-    return Response<EmailControllerSendEmail200Response>(
+    return Response<SurveyControllerCreateSurveyQues200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -691,9 +305,9 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> surveyControllerCreateSurveyQues({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>> surveyControllerCreateSurveyQues({ 
     required SurveyQuestionRequest surveyQuestionRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -741,11 +355,11 @@ _bodyData=jsonEncode(surveyQuestionRequest);
       onReceiveProgress: onReceiveProgress,
     );
 
-    EmailControllerSendEmail200Response? _responseData;
+    SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -757,7 +371,7 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       );
     }
 
-    return Response<EmailControllerSendEmail200Response>(
+    return Response<SurveyControllerCreateSurveyQues200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -781,9 +395,9 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> surveyControllerCreateSurveyQueses({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>> surveyControllerCreateSurveyQueses({ 
     required List<SurveyQuestionRequest> surveyQuestionRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -831,11 +445,11 @@ _bodyData=jsonEncode(surveyQuestionRequest);
       onReceiveProgress: onReceiveProgress,
     );
 
-    EmailControllerSendEmail200Response? _responseData;
+    SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -847,7 +461,7 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       );
     }
 
-    return Response<EmailControllerSendEmail200Response>(
+    return Response<SurveyControllerCreateSurveyQues200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1348,6 +962,96 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerGetSurveyQu
     }
 
     return Response<SurveyControllerGetSurveyQuesById200Response>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Sắp xếp lại thứ tự câu hỏi survey
+  /// 
+  ///
+  /// Parameters:
+  /// * [reorderQuestionsRequest] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<SurveyControllerReorderQuestions200Response>> surveyControllerReorderQuestions({ 
+    required ReorderQuestionsRequest reorderQuestionsRequest,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/surveys/questions/reorder';
+    final _options = Options(
+      method: r'PATCH',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+_bodyData=jsonEncode(reorderQuestionsRequest);
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    SurveyControllerReorderQuestions200Response? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<SurveyControllerReorderQuestions200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

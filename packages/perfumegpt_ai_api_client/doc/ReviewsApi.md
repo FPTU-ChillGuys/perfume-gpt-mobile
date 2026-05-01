@@ -60,7 +60,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reviewControllerCreateReviewSummaryJob**
-> EmailControllerSendEmail200Response reviewControllerCreateReviewSummaryJob(variantId)
+> SurveyControllerCreateSurveyQues200Response reviewControllerCreateReviewSummaryJob(variantId)
 
 Khởi tạo job để tóm tắt đánh giá theo variant ID
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reviewControllerGetReviewSummaryByVariantId**
-> EmailControllerSendEmail200Response reviewControllerGetReviewSummaryByVariantId(variantId)
+> SurveyControllerCreateSurveyQues200Response reviewControllerGetReviewSummaryByVariantId(variantId)
 
 Tóm tắt đánh giá bằng AI theo variant ID
 
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -302,7 +302,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reviewControllerGetReviewSummaryFromAllVariant**
-> EmailControllerSendEmail200Response reviewControllerGetReviewSummaryFromAllVariant()
+> SurveyControllerCreateSurveyQues200Response reviewControllerGetReviewSummaryFromAllVariant()
 
 Tóm tắt đánh giá bằng AI cho tất cả variant
 
@@ -325,7 +325,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -339,7 +339,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reviewControllerGetReviewSummaryJobResult**
-> TrendControllerGetProductTrendJobResult200Response reviewControllerGetReviewSummaryJobResult(jobId, variantId)
+> SurveyControllerReorderQuestions200Response reviewControllerGetReviewSummaryJobResult(jobId, variantId)
 
 Kiểm tra trạng thái hoàn thành của job tóm tắt đánh giá
 
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TrendControllerGetProductTrendJobResult200Response**](TrendControllerGetProductTrendJobResult200Response.md)
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
 
 ### Authorization
 

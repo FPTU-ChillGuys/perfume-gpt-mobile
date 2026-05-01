@@ -9,7 +9,8 @@ import 'dart:convert';
 import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot404_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_batch200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_log_by_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inventory_report_logs200_response.dart';
@@ -17,7 +18,10 @@ import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inve
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_by_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_for_restock200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_structured_ai_inventory_report200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/trend_controller_get_product_trend_job_result200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_reorder_questions200_response.dart';
 
 class InventoryApi {
 
@@ -143,9 +147,9 @@ class InventoryApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> inventoryControllerCreateInventoryReportJob({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>> inventoryControllerCreateInventoryReportJob({ 
     bool? forceRefresh,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -186,11 +190,11 @@ class InventoryApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    EmailControllerSendEmail200Response? _responseData;
+    SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -202,7 +206,7 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       );
     }
 
-    return Response<EmailControllerSendEmail200Response>(
+    return Response<SurveyControllerCreateSurveyQues200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -226,9 +230,9 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> inventoryControllerCreateRestockReportJob({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>> inventoryControllerCreateRestockReportJob({ 
     bool? forceRefresh,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -269,11 +273,11 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       onReceiveProgress: onReceiveProgress,
     );
 
-    EmailControllerSendEmail200Response? _responseData;
+    SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -285,7 +289,7 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       );
     }
 
-    return Response<EmailControllerSendEmail200Response>(
+    return Response<SurveyControllerCreateSurveyQues200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -308,9 +312,9 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> inventoryControllerGetAIInventoryReport({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>> inventoryControllerGetAIInventoryReport({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -345,11 +349,11 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       onReceiveProgress: onReceiveProgress,
     );
 
-    EmailControllerSendEmail200Response? _responseData;
+    SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -361,7 +365,7 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       );
     }
 
-    return Response<EmailControllerSendEmail200Response>(
+    return Response<SurveyControllerCreateSurveyQues200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -384,9 +388,9 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductTrendJobResult200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductTrendJobResult200Response>> inventoryControllerGetAIRestockingNeeds({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>> inventoryControllerGetAIRestockingNeeds({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -421,11 +425,11 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       onReceiveProgress: onReceiveProgress,
     );
 
-    TrendControllerGetProductTrendJobResult200Response? _responseData;
+    SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<TrendControllerGetProductTrendJobResult200Response, TrendControllerGetProductTrendJobResult200Response>(rawData, 'TrendControllerGetProductTrendJobResult200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -437,7 +441,7 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductTr
       );
     }
 
-    return Response<TrendControllerGetProductTrendJobResult200Response>(
+    return Response<SurveyControllerReorderQuestions200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -672,9 +676,9 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> inventoryControllerGetInventoryReport({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>> inventoryControllerGetInventoryReport({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -709,11 +713,11 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
       onReceiveProgress: onReceiveProgress,
     );
 
-    EmailControllerSendEmail200Response? _responseData;
+    SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -725,7 +729,7 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       );
     }
 
-    return Response<EmailControllerSendEmail200Response>(
+    return Response<SurveyControllerCreateSurveyQues200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -749,9 +753,9 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductTrendJobResult200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductTrendJobResult200Response>> inventoryControllerGetInventoryReportJobResult({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>> inventoryControllerGetInventoryReportJobResult({ 
     required String jobId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -787,11 +791,11 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       onReceiveProgress: onReceiveProgress,
     );
 
-    TrendControllerGetProductTrendJobResult200Response? _responseData;
+    SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<TrendControllerGetProductTrendJobResult200Response, TrendControllerGetProductTrendJobResult200Response>(rawData, 'TrendControllerGetProductTrendJobResult200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -803,7 +807,7 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductTr
       );
     }
 
-    return Response<TrendControllerGetProductTrendJobResult200Response>(
+    return Response<SurveyControllerReorderQuestions200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1234,9 +1238,9 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductTrendJobResult200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductTrendJobResult200Response>> inventoryControllerGetRestockJobResult({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>> inventoryControllerGetRestockJobResult({ 
     required String jobId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1272,11 +1276,11 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
       onReceiveProgress: onReceiveProgress,
     );
 
-    TrendControllerGetProductTrendJobResult200Response? _responseData;
+    SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<TrendControllerGetProductTrendJobResult200Response, TrendControllerGetProductTrendJobResult200Response>(rawData, 'TrendControllerGetProductTrendJobResult200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1288,7 +1292,7 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductTr
       );
     }
 
-    return Response<TrendControllerGetProductTrendJobResult200Response>(
+    return Response<SurveyControllerReorderQuestions200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

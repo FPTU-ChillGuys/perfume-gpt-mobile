@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **recommendationControllerGetRecommendationsV3Simple**
-> TrendControllerGetProductTrendJobResult200Response recommendationControllerGetRecommendationsV3Simple(userId, size)
+> SurveyControllerReorderQuestions200Response recommendationControllerGetRecommendationsV3Simple(userId, size)
 
 Recommend đơn giản và ổn định dựa trên Order và Best Sellers (không fallback mảng rỗng)
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TrendControllerGetProductTrendJobResult200Response**](TrendControllerGetProductTrendJobResult200Response.md)
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
 
 ### Authorization
 
@@ -59,7 +59,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **recommendationControllerSendDailyRecommendationManual**
-> TrendControllerGetProductTrendJobResult200Response recommendationControllerSendDailyRecommendationManual()
+> SurveyControllerReorderQuestions200Response recommendationControllerSendDailyRecommendationManual()
 
 Manual trigger gửi daily recommendation cho user active (sync)
 
@@ -82,7 +82,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TrendControllerGetProductTrendJobResult200Response**](TrendControllerGetProductTrendJobResult200Response.md)
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
 
 ### Authorization
 
@@ -96,7 +96,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **recommendationControllerTestRecommendation**
-> EmailControllerSendEmail200Response recommendationControllerTestRecommendation(userId)
+> SurveyControllerCreateSurveyQues200Response recommendationControllerTestRecommendation(userId)
 
 Test sinh recommendation cho user và gửi email
 
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -137,7 +137,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **recommendationControllerTestRepurchase**
-> EmailControllerSendEmail200Response recommendationControllerTestRepurchase(userId, orderId)
+> SurveyControllerCreateSurveyQues200Response recommendationControllerTestRepurchase(userId, orderId)
 
 Test sinh repurchase recommendation cho user và gửi email
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 

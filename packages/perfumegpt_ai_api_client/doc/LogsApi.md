@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 
 # **logControllerCollectLogs**
-> EmailControllerSendEmail200Response logControllerCollectLogs(userId, endDate, period, startDate)
+> SurveyControllerCreateSurveyQues200Response logControllerCollectLogs(userId, endDate, period, startDate)
 
 Lấy báo cáo log hoạt động người dùng
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **logControllerCreateEventLog**
-> EmailControllerSendEmail200Response logControllerCreateEventLog(eventLogCreateRequest)
+> SurveyControllerCreateSurveyQues200Response logControllerCreateEventLog(eventLogCreateRequest)
 
 Tạo event log theo contract mới
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **logControllerCreateUserLogSummary**
-> EmailControllerSendEmail200Response logControllerCreateUserLogSummary(userLogSummaryRequest)
+> SurveyControllerCreateSurveyQues200Response logControllerCreateUserLogSummary(userLogSummaryRequest)
 
 Tạo bản tóm tắt log người dùng thủ công
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -480,7 +480,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **logControllerGetReportFromAllLogs**
-> EmailControllerSendEmail200Response logControllerGetReportFromAllLogs(endDate, period, startDate)
+> SurveyControllerCreateSurveyQues200Response logControllerGetReportFromAllLogs(endDate, period, startDate)
 
 Lấy báo cáo tất cả log hoạt động người dùng
 
@@ -511,7 +511,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -536,7 +536,7 @@ import 'package:perfumegpt_ai_api_client/api.dart';
 final api = PerfumegptAiApiClient().getLogsApi();
 final String userId = userId_example; // String | 
 final String period = period_example; // String | 
-final DateTime endDate = 2026-04-27T01:43:40.996Z; // DateTime | 
+final DateTime endDate = 2026-04-30T15:23:25.977Z; // DateTime | 
 final DateTime startDate = 2013-10-20T19:20:30+01:00; // DateTime | 
 
 try {
@@ -572,7 +572,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **logControllerGetUserLogsSummaryReportById**
-> EmailControllerSendEmail200Response logControllerGetUserLogsSummaryReportById(userId, endDate, startDate)
+> SurveyControllerCreateSurveyQues200Response logControllerGetUserLogsSummaryReportById(userId, endDate, startDate)
 
 Xem báo cáo tóm tắt log người dùng theo ID
 
@@ -603,7 +603,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -662,7 +662,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **logControllerRebuildAllUsersSummary**
-> EmailControllerSendEmail200Response logControllerRebuildAllUsersSummary()
+> SurveyControllerCreateSurveyQues200Response logControllerRebuildAllUsersSummary()
 
 Rebuild rolling summary cho tất cả users có logs
 
@@ -685,7 +685,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -699,7 +699,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **logControllerRebuildUserSummary**
-> EmailControllerSendEmail200Response logControllerRebuildUserSummary(userId)
+> SurveyControllerCreateSurveyQues200Response logControllerRebuildUserSummary(userId)
 
 Rebuild rolling summary cho user cụ thể từ logs
 
@@ -726,7 +726,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 

@@ -149,7 +149,10 @@ enum InventoryLogTypeEnum {
 REPORT(r'REPORT'),
     /// Loại log tồn kho
 @JsonValue(r'RESTOCK')
-RESTOCK(r'RESTOCK');
+RESTOCK(r'RESTOCK'),
+    /// Loại log tồn kho
+@JsonValue(r'SLOW_STOCK')
+SLOW_STOCK(r'SLOW_STOCK');
 
 const InventoryLogTypeEnum(this.value);
 

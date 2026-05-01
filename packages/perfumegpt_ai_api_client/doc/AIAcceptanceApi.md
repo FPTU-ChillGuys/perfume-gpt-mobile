@@ -100,7 +100,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **aIAcceptanceControllerGetAIAcceptanceMetrics**
-> TrendControllerGetProductTrendJobResult200Response aIAcceptanceControllerGetAIAcceptanceMetrics(contextType)
+> SurveyControllerReorderQuestions200Response aIAcceptanceControllerGetAIAcceptanceMetrics(contextType)
 
 Lấy metrics acceptance theo context (accepted/pending/no-click)
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TrendControllerGetProductTrendJobResult200Response**](TrendControllerGetProductTrendJobResult200Response.md)
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
 
 ### Authorization
 

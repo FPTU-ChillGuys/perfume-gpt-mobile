@@ -23,7 +23,7 @@ void main() {
 
     // Lấy metrics acceptance theo context (accepted/pending/no-click)
     //
-    //Future<TrendControllerGetProductTrendJobResult200Response> aIAcceptanceControllerGetAIAcceptanceMetrics({ String contextType }) async
+    //Future<SurveyControllerReorderQuestions200Response> aIAcceptanceControllerGetAIAcceptanceMetrics({ String contextType }) async
     test('test aIAcceptanceControllerGetAIAcceptanceMetrics', () async {
       // TODO
     });

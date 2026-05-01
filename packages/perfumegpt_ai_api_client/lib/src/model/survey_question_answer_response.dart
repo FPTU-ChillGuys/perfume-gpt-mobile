@@ -31,6 +31,8 @@ class SurveyQuestionAnswerResponse {
 
     required  this.userId,
 
+     this.aiResult,
+
     required  this.details,
   });
 
@@ -99,6 +101,19 @@ class SurveyQuestionAnswerResponse {
 
 
 
+      /// Kết quả AI recommendation (JSON string)
+  @JsonKey(
+    
+    name: r'aiResult',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? aiResult;
+
+
+
       /// Danh sách chi tiết câu hỏi - câu trả lời
   @JsonKey(
     
@@ -121,6 +136,7 @@ class SurveyQuestionAnswerResponse {
       other.updatedAt == updatedAt &&
       other.isActive == isActive &&
       other.userId == userId &&
+      other.aiResult == aiResult &&
       other.details == details;
 
     @override
@@ -130,6 +146,7 @@ class SurveyQuestionAnswerResponse {
         updatedAt.hashCode +
         isActive.hashCode +
         userId.hashCode +
+        aiResult.hashCode +
         details.hashCode;
 
   factory SurveyQuestionAnswerResponse.fromJson(Map<String, dynamic> json) => _$SurveyQuestionAnswerResponseFromJson(json);

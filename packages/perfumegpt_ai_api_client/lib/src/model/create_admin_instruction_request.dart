@@ -107,6 +107,9 @@ survey(r'survey'),
 @JsonValue(r'restock')
 restock(r'restock'),
     /// Loại chỉ thị
+@JsonValue(r'slow_stock')
+slowStock(r'slow_stock'),
+    /// Loại chỉ thị
 @JsonValue(r'search_extraction')
 searchExtraction(r'search_extraction'),
     /// Loại chỉ thị

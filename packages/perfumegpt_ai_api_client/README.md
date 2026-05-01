@@ -58,14 +58,14 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 
-final api = PerfumegptAiApiClient().getAIApi();
-final String prompt = prompt_example; // String | Nội dung yêu cầu tìm kiếm
+final api = PerfumegptAiApiClient().getAIAcceptanceApi();
+final String aiAcceptanceId = aiAcceptanceId_example; // String | ID bản ghi AI acceptance
 
 try {
-    final response = await api.aIControllerSearchProductWithAI(prompt);
+    final response = await api.aIAcceptanceControllerClickAIAcceptance(aiAcceptanceId);
     print(response);
 } on DioException catch (e) {
-    print("Exception when calling AIApi->aIControllerSearchProductWithAI: $e\n");
+    print("Exception when calling AIAcceptanceApi->aIAcceptanceControllerClickAIAcceptance: $e\n");
 }
 
 ```
@@ -76,7 +76,6 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-[*AIApi*](doc/AIApi.md) | [**aIControllerSearchProductWithAI**](doc/AIApi.md#aicontrollersearchproductwithai) | **POST** /ai/search | Tìm kiếm sản phẩm bằng AI
 [*AIAcceptanceApi*](doc/AIAcceptanceApi.md) | [**aIAcceptanceControllerClickAIAcceptance**](doc/AIAcceptanceApi.md#aiacceptancecontrollerclickaiacceptance) | **POST** /ai-acceptance/click/{aiAcceptanceId} | Đánh dấu click chấp nhận theo aiAcceptanceId
 [*AIAcceptanceApi*](doc/AIAcceptanceApi.md) | [**aIAcceptanceControllerCreatePendingResponseAcceptance**](doc/AIAcceptanceApi.md#aiacceptancecontrollercreatependingresponseacceptance) | **POST** /ai-acceptance/response | Tạo AI acceptance pending theo response-level (backend-first)
 [*AIAcceptanceApi*](doc/AIAcceptanceApi.md) | [**aIAcceptanceControllerGetAIAcceptanceMetrics**](doc/AIAcceptanceApi.md#aiacceptancecontrollergetaiacceptancemetrics) | **GET** /ai-acceptance/metrics | Lấy metrics acceptance theo context (accepted/pending/no-click)
@@ -91,24 +90,20 @@ Class | Method | HTTP request | Description
 [*AdminInstructionsApi*](doc/AdminInstructionsApi.md) | [**adminInstructionControllerGetInstructionsByType**](doc/AdminInstructionsApi.md#admininstructioncontrollergetinstructionsbytype) | **GET** /admin/instructions/type/{type} | Lấy chỉ thị theo loại (system | prompt | rule)
 [*AdminInstructionsApi*](doc/AdminInstructionsApi.md) | [**adminInstructionControllerUpdateInstruction**](doc/AdminInstructionsApi.md#admininstructioncontrollerupdateinstruction) | **PUT** /admin/instructions/{id} | Cập nhật chỉ thị admin
 [*AppApi*](doc/AppApi.md) | [**appControllerCheckHealth**](doc/AppApi.md#appcontrollercheckhealth) | **GET** / | Health check - Kiểm tra trạng thái server
-[*CartApi*](doc/CartApi.md) | [**cartControllerAddToCart**](doc/CartApi.md#cartcontrolleraddtocart) | **POST** /cart | Add item to cart
-[*CartApi*](doc/CartApi.md) | [**cartControllerClearCart**](doc/CartApi.md#cartcontrollerclearcart) | **DELETE** /cart | Clear current user cart
-[*CartApi*](doc/CartApi.md) | [**cartControllerGetCart**](doc/CartApi.md#cartcontrollergetcart) | **GET** /cart | Get current user cart
-[*CartApi*](doc/CartApi.md) | [**cartControllerRemoveFromCart**](doc/CartApi.md#cartcontrollerremovefromcart) | **DELETE** /cart/{id} | Remove item from cart
-[*CartApi*](doc/CartApi.md) | [**cartControllerUpdateCartItem**](doc/CartApi.md#cartcontrollerupdatecartitem) | **PATCH** /cart/{id} | Update cart item quantity
-[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerConversationV10**](doc/ConversationApi.md#conversationcontrollerconversationv10) | **POST** /conversation/chat/v10 | Chat V10 (Profile-first + Structured Search)
-[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerConversationV10Staff**](doc/ConversationApi.md#conversationcontrollerconversationv10staff) | **POST** /conversation/chat/v10-staff | Chat V10 Staff (Quick Counter Consultation Mode)
-[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerConversationV8**](doc/ConversationApi.md#conversationcontrollerconversationv8) | **POST** /conversation/chat/v8 | Chat V8
+[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerChat**](doc/ConversationApi.md#conversationcontrollerchat) | **POST** /conversation/chat/v10 | Chat với AI (Advanced V10 logic)
+[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerChatStaff**](doc/ConversationApi.md#conversationcontrollerchatstaff) | **POST** /conversation/chat/v10-staff | Chat V10 Staff (Quick Counter Consultation Mode)
+[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerChatV11**](doc/ConversationApi.md#conversationcontrollerchatv11) | **POST** /conversation/chat/v11 | Chat với AI (V11 — individual message persistence)
+[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerChatV11Staff**](doc/ConversationApi.md#conversationcontrollerchatv11staff) | **POST** /conversation/chat/v11-staff | Chat V11 Staff (Quick Counter Consultation Mode)
 [*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerGetAllConversations**](doc/ConversationApi.md#conversationcontrollergetallconversations) | **GET** /conversation | Lấy tất cả cuộc hội thoại
-[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerGetAllConversationsPaginated**](doc/ConversationApi.md#conversationcontrollergetallconversationspaginated) | **GET** /conversation/list/paged | Lấy danh sách cuộc hội thoại có phân trang
+[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerGetAllConversationsPaginated**](doc/ConversationApi.md#conversationcontrollergetallconversationspaginated) | **GET** /conversation/list/paged | Lấy danh sách hội thoại có phân trang
 [*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerGetConversationById**](doc/ConversationApi.md#conversationcontrollergetconversationbyid) | **GET** /conversation/{id} | Lấy cuộc hội thoại theo ID
+[*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerGetMyConversationHistory**](doc/ConversationApi.md#conversationcontrollergetmyconversationhistory) | **GET** /conversation/my/history | Lấy lịch sử chat của user hiện tại
 [*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerCheckReady**](doc/DictionaryApi.md#dictionarycontrollercheckready) | **GET** /api/v1/dictionary/ready | Check dictionary readiness
 [*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerExtractEntities**](doc/DictionaryApi.md#dictionarycontrollerextractentities) | **POST** /api/v1/dictionary/extract-entities | Extract raw entities
 [*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerGetEntityTypes**](doc/DictionaryApi.md#dictionarycontrollergetentitytypes) | **GET** /api/v1/dictionary/entity-types | List dictionary entity types
 [*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerGetSnapshot**](doc/DictionaryApi.md#dictionarycontrollergetsnapshot) | **GET** /api/v1/dictionary/snapshot | Get dictionary snapshot
 [*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerParseText**](doc/DictionaryApi.md#dictionarycontrollerparsetext) | **POST** /api/v1/dictionary/parse | Parse and normalize text
 [*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerRebuildDictionary**](doc/DictionaryApi.md#dictionarycontrollerrebuilddictionary) | **POST** /api/v1/dictionary/rebuild | Rebuild dictionary
-[*EmailApi*](doc/EmailApi.md) | [**emailControllerSendEmail**](doc/EmailApi.md#emailcontrollersendemail) | **POST** /email/send | Gửi email text cơ bản
 [*HybridSearchEmbeddingsApi*](doc/HybridSearchEmbeddingsApi.md) | [**rebuildEmbeddingsControllerDeleteEmbedding**](doc/HybridSearchEmbeddingsApi.md#rebuildembeddingscontrollerdeleteembedding) | **DELETE** /hybrid-search/embeddings/{productId} | Xóa embedding của 1 product
 [*HybridSearchEmbeddingsApi*](doc/HybridSearchEmbeddingsApi.md) | [**rebuildEmbeddingsControllerGetStats**](doc/HybridSearchEmbeddingsApi.md#rebuildembeddingscontrollergetstats) | **GET** /hybrid-search/embeddings/stats | Get stats về embeddings
 [*HybridSearchEmbeddingsApi*](doc/HybridSearchEmbeddingsApi.md) | [**rebuildEmbeddingsControllerRebuildAll**](doc/HybridSearchEmbeddingsApi.md#rebuildembeddingscontrollerrebuildall) | **POST** /hybrid-search/embeddings/rebuild | Rebuild tất cả embeddings
@@ -146,24 +141,11 @@ Class | Method | HTTP request | Description
 [*LogsApi*](doc/LogsApi.md) | [**logControllerGetUserLogsWithPeriod**](doc/LogsApi.md#logcontrollergetuserlogswithperiod) | **GET** /logs/all/period | Lấy tất cả log hoạt động người dùng theo khoảng thời gian
 [*LogsApi*](doc/LogsApi.md) | [**logControllerRebuildAllUsersSummary**](doc/LogsApi.md#logcontrollerrebuildalluserssummary) | **POST** /logs/rebuild-summary-all | Rebuild rolling summary cho tất cả users có logs
 [*LogsApi*](doc/LogsApi.md) | [**logControllerRebuildUserSummary**](doc/LogsApi.md#logcontrollerrebuildusersummary) | **POST** /logs/rebuild-summary/{userId} | Rebuild rolling summary cho user cụ thể từ logs
-[*OrdersApi*](doc/OrdersApi.md) | [**orderControllerGetAIOrderSummary**](doc/OrdersApi.md#ordercontrollergetaiordersummary) | **GET** /orders/summary/ai | Tạo báo cáo tóm tắt đơn hàng bằng AI
-[*OrdersApi*](doc/OrdersApi.md) | [**orderControllerGetAllOrders**](doc/OrdersApi.md#ordercontrollergetallorders) | **GET** /orders | Lấy danh sách tất cả đơn hàng
-[*OrdersApi*](doc/OrdersApi.md) | [**orderControllerGetOrdersByUserId**](doc/OrdersApi.md#ordercontrollergetordersbyuserid) | **GET** /orders/user/{userId} | Lấy đơn hàng theo user ID
-[*OrdersApi*](doc/OrdersApi.md) | [**orderControllerGetStructuredAIOrderSummary**](doc/OrdersApi.md#ordercontrollergetstructuredaiordersummary) | **GET** /orders/summary/ai/structured | Tạo báo cáo tóm tắt đơn hàng AI có cấu trúc
 [*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetAllProducts**](doc/ProductsApi.md#productcontrollergetallproducts) | **GET** /products | Lấy danh sách tất cả sản phẩm
-[*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetAllProductsWithVariants**](doc/ProductsApi.md#productcontrollergetallproductswithvariants) | **GET** /products/all/with-variants | [TEST] Lấy danh sách sản phẩm kèm toàn bộ variants
-[*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetBestSellingProducts**](doc/ProductsApi.md#productcontrollergetbestsellingproducts) | **GET** /products/all/best-sellers | [TEST] Lấy danh sách sản phẩm bán chạy
-[*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetNewestProductsWithVariants**](doc/ProductsApi.md#productcontrollergetnewestproductswithvariants) | **GET** /products/all/newest | [TEST] Lấy danh sách sản phẩm mới nhất
-[*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetProductWithVariants**](doc/ProductsApi.md#productcontrollergetproductwithvariants) | **GET** /products/{id}/with-variants | [TEST] Lấy chi tiết sản phẩm kèm toàn bộ variants
-[*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetProductsByAiSearch**](doc/ProductsApi.md#productcontrollergetproductsbyaisearch) | **GET** /products/search/v2 | Tìm kiếm sản phẩm bằng semantic search v2 (AI extraction)
 [*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetProductsByHybridSearch**](doc/ProductsApi.md#productcontrollergetproductsbyhybridsearch) | **GET** /products/search/v4 | Hybrid Search v4 - Kết hợp Query Layer (hard filters) và Vector Layer (similarity)
-[*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetProductsByParsedSearch**](doc/ProductsApi.md#productcontrollergetproductsbyparsedsearch) | **GET** /products/search/v3 | Tìm kiếm sản phẩm bằng parser path (parse -&gt; query)
 [*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetProductsBySemanticSearch**](doc/ProductsApi.md#productcontrollergetproductsbysemanticsearch) | **GET** /products/search | Tìm kiếm sản phẩm bằng semantic search
-[*ProductsApi*](doc/ProductsApi.md) | [**productControllerGetProductsBySemanticSearchWithVariants**](doc/ProductsApi.md#productcontrollergetproductsbysemanticsearchwithvariants) | **GET** /products/search/with-variants | Tìm kiếm sản phẩm bằng semantic search, kết quả kèm toàn bộ variants
 [*ProductsApi*](doc/ProductsApi.md) | [**productControllerLogProductView**](doc/ProductsApi.md#productcontrollerlogproductview) | **POST** /products/log/view | Ghi log khi người dùng xem / click vào product hoặc variant
 [*ProductsApi*](doc/ProductsApi.md) | [**productControllerLogSearchText**](doc/ProductsApi.md#productcontrollerlogsearchtext) | **POST** /products/log/search | Ghi log từ khóa tìm kiếm (không thực hiện tìm kiếm)
-[*ProfileApi*](doc/ProfileApi.md) | [**profileControllerGetOwnProfile**](doc/ProfileApi.md#profilecontrollergetownprofile) | **GET** /profile/me | Lấy thông tin profile của người dùng hiện tại
-[*ProfileApi*](doc/ProfileApi.md) | [**profileControllerGetProfileReport**](doc/ProfileApi.md#profilecontrollergetprofilereport) | **GET** /profile/report | Tạo báo cáo profile dưới dạng text
 [*RecommendationApi*](doc/RecommendationApi.md) | [**recommendationControllerGetRecommendationsV3Simple**](doc/RecommendationApi.md#recommendationcontrollergetrecommendationsv3simple) | **GET** /recommendation/v3/simple | Recommend đơn giản và ổn định dựa trên Order và Best Sellers (không fallback mảng rỗng)
 [*RecommendationApi*](doc/RecommendationApi.md) | [**recommendationControllerSendDailyRecommendationManual**](doc/RecommendationApi.md#recommendationcontrollersenddailyrecommendationmanual) | **POST** /recommendation/daily/send | Manual trigger gửi daily recommendation cho user active (sync)
 [*RecommendationApi*](doc/RecommendationApi.md) | [**recommendationControllerTestRecommendation**](doc/RecommendationApi.md#recommendationcontrollertestrecommendation) | **POST** /recommendation/test-recommendation | Test sinh recommendation cho user và gửi email
@@ -179,11 +161,6 @@ Class | Method | HTTP request | Description
 [*ReviewsApi*](doc/ReviewsApi.md) | [**reviewControllerGetReviewSummaryJobResult**](doc/ReviewsApi.md#reviewcontrollergetreviewsummaryjobresult) | **GET** /reviews/summary/job/result/{jobId} | Kiểm tra trạng thái hoàn thành của job tóm tắt đánh giá
 [*ReviewsApi*](doc/ReviewsApi.md) | [**reviewControllerGetReviews**](doc/ReviewsApi.md#reviewcontrollergetreviews) | **GET** /reviews | Lấy danh sách đánh giá (phân trang)
 [*ReviewsApi*](doc/ReviewsApi.md) | [**reviewControllerGetStructuredReviewSummaryByVariantId**](doc/ReviewsApi.md#reviewcontrollergetstructuredreviewsummarybyvariantid) | **GET** /reviews/summary/structured/{variantId} | Tóm tắt đánh giá có cấu trúc theo variant ID
-[*SourcingApi*](doc/SourcingApi.md) | [**sourcingControllerGetCatalogs**](doc/SourcingApi.md#sourcingcontrollergetcatalogs) | **GET** /sourcing/catalogs/{variantId} | Test get catalogs for a specific variant via Redis Pub/Sub
-[*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerChatSurvey**](doc/SurveysApi.md#surveycontrollerchatsurvey) | **POST** /surveys/user | Trả lời survey và nhận gợi ý AI
-[*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerChatSurveyV2**](doc/SurveysApi.md#surveycontrollerchatsurveyv2) | **POST** /surveys/user/v2 | Trả lời survey và nhận gợi ý AI (v2 - monolithic query)
-[*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerChatSurveyV3**](doc/SurveysApi.md#surveycontrollerchatsurveyv3) | **POST** /surveys/user/v3 | Trả lời survey và nhận gợi ý AI (v3 - per-question query, skip 0 products)
-[*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerChatSurveyV4**](doc/SurveysApi.md#surveycontrollerchatsurveyv4) | **POST** /surveys/user/v4 | Trả lời survey V4 — query-based (no AI analysis, trực tiếp query sản phẩm)
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerChatSurveyV5**](doc/SurveysApi.md#surveycontrollerchatsurveyv5) | **POST** /surveys/user/v5 | Trả lời survey V5 — Hybrid (AI phân tích + Query-based + Ranking score)
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerCheckFirstTime**](doc/SurveysApi.md#surveycontrollercheckfirsttime) | **GET** /surveys/user/{userId}/check-first-time | Kiểm tra người dùng đã làm survey lần đầu chưa
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerCreateQuestionFromAttribute**](doc/SurveysApi.md#surveycontrollercreatequestionfromattribute) | **POST** /surveys/questions/from-attribute | Tạo câu hỏi survey từ thuộc tính (auto-generate query answers)
@@ -196,6 +173,7 @@ Class | Method | HTTP request | Description
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetSurveyHistoryListByUserId**](doc/SurveysApi.md#surveycontrollergetsurveyhistorylistbyuserid) | **GET** /surveys/user/{userId}/history | Lấy danh sách lịch sử tất cả các lần trả lời survey của người dùng
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetSurveyQuesAnwsByUserId**](doc/SurveysApi.md#surveycontrollergetsurveyquesanwsbyuserid) | **GET** /surveys/user/{userId} | Lấy tất cả câu hỏi và câu trả lời survey của người dùng
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetSurveyQuesById**](doc/SurveysApi.md#surveycontrollergetsurveyquesbyid) | **GET** /surveys/questions/{id} | Lấy câu hỏi survey theo ID
+[*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerReorderQuestions**](doc/SurveysApi.md#surveycontrollerreorderquestions) | **PATCH** /surveys/questions/reorder | Sắp xếp lại thứ tự câu hỏi survey
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerUpdateSurveyAnswer**](doc/SurveysApi.md#surveycontrollerupdatesurveyanswer) | **PUT** /surveys/questions/{id} | Cập nhật câu hỏi survey (questionType và/hoặc answers)
 [*TrendsApi*](doc/TrendsApi.md) | [**trendControllerCreateProductTrendJob**](doc/TrendsApi.md#trendcontrollercreateproducttrendjob) | **GET** /trends/product/job | Khởi tạo job để lấy product từ xu hướng
 [*TrendsApi*](doc/TrendsApi.md) | [**trendControllerGetProductFromTrendCaching**](doc/TrendsApi.md#trendcontrollergetproductfromtrendcaching) | **GET** /trends/product/caching | Lấy product từ xu hướng người dùng (caching)
@@ -211,11 +189,9 @@ Class | Method | HTTP request | Description
  - [AIAcceptanceControllerCreatePendingResponseAcceptance200Response](doc/AIAcceptanceControllerCreatePendingResponseAcceptance200Response.md)
  - [AIAcceptanceControllerGetAIAcceptanceRate200Response](doc/AIAcceptanceControllerGetAIAcceptanceRate200Response.md)
  - [AIInventoryReportStructuredResponse](doc/AIInventoryReportStructuredResponse.md)
- - [AIOrderSummaryStructuredResponse](doc/AIOrderSummaryStructuredResponse.md)
  - [AIResponseMetadata](doc/AIResponseMetadata.md)
  - [AIReviewSummaryStructuredResponse](doc/AIReviewSummaryStructuredResponse.md)
  - [AITrendForecastStructuredResponse](doc/AITrendForecastStructuredResponse.md)
- - [AddToCartRequest](doc/AddToCartRequest.md)
  - [AdminInstructionControllerCreateInstruction200Response](doc/AdminInstructionControllerCreateInstruction200Response.md)
  - [AdminInstructionControllerGetAllInstructions200Response](doc/AdminInstructionControllerGetAllInstructions200Response.md)
  - [AdminInstructionResponse](doc/AdminInstructionResponse.md)
@@ -223,19 +199,25 @@ Class | Method | HTTP request | Description
  - [BaseResponse](doc/BaseResponse.md)
  - [BaseResponseAPI](doc/BaseResponseAPI.md)
  - [BatchResponse](doc/BatchResponse.md)
+ - [ChatMessageRequest](doc/ChatMessageRequest.md)
+ - [ChatMessageRequestMessage](doc/ChatMessageRequestMessage.md)
+ - [ChatRequest](doc/ChatRequest.md)
+ - [ChatV11AiMessage](doc/ChatV11AiMessage.md)
+ - [ChatV11Response](doc/ChatV11Response.md)
  - [ConcentrationResponse](doc/ConcentrationResponse.md)
- - [ConversationControllerConversationV8200Response](doc/ConversationControllerConversationV8200Response.md)
+ - [ConversationControllerChatV11200Response](doc/ConversationControllerChatV11200Response.md)
  - [ConversationControllerGetAllConversations200Response](doc/ConversationControllerGetAllConversations200Response.md)
- - [ConversationControllerGetAllConversationsPaginated200Response](doc/ConversationControllerGetAllConversationsPaginated200Response.md)
- - [ConversationControllerGetAllConversationsPaginated200ResponsePayload](doc/ConversationControllerGetAllConversationsPaginated200ResponsePayload.md)
- - [ConversationDto](doc/ConversationDto.md)
+ - [ConversationControllerGetMyConversationHistory200Response](doc/ConversationControllerGetMyConversationHistory200Response.md)
+ - [ConversationControllerGetMyConversationHistory200ResponsePayload](doc/ConversationControllerGetMyConversationHistory200ResponsePayload.md)
  - [ConversationOutputDto](doc/ConversationOutputDto.md)
- - [ConversationRequestDto](doc/ConversationRequestDto.md)
+ - [ConversationResponse](doc/ConversationResponse.md)
  - [CreateAdminInstructionRequest](doc/CreateAdminInstructionRequest.md)
  - [CreateQuestionFromAttributeRequest](doc/CreateQuestionFromAttributeRequest.md)
  - [CreateResponseAIAcceptanceRequest](doc/CreateResponseAIAcceptanceRequest.md)
  - [DailySalesRecord](doc/DailySalesRecord.md)
- - [EmailControllerSendEmail200Response](doc/EmailControllerSendEmail200Response.md)
+ - [DictionaryControllerCheckReady400Response](doc/DictionaryControllerCheckReady400Response.md)
+ - [DictionaryControllerGetSnapshot404Response](doc/DictionaryControllerGetSnapshot404Response.md)
+ - [DictionaryControllerGetSnapshot500Response](doc/DictionaryControllerGetSnapshot500Response.md)
  - [EventLog](doc/EventLog.md)
  - [EventLogCreateRequest](doc/EventLogCreateRequest.md)
  - [EventLogSummaryResponse](doc/EventLogSummaryResponse.md)
@@ -263,15 +245,9 @@ Class | Method | HTTP request | Description
  - [LogControllerGetEventLogsTimeSeries200Response](doc/LogControllerGetEventLogsTimeSeries200Response.md)
  - [LogControllerGetPagedEventLogs200Response](doc/LogControllerGetPagedEventLogs200Response.md)
  - [LogControllerGetPagedEventLogs200ResponsePayload](doc/LogControllerGetPagedEventLogs200ResponsePayload.md)
- - [MessageDto](doc/MessageDto.md)
- - [MessageDtoMessage](doc/MessageDtoMessage.md)
- - [MessageRequestDto](doc/MessageRequestDto.md)
- - [MessageRequestDtoMessage](doc/MessageRequestDtoMessage.md)
+ - [MessageResponse](doc/MessageResponse.md)
+ - [MessageResponseMessage](doc/MessageResponseMessage.md)
  - [NormalizedQueryFilters](doc/NormalizedQueryFilters.md)
- - [OrderControllerGetAllOrders200Response](doc/OrderControllerGetAllOrders200Response.md)
- - [OrderControllerGetAllOrders200ResponsePayload](doc/OrderControllerGetAllOrders200ResponsePayload.md)
- - [OrderControllerGetStructuredAIOrderSummary200Response](doc/OrderControllerGetStructuredAIOrderSummary200Response.md)
- - [OrderListItemResponse](doc/OrderListItemResponse.md)
  - [OriginNormalizerOutput](doc/OriginNormalizerOutput.md)
  - [PagedResult](doc/PagedResult.md)
  - [PriceNormalizerOutput](doc/PriceNormalizerOutput.md)
@@ -282,9 +258,6 @@ Class | Method | HTTP request | Description
  - [ProductCardVariantResponse](doc/ProductCardVariantResponse.md)
  - [ProductControllerGetAllProducts200Response](doc/ProductControllerGetAllProducts200Response.md)
  - [ProductControllerGetAllProducts200ResponsePayload](doc/ProductControllerGetAllProducts200ResponsePayload.md)
- - [ProductControllerGetBestSellingProducts200Response](doc/ProductControllerGetBestSellingProducts200Response.md)
- - [ProductControllerGetBestSellingProducts200ResponsePayload](doc/ProductControllerGetBestSellingProducts200ResponsePayload.md)
- - [ProductControllerGetProductWithVariants200Response](doc/ProductControllerGetProductWithVariants200Response.md)
  - [ProductControllerGetProductsByHybridSearch200Response](doc/ProductControllerGetProductsByHybridSearch200Response.md)
  - [ProductControllerGetProductsBySemanticSearch200Response](doc/ProductControllerGetProductsBySemanticSearch200Response.md)
  - [ProductControllerGetProductsBySemanticSearch200ResponsePayload](doc/ProductControllerGetProductsBySemanticSearch200ResponsePayload.md)
@@ -294,11 +267,11 @@ Class | Method | HTTP request | Description
  - [ProductVariantResponse](doc/ProductVariantResponse.md)
  - [ProductViewLogRequest](doc/ProductViewLogRequest.md)
  - [ProductWithVariantsResponse](doc/ProductWithVariantsResponse.md)
- - [ProfileControllerGetOwnProfile200Response](doc/ProfileControllerGetOwnProfile200Response.md)
- - [ProfileResponse](doc/ProfileResponse.md)
  - [QueryFragmentAttribute](doc/QueryFragmentAttribute.md)
  - [QueryFragmentBudget](doc/QueryFragmentBudget.md)
  - [QueryFragmentMatch](doc/QueryFragmentMatch.md)
+ - [ReorderQuestionItem](doc/ReorderQuestionItem.md)
+ - [ReorderQuestionsRequest](doc/ReorderQuestionsRequest.md)
  - [ReviewControllerGetAllReviewLogs200Response](doc/ReviewControllerGetAllReviewLogs200Response.md)
  - [ReviewControllerGetReviews200Response](doc/ReviewControllerGetReviews200Response.md)
  - [ReviewControllerGetReviews200ResponsePayload](doc/ReviewControllerGetReviews200ResponsePayload.md)
@@ -307,30 +280,31 @@ Class | Method | HTTP request | Description
  - [ReviewLog](doc/ReviewLog.md)
  - [SalesMetrics](doc/SalesMetrics.md)
  - [SearchTextLogRequest](doc/SearchTextLogRequest.md)
- - [SendEmailRequestDto](doc/SendEmailRequestDto.md)
  - [SurveyAnswerRequest](doc/SurveyAnswerRequest.md)
  - [SurveyAnswerResponse](doc/SurveyAnswerResponse.md)
  - [SurveyAttributeTypeInfo](doc/SurveyAttributeTypeInfo.md)
  - [SurveyAttributeValueItem](doc/SurveyAttributeValueItem.md)
  - [SurveyAttributeValueItemQueryFragment](doc/SurveyAttributeValueItemQueryFragment.md)
  - [SurveyAttributeValuesResponse](doc/SurveyAttributeValuesResponse.md)
+ - [SurveyControllerCreateSurveyQues200Response](doc/SurveyControllerCreateSurveyQues200Response.md)
  - [SurveyControllerDeleteSurveyQuestion200Response](doc/SurveyControllerDeleteSurveyQuestion200Response.md)
  - [SurveyControllerGetAllSurveys200Response](doc/SurveyControllerGetAllSurveys200Response.md)
+ - [SurveyControllerGetAllSurveys401Response](doc/SurveyControllerGetAllSurveys401Response.md)
+ - [SurveyControllerGetAllSurveys403Response](doc/SurveyControllerGetAllSurveys403Response.md)
  - [SurveyControllerGetAttributeTypes200Response](doc/SurveyControllerGetAttributeTypes200Response.md)
  - [SurveyControllerGetAttributeValues200Response](doc/SurveyControllerGetAttributeValues200Response.md)
  - [SurveyControllerGetSurveyHistoryListByUserId200Response](doc/SurveyControllerGetSurveyHistoryListByUserId200Response.md)
  - [SurveyControllerGetSurveyQuesAnwsByUserId200Response](doc/SurveyControllerGetSurveyQuesAnwsByUserId200Response.md)
  - [SurveyControllerGetSurveyQuesById200Response](doc/SurveyControllerGetSurveyQuesById200Response.md)
+ - [SurveyControllerReorderQuestions200Response](doc/SurveyControllerReorderQuestions200Response.md)
  - [SurveyGroupedAnswerItem](doc/SurveyGroupedAnswerItem.md)
  - [SurveyQuesAnsDetailRequest](doc/SurveyQuesAnsDetailRequest.md)
  - [SurveyQuestionAnswerResponse](doc/SurveyQuestionAnswerResponse.md)
  - [SurveyQuestionRequest](doc/SurveyQuestionRequest.md)
  - [SurveyQuestionResponse](doc/SurveyQuestionResponse.md)
  - [TrendControllerGetProductFromTrendCaching200Response](doc/TrendControllerGetProductFromTrendCaching200Response.md)
- - [TrendControllerGetProductTrendJobResult200Response](doc/TrendControllerGetProductTrendJobResult200Response.md)
  - [TrendControllerSummarizeLogsStructured200Response](doc/TrendControllerSummarizeLogsStructured200Response.md)
  - [UpdateAdminInstructionRequest](doc/UpdateAdminInstructionRequest.md)
- - [UpdateCartItemRequest](doc/UpdateCartItemRequest.md)
  - [UserLogSummaryRequest](doc/UserLogSummaryRequest.md)
  - [UserLogSummaryResponse](doc/UserLogSummaryResponse.md)
  - [VariantMediaResponse](doc/VariantMediaResponse.md)

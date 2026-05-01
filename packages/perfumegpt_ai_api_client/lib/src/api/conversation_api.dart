@@ -9,10 +9,15 @@ import 'dart:convert';
 import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_conversation_v8200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/chat_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_chat_v11200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations_paginated200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/conversation_request_dto.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_check_ready400_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot404_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot500_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
 
 class ConversationApi {
 
@@ -20,11 +25,11 @@ class ConversationApi {
 
   const ConversationApi(this._dio);
 
-  /// Chat V10 (Profile-first + Structured Search)
+  /// Chat với AI (Advanced V10 logic)
   /// 
   ///
   /// Parameters:
-  /// * [conversationRequestDto] 
+  /// * [chatRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -34,8 +39,8 @@ class ConversationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [ConversationControllerGetAllConversations200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerGetAllConversations200Response>> conversationControllerConversationV10({ 
-    required ConversationRequestDto conversationRequestDto,
+  Future<Response<ConversationControllerGetAllConversations200Response>> conversationControllerChat({ 
+    required ChatRequest chatRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -66,7 +71,7 @@ class ConversationApi {
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(conversationRequestDto);
+_bodyData=jsonEncode(chatRequest);
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -120,7 +125,7 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   /// 
   ///
   /// Parameters:
-  /// * [conversationRequestDto] 
+  /// * [chatRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -130,8 +135,8 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   ///
   /// Returns a [Future] containing a [Response] with a [ConversationControllerGetAllConversations200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerGetAllConversations200Response>> conversationControllerConversationV10Staff({ 
-    required ConversationRequestDto conversationRequestDto,
+  Future<Response<ConversationControllerGetAllConversations200Response>> conversationControllerChatStaff({ 
+    required ChatRequest chatRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -162,7 +167,7 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(conversationRequestDto);
+_bodyData=jsonEncode(chatRequest);
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -212,11 +217,11 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     );
   }
 
-  /// Chat V8
+  /// Chat với AI (V11 — individual message persistence)
   /// 
   ///
   /// Parameters:
-  /// * [conversationRequestDto] 
+  /// * [chatRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -224,10 +229,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ConversationControllerConversationV8200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ConversationControllerChatV11200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerConversationV8200Response>> conversationControllerConversationV8({ 
-    required ConversationRequestDto conversationRequestDto,
+  Future<Response<ConversationControllerChatV11200Response>> conversationControllerChatV11({ 
+    required ChatRequest chatRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -235,7 +240,7 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/conversation/chat/v8';
+    final _path = r'/conversation/chat/v11';
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -258,7 +263,7 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(conversationRequestDto);
+_bodyData=jsonEncode(chatRequest);
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(
@@ -280,11 +285,11 @@ _bodyData=jsonEncode(conversationRequestDto);
       onReceiveProgress: onReceiveProgress,
     );
 
-    ConversationControllerConversationV8200Response? _responseData;
+    ConversationControllerChatV11200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ConversationControllerConversationV8200Response, ConversationControllerConversationV8200Response>(rawData, 'ConversationControllerConversationV8200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<ConversationControllerChatV11200Response, ConversationControllerChatV11200Response>(rawData, 'ConversationControllerChatV11200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -296,7 +301,103 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerConve
       );
     }
 
-    return Response<ConversationControllerConversationV8200Response>(
+    return Response<ConversationControllerChatV11200Response>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Chat V11 Staff (Quick Counter Consultation Mode)
+  /// 
+  ///
+  /// Parameters:
+  /// * [chatRequest] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ConversationControllerChatV11200Response] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<ConversationControllerChatV11200Response>> conversationControllerChatV11Staff({ 
+    required ChatRequest chatRequest,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/conversation/chat/v11-staff';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+_bodyData=jsonEncode(chatRequest);
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ConversationControllerChatV11200Response? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<ConversationControllerChatV11200Response, ConversationControllerChatV11200Response>(rawData, 'ConversationControllerChatV11200Response', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ConversationControllerChatV11200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -378,13 +479,15 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     );
   }
 
-  /// Lấy danh sách cuộc hội thoại có phân trang
+  /// Lấy danh sách hội thoại có phân trang
   /// 
   ///
   /// Parameters:
-  /// * [pageNumber] - Số trang (bắt đầu từ 1)
+  /// * [pageNumber] - Số trang
   /// * [pageSize] - Số bản ghi mỗi trang
-  /// * [userId] - Lọc theo user ID
+  /// * [sortOrder] - Thứ tự sắp xếp
+  /// * [isDescending] - Sắp xếp giảm dần
+  /// * [userId] - ID người dùng
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -392,11 +495,13 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [ConversationControllerGetAllConversationsPaginated200Response] as data
+  /// Returns a [Future] containing a [Response] with a [ConversationControllerGetMyConversationHistory200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerGetAllConversationsPaginated200Response>> conversationControllerGetAllConversationsPaginated({ 
+  Future<Response<ConversationControllerGetMyConversationHistory200Response>> conversationControllerGetAllConversationsPaginated({ 
     num pageNumber = 1,
     num pageSize = 10,
+    String sortOrder = 'asc',
+    bool isDescending = false,
     String? userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -419,8 +524,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     );
 
     final _queryParameters = <String, dynamic>{
-      r'pageNumber': pageNumber,
-      r'pageSize': pageSize,
+      r'PageNumber': pageNumber,
+      r'PageSize': pageSize,
+      r'SortOrder': sortOrder,
+      r'IsDescending': isDescending,
       if (userId != null) r'userId': userId,
     };
 
@@ -433,11 +540,11 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
       onReceiveProgress: onReceiveProgress,
     );
 
-    ConversationControllerGetAllConversationsPaginated200Response? _responseData;
+    ConversationControllerGetMyConversationHistory200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ConversationControllerGetAllConversationsPaginated200Response, ConversationControllerGetAllConversationsPaginated200Response>(rawData, 'ConversationControllerGetAllConversationsPaginated200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<ConversationControllerGetMyConversationHistory200Response, ConversationControllerGetMyConversationHistory200Response>(rawData, 'ConversationControllerGetMyConversationHistory200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -449,7 +556,7 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
       );
     }
 
-    return Response<ConversationControllerGetAllConversationsPaginated200Response>(
+    return Response<ConversationControllerGetMyConversationHistory200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -511,6 +618,101 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     );
 
     return _response;
+  }
+
+  /// Lấy lịch sử chat của user hiện tại
+  /// 
+  ///
+  /// Parameters:
+  /// * [pageNumber] - Số trang
+  /// * [pageSize] - Số bản ghi mỗi trang
+  /// * [sortOrder] - Thứ tự sắp xếp
+  /// * [isDescending] - Sắp xếp giảm dần
+  /// * [userId] - Guest userId (nếu chưa đăng nhập)
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ConversationControllerGetMyConversationHistory200Response] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<ConversationControllerGetMyConversationHistory200Response>> conversationControllerGetMyConversationHistory({ 
+    num pageNumber = 1,
+    num pageSize = 10,
+    String sortOrder = 'asc',
+    bool isDescending = false,
+    String? userId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/conversation/my/history';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'jwt',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      r'PageNumber': pageNumber,
+      r'PageSize': pageSize,
+      r'SortOrder': sortOrder,
+      r'IsDescending': isDescending,
+      if (userId != null) r'userId': userId,
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ConversationControllerGetMyConversationHistory200Response? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<ConversationControllerGetMyConversationHistory200Response, ConversationControllerGetMyConversationHistory200Response>(rawData, 'ConversationControllerGetMyConversationHistory200Response', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ConversationControllerGetMyConversationHistory200Response>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_ai_api_client/src/model/event_log.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -76,7 +77,7 @@ class LogControllerGetAllUserLogs200Response {
   )
 
 
-  final Object? data;
+  final List<EventLog>? data;
 
 
 

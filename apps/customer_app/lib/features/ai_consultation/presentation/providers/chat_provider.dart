@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -25,39 +26,38 @@ class ChatSession extends _$ChatSession {
       if (latestConversation != null) {
         _conversationId = latestConversation.id;
         _guestUserId = latestConversation.userId;
-        final messages =
-            latestConversation.messages?.map((m) {
-              final isAi = m.sender == 'assistant';
-              final authorId = isAi
-                  ? 'ai'
-                  : (latestConversation.userId ?? 'user');
+        final messages = latestConversation.messages.asMap().entries.map((
+          entry,
+        ) {
+          final index = entry.key;
+          final m = entry.value;
+          final isAi = m.sender == MessageResponseSenderEnum.assistant;
+          final authorId = isAi ? 'ai' : (latestConversation.userId);
 
-              if (isAi &&
-                  (m.message.products != null &&
-                          m.message.products!.isNotEmpty ||
-                      m.message.suggestedQuestions.isNotEmpty)) {
-                return Message.custom(
-                  authorId: authorId,
-                  createdAt: m.createdAt,
-                  id: m.id,
-                  metadata: {
-                    'text': m.message.message,
-                    'products': m.message.products
-                        ?.map((p) => p.toJson())
-                        .toList(),
-                    'suggestedQuestions': m.message.suggestedQuestions,
-                  },
-                );
-              }
+          final messageId = '${latestConversation.id}_$index';
 
-              return Message.text(
-                authorId: authorId,
-                createdAt: m.createdAt,
-                id: m.id,
-                text: m.message.message,
-              );
-            }).toList() ??
-            [];
+          if (isAi &&
+              (m.message.products != null && m.message.products!.isNotEmpty ||
+                  m.message.suggestedQuestions.isNotEmpty)) {
+            return Message.custom(
+              authorId: authorId,
+              createdAt: m.createdAt,
+              id: messageId,
+              metadata: {
+                'text': m.message.message,
+                'products': m.message.products?.map((p) => p.toJson()).toList(),
+                'suggestedQuestions': m.message.suggestedQuestions,
+              },
+            );
+          }
+
+          return Message.text(
+            authorId: authorId,
+            createdAt: m.createdAt,
+            id: messageId,
+            text: m.message.message,
+          );
+        }).toList();
 
         return messages;
       }
@@ -102,30 +102,30 @@ class ChatSession extends _$ChatSession {
           msgText = '';
         }
 
-        return MessageRequestDto(
+        return ChatMessageRequest(
           sender: m.authorId == 'ai'
-              ? MessageRequestDtoSenderEnum.assistant
-              : MessageRequestDtoSenderEnum.user,
-          message: MessageRequestDtoMessage(
+              ? ChatMessageRequestSenderEnum.assistant
+              : ChatMessageRequestSenderEnum.user,
+          message: ChatMessageRequestMessage(
             message: msgText,
             suggestedQuestions: [],
           ),
         );
       }).toList();
 
-      final request = ConversationRequestDto(
+      final request = ChatRequest(
         id: _conversationId!,
         userId: userId,
         messages: history,
+        isMobile: true,
       );
 
-      final response = await conversationApi
-          .conversationControllerConversationV10(
-            conversationRequestDto: request,
-          );
+      final response = await conversationApi.conversationControllerChat(
+        chatRequest: request,
+      );
 
       final conversationResponse = response.data?.data;
-      final aiLastMessage = conversationResponse?.messages?.lastOrNull;
+      final aiLastMessage = conversationResponse?.messages.lastOrNull;
 
       if (aiLastMessage != null) {
         final messageData = aiLastMessage.message;

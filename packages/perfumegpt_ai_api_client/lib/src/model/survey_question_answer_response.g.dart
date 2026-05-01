@@ -17,6 +17,8 @@ abstract class _$SurveyQuestionAnswerResponseCWProxy {
 
   SurveyQuestionAnswerResponse userId(String userId);
 
+  SurveyQuestionAnswerResponse aiResult(String? aiResult);
+
   SurveyQuestionAnswerResponse details(
     List<GroupedSurveyQuestionAnswerDetailResponse> details,
   );
@@ -34,6 +36,7 @@ abstract class _$SurveyQuestionAnswerResponseCWProxy {
     DateTime updatedAt,
     bool isActive,
     String userId,
+    String? aiResult,
     List<GroupedSurveyQuestionAnswerDetailResponse> details,
   });
 }
@@ -65,6 +68,10 @@ class _$SurveyQuestionAnswerResponseCWProxyImpl
   SurveyQuestionAnswerResponse userId(String userId) => call(userId: userId);
 
   @override
+  SurveyQuestionAnswerResponse aiResult(String? aiResult) =>
+      call(aiResult: aiResult);
+
+  @override
   SurveyQuestionAnswerResponse details(
     List<GroupedSurveyQuestionAnswerDetailResponse> details,
   ) => call(details: details);
@@ -83,6 +90,7 @@ class _$SurveyQuestionAnswerResponseCWProxyImpl
     Object? updatedAt = const $CopyWithPlaceholder(),
     Object? isActive = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
+    Object? aiResult = const $CopyWithPlaceholder(),
     Object? details = const $CopyWithPlaceholder(),
   }) {
     return SurveyQuestionAnswerResponse(
@@ -106,6 +114,10 @@ class _$SurveyQuestionAnswerResponseCWProxyImpl
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable
           : userId as String,
+      aiResult: aiResult == const $CopyWithPlaceholder()
+          ? _value.aiResult
+          // ignore: cast_nullable_to_non_nullable
+          : aiResult as String?,
       details: details == const $CopyWithPlaceholder() || details == null
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
@@ -147,6 +159,7 @@ SurveyQuestionAnswerResponse _$SurveyQuestionAnswerResponseFromJson(
     updatedAt: $checkedConvert('updatedAt', (v) => DateTime.parse(v as String)),
     isActive: $checkedConvert('isActive', (v) => v as bool),
     userId: $checkedConvert('userId', (v) => v as String),
+    aiResult: $checkedConvert('aiResult', (v) => v as String?),
     details: $checkedConvert(
       'details',
       (v) => (v as List<dynamic>)
@@ -169,5 +182,6 @@ Map<String, dynamic> _$SurveyQuestionAnswerResponseToJson(
   'updatedAt': instance.updatedAt.toIso8601String(),
   'isActive': instance.isActive,
   'userId': instance.userId,
+  'aiResult': ?instance.aiResult,
   'details': instance.details.map((e) => e.toJson()).toList(),
 };

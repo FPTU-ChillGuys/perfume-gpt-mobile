@@ -19,6 +19,12 @@ void main() {
       // TODO
     });
 
+    // Thứ tự hiển thị
+    // num order (default value: 0)
+    test('to test the property `order`', () async {
+      // TODO
+    });
+
     // Danh sách câu trả lời
     // List<SurveyAnswerRequest> answers
     test('to test the property `answers`', () async {

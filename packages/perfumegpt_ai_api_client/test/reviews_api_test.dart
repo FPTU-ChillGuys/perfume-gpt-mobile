@@ -16,7 +16,7 @@ void main() {
 
     // Khởi tạo job để tóm tắt đánh giá theo variant ID
     //
-    //Future<EmailControllerSendEmail200Response> reviewControllerCreateReviewSummaryJob(String variantId) async
+    //Future<SurveyControllerCreateSurveyQues200Response> reviewControllerCreateReviewSummaryJob(String variantId) async
     test('test reviewControllerCreateReviewSummaryJob', () async {
       // TODO
     });
@@ -51,21 +51,21 @@ void main() {
 
     // Tóm tắt đánh giá bằng AI theo variant ID
     //
-    //Future<EmailControllerSendEmail200Response> reviewControllerGetReviewSummaryByVariantId(String variantId) async
+    //Future<SurveyControllerCreateSurveyQues200Response> reviewControllerGetReviewSummaryByVariantId(String variantId) async
     test('test reviewControllerGetReviewSummaryByVariantId', () async {
       // TODO
     });
 
     // Tóm tắt đánh giá bằng AI cho tất cả variant
     //
-    //Future<EmailControllerSendEmail200Response> reviewControllerGetReviewSummaryFromAllVariant() async
+    //Future<SurveyControllerCreateSurveyQues200Response> reviewControllerGetReviewSummaryFromAllVariant() async
     test('test reviewControllerGetReviewSummaryFromAllVariant', () async {
       // TODO
     });
 
     // Kiểm tra trạng thái hoàn thành của job tóm tắt đánh giá
     //
-    //Future<TrendControllerGetProductTrendJobResult200Response> reviewControllerGetReviewSummaryJobResult(String jobId, String variantId) async
+    //Future<SurveyControllerReorderQuestions200Response> reviewControllerGetReviewSummaryJobResult(String jobId, String variantId) async
     test('test reviewControllerGetReviewSummaryJobResult', () async {
       // TODO
     });

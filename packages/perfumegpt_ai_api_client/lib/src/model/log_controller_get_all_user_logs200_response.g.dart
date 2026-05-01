@@ -13,7 +13,7 @@ abstract class _$LogControllerGetAllUserLogs200ResponseCWProxy {
 
   LogControllerGetAllUserLogs200Response details(String? details);
 
-  LogControllerGetAllUserLogs200Response data(Object? data);
+  LogControllerGetAllUserLogs200Response data(List<EventLog>? data);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LogControllerGetAllUserLogs200Response(...).copyWith.fieldName(value)`.
@@ -26,7 +26,7 @@ abstract class _$LogControllerGetAllUserLogs200ResponseCWProxy {
     bool? success,
     String? error,
     String? details,
-    Object? data,
+    List<EventLog>? data,
   });
 }
 
@@ -51,7 +51,8 @@ class _$LogControllerGetAllUserLogs200ResponseCWProxyImpl
       call(details: details);
 
   @override
-  LogControllerGetAllUserLogs200Response data(Object? data) => call(data: data);
+  LogControllerGetAllUserLogs200Response data(List<EventLog>? data) =>
+      call(data: data);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -83,7 +84,7 @@ class _$LogControllerGetAllUserLogs200ResponseCWProxyImpl
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
-          : data as Object?,
+          : data as List<EventLog>?,
     );
   }
 }
@@ -110,7 +111,12 @@ _$LogControllerGetAllUserLogs200ResponseFromJson(Map<String, dynamic> json) =>
         success: $checkedConvert('success', (v) => v as bool?),
         error: $checkedConvert('error', (v) => v as String?),
         details: $checkedConvert('details', (v) => v as String?),
-        data: $checkedConvert('data', (v) => v),
+        data: $checkedConvert(
+          'data',
+          (v) => (v as List<dynamic>?)
+              ?.map((e) => EventLog.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        ),
       );
       return val;
     });
@@ -121,5 +127,5 @@ Map<String, dynamic> _$LogControllerGetAllUserLogs200ResponseToJson(
   'success': ?instance.success,
   'error': ?instance.error,
   'details': ?instance.details,
-  'data': ?instance.data,
+  'data': ?instance.data?.map((e) => e.toJson()).toList(),
 };

@@ -9,10 +9,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**surveyControllerChatSurvey**](SurveysApi.md#surveycontrollerchatsurvey) | **POST** /surveys/user | Trả lời survey và nhận gợi ý AI
-[**surveyControllerChatSurveyV2**](SurveysApi.md#surveycontrollerchatsurveyv2) | **POST** /surveys/user/v2 | Trả lời survey và nhận gợi ý AI (v2 - monolithic query)
-[**surveyControllerChatSurveyV3**](SurveysApi.md#surveycontrollerchatsurveyv3) | **POST** /surveys/user/v3 | Trả lời survey và nhận gợi ý AI (v3 - per-question query, skip 0 products)
-[**surveyControllerChatSurveyV4**](SurveysApi.md#surveycontrollerchatsurveyv4) | **POST** /surveys/user/v4 | Trả lời survey V4 — query-based (no AI analysis, trực tiếp query sản phẩm)
 [**surveyControllerChatSurveyV5**](SurveysApi.md#surveycontrollerchatsurveyv5) | **POST** /surveys/user/v5 | Trả lời survey V5 — Hybrid (AI phân tích + Query-based + Ranking score)
 [**surveyControllerCheckFirstTime**](SurveysApi.md#surveycontrollercheckfirsttime) | **GET** /surveys/user/{userId}/check-first-time | Kiểm tra người dùng đã làm survey lần đầu chưa
 [**surveyControllerCreateQuestionFromAttribute**](SurveysApi.md#surveycontrollercreatequestionfromattribute) | **POST** /surveys/questions/from-attribute | Tạo câu hỏi survey từ thuộc tính (auto-generate query answers)
@@ -25,183 +21,12 @@ Method | HTTP request | Description
 [**surveyControllerGetSurveyHistoryListByUserId**](SurveysApi.md#surveycontrollergetsurveyhistorylistbyuserid) | **GET** /surveys/user/{userId}/history | Lấy danh sách lịch sử tất cả các lần trả lời survey của người dùng
 [**surveyControllerGetSurveyQuesAnwsByUserId**](SurveysApi.md#surveycontrollergetsurveyquesanwsbyuserid) | **GET** /surveys/user/{userId} | Lấy tất cả câu hỏi và câu trả lời survey của người dùng
 [**surveyControllerGetSurveyQuesById**](SurveysApi.md#surveycontrollergetsurveyquesbyid) | **GET** /surveys/questions/{id} | Lấy câu hỏi survey theo ID
+[**surveyControllerReorderQuestions**](SurveysApi.md#surveycontrollerreorderquestions) | **PATCH** /surveys/questions/reorder | Sắp xếp lại thứ tự câu hỏi survey
 [**surveyControllerUpdateSurveyAnswer**](SurveysApi.md#surveycontrollerupdatesurveyanswer) | **PUT** /surveys/questions/{id} | Cập nhật câu hỏi survey (questionType và/hoặc answers)
 
 
-# **surveyControllerChatSurvey**
-> EmailControllerSendEmail200Response surveyControllerChatSurvey(surveyQuesAnsDetailRequest, userId)
-
-Trả lời survey và nhận gợi ý AI
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getSurveysApi();
-final List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest = ; // List<SurveyQuesAnsDetailRequest> | 
-final String userId = userId_example; // String | ID của người dùng (optional, fallback from request fingerprint)
-
-try {
-    final response = api.surveyControllerChatSurvey(surveyQuesAnsDetailRequest, userId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling SurveysApi->surveyControllerChatSurvey: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **surveyQuesAnsDetailRequest** | [**List&lt;SurveyQuesAnsDetailRequest&gt;**](SurveyQuesAnsDetailRequest.md)|  | 
- **userId** | **String**| ID của người dùng (optional, fallback from request fingerprint) | [optional] 
-
-### Return type
-
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **surveyControllerChatSurveyV2**
-> EmailControllerSendEmail200Response surveyControllerChatSurveyV2(surveyQuesAnsDetailRequest, userId)
-
-Trả lời survey và nhận gợi ý AI (v2 - monolithic query)
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getSurveysApi();
-final List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest = ; // List<SurveyQuesAnsDetailRequest> | 
-final String userId = userId_example; // String | ID của người dùng (optional, fallback from request fingerprint)
-
-try {
-    final response = api.surveyControllerChatSurveyV2(surveyQuesAnsDetailRequest, userId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling SurveysApi->surveyControllerChatSurveyV2: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **surveyQuesAnsDetailRequest** | [**List&lt;SurveyQuesAnsDetailRequest&gt;**](SurveyQuesAnsDetailRequest.md)|  | 
- **userId** | **String**| ID của người dùng (optional, fallback from request fingerprint) | [optional] 
-
-### Return type
-
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **surveyControllerChatSurveyV3**
-> EmailControllerSendEmail200Response surveyControllerChatSurveyV3(surveyQuesAnsDetailRequest, userId)
-
-Trả lời survey và nhận gợi ý AI (v3 - per-question query, skip 0 products)
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getSurveysApi();
-final List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest = ; // List<SurveyQuesAnsDetailRequest> | 
-final String userId = userId_example; // String | ID của người dùng (optional, fallback from request fingerprint)
-
-try {
-    final response = api.surveyControllerChatSurveyV3(surveyQuesAnsDetailRequest, userId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling SurveysApi->surveyControllerChatSurveyV3: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **surveyQuesAnsDetailRequest** | [**List&lt;SurveyQuesAnsDetailRequest&gt;**](SurveyQuesAnsDetailRequest.md)|  | 
- **userId** | **String**| ID của người dùng (optional, fallback from request fingerprint) | [optional] 
-
-### Return type
-
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **surveyControllerChatSurveyV4**
-> EmailControllerSendEmail200Response surveyControllerChatSurveyV4(surveyQuesAnsDetailRequest, userId)
-
-Trả lời survey V4 — query-based (no AI analysis, trực tiếp query sản phẩm)
-
-### Example
-```dart
-import 'package:perfumegpt_ai_api_client/api.dart';
-
-final api = PerfumegptAiApiClient().getSurveysApi();
-final List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest = ; // List<SurveyQuesAnsDetailRequest> | 
-final String userId = userId_example; // String | ID của người dùng
-
-try {
-    final response = api.surveyControllerChatSurveyV4(surveyQuesAnsDetailRequest, userId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling SurveysApi->surveyControllerChatSurveyV4: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **surveyQuesAnsDetailRequest** | [**List&lt;SurveyQuesAnsDetailRequest&gt;**](SurveyQuesAnsDetailRequest.md)|  | 
- **userId** | **String**| ID của người dùng | [optional] 
-
-### Return type
-
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **surveyControllerChatSurveyV5**
-> EmailControllerSendEmail200Response surveyControllerChatSurveyV5(surveyQuesAnsDetailRequest, userId)
+> SurveyControllerCreateSurveyQues200Response surveyControllerChatSurveyV5(surveyQuesAnsDetailRequest, userId)
 
 Trả lời survey V5 — Hybrid (AI phân tích + Query-based + Ranking score)
 
@@ -230,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -285,7 +110,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **surveyControllerCreateQuestionFromAttribute**
-> EmailControllerSendEmail200Response surveyControllerCreateQuestionFromAttribute(createQuestionFromAttributeRequest)
+> SurveyControllerCreateSurveyQues200Response surveyControllerCreateQuestionFromAttribute(createQuestionFromAttributeRequest)
 
 Tạo câu hỏi survey từ thuộc tính (auto-generate query answers)
 
@@ -312,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -326,7 +151,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **surveyControllerCreateSurveyQues**
-> EmailControllerSendEmail200Response surveyControllerCreateSurveyQues(surveyQuestionRequest)
+> SurveyControllerCreateSurveyQues200Response surveyControllerCreateSurveyQues(surveyQuestionRequest)
 
 Tạo câu hỏi survey mới
 
@@ -353,7 +178,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -367,7 +192,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **surveyControllerCreateSurveyQueses**
-> EmailControllerSendEmail200Response surveyControllerCreateSurveyQueses(surveyQuestionRequest)
+> SurveyControllerCreateSurveyQues200Response surveyControllerCreateSurveyQueses(surveyQuestionRequest)
 
 Tạo nhiều câu hỏi survey cùng lúc
 
@@ -394,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -682,6 +507,47 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **surveyControllerReorderQuestions**
+> SurveyControllerReorderQuestions200Response surveyControllerReorderQuestions(reorderQuestionsRequest)
+
+Sắp xếp lại thứ tự câu hỏi survey
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getSurveysApi();
+final ReorderQuestionsRequest reorderQuestionsRequest = ; // ReorderQuestionsRequest | 
+
+try {
+    final response = api.surveyControllerReorderQuestions(reorderQuestionsRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SurveysApi->surveyControllerReorderQuestions: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reorderQuestionsRequest** | [**ReorderQuestionsRequest**](ReorderQuestionsRequest.md)|  | 
+
+### Return type
+
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

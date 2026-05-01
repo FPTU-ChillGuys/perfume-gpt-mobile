@@ -7,23 +7,17 @@ import 'package:perfumegpt_ai_api_client/src/auth/api_key_auth.dart';
 import 'package:perfumegpt_ai_api_client/src/auth/basic_auth.dart';
 import 'package:perfumegpt_ai_api_client/src/auth/bearer_auth.dart';
 import 'package:perfumegpt_ai_api_client/src/auth/oauth.dart';
-import 'package:perfumegpt_ai_api_client/src/api/ai_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/ai_acceptance_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/admin_instructions_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/app_api.dart';
-import 'package:perfumegpt_ai_api_client/src/api/cart_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/conversation_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/dictionary_api.dart';
-import 'package:perfumegpt_ai_api_client/src/api/email_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/hybrid_search_embeddings_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/inventory_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/logs_api.dart';
-import 'package:perfumegpt_ai_api_client/src/api/orders_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/products_api.dart';
-import 'package:perfumegpt_ai_api_client/src/api/profile_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/recommendation_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/reviews_api.dart';
-import 'package:perfumegpt_ai_api_client/src/api/sourcing_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/surveys_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/trends_api.dart';
 
@@ -78,12 +72,6 @@ class PerfumegptAiApiClient {
     }
   }
 
-  /// Get AIApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  AIApi getAIApi() {
-    return AIApi(dio);
-  }
-
   /// Get AIAcceptanceApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   AIAcceptanceApi getAIAcceptanceApi() {
@@ -102,12 +90,6 @@ class PerfumegptAiApiClient {
     return AppApi(dio);
   }
 
-  /// Get CartApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  CartApi getCartApi() {
-    return CartApi(dio);
-  }
-
   /// Get ConversationApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   ConversationApi getConversationApi() {
@@ -118,12 +100,6 @@ class PerfumegptAiApiClient {
   /// by doing that all interceptors will not be executed
   DictionaryApi getDictionaryApi() {
     return DictionaryApi(dio);
-  }
-
-  /// Get EmailApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  EmailApi getEmailApi() {
-    return EmailApi(dio);
   }
 
   /// Get HybridSearchEmbeddingsApi instance, base route and serializer can be overridden by a given but be careful,
@@ -144,22 +120,10 @@ class PerfumegptAiApiClient {
     return LogsApi(dio);
   }
 
-  /// Get OrdersApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  OrdersApi getOrdersApi() {
-    return OrdersApi(dio);
-  }
-
   /// Get ProductsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   ProductsApi getProductsApi() {
     return ProductsApi(dio);
-  }
-
-  /// Get ProfileApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  ProfileApi getProfileApi() {
-    return ProfileApi(dio);
   }
 
   /// Get RecommendationApi instance, base route and serializer can be overridden by a given but be careful,
@@ -172,12 +136,6 @@ class PerfumegptAiApiClient {
   /// by doing that all interceptors will not be executed
   ReviewsApi getReviewsApi() {
     return ReviewsApi(dio);
-  }
-
-  /// Get SourcingApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  SourcingApi getSourcingApi() {
-    return SourcingApi(dio);
   }
 
   /// Get SurveysApi instance, base route and serializer can be overridden by a given but be careful,

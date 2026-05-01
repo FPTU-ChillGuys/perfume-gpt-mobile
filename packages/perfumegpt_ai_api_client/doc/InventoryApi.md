@@ -64,7 +64,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -104,12 +104,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerCreateInventoryReportJob**
-> EmailControllerSendEmail200Response inventoryControllerCreateInventoryReportJob(forceRefresh)
+> SurveyControllerCreateSurveyQues200Response inventoryControllerCreateInventoryReportJob(forceRefresh)
 
 Khởi tạo job để tạo báo cáo tồn kho bằng AI
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerCreateRestockReportJob**
-> EmailControllerSendEmail200Response inventoryControllerCreateRestockReportJob(forceRefresh)
+> SurveyControllerCreateSurveyQues200Response inventoryControllerCreateRestockReportJob(forceRefresh)
 
 Khởi tạo job để phân tích nhu cầu nhập hàng (restock)
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -191,7 +191,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerGetAIInventoryReport**
-> EmailControllerSendEmail200Response inventoryControllerGetAIInventoryReport()
+> SurveyControllerCreateSurveyQues200Response inventoryControllerGetAIInventoryReport()
 
 Tạo báo cáo tồn kho bằng AI
 
@@ -214,7 +214,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -228,7 +228,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerGetAIRestockingNeeds**
-> TrendControllerGetProductTrendJobResult200Response inventoryControllerGetAIRestockingNeeds()
+> SurveyControllerReorderQuestions200Response inventoryControllerGetAIRestockingNeeds()
 
 Phân tích nhu cầu nhập hàng dựa trên xu hướng (AI)
 
@@ -251,7 +251,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TrendControllerGetProductTrendJobResult200Response**](TrendControllerGetProductTrendJobResult200Response.md)
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
 
 ### Authorization
 
@@ -381,7 +381,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerGetInventoryReport**
-> EmailControllerSendEmail200Response inventoryControllerGetInventoryReport()
+> SurveyControllerCreateSurveyQues200Response inventoryControllerGetInventoryReport()
 
 Lấy báo cáo tồn kho
 
@@ -404,7 +404,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -418,7 +418,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerGetInventoryReportJobResult**
-> TrendControllerGetProductTrendJobResult200Response inventoryControllerGetInventoryReportJobResult(jobId)
+> SurveyControllerReorderQuestions200Response inventoryControllerGetInventoryReportJobResult(jobId)
 
 Kiểm tra trạng thái hoàn thành của job báo cáo tồn kho
 
@@ -445,7 +445,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TrendControllerGetProductTrendJobResult200Response**](TrendControllerGetProductTrendJobResult200Response.md)
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
 
 ### Authorization
 
@@ -668,7 +668,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **inventoryControllerGetRestockJobResult**
-> TrendControllerGetProductTrendJobResult200Response inventoryControllerGetRestockJobResult(jobId)
+> SurveyControllerReorderQuestions200Response inventoryControllerGetRestockJobResult(jobId)
 
 Kiểm tra trạng thái hoàn thành của job phân tích nhu cầu nhập hàng (restock)
 
@@ -695,7 +695,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TrendControllerGetProductTrendJobResult200Response**](TrendControllerGetProductTrendJobResult200Response.md)
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
 
 ### Authorization
 

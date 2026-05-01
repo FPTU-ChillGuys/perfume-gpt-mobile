@@ -138,7 +138,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **adminInstructionControllerGetCombinedPromptByType**
-> EmailControllerSendEmail200Response adminInstructionControllerGetCombinedPromptByType(type)
+> SurveyControllerCreateSurveyQues200Response adminInstructionControllerGetCombinedPromptByType(type)
 
 Gộp chỉ thị theo loại thành prompt cho AI
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 

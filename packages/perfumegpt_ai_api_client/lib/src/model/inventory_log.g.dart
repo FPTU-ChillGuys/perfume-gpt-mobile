@@ -160,4 +160,5 @@ Map<String, dynamic> _$InventoryLogToJson(InventoryLog instance) =>
 const _$InventoryLogTypeEnumEnumMap = {
   InventoryLogTypeEnum.REPORT: 'REPORT',
   InventoryLogTypeEnum.RESTOCK: 'RESTOCK',
+  InventoryLogTypeEnum.SLOW_STOCK: 'SLOW_STOCK',
 };

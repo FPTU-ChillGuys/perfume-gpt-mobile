@@ -12,8 +12,12 @@ import 'package:dio/dio.dart';
 import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_controller_create_instruction200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_controller_get_all_instructions200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/create_admin_instruction_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/email_controller_send_email200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot404_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot500_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_delete_survey_question200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/update_admin_instruction_request.dart';
 
 class AdminInstructionsApi {
@@ -284,9 +288,9 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [EmailControllerSendEmail200Response] as data
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<EmailControllerSendEmail200Response>> adminInstructionControllerGetCombinedPromptByType({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>> adminInstructionControllerGetCombinedPromptByType({ 
     required String type,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -322,11 +326,11 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
       onReceiveProgress: onReceiveProgress,
     );
 
-    EmailControllerSendEmail200Response? _responseData;
+    SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200Response, EmailControllerSendEmail200Response>(rawData, 'EmailControllerSendEmail200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -338,7 +342,7 @@ _responseData = rawData == null ? null : deserialize<EmailControllerSendEmail200
       );
     }
 
-    return Response<EmailControllerSendEmail200Response>(
+    return Response<SurveyControllerCreateSurveyQues200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

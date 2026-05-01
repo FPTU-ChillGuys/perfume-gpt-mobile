@@ -122,6 +122,7 @@ const _$CreateAdminInstructionRequestInstructionTypeEnumEnumMap = {
   CreateAdminInstructionRequestInstructionTypeEnum.conversation: 'conversation',
   CreateAdminInstructionRequestInstructionTypeEnum.survey: 'survey',
   CreateAdminInstructionRequestInstructionTypeEnum.restock: 'restock',
+  CreateAdminInstructionRequestInstructionTypeEnum.slowStock: 'slow_stock',
   CreateAdminInstructionRequestInstructionTypeEnum.searchExtraction:
       'search_extraction',
   CreateAdminInstructionRequestInstructionTypeEnum.staffConsultation:

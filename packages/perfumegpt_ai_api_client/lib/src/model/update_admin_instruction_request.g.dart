@@ -119,6 +119,7 @@ const _$UpdateAdminInstructionRequestInstructionTypeEnumEnumMap = {
   UpdateAdminInstructionRequestInstructionTypeEnum.conversation: 'conversation',
   UpdateAdminInstructionRequestInstructionTypeEnum.survey: 'survey',
   UpdateAdminInstructionRequestInstructionTypeEnum.restock: 'restock',
+  UpdateAdminInstructionRequestInstructionTypeEnum.slowStock: 'slow_stock',
   UpdateAdminInstructionRequestInstructionTypeEnum.searchExtraction:
       'search_extraction',
   UpdateAdminInstructionRequestInstructionTypeEnum.staffConsultation:

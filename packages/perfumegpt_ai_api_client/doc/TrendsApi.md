@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **trendControllerCreateProductTrendJob**
-> EmailControllerSendEmail200Response trendControllerCreateProductTrendJob(endDate, forceRefresh, period, startDate)
+> SurveyControllerCreateSurveyQues200Response trendControllerCreateProductTrendJob(endDate, forceRefresh, period, startDate)
 
 Khởi tạo job để lấy product từ xu hướng
 
@@ -51,7 +51,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 
@@ -159,7 +159,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **trendControllerGetProductTrendJobResult**
-> TrendControllerGetProductTrendJobResult200Response trendControllerGetProductTrendJobResult(jobId)
+> SurveyControllerReorderQuestions200Response trendControllerGetProductTrendJobResult(jobId)
 
 Kiểm tra trạng thái hoàn thành của job
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TrendControllerGetProductTrendJobResult200Response**](TrendControllerGetProductTrendJobResult200Response.md)
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
 
 ### Authorization
 
@@ -200,7 +200,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **trendControllerSummarizeLogs**
-> EmailControllerSendEmail200Response trendControllerSummarizeLogs(endDate, allUserLogRequest, period, startDate)
+> SurveyControllerCreateSurveyQues200Response trendControllerSummarizeLogs(endDate, allUserLogRequest, period, startDate)
 
 Dự đoán xu hướng dựa trên tổng hợp log người dùng
 
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EmailControllerSendEmail200Response**](EmailControllerSendEmail200Response.md)
+[**SurveyControllerCreateSurveyQues200Response**](SurveyControllerCreateSurveyQues200Response.md)
 
 ### Authorization
 

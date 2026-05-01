@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **updatedAt** | [**DateTime**](DateTime.md) | Ngày cập nhật gần nhất | 
 **isActive** | **bool** | Trạng thái hoạt động | 
 **userId** | **String** | ID người dùng | 
+**aiResult** | **String** | Kết quả AI recommendation (JSON string) | [optional] 
 **details** | [**List&lt;GroupedSurveyQuestionAnswerDetailResponse&gt;**](GroupedSurveyQuestionAnswerDetailResponse.md) | Danh sách chi tiết câu hỏi - câu trả lời | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

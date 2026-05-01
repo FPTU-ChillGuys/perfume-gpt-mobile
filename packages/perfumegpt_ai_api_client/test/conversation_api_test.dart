@@ -7,24 +7,31 @@ void main() {
   final instance = PerfumegptAiApiClient().getConversationApi();
 
   group(ConversationApi, () {
-    // Chat V10 (Profile-first + Structured Search)
+    // Chat với AI (Advanced V10 logic)
     //
-    //Future<ConversationControllerGetAllConversations200Response> conversationControllerConversationV10(ConversationRequestDto conversationRequestDto) async
-    test('test conversationControllerConversationV10', () async {
+    //Future<ConversationControllerGetAllConversations200Response> conversationControllerChat(ChatRequest chatRequest) async
+    test('test conversationControllerChat', () async {
       // TODO
     });
 
     // Chat V10 Staff (Quick Counter Consultation Mode)
     //
-    //Future<ConversationControllerGetAllConversations200Response> conversationControllerConversationV10Staff(ConversationRequestDto conversationRequestDto) async
-    test('test conversationControllerConversationV10Staff', () async {
+    //Future<ConversationControllerGetAllConversations200Response> conversationControllerChatStaff(ChatRequest chatRequest) async
+    test('test conversationControllerChatStaff', () async {
       // TODO
     });
 
-    // Chat V8
+    // Chat với AI (V11 — individual message persistence)
     //
-    //Future<ConversationControllerConversationV8200Response> conversationControllerConversationV8(ConversationRequestDto conversationRequestDto) async
-    test('test conversationControllerConversationV8', () async {
+    //Future<ConversationControllerChatV11200Response> conversationControllerChatV11(ChatRequest chatRequest) async
+    test('test conversationControllerChatV11', () async {
+      // TODO
+    });
+
+    // Chat V11 Staff (Quick Counter Consultation Mode)
+    //
+    //Future<ConversationControllerChatV11200Response> conversationControllerChatV11Staff(ChatRequest chatRequest) async
+    test('test conversationControllerChatV11Staff', () async {
       // TODO
     });
 
@@ -35,9 +42,9 @@ void main() {
       // TODO
     });
 
-    // Lấy danh sách cuộc hội thoại có phân trang
+    // Lấy danh sách hội thoại có phân trang
     //
-    //Future<ConversationControllerGetAllConversationsPaginated200Response> conversationControllerGetAllConversationsPaginated(num pageNumber, num pageSize, { String userId }) async
+    //Future<ConversationControllerGetMyConversationHistory200Response> conversationControllerGetAllConversationsPaginated(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String userId }) async
     test('test conversationControllerGetAllConversationsPaginated', () async {
       // TODO
     });
@@ -46,6 +53,13 @@ void main() {
     //
     //Future conversationControllerGetConversationById(String id) async
     test('test conversationControllerGetConversationById', () async {
+      // TODO
+    });
+
+    // Lấy lịch sử chat của user hiện tại
+    //
+    //Future<ConversationControllerGetMyConversationHistory200Response> conversationControllerGetMyConversationHistory(num pageNumber, num pageSize, String sortOrder, bool isDescending, { String userId }) async
+    test('test conversationControllerGetMyConversationHistory', () async {
       // TODO
     });
 

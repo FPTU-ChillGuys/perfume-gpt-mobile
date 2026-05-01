@@ -25,7 +25,7 @@ void main() {
       // TODO
     });
 
-    // Object data
+    // List<EventLog> data
     test('to test the property `data`', () async {
       // TODO
     });

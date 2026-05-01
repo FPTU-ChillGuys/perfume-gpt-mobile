@@ -43,6 +43,12 @@ void main() {
       // TODO
     });
 
+    // Thứ tự hiển thị
+    // num order
+    test('to test the property `order`', () async {
+      // TODO
+    });
+
     // Danh sách câu trả lời
     // List<SurveyAnswerResponse> answers
     test('to test the property `answers`', () async {

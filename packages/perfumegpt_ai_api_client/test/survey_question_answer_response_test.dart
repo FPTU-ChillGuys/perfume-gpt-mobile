@@ -37,6 +37,12 @@ void main() {
       // TODO
     });
 
+    // Kết quả AI recommendation (JSON string)
+    // String aiResult
+    test('to test the property `aiResult`', () async {
+      // TODO
+    });
+
     // Danh sách chi tiết câu hỏi - câu trả lời
     // List<GroupedSurveyQuestionAnswerDetailResponse> details
     test('to test the property `details`', () async {

@@ -25,7 +25,7 @@ void main() {
       // TODO
     });
 
-    // ConversationDto data
+    // ConversationResponse data
     test('to test the property `data`', () async {
       // TODO
     });

@@ -21,6 +21,8 @@ abstract class _$SurveyQuestionResponseCWProxy {
 
   SurveyQuestionResponse question(String? question);
 
+  SurveyQuestionResponse order(num? order);
+
   SurveyQuestionResponse answers(List<SurveyAnswerResponse>? answers);
 
   /// Creates a new instance with the provided field values.
@@ -37,6 +39,7 @@ abstract class _$SurveyQuestionResponseCWProxy {
     bool isActive,
     SurveyQuestionResponseQuestionTypeEnum? questionType,
     String? question,
+    num? order,
     List<SurveyAnswerResponse>? answers,
   });
 }
@@ -72,6 +75,9 @@ class _$SurveyQuestionResponseCWProxyImpl
   SurveyQuestionResponse question(String? question) => call(question: question);
 
   @override
+  SurveyQuestionResponse order(num? order) => call(order: order);
+
+  @override
   SurveyQuestionResponse answers(List<SurveyAnswerResponse>? answers) =>
       call(answers: answers);
 
@@ -90,6 +96,7 @@ class _$SurveyQuestionResponseCWProxyImpl
     Object? isActive = const $CopyWithPlaceholder(),
     Object? questionType = const $CopyWithPlaceholder(),
     Object? question = const $CopyWithPlaceholder(),
+    Object? order = const $CopyWithPlaceholder(),
     Object? answers = const $CopyWithPlaceholder(),
   }) {
     return SurveyQuestionResponse(
@@ -117,6 +124,10 @@ class _$SurveyQuestionResponseCWProxyImpl
           ? _value.question
           // ignore: cast_nullable_to_non_nullable
           : question as String?,
+      order: order == const $CopyWithPlaceholder()
+          ? _value.order
+          // ignore: cast_nullable_to_non_nullable
+          : order as num?,
       answers: answers == const $CopyWithPlaceholder()
           ? _value.answers
           // ignore: cast_nullable_to_non_nullable
@@ -157,6 +168,7 @@ SurveyQuestionResponse _$SurveyQuestionResponseFromJson(
       ),
     ),
     question: $checkedConvert('question', (v) => v as String?),
+    order: $checkedConvert('order', (v) => v as num?),
     answers: $checkedConvert(
       'answers',
       (v) => (v as List<dynamic>?)
@@ -177,6 +189,7 @@ Map<String, dynamic> _$SurveyQuestionResponseToJson(
   'questionType':
       ?_$SurveyQuestionResponseQuestionTypeEnumEnumMap[instance.questionType],
   'question': ?instance.question,
+  'order': ?instance.order,
   'answers': ?instance.answers?.map((e) => e.toJson()).toList(),
 };
 

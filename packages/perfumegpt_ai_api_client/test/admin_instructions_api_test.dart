@@ -30,7 +30,7 @@ void main() {
 
     // Gộp chỉ thị theo loại thành prompt cho AI
     //
-    //Future<EmailControllerSendEmail200Response> adminInstructionControllerGetCombinedPromptByType(String type) async
+    //Future<SurveyControllerCreateSurveyQues200Response> adminInstructionControllerGetCombinedPromptByType(String type) async
     test('test adminInstructionControllerGetCombinedPromptByType', () async {
       // TODO
     });

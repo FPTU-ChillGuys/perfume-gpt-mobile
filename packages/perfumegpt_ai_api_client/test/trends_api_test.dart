@@ -9,7 +9,7 @@ void main() {
   group(TrendsApi, () {
     // Khởi tạo job để lấy product từ xu hướng
     //
-    //Future<EmailControllerSendEmail200Response> trendControllerCreateProductTrendJob(DateTime endDate, bool forceRefresh, { String period, DateTime startDate }) async
+    //Future<SurveyControllerCreateSurveyQues200Response> trendControllerCreateProductTrendJob(DateTime endDate, bool forceRefresh, { String period, DateTime startDate }) async
     test('test trendControllerCreateProductTrendJob', () async {
       // TODO
     });
@@ -30,14 +30,14 @@ void main() {
 
     // Kiểm tra trạng thái hoàn thành của job
     //
-    //Future<TrendControllerGetProductTrendJobResult200Response> trendControllerGetProductTrendJobResult(String jobId) async
+    //Future<SurveyControllerReorderQuestions200Response> trendControllerGetProductTrendJobResult(String jobId) async
     test('test trendControllerGetProductTrendJobResult', () async {
       // TODO
     });
 
     // Dự đoán xu hướng dựa trên tổng hợp log người dùng
     //
-    //Future<EmailControllerSendEmail200Response> trendControllerSummarizeLogs(DateTime endDate, AllUserLogRequest allUserLogRequest, { String period, DateTime startDate }) async
+    //Future<SurveyControllerCreateSurveyQues200Response> trendControllerSummarizeLogs(DateTime endDate, AllUserLogRequest allUserLogRequest, { String period, DateTime startDate }) async
     test('test trendControllerSummarizeLogs', () async {
       // TODO
     });

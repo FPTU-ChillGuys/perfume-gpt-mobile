@@ -7,37 +7,9 @@ void main() {
   final instance = PerfumegptAiApiClient().getSurveysApi();
 
   group(SurveysApi, () {
-    // Trả lời survey và nhận gợi ý AI
-    //
-    //Future<EmailControllerSendEmail200Response> surveyControllerChatSurvey(List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest, { String userId }) async
-    test('test surveyControllerChatSurvey', () async {
-      // TODO
-    });
-
-    // Trả lời survey và nhận gợi ý AI (v2 - monolithic query)
-    //
-    //Future<EmailControllerSendEmail200Response> surveyControllerChatSurveyV2(List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest, { String userId }) async
-    test('test surveyControllerChatSurveyV2', () async {
-      // TODO
-    });
-
-    // Trả lời survey và nhận gợi ý AI (v3 - per-question query, skip 0 products)
-    //
-    //Future<EmailControllerSendEmail200Response> surveyControllerChatSurveyV3(List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest, { String userId }) async
-    test('test surveyControllerChatSurveyV3', () async {
-      // TODO
-    });
-
-    // Trả lời survey V4 — query-based (no AI analysis, trực tiếp query sản phẩm)
-    //
-    //Future<EmailControllerSendEmail200Response> surveyControllerChatSurveyV4(List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest, { String userId }) async
-    test('test surveyControllerChatSurveyV4', () async {
-      // TODO
-    });
-
     // Trả lời survey V5 — Hybrid (AI phân tích + Query-based + Ranking score)
     //
-    //Future<EmailControllerSendEmail200Response> surveyControllerChatSurveyV5(List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest, { String userId }) async
+    //Future<SurveyControllerCreateSurveyQues200Response> surveyControllerChatSurveyV5(List<SurveyQuesAnsDetailRequest> surveyQuesAnsDetailRequest, { String userId }) async
     test('test surveyControllerChatSurveyV5', () async {
       // TODO
     });
@@ -51,21 +23,21 @@ void main() {
 
     // Tạo câu hỏi survey từ thuộc tính (auto-generate query answers)
     //
-    //Future<EmailControllerSendEmail200Response> surveyControllerCreateQuestionFromAttribute(CreateQuestionFromAttributeRequest createQuestionFromAttributeRequest) async
+    //Future<SurveyControllerCreateSurveyQues200Response> surveyControllerCreateQuestionFromAttribute(CreateQuestionFromAttributeRequest createQuestionFromAttributeRequest) async
     test('test surveyControllerCreateQuestionFromAttribute', () async {
       // TODO
     });
 
     // Tạo câu hỏi survey mới
     //
-    //Future<EmailControllerSendEmail200Response> surveyControllerCreateSurveyQues(SurveyQuestionRequest surveyQuestionRequest) async
+    //Future<SurveyControllerCreateSurveyQues200Response> surveyControllerCreateSurveyQues(SurveyQuestionRequest surveyQuestionRequest) async
     test('test surveyControllerCreateSurveyQues', () async {
       // TODO
     });
 
     // Tạo nhiều câu hỏi survey cùng lúc
     //
-    //Future<EmailControllerSendEmail200Response> surveyControllerCreateSurveyQueses(List<SurveyQuestionRequest> surveyQuestionRequest) async
+    //Future<SurveyControllerCreateSurveyQues200Response> surveyControllerCreateSurveyQueses(List<SurveyQuestionRequest> surveyQuestionRequest) async
     test('test surveyControllerCreateSurveyQueses', () async {
       // TODO
     });
@@ -116,6 +88,13 @@ void main() {
     //
     //Future<SurveyControllerGetSurveyQuesById200Response> surveyControllerGetSurveyQuesById(String id) async
     test('test surveyControllerGetSurveyQuesById', () async {
+      // TODO
+    });
+
+    // Sắp xếp lại thứ tự câu hỏi survey
+    //
+    //Future<SurveyControllerReorderQuestions200Response> surveyControllerReorderQuestions(ReorderQuestionsRequest reorderQuestionsRequest) async
+    test('test surveyControllerReorderQuestions', () async {
       // TODO
     });
 

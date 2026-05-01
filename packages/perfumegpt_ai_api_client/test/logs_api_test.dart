@@ -9,21 +9,21 @@ void main() {
   group(LogsApi, () {
     // Lấy báo cáo log hoạt động người dùng
     //
-    //Future<EmailControllerSendEmail200Response> logControllerCollectLogs(String userId, DateTime endDate, { String period, DateTime startDate }) async
+    //Future<SurveyControllerCreateSurveyQues200Response> logControllerCollectLogs(String userId, DateTime endDate, { String period, DateTime startDate }) async
     test('test logControllerCollectLogs', () async {
       // TODO
     });
 
     // Tạo event log theo contract mới
     //
-    //Future<EmailControllerSendEmail200Response> logControllerCreateEventLog(EventLogCreateRequest eventLogCreateRequest) async
+    //Future<SurveyControllerCreateSurveyQues200Response> logControllerCreateEventLog(EventLogCreateRequest eventLogCreateRequest) async
     test('test logControllerCreateEventLog', () async {
       // TODO
     });
 
     // Tạo bản tóm tắt log người dùng thủ công
     //
-    //Future<EmailControllerSendEmail200Response> logControllerCreateUserLogSummary(UserLogSummaryRequest userLogSummaryRequest) async
+    //Future<SurveyControllerCreateSurveyQues200Response> logControllerCreateUserLogSummary(UserLogSummaryRequest userLogSummaryRequest) async
     test('test logControllerCreateUserLogSummary', () async {
       // TODO
     });
@@ -79,7 +79,7 @@ void main() {
 
     // Lấy báo cáo tất cả log hoạt động người dùng
     //
-    //Future<EmailControllerSendEmail200Response> logControllerGetReportFromAllLogs(DateTime endDate, { String period, DateTime startDate }) async
+    //Future<SurveyControllerCreateSurveyQues200Response> logControllerGetReportFromAllLogs(DateTime endDate, { String period, DateTime startDate }) async
     test('test logControllerGetReportFromAllLogs', () async {
       // TODO
     });
@@ -93,7 +93,7 @@ void main() {
 
     // Xem báo cáo tóm tắt log người dùng theo ID
     //
-    //Future<EmailControllerSendEmail200Response> logControllerGetUserLogsSummaryReportById(String userId, DateTime endDate, DateTime startDate) async
+    //Future<SurveyControllerCreateSurveyQues200Response> logControllerGetUserLogsSummaryReportById(String userId, DateTime endDate, DateTime startDate) async
     test('test logControllerGetUserLogsSummaryReportById', () async {
       // TODO
     });
@@ -107,14 +107,14 @@ void main() {
 
     // Rebuild rolling summary cho tất cả users có logs
     //
-    //Future<EmailControllerSendEmail200Response> logControllerRebuildAllUsersSummary() async
+    //Future<SurveyControllerCreateSurveyQues200Response> logControllerRebuildAllUsersSummary() async
     test('test logControllerRebuildAllUsersSummary', () async {
       // TODO
     });
 
     // Rebuild rolling summary cho user cụ thể từ logs
     //
-    //Future<EmailControllerSendEmail200Response> logControllerRebuildUserSummary(String userId) async
+    //Future<SurveyControllerCreateSurveyQues200Response> logControllerRebuildUserSummary(String userId) async
     test('test logControllerRebuildUserSummary', () async {
       // TODO
     });
