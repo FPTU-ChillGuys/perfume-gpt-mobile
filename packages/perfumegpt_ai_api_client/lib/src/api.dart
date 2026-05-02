@@ -9,10 +9,9 @@ import 'package:perfumegpt_ai_api_client/src/auth/bearer_auth.dart';
 import 'package:perfumegpt_ai_api_client/src/auth/oauth.dart';
 import 'package:perfumegpt_ai_api_client/src/api/ai_acceptance_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/admin_instructions_api.dart';
+import 'package:perfumegpt_ai_api_client/src/api/admin_maintenance_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/app_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/conversation_api.dart';
-import 'package:perfumegpt_ai_api_client/src/api/dictionary_api.dart';
-import 'package:perfumegpt_ai_api_client/src/api/hybrid_search_embeddings_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/inventory_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/logs_api.dart';
 import 'package:perfumegpt_ai_api_client/src/api/products_api.dart';
@@ -84,6 +83,12 @@ class PerfumegptAiApiClient {
     return AdminInstructionsApi(dio);
   }
 
+  /// Get AdminMaintenanceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AdminMaintenanceApi getAdminMaintenanceApi() {
+    return AdminMaintenanceApi(dio);
+  }
+
   /// Get AppApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   AppApi getAppApi() {
@@ -94,18 +99,6 @@ class PerfumegptAiApiClient {
   /// by doing that all interceptors will not be executed
   ConversationApi getConversationApi() {
     return ConversationApi(dio);
-  }
-
-  /// Get DictionaryApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  DictionaryApi getDictionaryApi() {
-    return DictionaryApi(dio);
-  }
-
-  /// Get HybridSearchEmbeddingsApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  HybridSearchEmbeddingsApi getHybridSearchEmbeddingsApi() {
-    return HybridSearchEmbeddingsApi(dio);
   }
 
   /// Get InventoryApi instance, base route and serializer can be overridden by a given but be careful,

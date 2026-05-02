@@ -13,9 +13,9 @@ import 'package:perfumegpt_ai_api_client/src/model/chat_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_chat_v11200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_check_ready400_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot500_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products400_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
 

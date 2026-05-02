@@ -89,6 +89,21 @@ Class | Method | HTTP request | Description
 [*AdminInstructionsApi*](doc/AdminInstructionsApi.md) | [**adminInstructionControllerGetInstructionById**](doc/AdminInstructionsApi.md#admininstructioncontrollergetinstructionbyid) | **GET** /admin/instructions/{id} | Lấy chỉ thị admin theo ID
 [*AdminInstructionsApi*](doc/AdminInstructionsApi.md) | [**adminInstructionControllerGetInstructionsByType**](doc/AdminInstructionsApi.md#admininstructioncontrollergetinstructionsbytype) | **GET** /admin/instructions/type/{type} | Lấy chỉ thị theo loại (system | prompt | rule)
 [*AdminInstructionsApi*](doc/AdminInstructionsApi.md) | [**adminInstructionControllerUpdateInstruction**](doc/AdminInstructionsApi.md#admininstructioncontrollerupdateinstruction) | **PUT** /admin/instructions/{id} | Cập nhật chỉ thị admin
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerAddPhraseRule**](doc/AdminMaintenanceApi.md#adminmaintenancecontrolleraddphraserule) | **POST** /admin/maintenance/parse/add-rule | Add a new phrase rule to active dictionary
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerCheckReady**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollercheckready) | **GET** /admin/maintenance/ready | Check dictionary and NLP readiness
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerDeleteEmbedding**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollerdeleteembedding) | **DELETE** /admin/maintenance/embeddings/{productId} | Delete embedding for a specific product
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerExtractEntities**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollerextractentities) | **POST** /admin/maintenance/parse/extract-entities | Extract raw entities from text
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerGetAllPhraseRules**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollergetallphraserules) | **GET** /admin/maintenance/parse/rules | Get all active phrase rules
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerGetEmbeddingStats**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollergetembeddingstats) | **GET** /admin/maintenance/embeddings/stats | Get embedding statistics
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerGetEntityTypes**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollergetentitytypes) | **GET** /admin/maintenance/entity-types | List all dictionary entity types
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerGetParseRulesTemplate**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollergetparserulestemplate) | **GET** /admin/maintenance/parse/template | Get phrase rules template (seed JSON)
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerGetSnapshot**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollergetsnapshot) | **GET** /admin/maintenance/snapshot | Get current dictionary snapshot
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerParseText**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollerparsetext) | **POST** /admin/maintenance/parse/text | Parse and normalize text
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerRebuildAll**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollerrebuildall) | **POST** /admin/maintenance/rebuild-all | Full rebuild: dictionary + embeddings + BM25
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerRebuildDictionary**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollerrebuilddictionary) | **POST** /admin/maintenance/rebuild/dictionary | Rebuild dictionary only
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerRebuildEmbeddings**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollerrebuildembeddings) | **POST** /admin/maintenance/rebuild/embeddings | Rebuild all embeddings
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerRebuildProductEmbedding**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollerrebuildproductembedding) | **POST** /admin/maintenance/rebuild/embeddings/{productId} | Rebuild embedding for a specific product
+[*AdminMaintenanceApi*](doc/AdminMaintenanceApi.md) | [**adminMaintenanceControllerRefreshVocabBm25**](doc/AdminMaintenanceApi.md#adminmaintenancecontrollerrefreshvocabbm25) | **POST** /admin/maintenance/vocab-bm25-refresh | Refresh vocab BM25 materialized view
 [*AppApi*](doc/AppApi.md) | [**appControllerCheckHealth**](doc/AppApi.md#appcontrollercheckhealth) | **GET** / | Health check - Kiểm tra trạng thái server
 [*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerChat**](doc/ConversationApi.md#conversationcontrollerchat) | **POST** /conversation/chat/v10 | Chat với AI (Advanced V10 logic)
 [*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerChatStaff**](doc/ConversationApi.md#conversationcontrollerchatstaff) | **POST** /conversation/chat/v10-staff | Chat V10 Staff (Quick Counter Consultation Mode)
@@ -98,16 +113,6 @@ Class | Method | HTTP request | Description
 [*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerGetAllConversationsPaginated**](doc/ConversationApi.md#conversationcontrollergetallconversationspaginated) | **GET** /conversation/list/paged | Lấy danh sách hội thoại có phân trang
 [*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerGetConversationById**](doc/ConversationApi.md#conversationcontrollergetconversationbyid) | **GET** /conversation/{id} | Lấy cuộc hội thoại theo ID
 [*ConversationApi*](doc/ConversationApi.md) | [**conversationControllerGetMyConversationHistory**](doc/ConversationApi.md#conversationcontrollergetmyconversationhistory) | **GET** /conversation/my/history | Lấy lịch sử chat của user hiện tại
-[*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerCheckReady**](doc/DictionaryApi.md#dictionarycontrollercheckready) | **GET** /api/v1/dictionary/ready | Check dictionary readiness
-[*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerExtractEntities**](doc/DictionaryApi.md#dictionarycontrollerextractentities) | **POST** /api/v1/dictionary/extract-entities | Extract raw entities
-[*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerGetEntityTypes**](doc/DictionaryApi.md#dictionarycontrollergetentitytypes) | **GET** /api/v1/dictionary/entity-types | List dictionary entity types
-[*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerGetSnapshot**](doc/DictionaryApi.md#dictionarycontrollergetsnapshot) | **GET** /api/v1/dictionary/snapshot | Get dictionary snapshot
-[*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerParseText**](doc/DictionaryApi.md#dictionarycontrollerparsetext) | **POST** /api/v1/dictionary/parse | Parse and normalize text
-[*DictionaryApi*](doc/DictionaryApi.md) | [**dictionaryControllerRebuildDictionary**](doc/DictionaryApi.md#dictionarycontrollerrebuilddictionary) | **POST** /api/v1/dictionary/rebuild | Rebuild dictionary
-[*HybridSearchEmbeddingsApi*](doc/HybridSearchEmbeddingsApi.md) | [**rebuildEmbeddingsControllerDeleteEmbedding**](doc/HybridSearchEmbeddingsApi.md#rebuildembeddingscontrollerdeleteembedding) | **DELETE** /hybrid-search/embeddings/{productId} | Xóa embedding của 1 product
-[*HybridSearchEmbeddingsApi*](doc/HybridSearchEmbeddingsApi.md) | [**rebuildEmbeddingsControllerGetStats**](doc/HybridSearchEmbeddingsApi.md#rebuildembeddingscontrollergetstats) | **GET** /hybrid-search/embeddings/stats | Get stats về embeddings
-[*HybridSearchEmbeddingsApi*](doc/HybridSearchEmbeddingsApi.md) | [**rebuildEmbeddingsControllerRebuildAll**](doc/HybridSearchEmbeddingsApi.md#rebuildembeddingscontrollerrebuildall) | **POST** /hybrid-search/embeddings/rebuild | Rebuild tất cả embeddings
-[*HybridSearchEmbeddingsApi*](doc/HybridSearchEmbeddingsApi.md) | [**rebuildEmbeddingsControllerRebuildOne**](doc/HybridSearchEmbeddingsApi.md#rebuildembeddingscontrollerrebuildone) | **POST** /hybrid-search/embeddings/rebuild/{productId} | Rebuild embedding cho 1 product cụ thể
 [*InventoryApi*](doc/InventoryApi.md) | [**inventoryControllerConvertInventoryLogToPdf**](doc/InventoryApi.md#inventorycontrollerconvertinventorylogtopdf) | **GET** /inventory/report/logs/{id}/pdf | Convert markdown report theo ID sang PDF (không dùng AI)
 [*InventoryApi*](doc/InventoryApi.md) | [**inventoryControllerConvertRestockLogToPdf**](doc/InventoryApi.md#inventorycontrollerconvertrestocklogtopdf) | **GET** /inventory/restock/logs/{id}/pdf | Convert log restock theo ID sang PDF (không dùng AI)
 [*InventoryApi*](doc/InventoryApi.md) | [**inventoryControllerCreateInventoryReportJob**](doc/InventoryApi.md#inventorycontrollercreateinventoryreportjob) | **GET** /inventory/report/ai/job | Khởi tạo job để tạo báo cáo tồn kho bằng AI
@@ -192,6 +197,7 @@ Class | Method | HTTP request | Description
  - [AIResponseMetadata](doc/AIResponseMetadata.md)
  - [AIReviewSummaryStructuredResponse](doc/AIReviewSummaryStructuredResponse.md)
  - [AITrendForecastStructuredResponse](doc/AITrendForecastStructuredResponse.md)
+ - [AddPhraseRuleRequest](doc/AddPhraseRuleRequest.md)
  - [AdminInstructionControllerCreateInstruction200Response](doc/AdminInstructionControllerCreateInstruction200Response.md)
  - [AdminInstructionControllerGetAllInstructions200Response](doc/AdminInstructionControllerGetAllInstructions200Response.md)
  - [AdminInstructionResponse](doc/AdminInstructionResponse.md)
@@ -200,7 +206,6 @@ Class | Method | HTTP request | Description
  - [BaseResponseAPI](doc/BaseResponseAPI.md)
  - [BatchResponse](doc/BatchResponse.md)
  - [ChatMessageRequest](doc/ChatMessageRequest.md)
- - [ChatMessageRequestMessage](doc/ChatMessageRequestMessage.md)
  - [ChatRequest](doc/ChatRequest.md)
  - [ChatV11AiMessage](doc/ChatV11AiMessage.md)
  - [ChatV11Response](doc/ChatV11Response.md)
@@ -215,9 +220,6 @@ Class | Method | HTTP request | Description
  - [CreateQuestionFromAttributeRequest](doc/CreateQuestionFromAttributeRequest.md)
  - [CreateResponseAIAcceptanceRequest](doc/CreateResponseAIAcceptanceRequest.md)
  - [DailySalesRecord](doc/DailySalesRecord.md)
- - [DictionaryControllerCheckReady400Response](doc/DictionaryControllerCheckReady400Response.md)
- - [DictionaryControllerGetSnapshot404Response](doc/DictionaryControllerGetSnapshot404Response.md)
- - [DictionaryControllerGetSnapshot500Response](doc/DictionaryControllerGetSnapshot500Response.md)
  - [EventLog](doc/EventLog.md)
  - [EventLogCreateRequest](doc/EventLogCreateRequest.md)
  - [EventLogSummaryResponse](doc/EventLogSummaryResponse.md)
@@ -246,7 +248,6 @@ Class | Method | HTTP request | Description
  - [LogControllerGetPagedEventLogs200Response](doc/LogControllerGetPagedEventLogs200Response.md)
  - [LogControllerGetPagedEventLogs200ResponsePayload](doc/LogControllerGetPagedEventLogs200ResponsePayload.md)
  - [MessageResponse](doc/MessageResponse.md)
- - [MessageResponseMessage](doc/MessageResponseMessage.md)
  - [NormalizedQueryFilters](doc/NormalizedQueryFilters.md)
  - [OriginNormalizerOutput](doc/OriginNormalizerOutput.md)
  - [PagedResult](doc/PagedResult.md)
@@ -258,6 +259,9 @@ Class | Method | HTTP request | Description
  - [ProductCardVariantResponse](doc/ProductCardVariantResponse.md)
  - [ProductControllerGetAllProducts200Response](doc/ProductControllerGetAllProducts200Response.md)
  - [ProductControllerGetAllProducts200ResponsePayload](doc/ProductControllerGetAllProducts200ResponsePayload.md)
+ - [ProductControllerGetAllProducts400Response](doc/ProductControllerGetAllProducts400Response.md)
+ - [ProductControllerGetAllProducts404Response](doc/ProductControllerGetAllProducts404Response.md)
+ - [ProductControllerGetAllProducts500Response](doc/ProductControllerGetAllProducts500Response.md)
  - [ProductControllerGetProductsByHybridSearch200Response](doc/ProductControllerGetProductsByHybridSearch200Response.md)
  - [ProductControllerGetProductsBySemanticSearch200Response](doc/ProductControllerGetProductsBySemanticSearch200Response.md)
  - [ProductControllerGetProductsBySemanticSearch200ResponsePayload](doc/ProductControllerGetProductsBySemanticSearch200ResponsePayload.md)

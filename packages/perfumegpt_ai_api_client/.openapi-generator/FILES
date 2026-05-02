@@ -10,17 +10,18 @@ doc/AIInventoryReportStructuredResponse.md
 doc/AIResponseMetadata.md
 doc/AIReviewSummaryStructuredResponse.md
 doc/AITrendForecastStructuredResponse.md
+doc/AddPhraseRuleRequest.md
 doc/AdminInstructionControllerCreateInstruction200Response.md
 doc/AdminInstructionControllerGetAllInstructions200Response.md
 doc/AdminInstructionResponse.md
 doc/AdminInstructionsApi.md
+doc/AdminMaintenanceApi.md
 doc/AllUserLogRequest.md
 doc/AppApi.md
 doc/BaseResponse.md
 doc/BaseResponseAPI.md
 doc/BatchResponse.md
 doc/ChatMessageRequest.md
-doc/ChatMessageRequestMessage.md
 doc/ChatRequest.md
 doc/ChatV11AiMessage.md
 doc/ChatV11Response.md
@@ -36,10 +37,6 @@ doc/CreateAdminInstructionRequest.md
 doc/CreateQuestionFromAttributeRequest.md
 doc/CreateResponseAIAcceptanceRequest.md
 doc/DailySalesRecord.md
-doc/DictionaryApi.md
-doc/DictionaryControllerCheckReady400Response.md
-doc/DictionaryControllerGetSnapshot404Response.md
-doc/DictionaryControllerGetSnapshot500Response.md
 doc/EventLog.md
 doc/EventLogCreateRequest.md
 doc/EventLogSummaryResponse.md
@@ -47,7 +44,6 @@ doc/EventLogTimeSeriesPointResponse.md
 doc/EventLogTimeSeriesResponse.md
 doc/GenderNormalizerOutput.md
 doc/GroupedSurveyQuestionAnswerDetailResponse.md
-doc/HybridSearchEmbeddingsApi.md
 doc/HybridSearchResponse.md
 doc/InventoryApi.md
 doc/InventoryControllerGetBatch200Response.md
@@ -71,7 +67,6 @@ doc/LogControllerGetPagedEventLogs200Response.md
 doc/LogControllerGetPagedEventLogs200ResponsePayload.md
 doc/LogsApi.md
 doc/MessageResponse.md
-doc/MessageResponseMessage.md
 doc/NormalizedQueryFilters.md
 doc/OriginNormalizerOutput.md
 doc/PagedResult.md
@@ -83,6 +78,9 @@ doc/ProductCardVariantOutputDto.md
 doc/ProductCardVariantResponse.md
 doc/ProductControllerGetAllProducts200Response.md
 doc/ProductControllerGetAllProducts200ResponsePayload.md
+doc/ProductControllerGetAllProducts400Response.md
+doc/ProductControllerGetAllProducts404Response.md
+doc/ProductControllerGetAllProducts500Response.md
 doc/ProductControllerGetProductsByHybridSearch200Response.md
 doc/ProductControllerGetProductsBySemanticSearch200Response.md
 doc/ProductControllerGetProductsBySemanticSearch200ResponsePayload.md
@@ -144,11 +142,10 @@ doc/YearNormalizerOutput.md
 lib/perfumegpt_ai_api_client.dart
 lib/src/api.dart
 lib/src/api/admin_instructions_api.dart
+lib/src/api/admin_maintenance_api.dart
 lib/src/api/ai_acceptance_api.dart
 lib/src/api/app_api.dart
 lib/src/api/conversation_api.dart
-lib/src/api/dictionary_api.dart
-lib/src/api/hybrid_search_embeddings_api.dart
 lib/src/api/inventory_api.dart
 lib/src/api/logs_api.dart
 lib/src/api/products_api.dart
@@ -162,6 +159,7 @@ lib/src/auth/basic_auth.dart
 lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/deserialize.dart
+lib/src/model/add_phrase_rule_request.dart
 lib/src/model/admin_instruction_controller_create_instruction200_response.dart
 lib/src/model/admin_instruction_controller_get_all_instructions200_response.dart
 lib/src/model/admin_instruction_response.dart
@@ -177,7 +175,6 @@ lib/src/model/base_response.dart
 lib/src/model/base_response_api.dart
 lib/src/model/batch_response.dart
 lib/src/model/chat_message_request.dart
-lib/src/model/chat_message_request_message.dart
 lib/src/model/chat_request.dart
 lib/src/model/chat_v11_ai_message.dart
 lib/src/model/chat_v11_response.dart
@@ -192,9 +189,6 @@ lib/src/model/create_admin_instruction_request.dart
 lib/src/model/create_question_from_attribute_request.dart
 lib/src/model/create_response_ai_acceptance_request.dart
 lib/src/model/daily_sales_record.dart
-lib/src/model/dictionary_controller_check_ready400_response.dart
-lib/src/model/dictionary_controller_get_snapshot404_response.dart
-lib/src/model/dictionary_controller_get_snapshot500_response.dart
 lib/src/model/event_log.dart
 lib/src/model/event_log_create_request.dart
 lib/src/model/event_log_summary_response.dart
@@ -223,7 +217,6 @@ lib/src/model/log_controller_get_event_logs_time_series200_response.dart
 lib/src/model/log_controller_get_paged_event_logs200_response.dart
 lib/src/model/log_controller_get_paged_event_logs200_response_payload.dart
 lib/src/model/message_response.dart
-lib/src/model/message_response_message.dart
 lib/src/model/normalized_query_filters.dart
 lib/src/model/origin_normalizer_output.dart
 lib/src/model/paged_result.dart
@@ -235,6 +228,9 @@ lib/src/model/product_card_variant_output_dto.dart
 lib/src/model/product_card_variant_response.dart
 lib/src/model/product_controller_get_all_products200_response.dart
 lib/src/model/product_controller_get_all_products200_response_payload.dart
+lib/src/model/product_controller_get_all_products400_response.dart
+lib/src/model/product_controller_get_all_products404_response.dart
+lib/src/model/product_controller_get_all_products500_response.dart
 lib/src/model/product_controller_get_products_by_hybrid_search200_response.dart
 lib/src/model/product_controller_get_products_by_semantic_search200_response.dart
 lib/src/model/product_controller_get_products_by_semantic_search200_response_payload.dart

@@ -9,10 +9,10 @@ import 'dart:convert';
 import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_check_ready400_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products400_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_hybrid_search200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_semantic_search200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_view_log_request.dart';

@@ -23,810 +23,6 @@
         ]
       }
     },
-    "/api/v1/dictionary/snapshot": {
-      "get": {
-        "description": "Return the current in-memory dictionary statistics and entity breakdown.",
-        "operationId": "DictionaryController_getSnapshot",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Dictionary snapshot returned successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "example": {
-                    "stats": {
-                      "totalCanonicals": 120,
-                      "totalSynonyms": 340,
-                      "entityBreakdown": {
-                        "brand": {
-                          "canonicals": 15,
-                          "synonyms": 40
-                        }
-                      },
-                      "timestamp": "2026-04-02T10:00:00.000Z"
-                    },
-                    "entityBreakdown": {
-                      "brand": {
-                        "canonicals": 15,
-                        "synonyms": 40
-                      }
-                    },
-                    "message": "Dictionary snapshot"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Dictionary is not initialized"
-          },
-          "404": {
-            "description": "Not Found — Không tìm thấy tài nguyên",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Not Found — Không tìm thấy tài nguyên",
-                    "detail": {
-                      "id": "abc-123-def"
-                    },
-                    "statusCode": 404
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error — Lỗi hệ thống",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Internal Server Error — Lỗi hệ thống",
-                    "detail": {
-                      "traceId": "a1b2c3d4"
-                    },
-                    "statusCode": 500
-                  }
-                }
-              }
-            }
-          }
-        },
-        "summary": "Get dictionary snapshot",
-        "tags": [
-          "Dictionary"
-        ]
-      }
-    },
-    "/api/v1/dictionary/ready": {
-      "get": {
-        "description": "Returns whether the dictionary builder and winkNLP services are initialized.",
-        "operationId": "DictionaryController_checkReady",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Readiness information returned successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "example": {
-                    "dictionaryReady": true,
-                    "winkNlpReady": true,
-                    "timestamp": "2026-04-02T10:00:00.000Z"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request — Thiếu hoặc sai tham số",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Bad Request — Validation failed",
-                    "detail": {
-                      "message": [
-                        "name must be a string",
-                        "price must be a positive number"
-                      ]
-                    },
-                    "statusCode": 400
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found — Không tìm thấy tài nguyên",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Not Found — Không tìm thấy tài nguyên",
-                    "detail": {
-                      "id": "abc-123-def"
-                    },
-                    "statusCode": 404
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error — Lỗi hệ thống",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Internal Server Error — Lỗi hệ thống",
-                    "detail": {
-                      "traceId": "a1b2c3d4"
-                    },
-                    "statusCode": 500
-                  }
-                }
-              }
-            }
-          }
-        },
-        "summary": "Check dictionary readiness",
-        "tags": [
-          "Dictionary"
-        ]
-      }
-    },
-    "/api/v1/dictionary/parse": {
-      "post": {
-        "description": "Extract raw entities with winkNLP and normalize them to canonical values.",
-        "operationId": "DictionaryController_parseText",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "example": {
-                  "text": "mua giày nike air màu đen"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Text parsed successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "example": {
-                    "input": "mua giày nike air màu đen",
-                    "rawEntities": [
-                      {
-                        "value": "giày",
-                        "type": "product_name"
-                      },
-                      {
-                        "value": "nike air",
-                        "type": "brand"
-                      }
-                    ],
-                    "normalized": {
-                      "product_name": [
-                        {
-                          "raw": "giày",
-                          "canonical": "giày",
-                          "confidence": 1,
-                          "type": "product_name"
-                        }
-                      ],
-                      "brand": [
-                        {
-                          "raw": "nike air",
-                          "canonical": "nike",
-                          "confidence": 0.95,
-                          "type": "brand"
-                        }
-                      ]
-                    },
-                    "byType": {
-                      "product_name": [
-                        "giày"
-                      ],
-                      "brand": [
-                        "nike"
-                      ]
-                    },
-                    "message": "Parse successful"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Missing text field or parsing failed"
-          },
-          "404": {
-            "description": "Not Found — Không tìm thấy tài nguyên",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Not Found — Không tìm thấy tài nguyên",
-                    "detail": {
-                      "id": "abc-123-def"
-                    },
-                    "statusCode": 404
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error — Lỗi hệ thống",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Internal Server Error — Lỗi hệ thống",
-                    "detail": {
-                      "traceId": "a1b2c3d4"
-                    },
-                    "statusCode": 500
-                  }
-                }
-              }
-            }
-          }
-        },
-        "summary": "Parse and normalize text",
-        "tags": [
-          "Dictionary"
-        ]
-      }
-    },
-    "/api/v1/dictionary/extract-entities": {
-      "post": {
-        "description": "Extract custom entities using winkNLP without canonical normalization.",
-        "operationId": "DictionaryController_extractEntities",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "example": {
-                  "text": "mua giày nike air màu đen"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Entities extracted successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "example": {
-                    "input": "mua giày nike air màu đen",
-                    "rawEntities": [
-                      {
-                        "value": "giày",
-                        "type": "product_name"
-                      },
-                      {
-                        "value": "nike air",
-                        "type": "brand"
-                      }
-                    ],
-                    "count": 2,
-                    "message": "Entity extraction successful"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Missing text field or extraction failed"
-          },
-          "404": {
-            "description": "Not Found — Không tìm thấy tài nguyên",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Not Found — Không tìm thấy tài nguyên",
-                    "detail": {
-                      "id": "abc-123-def"
-                    },
-                    "statusCode": 404
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error — Lỗi hệ thống",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Internal Server Error — Lỗi hệ thống",
-                    "detail": {
-                      "traceId": "a1b2c3d4"
-                    },
-                    "statusCode": 500
-                  }
-                }
-              }
-            }
-          }
-        },
-        "summary": "Extract raw entities",
-        "tags": [
-          "Dictionary"
-        ]
-      }
-    },
-    "/api/v1/dictionary/entity-types": {
-      "get": {
-        "description": "Return all entity types currently registered in the dictionary.",
-        "operationId": "DictionaryController_getEntityTypes",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Entity types returned successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "example": {
-                    "entityTypes": [
-                      "brand",
-                      "category",
-                      "concentration",
-                      "olfactory_family",
-                      "scent_note",
-                      "attribute_category",
-                      "attribute_value",
-                      "product_name",
-                      "gender",
-                      "origin",
-                      "variant_type",
-                      "note_type"
-                    ],
-                    "count": 12
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request — Thiếu hoặc sai tham số",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Bad Request — Validation failed",
-                    "detail": {
-                      "message": [
-                        "name must be a string",
-                        "price must be a positive number"
-                      ]
-                    },
-                    "statusCode": 400
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found — Không tìm thấy tài nguyên",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Not Found — Không tìm thấy tài nguyên",
-                    "detail": {
-                      "id": "abc-123-def"
-                    },
-                    "statusCode": 404
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error — Lỗi hệ thống",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Internal Server Error — Lỗi hệ thống",
-                    "detail": {
-                      "traceId": "a1b2c3d4"
-                    },
-                    "statusCode": 500
-                  }
-                }
-              }
-            }
-          }
-        },
-        "summary": "List dictionary entity types",
-        "tags": [
-          "Dictionary"
-        ]
-      }
-    },
-    "/api/v1/dictionary/rebuild": {
-      "post": {
-        "description": "Force rebuild the dictionary from master data and reinitialize winkNLP.",
-        "operationId": "DictionaryController_rebuildDictionary",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Dictionary rebuilt successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "example": {
-                    "success": true,
-                    "stats": {
-                      "totalCanonicals": 120,
-                      "totalSynonyms": 340,
-                      "entityBreakdown": {
-                        "brand": {
-                          "canonicals": 15,
-                          "synonyms": 40
-                        }
-                      },
-                      "timestamp": "2026-04-02T10:00:00.000Z"
-                    },
-                    "message": "Dictionary rebuilt successfully"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Dictionary rebuild failed"
-          },
-          "404": {
-            "description": "Not Found — Không tìm thấy tài nguyên",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Not Found — Không tìm thấy tài nguyên",
-                    "detail": {
-                      "id": "abc-123-def"
-                    },
-                    "statusCode": 404
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error — Lỗi hệ thống",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Thông báo lỗi"
-                    },
-                    "detail": {
-                      "type": "object",
-                      "nullable": true,
-                      "description": "Chi tiết lỗi"
-                    },
-                    "statusCode": {
-                      "type": "number",
-                      "description": "HTTP status code"
-                    }
-                  },
-                  "example": {
-                    "success": false,
-                    "error": "Internal Server Error — Lỗi hệ thống",
-                    "detail": {
-                      "traceId": "a1b2c3d4"
-                    },
-                    "statusCode": 500
-                  }
-                }
-              }
-            }
-          }
-        },
-        "summary": "Rebuild dictionary",
-        "tags": [
-          "Dictionary"
-        ]
-      }
-    },
     "/products": {
       "get": {
         "operationId": "ProductController_getAllProducts",
@@ -4740,7 +3936,7 @@
             "description": "Ngày kết thúc",
             "schema": {
               "format": "date-time",
-              "default": "2026-04-30T23:59:59.999Z",
+              "default": "2026-05-02T16:59:59.999Z",
               "type": "string"
             }
           },
@@ -6817,7 +6013,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-04-30T15:23:25.977Z",
+              "example": "2026-05-02T15:34:43.039Z",
               "type": "string"
             }
           },
@@ -19537,13 +18733,13 @@
         ]
       }
     },
-    "/hybrid-search/embeddings/rebuild": {
+    "/admin/maintenance/rebuild-all": {
       "post": {
-        "operationId": "RebuildEmbeddingsController_rebuildAll",
+        "operationId": "AdminMaintenanceController_rebuildAll",
         "parameters": [],
         "responses": {
-          "201": {
-            "description": ""
+          "200": {
+            "description": "Full rebuild completed successfully"
           },
           "401": {
             "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
@@ -19695,15 +18891,343 @@
             "jwt": []
           }
         ],
-        "summary": "Rebuild tất cả embeddings",
+        "summary": "Full rebuild: dictionary + embeddings + BM25",
         "tags": [
-          "Hybrid Search - Embeddings"
+          "Admin - Maintenance"
         ]
       }
     },
-    "/hybrid-search/embeddings/rebuild/{productId}": {
+    "/admin/maintenance/rebuild/dictionary": {
       "post": {
-        "operationId": "RebuildEmbeddingsController_rebuildOne",
+        "operationId": "AdminMaintenanceController_rebuildDictionary",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Dictionary rebuilt successfully"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Rebuild dictionary only",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/rebuild/embeddings": {
+      "post": {
+        "operationId": "AdminMaintenanceController_rebuildEmbeddings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "All embeddings rebuilt successfully"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Rebuild all embeddings",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/rebuild/embeddings/{productId}": {
+      "post": {
+        "operationId": "AdminMaintenanceController_rebuildProductEmbedding",
         "parameters": [
           {
             "name": "productId",
@@ -19715,8 +19239,8 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": ""
+          "200": {
+            "description": "Product embedding rebuilt successfully"
           },
           "401": {
             "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
@@ -19868,15 +19392,15 @@
             "jwt": []
           }
         ],
-        "summary": "Rebuild embedding cho 1 product cụ thể",
+        "summary": "Rebuild embedding for a specific product",
         "tags": [
-          "Hybrid Search - Embeddings"
+          "Admin - Maintenance"
         ]
       }
     },
-    "/hybrid-search/embeddings/{productId}": {
+    "/admin/maintenance/embeddings/{productId}": {
       "delete": {
-        "operationId": "RebuildEmbeddingsController_deleteEmbedding",
+        "operationId": "AdminMaintenanceController_deleteEmbedding",
         "parameters": [
           {
             "name": "productId",
@@ -19889,7 +19413,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Product embedding deleted successfully"
           },
           "401": {
             "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
@@ -20041,19 +19565,19 @@
             "jwt": []
           }
         ],
-        "summary": "Xóa embedding của 1 product",
+        "summary": "Delete embedding for a specific product",
         "tags": [
-          "Hybrid Search - Embeddings"
+          "Admin - Maintenance"
         ]
       }
     },
-    "/hybrid-search/embeddings/stats": {
+    "/admin/maintenance/embeddings/stats": {
       "get": {
-        "operationId": "RebuildEmbeddingsController_getStats",
+        "operationId": "AdminMaintenanceController_getEmbeddingStats",
         "parameters": [],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Embedding stats returned successfully"
           },
           "401": {
             "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
@@ -20205,9 +19729,1525 @@
             "jwt": []
           }
         ],
-        "summary": "Get stats về embeddings",
+        "summary": "Get embedding statistics",
         "tags": [
-          "Hybrid Search - Embeddings"
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/parse/text": {
+      "post": {
+        "operationId": "AdminMaintenanceController_parseText",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "text": "mua giày nike air màu đen"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Text parsed successfully"
+          },
+          "400": {
+            "description": "Missing text field"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Parse and normalize text",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/parse/extract-entities": {
+      "post": {
+        "operationId": "AdminMaintenanceController_extractEntities",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "text": "mua giày nike air màu đen"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Entities extracted successfully"
+          },
+          "400": {
+            "description": "Missing text field"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Extract raw entities from text",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/parse/add-rule": {
+      "post": {
+        "operationId": "AdminMaintenanceController_addPhraseRule",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPhraseRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Phrase rule added successfully"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Add a new phrase rule to active dictionary",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/parse/rules": {
+      "get": {
+        "operationId": "AdminMaintenanceController_getAllPhraseRules",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Phrase rules returned successfully"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get all active phrase rules",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/parse/template": {
+      "get": {
+        "operationId": "AdminMaintenanceController_getParseRulesTemplate",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Template returned successfully"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get phrase rules template (seed JSON)",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/snapshot": {
+      "get": {
+        "operationId": "AdminMaintenanceController_getSnapshot",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Dictionary snapshot returned successfully"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get current dictionary snapshot",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/ready": {
+      "get": {
+        "operationId": "AdminMaintenanceController_checkReady",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Readiness information returned successfully"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Check dictionary and NLP readiness",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/entity-types": {
+      "get": {
+        "operationId": "AdminMaintenanceController_getEntityTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Entity types returned successfully"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "List all dictionary entity types",
+        "tags": [
+          "Admin - Maintenance"
+        ]
+      }
+    },
+    "/admin/maintenance/vocab-bm25-refresh": {
+      "post": {
+        "operationId": "AdminMaintenanceController_refreshVocabBm25",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "BM25 view refreshed successfully"
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Refresh vocab BM25 materialized view",
+        "tags": [
+          "Admin - Maintenance"
         ]
       }
     }
@@ -21869,6 +22909,7 @@
           },
           "suggestedQuestions": {
             "description": "Gợi ý 3-4 câu hỏi tiếp theo",
+            "nullable": true,
             "type": "array",
             "items": {
               "type": "string"
@@ -21892,15 +22933,32 @@
             ]
           },
           "message": {
-            "description": "Nội dung tin nhắn (chuỗi hoặc object cho assistant)",
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/ConversationOutputDto"
-              }
-            ]
+            "type": "string",
+            "description": "Nội dung tin nhắn dạng text"
+          },
+          "products": {
+            "description": "Danh sách sản phẩm gợi ý",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCardOutputItemDto"
+            }
+          },
+          "productTemp": {
+            "description": "Danh sách sản phẩm tạm",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductTempItemDto"
+            }
+          },
+          "suggestedQuestions": {
+            "description": "Gợi ý 3-4 câu hỏi tiếp theo",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "createdAt": {
             "format": "date-time",
@@ -21963,15 +23021,32 @@
             ]
           },
           "message": {
-            "description": "Nội dung tin nhắn",
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/ConversationOutputDto"
-              }
-            ]
+            "type": "string",
+            "description": "Nội dung tin nhắn dạng text"
+          },
+          "products": {
+            "description": "Danh sách sản phẩm gợi ý",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCardOutputItemDto"
+            }
+          },
+          "productTemp": {
+            "description": "Danh sách sản phẩm tạm",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductTempItemDto"
+            }
+          },
+          "suggestedQuestions": {
+            "description": "Gợi ý 3-4 câu hỏi tiếp theo",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -22962,6 +24037,45 @@
             ]
           }
         }
+      },
+      "AddPhraseRuleRequest": {
+        "type": "object",
+        "properties": {
+          "phrase": {
+            "type": "string",
+            "description": "Phrase text (can include diacritics)",
+            "example": "có hương"
+          },
+          "ruleType": {
+            "type": "string",
+            "description": "Rule type",
+            "example": "consume",
+            "enum": [
+              "consume",
+              "extract",
+              "replace"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "description": "Rule scope",
+            "example": "global",
+            "enum": [
+              "global",
+              "product",
+              "brand"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score (0-1)",
+            "example": 1
+          }
+        },
+        "required": [
+          "phrase",
+          "ruleType"
+        ]
       }
     }
   }

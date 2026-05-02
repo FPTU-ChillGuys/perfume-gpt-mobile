@@ -73,11 +73,11 @@ class ConversationOutputDto {
     
     name: r'suggestedQuestions',
     required: true,
-    includeIfNull: false,
+    includeIfNull: true,
   )
 
 
-  final List<String> suggestedQuestions;
+  final List<String>? suggestedQuestions;
 
 
 
@@ -95,7 +95,7 @@ class ConversationOutputDto {
         message.hashCode +
         (products == null ? 0 : products.hashCode) +
         (productTemp == null ? 0 : productTemp.hashCode) +
-        suggestedQuestions.hashCode;
+        (suggestedQuestions == null ? 0 : suggestedQuestions.hashCode);
 
   factory ConversationOutputDto.fromJson(Map<String, dynamic> json) => _$ConversationOutputDtoFromJson(json);
 

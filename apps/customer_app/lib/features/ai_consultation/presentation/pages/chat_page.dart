@@ -53,27 +53,47 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     final products =
         productsJson?.map((p) => ProductCardOutputItemDto.fromJson(p)).toList();
 
+    final bubbleRadius = isSentByMe
+        ? const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(4),
+            topRight: Radius.circular(20),
+          )
+        : const BorderRadius.only(
+            topLeft: Radius.circular(4),
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+            topRight: Radius.circular(20),
+          );
+
     return Column(
       crossAxisAlignment:
           isSentByMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         if (text != null)
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            decoration: BoxDecoration(
-              color:
-                  isSentByMe
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(20),
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * 0.75,
             ),
-            child: Text(
-              text,
-              style: TextStyle(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
                 color:
                     isSentByMe
-                        ? Theme.of(context).colorScheme.onPrimary
-                        : Theme.of(context).colorScheme.onSurfaceVariant,
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.surfaceContainerHighest,
+                borderRadius: bubbleRadius,
+              ),
+              child: Text(
+                text,
+                style: TextStyle(
+                  color:
+                      isSentByMe
+                          ? Theme.of(context).colorScheme.onPrimary
+                          : Theme.of(context).colorScheme.onSurfaceVariant,
+                  height: 1.5,
+                ),
               ),
             ),
           ),
@@ -99,6 +119,8 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   Widget build(BuildContext context) {
     final messagesAsync = ref.watch(chatSessionProvider);
     final user = ref.watch(common.authProvider).value;
+    final chatNotifier = ref.read(chatSessionProvider.notifier);
+    final currentUserId = user?.id ?? chatNotifier.guestUserId ?? 'user';
 
     return Scaffold(
       appBar: AppBar(title: const Text('AI Consultation')),
@@ -124,7 +146,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
               Expanded(
                 child: Chat(
                   chatController: _chatController,
-                  currentUserId: user?.id ?? 'user',
+                  currentUserId: currentUserId,
                   resolveUser: _resolveUser,
                   onMessageSend: (String text) {
                     ref.read(chatSessionProvider.notifier).sendMessage(text);

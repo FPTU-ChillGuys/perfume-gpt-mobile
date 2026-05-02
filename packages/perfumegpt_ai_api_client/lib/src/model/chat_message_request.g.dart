@@ -9,7 +9,13 @@ part of 'chat_message_request.dart';
 abstract class _$ChatMessageRequestCWProxy {
   ChatMessageRequest sender(ChatMessageRequestSenderEnum sender);
 
-  ChatMessageRequest message(ChatMessageRequestMessage message);
+  ChatMessageRequest message(String message);
+
+  ChatMessageRequest products(List<ProductCardOutputItemDto>? products);
+
+  ChatMessageRequest productTemp(List<ProductTempItemDto>? productTemp);
+
+  ChatMessageRequest suggestedQuestions(List<String>? suggestedQuestions);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ChatMessageRequest(...).copyWith.fieldName(value)`.
@@ -20,7 +26,10 @@ abstract class _$ChatMessageRequestCWProxy {
   /// ```
   ChatMessageRequest call({
     ChatMessageRequestSenderEnum sender,
-    ChatMessageRequestMessage message,
+    String message,
+    List<ProductCardOutputItemDto>? products,
+    List<ProductTempItemDto>? productTemp,
+    List<String>? suggestedQuestions,
   });
 }
 
@@ -36,8 +45,19 @@ class _$ChatMessageRequestCWProxyImpl implements _$ChatMessageRequestCWProxy {
       call(sender: sender);
 
   @override
-  ChatMessageRequest message(ChatMessageRequestMessage message) =>
-      call(message: message);
+  ChatMessageRequest message(String message) => call(message: message);
+
+  @override
+  ChatMessageRequest products(List<ProductCardOutputItemDto>? products) =>
+      call(products: products);
+
+  @override
+  ChatMessageRequest productTemp(List<ProductTempItemDto>? productTemp) =>
+      call(productTemp: productTemp);
+
+  @override
+  ChatMessageRequest suggestedQuestions(List<String>? suggestedQuestions) =>
+      call(suggestedQuestions: suggestedQuestions);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -50,6 +70,9 @@ class _$ChatMessageRequestCWProxyImpl implements _$ChatMessageRequestCWProxy {
   ChatMessageRequest call({
     Object? sender = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
+    Object? products = const $CopyWithPlaceholder(),
+    Object? productTemp = const $CopyWithPlaceholder(),
+    Object? suggestedQuestions = const $CopyWithPlaceholder(),
   }) {
     return ChatMessageRequest(
       sender: sender == const $CopyWithPlaceholder() || sender == null
@@ -59,7 +82,19 @@ class _$ChatMessageRequestCWProxyImpl implements _$ChatMessageRequestCWProxy {
       message: message == const $CopyWithPlaceholder() || message == null
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
-          : message as ChatMessageRequestMessage,
+          : message as String,
+      products: products == const $CopyWithPlaceholder()
+          ? _value.products
+          // ignore: cast_nullable_to_non_nullable
+          : products as List<ProductCardOutputItemDto>?,
+      productTemp: productTemp == const $CopyWithPlaceholder()
+          ? _value.productTemp
+          // ignore: cast_nullable_to_non_nullable
+          : productTemp as List<ProductTempItemDto>?,
+      suggestedQuestions: suggestedQuestions == const $CopyWithPlaceholder()
+          ? _value.suggestedQuestions
+          // ignore: cast_nullable_to_non_nullable
+          : suggestedQuestions as List<String>?,
     );
   }
 }
@@ -76,26 +111,45 @@ extension $ChatMessageRequestCopyWith on ChatMessageRequest {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChatMessageRequest _$ChatMessageRequestFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('ChatMessageRequest', json, ($checkedConvert) {
-      $checkKeys(json, requiredKeys: const ['sender', 'message']);
-      final val = ChatMessageRequest(
-        sender: $checkedConvert(
-          'sender',
-          (v) => $enumDecode(_$ChatMessageRequestSenderEnumEnumMap, v),
-        ),
-        message: $checkedConvert(
-          'message',
-          (v) => ChatMessageRequestMessage.fromJson(v as Map<String, dynamic>),
-        ),
-      );
-      return val;
-    });
+ChatMessageRequest _$ChatMessageRequestFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('ChatMessageRequest', json, ($checkedConvert) {
+  $checkKeys(json, requiredKeys: const ['sender', 'message']);
+  final val = ChatMessageRequest(
+    sender: $checkedConvert(
+      'sender',
+      (v) => $enumDecode(_$ChatMessageRequestSenderEnumEnumMap, v),
+    ),
+    message: $checkedConvert('message', (v) => v as String),
+    products: $checkedConvert(
+      'products',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => ProductCardOutputItemDto.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    productTemp: $checkedConvert(
+      'productTemp',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => ProductTempItemDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
+    suggestedQuestions: $checkedConvert(
+      'suggestedQuestions',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+    ),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$ChatMessageRequestToJson(ChatMessageRequest instance) =>
     <String, dynamic>{
       'sender': _$ChatMessageRequestSenderEnumEnumMap[instance.sender]!,
-      'message': instance.message.toJson(),
+      'message': instance.message,
+      'products': ?instance.products?.map((e) => e.toJson()).toList(),
+      'productTemp': ?instance.productTemp?.map((e) => e.toJson()).toList(),
+      'suggestedQuestions': ?instance.suggestedQuestions,
     };
 
 const _$ChatMessageRequestSenderEnumEnumMap = {

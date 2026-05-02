@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,6 +10,8 @@ part 'chat_provider.g.dart';
 class ChatSession extends _$ChatSession {
   String? _conversationId;
   String? _guestUserId;
+
+  String? get guestUserId => _guestUserId;
 
   @override
   Future<List<Message>> build() async {
@@ -36,17 +37,20 @@ class ChatSession extends _$ChatSession {
 
           final messageId = '${latestConversation.id}_$index';
 
-          if (isAi &&
-              (m.message.products != null && m.message.products!.isNotEmpty ||
-                  m.message.suggestedQuestions.isNotEmpty)) {
+          final hasStructuredData = isAi &&
+              ((m.products != null && m.products!.isNotEmpty) ||
+                  (m.suggestedQuestions != null &&
+                      m.suggestedQuestions!.isNotEmpty));
+
+          if (isAi && hasStructuredData) {
             return Message.custom(
               authorId: authorId,
               createdAt: m.createdAt,
               id: messageId,
               metadata: {
-                'text': m.message.message,
-                'products': m.message.products?.map((p) => p.toJson()).toList(),
-                'suggestedQuestions': m.message.suggestedQuestions,
+                'text': m.message,
+                'products': m.products?.map((p) => p.toJson()).toList(),
+                'suggestedQuestions': m.suggestedQuestions,
               },
             );
           }
@@ -55,7 +59,7 @@ class ChatSession extends _$ChatSession {
             authorId: authorId,
             createdAt: m.createdAt,
             id: messageId,
-            text: m.message.message,
+            text: m.message,
           );
         }).toList();
 
@@ -91,7 +95,6 @@ class ChatSession extends _$ChatSession {
 
       _conversationId ??= const Uuid().v4();
 
-      // Construct history for V10 API - state is already oldest first
       final history = state.value!.map((m) {
         String msgText;
         if (m is TextMessage) {
@@ -102,14 +105,30 @@ class ChatSession extends _$ChatSession {
           msgText = '';
         }
 
-        return ChatMessageRequest(
-          sender: m.authorId == 'ai'
-              ? ChatMessageRequestSenderEnum.assistant
-              : ChatMessageRequestSenderEnum.user,
-          message: ChatMessageRequestMessage(
+        final isAi = m.authorId == 'ai';
+
+        if (isAi) {
+          final customMsg = m is CustomMessage ? m : null;
+          final storedProducts = customMsg?.metadata?['products'];
+          final storedSuggestions = customMsg?.metadata?['suggestedQuestions'];
+
+          return ChatMessageRequest(
+            sender: ChatMessageRequestSenderEnum.assistant,
             message: msgText,
-            suggestedQuestions: [],
-          ),
+            products: storedProducts != null
+                ? (storedProducts as List<dynamic>)
+                    .map((p) => ProductCardOutputItemDto.fromJson(
+                        p as Map<String, dynamic>))
+                    .toList()
+                : null,
+            suggestedQuestions:
+                storedSuggestions?.cast<String>().toList(),
+          );
+        }
+
+        return ChatMessageRequest(
+          sender: ChatMessageRequestSenderEnum.user,
+          message: msgText,
         );
       }).toList();
 
@@ -128,20 +147,23 @@ class ChatSession extends _$ChatSession {
       final aiLastMessage = conversationResponse?.messages.lastOrNull;
 
       if (aiLastMessage != null) {
-        final messageData = aiLastMessage.message;
-        Message aiMessage;
+        final hasStructuredData =
+            (aiLastMessage.products != null &&
+                aiLastMessage.products!.isNotEmpty) ||
+            (aiLastMessage.suggestedQuestions != null &&
+                aiLastMessage.suggestedQuestions!.isNotEmpty);
 
-        if ((messageData.products != null &&
-                messageData.products!.isNotEmpty) ||
-            messageData.suggestedQuestions.isNotEmpty) {
+        Message aiMessage;
+        if (hasStructuredData) {
           aiMessage = Message.custom(
             authorId: 'ai',
             createdAt: DateTime.now(),
             id: const Uuid().v4(),
             metadata: {
-              'text': messageData.message,
-              'products': messageData.products?.map((p) => p.toJson()).toList(),
-              'suggestedQuestions': messageData.suggestedQuestions,
+              'text': aiLastMessage.message,
+              'products':
+                  aiLastMessage.products?.map((p) => p.toJson()).toList(),
+              'suggestedQuestions': aiLastMessage.suggestedQuestions,
             },
           );
         } else {
@@ -149,7 +171,7 @@ class ChatSession extends _$ChatSession {
             authorId: 'ai',
             createdAt: DateTime.now(),
             id: const Uuid().v4(),
-            text: messageData.message,
+            text: aiLastMessage.message,
           );
         }
 

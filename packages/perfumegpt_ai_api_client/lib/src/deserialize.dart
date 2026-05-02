@@ -5,6 +5,7 @@ import 'package:perfumegpt_ai_api_client/src/model/ai_inventory_report_structure
 import 'package:perfumegpt_ai_api_client/src/model/ai_response_metadata.dart';
 import 'package:perfumegpt_ai_api_client/src/model/ai_review_summary_structured_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/ai_trend_forecast_structured_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/add_phrase_rule_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_controller_create_instruction200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_controller_get_all_instructions200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_response.dart';
@@ -13,7 +14,6 @@ import 'package:perfumegpt_ai_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/base_response_api.dart';
 import 'package:perfumegpt_ai_api_client/src/model/batch_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/chat_message_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/chat_message_request_message.dart';
 import 'package:perfumegpt_ai_api_client/src/model/chat_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/chat_v11_ai_message.dart';
 import 'package:perfumegpt_ai_api_client/src/model/chat_v11_response.dart';
@@ -28,9 +28,6 @@ import 'package:perfumegpt_ai_api_client/src/model/create_admin_instruction_requ
 import 'package:perfumegpt_ai_api_client/src/model/create_question_from_attribute_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/create_response_ai_acceptance_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/daily_sales_record.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_check_ready400_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_create_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_summary_response.dart';
@@ -59,7 +56,6 @@ import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_event_logs
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/message_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/message_response_message.dart';
 import 'package:perfumegpt_ai_api_client/src/model/normalized_query_filters.dart';
 import 'package:perfumegpt_ai_api_client/src/model/origin_normalizer_output.dart';
 import 'package:perfumegpt_ai_api_client/src/model/paged_result.dart';
@@ -71,6 +67,9 @@ import 'package:perfumegpt_ai_api_client/src/model/product_card_variant_output_d
 import 'package:perfumegpt_ai_api_client/src/model/product_card_variant_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products400_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_hybrid_search200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_semantic_search200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_semantic_search200_response_payload.dart';
@@ -157,6 +156,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return AIReviewSummaryStructuredResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'AITrendForecastStructuredResponse':
           return AITrendForecastStructuredResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'AddPhraseRuleRequest':
+          return AddPhraseRuleRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'AdminInstructionControllerCreateInstruction200Response':
           return AdminInstructionControllerCreateInstruction200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'AdminInstructionControllerGetAllInstructions200Response':
@@ -173,8 +174,6 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return BatchResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'ChatMessageRequest':
           return ChatMessageRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ChatMessageRequestMessage':
-          return ChatMessageRequestMessage.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'ChatRequest':
           return ChatRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'ChatV11AiMessage':
@@ -203,12 +202,6 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return CreateResponseAIAcceptanceRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'DailySalesRecord':
           return DailySalesRecord.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'DictionaryControllerCheckReady400Response':
-          return DictionaryControllerCheckReady400Response.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'DictionaryControllerGetSnapshot404Response':
-          return DictionaryControllerGetSnapshot404Response.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'DictionaryControllerGetSnapshot500Response':
-          return DictionaryControllerGetSnapshot500Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'EventLog':
           return EventLog.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'EventLogCreateRequest':
@@ -265,8 +258,6 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return LogControllerGetPagedEventLogs200ResponsePayload.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'MessageResponse':
           return MessageResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'MessageResponseMessage':
-          return MessageResponseMessage.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'NormalizedQueryFilters':
           return NormalizedQueryFilters.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'OriginNormalizerOutput':
@@ -289,6 +280,12 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return ProductControllerGetAllProducts200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'ProductControllerGetAllProducts200ResponsePayload':
           return ProductControllerGetAllProducts200ResponsePayload.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'ProductControllerGetAllProducts400Response':
+          return ProductControllerGetAllProducts400Response.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'ProductControllerGetAllProducts404Response':
+          return ProductControllerGetAllProducts404Response.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'ProductControllerGetAllProducts500Response':
+          return ProductControllerGetAllProducts500Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'ProductControllerGetProductsByHybridSearch200Response':
           return ProductControllerGetProductsByHybridSearch200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'ProductControllerGetProductsBySemanticSearch200Response':
