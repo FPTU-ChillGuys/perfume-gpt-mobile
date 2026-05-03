@@ -86,8 +86,16 @@ class ChatSession extends _$ChatSession {
       text: text,
     );
 
+    final loadingMessageId = 'loading_${const Uuid().v4()}';
+    final loadingMessage = Message.custom(
+      authorId: 'ai',
+      createdAt: DateTime.now(),
+      id: loadingMessageId,
+      metadata: {'isLoading': true},
+    );
+
     final previousMessages = state.value!;
-    state = AsyncData([...previousMessages, userMessage]);
+    state = AsyncData([...previousMessages, userMessage, loadingMessage]);
 
     try {
       final aiApiClient = ref.read(aiApiClientProvider);
@@ -95,7 +103,9 @@ class ChatSession extends _$ChatSession {
 
       _conversationId ??= const Uuid().v4();
 
-      final history = state.value!.map((m) {
+      final history = state.value!
+          .where((m) => m.id != loadingMessageId)
+          .map((m) {
         String msgText;
         if (m is TextMessage) {
           msgText = m.text;
@@ -146,6 +156,11 @@ class ChatSession extends _$ChatSession {
       final conversationResponse = response.data?.data;
       final aiLastMessage = conversationResponse?.messages.lastOrNull;
 
+      // Remove loading message
+      state = AsyncData(
+        state.value!.where((m) => m.id != loadingMessageId).toList(),
+      );
+
       if (aiLastMessage != null) {
         final hasStructuredData =
             (aiLastMessage.products != null &&
@@ -180,6 +195,11 @@ class ChatSession extends _$ChatSession {
         throw Exception('No response from AI');
       }
     } catch (e) {
+      // Remove loading message on error
+      state = AsyncData(
+        state.value!.where((m) => m.id != loadingMessageId).toList(),
+      );
+
       final errorMessage = Message.text(
         authorId: 'ai',
         createdAt: DateTime.now(),

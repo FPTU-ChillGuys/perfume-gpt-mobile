@@ -108,6 +108,24 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     final metadata = message.metadata;
     if (metadata == null) return const SizedBox.shrink();
 
+    if (metadata['isLoading'] == true) {
+      return _buildMessageBubble(
+        context,
+        const SizedBox(
+          width: 40,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _TypingDot(delay: 0),
+              _TypingDot(delay: 0.2),
+              _TypingDot(delay: 0.4),
+            ],
+          ),
+        ),
+        isSentByMe: false,
+      );
+    }
+
     final text = metadata['text'] as String?;
     final productsJson = metadata['products'] as List<dynamic>?;
     final products =
@@ -184,8 +202,13 @@ class _ChatPageState extends ConsumerState<ChatPage> {
 
           // Extract suggested questions from the last AI message
           final lastMessage = messages.lastOrNull;
+          final isLoading =
+              lastMessage is CustomMessage && lastMessage.metadata?['isLoading'] == true;
+          
           final List<String> suggestions = [];
-          if (lastMessage is CustomMessage && lastMessage.authorId == 'ai') {
+          if (lastMessage is CustomMessage && 
+              lastMessage.authorId == 'ai' && 
+              lastMessage.metadata?['isLoading'] != true) {
             final metadata = lastMessage.metadata;
             if (metadata != null) {
               final sq = metadata['suggestedQuestions'] as List<dynamic>?;
@@ -207,6 +230,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
               textMessageBuilder: _buildTextMessage,
               composerBuilder: (context) {
                 return Composer(
+                  sendButtonDisabled: isLoading,
                   topWidget: suggestions.isNotEmpty
                       ? Padding(
                           padding: const EdgeInsets.symmetric(
@@ -224,7 +248,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                                   padding: const EdgeInsets.only(right: 8),
                                   child: ActionChip(
                                     label: Text(suggestion),
-                                    onPressed: () {
+                                    onPressed: isLoading ? null : () {
                                       ref
                                           .read(chatSessionProvider.notifier)
                                           .sendMessage(suggestion);
@@ -257,6 +281,66 @@ class _ChatPageState extends ConsumerState<ChatPage> {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),
+    );
+  }
+}
+
+class _TypingDot extends StatefulWidget {
+  final double delay;
+
+  const _TypingDot({required this.delay});
+
+  @override
+  State<_TypingDot> createState() => _TypingDotState();
+}
+
+class _TypingDotState extends State<_TypingDot>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+
+    _animation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+
+    Future.delayed(Duration(milliseconds: (widget.delay * 1000).toInt()), () {
+      if (mounted) {
+        _controller.repeat(reverse: true);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        return Container(
+          width: 6,
+          height: 6,
+          decoration: BoxDecoration(
+            color: Theme.of(context)
+                .colorScheme
+                .onSurfaceVariant
+                .withOpacity(0.3 + (0.7 * _animation.value)),
+            shape: BoxShape.circle,
+          ),
+        );
+      },
     );
   }
 }
