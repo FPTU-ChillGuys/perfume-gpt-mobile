@@ -45,7 +45,7 @@ export 'package:perfumegpt_ai_api_client/src/model/concentration_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/conversation_controller_chat_v11200_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations200_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response.dart';
-export 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response_payload.dart';
+export 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response_data.dart';
 export 'package:perfumegpt_ai_api_client/src/model/conversation_output_dto.dart';
 export 'package:perfumegpt_ai_api_client/src/model/conversation_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/create_admin_instruction_request.dart';

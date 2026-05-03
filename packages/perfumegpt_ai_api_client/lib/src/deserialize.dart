@@ -21,7 +21,7 @@ import 'package:perfumegpt_ai_api_client/src/model/concentration_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_chat_v11200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response_data.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_output_dto.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/create_admin_instruction_request.dart';
@@ -188,8 +188,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return ConversationControllerGetAllConversations200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'ConversationControllerGetMyConversationHistory200Response':
           return ConversationControllerGetMyConversationHistory200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ConversationControllerGetMyConversationHistory200ResponsePayload':
-          return ConversationControllerGetMyConversationHistory200ResponsePayload.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'ConversationControllerGetMyConversationHistory200ResponseData':
+          return ConversationControllerGetMyConversationHistory200ResponseData.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'ConversationOutputDto':
           return ConversationOutputDto.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'ConversationResponse':

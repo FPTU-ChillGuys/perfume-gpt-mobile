@@ -3936,7 +3936,7 @@
             "description": "Ngày kết thúc",
             "schema": {
               "format": "date-time",
-              "default": "2026-05-02T16:59:59.999Z",
+              "default": "2026-05-03T16:59:59.999Z",
               "type": "string"
             }
           },
@@ -6013,7 +6013,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-05-02T15:34:43.039Z",
+              "example": "2026-05-03T11:22:47.734Z",
               "type": "string"
             }
           },
@@ -7510,7 +7510,12 @@
                       "nullable": true,
                       "description": "Thông báo lỗi"
                     },
-                    "payload": {
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/PagedResult"
@@ -7733,7 +7738,12 @@
                       "nullable": true,
                       "description": "Thông báo lỗi"
                     },
-                    "payload": {
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/PagedResult"

@@ -30,7 +30,7 @@ doc/ConversationApi.md
 doc/ConversationControllerChatV11200Response.md
 doc/ConversationControllerGetAllConversations200Response.md
 doc/ConversationControllerGetMyConversationHistory200Response.md
-doc/ConversationControllerGetMyConversationHistory200ResponsePayload.md
+doc/ConversationControllerGetMyConversationHistory200ResponseData.md
 doc/ConversationOutputDto.md
 doc/ConversationResponse.md
 doc/CreateAdminInstructionRequest.md
@@ -182,7 +182,7 @@ lib/src/model/concentration_response.dart
 lib/src/model/conversation_controller_chat_v11200_response.dart
 lib/src/model/conversation_controller_get_all_conversations200_response.dart
 lib/src/model/conversation_controller_get_my_conversation_history200_response.dart
-lib/src/model/conversation_controller_get_my_conversation_history200_response_payload.dart
+lib/src/model/conversation_controller_get_my_conversation_history200_response_data.dart
 lib/src/model/conversation_output_dto.dart
 lib/src/model/conversation_response.dart
 lib/src/model/create_admin_instruction_request.dart

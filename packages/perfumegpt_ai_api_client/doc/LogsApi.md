@@ -536,7 +536,7 @@ import 'package:perfumegpt_ai_api_client/api.dart';
 final api = PerfumegptAiApiClient().getLogsApi();
 final String userId = userId_example; // String | 
 final String period = period_example; // String | 
-final DateTime endDate = 2026-05-02T15:34:43.039Z; // DateTime | 
+final DateTime endDate = 2026-05-03T11:22:47.734Z; // DateTime | 
 final DateTime startDate = 2013-10-20T19:20:30+01:00; // DateTime | 
 
 try {

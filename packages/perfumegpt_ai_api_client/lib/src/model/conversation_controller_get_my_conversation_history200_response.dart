@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response_payload.dart';
+import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response_data.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -25,7 +25,9 @@ class ConversationControllerGetMyConversationHistory200Response {
 
      this.error,
 
-     this.payload,
+     this.details,
+
+     this.data,
   });
 
       /// Kết quả xử lý
@@ -54,15 +56,28 @@ class ConversationControllerGetMyConversationHistory200Response {
 
 
 
+      /// Chi tiết lỗi
   @JsonKey(
     
-    name: r'payload',
+    name: r'details',
     required: false,
     includeIfNull: false,
   )
 
 
-  final ConversationControllerGetMyConversationHistory200ResponsePayload? payload;
+  final String? details;
+
+
+
+  @JsonKey(
+    
+    name: r'data',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final ConversationControllerGetMyConversationHistory200ResponseData? data;
 
 
 
@@ -72,13 +87,15 @@ class ConversationControllerGetMyConversationHistory200Response {
     bool operator ==(Object other) => identical(this, other) || other is ConversationControllerGetMyConversationHistory200Response &&
       other.success == success &&
       other.error == error &&
-      other.payload == payload;
+      other.details == details &&
+      other.data == data;
 
     @override
     int get hashCode =>
         success.hashCode +
         (error == null ? 0 : error.hashCode) +
-        payload.hashCode;
+        (details == null ? 0 : details.hashCode) +
+        data.hashCode;
 
   factory ConversationControllerGetMyConversationHistory200Response.fromJson(Map<String, dynamic> json) => _$ConversationControllerGetMyConversationHistory200ResponseFromJson(json);
 

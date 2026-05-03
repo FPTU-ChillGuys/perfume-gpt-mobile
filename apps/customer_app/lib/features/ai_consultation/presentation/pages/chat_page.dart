@@ -195,19 +195,36 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     final currentUserId = user?.id ?? chatNotifier.guestUserId ?? 'user';
 
     return Scaffold(
-      appBar: AppBar(title: const Text('AI Consultation')),
+      appBar: AppBar(
+        title: const Text('AI Consultation'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add_comment_outlined),
+            tooltip: 'Chat mới',
+            onPressed: () {
+              ref.read(chatSessionProvider.notifier).newConversation();
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.history),
+            tooltip: 'Lịch sử',
+            onPressed: () {
+              context.push('/chat/history');
+            },
+          ),
+        ],
+      ),
       body: messagesAsync.when(
         data: (messages) {
           _chatController.setMessages(messages);
 
-          // Extract suggested questions from the last AI message
           final lastMessage = messages.lastOrNull;
           final isLoading =
               lastMessage is CustomMessage && lastMessage.metadata?['isLoading'] == true;
-          
+
           final List<String> suggestions = [];
-          if (lastMessage is CustomMessage && 
-              lastMessage.authorId == 'ai' && 
+          if (lastMessage is CustomMessage &&
+              lastMessage.authorId == 'ai' &&
               lastMessage.metadata?['isLoading'] != true) {
             final metadata = lastMessage.metadata;
             if (metadata != null) {
@@ -336,7 +353,7 @@ class _TypingDotState extends State<_TypingDot>
             color: Theme.of(context)
                 .colorScheme
                 .onSurfaceVariant
-                .withOpacity(0.3 + (0.7 * _animation.value)),
+                .withValues(alpha: 0.3 + (0.7 * _animation.value)),
             shape: BoxShape.circle,
           ),
         );
@@ -360,7 +377,6 @@ class _ChatProductCard extends StatelessWidget {
         elevation: 2,
         child: InkWell(
           onTap: () {
-            // Navigate to product details
             context.push('/product/${product.id}');
           },
           child: Column(

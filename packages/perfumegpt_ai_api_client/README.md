@@ -213,7 +213,7 @@ Class | Method | HTTP request | Description
  - [ConversationControllerChatV11200Response](doc/ConversationControllerChatV11200Response.md)
  - [ConversationControllerGetAllConversations200Response](doc/ConversationControllerGetAllConversations200Response.md)
  - [ConversationControllerGetMyConversationHistory200Response](doc/ConversationControllerGetMyConversationHistory200Response.md)
- - [ConversationControllerGetMyConversationHistory200ResponsePayload](doc/ConversationControllerGetMyConversationHistory200ResponsePayload.md)
+ - [ConversationControllerGetMyConversationHistory200ResponseData](doc/ConversationControllerGetMyConversationHistory200ResponseData.md)
  - [ConversationOutputDto](doc/ConversationOutputDto.md)
  - [ConversationResponse](doc/ConversationResponse.md)
  - [CreateAdminInstructionRequest](doc/CreateAdminInstructionRequest.md)
