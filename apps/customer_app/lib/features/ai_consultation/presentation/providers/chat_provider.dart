@@ -1,9 +1,12 @@
-import 'package:flutter/widgets.dart';
-import 'package:perfumegpt_common/perfumegpt_common.dart';
+import 'dart:convert';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
+import 'package:drift/drift.dart' hide Column;
+import '../../../../core/db/database_provider.dart';
+import '../../../../core/db/database.dart';
 
 part 'chat_provider.g.dart';
 
@@ -11,66 +14,60 @@ part 'chat_provider.g.dart';
 class ChatSession extends _$ChatSession {
   String? _conversationId;
   String? _guestUserId;
+  bool _isSending = false;
+
+  String? get guestUserId => _guestUserId;
 
   @override
   Future<List<Message>> build() async {
-    final aiApiClient = ref.read(aiApiClientProvider);
-    final conversationApi = aiApiClient.getConversationApi();
+    final dao = ref.read(conversationDaoProvider);
+    final localConvs = await dao.getAllConversations();
 
-    try {
-      final response = await conversationApi
-          .conversationControllerGetAllConversationsPaginated(pageSize: 1);
+    final currentUser = ref.read(authProvider).value;
+    final currentUserId = currentUser?.id;
 
-      final latestConversation = response.data?.payload?.items.firstOrNull;
+    final userConvs = localConvs.where((c) => currentUserId == null || c.userId == currentUserId).toList();
 
-      if (latestConversation != null) {
-        _conversationId = latestConversation.id;
-        _guestUserId = latestConversation.userId;
-        final messages = latestConversation.messages.asMap().entries.map((
-          entry,
-        ) {
-          final index = entry.key;
-          final m = entry.value;
-          final isAi = m.sender == MessageResponseSenderEnum.assistant;
-          final authorId = isAi ? 'ai' : (latestConversation.userId);
+    if (userConvs.isNotEmpty) {
+      final latestLocal = userConvs.first;
+      _conversationId = latestLocal.id;
+      _guestUserId = latestLocal.userId;
+      final localMessages = await dao.getMessagesByConversationId(latestLocal.id);
+      final messages = localMessages.map((m) => _mapLocalMessageToChat(m)).toList();
 
-          final messageId = '${latestConversation.id}_$index';
-
-          if (isAi &&
-              (m.message.products != null && m.message.products!.isNotEmpty ||
-                  m.message.suggestedQuestions.isNotEmpty)) {
-            return Message.custom(
-              authorId: authorId,
-              createdAt: m.createdAt,
-              id: messageId,
-              metadata: {
-                'text': m.message.message,
-                'products': m.message.products?.map((p) => p.toJson()).toList(),
-                'suggestedQuestions': m.message.suggestedQuestions,
-              },
-            );
-          }
-
-          return Message.text(
-            authorId: authorId,
-            createdAt: m.createdAt,
-            id: messageId,
-            text: m.message.message,
-          );
-        }).toList();
-
-        return messages;
-      }
-    } catch (e) {
-      // Fallback to new conversation if failed to fetch or no previous conversations
+      return messages;
     }
 
     _conversationId = const Uuid().v4();
     return [];
   }
 
+  Future<void> loadConversation(String conversationId) async {
+    if (_isSending) return;
+    final dao = ref.read(conversationDaoProvider);
+    final localConv = await dao.getConversationById(conversationId);
+
+    if (localConv != null) {
+      final currentUser = ref.read(authProvider).value;
+      if (currentUser != null && localConv.userId != currentUser.id) return;
+
+      _conversationId = localConv.id;
+      _guestUserId = localConv.userId;
+      final localMessages = await dao.getMessagesByConversationId(localConv.id);
+      final messages = localMessages.map((m) => _mapLocalMessageToChat(m)).toList();
+      state = AsyncData(messages);
+    }
+  }
+
+  void newConversation() {
+    if (_isSending) return;
+    _conversationId = const Uuid().v4();
+    state = const AsyncData([]);
+  }
+
   void sendMessage(String text) async {
-    if (state.value == null) return;
+    if (state.value == null || _isSending) return;
+    _isSending = true;
 
     final user = ref.read(authProvider).value;
     final userId = user?.id ?? (_guestUserId ??= const Uuid().v4());
@@ -82,17 +79,27 @@ class ChatSession extends _$ChatSession {
       text: text,
     );
 
+    final loadingMessageId = 'loading_${const Uuid().v4()}';
+    final loadingMessage = Message.custom(
+      authorId: 'ai',
+      createdAt: DateTime.now(),
+      id: loadingMessageId,
+      metadata: {'isLoading': true},
+    );
+
     final previousMessages = state.value!;
-    state = AsyncData([...previousMessages, userMessage]);
+    state = AsyncData([...previousMessages, userMessage, loadingMessage]);
 
     try {
       final aiApiClient = ref.read(aiApiClientProvider);
       final conversationApi = aiApiClient.getConversationApi();
 
       _conversationId ??= const Uuid().v4();
+      final activeConvId = _conversationId!;
 
-      // Construct history for V10 API - state is already oldest first
-      final history = state.value!.map((m) {
+      final history = state.value!
+          .where((m) => m.id != loadingMessageId)
+          .map((m) {
         String msgText;
         if (m is TextMessage) {
           msgText = m.text;
@@ -102,19 +109,35 @@ class ChatSession extends _$ChatSession {
           msgText = '';
         }
 
-        return ChatMessageRequest(
-          sender: m.authorId == 'ai'
-              ? ChatMessageRequestSenderEnum.assistant
-              : ChatMessageRequestSenderEnum.user,
-          message: ChatMessageRequestMessage(
+        final isAi = m.authorId == 'ai';
+
+        if (isAi) {
+          final customMsg = m is CustomMessage ? m : null;
+          final storedProducts = customMsg?.metadata?['products'];
+          final storedSuggestions = customMsg?.metadata?['suggestedQuestions'];
+
+          return ChatMessageRequest(
+            sender: ChatMessageRequestSenderEnum.assistant,
             message: msgText,
-            suggestedQuestions: [],
-          ),
+            products: storedProducts != null
+                ? (storedProducts as List<dynamic>)
+                    .map((p) => ProductCardOutputItemDto.fromJson(
+                        p as Map<String, dynamic>))
+                    .toList()
+                : null,
+            suggestedQuestions:
+                storedSuggestions?.cast<String>().toList(),
+          );
+        }
+
+        return ChatMessageRequest(
+          sender: ChatMessageRequestSenderEnum.user,
+          message: msgText,
         );
       }).toList();
 
       final request = ChatRequest(
-        id: _conversationId!,
+        id: activeConvId,
         userId: userId,
         messages: history,
         isMobile: true,
@@ -127,21 +150,30 @@ class ChatSession extends _$ChatSession {
       final conversationResponse = response.data?.data;
       final aiLastMessage = conversationResponse?.messages.lastOrNull;
 
-      if (aiLastMessage != null) {
-        final messageData = aiLastMessage.message;
-        Message aiMessage;
+      if (_conversationId != activeConvId) return;
 
-        if ((messageData.products != null &&
-                messageData.products!.isNotEmpty) ||
-            messageData.suggestedQuestions.isNotEmpty) {
+      state = AsyncData(
+        state.value!.where((m) => m.id != loadingMessageId).toList(),
+      );
+
+      if (aiLastMessage != null) {
+        final hasStructuredData =
+            (aiLastMessage.products != null &&
+                aiLastMessage.products!.isNotEmpty) ||
+            (aiLastMessage.suggestedQuestions != null &&
+                aiLastMessage.suggestedQuestions!.isNotEmpty);
+
+        Message aiMessage;
+        if (hasStructuredData) {
           aiMessage = Message.custom(
             authorId: 'ai',
             createdAt: DateTime.now(),
             id: const Uuid().v4(),
             metadata: {
-              'text': messageData.message,
-              'products': messageData.products?.map((p) => p.toJson()).toList(),
-              'suggestedQuestions': messageData.suggestedQuestions,
+              'text': aiLastMessage.message,
+              'products':
+                  aiLastMessage.products?.map((p) => p.toJson()).toList(),
+              'suggestedQuestions': aiLastMessage.suggestedQuestions,
             },
           );
         } else {
@@ -149,15 +181,20 @@ class ChatSession extends _$ChatSession {
             authorId: 'ai',
             createdAt: DateTime.now(),
             id: const Uuid().v4(),
-            text: messageData.message,
+            text: aiLastMessage.message,
           );
         }
 
         state = AsyncData([...state.value!, aiMessage]);
+        await _saveConversationToLocal();
       } else {
         throw Exception('No response from AI');
       }
     } catch (e) {
+      state = AsyncData(
+        state.value!.where((m) => m.id != loadingMessageId).toList(),
+      );
+
       final errorMessage = Message.text(
         authorId: 'ai',
         createdAt: DateTime.now(),
@@ -165,6 +202,106 @@ class ChatSession extends _$ChatSession {
         text: 'Sorry, I encountered an error. Please try again later.',
       );
       state = AsyncData([...state.value!, errorMessage]);
+    } finally {
+      _isSending = false;
     }
   }
+
+  Message _mapLocalMessageToChat(LocalMessage m) {
+    final metadataJson = m.metadataJson;
+
+    if (metadataJson != null) {
+      try {
+        final metadata = jsonDecode(metadataJson) as Map<String, dynamic>;
+        return Message.custom(
+          authorId: m.authorId,
+          createdAt: DateTime.fromMillisecondsSinceEpoch(m.createdAt),
+          id: m.id,
+          metadata: metadata,
+        );
+      } catch (_) {
+        return Message.text(
+          authorId: m.authorId,
+          createdAt: DateTime.fromMillisecondsSinceEpoch(m.createdAt),
+          id: m.id,
+          text: m.textContent,
+        );
+      }
+    }
+
+    return Message.text(
+      authorId: m.authorId,
+      createdAt: DateTime.fromMillisecondsSinceEpoch(m.createdAt),
+      id: m.id,
+      text: m.textContent,
+    );
+  }
+
+  Future<void> _saveConversationToLocal() async {
+    if (_conversationId == null) return;
+
+    final user = ref.read(authProvider).value;
+    final userId = user?.id ?? _guestUserId;
+    if (userId == null) return;
+
+    final messages = state.value ?? [];
+    final nonLoadingMessages = messages.where((m) {
+      if (m is CustomMessage) {
+        if (m.metadata?['isLoading'] == true) return false;
+        if (m.metadata?['isTransient'] == true) return false;
+      }
+      return true;
+    }).toList();
+
+    final lastMessage = nonLoadingMessages.lastOrNull;
+    String preview = '';
+    if (lastMessage is TextMessage) {
+      preview = lastMessage.text;
+    } else if (lastMessage is CustomMessage &&
+        lastMessage.metadata?['text'] != null) {
+      preview = lastMessage.metadata!['text'] as String;
+    }
+    final previewTrimmed = preview.length > 60 ? preview.substring(0, 60) : preview;
+
+    final dao = ref.read(conversationDaoProvider);
+    await dao.upsertConversation(LocalConversationsCompanion.insert(
+      id: _conversationId!,
+      userId: userId,
+      updatedAt: DateTime.now().millisecondsSinceEpoch,
+      messageCount: Value(nonLoadingMessages.length),
+      lastMessagePreview: Value(previewTrimmed),
+    ));
+
+    final messageEntries = nonLoadingMessages.asMap().entries.map((entry) {
+      final index = entry.key;
+      final m = entry.value;
+      String textContent;
+      String? metadataJson;
+
+      if (m is TextMessage) {
+        textContent = m.text;
+        metadataJson = null;
+      } else if (m is CustomMessage) {
+        textContent = m.metadata?['text'] as String? ?? '';
+        metadataJson = jsonEncode(m.metadata);
+      } else {
+        textContent = '';
+        metadataJson = null;
+      }
+
+      return LocalMessagesCompanion.insert(
+        id: '${_conversationId}_$index',
+        conversationId: _conversationId!,
+        authorId: m.authorId,
+        textContent: Value(textContent),
+        metadataJson: Value(metadataJson),
+        createdAt: m.createdAt?.millisecondsSinceEpoch ??
+            DateTime.now().millisecondsSinceEpoch,
+        messageIndex: index,
+      );
+    }).toList();
+
+    await dao.replaceMessagesForConversation(_conversationId!, messageEntries);
+  }
+
 }

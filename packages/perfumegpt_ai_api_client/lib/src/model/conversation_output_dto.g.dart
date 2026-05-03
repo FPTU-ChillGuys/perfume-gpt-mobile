@@ -13,7 +13,7 @@ abstract class _$ConversationOutputDtoCWProxy {
 
   ConversationOutputDto productTemp(List<ProductTempItemDto>? productTemp);
 
-  ConversationOutputDto suggestedQuestions(List<String> suggestedQuestions);
+  ConversationOutputDto suggestedQuestions(List<String>? suggestedQuestions);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConversationOutputDto(...).copyWith.fieldName(value)`.
@@ -26,7 +26,7 @@ abstract class _$ConversationOutputDtoCWProxy {
     String message,
     List<ProductCardOutputItemDto>? products,
     List<ProductTempItemDto>? productTemp,
-    List<String> suggestedQuestions,
+    List<String>? suggestedQuestions,
   });
 }
 
@@ -50,7 +50,7 @@ class _$ConversationOutputDtoCWProxyImpl
       call(productTemp: productTemp);
 
   @override
-  ConversationOutputDto suggestedQuestions(List<String> suggestedQuestions) =>
+  ConversationOutputDto suggestedQuestions(List<String>? suggestedQuestions) =>
       call(suggestedQuestions: suggestedQuestions);
 
   @override
@@ -80,12 +80,10 @@ class _$ConversationOutputDtoCWProxyImpl
           ? _value.productTemp
           // ignore: cast_nullable_to_non_nullable
           : productTemp as List<ProductTempItemDto>?,
-      suggestedQuestions:
-          suggestedQuestions == const $CopyWithPlaceholder() ||
-              suggestedQuestions == null
+      suggestedQuestions: suggestedQuestions == const $CopyWithPlaceholder()
           ? _value.suggestedQuestions
           // ignore: cast_nullable_to_non_nullable
-          : suggestedQuestions as List<String>,
+          : suggestedQuestions as List<String>?,
     );
   }
 }
@@ -124,7 +122,7 @@ ConversationOutputDto _$ConversationOutputDtoFromJson(
     ),
     suggestedQuestions: $checkedConvert(
       'suggestedQuestions',
-      (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+      (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
     ),
   );
   return val;

@@ -101,4 +101,4 @@ final class AiApiClientProvider
   }
 }
 
-String _$aiApiClientHash() => r'5ad6f6e414a260ac9a2ed58dd6e42ef8da1d13d5';
+String _$aiApiClientHash() => r'7548cbabb893cfbb8b90aac9900a83c797aac179';

@@ -15,8 +15,12 @@ abstract class _$ConversationControllerGetMyConversationHistory200ResponseCWProx
     String? error,
   );
 
-  ConversationControllerGetMyConversationHistory200Response payload(
-    ConversationControllerGetMyConversationHistory200ResponsePayload? payload,
+  ConversationControllerGetMyConversationHistory200Response details(
+    String? details,
+  );
+
+  ConversationControllerGetMyConversationHistory200Response data(
+    ConversationControllerGetMyConversationHistory200ResponseData? data,
   );
 
   /// Creates a new instance with the provided field values.
@@ -29,7 +33,8 @@ abstract class _$ConversationControllerGetMyConversationHistory200ResponseCWProx
   ConversationControllerGetMyConversationHistory200Response call({
     bool? success,
     String? error,
-    ConversationControllerGetMyConversationHistory200ResponsePayload? payload,
+    String? details,
+    ConversationControllerGetMyConversationHistory200ResponseData? data,
   });
 }
 
@@ -55,9 +60,14 @@ class _$ConversationControllerGetMyConversationHistory200ResponseCWProxyImpl
   ) => call(error: error);
 
   @override
-  ConversationControllerGetMyConversationHistory200Response payload(
-    ConversationControllerGetMyConversationHistory200ResponsePayload? payload,
-  ) => call(payload: payload);
+  ConversationControllerGetMyConversationHistory200Response details(
+    String? details,
+  ) => call(details: details);
+
+  @override
+  ConversationControllerGetMyConversationHistory200Response data(
+    ConversationControllerGetMyConversationHistory200ResponseData? data,
+  ) => call(data: data);
 
   @override
   /// Creates a new instance with the provided field values.
@@ -70,7 +80,8 @@ class _$ConversationControllerGetMyConversationHistory200ResponseCWProxyImpl
   ConversationControllerGetMyConversationHistory200Response call({
     Object? success = const $CopyWithPlaceholder(),
     Object? error = const $CopyWithPlaceholder(),
-    Object? payload = const $CopyWithPlaceholder(),
+    Object? details = const $CopyWithPlaceholder(),
+    Object? data = const $CopyWithPlaceholder(),
   }) {
     return ConversationControllerGetMyConversationHistory200Response(
       success: success == const $CopyWithPlaceholder()
@@ -81,11 +92,15 @@ class _$ConversationControllerGetMyConversationHistory200ResponseCWProxyImpl
           ? _value.error
           // ignore: cast_nullable_to_non_nullable
           : error as String?,
-      payload: payload == const $CopyWithPlaceholder()
-          ? _value.payload
+      details: details == const $CopyWithPlaceholder()
+          ? _value.details
           // ignore: cast_nullable_to_non_nullable
-          : payload
-                as ConversationControllerGetMyConversationHistory200ResponsePayload?,
+          : details as String?,
+      data: data == const $CopyWithPlaceholder()
+          ? _value.data
+          // ignore: cast_nullable_to_non_nullable
+          : data
+                as ConversationControllerGetMyConversationHistory200ResponseData?,
     );
   }
 }
@@ -116,11 +131,12 @@ _$ConversationControllerGetMyConversationHistory200ResponseFromJson(
     final val = ConversationControllerGetMyConversationHistory200Response(
       success: $checkedConvert('success', (v) => v as bool?),
       error: $checkedConvert('error', (v) => v as String?),
-      payload: $checkedConvert(
-        'payload',
+      details: $checkedConvert('details', (v) => v as String?),
+      data: $checkedConvert(
+        'data',
         (v) => v == null
             ? null
-            : ConversationControllerGetMyConversationHistory200ResponsePayload.fromJson(
+            : ConversationControllerGetMyConversationHistory200ResponseData.fromJson(
                 v as Map<String, dynamic>,
               ),
       ),
@@ -135,5 +151,6 @@ _$ConversationControllerGetMyConversationHistory200ResponseToJson(
 ) => <String, dynamic>{
   'success': ?instance.success,
   'error': ?instance.error,
-  'payload': ?instance.payload?.toJson(),
+  'details': ?instance.details,
+  'data': ?instance.data?.toJson(),
 };

@@ -1,5 +1,6 @@
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +18,7 @@ class ChatPage extends ConsumerStatefulWidget {
 
 class _ChatPageState extends ConsumerState<ChatPage> {
   late final InMemoryChatController _chatController;
+  List<Message> _previousMessages = [];
 
   @override
   void initState() {
@@ -38,6 +40,65 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     return User(id: userId, name: user?.name ?? 'User');
   }
 
+  MarkdownStyleSheet _aiMessageStyleSheet(BuildContext context) {
+    final textColor = Theme.of(context).colorScheme.onSurfaceVariant;
+
+    return MarkdownStyleSheet(
+      p: TextStyle(color: textColor, height: 1.5),
+      strong: TextStyle(color: textColor, fontWeight: FontWeight.bold),
+      em: TextStyle(color: textColor, fontStyle: FontStyle.italic),
+      h1: TextStyle(color: textColor, fontSize: 20, fontWeight: FontWeight.bold),
+      h2: TextStyle(color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
+      h3: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
+      listBullet: TextStyle(color: textColor),
+      code: TextStyle(
+        color: textColor,
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+        fontSize: 13,
+      ),
+      codeblockDecoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
+  }
+
+  BorderRadius _bubbleRadius(bool isSentByMe) => isSentByMe
+      ? const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(4),
+          topRight: Radius.circular(20),
+        )
+      : const BorderRadius.only(
+          topLeft: Radius.circular(4),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+          topRight: Radius.circular(20),
+        );
+
+  Widget _buildMessageBubble(
+    BuildContext context,
+    Widget content, {
+    required bool isSentByMe,
+  }) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width * 0.75,
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: isSentByMe
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.surfaceContainerHighest,
+          borderRadius: _bubbleRadius(isSentByMe),
+        ),
+        child: content,
+      ),
+    );
+  }
+
   Widget _buildCustomMessage(
     BuildContext context,
     CustomMessage message,
@@ -47,6 +108,24 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   }) {
     final metadata = message.metadata;
     if (metadata == null) return const SizedBox.shrink();
+
+    if (metadata['isLoading'] == true) {
+      return _buildMessageBubble(
+        context,
+        const SizedBox(
+          width: 40,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _TypingDot(delay: 0),
+              _TypingDot(delay: 0.2),
+              _TypingDot(delay: 0.4),
+            ],
+          ),
+        ),
+        isSentByMe: false,
+      );
+    }
 
     final text = metadata['text'] as String?;
     final productsJson = metadata['products'] as List<dynamic>?;
@@ -58,24 +137,14 @@ class _ChatPageState extends ConsumerState<ChatPage> {
           isSentByMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         if (text != null)
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            decoration: BoxDecoration(
-              color:
-                  isSentByMe
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(20),
+          _buildMessageBubble(
+            context,
+            MarkdownBody(
+              data: text,
+              selectable: true,
+              styleSheet: _aiMessageStyleSheet(context),
             ),
-            child: Text(
-              text,
-              style: TextStyle(
-                color:
-                    isSentByMe
-                        ? Theme.of(context).colorScheme.onPrimary
-                        : Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-            ),
+            isSentByMe: isSentByMe,
           ),
         if (products != null && products.isNotEmpty) ...[
           const SizedBox(height: 12),
@@ -95,21 +164,91 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     );
   }
 
+  Widget _buildTextMessage(
+    BuildContext context,
+    TextMessage message,
+    int index, {
+    required bool isSentByMe,
+    MessageGroupStatus? groupStatus,
+  }) {
+    final content = isSentByMe
+        ? Text(
+            message.text,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+              height: 1.5,
+            ),
+          )
+        : MarkdownBody(
+            data: message.text,
+            selectable: true,
+            styleSheet: _aiMessageStyleSheet(context),
+          );
+
+    return _buildMessageBubble(context, content, isSentByMe: isSentByMe);
+  }
+
   @override
   Widget build(BuildContext context) {
     final messagesAsync = ref.watch(chatSessionProvider);
     final user = ref.watch(common.authProvider).value;
+    final chatNotifier = ref.read(chatSessionProvider.notifier);
+    final currentUserId = user?.id ?? chatNotifier.guestUserId ?? 'user';
 
     return Scaffold(
-      appBar: AppBar(title: const Text('AI Consultation')),
+      appBar: AppBar(
+        title: const Text('AI Consultation'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add_comment_outlined),
+            tooltip: 'Chat mới',
+            onPressed: () {
+              ref.read(chatSessionProvider.notifier).newConversation();
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.history),
+            tooltip: 'Lịch sử',
+            onPressed: () {
+              context.push('/chat/history');
+            },
+          ),
+        ],
+      ),
       body: messagesAsync.when(
         data: (messages) {
-          _chatController.setMessages(messages);
+          if (_previousMessages.isEmpty) {
+            _chatController.setMessages(messages, animated: false);
+          } else {
+            final prev = _previousMessages;
+            if (messages.length > prev.length) {
+              for (var i = prev.length; i < messages.length; i++) {
+                _chatController.insertMessage(messages[i]);
+              }
+            }
+            if (messages.length < prev.length) {
+              final removedMessages = prev
+                  .where((m) => !messages.any((n) => n.id == m.id));
+              for (final removed in removedMessages) {
+                _chatController.removeMessage(removed);
+              }
+            }
+            for (var i = 0; i < messages.length && i < prev.length; i++) {
+              if (messages[i].id != prev[i].id || messages[i] != prev[i]) {
+                _chatController.updateMessage(prev[i], messages[i]);
+              }
+            }
+          }
+          _previousMessages = List.from(messages);
 
-          // Extract suggested questions from the last AI message
           final lastMessage = messages.lastOrNull;
+          final isLoading =
+              lastMessage is CustomMessage && lastMessage.metadata?['isLoading'] == true;
+
           final List<String> suggestions = [];
-          if (lastMessage is CustomMessage && lastMessage.authorId == 'ai') {
+          if (lastMessage is CustomMessage &&
+              lastMessage.authorId == 'ai' &&
+              lastMessage.metadata?['isLoading'] != true) {
             final metadata = lastMessage.metadata;
             if (metadata != null) {
               final sq = metadata['suggestedQuestions'] as List<dynamic>?;
@@ -119,64 +258,129 @@ class _ChatPageState extends ConsumerState<ChatPage> {
             }
           }
 
-          return Column(
-            children: [
-              Expanded(
-                child: Chat(
-                  chatController: _chatController,
-                  currentUserId: user?.id ?? 'user',
-                  resolveUser: _resolveUser,
-                  onMessageSend: (String text) {
-                    ref.read(chatSessionProvider.notifier).sendMessage(text);
-                  },
-                  builders: Builders(
-                    customMessageBuilder: _buildCustomMessage,
-                  ),
-                  theme: ChatTheme.light(
-                    fontFamily:
-                        Theme.of(context).textTheme.bodyMedium?.fontFamily,
-                  ).copyWith(
-                    colors: ChatColors.light().copyWith(
-                      primary: Theme.of(context).colorScheme.primary,
-                      onPrimary: Theme.of(context).colorScheme.onPrimary,
-                      surface: Theme.of(context).colorScheme.surface,
-                      onSurface: Theme.of(context).colorScheme.onSurface,
-                      surfaceContainer:
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
-                    ),
-                  ),
-                ),
+          return Chat(
+            chatController: _chatController,
+            currentUserId: currentUserId,
+            resolveUser: _resolveUser,
+            onMessageSend: (String text) {
+              ref.read(chatSessionProvider.notifier).sendMessage(text);
+            },
+            builders: Builders(
+              customMessageBuilder: _buildCustomMessage,
+              textMessageBuilder: _buildTextMessage,
+              composerBuilder: (context) {
+                return Composer(
+                  sendButtonDisabled: isLoading,
+                  topWidget: suggestions.isNotEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                          child: SizedBox(
+                            height: 40,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: suggestions.length,
+                              itemBuilder: (context, index) {
+                                final suggestion = suggestions[index];
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: ActionChip(
+                                    label: Text(suggestion),
+                                    onPressed: isLoading ? null : () {
+                                      ref
+                                          .read(chatSessionProvider.notifier)
+                                          .sendMessage(suggestion);
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        )
+                      : null,
+                );
+              },
+            ),
+            theme: ChatTheme.light(
+              fontFamily:
+                  Theme.of(context).textTheme.bodyMedium?.fontFamily,
+            ).copyWith(
+              colors: ChatColors.light().copyWith(
+                primary: Theme.of(context).colorScheme.primary,
+                onPrimary: Theme.of(context).colorScheme.onPrimary,
+                surface: Theme.of(context).colorScheme.surface,
+                onSurface: Theme.of(context).colorScheme.onSurface,
+                surfaceContainer:
+                    Theme.of(context).colorScheme.surfaceContainerHighest,
               ),
-              if (suggestions.isNotEmpty)
-                Container(
-                  height: 50,
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    itemCount: suggestions.length,
-                    itemBuilder: (context, index) {
-                      final suggestion = suggestions[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: ActionChip(
-                          label: Text(suggestion),
-                          onPressed: () {
-                            ref
-                                .read(chatSessionProvider.notifier)
-                                .sendMessage(suggestion);
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ),
-            ],
+            ),
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),
+    );
+  }
+}
+
+class _TypingDot extends StatefulWidget {
+  final double delay;
+
+  const _TypingDot({required this.delay});
+
+  @override
+  State<_TypingDot> createState() => _TypingDotState();
+}
+
+class _TypingDotState extends State<_TypingDot>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+
+    _animation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+
+    Future.delayed(Duration(milliseconds: (widget.delay * 1000).toInt()), () {
+      if (mounted) {
+        _controller.repeat(reverse: true);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        return Container(
+          width: 6,
+          height: 6,
+          decoration: BoxDecoration(
+            color: Theme.of(context)
+                .colorScheme
+                .onSurfaceVariant
+                .withValues(alpha: 0.3 + (0.7 * _animation.value)),
+            shape: BoxShape.circle,
+          ),
+        );
+      },
     );
   }
 }
@@ -196,7 +400,6 @@ class _ChatProductCard extends StatelessWidget {
         elevation: 2,
         child: InkWell(
           onTap: () {
-            // Navigate to product details
             context.push('/product/${product.id}');
           },
           child: Column(

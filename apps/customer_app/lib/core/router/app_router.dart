@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import '../../domain/entities/order.dart';
 import '../../features/address/presentation/pages/address_form_page.dart';
 import '../../features/address/presentation/pages/address_list_page.dart';
+import '../../features/ai_consultation/presentation/pages/chat_history_page.dart';
 import '../../features/ai_consultation/presentation/pages/chat_page.dart';
 import '../../features/ai_consultation/presentation/pages/quiz_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
@@ -42,6 +43,10 @@ class AppRouter {
       ),
       GoRoute(path: '/', builder: (context, state) => const HomePage()),
       GoRoute(path: '/chat', builder: (context, state) => const ChatPage()),
+      GoRoute(
+        path: '/chat/history',
+        builder: (context, state) => const ChatHistoryPage(),
+      ),
       GoRoute(path: '/quiz', builder: (context, state) => const QuizPage()),
       GoRoute(
         path: '/store',
