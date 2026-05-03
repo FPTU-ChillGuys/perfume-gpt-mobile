@@ -43,6 +43,7 @@ class ChatSession extends _$ChatSession {
   }
 
   Future<void> loadConversation(String conversationId) async {
+    if (_isSending) return;
     final dao = ref.read(conversationDaoProvider);
     final localConv = await dao.getConversationById(conversationId);
 
@@ -59,6 +60,7 @@ class ChatSession extends _$ChatSession {
   }
 
   void newConversation() {
+    if (_isSending) return;
     _conversationId = const Uuid().v4();
     state = const AsyncData([]);
   }
@@ -93,6 +95,7 @@ class ChatSession extends _$ChatSession {
       final conversationApi = aiApiClient.getConversationApi();
 
       _conversationId ??= const Uuid().v4();
+      final activeConvId = _conversationId!;
 
       final history = state.value!
           .where((m) => m.id != loadingMessageId)
@@ -134,7 +137,7 @@ class ChatSession extends _$ChatSession {
       }).toList();
 
       final request = ChatRequest(
-        id: _conversationId!,
+        id: activeConvId,
         userId: userId,
         messages: history,
         isMobile: true,
@@ -146,6 +149,8 @@ class ChatSession extends _$ChatSession {
 
       final conversationResponse = response.data?.data;
       final aiLastMessage = conversationResponse?.messages.lastOrNull;
+
+      if (_conversationId != activeConvId) return;
 
       state = AsyncData(
         state.value!.where((m) => m.id != loadingMessageId).toList(),
@@ -206,13 +211,22 @@ class ChatSession extends _$ChatSession {
     final metadataJson = m.metadataJson;
 
     if (metadataJson != null) {
-      final metadata = jsonDecode(metadataJson) as Map<String, dynamic>;
-      return Message.custom(
-        authorId: m.authorId,
-        createdAt: DateTime.fromMillisecondsSinceEpoch(m.createdAt),
-        id: m.id,
-        metadata: metadata,
-      );
+      try {
+        final metadata = jsonDecode(metadataJson) as Map<String, dynamic>;
+        return Message.custom(
+          authorId: m.authorId,
+          createdAt: DateTime.fromMillisecondsSinceEpoch(m.createdAt),
+          id: m.id,
+          metadata: metadata,
+        );
+      } catch (_) {
+        return Message.text(
+          authorId: m.authorId,
+          createdAt: DateTime.fromMillisecondsSinceEpoch(m.createdAt),
+          id: m.id,
+          text: m.textContent,
+        );
+      }
     }
 
     return Message.text(

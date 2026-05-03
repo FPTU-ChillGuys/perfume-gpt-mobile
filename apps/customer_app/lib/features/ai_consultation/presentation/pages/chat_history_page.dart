@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import '../../../../core/db/database_provider.dart';
 import '../providers/chat_provider.dart';
 
@@ -38,24 +39,38 @@ class _ChatHistoryPageState extends ConsumerState<ChatHistoryPage> {
   }
 
   Future<void> _loadConversations() async {
-    final dao = ref.read(conversationDaoProvider);
-    final localConvs = await dao.getAllConversations();
+    try {
+      final dao = ref.read(conversationDaoProvider);
+      final localConvs = await dao.getAllConversations();
 
-    if (mounted && localConvs.isNotEmpty) {
-      setState(() {
-        _conversations = localConvs.map((lc) => _ConvDisplay(
-          id: lc.id,
-          userId: lc.userId,
-          preview: lc.lastMessagePreview.isEmpty ? 'Cuộc trò chuyện trống' : lc.lastMessagePreview,
-          messageCount: lc.messageCount,
-          updatedAt: DateTime.fromMillisecondsSinceEpoch(lc.updatedAt),
-        )).toList();
-        _isLoading = false;
-      });
-    } else if (mounted) {
-      setState(() {
-        _isLoading = false;
-      });
+      final currentUser = ref.read(common.authProvider).value;
+      final currentUserId = currentUser?.id;
+      final userConvs = localConvs
+          .where((c) => currentUserId == null || c.userId == currentUserId)
+          .toList();
+
+      if (mounted && userConvs.isNotEmpty) {
+        setState(() {
+          _conversations = userConvs.map((lc) => _ConvDisplay(
+            id: lc.id,
+            userId: lc.userId,
+            preview: lc.lastMessagePreview.isEmpty ? 'Cuộc trò chuyện trống' : lc.lastMessagePreview,
+            messageCount: lc.messageCount,
+            updatedAt: DateTime.fromMillisecondsSinceEpoch(lc.updatedAt),
+          )).toList();
+          _isLoading = false;
+        });
+      } else if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
