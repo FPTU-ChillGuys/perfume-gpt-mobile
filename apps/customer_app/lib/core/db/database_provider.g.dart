@@ -21,7 +21,7 @@ final class AppDatabaseProvider
         argument: null,
         retry: null,
         name: r'appDatabaseProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -48,7 +48,7 @@ final class AppDatabaseProvider
   }
 }
 
-String _$appDatabaseHash() => r'18ce5c8c4d8ddbfe5a7d819d8fb7d5aca76bf416';
+String _$appDatabaseHash() => r'448adad5717e7b1c0b3ca3ca7e03d0b2116237af';
 
 @ProviderFor(conversationDao)
 final conversationDaoProvider = ConversationDaoProvider._();
@@ -90,4 +90,4 @@ final class ConversationDaoProvider
   }
 }
 
-String _$conversationDaoHash() => r'8309b5e338676750d57fdc44de6106a1616a1655';
+String _$conversationDaoHash() => r'b7ebb1cee095723d3310e35344c8e35f26f84ffd';

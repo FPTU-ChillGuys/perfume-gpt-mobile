@@ -18,6 +18,7 @@ class ChatPage extends ConsumerStatefulWidget {
 
 class _ChatPageState extends ConsumerState<ChatPage> {
   late final InMemoryChatController _chatController;
+  List<Message> _previousMessages = [];
 
   @override
   void initState() {
@@ -216,7 +217,29 @@ class _ChatPageState extends ConsumerState<ChatPage> {
       ),
       body: messagesAsync.when(
         data: (messages) {
-          _chatController.setMessages(messages);
+          if (_previousMessages.isEmpty) {
+            _chatController.setMessages(messages, animated: false);
+          } else {
+            final prev = _previousMessages;
+            if (messages.length > prev.length) {
+              for (var i = prev.length; i < messages.length; i++) {
+                _chatController.insertMessage(messages[i]);
+              }
+            }
+            if (messages.length < prev.length) {
+              final removedMessages = prev
+                  .where((m) => !messages.any((n) => n.id == m.id));
+              for (final removed in removedMessages) {
+                _chatController.removeMessage(removed);
+              }
+            }
+            for (var i = 0; i < messages.length && i < prev.length; i++) {
+              if (messages[i].id != prev[i].id || messages[i] != prev[i]) {
+                _chatController.updateMessage(prev[i], messages[i]);
+              }
+            }
+          }
+          _previousMessages = List.from(messages);
 
           final lastMessage = messages.lastOrNull;
           final isLoading =

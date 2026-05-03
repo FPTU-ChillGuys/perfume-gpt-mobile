@@ -4,12 +4,14 @@ import 'dao/conversation_dao.dart';
 
 part 'database_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 AppDatabase appDatabase(Ref ref) {
-  return AppDatabase();
+  final db = AppDatabase();
+  ref.onDispose(() => db.close());
+  return db;
 }
 
 @riverpod
 ConversationDao conversationDao(Ref ref) {
-  return ConversationDao(ref.read(appDatabaseProvider));
+  return ConversationDao(ref.watch(appDatabaseProvider));
 }

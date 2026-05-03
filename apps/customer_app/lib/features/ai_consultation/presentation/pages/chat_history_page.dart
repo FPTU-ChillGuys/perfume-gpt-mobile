@@ -99,9 +99,19 @@ class _ChatHistoryPageState extends ConsumerState<ChatHistoryPage> {
                             ),
                             subtitle: Text('$messageCount tin nhắn • $timeStr'),
                             trailing: const Icon(Icons.chevron_right),
-                            onTap: () {
-                              ref.read(chatSessionProvider.notifier).loadConversation(conv.id);
-                              context.pop();
+                            onTap: () async {
+                              try {
+                                await ref.read(chatSessionProvider.notifier).loadConversation(conv.id);
+                                if (context.mounted) {
+                                  context.pop();
+                                }
+                              } catch (e) {
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Không thể tải cuộc trò chuyện: $e')),
+                                  );
+                                }
+                              }
                             },
                           );
                         },

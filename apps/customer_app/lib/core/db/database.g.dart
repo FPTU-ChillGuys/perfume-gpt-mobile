@@ -186,9 +186,13 @@ class LocalConversation extends DataClass
     implements Insertable<LocalConversation> {
   final String id;
   final String userId;
+
+  /// Stores Unix timestamp in milliseconds since epoch
   final int updatedAt;
   final int messageCount;
   final String lastMessagePreview;
+
+  /// Stores Unix timestamp in milliseconds since epoch
   final int syncedAt;
   const LocalConversation({
     required this.id,
@@ -451,7 +455,7 @@ class $LocalMessagesTable extends LocalMessages
     type: DriftSqlType.string,
     requiredDuringInsert: true,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES local_conversations (id)',
+      'REFERENCES local_conversations (id) ON DELETE CASCADE',
     ),
   );
   static const VerificationMeta _authorIdMeta = const VerificationMeta(
@@ -645,7 +649,11 @@ class LocalMessage extends DataClass implements Insertable<LocalMessage> {
   final String authorId;
   final String textContent;
   final String? metadataJson;
+
+  /// Stores Unix timestamp in milliseconds since epoch
   final int createdAt;
+
+  /// Sequential ordering index for messages within a conversation (not a timestamp)
   final int messageIndex;
   const LocalMessage({
     required this.id,
@@ -928,6 +936,16 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     localConversations,
     localMessages,
   ];
+  @override
+  StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'local_conversations',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('local_messages', kind: UpdateKind.delete)],
+    ),
+  ]);
 }
 
 typedef $$LocalConversationsTableCreateCompanionBuilder =

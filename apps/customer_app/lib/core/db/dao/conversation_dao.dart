@@ -34,23 +34,29 @@ class ConversationDao extends DatabaseAccessor<AppDatabase> with _$ConversationD
     String conversationId,
     List<LocalMessagesCompanion> entries,
   ) async {
-    await (delete(localMessages)
-          ..where((t) => t.conversationId.equals(conversationId)))
-        .go();
-    await batch((b) {
-      b.insertAll(localMessages, entries);
+    await transaction(() async {
+      await (delete(localMessages)
+            ..where((t) => t.conversationId.equals(conversationId)))
+          .go();
+      await batch((b) {
+        b.insertAll(localMessages, entries);
+      });
     });
   }
 
   Future<void> deleteConversation(String id) async {
-    await (delete(localMessages)
-          ..where((t) => t.conversationId.equals(id)))
-        .go();
-    await (delete(localConversations)..where((t) => t.id.equals(id))).go();
+    await transaction(() async {
+      await (delete(localMessages)
+            ..where((t) => t.conversationId.equals(id)))
+          .go();
+      await (delete(localConversations)..where((t) => t.id.equals(id))).go();
+    });
   }
 
   Future<void> deleteAll() async {
-    await delete(localMessages).go();
-    await delete(localConversations).go();
+    await transaction(() async {
+      await delete(localMessages).go();
+      await delete(localConversations).go();
+    });
   }
 }

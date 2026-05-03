@@ -23,8 +23,13 @@ class ChatSession extends _$ChatSession {
     final dao = ref.read(conversationDaoProvider);
     final localConvs = await dao.getAllConversations();
 
-    if (localConvs.isNotEmpty) {
-      final latestLocal = localConvs.first;
+    final currentUser = ref.read(authProvider).value;
+    final currentUserId = currentUser?.id;
+
+    final userConvs = localConvs.where((c) => currentUserId == null || c.userId == currentUserId).toList();
+
+    if (userConvs.isNotEmpty) {
+      final latestLocal = userConvs.first;
       _conversationId = latestLocal.id;
       _guestUserId = latestLocal.userId;
       final localMessages = await dao.getMessagesByConversationId(latestLocal.id);
@@ -38,12 +43,13 @@ class ChatSession extends _$ChatSession {
   }
 
   Future<void> loadConversation(String conversationId) async {
-    if (state.value == null) return;
-
     final dao = ref.read(conversationDaoProvider);
     final localConv = await dao.getConversationById(conversationId);
 
     if (localConv != null) {
+      final currentUser = ref.read(authProvider).value;
+      if (currentUser != null && localConv.userId != currentUser.id) return;
+
       _conversationId = localConv.id;
       _guestUserId = localConv.userId;
       final localMessages = await dao.getMessagesByConversationId(localConv.id);
@@ -191,7 +197,6 @@ class ChatSession extends _$ChatSession {
         text: 'Sorry, I encountered an error. Please try again later.',
       );
       state = AsyncData([...state.value!, errorMessage]);
-      await _saveConversationToLocal();
     } finally {
       _isSending = false;
     }
@@ -227,8 +232,9 @@ class ChatSession extends _$ChatSession {
 
     final messages = state.value ?? [];
     final nonLoadingMessages = messages.where((m) {
-      if (m is CustomMessage && m.metadata?['isLoading'] == true) {
-        return false;
+      if (m is CustomMessage) {
+        if (m.metadata?['isLoading'] == true) return false;
+        if (m.metadata?['isTransient'] == true) return false;
       }
       return true;
     }).toList();
