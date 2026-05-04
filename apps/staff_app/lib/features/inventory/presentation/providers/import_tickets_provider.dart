@@ -6,7 +6,7 @@ part 'import_tickets_provider.g.dart';
 
 @riverpod
 Future<List<ImportTicketListItem>> importTickets(
-  ImportTicketsRef ref, {
+  Ref ref, {
   ImportStatus? status,
 }) async {
   final apiClient = ref.watch(apiClientProvider);
