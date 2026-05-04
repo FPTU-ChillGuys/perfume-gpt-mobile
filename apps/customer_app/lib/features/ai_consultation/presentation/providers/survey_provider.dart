@@ -33,8 +33,6 @@ class SurveyAnswerView {
 }
 
 class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
-  SurveyNotifier();
-
   @override
   Future<MobileSurveyResponseData?> build() async => null;
 
@@ -60,7 +58,9 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
                 ))
             .toList();
       }
-    } catch (_) {}
+    } catch (e) {
+      // API failed — using fallback questions
+    }
 
     return _fallbackQuestions();
   }

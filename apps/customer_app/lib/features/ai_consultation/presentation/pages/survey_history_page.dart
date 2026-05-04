@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import '../../../../core/db/database_provider.dart';
-import '../../../../core/utils/price_formatter.dart';
+import '../widgets/ai_message_style.dart';
+import '../widgets/survey_product_card.dart';
 
 class SurveyHistoryPage extends ConsumerStatefulWidget {
   const SurveyHistoryPage({super.key});
@@ -215,26 +215,6 @@ class _DetailContent extends StatelessWidget {
 
   const _DetailContent({required this.result});
 
-  MarkdownStyleSheet _aiMessageStyleSheet(BuildContext context) {
-    final textColor = Theme.of(context).colorScheme.onSurfaceVariant;
-    return MarkdownStyleSheet(
-      p: TextStyle(color: textColor, height: 1.5),
-      strong: TextStyle(color: textColor, fontWeight: FontWeight.bold),
-      em: TextStyle(color: textColor, fontStyle: FontStyle.italic),
-      listBullet: TextStyle(color: textColor),
-      code: TextStyle(
-        color: textColor,
-        backgroundColor:
-            Theme.of(context).colorScheme.surfaceContainerHighest,
-        fontSize: 13,
-      ),
-      codeblockDecoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(8),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -259,26 +239,7 @@ class _DetailContent extends StatelessWidget {
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
-        ...result.messages.map((msg) => Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MarkdownBody(
-                    data: msg.message,
-                    selectable: true,
-                    styleSheet: _aiMessageStyleSheet(context),
-                  ),
-                  if (msg.products.isNotEmpty) ...[
-                    const SizedBox(height: 8),
-                    ...msg.products.map((p) => Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: _HistoryProductCard(product: p),
-                        )),
-                  ],
-                ],
-              ),
-            )),
+        ...result.messages.map((msg) => _buildMessageBlock(context, msg)),
         const SizedBox(height: 24),
         SizedBox(
           width: double.infinity,
@@ -288,6 +249,29 @@ class _DetailContent extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildMessageBlock(BuildContext context, MobileSurveyMessage msg) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MarkdownBody(
+            data: msg.message,
+            selectable: true,
+            styleSheet: aiMessageStyleSheet(context),
+          ),
+          if (msg.products.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            ...msg.products.map((p) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: SurveyProductCard(product: p),
+                )),
+          ],
+        ],
+      ),
     );
   }
 }
@@ -330,88 +314,5 @@ class _UnparseableResult extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class _HistoryProductCard extends StatelessWidget {
-  final MobileSurveyProduct product;
-
-  const _HistoryProductCard({required this.product});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      elevation: 2,
-      child: InkWell(
-        onTap: () => context.push('/product/${product.id}'),
-        child: SizedBox(
-          height: 100,
-          child: Row(
-            children: [
-              SizedBox(
-                width: 100,
-                height: 100,
-                child: product.primaryImage.isNotEmpty
-                    ? Image.network(
-                        product.primaryImage,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Center(
-                                child: Icon(Icons.image_not_supported)),
-                      )
-                    : const Center(child: Icon(Icons.image_not_supported)),
-              ),
-              Expanded(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        product.name,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        product.brandName,
-                        style:
-                            const TextStyle(fontSize: 12, color: Colors.grey),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        _formatPrice(),
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  String _formatPrice() {
-    final minPrice = product.minPrice.toDouble();
-    final maxPrice = product.maxPrice.toDouble();
-    if (minPrice == 0 && maxPrice == 0) return 'Liên hệ';
-    if (minPrice == maxPrice) return PriceFormatter.format(minPrice);
-    return PriceFormatter.formatRange(minPrice, maxPrice);
   }
 }

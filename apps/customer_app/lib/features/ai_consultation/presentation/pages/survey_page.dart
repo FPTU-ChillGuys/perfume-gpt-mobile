@@ -5,9 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import 'package:uuid/uuid.dart';
-import '../../../../core/utils/price_formatter.dart';
 import '../providers/chat_provider.dart';
 import '../providers/survey_provider.dart';
+import '../widgets/ai_message_style.dart';
+import '../widgets/survey_product_card.dart';
 
 class SurveyPage extends ConsumerStatefulWidget {
   const SurveyPage({super.key});
@@ -163,11 +164,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          LinearProgressIndicator(
-            value: (_currentStep + 1) / totalSteps,
-            backgroundColor: Colors.grey.withValues(alpha: 0.2),
-          ),
-          const SizedBox(height: 16),
+          _buildProgressIndicator(totalSteps),
           if (_currentStep > 0)
             Align(
               alignment: Alignment.centerLeft,
@@ -204,39 +201,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
             ),
           ],
           const SizedBox(height: 24),
-          ...question.answers.map((answer) {
-            if (isMultiple) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
-                child: CheckboxListTile(
-                  value: _isAnswerSelected(question, answer),
-                  onChanged: (_) => _toggleAnswer(question, answer),
-                  title: Text(answer.displayText),
-                  controlAffinity: ListTileControlAffinity.leading,
-                  contentPadding: EdgeInsets.zero,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-              );
-            }
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: OutlinedButton(
-                onPressed: () => _selectSingleAndNext(question, answer),
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: Text(
-                  answer.displayText,
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ),
-            );
-          }),
+          ..._buildAnswerOptions(question, isMultiple),
           if (isMultiple) ...[
             const SizedBox(height: 16),
             ElevatedButton(
@@ -253,24 +218,55 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
     );
   }
 
-  MarkdownStyleSheet _aiMessageStyleSheet(BuildContext context) {
-    final textColor = Theme.of(context).colorScheme.onSurfaceVariant;
-    return MarkdownStyleSheet(
-      p: TextStyle(color: textColor, height: 1.5),
-      strong: TextStyle(color: textColor, fontWeight: FontWeight.bold),
-      em: TextStyle(color: textColor, fontStyle: FontStyle.italic),
-      listBullet: TextStyle(color: textColor),
-      code: TextStyle(
-        color: textColor,
-        backgroundColor:
-            Theme.of(context).colorScheme.surfaceContainerHighest,
-        fontSize: 13,
-      ),
-      codeblockDecoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(8),
-      ),
+  Widget _buildProgressIndicator(int totalSteps) {
+    return Column(
+      children: [
+        LinearProgressIndicator(
+          value: (_currentStep + 1) / totalSteps,
+          backgroundColor: Colors.grey.withValues(alpha: 0.2),
+        ),
+        const SizedBox(height: 16),
+      ],
     );
+  }
+
+  List<Widget> _buildAnswerOptions(
+    SurveyQuestionView question,
+    bool isMultiple,
+  ) {
+    return question.answers.map((answer) {
+      if (isMultiple) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 12.0),
+          child: CheckboxListTile(
+            value: _isAnswerSelected(question, answer),
+            onChanged: (_) => _toggleAnswer(question, answer),
+            title: Text(answer.displayText),
+            controlAffinity: ListTileControlAffinity.leading,
+            contentPadding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        );
+      }
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 16.0),
+        child: OutlinedButton(
+          onPressed: () => _selectSingleAndNext(question, answer),
+          style: OutlinedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          child: Text(
+            answer.displayText,
+            style: const TextStyle(fontSize: 18),
+          ),
+        ),
+      );
+    }).toList();
   }
 
   Widget _buildResultView(MobileSurveyResponseData result) {
@@ -286,56 +282,62 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
                 const Icon(Icons.check_circle_outline,
                     color: Colors.green, size: 48),
                 const SizedBox(height: 16),
-                ...result.messages.map((msg) => Padding(
-                      padding: const EdgeInsets.only(bottom: 16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MarkdownBody(
-                            data: msg.message,
-                            selectable: true,
-                            styleSheet:
-                                _aiMessageStyleSheet(context),
-                          ),
-                          if (msg.products.isNotEmpty) ...[
-                            const SizedBox(height: 8),
-                            ...msg.products.map((p) => Padding(
-                                  padding:
-                                      const EdgeInsets.only(bottom: 8.0),
-                                  child: _MobileProductCard(product: p),
-                                )),
-                          ],
-                        ],
-                      ),
-                    )),
-                if (result.messages
-                        .every((m) => m.products.isEmpty) &&
+                ...result.messages.map((msg) => _buildMessageBlock(msg)),
+                if (result.messages.every((m) => m.products.isEmpty) &&
                     result.products.isNotEmpty)
-                  ...result.products.map((p) => Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: _MobileProductCard(product: p),
-                      )),
+                  ...result.products
+                      .map((p) => Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: SurveyProductCard(product: p),
+                          )),
               ],
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ElevatedButton(
-                onPressed: _resetSurvey,
-                child: const Text('Làm lại khảo sát'),
-              ),
-              TextButton(
-                onPressed: () => context.push('/store'),
-                child: const Text('Đến cửa hàng'),
-              ),
-            ],
-          ),
-        ),
+        _buildActionButtons(),
       ],
+    );
+  }
+
+  Widget _buildMessageBlock(MobileSurveyMessage msg) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MarkdownBody(
+            data: msg.message,
+            selectable: true,
+            styleSheet: aiMessageStyleSheet(context),
+          ),
+          if (msg.products.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            ...msg.products.map((p) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: SurveyProductCard(product: p),
+                )),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionButtons() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ElevatedButton(
+            onPressed: _resetSurvey,
+            child: const Text('Làm lại khảo sát'),
+          ),
+          TextButton(
+            onPressed: () => context.push('/store'),
+            child: const Text('Đến cửa hàng'),
+          ),
+        ],
+      ),
     );
   }
 
@@ -362,88 +364,5 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
         ),
       ),
     );
-  }
-}
-
-class _MobileProductCard extends StatelessWidget {
-  final MobileSurveyProduct product;
-
-  const _MobileProductCard({required this.product});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      elevation: 2,
-      child: InkWell(
-        onTap: () => context.push('/product/${product.id}'),
-        child: SizedBox(
-          height: 100,
-          child: Row(
-            children: [
-              SizedBox(
-                width: 100,
-                height: 100,
-                child: product.primaryImage.isNotEmpty
-                    ? Image.network(
-                        product.primaryImage,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Center(
-                                child: Icon(Icons.image_not_supported)),
-                      )
-                    : const Center(child: Icon(Icons.image_not_supported)),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        product.name,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        product.brandName,
-                        style: const TextStyle(
-                            fontSize: 12, color: Colors.grey),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        _formatPrice(),
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  String _formatPrice() {
-    final minPrice = product.minPrice.toDouble();
-    final maxPrice = product.maxPrice.toDouble();
-    if (minPrice == 0 && maxPrice == 0) return 'Liên hệ';
-    if (minPrice == maxPrice) return PriceFormatter.format(minPrice);
-    return PriceFormatter.formatRange(minPrice, maxPrice);
   }
 }

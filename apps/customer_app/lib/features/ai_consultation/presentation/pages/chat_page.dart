@@ -8,6 +8,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../providers/chat_provider.dart';
+import '../widgets/ai_message_style.dart';
 
 class ChatPage extends ConsumerStatefulWidget {
   const ChatPage({super.key});
@@ -38,29 +39,6 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     }
     final user = ref.read(common.authProvider).value;
     return User(id: userId, name: user?.name ?? 'User');
-  }
-
-  MarkdownStyleSheet _aiMessageStyleSheet(BuildContext context) {
-    final textColor = Theme.of(context).colorScheme.onSurfaceVariant;
-
-    return MarkdownStyleSheet(
-      p: TextStyle(color: textColor, height: 1.5),
-      strong: TextStyle(color: textColor, fontWeight: FontWeight.bold),
-      em: TextStyle(color: textColor, fontStyle: FontStyle.italic),
-      h1: TextStyle(color: textColor, fontSize: 20, fontWeight: FontWeight.bold),
-      h2: TextStyle(color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
-      h3: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
-      listBullet: TextStyle(color: textColor),
-      code: TextStyle(
-        color: textColor,
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
-        fontSize: 13,
-      ),
-      codeblockDecoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(8),
-      ),
-    );
   }
 
   BorderRadius _bubbleRadius(bool isSentByMe) => isSentByMe
@@ -142,7 +120,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
             MarkdownBody(
               data: text,
               selectable: true,
-              styleSheet: _aiMessageStyleSheet(context),
+              styleSheet: aiMessageStyleSheet(context),
             ),
             isSentByMe: isSentByMe,
           ),
@@ -182,7 +160,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
         : MarkdownBody(
             data: message.text,
             selectable: true,
-            styleSheet: _aiMessageStyleSheet(context),
+            styleSheet: aiMessageStyleSheet(context),
           );
 
     return _buildMessageBubble(context, content, isSentByMe: isSentByMe);
