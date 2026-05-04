@@ -3,6 +3,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:uuid/uuid.dart';
 import 'import_verification_state.dart';
+import 'import_tickets_provider.dart';
 
 part 'import_verification_provider.g.dart';
 
@@ -27,13 +28,15 @@ class ImportVerificationNotifier extends _$ImportVerificationNotifier {
             variantName: detail.variantName,
             variantSku: detail.variantSku,
             expectedQuantity: detail.expectedQuantity ?? 0,
-            batches: detail.batches.map((b) => BatchInputState(
-              tempId: const Uuid().v4(),
-              batchCode: b.batchCode,
-              manufactureDate: b.manufactureDate,
-              expiryDate: b.expiryDate,
-              quantity: b.importQuantity ?? 0,
-            )).toList(),
+            batches: detail.batches
+                .map((b) => BatchInputState(
+                      tempId: const Uuid().v4(),
+                      batchCode: b.batchCode,
+                      manufactureDate: b.manufactureDate,
+                      expiryDate: b.expiryDate,
+                      quantity: b.importQuantity ?? 0,
+                    ))
+                .toList(),
           );
         }).toList();
 
@@ -59,9 +62,11 @@ class ImportVerificationNotifier extends _$ImportVerificationNotifier {
       final api = ImportTicketsApi(dio);
       await api.apiImportticketsIdStatusPut(
         id: state.ticketId!,
-        updateImportStatusRequest: UpdateImportStatusRequest(status: ImportStatus.inProgress),
+        updateImportStatusRequest:
+            UpdateImportStatusRequest(status: ImportStatus.inProgress),
       );
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(isLoading: false, status: ImportStatus.inProgress);
+      ref.invalidate(importTicketsProvider);
     } catch (e) {
       state = state.copyWith(isLoading: false);
     }
@@ -93,7 +98,9 @@ class ImportVerificationNotifier extends _$ImportVerificationNotifier {
     );
   }
 
-  void updateBatch(String detailId, String tempId, {
+  void updateBatch(
+    String detailId,
+    String tempId, {
     String? batchCode,
     DateTime? manufactureDate,
     DateTime? expiryDate,
@@ -159,27 +166,33 @@ class ImportVerificationNotifier extends _$ImportVerificationNotifier {
 
       final verifyDetails = state.products.map((p) {
         final totalReceived = p.batches.fold(0, (sum, b) => sum + b.quantity);
-        final rejectedQuantity = (p.expectedQuantity - totalReceived).clamp(0, p.expectedQuantity);
+        final rejectedQuantity =
+            (p.expectedQuantity - totalReceived).clamp(0, p.expectedQuantity);
 
         return VerifyImportDetailRequest(
           importDetailId: p.importDetailId,
           rejectedQuantity: rejectedQuantity,
           note: state.staffNote,
-          batches: p.batches.map((b) => CreateBatchRequest(
-            batchCode: b.batchCode,
-            manufactureDate: b.manufactureDate ?? DateTime.now(),
-            expiryDate: b.expiryDate ?? DateTime.now().add(const Duration(days: 365 * 5)),
-            quantity: b.quantity,
-          )).toList(),
+          batches: p.batches
+              .map((b) => CreateBatchRequest(
+                    batchCode: b.batchCode,
+                    manufactureDate: b.manufactureDate ?? DateTime.now(),
+                    expiryDate: b.expiryDate ??
+                        DateTime.now().add(const Duration(days: 365 * 5)),
+                    quantity: b.quantity,
+                  ))
+              .toList(),
         );
       }).toList();
 
       await api.apiImportticketsTicketIdVerifyPost(
         ticketId: state.ticketId!,
-        verifyImportTicketRequest: VerifyImportTicketRequest(importDetails: verifyDetails),
+        verifyImportTicketRequest:
+            VerifyImportTicketRequest(importDetails: verifyDetails),
       );
 
       state = state.copyWith(isLoading: false);
+      ref.invalidate(importTicketsProvider);
       return true;
     } catch (e) {
       state = state.copyWith(isLoading: false);

@@ -32,11 +32,11 @@ class _ImportTicketListScreenState extends ConsumerState<ImportTicketListScreen>
   ImportStatus? _getStatusForTabIndex(int index) {
     switch (index) {
       case 0:
-        return null; // All
-      case 1:
         return ImportStatus.pending;
-      case 2:
+      case 1:
         return ImportStatus.inProgress;
+      case 2:
+        return null; // All
       default:
         return null;
     }
@@ -50,9 +50,9 @@ class _ImportTicketListScreenState extends ConsumerState<ImportTicketListScreen>
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
-            Tab(text: 'Tất cả'),
             Tab(text: 'Chờ xử lý'),
             Tab(text: 'Đang kiểm tra'),
+            Tab(text: 'Tất cả'),
           ],
           onTap: (index) {
             // Force rebuild when tab changes to fetch with new status
@@ -62,7 +62,8 @@ class _ImportTicketListScreenState extends ConsumerState<ImportTicketListScreen>
       ),
       body: TabBarView(
         controller: _tabController,
-        physics: const NeverScrollableScrollPhysics(), // Disable swipe to avoid rebuilding twice
+        physics:
+            const NeverScrollableScrollPhysics(), // Disable swipe to avoid rebuilding twice
         children: [
           _TicketList(status: _getStatusForTabIndex(0)),
           _TicketList(status: _getStatusForTabIndex(1)),
@@ -99,7 +100,7 @@ class _TicketList extends ConsumerWidget {
                   context.push('/inventory/import-tickets/${ticket.id}');
                 },
                 title: Text(
-                  ticket.supplierName ?? 'Không xác định',
+                  ticket.supplierName,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 subtitle: Column(
@@ -118,7 +119,10 @@ class _TicketList extends ConsumerWidget {
                     _StatusBadge(status: ticket.status),
                     const SizedBox(height: 4),
                     Text(
-                      NumberFormat.currency(locale: 'vi_VN', symbol: '₫').format(ticket.totalCost),
+                      NumberFormat.currency(
+                        locale: 'vi_VN',
+                        symbol: '₫',
+                      ).format(ticket.totalCost),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
