@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 part 'import_verification_state.freezed.dart';
 

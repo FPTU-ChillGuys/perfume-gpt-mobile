@@ -106,10 +106,9 @@ class _TicketList extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('ID: ${ticket.id?.substring(0, 8)}...'),
-                    if (ticket.actualImportDate != null)
-                      Text(
-                        'Ngày: ${DateFormat('dd/MM/yyyy').format(ticket.actualImportDate!)}',
-                      ),
+                    Text(
+                      'Ngày: ${DateFormat('dd/MM/yyyy').format(ticket.actualImportDate ?? ticket.expectedArrivalDate ?? DateTime.now())}',
+                    ),
                   ],
                 ),
                 trailing: Column(

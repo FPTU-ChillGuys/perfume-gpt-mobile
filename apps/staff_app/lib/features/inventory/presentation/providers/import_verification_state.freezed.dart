@@ -578,12 +578,12 @@ $ImportVerificationStateCopyWith<ImportVerificationState> get copyWith => _$Impo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImportVerificationState&&(identical(other.ticketId, ticketId) || other.ticketId == ticketId)&&(identical(other.supplierName, supplierName) || other.supplierName == supplierName)&&(identical(other.importDate, importDate) || other.importDate == importDate)&&const DeepCollectionEquality().equals(other.status, status)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.staffNote, staffNote) || other.staffNote == staffNote)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImportVerificationState&&(identical(other.ticketId, ticketId) || other.ticketId == ticketId)&&(identical(other.supplierName, supplierName) || other.supplierName == supplierName)&&(identical(other.importDate, importDate) || other.importDate == importDate)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.staffNote, staffNote) || other.staffNote == staffNote)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ticketId,supplierName,importDate,const DeepCollectionEquality().hash(status),const DeepCollectionEquality().hash(products),staffNote,isLoading);
+int get hashCode => Object.hash(runtimeType,ticketId,supplierName,importDate,status,const DeepCollectionEquality().hash(products),staffNote,isLoading);
 
 @override
 String toString() {
@@ -792,12 +792,12 @@ _$ImportVerificationStateCopyWith<_ImportVerificationState> get copyWith => __$I
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImportVerificationState&&(identical(other.ticketId, ticketId) || other.ticketId == ticketId)&&(identical(other.supplierName, supplierName) || other.supplierName == supplierName)&&(identical(other.importDate, importDate) || other.importDate == importDate)&&const DeepCollectionEquality().equals(other.status, status)&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.staffNote, staffNote) || other.staffNote == staffNote)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImportVerificationState&&(identical(other.ticketId, ticketId) || other.ticketId == ticketId)&&(identical(other.supplierName, supplierName) || other.supplierName == supplierName)&&(identical(other.importDate, importDate) || other.importDate == importDate)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.staffNote, staffNote) || other.staffNote == staffNote)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ticketId,supplierName,importDate,const DeepCollectionEquality().hash(status),const DeepCollectionEquality().hash(_products),staffNote,isLoading);
+int get hashCode => Object.hash(runtimeType,ticketId,supplierName,importDate,status,const DeepCollectionEquality().hash(_products),staffNote,isLoading);
 
 @override
 String toString() {
