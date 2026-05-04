@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:drift/drift.dart' hide Column;
+import 'package:uuid/uuid.dart';
 import '../../../../core/db/database.dart';
 import '../../../../core/db/database_provider.dart';
 
@@ -94,7 +95,7 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
       }
 
       final dao = ref.read(surveyDaoProvider);
-      final sessionId = DateTime.now().millisecondsSinceEpoch.toString();
+      final sessionId = const Uuid().v4();
       final answersMap = <String, dynamic>{};
       for (final a in answers) {
         final key = a.questionId;

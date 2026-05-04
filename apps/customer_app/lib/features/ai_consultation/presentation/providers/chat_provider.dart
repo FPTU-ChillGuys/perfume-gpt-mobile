@@ -18,6 +18,8 @@ class ChatSession extends _$ChatSession {
 
   String? get guestUserId => _guestUserId;
 
+  String ensureGuestUserId() => _guestUserId ??= const Uuid().v4();
+
   @override
   Future<List<Message>> build() async {
     final dao = ref.read(conversationDaoProvider);

@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
-import 'package:uuid/uuid.dart';
 import '../providers/chat_provider.dart';
 import '../providers/survey_provider.dart';
 import '../widgets/ai_message_style.dart';
@@ -33,8 +32,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
   String _resolveUserId() {
     final user = ref.read(common.authProvider).value;
     if (user?.id != null) return user!.id;
-    final chatGuestId = ref.read(chatSessionProvider.notifier).guestUserId;
-    return chatGuestId ?? const Uuid().v4();
+    return ref.read(chatSessionProvider.notifier).ensureGuestUserId();
   }
 
   bool _isMultipleChoice(SurveyQuestionView q) =>

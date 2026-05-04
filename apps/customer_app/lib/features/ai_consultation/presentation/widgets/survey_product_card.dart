@@ -10,11 +10,14 @@ class SurveyProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productId = product.id.trim();
     return Card(
       clipBehavior: Clip.antiAlias,
       elevation: 2,
       child: InkWell(
-        onTap: () => context.push('/product/${product.id}'),
+        onTap: productId.isEmpty
+            ? null
+            : () => context.push('/product/$productId'),
         child: SizedBox(
           height: 100,
           child: Row(

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import '../../../../core/db/database_provider.dart';
+import '../providers/chat_provider.dart';
 import '../widgets/ai_message_style.dart';
 import '../widgets/survey_product_card.dart';
 
@@ -30,9 +31,10 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
       final dao = ref.read(surveyDaoProvider);
       final all = await dao.getAllSessions();
       final currentUser = ref.read(common.authProvider).value;
-      final currentUserId = currentUser?.id;
+      final currentUserId = currentUser?.id ??
+          ref.read(chatSessionProvider.notifier).guestUserId;
       final userSessions = all
-          .where((s) => currentUserId == null || s.userId == currentUserId)
+          .where((s) => s.userId == currentUserId)
           .toList();
 
       if (mounted) {
