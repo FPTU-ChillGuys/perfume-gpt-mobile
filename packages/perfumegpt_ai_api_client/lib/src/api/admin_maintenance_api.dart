@@ -12,8 +12,8 @@ import 'package:dio/dio.dart';
 import 'package:perfumegpt_ai_api_client/src/model/add_phrase_rule_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 
 class AdminMaintenanceApi {
 

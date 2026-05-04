@@ -175,10 +175,12 @@ Class | Method | HTTP request | Description
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetAllSurveys**](doc/SurveysApi.md#surveycontrollergetallsurveys) | **GET** /surveys/questions | Lấy danh sách câu hỏi survey
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetAttributeTypes**](doc/SurveysApi.md#surveycontrollergetattributetypes) | **GET** /surveys/attributes | Lấy danh sách loại thuộc tính cho survey
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetAttributeValues**](doc/SurveysApi.md#surveycontrollergetattributevalues) | **GET** /surveys/attributes/{type}/values | Lấy giá trị của 1 loại thuộc tính
+[*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetMobileSurveyQuestions**](doc/SurveysApi.md#surveycontrollergetmobilesurveyquestions) | **GET** /surveys/mobile/questions | [Mobile] Lấy danh sách câu hỏi survey (đã parse displayText)
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetSurveyHistoryListByUserId**](doc/SurveysApi.md#surveycontrollergetsurveyhistorylistbyuserid) | **GET** /surveys/user/{userId}/history | Lấy danh sách lịch sử tất cả các lần trả lời survey của người dùng
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetSurveyQuesAnwsByUserId**](doc/SurveysApi.md#surveycontrollergetsurveyquesanwsbyuserid) | **GET** /surveys/user/{userId} | Lấy tất cả câu hỏi và câu trả lời survey của người dùng
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerGetSurveyQuesById**](doc/SurveysApi.md#surveycontrollergetsurveyquesbyid) | **GET** /surveys/questions/{id} | Lấy câu hỏi survey theo ID
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerReorderQuestions**](doc/SurveysApi.md#surveycontrollerreorderquestions) | **PATCH** /surveys/questions/reorder | Sắp xếp lại thứ tự câu hỏi survey
+[*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerSubmitMobileSurvey**](doc/SurveysApi.md#surveycontrollersubmitmobilesurvey) | **POST** /surveys/mobile/submit | [Mobile] Gửi câu trả lời survey, nhận kết quả cấu trúc
 [*SurveysApi*](doc/SurveysApi.md) | [**surveyControllerUpdateSurveyAnswer**](doc/SurveysApi.md#surveycontrollerupdatesurveyanswer) | **PUT** /surveys/questions/{id} | Cập nhật câu hỏi survey (questionType và/hoặc answers)
 [*TrendsApi*](doc/TrendsApi.md) | [**trendControllerCreateProductTrendJob**](doc/TrendsApi.md#trendcontrollercreateproducttrendjob) | **GET** /trends/product/job | Khởi tạo job để lấy product từ xu hướng
 [*TrendsApi*](doc/TrendsApi.md) | [**trendControllerGetProductFromTrendCaching**](doc/TrendsApi.md#trendcontrollergetproductfromtrendcaching) | **GET** /trends/product/caching | Lấy product từ xu hướng người dùng (caching)
@@ -248,6 +250,13 @@ Class | Method | HTTP request | Description
  - [LogControllerGetPagedEventLogs200Response](doc/LogControllerGetPagedEventLogs200Response.md)
  - [LogControllerGetPagedEventLogs200ResponsePayload](doc/LogControllerGetPagedEventLogs200ResponsePayload.md)
  - [MessageResponse](doc/MessageResponse.md)
+ - [MobileSurveyAnswer](doc/MobileSurveyAnswer.md)
+ - [MobileSurveyAnswerItem](doc/MobileSurveyAnswerItem.md)
+ - [MobileSurveyMessage](doc/MobileSurveyMessage.md)
+ - [MobileSurveyProduct](doc/MobileSurveyProduct.md)
+ - [MobileSurveyQuestionItem](doc/MobileSurveyQuestionItem.md)
+ - [MobileSurveyRequest](doc/MobileSurveyRequest.md)
+ - [MobileSurveyResponseData](doc/MobileSurveyResponseData.md)
  - [NormalizedQueryFilters](doc/NormalizedQueryFilters.md)
  - [OriginNormalizerOutput](doc/OriginNormalizerOutput.md)
  - [PagedResult](doc/PagedResult.md)
@@ -293,14 +302,16 @@ Class | Method | HTTP request | Description
  - [SurveyControllerCreateSurveyQues200Response](doc/SurveyControllerCreateSurveyQues200Response.md)
  - [SurveyControllerDeleteSurveyQuestion200Response](doc/SurveyControllerDeleteSurveyQuestion200Response.md)
  - [SurveyControllerGetAllSurveys200Response](doc/SurveyControllerGetAllSurveys200Response.md)
- - [SurveyControllerGetAllSurveys401Response](doc/SurveyControllerGetAllSurveys401Response.md)
- - [SurveyControllerGetAllSurveys403Response](doc/SurveyControllerGetAllSurveys403Response.md)
  - [SurveyControllerGetAttributeTypes200Response](doc/SurveyControllerGetAttributeTypes200Response.md)
  - [SurveyControllerGetAttributeValues200Response](doc/SurveyControllerGetAttributeValues200Response.md)
+ - [SurveyControllerGetMobileSurveyQuestions200Response](doc/SurveyControllerGetMobileSurveyQuestions200Response.md)
+ - [SurveyControllerGetMobileSurveyQuestions401Response](doc/SurveyControllerGetMobileSurveyQuestions401Response.md)
+ - [SurveyControllerGetMobileSurveyQuestions403Response](doc/SurveyControllerGetMobileSurveyQuestions403Response.md)
  - [SurveyControllerGetSurveyHistoryListByUserId200Response](doc/SurveyControllerGetSurveyHistoryListByUserId200Response.md)
  - [SurveyControllerGetSurveyQuesAnwsByUserId200Response](doc/SurveyControllerGetSurveyQuesAnwsByUserId200Response.md)
  - [SurveyControllerGetSurveyQuesById200Response](doc/SurveyControllerGetSurveyQuesById200Response.md)
  - [SurveyControllerReorderQuestions200Response](doc/SurveyControllerReorderQuestions200Response.md)
+ - [SurveyControllerSubmitMobileSurvey200Response](doc/SurveyControllerSubmitMobileSurvey200Response.md)
  - [SurveyGroupedAnswerItem](doc/SurveyGroupedAnswerItem.md)
  - [SurveyQuesAnsDetailRequest](doc/SurveyQuesAnsDetailRequest.md)
  - [SurveyQuestionAnswerResponse](doc/SurveyQuestionAnswerResponse.md)

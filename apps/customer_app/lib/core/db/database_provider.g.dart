@@ -91,3 +91,44 @@ final class ConversationDaoProvider
 }
 
 String _$conversationDaoHash() => r'b7ebb1cee095723d3310e35344c8e35f26f84ffd';
+
+@ProviderFor(surveyDao)
+final surveyDaoProvider = SurveyDaoProvider._();
+
+final class SurveyDaoProvider
+    extends $FunctionalProvider<SurveyDao, SurveyDao, SurveyDao>
+    with $Provider<SurveyDao> {
+  SurveyDaoProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'surveyDaoProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$surveyDaoHash();
+
+  @$internal
+  @override
+  $ProviderElement<SurveyDao> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  SurveyDao create(Ref ref) {
+    return surveyDao(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SurveyDao value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SurveyDao>(value),
+    );
+  }
+}
+
+String _$surveyDaoHash() => r'fc9c0691f5a77332af37bdde7017cc97ed8fb7e1';

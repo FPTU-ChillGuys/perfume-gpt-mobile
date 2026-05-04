@@ -28,3 +28,15 @@ class LocalMessages extends Table {
   @override
   Set<Column> get primaryKey => {id};
 }
+
+class LocalSurveySessions extends Table {
+  TextColumn get id => text()();
+  TextColumn get userId => text()();
+  TextColumn get answersJson => text()();
+  TextColumn get resultJson => text().nullable()();
+  IntColumn get createdAt => integer()();
+  IntColumn get productCount => integer().withDefault(const Constant(0))();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}

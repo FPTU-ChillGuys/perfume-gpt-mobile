@@ -934,6 +934,389 @@
         ]
       }
     },
+    "/surveys/mobile/questions": {
+      "get": {
+        "operationId": "SurveyController_getMobileSurveyQuestions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The base response of MobileSurveyQuestionItem",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
+                    },
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MobileSurveyQuestionItem"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "[Mobile] Lấy danh sách câu hỏi survey (đã parse displayText)",
+        "tags": [
+          "Surveys"
+        ]
+      }
+    },
+    "/surveys/mobile/submit": {
+      "post": {
+        "operationId": "SurveyController_submitMobileSurvey",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MobileSurveyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The base response of MobileSurveyResponseData",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
+                    },
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/MobileSurveyResponseData"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Unauthorized — Token JWT không hợp lệ hoặc không được cung cấp",
+                    "detail": null,
+                    "statusCode": 401
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — Yêu cầu role: admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Forbidden — Yêu cầu role: admin",
+                    "detail": null,
+                    "statusCode": 403
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "[Mobile] Gửi câu trả lời survey, nhận kết quả cấu trúc",
+        "tags": [
+          "Surveys"
+        ]
+      }
+    },
     "/surveys/questions": {
       "get": {
         "operationId": "SurveyController_getAllSurveys",
@@ -3936,7 +4319,7 @@
             "description": "Ngày kết thúc",
             "schema": {
               "format": "date-time",
-              "default": "2026-05-03T16:59:59.999Z",
+              "default": "2026-05-04T16:59:59.999Z",
               "type": "string"
             }
           },
@@ -6013,7 +6396,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-05-03T11:22:47.734Z",
+              "example": "2026-05-04T03:04:47.531Z",
               "type": "string"
             }
           },
@@ -21977,6 +22360,154 @@
           "type"
         ]
       },
+      "MobileSurveyAnswerItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID câu trả lời"
+          },
+          "answer": {
+            "type": "string",
+            "description": "Nội dung gốc"
+          },
+          "displayText": {
+            "type": "string",
+            "description": "Nội dung hiển thị đã parse"
+          }
+        },
+        "required": [
+          "id",
+          "answer",
+          "displayText"
+        ]
+      },
+      "MobileSurveyQuestionItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID câu hỏi"
+          },
+          "question": {
+            "type": "string",
+            "description": "Nội dung câu hỏi"
+          },
+          "questionType": {
+            "type": "string",
+            "description": "Loại câu hỏi",
+            "example": "single"
+          },
+          "order": {
+            "type": "number",
+            "description": "Thứ tự hiển thị"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Trạng thái hoạt động"
+          },
+          "answers": {
+            "description": "Danh sách câu trả lời",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileSurveyAnswerItem"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "question",
+          "questionType",
+          "order",
+          "isActive",
+          "answers"
+        ]
+      },
+      "MobileSurveyProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID sản phẩm"
+          },
+          "name": {
+            "type": "string",
+            "description": "Tên sản phẩm"
+          },
+          "brandName": {
+            "type": "string",
+            "description": "Tên thương hiệu"
+          },
+          "primaryImage": {
+            "type": "string",
+            "description": "URL ảnh chính"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Lý do AI gợi ý"
+          },
+          "minPrice": {
+            "type": "number",
+            "description": "Giá thấp nhất"
+          },
+          "maxPrice": {
+            "type": "number",
+            "description": "Giá cao nhất"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "brandName",
+          "primaryImage",
+          "reasoning",
+          "minPrice",
+          "maxPrice"
+        ]
+      },
+      "MobileSurveyMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Tin nhắn tư vấn từ AI"
+          },
+          "products": {
+            "description": "Danh sách sản phẩm kèm theo",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileSurveyProduct"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "products"
+        ]
+      },
+      "MobileSurveyResponseData": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "description": "Danh sách tin nhắn và sản phẩm",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileSurveyMessage"
+            }
+          },
+          "products": {
+            "description": "Danh sách tất cả sản phẩm (đã gộp)",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileSurveyProduct"
+            }
+          }
+        },
+        "required": [
+          "messages",
+          "products"
+        ]
+      },
       "BaseResponse": {
         "type": "object",
         "properties": {
@@ -22001,6 +22532,43 @@
         },
         "required": [
           "success"
+        ]
+      },
+      "MobileSurveyAnswer": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "string",
+            "description": "ID câu hỏi"
+          },
+          "answerId": {
+            "type": "string",
+            "description": "ID câu trả lời"
+          }
+        },
+        "required": [
+          "questionId",
+          "answerId"
+        ]
+      },
+      "MobileSurveyRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "ID người dùng"
+          },
+          "answers": {
+            "description": "Danh sách câu trả lời",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileSurveyAnswer"
+            }
+          }
+        },
+        "required": [
+          "userId",
+          "answers"
         ]
       },
       "SurveyAnswerResponse": {

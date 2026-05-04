@@ -15,8 +15,8 @@ import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_all_rev
 import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_reviews200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_structured_review_summary_by_variant_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_reorder_questions200_response.dart';
 
 class ReviewsApi {
