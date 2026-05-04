@@ -55,7 +55,9 @@ class OrderRepositoryImpl {
 
     final response = await _paymentsApi.apiPaymentsPaymentIdRetryPost(
       paymentId: paymentId,
-      paymentInformation: PaymentInformation(method: method),
+      retryOrChangePaymentRequest: RetryOrChangePaymentRequest(
+        newPaymentMethod: method,
+      ),
     );
     return response.data?.payload;
   }
