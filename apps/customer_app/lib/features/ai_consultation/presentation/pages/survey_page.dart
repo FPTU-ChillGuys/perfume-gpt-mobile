@@ -21,6 +21,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
   final Map<String, Set<String>> _answers = {};
   List<SurveyQuestionView>? _questions;
   late final Future<List<SurveyQuestionView>> _questionsFuture;
+  bool _hasSubmitted = false;
 
   @override
   void initState() {
@@ -29,10 +30,10 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
         ref.read(surveyProvider.notifier).loadQuestions();
   }
 
-  String _resolveUserId() {
+  Future<String> _resolveUserId() async {
     final user = ref.read(common.authProvider).value;
     if (user?.id != null) return user!.id;
-    return ref.read(chatSessionProvider.notifier).ensureGuestUserId();
+    return resolveGuestUserId();
   }
 
   bool _isMultipleChoice(SurveyQuestionView q) =>
@@ -77,7 +78,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
     final questions = _questions;
     if (questions == null) return;
 
-    final userId = _resolveUserId();
+    final userId = await _resolveUserId();
 
     final answerList = <({String questionId, String answerId})>[];
     for (final q in questions) {
@@ -89,6 +90,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
       }
     }
 
+    _hasSubmitted = true;
     await ref.read(surveyProvider.notifier).submitSurvey(userId, answerList);
   }
 
@@ -96,6 +98,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
     setState(() {
       _currentStep = 0;
       _answers.clear();
+      _hasSubmitted = false;
     });
     ref.invalidate(surveyProvider);
   }
@@ -121,11 +124,13 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
       ),
       body: hasResult
           ? _buildResultView(surveyState.value!)
-          : surveyState.isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : surveyState.hasError
-                  ? _buildErrorView()
-                  : _buildQuestionFlow(),
+          : _hasSubmitted && surveyState.hasValue && surveyState.value == null && !surveyState.isLoading
+              ? _buildNoResultView()
+              : surveyState.isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : surveyState.hasError
+                      ? _buildErrorView()
+                      : _buildQuestionFlow(),
     );
   }
 
@@ -335,6 +340,31 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
             child: const Text('Đến cửa hàng'),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildNoResultView() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.info_outline, color: Colors.orange, size: 48),
+            const SizedBox(height: 16),
+            Text(
+              'Không tìm thấy kết quả phù hợp. Vui lòng thử lại.',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: _resetSurvey,
+              child: const Text('Thử lại'),
+            ),
+          ],
+        ),
       ),
     );
   }

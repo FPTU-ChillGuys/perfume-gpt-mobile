@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
@@ -34,6 +35,8 @@ class SurveyAnswerView {
 }
 
 class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
+  bool _isFallback = false;
+
   @override
   Future<MobileSurveyResponseData?> build() async => null;
 
@@ -60,7 +63,8 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
             .toList();
       }
     } catch (e) {
-      // API failed — using fallback questions
+      debugPrint('SurveyNotifier: Failed to load questions from API: $e');
+      _isFallback = true;
     }
 
     return _fallbackQuestions();
@@ -70,6 +74,14 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
     String userId,
     List<({String questionId, String answerId})> answers,
   ) async {
+    if (_isFallback) {
+      state = AsyncError(
+        Exception('Khảo sát không thể gửi do lỗi kết nối. Vui lòng thử lại sau.'),
+        StackTrace.current,
+      );
+      return null;
+    }
+
     state = const AsyncLoading();
     try {
       final api = ref.read(common.aiApiClientProvider).getSurveysApi();
@@ -94,6 +106,8 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
         return null;
       }
 
+      state = AsyncData(result);
+
       final dao = ref.read(surveyDaoProvider);
       final sessionId = const Uuid().v4();
       final answersMap = <String, dynamic>{};
@@ -110,16 +124,20 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
           answersMap[key] = a.answerId;
         }
       }
-      await dao.insertSession(LocalSurveySessionsCompanion.insert(
-        id: sessionId,
-        userId: userId,
-        answersJson: jsonEncode(answersMap),
-        resultJson: jsonEncode(result.toJson()),
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        productCount: Value(result.products.length),
-      ));
 
-      state = AsyncData(result);
+      try {
+        await dao.insertSession(LocalSurveySessionsCompanion.insert(
+          id: sessionId,
+          userId: userId,
+          answersJson: jsonEncode(answersMap),
+          resultJson: Value(jsonEncode(result.toJson())),
+          createdAt: DateTime.now().millisecondsSinceEpoch,
+          productCount: Value(result.products.length),
+        ));
+      } catch (e) {
+        debugPrint('SurveyNotifier: Failed to save session to DB: $e');
+      }
+
       return result;
     } catch (e, st) {
       state = AsyncError(e, st);

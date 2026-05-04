@@ -19,6 +19,7 @@ class SurveyHistoryPage extends ConsumerStatefulWidget {
 class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
   List<_SessionDisplay> _sessions = [];
   bool _isLoading = true;
+  bool _hasError = false;
 
   @override
   void initState() {
@@ -27,12 +28,12 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
   }
 
   Future<void> _loadSessions() async {
+    _hasError = false;
     try {
       final dao = ref.read(surveyDaoProvider);
       final all = await dao.getAllSessions();
       final currentUser = ref.read(common.authProvider).value;
-      final currentUserId = currentUser?.id ??
-          ref.read(chatSessionProvider.notifier).guestUserId;
+      final currentUserId = currentUser?.id ?? await resolveGuestUserId();
       final userSessions = all
           .where((s) => s.userId == currentUserId)
           .toList();
@@ -50,8 +51,9 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
           _isLoading = false;
         });
       }
-    } catch (_) {
-      if (mounted) setState(() => _isLoading = false);
+    } catch (e) {
+      debugPrint('Failed to load sessions: $e');
+      if (mounted) setState(() => _hasError = true);
     }
   }
 
@@ -65,7 +67,8 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
     return '${diff.inDays} ngày trước';
   }
 
-  MobileSurveyResponseData? _parseResult(String resultJson) {
+  MobileSurveyResponseData? _parseResult(String? resultJson) {
+    if (resultJson == null) return null;
     try {
       final json = jsonDecode(resultJson) as Map<String, dynamic>;
       if (json.containsKey('messages') && json.containsKey('products')) {
@@ -163,9 +166,25 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
       appBar: AppBar(title: const Text('Lịch sử khảo sát')),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : _sessions.isEmpty
-              ? const Center(child: Text('Chưa có kết quả khảo sát nào'))
-              : ListView.builder(
+          : _hasError
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error_outline, size: 48, color: Colors.red),
+                      const SizedBox(height: 16),
+                      const Text('Không thể tải lịch sử khảo sát'),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                        onPressed: _loadSessions,
+                        child: const Text('Thử lại'),
+                      ),
+                    ],
+                  ),
+                )
+              : _sessions.isEmpty
+                  ? const Center(child: Text('Chưa có kết quả khảo sát nào'))
+                  : ListView.builder(
                   itemCount: _sessions.length,
                   itemBuilder: (context, index) {
                     final session = _sessions[index];
@@ -178,11 +197,11 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
                         color: Colors.red,
                         child: const Icon(Icons.delete, color: Colors.white),
                       ),
-                      onDismissed: (_) async {
-                        final dao = ref.read(surveyDaoProvider);
-                        await dao.deleteSession(session.id);
-                        setState(() => _sessions.removeAt(index));
-                      },
+                       onDismissed: (_) async {
+                         final dao = ref.read(surveyDaoProvider);
+                         await dao.deleteSession(session.id);
+                         setState(() => _sessions.removeWhere((s) => s.id == session.id));
+                       },
                       child: ListTile(
                         title: Text('Khảo sát #${index + 1}'),
                         subtitle: Text(

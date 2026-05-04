@@ -62,7 +62,7 @@ class SurveyProductCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        formatPrice(),
+                        formatPrice(product),
                         style: TextStyle(
                           fontSize: 13,
                           color: Theme.of(context).colorScheme.primary,
@@ -80,11 +80,10 @@ class SurveyProductCard extends StatelessWidget {
     );
   }
 
-  String formatPrice() {
+  static String formatPrice(MobileSurveyProduct product) {
     final minPrice = product.minPrice.toDouble();
     final maxPrice = product.maxPrice.toDouble();
     if (minPrice == 0 && maxPrice == 0) return 'Liên hệ';
-    if (minPrice == maxPrice) return PriceFormatter.format(minPrice);
     return PriceFormatter.formatRange(minPrice, maxPrice);
   }
 }

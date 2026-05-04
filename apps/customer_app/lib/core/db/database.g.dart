@@ -961,9 +961,9 @@ class $LocalSurveySessionsTable extends LocalSurveySessions
   late final GeneratedColumn<String> resultJson = GeneratedColumn<String>(
     'result_json',
     aliasedName,
-    false,
+    true,
     type: DriftSqlType.string,
-    requiredDuringInsert: true,
+    requiredDuringInsert: false,
   );
   static const VerificationMeta _createdAtMeta = const VerificationMeta(
     'createdAt',
@@ -1038,8 +1038,6 @@ class $LocalSurveySessionsTable extends LocalSurveySessions
         _resultJsonMeta,
         resultJson.isAcceptableOrUnknown(data['result_json']!, _resultJsonMeta),
       );
-    } else if (isInserting) {
-      context.missing(_resultJsonMeta);
     }
     if (data.containsKey('created_at')) {
       context.handle(
@@ -1082,7 +1080,7 @@ class $LocalSurveySessionsTable extends LocalSurveySessions
       resultJson: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}result_json'],
-      )!,
+      ),
       createdAt: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}created_at'],
@@ -1105,14 +1103,14 @@ class LocalSurveySession extends DataClass
   final String id;
   final String userId;
   final String answersJson;
-  final String resultJson;
+  final String? resultJson;
   final int createdAt;
   final int productCount;
   const LocalSurveySession({
     required this.id,
     required this.userId,
     required this.answersJson,
-    required this.resultJson,
+    this.resultJson,
     required this.createdAt,
     required this.productCount,
   });
@@ -1122,7 +1120,9 @@ class LocalSurveySession extends DataClass
     map['id'] = Variable<String>(id);
     map['user_id'] = Variable<String>(userId);
     map['answers_json'] = Variable<String>(answersJson);
-    map['result_json'] = Variable<String>(resultJson);
+    if (!nullToAbsent || resultJson != null) {
+      map['result_json'] = Variable<String>(resultJson);
+    }
     map['created_at'] = Variable<int>(createdAt);
     map['product_count'] = Variable<int>(productCount);
     return map;
@@ -1133,7 +1133,9 @@ class LocalSurveySession extends DataClass
       id: Value(id),
       userId: Value(userId),
       answersJson: Value(answersJson),
-      resultJson: Value(resultJson),
+      resultJson: resultJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(resultJson),
       createdAt: Value(createdAt),
       productCount: Value(productCount),
     );
@@ -1148,7 +1150,7 @@ class LocalSurveySession extends DataClass
       id: serializer.fromJson<String>(json['id']),
       userId: serializer.fromJson<String>(json['userId']),
       answersJson: serializer.fromJson<String>(json['answersJson']),
-      resultJson: serializer.fromJson<String>(json['resultJson']),
+      resultJson: serializer.fromJson<String?>(json['resultJson']),
       createdAt: serializer.fromJson<int>(json['createdAt']),
       productCount: serializer.fromJson<int>(json['productCount']),
     );
@@ -1160,7 +1162,7 @@ class LocalSurveySession extends DataClass
       'id': serializer.toJson<String>(id),
       'userId': serializer.toJson<String>(userId),
       'answersJson': serializer.toJson<String>(answersJson),
-      'resultJson': serializer.toJson<String>(resultJson),
+      'resultJson': serializer.toJson<String?>(resultJson),
       'createdAt': serializer.toJson<int>(createdAt),
       'productCount': serializer.toJson<int>(productCount),
     };
@@ -1170,14 +1172,14 @@ class LocalSurveySession extends DataClass
     String? id,
     String? userId,
     String? answersJson,
-    String? resultJson,
+    Value<String?> resultJson = const Value.absent(),
     int? createdAt,
     int? productCount,
   }) => LocalSurveySession(
     id: id ?? this.id,
     userId: userId ?? this.userId,
     answersJson: answersJson ?? this.answersJson,
-    resultJson: resultJson ?? this.resultJson,
+    resultJson: resultJson.present ? resultJson.value : this.resultJson,
     createdAt: createdAt ?? this.createdAt,
     productCount: productCount ?? this.productCount,
   );
@@ -1230,7 +1232,7 @@ class LocalSurveySessionsCompanion extends UpdateCompanion<LocalSurveySession> {
   final Value<String> id;
   final Value<String> userId;
   final Value<String> answersJson;
-  final Value<String> resultJson;
+  final Value<String?> resultJson;
   final Value<int> createdAt;
   final Value<int> productCount;
   final Value<int> rowid;
@@ -1247,14 +1249,13 @@ class LocalSurveySessionsCompanion extends UpdateCompanion<LocalSurveySession> {
     required String id,
     required String userId,
     required String answersJson,
-    required String resultJson,
+    this.resultJson = const Value.absent(),
     required int createdAt,
     this.productCount = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        userId = Value(userId),
        answersJson = Value(answersJson),
-       resultJson = Value(resultJson),
        createdAt = Value(createdAt);
   static Insertable<LocalSurveySession> custom({
     Expression<String>? id,
@@ -1280,7 +1281,7 @@ class LocalSurveySessionsCompanion extends UpdateCompanion<LocalSurveySession> {
     Value<String>? id,
     Value<String>? userId,
     Value<String>? answersJson,
-    Value<String>? resultJson,
+    Value<String?>? resultJson,
     Value<int>? createdAt,
     Value<int>? productCount,
     Value<int>? rowid,
@@ -2091,7 +2092,7 @@ typedef $$LocalSurveySessionsTableCreateCompanionBuilder =
       required String id,
       required String userId,
       required String answersJson,
-      required String resultJson,
+      Value<String?> resultJson,
       required int createdAt,
       Value<int> productCount,
       Value<int> rowid,
@@ -2101,7 +2102,7 @@ typedef $$LocalSurveySessionsTableUpdateCompanionBuilder =
       Value<String> id,
       Value<String> userId,
       Value<String> answersJson,
-      Value<String> resultJson,
+      Value<String?> resultJson,
       Value<int> createdAt,
       Value<int> productCount,
       Value<int> rowid,
@@ -2267,7 +2268,7 @@ class $$LocalSurveySessionsTableTableManager
                 Value<String> id = const Value.absent(),
                 Value<String> userId = const Value.absent(),
                 Value<String> answersJson = const Value.absent(),
-                Value<String> resultJson = const Value.absent(),
+                Value<String?> resultJson = const Value.absent(),
                 Value<int> createdAt = const Value.absent(),
                 Value<int> productCount = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -2285,7 +2286,7 @@ class $$LocalSurveySessionsTableTableManager
                 required String id,
                 required String userId,
                 required String answersJson,
-                required String resultJson,
+                Value<String?> resultJson = const Value.absent(),
                 required int createdAt,
                 Value<int> productCount = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
