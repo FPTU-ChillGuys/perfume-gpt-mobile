@@ -6,6 +6,8 @@ analyzer:
     - "**/*.freezed.dart"
     - "packages/perfumegpt_api_client/lib/src/api/**"
     - "packages/perfumegpt_api_client/lib/src/model/**"
+    - "packages/perfumegpt_ai_api_client/lib/src/api/**"
+    - "packages/perfumegpt_ai_api_client/lib/src/model/**"
 
 linter:
   rules:
