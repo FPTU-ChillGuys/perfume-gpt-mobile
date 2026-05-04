@@ -64,9 +64,9 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
       }
     } catch (e) {
       debugPrint('SurveyNotifier: Failed to load questions from API: $e');
-      _isFallback = true;
     }
 
+    _isFallback = true;
     return _fallbackQuestions();
   }
 

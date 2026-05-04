@@ -32,7 +32,8 @@ PerfumegptApiClient apiClient(Ref ref) {
 
 @Riverpod(keepAlive: true)
 PerfumegptAiApiClient aiApiClient(Ref ref) {
-  String baseUrl = 'https://ai-backend-sep490.vqnofficial.win';
+  // String baseUrl = 'https://ai-backend-sep490.vqnofficial.win';
+  String baseUrl = 'http://10.0.2.2:3000';
 
   /*if (!kIsWeb && Platform.isAndroid) {
     baseUrl = 'https://10.0.2.2:7011';

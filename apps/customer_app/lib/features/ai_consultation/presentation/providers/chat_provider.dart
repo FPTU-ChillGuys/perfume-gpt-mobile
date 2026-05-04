@@ -55,9 +55,11 @@ class ChatSession extends _$ChatSession {
     if (userConvs.isNotEmpty) {
       final latestLocal = userConvs.first;
       _conversationId = latestLocal.id;
-      _guestUserId ??= latestLocal.userId;
-      if (_guestUserId != null) {
-        await _secureStorage.write(key: _guestIdKey, value: _guestUserId);
+      if (currentUserId == null) {
+        _guestUserId ??= latestLocal.userId;
+        if (_guestUserId != null) {
+          await _secureStorage.write(key: _guestIdKey, value: _guestUserId);
+        }
       }
       final localMessages = await dao.getMessagesByConversationId(latestLocal.id);
       final messages = localMessages.map((m) => _mapLocalMessageToChat(m)).toList();

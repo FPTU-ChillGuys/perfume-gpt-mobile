@@ -28,7 +28,12 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
   }
 
   Future<void> _loadSessions() async {
-    _hasError = false;
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+        _hasError = false;
+      });
+    }
     try {
       final dao = ref.read(surveyDaoProvider);
       final all = await dao.getAllSessions();
@@ -53,7 +58,12 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
       }
     } catch (e) {
       debugPrint('Failed to load sessions: $e');
-      if (mounted) setState(() => _hasError = true);
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _hasError = true;
+        });
+      }
     }
   }
 
