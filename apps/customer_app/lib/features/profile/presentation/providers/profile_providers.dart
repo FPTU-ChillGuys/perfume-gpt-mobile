@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/profile_repository_impl.dart';
@@ -45,6 +46,17 @@ FutureOr<List<AttributeValueLookup>> attributeValuesLookup(
       .getAttributeValuesLookup(attributeId);
 }
 
+/// GET /api/users/me → [profilePictureUrl] when auth cache has no avatar yet (same idea as FE `getMyAvatar`).
+final userMeAvatarUrlProvider = FutureProvider<String?>((ref) async {
+  ref.keepAlive();
+  final user = ref.watch(authProvider).asData?.value;
+  if (user == null) return null;
+  if (user.avatarUrl != null && user.avatarUrl!.isNotEmpty) {
+    return user.avatarUrl;
+  }
+  return ref.read(profileRepositoryProvider).getProfilePictureUrl();
+});
+
 @riverpod
 class ProfileController extends _$ProfileController {
   @override
@@ -88,11 +100,13 @@ class ProfileController extends _$ProfileController {
         .read(profileRepositoryProvider)
         .uploadAvatar(filePath);
     ref.invalidateSelf();
+    ref.invalidate(userMeAvatarUrlProvider);
     return url;
   }
 
   Future<void> deleteAvatar() async {
     await ref.read(profileRepositoryProvider).deleteAvatar();
     ref.invalidateSelf();
+    ref.invalidate(userMeAvatarUrlProvider);
   }
 }

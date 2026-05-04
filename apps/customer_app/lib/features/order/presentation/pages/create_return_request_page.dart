@@ -13,6 +13,7 @@ import '../../../../domain/repositories/return_request_repository.dart';
 import '../providers/address_provider.dart';
 import '../providers/bank_provider.dart';
 import '../providers/return_request_providers.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 final _currencyFmt = NumberFormat.currency(
   locale: 'vi_VN',
@@ -30,11 +31,13 @@ const _reasons = <(String value, String label, IconData icon)>[
 
 class CreateReturnRequestPage extends ConsumerStatefulWidget {
   final String orderId;
+  final String orderCode;
   final List<OrderDetailItem> orderItems;
 
   const CreateReturnRequestPage({
     super.key,
     required this.orderId,
+    required this.orderCode,
     required this.orderItems,
   });
 
@@ -147,6 +150,9 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
             ),
           ),
         ),
+        actions: const [
+          ProfileAvatarAppBarAction(forDarkAppBar: true),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 40),
@@ -1410,6 +1416,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
 
       await repo.create(
         orderId: widget.orderId,
+        orderCode: widget.orderCode,
         reason: _selectedReason!,
         returnItems: returnItems,
         customerNote: _noteController.text.isNotEmpty

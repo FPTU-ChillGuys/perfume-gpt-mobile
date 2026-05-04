@@ -73,19 +73,12 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final screenWidth = constraints.maxWidth;
-        final isCompact = screenWidth < 360;
         final isWide = screenWidth >= 600;
-
-        // Responsive dimensions
-        final bannerHeight = isWide
-            ? 260.0
-            : isCompact
-            ? 160.0
-            : 200.0;
+        // Target mobile banner ratio: 900 x 520
+        const bannerRatio = 900 / 520;
+        final bannerHeight = (screenWidth / bannerRatio).clamp(160.0, 320.0);
         final titleFontSize = isWide
             ? 18.0
-            : isCompact
-            ? 12.0
             : 14.0;
         final gradientHeight = isWide ? 80.0 : 60.0;
         final titlePadding = isWide ? 18.0 : 14.0;
@@ -104,43 +97,21 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
                 itemCount: widget.banners.length,
                 itemBuilder: (context, index) {
                   final banner = widget.banners[index];
-                  // Always prefer mobile image on mobile app
-                  final imageUrl = banner.mobileImageUrl ?? banner.imageUrl;
+                  // Prefer mobile image; fallback to desktop image when broken.
+                  final primaryImageUrl = banner.mobileImageUrl ?? banner.imageUrl;
+                  final fallbackImageUrl = banner.mobileImageUrl != null &&
+                          banner.mobileImageUrl!.isNotEmpty
+                      ? banner.imageUrl
+                      : null;
 
                   return GestureDetector(
                     onTap: () => _onBannerTap(banner),
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
-                        Image.network(
-                          imageUrl,
-                          fit: BoxFit.cover,
-                          gaplessPlayback: true,
-                          loadingBuilder: (_, child, progress) {
-                            if (progress == null) return child;
-                            return Container(
-                              color: AppColors.surface,
-                              child: const Center(
-                                child: SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                          errorBuilder: (_, _, _) => Container(
-                            color: AppColors.primaryLight,
-                            child: const Center(
-                              child: Icon(
-                                Icons.image_not_supported_outlined,
-                                color: AppColors.primary,
-                                size: 32,
-                              ),
-                            ),
-                          ),
+                        _BannerImage(
+                          primaryUrl: primaryImageUrl,
+                          fallbackUrl: fallbackImageUrl,
                         ),
                         // Bottom gradient overlay
                         Positioned(
@@ -208,6 +179,87 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
               ),
             ],
           ],
+        );
+      },
+    );
+  }
+}
+
+class _BannerImage extends StatefulWidget {
+  final String primaryUrl;
+  final String? fallbackUrl;
+
+  const _BannerImage({
+    required this.primaryUrl,
+    this.fallbackUrl,
+  });
+
+  @override
+  State<_BannerImage> createState() => _BannerImageState();
+}
+
+class _BannerImageState extends State<_BannerImage> {
+  late String _currentUrl;
+  bool _didFallback = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentUrl = widget.primaryUrl;
+  }
+
+  @override
+  void didUpdateWidget(covariant _BannerImage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.primaryUrl != widget.primaryUrl) {
+      _currentUrl = widget.primaryUrl;
+      _didFallback = false;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(
+      _currentUrl,
+      fit: BoxFit.cover,
+      gaplessPlayback: true,
+      loadingBuilder: (_, child, progress) {
+        if (progress == null) return child;
+        return Container(
+          color: AppColors.surface,
+          child: const Center(
+            child: SizedBox(
+              width: 24,
+              height: 24,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+          ),
+        );
+      },
+      errorBuilder: (_, error, stackTrace) {
+        final canFallback = !_didFallback &&
+            widget.fallbackUrl != null &&
+            widget.fallbackUrl!.isNotEmpty &&
+            widget.fallbackUrl != _currentUrl;
+        if (canFallback) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            setState(() {
+              _didFallback = true;
+              _currentUrl = widget.fallbackUrl!;
+            });
+          });
+          return Container(color: AppColors.surface);
+        }
+        return Container(
+          color: AppColors.primaryLight,
+          child: const Center(
+            child: Icon(
+              Icons.image_not_supported_outlined,
+              color: AppColors.primary,
+              size: 32,
+            ),
+          ),
         );
       },
     );

@@ -29,6 +29,7 @@ abstract class ReturnRequestRepository {
   Future<String?> getOrderInfoUrl(String trackingNumber);
   Future<void> create({
     required String orderId,
+    required String orderCode,
     required String reason,
     required List<({String orderDetailId, int quantity})> returnItems,
     String? customerNote,

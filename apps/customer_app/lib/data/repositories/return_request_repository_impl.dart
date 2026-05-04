@@ -9,6 +9,13 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
   final OrderReturnRequestsApi _api;
   final ShippingsApi _shippingsApi;
   final Dio _dio;
+
+  static const Map<String, String> _bearerSecure = {
+    'type': 'http',
+    'scheme': 'bearer',
+    'name': 'Bearer',
+  };
+
   ReturnRequestRepositoryImpl(this._api, this._shippingsApi, this._dio);
 
   @override
@@ -87,6 +94,12 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
     List<PendingUploadMedia>? images,
     List<PendingUploadMedia>? videos,
   }) async {
+    final hasImages = images != null && images.isNotEmpty;
+    final hasVideos = videos != null && videos.isNotEmpty;
+    if (!hasImages && !hasVideos) return [];
+
+    // OpenAPI-generated client for this endpoint ships a broken body builder
+    // (empty body + wrong content-type). Use multipart FormData via Dio.
     final formData = FormData();
     if (images != null) {
       for (final img in images) {
@@ -108,25 +121,27 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
         );
       }
     }
-    final response = await _dio.post(
+    final response = await _dio.post<Map<String, dynamic>>(
       '/api/orderreturnrequests/videos/temporary',
       data: formData,
       options: Options(
-        extra: <String, dynamic>{
-          'secure': <Map<String, String>>[
-            {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-          ],
-        },
+        extra: {'secure': [_bearerSecure]},
       ),
     );
     final payload = response.data;
-    List items = [];
-    if (payload is Map) {
-      final data = (payload['payload'] as Map?)?['data'];
-      if (data is List) items = data;
+    List<dynamic> items = [];
+    if (payload is Map<String, dynamic>) {
+      final inner = payload['payload'];
+      if (inner is Map<String, dynamic>) {
+        final data = inner['data'];
+        if (data is List) items = data;
+      }
     }
     return items
-        .map<String>((m) => (m['id'] ?? '').toString())
+        .map<String>((m) {
+          if (m is Map) return (m['id'] ?? '').toString();
+          return '';
+        })
         .where((id) => id.isNotEmpty)
         .toList();
   }
@@ -160,6 +175,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
   @override
   Future<void> create({
     required String orderId,
+    required String orderCode,
     required String reason,
     required List<({String orderDetailId, int quantity})> returnItems,
     String? customerNote,
@@ -217,9 +233,19 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
             )
           : null,
     );
-    debugPrint('[ReturnRequestRepo] create DTO JSON: ${dto.toJson()}');
+    final body = <String, dynamic>{
+      ...dto.toJson(),
+      'orderCode': orderCode,
+    };
+    debugPrint('[ReturnRequestRepo] create DTO JSON: $body');
     try {
-      await _api.apiOrderreturnrequestsPost(createReturnRequestDto: dto);
+      await _dio.post<void>(
+        '/api/orderreturnrequests',
+        data: body,
+        options: Options(
+          extra: {'secure': [_bearerSecure]},
+        ),
+      );
     } on DioException catch (e) {
       debugPrint(
         '[ReturnRequestRepo] create error status: ${e.response?.statusCode}',

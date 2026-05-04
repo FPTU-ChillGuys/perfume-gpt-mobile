@@ -8,6 +8,7 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../providers/order_provider.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 /// Opens a payment URL (VNPay/Momo) in an in-app WebView.
 /// When the gateway redirects to the backend return URL, intercepts it,
@@ -280,6 +281,7 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
           icon: const Icon(Icons.close),
           onPressed: () => _showExitConfirmation(),
         ),
+        actions: const [ProfileAvatarAppBarAction()],
       ),
       body: Stack(
         children: [

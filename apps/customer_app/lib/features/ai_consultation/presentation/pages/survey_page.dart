@@ -6,6 +6,7 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import '../providers/chat_provider.dart';
 import '../providers/survey_provider.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 import '../widgets/ai_message_style.dart';
 import '../widgets/survey_product_card.dart';
 
@@ -116,6 +117,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
           onPressed: () => context.pop(),
         ),
         actions: [
+          const ProfileAvatarAppBarAction(),
           TextButton(
             onPressed: () => context.push('/survey/history'),
             child: const Text('Lịch sử'),

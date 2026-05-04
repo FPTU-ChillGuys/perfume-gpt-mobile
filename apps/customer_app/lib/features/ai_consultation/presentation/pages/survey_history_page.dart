@@ -8,6 +8,7 @@ import '../../../../core/db/database_provider.dart';
 import '../providers/chat_provider.dart';
 import '../widgets/ai_message_style.dart';
 import '../widgets/survey_product_card.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 class SurveyHistoryPage extends ConsumerStatefulWidget {
   const SurveyHistoryPage({super.key});
@@ -173,7 +174,10 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Lịch sử khảo sát')),
+      appBar: AppBar(
+        title: const Text('Lịch sử khảo sát'),
+        actions: const [ProfileAvatarAppBarAction()],
+      ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _hasError

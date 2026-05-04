@@ -3,6 +3,9 @@ import '../entities/user_profile.dart';
 
 abstract class ProfileRepository {
   Future<UserProfile> getMe();
+
+  /// [profilePictureUrl] from GET /api/users/me (absolute or resolved against API base).
+  Future<String?> getProfilePictureUrl();
   Future<void> updateMe({
     required String fullName,
     required String phoneNumber,

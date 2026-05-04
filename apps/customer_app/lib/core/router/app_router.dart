@@ -179,6 +179,7 @@ class AppRouter {
           final extra = state.extra as Map<String, dynamic>;
           return CreateReturnRequestPage(
             orderId: extra['orderId'] as String,
+            orderCode: extra['orderCode'] as String,
             orderItems: extra['orderItems'] as List<OrderDetailItem>,
           );
         },

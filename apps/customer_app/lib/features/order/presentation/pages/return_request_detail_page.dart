@@ -10,6 +10,7 @@ import '../../../../domain/entities/order.dart';
 import '../../../../domain/entities/return_request.dart';
 import '../../../../domain/repositories/return_request_repository.dart';
 import '../providers/return_request_providers.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 final _currencyFmt = NumberFormat.currency(
   locale: 'vi_VN',
@@ -174,6 +175,7 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
       systemOverlayStyle: SystemUiOverlayStyle.light,
       backgroundColor: AppColors.primaryDark,
       actions: [
+        const ProfileAvatarAppBarAction(forDarkAppBar: true),
         if (req != null && req.returnShippingInfo?.trackingNumber != null)
           _appBarAction(
             loading: _isPrintingLabel,

@@ -9,6 +9,7 @@ import '../../../review/presentation/providers/review_providers.dart';
 import '../providers/cancel_request_providers.dart';
 import '../providers/order_provider.dart';
 import '../providers/return_request_providers.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -322,6 +323,7 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
           },
         ),
         title: const Text('Đơn hàng của tôi'),
+        actions: const [ProfileAvatarAppBarAction()],
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,

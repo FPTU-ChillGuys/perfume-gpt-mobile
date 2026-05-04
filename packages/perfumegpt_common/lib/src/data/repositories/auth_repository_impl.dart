@@ -5,6 +5,7 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:dio/dio.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../../utils/media_url_resolver.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final PerfumegptApiClient _apiClient;
@@ -171,11 +172,15 @@ class AuthRepositoryImpl implements AuthRepository {
       final userResponse = response.data?.payload;
 
       if (userResponse != null) {
+        final base = _apiClient.dio.options.baseUrl;
         _currentUser = User(
           id: userResponse.id ?? '',
           email: userResponse.email,
           name: userResponse.fullName,
-          avatarUrl: userResponse.profilePictureUrl,
+          avatarUrl: MediaUrlResolver.resolveOptional(
+            userResponse.profilePictureUrl,
+            base,
+          ),
         );
         return _currentUser;
       }

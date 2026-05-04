@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import '../../domain/entities/note_preference.dart';
 import '../../domain/entities/user_profile.dart';
 import '../../domain/repositories/profile_repository.dart';
@@ -11,6 +15,12 @@ class ProfileRepositoryImpl implements ProfileRepository {
   final OlfactoryFamiliesApi _familiesApi;
   final AttributesApi _attributesApi;
   final Dio _dio;
+
+  static const Map<String, String> _bearerSecure = {
+    'type': 'http',
+    'scheme': 'bearer',
+    'name': 'Bearer',
+  };
 
   ProfileRepositoryImpl(
     this._usersApi,
@@ -26,20 +36,73 @@ class ProfileRepositoryImpl implements ProfileRepository {
     return s != null && s >= 200 && s < 300;
   }
 
+  Future<UserCredentialsResponse> _loadUserCredentials() async {
+    try {
+      final credentialsResponse = await _usersApi.apiUsersMeGet();
+      final creds = credentialsResponse.data?.payload;
+      if (creds != null) return creds;
+    } catch (e, st) {
+      debugPrint('[ProfileRepo] apiUsersMeGet failed, trying raw JSON: $e');
+      debugPrintStack(stackTrace: st);
+    }
+    final response = await _dio.get<dynamic>(
+      '/api/users/me',
+      options: Options(
+        extra: {'secure': [_bearerSecure]},
+      ),
+    );
+    final data = response.data;
+    Map<String, dynamic>? root;
+    if (data is Map<String, dynamic>) {
+      root = data;
+    } else if (data is String && data.trim().isNotEmpty) {
+      final decoded = jsonDecode(data);
+      if (decoded is Map<String, dynamic>) root = decoded;
+    }
+    if (root == null) {
+      throw StateError('GET /api/users/me: could not parse JSON body');
+    }
+    final payload = root['payload'];
+    if (payload is! Map<String, dynamic>) {
+      throw FormatException('GET /api/users/me: missing payload object');
+    }
+    return UserCredentialsResponse.fromJson(payload);
+  }
+
+  @override
+  Future<String?> getProfilePictureUrl() async {
+    final creds = await _loadUserCredentials();
+    return MediaUrlResolver.resolveOptional(
+      creds.profilePictureUrl,
+      _dio.options.baseUrl,
+    );
+  }
+
   @override
   Future<UserProfile> getMe() async {
-    final credentialsResponse = await _usersApi.apiUsersMeGet();
-    final profileResponse = await _profilesApi.apiProfilesMeGet();
+    final creds = await _loadUserCredentials();
 
-    final creds = credentialsResponse.data!.payload!;
-    final prof = profileResponse.data?.payload;
+    ProfileResponse? prof;
+    try {
+      final profileResponse = await _profilesApi.apiProfilesMeGet();
+      prof = profileResponse.data?.payload;
+    } catch (e, st) {
+      debugPrint('[ProfileRepo] apiProfilesMeGet failed (avatar still from /users/me): $e');
+      debugPrintStack(stackTrace: st);
+    }
+
+    final baseUrl = _dio.options.baseUrl;
+    final avatarUrl = MediaUrlResolver.resolveOptional(
+      creds.profilePictureUrl,
+      baseUrl,
+    );
 
     return UserProfile(
       id: creds.id ?? '',
       fullName: creds.fullName,
       email: creds.email,
       phoneNumber: creds.phoneNumber,
-      avatarUrl: creds.profilePictureUrl,
+      avatarUrl: avatarUrl,
       dateOfBirth: prof?.dateOfBirth,
       gender: null,
       minBudget: prof?.minBudget,
@@ -75,18 +138,12 @@ class ProfileRepositoryImpl implements ProfileRepository {
     required String fullName,
     required String phoneNumber,
   }) async {
-    try {
-      await _dio.put(
-        '/api/users/me',
-        data: {'fullName': fullName, 'phoneNumber': phoneNumber},
-      );
-    } on DioException catch (e) {
-      if (_isOk(e)) return;
-      final message = e.response?.data is Map
-          ? (e.response!.data as Map)['message']?.toString()
-          : null;
-      throw Exception(message ?? 'Không thể cập nhật thông tin');
-    }
+    await _usersApi.apiUsersMePut(
+      updateUserBasicInfoRequest: UpdateUserBasicInfoRequest(
+        fullName: fullName,
+        phoneNumber: phoneNumber,
+      ),
+    );
   }
 
   @override
@@ -121,41 +178,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<String?> uploadAvatar(String filePath) async {
-    final formData = FormData.fromMap({
-      'Avatar': await MultipartFile.fromFile(filePath),
-      'AltText': '',
-    });
-    try {
-      final response = await _dio.post(
-        '/api/users/avatar',
-        data: formData,
-        options: Options(contentType: 'multipart/form-data'),
-      );
-      final data = response.data;
-      if (data is Map<String, dynamic>) {
-        return data['payload']?.toString();
-      }
-      return null;
-    } on DioException catch (e) {
-      if (_isOk(e)) return null;
-      final message = e.response?.data is Map
-          ? (e.response!.data as Map)['message']?.toString()
-          : null;
-      throw Exception(message ?? 'Không thể tải ảnh lên');
-    }
+    final response = await _usersApi.apiUsersAvatarPost(
+      avatar: await MultipartFile.fromFile(filePath),
+      altText: '',
+    );
+    return response.data?.payload?.toString();
   }
 
   @override
   Future<void> deleteAvatar() async {
-    try {
-      await _dio.delete('/api/users/avatar');
-    } on DioException catch (e) {
-      if (_isOk(e)) return;
-      final message = e.response?.data is Map
-          ? (e.response!.data as Map)['message']?.toString()
-          : null;
-      throw Exception(message ?? 'Không thể xóa ảnh');
-    }
+    await _usersApi.apiUsersAvatarDelete();
   }
 
   @override

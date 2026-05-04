@@ -21,7 +21,7 @@ CartRepository cartRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
   final cartApi = apiClient.getCartApi();
   final localDataSource = ref.watch(localCartDataSourceProvider);
-  return CartRepositoryImpl(cartApi, apiClient.dio, localDataSource);
+  return CartRepositoryImpl(cartApi, localDataSource);
 }
 
 @Riverpod(keepAlive: true)

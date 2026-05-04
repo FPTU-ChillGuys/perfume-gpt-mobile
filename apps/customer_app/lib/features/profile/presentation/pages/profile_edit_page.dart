@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/utils/image_url_helper.dart';
+import '../../../../core/widgets/authenticated_circle_avatar.dart';
 import '../../../../domain/entities/note_preference.dart';
 import '../providers/profile_providers.dart';
 
@@ -232,32 +232,46 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                       data: (p) {
                         final hasAvatar =
                             p.avatarUrl != null && p.avatarUrl!.isNotEmpty;
-                        return CircleAvatar(
-                          radius: 48,
-                          backgroundColor: AppColors.primaryLight,
-                          backgroundImage: hasAvatar
-                              ? NetworkImage(
-                                  ImageUrlHelper.resolve(p.avatarUrl!),
-                                )
-                              : null,
-                          child: _uploadingAvatar
-                              ? const CircularProgressIndicator(
-                                  strokeWidth: 2,
+                        final initial = (_nameCtrl.text.isNotEmpty
+                                ? _nameCtrl.text[0]
+                                : '?')
+                            .toUpperCase();
+                        return Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            AuthenticatedCircleAvatar(
+                              imageUrl: hasAvatar ? p.avatarUrl : null,
+                              radius: 48,
+                              backgroundColor: AppColors.primaryLight,
+                              loadingIndicatorSize: 28,
+                              placeholder: Text(
+                                initial,
+                                style: const TextStyle(
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.bold,
                                   color: AppColors.primary,
-                                )
-                              : hasAvatar
-                              ? null
-                              : Text(
-                                  (_nameCtrl.text.isNotEmpty
-                                          ? _nameCtrl.text[0]
-                                          : '?')
-                                      .toUpperCase(),
-                                  style: const TextStyle(
-                                    fontSize: 36,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primary,
+                                ),
+                              ),
+                            ),
+                            if (_uploadingAvatar)
+                              Positioned.fill(
+                                child: ClipOval(
+                                  child: ColoredBox(
+                                    color: Colors.white54,
+                                    child: Center(
+                                      child: SizedBox(
+                                        width: 36,
+                                        height: 36,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2.5,
+                                          color: AppColors.primary,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
+                              ),
+                          ],
                         );
                       },
                       orElse: () => CircleAvatar(

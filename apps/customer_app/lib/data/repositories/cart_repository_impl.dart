@@ -1,5 +1,4 @@
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
-import 'package:dio/dio.dart';
 import '../../core/utils/image_url_helper.dart';
 import '../../domain/entities/cart_item.dart';
 import '../../domain/entities/cart_total.dart';
@@ -8,16 +7,9 @@ import '../datasources/local_cart_data_source.dart';
 
 class CartRepositoryImpl implements CartRepository {
   final CartApi _api;
-  final Dio _dio;
   final LocalCartDataSource? _localDataSource;
 
-  CartRepositoryImpl(this._api, this._dio, [this._localDataSource]);
-
-  static const Map<String, String> _bearerSecure = {
-    'type': 'http',
-    'scheme': 'bearer',
-    'name': 'Bearer',
-  };
+  CartRepositoryImpl(this._api, [this._localDataSource]);
 
   @override
   Future<List<CartItem>> getItems({bool isAuthenticated = false}) async {
@@ -172,92 +164,51 @@ class CartRepositoryImpl implements CartRepository {
     String? recipientProvinceName,
     String? recipientFullAddress,
   }) async {
-    final queryParameters = <String, dynamic>{
-      'VoucherCode': (voucherCode != null && voucherCode.isNotEmpty)
-          ? voucherCode
-          : null,
-      'ItemIds': (itemIds != null && itemIds.isNotEmpty) ? itemIds : null,
-      'SavedAddressId': (savedAddressId != null && savedAddressId.isNotEmpty)
-          ? savedAddressId
-          : null,
-      'Recipient.ContactName':
-          (recipientContactName != null && recipientContactName.isNotEmpty)
+    final response = await _api.apiCartTotalGet(
+      voucherCode: (voucherCode?.isNotEmpty == true) ? voucherCode : null,
+      itemIds: (itemIds != null && itemIds.isNotEmpty) ? itemIds : null,
+      savedAddressId:
+          (savedAddressId?.isNotEmpty == true) ? savedAddressId : null,
+      recipientPeriodContactName: (recipientContactName?.isNotEmpty == true)
           ? recipientContactName
           : null,
-      'Recipient.ContactPhoneNumber':
-          (recipientContactPhoneNumber != null &&
-              recipientContactPhoneNumber.isNotEmpty)
+      recipientPeriodContactPhoneNumber:
+          (recipientContactPhoneNumber?.isNotEmpty == true)
           ? recipientContactPhoneNumber
           : null,
-      'Recipient.DistrictId': recipientDistrictId,
-      'Recipient.DistrictName':
-          (recipientDistrictName != null && recipientDistrictName.isNotEmpty)
+      recipientPeriodDistrictId: recipientDistrictId,
+      recipientPeriodDistrictName: (recipientDistrictName?.isNotEmpty == true)
           ? recipientDistrictName
           : null,
-      'Recipient.WardCode':
-          (recipientWardCode != null && recipientWardCode.isNotEmpty)
-          ? recipientWardCode
-          : null,
-      'Recipient.WardName':
-          (recipientWardName != null && recipientWardName.isNotEmpty)
-          ? recipientWardName
-          : null,
-      'Recipient.ProvinceId': recipientProvinceId,
-      'Recipient.ProvinceName':
-          (recipientProvinceName != null && recipientProvinceName.isNotEmpty)
+      recipientPeriodWardCode:
+          (recipientWardCode?.isNotEmpty == true) ? recipientWardCode : null,
+      recipientPeriodWardName:
+          (recipientWardName?.isNotEmpty == true) ? recipientWardName : null,
+      recipientPeriodProvinceId: recipientProvinceId,
+      recipientPeriodProvinceName: (recipientProvinceName?.isNotEmpty == true)
           ? recipientProvinceName
           : null,
-      'Recipient.FullAddress':
-          (recipientFullAddress != null && recipientFullAddress.isNotEmpty)
+      recipientPeriodFullAddress: (recipientFullAddress?.isNotEmpty == true)
           ? recipientFullAddress
           : null,
-    }..removeWhere((key, value) => value == null);
-
-    final response = await _dio.get(
-      '/api/cart/total',
-      queryParameters: queryParameters,
-      options: Options(
-        extra: const {
-          'secure': [_bearerSecure],
-        },
-      ),
     );
-    final payload =
-        (response.data as Map<String, dynamic>?)?['payload']
-            as Map<String, dynamic>?;
-    final deposit = payload?['depositPolicy'] as Map<String, dynamic>?;
-    final requiredDepositAmount =
-        (payload?['requiredDepositAmount'] as num?)?.toDouble() ?? 0.0;
-    final totalPrice = (payload?['totalPrice'] as num?)?.toDouble() ?? 0.0;
-    final paidAmount = (payload?['paidAmount'] as num?)?.toDouble() ?? 0.0;
-    final fallbackDepositAmount = requiredDepositAmount > 0
-        ? requiredDepositAmount
-        : (payload?['depositAmount'] as num?)?.toDouble() ?? 0.0;
-    final fallbackRemainingAmount = totalPrice > 0
-        ? totalPrice - paidAmount - fallbackDepositAmount
-        : (payload?['remainingAmount'] as num?)?.toDouble() ?? 0.0;
+    final payload = response.data?.payload;
+    final deposit = payload?.depositPolicy;
+    final totalPrice = payload?.totalPrice?.toDouble() ?? 0.0;
 
     return CartTotal(
-      subtotal: (payload?['subtotal'] as num?)?.toDouble() ?? 0.0,
-      shippingFee: (payload?['shippingFee'] as num?)?.toDouble() ?? 0.0,
-      discount: (payload?['discount'] as num?)?.toDouble() ?? 0.0,
+      subtotal: payload?.subtotal?.toDouble() ?? 0.0,
+      shippingFee: payload?.shippingFee?.toDouble() ?? 0.0,
+      discount: payload?.discount?.toDouble() ?? 0.0,
       totalPrice: totalPrice,
-      warningMessage: payload?['warningMessage']?.toString(),
-      depositPolicy: (deposit == null && fallbackDepositAmount <= 0)
+      depositPolicy: deposit == null
           ? null
           : DepositPolicy(
               isDepositRequired:
-                  (deposit?['isDepositRequired'] as bool?) ??
-                  (fallbackDepositAmount > 0),
-              depositRate:
-                  (deposit?['depositRate'] as num?)?.toDouble() ??
-                  (totalPrice > 0 ? (fallbackDepositAmount / totalPrice) : 0.0),
-              depositAmount:
-                  (deposit?['depositAmount'] as num?)?.toDouble() ??
-                  fallbackDepositAmount,
-              remainingAmount:
-                  (deposit?['remainingAmount'] as num?)?.toDouble() ??
-                  (fallbackRemainingAmount < 0 ? 0.0 : fallbackRemainingAmount),
+                  deposit.isDepositRequired ?? ((deposit.depositAmount ?? 0) > 0),
+              depositRate: deposit.depositRate?.toDouble() ?? 0.0,
+              depositAmount: deposit.depositAmount?.toDouble() ?? 0.0,
+              remainingAmount: deposit.remainingAmount?.toDouble() ?? 0.0,
             ),
     );
   }
