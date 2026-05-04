@@ -13,6 +13,7 @@ AI-Powered Staff Mobile App for the PerfumeGPT ecosystem, providing Mobile POS a
 -   **Stock Management:**
     -   Real-time inventory list with search and filtering by SKU, name, or brand.
     -   Detailed product views including current stock levels and pricing fetched from the API.
+    -   **Receive Import Stock:** Complete workflow for verifying incoming stock, including barcode scanning for quick lookup, batch code entry, and expiry tracking (NSX/HSD).
     -   Direct stock adjustments with reason codes (Found, Loss) synchronized with backend.
 -   **Architecture:**
     -   Built with Flutter following **Clean Architecture** principles.

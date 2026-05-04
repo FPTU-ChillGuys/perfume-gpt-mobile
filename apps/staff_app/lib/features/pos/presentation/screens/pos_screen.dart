@@ -8,7 +8,7 @@ import '../../../../core/utils/price_formatter.dart';
 import '../providers/cart_providers.dart';
 import '../providers/counter_checkout_providers.dart';
 import '../../data/models/signalr_dtos.dart';
-import 'scanner_screen.dart';
+import '../../../../core/widgets/scanner_screen.dart';
 import 'batch_selection_dialog.dart';
 
 class PosScreen extends ConsumerWidget {

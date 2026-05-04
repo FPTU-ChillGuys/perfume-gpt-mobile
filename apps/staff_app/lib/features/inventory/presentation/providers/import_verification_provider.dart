@@ -38,6 +38,9 @@ class ImportVerificationNotifier extends _$ImportVerificationNotifier {
         }).toList();
 
         state = state.copyWith(
+          supplierName: ticket.supplierName,
+          importDate: ticket.actualImportDate ?? ticket.expectedArrivalDate,
+          status: ticket.status,
           products: products,
           isLoading: false,
         );

@@ -567,7 +567,7 @@ as String?,
 /// @nodoc
 mixin _$ImportVerificationState {
 
- String? get ticketId; List<ProductVerificationState> get products; String get staffNote; bool get isLoading;
+ String? get ticketId; String? get supplierName; DateTime? get importDate; ImportStatus? get status; List<ProductVerificationState> get products; String get staffNote; bool get isLoading;
 /// Create a copy of ImportVerificationState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -578,16 +578,16 @@ $ImportVerificationStateCopyWith<ImportVerificationState> get copyWith => _$Impo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImportVerificationState&&(identical(other.ticketId, ticketId) || other.ticketId == ticketId)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.staffNote, staffNote) || other.staffNote == staffNote)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImportVerificationState&&(identical(other.ticketId, ticketId) || other.ticketId == ticketId)&&(identical(other.supplierName, supplierName) || other.supplierName == supplierName)&&(identical(other.importDate, importDate) || other.importDate == importDate)&&const DeepCollectionEquality().equals(other.status, status)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.staffNote, staffNote) || other.staffNote == staffNote)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ticketId,const DeepCollectionEquality().hash(products),staffNote,isLoading);
+int get hashCode => Object.hash(runtimeType,ticketId,supplierName,importDate,const DeepCollectionEquality().hash(status),const DeepCollectionEquality().hash(products),staffNote,isLoading);
 
 @override
 String toString() {
-  return 'ImportVerificationState(ticketId: $ticketId, products: $products, staffNote: $staffNote, isLoading: $isLoading)';
+  return 'ImportVerificationState(ticketId: $ticketId, supplierName: $supplierName, importDate: $importDate, status: $status, products: $products, staffNote: $staffNote, isLoading: $isLoading)';
 }
 
 
@@ -598,7 +598,7 @@ abstract mixin class $ImportVerificationStateCopyWith<$Res>  {
   factory $ImportVerificationStateCopyWith(ImportVerificationState value, $Res Function(ImportVerificationState) _then) = _$ImportVerificationStateCopyWithImpl;
 @useResult
 $Res call({
- String? ticketId, List<ProductVerificationState> products, String staffNote, bool isLoading
+ String? ticketId, String? supplierName, DateTime? importDate, ImportStatus? status, List<ProductVerificationState> products, String staffNote, bool isLoading
 });
 
 
@@ -615,10 +615,13 @@ class _$ImportVerificationStateCopyWithImpl<$Res>
 
 /// Create a copy of ImportVerificationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? ticketId = freezed,Object? products = null,Object? staffNote = null,Object? isLoading = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? ticketId = freezed,Object? supplierName = freezed,Object? importDate = freezed,Object? status = freezed,Object? products = null,Object? staffNote = null,Object? isLoading = null,}) {
   return _then(_self.copyWith(
 ticketId: freezed == ticketId ? _self.ticketId : ticketId // ignore: cast_nullable_to_non_nullable
-as String?,products: null == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
+as String?,supplierName: freezed == supplierName ? _self.supplierName : supplierName // ignore: cast_nullable_to_non_nullable
+as String?,importDate: freezed == importDate ? _self.importDate : importDate // ignore: cast_nullable_to_non_nullable
+as DateTime?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as ImportStatus?,products: null == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
 as List<ProductVerificationState>,staffNote: null == staffNote ? _self.staffNote : staffNote // ignore: cast_nullable_to_non_nullable
 as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -706,10 +709,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? ticketId,  List<ProductVerificationState> products,  String staffNote,  bool isLoading)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? ticketId,  String? supplierName,  DateTime? importDate,  ImportStatus? status,  List<ProductVerificationState> products,  String staffNote,  bool isLoading)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ImportVerificationState() when $default != null:
-return $default(_that.ticketId,_that.products,_that.staffNote,_that.isLoading);case _:
+return $default(_that.ticketId,_that.supplierName,_that.importDate,_that.status,_that.products,_that.staffNote,_that.isLoading);case _:
   return orElse();
 
 }
@@ -727,10 +730,10 @@ return $default(_that.ticketId,_that.products,_that.staffNote,_that.isLoading);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? ticketId,  List<ProductVerificationState> products,  String staffNote,  bool isLoading)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? ticketId,  String? supplierName,  DateTime? importDate,  ImportStatus? status,  List<ProductVerificationState> products,  String staffNote,  bool isLoading)  $default,) {final _that = this;
 switch (_that) {
 case _ImportVerificationState():
-return $default(_that.ticketId,_that.products,_that.staffNote,_that.isLoading);case _:
+return $default(_that.ticketId,_that.supplierName,_that.importDate,_that.status,_that.products,_that.staffNote,_that.isLoading);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -747,10 +750,10 @@ return $default(_that.ticketId,_that.products,_that.staffNote,_that.isLoading);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? ticketId,  List<ProductVerificationState> products,  String staffNote,  bool isLoading)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? ticketId,  String? supplierName,  DateTime? importDate,  ImportStatus? status,  List<ProductVerificationState> products,  String staffNote,  bool isLoading)?  $default,) {final _that = this;
 switch (_that) {
 case _ImportVerificationState() when $default != null:
-return $default(_that.ticketId,_that.products,_that.staffNote,_that.isLoading);case _:
+return $default(_that.ticketId,_that.supplierName,_that.importDate,_that.status,_that.products,_that.staffNote,_that.isLoading);case _:
   return null;
 
 }
@@ -762,10 +765,13 @@ return $default(_that.ticketId,_that.products,_that.staffNote,_that.isLoading);c
 
 
 class _ImportVerificationState implements ImportVerificationState {
-  const _ImportVerificationState({this.ticketId, final  List<ProductVerificationState> products = const [], this.staffNote = '', this.isLoading = false}): _products = products;
+  const _ImportVerificationState({this.ticketId, this.supplierName, this.importDate, this.status, final  List<ProductVerificationState> products = const [], this.staffNote = '', this.isLoading = false}): _products = products;
   
 
 @override final  String? ticketId;
+@override final  String? supplierName;
+@override final  DateTime? importDate;
+@override final  ImportStatus? status;
  final  List<ProductVerificationState> _products;
 @override@JsonKey() List<ProductVerificationState> get products {
   if (_products is EqualUnmodifiableListView) return _products;
@@ -786,16 +792,16 @@ _$ImportVerificationStateCopyWith<_ImportVerificationState> get copyWith => __$I
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImportVerificationState&&(identical(other.ticketId, ticketId) || other.ticketId == ticketId)&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.staffNote, staffNote) || other.staffNote == staffNote)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImportVerificationState&&(identical(other.ticketId, ticketId) || other.ticketId == ticketId)&&(identical(other.supplierName, supplierName) || other.supplierName == supplierName)&&(identical(other.importDate, importDate) || other.importDate == importDate)&&const DeepCollectionEquality().equals(other.status, status)&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.staffNote, staffNote) || other.staffNote == staffNote)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ticketId,const DeepCollectionEquality().hash(_products),staffNote,isLoading);
+int get hashCode => Object.hash(runtimeType,ticketId,supplierName,importDate,const DeepCollectionEquality().hash(status),const DeepCollectionEquality().hash(_products),staffNote,isLoading);
 
 @override
 String toString() {
-  return 'ImportVerificationState(ticketId: $ticketId, products: $products, staffNote: $staffNote, isLoading: $isLoading)';
+  return 'ImportVerificationState(ticketId: $ticketId, supplierName: $supplierName, importDate: $importDate, status: $status, products: $products, staffNote: $staffNote, isLoading: $isLoading)';
 }
 
 
@@ -806,7 +812,7 @@ abstract mixin class _$ImportVerificationStateCopyWith<$Res> implements $ImportV
   factory _$ImportVerificationStateCopyWith(_ImportVerificationState value, $Res Function(_ImportVerificationState) _then) = __$ImportVerificationStateCopyWithImpl;
 @override @useResult
 $Res call({
- String? ticketId, List<ProductVerificationState> products, String staffNote, bool isLoading
+ String? ticketId, String? supplierName, DateTime? importDate, ImportStatus? status, List<ProductVerificationState> products, String staffNote, bool isLoading
 });
 
 
@@ -823,10 +829,13 @@ class __$ImportVerificationStateCopyWithImpl<$Res>
 
 /// Create a copy of ImportVerificationState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? ticketId = freezed,Object? products = null,Object? staffNote = null,Object? isLoading = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? ticketId = freezed,Object? supplierName = freezed,Object? importDate = freezed,Object? status = freezed,Object? products = null,Object? staffNote = null,Object? isLoading = null,}) {
   return _then(_ImportVerificationState(
 ticketId: freezed == ticketId ? _self.ticketId : ticketId // ignore: cast_nullable_to_non_nullable
-as String?,products: null == products ? _self._products : products // ignore: cast_nullable_to_non_nullable
+as String?,supplierName: freezed == supplierName ? _self.supplierName : supplierName // ignore: cast_nullable_to_non_nullable
+as String?,importDate: freezed == importDate ? _self.importDate : importDate // ignore: cast_nullable_to_non_nullable
+as DateTime?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as ImportStatus?,products: null == products ? _self._products : products // ignore: cast_nullable_to_non_nullable
 as List<ProductVerificationState>,staffNote: null == staffNote ? _self.staffNote : staffNote // ignore: cast_nullable_to_non_nullable
 as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,

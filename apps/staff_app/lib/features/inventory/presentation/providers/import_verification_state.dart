@@ -31,6 +31,9 @@ abstract class ProductVerificationState with _$ProductVerificationState {
 abstract class ImportVerificationState with _$ImportVerificationState {
   const factory ImportVerificationState({
     String? ticketId,
+    String? supplierName,
+    DateTime? importDate,
+    ImportStatus? status,
     @Default([]) List<ProductVerificationState> products,
     @Default('') String staffNote,
     @Default(false) bool isLoading,
