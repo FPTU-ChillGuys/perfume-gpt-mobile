@@ -7,6 +7,7 @@ import 'package:perfumegpt_api_client/src/model/variant_status.dart';
 import 'package:perfumegpt_api_client/src/model/variant_type.dart';
 import 'package:perfumegpt_api_client/src/model/media_response.dart';
 import 'package:perfumegpt_api_client/src/model/product_attribute_response.dart';
+import 'package:perfumegpt_api_client/src/model/replenishment_policy.dart';
 import 'package:perfumegpt_api_client/src/model/variant_supplier_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -50,6 +51,8 @@ class ProductVariantResponse {
      this.sillage,
 
      this.longevity,
+
+     this.restockPolicy,
 
      this.productId,
 
@@ -226,6 +229,18 @@ class ProductVariantResponse {
 
   @JsonKey(
     
+    name: r'restockPolicy',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final ReplenishmentPolicy? restockPolicy;
+
+
+
+  @JsonKey(
+    
     name: r'productId',
     required: false,
     includeIfNull: false,
@@ -337,6 +352,7 @@ class ProductVariantResponse {
       other.stockQuantity == stockQuantity &&
       other.sillage == sillage &&
       other.longevity == longevity &&
+      other.restockPolicy == restockPolicy &&
       other.productId == productId &&
       other.productName == productName &&
       other.media == media &&
@@ -361,6 +377,7 @@ class ProductVariantResponse {
         stockQuantity.hashCode +
         sillage.hashCode +
         longevity.hashCode +
+        restockPolicy.hashCode +
         productId.hashCode +
         productName.hashCode +
         media.hashCode +

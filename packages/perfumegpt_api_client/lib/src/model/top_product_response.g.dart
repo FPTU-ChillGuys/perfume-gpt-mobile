@@ -11,6 +11,8 @@ abstract class _$TopProductResponseCWProxy {
 
   TopProductResponse productName(String productName);
 
+  TopProductResponse imageUrl(String? imageUrl);
+
   TopProductResponse totalUnitsSold(int? totalUnitsSold);
 
   TopProductResponse revenue(num? revenue);
@@ -25,6 +27,7 @@ abstract class _$TopProductResponseCWProxy {
   TopProductResponse call({
     String? productId,
     String productName,
+    String? imageUrl,
     int? totalUnitsSold,
     num? revenue,
   });
@@ -45,6 +48,9 @@ class _$TopProductResponseCWProxyImpl implements _$TopProductResponseCWProxy {
       call(productName: productName);
 
   @override
+  TopProductResponse imageUrl(String? imageUrl) => call(imageUrl: imageUrl);
+
+  @override
   TopProductResponse totalUnitsSold(int? totalUnitsSold) =>
       call(totalUnitsSold: totalUnitsSold);
 
@@ -62,6 +68,7 @@ class _$TopProductResponseCWProxyImpl implements _$TopProductResponseCWProxy {
   TopProductResponse call({
     Object? productId = const $CopyWithPlaceholder(),
     Object? productName = const $CopyWithPlaceholder(),
+    Object? imageUrl = const $CopyWithPlaceholder(),
     Object? totalUnitsSold = const $CopyWithPlaceholder(),
     Object? revenue = const $CopyWithPlaceholder(),
   }) {
@@ -75,6 +82,10 @@ class _$TopProductResponseCWProxyImpl implements _$TopProductResponseCWProxy {
           ? _value.productName
           // ignore: cast_nullable_to_non_nullable
           : productName as String,
+      imageUrl: imageUrl == const $CopyWithPlaceholder()
+          ? _value.imageUrl
+          // ignore: cast_nullable_to_non_nullable
+          : imageUrl as String?,
       totalUnitsSold: totalUnitsSold == const $CopyWithPlaceholder()
           ? _value.totalUnitsSold
           // ignore: cast_nullable_to_non_nullable
@@ -105,6 +116,7 @@ TopProductResponse _$TopProductResponseFromJson(Map<String, dynamic> json) =>
       final val = TopProductResponse(
         productId: $checkedConvert('productId', (v) => v as String?),
         productName: $checkedConvert('productName', (v) => v as String),
+        imageUrl: $checkedConvert('imageUrl', (v) => v as String?),
         totalUnitsSold: $checkedConvert(
           'totalUnitsSold',
           (v) => (v as num?)?.toInt(),
@@ -118,6 +130,7 @@ Map<String, dynamic> _$TopProductResponseToJson(TopProductResponse instance) =>
     <String, dynamic>{
       'productId': ?instance.productId,
       'productName': instance.productName,
+      'imageUrl': ?instance.imageUrl,
       'totalUnitsSold': ?instance.totalUnitsSold,
       'revenue': ?instance.revenue,
     };

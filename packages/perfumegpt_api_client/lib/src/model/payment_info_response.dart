@@ -124,7 +124,7 @@ class PaymentInfoResponse {
         id.hashCode +
         transactionType.hashCode +
         status.hashCode +
-        (paymentMethod == null ? 0 : paymentMethod.hashCode) +
+        paymentMethod.hashCode +
         (failureReason == null ? 0 : failureReason.hashCode) +
         totalAmount.hashCode;
 

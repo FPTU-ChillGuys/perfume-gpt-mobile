@@ -48,6 +48,8 @@ class OrderResponse {
 
      this.status,
 
+     this.isReturnable,
+
      this.paymentStatus,
 
      this.totalAmount,
@@ -204,6 +206,18 @@ class OrderResponse {
 
 
   final OrderStatus? status;
+
+
+
+  @JsonKey(
+    
+    name: r'isReturnable',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final bool? isReturnable;
 
 
 
@@ -449,6 +463,7 @@ class OrderResponse {
       other.staffName == staffName &&
       other.type == type &&
       other.status == status &&
+      other.isReturnable == isReturnable &&
       other.paymentStatus == paymentStatus &&
       other.totalAmount == totalAmount &&
       other.requiredDepositAmount == requiredDepositAmount &&
@@ -481,6 +496,7 @@ class OrderResponse {
         (staffName == null ? 0 : staffName.hashCode) +
         type.hashCode +
         status.hashCode +
+        isReturnable.hashCode +
         paymentStatus.hashCode +
         totalAmount.hashCode +
         requiredDepositAmount.hashCode +

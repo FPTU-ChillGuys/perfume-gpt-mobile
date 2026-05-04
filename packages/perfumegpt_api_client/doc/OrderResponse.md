@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **staffName** | **String** |  | [optional] 
 **type** | [**OrderType**](OrderType.md) |  | [optional] 
 **status** | [**OrderStatus**](OrderStatus.md) |  | [optional] 
+**isReturnable** | **bool** |  | [optional] 
 **paymentStatus** | [**PaymentStatus**](PaymentStatus.md) |  | [optional] 
 **totalAmount** | **num** |  | [optional] 
 **requiredDepositAmount** | **num** |  | [optional] 

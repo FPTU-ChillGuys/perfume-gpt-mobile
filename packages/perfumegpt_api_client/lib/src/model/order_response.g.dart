@@ -27,6 +27,8 @@ abstract class _$OrderResponseCWProxy {
 
   OrderResponse status(OrderStatus? status);
 
+  OrderResponse isReturnable(bool? isReturnable);
+
   OrderResponse paymentStatus(PaymentStatus? paymentStatus);
 
   OrderResponse totalAmount(num? totalAmount);
@@ -85,6 +87,7 @@ abstract class _$OrderResponseCWProxy {
     String? staffName,
     OrderType? type,
     OrderStatus? status,
+    bool? isReturnable,
     PaymentStatus? paymentStatus,
     num? totalAmount,
     num? requiredDepositAmount,
@@ -146,6 +149,10 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
 
   @override
   OrderResponse status(OrderStatus? status) => call(status: status);
+
+  @override
+  OrderResponse isReturnable(bool? isReturnable) =>
+      call(isReturnable: isReturnable);
 
   @override
   OrderResponse paymentStatus(PaymentStatus? paymentStatus) =>
@@ -235,6 +242,7 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
     Object? staffName = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
+    Object? isReturnable = const $CopyWithPlaceholder(),
     Object? paymentStatus = const $CopyWithPlaceholder(),
     Object? totalAmount = const $CopyWithPlaceholder(),
     Object? requiredDepositAmount = const $CopyWithPlaceholder(),
@@ -296,6 +304,10 @@ class _$OrderResponseCWProxyImpl implements _$OrderResponseCWProxy {
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as OrderStatus?,
+      isReturnable: isReturnable == const $CopyWithPlaceholder()
+          ? _value.isReturnable
+          // ignore: cast_nullable_to_non_nullable
+          : isReturnable as bool?,
       paymentStatus: paymentStatus == const $CopyWithPlaceholder()
           ? _value.paymentStatus
           // ignore: cast_nullable_to_non_nullable
@@ -413,6 +425,7 @@ OrderResponse _$OrderResponseFromJson(
       'status',
       (v) => $enumDecodeNullable(_$OrderStatusEnumMap, v),
     ),
+    isReturnable: $checkedConvert('isReturnable', (v) => v as bool?),
     paymentStatus: $checkedConvert(
       'paymentStatus',
       (v) => $enumDecodeNullable(_$PaymentStatusEnumMap, v),
@@ -492,6 +505,7 @@ Map<String, dynamic> _$OrderResponseToJson(OrderResponse instance) =>
       'staffName': ?instance.staffName,
       'type': ?_$OrderTypeEnumMap[instance.type],
       'status': ?_$OrderStatusEnumMap[instance.status],
+      'isReturnable': ?instance.isReturnable,
       'paymentStatus': ?_$PaymentStatusEnumMap[instance.paymentStatus],
       'totalAmount': ?instance.totalAmount,
       'requiredDepositAmount': ?instance.requiredDepositAmount,

@@ -90,7 +90,7 @@ class ProcessRefundRequest {
     @override
     int get hashCode =>
         approvedRefundAmount.hashCode +
-        (refundMethod == null ? 0 : refundMethod.hashCode) +
+        refundMethod.hashCode +
         (manualTransactionReference == null ? 0 : manualTransactionReference.hashCode) +
         (note == null ? 0 : note.hashCode);
 

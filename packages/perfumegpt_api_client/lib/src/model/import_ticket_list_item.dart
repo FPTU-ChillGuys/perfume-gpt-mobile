@@ -184,7 +184,7 @@ class ImportTicketListItem {
         (verifiedByName == null ? 0 : verifiedByName.hashCode) +
         supplierName.hashCode +
         expectedArrivalDate.hashCode +
-        actualImportDate.hashCode +
+        (actualImportDate == null ? 0 : actualImportDate.hashCode) +
         totalCost.hashCode +
         status.hashCode +
         totalItems.hashCode +

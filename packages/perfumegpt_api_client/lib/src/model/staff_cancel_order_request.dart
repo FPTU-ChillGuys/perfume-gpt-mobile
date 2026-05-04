@@ -24,6 +24,12 @@ class StaffCancelOrderRequest {
      this.reason,
 
      this.note,
+
+     this.refundBankName,
+
+     this.refundAccountNumber,
+
+     this.refundAccountName,
   });
 
   @JsonKey(
@@ -50,17 +56,59 @@ class StaffCancelOrderRequest {
 
 
 
+  @JsonKey(
+    
+    name: r'refundBankName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? refundBankName;
+
+
+
+  @JsonKey(
+    
+    name: r'refundAccountNumber',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? refundAccountNumber;
+
+
+
+  @JsonKey(
+    
+    name: r'refundAccountName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? refundAccountName;
+
+
+
 
 
     @override
     bool operator ==(Object other) => identical(this, other) || other is StaffCancelOrderRequest &&
       other.reason == reason &&
-      other.note == note;
+      other.note == note &&
+      other.refundBankName == refundBankName &&
+      other.refundAccountNumber == refundAccountNumber &&
+      other.refundAccountName == refundAccountName;
 
     @override
     int get hashCode =>
         reason.hashCode +
-        (note == null ? 0 : note.hashCode);
+        (note == null ? 0 : note.hashCode) +
+        (refundBankName == null ? 0 : refundBankName.hashCode) +
+        (refundAccountNumber == null ? 0 : refundAccountNumber.hashCode) +
+        (refundAccountName == null ? 0 : refundAccountName.hashCode);
 
   factory StaffCancelOrderRequest.fromJson(Map<String, dynamic> json) => _$StaffCancelOrderRequestFromJson(json);
 

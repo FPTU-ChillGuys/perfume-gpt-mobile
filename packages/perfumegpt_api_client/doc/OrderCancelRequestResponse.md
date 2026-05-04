@@ -26,6 +26,9 @@ Name | Type | Description | Notes
 **vnpTransactionNo** | **String** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**refundedPaymentStatus** | [**TransactionStatus**](TransactionStatus.md) |  | [optional] 
+**refundedPaymentMethod** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
+**refundedAmount** | **num** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

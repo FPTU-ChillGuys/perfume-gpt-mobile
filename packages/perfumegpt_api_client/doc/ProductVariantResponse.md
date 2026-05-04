@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **stockQuantity** | **int** |  | [optional] 
 **sillage** | **int** |  | [optional] 
 **longevity** | **int** |  | [optional] 
+**restockPolicy** | [**ReplenishmentPolicy**](ReplenishmentPolicy.md) |  | [optional] 
 **productId** | **String** |  | [optional] 
 **productName** | **String** |  | 
 **media** | [**List&lt;MediaResponse&gt;**](MediaResponse.md) |  | 

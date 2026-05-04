@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **productId** | **String** |  | [optional] 
 **productName** | **String** |  | 
+**imageUrl** | **String** |  | [optional] 
 **totalUnitsSold** | **int** |  | [optional] 
 **revenue** | **num** |  | [optional] 
 

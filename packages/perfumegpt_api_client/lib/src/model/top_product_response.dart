@@ -24,6 +24,8 @@ class TopProductResponse {
 
     required  this.productName,
 
+     this.imageUrl,
+
      this.totalUnitsSold,
 
      this.revenue,
@@ -50,6 +52,18 @@ class TopProductResponse {
 
 
   final String productName;
+
+
+
+  @JsonKey(
+    
+    name: r'imageUrl',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? imageUrl;
 
 
 
@@ -83,6 +97,7 @@ class TopProductResponse {
     bool operator ==(Object other) => identical(this, other) || other is TopProductResponse &&
       other.productId == productId &&
       other.productName == productName &&
+      other.imageUrl == imageUrl &&
       other.totalUnitsSold == totalUnitsSold &&
       other.revenue == revenue;
 
@@ -90,6 +105,7 @@ class TopProductResponse {
     int get hashCode =>
         productId.hashCode +
         productName.hashCode +
+        (imageUrl == null ? 0 : imageUrl.hashCode) +
         totalUnitsSold.hashCode +
         revenue.hashCode;
 

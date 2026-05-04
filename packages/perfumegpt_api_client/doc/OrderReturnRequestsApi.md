@@ -10,6 +10,7 @@ All URIs are relative to *https://backend-sep490.vqnofficial.win*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**apiOrderreturnrequestsGet**](OrderReturnRequestsApi.md#apiorderreturnrequestsget) | **GET** /api/orderreturnrequests | 
+[**apiOrderreturnrequestsGuestOnBehalfPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsguestonbehalfpost) | **POST** /api/orderreturnrequests/guest-on-behalf | 
 [**apiOrderreturnrequestsIdCancelPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidcancelpost) | **POST** /api/orderreturnrequests/{id}/cancel | 
 [**apiOrderreturnrequestsIdCompleteInspectionPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidcompleteinspectionpost) | **POST** /api/orderreturnrequests/{id}/complete-inspection | 
 [**apiOrderreturnrequestsIdFailInspectionPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidfailinspectionpost) | **POST** /api/orderreturnrequests/{id}/fail-inspection | 
@@ -18,6 +19,7 @@ Method | HTTP request | Description
 [**apiOrderreturnrequestsIdRefundPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidrefundpost) | **POST** /api/orderreturnrequests/{id}/refund | 
 [**apiOrderreturnrequestsIdReviewPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidreviewpost) | **POST** /api/orderreturnrequests/{id}/review | 
 [**apiOrderreturnrequestsIdStartInspectionPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsidstartinspectionpost) | **POST** /api/orderreturnrequests/{id}/start-inspection | 
+[**apiOrderreturnrequestsInStoreFastTrackPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsinstorefasttrackpost) | **POST** /api/orderreturnrequests/in-store-fast-track | 
 [**apiOrderreturnrequestsMyRequestsGet**](OrderReturnRequestsApi.md#apiorderreturnrequestsmyrequestsget) | **GET** /api/orderreturnrequests/my-requests | 
 [**apiOrderreturnrequestsPost**](OrderReturnRequestsApi.md#apiorderreturnrequestspost) | **POST** /api/orderreturnrequests | 
 [**apiOrderreturnrequestsVideosTemporaryPost**](OrderReturnRequestsApi.md#apiorderreturnrequestsvideostemporarypost) | **POST** /api/orderreturnrequests/videos/temporary | 
@@ -74,6 +76,47 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiOrderreturnrequestsGuestOnBehalfPost**
+> BaseResponseOfstring apiOrderreturnrequestsGuestOnBehalfPost(createReturnRequestDto)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrderReturnRequestsApi();
+final CreateReturnRequestDto createReturnRequestDto = ; // CreateReturnRequestDto | 
+
+try {
+    final response = api.apiOrderreturnrequestsGuestOnBehalfPost(createReturnRequestDto);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsGuestOnBehalfPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createReturnRequestDto** | [**CreateReturnRequestDto**](CreateReturnRequestDto.md)|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -402,6 +445,47 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  | 
  **startInspectionDto** | [**StartInspectionDto**](StartInspectionDto.md)|  | 
+
+### Return type
+
+[**BaseResponseOfstring**](BaseResponseOfstring.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiOrderreturnrequestsInStoreFastTrackPost**
+> BaseResponseOfstring apiOrderreturnrequestsInStoreFastTrackPost(processInStoreReturnFastTrackDto)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getOrderReturnRequestsApi();
+final ProcessInStoreReturnFastTrackDto processInStoreReturnFastTrackDto = ; // ProcessInStoreReturnFastTrackDto | 
+
+try {
+    final response = api.apiOrderreturnrequestsInStoreFastTrackPost(processInStoreReturnFastTrackDto);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling OrderReturnRequestsApi->apiOrderreturnrequestsInStoreFastTrackPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **processInStoreReturnFastTrackDto** | [**ProcessInStoreReturnFastTrackDto**](ProcessInStoreReturnFastTrackDto.md)|  | 
 
 ### Return type
 

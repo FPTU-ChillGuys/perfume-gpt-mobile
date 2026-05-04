@@ -25,6 +25,8 @@ class CreateReturnRequestDto {
 
     required  this.orderId,
 
+    required  this.orderCode,
+
     required  this.reason,
 
      this.isRefundOnly,
@@ -55,6 +57,18 @@ class CreateReturnRequestDto {
 
 
   final String orderId;
+
+
+
+  @JsonKey(
+    
+    name: r'orderCode',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String orderCode;
 
 
 
@@ -183,6 +197,7 @@ class CreateReturnRequestDto {
     @override
     bool operator ==(Object other) => identical(this, other) || other is CreateReturnRequestDto &&
       other.orderId == orderId &&
+      other.orderCode == orderCode &&
       other.reason == reason &&
       other.isRefundOnly == isRefundOnly &&
       other.returnItems == returnItems &&
@@ -197,6 +212,7 @@ class CreateReturnRequestDto {
     @override
     int get hashCode =>
         orderId.hashCode +
+        orderCode.hashCode +
         reason.hashCode +
         isRefundOnly.hashCode +
         returnItems.hashCode +

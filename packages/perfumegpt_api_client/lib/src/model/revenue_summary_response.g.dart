@@ -23,6 +23,14 @@ abstract class _$RevenueSummaryResponseCWProxy {
 
   RevenueSummaryResponse paidOrdersCount(int? paidOrdersCount);
 
+  RevenueSummaryResponse paymentMethodDistribution(
+    List<PaymentMethodDistributionResponse>? paymentMethodDistribution,
+  );
+
+  RevenueSummaryResponse aov(num? aov);
+
+  RevenueSummaryResponse chartData(List<DailyRevenueItem>? chartData);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RevenueSummaryResponse(...).copyWith.fieldName(value)`.
   ///
@@ -38,6 +46,9 @@ abstract class _$RevenueSummaryResponseCWProxy {
     num? netRevenue,
     int? successfulTransactionsCount,
     int? paidOrdersCount,
+    List<PaymentMethodDistributionResponse>? paymentMethodDistribution,
+    num? aov,
+    List<DailyRevenueItem>? chartData,
   });
 }
 
@@ -78,6 +89,18 @@ class _$RevenueSummaryResponseCWProxyImpl
       call(paidOrdersCount: paidOrdersCount);
 
   @override
+  RevenueSummaryResponse paymentMethodDistribution(
+    List<PaymentMethodDistributionResponse>? paymentMethodDistribution,
+  ) => call(paymentMethodDistribution: paymentMethodDistribution);
+
+  @override
+  RevenueSummaryResponse aov(num? aov) => call(aov: aov);
+
+  @override
+  RevenueSummaryResponse chartData(List<DailyRevenueItem>? chartData) =>
+      call(chartData: chartData);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RevenueSummaryResponse(...).copyWith.fieldName(value)`.
   ///
@@ -93,6 +116,9 @@ class _$RevenueSummaryResponseCWProxyImpl
     Object? netRevenue = const $CopyWithPlaceholder(),
     Object? successfulTransactionsCount = const $CopyWithPlaceholder(),
     Object? paidOrdersCount = const $CopyWithPlaceholder(),
+    Object? paymentMethodDistribution = const $CopyWithPlaceholder(),
+    Object? aov = const $CopyWithPlaceholder(),
+    Object? chartData = const $CopyWithPlaceholder(),
   }) {
     return RevenueSummaryResponse(
       fromDate: fromDate == const $CopyWithPlaceholder()
@@ -124,6 +150,20 @@ class _$RevenueSummaryResponseCWProxyImpl
           ? _value.paidOrdersCount
           // ignore: cast_nullable_to_non_nullable
           : paidOrdersCount as int?,
+      paymentMethodDistribution:
+          paymentMethodDistribution == const $CopyWithPlaceholder()
+          ? _value.paymentMethodDistribution
+          // ignore: cast_nullable_to_non_nullable
+          : paymentMethodDistribution
+                as List<PaymentMethodDistributionResponse>?,
+      aov: aov == const $CopyWithPlaceholder()
+          ? _value.aov
+          // ignore: cast_nullable_to_non_nullable
+          : aov as num?,
+      chartData: chartData == const $CopyWithPlaceholder()
+          ? _value.chartData
+          // ignore: cast_nullable_to_non_nullable
+          : chartData as List<DailyRevenueItem>?,
     );
   }
 }
@@ -163,6 +203,23 @@ RevenueSummaryResponse _$RevenueSummaryResponseFromJson(
       'paidOrdersCount',
       (v) => (v as num?)?.toInt(),
     ),
+    paymentMethodDistribution: $checkedConvert(
+      'paymentMethodDistribution',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => PaymentMethodDistributionResponse.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+    ),
+    aov: $checkedConvert('aov', (v) => v as num?),
+    chartData: $checkedConvert(
+      'chartData',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => DailyRevenueItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    ),
   );
   return val;
 });
@@ -177,4 +234,9 @@ Map<String, dynamic> _$RevenueSummaryResponseToJson(
   'netRevenue': ?instance.netRevenue,
   'successfulTransactionsCount': ?instance.successfulTransactionsCount,
   'paidOrdersCount': ?instance.paidOrdersCount,
+  'paymentMethodDistribution': ?instance.paymentMethodDistribution
+      ?.map((e) => e.toJson())
+      .toList(),
+  'aov': ?instance.aov,
+  'chartData': ?instance.chartData?.map((e) => e.toJson()).toList(),
 };

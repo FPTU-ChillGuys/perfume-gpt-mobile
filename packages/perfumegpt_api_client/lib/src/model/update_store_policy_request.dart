@@ -29,6 +29,18 @@ class UpdateStorePolicyRequest {
      this.reviewRewardPoints,
 
      this.stockAdjustmentAutoApprovalThreshold,
+
+     this.orderRewardPointsInDays,
+
+     this.batchExpiringSoonThresholdInDays,
+
+     this.stopSellingBeforeExpiryDays,
+
+     this.clearanceBufferDays,
+
+     this.returnOrderAllowanceInDays,
+
+     this.maxAddressesPerUser,
   });
 
           // minimum: 0
@@ -96,6 +108,81 @@ class UpdateStorePolicyRequest {
 
 
 
+  @JsonKey(
+    
+    name: r'orderRewardPointsInDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? orderRewardPointsInDays;
+
+
+
+  @JsonKey(
+    
+    name: r'batchExpiringSoonThresholdInDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? batchExpiringSoonThresholdInDays;
+
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'stopSellingBeforeExpiryDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? stopSellingBeforeExpiryDays;
+
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'clearanceBufferDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? clearanceBufferDays;
+
+
+
+  @JsonKey(
+    
+    name: r'returnOrderAllowanceInDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? returnOrderAllowanceInDays;
+
+
+
+          // minimum: 0
+  @JsonKey(
+    
+    name: r'maxAddressesPerUser',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? maxAddressesPerUser;
+
+
+
 
 
     @override
@@ -104,7 +191,13 @@ class UpdateStorePolicyRequest {
       other.depositTimeoutMinutes == depositTimeoutMinutes &&
       other.isDepositRequiredForCOD == isDepositRequiredForCOD &&
       other.reviewRewardPoints == reviewRewardPoints &&
-      other.stockAdjustmentAutoApprovalThreshold == stockAdjustmentAutoApprovalThreshold;
+      other.stockAdjustmentAutoApprovalThreshold == stockAdjustmentAutoApprovalThreshold &&
+      other.orderRewardPointsInDays == orderRewardPointsInDays &&
+      other.batchExpiringSoonThresholdInDays == batchExpiringSoonThresholdInDays &&
+      other.stopSellingBeforeExpiryDays == stopSellingBeforeExpiryDays &&
+      other.clearanceBufferDays == clearanceBufferDays &&
+      other.returnOrderAllowanceInDays == returnOrderAllowanceInDays &&
+      other.maxAddressesPerUser == maxAddressesPerUser;
 
     @override
     int get hashCode =>
@@ -112,7 +205,13 @@ class UpdateStorePolicyRequest {
         depositTimeoutMinutes.hashCode +
         isDepositRequiredForCOD.hashCode +
         reviewRewardPoints.hashCode +
-        stockAdjustmentAutoApprovalThreshold.hashCode;
+        stockAdjustmentAutoApprovalThreshold.hashCode +
+        orderRewardPointsInDays.hashCode +
+        batchExpiringSoonThresholdInDays.hashCode +
+        stopSellingBeforeExpiryDays.hashCode +
+        clearanceBufferDays.hashCode +
+        returnOrderAllowanceInDays.hashCode +
+        maxAddressesPerUser.hashCode;
 
   factory UpdateStorePolicyRequest.fromJson(Map<String, dynamic> json) => _$UpdateStorePolicyRequestFromJson(json);
 

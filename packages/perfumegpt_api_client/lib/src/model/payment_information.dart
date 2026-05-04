@@ -74,7 +74,7 @@ class PaymentInformation {
 
     @override
     int get hashCode =>
-        (method == null ? 0 : method.hashCode) +
+        method.hashCode +
         (depositGateway == null ? 0 : depositGateway.hashCode) +
         (posSessionId == null ? 0 : posSessionId.hashCode);
 

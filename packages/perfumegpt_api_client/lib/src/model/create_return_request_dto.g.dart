@@ -9,6 +9,8 @@ part of 'create_return_request_dto.dart';
 abstract class _$CreateReturnRequestDtoCWProxy {
   CreateReturnRequestDto orderId(String orderId);
 
+  CreateReturnRequestDto orderCode(String orderCode);
+
   CreateReturnRequestDto reason(ReturnOrderReason reason);
 
   CreateReturnRequestDto isRefundOnly(bool? isRefundOnly);
@@ -38,6 +40,7 @@ abstract class _$CreateReturnRequestDtoCWProxy {
   /// ```
   CreateReturnRequestDto call({
     String orderId,
+    String orderCode,
     ReturnOrderReason reason,
     bool? isRefundOnly,
     List<ReturnItemDto> returnItems,
@@ -61,6 +64,10 @@ class _$CreateReturnRequestDtoCWProxyImpl
 
   @override
   CreateReturnRequestDto orderId(String orderId) => call(orderId: orderId);
+
+  @override
+  CreateReturnRequestDto orderCode(String orderCode) =>
+      call(orderCode: orderCode);
 
   @override
   CreateReturnRequestDto reason(ReturnOrderReason reason) =>
@@ -112,6 +119,7 @@ class _$CreateReturnRequestDtoCWProxyImpl
   /// ```
   CreateReturnRequestDto call({
     Object? orderId = const $CopyWithPlaceholder(),
+    Object? orderCode = const $CopyWithPlaceholder(),
     Object? reason = const $CopyWithPlaceholder(),
     Object? isRefundOnly = const $CopyWithPlaceholder(),
     Object? returnItems = const $CopyWithPlaceholder(),
@@ -128,6 +136,10 @@ class _$CreateReturnRequestDtoCWProxyImpl
           ? _value.orderId
           // ignore: cast_nullable_to_non_nullable
           : orderId as String,
+      orderCode: orderCode == const $CopyWithPlaceholder() || orderCode == null
+          ? _value.orderCode
+          // ignore: cast_nullable_to_non_nullable
+          : orderCode as String,
       reason: reason == const $CopyWithPlaceholder() || reason == null
           ? _value.reason
           // ignore: cast_nullable_to_non_nullable
@@ -188,9 +200,13 @@ extension $CreateReturnRequestDtoCopyWith on CreateReturnRequestDto {
 CreateReturnRequestDto _$CreateReturnRequestDtoFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('CreateReturnRequestDto', json, ($checkedConvert) {
-  $checkKeys(json, requiredKeys: const ['orderId', 'reason', 'returnItems']);
+  $checkKeys(
+    json,
+    requiredKeys: const ['orderId', 'orderCode', 'reason', 'returnItems'],
+  );
   final val = CreateReturnRequestDto(
     orderId: $checkedConvert('orderId', (v) => v as String),
+    orderCode: $checkedConvert('orderCode', (v) => v as String),
     reason: $checkedConvert(
       'reason',
       (v) => $enumDecode(_$ReturnOrderReasonEnumMap, v),
@@ -231,6 +247,7 @@ Map<String, dynamic> _$CreateReturnRequestDtoToJson(
   CreateReturnRequestDto instance,
 ) => <String, dynamic>{
   'orderId': instance.orderId,
+  'orderCode': instance.orderCode,
   'reason': _$ReturnOrderReasonEnumMap[instance.reason]!,
   'isRefundOnly': ?instance.isRefundOnly,
   'returnItems': instance.returnItems.map((e) => e.toJson()).toList(),
