@@ -16,6 +16,13 @@ class InventoryScreen extends ConsumerWidget {
         title: const Text('Inventory'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.assignment_returned),
+            tooltip: 'Nhận hàng',
+            onPressed: () {
+              context.push('/inventory/import-tickets');
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
             onPressed: () {

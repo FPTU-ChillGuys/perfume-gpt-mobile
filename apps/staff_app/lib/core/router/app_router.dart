@@ -4,6 +4,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import '../../features/inventory/presentation/screens/inventory_screen.dart';
 import '../../features/inventory/presentation/screens/product_detail_screen.dart';
+import '../../features/inventory/presentation/screens/import_ticket_list_screen.dart';
+import '../../features/inventory/presentation/screens/import_ticket_detail_screen.dart';
 import '../../features/pos/presentation/screens/pos_screen.dart';
 import '../../features/pos/presentation/screens/counter_checkout_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
@@ -56,6 +58,19 @@ GoRouter appRouter(Ref ref) {
                 path: '/inventory',
                 builder: (context, state) => const InventoryScreen(),
                 routes: [
+                  GoRoute(
+                    path: 'import-tickets',
+                    builder: (context, state) => const ImportTicketListScreen(),
+                    routes: [
+                      GoRoute(
+                        path: ':id',
+                        builder: (context, state) {
+                          final id = state.pathParameters['id']!;
+                          return ImportTicketDetailScreen(ticketId: id);
+                        },
+                      ),
+                    ],
+                  ),
                   GoRoute(
                     path: ':sku',
                     builder: (context, state) {
