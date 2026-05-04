@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
@@ -10,16 +11,39 @@ import '../../../../core/db/database.dart';
 
 part 'chat_provider.g.dart';
 
+const _guestIdKey = 'guest_user_id';
+
+Future<String> resolveGuestUserId() async {
+  const storage = FlutterSecureStorage();
+  final stored = await storage.read(key: _guestIdKey);
+  if (stored != null) return stored;
+  final newId = const Uuid().v4();
+  await storage.write(key: _guestIdKey, value: newId);
+  return newId;
+}
+
 @riverpod
 class ChatSession extends _$ChatSession {
+  final _secureStorage = const FlutterSecureStorage();
+
   String? _conversationId;
   String? _guestUserId;
   bool _isSending = false;
 
   String? get guestUserId => _guestUserId;
 
+  String ensureGuestUserId() {
+    if (_guestUserId != null) return _guestUserId!;
+    _guestUserId = const Uuid().v4();
+    _secureStorage.write(key: _guestIdKey, value: _guestUserId);
+    return _guestUserId!;
+  }
+
   @override
   Future<List<Message>> build() async {
+    final storedId = await _secureStorage.read(key: _guestIdKey);
+    _guestUserId = storedId;
+
     final dao = ref.read(conversationDaoProvider);
     final localConvs = await dao.getAllConversations();
 
@@ -31,7 +55,12 @@ class ChatSession extends _$ChatSession {
     if (userConvs.isNotEmpty) {
       final latestLocal = userConvs.first;
       _conversationId = latestLocal.id;
-      _guestUserId = latestLocal.userId;
+      if (currentUserId == null) {
+        _guestUserId ??= latestLocal.userId;
+        if (_guestUserId != null) {
+          await _secureStorage.write(key: _guestIdKey, value: _guestUserId);
+        }
+      }
       final localMessages = await dao.getMessagesByConversationId(latestLocal.id);
       final messages = localMessages.map((m) => _mapLocalMessageToChat(m)).toList();
 
@@ -70,7 +99,7 @@ class ChatSession extends _$ChatSession {
     _isSending = true;
 
     final user = ref.read(authProvider).value;
-    final userId = user?.id ?? (_guestUserId ??= const Uuid().v4());
+    final userId = user?.id ?? ensureGuestUserId();
 
     final userMessage = Message.text(
       authorId: userId,

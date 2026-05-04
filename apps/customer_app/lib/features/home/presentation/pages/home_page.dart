@@ -263,9 +263,9 @@ class HomePage extends ConsumerWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed: () => context.push('/quiz'),
-                    icon: const Icon(Icons.quiz_outlined, size: 16),
-                    label: const Text('Làm Quiz'),
+                    onPressed: () => context.push('/survey'),
+                    icon: const Icon(Icons.assignment_outlined, size: 16),
+                    label: const Text('Khảo sát'),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.primary,
                       padding: const EdgeInsets.symmetric(vertical: 12),

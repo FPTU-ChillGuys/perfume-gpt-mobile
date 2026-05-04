@@ -919,12 +919,434 @@ class LocalMessagesCompanion extends UpdateCompanion<LocalMessage> {
   }
 }
 
+class $LocalSurveySessionsTable extends LocalSurveySessions
+    with TableInfo<$LocalSurveySessionsTable, LocalSurveySession> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalSurveySessionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _userIdMeta = const VerificationMeta('userId');
+  @override
+  late final GeneratedColumn<String> userId = GeneratedColumn<String>(
+    'user_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _answersJsonMeta = const VerificationMeta(
+    'answersJson',
+  );
+  @override
+  late final GeneratedColumn<String> answersJson = GeneratedColumn<String>(
+    'answers_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _resultJsonMeta = const VerificationMeta(
+    'resultJson',
+  );
+  @override
+  late final GeneratedColumn<String> resultJson = GeneratedColumn<String>(
+    'result_json',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<int> createdAt = GeneratedColumn<int>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _productCountMeta = const VerificationMeta(
+    'productCount',
+  );
+  @override
+  late final GeneratedColumn<int> productCount = GeneratedColumn<int>(
+    'product_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    userId,
+    answersJson,
+    resultJson,
+    createdAt,
+    productCount,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_survey_sessions';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LocalSurveySession> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('user_id')) {
+      context.handle(
+        _userIdMeta,
+        userId.isAcceptableOrUnknown(data['user_id']!, _userIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_userIdMeta);
+    }
+    if (data.containsKey('answers_json')) {
+      context.handle(
+        _answersJsonMeta,
+        answersJson.isAcceptableOrUnknown(
+          data['answers_json']!,
+          _answersJsonMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_answersJsonMeta);
+    }
+    if (data.containsKey('result_json')) {
+      context.handle(
+        _resultJsonMeta,
+        resultJson.isAcceptableOrUnknown(data['result_json']!, _resultJsonMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('product_count')) {
+      context.handle(
+        _productCountMeta,
+        productCount.isAcceptableOrUnknown(
+          data['product_count']!,
+          _productCountMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  LocalSurveySession map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalSurveySession(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      userId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}user_id'],
+      )!,
+      answersJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}answers_json'],
+      )!,
+      resultJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}result_json'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}created_at'],
+      )!,
+      productCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}product_count'],
+      )!,
+    );
+  }
+
+  @override
+  $LocalSurveySessionsTable createAlias(String alias) {
+    return $LocalSurveySessionsTable(attachedDatabase, alias);
+  }
+}
+
+class LocalSurveySession extends DataClass
+    implements Insertable<LocalSurveySession> {
+  final String id;
+  final String userId;
+  final String answersJson;
+  final String? resultJson;
+  final int createdAt;
+  final int productCount;
+  const LocalSurveySession({
+    required this.id,
+    required this.userId,
+    required this.answersJson,
+    this.resultJson,
+    required this.createdAt,
+    required this.productCount,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['user_id'] = Variable<String>(userId);
+    map['answers_json'] = Variable<String>(answersJson);
+    if (!nullToAbsent || resultJson != null) {
+      map['result_json'] = Variable<String>(resultJson);
+    }
+    map['created_at'] = Variable<int>(createdAt);
+    map['product_count'] = Variable<int>(productCount);
+    return map;
+  }
+
+  LocalSurveySessionsCompanion toCompanion(bool nullToAbsent) {
+    return LocalSurveySessionsCompanion(
+      id: Value(id),
+      userId: Value(userId),
+      answersJson: Value(answersJson),
+      resultJson: resultJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(resultJson),
+      createdAt: Value(createdAt),
+      productCount: Value(productCount),
+    );
+  }
+
+  factory LocalSurveySession.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalSurveySession(
+      id: serializer.fromJson<String>(json['id']),
+      userId: serializer.fromJson<String>(json['userId']),
+      answersJson: serializer.fromJson<String>(json['answersJson']),
+      resultJson: serializer.fromJson<String?>(json['resultJson']),
+      createdAt: serializer.fromJson<int>(json['createdAt']),
+      productCount: serializer.fromJson<int>(json['productCount']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'userId': serializer.toJson<String>(userId),
+      'answersJson': serializer.toJson<String>(answersJson),
+      'resultJson': serializer.toJson<String?>(resultJson),
+      'createdAt': serializer.toJson<int>(createdAt),
+      'productCount': serializer.toJson<int>(productCount),
+    };
+  }
+
+  LocalSurveySession copyWith({
+    String? id,
+    String? userId,
+    String? answersJson,
+    Value<String?> resultJson = const Value.absent(),
+    int? createdAt,
+    int? productCount,
+  }) => LocalSurveySession(
+    id: id ?? this.id,
+    userId: userId ?? this.userId,
+    answersJson: answersJson ?? this.answersJson,
+    resultJson: resultJson.present ? resultJson.value : this.resultJson,
+    createdAt: createdAt ?? this.createdAt,
+    productCount: productCount ?? this.productCount,
+  );
+  LocalSurveySession copyWithCompanion(LocalSurveySessionsCompanion data) {
+    return LocalSurveySession(
+      id: data.id.present ? data.id.value : this.id,
+      userId: data.userId.present ? data.userId.value : this.userId,
+      answersJson: data.answersJson.present
+          ? data.answersJson.value
+          : this.answersJson,
+      resultJson: data.resultJson.present
+          ? data.resultJson.value
+          : this.resultJson,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      productCount: data.productCount.present
+          ? data.productCount.value
+          : this.productCount,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalSurveySession(')
+          ..write('id: $id, ')
+          ..write('userId: $userId, ')
+          ..write('answersJson: $answersJson, ')
+          ..write('resultJson: $resultJson, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('productCount: $productCount')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, userId, answersJson, resultJson, createdAt, productCount);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalSurveySession &&
+          other.id == this.id &&
+          other.userId == this.userId &&
+          other.answersJson == this.answersJson &&
+          other.resultJson == this.resultJson &&
+          other.createdAt == this.createdAt &&
+          other.productCount == this.productCount);
+}
+
+class LocalSurveySessionsCompanion extends UpdateCompanion<LocalSurveySession> {
+  final Value<String> id;
+  final Value<String> userId;
+  final Value<String> answersJson;
+  final Value<String?> resultJson;
+  final Value<int> createdAt;
+  final Value<int> productCount;
+  final Value<int> rowid;
+  const LocalSurveySessionsCompanion({
+    this.id = const Value.absent(),
+    this.userId = const Value.absent(),
+    this.answersJson = const Value.absent(),
+    this.resultJson = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.productCount = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LocalSurveySessionsCompanion.insert({
+    required String id,
+    required String userId,
+    required String answersJson,
+    this.resultJson = const Value.absent(),
+    required int createdAt,
+    this.productCount = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       userId = Value(userId),
+       answersJson = Value(answersJson),
+       createdAt = Value(createdAt);
+  static Insertable<LocalSurveySession> custom({
+    Expression<String>? id,
+    Expression<String>? userId,
+    Expression<String>? answersJson,
+    Expression<String>? resultJson,
+    Expression<int>? createdAt,
+    Expression<int>? productCount,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (userId != null) 'user_id': userId,
+      if (answersJson != null) 'answers_json': answersJson,
+      if (resultJson != null) 'result_json': resultJson,
+      if (createdAt != null) 'created_at': createdAt,
+      if (productCount != null) 'product_count': productCount,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LocalSurveySessionsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? userId,
+    Value<String>? answersJson,
+    Value<String?>? resultJson,
+    Value<int>? createdAt,
+    Value<int>? productCount,
+    Value<int>? rowid,
+  }) {
+    return LocalSurveySessionsCompanion(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      answersJson: answersJson ?? this.answersJson,
+      resultJson: resultJson ?? this.resultJson,
+      createdAt: createdAt ?? this.createdAt,
+      productCount: productCount ?? this.productCount,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (userId.present) {
+      map['user_id'] = Variable<String>(userId.value);
+    }
+    if (answersJson.present) {
+      map['answers_json'] = Variable<String>(answersJson.value);
+    }
+    if (resultJson.present) {
+      map['result_json'] = Variable<String>(resultJson.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<int>(createdAt.value);
+    }
+    if (productCount.present) {
+      map['product_count'] = Variable<int>(productCount.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalSurveySessionsCompanion(')
+          ..write('id: $id, ')
+          ..write('userId: $userId, ')
+          ..write('answersJson: $answersJson, ')
+          ..write('resultJson: $resultJson, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('productCount: $productCount, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $LocalConversationsTable localConversations =
       $LocalConversationsTable(this);
   late final $LocalMessagesTable localMessages = $LocalMessagesTable(this);
+  late final $LocalSurveySessionsTable localSurveySessions =
+      $LocalSurveySessionsTable(this);
   late final ConversationDao conversationDao = ConversationDao(
     this as AppDatabase,
   );
@@ -935,6 +1357,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [
     localConversations,
     localMessages,
+    localSurveySessions,
   ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
@@ -1664,6 +2087,247 @@ typedef $$LocalMessagesTableProcessedTableManager =
       LocalMessage,
       PrefetchHooks Function({bool conversationId})
     >;
+typedef $$LocalSurveySessionsTableCreateCompanionBuilder =
+    LocalSurveySessionsCompanion Function({
+      required String id,
+      required String userId,
+      required String answersJson,
+      Value<String?> resultJson,
+      required int createdAt,
+      Value<int> productCount,
+      Value<int> rowid,
+    });
+typedef $$LocalSurveySessionsTableUpdateCompanionBuilder =
+    LocalSurveySessionsCompanion Function({
+      Value<String> id,
+      Value<String> userId,
+      Value<String> answersJson,
+      Value<String?> resultJson,
+      Value<int> createdAt,
+      Value<int> productCount,
+      Value<int> rowid,
+    });
+
+class $$LocalSurveySessionsTableFilterComposer
+    extends Composer<_$AppDatabase, $LocalSurveySessionsTable> {
+  $$LocalSurveySessionsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get answersJson => $composableBuilder(
+    column: $table.answersJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get resultJson => $composableBuilder(
+    column: $table.resultJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get productCount => $composableBuilder(
+    column: $table.productCount,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$LocalSurveySessionsTableOrderingComposer
+    extends Composer<_$AppDatabase, $LocalSurveySessionsTable> {
+  $$LocalSurveySessionsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get answersJson => $composableBuilder(
+    column: $table.answersJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get resultJson => $composableBuilder(
+    column: $table.resultJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get productCount => $composableBuilder(
+    column: $table.productCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$LocalSurveySessionsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LocalSurveySessionsTable> {
+  $$LocalSurveySessionsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get userId =>
+      $composableBuilder(column: $table.userId, builder: (column) => column);
+
+  GeneratedColumn<String> get answersJson => $composableBuilder(
+    column: $table.answersJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get resultJson => $composableBuilder(
+    column: $table.resultJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<int> get productCount => $composableBuilder(
+    column: $table.productCount,
+    builder: (column) => column,
+  );
+}
+
+class $$LocalSurveySessionsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LocalSurveySessionsTable,
+          LocalSurveySession,
+          $$LocalSurveySessionsTableFilterComposer,
+          $$LocalSurveySessionsTableOrderingComposer,
+          $$LocalSurveySessionsTableAnnotationComposer,
+          $$LocalSurveySessionsTableCreateCompanionBuilder,
+          $$LocalSurveySessionsTableUpdateCompanionBuilder,
+          (
+            LocalSurveySession,
+            BaseReferences<
+              _$AppDatabase,
+              $LocalSurveySessionsTable,
+              LocalSurveySession
+            >,
+          ),
+          LocalSurveySession,
+          PrefetchHooks Function()
+        > {
+  $$LocalSurveySessionsTableTableManager(
+    _$AppDatabase db,
+    $LocalSurveySessionsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LocalSurveySessionsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$LocalSurveySessionsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$LocalSurveySessionsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> userId = const Value.absent(),
+                Value<String> answersJson = const Value.absent(),
+                Value<String?> resultJson = const Value.absent(),
+                Value<int> createdAt = const Value.absent(),
+                Value<int> productCount = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalSurveySessionsCompanion(
+                id: id,
+                userId: userId,
+                answersJson: answersJson,
+                resultJson: resultJson,
+                createdAt: createdAt,
+                productCount: productCount,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String userId,
+                required String answersJson,
+                Value<String?> resultJson = const Value.absent(),
+                required int createdAt,
+                Value<int> productCount = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalSurveySessionsCompanion.insert(
+                id: id,
+                userId: userId,
+                answersJson: answersJson,
+                resultJson: resultJson,
+                createdAt: createdAt,
+                productCount: productCount,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$LocalSurveySessionsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LocalSurveySessionsTable,
+      LocalSurveySession,
+      $$LocalSurveySessionsTableFilterComposer,
+      $$LocalSurveySessionsTableOrderingComposer,
+      $$LocalSurveySessionsTableAnnotationComposer,
+      $$LocalSurveySessionsTableCreateCompanionBuilder,
+      $$LocalSurveySessionsTableUpdateCompanionBuilder,
+      (
+        LocalSurveySession,
+        BaseReferences<
+          _$AppDatabase,
+          $LocalSurveySessionsTable,
+          LocalSurveySession
+        >,
+      ),
+      LocalSurveySession,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -1672,4 +2336,6 @@ class $AppDatabaseManager {
       $$LocalConversationsTableTableManager(_db, _db.localConversations);
   $$LocalMessagesTableTableManager get localMessages =>
       $$LocalMessagesTableTableManager(_db, _db.localMessages);
+  $$LocalSurveySessionsTableTableManager get localSurveySessions =>
+      $$LocalSurveySessionsTableTableManager(_db, _db.localSurveySessions);
 }

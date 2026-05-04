@@ -4,7 +4,8 @@ import '../../features/address/presentation/pages/address_form_page.dart';
 import '../../features/address/presentation/pages/address_list_page.dart';
 import '../../features/ai_consultation/presentation/pages/chat_history_page.dart';
 import '../../features/ai_consultation/presentation/pages/chat_page.dart';
-import '../../features/ai_consultation/presentation/pages/quiz_page.dart';
+import '../../features/ai_consultation/presentation/pages/survey_page.dart';
+import '../../features/ai_consultation/presentation/pages/survey_history_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
@@ -47,7 +48,8 @@ class AppRouter {
         path: '/chat/history',
         builder: (context, state) => const ChatHistoryPage(),
       ),
-      GoRoute(path: '/quiz', builder: (context, state) => const QuizPage()),
+      GoRoute(path: '/survey', builder: (context, state) => const SurveyPage()),
+      GoRoute(path: '/survey/history', builder: (context, state) => const SurveyHistoryPage()),
       GoRoute(
         path: '/store',
         builder: (context, state) {

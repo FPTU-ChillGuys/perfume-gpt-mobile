@@ -10,20 +10,23 @@ import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/create_question_from_attribute_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/mobile_survey_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/reorder_questions_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_delete_survey_question200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_attribute_types200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_attribute_values200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_history_list_by_user_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_ques_anws_by_user_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_ques_by_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_reorder_questions200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_submit_mobile_survey200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_ques_ans_detail_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_question_request.dart';
 
@@ -757,6 +760,76 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerGetAttribut
     );
   }
 
+  /// [Mobile] Lấy danh sách câu hỏi survey (đã parse displayText)
+  /// 
+  ///
+  /// Parameters:
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerGetMobileSurveyQuestions200Response] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<SurveyControllerGetMobileSurveyQuestions200Response>> surveyControllerGetMobileSurveyQuestions({ 
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/surveys/mobile/questions';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    SurveyControllerGetMobileSurveyQuestions200Response? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<SurveyControllerGetMobileSurveyQuestions200Response, SurveyControllerGetMobileSurveyQuestions200Response>(rawData, 'SurveyControllerGetMobileSurveyQuestions200Response', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<SurveyControllerGetMobileSurveyQuestions200Response>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Lấy danh sách lịch sử tất cả các lần trả lời survey của người dùng
   /// 
   ///
@@ -1052,6 +1125,96 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     }
 
     return Response<SurveyControllerReorderQuestions200Response>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// [Mobile] Gửi câu trả lời survey, nhận kết quả cấu trúc
+  /// 
+  ///
+  /// Parameters:
+  /// * [mobileSurveyRequest] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerSubmitMobileSurvey200Response] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<SurveyControllerSubmitMobileSurvey200Response>> surveyControllerSubmitMobileSurvey({ 
+    required MobileSurveyRequest mobileSurveyRequest,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/surveys/mobile/submit';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+_bodyData=jsonEncode(mobileSurveyRequest);
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    SurveyControllerSubmitMobileSurvey200Response? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<SurveyControllerSubmitMobileSurvey200Response, SurveyControllerSubmitMobileSurvey200Response>(rawData, 'SurveyControllerSubmitMobileSurvey200Response', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<SurveyControllerSubmitMobileSurvey200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

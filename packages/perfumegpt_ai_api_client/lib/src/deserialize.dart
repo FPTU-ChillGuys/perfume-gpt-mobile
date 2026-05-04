@@ -56,6 +56,13 @@ import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_event_logs
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/log_controller_get_paged_event_logs200_response_payload.dart';
 import 'package:perfumegpt_ai_api_client/src/model/message_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/mobile_survey_answer.dart';
+import 'package:perfumegpt_ai_api_client/src/model/mobile_survey_answer_item.dart';
+import 'package:perfumegpt_ai_api_client/src/model/mobile_survey_message.dart';
+import 'package:perfumegpt_ai_api_client/src/model/mobile_survey_product.dart';
+import 'package:perfumegpt_ai_api_client/src/model/mobile_survey_question_item.dart';
+import 'package:perfumegpt_ai_api_client/src/model/mobile_survey_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/mobile_survey_response_data.dart';
 import 'package:perfumegpt_ai_api_client/src/model/normalized_query_filters.dart';
 import 'package:perfumegpt_ai_api_client/src/model/origin_normalizer_output.dart';
 import 'package:perfumegpt_ai_api_client/src/model/paged_result.dart';
@@ -101,14 +108,16 @@ import 'package:perfumegpt_ai_api_client/src/model/survey_attribute_values_respo
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_delete_survey_question200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_attribute_types200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_attribute_values200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_history_list_by_user_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_ques_anws_by_user_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_survey_ques_by_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_reorder_questions200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/survey_controller_submit_mobile_survey200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_grouped_answer_item.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_ques_ans_detail_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_question_answer_response.dart';
@@ -258,6 +267,20 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return LogControllerGetPagedEventLogs200ResponsePayload.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'MessageResponse':
           return MessageResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'MobileSurveyAnswer':
+          return MobileSurveyAnswer.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'MobileSurveyAnswerItem':
+          return MobileSurveyAnswerItem.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'MobileSurveyMessage':
+          return MobileSurveyMessage.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'MobileSurveyProduct':
+          return MobileSurveyProduct.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'MobileSurveyQuestionItem':
+          return MobileSurveyQuestionItem.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'MobileSurveyRequest':
+          return MobileSurveyRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'MobileSurveyResponseData':
+          return MobileSurveyResponseData.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'NormalizedQueryFilters':
           return NormalizedQueryFilters.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'OriginNormalizerOutput':
@@ -348,14 +371,16 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return SurveyControllerDeleteSurveyQuestion200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'SurveyControllerGetAllSurveys200Response':
           return SurveyControllerGetAllSurveys200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'SurveyControllerGetAllSurveys401Response':
-          return SurveyControllerGetAllSurveys401Response.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'SurveyControllerGetAllSurveys403Response':
-          return SurveyControllerGetAllSurveys403Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'SurveyControllerGetAttributeTypes200Response':
           return SurveyControllerGetAttributeTypes200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'SurveyControllerGetAttributeValues200Response':
           return SurveyControllerGetAttributeValues200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'SurveyControllerGetMobileSurveyQuestions200Response':
+          return SurveyControllerGetMobileSurveyQuestions200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'SurveyControllerGetMobileSurveyQuestions401Response':
+          return SurveyControllerGetMobileSurveyQuestions401Response.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'SurveyControllerGetMobileSurveyQuestions403Response':
+          return SurveyControllerGetMobileSurveyQuestions403Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'SurveyControllerGetSurveyHistoryListByUserId200Response':
           return SurveyControllerGetSurveyHistoryListByUserId200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'SurveyControllerGetSurveyQuesAnwsByUserId200Response':
@@ -364,6 +389,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return SurveyControllerGetSurveyQuesById200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'SurveyControllerReorderQuestions200Response':
           return SurveyControllerReorderQuestions200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'SurveyControllerSubmitMobileSurvey200Response':
+          return SurveyControllerSubmitMobileSurvey200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'SurveyGroupedAnswerItem':
           return SurveyGroupedAnswerItem.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'SurveyQuesAnsDetailRequest':
