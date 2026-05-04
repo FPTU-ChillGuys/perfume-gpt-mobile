@@ -1,106 +1,13 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
-import 'package:drift/drift.dart' hide Column;
+import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import 'package:uuid/uuid.dart';
-import '../../../../core/db/database_provider.dart';
-import '../../../../core/db/database.dart';
 import '../../../../core/utils/price_formatter.dart';
-
-class _SurveyQuestionView {
-  final String id;
-  final String question;
-  final List<_SurveyAnswerView> answers;
-
-  _SurveyQuestionView({
-    required this.id,
-    required this.question,
-    required this.answers,
-  });
-}
-
-class _SurveyAnswerView {
-  final String id;
-  final String answer;
-
-  _SurveyAnswerView({required this.id, required this.answer});
-}
-
-final _surveyQuestionsProvider = FutureProvider.autoDispose<List<_SurveyQuestionView>>((ref) async {
-  try {
-    final api = ref.read(common.aiApiClientProvider).getSurveysApi();
-    final response = await api.surveyControllerGetAllSurveys();
-    final questions = response.data?.data;
-    if (questions != null && questions.isNotEmpty) {
-      return questions.where((q) => q.isActive).map((q) {
-        final answers = q.answers ?? [];
-        return _SurveyQuestionView(
-          id: q.id,
-          question: q.question ?? '',
-          answers: answers.map((a) => _SurveyAnswerView(
-            id: a.id,
-            answer: a.answer ?? '',
-          )).toList(),
-        );
-      }).toList();
-    }
-  } catch (_) {}
-
-  // Fallback hardcoded questions
-  return [
-    _SurveyQuestionView(
-      id: 'gender',
-      question: 'Who are you shopping for?',
-      answers: [
-        _SurveyAnswerView(id: 'gender_men', answer: 'Men'),
-        _SurveyAnswerView(id: 'gender_women', answer: 'Women'),
-        _SurveyAnswerView(id: 'gender_unisex', answer: 'Unisex'),
-      ],
-    ),
-    _SurveyQuestionView(
-      id: 'occasion',
-      question: 'What is the occasion?',
-      answers: [
-        _SurveyAnswerView(id: 'occasion_daily', answer: 'Daily Wear'),
-        _SurveyAnswerView(id: 'occasion_office', answer: 'Office'),
-        _SurveyAnswerView(id: 'occasion_date', answer: 'Date Night'),
-        _SurveyAnswerView(id: 'occasion_special', answer: 'Special Event'),
-      ],
-    ),
-    _SurveyQuestionView(
-      id: 'budget',
-      question: 'What is your budget range?',
-      answers: [
-        _SurveyAnswerView(id: 'budget_under1m', answer: 'Under 1M VND'),
-        _SurveyAnswerView(id: 'budget_1m_3m', answer: '1M - 3M VND'),
-        _SurveyAnswerView(id: 'budget_above3m', answer: 'Above 3M VND'),
-      ],
-    ),
-    _SurveyQuestionView(
-      id: 'scent_family',
-      question: 'Which scent family do you prefer?',
-      answers: [
-        _SurveyAnswerView(id: 'scent_floral', answer: 'Floral'),
-        _SurveyAnswerView(id: 'scent_woody', answer: 'Woody'),
-        _SurveyAnswerView(id: 'scent_citrus', answer: 'Citrus'),
-        _SurveyAnswerView(id: 'scent_oriental', answer: 'Oriental'),
-        _SurveyAnswerView(id: 'scent_fresh', answer: 'Fresh'),
-      ],
-    ),
-    _SurveyQuestionView(
-      id: 'longevity',
-      question: 'How important is longevity?',
-      answers: [
-        _SurveyAnswerView(id: 'longevity_moderate', answer: 'Moderate (3-5h)'),
-        _SurveyAnswerView(id: 'longevity_long', answer: 'Long-lasting (6-8h)'),
-        _SurveyAnswerView(id: 'longevity_eternal', answer: 'Eternal (8h+)'),
-      ],
-    ),
-  ];
-});
+import '../providers/chat_provider.dart';
+import '../providers/survey_provider.dart';
 
 class SurveyPage extends ConsumerStatefulWidget {
   const SurveyPage({super.key});
@@ -111,95 +18,93 @@ class SurveyPage extends ConsumerStatefulWidget {
 
 class _SurveyPageState extends ConsumerState<SurveyPage> {
   int _currentStep = 0;
-  final Map<String, String> _answers = {};
-  bool _isSubmitting = false;
-  String? _resultAiMessage;
-  List<ProductCardOutputItemDto> _resultProducts = [];
-  String? _errorMessage;
+  final Map<String, Set<String>> _answers = {};
+  List<SurveyQuestionView>? _questions;
+  late final Future<List<SurveyQuestionView>> _questionsFuture;
 
-  void _nextStep(_SurveyQuestionView question, _SurveyAnswerView answer) {
-    _answers[question.id] = answer.id;
-    if (_currentStep < ref.read(_surveyQuestionsProvider).value!.length - 1) {
+  @override
+  void initState() {
+    super.initState();
+    _questionsFuture =
+        ref.read(surveyProvider.notifier).loadQuestions();
+  }
+
+  String _resolveUserId() {
+    final user = ref.read(common.authProvider).value;
+    if (user?.id != null) return user!.id;
+    final chatGuestId = ref.read(chatSessionProvider.notifier).guestUserId;
+    return chatGuestId ?? const Uuid().v4();
+  }
+
+  bool _isMultipleChoice(SurveyQuestionView q) =>
+      q.questionType == 'multiple';
+
+  bool _isAnswerSelected(SurveyQuestionView q, SurveyAnswerView a) =>
+      _answers[q.id]?.contains(a.id) ?? false;
+
+  void _toggleAnswer(SurveyQuestionView q, SurveyAnswerView a) {
+    setState(() {
+      _answers.putIfAbsent(q.id, () => {});
+      if (_answers[q.id]!.contains(a.id)) {
+        _answers[q.id]!.remove(a.id);
+      } else {
+        _answers[q.id]!.add(a.id);
+      }
+    });
+  }
+
+  void _selectSingleAndNext(SurveyQuestionView q, SurveyAnswerView a) {
+    setState(() {
+      _answers[q.id] = {a.id};
+    });
+    _advanceStep();
+  }
+
+  void _advanceStep() {
+    if (_currentStep < (_questions!.length - 1)) {
       setState(() => _currentStep++);
     } else {
-      _submitSurvey();
+      Future.microtask(_loadAndSubmit);
     }
   }
 
-  Future<void> _submitSurvey() async {
-    setState(() => _isSubmitting = true);
-    try {
-      final questions = ref.read(_surveyQuestionsProvider).value!;
-      final user = ref.read(common.authProvider).value;
-      final userId = user?.id;
-
-      final surveyQuesAnsDetailRequest = questions.map((q) {
-        return SurveyQuesAnsDetailRequest(
-          questionId: q.id,
-          answerId: _answers[q.id] ?? '',
-        );
-      }).toList();
-
-      final api = ref.read(common.aiApiClientProvider).getSurveysApi();
-      final response = await api.surveyControllerChatSurveyV5(
-        surveyQuesAnsDetailRequest: surveyQuesAnsDetailRequest,
-        userId: userId,
-      );
-
-      final rawData = response.data?.data;
-      Map<String, dynamic>? resultMap;
-      String? aiMessage;
-      List<dynamic>? productsJson;
-
-      if (rawData != null && rawData.isNotEmpty) {
-        try {
-          resultMap = jsonDecode(rawData) as Map<String, dynamic>;
-          aiMessage = resultMap['aiMessage'] as String?;
-          productsJson = resultMap['products'] as List<dynamic>?;
-        } catch (_) {}
-      }
-
-      final products = productsJson
-          ?.map((p) => ProductCardOutputItemDto.fromJson(p as Map<String, dynamic>))
-          .toList() ?? [];
-
-      final sessionId = const Uuid().v4();
-      final dao = ref.read(surveyDaoProvider);
-      await dao.insertSession(LocalSurveySessionsCompanion.insert(
-        id: sessionId,
-        userId: userId ?? 'guest',
-        answersJson: jsonEncode(_answers),
-        resultJson: rawData ?? jsonEncode({'aiMessage': aiMessage, 'products': productsJson}),
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        productCount: Value(products.length),
-      ));
-
-      setState(() {
-        _resultAiMessage = aiMessage ?? 'Hoàn thành khảo sát!';
-        _resultProducts = products;
-        _isSubmitting = false;
-      });
-    } catch (e) {
-      setState(() {
-        _errorMessage = 'Có lỗi xảy ra, vui lòng thử lại.';
-        _isSubmitting = false;
-      });
+  void _goBack() {
+    if (_currentStep > 0) {
+      setState(() => _currentStep--);
     }
+  }
+
+  Future<void> _loadAndSubmit() async {
+    final questions = _questions;
+    if (questions == null) return;
+
+    final userId = _resolveUserId();
+
+    final answerList = <({String questionId, String answerId})>[];
+    for (final q in questions) {
+      final selected = _answers[q.id];
+      if (selected != null && selected.isNotEmpty) {
+        for (final answerId in selected) {
+          answerList.add((questionId: q.id, answerId: answerId));
+        }
+      }
+    }
+
+    await ref.read(surveyProvider.notifier).submitSurvey(userId, answerList);
   }
 
   void _resetSurvey() {
     setState(() {
       _currentStep = 0;
       _answers.clear();
-      _resultAiMessage = null;
-      _resultProducts = [];
-      _errorMessage = null;
     });
+    ref.invalidate(surveyProvider);
   }
 
   @override
   Widget build(BuildContext context) {
-    final questionsAsync = ref.watch(_surveyQuestionsProvider);
+    final surveyState = ref.watch(surveyProvider);
+    final hasResult = surveyState.value != null;
 
     return Scaffold(
       appBar: AppBar(
@@ -215,24 +120,44 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
           ),
         ],
       ),
-      body: questionsAsync.when(
-        data: (questions) {
-          if (_resultAiMessage != null || _errorMessage != null) {
-            return _buildResultView();
-          }
-          if (_isSubmitting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          final question = questions[_currentStep];
-          return _buildQuestionView(question, questions.length);
-        },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('Lỗi: $err')),
-      ),
+      body: hasResult
+          ? _buildResultView(surveyState.value!)
+          : surveyState.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : surveyState.hasError
+                  ? _buildErrorView()
+                  : _buildQuestionFlow(),
     );
   }
 
-  Widget _buildQuestionView(_SurveyQuestionView question, int totalSteps) {
+  Widget _buildQuestionFlow() {
+    return FutureBuilder<List<SurveyQuestionView>>(
+      future: _questionsFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError || !snapshot.hasData || snapshot.data!.isEmpty) {
+          return Center(
+            child: Text(
+              'Không thể tải câu hỏi: ${snapshot.error ?? "Lỗi không xác định"}',
+            ),
+          );
+        }
+
+        _questions ??= snapshot.data!;
+        final question = _questions![_currentStep];
+        final isMultiple = _isMultipleChoice(question);
+        return _buildQuestionView(question, _questions!.length, isMultiple);
+      },
+    );
+  }
+
+  Widget _buildQuestionView(
+    SurveyQuestionView question,
+    int totalSteps,
+    bool isMultiple,
+  ) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24.0),
       child: Column(
@@ -242,50 +167,189 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
             value: (_currentStep + 1) / totalSteps,
             backgroundColor: Colors.grey.withValues(alpha: 0.2),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
+          if (_currentStep > 0)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton.icon(
+                onPressed: _goBack,
+                icon: const Icon(Icons.arrow_back, size: 18),
+                label: const Text('Quay lại'),
+              ),
+            ),
+          const SizedBox(height: 8),
           Text(
             'Câu hỏi ${_currentStep + 1} / $totalSteps',
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.grey),
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge
+                ?.copyWith(color: Colors.grey),
           ),
           const SizedBox(height: 8),
           Text(
             question.question,
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium
+                ?.copyWith(fontWeight: FontWeight.bold),
           ),
+          if (isMultiple) ...[
+            const SizedBox(height: 4),
+            Text(
+              'Có thể chọn nhiều đáp án',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: Colors.grey),
+            ),
+          ],
           const SizedBox(height: 24),
-          ...question.answers.map((answer) => Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: OutlinedButton(
-              onPressed: () => _nextStep(question, answer),
-              style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+          ...question.answers.map((answer) {
+            if (isMultiple) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: CheckboxListTile(
+                  value: _isAnswerSelected(question, answer),
+                  onChanged: (_) => _toggleAnswer(question, answer),
+                  title: Text(answer.displayText),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: EdgeInsets.zero,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              );
+            }
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: OutlinedButton(
+                onPressed: () => _selectSingleAndNext(question, answer),
+                style: OutlinedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Text(
+                  answer.displayText,
+                  style: const TextStyle(fontSize: 18),
                 ),
               ),
-              child: Text(
-                answer.answer,
-                style: const TextStyle(fontSize: 18),
-              ),
+            );
+          }),
+          if (isMultiple) ...[
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                final selected = _answers[question.id];
+                if (selected == null || selected.isEmpty) return;
+                _advanceStep();
+              },
+              child: const Text('Tiếp tục'),
             ),
-          )),
+          ],
         ],
       ),
     );
   }
 
-  Widget _buildResultView() {
-    final hasError = _errorMessage != null;
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (hasError) ...[
+  MarkdownStyleSheet _aiMessageStyleSheet(BuildContext context) {
+    final textColor = Theme.of(context).colorScheme.onSurfaceVariant;
+    return MarkdownStyleSheet(
+      p: TextStyle(color: textColor, height: 1.5),
+      strong: TextStyle(color: textColor, fontWeight: FontWeight.bold),
+      em: TextStyle(color: textColor, fontStyle: FontStyle.italic),
+      listBullet: TextStyle(color: textColor),
+      code: TextStyle(
+        color: textColor,
+        backgroundColor:
+            Theme.of(context).colorScheme.surfaceContainerHighest,
+        fontSize: 13,
+      ),
+      codeblockDecoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
+  }
+
+  Widget _buildResultView(MobileSurveyResponseData result) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Icon(Icons.check_circle_outline,
+                    color: Colors.green, size: 48),
+                const SizedBox(height: 16),
+                ...result.messages.map((msg) => Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          MarkdownBody(
+                            data: msg.message,
+                            selectable: true,
+                            styleSheet:
+                                _aiMessageStyleSheet(context),
+                          ),
+                          if (msg.products.isNotEmpty) ...[
+                            const SizedBox(height: 8),
+                            ...msg.products.map((p) => Padding(
+                                  padding:
+                                      const EdgeInsets.only(bottom: 8.0),
+                                  child: _MobileProductCard(product: p),
+                                )),
+                          ],
+                        ],
+                      ),
+                    )),
+                if (result.messages
+                        .every((m) => m.products.isEmpty) &&
+                    result.products.isNotEmpty)
+                  ...result.products.map((p) => Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: _MobileProductCard(product: p),
+                      )),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ElevatedButton(
+                onPressed: _resetSurvey,
+                child: const Text('Làm lại khảo sát'),
+              ),
+              TextButton(
+                onPressed: () => context.push('/store'),
+                child: const Text('Đến cửa hàng'),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildErrorView() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
             const Icon(Icons.error_outline, color: Colors.red, size: 48),
             const SizedBox(height: 16),
             Text(
-              _errorMessage!,
+              'Có lỗi xảy ra, vui lòng thử lại.',
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 16, color: Colors.red),
             ),
@@ -294,55 +358,17 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
               onPressed: _resetSurvey,
               child: const Text('Thử lại'),
             ),
-          ] else ...[
-            const Icon(Icons.check_circle_outline, color: Colors.green, size: 48),
-            const SizedBox(height: 16),
-            Text(
-              _resultAiMessage ?? '',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 24),
-            if (_resultProducts.isNotEmpty)
-              Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                    childAspectRatio: 0.65,
-                  ),
-                  itemCount: _resultProducts.length,
-                  itemBuilder: (context, index) {
-                    final product = _resultProducts[index];
-                    return _SurveyProductCard(product: product);
-                  },
-                ),
-              ),
-            if (_resultProducts.isEmpty)
-              const Expanded(
-                child: Center(child: Text('Không có sản phẩm phù hợp.')),
-              ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _resetSurvey,
-              child: const Text('Làm lại khảo sát'),
-            ),
-            TextButton(
-              onPressed: () => context.push('/store'),
-              child: const Text('Đến cửa hàng'),
-            ),
           ],
-        ],
+        ),
       ),
     );
   }
 }
 
-class _SurveyProductCard extends StatelessWidget {
-  final ProductCardOutputItemDto product;
+class _MobileProductCard extends StatelessWidget {
+  final MobileSurveyProduct product;
 
-  const _SurveyProductCard({required this.product});
+  const _MobileProductCard({required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -351,70 +377,73 @@ class _SurveyProductCard extends StatelessWidget {
       elevation: 2,
       child: InkWell(
         onTap: () => context.push('/product/${product.id}'),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 3,
-              child: product.primaryImage != null
-                  ? Image.network(
-                      product.primaryImage as String,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      errorBuilder: (_, __, ___) => const Center(
-                        child: Icon(Icons.image_not_supported),
+        child: SizedBox(
+          height: 100,
+          child: Row(
+            children: [
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: product.primaryImage.isNotEmpty
+                    ? Image.network(
+                        product.primaryImage,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Center(
+                                child: Icon(Icons.image_not_supported)),
+                      )
+                    : const Center(child: Icon(Icons.image_not_supported)),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        product.name,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    )
-                  : const Center(child: Icon(Icons.image_not_supported)),
-            ),
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.name,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 2),
+                      Text(
+                        product.brandName,
+                        style: const TextStyle(
+                            fontSize: 12, color: Colors.grey),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Text(
-                      product.brandName,
-                      style: const TextStyle(fontSize: 10, color: Colors.grey),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      _getPriceRange(),
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 4),
+                      Text(
+                        _formatPrice(),
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  String _getPriceRange() {
-    if (product.variants.isEmpty) return 'N/A';
-    final prices = product.variants.map((v) => v.basePrice).whereType<num>().toList();
-    if (prices.isEmpty) return 'N/A';
-    final minPrice = prices.reduce((a, b) => a < b ? a : b);
-    final maxPrice = prices.reduce((a, b) => a > b ? a : b);
-    if (minPrice == maxPrice) return PriceFormatter.format(minPrice.toDouble());
-    return PriceFormatter.formatRange(minPrice.toDouble(), maxPrice.toDouble());
+  String _formatPrice() {
+    final minPrice = product.minPrice.toDouble();
+    final maxPrice = product.maxPrice.toDouble();
+    if (minPrice == 0 && maxPrice == 0) return 'Liên hệ';
+    if (minPrice == maxPrice) return PriceFormatter.format(minPrice);
+    return PriceFormatter.formatRange(minPrice, maxPrice);
   }
 }

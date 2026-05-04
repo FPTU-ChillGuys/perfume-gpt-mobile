@@ -18,10 +18,12 @@ Method | HTTP request | Description
 [**surveyControllerGetAllSurveys**](SurveysApi.md#surveycontrollergetallsurveys) | **GET** /surveys/questions | Lấy danh sách câu hỏi survey
 [**surveyControllerGetAttributeTypes**](SurveysApi.md#surveycontrollergetattributetypes) | **GET** /surveys/attributes | Lấy danh sách loại thuộc tính cho survey
 [**surveyControllerGetAttributeValues**](SurveysApi.md#surveycontrollergetattributevalues) | **GET** /surveys/attributes/{type}/values | Lấy giá trị của 1 loại thuộc tính
+[**surveyControllerGetMobileSurveyQuestions**](SurveysApi.md#surveycontrollergetmobilesurveyquestions) | **GET** /surveys/mobile/questions | [Mobile] Lấy danh sách câu hỏi survey (đã parse displayText)
 [**surveyControllerGetSurveyHistoryListByUserId**](SurveysApi.md#surveycontrollergetsurveyhistorylistbyuserid) | **GET** /surveys/user/{userId}/history | Lấy danh sách lịch sử tất cả các lần trả lời survey của người dùng
 [**surveyControllerGetSurveyQuesAnwsByUserId**](SurveysApi.md#surveycontrollergetsurveyquesanwsbyuserid) | **GET** /surveys/user/{userId} | Lấy tất cả câu hỏi và câu trả lời survey của người dùng
 [**surveyControllerGetSurveyQuesById**](SurveysApi.md#surveycontrollergetsurveyquesbyid) | **GET** /surveys/questions/{id} | Lấy câu hỏi survey theo ID
 [**surveyControllerReorderQuestions**](SurveysApi.md#surveycontrollerreorderquestions) | **PATCH** /surveys/questions/reorder | Sắp xếp lại thứ tự câu hỏi survey
+[**surveyControllerSubmitMobileSurvey**](SurveysApi.md#surveycontrollersubmitmobilesurvey) | **POST** /surveys/mobile/submit | [Mobile] Gửi câu trả lời survey, nhận kết quả cấu trúc
 [**surveyControllerUpdateSurveyAnswer**](SurveysApi.md#surveycontrollerupdatesurveyanswer) | **PUT** /surveys/questions/{id} | Cập nhật câu hỏi survey (questionType và/hoặc answers)
 
 
@@ -388,6 +390,43 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **surveyControllerGetMobileSurveyQuestions**
+> SurveyControllerGetMobileSurveyQuestions200Response surveyControllerGetMobileSurveyQuestions()
+
+[Mobile] Lấy danh sách câu hỏi survey (đã parse displayText)
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getSurveysApi();
+
+try {
+    final response = api.surveyControllerGetMobileSurveyQuestions();
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SurveysApi->surveyControllerGetMobileSurveyQuestions: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SurveyControllerGetMobileSurveyQuestions200Response**](SurveyControllerGetMobileSurveyQuestions200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **surveyControllerGetSurveyHistoryListByUserId**
 > SurveyControllerGetSurveyHistoryListByUserId200Response surveyControllerGetSurveyHistoryListByUserId(userId)
 
@@ -540,6 +579,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **surveyControllerSubmitMobileSurvey**
+> SurveyControllerSubmitMobileSurvey200Response surveyControllerSubmitMobileSurvey(mobileSurveyRequest)
+
+[Mobile] Gửi câu trả lời survey, nhận kết quả cấu trúc
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getSurveysApi();
+final MobileSurveyRequest mobileSurveyRequest = ; // MobileSurveyRequest | 
+
+try {
+    final response = api.surveyControllerSubmitMobileSurvey(mobileSurveyRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SurveysApi->surveyControllerSubmitMobileSurvey: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mobileSurveyRequest** | [**MobileSurveyRequest**](MobileSurveyRequest.md)|  | 
+
+### Return type
+
+[**SurveyControllerSubmitMobileSurvey200Response**](SurveyControllerSubmitMobileSurvey200Response.md)
 
 ### Authorization
 

@@ -3,167 +3,119 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:drift/drift.dart' hide Column;
-import '../../../../core/db/database_provider.dart';
 import '../../../../core/db/database.dart';
-
-class SurveyAnswer {
-  final String questionId;
-  final String answerId;
-
-  SurveyAnswer({required this.questionId, required this.answerId});
-}
-
-class SurveyResult {
-  final String? aiMessage;
-  final List<ProductCardOutputItemDto> products;
-
-  SurveyResult({this.aiMessage, required this.products});
-}
+import '../../../../core/db/database_provider.dart';
 
 class SurveyQuestionView {
   final String id;
   final String question;
+  final String questionType;
   final List<SurveyAnswerView> answers;
 
-  SurveyQuestionView({required this.id, required this.question, required this.answers});
+  SurveyQuestionView({
+    required this.id,
+    required this.question,
+    required this.questionType,
+    required this.answers,
+  });
 }
 
 class SurveyAnswerView {
   final String id;
   final String answer;
+  final String displayText;
 
-  SurveyAnswerView({required this.id, required this.answer});
+  SurveyAnswerView({
+    required this.id,
+    required this.answer,
+    required this.displayText,
+  });
 }
 
-class SurveyNotifier extends AsyncNotifier<SurveyResult?> {
+class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
   SurveyNotifier();
 
   @override
-  Future<SurveyResult?> build() async {
-    return null;
-  }
+  Future<MobileSurveyResponseData?> build() async => null;
 
   Future<List<SurveyQuestionView>> loadQuestions() async {
     try {
       final api = ref.read(common.aiApiClientProvider).getSurveysApi();
-      final response = await api.surveyControllerGetAllSurveys();
+      final response = await api.surveyControllerGetMobileSurveyQuestions();
       final questions = response.data?.data;
       if (questions != null && questions.isNotEmpty) {
-        return questions.where((q) => q.isActive).map((q) {
-          final answers = q.answers ?? [];
-          return SurveyQuestionView(
-            id: q.id,
-            question: q.question ?? '',
-            answers: answers.map((a) => SurveyAnswerView(
-              id: a.id,
-              answer: a.answer ?? '',
-            )).toList(),
-          );
-        }).toList();
+        return questions
+            .where((q) => q.isActive)
+            .map((q) => SurveyQuestionView(
+                  id: q.id,
+                  question: q.question,
+                  questionType: q.questionType,
+                  answers: q.answers
+                      .map((a) => SurveyAnswerView(
+                            id: a.id,
+                            answer: a.answer,
+                            displayText: a.displayText,
+                          ))
+                      .toList(),
+                ))
+            .toList();
       }
     } catch (_) {}
 
-    return [
-      SurveyQuestionView(
-        id: 'gender',
-        question: 'Bạn đang tìm nước hoa cho ai?',
-        answers: [
-          SurveyAnswerView(id: 'gender_men', answer: 'Nam'),
-          SurveyAnswerView(id: 'gender_women', answer: 'Nữ'),
-          SurveyAnswerView(id: 'gender_unisex', answer: 'Unisex'),
-        ],
-      ),
-      SurveyQuestionView(
-        id: 'occasion',
-        question: 'Dịp sử dụng là gì?',
-        answers: [
-          SurveyAnswerView(id: 'occasion_daily', answer: 'Hàng ngày'),
-          SurveyAnswerView(id: 'occasion_office', answer: 'Đi làm'),
-          SurveyAnswerView(id: 'occasion_date', answer: 'Hẹn hò'),
-          SurveyAnswerView(id: 'occasion_special', answer: 'Dịp đặc biệt'),
-        ],
-      ),
-      SurveyQuestionView(
-        id: 'budget',
-        question: 'Ngân sách của bạn?',
-        answers: [
-          SurveyAnswerView(id: 'budget_under1m', answer: 'Dưới 1 triệu'),
-          SurveyAnswerView(id: 'budget_1m_3m', answer: '1 - 3 triệu'),
-          SurveyAnswerView(id: 'budget_above3m', answer: 'Trên 3 triệu'),
-        ],
-      ),
-      SurveyQuestionView(
-        id: 'scent_family',
-        question: 'Hương thơm bạn thích?',
-        answers: [
-          SurveyAnswerView(id: 'scent_floral', answer: 'Hoa cỏ'),
-          SurveyAnswerView(id: 'scent_woody', answer: 'Gỗ'),
-          SurveyAnswerView(id: 'scent_citrus', answer: 'Cam chanh'),
-          SurveyAnswerView(id: 'scent_oriental', answer: 'Phương Đông'),
-          SurveyAnswerView(id: 'scent_fresh', answer: 'Tươi mát'),
-        ],
-      ),
-      SurveyQuestionView(
-        id: 'longevity',
-        question: 'Thời gian lưu hương mong muốn?',
-        answers: [
-          SurveyAnswerView(id: 'longevity_moderate', answer: 'Trung bình (3-5h)'),
-          SurveyAnswerView(id: 'longevity_long', answer: 'Lâu (6-8h)'),
-          SurveyAnswerView(id: 'longevity_eternal', answer: 'Rất lâu (8h+)'),
-        ],
-      ),
-    ];
+    return _fallbackQuestions();
   }
 
-  Future<SurveyResult?> submitSurvey(String userId, List<SurveyAnswer> answers) async {
+  Future<MobileSurveyResponseData?> submitSurvey(
+    String userId,
+    List<({String questionId, String answerId})> answers,
+  ) async {
     state = const AsyncLoading();
     try {
       final api = ref.read(common.aiApiClientProvider).getSurveysApi();
 
-      final surveyQuesAnsDetailRequest = answers.map((a) {
-        return SurveyQuesAnsDetailRequest(
-          questionId: a.questionId,
-          answerId: a.answerId,
-        );
-      }).toList();
-
-      final response = await api.surveyControllerChatSurveyV5(
-        surveyQuesAnsDetailRequest: surveyQuesAnsDetailRequest,
+      final request = MobileSurveyRequest(
         userId: userId,
+        answers: answers
+            .map((a) => MobileSurveyAnswer(
+                  questionId: a.questionId,
+                  answerId: a.answerId,
+                ))
+            .toList(),
       );
 
-      final rawData = response.data?.data;
-      Map<String, dynamic>? resultMap;
-      String? aiMessage;
-      List<dynamic>? productsJson;
+      final response = await api.surveyControllerSubmitMobileSurvey(
+        mobileSurveyRequest: request,
+      );
 
-      if (rawData != null && rawData.isNotEmpty) {
-        try {
-          resultMap = jsonDecode(rawData) as Map<String, dynamic>;
-          aiMessage = resultMap['aiMessage'] as String?;
-          productsJson = resultMap['products'] as List<dynamic>?;
-        } catch (_) {}
+      final result = response.data?.data;
+      if (result == null) {
+        state = const AsyncData(null);
+        return null;
       }
-
-      final products = productsJson
-          ?.map((p) => ProductCardOutputItemDto.fromJson(p as Map<String, dynamic>))
-          .toList() ?? [];
-
-      final result = SurveyResult(
-        aiMessage: aiMessage,
-        products: products,
-      );
 
       final dao = ref.read(surveyDaoProvider);
       final sessionId = DateTime.now().millisecondsSinceEpoch.toString();
-      final answersMap = {for (var a in answers) a.questionId: a.answerId};
+      final answersMap = <String, dynamic>{};
+      for (final a in answers) {
+        final key = a.questionId;
+        if (answersMap.containsKey(key)) {
+          final existing = answersMap[key];
+          if (existing is List) {
+            existing.add(a.answerId);
+          } else {
+            answersMap[key] = [existing, a.answerId];
+          }
+        } else {
+          answersMap[key] = a.answerId;
+        }
+      }
       await dao.insertSession(LocalSurveySessionsCompanion.insert(
         id: sessionId,
         userId: userId,
         answersJson: jsonEncode(answersMap),
-        resultJson: rawData ?? jsonEncode({'aiMessage': aiMessage, 'products': productsJson}),
+        resultJson: jsonEncode(result.toJson()),
         createdAt: DateTime.now().millisecondsSinceEpoch,
-        productCount: Value(products.length),
+        productCount: Value(result.products.length),
       ));
 
       state = AsyncData(result);
@@ -180,6 +132,96 @@ class SurveyNotifier extends AsyncNotifier<SurveyResult?> {
   }
 }
 
-final surveyProvider = AsyncNotifierProvider<SurveyNotifier, SurveyResult?>(
+List<SurveyQuestionView> _fallbackQuestions() => [
+      SurveyQuestionView(
+        id: 'gender',
+        question: 'Bạn đang tìm nước hoa cho ai?',
+        questionType: 'single',
+        answers: [
+          SurveyAnswerView(id: 'gender_men', answer: 'Nam', displayText: 'Nam'),
+          SurveyAnswerView(
+              id: 'gender_women', answer: 'Nữ', displayText: 'Nữ'),
+          SurveyAnswerView(
+              id: 'gender_unisex', answer: 'Unisex', displayText: 'Unisex'),
+        ],
+      ),
+      SurveyQuestionView(
+        id: 'occasion',
+        question: 'Dịp sử dụng là gì?',
+        questionType: 'single',
+        answers: [
+          SurveyAnswerView(
+              id: 'occasion_daily', answer: 'Hàng ngày', displayText: 'Hàng ngày'),
+          SurveyAnswerView(
+              id: 'occasion_office', answer: 'Đi làm', displayText: 'Đi làm'),
+          SurveyAnswerView(
+              id: 'occasion_date', answer: 'Hẹn hò', displayText: 'Hẹn hò'),
+          SurveyAnswerView(
+              id: 'occasion_special',
+              answer: 'Dịp đặc biệt',
+              displayText: 'Dịp đặc biệt'),
+        ],
+      ),
+      SurveyQuestionView(
+        id: 'budget',
+        question: 'Ngân sách của bạn?',
+        questionType: 'single',
+        answers: [
+          SurveyAnswerView(
+              id: 'budget_under1m',
+              answer: 'Dưới 1 triệu',
+              displayText: 'Dưới 1 triệu'),
+          SurveyAnswerView(
+              id: 'budget_1m_3m',
+              answer: '1 - 3 triệu',
+              displayText: '1 - 3 triệu'),
+          SurveyAnswerView(
+              id: 'budget_above3m',
+              answer: 'Trên 3 triệu',
+              displayText: 'Trên 3 triệu'),
+        ],
+      ),
+      SurveyQuestionView(
+        id: 'scent_family',
+        question: 'Hương thơm bạn thích?',
+        questionType: 'single',
+        answers: [
+          SurveyAnswerView(
+              id: 'scent_floral', answer: 'Hoa cỏ', displayText: 'Hoa cỏ'),
+          SurveyAnswerView(
+              id: 'scent_woody', answer: 'Gỗ', displayText: 'Gỗ'),
+          SurveyAnswerView(
+              id: 'scent_citrus', answer: 'Cam chanh', displayText: 'Cam chanh'),
+          SurveyAnswerView(
+              id: 'scent_oriental',
+              answer: 'Phương Đông',
+              displayText: 'Phương Đông'),
+          SurveyAnswerView(
+              id: 'scent_fresh', answer: 'Tươi mát', displayText: 'Tươi mát'),
+        ],
+      ),
+      SurveyQuestionView(
+        id: 'longevity',
+        question: 'Thời gian lưu hương mong muốn?',
+        questionType: 'single',
+        answers: [
+          SurveyAnswerView(
+              id: 'longevity_moderate',
+              answer: 'Trung bình (3-5h)',
+              displayText: 'Trung bình (3-5h)'),
+          SurveyAnswerView(
+              id: 'longevity_long',
+              answer: 'Lâu (6-8h)',
+              displayText: 'Lâu (6-8h)'),
+          SurveyAnswerView(
+              id: 'longevity_eternal',
+              answer: 'Rất lâu (8h+)',
+              displayText: 'Rất lâu (8h+)'),
+        ],
+      ),
+    ];
+
+final surveyProvider =
+    AsyncNotifierProvider<SurveyNotifier, MobileSurveyResponseData?>(
   SurveyNotifier.new,
 );
