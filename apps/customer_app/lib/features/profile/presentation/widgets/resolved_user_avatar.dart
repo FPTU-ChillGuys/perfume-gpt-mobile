@@ -3,14 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 
-import '../../../../core/widgets/authenticated_circle_avatar.dart';
 import '../providers/profile_providers.dart';
 
 /// Avatar resolution aligned with web `UserProfileSidebar`:
 /// 1) [avatarUrlOverride] (page prop)
-/// 2) [profileControllerProvider] (includes GET /api/users/me via `getMe`)
-/// 3) [authProvider] user cache
-/// 4) [userMeAvatarUrlProvider] — lightweight GET /api/users/me when auth has no URL yet
+/// 2) [userMeAvatarUrlProvider] (GET /api/users/avatar)
+/// 3) [profileControllerProvider] (includes GET /api/users/me via `getMe`)
+/// 4) [authProvider] user cache
 class ResolvedUserAvatar extends ConsumerWidget {
   const ResolvedUserAvatar({
     super.key,
@@ -61,9 +60,9 @@ class ResolvedUserAvatar extends ConsumerWidget {
         fromAuth != null && fromAuth.isNotEmpty ? fromAuth : null;
 
     final picked = overrideResolved ??
+        meFetch.asData?.value ??
         fromProfile ??
-        fromAuthNonEmpty ??
-        meFetch.asData?.value;
+        fromAuthNonEmpty;
 
     final initialLetter = () {
       final n = displayName ??
@@ -118,12 +117,10 @@ class ResolvedUserAvatar extends ConsumerWidget {
         ),
       );
     } else if (hasImage) {
-      circle = AuthenticatedCircleAvatar(
-        imageUrl: picked,
+      circle = CircleAvatar(
         radius: radius,
         backgroundColor: bg,
-        loadingIndicatorSize: radius,
-        placeholder: placeholder,
+        backgroundImage: NetworkImage(picked),
       );
     } else {
       circle = CircleAvatar(

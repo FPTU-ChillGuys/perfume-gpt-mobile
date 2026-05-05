@@ -46,15 +46,12 @@ FutureOr<List<AttributeValueLookup>> attributeValuesLookup(
       .getAttributeValuesLookup(attributeId);
 }
 
-/// GET /api/users/me → [profilePictureUrl] when auth cache has no avatar yet (same idea as FE `getMyAvatar`).
+/// Preferred avatar source: GET /api/users/avatar. Falls back inside repository.
 final userMeAvatarUrlProvider = FutureProvider<String?>((ref) async {
   ref.keepAlive();
   final user = ref.watch(authProvider).asData?.value;
   if (user == null) return null;
-  if (user.avatarUrl != null && user.avatarUrl!.isNotEmpty) {
-    return user.avatarUrl;
-  }
-  return ref.read(profileRepositoryProvider).getProfilePictureUrl();
+  return ref.read(profileRepositoryProvider).getAvatarUrl();
 });
 
 @riverpod

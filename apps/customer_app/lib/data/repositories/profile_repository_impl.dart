@@ -70,12 +70,18 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<String?> getProfilePictureUrl() async {
+  Future<String?> getAvatarUrl() async {
+    try {
+      final response = await _usersApi.apiUsersAvatarGet();
+      final url = response.data?.payload?.url;
+      final resolved = MediaUrlResolver.resolveOptional(url, _dio.options.baseUrl);
+      if (resolved != null && resolved.isNotEmpty) return resolved;
+    } catch (e, st) {
+      debugPrint('[ProfileRepo] apiUsersAvatarGet failed, fallback /users/me: $e');
+      debugPrintStack(stackTrace: st);
+    }
     final creds = await _loadUserCredentials();
-    return MediaUrlResolver.resolveOptional(
-      creds.profilePictureUrl,
-      _dio.options.baseUrl,
-    );
+    return MediaUrlResolver.resolveOptional(creds.profilePictureUrl, _dio.options.baseUrl);
   }
 
   @override

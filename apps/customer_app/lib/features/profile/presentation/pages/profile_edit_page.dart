@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/widgets/authenticated_circle_avatar.dart';
+import '../../../../core/utils/image_url_helper.dart';
 import '../../../../domain/entities/note_preference.dart';
 import '../providers/profile_providers.dart';
 
@@ -197,6 +197,7 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
   @override
   Widget build(BuildContext context) {
     final profileAsync = ref.watch(profileControllerProvider);
+    final avatarFromApi = ref.watch(userMeAvatarUrlProvider).asData?.value;
 
     if (!_didLoad) {
       profileAsync.whenData((profile) {
@@ -230,8 +231,13 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                   children: [
                     profileAsync.maybeWhen(
                       data: (p) {
-                        final hasAvatar =
-                            p.avatarUrl != null && p.avatarUrl!.isNotEmpty;
+                        final effectiveAvatarUrl = (avatarFromApi != null &&
+                                avatarFromApi.isNotEmpty)
+                            ? avatarFromApi
+                            : p.avatarUrl;
+                        final hasAvatar = effectiveAvatarUrl != null &&
+                            effectiveAvatarUrl.isNotEmpty;
+                        final avatarUrl = effectiveAvatarUrl ?? '';
                         final initial = (_nameCtrl.text.isNotEmpty
                                 ? _nameCtrl.text[0]
                                 : '?')
@@ -239,19 +245,26 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                         return Stack(
                           alignment: Alignment.center,
                           children: [
-                            AuthenticatedCircleAvatar(
-                              imageUrl: hasAvatar ? p.avatarUrl : null,
+                            CircleAvatar(
                               radius: 48,
                               backgroundColor: AppColors.primaryLight,
-                              loadingIndicatorSize: 28,
-                              placeholder: Text(
-                                initial,
-                                style: const TextStyle(
-                                  fontSize: 36,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primary,
-                                ),
-                              ),
+                              backgroundImage: hasAvatar
+                                  ? NetworkImage(
+                                      ImageUrlHelper.resolve(
+                                        avatarUrl,
+                                      ),
+                                    )
+                                  : null,
+                              child: hasAvatar
+                                  ? null
+                                  : Text(
+                                      initial,
+                                      style: const TextStyle(
+                                        fontSize: 36,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.primary,
+                                      ),
+                                    ),
                             ),
                             if (_uploadingAvatar)
                               Positioned.fill(
