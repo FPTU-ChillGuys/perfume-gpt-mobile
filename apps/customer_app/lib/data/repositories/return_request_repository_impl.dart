@@ -8,15 +8,8 @@ import '../../domain/repositories/return_request_repository.dart';
 class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
   final OrderReturnRequestsApi _api;
   final ShippingsApi _shippingsApi;
-  final Dio _dio;
 
-  static const Map<String, String> _bearerSecure = {
-    'type': 'http',
-    'scheme': 'bearer',
-    'name': 'Bearer',
-  };
-
-  ReturnRequestRepositoryImpl(this._api, this._shippingsApi, this._dio);
+  ReturnRequestRepositoryImpl(this._api, this._shippingsApi);
 
   @override
   Future<PaginatedReturnRequests> getMyRequests({
@@ -98,50 +91,29 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
     final hasVideos = videos != null && videos.isNotEmpty;
     if (!hasImages && !hasVideos) return [];
 
-    // OpenAPI-generated client for this endpoint ships a broken body builder
-    // (empty body + wrong content-type). Use multipart FormData via Dio.
-    final formData = FormData();
+    final imageParts = <MultipartFile>[];
+    final videoParts = <MultipartFile>[];
     if (images != null) {
       for (final img in images) {
-        formData.files.add(
-          MapEntry(
-            'images',
-            await _buildMultipartFile(img, MediaType('image', 'jpeg')),
-          ),
+        imageParts.add(
+          await _buildMultipartFile(img, MediaType('image', 'jpeg')),
         );
       }
     }
     if (videos != null) {
       for (final vid in videos) {
-        formData.files.add(
-          MapEntry(
-            'videos',
-            await _buildMultipartFile(vid, MediaType('video', 'mp4')),
-          ),
+        videoParts.add(
+          await _buildMultipartFile(vid, MediaType('video', 'mp4')),
         );
       }
     }
-    final response = await _dio.post<Map<String, dynamic>>(
-      '/api/orderreturnrequests/videos/temporary',
-      data: formData,
-      options: Options(
-        extra: {'secure': [_bearerSecure]},
-      ),
+    final response = await _api.apiOrderreturnrequestsVideosTemporaryPost(
+      images: imageParts.isEmpty ? null : imageParts,
+      videos: videoParts.isEmpty ? null : videoParts,
     );
-    final payload = response.data;
-    List<dynamic> items = [];
-    if (payload is Map<String, dynamic>) {
-      final inner = payload['payload'];
-      if (inner is Map<String, dynamic>) {
-        final data = inner['data'];
-        if (data is List) items = data;
-      }
-    }
+    final items = response.data?.payload?.data ?? [];
     return items
-        .map<String>((m) {
-          if (m is Map) return (m['id'] ?? '').toString();
-          return '';
-        })
+        .map<String>((m) => (m.id ?? '').toString())
         .where((id) => id.isNotEmpty)
         .toList();
   }
@@ -239,13 +211,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
     };
     debugPrint('[ReturnRequestRepo] create DTO JSON: $body');
     try {
-      await _dio.post<void>(
-        '/api/orderreturnrequests',
-        data: body,
-        options: Options(
-          extra: {'secure': [_bearerSecure]},
-        ),
-      );
+      await _api.apiOrderreturnrequestsPost(createReturnRequestDto: dto);
     } on DioException catch (e) {
       debugPrint(
         '[ReturnRequestRepo] create error status: ${e.response?.statusCode}',

@@ -17,7 +17,7 @@ ProfileRepository profileRepository(Ref ref) {
     apiClient.getScentNotesApi(),
     apiClient.getOlfactoryFamiliesApi(),
     apiClient.getAttributesApi(),
-    apiClient.dio,
+    apiClient.dio.options.baseUrl,
   );
 }
 

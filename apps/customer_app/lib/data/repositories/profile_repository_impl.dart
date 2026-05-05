@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
@@ -14,13 +12,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   final ScentNotesApi _scentNotesApi;
   final OlfactoryFamiliesApi _familiesApi;
   final AttributesApi _attributesApi;
-  final Dio _dio;
-
-  static const Map<String, String> _bearerSecure = {
-    'type': 'http',
-    'scheme': 'bearer',
-    'name': 'Bearer',
-  };
+  final String _apiBaseUrl;
 
   ProfileRepositoryImpl(
     this._usersApi,
@@ -28,7 +20,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     this._scentNotesApi,
     this._familiesApi,
     this._attributesApi,
-    this._dio,
+    this._apiBaseUrl,
   );
 
   static bool _isOk(DioException e) {
@@ -37,36 +29,12 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   Future<UserCredentialsResponse> _loadUserCredentials() async {
-    try {
-      final credentialsResponse = await _usersApi.apiUsersMeGet();
-      final creds = credentialsResponse.data?.payload;
-      if (creds != null) return creds;
-    } catch (e, st) {
-      debugPrint('[ProfileRepo] apiUsersMeGet failed, trying raw JSON: $e');
-      debugPrintStack(stackTrace: st);
+    final credentialsResponse = await _usersApi.apiUsersMeGet();
+    final creds = credentialsResponse.data?.payload;
+    if (creds == null) {
+      throw StateError('GET /api/users/me returned null payload');
     }
-    final response = await _dio.get<dynamic>(
-      '/api/users/me',
-      options: Options(
-        extra: {'secure': [_bearerSecure]},
-      ),
-    );
-    final data = response.data;
-    Map<String, dynamic>? root;
-    if (data is Map<String, dynamic>) {
-      root = data;
-    } else if (data is String && data.trim().isNotEmpty) {
-      final decoded = jsonDecode(data);
-      if (decoded is Map<String, dynamic>) root = decoded;
-    }
-    if (root == null) {
-      throw StateError('GET /api/users/me: could not parse JSON body');
-    }
-    final payload = root['payload'];
-    if (payload is! Map<String, dynamic>) {
-      throw FormatException('GET /api/users/me: missing payload object');
-    }
-    return UserCredentialsResponse.fromJson(payload);
+    return creds;
   }
 
   @override
@@ -74,14 +42,20 @@ class ProfileRepositoryImpl implements ProfileRepository {
     try {
       final response = await _usersApi.apiUsersAvatarGet();
       final url = response.data?.payload?.url;
-      final resolved = MediaUrlResolver.resolveOptional(url, _dio.options.baseUrl);
+      final resolved = MediaUrlResolver.resolveOptional(
+        url,
+        _apiBaseUrl,
+      );
       if (resolved != null && resolved.isNotEmpty) return resolved;
     } catch (e, st) {
       debugPrint('[ProfileRepo] apiUsersAvatarGet failed, fallback /users/me: $e');
       debugPrintStack(stackTrace: st);
     }
     final creds = await _loadUserCredentials();
-    return MediaUrlResolver.resolveOptional(creds.profilePictureUrl, _dio.options.baseUrl);
+    return MediaUrlResolver.resolveOptional(
+      creds.profilePictureUrl,
+      _apiBaseUrl,
+    );
   }
 
   @override
@@ -97,10 +71,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
       debugPrintStack(stackTrace: st);
     }
 
-    final baseUrl = _dio.options.baseUrl;
     final avatarUrl = MediaUrlResolver.resolveOptional(
       creds.profilePictureUrl,
-      baseUrl,
+      _apiBaseUrl,
     );
 
     return UserProfile(
