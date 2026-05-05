@@ -12,15 +12,16 @@ Future<List<ImportTicketListItem>> importTickets(
   final apiClient = ref.watch(apiClientProvider);
 
   final response = await apiClient.getImportTicketsApi().apiImportticketsGet(
-        status: status,
-        pageSize: 100, // Fetch a large number for now, or implement pagination later
-        sortBy: 'ActualImportDate',
-        sortOrder: 'desc',
-      );
+    status: status,
+    pageSize:
+        100, // Fetch a large number for now, or implement pagination later
+    sortBy: 'ActualImportDate',
+    sortOrder: 'desc',
+  );
 
   if (response.data == null || response.data!.payload == null) {
     throw Exception('Failed to fetch import tickets');
   }
 
-  return response.data!.payload!.items?.toList() ?? [];
+  return response.data!.payload!.items.toList();
 }
