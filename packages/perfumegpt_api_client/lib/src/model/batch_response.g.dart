@@ -19,6 +19,8 @@ abstract class _$BatchResponseCWProxy {
 
   BatchResponse remainingQuantity(int? remainingQuantity);
 
+  BatchResponse availableQuantity(int? availableQuantity);
+
   BatchResponse createdAt(DateTime? createdAt);
 
   /// Creates a new instance with the provided field values.
@@ -35,6 +37,7 @@ abstract class _$BatchResponseCWProxy {
     DateTime? expiryDate,
     int? importQuantity,
     int? remainingQuantity,
+    int? availableQuantity,
     DateTime? createdAt,
   });
 }
@@ -69,6 +72,10 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
       call(remainingQuantity: remainingQuantity);
 
   @override
+  BatchResponse availableQuantity(int? availableQuantity) =>
+      call(availableQuantity: availableQuantity);
+
+  @override
   BatchResponse createdAt(DateTime? createdAt) => call(createdAt: createdAt);
 
   @override
@@ -86,6 +93,7 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
     Object? expiryDate = const $CopyWithPlaceholder(),
     Object? importQuantity = const $CopyWithPlaceholder(),
     Object? remainingQuantity = const $CopyWithPlaceholder(),
+    Object? availableQuantity = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
   }) {
     return BatchResponse(
@@ -113,6 +121,10 @@ class _$BatchResponseCWProxyImpl implements _$BatchResponseCWProxy {
           ? _value.remainingQuantity
           // ignore: cast_nullable_to_non_nullable
           : remainingQuantity as int?,
+      availableQuantity: availableQuantity == const $CopyWithPlaceholder()
+          ? _value.availableQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : availableQuantity as int?,
       createdAt: createdAt == const $CopyWithPlaceholder()
           ? _value.createdAt
           // ignore: cast_nullable_to_non_nullable
@@ -154,6 +166,10 @@ BatchResponse _$BatchResponseFromJson(Map<String, dynamic> json) =>
           'remainingQuantity',
           (v) => (v as num?)?.toInt(),
         ),
+        availableQuantity: $checkedConvert(
+          'availableQuantity',
+          (v) => (v as num?)?.toInt(),
+        ),
         createdAt: $checkedConvert(
           'createdAt',
           (v) => v == null ? null : DateTime.parse(v as String),
@@ -170,5 +186,6 @@ Map<String, dynamic> _$BatchResponseToJson(BatchResponse instance) =>
       'expiryDate': ?instance.expiryDate?.toIso8601String(),
       'importQuantity': ?instance.importQuantity,
       'remainingQuantity': ?instance.remainingQuantity,
+      'availableQuantity': ?instance.availableQuantity,
       'createdAt': ?instance.createdAt?.toIso8601String(),
     };

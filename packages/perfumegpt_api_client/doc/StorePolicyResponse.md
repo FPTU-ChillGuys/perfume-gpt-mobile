@@ -14,6 +14,12 @@ Name | Type | Description | Notes
 **isDepositRequiredForCOD** | **bool** |  | [optional] 
 **reviewRewardPoints** | **int** |  | [optional] 
 **stockAdjustmentAutoApprovalThreshold** | **int** |  | [optional] 
+**orderRewardPointsInDays** | **int** |  | [optional] 
+**batchExpiringSoonThresholdInDays** | **int** |  | [optional] 
+**stopSellingBeforeExpiryDays** | **int** |  | [optional] 
+**clearanceBufferDays** | **int** |  | [optional] 
+**returnOrderAllowanceInDays** | **int** |  | [optional] 
+**maxAddressesPerUser** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

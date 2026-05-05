@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **expiryDate** | [**DateTime**](DateTime.md) |  | [optional] 
 **importQuantity** | **int** |  | [optional] 
 **remainingQuantity** | **int** |  | [optional] 
+**availableQuantity** | **int** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

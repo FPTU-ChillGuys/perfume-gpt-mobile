@@ -62,6 +62,8 @@ class OrderReturnRequestResponse {
 
      this.isRefundOnly,
 
+     this.isReturnInStore,
+
      this.refundBankName,
 
      this.refundAccountName,
@@ -313,6 +315,18 @@ class OrderReturnRequestResponse {
 
   @JsonKey(
     
+    name: r'isReturnInStore',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final bool? isReturnInStore;
+
+
+
+  @JsonKey(
+    
     name: r'refundBankName',
     required: false,
     includeIfNull: false,
@@ -454,6 +468,7 @@ class OrderReturnRequestResponse {
       other.approvedRefundAmount == approvedRefundAmount &&
       other.isRefunded == isRefunded &&
       other.isRefundOnly == isRefundOnly &&
+      other.isReturnInStore == isReturnInStore &&
       other.refundBankName == refundBankName &&
       other.refundAccountName == refundAccountName &&
       other.refundAccountNumber == refundAccountNumber &&
@@ -470,7 +485,7 @@ class OrderReturnRequestResponse {
         id.hashCode +
         orderId.hashCode +
         orderCode.hashCode +
-        customerId.hashCode +
+        (customerId == null ? 0 : customerId.hashCode) +
         (customerEmail == null ? 0 : customerEmail.hashCode) +
         (processedById == null ? 0 : processedById.hashCode) +
         (processedByName == null ? 0 : processedByName.hashCode) +
@@ -486,6 +501,7 @@ class OrderReturnRequestResponse {
         (approvedRefundAmount == null ? 0 : approvedRefundAmount.hashCode) +
         isRefunded.hashCode +
         isRefundOnly.hashCode +
+        isReturnInStore.hashCode +
         (refundBankName == null ? 0 : refundBankName.hashCode) +
         (refundAccountName == null ? 0 : refundAccountName.hashCode) +
         (refundAccountNumber == null ? 0 : refundAccountNumber.hashCode) +

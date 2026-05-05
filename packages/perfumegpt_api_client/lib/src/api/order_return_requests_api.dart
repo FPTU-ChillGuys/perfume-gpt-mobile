@@ -15,6 +15,7 @@ import 'package:perfumegpt_api_client/src/model/base_response_of_order_return_re
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_order_return_request_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/create_return_request_dto.dart';
+import 'package:perfumegpt_api_client/src/model/process_in_store_return_fast_track_dto.dart';
 import 'package:perfumegpt_api_client/src/model/process_initial_return_dto.dart';
 import 'package:perfumegpt_api_client/src/model/process_refund_request.dart';
 import 'package:perfumegpt_api_client/src/model/record_inspection_dto.dart';
@@ -122,6 +123,102 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     }
 
     return Response<BaseResponseOfPagedResultOfOrderReturnRequestResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiOrderreturnrequestsGuestOnBehalfPost
+  /// 
+  ///
+  /// Parameters:
+  /// * [createReturnRequestDto] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BaseResponseOfstring>> apiOrderreturnrequestsGuestOnBehalfPost({ 
+    required CreateReturnRequestDto createReturnRequestDto,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/orderreturnrequests/guest-on-behalf';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+_bodyData=jsonEncode(createReturnRequestDto);
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BaseResponseOfstring? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BaseResponseOfstring>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -828,6 +925,102 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
 
     try {
 _bodyData=jsonEncode(startInspectionDto);
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BaseResponseOfstring? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BaseResponseOfstring>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiOrderreturnrequestsInStoreFastTrackPost
+  /// 
+  ///
+  /// Parameters:
+  /// * [processInStoreReturnFastTrackDto] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BaseResponseOfstring>> apiOrderreturnrequestsInStoreFastTrackPost({ 
+    required ProcessInStoreReturnFastTrackDto processInStoreReturnFastTrackDto,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/orderreturnrequests/in-store-fast-track';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'Bearer',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+_bodyData=jsonEncode(processInStoreReturnFastTrackDto);
     } catch(error, stackTrace) {
       throw DioException(
          requestOptions: _options.compose(

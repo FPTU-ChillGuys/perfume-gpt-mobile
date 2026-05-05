@@ -33,6 +33,8 @@ abstract class _$ProductVariantResponseCWProxy {
 
   ProductVariantResponse longevity(int? longevity);
 
+  ProductVariantResponse restockPolicy(ReplenishmentPolicy? restockPolicy);
+
   ProductVariantResponse productId(String? productId);
 
   ProductVariantResponse productName(String productName);
@@ -72,6 +74,7 @@ abstract class _$ProductVariantResponseCWProxy {
     int? stockQuantity,
     int? sillage,
     int? longevity,
+    ReplenishmentPolicy? restockPolicy,
     String? productId,
     String productName,
     List<MediaResponse> media,
@@ -137,6 +140,10 @@ class _$ProductVariantResponseCWProxyImpl
       call(longevity: longevity);
 
   @override
+  ProductVariantResponse restockPolicy(ReplenishmentPolicy? restockPolicy) =>
+      call(restockPolicy: restockPolicy);
+
+  @override
   ProductVariantResponse productId(String? productId) =>
       call(productId: productId);
 
@@ -191,6 +198,7 @@ class _$ProductVariantResponseCWProxyImpl
     Object? stockQuantity = const $CopyWithPlaceholder(),
     Object? sillage = const $CopyWithPlaceholder(),
     Object? longevity = const $CopyWithPlaceholder(),
+    Object? restockPolicy = const $CopyWithPlaceholder(),
     Object? productId = const $CopyWithPlaceholder(),
     Object? productName = const $CopyWithPlaceholder(),
     Object? media = const $CopyWithPlaceholder(),
@@ -255,6 +263,10 @@ class _$ProductVariantResponseCWProxyImpl
           ? _value.longevity
           // ignore: cast_nullable_to_non_nullable
           : longevity as int?,
+      restockPolicy: restockPolicy == const $CopyWithPlaceholder()
+          ? _value.restockPolicy
+          // ignore: cast_nullable_to_non_nullable
+          : restockPolicy as ReplenishmentPolicy?,
       productId: productId == const $CopyWithPlaceholder()
           ? _value.productId
           // ignore: cast_nullable_to_non_nullable
@@ -344,6 +356,10 @@ ProductVariantResponse _$ProductVariantResponseFromJson(
     ),
     sillage: $checkedConvert('sillage', (v) => (v as num?)?.toInt()),
     longevity: $checkedConvert('longevity', (v) => (v as num?)?.toInt()),
+    restockPolicy: $checkedConvert(
+      'restockPolicy',
+      (v) => $enumDecodeNullable(_$ReplenishmentPolicyEnumMap, v),
+    ),
     productId: $checkedConvert('productId', (v) => v as String?),
     productName: $checkedConvert('productName', (v) => v as String),
     media: $checkedConvert(
@@ -394,6 +410,7 @@ Map<String, dynamic> _$ProductVariantResponseToJson(
   'stockQuantity': ?instance.stockQuantity,
   'sillage': ?instance.sillage,
   'longevity': ?instance.longevity,
+  'restockPolicy': ?_$ReplenishmentPolicyEnumMap[instance.restockPolicy],
   'productId': ?instance.productId,
   'productName': instance.productName,
   'media': instance.media.map((e) => e.toJson()).toList(),
@@ -415,4 +432,10 @@ const _$VariantStatusEnumMap = {
   VariantStatus.active: 'Active',
   VariantStatus.inactive: 'Inactive',
   VariantStatus.discontinued: 'Discontinued',
+};
+
+const _$ReplenishmentPolicyEnumMap = {
+  ReplenishmentPolicy.autoRestock: 'AutoRestock',
+  ReplenishmentPolicy.manualOnly: 'ManualOnly',
+  ReplenishmentPolicy.doNotRestock: 'DoNotRestock',
 };

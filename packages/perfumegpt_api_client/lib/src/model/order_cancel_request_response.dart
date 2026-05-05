@@ -3,7 +3,9 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/transaction_status.dart';
 import 'package:perfumegpt_api_client/src/model/cancel_request_status.dart';
+import 'package:perfumegpt_api_client/src/model/payment_method.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -56,6 +58,12 @@ class OrderCancelRequestResponse {
      this.createdAt,
 
      this.updatedAt,
+
+     this.refundedPaymentStatus,
+
+     this.refundedPaymentMethod,
+
+     this.refundedAmount,
   });
 
   @JsonKey(
@@ -274,6 +282,42 @@ class OrderCancelRequestResponse {
 
 
 
+  @JsonKey(
+    
+    name: r'refundedPaymentStatus',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final TransactionStatus? refundedPaymentStatus;
+
+
+
+  @JsonKey(
+    
+    name: r'refundedPaymentMethod',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final PaymentMethod? refundedPaymentMethod;
+
+
+
+  @JsonKey(
+    
+    name: r'refundedAmount',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? refundedAmount;
+
+
+
 
 
     @override
@@ -295,7 +339,10 @@ class OrderCancelRequestResponse {
       other.refundAccountNumber == refundAccountNumber &&
       other.vnpTransactionNo == vnpTransactionNo &&
       other.createdAt == createdAt &&
-      other.updatedAt == updatedAt;
+      other.updatedAt == updatedAt &&
+      other.refundedPaymentStatus == refundedPaymentStatus &&
+      other.refundedPaymentMethod == refundedPaymentMethod &&
+      other.refundedAmount == refundedAmount;
 
     @override
     int get hashCode =>
@@ -316,7 +363,10 @@ class OrderCancelRequestResponse {
         (refundAccountNumber == null ? 0 : refundAccountNumber.hashCode) +
         (vnpTransactionNo == null ? 0 : vnpTransactionNo.hashCode) +
         createdAt.hashCode +
-        (updatedAt == null ? 0 : updatedAt.hashCode);
+        (updatedAt == null ? 0 : updatedAt.hashCode) +
+        refundedPaymentStatus.hashCode +
+        refundedPaymentMethod.hashCode +
+        refundedAmount.hashCode;
 
   factory OrderCancelRequestResponse.fromJson(Map<String, dynamic> json) => _$OrderCancelRequestResponseFromJson(json);
 

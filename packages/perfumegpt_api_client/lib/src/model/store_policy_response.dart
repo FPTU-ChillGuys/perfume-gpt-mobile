@@ -31,6 +31,18 @@ class StorePolicyResponse {
      this.reviewRewardPoints,
 
      this.stockAdjustmentAutoApprovalThreshold,
+
+     this.orderRewardPointsInDays,
+
+     this.batchExpiringSoonThresholdInDays,
+
+     this.stopSellingBeforeExpiryDays,
+
+     this.clearanceBufferDays,
+
+     this.returnOrderAllowanceInDays,
+
+     this.maxAddressesPerUser,
   });
 
   @JsonKey(
@@ -105,6 +117,78 @@ class StorePolicyResponse {
 
 
 
+  @JsonKey(
+    
+    name: r'orderRewardPointsInDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? orderRewardPointsInDays;
+
+
+
+  @JsonKey(
+    
+    name: r'batchExpiringSoonThresholdInDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? batchExpiringSoonThresholdInDays;
+
+
+
+  @JsonKey(
+    
+    name: r'stopSellingBeforeExpiryDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? stopSellingBeforeExpiryDays;
+
+
+
+  @JsonKey(
+    
+    name: r'clearanceBufferDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? clearanceBufferDays;
+
+
+
+  @JsonKey(
+    
+    name: r'returnOrderAllowanceInDays',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? returnOrderAllowanceInDays;
+
+
+
+  @JsonKey(
+    
+    name: r'maxAddressesPerUser',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? maxAddressesPerUser;
+
+
+
 
 
     @override
@@ -114,7 +198,13 @@ class StorePolicyResponse {
       other.depositTimeoutMinutes == depositTimeoutMinutes &&
       other.isDepositRequiredForCOD == isDepositRequiredForCOD &&
       other.reviewRewardPoints == reviewRewardPoints &&
-      other.stockAdjustmentAutoApprovalThreshold == stockAdjustmentAutoApprovalThreshold;
+      other.stockAdjustmentAutoApprovalThreshold == stockAdjustmentAutoApprovalThreshold &&
+      other.orderRewardPointsInDays == orderRewardPointsInDays &&
+      other.batchExpiringSoonThresholdInDays == batchExpiringSoonThresholdInDays &&
+      other.stopSellingBeforeExpiryDays == stopSellingBeforeExpiryDays &&
+      other.clearanceBufferDays == clearanceBufferDays &&
+      other.returnOrderAllowanceInDays == returnOrderAllowanceInDays &&
+      other.maxAddressesPerUser == maxAddressesPerUser;
 
     @override
     int get hashCode =>
@@ -123,7 +213,13 @@ class StorePolicyResponse {
         depositTimeoutMinutes.hashCode +
         isDepositRequiredForCOD.hashCode +
         reviewRewardPoints.hashCode +
-        stockAdjustmentAutoApprovalThreshold.hashCode;
+        stockAdjustmentAutoApprovalThreshold.hashCode +
+        orderRewardPointsInDays.hashCode +
+        batchExpiringSoonThresholdInDays.hashCode +
+        stopSellingBeforeExpiryDays.hashCode +
+        clearanceBufferDays.hashCode +
+        returnOrderAllowanceInDays.hashCode +
+        maxAddressesPerUser.hashCode;
 
   factory StorePolicyResponse.fromJson(Map<String, dynamic> json) => _$StorePolicyResponseFromJson(json);
 

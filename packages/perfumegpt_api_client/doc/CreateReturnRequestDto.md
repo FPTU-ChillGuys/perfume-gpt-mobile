@@ -9,6 +9,7 @@ import 'package:perfumegpt_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **orderId** | **String** |  | 
+**orderCode** | **String** |  | 
 **reason** | [**ReturnOrderReason**](ReturnOrderReason.md) |  | 
 **isRefundOnly** | **bool** |  | [optional] 
 **returnItems** | [**List&lt;ReturnItemDto&gt;**](ReturnItemDto.md) |  | 

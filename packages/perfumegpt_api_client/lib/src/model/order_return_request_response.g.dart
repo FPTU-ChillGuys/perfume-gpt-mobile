@@ -45,6 +45,8 @@ abstract class _$OrderReturnRequestResponseCWProxy {
 
   OrderReturnRequestResponse isRefundOnly(bool? isRefundOnly);
 
+  OrderReturnRequestResponse isReturnInStore(bool? isReturnInStore);
+
   OrderReturnRequestResponse refundBankName(String? refundBankName);
 
   OrderReturnRequestResponse refundAccountName(String? refundAccountName);
@@ -96,6 +98,7 @@ abstract class _$OrderReturnRequestResponseCWProxy {
     num? approvedRefundAmount,
     bool? isRefunded,
     bool? isRefundOnly,
+    bool? isReturnInStore,
     String? refundBankName,
     String? refundAccountName,
     String? refundAccountNumber,
@@ -192,6 +195,10 @@ class _$OrderReturnRequestResponseCWProxyImpl
       call(isRefundOnly: isRefundOnly);
 
   @override
+  OrderReturnRequestResponse isReturnInStore(bool? isReturnInStore) =>
+      call(isReturnInStore: isReturnInStore);
+
+  @override
   OrderReturnRequestResponse refundBankName(String? refundBankName) =>
       call(refundBankName: refundBankName);
 
@@ -261,6 +268,7 @@ class _$OrderReturnRequestResponseCWProxyImpl
     Object? approvedRefundAmount = const $CopyWithPlaceholder(),
     Object? isRefunded = const $CopyWithPlaceholder(),
     Object? isRefundOnly = const $CopyWithPlaceholder(),
+    Object? isReturnInStore = const $CopyWithPlaceholder(),
     Object? refundBankName = const $CopyWithPlaceholder(),
     Object? refundAccountName = const $CopyWithPlaceholder(),
     Object? refundAccountNumber = const $CopyWithPlaceholder(),
@@ -350,6 +358,10 @@ class _$OrderReturnRequestResponseCWProxyImpl
           ? _value.isRefundOnly
           // ignore: cast_nullable_to_non_nullable
           : isRefundOnly as bool?,
+      isReturnInStore: isReturnInStore == const $CopyWithPlaceholder()
+          ? _value.isReturnInStore
+          // ignore: cast_nullable_to_non_nullable
+          : isReturnInStore as bool?,
       refundBankName: refundBankName == const $CopyWithPlaceholder()
           ? _value.refundBankName
           // ignore: cast_nullable_to_non_nullable
@@ -442,6 +454,7 @@ OrderReturnRequestResponse _$OrderReturnRequestResponseFromJson(
     ),
     isRefunded: $checkedConvert('isRefunded', (v) => v as bool?),
     isRefundOnly: $checkedConvert('isRefundOnly', (v) => v as bool?),
+    isReturnInStore: $checkedConvert('isReturnInStore', (v) => v as bool?),
     refundBankName: $checkedConvert('refundBankName', (v) => v as String?),
     refundAccountName: $checkedConvert(
       'refundAccountName',
@@ -509,6 +522,7 @@ Map<String, dynamic> _$OrderReturnRequestResponseToJson(
   'approvedRefundAmount': ?instance.approvedRefundAmount,
   'isRefunded': ?instance.isRefunded,
   'isRefundOnly': ?instance.isRefundOnly,
+  'isReturnInStore': ?instance.isReturnInStore,
   'refundBankName': ?instance.refundBankName,
   'refundAccountName': ?instance.refundAccountName,
   'refundAccountNumber': ?instance.refundAccountNumber,

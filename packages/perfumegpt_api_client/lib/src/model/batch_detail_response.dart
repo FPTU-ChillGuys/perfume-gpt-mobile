@@ -46,6 +46,8 @@ class BatchDetailResponse {
 
      this.remainingQuantity,
 
+     this.availableQuantity,
+
      this.createdAt,
   });
 
@@ -207,6 +209,18 @@ class BatchDetailResponse {
 
   @JsonKey(
     
+    name: r'availableQuantity',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? availableQuantity;
+
+
+
+  @JsonKey(
+    
     name: r'createdAt',
     required: false,
     includeIfNull: false,
@@ -234,6 +248,7 @@ class BatchDetailResponse {
       other.expiryDate == expiryDate &&
       other.importQuantity == importQuantity &&
       other.remainingQuantity == remainingQuantity &&
+      other.availableQuantity == availableQuantity &&
       other.createdAt == createdAt;
 
     @override
@@ -251,6 +266,7 @@ class BatchDetailResponse {
         expiryDate.hashCode +
         importQuantity.hashCode +
         remainingQuantity.hashCode +
+        availableQuantity.hashCode +
         createdAt.hashCode;
 
   factory BatchDetailResponse.fromJson(Map<String, dynamic> json) => _$BatchDetailResponseFromJson(json);

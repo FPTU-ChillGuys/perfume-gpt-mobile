@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:perfumegpt_api_client/src/model/daily_revenue_item.dart';
+import 'package:perfumegpt_api_client/src/model/payment_method_distribution_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -33,6 +35,12 @@ class RevenueSummaryResponse {
      this.successfulTransactionsCount,
 
      this.paidOrdersCount,
+
+     this.paymentMethodDistribution,
+
+     this.aov,
+
+     this.chartData,
   });
 
   @JsonKey(
@@ -119,6 +127,42 @@ class RevenueSummaryResponse {
 
 
 
+  @JsonKey(
+    
+    name: r'paymentMethodDistribution',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final List<PaymentMethodDistributionResponse>? paymentMethodDistribution;
+
+
+
+  @JsonKey(
+    
+    name: r'aov',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final num? aov;
+
+
+
+  @JsonKey(
+    
+    name: r'chartData',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final List<DailyRevenueItem>? chartData;
+
+
+
 
 
     @override
@@ -129,7 +173,10 @@ class RevenueSummaryResponse {
       other.refundedAmount == refundedAmount &&
       other.netRevenue == netRevenue &&
       other.successfulTransactionsCount == successfulTransactionsCount &&
-      other.paidOrdersCount == paidOrdersCount;
+      other.paidOrdersCount == paidOrdersCount &&
+      other.paymentMethodDistribution == paymentMethodDistribution &&
+      other.aov == aov &&
+      other.chartData == chartData;
 
     @override
     int get hashCode =>
@@ -139,7 +186,10 @@ class RevenueSummaryResponse {
         refundedAmount.hashCode +
         netRevenue.hashCode +
         successfulTransactionsCount.hashCode +
-        paidOrdersCount.hashCode;
+        paidOrdersCount.hashCode +
+        paymentMethodDistribution.hashCode +
+        aov.hashCode +
+        chartData.hashCode;
 
   factory RevenueSummaryResponse.fromJson(Map<String, dynamic> json) => _$RevenueSummaryResponseFromJson(json);
 

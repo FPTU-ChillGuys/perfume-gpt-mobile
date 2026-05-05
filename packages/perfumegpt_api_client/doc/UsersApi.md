@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**apiUsersMePut**](UsersApi.md#apiusersmeput) | **PUT** /api/users/me | 
 [**apiUsersStaffLookupGet**](UsersApi.md#apiusersstafflookupget) | **GET** /api/users/staff-lookup | 
 [**apiUsersStaffManageGet**](UsersApi.md#apiusersstaffmanageget) | **GET** /api/users/staff-manage | 
+[**apiUsersUserLookupGet**](UsersApi.md#apiusersuserlookupget) | **GET** /api/users/user-lookup | 
 [**apiUsersUserManageGet**](UsersApi.md#apiusersusermanageget) | **GET** /api/users/user-manage | 
 [**apiUsersUserUserIdInactivePut**](UsersApi.md#apiusersuseruseridinactiveput) | **PUT** /api/users/user/{userId}/inactive | 
 
@@ -361,6 +362,51 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**BaseResponseOfListOfStaffManageItem**](BaseResponseOfListOfStaffManageItem.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **apiUsersUserLookupGet**
+> BaseResponseOfListOfUserLookupItem apiUsersUserLookupGet(fullName, email, phoneNumber)
+
+
+
+### Example
+```dart
+import 'package:perfumegpt_api_client/api.dart';
+
+final api = PerfumegptApiClient().getUsersApi();
+final String fullName = fullName_example; // String | 
+final String email = email_example; // String | 
+final String phoneNumber = phoneNumber_example; // String | 
+
+try {
+    final response = api.apiUsersUserLookupGet(fullName, email, phoneNumber);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling UsersApi->apiUsersUserLookupGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fullName** | **String**|  | [optional] 
+ **email** | **String**|  | [optional] 
+ **phoneNumber** | **String**|  | [optional] 
+
+### Return type
+
+[**BaseResponseOfListOfUserLookupItem**](BaseResponseOfListOfUserLookupItem.md)
 
 ### Authorization
 

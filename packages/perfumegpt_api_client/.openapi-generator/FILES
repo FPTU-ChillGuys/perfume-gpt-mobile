@@ -6,7 +6,6 @@ doc/AddressApi.md
 doc/AddressLevel4Response.md
 doc/AddressResponse.md
 doc/AdminDashboardApi.md
-doc/AdminDashboardOverviewResponse.md
 doc/AnswerReviewRequest.md
 doc/ApplicableVoucherCartItemRequest.md
 doc/ApplicableVoucherResponse.md
@@ -21,7 +20,6 @@ doc/BannersApi.md
 doc/BaseResponse.md
 doc/BaseResponseOfAddressLevel4Response.md
 doc/BaseResponseOfAddressResponse.md
-doc/BaseResponseOfAdminDashboardOverviewResponse.md
 doc/BaseResponseOfBannerResponse.md
 doc/BaseResponseOfBatchDetailResponse.md
 doc/BaseResponseOfBrandResponse.md
@@ -72,6 +70,7 @@ doc/BaseResponseOfListOfStaffManageItem.md
 doc/BaseResponseOfListOfSupplierLookupItem.md
 doc/BaseResponseOfListOfSupplierResponse.md
 doc/BaseResponseOfListOfTopProductResponse.md
+doc/BaseResponseOfListOfUserLookupItem.md
 doc/BaseResponseOfListOfUserManageItem.md
 doc/BaseResponseOfListOfVariantLookupItem.md
 doc/BaseResponseOfListOfVoucherResponse.md
@@ -199,6 +198,7 @@ doc/CustomerAttributePreferenceResponse.md
 doc/CustomerFamilyPreferenceRespone.md
 doc/CustomerForPosResponse.md
 doc/CustomerNotePreferenceResponse.md
+doc/DailyRevenueItem.md
 doc/DeliverInStoreRequest.md
 doc/DeliveryMethod.md
 doc/DepositPolicyPreviewResponse.md
@@ -279,6 +279,7 @@ doc/PagesApi.md
 doc/PaymentInfoResponse.md
 doc/PaymentInformation.md
 doc/PaymentMethod.md
+doc/PaymentMethodDistributionResponse.md
 doc/PaymentStatus.md
 doc/PaymentTransactionAdminItemResponse.md
 doc/PaymentTransactionOverviewResponse.md
@@ -294,6 +295,7 @@ doc/PreviewPosOrderRequest.md
 doc/PreviewPosOrderResponse.md
 doc/ProblemDetails.md
 doc/ProcessCancelRequest.md
+doc/ProcessInStoreReturnFastTrackDto.md
 doc/ProcessInitialReturnDto.md
 doc/ProcessRefundRequest.md
 doc/ProductAttributeDto.md
@@ -402,6 +404,7 @@ doc/UpdateProfileRequest.md
 doc/UpdateReturnRequestDto.md
 doc/UpdateScentNoteRequest.md
 doc/UpdateStockAdjustmentStatusRequest.md
+doc/UpdateStockRequest.md
 doc/UpdateStorePolicyRequest.md
 doc/UpdateSupplierRequest.md
 doc/UpdateUserBasicInfoRequest.md
@@ -410,6 +413,7 @@ doc/UpdateVoucherRequest.md
 doc/UsageStatus.md
 doc/UserCancelOrderRequest.md
 doc/UserCredentialsResponse.md
+doc/UserLookupItem.md
 doc/UserManageItem.md
 doc/UserOrderResponse.md
 doc/UserRole.md
@@ -476,7 +480,6 @@ lib/src/auth/oauth.dart
 lib/src/deserialize.dart
 lib/src/model/address_level4_response.dart
 lib/src/model/address_response.dart
-lib/src/model/admin_dashboard_overview_response.dart
 lib/src/model/answer_review_request.dart
 lib/src/model/applicable_voucher_cart_item_request.dart
 lib/src/model/applicable_voucher_response.dart
@@ -488,7 +491,6 @@ lib/src/model/banner_response.dart
 lib/src/model/base_response.dart
 lib/src/model/base_response_of_address_level4_response.dart
 lib/src/model/base_response_of_address_response.dart
-lib/src/model/base_response_of_admin_dashboard_overview_response.dart
 lib/src/model/base_response_of_banner_response.dart
 lib/src/model/base_response_of_batch_detail_response.dart
 lib/src/model/base_response_of_brand_response.dart
@@ -539,6 +541,7 @@ lib/src/model/base_response_of_list_of_staff_manage_item.dart
 lib/src/model/base_response_of_list_of_supplier_lookup_item.dart
 lib/src/model/base_response_of_list_of_supplier_response.dart
 lib/src/model/base_response_of_list_of_top_product_response.dart
+lib/src/model/base_response_of_list_of_user_lookup_item.dart
 lib/src/model/base_response_of_list_of_user_manage_item.dart
 lib/src/model/base_response_of_list_of_variant_lookup_item.dart
 lib/src/model/base_response_of_list_of_voucher_response.dart
@@ -660,6 +663,7 @@ lib/src/model/customer_attribute_preference_response.dart
 lib/src/model/customer_family_preference_respone.dart
 lib/src/model/customer_for_pos_response.dart
 lib/src/model/customer_note_preference_response.dart
+lib/src/model/daily_revenue_item.dart
 lib/src/model/deliver_in_store_request.dart
 lib/src/model/delivery_method.dart
 lib/src/model/deposit_policy_preview_response.dart
@@ -730,6 +734,7 @@ lib/src/model/paged_result_of_voucher_response.dart
 lib/src/model/payment_info_response.dart
 lib/src/model/payment_information.dart
 lib/src/model/payment_method.dart
+lib/src/model/payment_method_distribution_response.dart
 lib/src/model/payment_status.dart
 lib/src/model/payment_transaction_admin_item_response.dart
 lib/src/model/payment_transaction_overview_response.dart
@@ -743,13 +748,13 @@ lib/src/model/preview_pos_order_request.dart
 lib/src/model/preview_pos_order_response.dart
 lib/src/model/problem_details.dart
 lib/src/model/process_cancel_request.dart
+lib/src/model/process_in_store_return_fast_track_dto.dart
 lib/src/model/process_initial_return_dto.dart
 lib/src/model/process_refund_request.dart
 lib/src/model/product_attribute_dto.dart
 lib/src/model/product_attribute_response.dart
 lib/src/model/product_daily_sale_figure_response.dart
 lib/src/model/product_fast_look_response.dart
-lib/src/model/product_image_upload_item.dart
 lib/src/model/product_infor_response.dart
 lib/src/model/product_list_item.dart
 lib/src/model/product_lookup_item.dart
@@ -841,6 +846,7 @@ lib/src/model/update_profile_request.dart
 lib/src/model/update_return_request_dto.dart
 lib/src/model/update_scent_note_request.dart
 lib/src/model/update_stock_adjustment_status_request.dart
+lib/src/model/update_stock_request.dart
 lib/src/model/update_store_policy_request.dart
 lib/src/model/update_supplier_request.dart
 lib/src/model/update_user_basic_info_request.dart
@@ -849,13 +855,13 @@ lib/src/model/update_voucher_request.dart
 lib/src/model/usage_status.dart
 lib/src/model/user_cancel_order_request.dart
 lib/src/model/user_credentials_response.dart
+lib/src/model/user_lookup_item.dart
 lib/src/model/user_manage_item.dart
 lib/src/model/user_order_response.dart
 lib/src/model/user_role.dart
 lib/src/model/user_voucher_response.dart
 lib/src/model/variant_daily_sale_figure.dart
 lib/src/model/variant_fast_look_response.dart
-lib/src/model/variant_image_upload_item.dart
 lib/src/model/variant_lookup_item.dart
 lib/src/model/variant_paged_item.dart
 lib/src/model/variant_status.dart
@@ -868,3 +874,9 @@ lib/src/model/verify_stock_adjustment_request.dart
 lib/src/model/voucher_response.dart
 lib/src/model/voucher_type.dart
 lib/src/model/ward_response.dart
+test/base_response_of_list_of_user_lookup_item_test.dart
+test/daily_revenue_item_test.dart
+test/payment_method_distribution_response_test.dart
+test/process_in_store_return_fast_track_dto_test.dart
+test/update_stock_request_test.dart
+test/user_lookup_item_test.dart

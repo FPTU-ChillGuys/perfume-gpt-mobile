@@ -59,7 +59,7 @@ class CreatePickupPaymentRequest {
 
     @override
     int get hashCode =>
-        (paymentMethod == null ? 0 : paymentMethod.hashCode) +
+        paymentMethod.hashCode +
         (posSessionId == null ? 0 : posSessionId.hashCode);
 
   factory CreatePickupPaymentRequest.fromJson(Map<String, dynamic> json) => _$CreatePickupPaymentRequestFromJson(json);

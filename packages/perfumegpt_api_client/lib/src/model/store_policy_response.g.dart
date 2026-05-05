@@ -21,6 +21,24 @@ abstract class _$StorePolicyResponseCWProxy {
     int? stockAdjustmentAutoApprovalThreshold,
   );
 
+  StorePolicyResponse orderRewardPointsInDays(int? orderRewardPointsInDays);
+
+  StorePolicyResponse batchExpiringSoonThresholdInDays(
+    int? batchExpiringSoonThresholdInDays,
+  );
+
+  StorePolicyResponse stopSellingBeforeExpiryDays(
+    int? stopSellingBeforeExpiryDays,
+  );
+
+  StorePolicyResponse clearanceBufferDays(int? clearanceBufferDays);
+
+  StorePolicyResponse returnOrderAllowanceInDays(
+    int? returnOrderAllowanceInDays,
+  );
+
+  StorePolicyResponse maxAddressesPerUser(int? maxAddressesPerUser);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StorePolicyResponse(...).copyWith.fieldName(value)`.
   ///
@@ -35,6 +53,12 @@ abstract class _$StorePolicyResponseCWProxy {
     bool? isDepositRequiredForCOD,
     int? reviewRewardPoints,
     int? stockAdjustmentAutoApprovalThreshold,
+    int? orderRewardPointsInDays,
+    int? batchExpiringSoonThresholdInDays,
+    int? stopSellingBeforeExpiryDays,
+    int? clearanceBufferDays,
+    int? returnOrderAllowanceInDays,
+    int? maxAddressesPerUser,
   });
 }
 
@@ -73,6 +97,33 @@ class _$StorePolicyResponseCWProxyImpl implements _$StorePolicyResponseCWProxy {
   );
 
   @override
+  StorePolicyResponse orderRewardPointsInDays(int? orderRewardPointsInDays) =>
+      call(orderRewardPointsInDays: orderRewardPointsInDays);
+
+  @override
+  StorePolicyResponse batchExpiringSoonThresholdInDays(
+    int? batchExpiringSoonThresholdInDays,
+  ) => call(batchExpiringSoonThresholdInDays: batchExpiringSoonThresholdInDays);
+
+  @override
+  StorePolicyResponse stopSellingBeforeExpiryDays(
+    int? stopSellingBeforeExpiryDays,
+  ) => call(stopSellingBeforeExpiryDays: stopSellingBeforeExpiryDays);
+
+  @override
+  StorePolicyResponse clearanceBufferDays(int? clearanceBufferDays) =>
+      call(clearanceBufferDays: clearanceBufferDays);
+
+  @override
+  StorePolicyResponse returnOrderAllowanceInDays(
+    int? returnOrderAllowanceInDays,
+  ) => call(returnOrderAllowanceInDays: returnOrderAllowanceInDays);
+
+  @override
+  StorePolicyResponse maxAddressesPerUser(int? maxAddressesPerUser) =>
+      call(maxAddressesPerUser: maxAddressesPerUser);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StorePolicyResponse(...).copyWith.fieldName(value)`.
   ///
@@ -87,6 +138,12 @@ class _$StorePolicyResponseCWProxyImpl implements _$StorePolicyResponseCWProxy {
     Object? isDepositRequiredForCOD = const $CopyWithPlaceholder(),
     Object? reviewRewardPoints = const $CopyWithPlaceholder(),
     Object? stockAdjustmentAutoApprovalThreshold = const $CopyWithPlaceholder(),
+    Object? orderRewardPointsInDays = const $CopyWithPlaceholder(),
+    Object? batchExpiringSoonThresholdInDays = const $CopyWithPlaceholder(),
+    Object? stopSellingBeforeExpiryDays = const $CopyWithPlaceholder(),
+    Object? clearanceBufferDays = const $CopyWithPlaceholder(),
+    Object? returnOrderAllowanceInDays = const $CopyWithPlaceholder(),
+    Object? maxAddressesPerUser = const $CopyWithPlaceholder(),
   }) {
     return StorePolicyResponse(
       id: id == const $CopyWithPlaceholder()
@@ -117,6 +174,34 @@ class _$StorePolicyResponseCWProxyImpl implements _$StorePolicyResponseCWProxy {
           ? _value.stockAdjustmentAutoApprovalThreshold
           // ignore: cast_nullable_to_non_nullable
           : stockAdjustmentAutoApprovalThreshold as int?,
+      orderRewardPointsInDays:
+          orderRewardPointsInDays == const $CopyWithPlaceholder()
+          ? _value.orderRewardPointsInDays
+          // ignore: cast_nullable_to_non_nullable
+          : orderRewardPointsInDays as int?,
+      batchExpiringSoonThresholdInDays:
+          batchExpiringSoonThresholdInDays == const $CopyWithPlaceholder()
+          ? _value.batchExpiringSoonThresholdInDays
+          // ignore: cast_nullable_to_non_nullable
+          : batchExpiringSoonThresholdInDays as int?,
+      stopSellingBeforeExpiryDays:
+          stopSellingBeforeExpiryDays == const $CopyWithPlaceholder()
+          ? _value.stopSellingBeforeExpiryDays
+          // ignore: cast_nullable_to_non_nullable
+          : stopSellingBeforeExpiryDays as int?,
+      clearanceBufferDays: clearanceBufferDays == const $CopyWithPlaceholder()
+          ? _value.clearanceBufferDays
+          // ignore: cast_nullable_to_non_nullable
+          : clearanceBufferDays as int?,
+      returnOrderAllowanceInDays:
+          returnOrderAllowanceInDays == const $CopyWithPlaceholder()
+          ? _value.returnOrderAllowanceInDays
+          // ignore: cast_nullable_to_non_nullable
+          : returnOrderAllowanceInDays as int?,
+      maxAddressesPerUser: maxAddressesPerUser == const $CopyWithPlaceholder()
+          ? _value.maxAddressesPerUser
+          // ignore: cast_nullable_to_non_nullable
+          : maxAddressesPerUser as int?,
     );
   }
 }
@@ -157,6 +242,30 @@ StorePolicyResponse _$StorePolicyResponseFromJson(Map<String, dynamic> json) =>
           'stockAdjustmentAutoApprovalThreshold',
           (v) => (v as num?)?.toInt(),
         ),
+        orderRewardPointsInDays: $checkedConvert(
+          'orderRewardPointsInDays',
+          (v) => (v as num?)?.toInt(),
+        ),
+        batchExpiringSoonThresholdInDays: $checkedConvert(
+          'batchExpiringSoonThresholdInDays',
+          (v) => (v as num?)?.toInt(),
+        ),
+        stopSellingBeforeExpiryDays: $checkedConvert(
+          'stopSellingBeforeExpiryDays',
+          (v) => (v as num?)?.toInt(),
+        ),
+        clearanceBufferDays: $checkedConvert(
+          'clearanceBufferDays',
+          (v) => (v as num?)?.toInt(),
+        ),
+        returnOrderAllowanceInDays: $checkedConvert(
+          'returnOrderAllowanceInDays',
+          (v) => (v as num?)?.toInt(),
+        ),
+        maxAddressesPerUser: $checkedConvert(
+          'maxAddressesPerUser',
+          (v) => (v as num?)?.toInt(),
+        ),
       );
       return val;
     });
@@ -171,4 +280,11 @@ Map<String, dynamic> _$StorePolicyResponseToJson(
   'reviewRewardPoints': ?instance.reviewRewardPoints,
   'stockAdjustmentAutoApprovalThreshold':
       ?instance.stockAdjustmentAutoApprovalThreshold,
+  'orderRewardPointsInDays': ?instance.orderRewardPointsInDays,
+  'batchExpiringSoonThresholdInDays':
+      ?instance.batchExpiringSoonThresholdInDays,
+  'stopSellingBeforeExpiryDays': ?instance.stopSellingBeforeExpiryDays,
+  'clearanceBufferDays': ?instance.clearanceBufferDays,
+  'returnOrderAllowanceInDays': ?instance.returnOrderAllowanceInDays,
+  'maxAddressesPerUser': ?instance.maxAddressesPerUser,
 };

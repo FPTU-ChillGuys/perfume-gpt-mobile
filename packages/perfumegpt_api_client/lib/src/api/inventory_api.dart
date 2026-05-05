@@ -12,8 +12,9 @@ import 'package:dio/dio.dart';
 import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_inventory_summary_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_stock_response.dart';
-import 'package:perfumegpt_api_client/src/model/base_response_of_stock_response.dart';
+import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/stock_status.dart';
+import 'package:perfumegpt_api_client/src/model/update_stock_request.dart';
 
 class InventoryApi {
 
@@ -131,11 +132,12 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     );
   }
 
-  /// apiInventoryStockVariantVariantIdGet
+  /// apiInventoryStockStockIdPut
   /// 
   ///
   /// Parameters:
-  /// * [variantId] 
+  /// * [stockId] 
+  /// * [updateStockRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -143,10 +145,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BaseResponseOfStockResponse] as data
+  /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfStockResponse>> apiInventoryStockVariantVariantIdGet({ 
-    required String variantId,
+  Future<Response<BaseResponseOfstring>> apiInventoryStockStockIdPut({ 
+    required String stockId,
+    required UpdateStockRequest updateStockRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -154,9 +157,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/inventory/stock/variant/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/api/inventory/stock/{stockId}'.replaceAll('{' r'stockId' '}', stockId.toString());
     final _options = Options(
-      method: r'GET',
+      method: r'PUT',
       headers: <String, dynamic>{
         ...?headers,
       },
@@ -170,22 +173,40 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
         ],
         ...?extra,
       },
+      contentType: 'application/json',
       validateStatus: validateStatus,
     );
 
+    dynamic _bodyData;
+
+    try {
+_bodyData=jsonEncode(updateStockRequest);
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
     final _response = await _dio.request<Object>(
       _path,
+      data: _bodyData,
       options: _options,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
 
-    BaseResponseOfStockResponse? _responseData;
+    BaseResponseOfstring? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfStockResponse, BaseResponseOfStockResponse>(rawData, 'BaseResponseOfStockResponse', growable: true);
+_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -197,7 +218,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStockResponse
       );
     }
 
-    return Response<BaseResponseOfStockResponse>(
+    return Response<BaseResponseOfstring>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

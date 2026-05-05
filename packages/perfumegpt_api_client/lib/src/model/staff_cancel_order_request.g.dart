@@ -11,6 +11,12 @@ abstract class _$StaffCancelOrderRequestCWProxy {
 
   StaffCancelOrderRequest note(String? note);
 
+  StaffCancelOrderRequest refundBankName(String? refundBankName);
+
+  StaffCancelOrderRequest refundAccountNumber(String? refundAccountNumber);
+
+  StaffCancelOrderRequest refundAccountName(String? refundAccountName);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StaffCancelOrderRequest(...).copyWith.fieldName(value)`.
   ///
@@ -18,7 +24,13 @@ abstract class _$StaffCancelOrderRequestCWProxy {
   /// ```dart
   /// StaffCancelOrderRequest(...).copyWith(id: 12, name: "My name")
   /// ```
-  StaffCancelOrderRequest call({CancelOrderReason? reason, String? note});
+  StaffCancelOrderRequest call({
+    CancelOrderReason? reason,
+    String? note,
+    String? refundBankName,
+    String? refundAccountNumber,
+    String? refundAccountName,
+  });
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -37,6 +49,18 @@ class _$StaffCancelOrderRequestCWProxyImpl
   StaffCancelOrderRequest note(String? note) => call(note: note);
 
   @override
+  StaffCancelOrderRequest refundBankName(String? refundBankName) =>
+      call(refundBankName: refundBankName);
+
+  @override
+  StaffCancelOrderRequest refundAccountNumber(String? refundAccountNumber) =>
+      call(refundAccountNumber: refundAccountNumber);
+
+  @override
+  StaffCancelOrderRequest refundAccountName(String? refundAccountName) =>
+      call(refundAccountName: refundAccountName);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StaffCancelOrderRequest(...).copyWith.fieldName(value)`.
   ///
@@ -47,6 +71,9 @@ class _$StaffCancelOrderRequestCWProxyImpl
   StaffCancelOrderRequest call({
     Object? reason = const $CopyWithPlaceholder(),
     Object? note = const $CopyWithPlaceholder(),
+    Object? refundBankName = const $CopyWithPlaceholder(),
+    Object? refundAccountNumber = const $CopyWithPlaceholder(),
+    Object? refundAccountName = const $CopyWithPlaceholder(),
   }) {
     return StaffCancelOrderRequest(
       reason: reason == const $CopyWithPlaceholder()
@@ -57,6 +84,18 @@ class _$StaffCancelOrderRequestCWProxyImpl
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
           : note as String?,
+      refundBankName: refundBankName == const $CopyWithPlaceholder()
+          ? _value.refundBankName
+          // ignore: cast_nullable_to_non_nullable
+          : refundBankName as String?,
+      refundAccountNumber: refundAccountNumber == const $CopyWithPlaceholder()
+          ? _value.refundAccountNumber
+          // ignore: cast_nullable_to_non_nullable
+          : refundAccountNumber as String?,
+      refundAccountName: refundAccountName == const $CopyWithPlaceholder()
+          ? _value.refundAccountName
+          // ignore: cast_nullable_to_non_nullable
+          : refundAccountName as String?,
     );
   }
 }
@@ -82,6 +121,15 @@ StaffCancelOrderRequest _$StaffCancelOrderRequestFromJson(
       (v) => $enumDecodeNullable(_$CancelOrderReasonEnumMap, v),
     ),
     note: $checkedConvert('note', (v) => v as String?),
+    refundBankName: $checkedConvert('refundBankName', (v) => v as String?),
+    refundAccountNumber: $checkedConvert(
+      'refundAccountNumber',
+      (v) => v as String?,
+    ),
+    refundAccountName: $checkedConvert(
+      'refundAccountName',
+      (v) => v as String?,
+    ),
   );
   return val;
 });
@@ -91,6 +139,9 @@ Map<String, dynamic> _$StaffCancelOrderRequestToJson(
 ) => <String, dynamic>{
   'reason': ?_$CancelOrderReasonEnumMap[instance.reason],
   'note': ?instance.note,
+  'refundBankName': ?instance.refundBankName,
+  'refundAccountNumber': ?instance.refundAccountNumber,
+  'refundAccountName': ?instance.refundAccountName,
 };
 
 const _$CancelOrderReasonEnumMap = {

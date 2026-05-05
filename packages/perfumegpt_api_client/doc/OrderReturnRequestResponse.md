@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **approvedRefundAmount** | **num** |  | [optional] 
 **isRefunded** | **bool** |  | [optional] 
 **isRefundOnly** | **bool** |  | [optional] 
+**isReturnInStore** | **bool** |  | [optional] 
 **refundBankName** | **String** |  | [optional] 
 **refundAccountName** | **String** |  | [optional] 
 **refundAccountNumber** | **String** |  | [optional] 

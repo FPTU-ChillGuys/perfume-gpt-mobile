@@ -43,6 +43,16 @@ abstract class _$OrderCancelRequestResponseCWProxy {
 
   OrderCancelRequestResponse updatedAt(DateTime? updatedAt);
 
+  OrderCancelRequestResponse refundedPaymentStatus(
+    TransactionStatus? refundedPaymentStatus,
+  );
+
+  OrderCancelRequestResponse refundedPaymentMethod(
+    PaymentMethod? refundedPaymentMethod,
+  );
+
+  OrderCancelRequestResponse refundedAmount(num? refundedAmount);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderCancelRequestResponse(...).copyWith.fieldName(value)`.
   ///
@@ -69,6 +79,9 @@ abstract class _$OrderCancelRequestResponseCWProxy {
     String? vnpTransactionNo,
     DateTime? createdAt,
     DateTime? updatedAt,
+    TransactionStatus? refundedPaymentStatus,
+    PaymentMethod? refundedPaymentMethod,
+    num? refundedAmount,
   });
 }
 
@@ -150,6 +163,20 @@ class _$OrderCancelRequestResponseCWProxyImpl
       call(updatedAt: updatedAt);
 
   @override
+  OrderCancelRequestResponse refundedPaymentStatus(
+    TransactionStatus? refundedPaymentStatus,
+  ) => call(refundedPaymentStatus: refundedPaymentStatus);
+
+  @override
+  OrderCancelRequestResponse refundedPaymentMethod(
+    PaymentMethod? refundedPaymentMethod,
+  ) => call(refundedPaymentMethod: refundedPaymentMethod);
+
+  @override
+  OrderCancelRequestResponse refundedAmount(num? refundedAmount) =>
+      call(refundedAmount: refundedAmount);
+
+  @override
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `OrderCancelRequestResponse(...).copyWith.fieldName(value)`.
   ///
@@ -176,6 +203,9 @@ class _$OrderCancelRequestResponseCWProxyImpl
     Object? vnpTransactionNo = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? updatedAt = const $CopyWithPlaceholder(),
+    Object? refundedPaymentStatus = const $CopyWithPlaceholder(),
+    Object? refundedPaymentMethod = const $CopyWithPlaceholder(),
+    Object? refundedAmount = const $CopyWithPlaceholder(),
   }) {
     return OrderCancelRequestResponse(
       id: id == const $CopyWithPlaceholder()
@@ -250,6 +280,20 @@ class _$OrderCancelRequestResponseCWProxyImpl
           ? _value.updatedAt
           // ignore: cast_nullable_to_non_nullable
           : updatedAt as DateTime?,
+      refundedPaymentStatus:
+          refundedPaymentStatus == const $CopyWithPlaceholder()
+          ? _value.refundedPaymentStatus
+          // ignore: cast_nullable_to_non_nullable
+          : refundedPaymentStatus as TransactionStatus?,
+      refundedPaymentMethod:
+          refundedPaymentMethod == const $CopyWithPlaceholder()
+          ? _value.refundedPaymentMethod
+          // ignore: cast_nullable_to_non_nullable
+          : refundedPaymentMethod as PaymentMethod?,
+      refundedAmount: refundedAmount == const $CopyWithPlaceholder()
+          ? _value.refundedAmount
+          // ignore: cast_nullable_to_non_nullable
+          : refundedAmount as num?,
     );
   }
 }
@@ -304,6 +348,15 @@ OrderCancelRequestResponse _$OrderCancelRequestResponseFromJson(
       'updatedAt',
       (v) => v == null ? null : DateTime.parse(v as String),
     ),
+    refundedPaymentStatus: $checkedConvert(
+      'refundedPaymentStatus',
+      (v) => $enumDecodeNullable(_$TransactionStatusEnumMap, v),
+    ),
+    refundedPaymentMethod: $checkedConvert(
+      'refundedPaymentMethod',
+      (v) => $enumDecodeNullable(_$PaymentMethodEnumMap, v),
+    ),
+    refundedAmount: $checkedConvert('refundedAmount', (v) => v as num?),
   );
   return val;
 });
@@ -329,10 +382,31 @@ Map<String, dynamic> _$OrderCancelRequestResponseToJson(
   'vnpTransactionNo': ?instance.vnpTransactionNo,
   'createdAt': ?instance.createdAt?.toIso8601String(),
   'updatedAt': ?instance.updatedAt?.toIso8601String(),
+  'refundedPaymentStatus':
+      ?_$TransactionStatusEnumMap[instance.refundedPaymentStatus],
+  'refundedPaymentMethod':
+      ?_$PaymentMethodEnumMap[instance.refundedPaymentMethod],
+  'refundedAmount': ?instance.refundedAmount,
 };
 
 const _$CancelRequestStatusEnumMap = {
   CancelRequestStatus.pending: 'Pending',
   CancelRequestStatus.approved: 'Approved',
   CancelRequestStatus.rejected: 'Rejected',
+};
+
+const _$TransactionStatusEnumMap = {
+  TransactionStatus.pending: 'Pending',
+  TransactionStatus.success: 'Success',
+  TransactionStatus.failed: 'Failed',
+  TransactionStatus.cancelled: 'Cancelled',
+};
+
+const _$PaymentMethodEnumMap = {
+  PaymentMethod.cashOnDelivery: 'CashOnDelivery',
+  PaymentMethod.vnPay: 'VnPay',
+  PaymentMethod.momo: 'Momo',
+  PaymentMethod.cashInStore: 'CashInStore',
+  PaymentMethod.externalBankTransfer: 'ExternalBankTransfer',
+  PaymentMethod.payOs: 'PayOs',
 };
