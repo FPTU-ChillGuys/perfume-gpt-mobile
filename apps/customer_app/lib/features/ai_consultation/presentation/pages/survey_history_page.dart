@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import '../../../../core/db/database_provider.dart';
+import '../../../../core/widgets/app_feedback.dart';
 import '../providers/chat_provider.dart';
 import '../widgets/ai_message_style.dart';
 import '../widgets/survey_product_card.dart';
@@ -179,25 +180,14 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
         actions: const [ProfileAvatarAppBarAction()],
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const AppLoadingState(message: 'Đang tải lịch sử khảo sát...')
           : _hasError
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.error_outline, size: 48, color: Colors.red),
-                      const SizedBox(height: 16),
-                      const Text('Không thể tải lịch sử khảo sát'),
-                      const SizedBox(height: 12),
-                      ElevatedButton(
-                        onPressed: _loadSessions,
-                        child: const Text('Thử lại'),
-                      ),
-                    ],
-                  ),
+              ? AppErrorState(
+                  message: 'Không thể tải lịch sử khảo sát',
+                  onRetry: _loadSessions,
                 )
               : _sessions.isEmpty
-                  ? const Center(child: Text('Chưa có kết quả khảo sát nào'))
+                  ? const AppEmptyState(message: 'Chưa có kết quả khảo sát nào')
                   : ListView.builder(
                   itemCount: _sessions.length,
                   itemBuilder: (context, index) {

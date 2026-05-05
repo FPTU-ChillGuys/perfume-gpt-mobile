@@ -7,6 +7,7 @@ import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'core/services/fcm_service.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
+import 'core/widgets/app_snackbar.dart';
 
 final GlobalKey<ScaffoldMessengerState> appScaffoldMessengerKey =
     GlobalKey<ScaffoldMessengerState>();
@@ -15,16 +16,7 @@ void _showGlobalError(Object error) {
   final message = _toUserErrorMessage(error);
   final messenger = appScaffoldMessengerKey.currentState;
   if (messenger == null) return;
-  messenger
-    ..hideCurrentSnackBar()
-    ..showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.red.shade700,
-        behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 4),
-      ),
-    );
+  AppSnackbar.showError(messenger, message);
 }
 
 String _toUserErrorMessage(Object error) {

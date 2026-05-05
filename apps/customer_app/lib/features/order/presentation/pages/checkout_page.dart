@@ -1432,10 +1432,10 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
           ),
           freeLabel
               ? Text(
-                  'FREE',
+                  'Miễn phí',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    color: Colors.green.shade700,
+                    color: AppColors.success,
                   ),
                 )
               : Text(

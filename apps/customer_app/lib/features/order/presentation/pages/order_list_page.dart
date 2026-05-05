@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/app_feedback.dart';
 import '../../../../domain/entities/order.dart';
 import '../../../review/presentation/providers/review_providers.dart';
 import '../providers/cancel_request_providers.dart';
@@ -372,27 +373,10 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
           // ── Content ──
           Expanded(
             child: ordersAsync.when(
-              loading: () => const Center(
-                child: CircularProgressIndicator(color: _accent),
-              ),
-              error: (error, _) => Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.error_outline,
-                      size: 48,
-                      color: Colors.red,
-                    ),
-                    const SizedBox(height: 12),
-                    const Text('Không thể tải đơn hàng'),
-                    const SizedBox(height: 8),
-                    TextButton(
-                      onPressed: _invalidateOrders,
-                      child: const Text('Thử lại'),
-                    ),
-                  ],
-                ),
+              loading: () => const AppLoadingState(message: 'Đang tải đơn hàng...'),
+              error: (error, _) => AppErrorState(
+                message: 'Không thể tải đơn hàng',
+                onRetry: _invalidateOrders,
               ),
               data: (result) {
                 final myReturns = ref
