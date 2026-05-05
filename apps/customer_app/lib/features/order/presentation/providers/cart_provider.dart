@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' show Provider;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -174,14 +176,109 @@ class Cart extends _$Cart {
         );
       }
       if (_generation != gen) return;
-      final items = await repository.getItems(isAuthenticated: isAuthenticated);
-      if (_generation != gen) return;
-      state = AsyncValue.data(items);
+      // Don't block UX (e.g. "Mua ngay" -> checkout) on a full cart refetch.
+      // Keep optimistic state and sync with backend in background.
+      unawaited(
+        () async {
+          try {
+            final items = await repository.getItems(
+              isAuthenticated: isAuthenticated,
+            );
+            if (_generation != gen) return;
+            state = AsyncValue.data(items);
+          } catch (_) {
+            // Keep optimistic state; next explicit refresh will reconcile.
+          }
+        }(),
+      );
     } catch (e) {
       if (_generation != gen) return;
       state = previousState;
       rethrow;
     }
+  }
+
+  void addProductOptimistic(
+    Product product, {
+    String? variantId,
+    String? variantName,
+    String? imageUrl,
+    double? price,
+    int? volumeMl,
+    String? type,
+  }) {
+    final gen = _generation;
+    final repository = ref.read(cartRepositoryProvider);
+    final targetVariantId = variantId ?? product.id;
+    final previousState = state;
+    final currentItems = state.asData?.value ?? [];
+    final unitPrice = price ?? product.price;
+    final newItem = CartItem(
+      // Temporary id lets selection/filter logic treat this optimistic row as real.
+      cartItemId: targetVariantId,
+      variantId: targetVariantId,
+      variantName: variantName ?? product.name,
+      imageUrl: imageUrl ?? product.imageUrl,
+      volumeMl: volumeMl,
+      type: type,
+      variantPrice: unitPrice,
+      quantity: 1,
+      subTotal: unitPrice,
+    );
+
+    final existingIndex = currentItems.indexWhere(
+      (item) =>
+          item.variantId == targetVariantId ||
+          item.cartItemId == targetVariantId,
+    );
+    final updatedItems = existingIndex == -1
+        ? [...currentItems, newItem]
+        : [
+            for (int i = 0; i < currentItems.length; i++)
+              if (i == existingIndex)
+                currentItems[i].copyWith(
+                  quantity: currentItems[i].quantity + 1,
+                  subTotal:
+                      currentItems[i].variantPrice *
+                      (currentItems[i].quantity + 1),
+                )
+              else
+                currentItems[i],
+          ];
+
+    state = AsyncValue.data(updatedItems);
+
+    unawaited(
+      () async {
+        try {
+          final storage = ref.read(flutterSecureStorageProvider);
+          final apiClient = ref.read(apiClientProvider);
+          final isAuthenticated = await _checkAuth(storage, apiClient);
+          if (_generation != gen) return;
+
+          if (repository is CartRepositoryImpl) {
+            await repository.addEntityToCart(
+              newItem,
+              isAuthenticated: isAuthenticated,
+            );
+          } else {
+            await repository.addItem(
+              targetVariantId,
+              quantity: 1,
+              isAuthenticated: isAuthenticated,
+            );
+          }
+          final items = await repository.getItems(
+            isAuthenticated: isAuthenticated,
+          );
+          if (_generation != gen) return;
+          state = AsyncValue.data(items);
+        } catch (e) {
+          if (_generation != gen) return;
+          state = previousState;
+        }
+      }(),
+    );
   }
 
   Future<void> updateItem(String cartItemId, int quantity) async {

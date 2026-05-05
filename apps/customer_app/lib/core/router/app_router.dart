@@ -80,6 +80,7 @@ class AppRouter {
             selectedItemIdsFromCart: (extra?['selectedItemIds'] as List?)
                 ?.map((e) => e.toString())
                 .toList(),
+            buyNowFast: extra?['buyNowFast'] == true,
           );
         },
       ),

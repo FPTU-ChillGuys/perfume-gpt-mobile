@@ -27,10 +27,12 @@ String _formatCurrency(double value) {
 class CheckoutPage extends ConsumerStatefulWidget {
   final String? voucherCodeFromCart;
   final List<String>? selectedItemIdsFromCart;
+  final bool buyNowFast;
   const CheckoutPage({
     super.key,
     this.voucherCodeFromCart,
     this.selectedItemIdsFromCart,
+    this.buyNowFast = false,
   });
 
   @override
@@ -440,7 +442,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
     final cartAsync = ref.watch(cartProvider);
-    final cartTotalAsync = ref.watch(cartTotalProvider);
+    final cartTotalAsync = widget.buyNowFast
+        ? const AsyncValue<CartTotal>.loading()
+        : ref.watch(cartTotalProvider);
     final selectedIds = ref.watch(selectedCartItemIdsProvider);
 
     return Scaffold(
@@ -484,7 +488,20 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                     .toList()
               : cartItems;
 
-          final total = _computedTotal ?? cartTotalAsync.value;
+          final optimisticBuyNowSubtotal = visibleItems.fold(
+            0.0,
+            (sum, item) => sum + item.totalPrice,
+          );
+          final optimisticBuyNowTotal =
+              widget.buyNowFast && visibleItems.isNotEmpty
+              ? CartTotal(
+                  subtotal: optimisticBuyNowSubtotal,
+                  shippingFee: 0,
+                  discount: 0,
+                  totalPrice: optimisticBuyNowSubtotal,
+                )
+              : null;
+          final total = _computedTotal ?? cartTotalAsync.value ?? optimisticBuyNowTotal;
           final totalPrice = total?.totalPrice ?? 0.0;
 
           return Column(

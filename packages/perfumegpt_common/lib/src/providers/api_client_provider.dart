@@ -9,15 +9,26 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'api_client_provider.g.dart';
 
-const _connectTimeout = Duration(seconds: 20);
-const _sendTimeout = Duration(seconds: 25);
-const _receiveTimeout = Duration(seconds: 25);
+const _debugConnectTimeout = Duration(seconds: 20);
+const _debugSendTimeout = Duration(seconds: 25);
+const _debugReceiveTimeout = Duration(seconds: 25);
+const _releaseConnectTimeout = Duration(seconds: 8);
+const _releaseSendTimeout = Duration(seconds: 12);
+const _releaseReceiveTimeout = Duration(seconds: 12);
 
-void _configureDioPolicies(Dio dio) {
+const _defaultProdApiBaseUrl = 'https://backend-sep490.vqnofficial.win';
+const _defaultLocalApiBaseUrl = 'https://localhost:7011';
+const _defaultAndroidEmulatorApiBaseUrl = 'https://10.0.2.2:7011';
+
+void _configureDioPolicies(Dio dio, {required bool isRelease}) {
+  final connectTimeout = isRelease ? _releaseConnectTimeout : _debugConnectTimeout;
+  final sendTimeout = isRelease ? _releaseSendTimeout : _debugSendTimeout;
+  final receiveTimeout = isRelease ? _releaseReceiveTimeout : _debugReceiveTimeout;
+
   dio.options
-    ..connectTimeout = _connectTimeout
-    ..sendTimeout = _sendTimeout
-    ..receiveTimeout = _receiveTimeout;
+    ..connectTimeout = connectTimeout
+    ..sendTimeout = sendTimeout
+    ..receiveTimeout = receiveTimeout;
 
   dio.interceptors.add(
     InterceptorsWrapper(
@@ -30,7 +41,7 @@ void _configureDioPolicies(Dio dio) {
         final isRetryableMethod = method == 'GET' || method == 'HEAD';
         final alreadyRetried = error.requestOptions.extra['retried'] == true;
 
-        if (shouldRetry && isRetryableMethod && !alreadyRetried) {
+        if (!isRelease && shouldRetry && isRetryableMethod && !alreadyRetried) {
           error.requestOptions.extra['retried'] = true;
           await Future<void>.delayed(const Duration(milliseconds: 250));
           try {
@@ -46,18 +57,24 @@ void _configureDioPolicies(Dio dio) {
 
 @Riverpod(keepAlive: true)
 PerfumegptApiClient apiClient(Ref ref) {
-  // Local-first for dev. Override with:
+  // Override explicitly with:
   // --dart-define API_BASE_URL=https://your-host:port
   final fromDefine = const String.fromEnvironment('API_BASE_URL');
-  String baseUrl = fromDefine.isNotEmpty ? fromDefine : 'https://localhost:7011';
-
-  if (fromDefine.isEmpty && !kIsWeb && Platform.isAndroid) {
+  String baseUrl;
+  if (fromDefine.isNotEmpty) {
+    baseUrl = fromDefine;
+  } else if (kReleaseMode) {
+    // Physical devices cannot reach localhost/10.0.2.2.
+    baseUrl = _defaultProdApiBaseUrl;
+  } else if (!kIsWeb && Platform.isAndroid) {
     // Android emulator cannot reach host via localhost.
-    baseUrl = 'https://10.0.2.2:7011';
+    baseUrl = _defaultAndroidEmulatorApiBaseUrl;
+  } else {
+    baseUrl = _defaultLocalApiBaseUrl;
   }
 
   final dio = Dio(BaseOptions(baseUrl: baseUrl));
-  _configureDioPolicies(dio);
+  _configureDioPolicies(dio, isRelease: kReleaseMode);
 
   if (!kIsWeb && kDebugMode) {
     (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
@@ -79,7 +96,7 @@ PerfumegptAiApiClient aiApiClient(Ref ref) {
       : 'https://ai-backend-sep490.vqnofficial.win';
 
   final dio = Dio(BaseOptions(baseUrl: baseUrl));
-  _configureDioPolicies(dio);
+  _configureDioPolicies(dio, isRelease: kReleaseMode);
 
   if (!kIsWeb && kDebugMode) {
     (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {

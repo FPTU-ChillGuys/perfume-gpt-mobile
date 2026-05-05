@@ -349,11 +349,30 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
       return;
     }
     try {
-      await ref
+      final variant = _selectedVariant;
+      ref
           .read(cartProvider.notifier)
-          .addProduct(product, variantId: variantId);
+          .addProductOptimistic(
+            product,
+            variantId: variantId,
+            variantName: [
+              product.name,
+              if (variant?.displayName.isNotEmpty == true) variant!.displayName,
+            ].join(' · '),
+            imageUrl: variant?.primaryImageUrl ?? product.imageUrl,
+            price: variant?.effectivePrice,
+            volumeMl: variant?.volumeMl,
+            type: variant?.type,
+          );
+      ref.read(selectedCartItemIdsProvider.notifier).update({variantId});
       if (mounted) {
-        context.push('/checkout');
+        context.push(
+          '/checkout',
+          extra: {
+            'buyNowFast': true,
+            'selectedItemIds': [variantId],
+          },
+        );
       }
     } catch (e) {
       if (mounted) {
