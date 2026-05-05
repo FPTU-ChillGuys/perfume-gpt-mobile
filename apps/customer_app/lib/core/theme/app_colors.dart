@@ -25,6 +25,12 @@ class AppColors {
   static const Color heroStart = Color(0xFFAA2D23);
   static const Color heroEnd = Color(0xFF8C221A);
 
+  // ── Generic semantic colors ──────────────────────────────────────────────
+  static const Color success = Color(0xFF16A34A);
+  static const Color warning = Color(0xFFF59E0B);
+  static const Color info = Color(0xFF2563EB);
+  static const Color danger = Color(0xFFDC2626);
+
   // ── Status colors (semantic — keep these separate) ────────────────────
   static const Color statusPending = Colors.orange;
   static const Color statusPreparing = Color(0xFFC8372D);

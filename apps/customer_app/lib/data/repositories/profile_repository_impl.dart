@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import 'package:perfumegpt_common/perfumegpt_common.dart';
 import '../../domain/entities/note_preference.dart';
 import '../../domain/entities/user_profile.dart';
 import '../../domain/repositories/profile_repository.dart';
@@ -10,7 +12,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   final ScentNotesApi _scentNotesApi;
   final OlfactoryFamiliesApi _familiesApi;
   final AttributesApi _attributesApi;
-  final Dio _dio;
+  final String _apiBaseUrl;
 
   ProfileRepositoryImpl(
     this._usersApi,
@@ -18,7 +20,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     this._scentNotesApi,
     this._familiesApi,
     this._attributesApi,
-    this._dio,
+    this._apiBaseUrl,
   );
 
   static bool _isOk(DioException e) {
@@ -26,20 +28,60 @@ class ProfileRepositoryImpl implements ProfileRepository {
     return s != null && s >= 200 && s < 300;
   }
 
+  Future<UserCredentialsResponse> _loadUserCredentials() async {
+    final credentialsResponse = await _usersApi.apiUsersMeGet();
+    final creds = credentialsResponse.data?.payload;
+    if (creds == null) {
+      throw StateError('GET /api/users/me returned null payload');
+    }
+    return creds;
+  }
+
+  @override
+  Future<String?> getAvatarUrl() async {
+    try {
+      final response = await _usersApi.apiUsersAvatarGet();
+      final url = response.data?.payload?.url;
+      final resolved = MediaUrlResolver.resolveOptional(
+        url,
+        _apiBaseUrl,
+      );
+      if (resolved != null && resolved.isNotEmpty) return resolved;
+    } catch (e, st) {
+      debugPrint('[ProfileRepo] apiUsersAvatarGet failed, fallback /users/me: $e');
+      debugPrintStack(stackTrace: st);
+    }
+    final creds = await _loadUserCredentials();
+    return MediaUrlResolver.resolveOptional(
+      creds.profilePictureUrl,
+      _apiBaseUrl,
+    );
+  }
+
   @override
   Future<UserProfile> getMe() async {
-    final credentialsResponse = await _usersApi.apiUsersMeGet();
-    final profileResponse = await _profilesApi.apiProfilesMeGet();
+    final creds = await _loadUserCredentials();
 
-    final creds = credentialsResponse.data!.payload!;
-    final prof = profileResponse.data?.payload;
+    ProfileResponse? prof;
+    try {
+      final profileResponse = await _profilesApi.apiProfilesMeGet();
+      prof = profileResponse.data?.payload;
+    } catch (e, st) {
+      debugPrint('[ProfileRepo] apiProfilesMeGet failed (avatar still from /users/me): $e');
+      debugPrintStack(stackTrace: st);
+    }
+
+    final avatarUrl = MediaUrlResolver.resolveOptional(
+      creds.profilePictureUrl,
+      _apiBaseUrl,
+    );
 
     return UserProfile(
       id: creds.id ?? '',
       fullName: creds.fullName,
       email: creds.email,
       phoneNumber: creds.phoneNumber,
-      avatarUrl: creds.profilePictureUrl,
+      avatarUrl: avatarUrl,
       dateOfBirth: prof?.dateOfBirth,
       gender: null,
       minBudget: prof?.minBudget,
@@ -75,18 +117,12 @@ class ProfileRepositoryImpl implements ProfileRepository {
     required String fullName,
     required String phoneNumber,
   }) async {
-    try {
-      await _dio.put(
-        '/api/users/me',
-        data: {'fullName': fullName, 'phoneNumber': phoneNumber},
-      );
-    } on DioException catch (e) {
-      if (_isOk(e)) return;
-      final message = e.response?.data is Map
-          ? (e.response!.data as Map)['message']?.toString()
-          : null;
-      throw Exception(message ?? 'Không thể cập nhật thông tin');
-    }
+    await _usersApi.apiUsersMePut(
+      updateUserBasicInfoRequest: UpdateUserBasicInfoRequest(
+        fullName: fullName,
+        phoneNumber: phoneNumber,
+      ),
+    );
   }
 
   @override
@@ -121,41 +157,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<String?> uploadAvatar(String filePath) async {
-    final formData = FormData.fromMap({
-      'Avatar': await MultipartFile.fromFile(filePath),
-      'AltText': '',
-    });
-    try {
-      final response = await _dio.post(
-        '/api/users/avatar',
-        data: formData,
-        options: Options(contentType: 'multipart/form-data'),
-      );
-      final data = response.data;
-      if (data is Map<String, dynamic>) {
-        return data['payload']?.toString();
-      }
-      return null;
-    } on DioException catch (e) {
-      if (_isOk(e)) return null;
-      final message = e.response?.data is Map
-          ? (e.response!.data as Map)['message']?.toString()
-          : null;
-      throw Exception(message ?? 'Không thể tải ảnh lên');
-    }
+    final response = await _usersApi.apiUsersAvatarPost(
+      avatar: await MultipartFile.fromFile(filePath),
+      altText: '',
+    );
+    return response.data?.payload?.toString();
   }
 
   @override
   Future<void> deleteAvatar() async {
-    try {
-      await _dio.delete('/api/users/avatar');
-    } on DioException catch (e) {
-      if (_isOk(e)) return;
-      final message = e.response?.data is Map
-          ? (e.response!.data as Map)['message']?.toString()
-          : null;
-      throw Exception(message ?? 'Không thể xóa ảnh');
-    }
+    await _usersApi.apiUsersAvatarDelete();
   }
 
   @override

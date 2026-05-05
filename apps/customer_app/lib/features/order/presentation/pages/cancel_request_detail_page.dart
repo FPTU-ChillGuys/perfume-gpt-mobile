@@ -7,6 +7,7 @@ import '../../../../domain/entities/cancel_request.dart';
 import '../../../../domain/entities/order.dart';
 import '../../../../core/utils/image_url_helper.dart';
 import '../providers/cancel_request_providers.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 final _currencyFmt = NumberFormat.currency(
   locale: 'vi_VN',
@@ -128,6 +129,9 @@ class CancelRequestDetailPage extends ConsumerWidget {
       pinned: true,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       backgroundColor: AppColors.primaryDark,
+      actions: const [
+        ProfileAvatarAppBarAction(forDarkAppBar: true),
+      ],
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
           req?.orderCode ?? 'Chi tiết yêu cầu hủy',

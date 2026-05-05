@@ -12,6 +12,7 @@ import '../../../../domain/entities/cart_total.dart';
 import '../../../../domain/entities/voucher.dart';
 import '../../../voucher/presentation/providers/voucher_providers.dart';
 import '../providers/cart_provider.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 class CartPage extends ConsumerStatefulWidget {
   const CartPage({super.key});
@@ -306,6 +307,7 @@ class _CartPageState extends ConsumerState<CartPage> {
           ],
         ),
         actions: [
+          const ProfileAvatarAppBarAction(),
           if (items.isNotEmpty)
             IconButton(
               icon: const Icon(Icons.delete_sweep_outlined),

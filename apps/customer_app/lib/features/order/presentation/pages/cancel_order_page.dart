@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 import '../providers/bank_provider.dart';
 import '../providers/order_provider.dart';
 
@@ -118,6 +119,9 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
             ),
           ),
         ),
+        actions: const [
+          ProfileAvatarAppBarAction(forDarkAppBar: true),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 40),

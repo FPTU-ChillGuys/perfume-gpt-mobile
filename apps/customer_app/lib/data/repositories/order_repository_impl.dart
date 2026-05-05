@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import '../../core/utils/image_url_helper.dart';
@@ -13,12 +11,6 @@ class OrderRepositoryImpl implements OrderRepository {
   final Dio _dio;
 
   OrderRepositoryImpl(this._ordersApi, this._paymentsApi, this._dio);
-
-  static const Map<String, String> _bearerSecure = {
-    'type': 'http',
-    'scheme': 'bearer',
-    'name': 'Bearer',
-  };
 
   @override
   Future<CheckoutResult> checkout(CheckoutRequest request) async {
@@ -71,7 +63,10 @@ class OrderRepositoryImpl implements OrderRepository {
     }
 
     final body = CreateOrderRequest(
-      payment: PaymentInformation(method: paymentMethod),
+      payment: PaymentInformation(
+        method: paymentMethod,
+        depositGateway: _mapPaymentMethod(request.depositGateway),
+      ),
       deliveryMethod: deliveryMethod,
       itemIds: request.itemIds,
       expectedTotalPrice: request.expectedTotalPrice,
@@ -80,50 +75,15 @@ class OrderRepositoryImpl implements OrderRepository {
       recipient: recipient,
     );
 
-    try {
-      final bodyJson = body.toJson();
-      if (request.depositGateway != null &&
-          request.depositGateway!.isNotEmpty) {
-        bodyJson['payment'] = {
-          ...(bodyJson['payment'] as Map<String, dynamic>? ??
-              <String, dynamic>{}),
-          'depositGateway': request.depositGateway,
-        };
-      }
-      final response = await _dio.post(
-        '/api/orders/checkout',
-        data: bodyJson,
-        options: Options(
-          extra: const {
-            'secure': [_bearerSecure],
-          },
-        ),
-      );
-      final payload = (response.data as Map<String, dynamic>?)?['payload'];
-      if (payload != null) {
-        final payloadMap = payload as Map<String, dynamic>;
-        return CheckoutResult(
-          paymentId: payloadMap['paymentId']?.toString(),
-          paymentUrl: payloadMap['paymentUrl']?.toString(),
-          orderId: payloadMap['orderId']?.toString(),
-        );
-      }
-      return const CheckoutResult();
-    } on DioException catch (e) {
-      // The generated client expects BaseResponseOfstring but API may return
-      // CreatePaymentResponseDto as payload object. If HTTP was successful
-      // but deserialization failed, parse from the raw response.
-      if (e.response != null &&
-          e.response!.statusCode != null &&
-          e.response!.statusCode! >= 200 &&
-          e.response!.statusCode! < 300) {
-        return _parseRawCheckoutResponse(e.response!.data);
-      }
-      final message = e.response?.data is Map
-          ? (e.response!.data as Map)['message']?.toString()
-          : null;
-      throw Exception(message ?? 'Checkout failed');
-    }
+    final response = await _ordersApi.apiOrdersCheckoutPost(
+      createOrderRequest: body,
+    );
+    final payload = response.data?.payload;
+    return CheckoutResult(
+      paymentId: payload?.paymentId,
+      paymentUrl: payload?.paymentUrl,
+      orderId: payload?.orderId,
+    );
   }
 
   @override
@@ -135,30 +95,18 @@ class OrderRepositoryImpl implements OrderRepository {
     int? page,
     int? pageSize,
   }) async {
-    final response = await _dio.get(
-      '/api/orders/my-orders',
-      queryParameters: <String, dynamic>{
-        if (status != null && status.isNotEmpty) 'Status': status,
-        if (type != null && type.isNotEmpty) 'Type': type,
-        if (paymentStatus != null && paymentStatus.isNotEmpty)
-          'PaymentStatus': paymentStatus,
-        if (searchTerm != null && searchTerm.isNotEmpty)
-          'SearchTerm': searchTerm,
-        'PageNumber': page ?? 1,
-        'PageSize': pageSize ?? 20,
-        'SortBy': 'CreatedAt',
-        'SortOrder': 'desc',
-        'IsDescending': true,
-      },
-      options: Options(
-        extra: const {
-          'secure': [_bearerSecure],
-        },
-      ),
+    final response = await _ordersApi.apiOrdersMyOrdersGet(
+      status: _mapOrderStatus(status),
+      type: _mapOrderType(type),
+      paymentStatus: _mapPaymentStatus(paymentStatus),
+      searchTerm: (searchTerm?.isNotEmpty == true) ? searchTerm : null,
+      pageNumber: page ?? 1,
+      pageSize: pageSize ?? 20,
+      sortBy: 'CreatedAt',
+      sortOrder: 'desc',
+      isDescending: true,
     );
-    final payload =
-        (response.data as Map<String, dynamic>?)?['payload']
-            as Map<String, dynamic>?;
+    final payload = response.data?.payload;
     if (payload == null) {
       return const PaginatedOrders(
         items: [],
@@ -168,45 +116,32 @@ class OrderRepositoryImpl implements OrderRepository {
         hasPreviousPage: false,
       );
     }
-    final payloadItems =
-        (payload['items'] as List?)?.cast<Map<String, dynamic>>() ??
-        const <Map<String, dynamic>>[];
-    final items = payloadItems.map((o) {
-      final detailItems =
-          (o['orderDetails'] as List?)?.cast<Map<String, dynamic>>() ??
-          const <Map<String, dynamic>>[];
+    final items = payload.items.map((o) {
       return OrderSummary(
-        id: o['id']?.toString() ?? '',
-        code: o['code']?.toString() ?? '',
-        type: o['type']?.toString(),
-        status: o['status']?.toString(),
-        paymentStatus: o['paymentStatus']?.toString(),
-        totalAmount: (o['totalAmount'] as num?)?.toDouble() ?? 0.0,
-        requiredDepositAmount:
-            (o['requiredDepositAmount'] as num?)?.toDouble() ?? 0.0,
-        depositAmount: (o['depositAmount'] as num?)?.toDouble() ?? 0.0,
-        paidAmount: (o['paidAmount'] as num?)?.toDouble() ?? 0.0,
-        remainingAmount: (o['remainingAmount'] as num?)?.toDouble() ?? 0.0,
-        itemCount: (o['itemCount'] as num?)?.toInt(),
-        isReturnable:
-            (o['isReturnable'] as bool?) ?? (o['isReturnalbe'] as bool?),
-        shippingStatus: o['shippingStatus']?.toString(),
-        createdAt: DateTime.tryParse(o['createdAt']?.toString() ?? ''),
-        orderDetails: detailItems
+        id: o.id ?? '',
+        code: o.code,
+        type: o.type?.value,
+        status: o.status?.value,
+        paymentStatus: o.paymentStatus?.value,
+        totalAmount: o.totalAmount?.toDouble() ?? 0.0,
+        requiredDepositAmount: o.requiredDepositAmount?.toDouble() ?? 0.0,
+        depositAmount: 0.0,
+        paidAmount: o.paidAmount?.toDouble() ?? 0.0,
+        remainingAmount: o.remainingAmount?.toDouble() ?? 0.0,
+        itemCount: o.itemCount,
+        isReturnable: o.isReturnalbe,
+        shippingStatus: o.shippingStatus?.value,
+        createdAt: o.createdAt,
+        orderDetails: (o.orderDetails)
             .map(
               (d) => OrderDetailItem(
-                id: d['id']?.toString() ?? '',
-                variantId: d['variantId']?.toString() ?? '',
-                variantName: d['variantName']?.toString() ?? '',
-                imageUrl: ImageUrlHelper.resolve(
-                  d['imageUrl']?.toString() ?? '',
-                ),
-                quantity: (d['quantity'] as num?)?.toInt() ?? 0,
-                unitPrice: (d['unitPrice'] as num?)?.toDouble() ?? 0.0,
-                total:
-                    (d['total'] as num?)?.toDouble() ??
-                    (d['itemTotal'] as num?)?.toDouble() ??
-                    0.0,
+                id: d.id ?? '',
+                variantId: d.variantId ?? '',
+                variantName: d.variantName,
+                imageUrl: ImageUrlHelper.resolve(d.imageUrl ?? ''),
+                quantity: d.quantity ?? 0,
+                unitPrice: d.unitPrice?.toDouble() ?? 0.0,
+                total: d.total?.toDouble() ?? 0.0,
               ),
             )
             .toList(),
@@ -214,107 +149,84 @@ class OrderRepositoryImpl implements OrderRepository {
     }).toList();
     return PaginatedOrders(
       items: items,
-      totalCount: (payload['totalCount'] as num?)?.toInt() ?? 0,
-      totalPages: (payload['totalPages'] as num?)?.toInt() ?? 0,
-      hasNextPage: payload['hasNextPage'] as bool? ?? false,
-      hasPreviousPage: payload['hasPreviousPage'] as bool? ?? false,
+      totalCount: payload.totalCount,
+      totalPages: payload.totalPages ?? 0,
+      hasNextPage: payload.hasNextPage ?? false,
+      hasPreviousPage: payload.hasPreviousPage ?? false,
     );
   }
 
   @override
   Future<OrderDetail> getOrderDetail(String orderId) async {
-    final response = await _dio.get(
-      '/api/orders/my-orders/$orderId',
-      options: Options(
-        extra: const {
-          'secure': [_bearerSecure],
-        },
-      ),
+    final response = await _ordersApi.apiOrdersMyOrdersOrderIdGet(
+      orderId: orderId,
     );
-    final o =
-        (response.data as Map<String, dynamic>?)?['payload']
-            as Map<String, dynamic>? ??
-        <String, dynamic>{};
-    final paymentTransactions =
-        (o['paymentTransactions'] as List?)?.cast<Map<String, dynamic>>() ??
-        const <Map<String, dynamic>>[];
-    final orderDetails =
-        (o['orderDetails'] as List?)?.cast<Map<String, dynamic>>() ??
-        const <Map<String, dynamic>>[];
-    final shippingInfo = o['shippingInfo'] as Map<String, dynamic>?;
-    final recipientInfo = o['recipientInfo'] as Map<String, dynamic>?;
+    final o = response.data?.payload;
+    if (o == null) {
+      throw Exception('Không tải được chi tiết đơn hàng');
+    }
     return OrderDetail(
-      id: o['id']?.toString() ?? '',
-      code: o['code']?.toString() ?? '',
-      type: o['type']?.toString(),
-      status: o['status']?.toString(),
-      isReturnable: o['isReturnable'] as bool? ?? false,
-      paymentStatus: o['paymentStatus']?.toString(),
-      totalAmount: (o['totalAmount'] as num?)?.toDouble() ?? 0.0,
-      requiredDepositAmount:
-          (o['requiredDepositAmount'] as num?)?.toDouble() ?? 0.0,
-      depositAmount: (o['depositAmount'] as num?)?.toDouble() ?? 0.0,
-      paidAmount: (o['paidAmount'] as num?)?.toDouble() ?? 0.0,
-      remainingAmount: (o['remainingAmount'] as num?)?.toDouble() ?? 0.0,
-      subTotal: (o['subTotal'] as num?)?.toDouble() ?? 0.0,
-      shippingFee: (o['shippingFee'] as num?)?.toDouble() ?? 0.0,
-      voucherCode: o['voucherCode']?.toString(),
-      voucherType: o['voucherType']?.toString(),
-      voucherDiscountTotal:
-          (o['voucherDiscountTotal'] as num?)?.toDouble() ?? 0.0,
-      paymentExpiresAt: DateTime.tryParse(
-        o['paymentExpiresAt']?.toString() ?? '',
-      ),
-      paidAt: DateTime.tryParse(o['paidAt']?.toString() ?? ''),
-      createdAt: DateTime.tryParse(o['createdAt']?.toString() ?? ''),
-      updatedAt: DateTime.tryParse(o['updatedAt']?.toString() ?? ''),
-      paymentTransactions: paymentTransactions
+      id: o.id ?? '',
+      code: o.code,
+      type: o.type?.value,
+      status: o.status?.value,
+      isReturnable: o.isReturnable ?? false,
+      paymentStatus: o.paymentStatus?.value,
+      totalAmount: o.totalAmount?.toDouble() ?? 0.0,
+      requiredDepositAmount: o.requiredDepositAmount?.toDouble() ?? 0.0,
+      depositAmount: o.depositAmount?.toDouble() ?? 0.0,
+      paidAmount: o.paidAmount?.toDouble() ?? 0.0,
+      remainingAmount: o.remainingAmount?.toDouble() ?? 0.0,
+      subTotal: o.subTotal?.toDouble() ?? 0.0,
+      shippingFee: o.shippingFee?.toDouble() ?? 0.0,
+      voucherCode: o.voucherCode,
+      voucherType: o.voucherType?.value,
+      voucherDiscountTotal: o.voucherDiscountTotal?.toDouble() ?? 0.0,
+      paymentExpiresAt: o.paymentExpiresAt,
+      paidAt: o.paidAt,
+      createdAt: o.createdAt,
+      updatedAt: o.updatedAt,
+      paymentTransactions: (o.paymentTransactions ?? [])
           .map(
             (p) => PaymentTransaction(
-              id: p['id']?.toString() ?? '',
-              transactionType: p['transactionType']?.toString(),
-              status: p['status']?.toString(),
-              paymentMethod: p['paymentMethod']?.toString(),
-              failureReason: p['failureReason']?.toString(),
-              totalAmount: (p['totalAmount'] as num?)?.toDouble() ?? 0.0,
+              id: p.id ?? '',
+              transactionType: p.transactionType?.value,
+              status: p.status?.value,
+              paymentMethod: p.paymentMethod?.value,
+              failureReason: p.failureReason,
+              totalAmount: p.totalAmount?.toDouble() ?? 0.0,
             ),
           )
           .toList(),
-      shippingInfo: shippingInfo != null
+      shippingInfo: o.shippingInfo != null
           ? ShippingInfo(
-              carrierName: shippingInfo['carrierName']?.toString(),
-              trackingNumber: shippingInfo['trackingNumber']?.toString(),
-              shippingFee:
-                  (shippingInfo['shippingFee'] as num?)?.toDouble() ?? 0.0,
-              status: shippingInfo['status']?.toString(),
-              estimatedDeliveryDate: DateTime.tryParse(
-                shippingInfo['estimatedDeliveryDate']?.toString() ?? '',
-              ),
+              carrierName: o.shippingInfo!.carrierName?.value,
+              trackingNumber: o.shippingInfo!.trackingNumber,
+              shippingFee: o.shippingInfo!.shippingFee?.toDouble() ?? 0.0,
+              status: o.shippingInfo!.status?.value,
+              estimatedDeliveryDate: o.shippingInfo!.estimatedDeliveryDate,
             )
           : null,
-      recipientInfo: recipientInfo != null
+      recipientInfo: o.recipientInfo != null
           ? RecipientInfo(
-              name: recipientInfo['recipientName']?.toString(),
-              phoneNumber: recipientInfo['recipientPhoneNumber']?.toString(),
-              districtName: recipientInfo['districtName']?.toString(),
-              wardName: recipientInfo['wardName']?.toString(),
-              provinceName: recipientInfo['provinceName']?.toString(),
-              fullAddress: recipientInfo['fullAddress']?.toString(),
+              name: o.recipientInfo!.recipientName,
+              phoneNumber: o.recipientInfo!.recipientPhoneNumber,
+              districtName: o.recipientInfo!.districtName,
+              wardName: o.recipientInfo!.wardName,
+              provinceName: o.recipientInfo!.provinceName,
+              fullAddress: o.recipientInfo!.fullAddress,
             )
           : null,
-      orderDetails: orderDetails
+      orderDetails: o.orderDetails
           .map(
             (d) => OrderDetailItem(
-              id: d['id']?.toString() ?? '',
-              variantId: d['variantId']?.toString() ?? '',
-              variantName: d['variantName']?.toString() ?? '',
-              imageUrl: ImageUrlHelper.resolve(d['imageUrl']?.toString() ?? ''),
-              quantity: (d['quantity'] as num?)?.toInt() ?? 0,
-              unitPrice: (d['unitPrice'] as num?)?.toDouble() ?? 0.0,
-              total:
-                  (d['total'] as num?)?.toDouble() ??
-                  (d['itemTotal'] as num?)?.toDouble() ??
-                  0.0,
+              id: d.id ?? '',
+              variantId: d.variantId ?? '',
+              variantName: d.variantName,
+              imageUrl: ImageUrlHelper.resolve(d.imageUrl ?? ''),
+              quantity: d.quantity ?? 0,
+              unitPrice: d.unitPrice?.toDouble() ?? 0.0,
+              total: d.total?.toDouble() ?? 0.0,
             ),
           )
           .toList(),
@@ -323,53 +235,42 @@ class OrderRepositoryImpl implements OrderRepository {
 
   @override
   Future<Invoice> getInvoice(String orderId) async {
-    final response = await _dio.get(
-      '/api/orders/my-orders/$orderId/invoice',
-      options: Options(
-        extra: const {
-          'secure': [_bearerSecure],
-        },
-      ),
+    final response = await _ordersApi.apiOrdersMyOrdersOrderIdInvoiceGet(
+      orderId: orderId,
     );
-    final payload =
-        (response.data as Map<String, dynamic>?)?['payload']
-            as Map<String, dynamic>? ??
-        <String, dynamic>{};
-    final itemsPayload =
-        (payload['items'] as List?)?.cast<Map<String, dynamic>>() ??
-        const <Map<String, dynamic>>[];
+    final payload = response.data?.payload;
+    if (payload == null) {
+      throw Exception('Không tải được hóa đơn');
+    }
     return Invoice(
-      orderId: payload['orderId']?.toString(),
-      code: payload['code']?.toString() ?? '',
-      orderDate: DateTime.tryParse(payload['orderDate']?.toString() ?? ''),
-      orderStatus: payload['orderStatus']?.toString() ?? '',
-      staffName: payload['staffName']?.toString() ?? '',
-      customerName: payload['customerName']?.toString() ?? '',
-      recipientPhone: payload['recipientPhone']?.toString() ?? '',
-      recipientAddress: payload['recipientAddress']?.toString() ?? '',
-      items: itemsPayload
+      orderId: payload.orderId,
+      code: payload.code,
+      orderDate: payload.orderDate,
+      orderStatus: payload.orderStatus,
+      staffName: payload.staffName,
+      customerName: payload.customerName,
+      recipientPhone: payload.recipientPhone,
+      recipientAddress: payload.recipientAddress,
+      items: payload.items
           .map(
             (i) => InvoiceItem(
-              productName: i['productName']?.toString() ?? '',
-              variantInfo: i['variantInfo']?.toString() ?? '',
-              quantity: (i['quantity'] as num?)?.toInt() ?? 0,
-              unitPrice: (i['unitPrice'] as num?)?.toDouble() ?? 0.0,
-              subtotal: (i['subtotal'] as num?)?.toDouble() ?? 0.0,
+              productName: i.productName,
+              variantInfo: i.variantInfo,
+              quantity: i.quantity ?? 0,
+              unitPrice: i.unitPrice?.toDouble() ?? 0.0,
+              subtotal: i.subtotal?.toDouble() ?? 0.0,
             ),
           )
           .toList(),
-      subtotal: (payload['subtotal'] as num?)?.toDouble() ?? 0.0,
-      depositAmount:
-          (payload['depositeAmount'] as num?)?.toDouble() ??
-          (payload['depositAmount'] as num?)?.toDouble() ??
-          0.0,
-      remainingAmount: (payload['remainingAmount'] as num?)?.toDouble() ?? 0.0,
-      shippingFee: (payload['shippingFee'] as num?)?.toDouble() ?? 0.0,
-      discount: (payload['discount'] as num?)?.toDouble() ?? 0.0,
-      tax: (payload['tax'] as num?)?.toDouble() ?? 0.0,
-      total: (payload['total'] as num?)?.toDouble() ?? 0.0,
-      paymentMethod: payload['paymentMethod']?.toString() ?? '',
-      note: payload['note']?.toString(),
+      subtotal: payload.subtotal?.toDouble() ?? 0.0,
+      depositAmount: payload.depositeAmount?.toDouble() ?? 0.0,
+      remainingAmount: payload.remainingAmount?.toDouble() ?? 0.0,
+      shippingFee: payload.shippingFee?.toDouble() ?? 0.0,
+      discount: payload.discount?.toDouble() ?? 0.0,
+      tax: payload.tax?.toDouble() ?? 0.0,
+      total: payload.total?.toDouble() ?? 0.0,
+      paymentMethod: payload.paymentMethod,
+      note: payload.note,
     );
   }
 
@@ -427,102 +328,16 @@ class OrderRepositoryImpl implements OrderRepository {
         break;
     }
 
-    final paymentValue = method?.value;
-    final basePayload = <String, dynamic>{
-      'newPaymentMethod': paymentValue,
-      'newDepositMethod': newDepositMethod,
-      'posSessionId': posSessionId,
-    };
-    final fallbackPayloads = <Map<String, dynamic>>[
-      basePayload,
-      // Common BE variant: full payment can omit newDepositMethod.
-      if (paymentValue == 'VnPay' ||
-          paymentValue == 'Momo' ||
-          paymentValue == 'PayOs')
-        <String, dynamic>{
-          'newPaymentMethod': paymentValue,
-          'newDepositMethod': null,
-          'posSessionId': posSessionId,
-        },
-      // Common BE variant: both fields should match chosen gateway/method.
-      if (paymentValue != null)
-        <String, dynamic>{
-          'newPaymentMethod': paymentValue,
-          'newDepositMethod': paymentValue,
-          'posSessionId': posSessionId,
-        },
-      // Legacy variant: API expects gateway in newDepositMethod and base in newPaymentMethod (or vice versa).
-      if (newDepositMethod != null && newDepositMethod.isNotEmpty)
-        <String, dynamic>{
-          'newPaymentMethod': newDepositMethod,
-          'newDepositMethod': paymentValue,
-          'posSessionId': posSessionId,
-        },
-      if (newDepositMethod != null && newDepositMethod.isNotEmpty)
-        <String, dynamic>{
-          'newPaymentMethod': newDepositMethod,
-          'newDepositMethod': newDepositMethod,
-          'posSessionId': posSessionId,
-        },
-    ];
-
-    final seen = <String>{};
-    final candidates = fallbackPayloads.where((p) {
-      final key =
-          '${p['newPaymentMethod'] ?? ''}|${p['newDepositMethod'] ?? ''}|${p['posSessionId'] ?? ''}';
-      if (seen.contains(key)) return false;
-      seen.add(key);
-      return true;
-    }).toList();
-    try {
-      DioException? lastDioError;
-      for (final payload in candidates) {
-        try {
-          final response = await _dio.post(
-            '/api/payments/$paymentId/retry',
-            data: payload,
-            options: Options(
-              extra: const {
-                'secure': [_bearerSecure],
-              },
-            ),
-          );
-          final payloadData =
-              (response.data as Map<String, dynamic>?)?['payload'];
-          if (payloadData is String) {
-            return _normalizePaymentUrl(payloadData);
-          }
-          if (payloadData is Map<String, dynamic>) {
-            final paymentUrl = payloadData['paymentUrl']?.toString();
-            return _normalizePaymentUrl(paymentUrl ?? '');
-          }
-          return '';
-        } on DioException catch (e) {
-          lastDioError = e;
-          final code = e.response?.statusCode ?? 0;
-          // Retry payload variants only for validation-style client errors.
-          if (code != 400 && code != 422) rethrow;
-        }
-      }
-      throw lastDioError ?? Exception('Retry payment failed');
-    } on DioException catch (e) {
-      final data = e.response?.data;
-      if (data is Map<String, dynamic>) {
-        final msg = data['message']?.toString();
-        final errors = (data['errors'] as List?)
-            ?.map((x) => x.toString())
-            .where((x) => x.isNotEmpty)
-            .join('; ');
-        throw Exception(
-          (msg != null && msg.isNotEmpty)
-              ? msg
-              : (errors != null && errors.isNotEmpty
-                    ? errors
-                    : 'Retry payment failed'),
-        );
-      }
-      throw Exception('Retry payment failed: ${e.message ?? 'unknown error'}');
-    }
+    final depositMethod = _mapPaymentMethod(newDepositMethod);
+    final response = await _paymentsApi.apiPaymentsPaymentIdRetryPost(
+      paymentId: paymentId,
+      retryOrChangePaymentRequest: RetryOrChangePaymentRequest(
+        newPaymentMethod: method,
+        newDepositMethod: depositMethod,
+        posSessionId: posSessionId,
+      ),
+    );
+    return _normalizePaymentUrl(response.data?.payload ?? '');
   }
 
   @override
@@ -540,31 +355,6 @@ class OrderRepositoryImpl implements OrderRepository {
     );
   }
 
-  // ─── Checkout response parsing helpers ─────────────────────────
-  CheckoutResult _parseCheckoutPayload(dynamic payload) {
-    if (payload == null) return const CheckoutResult();
-    if (payload is Map<String, dynamic>) {
-      return CheckoutResult.fromJson(payload);
-    }
-    if (payload is String && payload.isNotEmpty) {
-      try {
-        final json = jsonDecode(payload) as Map<String, dynamic>;
-        return CheckoutResult.fromJson(json);
-      } catch (_) {
-        return CheckoutResult(orderId: payload);
-      }
-    }
-    return const CheckoutResult();
-  }
-
-  CheckoutResult _parseRawCheckoutResponse(dynamic responseData) {
-    final data = responseData is String
-        ? jsonDecode(responseData) as Map<String, dynamic>
-        : responseData as Map<String, dynamic>;
-    final payload = data['payload'] ?? data['Payload'];
-    return _parseCheckoutPayload(payload);
-  }
-
   String _normalizePaymentUrl(String raw) {
     if (raw.isEmpty) return raw;
     final parsed = Uri.tryParse(raw);
@@ -576,5 +366,39 @@ class OrderRepositoryImpl implements OrderRepository {
     final baseUri = Uri.tryParse(base);
     if (baseUri == null) return raw;
     return baseUri.resolve(raw).toString();
+  }
+
+  PaymentMethod? _mapPaymentMethod(String? value) {
+    if (value == null || value.isEmpty) return null;
+    for (final method in PaymentMethod.values) {
+      if (method.value.toLowerCase() == value.toLowerCase()) {
+        return method;
+      }
+    }
+    return null;
+  }
+
+  OrderStatus? _mapOrderStatus(String? value) {
+    if (value == null || value.isEmpty) return null;
+    for (final status in OrderStatus.values) {
+      if (status.value.toLowerCase() == value.toLowerCase()) return status;
+    }
+    return null;
+  }
+
+  OrderType? _mapOrderType(String? value) {
+    if (value == null || value.isEmpty) return null;
+    for (final t in OrderType.values) {
+      if (t.value.toLowerCase() == value.toLowerCase()) return t;
+    }
+    return null;
+  }
+
+  PaymentStatus? _mapPaymentStatus(String? value) {
+    if (value == null || value.isEmpty) return null;
+    for (final s in PaymentStatus.values) {
+      if (s.value.toLowerCase() == value.toLowerCase()) return s;
+    }
+    return null;
   }
 }

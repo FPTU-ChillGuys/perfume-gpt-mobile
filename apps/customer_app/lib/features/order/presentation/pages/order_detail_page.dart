@@ -10,6 +10,7 @@ import '../../../review/presentation/providers/review_providers.dart';
 import '../providers/cancel_request_providers.dart';
 import '../providers/order_provider.dart';
 import '../providers/return_request_providers.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -418,6 +419,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
       appBar: AppBar(
         title: const Text('Chi tiết đơn hàng'),
         actions: [
+          const ProfileAvatarAppBarAction(),
           IconButton(
             icon: _isSyncing
                 ? const SizedBox(
@@ -1609,6 +1611,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                           '/return-requests/create',
                           extra: {
                             'orderId': order.id,
+                            'orderCode': order.code,
                             'orderItems': order.orderDetails,
                           },
                         );

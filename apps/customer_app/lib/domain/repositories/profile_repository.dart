@@ -3,6 +3,10 @@ import '../entities/user_profile.dart';
 
 abstract class ProfileRepository {
   Future<UserProfile> getMe();
+
+  /// Preferred avatar endpoint: GET /api/users/avatar
+  /// (backend can return canonical CDN/protected media URL).
+  Future<String?> getAvatarUrl();
   Future<void> updateMe({
     required String fullName,
     required String phoneNumber,

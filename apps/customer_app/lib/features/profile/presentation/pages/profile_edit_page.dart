@@ -197,6 +197,7 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
   @override
   Widget build(BuildContext context) {
     final profileAsync = ref.watch(profileControllerProvider);
+    final avatarFromApi = ref.watch(userMeAvatarUrlProvider).asData?.value;
 
     if (!_didLoad) {
       profileAsync.whenData((profile) {
@@ -230,34 +231,60 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                   children: [
                     profileAsync.maybeWhen(
                       data: (p) {
-                        final hasAvatar =
-                            p.avatarUrl != null && p.avatarUrl!.isNotEmpty;
-                        return CircleAvatar(
-                          radius: 48,
-                          backgroundColor: AppColors.primaryLight,
-                          backgroundImage: hasAvatar
-                              ? NetworkImage(
-                                  ImageUrlHelper.resolve(p.avatarUrl!),
-                                )
-                              : null,
-                          child: _uploadingAvatar
-                              ? const CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: AppColors.primary,
-                                )
-                              : hasAvatar
-                              ? null
-                              : Text(
-                                  (_nameCtrl.text.isNotEmpty
-                                          ? _nameCtrl.text[0]
-                                          : '?')
-                                      .toUpperCase(),
-                                  style: const TextStyle(
-                                    fontSize: 36,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primary,
+                        final effectiveAvatarUrl = (avatarFromApi != null &&
+                                avatarFromApi.isNotEmpty)
+                            ? avatarFromApi
+                            : p.avatarUrl;
+                        final hasAvatar = effectiveAvatarUrl != null &&
+                            effectiveAvatarUrl.isNotEmpty;
+                        final avatarUrl = effectiveAvatarUrl ?? '';
+                        final initial = (_nameCtrl.text.isNotEmpty
+                                ? _nameCtrl.text[0]
+                                : '?')
+                            .toUpperCase();
+                        return Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            CircleAvatar(
+                              radius: 48,
+                              backgroundColor: AppColors.primaryLight,
+                              backgroundImage: hasAvatar
+                                  ? NetworkImage(
+                                      ImageUrlHelper.resolve(
+                                        avatarUrl,
+                                      ),
+                                    )
+                                  : null,
+                              child: hasAvatar
+                                  ? null
+                                  : Text(
+                                      initial,
+                                      style: const TextStyle(
+                                        fontSize: 36,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.primary,
+                                      ),
+                                    ),
+                            ),
+                            if (_uploadingAvatar)
+                              Positioned.fill(
+                                child: ClipOval(
+                                  child: ColoredBox(
+                                    color: Colors.white54,
+                                    child: Center(
+                                      child: SizedBox(
+                                        width: 36,
+                                        height: 36,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2.5,
+                                          color: AppColors.primary,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
+                              ),
+                          ],
                         );
                       },
                       orElse: () => CircleAvatar(

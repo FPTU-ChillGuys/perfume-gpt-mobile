@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../data/repositories/profile_repository_impl.dart';
@@ -16,7 +17,7 @@ ProfileRepository profileRepository(Ref ref) {
     apiClient.getScentNotesApi(),
     apiClient.getOlfactoryFamiliesApi(),
     apiClient.getAttributesApi(),
-    apiClient.dio,
+    apiClient.dio.options.baseUrl,
   );
 }
 
@@ -44,6 +45,14 @@ FutureOr<List<AttributeValueLookup>> attributeValuesLookup(
       .watch(profileRepositoryProvider)
       .getAttributeValuesLookup(attributeId);
 }
+
+/// Preferred avatar source: GET /api/users/avatar. Falls back inside repository.
+final userMeAvatarUrlProvider = FutureProvider<String?>((ref) async {
+  ref.keepAlive();
+  final user = ref.watch(authProvider).asData?.value;
+  if (user == null) return null;
+  return ref.read(profileRepositoryProvider).getAvatarUrl();
+});
 
 @riverpod
 class ProfileController extends _$ProfileController {
@@ -88,11 +97,13 @@ class ProfileController extends _$ProfileController {
         .read(profileRepositoryProvider)
         .uploadAvatar(filePath);
     ref.invalidateSelf();
+    ref.invalidate(userMeAvatarUrlProvider);
     return url;
   }
 
   Future<void> deleteAvatar() async {
     await ref.read(profileRepositoryProvider).deleteAvatar();
     ref.invalidateSelf();
+    ref.invalidate(userMeAvatarUrlProvider);
   }
 }

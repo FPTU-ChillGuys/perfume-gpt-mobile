@@ -9,7 +9,7 @@ part 'banner_providers.g.dart';
 @riverpod
 BannerRepository bannerRepository(Ref ref) {
   final apiClient = ref.watch(apiClientProvider);
-  return BannerRepositoryImpl(apiClient.dio);
+  return BannerRepositoryImpl(apiClient.getBannersApi());
 }
 
 @riverpod

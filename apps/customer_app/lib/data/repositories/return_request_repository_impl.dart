@@ -8,8 +8,8 @@ import '../../domain/repositories/return_request_repository.dart';
 class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
   final OrderReturnRequestsApi _api;
   final ShippingsApi _shippingsApi;
-  final Dio _dio;
-  ReturnRequestRepositoryImpl(this._api, this._shippingsApi, this._dio);
+
+  ReturnRequestRepositoryImpl(this._api, this._shippingsApi);
 
   @override
   Future<PaginatedReturnRequests> getMyRequests({
@@ -87,46 +87,33 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
     List<PendingUploadMedia>? images,
     List<PendingUploadMedia>? videos,
   }) async {
-    final formData = FormData();
+    final hasImages = images != null && images.isNotEmpty;
+    final hasVideos = videos != null && videos.isNotEmpty;
+    if (!hasImages && !hasVideos) return [];
+
+    final imageParts = <MultipartFile>[];
+    final videoParts = <MultipartFile>[];
     if (images != null) {
       for (final img in images) {
-        formData.files.add(
-          MapEntry(
-            'images',
-            await _buildMultipartFile(img, MediaType('image', 'jpeg')),
-          ),
+        imageParts.add(
+          await _buildMultipartFile(img, MediaType('image', 'jpeg')),
         );
       }
     }
     if (videos != null) {
       for (final vid in videos) {
-        formData.files.add(
-          MapEntry(
-            'videos',
-            await _buildMultipartFile(vid, MediaType('video', 'mp4')),
-          ),
+        videoParts.add(
+          await _buildMultipartFile(vid, MediaType('video', 'mp4')),
         );
       }
     }
-    final response = await _dio.post(
-      '/api/orderreturnrequests/videos/temporary',
-      data: formData,
-      options: Options(
-        extra: <String, dynamic>{
-          'secure': <Map<String, String>>[
-            {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
-          ],
-        },
-      ),
+    final response = await _api.apiOrderreturnrequestsVideosTemporaryPost(
+      images: imageParts.isEmpty ? null : imageParts,
+      videos: videoParts.isEmpty ? null : videoParts,
     );
-    final payload = response.data;
-    List items = [];
-    if (payload is Map) {
-      final data = (payload['payload'] as Map?)?['data'];
-      if (data is List) items = data;
-    }
+    final items = response.data?.payload?.data ?? [];
     return items
-        .map<String>((m) => (m['id'] ?? '').toString())
+        .map<String>((m) => (m.id ?? '').toString())
         .where((id) => id.isNotEmpty)
         .toList();
   }
@@ -160,6 +147,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
   @override
   Future<void> create({
     required String orderId,
+    required String orderCode,
     required String reason,
     required List<({String orderDetailId, int quantity})> returnItems,
     String? customerNote,
@@ -217,7 +205,11 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
             )
           : null,
     );
-    debugPrint('[ReturnRequestRepo] create DTO JSON: ${dto.toJson()}');
+    final body = <String, dynamic>{
+      ...dto.toJson(),
+      'orderCode': orderCode,
+    };
+    debugPrint('[ReturnRequestRepo] create DTO JSON: $body');
     try {
       await _api.apiOrderreturnrequestsPost(createReturnRequestDto: dto);
     } on DioException catch (e) {

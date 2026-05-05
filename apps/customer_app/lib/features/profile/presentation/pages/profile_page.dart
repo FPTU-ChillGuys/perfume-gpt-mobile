@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/utils/image_url_helper.dart';
+import '../widgets/resolved_user_avatar.dart';
 import '../providers/profile_providers.dart';
 import '../../../loyalty/presentation/providers/loyalty_providers.dart';
 
@@ -151,10 +151,17 @@ class _AuthenticatedView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final profileAsync = ref.watch(profileControllerProvider);
     final loyaltyAsync = ref.watch(loyaltyTotalProvider);
+    final authUser = ref.watch(authProvider).asData?.value;
 
-    final initial = (userName != null && userName!.trim().isNotEmpty)
-        ? userName!.trim()[0].toUpperCase()
-        : 'U';
+    final String? headerAvatarUrl = () {
+      final fromProfile = profileAsync.whenOrNull(
+        data: (p) => p.avatarUrl,
+      );
+      if (fromProfile != null && fromProfile.isNotEmpty) return fromProfile;
+      final fromAuth = authUser?.avatarUrl;
+      if (fromAuth != null && fromAuth.isNotEmpty) return fromAuth;
+      return null;
+    }();
 
     return CustomScrollView(
       slivers: [
@@ -192,36 +199,11 @@ class _AuthenticatedView extends ConsumerWidget {
                       ref.invalidate(profileControllerProvider);
                     }
                   },
-                  child: CircleAvatar(
+                  child: ResolvedUserAvatar(
+                    avatarUrlOverride: headerAvatarUrl,
+                    displayName: userName,
                     radius: 36,
-                    backgroundColor: Colors.white24,
-                    backgroundImage: profileAsync.whenOrNull(
-                      data: (p) =>
-                          p.avatarUrl != null && p.avatarUrl!.isNotEmpty
-                          ? NetworkImage(ImageUrlHelper.resolve(p.avatarUrl!))
-                          : null,
-                    ),
-                    child: profileAsync.maybeWhen(
-                      data: (p) =>
-                          p.avatarUrl != null && p.avatarUrl!.isNotEmpty
-                          ? null
-                          : Text(
-                              initial,
-                              style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                      orElse: () => Text(
-                        initial,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    forDarkAppBar: true,
                   ),
                 ),
                 const SizedBox(height: 12),

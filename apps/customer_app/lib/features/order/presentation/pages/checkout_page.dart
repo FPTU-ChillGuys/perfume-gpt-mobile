@@ -12,6 +12,7 @@ import '../../../voucher/presentation/providers/voucher_providers.dart';
 import '../providers/address_provider.dart';
 import '../providers/cart_provider.dart';
 import '../providers/order_provider.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 String _formatCurrency(double value) {
   final str = value.toStringAsFixed(0);
@@ -449,6 +450,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
           onPressed: () => context.pop(),
         ),
         title: const Text('Thanh toán'),
+        actions: const [ProfileAvatarAppBarAction()],
       ),
       body: authState.when(
         data: (user) {
@@ -1430,10 +1432,10 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
           ),
           freeLabel
               ? Text(
-                  'FREE',
+                  'Miễn phí',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    color: Colors.green.shade700,
+                    color: AppColors.success,
                   ),
                 )
               : Text(

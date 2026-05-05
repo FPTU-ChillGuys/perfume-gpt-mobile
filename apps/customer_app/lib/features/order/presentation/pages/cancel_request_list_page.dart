@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/cancel_request.dart';
 import '../providers/cancel_request_providers.dart';
+import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
 final _currencyFmt = NumberFormat.currency(
   locale: 'vi_VN',
@@ -118,6 +119,9 @@ class _State extends ConsumerState<CancelRequestListPage>
                   )
                   .toList(),
             ),
+            actions: const [
+              ProfileAvatarAppBarAction(forDarkAppBar: true),
+            ],
           ),
         ],
         body: dataAsync.when(
