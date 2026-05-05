@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **variants** | [**List&lt;ProductVariantResponse&gt;**](ProductVariantResponse.md) | Danh sách biến thể | 
 **scentNotes** | **List&lt;String&gt;** | Danh sách nốt hương | 
 **olfactoryFamilies** | **List&lt;String&gt;** | Danh sách nhóm hương | 
+**gender** | **Object** | Giới tính (Male/Female/Unisex) | [optional] 
 **attributes** | [**List&lt;ProductAttributeResponse&gt;**](ProductAttributeResponse.md) | Danh sách thuộc tính sản phẩm | 
 **createdAt** | **String** | Ngày tạo | 
 **updatedAt** | **Object** | Ngày cập nhật | [optional] 

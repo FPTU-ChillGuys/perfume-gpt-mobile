@@ -96,7 +96,7 @@ final class CartRepositoryProvider
   }
 }
 
-String _$cartRepositoryHash() => r'4aac4d78d2f271206dd0b2849554504ede3460c5';
+String _$cartRepositoryHash() => r'7bd74daf8f982afa2863f5a00d95d8772c4d3ae6';
 
 @ProviderFor(Cart)
 final cartProvider = CartProvider._();
@@ -121,7 +121,7 @@ final class CartProvider extends $AsyncNotifierProvider<Cart, List<CartItem>> {
   Cart create() => Cart();
 }
 
-String _$cartHash() => r'41c9c01a52388ba346059f60eb672633e3c0d25d';
+String _$cartHash() => r'ea6831c0351267a19e48abf2b8b3821b7a49c656';
 
 abstract class _$Cart extends $AsyncNotifier<List<CartItem>> {
   FutureOr<List<CartItem>> build();

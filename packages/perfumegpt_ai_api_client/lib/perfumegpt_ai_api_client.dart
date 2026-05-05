@@ -25,6 +25,8 @@ export 'package:perfumegpt_ai_api_client/src/api/trends_api.dart';
 export 'package:perfumegpt_ai_api_client/src/model/ai_acceptance.dart';
 export 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_create_pending_response_acceptance200_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_get_ai_acceptance_rate200_response.dart';
+export 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_get_all_ai_acceptance_status200_response.dart';
+export 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/ai_inventory_report_structured_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/ai_response_metadata.dart';
 export 'package:perfumegpt_ai_api_client/src/model/ai_review_summary_structured_response.dart';
@@ -52,8 +54,8 @@ export 'package:perfumegpt_ai_api_client/src/model/create_admin_instruction_requ
 export 'package:perfumegpt_ai_api_client/src/model/create_question_from_attribute_request.dart';
 export 'package:perfumegpt_ai_api_client/src/model/create_response_ai_acceptance_request.dart';
 export 'package:perfumegpt_ai_api_client/src/model/daily_sales_record.dart';
-export 'package:perfumegpt_ai_api_client/src/model/event_log.dart';
 export 'package:perfumegpt_ai_api_client/src/model/event_log_create_request.dart';
+export 'package:perfumegpt_ai_api_client/src/model/event_log_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/event_log_summary_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/event_log_time_series_point_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/event_log_time_series_response.dart';

@@ -43,7 +43,7 @@ final class ImportVerificationNotifierProvider
 }
 
 String _$importVerificationNotifierHash() =>
-    r'4b55d18a99e70ea519bd03d90f3e7380364f7094';
+    r'eaf56da9104f41b2e04f55046a223e64e4fb75e5';
 
 abstract class _$ImportVerificationNotifier
     extends $Notifier<ImportVerificationState> {

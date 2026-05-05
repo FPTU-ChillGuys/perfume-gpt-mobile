@@ -1,6 +1,8 @@
 import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance.dart';
 import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_create_pending_response_acceptance200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_get_ai_acceptance_rate200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_get_all_ai_acceptance_status200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/ai_inventory_report_structured_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/ai_response_metadata.dart';
 import 'package:perfumegpt_ai_api_client/src/model/ai_review_summary_structured_response.dart';
@@ -28,8 +30,8 @@ import 'package:perfumegpt_ai_api_client/src/model/create_admin_instruction_requ
 import 'package:perfumegpt_ai_api_client/src/model/create_question_from_attribute_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/create_response_ai_acceptance_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/daily_sales_record.dart';
-import 'package:perfumegpt_ai_api_client/src/model/event_log.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_create_request.dart';
+import 'package:perfumegpt_ai_api_client/src/model/event_log_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_summary_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_time_series_point_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/event_log_time_series_response.dart';
@@ -157,6 +159,10 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return AIAcceptanceControllerCreatePendingResponseAcceptance200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'AIAcceptanceControllerGetAIAcceptanceRate200Response':
           return AIAcceptanceControllerGetAIAcceptanceRate200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'AIAcceptanceControllerGetAllAIAcceptanceStatus200Response':
+          return AIAcceptanceControllerGetAllAIAcceptanceStatus200Response.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'AIAcceptanceResponse':
+          return AIAcceptanceResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'AIInventoryReportStructuredResponse':
           return AIInventoryReportStructuredResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'AIResponseMetadata':
@@ -211,10 +217,10 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
           return CreateResponseAIAcceptanceRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'DailySalesRecord':
           return DailySalesRecord.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'EventLog':
-          return EventLog.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'EventLogCreateRequest':
           return EventLogCreateRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
+        case 'EventLogResponse':
+          return EventLogResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'EventLogSummaryResponse':
           return EventLogSummaryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
         case 'EventLogTimeSeriesPointResponse':

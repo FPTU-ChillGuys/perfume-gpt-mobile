@@ -21,9 +21,9 @@ class ConversationResponse {
   /// Returns a new [ConversationResponse] instance.
   ConversationResponse({
 
-    required  this.id,
-
     required  this.userId,
+
+     this.userName = 'Khách',
 
     required  this.messages,
 
@@ -31,19 +31,6 @@ class ConversationResponse {
 
      this.isMobile = false,
   });
-
-      /// ID cuộc hội thoại
-  @JsonKey(
-    
-    name: r'id',
-    required: true,
-    includeIfNull: false,
-  )
-
-
-  final String id;
-
-
 
       /// ID người dùng
   @JsonKey(
@@ -55,6 +42,19 @@ class ConversationResponse {
 
 
   final String userId;
+
+
+
+      /// Tên người dùng (resolved từ DB)
+  @JsonKey(
+    defaultValue: 'Khách',
+    name: r'userName',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? userName;
 
 
 
@@ -101,16 +101,16 @@ class ConversationResponse {
 
     @override
     bool operator ==(Object other) => identical(this, other) || other is ConversationResponse &&
-      other.id == id &&
       other.userId == userId &&
+      other.userName == userName &&
       other.messages == messages &&
       other.updatedAt == updatedAt &&
       other.isMobile == isMobile;
 
     @override
     int get hashCode =>
-        id.hashCode +
         userId.hashCode +
+        userName.hashCode +
         messages.hashCode +
         updatedAt.hashCode +
         isMobile.hashCode;

@@ -80,6 +80,7 @@ Class | Method | HTTP request | Description
 [*AIAcceptanceApi*](doc/AIAcceptanceApi.md) | [**aIAcceptanceControllerCreatePendingResponseAcceptance**](doc/AIAcceptanceApi.md#aiacceptancecontrollercreatependingresponseacceptance) | **POST** /ai-acceptance/response | Tạo AI acceptance pending theo response-level (backend-first)
 [*AIAcceptanceApi*](doc/AIAcceptanceApi.md) | [**aIAcceptanceControllerGetAIAcceptanceMetrics**](doc/AIAcceptanceApi.md#aiacceptancecontrollergetaiacceptancemetrics) | **GET** /ai-acceptance/metrics | Lấy metrics acceptance theo context (accepted/pending/no-click)
 [*AIAcceptanceApi*](doc/AIAcceptanceApi.md) | [**aIAcceptanceControllerGetAIAcceptanceRate**](doc/AIAcceptanceApi.md#aiacceptancecontrollergetaiacceptancerate) | **GET** /ai-acceptance/rate | Lấy tỷ lệ chấp nhận AI theo trạng thái
+[*AIAcceptanceApi*](doc/AIAcceptanceApi.md) | [**aIAcceptanceControllerGetAIAcceptanceRates**](doc/AIAcceptanceApi.md#aiacceptancecontrollergetaiacceptancerates) | **GET** /ai-acceptance/rates | Lấy 3 tỉ lệ acceptance (chấp nhận / từ chối / chưa xác định)
 [*AIAcceptanceApi*](doc/AIAcceptanceApi.md) | [**aIAcceptanceControllerGetAllAIAcceptanceStatus**](doc/AIAcceptanceApi.md#aiacceptancecontrollergetallaiacceptancestatus) | **GET** /ai-acceptance/status/all | Lấy trạng thái chấp nhận AI của tất cả gợi ý
 [*AIAcceptanceApi*](doc/AIAcceptanceApi.md) | [**aIAcceptanceControllerUpdateAIAcceptanceData**](doc/AIAcceptanceApi.md#aiacceptancecontrollerupdateaiacceptancedata) | **POST** /ai-acceptance/{id} | Cập nhật trạng thái chấp nhận AI theo ID
 [*AdminInstructionsApi*](doc/AdminInstructionsApi.md) | [**adminInstructionControllerCreateInstruction**](doc/AdminInstructionsApi.md#admininstructioncontrollercreateinstruction) | **POST** /admin/instructions | Tạo chỉ thị admin mới
@@ -195,6 +196,8 @@ Class | Method | HTTP request | Description
  - [AIAcceptance](doc/AIAcceptance.md)
  - [AIAcceptanceControllerCreatePendingResponseAcceptance200Response](doc/AIAcceptanceControllerCreatePendingResponseAcceptance200Response.md)
  - [AIAcceptanceControllerGetAIAcceptanceRate200Response](doc/AIAcceptanceControllerGetAIAcceptanceRate200Response.md)
+ - [AIAcceptanceControllerGetAllAIAcceptanceStatus200Response](doc/AIAcceptanceControllerGetAllAIAcceptanceStatus200Response.md)
+ - [AIAcceptanceResponse](doc/AIAcceptanceResponse.md)
  - [AIInventoryReportStructuredResponse](doc/AIInventoryReportStructuredResponse.md)
  - [AIResponseMetadata](doc/AIResponseMetadata.md)
  - [AIReviewSummaryStructuredResponse](doc/AIReviewSummaryStructuredResponse.md)
@@ -222,8 +225,8 @@ Class | Method | HTTP request | Description
  - [CreateQuestionFromAttributeRequest](doc/CreateQuestionFromAttributeRequest.md)
  - [CreateResponseAIAcceptanceRequest](doc/CreateResponseAIAcceptanceRequest.md)
  - [DailySalesRecord](doc/DailySalesRecord.md)
- - [EventLog](doc/EventLog.md)
  - [EventLogCreateRequest](doc/EventLogCreateRequest.md)
+ - [EventLogResponse](doc/EventLogResponse.md)
  - [EventLogSummaryResponse](doc/EventLogSummaryResponse.md)
  - [EventLogTimeSeriesPointResponse](doc/EventLogTimeSeriesPointResponse.md)
  - [EventLogTimeSeriesResponse](doc/EventLogTimeSeriesResponse.md)

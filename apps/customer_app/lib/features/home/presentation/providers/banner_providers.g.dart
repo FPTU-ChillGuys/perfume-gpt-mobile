@@ -53,7 +53,7 @@ final class BannerRepositoryProvider
   }
 }
 
-String _$bannerRepositoryHash() => r'68e04309d406bbef7b3396c9bc1ea4bff10cadf0';
+String _$bannerRepositoryHash() => r'4f48a742c2964eb93de35251ae7693c934bd643f';
 
 @ProviderFor(homeHeroBanners)
 final homeHeroBannersProvider = HomeHeroBannersProvider._();

@@ -13,7 +13,7 @@ abstract class _$LogControllerGetAllUserLogs200ResponseCWProxy {
 
   LogControllerGetAllUserLogs200Response details(String? details);
 
-  LogControllerGetAllUserLogs200Response data(List<EventLog>? data);
+  LogControllerGetAllUserLogs200Response data(List<EventLogResponse>? data);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LogControllerGetAllUserLogs200Response(...).copyWith.fieldName(value)`.
@@ -26,7 +26,7 @@ abstract class _$LogControllerGetAllUserLogs200ResponseCWProxy {
     bool? success,
     String? error,
     String? details,
-    List<EventLog>? data,
+    List<EventLogResponse>? data,
   });
 }
 
@@ -51,7 +51,7 @@ class _$LogControllerGetAllUserLogs200ResponseCWProxyImpl
       call(details: details);
 
   @override
-  LogControllerGetAllUserLogs200Response data(List<EventLog>? data) =>
+  LogControllerGetAllUserLogs200Response data(List<EventLogResponse>? data) =>
       call(data: data);
 
   @override
@@ -84,7 +84,7 @@ class _$LogControllerGetAllUserLogs200ResponseCWProxyImpl
       data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
-          : data as List<EventLog>?,
+          : data as List<EventLogResponse>?,
     );
   }
 }
@@ -114,7 +114,7 @@ _$LogControllerGetAllUserLogs200ResponseFromJson(Map<String, dynamic> json) =>
         data: $checkedConvert(
           'data',
           (v) => (v as List<dynamic>?)
-              ?.map((e) => EventLog.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => EventLogResponse.fromJson(e as Map<String, dynamic>))
               .toList(),
         ),
       );

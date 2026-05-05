@@ -54,7 +54,7 @@ final class ProfileRepositoryProvider
   }
 }
 
-String _$profileRepositoryHash() => r'76a1bd86b76b5a78d7592ece7444c3b2c5ccb3bc';
+String _$profileRepositoryHash() => r'76235373c56a08cd928524a501ee9a7ee32e0410';
 
 @ProviderFor(scentNotesLookup)
 final scentNotesLookupProvider = ScentNotesLookupProvider._();
@@ -282,7 +282,7 @@ final class ProfileControllerProvider
   ProfileController create() => ProfileController();
 }
 
-String _$profileControllerHash() => r'27268a769ea01dc71846d3457fb7672b9344b50e';
+String _$profileControllerHash() => r'7036150857365487e727ca785969dc13484ec44b';
 
 abstract class _$ProfileController extends $AsyncNotifier<UserProfile> {
   FutureOr<UserProfile> build();

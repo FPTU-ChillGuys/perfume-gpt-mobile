@@ -7,9 +7,9 @@ part of 'conversation_response.dart';
 // **************************************************************************
 
 abstract class _$ConversationResponseCWProxy {
-  ConversationResponse id(String id);
-
   ConversationResponse userId(String userId);
+
+  ConversationResponse userName(String? userName);
 
   ConversationResponse messages(List<MessageResponse> messages);
 
@@ -25,8 +25,8 @@ abstract class _$ConversationResponseCWProxy {
   /// ConversationResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   ConversationResponse call({
-    String id,
     String userId,
+    String? userName,
     List<MessageResponse> messages,
     DateTime updatedAt,
     bool? isMobile,
@@ -42,10 +42,10 @@ class _$ConversationResponseCWProxyImpl
   final ConversationResponse _value;
 
   @override
-  ConversationResponse id(String id) => call(id: id);
+  ConversationResponse userId(String userId) => call(userId: userId);
 
   @override
-  ConversationResponse userId(String userId) => call(userId: userId);
+  ConversationResponse userName(String? userName) => call(userName: userName);
 
   @override
   ConversationResponse messages(List<MessageResponse> messages) =>
@@ -67,21 +67,21 @@ class _$ConversationResponseCWProxyImpl
   /// ConversationResponse(...).copyWith(id: 12, name: "My name")
   /// ```
   ConversationResponse call({
-    Object? id = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
+    Object? userName = const $CopyWithPlaceholder(),
     Object? messages = const $CopyWithPlaceholder(),
     Object? updatedAt = const $CopyWithPlaceholder(),
     Object? isMobile = const $CopyWithPlaceholder(),
   }) {
     return ConversationResponse(
-      id: id == const $CopyWithPlaceholder() || id == null
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String,
       userId: userId == const $CopyWithPlaceholder() || userId == null
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable
           : userId as String,
+      userName: userName == const $CopyWithPlaceholder()
+          ? _value.userName
+          // ignore: cast_nullable_to_non_nullable
+          : userName as String?,
       messages: messages == const $CopyWithPlaceholder() || messages == null
           ? _value.messages
           // ignore: cast_nullable_to_non_nullable
@@ -113,13 +113,10 @@ extension $ConversationResponseCopyWith on ConversationResponse {
 ConversationResponse _$ConversationResponseFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('ConversationResponse', json, ($checkedConvert) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['id', 'userId', 'messages', 'updatedAt'],
-  );
+  $checkKeys(json, requiredKeys: const ['userId', 'messages', 'updatedAt']);
   final val = ConversationResponse(
-    id: $checkedConvert('id', (v) => v as String),
     userId: $checkedConvert('userId', (v) => v as String),
+    userName: $checkedConvert('userName', (v) => v as String? ?? 'Khách'),
     messages: $checkedConvert(
       'messages',
       (v) => (v as List<dynamic>)
@@ -135,8 +132,8 @@ ConversationResponse _$ConversationResponseFromJson(
 Map<String, dynamic> _$ConversationResponseToJson(
   ConversationResponse instance,
 ) => <String, dynamic>{
-  'id': instance.id,
   'userId': instance.userId,
+  'userName': ?instance.userName,
   'messages': instance.messages.map((e) => e.toJson()).toList(),
   'updatedAt': instance.updatedAt.toIso8601String(),
   'isMobile': ?instance.isMobile,

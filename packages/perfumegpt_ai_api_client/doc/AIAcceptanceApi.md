@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**aIAcceptanceControllerCreatePendingResponseAcceptance**](AIAcceptanceApi.md#aiacceptancecontrollercreatependingresponseacceptance) | **POST** /ai-acceptance/response | Tạo AI acceptance pending theo response-level (backend-first)
 [**aIAcceptanceControllerGetAIAcceptanceMetrics**](AIAcceptanceApi.md#aiacceptancecontrollergetaiacceptancemetrics) | **GET** /ai-acceptance/metrics | Lấy metrics acceptance theo context (accepted/pending/no-click)
 [**aIAcceptanceControllerGetAIAcceptanceRate**](AIAcceptanceApi.md#aiacceptancecontrollergetaiacceptancerate) | **GET** /ai-acceptance/rate | Lấy tỷ lệ chấp nhận AI theo trạng thái
+[**aIAcceptanceControllerGetAIAcceptanceRates**](AIAcceptanceApi.md#aiacceptancecontrollergetaiacceptancerates) | **GET** /ai-acceptance/rates | Lấy 3 tỉ lệ acceptance (chấp nhận / từ chối / chưa xác định)
 [**aIAcceptanceControllerGetAllAIAcceptanceStatus**](AIAcceptanceApi.md#aiacceptancecontrollergetallaiacceptancestatus) | **GET** /ai-acceptance/status/all | Lấy trạng thái chấp nhận AI của tất cả gợi ý
 [**aIAcceptanceControllerUpdateAIAcceptanceData**](AIAcceptanceApi.md#aiacceptancecontrollerupdateaiacceptancedata) | **POST** /ai-acceptance/{id} | Cập nhật trạng thái chấp nhận AI theo ID
 
@@ -183,8 +184,49 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **aIAcceptanceControllerGetAIAcceptanceRates**
+> SurveyControllerReorderQuestions200Response aIAcceptanceControllerGetAIAcceptanceRates(contextType)
+
+Lấy 3 tỉ lệ acceptance (chấp nhận / từ chối / chưa xác định)
+
+### Example
+```dart
+import 'package:perfumegpt_ai_api_client/api.dart';
+
+final api = PerfumegptAiApiClient().getAIAcceptanceApi();
+final String contextType = contextType_example; // String | 
+
+try {
+    final response = api.aIAcceptanceControllerGetAIAcceptanceRates(contextType);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AIAcceptanceApi->aIAcceptanceControllerGetAIAcceptanceRates: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contextType** | **String**|  | [optional] 
+
+### Return type
+
+[**SurveyControllerReorderQuestions200Response**](SurveyControllerReorderQuestions200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **aIAcceptanceControllerGetAllAIAcceptanceStatus**
-> AIAcceptanceControllerCreatePendingResponseAcceptance200Response aIAcceptanceControllerGetAllAIAcceptanceStatus()
+> AIAcceptanceControllerGetAllAIAcceptanceStatus200Response aIAcceptanceControllerGetAllAIAcceptanceStatus()
 
 Lấy trạng thái chấp nhận AI của tất cả gợi ý
 
@@ -207,7 +249,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AIAcceptanceControllerCreatePendingResponseAcceptance200Response**](AIAcceptanceControllerCreatePendingResponseAcceptance200Response.md)
+[**AIAcceptanceControllerGetAllAIAcceptanceStatus200Response**](AIAcceptanceControllerGetAllAIAcceptanceStatus200Response.md)
 
 ### Authorization
 

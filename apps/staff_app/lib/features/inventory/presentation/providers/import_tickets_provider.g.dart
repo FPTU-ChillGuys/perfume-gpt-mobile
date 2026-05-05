@@ -66,7 +66,7 @@ final class ImportTicketsProvider
   }
 }
 
-String _$importTicketsHash() => r'cb6bcfe678e41c2c59d85e3fc8dbd599fbd97c7c';
+String _$importTicketsHash() => r'a92779cef7d5434eec1132efe4c27d17713fcef7';
 
 final class ImportTicketsFamily extends $Family
     with

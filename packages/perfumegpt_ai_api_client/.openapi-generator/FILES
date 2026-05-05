@@ -6,6 +6,8 @@ doc/AIAcceptance.md
 doc/AIAcceptanceApi.md
 doc/AIAcceptanceControllerCreatePendingResponseAcceptance200Response.md
 doc/AIAcceptanceControllerGetAIAcceptanceRate200Response.md
+doc/AIAcceptanceControllerGetAllAIAcceptanceStatus200Response.md
+doc/AIAcceptanceResponse.md
 doc/AIInventoryReportStructuredResponse.md
 doc/AIResponseMetadata.md
 doc/AIReviewSummaryStructuredResponse.md
@@ -37,8 +39,8 @@ doc/CreateAdminInstructionRequest.md
 doc/CreateQuestionFromAttributeRequest.md
 doc/CreateResponseAIAcceptanceRequest.md
 doc/DailySalesRecord.md
-doc/EventLog.md
 doc/EventLogCreateRequest.md
+doc/EventLogResponse.md
 doc/EventLogSummaryResponse.md
 doc/EventLogTimeSeriesPointResponse.md
 doc/EventLogTimeSeriesResponse.md
@@ -175,6 +177,8 @@ lib/src/model/admin_instruction_response.dart
 lib/src/model/ai_acceptance.dart
 lib/src/model/ai_acceptance_controller_create_pending_response_acceptance200_response.dart
 lib/src/model/ai_acceptance_controller_get_ai_acceptance_rate200_response.dart
+lib/src/model/ai_acceptance_controller_get_all_ai_acceptance_status200_response.dart
+lib/src/model/ai_acceptance_response.dart
 lib/src/model/ai_inventory_report_structured_response.dart
 lib/src/model/ai_response_metadata.dart
 lib/src/model/ai_review_summary_structured_response.dart
@@ -198,8 +202,8 @@ lib/src/model/create_admin_instruction_request.dart
 lib/src/model/create_question_from_attribute_request.dart
 lib/src/model/create_response_ai_acceptance_request.dart
 lib/src/model/daily_sales_record.dart
-lib/src/model/event_log.dart
 lib/src/model/event_log_create_request.dart
+lib/src/model/event_log_response.dart
 lib/src/model/event_log_summary_response.dart
 lib/src/model/event_log_time_series_point_response.dart
 lib/src/model/event_log_time_series_response.dart
@@ -301,3 +305,6 @@ lib/src/model/variant_media_response.dart
 lib/src/model/variant_sales_analytics_response.dart
 lib/src/model/variant_stock_response.dart
 lib/src/model/year_normalizer_output.dart
+test/ai_acceptance_controller_get_all_ai_acceptance_status200_response_test.dart
+test/ai_acceptance_response_test.dart
+test/event_log_response_test.dart

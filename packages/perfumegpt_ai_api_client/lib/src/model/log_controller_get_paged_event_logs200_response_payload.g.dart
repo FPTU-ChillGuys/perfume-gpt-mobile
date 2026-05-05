@@ -7,7 +7,9 @@ part of 'log_controller_get_paged_event_logs200_response_payload.dart';
 // **************************************************************************
 
 abstract class _$LogControllerGetPagedEventLogs200ResponsePayloadCWProxy {
-  LogControllerGetPagedEventLogs200ResponsePayload items(List<EventLog> items);
+  LogControllerGetPagedEventLogs200ResponsePayload items(
+    List<EventLogResponse> items,
+  );
 
   LogControllerGetPagedEventLogs200ResponsePayload pageNumber(num pageNumber);
 
@@ -25,7 +27,7 @@ abstract class _$LogControllerGetPagedEventLogs200ResponsePayloadCWProxy {
   /// LogControllerGetPagedEventLogs200ResponsePayload(...).copyWith(id: 12, name: "My name")
   /// ```
   LogControllerGetPagedEventLogs200ResponsePayload call({
-    List<EventLog> items,
+    List<EventLogResponse> items,
     num pageNumber,
     num pageSize,
     num totalCount,
@@ -45,7 +47,7 @@ class _$LogControllerGetPagedEventLogs200ResponsePayloadCWProxyImpl
 
   @override
   LogControllerGetPagedEventLogs200ResponsePayload items(
-    List<EventLog> items,
+    List<EventLogResponse> items,
   ) => call(items: items);
 
   @override
@@ -83,7 +85,7 @@ class _$LogControllerGetPagedEventLogs200ResponsePayloadCWProxyImpl
       items: items == const $CopyWithPlaceholder() || items == null
           ? _value.items
           // ignore: cast_nullable_to_non_nullable
-          : items as List<EventLog>,
+          : items as List<EventLogResponse>,
       pageNumber:
           pageNumber == const $CopyWithPlaceholder() || pageNumber == null
           ? _value.pageNumber
@@ -140,7 +142,7 @@ _$LogControllerGetPagedEventLogs200ResponsePayloadFromJson(
     items: $checkedConvert(
       'items',
       (v) => (v as List<dynamic>)
-          .map((e) => EventLog.fromJson(e as Map<String, dynamic>))
+          .map((e) => EventLogResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     ),
     pageNumber: $checkedConvert('pageNumber', (v) => v as num),

@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:perfumegpt_ai_api_client/src/model/event_log.dart';
+import 'package:perfumegpt_ai_api_client/src/model/event_log_response.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -40,7 +40,7 @@ class LogControllerGetPagedEventLogs200ResponsePayload {
   )
 
 
-  final List<EventLog> items;
+  final List<EventLogResponse> items;
 
 
 

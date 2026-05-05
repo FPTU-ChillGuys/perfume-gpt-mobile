@@ -8,8 +8,8 @@ import 'package:perfumegpt_ai_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | ID cuộc hội thoại | 
 **userId** | **String** | ID người dùng | 
+**userName** | **String** | Tên người dùng (resolved từ DB) | [optional] [default to 'Khách']
 **messages** | [**List&lt;MessageResponse&gt;**](MessageResponse.md) | Danh sách tin nhắn | 
 **updatedAt** | [**DateTime**](DateTime.md) | Ngày cập nhật | 
 **isMobile** | **bool** | Đánh dấu response cho Mobile | [optional] [default to false]

@@ -4319,7 +4319,7 @@
             "description": "Ngày kết thúc",
             "schema": {
               "format": "date-time",
-              "default": "2026-05-04T16:59:59.999Z",
+              "default": "2026-05-05T23:59:59.999Z",
               "type": "string"
             }
           },
@@ -4526,7 +4526,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "The base response of EventLog",
+            "description": "The base response of EventLogResponse",
             "content": {
               "application/json": {
                 "schema": {
@@ -4549,7 +4549,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/EventLog"
+                        "$ref": "#/components/schemas/EventLogResponse"
                       }
                     }
                   }
@@ -4765,7 +4765,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The base response of EventLog",
+            "description": "The base response of EventLogResponse",
             "content": {
               "application/json": {
                 "schema": {
@@ -4788,7 +4788,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/EventLog"
+                        "$ref": "#/components/schemas/EventLogResponse"
                       }
                     }
                   }
@@ -5271,7 +5271,7 @@
                             "items": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/components/schemas/EventLog"
+                                "$ref": "#/components/schemas/EventLogResponse"
                               }
                             }
                           }
@@ -5950,7 +5950,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The base response of EventLog",
+            "description": "The base response of EventLogResponse",
             "content": {
               "application/json": {
                 "schema": {
@@ -5973,7 +5973,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/EventLog"
+                        "$ref": "#/components/schemas/EventLogResponse"
                       }
                     }
                   }
@@ -6396,7 +6396,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-05-04T03:04:47.531Z",
+              "example": "2026-05-05T14:35:04.410Z",
               "type": "string"
             }
           },
@@ -17049,7 +17049,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "The base response of AIAcceptance",
+            "description": "The base response of AIAcceptanceResponse",
             "content": {
               "application/json": {
                 "schema": {
@@ -17070,7 +17070,7 @@
                       "description": "Chi tiết lỗi"
                     },
                     "data": {
-                      "$ref": "#/components/schemas/AIAcceptance"
+                      "$ref": "#/components/schemas/AIAcceptanceResponse"
                     }
                   }
                 }
@@ -17721,6 +17721,178 @@
           }
         },
         "summary": "Lấy metrics acceptance theo context (accepted/pending/no-click)",
+        "tags": [
+          "AI Acceptance"
+        ]
+      }
+    },
+    "/ai-acceptance/rates": {
+      "get": {
+        "operationId": "AIAcceptanceController_getAIAcceptanceRates",
+        "parameters": [
+          {
+            "name": "contextType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "cart_legacy",
+                "chatbot",
+                "survey",
+                "trend",
+                "recommendation",
+                "repurchase"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The base response of Object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Kết quả xử lý"
+                    },
+                    "error": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Thông báo lỗi"
+                    },
+                    "details": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request — Thiếu hoặc sai tham số",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Bad Request — Validation failed",
+                    "detail": {
+                      "message": [
+                        "name must be a string",
+                        "price must be a positive number"
+                      ]
+                    },
+                    "statusCode": 400
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found — Không tìm thấy tài nguyên",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Not Found — Không tìm thấy tài nguyên",
+                    "detail": {
+                      "id": "abc-123-def"
+                    },
+                    "statusCode": 404
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — Lỗi hệ thống",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Thông báo lỗi"
+                    },
+                    "detail": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Chi tiết lỗi"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code"
+                    }
+                  },
+                  "example": {
+                    "success": false,
+                    "error": "Internal Server Error — Lỗi hệ thống",
+                    "detail": {
+                      "traceId": "a1b2c3d4"
+                    },
+                    "statusCode": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Lấy 3 tỉ lệ acceptance (chấp nhận / từ chối / chưa xác định)",
         "tags": [
           "AI Acceptance"
         ]
@@ -22076,6 +22248,11 @@
               "type": "string"
             }
           },
+          "gender": {
+            "type": "object",
+            "description": "Giới tính (Male/Female/Unisex)",
+            "nullable": true
+          },
           "attributes": {
             "description": "Danh sách thuộc tính sản phẩm",
             "type": "array",
@@ -23009,32 +23186,18 @@
           "orders"
         ]
       },
-      "EventLog": {
+      "EventLogResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "ID duy nhất (UUID)",
-            "format": "uuid"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Ngày tạo bản ghi"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Ngày cập nhật gần nhất"
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": "Trạng thái hoạt động"
-          },
           "userId": {
             "type": "string",
             "description": "ID người dùng (nullable cho anonymous/system)",
             "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "Tên người dùng (resolved từ DB)",
+            "default": "Khách"
           },
           "eventType": {
             "type": "string",
@@ -23070,19 +23233,27 @@
             "type": "object",
             "description": "Metadata dạng JSONB cho survey và dữ liệu mở rộng",
             "nullable": true
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Ngày tạo"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Ngày cập nhật"
           }
         },
         "required": [
-          "id",
-          "createdAt",
-          "updatedAt",
-          "isActive",
           "userId",
           "eventType",
           "entityType",
           "entityId",
           "contentText",
-          "metadata"
+          "metadata",
+          "createdAt",
+          "updatedAt"
         ]
       },
       "EventLogCreateRequest": {
@@ -23553,14 +23724,15 @@
       "ConversationResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "ID cuộc hội thoại"
-          },
           "userId": {
             "type": "string",
             "description": "ID người dùng",
             "format": "uuid"
+          },
+          "userName": {
+            "type": "string",
+            "description": "Tên người dùng (resolved từ DB)",
+            "default": "Khách"
           },
           "messages": {
             "description": "Danh sách tin nhắn",
@@ -23581,7 +23753,6 @@
           }
         },
         "required": [
-          "id",
           "userId",
           "messages",
           "updatedAt"
@@ -24519,6 +24690,67 @@
         },
         "required": [
           "contextType"
+        ]
+      },
+      "AIAcceptanceResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "responseId": {
+            "type": "object",
+            "nullable": true
+          },
+          "contextType": {
+            "type": "object",
+            "nullable": true
+          },
+          "sourceRefId": {
+            "type": "object",
+            "nullable": true
+          },
+          "productIdsJson": {
+            "type": "object",
+            "nullable": true
+          },
+          "metadataJson": {
+            "type": "object",
+            "nullable": true
+          },
+          "visibleAfterAt": {
+            "type": "object",
+            "nullable": true
+          },
+          "clickedAt": {
+            "type": "object",
+            "nullable": true
+          },
+          "isAccepted": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "description": "Trạng thái computed: accepted | rejected | pending"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "updatedAt",
+          "isActive",
+          "status"
         ]
       },
       "AdminInstructionResponse": {

@@ -8,7 +8,7 @@ import 'package:perfumegpt_ai_api_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;EventLog&gt;**](EventLog.md) |  | 
+**items** | [**List&lt;EventLogResponse&gt;**](EventLogResponse.md) |  | 
 **pageNumber** | **num** | Số trang hiện tại | 
 **pageSize** | **num** | Số bản ghi mỗi trang | 
 **totalCount** | **num** | Tổng số bản ghi | 

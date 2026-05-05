@@ -11,6 +11,7 @@ import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_create_pending_response_acceptance200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_get_ai_acceptance_rate200_response.dart';
+import 'package:perfumegpt_ai_api_client/src/model/ai_acceptance_controller_get_all_ai_acceptance_status200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/create_response_ai_acceptance_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products400_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
@@ -342,6 +343,83 @@ _responseData = rawData == null ? null : deserialize<AIAcceptanceControllerGetAI
     );
   }
 
+  /// Lấy 3 tỉ lệ acceptance (chấp nhận / từ chối / chưa xác định)
+  /// 
+  ///
+  /// Parameters:
+  /// * [contextType] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<SurveyControllerReorderQuestions200Response>> aIAcceptanceControllerGetAIAcceptanceRates({ 
+    String? contextType,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/ai-acceptance/rates';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (contextType != null) r'contextType': contextType,
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    SurveyControllerReorderQuestions200Response? _responseData;
+
+    try {
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<SurveyControllerReorderQuestions200Response>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Lấy trạng thái chấp nhận AI của tất cả gợi ý
   /// 
   ///
@@ -353,9 +431,9 @@ _responseData = rawData == null ? null : deserialize<AIAcceptanceControllerGetAI
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [AIAcceptanceControllerCreatePendingResponseAcceptance200Response] as data
+  /// Returns a [Future] containing a [Response] with a [AIAcceptanceControllerGetAllAIAcceptanceStatus200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>> aIAcceptanceControllerGetAllAIAcceptanceStatus({ 
+  Future<Response<AIAcceptanceControllerGetAllAIAcceptanceStatus200Response>> aIAcceptanceControllerGetAllAIAcceptanceStatus({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -384,11 +462,11 @@ _responseData = rawData == null ? null : deserialize<AIAcceptanceControllerGetAI
       onReceiveProgress: onReceiveProgress,
     );
 
-    AIAcceptanceControllerCreatePendingResponseAcceptance200Response? _responseData;
+    AIAcceptanceControllerGetAllAIAcceptanceStatus200Response? _responseData;
 
     try {
 final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<AIAcceptanceControllerCreatePendingResponseAcceptance200Response, AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(rawData, 'AIAcceptanceControllerCreatePendingResponseAcceptance200Response', growable: true);
+_responseData = rawData == null ? null : deserialize<AIAcceptanceControllerGetAllAIAcceptanceStatus200Response, AIAcceptanceControllerGetAllAIAcceptanceStatus200Response>(rawData, 'AIAcceptanceControllerGetAllAIAcceptanceStatus200Response', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -400,7 +478,7 @@ _responseData = rawData == null ? null : deserialize<AIAcceptanceControllerCreat
       );
     }
 
-    return Response<AIAcceptanceControllerCreatePendingResponseAcceptance200Response>(
+    return Response<AIAcceptanceControllerGetAllAIAcceptanceStatus200Response>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

@@ -44,6 +44,8 @@ class ProductWithVariantsResponse {
 
     required  this.olfactoryFamilies,
 
+     this.gender,
+
     required  this.attributes,
 
     required  this.createdAt,
@@ -194,6 +196,19 @@ class ProductWithVariantsResponse {
 
 
 
+      /// Giới tính (Male/Female/Unisex)
+  @JsonKey(
+    
+    name: r'gender',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final Object? gender;
+
+
+
       /// Danh sách thuộc tính sản phẩm
   @JsonKey(
     
@@ -248,6 +263,7 @@ class ProductWithVariantsResponse {
       other.variants == variants &&
       other.scentNotes == scentNotes &&
       other.olfactoryFamilies == olfactoryFamilies &&
+      other.gender == gender &&
       other.attributes == attributes &&
       other.createdAt == createdAt &&
       other.updatedAt == updatedAt;
@@ -265,6 +281,7 @@ class ProductWithVariantsResponse {
         variants.hashCode +
         scentNotes.hashCode +
         olfactoryFamilies.hashCode +
+        (gender == null ? 0 : gender.hashCode) +
         attributes.hashCode +
         createdAt.hashCode +
         (updatedAt == null ? 0 : updatedAt.hashCode);

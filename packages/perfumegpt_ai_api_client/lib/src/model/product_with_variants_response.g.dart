@@ -29,6 +29,8 @@ abstract class _$ProductWithVariantsResponseCWProxy {
 
   ProductWithVariantsResponse olfactoryFamilies(List<String> olfactoryFamilies);
 
+  ProductWithVariantsResponse gender(Object? gender);
+
   ProductWithVariantsResponse attributes(
     List<ProductAttributeResponse> attributes,
   );
@@ -56,6 +58,7 @@ abstract class _$ProductWithVariantsResponseCWProxy {
     List<ProductVariantResponse> variants,
     List<String> scentNotes,
     List<String> olfactoryFamilies,
+    Object? gender,
     List<ProductAttributeResponse> attributes,
     String createdAt,
     Object? updatedAt,
@@ -113,6 +116,9 @@ class _$ProductWithVariantsResponseCWProxyImpl
   ) => call(olfactoryFamilies: olfactoryFamilies);
 
   @override
+  ProductWithVariantsResponse gender(Object? gender) => call(gender: gender);
+
+  @override
   ProductWithVariantsResponse attributes(
     List<ProductAttributeResponse> attributes,
   ) => call(attributes: attributes);
@@ -145,6 +151,7 @@ class _$ProductWithVariantsResponseCWProxyImpl
     Object? variants = const $CopyWithPlaceholder(),
     Object? scentNotes = const $CopyWithPlaceholder(),
     Object? olfactoryFamilies = const $CopyWithPlaceholder(),
+    Object? gender = const $CopyWithPlaceholder(),
     Object? attributes = const $CopyWithPlaceholder(),
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? updatedAt = const $CopyWithPlaceholder(),
@@ -199,6 +206,10 @@ class _$ProductWithVariantsResponseCWProxyImpl
           ? _value.olfactoryFamilies
           // ignore: cast_nullable_to_non_nullable
           : olfactoryFamilies as List<String>,
+      gender: gender == const $CopyWithPlaceholder()
+          ? _value.gender
+          // ignore: cast_nullable_to_non_nullable
+          : gender as Object?,
       attributes:
           attributes == const $CopyWithPlaceholder() || attributes == null
           ? _value.attributes
@@ -272,6 +283,7 @@ ProductWithVariantsResponse _$ProductWithVariantsResponseFromJson(
       'olfactoryFamilies',
       (v) => (v as List<dynamic>).map((e) => e as String).toList(),
     ),
+    gender: $checkedConvert('gender', (v) => v),
     attributes: $checkedConvert(
       'attributes',
       (v) => (v as List<dynamic>)
@@ -300,6 +312,7 @@ Map<String, dynamic> _$ProductWithVariantsResponseToJson(
   'variants': instance.variants.map((e) => e.toJson()).toList(),
   'scentNotes': instance.scentNotes,
   'olfactoryFamilies': instance.olfactoryFamilies,
+  'gender': ?instance.gender,
   'attributes': instance.attributes.map((e) => e.toJson()).toList(),
   'createdAt': instance.createdAt,
   'updatedAt': ?instance.updatedAt,
