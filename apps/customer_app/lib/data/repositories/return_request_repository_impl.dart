@@ -175,6 +175,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
         .firstWhere((e) => e!.value == reason, orElse: () => null);
     final dto = CreateReturnRequestDto(
       orderId: orderId,
+      orderCode: orderCode,
       reason: reasonEnum ?? ReturnOrderReason.damagedProduct,
       returnItems: returnItems
           .map(
@@ -205,10 +206,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
             )
           : null,
     );
-    final body = <String, dynamic>{
-      ...dto.toJson(),
-      'orderCode': orderCode,
-    };
+    final body = <String, dynamic>{...dto.toJson(), 'orderCode': orderCode};
     debugPrint('[ReturnRequestRepo] create DTO JSON: $body');
     try {
       await _api.apiOrderreturnrequestsPost(createReturnRequestDto: dto);
