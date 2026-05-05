@@ -328,16 +328,30 @@ class OrderRepositoryImpl implements OrderRepository {
         break;
     }
 
-    final depositMethod = _mapPaymentMethod(newDepositMethod);
-    final response = await _paymentsApi.apiPaymentsPaymentIdRetryPost(
-      paymentId: paymentId,
-      retryOrChangePaymentRequest: RetryOrChangePaymentRequest(
-        newPaymentMethod: method,
-        newDepositMethod: depositMethod,
-        posSessionId: posSessionId,
-      ),
+    final isGatewayPayment =
+        paymentMethod == 'VnPay' || paymentMethod == 'Momo' || paymentMethod == 'PayOs';
+    final depositMethod = isGatewayPayment
+        ? null
+        : _mapPaymentMethod(newDepositMethod);
+    final request = RetryOrChangePaymentRequest(
+      newPaymentMethod: method,
+      newDepositMethod: depositMethod,
+      posSessionId: posSessionId,
     );
-    return _normalizePaymentUrl(response.data?.payload ?? '');
+    try {
+      final response = await _paymentsApi.apiPaymentsPaymentIdRetryPost(
+        paymentId: paymentId,
+        retryOrChangePaymentRequest: request,
+      );
+      return _normalizePaymentUrl(response.data?.payload ?? '');
+    } on DioException catch (e) {
+      // Keep this log temporary-useful: backend validation explains which retry payload is invalid.
+      // ignore: avoid_print
+      print('[OrderRepo] retryPayment paymentId=$paymentId body=${request.toJson()}');
+      // ignore: avoid_print
+      print('[OrderRepo] retryPayment error=${e.response?.data}');
+      rethrow;
+    }
   }
 
   @override

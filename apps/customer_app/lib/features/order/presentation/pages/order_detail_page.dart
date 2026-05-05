@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,6 +26,27 @@ String _fmtDate(DateTime? date) {
 String _fmtDateTime(DateTime? date) {
   if (date == null) return '-';
   return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year} ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
+}
+
+String _retryPaymentErrorMessage(Object error) {
+  if (error is DioException) {
+    final data = error.response?.data;
+    if (data is Map) {
+      final msg = data['message']?.toString();
+      final errors = data['errors'];
+      final parts = <String>[
+        if (msg != null && msg.trim().isNotEmpty) msg.trim(),
+        if (errors is List)
+          ...errors.map((e) => e.toString().trim()).where((e) => e.isNotEmpty),
+      ];
+      if (parts.isNotEmpty) return parts.join('\n');
+      return data.toString();
+    }
+    if (data is String && data.trim().isNotEmpty) return data.trim();
+    final status = error.response?.statusCode;
+    if (status != null) return 'Máy chủ trả về lỗi $status khi thanh toán lại.';
+  }
+  return error.toString();
 }
 
 const _accent = AppColors.primary;
@@ -1746,23 +1768,45 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
     PaymentTransaction? latestPayment,
   ) {
     final isOffline = order.type == 'Offline';
-    final selectedBaseMethod = isOffline ? 'CashInStore' : 'CashOnDelivery';
-    final fullPaymentMethods = const ['VnPay', 'Momo', 'PayOs'];
-    String paymentMode = 'deposit'; // deposit | full
-    String selectedFullGateway = 'VnPay';
-    String selectedDepositGateway = 'VnPay';
+    final primaryCashMethod = isOffline ? 'CashInStore' : 'CashOnDelivery';
+    final retryMethods = <String>[
+      'CashOnDelivery',
+      'CashInStore',
+      'VnPay',
+      'Momo',
+    ].where((m) => isOffline ? m != 'CashOnDelivery' : m != 'CashInStore').toList();
+    const gatewayMethods = {'VnPay', 'Momo', 'PayOs'};
+    const cashMethods = {'CashOnDelivery', 'CashInStore'};
+    final depositAmount = order.requiredDepositAmount > 0
+        ? order.requiredDepositAmount
+        : order.depositAmount;
+    final isDepositOrder = depositAmount > 0 && order.paymentStatus != 'Paid';
+    final depositTx = order.paymentTransactions
+        .where(
+          (t) =>
+              gatewayMethods.contains(t.paymentMethod) &&
+              (t.totalAmount - depositAmount).abs() < 1 &&
+              t.status != 'Failed',
+        )
+        .lastOrNull;
+    final latestMethod = latestPayment?.paymentMethod;
+    String selectedRetryMethod =
+        isDepositOrder
+            ? primaryCashMethod
+            : (retryMethods.contains(latestMethod)
+                  ? latestMethod!
+                  : primaryCashMethod);
+    String selectedDepositGateway =
+        gatewayMethods.contains(depositTx?.paymentMethod)
+            ? depositTx!.paymentMethod!
+            : 'VnPay';
     bool isSubmitting = false;
 
     showDialog(
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setDialogState) {
-          final selectedMethod = paymentMode == 'full'
-              ? selectedFullGateway
-              : selectedBaseMethod;
-          final selectedDepositMethod = paymentMode == 'full'
-              ? selectedBaseMethod
-              : selectedDepositGateway;
+          final isCashMethod = cashMethods.contains(selectedRetryMethod);
           return AlertDialog(
             title: const Text('Thanh toán lại đơn hàng'),
             content: SingleChildScrollView(
@@ -1775,40 +1819,40 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     style: TextStyle(color: Colors.grey[600], fontSize: 13),
                   ),
                   const SizedBox(height: 16),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: paymentMode == 'deposit'
-                            ? _accent
-                            : Colors.grey[300]!,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: RadioListTile<String>(
-                      value: 'deposit',
-                      groupValue: paymentMode,
-                      dense: true,
-                      activeColor: _accent,
-                      title: const Text(
-                        'Thanh toán tiền đặt cọc',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
+                  ...retryMethods.map(
+                    (method) => Container(
+                      margin: const EdgeInsets.only(bottom: 8),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: selectedRetryMethod == method
+                              ? _accent
+                              : Colors.grey[300]!,
                         ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      subtitle: Text(
-                        'Giữ đơn với ${_paymentMethodLabel(selectedBaseMethod)}, chọn cổng thu tiền cọc bên dưới.',
-                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                      child: RadioListTile<String>(
+                        value: method,
+                        groupValue: selectedRetryMethod,
+                        dense: true,
+                        activeColor: _accent,
+                        title: Text(
+                          _paymentMethodLabel(method),
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        onChanged: isSubmitting
+                            ? null
+                            : (v) {
+                                if (v == null) return;
+                                setDialogState(() => selectedRetryMethod = v);
+                              },
                       ),
-                      onChanged: isSubmitting
-                          ? null
-                          : (v) => setDialogState(
-                              () => paymentMode = v ?? 'deposit',
-                            ),
                     ),
                   ),
-                  if (paymentMode == 'deposit') ...[
+                  if (isCashMethod) ...[
+                    const SizedBox(height: 8),
                     DropdownButtonFormField<String>(
                       initialValue: selectedDepositGateway,
                       decoration: const InputDecoration(
@@ -1829,54 +1873,6 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                     ),
                     const SizedBox(height: 6),
                   ],
-                  Container(
-                    margin: const EdgeInsets.only(top: 6, bottom: 8),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: paymentMode == 'full'
-                            ? _accent
-                            : Colors.grey[300]!,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: RadioListTile<String>(
-                      value: 'full',
-                      groupValue: paymentMode,
-                      dense: true,
-                      activeColor: _accent,
-                      title: const Text(
-                        'Chuyển sang thanh toán toàn phần',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Thanh toán toàn bộ còn lại ngay qua VNPay/MoMo/PayOS.',
-                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                      ),
-                      onChanged: isSubmitting
-                          ? null
-                          : (v) =>
-                                setDialogState(() => paymentMode = v ?? 'full'),
-                    ),
-                  ),
-                  if (paymentMode == 'full')
-                    Wrap(
-                      spacing: 8,
-                      children: fullPaymentMethods.map((method) {
-                        final selected = selectedFullGateway == method;
-                        return ChoiceChip(
-                          label: Text(_paymentMethodLabel(method)),
-                          selected: selected,
-                          onSelected: isSubmitting
-                              ? null
-                              : (_) => setDialogState(
-                                  () => selectedFullGateway = method,
-                                ),
-                        );
-                      }).toList(),
-                    ),
                 ],
               ),
             ),
@@ -1896,15 +1892,43 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                           final freshOrder = await ref
                               .read(orderRepositoryProvider)
                               .getOrderDetail(order.id);
-                          // Get the latest non-cancelled Payment transaction
+                          // Match FE: use the main transaction (largest non-failed,
+                          // excluding the small deposit transaction when present).
                           final paymentTxns = freshOrder.paymentTransactions
                               .where((t) => t.transactionType == 'Payment')
                               .toList();
+                          final freshDepositAmount =
+                              freshOrder.requiredDepositAmount > 0
+                              ? freshOrder.requiredDepositAmount
+                              : freshOrder.depositAmount;
+                          final nonFailed = paymentTxns
+                              .where((t) => t.status != 'Failed')
+                              .toList();
+                          final nonDeposit = nonFailed.where((t) {
+                            final isDepositTx =
+                                freshDepositAmount > 0 &&
+                                gatewayMethods.contains(t.paymentMethod) &&
+                                (t.totalAmount - freshDepositAmount).abs() < 1;
+                            return !isDepositTx;
+                          }).toList();
+                          PaymentTransaction? largestOf(
+                            List<PaymentTransaction> list,
+                          ) {
+                            if (list.isEmpty) return null;
+                            return list.reduce(
+                              (best, t) => t.totalAmount >= best.totalAmount
+                                  ? t
+                                  : best,
+                            );
+                          }
+
                           final freshPayment =
-                              paymentTxns
-                                  .where((t) => t.status != 'Cancelled')
-                                  .lastOrNull ??
-                              paymentTxns.lastOrNull ??
+                              largestOf(
+                                nonDeposit.isNotEmpty
+                                    ? nonDeposit
+                                    : nonFailed,
+                              ) ??
+                              largestOf(paymentTxns) ??
                               freshOrder.paymentTransactions.lastOrNull;
                           final paymentId = freshPayment?.id;
                           if (paymentId == null || paymentId.isEmpty) {
@@ -1912,17 +1936,21 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                               'Không tìm thấy giao dịch thanh toán',
                             );
                           }
+                          final newDepositMethod = cashMethods.contains(
+                            selectedRetryMethod,
+                          )
+                              ? selectedDepositGateway
+                              : null;
                           final url = await ref
                               .read(orderRepositoryProvider)
                               .retryPayment(
                                 paymentId,
-                                selectedMethod,
-                                newDepositMethod: selectedDepositMethod,
+                                selectedRetryMethod,
+                                newDepositMethod: newDepositMethod,
                                 posSessionId: null,
                               );
-                          final gatewayMethod = paymentMode == 'full'
-                              ? selectedMethod
-                              : selectedDepositMethod;
+                          final gatewayMethod =
+                              newDepositMethod ?? selectedRetryMethod;
                           final shouldOpenGateway =
                               gatewayMethod == 'VnPay' ||
                               gatewayMethod == 'Momo' ||
@@ -1951,8 +1979,11 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                           if (context.mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Không thể thanh toán lại: $e'),
+                                content: Text(
+                                  'Không thể thanh toán lại: ${_retryPaymentErrorMessage(e)}',
+                                ),
                                 backgroundColor: Colors.red,
+                                duration: const Duration(seconds: 8),
                               ),
                             );
                           }
