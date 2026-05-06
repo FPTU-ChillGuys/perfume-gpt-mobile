@@ -20,10 +20,11 @@ class PosScreen extends ConsumerWidget {
     ref.listen(paymentCompletedEventProvider, (previous, next) {
       if (next.hasValue && next.value != null) {
         final event = next.value!;
-        if (event.status == 'Paid') { // Updated field and check logic
+        if (event.status == 'Paid') {
+          // Updated field and check logic
           // Clear cart
           ref.read(posCartProvider.notifier).clearCart();
-          
+
           // Show success snackbar
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -31,7 +32,7 @@ class PosScreen extends ConsumerWidget {
               backgroundColor: Colors.green,
             ),
           );
-          
+
           // If a dialog is open (like the QR one), close it
           if (Navigator.of(context).canPop()) {
             Navigator.of(context).popUntil((route) => route.isFirst);
@@ -76,7 +77,7 @@ class PosScreen extends ConsumerWidget {
                   child: TextField(
                     controller: skuController,
                     decoration: const InputDecoration(
-                      hintText: 'Enter SKU',
+                      hintText: 'Nhập SKU',
                       border: OutlineInputBorder(),
                       isDense: true,
                     ),
@@ -90,14 +91,14 @@ class PosScreen extends ConsumerWidget {
                   onPressed: () {
                     _manualAdd(context, ref, skuController.text, skuController);
                   },
-                  child: const Text('Add'),
+                  child: const Text('Thêm'),
                 ),
               ],
             ),
           ),
           Expanded(
             child: cart.isEmpty
-                ? const Center(child: Text('Cart is empty'))
+                ? const Center(child: Text('Cart đang trống'))
                 : ListView.builder(
                     itemCount: cart.length,
                     itemBuilder: (context, index) {
@@ -221,7 +222,7 @@ class PosScreen extends ConsumerWidget {
     if (barcode != null && context.mounted) {
       // Notify other clients (like a tablet display) about the scanned barcode
       ref.read(posSignalRServiceProvider).sendBarcodeFromMobile(barcode);
-      
+
       _handleBarcode(context, ref, barcode);
     }
   }
@@ -253,7 +254,7 @@ class PosScreen extends ConsumerWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Product not found')));
+        ).showSnackBar(const SnackBar(content: Text('Sản phẩm không tồn tại')));
       }
     }
   }
@@ -288,7 +289,7 @@ class PosScreen extends ConsumerWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Product not found')));
+        ).showSnackBar(const SnackBar(content: Text('Sản phẩm không tồn tại')));
       }
     }
   }
@@ -414,18 +415,20 @@ class CheckoutBottomSheet extends ConsumerWidget {
         final success = await ref
             .read(counterCheckoutNotifier.notifier)
             .confirmPayment(paymentId);
-            
+
         if (!context.mounted || !parentContext.mounted) return;
 
         if (success) {
-          ref.read(posSignalRServiceProvider).notifyPaymentSuccess(
-            PosPaymentCompletedDto(
-              orderId: orderId,
-              paymentId: paymentId,
-              status: 'Paid',
-              message: 'Thanh toán tiền mặt thành công',
-            ),
-          );
+          ref
+              .read(posSignalRServiceProvider)
+              .notifyPaymentSuccess(
+                PosPaymentCompletedDto(
+                  orderId: orderId,
+                  paymentId: paymentId,
+                  status: 'Paid',
+                  message: 'Thanh toán tiền mặt thành công',
+                ),
+              );
           ref.read(posCartProvider.notifier).clearCart();
           Navigator.pop(context); // Close sheet safely
           ScaffoldMessenger.of(parentContext).showSnackBar(
@@ -435,14 +438,16 @@ class CheckoutBottomSheet extends ConsumerWidget {
             ),
           );
         } else {
-          ref.read(posSignalRServiceProvider).notifyPaymentFailed(
-            PosPaymentCompletedDto(
-              orderId: orderId,
-              paymentId: paymentId,
-              status: 'Failed',
-              message: 'Xác nhận thanh toán thất bại',
-            ),
-          );
+          ref
+              .read(posSignalRServiceProvider)
+              .notifyPaymentFailed(
+                PosPaymentCompletedDto(
+                  orderId: orderId,
+                  paymentId: paymentId,
+                  status: 'Failed',
+                  message: 'Xác nhận thanh toán thất bại',
+                ),
+              );
           ScaffoldMessenger.of(parentContext).showSnackBar(
             const SnackBar(
               content: Text('Xác nhận thanh toán thất bại'),
@@ -454,7 +459,14 @@ class CheckoutBottomSheet extends ConsumerWidget {
     } else {
       // For VNPay/Momo
       if (paymentId != null && orderId != null) {
-        await _showQrPayment(context, ref, paymentId, method, orderId, parentContext);
+        await _showQrPayment(
+          context,
+          ref,
+          paymentId,
+          method,
+          orderId,
+          parentContext,
+        );
       } else {
         if (context.mounted) {
           Navigator.pop(context); // Close sheet
@@ -477,14 +489,16 @@ class CheckoutBottomSheet extends ConsumerWidget {
 
     if (context.mounted) {
       if (url != null && url.isNotEmpty) {
-        ref.read(posSignalRServiceProvider).notifyPaymentLinkUpdated(
-          PosPaymentLinkDto(
-            orderId: orderId,
-            paymentId: paymentId,
-            method: method,
-            paymentUrl: url,
-          ),
-        );
+        ref
+            .read(posSignalRServiceProvider)
+            .notifyPaymentLinkUpdated(
+              PosPaymentLinkDto(
+                orderId: orderId,
+                paymentId: paymentId,
+                method: method,
+                paymentUrl: url,
+              ),
+            );
 
         Navigator.pop(context); // Close sheet safely
 
@@ -534,8 +548,9 @@ class CheckoutBottomSheet extends ConsumerWidget {
                           }
                         } catch (e) {
                           if (parentContext.mounted) {
-                            ScaffoldMessenger.of(parentContext)
-                                .showSnackBar(SnackBar(content: Text('Lỗi: $e')));
+                            ScaffoldMessenger.of(
+                              parentContext,
+                            ).showSnackBar(SnackBar(content: Text('Lỗi: $e')));
                           }
                         }
                       },
@@ -556,7 +571,7 @@ class CheckoutBottomSheet extends ConsumerWidget {
         }
       } else {
         Navigator.pop(context); // Close sheet safely
-        
+
         if (parentContext.mounted) {
           ScaffoldMessenger.of(parentContext).showSnackBar(
             const SnackBar(

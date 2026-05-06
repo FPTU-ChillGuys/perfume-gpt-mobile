@@ -19,10 +19,10 @@ class ProductDetailScreen extends ConsumerWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Product Details'),
+          title: const Text('Chi tiết sản phẩm'),
           bottom: const TabBar(
             tabs: [
-              Tab(text: 'Details'),
+              Tab(text: 'Chi tiết'),
               Tab(text: 'Batches'),
             ],
           ),
@@ -35,7 +35,7 @@ class ProductDetailScreen extends ConsumerWidget {
             }
             final product = snapshot.data;
             if (product == null) {
-              return const Center(child: Text('Product not found'));
+              return const Center(child: Text('Sản phẩm không tồn tại'));
             }
 
             return TabBarView(
@@ -98,7 +98,7 @@ class _ProductDetailsTab extends ConsumerWidget {
               product.batchId,
             ),
             icon: const Icon(Icons.edit),
-            label: const Text('Adjust Stock'),
+            label: const Text('Điều chỉnh kho hàng'),
           ),
         ],
       ),
@@ -117,14 +117,14 @@ class _ProductDetailsTab extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Adjust Stock'),
+        title: const Text('Điều chỉnh kho hàng'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               controller: controller,
               decoration: const InputDecoration(
-                labelText: 'Quantity Change (+/-)',
+                labelText: 'Số lượng thay đổi (+/-)',
               ),
               keyboardType: TextInputType.number,
             ),
@@ -153,7 +153,7 @@ class _ProductDetailsTab extends ConsumerWidget {
               ref.invalidate(inventoryListProvider);
               if (context.mounted) Navigator.pop(context);
             },
-            child: const Text('Save'),
+            child: const Text('Lưu'),
           ),
         ],
       ),
@@ -173,7 +173,7 @@ class _ProductBatchesTab extends ConsumerWidget {
     return batchesAsync.when(
       data: (batches) {
         if (batches.isEmpty) {
-          return const Center(child: Text('No batches found for this variant'));
+          return const Center(child: Text('Không có batch nào tồn tại...'));
         }
         return ListView.builder(
           padding: const EdgeInsets.all(16),
@@ -226,7 +226,7 @@ class BatchDetailCard extends StatelessWidget {
                 else if (batch.daysUntilExpiry != null &&
                     batch.daysUntilExpiry! <= 30)
                   Badge(
-                    label: Text('EXPIRING SOON (${batch.daysUntilExpiry}d)'),
+                    label: Text('GẦN HẾT HẠN (${batch.daysUntilExpiry} ngày)'),
                     backgroundColor: Colors.orange,
                   ),
               ],
@@ -234,26 +234,26 @@ class BatchDetailCard extends StatelessWidget {
             const Divider(),
             _buildInfoRow(
               context,
-              'Quantity',
+              'Số lượng còn lại',
               '${batch.remainingQuantity} / ${batch.importQuantity}',
             ),
             _buildInfoRow(
               context,
-              'Manufacture Date',
+              'Ngày sản xuất',
               batch.manufactureDate != null
                   ? dateFormat.format(batch.manufactureDate!)
                   : 'N/A',
             ),
             _buildInfoRow(
               context,
-              'Expiry Date',
+              'Ngày hết hạn',
               batch.expiryDate != null
                   ? dateFormat.format(batch.expiryDate!)
                   : 'N/A',
             ),
             _buildInfoRow(
               context,
-              'Created At',
+              'Ngày nhập kho',
               batch.createdAt != null
                   ? dateFormat.format(batch.createdAt!)
                   : 'N/A',

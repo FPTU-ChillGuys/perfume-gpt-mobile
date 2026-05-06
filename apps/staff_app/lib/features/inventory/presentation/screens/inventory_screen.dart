@@ -13,7 +13,7 @@ class InventoryScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Inventory'),
+        title: const Text('Kho hàng'),
         actions: [
           IconButton(
             icon: const Icon(Icons.assignment_returned),
@@ -35,7 +35,7 @@ class InventoryScreen extends ConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: SearchBar(
-              hintText: 'Search SKU, name or brand...',
+              hintText: 'Tìm kiếm theo SKU, tên hoặc thương hiệu...',
               onChanged: (value) {
                 ref
                     .read(inventorySearchQueryProvider.notifier)
