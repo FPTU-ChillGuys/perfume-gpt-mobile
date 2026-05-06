@@ -349,25 +349,46 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
       return;
     }
     try {
-      final variant = _selectedVariant;
-      ref
+      // Prioritize consistency over optimistic speed: ensure server cart is updated
+      // first, then navigate with the actual cartItemId.
+      await ref
           .read(cartProvider.notifier)
-          .addProductOptimistic(
-            product,
-            variantId: variantId,
-            variantName: [
-              product.name,
-              if (variant?.displayName.isNotEmpty == true) variant!.displayName,
-            ].join(' · '),
-            imageUrl: variant?.primaryImageUrl ?? product.imageUrl,
-            price: variant?.effectivePrice,
-            volumeMl: variant?.volumeMl,
-            type: variant?.type,
-          );
-      ref.read(selectedCartItemIdsProvider.notifier).update({variantId});
-      if (mounted) {
-        context.push('/cart');
+          .addProduct(product, variantId: variantId);
+      await ref.read(cartProvider.notifier).reload();
+
+      final cartItems = ref.read(cartProvider).asData?.value ?? const [];
+      final matched = cartItems
+          .where((e) => e.variantId == variantId)
+          .toList();
+      matched.sort((a, b) {
+        final aQty = a.quantity;
+        final bQty = b.quantity;
+        return bQty.compareTo(aQty);
+      });
+      final cartItemId = matched.isNotEmpty ? matched.first.cartItemId : null;
+
+      if (cartItemId == null || cartItemId.isEmpty) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Đã thêm vào giỏ nhưng chưa đồng bộ kịp. Vui lòng thử lại.',
+            ),
+            backgroundColor: Colors.orange,
+          ),
+        );
+        return;
       }
+
+      ref.read(selectedCartItemIdsProvider.notifier).update({cartItemId});
+      if (!mounted) return;
+      context.push(
+        '/checkout',
+        extra: <String, dynamic>{
+          'selectedItemIds': <String>[cartItemId],
+          'buyNowFast': false,
+        },
+      );
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

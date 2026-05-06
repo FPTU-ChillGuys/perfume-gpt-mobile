@@ -106,6 +106,11 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(ref.read(cartProvider.notifier).reload());
+      ref.invalidate(cartTotalProvider);
+    });
     final selectedFromCart = widget.selectedItemIdsFromCart;
     if (selectedFromCart != null && selectedFromCart.isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -410,9 +415,12 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 
       // If deposit is required but gateway is still COD, default to VnPay or show error
       String effectiveDepositGateway = _depositGateway;
-      if (_selectedPayment == 'CashOnDelivery' &&
+      final isCashMethod =
+          _selectedPayment == 'CashOnDelivery' || _selectedPayment == 'CashInStore';
+      if (isCashMethod &&
           requireDeposit &&
-          effectiveDepositGateway == 'CashOnDelivery') {
+          (effectiveDepositGateway == 'CashOnDelivery' ||
+              effectiveDepositGateway == 'CashInStore')) {
         effectiveDepositGateway = 'VnPay';
       }
 
@@ -424,7 +432,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 
       final request = CheckoutRequest(
         paymentMethod: _selectedPayment,
-        depositGateway: _selectedPayment == 'CashOnDelivery'
+        depositGateway: isCashMethod
             ? normalizedDepositGateway
             : null,
         deliveryMethod: _isPickupInStore ? 'PickupInStore' : 'Delivery',
@@ -1556,61 +1564,38 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 
   // ─── Payment Methods ────────────────────────────────────────────
   Widget _buildPaymentMethods(CartTotal? total) {
-    final methods = _isPickupInStore
-        ? [
-            _PaymentOption(
-              'CashInStore',
-              'Thanh toán tại cửa hàng',
-              'Thanh toán trực tiếp tại cửa hàng',
-              icon: Icons.store,
-              color: Colors.teal,
-            ),
-            _PaymentOption(
-              'VnPay',
-              'VNPay',
-              'Thanh toán qua VNPay',
-              assetPath: 'assets/images/payment_methods/Vnpay.png',
-            ),
-            _PaymentOption(
-              'Momo',
-              'MoMo',
-              'Thanh toán qua MoMo',
-              assetPath: 'assets/images/payment_methods/Momo.png',
-            ),
-            _PaymentOption(
-              'PayOs',
-              'PayOS',
-              'Thanh toán qua PayOS',
-              assetPath: 'assets/images/payment_methods/payOs.png',
-            ),
-          ]
-        : [
-            _PaymentOption(
-              'CashOnDelivery',
-              'Thanh toán khi nhận hàng',
-              'Thanh toán bằng tiền mặt khi nhận hàng',
-              icon: Icons.money,
-              color: Colors.green,
-            ),
-            _PaymentOption(
-              'VnPay',
-              'VNPay',
-              'Thanh toán qua VNPay',
-              assetPath: 'assets/images/payment_methods/Vnpay.png',
-            ),
-            _PaymentOption(
-              'Momo',
-              'MoMo',
-              'Thanh toán qua MoMo',
-              assetPath: 'assets/images/payment_methods/Momo.png',
-            ),
-            _PaymentOption(
-              'PayOs',
-              'PayOS',
-              'Thanh toán qua PayOS',
-              assetPath: 'assets/images/payment_methods/payOs.png',
-            ),
-          ];
+    final primaryCashMethod = _isPickupInStore ? 'CashInStore' : 'CashOnDelivery';
+    final methods = [
+      _PaymentOption(
+        primaryCashMethod,
+        _isPickupInStore
+            ? 'Thanh toán tại cửa hàng'
+            : 'Thanh toán khi nhận hàng',
+        _isPickupInStore
+            ? 'Thanh toán bằng tiền mặt khi đến nhận tại cửa hàng'
+            : 'Thanh toán bằng tiền mặt khi nhận hàng',
+        icon: _isPickupInStore ? Icons.store : Icons.money,
+        color: _isPickupInStore ? Colors.teal : Colors.green,
+      ),
+      _PaymentOption(
+        'VnPay',
+        'VNPay',
+        'Thanh toán qua VNPay',
+        assetPath: 'assets/images/payment_methods/Vnpay.png',
+      ),
+      _PaymentOption(
+        'Momo',
+        'MoMo',
+        'Thanh toán qua MoMo',
+        assetPath: 'assets/images/payment_methods/Momo.png',
+      ),
+      _PaymentOption(
+        'PayOs',
+        'PayOS',
+        'Thanh toán qua PayOS',
+        assetPath: 'assets/images/payment_methods/payOs.png',
+      ),
+    ];
 
     return Card(
       child: RadioGroup<String>(
@@ -1657,7 +1642,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                   ),
                 ),
                 if (isSelected &&
-                    m.value == 'CashOnDelivery' &&
+                    (m.value == 'CashOnDelivery' || m.value == 'CashInStore') &&
                     total != null &&
                     ((total.depositPolicy?.isDepositRequired == true) ||
                         ((total.depositPolicy?.depositAmount ?? 0) > 0)))

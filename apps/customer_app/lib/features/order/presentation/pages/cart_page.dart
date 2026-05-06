@@ -36,6 +36,16 @@ class _CartPageState extends ConsumerState<CartPage> {
   Timer? _voucherDebounce;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(ref.read(cartProvider.notifier).reload());
+      ref.invalidate(cartTotalProvider);
+    });
+  }
+
+  @override
   void dispose() {
     _voucherDebounce?.cancel();
     _voucherController.dispose();
