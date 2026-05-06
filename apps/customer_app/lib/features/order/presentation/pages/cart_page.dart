@@ -1,10 +1,12 @@
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:dio/dio.dart';
-import 'dart:convert';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/price_formatter.dart';
 import '../../../../domain/entities/cart_item.dart';
@@ -31,9 +33,11 @@ class _CartPageState extends ConsumerState<CartPage> {
   String? _appliedVoucherCode;
   String? _voucherError;
   CartTotal? _computedTotal;
+  Timer? _voucherDebounce;
 
   @override
   void dispose() {
+    _voucherDebounce?.cancel();
     _voucherController.dispose();
     super.dispose();
   }
@@ -45,39 +49,84 @@ class _CartPageState extends ConsumerState<CartPage> {
         .toSet();
   }
 
-  void _clearVoucherOnCartChange() {
-    if (_appliedVoucherCode == null) return;
-    setState(() {
-      _appliedVoucherCode = null;
-      _voucherError = null;
-      _voucherController.clear();
-      _computedTotal = null;
-    });
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Mã giảm giá đã bị xóa do thay đổi giỏ hàng'),
-        ),
-      );
-    }
-  }
-
   void _handleToggleItem(String? cartItemId) {
     if (cartItemId == null || cartItemId.isEmpty) return;
-    final selectedIds = ref.read(selectedCartItemIdsProvider);
-    if (selectedIds.contains(cartItemId)) {
-      _clearVoucherOnCartChange();
-    }
     ref.read(selectedCartItemIdsProvider.notifier).toggle(cartItemId);
   }
 
   void _handleToggleSelectAll(bool checked, Set<String> allIds) {
-    if (!checked) {
-      _clearVoucherOnCartChange();
-    }
     ref
         .read(selectedCartItemIdsProvider.notifier)
         .update(checked ? allIds : {});
+  }
+
+  void _scheduleVoucherRecompute() {
+    if (_appliedVoucherCode == null) return;
+    _voucherDebounce?.cancel();
+    _voucherDebounce = Timer(const Duration(milliseconds: 250), () {
+      if (!mounted) return;
+      unawaited(_recomputeVoucherTotals());
+    });
+  }
+
+  bool _areItemsEquivalent(List<CartItem> a, List<CartItem> b) {
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      final x = a[i];
+      final y = b[i];
+      if (x.cartItemId != y.cartItemId) return false;
+      if (x.variantId != y.variantId) return false;
+      if (x.quantity != y.quantity) return false;
+      if (x.subTotal != y.subTotal) return false;
+      if (x.finalTotal != y.finalTotal) return false;
+    }
+    return true;
+  }
+
+  Future<void> _recomputeVoucherTotals() async {
+    final code = _appliedVoucherCode;
+    if (code == null || code.isEmpty) return;
+    final selectedIds = ref.read(selectedCartItemIdsProvider).toList();
+    if (selectedIds.isEmpty) {
+      if (!mounted) return;
+      setState(() {
+        _appliedVoucherCode = null;
+        _voucherController.clear();
+        _voucherError = null;
+        _computedTotal = null;
+      });
+      return;
+    }
+    try {
+      final total = await _loadTotals(selectedIds, code);
+      if (!mounted) return;
+      if (total == null) {
+        setState(() {
+          _appliedVoucherCode = null;
+          _voucherController.clear();
+          _voucherError = null;
+          _computedTotal = null;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Mã giảm giá không còn áp dụng được'),
+          ),
+        );
+      }
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _appliedVoucherCode = null;
+        _voucherController.clear();
+        _voucherError = null;
+        _computedTotal = null;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Mã giảm giá không còn áp dụng được'),
+        ),
+      );
+    }
   }
 
   Future<void> _confirmDeleteItem(CartItem item) async {
@@ -102,7 +151,6 @@ class _CartPageState extends ConsumerState<CartPage> {
       ),
     );
     if (confirm == true) {
-      _clearVoucherOnCartChange();
       await ref.read(cartProvider.notifier).removeItem(cartItemId);
     }
   }
@@ -130,10 +178,17 @@ class _CartPageState extends ConsumerState<CartPage> {
     if (confirm == true) {
       setState(() => _isClearing = true);
       try {
-        _clearVoucherOnCartChange();
         await ref.read(cartProvider.notifier).clearCart();
         ref.read(selectedCartItemIdsProvider.notifier).clear();
-        _hasInitializedSelection = false;
+        if (mounted) {
+          setState(() {
+            _appliedVoucherCode = null;
+            _voucherController.clear();
+            _voucherError = null;
+            _computedTotal = null;
+            _hasInitializedSelection = false;
+          });
+        }
       } finally {
         if (mounted) setState(() => _isClearing = false);
       }
@@ -272,18 +327,43 @@ class _CartPageState extends ConsumerState<CartPage> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<AsyncValue<List<CartItem>>>(cartProvider, (prev, next) {
+      final prevItems = prev?.asData?.value ?? const <CartItem>[];
+      final nextItems = next.asData?.value ?? const <CartItem>[];
+      if (!_areItemsEquivalent(prevItems, nextItems)) {
+        _scheduleVoucherRecompute();
+      }
+    });
+    ref.listen<Set<String>>(selectedCartItemIdsProvider, (prev, next) {
+      if (prev != next) _scheduleVoucherRecompute();
+    });
+
     final cartAsync = ref.watch(cartProvider);
     final selectedIds = ref.watch(selectedCartItemIdsProvider);
-    final selectedTotalAsync = ref.watch(selectedCartTotalProvider);
 
     final items = cartAsync.asData?.value ?? [];
 
-    // Initialize selection on first load (matching React FE pattern)
+    final selectedItems = items.where((item) {
+      final id = item.cartItemId;
+      return id != null && id.isNotEmpty && selectedIds.contains(id);
+    }).toList();
+    final localSubtotal = selectedItems.fold<double>(
+      0,
+      (sum, item) => sum + (item.finalTotal > 0 ? item.finalTotal : item.subTotal),
+    );
+    final localTotal = CartTotal(
+      subtotal: localSubtotal,
+      shippingFee: 0,
+      discount: 0,
+      totalPrice: localSubtotal,
+    );
+
     if (!_hasInitializedSelection && items.isNotEmpty) {
       _hasInitializedSelection = true;
       final allIds = _getSelectableItemIds(items);
       if (selectedIds.isEmpty) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
           ref.read(selectedCartItemIdsProvider.notifier).update(allIds);
         });
       }
@@ -426,7 +506,6 @@ class _CartPageState extends ConsumerState<CartPage> {
                       isSelected: isSelected,
                       onToggle: () => _handleToggleItem(item.cartItemId),
                       onDelete: () => _confirmDeleteItem(item),
-                      onBeforeDecrease: _clearVoucherOnCartChange,
                     );
                   },
                 ),
@@ -438,7 +517,7 @@ class _CartPageState extends ConsumerState<CartPage> {
       bottomNavigationBar: items.isEmpty
           ? null
           : _CartBottomBar(
-              selectedTotalAsync: selectedTotalAsync,
+              localTotal: localTotal,
               computedTotal: _computedTotal,
               selectedCount: selectedIds
                   .intersection(_getSelectableItemIds(items))
@@ -470,14 +549,12 @@ class _CartItemCard extends ConsumerWidget {
   final bool isSelected;
   final VoidCallback onToggle;
   final VoidCallback onDelete;
-  final VoidCallback onBeforeDecrease;
 
   const _CartItemCard({
     required this.item,
     required this.isSelected,
     required this.onToggle,
     required this.onDelete,
-    required this.onBeforeDecrease,
   });
 
   @override
@@ -634,7 +711,6 @@ class _CartItemCard extends ConsumerWidget {
                                       onTap: quantity <= 1
                                           ? null
                                           : () async {
-                                              onBeforeDecrease();
                                               await _updateQuantityWithFeedback(
                                                 context: context,
                                                 notifier: notifier,
@@ -658,7 +734,6 @@ class _CartItemCard extends ConsumerWidget {
                                               manualQty == quantity) {
                                             return;
                                           }
-                                          onBeforeDecrease();
                                           if (context.mounted) {
                                             await _updateQuantityWithFeedback(
                                               context: context,
@@ -679,7 +754,6 @@ class _CartItemCard extends ConsumerWidget {
                                     _QtyButton(
                                       icon: Icons.add,
                                       onTap: () async {
-                                        onBeforeDecrease();
                                         await _updateQuantityWithFeedback(
                                           context: context,
                                           notifier: notifier,
@@ -927,7 +1001,7 @@ class _CartItemCard extends ConsumerWidget {
 // ─── Bottom bar with totals ────────────────────────────────────────────────
 
 class _CartBottomBar extends StatelessWidget {
-  final AsyncValue<CartTotal> selectedTotalAsync;
+  final CartTotal localTotal;
   final CartTotal? computedTotal;
   final int selectedCount;
   final VoidCallback onCheckout;
@@ -941,7 +1015,7 @@ class _CartBottomBar extends StatelessWidget {
   final VoidCallback onShowVoucherPicker;
 
   const _CartBottomBar({
-    required this.selectedTotalAsync,
+    required this.localTotal,
     this.computedTotal,
     required this.selectedCount,
     required this.onCheckout,
@@ -957,8 +1031,7 @@ class _CartBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    // Use computedTotal (with voucher) if available, otherwise provider total
-    final total = computedTotal ?? selectedTotalAsync.asData?.value;
+    final total = computedTotal ?? localTotal;
 
     return SafeArea(
       child: Container(
@@ -981,65 +1054,30 @@ class _CartBottomBar extends StatelessWidget {
             const Divider(height: 16),
 
             // ── Totals ──
-            if (total != null) ...[
-              _TotalRow('Tạm tính', PriceFormatter.format(total.subtotal)),
-              if (total.shippingFee > 0)
-                _TotalRow(
-                  'Phí vận chuyển',
-                  PriceFormatter.format(total.shippingFee),
-                ),
-              if (total.discount > 0)
-                _TotalRow(
-                  'Giảm giá',
-                  '- ${PriceFormatter.format(total.discount)}',
-                  valueColor: Colors.green,
-                ),
-              const Divider(height: 16),
+            _TotalRow('Tạm tính', PriceFormatter.format(total.subtotal)),
+            if (total.shippingFee > 0)
               _TotalRow(
-                'Tổng',
-                PriceFormatter.format(total.totalPrice),
-                labelStyle: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-                valueColor: theme.colorScheme.error,
-                valueFontSize: 18,
+                'Phí vận chuyển',
+                PriceFormatter.format(total.shippingFee),
               ),
-              const SizedBox(height: 12),
-            ] else ...[
-              selectedTotalAsync.when(
-                loading: () => const LinearProgressIndicator(),
-                error: (_, _) => const SizedBox.shrink(),
-                data: (t) => Column(
-                  children: [
-                    _TotalRow('Tạm tính', PriceFormatter.format(t.subtotal)),
-                    if (t.shippingFee > 0)
-                      _TotalRow(
-                        'Phí vận chuyển',
-                        PriceFormatter.format(t.shippingFee),
-                      ),
-                    if (t.discount > 0)
-                      _TotalRow(
-                        'Giảm giá',
-                        '- ${PriceFormatter.format(t.discount)}',
-                        valueColor: Colors.green,
-                      ),
-                    const Divider(height: 16),
-                    _TotalRow(
-                      'Tổng',
-                      PriceFormatter.format(t.totalPrice),
-                      labelStyle: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      valueColor: theme.colorScheme.error,
-                      valueFontSize: 18,
-                    ),
-                    const SizedBox(height: 12),
-                  ],
-                ),
+            if (total.discount > 0)
+              _TotalRow(
+                'Giảm giá',
+                '- ${PriceFormatter.format(total.discount)}',
+                valueColor: Colors.green,
               ),
-            ],
+            const Divider(height: 16),
+            _TotalRow(
+              'Tổng',
+              PriceFormatter.format(total.totalPrice),
+              labelStyle: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              valueColor: theme.colorScheme.error,
+              valueFontSize: 18,
+            ),
+            const SizedBox(height: 12),
 
             // ── Checkout button ──
             FilledButton(
@@ -1081,6 +1119,13 @@ class _CartBottomBar extends StatelessWidget {
                 child: TextField(
                   controller: voucherController,
                   enabled: appliedVoucherCode == null && !isApplyingVoucher,
+                  textInputAction: TextInputAction.done,
+                  onSubmitted: (_) {
+                    if (!isApplyingVoucher &&
+                        voucherController.text.trim().isNotEmpty) {
+                      onApplyVoucher();
+                    }
+                  },
                   decoration: InputDecoration(
                     hintText: 'Mã giảm giá',
                     border: const OutlineInputBorder(),
@@ -1099,24 +1144,28 @@ class _CartBottomBar extends StatelessWidget {
             ),
             if (appliedVoucherCode == null) ...[
               const SizedBox(width: 8),
-              SizedBox(
-                height: 40,
-                child: FilledButton(
-                  onPressed:
-                      isApplyingVoucher || voucherController.text.trim().isEmpty
-                      ? null
-                      : onApplyVoucher,
-                  child: isApplyingVoucher
-                      ? const SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Text('Áp dụng'),
-                ),
+              ValueListenableBuilder<TextEditingValue>(
+                valueListenable: voucherController,
+                builder: (context, value, _) {
+                  final canApply =
+                      !isApplyingVoucher && value.text.trim().isNotEmpty;
+                  return SizedBox(
+                    height: 40,
+                    child: FilledButton(
+                      onPressed: canApply ? onApplyVoucher : null,
+                      child: isApplyingVoucher
+                          ? const SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: Colors.white,
+                              ),
+                            )
+                          : const Text('Áp dụng'),
+                    ),
+                  );
+                },
               ),
             ],
           ],

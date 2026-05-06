@@ -2,7 +2,6 @@ import 'package:perfumegpt_common/perfumegpt_common.dart' as common;
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 import 'package:go_router/go_router.dart';
@@ -18,27 +17,21 @@ class ChatPage extends ConsumerStatefulWidget {
 }
 
 class _ChatPageState extends ConsumerState<ChatPage> {
-  late final InMemoryChatController _chatController;
-  List<Message> _previousMessages = [];
+  final TextEditingController _composerController = TextEditingController();
+  final FocusNode _composerFocusNode = FocusNode();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _chatController = InMemoryChatController();
   }
 
   @override
   void dispose() {
-    _chatController.dispose();
+    _composerController.dispose();
+    _composerFocusNode.dispose();
+    _scrollController.dispose();
     super.dispose();
-  }
-
-  Future<User?> _resolveUser(String userId) async {
-    if (userId == 'ai') {
-      return const User(id: 'ai', name: 'PerfumeGPT');
-    }
-    final user = ref.read(common.authProvider).value;
-    return User(id: userId, name: user?.name ?? 'User');
   }
 
   BorderRadius _bubbleRadius(bool isSentByMe) => isSentByMe
@@ -71,6 +64,13 @@ class _ChatPageState extends ConsumerState<ChatPage> {
               ? Theme.of(context).colorScheme.primary
               : Theme.of(context).colorScheme.surfaceContainerHighest,
           borderRadius: _bubbleRadius(isSentByMe),
+          border: isSentByMe
+              ? null
+              : Border.all(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.outlineVariant.withValues(alpha: 0.45),
+                ),
         ),
         child: content,
       ),
@@ -79,10 +79,8 @@ class _ChatPageState extends ConsumerState<ChatPage> {
 
   Widget _buildCustomMessage(
     BuildContext context,
-    CustomMessage message,
-    int index, {
+    CustomMessage message, {
     required bool isSentByMe,
-    MessageGroupStatus? groupStatus,
   }) {
     final metadata = message.metadata;
     if (metadata == null) return const SizedBox.shrink();
@@ -144,26 +142,58 @@ class _ChatPageState extends ConsumerState<ChatPage> {
 
   Widget _buildTextMessage(
     BuildContext context,
-    TextMessage message,
-    int index, {
+    TextMessage message, {
     required bool isSentByMe,
-    MessageGroupStatus? groupStatus,
   }) {
+    final displayText = isSentByMe
+        ? message.text
+        : _normalizeAiMessageForDisplay(message.text);
+
     final content = isSentByMe
         ? Text(
-            message.text,
+            displayText,
             style: TextStyle(
               color: Theme.of(context).colorScheme.onPrimary,
               height: 1.5,
             ),
           )
         : MarkdownBody(
-            data: message.text,
+            data: displayText,
             selectable: true,
             styleSheet: aiMessageStyleSheet(context),
           );
 
     return _buildMessageBubble(context, content, isSentByMe: isSentByMe);
+  }
+
+  void _scrollToBottom({bool animated = true}) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_scrollController.hasClients) return;
+      final position = _scrollController.position.maxScrollExtent;
+      if (animated) {
+        _scrollController.animateTo(
+          position,
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.easeOutCubic,
+        );
+      } else {
+        _scrollController.jumpTo(position);
+      }
+    });
+  }
+
+  bool _isMine(Message m, String currentUserId) => m.authorId == currentUserId;
+
+  List<String> _extractSuggestions(List<Message> messages) {
+    final last = messages.lastOrNull;
+    final suggestions = <String>[];
+    if (last is CustomMessage &&
+        last.authorId == 'ai' &&
+        last.metadata?['isLoading'] != true) {
+      final sq = last.metadata?['suggestedQuestions'] as List<dynamic>?;
+      if (sq != null) suggestions.addAll(sq.map((e) => e.toString()));
+    }
+    return suggestions;
   }
 
   @override
@@ -175,7 +205,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AI Consultation'),
+        title: const Text('Tư vấn AI'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add_comment_outlined),
@@ -195,111 +225,133 @@ class _ChatPageState extends ConsumerState<ChatPage> {
       ),
       body: messagesAsync.when(
         data: (messages) {
-          if (_previousMessages.isEmpty) {
-            _chatController.setMessages(messages, animated: false);
-          } else {
-            final prev = _previousMessages;
-            if (messages.length > prev.length) {
-              for (var i = prev.length; i < messages.length; i++) {
-                _chatController.insertMessage(messages[i]);
-              }
-            }
-            if (messages.length < prev.length) {
-              final removedMessages = prev
-                  .where((m) => !messages.any((n) => n.id == m.id));
-              for (final removed in removedMessages) {
-                _chatController.removeMessage(removed);
-              }
-            }
-            for (var i = 0; i < messages.length && i < prev.length; i++) {
-              if (messages[i].id != prev[i].id || messages[i] != prev[i]) {
-                _chatController.updateMessage(prev[i], messages[i]);
-              }
-            }
-          }
-          _previousMessages = List.from(messages);
-
           final lastMessage = messages.lastOrNull;
           final isLoading =
-              lastMessage is CustomMessage && lastMessage.metadata?['isLoading'] == true;
+              lastMessage is CustomMessage &&
+              lastMessage.metadata?['isLoading'] == true;
+          final suggestions = _extractSuggestions(messages);
+          _scrollToBottom(animated: messages.length > 1);
 
-          final List<String> suggestions = [];
-          if (lastMessage is CustomMessage &&
-              lastMessage.authorId == 'ai' &&
-              lastMessage.metadata?['isLoading'] != true) {
-            final metadata = lastMessage.metadata;
-            if (metadata != null) {
-              final sq = metadata['suggestedQuestions'] as List<dynamic>?;
-              if (sq != null) {
-                suggestions.addAll(sq.cast<String>());
-              }
-            }
-          }
-
-          return Chat(
-            chatController: _chatController,
-            currentUserId: currentUserId,
-            resolveUser: _resolveUser,
-            onMessageSend: (String text) {
-              ref.read(chatSessionProvider.notifier).sendMessage(text);
-            },
-            builders: Builders(
-              customMessageBuilder: _buildCustomMessage,
-              textMessageBuilder: _buildTextMessage,
-              composerBuilder: (context) {
-                return Composer(
-                  sendButtonDisabled: isLoading,
-                  topWidget: suggestions.isNotEmpty
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                          child: SizedBox(
-                            height: 40,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: suggestions.length,
-                              itemBuilder: (context, index) {
-                                final suggestion = suggestions[index];
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 8),
-                                  child: ActionChip(
-                                    label: Text(suggestion),
-                                    onPressed: isLoading ? null : () {
-                                      ref
-                                          .read(chatSessionProvider.notifier)
-                                          .sendMessage(suggestion);
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        )
-                      : null,
-                );
-              },
-            ),
-            theme: ChatTheme.light(
-              fontFamily:
-                  Theme.of(context).textTheme.bodyMedium?.fontFamily,
-            ).copyWith(
-              colors: ChatColors.light().copyWith(
-                primary: Theme.of(context).colorScheme.primary,
-                onPrimary: Theme.of(context).colorScheme.onPrimary,
-                surface: Theme.of(context).colorScheme.surface,
-                onSurface: Theme.of(context).colorScheme.onSurface,
-                surfaceContainer:
-                    Theme.of(context).colorScheme.surfaceContainerHighest,
+          return Column(
+            children: [
+              Expanded(
+                child: messages.isEmpty
+                    ? _buildWelcomeState()
+                    : ListView.separated(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.fromLTRB(12, 12, 12, 16),
+                        itemCount: messages.length,
+                        separatorBuilder: (_, _) => const SizedBox(height: 10),
+                        itemBuilder: (context, index) {
+                          final m = messages[index];
+                          final isMine = _isMine(m, currentUserId);
+                          return Align(
+                            alignment: isMine
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                            child: m is CustomMessage
+                                ? _buildCustomMessage(
+                                    context,
+                                    m,
+                                    isSentByMe: isMine,
+                                  )
+                                : m is TextMessage
+                                ? _buildTextMessage(
+                                    context,
+                                    m,
+                                    isSentByMe: isMine,
+                                  )
+                                : const SizedBox.shrink(),
+                          );
+                        },
+                      ),
               ),
-            ),
+              _ChatComposer(
+                controller: _composerController,
+                focusNode: _composerFocusNode,
+                isSending: isLoading,
+                suggestions: suggestions,
+                onSuggestionTap: (value) {
+                  ref.read(chatSessionProvider.notifier).sendMessage(value);
+                  _scrollToBottom();
+                },
+                onSend: (value) {
+                  ref.read(chatSessionProvider.notifier).sendMessage(value);
+                  _scrollToBottom();
+                },
+              ),
+            ],
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('Error: $err')),
+        error: (err, stack) => Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Text(
+              'Không thể tải cuộc trò chuyện lúc này. Vui lòng thử lại.',
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
       ),
     );
+  }
+
+  Widget _buildWelcomeState() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 72,
+              height: 72,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Icon(
+                Icons.auto_awesome_rounded,
+                size: 36,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'PerfumeGPT sẵn sàng tư vấn',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Hãy mô tả phong cách, dịp sử dụng, ngân sách... để nhận gợi ý nước hoa phù hợp.',
+              style: TextStyle(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurfaceVariant.withValues(alpha: 0.9),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _normalizeAiMessageForDisplay(String raw) {
+    var text = raw.trim();
+    if (text.isEmpty) return text;
+    text = text.replaceAllMapped(
+      RegExp(r'(?<!\n)(\d+\)\s)'),
+      (m) => '\n${m.group(1)}',
+    );
+    text = text.replaceAllMapped(
+      RegExp(r'(?<!\n)([-*]\s)'),
+      (m) => '\n${m.group(1)}',
+    );
+    return text.replaceAll('\n\n\n', '\n\n').trim();
   }
 }
 
@@ -450,5 +502,123 @@ class _ChatProductCard extends StatelessWidget {
       return PriceFormatter.format(minPrice.toDouble());
     }
     return PriceFormatter.formatRange(minPrice.toDouble(), maxPrice.toDouble());
+  }
+}
+
+class _ChatComposer extends StatelessWidget {
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final bool isSending;
+  final List<String> suggestions;
+  final ValueChanged<String> onSuggestionTap;
+  final ValueChanged<String> onSend;
+
+  const _ChatComposer({
+    required this.controller,
+    required this.focusNode,
+    required this.isSending,
+    required this.suggestions,
+    required this.onSuggestionTap,
+    required this.onSend,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        border: Border(top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5))),
+      ),
+      child: SafeArea(
+      top: false,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (suggestions.isNotEmpty)
+            SizedBox(
+              height: 42,
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                scrollDirection: Axis.horizontal,
+                itemCount: suggestions.length,
+                itemBuilder: (context, index) {
+                  final suggestion = suggestions[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: ActionChip(
+                      label: Text(suggestion, maxLines: 1),
+                      onPressed: isSending ? null : () => onSuggestionTap(suggestion),
+                    ),
+                  );
+                },
+              ),
+            ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: controller,
+                    focusNode: focusNode,
+                    enabled: !isSending,
+                    keyboardType: TextInputType.multiline,
+                    textInputAction: TextInputAction.newline,
+                    minLines: 1,
+                    maxLines: 5,
+                    autocorrect: true,
+                    enableSuggestions: true,
+                    smartDashesType: SmartDashesType.enabled,
+                    smartQuotesType: SmartQuotesType.enabled,
+                    textCapitalization: TextCapitalization.sentences,
+                    decoration: InputDecoration(
+                      hintText: 'Nhập nội dung...',
+                      filled: true,
+                      fillColor: cs.surface,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 12,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                ValueListenableBuilder<TextEditingValue>(
+                  valueListenable: controller,
+                  builder: (context, value, _) {
+                    final canSend = !isSending && value.text.trim().isNotEmpty;
+                    return IconButton.filled(
+                      onPressed: canSend
+                          ? () {
+                              final text = controller.text.trim();
+                              if (text.isEmpty) return;
+                              controller.clear();
+                              onSend(text);
+                              focusNode.requestFocus();
+                            }
+                          : null,
+                      icon: isSending
+                          ? const SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : const Icon(Icons.send_rounded),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      ),
+    );
   }
 }

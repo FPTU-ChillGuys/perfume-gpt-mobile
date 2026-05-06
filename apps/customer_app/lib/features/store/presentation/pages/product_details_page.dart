@@ -366,13 +366,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage>
           );
       ref.read(selectedCartItemIdsProvider.notifier).update({variantId});
       if (mounted) {
-        context.push(
-          '/checkout',
-          extra: {
-            'buyNowFast': true,
-            'selectedItemIds': [variantId],
-          },
-        );
+        context.push('/cart');
       }
     } catch (e) {
       if (mounted) {

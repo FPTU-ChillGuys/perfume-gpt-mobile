@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -49,8 +50,18 @@ class ChatSession extends _$ChatSession {
 
     final currentUser = ref.read(authProvider).value;
     final currentUserId = currentUser?.id;
+    final activeGuestId = currentUserId == null
+        ? (_guestUserId ?? await resolveGuestUserId())
+        : null;
+    _guestUserId = activeGuestId ?? _guestUserId;
 
-    final userConvs = localConvs.where((c) => currentUserId == null || c.userId == currentUserId).toList();
+    final userConvs = localConvs
+        .where(
+          (c) => currentUserId != null
+              ? c.userId == currentUserId
+              : c.userId == activeGuestId,
+        )
+        .toList();
 
     if (userConvs.isNotEmpty) {
       final latestLocal = userConvs.first;
@@ -78,7 +89,13 @@ class ChatSession extends _$ChatSession {
 
     if (localConv != null) {
       final currentUser = ref.read(authProvider).value;
-      if (currentUser != null && localConv.userId != currentUser.id) return;
+      if (currentUser != null) {
+        if (localConv.userId != currentUser.id) return;
+      } else {
+        final guestId = _guestUserId ?? await resolveGuestUserId();
+        _guestUserId = guestId;
+        if (localConv.userId != guestId) return;
+      }
 
       _conversationId = localConv.id;
       _guestUserId = localConv.userId;
@@ -224,16 +241,122 @@ class ChatSession extends _$ChatSession {
         state.value!.where((m) => m.id != loadingMessageId).toList(),
       );
 
+      if (e is DioException) {
+        final fallbackMessage = _assistantMessageFromRawResponse(e.response?.data);
+        if (fallbackMessage != null) {
+          state = AsyncData([...state.value!, fallbackMessage]);
+          await _saveConversationToLocal();
+          _isSending = false;
+          return;
+        }
+      }
+
+      final aiApiBaseUrl = ref.read(aiApiClientProvider).dio.options.baseUrl;
+      final friendlyError = _friendlyAiErrorMessage(e);
+      if (e is DioException) {
+        final status = e.response?.statusCode;
+        final message = e.response?.data;
+        // Keep diagnostics in debug log while showing user-friendly messages in UI.
+        // ignore: avoid_print
+        print(
+          'AI chat request failed. baseUrl=$aiApiBaseUrl status=$status data=$message error=${e.message}',
+        );
+      } else {
+        // ignore: avoid_print
+        print('AI chat request failed. baseUrl=$aiApiBaseUrl error=$e');
+      }
+
       final errorMessage = Message.text(
         authorId: 'ai',
         createdAt: DateTime.now(),
         id: const Uuid().v4(),
-        text: 'Sorry, I encountered an error. Please try again later.',
+        text: friendlyError,
       );
       state = AsyncData([...state.value!, errorMessage]);
     } finally {
       _isSending = false;
     }
+  }
+
+  String _friendlyAiErrorMessage(Object error) {
+    if (error is DioException) {
+      final status = error.response?.statusCode;
+      final payload = error.response?.data;
+      String? backendMessage;
+      if (payload is Map) {
+        backendMessage = payload['message']?.toString();
+      }
+
+      if (status == 401 || status == 403) {
+        return 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại để dùng AI.';
+      }
+      if (status == 404) {
+        return 'Không tìm thấy dịch vụ AI. Vui lòng kiểm tra cấu hình AI_API_BASE_URL.';
+      }
+      if (status == 429) {
+        return 'AI đang bận. Vui lòng thử lại sau ít phút.';
+      }
+      if (status != null && status >= 500) {
+        return 'Máy chủ AI đang gặp sự cố. Vui lòng thử lại sau.';
+      }
+      if (error.type == DioExceptionType.connectionTimeout ||
+          error.type == DioExceptionType.receiveTimeout ||
+          error.type == DioExceptionType.connectionError) {
+        return 'Không kết nối được tới AI. Vui lòng kiểm tra mạng hoặc cấu hình API.';
+      }
+      if (backendMessage != null && backendMessage.trim().isNotEmpty) {
+        return backendMessage.trim();
+      }
+    }
+    return 'AI tạm thời chưa phản hồi. Vui lòng thử lại.';
+  }
+
+  Message? _assistantMessageFromRawResponse(dynamic rawData) {
+    if (rawData is! Map) return null;
+    final data = rawData['data'];
+    if (data is! Map) return null;
+    final messages = data['messages'];
+    if (messages is! List) return null;
+
+    Map? assistantRaw;
+    for (final item in messages.reversed) {
+      if (item is Map && item['sender']?.toString() == 'assistant') {
+        assistantRaw = item;
+        break;
+      }
+    }
+    if (assistantRaw == null) return null;
+
+    final text = assistantRaw['message']?.toString();
+    if (text == null || text.trim().isEmpty) return null;
+
+    final products = assistantRaw['products'];
+    final suggestedQuestions = assistantRaw['suggestedQuestions'];
+    final hasStructuredData =
+        (products is List && products.isNotEmpty) ||
+        (suggestedQuestions is List && suggestedQuestions.isNotEmpty);
+
+    if (!hasStructuredData) {
+      return Message.text(
+        authorId: 'ai',
+        createdAt: DateTime.now(),
+        id: const Uuid().v4(),
+        text: text,
+      );
+    }
+
+    return Message.custom(
+      authorId: 'ai',
+      createdAt: DateTime.now(),
+      id: const Uuid().v4(),
+      metadata: {
+        'text': text,
+        'products': products is List ? List<dynamic>.from(products) : null,
+        'suggestedQuestions': suggestedQuestions is List
+            ? suggestedQuestions.map((e) => e.toString()).toList()
+            : null,
+      },
+    );
   }
 
   Message _mapLocalMessageToChat(LocalMessage m) {

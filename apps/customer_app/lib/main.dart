@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'core/services/fcm_service.dart';
+import 'core/services/payment_webview_preloader.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'core/widgets/app_snackbar.dart';
@@ -82,18 +83,31 @@ void main() {
   );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(FcmService.instance.initialize(ref));
+      PaymentWebViewPreloader.instance.prewarm();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     ref.listen(authProvider, (previous, next) {
       if (next.asData?.value != null) {
         unawaited(FcmService.instance.syncToken(ref));
       }
     });
-
-    unawaited(FcmService.instance.initialize(ref));
 
     return MaterialApp.router(
       title: 'PerfumeGPT',

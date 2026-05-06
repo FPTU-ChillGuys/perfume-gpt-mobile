@@ -35,8 +35,6 @@ class SurveyAnswerView {
 }
 
 class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
-  bool _isFallback = false;
-
   @override
   Future<MobileSurveyResponseData?> build() async => null;
 
@@ -62,26 +60,17 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
                 ))
             .toList();
       }
+      throw Exception('Không có dữ liệu câu hỏi khảo sát.');
     } catch (e) {
       debugPrint('SurveyNotifier: Failed to load questions from API: $e');
+      rethrow;
     }
-
-    _isFallback = true;
-    return _fallbackQuestions();
   }
 
   Future<MobileSurveyResponseData?> submitSurvey(
     String userId,
     List<({String questionId, String answerId})> answers,
   ) async {
-    if (_isFallback) {
-      state = AsyncError(
-        Exception('Khảo sát không thể gửi do lỗi kết nối. Vui lòng thử lại sau.'),
-        StackTrace.current,
-      );
-      return null;
-    }
-
     state = const AsyncLoading();
     try {
       final api = ref.read(common.aiApiClientProvider).getSurveysApi();
@@ -150,95 +139,6 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
     return dao.getAllSessions();
   }
 }
-
-List<SurveyQuestionView> _fallbackQuestions() => [
-      SurveyQuestionView(
-        id: 'gender',
-        question: 'Bạn đang tìm nước hoa cho ai?',
-        questionType: 'single',
-        answers: [
-          SurveyAnswerView(id: 'gender_men', answer: 'Nam', displayText: 'Nam'),
-          SurveyAnswerView(
-              id: 'gender_women', answer: 'Nữ', displayText: 'Nữ'),
-          SurveyAnswerView(
-              id: 'gender_unisex', answer: 'Unisex', displayText: 'Unisex'),
-        ],
-      ),
-      SurveyQuestionView(
-        id: 'occasion',
-        question: 'Dịp sử dụng là gì?',
-        questionType: 'single',
-        answers: [
-          SurveyAnswerView(
-              id: 'occasion_daily', answer: 'Hàng ngày', displayText: 'Hàng ngày'),
-          SurveyAnswerView(
-              id: 'occasion_office', answer: 'Đi làm', displayText: 'Đi làm'),
-          SurveyAnswerView(
-              id: 'occasion_date', answer: 'Hẹn hò', displayText: 'Hẹn hò'),
-          SurveyAnswerView(
-              id: 'occasion_special',
-              answer: 'Dịp đặc biệt',
-              displayText: 'Dịp đặc biệt'),
-        ],
-      ),
-      SurveyQuestionView(
-        id: 'budget',
-        question: 'Ngân sách của bạn?',
-        questionType: 'single',
-        answers: [
-          SurveyAnswerView(
-              id: 'budget_under1m',
-              answer: 'Dưới 1 triệu',
-              displayText: 'Dưới 1 triệu'),
-          SurveyAnswerView(
-              id: 'budget_1m_3m',
-              answer: '1 - 3 triệu',
-              displayText: '1 - 3 triệu'),
-          SurveyAnswerView(
-              id: 'budget_above3m',
-              answer: 'Trên 3 triệu',
-              displayText: 'Trên 3 triệu'),
-        ],
-      ),
-      SurveyQuestionView(
-        id: 'scent_family',
-        question: 'Hương thơm bạn thích?',
-        questionType: 'single',
-        answers: [
-          SurveyAnswerView(
-              id: 'scent_floral', answer: 'Hoa cỏ', displayText: 'Hoa cỏ'),
-          SurveyAnswerView(
-              id: 'scent_woody', answer: 'Gỗ', displayText: 'Gỗ'),
-          SurveyAnswerView(
-              id: 'scent_citrus', answer: 'Cam chanh', displayText: 'Cam chanh'),
-          SurveyAnswerView(
-              id: 'scent_oriental',
-              answer: 'Phương Đông',
-              displayText: 'Phương Đông'),
-          SurveyAnswerView(
-              id: 'scent_fresh', answer: 'Tươi mát', displayText: 'Tươi mát'),
-        ],
-      ),
-      SurveyQuestionView(
-        id: 'longevity',
-        question: 'Thời gian lưu hương mong muốn?',
-        questionType: 'single',
-        answers: [
-          SurveyAnswerView(
-              id: 'longevity_moderate',
-              answer: 'Trung bình (3-5h)',
-              displayText: 'Trung bình (3-5h)'),
-          SurveyAnswerView(
-              id: 'longevity_long',
-              answer: 'Lâu (6-8h)',
-              displayText: 'Lâu (6-8h)'),
-          SurveyAnswerView(
-              id: 'longevity_eternal',
-              answer: 'Rất lâu (8h+)',
-              displayText: 'Rất lâu (8h+)'),
-        ],
-      ),
-    ];
 
 final surveyProvider =
     AsyncNotifierProvider<SurveyNotifier, MobileSurveyResponseData?>(

@@ -146,6 +146,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> logout() async {
     await _storage.delete(key: _tokenKey);
     _apiClient.setBearerAuth('Bearer', '');
+    _aiApiClient.setBearerAuth('Bearer', '');
     _currentUser = null;
     try {
       await _googleSignIn.signOut();
@@ -166,6 +167,7 @@ class AuthRepositoryImpl implements AuthRepository {
       return null;
     }
     _apiClient.setBearerAuth('Bearer', normalizedToken);
+    _aiApiClient.setBearerAuth('Bearer', normalizedToken);
 
     try {
       final response = await _apiClient.getUsersApi().apiUsersMeGet();

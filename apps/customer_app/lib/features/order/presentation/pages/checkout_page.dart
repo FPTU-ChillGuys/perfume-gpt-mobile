@@ -1,9 +1,13 @@
+import 'dart:async';
+
+import 'package:dio/dio.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import '../../../../core/services/payment_webview_preloader.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/cart_total.dart';
 import '../../../../domain/entities/voucher.dart';
@@ -22,6 +26,36 @@ String _formatCurrency(double value) {
     buf.write(str[i]);
   }
   return '$buf\u0111';
+}
+
+String _placeOrderErrorMessage(Object error) {
+  if (error is DioException) {
+    final data = error.response?.data;
+    if (data is Map) {
+      final msg = data['message']?.toString().trim();
+      final errors = data['errors'];
+      final parts = <String>[
+        if (msg != null && msg.isNotEmpty) msg,
+        if (errors is List)
+          ...errors
+              .map((e) => e.toString().trim())
+              .where((e) => e.isNotEmpty),
+      ];
+      if (parts.isNotEmpty) return parts.join('\n');
+    }
+    if (data is String && data.trim().isNotEmpty) return data.trim();
+    final status = error.response?.statusCode;
+    if (status != null) {
+      return 'Máy chủ trả về lỗi $status khi đặt hàng. Vui lòng thử lại.';
+    }
+    if (error.type == DioExceptionType.connectionTimeout ||
+        error.type == DioExceptionType.sendTimeout ||
+        error.type == DioExceptionType.receiveTimeout) {
+      return 'Kết nối quá chậm. Vui lòng kiểm tra mạng và thử lại.';
+    }
+    return error.message ?? 'Không thể đặt hàng. Vui lòng thử lại.';
+  }
+  return error.toString().replaceFirst('Exception: ', '');
 }
 
 class CheckoutPage extends ConsumerStatefulWidget {
@@ -91,6 +125,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         _applyVoucher();
       });
     }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _prewarmPaymentWebView();
+    });
   }
 
   @override
@@ -132,11 +169,32 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     return effectiveIds.isNotEmpty && effectiveIds.length < allIds.length;
   }
 
+  bool _isGatewayPayment(String method) {
+    return method == 'VnPay' || method == 'Momo' || method == 'PayOs';
+  }
+
+  void _prewarmPaymentWebView() {
+    PaymentWebViewPreloader.instance.prewarm();
+  }
+
+  void _scheduleSuccessfulOrderRefresh() {
+    unawaited(
+      Future<void>.microtask(() {
+        if (!mounted) return;
+        ref.invalidate(cartProvider);
+        ref.invalidate(cartTotalProvider);
+        ref.invalidate(myOrdersProvider);
+        ref.read(selectedCartItemIdsProvider.notifier).clear();
+      }),
+    );
+  }
+
   void _onDeliveryMethodChanged(bool pickupInStore) {
     setState(() {
       _isPickupInStore = pickupInStore;
       _selectedPayment = pickupInStore ? 'CashInStore' : 'CashOnDelivery';
     });
+    if (_isGatewayPayment(_selectedPayment)) _prewarmPaymentWebView();
     _refreshTotals();
   }
 
@@ -279,6 +337,8 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   }
 
   Future<void> _placeOrder() async {
+    var navigatedToPayment = false;
+
     // Validate
     if (!_isPickupInStore) {
       if (!_useNewAddress &&
@@ -378,22 +438,39 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       );
 
       final result = await ref.read(orderRepositoryProvider).checkout(request);
-      ref.invalidate(cartProvider);
-      ref.invalidate(cartTotalProvider);
-      ref.invalidate(myOrdersProvider);
-      ref.read(selectedCartItemIdsProvider.notifier).clear();
 
       if (!mounted) return;
 
-      // Handle payment redirect based on paymentUrl
       if (result.paymentUrl != null && result.paymentUrl!.isNotEmpty) {
-        if (mounted) {
-          context.push(
-            '/payment-webview?url=${Uri.encodeComponent(result.paymentUrl!)}',
-          );
-        }
+        navigatedToPayment = true;
+        // Push to the webview first so the gateway starts loading immediately,
+        // then dismiss the overlay on the next frame so the user doesn't see
+        // a flash of the checkout page during the navigation transition.
+        final pendingNav = context.push(
+          '/payment-webview?url=${Uri.encodeComponent(result.paymentUrl!)}',
+        );
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) setState(() => _isPlacingOrder = false);
+        });
+        // Refresh cart/orders in the background once the webview is on top so
+        // the network bandwidth isn't shared with the gateway page load.
+        unawaited(
+          Future<void>.delayed(
+            const Duration(milliseconds: 600),
+            _scheduleSuccessfulOrderRefresh,
+          ),
+        );
+        // When the user pops back from the webview, ensure flag is reset.
+        unawaited(
+          pendingNav.then((_) {
+            if (mounted && _isPlacingOrder) {
+              setState(() => _isPlacingOrder = false);
+            }
+          }),
+        );
+        return;
       } else {
-        // COD (no deposit) / CashInStore — show success
+        _scheduleSuccessfulOrderRefresh();
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -426,15 +503,16 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              'Đặt hàng thất bại: ${e.toString().replaceFirst('Exception: ', '')}',
-            ),
+            content: Text('Đặt hàng thất bại: ${_placeOrderErrorMessage(e)}'),
             backgroundColor: Colors.red,
+            duration: const Duration(seconds: 6),
           ),
         );
       }
     } finally {
-      if (mounted) setState(() => _isPlacingOrder = false);
+      if (mounted && !navigatedToPayment) {
+        setState(() => _isPlacingOrder = false);
+      }
     }
   }
 
@@ -451,12 +529,14 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
+          onPressed: _isPlacingOrder ? null : () => context.pop(),
         ),
         title: const Text('Thanh toán'),
         actions: const [ProfileAvatarAppBarAction()],
       ),
-      body: authState.when(
+      body: Stack(
+        children: [
+          authState.when(
         data: (user) {
           if (user == null) {
             return _buildAuthRequired();
@@ -557,6 +637,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stack) => Center(child: Text('Error: $error')),
+      ),
+          if (_isPlacingOrder) const _PlaceOrderOverlay(),
+        ],
       ),
     );
   }
@@ -1532,7 +1615,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       child: RadioGroup<String>(
         groupValue: _selectedPayment,
         onChanged: (v) {
-          if (v != null) setState(() => _selectedPayment = v);
+          if (v == null) return;
+          setState(() => _selectedPayment = v);
+          if (_isGatewayPayment(v)) _prewarmPaymentWebView();
         },
         child: Column(
           children: methods.map((m) {
@@ -1724,6 +1809,67 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
 }
 
 // ─── Helper Widgets ──────────────────────────────────────────────
+
+class _PlaceOrderOverlay extends StatelessWidget {
+  const _PlaceOrderOverlay();
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Positioned.fill(
+      child: AbsorbPointer(
+        absorbing: true,
+        child: ColoredBox(
+          color: Colors.black.withValues(alpha: 0.45),
+          child: Center(
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 320),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 28,
+              ),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    width: 56,
+                    height: 56,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 3,
+                      color: cs.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Đang khởi tạo thanh toán...',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Vui lòng giữ ứng dụng mở trong khi chúng tôi kết nối tới cổng thanh toán.',
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: cs.onSurface.withValues(alpha: 0.65),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class _PaymentOption {
   final String value;

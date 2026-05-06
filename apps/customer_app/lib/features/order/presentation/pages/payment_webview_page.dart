@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../../core/services/payment_webview_preloader.dart';
 import '../providers/order_provider.dart';
 import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
 
@@ -60,7 +61,11 @@ class _PaymentWebViewPageState extends ConsumerState<PaymentWebViewPage> {
     }
 
     try {
-      _controller = WebViewController()
+      // Reuse a pre-warmed WebViewController if one is available so that
+      // the first paint of the gateway lands in milliseconds instead of
+      // having to bootstrap Chromium from scratch.
+      final reused = PaymentWebViewPreloader.instance.acquireController();
+      _controller = (reused ?? WebViewController())
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
         ..setNavigationDelegate(
           NavigationDelegate(

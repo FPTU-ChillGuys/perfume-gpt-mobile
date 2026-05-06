@@ -150,6 +150,56 @@ String _paymentMethodLabel(String method) {
   }
 }
 
+String _paymentMethodSubtitle(String method) {
+  switch (method) {
+    case 'CashOnDelivery':
+      return 'Xác nhận đơn và thanh toán khi nhận hàng';
+    case 'CashInStore':
+      return 'Phù hợp cho đơn nhận trực tiếp tại cửa hàng';
+    case 'VnPay':
+      return 'Mở cổng VNPay để thanh toán an toàn';
+    case 'Momo':
+      return 'Thanh toán nhanh qua ví MoMo';
+    case 'PayOs':
+      return 'Thanh toán qua mã QR PayOS';
+    default:
+      return 'Tiếp tục với phương thức này';
+  }
+}
+
+IconData _paymentMethodIcon(String method) {
+  switch (method) {
+    case 'CashOnDelivery':
+      return Icons.local_shipping_outlined;
+    case 'CashInStore':
+      return Icons.storefront_outlined;
+    case 'VnPay':
+      return Icons.account_balance_wallet_outlined;
+    case 'Momo':
+      return Icons.phone_android_outlined;
+    case 'PayOs':
+      return Icons.qr_code_2_rounded;
+    default:
+      return Icons.payments_outlined;
+  }
+}
+
+Color _paymentMethodColor(String method) {
+  switch (method) {
+    case 'CashOnDelivery':
+    case 'CashInStore':
+      return AppColors.success;
+    case 'VnPay':
+      return AppColors.info;
+    case 'Momo':
+      return const Color(0xFFD82D8B);
+    case 'PayOs':
+      return AppColors.primary;
+    default:
+      return AppColors.primary;
+  }
+}
+
 String _carrierLabel(String? carrier) {
   switch (carrier) {
     case 'GHN':
@@ -1807,82 +1857,364 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setDialogState) {
           final isCashMethod = cashMethods.contains(selectedRetryMethod);
-          return AlertDialog(
-            title: const Text('Thanh toán lại đơn hàng'),
-            content: SingleChildScrollView(
+          return Dialog(
+            insetPadding: const EdgeInsets.symmetric(
+              horizontal: 18,
+              vertical: 24,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: 430,
+                maxHeight: MediaQuery.sizeOf(ctx).height * 0.86,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Chọn cách thanh toán lại đơn hàng.',
-                    style: TextStyle(color: Colors.grey[600], fontSize: 13),
-                  ),
-                  const SizedBox(height: 16),
-                  ...retryMethods.map(
-                    (method) => Container(
-                      margin: const EdgeInsets.only(bottom: 8),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: selectedRetryMethod == method
-                              ? _accent
-                              : Colors.grey[300]!,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.fromLTRB(20, 20, 16, 18),
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [AppColors.heroStart, AppColors.heroEnd],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                       ),
-                      child: RadioListTile<String>(
-                        value: method,
-                        groupValue: selectedRetryMethod,
-                        dense: true,
-                        activeColor: _accent,
-                        title: Text(
-                          _paymentMethodLabel(method),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.16),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: const Icon(
+                            Icons.payments_outlined,
+                            color: Colors.white,
+                            size: 24,
                           ),
                         ),
-                        onChanged: isSubmitting
-                            ? null
-                            : (v) {
-                                if (v == null) return;
-                                setDialogState(() => selectedRetryMethod = v);
-                              },
+                        const SizedBox(width: 12),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Thanh toán lại',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                'Chọn phương thức phù hợp để tiếp tục đơn hàng.',
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 13,
+                                  height: 1.35,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: isSubmitting
+                              ? null
+                              : () => Navigator.pop(ctx),
+                          icon: const Icon(Icons.close, color: Colors.white),
+                          tooltip: 'Đóng',
+                        ),
+                      ],
+                    ),
+                  ),
+                  Flexible(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.fromLTRB(18, 18, 18, 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 6,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primaryLight,
+                                  borderRadius: BorderRadius.circular(999),
+                                ),
+                                child: Text(
+                                  order.code,
+                                  style: const TextStyle(
+                                    color: AppColors.primaryDark,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                              if (depositAmount > 0) ...[
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    'Cọc: ${_fmt(depositAmount)}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.right,
+                                    style: const TextStyle(
+                                      color: AppColors.textSecondary,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Phương thức thanh toán',
+                            style: TextStyle(
+                              color: AppColors.textPrimary,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          ...retryMethods.map((method) {
+                            final selected = selectedRetryMethod == method;
+                            final color = _paymentMethodColor(method);
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Material(
+                                color: selected
+                                    ? color.withValues(alpha: 0.08)
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(16),
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(16),
+                                  onTap: isSubmitting
+                                      ? null
+                                      : () => setDialogState(
+                                            () => selectedRetryMethod = method,
+                                          ),
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 180),
+                                    padding: const EdgeInsets.all(14),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(
+                                        color: selected
+                                            ? color
+                                            : AppColors.border,
+                                        width: selected ? 1.5 : 1,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 42,
+                                          height: 42,
+                                          decoration: BoxDecoration(
+                                            color: color.withValues(alpha: 0.12),
+                                            borderRadius:
+                                                BorderRadius.circular(14),
+                                          ),
+                                          child: Icon(
+                                            _paymentMethodIcon(method),
+                                            color: color,
+                                            size: 22,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                _paymentMethodLabel(method),
+                                                style: const TextStyle(
+                                                  color: AppColors.textPrimary,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w800,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              Text(
+                                                _paymentMethodSubtitle(method),
+                                                style: const TextStyle(
+                                                  color:
+                                                      AppColors.textSecondary,
+                                                  fontSize: 12.2,
+                                                  height: 1.25,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
+                                        AnimatedSwitcher(
+                                          duration:
+                                              const Duration(milliseconds: 160),
+                                          child: selected
+                                              ? Icon(
+                                                  Icons.check_circle_rounded,
+                                                  key: const ValueKey('checked'),
+                                                  color: color,
+                                                  size: 24,
+                                                )
+                                              : const Icon(
+                                                  Icons.circle_outlined,
+                                                  key:
+                                                      ValueKey('unchecked'),
+                                                  color:
+                                                      AppColors.textSecondary,
+                                                  size: 22,
+                                                ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                          if (isCashMethod) ...[
+                            const SizedBox(height: 4),
+                            Container(
+                              padding: const EdgeInsets.all(14),
+                              decoration: BoxDecoration(
+                                color: AppColors.warning.withValues(alpha: 0.08),
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(
+                                  color: AppColors.warning.withValues(alpha: 0.28),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: const [
+                                      Icon(
+                                        Icons.info_outline_rounded,
+                                        color: AppColors.warning,
+                                        size: 18,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Expanded(
+                                        child: Text(
+                                          'Chọn cổng thanh toán tiền cọc',
+                                          style: TextStyle(
+                                            color: AppColors.textPrimary,
+                                            fontWeight: FontWeight.w800,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  DropdownButtonFormField<String>(
+                                    initialValue: selectedDepositGateway,
+                                    decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      prefixIcon: const Icon(
+                                        Icons.account_balance_wallet_outlined,
+                                        size: 19,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(14),
+                                        borderSide: const BorderSide(
+                                          color: AppColors.border,
+                                        ),
+                                      ),
+                                      isDense: true,
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                            horizontal: 12,
+                                            vertical: 12,
+                                          ),
+                                    ),
+                                    items: const [
+                                      DropdownMenuItem(
+                                        value: 'VnPay',
+                                        child: Text('VNPay'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: 'Momo',
+                                        child: Text('MoMo'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: 'PayOs',
+                                        child: Text('PayOS'),
+                                      ),
+                                    ],
+                                    onChanged: (v) {
+                                      if (v != null && !isSubmitting) {
+                                        setDialogState(
+                                          () => selectedDepositGateway = v,
+                                        );
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                     ),
                   ),
-                  if (isCashMethod) ...[
-                    const SizedBox(height: 8),
-                    DropdownButtonFormField<String>(
-                      initialValue: selectedDepositGateway,
-                      decoration: const InputDecoration(
-                        labelText: 'Cổng thanh toán tiền cọc',
-                        border: OutlineInputBorder(),
-                        isDense: true,
-                      ),
-                      items: const [
-                        DropdownMenuItem(value: 'VnPay', child: Text('VNPay')),
-                        DropdownMenuItem(value: 'Momo', child: Text('MoMo')),
-                        DropdownMenuItem(value: 'PayOs', child: Text('PayOS')),
-                      ],
-                      onChanged: (v) {
-                        if (v != null && !isSubmitting) {
-                          setDialogState(() => selectedDepositGateway = v);
-                        }
-                      },
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(18, 12, 18, 18),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      border: Border(top: BorderSide(color: AppColors.border)),
                     ),
-                    const SizedBox(height: 6),
-                  ],
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: isSubmitting ? null : () => Navigator.pop(ctx),
-                child: const Text('Đóng'),
-              ),
-              FilledButton(
-                style: FilledButton.styleFrom(backgroundColor: Colors.orange),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: isSubmitting
+                                ? null
+                                : () => Navigator.pop(ctx),
+                            child: const Text('Đóng'),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          flex: 2,
+                          child: FilledButton.icon(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 13),
+                            ),
+                            icon: isSubmitting
+                                ? const SizedBox(
+                                    width: 16,
+                                    height: 16,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : const Icon(Icons.arrow_forward_rounded),
+                            label: Text(
+                              isSubmitting ? 'Đang xử lý...' : 'Thanh toán',
+                            ),
                 onPressed: isSubmitting
                     ? null
                     : () async {
@@ -1989,9 +2321,14 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                           }
                         }
                       },
-                child: Text(isSubmitting ? 'Đang xử lý...' : 'Thanh toán ngay'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           );
         },
       ),
