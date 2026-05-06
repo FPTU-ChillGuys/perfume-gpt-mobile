@@ -55,7 +55,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
         break;
       case 'Campaign':
         context.push(
-          '/store?source=campaign&sourceLabel=${Uri.encodeComponent(banner.title)}',
+          '/store?campaignId=${Uri.encodeComponent(banner.linkTarget!)}&sourceLabel=${Uri.encodeComponent(banner.title)}',
         );
         break;
       case 'Brand':

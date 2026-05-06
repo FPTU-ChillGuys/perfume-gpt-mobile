@@ -322,6 +322,42 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
+  Future<PagedResult<Product>> getCampaignProductsPaged({
+    required String campaignId,
+    int pageNumber = 1,
+    int pageSize = 12,
+    int? brandId,
+    int? categoryId,
+    int? volume,
+    num? fromPrice,
+    num? toPrice,
+    String? sortBy,
+    bool? isDescending,
+  }) async {
+    final response = await _api.apiProductsCampaignsCampaignIdGet(
+      campaignId: campaignId,
+      pageNumber: pageNumber,
+      pageSize: pageSize,
+      brandId: brandId,
+      categoryId: categoryId,
+      volume: volume,
+      fromPrice: fromPrice,
+      toPrice: toPrice,
+      sortBy: sortBy,
+      isDescending: isDescending,
+      isAvailable: true,
+    );
+    final payload = response.data?.payload;
+    final items = payload?.items ?? [];
+    return PagedResult(
+      items: items.map(_mapListItemToProduct).toList(),
+      totalCount: payload?.totalCount ?? 0,
+      totalPages: payload?.totalPages ?? 0,
+      hasNextPage: payload?.hasNextPage ?? false,
+    );
+  }
+
+  @override
   Future<List<String>> getCampaignProductIds(String campaignId) async {
     final response = await _api.apiProductsCampaignsCampaignIdGet(
       campaignId: campaignId,
