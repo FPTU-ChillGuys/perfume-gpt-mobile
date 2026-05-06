@@ -166,13 +166,19 @@ class HomePage extends ConsumerWidget {
                 right: -4,
                 top: -4,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 5,
+                    vertical: 1,
+                  ),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.error,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.white, width: 1.2),
                   ),
-                  constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+                  constraints: const BoxConstraints(
+                    minWidth: 16,
+                    minHeight: 16,
+                  ),
                   alignment: Alignment.center,
                   child: Text(
                     displayCount,

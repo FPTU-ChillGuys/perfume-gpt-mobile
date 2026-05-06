@@ -77,9 +77,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
         // Target mobile banner ratio: 900 x 520
         const bannerRatio = 900 / 520;
         final bannerHeight = (screenWidth / bannerRatio).clamp(160.0, 320.0);
-        final titleFontSize = isWide
-            ? 18.0
-            : 14.0;
+        final titleFontSize = isWide ? 18.0 : 14.0;
         final gradientHeight = isWide ? 80.0 : 60.0;
         final titlePadding = isWide ? 18.0 : 14.0;
         final dotSize = isWide ? 8.0 : 6.0;
@@ -98,8 +96,10 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
                 itemBuilder: (context, index) {
                   final banner = widget.banners[index];
                   // Prefer mobile image; fallback to desktop image when broken.
-                  final primaryImageUrl = banner.mobileImageUrl ?? banner.imageUrl;
-                  final fallbackImageUrl = banner.mobileImageUrl != null &&
+                  final primaryImageUrl =
+                      banner.mobileImageUrl ?? banner.imageUrl;
+                  final fallbackImageUrl =
+                      banner.mobileImageUrl != null &&
                           banner.mobileImageUrl!.isNotEmpty
                       ? banner.imageUrl
                       : null;
@@ -189,10 +189,7 @@ class _BannerImage extends StatefulWidget {
   final String primaryUrl;
   final String? fallbackUrl;
 
-  const _BannerImage({
-    required this.primaryUrl,
-    this.fallbackUrl,
-  });
+  const _BannerImage({required this.primaryUrl, this.fallbackUrl});
 
   @override
   State<_BannerImage> createState() => _BannerImageState();
@@ -237,7 +234,8 @@ class _BannerImageState extends State<_BannerImage> {
         );
       },
       errorBuilder: (_, error, stackTrace) {
-        final canFallback = !_didFallback &&
+        final canFallback =
+            !_didFallback &&
             widget.fallbackUrl != null &&
             widget.fallbackUrl!.isNotEmpty &&
             widget.fallbackUrl != _currentUrl;

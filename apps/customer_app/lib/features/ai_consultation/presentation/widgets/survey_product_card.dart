@@ -31,14 +31,17 @@ class SurveyProductCard extends StatelessWidget {
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) =>
                             const Center(
-                                child: Icon(Icons.image_not_supported)),
+                              child: Icon(Icons.image_not_supported),
+                            ),
                       )
                     : const Center(child: Icon(Icons.image_not_supported)),
               ),
               Expanded(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -55,8 +58,10 @@ class SurveyProductCard extends StatelessWidget {
                       const SizedBox(height: 2),
                       Text(
                         product.brandName,
-                        style:
-                            const TextStyle(fontSize: 12, color: Colors.grey),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),

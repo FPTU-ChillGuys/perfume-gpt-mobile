@@ -46,18 +46,22 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
       if (questions != null && questions.isNotEmpty) {
         return questions
             .where((q) => q.isActive)
-            .map((q) => SurveyQuestionView(
-                  id: q.id,
-                  question: q.question,
-                  questionType: q.questionType,
-                  answers: q.answers
-                      .map((a) => SurveyAnswerView(
-                            id: a.id,
-                            answer: a.answer,
-                            displayText: a.displayText,
-                          ))
-                      .toList(),
-                ))
+            .map(
+              (q) => SurveyQuestionView(
+                id: q.id,
+                question: q.question,
+                questionType: q.questionType,
+                answers: q.answers
+                    .map(
+                      (a) => SurveyAnswerView(
+                        id: a.id,
+                        answer: a.answer,
+                        displayText: a.displayText,
+                      ),
+                    )
+                    .toList(),
+              ),
+            )
             .toList();
       }
       throw Exception('Không có dữ liệu câu hỏi khảo sát.');
@@ -78,10 +82,12 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
       final request = MobileSurveyRequest(
         userId: userId,
         answers: answers
-            .map((a) => MobileSurveyAnswer(
-                  questionId: a.questionId,
-                  answerId: a.answerId,
-                ))
+            .map(
+              (a) => MobileSurveyAnswer(
+                questionId: a.questionId,
+                answerId: a.answerId,
+              ),
+            )
             .toList(),
       );
 
@@ -115,14 +121,16 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
       }
 
       try {
-        await dao.insertSession(LocalSurveySessionsCompanion.insert(
-          id: sessionId,
-          userId: userId,
-          answersJson: jsonEncode(answersMap),
-          resultJson: Value(jsonEncode(result.toJson())),
-          createdAt: DateTime.now().millisecondsSinceEpoch,
-          productCount: Value(result.products.length),
-        ));
+        await dao.insertSession(
+          LocalSurveySessionsCompanion.insert(
+            id: sessionId,
+            userId: userId,
+            answersJson: jsonEncode(answersMap),
+            resultJson: Value(jsonEncode(result.toJson())),
+            createdAt: DateTime.now().millisecondsSinceEpoch,
+            productCount: Value(result.products.length),
+          ),
+        );
       } catch (e) {
         debugPrint('SurveyNotifier: Failed to save session to DB: $e');
       }
@@ -142,5 +150,5 @@ class SurveyNotifier extends AsyncNotifier<MobileSurveyResponseData?> {
 
 final surveyProvider =
     AsyncNotifierProvider<SurveyNotifier, MobileSurveyResponseData?>(
-  SurveyNotifier.new,
-);
+      SurveyNotifier.new,
+    );

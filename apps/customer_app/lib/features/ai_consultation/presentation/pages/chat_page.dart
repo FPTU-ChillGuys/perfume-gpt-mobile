@@ -105,12 +105,14 @@ class _ChatPageState extends ConsumerState<ChatPage> {
 
     final text = metadata['text'] as String?;
     final productsJson = metadata['products'] as List<dynamic>?;
-    final products =
-        productsJson?.map((p) => ProductCardOutputItemDto.fromJson(p)).toList();
+    final products = productsJson
+        ?.map((p) => ProductCardOutputItemDto.fromJson(p))
+        .toList();
 
     return Column(
-      crossAxisAlignment:
-          isSentByMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      crossAxisAlignment: isSentByMe
+          ? CrossAxisAlignment.end
+          : CrossAxisAlignment.start,
       children: [
         if (text != null)
           _buildMessageBubble(
@@ -377,9 +379,10 @@ class _TypingDotState extends State<_TypingDot>
       duration: const Duration(milliseconds: 600),
     );
 
-    _animation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _animation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     Future.delayed(Duration(milliseconds: (widget.delay * 1000).toInt()), () {
       if (mounted) {
@@ -403,10 +406,9 @@ class _TypingDotState extends State<_TypingDot>
           width: 6,
           height: 6,
           decoration: BoxDecoration(
-            color: Theme.of(context)
-                .colorScheme
-                .onSurfaceVariant
-                .withValues(alpha: 0.3 + (0.7 * _animation.value)),
+            color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(
+              alpha: 0.3 + (0.7 * _animation.value),
+            ),
             shape: BoxShape.circle,
           ),
         );
@@ -436,18 +438,17 @@ class _ChatProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child:
-                    product.primaryImage != null
-                        ? Image.network(
-                          product.primaryImage as String,
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          errorBuilder:
-                              (context, error, stackTrace) => const Center(
-                                child: Icon(Icons.image_not_supported),
-                              ),
-                        )
-                        : const Center(child: Icon(Icons.image_not_supported)),
+                child: product.primaryImage != null
+                    ? Image.network(
+                        product.primaryImage as String,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Center(
+                              child: Icon(Icons.image_not_supported),
+                            ),
+                      )
+                    : const Center(child: Icon(Icons.image_not_supported)),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -490,13 +491,13 @@ class _ChatProductCard extends StatelessWidget {
 
   String _getPriceRange() {
     if (product.variants.isEmpty) return 'N/A';
-    final prices =
-        product.variants.map((v) => v.basePrice).whereType<num>().toList();
+    final prices = product.variants
+        .map((v) => v.basePrice)
+        .whereType<num>()
+        .toList();
     if (prices.isEmpty) return 'N/A';
-    final minPrice =
-        prices.reduce((a, b) => a < b ? a : b);
-    final maxPrice =
-        prices.reduce((a, b) => a > b ? a : b);
+    final minPrice = prices.reduce((a, b) => a < b ? a : b);
+    final maxPrice = prices.reduce((a, b) => a > b ? a : b);
 
     if (minPrice == maxPrice) {
       return PriceFormatter.format(minPrice.toDouble());
@@ -529,95 +530,102 @@ class _ChatComposer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
-        border: Border(top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5))),
+        border: Border(
+          top: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.5)),
+        ),
       ),
       child: SafeArea(
-      top: false,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (suggestions.isNotEmpty)
-            SizedBox(
-              height: 42,
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                scrollDirection: Axis.horizontal,
-                itemCount: suggestions.length,
-                itemBuilder: (context, index) {
-                  final suggestion = suggestions[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: ActionChip(
-                      label: Text(suggestion, maxLines: 1),
-                      onPressed: isSending ? null : () => onSuggestionTap(suggestion),
-                    ),
-                  );
-                },
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: controller,
-                    focusNode: focusNode,
-                    enabled: !isSending,
-                    keyboardType: TextInputType.multiline,
-                    textInputAction: TextInputAction.newline,
-                    minLines: 1,
-                    maxLines: 5,
-                    autocorrect: true,
-                    enableSuggestions: true,
-                    smartDashesType: SmartDashesType.enabled,
-                    smartQuotesType: SmartQuotesType.enabled,
-                    textCapitalization: TextCapitalization.sentences,
-                    decoration: InputDecoration(
-                      hintText: 'Nhập nội dung...',
-                      filled: true,
-                      fillColor: cs.surface,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 12,
+        top: false,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (suggestions.isNotEmpty)
+              SizedBox(
+                height: 42,
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: suggestions.length,
+                  itemBuilder: (context, index) {
+                    final suggestion = suggestions[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ActionChip(
+                        label: Text(suggestion, maxLines: 1),
+                        onPressed: isSending
+                            ? null
+                            : () => onSuggestionTap(suggestion),
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ValueListenableBuilder<TextEditingValue>(
-                  valueListenable: controller,
-                  builder: (context, value, _) {
-                    final canSend = !isSending && value.text.trim().isNotEmpty;
-                    return IconButton.filled(
-                      onPressed: canSend
-                          ? () {
-                              final text = controller.text.trim();
-                              if (text.isEmpty) return;
-                              controller.clear();
-                              onSend(text);
-                              focusNode.requestFocus();
-                            }
-                          : null,
-                      icon: isSending
-                          ? const SizedBox(
-                              width: 18,
-                              height: 18,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : const Icon(Icons.send_rounded),
                     );
                   },
                 ),
-              ],
+              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: controller,
+                      focusNode: focusNode,
+                      enabled: !isSending,
+                      keyboardType: TextInputType.multiline,
+                      textInputAction: TextInputAction.newline,
+                      minLines: 1,
+                      maxLines: 5,
+                      autocorrect: true,
+                      enableSuggestions: true,
+                      smartDashesType: SmartDashesType.enabled,
+                      smartQuotesType: SmartQuotesType.enabled,
+                      textCapitalization: TextCapitalization.sentences,
+                      decoration: InputDecoration(
+                        hintText: 'Nhập nội dung...',
+                        filled: true,
+                        fillColor: cs.surface,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 12,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: controller,
+                    builder: (context, value, _) {
+                      final canSend =
+                          !isSending && value.text.trim().isNotEmpty;
+                      return IconButton.filled(
+                        onPressed: canSend
+                            ? () {
+                                final text = controller.text.trim();
+                                if (text.isEmpty) return;
+                                controller.clear();
+                                onSend(text);
+                                focusNode.requestFocus();
+                              }
+                            : null,
+                        icon: isSending
+                            ? const SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : const Icon(Icons.send_rounded),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }

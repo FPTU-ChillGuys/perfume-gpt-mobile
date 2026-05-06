@@ -154,9 +154,7 @@ class _AuthenticatedView extends ConsumerWidget {
     final authUser = ref.watch(authProvider).asData?.value;
 
     final String? headerAvatarUrl = () {
-      final fromProfile = profileAsync.whenOrNull(
-        data: (p) => p.avatarUrl,
-      );
+      final fromProfile = profileAsync.whenOrNull(data: (p) => p.avatarUrl);
       if (fromProfile != null && fromProfile.isNotEmpty) return fromProfile;
       final fromAuth = authUser?.avatarUrl;
       if (fromAuth != null && fromAuth.isNotEmpty) return fromAuth;

@@ -5,21 +5,25 @@ import '../tables.dart';
 part 'conversation_dao.g.dart';
 
 @DriftAccessor(tables: [LocalConversations, LocalMessages])
-class ConversationDao extends DatabaseAccessor<AppDatabase> with _$ConversationDaoMixin {
+class ConversationDao extends DatabaseAccessor<AppDatabase>
+    with _$ConversationDaoMixin {
   ConversationDao(super.db);
 
   Future<List<LocalConversation>> getAllConversations() {
-    return (select(localConversations)
-          ..orderBy([(t) => OrderingTerm.desc(t.updatedAt)]))
-        .get();
+    return (select(
+      localConversations,
+    )..orderBy([(t) => OrderingTerm.desc(t.updatedAt)])).get();
   }
 
   Future<LocalConversation?> getConversationById(String id) {
-    return (select(localConversations)..where((t) => t.id.equals(id)))
-        .getSingleOrNull();
+    return (select(
+      localConversations,
+    )..where((t) => t.id.equals(id))).getSingleOrNull();
   }
 
-  Future<List<LocalMessage>> getMessagesByConversationId(String conversationId) {
+  Future<List<LocalMessage>> getMessagesByConversationId(
+    String conversationId,
+  ) {
     return (select(localMessages)
           ..where((t) => t.conversationId.equals(conversationId))
           ..orderBy([(t) => OrderingTerm.asc(t.messageIndex)]))
@@ -35,9 +39,9 @@ class ConversationDao extends DatabaseAccessor<AppDatabase> with _$ConversationD
     List<LocalMessagesCompanion> entries,
   ) async {
     await transaction(() async {
-      await (delete(localMessages)
-            ..where((t) => t.conversationId.equals(conversationId)))
-          .go();
+      await (delete(
+        localMessages,
+      )..where((t) => t.conversationId.equals(conversationId))).go();
       await batch((b) {
         b.insertAll(localMessages, entries);
       });
@@ -46,9 +50,9 @@ class ConversationDao extends DatabaseAccessor<AppDatabase> with _$ConversationD
 
   Future<void> deleteConversation(String id) async {
     await transaction(() async {
-      await (delete(localMessages)
-            ..where((t) => t.conversationId.equals(id)))
-          .go();
+      await (delete(
+        localMessages,
+      )..where((t) => t.conversationId.equals(id))).go();
       await (delete(localConversations)..where((t) => t.id.equals(id))).go();
     });
   }

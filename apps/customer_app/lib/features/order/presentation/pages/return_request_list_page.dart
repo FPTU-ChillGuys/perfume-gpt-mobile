@@ -134,9 +134,7 @@ class _State extends ConsumerState<ReturnRequestListPage>
                   )
                   .toList(),
             ),
-            actions: const [
-              ProfileAvatarAppBarAction(forDarkAppBar: true),
-            ],
+            actions: const [ProfileAvatarAppBarAction(forDarkAppBar: true)],
           ),
         ],
         body: dataAsync.when(
@@ -323,7 +321,9 @@ class _ReturnRequestCard extends StatelessWidget {
                               ),
                               const SizedBox(height: 2),
                               Text(
-                                DateTimeHelper.formatDateTime(request.createdAt),
+                                DateTimeHelper.formatDateTime(
+                                  request.createdAt,
+                                ),
                                 style: const TextStyle(
                                   fontSize: 11.5,
                                   color: AppColors.textSecondary,

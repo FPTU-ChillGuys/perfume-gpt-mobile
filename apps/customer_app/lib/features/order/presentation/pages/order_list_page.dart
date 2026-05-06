@@ -373,7 +373,8 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
           // ── Content ──
           Expanded(
             child: ordersAsync.when(
-              loading: () => const AppLoadingState(message: 'Đang tải đơn hàng...'),
+              loading: () =>
+                  const AppLoadingState(message: 'Đang tải đơn hàng...'),
               error: (error, _) => AppErrorState(
                 message: 'Không thể tải đơn hàng',
                 onRetry: _invalidateOrders,
@@ -1322,25 +1323,31 @@ class _PaginationBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(
-            'Hiển thị ',
-            style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+          Flexible(
+            child: Text(
+              'Hiển thị ',
+              style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+            ),
           ),
-          DropdownButton<int>(
-            value: pageSize,
-            isDense: true,
-            underline: const SizedBox(),
-            items: [5, 10, 20, 50]
-                .map((s) => DropdownMenuItem(value: s, child: Text('$s')))
-                .toList(),
-            onChanged: (v) {
-              if (v != null) onPageSizeChanged(v);
-            },
-            style: const TextStyle(fontSize: 13, color: Colors.black87),
+          Flexible(
+            child: DropdownButton<int>(
+              value: pageSize,
+              isDense: true,
+              underline: const SizedBox(),
+              items: [5, 10, 20, 50]
+                  .map((s) => DropdownMenuItem(value: s, child: Text('$s')))
+                  .toList(),
+              onChanged: (v) {
+                if (v != null) onPageSizeChanged(v);
+              },
+              style: const TextStyle(fontSize: 13, color: Colors.black87),
+            ),
           ),
-          Text(
-            ' / $totalCount đơn hàng',
-            style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+          Flexible(
+            child: Text(
+              ' / $totalCount đơn hàng',
+              style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+            ),
           ),
           const Spacer(),
           IconButton(

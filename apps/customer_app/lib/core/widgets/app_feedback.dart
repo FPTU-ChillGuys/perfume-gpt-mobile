@@ -14,7 +14,10 @@ class AppLoadingState extends StatelessWidget {
           const CircularProgressIndicator(color: AppColors.primary),
           if (message != null) ...[
             const SizedBox(height: 10),
-            Text(message!, style: const TextStyle(color: AppColors.textSecondary)),
+            Text(
+              message!,
+              style: const TextStyle(color: AppColors.textSecondary),
+            ),
           ],
         ],
       ),
@@ -41,7 +44,10 @@ class AppEmptyState extends StatelessWidget {
           children: [
             Icon(icon, size: 48, color: AppColors.textSecondary),
             const SizedBox(height: 12),
-            Text(message, style: const TextStyle(color: AppColors.textSecondary)),
+            Text(
+              message,
+              style: const TextStyle(color: AppColors.textSecondary),
+            ),
           ],
         ),
       ),

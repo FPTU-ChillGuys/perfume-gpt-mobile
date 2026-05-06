@@ -119,9 +119,7 @@ class _CancelOrderPageState extends ConsumerState<CancelOrderPage> {
             ),
           ),
         ),
-        actions: const [
-          ProfileAvatarAppBarAction(forDarkAppBar: true),
-        ],
+        actions: const [ProfileAvatarAppBarAction(forDarkAppBar: true)],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 40),

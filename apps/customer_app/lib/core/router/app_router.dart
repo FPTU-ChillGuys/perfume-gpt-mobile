@@ -49,7 +49,10 @@ class AppRouter {
         builder: (context, state) => const ChatHistoryPage(),
       ),
       GoRoute(path: '/survey', builder: (context, state) => const SurveyPage()),
-      GoRoute(path: '/survey/history', builder: (context, state) => const SurveyHistoryPage()),
+      GoRoute(
+        path: '/survey/history',
+        builder: (context, state) => const SurveyHistoryPage(),
+      ),
       GoRoute(
         path: '/store',
         builder: (context, state) {

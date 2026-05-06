@@ -3,10 +3,12 @@ import 'package:drift/drift.dart';
 class LocalConversations extends Table {
   TextColumn get id => text()();
   TextColumn get userId => text()();
+
   /// Stores Unix timestamp in milliseconds since epoch
   IntColumn get updatedAt => integer()();
   IntColumn get messageCount => integer().withDefault(const Constant(0))();
   TextColumn get lastMessagePreview => text().withDefault(const Constant(''))();
+
   /// Stores Unix timestamp in milliseconds since epoch
   IntColumn get syncedAt => integer().withDefault(const Constant(0))();
 
@@ -16,12 +18,15 @@ class LocalConversations extends Table {
 
 class LocalMessages extends Table {
   TextColumn get id => text()();
-  TextColumn get conversationId => text().references(LocalConversations, #id, onDelete: KeyAction.cascade)();
+  TextColumn get conversationId =>
+      text().references(LocalConversations, #id, onDelete: KeyAction.cascade)();
   TextColumn get authorId => text()();
   TextColumn get textContent => text().withDefault(const Constant(''))();
   TextColumn get metadataJson => text().nullable()();
+
   /// Stores Unix timestamp in milliseconds since epoch
   IntColumn get createdAt => integer()();
+
   /// Sequential ordering index for messages within a conversation (not a timestamp)
   IntColumn get messageIndex => integer()();
 

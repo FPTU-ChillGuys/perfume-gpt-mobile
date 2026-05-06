@@ -231,17 +231,19 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                   children: [
                     profileAsync.maybeWhen(
                       data: (p) {
-                        final effectiveAvatarUrl = (avatarFromApi != null &&
-                                avatarFromApi.isNotEmpty)
+                        final effectiveAvatarUrl =
+                            (avatarFromApi != null && avatarFromApi.isNotEmpty)
                             ? avatarFromApi
                             : p.avatarUrl;
-                        final hasAvatar = effectiveAvatarUrl != null &&
+                        final hasAvatar =
+                            effectiveAvatarUrl != null &&
                             effectiveAvatarUrl.isNotEmpty;
                         final avatarUrl = effectiveAvatarUrl ?? '';
-                        final initial = (_nameCtrl.text.isNotEmpty
-                                ? _nameCtrl.text[0]
-                                : '?')
-                            .toUpperCase();
+                        final initial =
+                            (_nameCtrl.text.isNotEmpty
+                                    ? _nameCtrl.text[0]
+                                    : '?')
+                                .toUpperCase();
                         return Stack(
                           alignment: Alignment.center,
                           children: [
@@ -250,9 +252,7 @@ class _ProfileEditPageState extends ConsumerState<ProfileEditPage> {
                               backgroundColor: AppColors.primaryLight,
                               backgroundImage: hasAvatar
                                   ? NetworkImage(
-                                      ImageUrlHelper.resolve(
-                                        avatarUrl,
-                                      ),
+                                      ImageUrlHelper.resolve(avatarUrl),
                                     )
                                   : null,
                               child: hasAvatar

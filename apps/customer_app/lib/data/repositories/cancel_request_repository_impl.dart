@@ -38,7 +38,9 @@ class CancelRequestRepositoryImpl implements CancelRequestRepository {
         debugPrint('[CancelRequestRepo] using raw fallback for my-requests');
         return fallback;
       }
-      debugPrint('[CancelRequestRepo] getMyRequests error: ${e.response?.data ?? e}');
+      debugPrint(
+        '[CancelRequestRepo] getMyRequests error: ${e.response?.data ?? e}',
+      );
       rethrow;
     }
   }

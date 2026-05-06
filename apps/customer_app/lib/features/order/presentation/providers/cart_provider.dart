@@ -178,19 +178,17 @@ class Cart extends _$Cart {
       if (_generation != gen) return;
       // Don't block UX (e.g. "Mua ngay" -> checkout) on a full cart refetch.
       // Keep optimistic state and sync with backend in background.
-      unawaited(
-        () async {
-          try {
-            final items = await repository.getItems(
-              isAuthenticated: isAuthenticated,
-            );
-            if (_generation != gen) return;
-            state = AsyncValue.data(items);
-          } catch (_) {
-            // Keep optimistic state; next explicit refresh will reconcile.
-          }
-        }(),
-      );
+      unawaited(() async {
+        try {
+          final items = await repository.getItems(
+            isAuthenticated: isAuthenticated,
+          );
+          if (_generation != gen) return;
+          state = AsyncValue.data(items);
+        } catch (_) {
+          // Keep optimistic state; next explicit refresh will reconcile.
+        }
+      }());
     } catch (e) {
       if (_generation != gen) return;
       state = previousState;
@@ -248,37 +246,35 @@ class Cart extends _$Cart {
 
     state = AsyncValue.data(updatedItems);
 
-    unawaited(
-      () async {
-        try {
-          final storage = ref.read(flutterSecureStorageProvider);
-          final apiClient = ref.read(apiClientProvider);
-          final isAuthenticated = await _checkAuth(storage, apiClient);
-          if (_generation != gen) return;
+    unawaited(() async {
+      try {
+        final storage = ref.read(flutterSecureStorageProvider);
+        final apiClient = ref.read(apiClientProvider);
+        final isAuthenticated = await _checkAuth(storage, apiClient);
+        if (_generation != gen) return;
 
-          if (repository is CartRepositoryImpl) {
-            await repository.addEntityToCart(
-              newItem,
-              isAuthenticated: isAuthenticated,
-            );
-          } else {
-            await repository.addItem(
-              targetVariantId,
-              quantity: 1,
-              isAuthenticated: isAuthenticated,
-            );
-          }
-          final items = await repository.getItems(
+        if (repository is CartRepositoryImpl) {
+          await repository.addEntityToCart(
+            newItem,
             isAuthenticated: isAuthenticated,
           );
-          if (_generation != gen) return;
-          state = AsyncValue.data(items);
-        } catch (e) {
-          if (_generation != gen) return;
-          state = previousState;
+        } else {
+          await repository.addItem(
+            targetVariantId,
+            quantity: 1,
+            isAuthenticated: isAuthenticated,
+          );
         }
-      }(),
-    );
+        final items = await repository.getItems(
+          isAuthenticated: isAuthenticated,
+        );
+        if (_generation != gen) return;
+        state = AsyncValue.data(items);
+      } catch (e) {
+        if (_generation != gen) return;
+        state = previousState;
+      }
+    }());
   }
 
   Future<void> updateItem(String cartItemId, int quantity) async {

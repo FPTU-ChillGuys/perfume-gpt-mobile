@@ -13,8 +13,7 @@ MarkdownStyleSheet aiMessageStyleSheet(BuildContext context) {
     listBullet: TextStyle(color: textColor),
     code: TextStyle(
       color: textColor,
-      backgroundColor:
-          Theme.of(context).colorScheme.surfaceContainerHighest,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
       fontSize: 13,
     ),
     codeblockDecoration: BoxDecoration(

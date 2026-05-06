@@ -129,9 +129,7 @@ class CancelRequestDetailPage extends ConsumerWidget {
       pinned: true,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       backgroundColor: AppColors.primaryDark,
-      actions: const [
-        ProfileAvatarAppBarAction(forDarkAppBar: true),
-      ],
+      actions: const [ProfileAvatarAppBarAction(forDarkAppBar: true)],
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
           req?.orderCode ?? 'Chi tiết yêu cầu hủy',

@@ -108,9 +108,7 @@ class _CartPageState extends ConsumerState<CartPage> {
           _computedTotal = null;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Mã giảm giá không còn áp dụng được'),
-          ),
+          const SnackBar(content: Text('Mã giảm giá không còn áp dụng được')),
         );
       }
     } catch (_) {
@@ -122,9 +120,7 @@ class _CartPageState extends ConsumerState<CartPage> {
         _computedTotal = null;
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Mã giảm giá không còn áp dụng được'),
-        ),
+        const SnackBar(content: Text('Mã giảm giá không còn áp dụng được')),
       );
     }
   }
@@ -349,7 +345,8 @@ class _CartPageState extends ConsumerState<CartPage> {
     }).toList();
     final localSubtotal = selectedItems.fold<double>(
       0,
-      (sum, item) => sum + (item.finalTotal > 0 ? item.finalTotal : item.subTotal),
+      (sum, item) =>
+          sum + (item.finalTotal > 0 ? item.finalTotal : item.subTotal),
     );
     final localTotal = CartTotal(
       subtotal: localSubtotal,
@@ -727,9 +724,9 @@ class _CartItemCard extends ConsumerWidget {
                                         onTap: () async {
                                           final manualQty =
                                               await _showManualQuantityDialog(
-                                            context,
-                                            currentQuantity: quantity,
-                                          );
+                                                context,
+                                                currentQuantity: quantity,
+                                              );
                                           if (manualQty == null ||
                                               manualQty == quantity) {
                                             return;
@@ -778,14 +775,18 @@ class _CartItemCard extends ConsumerWidget {
                                               CrossAxisAlignment.end,
                                           children: [
                                             Text(
-                                              PriceFormatter.format(item.finalTotal),
+                                              PriceFormatter.format(
+                                                item.finalTotal,
+                                              ),
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: theme.colorScheme.error,
                                               ),
                                             ),
                                             Text(
-                                              PriceFormatter.format(item.subTotal),
+                                              PriceFormatter.format(
+                                                item.subTotal,
+                                              ),
                                               style: TextStyle(
                                                 fontSize: 11,
                                                 color: Colors.grey.shade400,
@@ -887,8 +888,7 @@ class _CartItemCard extends ConsumerWidget {
     return result;
   }
 
-  Future<void> _updateQuantityWithFeedback(
-    {
+  Future<void> _updateQuantityWithFeedback({
     required BuildContext context,
     required Cart notifier,
     required String idToUse,
@@ -898,11 +898,7 @@ class _CartItemCard extends ConsumerWidget {
       await notifier.updateItem(idToUse, quantity);
     } catch (e) {
       if (!context.mounted) return;
-      _showSnackSafe(
-        context,
-        _extractApiErrorMessage(e),
-        isError: true,
-      );
+      _showSnackSafe(context, _extractApiErrorMessage(e), isError: true);
     }
   }
 
@@ -945,7 +941,8 @@ class _CartItemCard extends ConsumerWidget {
 
     String normalizeStockMessage(String raw) {
       final lower = raw.toLowerCase();
-      final isStockIssue = lower.contains('stock') ||
+      final isStockIssue =
+          lower.contains('stock') ||
           lower.contains('insufficient') ||
           lower.contains('out of stock') ||
           lower.contains('khong du') ||

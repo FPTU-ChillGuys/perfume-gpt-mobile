@@ -72,8 +72,12 @@ class ChatSession extends _$ChatSession {
           await _secureStorage.write(key: _guestIdKey, value: _guestUserId);
         }
       }
-      final localMessages = await dao.getMessagesByConversationId(latestLocal.id);
-      final messages = localMessages.map((m) => _mapLocalMessageToChat(m)).toList();
+      final localMessages = await dao.getMessagesByConversationId(
+        latestLocal.id,
+      );
+      final messages = localMessages
+          .map((m) => _mapLocalMessageToChat(m))
+          .toList();
 
       return messages;
     }
@@ -100,7 +104,9 @@ class ChatSession extends _$ChatSession {
       _conversationId = localConv.id;
       _guestUserId = localConv.userId;
       final localMessages = await dao.getMessagesByConversationId(localConv.id);
-      final messages = localMessages.map((m) => _mapLocalMessageToChat(m)).toList();
+      final messages = localMessages
+          .map((m) => _mapLocalMessageToChat(m))
+          .toList();
       state = AsyncData(messages);
     }
   }
@@ -143,9 +149,9 @@ class ChatSession extends _$ChatSession {
       _conversationId ??= const Uuid().v4();
       final activeConvId = _conversationId!;
 
-      final history = state.value!
-          .where((m) => m.id != loadingMessageId)
-          .map((m) {
+      final history = state.value!.where((m) => m.id != loadingMessageId).map((
+        m,
+      ) {
         String msgText;
         if (m is TextMessage) {
           msgText = m.text;
@@ -167,12 +173,14 @@ class ChatSession extends _$ChatSession {
             message: msgText,
             products: storedProducts != null
                 ? (storedProducts as List<dynamic>)
-                    .map((p) => ProductCardOutputItemDto.fromJson(
-                        p as Map<String, dynamic>))
-                    .toList()
+                      .map(
+                        (p) => ProductCardOutputItemDto.fromJson(
+                          p as Map<String, dynamic>,
+                        ),
+                      )
+                      .toList()
                 : null,
-            suggestedQuestions:
-                storedSuggestions?.cast<String>().toList(),
+            suggestedQuestions: storedSuggestions?.cast<String>().toList(),
           );
         }
 
@@ -217,8 +225,9 @@ class ChatSession extends _$ChatSession {
             id: const Uuid().v4(),
             metadata: {
               'text': aiLastMessage.message,
-              'products':
-                  aiLastMessage.products?.map((p) => p.toJson()).toList(),
+              'products': aiLastMessage.products
+                  ?.map((p) => p.toJson())
+                  .toList(),
               'suggestedQuestions': aiLastMessage.suggestedQuestions,
             },
           );
@@ -242,7 +251,9 @@ class ChatSession extends _$ChatSession {
       );
 
       if (e is DioException) {
-        final fallbackMessage = _assistantMessageFromRawResponse(e.response?.data);
+        final fallbackMessage = _assistantMessageFromRawResponse(
+          e.response?.data,
+        );
         if (fallbackMessage != null) {
           state = AsyncData([...state.value!, fallbackMessage]);
           await _saveConversationToLocal();
@@ -413,16 +424,20 @@ class ChatSession extends _$ChatSession {
         lastMessage.metadata?['text'] != null) {
       preview = lastMessage.metadata!['text'] as String;
     }
-    final previewTrimmed = preview.length > 60 ? preview.substring(0, 60) : preview;
+    final previewTrimmed = preview.length > 60
+        ? preview.substring(0, 60)
+        : preview;
 
     final dao = ref.read(conversationDaoProvider);
-    await dao.upsertConversation(LocalConversationsCompanion.insert(
-      id: _conversationId!,
-      userId: userId,
-      updatedAt: DateTime.now().millisecondsSinceEpoch,
-      messageCount: Value(nonLoadingMessages.length),
-      lastMessagePreview: Value(previewTrimmed),
-    ));
+    await dao.upsertConversation(
+      LocalConversationsCompanion.insert(
+        id: _conversationId!,
+        userId: userId,
+        updatedAt: DateTime.now().millisecondsSinceEpoch,
+        messageCount: Value(nonLoadingMessages.length),
+        lastMessagePreview: Value(previewTrimmed),
+      ),
+    );
 
     final messageEntries = nonLoadingMessages.asMap().entries.map((entry) {
       final index = entry.key;
@@ -447,7 +462,8 @@ class ChatSession extends _$ChatSession {
         authorId: m.authorId,
         textContent: Value(textContent),
         metadataJson: Value(metadataJson),
-        createdAt: m.createdAt?.millisecondsSinceEpoch ??
+        createdAt:
+            m.createdAt?.millisecondsSinceEpoch ??
             DateTime.now().millisecondsSinceEpoch,
         messageIndex: index,
       );
@@ -455,5 +471,4 @@ class ChatSession extends _$ChatSession {
 
     await dao.replaceMessagesForConversation(_conversationId!, messageEntries);
   }
-
 }

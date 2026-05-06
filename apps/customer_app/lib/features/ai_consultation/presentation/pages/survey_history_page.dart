@@ -41,19 +41,19 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
       final all = await dao.getAllSessions();
       final currentUser = ref.read(common.authProvider).value;
       final currentUserId = currentUser?.id ?? await resolveGuestUserId();
-      final userSessions = all
-          .where((s) => s.userId == currentUserId)
-          .toList();
+      final userSessions = all.where((s) => s.userId == currentUserId).toList();
 
       if (mounted) {
         setState(() {
           _sessions = userSessions
-              .map((s) => _SessionDisplay(
-                    id: s.id,
-                    userId: s.userId,
-                    createdAt: s.createdAt,
-                    productCount: s.productCount,
-                  ))
+              .map(
+                (s) => _SessionDisplay(
+                  id: s.id,
+                  userId: s.userId,
+                  createdAt: s.createdAt,
+                  productCount: s.productCount,
+                ),
+              )
               .toList();
           _isLoading = false;
         });
@@ -110,15 +110,21 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
               .whereType<num>()
               .map((e) => e.toDouble())
               .toList();
-          products.add(MobileSurveyProduct(
-            id: map['id'] as String? ?? '',
-            name: map['name'] as String? ?? '',
-            brandName: map['brandName'] as String? ?? '',
-            primaryImage: map['primaryImage'] as String? ?? '',
-            reasoning: map['reasoning'] as String? ?? '',
-            minPrice: prices.isNotEmpty ? prices.reduce((a, b) => a < b ? a : b) : 0,
-            maxPrice: prices.isNotEmpty ? prices.reduce((a, b) => a > b ? a : b) : 0,
-          ));
+          products.add(
+            MobileSurveyProduct(
+              id: map['id'] as String? ?? '',
+              name: map['name'] as String? ?? '',
+              brandName: map['brandName'] as String? ?? '',
+              primaryImage: map['primaryImage'] as String? ?? '',
+              reasoning: map['reasoning'] as String? ?? '',
+              minPrice: prices.isNotEmpty
+                  ? prices.reduce((a, b) => a < b ? a : b)
+                  : 0,
+              maxPrice: prices.isNotEmpty
+                  ? prices.reduce((a, b) => a > b ? a : b)
+                  : 0,
+            ),
+          );
         }
       }
 
@@ -126,10 +132,12 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
         messages.add(MobileSurveyMessage(message: aiMessage, products: []));
       }
       if (products.isNotEmpty) {
-        messages.add(MobileSurveyMessage(
-          message: 'Gợi ý ${products.length} sản phẩm phù hợp:',
-          products: products,
-        ));
+        messages.add(
+          MobileSurveyMessage(
+            message: 'Gợi ý ${products.length} sản phẩm phù hợp:',
+            products: products,
+          ),
+        );
       }
 
       return MobileSurveyResponseData(messages: messages, products: products);
@@ -182,41 +190,43 @@ class _SurveyHistoryPageState extends ConsumerState<SurveyHistoryPage> {
       body: _isLoading
           ? const AppLoadingState(message: 'Đang tải lịch sử khảo sát...')
           : _hasError
-              ? AppErrorState(
-                  message: 'Không thể tải lịch sử khảo sát',
-                  onRetry: _loadSessions,
-                )
-              : _sessions.isEmpty
-                  ? const AppEmptyState(message: 'Chưa có kết quả khảo sát nào')
-                  : ListView.builder(
-                  itemCount: _sessions.length,
-                  itemBuilder: (context, index) {
-                    final session = _sessions[index];
-                    return Dismissible(
-                      key: ValueKey(session.id),
-                      direction: DismissDirection.endToStart,
-                      background: Container(
-                        alignment: Alignment.centerRight,
-                        padding: const EdgeInsets.only(right: 20),
-                        color: Colors.red,
-                        child: const Icon(Icons.delete, color: Colors.white),
-                      ),
-                       onDismissed: (_) async {
-                         final dao = ref.read(surveyDaoProvider);
-                         await dao.deleteSession(session.id);
-                         setState(() => _sessions.removeWhere((s) => s.id == session.id));
-                       },
-                      child: ListTile(
-                        title: Text('Khảo sát #${index + 1}'),
-                        subtitle: Text(
-                          '${_formatTime(session.createdAt)} • ${session.productCount} sản phẩm',
-                        ),
-                        trailing: const Icon(Icons.chevron_right),
-                        onTap: () => _showDetail(session.id),
-                      ),
+          ? AppErrorState(
+              message: 'Không thể tải lịch sử khảo sát',
+              onRetry: _loadSessions,
+            )
+          : _sessions.isEmpty
+          ? const AppEmptyState(message: 'Chưa có kết quả khảo sát nào')
+          : ListView.builder(
+              itemCount: _sessions.length,
+              itemBuilder: (context, index) {
+                final session = _sessions[index];
+                return Dismissible(
+                  key: ValueKey(session.id),
+                  direction: DismissDirection.endToStart,
+                  background: Container(
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 20),
+                    color: Colors.red,
+                    child: const Icon(Icons.delete, color: Colors.white),
+                  ),
+                  onDismissed: (_) async {
+                    final dao = ref.read(surveyDaoProvider);
+                    await dao.deleteSession(session.id);
+                    setState(
+                      () => _sessions.removeWhere((s) => s.id == session.id),
                     );
                   },
-                ),
+                  child: ListTile(
+                    title: Text('Khảo sát #${index + 1}'),
+                    subtitle: Text(
+                      '${_formatTime(session.createdAt)} • ${session.productCount} sản phẩm',
+                    ),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => _showDetail(session.id),
+                  ),
+                );
+              },
+            ),
     );
   }
 }
@@ -258,10 +268,9 @@ class _DetailContent extends StatelessWidget {
         ),
         Text(
           'Kết quả khảo sát',
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
         ...result.messages.map((msg) => _buildMessageBlock(context, msg)),
@@ -290,10 +299,12 @@ class _DetailContent extends StatelessWidget {
           ),
           if (msg.products.isNotEmpty) ...[
             const SizedBox(height: 8),
-            ...msg.products.map((p) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: SurveyProductCard(product: p),
-                )),
+            ...msg.products.map(
+              (p) => Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: SurveyProductCard(product: p),
+              ),
+            ),
           ],
         ],
       ),
@@ -322,10 +333,9 @@ class _UnparseableResult extends StatelessWidget {
         ),
         Text(
           'Kết quả khảo sát',
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
         const Text('Dữ liệu không hỗ trợ phiên bản cũ.'),

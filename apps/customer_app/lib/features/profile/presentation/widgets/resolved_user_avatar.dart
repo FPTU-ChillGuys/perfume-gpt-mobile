@@ -41,10 +41,7 @@ class ResolvedUserAvatar extends ConsumerWidget {
     String? overrideResolved;
     final rawOverride = avatarUrlOverride?.trim();
     if (rawOverride != null && rawOverride.isNotEmpty) {
-      overrideResolved = MediaUrlResolver.resolveOptional(
-        rawOverride,
-        apiBase,
-      );
+      overrideResolved = MediaUrlResolver.resolveOptional(rawOverride, apiBase);
     }
 
     final fromProfile = profileAsync.whenOrNull(
@@ -56,18 +53,19 @@ class ResolvedUserAvatar extends ConsumerWidget {
     );
 
     final fromAuth = authUser?.avatarUrl;
-    final fromAuthNonEmpty =
-        fromAuth != null && fromAuth.isNotEmpty ? fromAuth : null;
+    final fromAuthNonEmpty = fromAuth != null && fromAuth.isNotEmpty
+        ? fromAuth
+        : null;
 
-    final picked = overrideResolved ??
+    final picked =
+        overrideResolved ??
         meFetch.asData?.value ??
         fromProfile ??
         fromAuthNonEmpty;
 
     final initialLetter = () {
-      final n = displayName ??
-          profileAsync.asData?.value.fullName ??
-          authUser?.name;
+      final n =
+          displayName ?? profileAsync.asData?.value.fullName ?? authUser?.name;
       if (n != null && n.trim().isNotEmpty) {
         return n.trim()[0].toUpperCase();
       }
@@ -76,7 +74,8 @@ class ResolvedUserAvatar extends ConsumerWidget {
 
     final hasImage = picked != null && picked.isNotEmpty;
 
-    final loadingExtra = !hasImage &&
+    final loadingExtra =
+        !hasImage &&
         authUser != null &&
         showLoadingWhenFetching &&
         meFetch.isLoading;
@@ -87,8 +86,9 @@ class ResolvedUserAvatar extends ConsumerWidget {
     final Color fg = forDarkAppBar
         ? Colors.white
         : Theme.of(context).colorScheme.primary;
-    final Color progressColor =
-        forDarkAppBar ? Colors.white70 : Theme.of(context).colorScheme.primary;
+    final Color progressColor = forDarkAppBar
+        ? Colors.white70
+        : Theme.of(context).colorScheme.primary;
 
     final placeholder = Text(
       initialLetter,

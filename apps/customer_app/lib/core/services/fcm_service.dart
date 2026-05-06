@@ -69,19 +69,22 @@ class FcmService {
 
     final androidPlugin = _localNotifications
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
+          AndroidFlutterLocalNotificationsPlugin
+        >();
     await androidPlugin?.requestNotificationsPermission();
   }
 
   Future<void> _initLocalNotifications() async {
-    const androidSettings =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+    const androidSettings = AndroidInitializationSettings(
+      '@mipmap/ic_launcher',
+    );
     const initSettings = InitializationSettings(android: androidSettings);
     await _localNotifications.initialize(settings: initSettings);
 
     final androidPlugin = _localNotifications
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
+          AndroidFlutterLocalNotificationsPlugin
+        >();
     await androidPlugin?.createNotificationChannel(
       const AndroidNotificationChannel(
         _channelId,
@@ -132,11 +135,13 @@ class FcmService {
         '/api/notifications/device-token',
         data: <String, dynamic>{
           'token': token,
-          'platform': kIsWeb
-              ? 'Web'
-              : (Platform.isAndroid ? 'Android' : 'iOS'),
+          'platform': kIsWeb ? 'Web' : (Platform.isAndroid ? 'Android' : 'iOS'),
         },
-        options: Options(extra: const {'secure': [_bearerSecure]}),
+        options: Options(
+          extra: const {
+            'secure': [_bearerSecure],
+          },
+        ),
       );
     } catch (e) {
       // Keep app flow unaffected if backend endpoint is unavailable.

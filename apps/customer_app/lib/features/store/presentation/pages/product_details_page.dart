@@ -841,7 +841,7 @@ class _ImageGallery extends StatelessWidget {
                     if (progress == null) return child;
                     final percent = progress.expectedTotalBytes != null
                         ? progress.cumulativeBytesLoaded /
-                            progress.expectedTotalBytes!
+                              progress.expectedTotalBytes!
                         : null;
                     return Container(
                       color: Colors.grey.shade100,
@@ -856,7 +856,11 @@ class _ImageGallery extends StatelessWidget {
                   errorBuilder: (_, _, _) => Container(
                     color: Colors.grey.shade200,
                     child: const Center(
-                      child: Icon(Icons.broken_image, size: 60, color: Colors.grey),
+                      child: Icon(
+                        Icons.broken_image,
+                        size: 60,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ),
@@ -920,14 +924,10 @@ class _VariantSelector extends StatelessWidget {
             duration: const Duration(milliseconds: 200),
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
-              color: isSelected
-                  ? AppColors.primary
-                  : Colors.white,
+              color: isSelected ? AppColors.primary : Colors.white,
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
-                color: isSelected
-                    ? AppColors.primary
-                    : Colors.grey.shade300,
+                color: isSelected ? AppColors.primary : Colors.grey.shade300,
                 width: isSelected ? 1.5 : 1,
               ),
             ),
@@ -940,13 +940,13 @@ class _VariantSelector extends StatelessWidget {
                   Text(
                     variant.displayName,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: isSelected
-                          ? Colors.white
+                      color: isSelected ? Colors.white : null,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.w600,
+                      decoration: outOfStock
+                          ? TextDecoration.lineThrough
                           : null,
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.w600,
-                      decoration:
-                          outOfStock ? TextDecoration.lineThrough : null,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -1239,9 +1239,7 @@ class _AddToCartBar extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size(0, 50),
                   side: BorderSide(
-                    color: disabled
-                        ? Colors.grey.shade300
-                        : AppColors.primary,
+                    color: disabled ? Colors.grey.shade300 : AppColors.primary,
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),

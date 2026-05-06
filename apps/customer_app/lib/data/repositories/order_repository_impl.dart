@@ -329,7 +329,9 @@ class OrderRepositoryImpl implements OrderRepository {
     }
 
     final isGatewayPayment =
-        paymentMethod == 'VnPay' || paymentMethod == 'Momo' || paymentMethod == 'PayOs';
+        paymentMethod == 'VnPay' ||
+        paymentMethod == 'Momo' ||
+        paymentMethod == 'PayOs';
     final depositMethod = isGatewayPayment
         ? null
         : _mapPaymentMethod(newDepositMethod);
@@ -347,7 +349,9 @@ class OrderRepositoryImpl implements OrderRepository {
     } on DioException catch (e) {
       // Keep this log temporary-useful: backend validation explains which retry payload is invalid.
       // ignore: avoid_print
-      print('[OrderRepo] retryPayment paymentId=$paymentId body=${request.toJson()}');
+      print(
+        '[OrderRepo] retryPayment paymentId=$paymentId body=${request.toJson()}',
+      );
       // ignore: avoid_print
       print('[OrderRepo] retryPayment error=${e.response?.data}');
       rethrow;

@@ -37,9 +37,7 @@ String _placeOrderErrorMessage(Object error) {
       final parts = <String>[
         if (msg != null && msg.isNotEmpty) msg,
         if (errors is List)
-          ...errors
-              .map((e) => e.toString().trim())
-              .where((e) => e.isNotEmpty),
+          ...errors.map((e) => e.toString().trim()).where((e) => e.isNotEmpty),
       ];
       if (parts.isNotEmpty) return parts.join('\n');
     }
@@ -537,107 +535,110 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       body: Stack(
         children: [
           authState.when(
-        data: (user) {
-          if (user == null) {
-            return _buildAuthRequired();
-          }
+            data: (user) {
+              if (user == null) {
+                return _buildAuthRequired();
+              }
 
-          if (_nameController.text.isEmpty && user.name != null) {
-            _nameController.text = user.name!;
-          }
+              if (_nameController.text.isEmpty && user.name != null) {
+                _nameController.text = user.name!;
+              }
 
-          final cartItems = cartAsync.value ?? [];
-          if (cartItems.isEmpty && !cartAsync.isLoading) {
-            return _buildEmptyCart();
-          }
+              final cartItems = cartAsync.value ?? [];
+              if (cartItems.isEmpty && !cartAsync.isLoading) {
+                return _buildEmptyCart();
+              }
 
-          // Filter visible items based on selected IDs (React FE pattern)
-          final allIds = cartItems
-              .map((e) => e.cartItemId ?? '')
-              .where((id) => id.isNotEmpty)
-              .toSet();
-          final validSelected = selectedIds.isNotEmpty
-              ? selectedIds.intersection(allIds)
-              : allIds;
-          final effectiveIds = validSelected.isNotEmpty
-              ? validSelected
-              : allIds;
-          final visibleItems = effectiveIds.length < allIds.length
-              ? cartItems
-                    .where((item) => effectiveIds.contains(item.cartItemId))
-                    .toList()
-              : cartItems;
+              // Filter visible items based on selected IDs (React FE pattern)
+              final allIds = cartItems
+                  .map((e) => e.cartItemId ?? '')
+                  .where((id) => id.isNotEmpty)
+                  .toSet();
+              final validSelected = selectedIds.isNotEmpty
+                  ? selectedIds.intersection(allIds)
+                  : allIds;
+              final effectiveIds = validSelected.isNotEmpty
+                  ? validSelected
+                  : allIds;
+              final visibleItems = effectiveIds.length < allIds.length
+                  ? cartItems
+                        .where((item) => effectiveIds.contains(item.cartItemId))
+                        .toList()
+                  : cartItems;
 
-          final optimisticBuyNowSubtotal = visibleItems.fold(
-            0.0,
-            (sum, item) => sum + item.totalPrice,
-          );
-          final optimisticBuyNowTotal =
-              widget.buyNowFast && visibleItems.isNotEmpty
-              ? CartTotal(
-                  subtotal: optimisticBuyNowSubtotal,
-                  shippingFee: 0,
-                  discount: 0,
-                  totalPrice: optimisticBuyNowSubtotal,
-                )
-              : null;
-          final total = _computedTotal ?? cartTotalAsync.value ?? optimisticBuyNowTotal;
-          final totalPrice = total?.totalPrice ?? 0.0;
+              final optimisticBuyNowSubtotal = visibleItems.fold(
+                0.0,
+                (sum, item) => sum + item.totalPrice,
+              );
+              final optimisticBuyNowTotal =
+                  widget.buyNowFast && visibleItems.isNotEmpty
+                  ? CartTotal(
+                      subtotal: optimisticBuyNowSubtotal,
+                      shippingFee: 0,
+                      discount: 0,
+                      totalPrice: optimisticBuyNowSubtotal,
+                    )
+                  : null;
+              final total =
+                  _computedTotal ??
+                  cartTotalAsync.value ??
+                  optimisticBuyNowTotal;
+              final totalPrice = total?.totalPrice ?? 0.0;
 
-          return Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // --- Delivery Method ---
-                      _buildSectionTitle('Phương thức nhận hàng'),
-                      const SizedBox(height: 8),
-                      _buildDeliveryMethodCards(),
-                      const SizedBox(height: 24),
+              return Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // --- Delivery Method ---
+                          _buildSectionTitle('Phương thức nhận hàng'),
+                          const SizedBox(height: 8),
+                          _buildDeliveryMethodCards(),
+                          const SizedBox(height: 24),
 
-                      // --- Address (only for Delivery) ---
-                      if (!_isPickupInStore) ...[
-                        _buildSectionTitle('Địa chỉ giao hàng'),
-                        const SizedBox(height: 8),
-                        _buildAddressSection(),
-                        const SizedBox(height: 24),
-                      ],
+                          // --- Address (only for Delivery) ---
+                          if (!_isPickupInStore) ...[
+                            _buildSectionTitle('Địa chỉ giao hàng'),
+                            const SizedBox(height: 8),
+                            _buildAddressSection(),
+                            const SizedBox(height: 24),
+                          ],
 
-                      // --- Order Summary ---
-                      _buildSectionTitle('Đơn hàng'),
-                      const SizedBox(height: 8),
-                      _buildOrderItems(visibleItems),
-                      const SizedBox(height: 16),
+                          // --- Order Summary ---
+                          _buildSectionTitle('Đơn hàng'),
+                          const SizedBox(height: 8),
+                          _buildOrderItems(visibleItems),
+                          const SizedBox(height: 16),
 
-                      // --- Voucher ---
-                      _buildVoucherSection(),
-                      const SizedBox(height: 16),
+                          // --- Voucher ---
+                          _buildVoucherSection(),
+                          const SizedBox(height: 16),
 
-                      // --- Price Breakdown ---
-                      _buildPriceBreakdown(total, cartTotalAsync),
-                      const SizedBox(height: 24),
+                          // --- Price Breakdown ---
+                          _buildPriceBreakdown(total, cartTotalAsync),
+                          const SizedBox(height: 24),
 
-                      // --- Payment Method ---
-                      _buildSectionTitle('Phương thức thanh toán'),
-                      const SizedBox(height: 8),
-                      _buildPaymentMethods(total),
-                      const SizedBox(height: 24),
-                    ],
+                          // --- Payment Method ---
+                          _buildSectionTitle('Phương thức thanh toán'),
+                          const SizedBox(height: 8),
+                          _buildPaymentMethods(total),
+                          const SizedBox(height: 24),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
 
-              // --- Bottom bar with Place Order ---
-              _buildBottomBar(totalPrice),
-            ],
-          );
-        },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stack) => Center(child: Text('Error: $error')),
-      ),
+                  // --- Bottom bar with Place Order ---
+                  _buildBottomBar(totalPrice),
+                ],
+              );
+            },
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (error, stack) => Center(child: Text('Error: $error')),
+          ),
           if (_isPlacingOrder) const _PlaceOrderOverlay(),
         ],
       ),
@@ -1824,10 +1825,7 @@ class _PlaceOrderOverlay extends StatelessWidget {
           child: Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 320),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 28,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
               decoration: BoxDecoration(
                 color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(20),
@@ -1846,10 +1844,7 @@ class _PlaceOrderOverlay extends StatelessWidget {
                   const SizedBox(height: 20),
                   const Text(
                     'Đang khởi tạo thanh toán...',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),

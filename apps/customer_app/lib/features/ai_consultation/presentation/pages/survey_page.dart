@@ -27,8 +27,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
   @override
   void initState() {
     super.initState();
-    _questionsFuture =
-        ref.read(surveyProvider.notifier).loadQuestions();
+    _questionsFuture = ref.read(surveyProvider.notifier).loadQuestions();
   }
 
   Future<String> _resolveUserId() async {
@@ -37,8 +36,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
     return resolveGuestUserId();
   }
 
-  bool _isMultipleChoice(SurveyQuestionView q) =>
-      q.questionType == 'multiple';
+  bool _isMultipleChoice(SurveyQuestionView q) => q.questionType == 'multiple';
 
   bool _isAnswerSelected(SurveyQuestionView q, SurveyAnswerView a) =>
       _answers[q.id]?.contains(a.id) ?? false;
@@ -126,13 +124,16 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
       ),
       body: hasResult
           ? _buildResultView(surveyState.value!)
-          : _hasSubmitted && surveyState.hasValue && surveyState.value == null && !surveyState.isLoading
-              ? _buildNoResultView()
-              : surveyState.isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : surveyState.hasError
-                      ? _buildErrorView()
-                      : _buildQuestionFlow(),
+          : _hasSubmitted &&
+                surveyState.hasValue &&
+                surveyState.value == null &&
+                !surveyState.isLoading
+          ? _buildNoResultView()
+          : surveyState.isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : surveyState.hasError
+          ? _buildErrorView()
+          : _buildQuestionFlow(),
     );
   }
 
@@ -182,27 +183,24 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
           const SizedBox(height: 8),
           Text(
             'Câu hỏi ${_currentStep + 1} / $totalSteps',
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge
-                ?.copyWith(color: Colors.grey),
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(color: Colors.grey),
           ),
           const SizedBox(height: 8),
           Text(
             question.question,
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           if (isMultiple) ...[
             const SizedBox(height: 4),
             Text(
               'Có thể chọn nhiều đáp án',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
-                  ?.copyWith(color: Colors.grey),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: Colors.grey),
             ),
           ],
           const SizedBox(height: 24),
@@ -265,10 +263,7 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
               borderRadius: BorderRadius.circular(12),
             ),
           ),
-          child: Text(
-            answer.displayText,
-            style: const TextStyle(fontSize: 18),
-          ),
+          child: Text(answer.displayText, style: const TextStyle(fontSize: 18)),
         ),
       );
     }).toList();
@@ -284,17 +279,21 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Icon(Icons.check_circle_outline,
-                    color: Colors.green, size: 48),
+                const Icon(
+                  Icons.check_circle_outline,
+                  color: Colors.green,
+                  size: 48,
+                ),
                 const SizedBox(height: 16),
                 ...result.messages.map((msg) => _buildMessageBlock(msg)),
                 if (result.messages.every((m) => m.products.isEmpty) &&
                     result.products.isNotEmpty)
-                  ...result.products
-                      .map((p) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: SurveyProductCard(product: p),
-                          )),
+                  ...result.products.map(
+                    (p) => Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: SurveyProductCard(product: p),
+                    ),
+                  ),
               ],
             ),
           ),
@@ -317,10 +316,12 @@ class _SurveyPageState extends ConsumerState<SurveyPage> {
           ),
           if (msg.products.isNotEmpty) ...[
             const SizedBox(height: 8),
-            ...msg.products.map((p) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: SurveyProductCard(product: p),
-                )),
+            ...msg.products.map(
+              (p) => Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: SurveyProductCard(product: p),
+              ),
+            ),
           ],
         ],
       ),

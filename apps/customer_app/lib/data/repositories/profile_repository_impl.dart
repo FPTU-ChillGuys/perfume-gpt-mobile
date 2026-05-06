@@ -42,13 +42,12 @@ class ProfileRepositoryImpl implements ProfileRepository {
     try {
       final response = await _usersApi.apiUsersAvatarGet();
       final url = response.data?.payload?.url;
-      final resolved = MediaUrlResolver.resolveOptional(
-        url,
-        _apiBaseUrl,
-      );
+      final resolved = MediaUrlResolver.resolveOptional(url, _apiBaseUrl);
       if (resolved != null && resolved.isNotEmpty) return resolved;
     } catch (e, st) {
-      debugPrint('[ProfileRepo] apiUsersAvatarGet failed, fallback /users/me: $e');
+      debugPrint(
+        '[ProfileRepo] apiUsersAvatarGet failed, fallback /users/me: $e',
+      );
       debugPrintStack(stackTrace: st);
     }
     final creds = await _loadUserCredentials();
@@ -67,7 +66,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
       final profileResponse = await _profilesApi.apiProfilesMeGet();
       prof = profileResponse.data?.payload;
     } catch (e, st) {
-      debugPrint('[ProfileRepo] apiProfilesMeGet failed (avatar still from /users/me): $e');
+      debugPrint(
+        '[ProfileRepo] apiProfilesMeGet failed (avatar still from /users/me): $e',
+      );
       debugPrintStack(stackTrace: st);
     }
 

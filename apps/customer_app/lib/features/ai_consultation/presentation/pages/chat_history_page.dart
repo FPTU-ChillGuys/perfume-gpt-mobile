@@ -51,13 +51,19 @@ class _ChatHistoryPageState extends ConsumerState<ChatHistoryPage> {
 
       if (mounted && userConvs.isNotEmpty) {
         setState(() {
-          _conversations = userConvs.map((lc) => _ConvDisplay(
-            id: lc.id,
-            userId: lc.userId,
-            preview: lc.lastMessagePreview.isEmpty ? 'Cuộc trò chuyện trống' : lc.lastMessagePreview,
-            messageCount: lc.messageCount,
-            updatedAt: DateTime.fromMillisecondsSinceEpoch(lc.updatedAt),
-          )).toList();
+          _conversations = userConvs
+              .map(
+                (lc) => _ConvDisplay(
+                  id: lc.id,
+                  userId: lc.userId,
+                  preview: lc.lastMessagePreview.isEmpty
+                      ? 'Cuộc trò chuyện trống'
+                      : lc.lastMessagePreview,
+                  messageCount: lc.messageCount,
+                  updatedAt: DateTime.fromMillisecondsSinceEpoch(lc.updatedAt),
+                ),
+              )
+              .toList();
           _isLoading = false;
         });
       } else if (mounted) {
@@ -88,49 +94,55 @@ class _ChatHistoryPageState extends ConsumerState<ChatHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Lịch sử chat'),
-      ),
+      appBar: AppBar(title: const Text('Lịch sử chat')),
       body: Column(
         children: [
           Expanded(
             child: _isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : _conversations.isEmpty
-                    ? const Center(child: Text('Chưa có cuộc trò chuyện nào'))
-                    : ListView.builder(
-                        itemCount: _conversations.length,
-                        itemBuilder: (context, index) {
-                          final conv = _conversations[index];
-                          final previewTrimmed = conv.preview.length > 60 ? '${conv.preview.substring(0, 60)}...' : conv.preview;
-                          final messageCount = conv.messageCount;
-                          final timeStr = _formatTime(conv.updatedAt);
+                ? const Center(child: Text('Chưa có cuộc trò chuyện nào'))
+                : ListView.builder(
+                    itemCount: _conversations.length,
+                    itemBuilder: (context, index) {
+                      final conv = _conversations[index];
+                      final previewTrimmed = conv.preview.length > 60
+                          ? '${conv.preview.substring(0, 60)}...'
+                          : conv.preview;
+                      final messageCount = conv.messageCount;
+                      final timeStr = _formatTime(conv.updatedAt);
 
-                          return ListTile(
-                            title: Text(
-                              previewTrimmed,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: Text('$messageCount tin nhắn • $timeStr'),
-                            trailing: const Icon(Icons.chevron_right),
-                            onTap: () async {
-                              try {
-                                await ref.read(chatSessionProvider.notifier).loadConversation(conv.id);
-                                if (context.mounted) {
-                                  context.pop();
-                                }
-                              } catch (e) {
-                                if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text('Không thể tải cuộc trò chuyện: $e')),
-                                  );
-                                }
-                              }
-                            },
-                          );
+                      return ListTile(
+                        title: Text(
+                          previewTrimmed,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        subtitle: Text('$messageCount tin nhắn • $timeStr'),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () async {
+                          try {
+                            await ref
+                                .read(chatSessionProvider.notifier)
+                                .loadConversation(conv.id);
+                            if (context.mounted) {
+                              context.pop();
+                            }
+                          } catch (e) {
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Không thể tải cuộc trò chuyện: $e',
+                                  ),
+                                ),
+                              );
+                            }
+                          }
                         },
-                      ),
+                      );
+                    },
+                  ),
           ),
         ],
       ),

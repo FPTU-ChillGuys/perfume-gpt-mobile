@@ -1079,7 +1079,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
   Widget _buildRetryPaymentAlert(OrderDetail order) {
     final expiresAt = order.paymentExpiresAt;
     final now = DateTimeHelper.nowUtc7();
-    final isExpired = expiresAt != null && DateTimeHelper.toUtc7(expiresAt).isBefore(now);
+    final isExpired =
+        expiresAt != null && DateTimeHelper.toUtc7(expiresAt).isBefore(now);
 
     return Container(
       padding: const EdgeInsets.all(12),
@@ -1456,7 +1457,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 label: 'Hạn thanh toán',
                 value: _fmtDateTime(order.paymentExpiresAt),
                 isSmall: true,
-                valueColor: DateTimeHelper.toUtc7(order.paymentExpiresAt!).isBefore(DateTimeHelper.nowUtc7())
+                valueColor:
+                    DateTimeHelper.toUtc7(
+                      order.paymentExpiresAt!,
+                    ).isBefore(DateTimeHelper.nowUtc7())
                     ? Colors.red
                     : Colors.orange,
               ),
@@ -1818,12 +1822,12 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
   ) {
     final isOffline = order.type == 'Offline';
     final primaryCashMethod = isOffline ? 'CashInStore' : 'CashOnDelivery';
-    final retryMethods = <String>[
-      'CashOnDelivery',
-      'CashInStore',
-      'VnPay',
-      'Momo',
-    ].where((m) => isOffline ? m != 'CashOnDelivery' : m != 'CashInStore').toList();
+    final retryMethods =
+        <String>['CashOnDelivery', 'CashInStore', 'VnPay', 'Momo']
+            .where(
+              (m) => isOffline ? m != 'CashOnDelivery' : m != 'CashInStore',
+            )
+            .toList();
     const gatewayMethods = {'VnPay', 'Momo', 'PayOs'};
     const cashMethods = {'CashOnDelivery', 'CashInStore'};
     final depositAmount = order.requiredDepositAmount > 0
@@ -1839,16 +1843,15 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         )
         .lastOrNull;
     final latestMethod = latestPayment?.paymentMethod;
-    String selectedRetryMethod =
-        isDepositOrder
-            ? primaryCashMethod
-            : (retryMethods.contains(latestMethod)
-                  ? latestMethod!
-                  : primaryCashMethod);
+    String selectedRetryMethod = isDepositOrder
+        ? primaryCashMethod
+        : (retryMethods.contains(latestMethod)
+              ? latestMethod!
+              : primaryCashMethod);
     String selectedDepositGateway =
         gatewayMethods.contains(depositTx?.paymentMethod)
-            ? depositTx!.paymentMethod!
-            : 'VnPay';
+        ? depositTx!.paymentMethod!
+        : 'VnPay';
     bool isSubmitting = false;
 
     showDialog(
@@ -2002,8 +2005,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                                   onTap: isSubmitting
                                       ? null
                                       : () => setDialogState(
-                                            () => selectedRetryMethod = method,
-                                          ),
+                                          () => selectedRetryMethod = method,
+                                        ),
                                   child: AnimatedContainer(
                                     duration: const Duration(milliseconds: 180),
                                     padding: const EdgeInsets.all(14),
@@ -2022,9 +2025,12 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                                           width: 42,
                                           height: 42,
                                           decoration: BoxDecoration(
-                                            color: color.withValues(alpha: 0.12),
-                                            borderRadius:
-                                                BorderRadius.circular(14),
+                                            color: color.withValues(
+                                              alpha: 0.12,
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                              14,
+                                            ),
                                           ),
                                           child: Icon(
                                             _paymentMethodIcon(method),
@@ -2061,19 +2067,21 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                                         ),
                                         const SizedBox(width: 10),
                                         AnimatedSwitcher(
-                                          duration:
-                                              const Duration(milliseconds: 160),
+                                          duration: const Duration(
+                                            milliseconds: 160,
+                                          ),
                                           child: selected
                                               ? Icon(
                                                   Icons.check_circle_rounded,
-                                                  key: const ValueKey('checked'),
+                                                  key: const ValueKey(
+                                                    'checked',
+                                                  ),
                                                   color: color,
                                                   size: 24,
                                                 )
                                               : const Icon(
                                                   Icons.circle_outlined,
-                                                  key:
-                                                      ValueKey('unchecked'),
+                                                  key: ValueKey('unchecked'),
                                                   color:
                                                       AppColors.textSecondary,
                                                   size: 22,
@@ -2091,10 +2099,14 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                             Container(
                               padding: const EdgeInsets.all(14),
                               decoration: BoxDecoration(
-                                color: AppColors.warning.withValues(alpha: 0.08),
+                                color: AppColors.warning.withValues(
+                                  alpha: 0.08,
+                                ),
                                 borderRadius: BorderRadius.circular(16),
                                 border: Border.all(
-                                  color: AppColors.warning.withValues(alpha: 0.28),
+                                  color: AppColors.warning.withValues(
+                                    alpha: 0.28,
+                                  ),
                                 ),
                               ),
                               child: Column(
@@ -2214,112 +2226,138 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                             label: Text(
                               isSubmitting ? 'Đang xử lý...' : 'Thanh toán',
                             ),
-                onPressed: isSubmitting
-                    ? null
-                    : () async {
-                        setDialogState(() => isSubmitting = true);
-                        try {
-                          // Fetch fresh order to get the latest payment transaction ID
-                          final freshOrder = await ref
-                              .read(orderRepositoryProvider)
-                              .getOrderDetail(order.id);
-                          // Match FE: use the main transaction (largest non-failed,
-                          // excluding the small deposit transaction when present).
-                          final paymentTxns = freshOrder.paymentTransactions
-                              .where((t) => t.transactionType == 'Payment')
-                              .toList();
-                          final freshDepositAmount =
-                              freshOrder.requiredDepositAmount > 0
-                              ? freshOrder.requiredDepositAmount
-                              : freshOrder.depositAmount;
-                          final nonFailed = paymentTxns
-                              .where((t) => t.status != 'Failed')
-                              .toList();
-                          final nonDeposit = nonFailed.where((t) {
-                            final isDepositTx =
-                                freshDepositAmount > 0 &&
-                                gatewayMethods.contains(t.paymentMethod) &&
-                                (t.totalAmount - freshDepositAmount).abs() < 1;
-                            return !isDepositTx;
-                          }).toList();
-                          PaymentTransaction? largestOf(
-                            List<PaymentTransaction> list,
-                          ) {
-                            if (list.isEmpty) return null;
-                            return list.reduce(
-                              (best, t) => t.totalAmount >= best.totalAmount
-                                  ? t
-                                  : best,
-                            );
-                          }
+                            onPressed: isSubmitting
+                                ? null
+                                : () async {
+                                    setDialogState(() => isSubmitting = true);
+                                    try {
+                                      // Fetch fresh order to get the latest payment transaction ID
+                                      final freshOrder = await ref
+                                          .read(orderRepositoryProvider)
+                                          .getOrderDetail(order.id);
+                                      // Match FE: use the main transaction (largest non-failed,
+                                      // excluding the small deposit transaction when present).
+                                      final paymentTxns = freshOrder
+                                          .paymentTransactions
+                                          .where(
+                                            (t) =>
+                                                t.transactionType == 'Payment',
+                                          )
+                                          .toList();
+                                      final freshDepositAmount =
+                                          freshOrder.requiredDepositAmount > 0
+                                          ? freshOrder.requiredDepositAmount
+                                          : freshOrder.depositAmount;
+                                      final nonFailed = paymentTxns
+                                          .where((t) => t.status != 'Failed')
+                                          .toList();
+                                      final nonDeposit = nonFailed.where((t) {
+                                        final isDepositTx =
+                                            freshDepositAmount > 0 &&
+                                            gatewayMethods.contains(
+                                              t.paymentMethod,
+                                            ) &&
+                                            (t.totalAmount - freshDepositAmount)
+                                                    .abs() <
+                                                1;
+                                        return !isDepositTx;
+                                      }).toList();
+                                      PaymentTransaction? largestOf(
+                                        List<PaymentTransaction> list,
+                                      ) {
+                                        if (list.isEmpty) return null;
+                                        return list.reduce(
+                                          (best, t) =>
+                                              t.totalAmount >= best.totalAmount
+                                              ? t
+                                              : best,
+                                        );
+                                      }
 
-                          final freshPayment =
-                              largestOf(
-                                nonDeposit.isNotEmpty
-                                    ? nonDeposit
-                                    : nonFailed,
-                              ) ??
-                              largestOf(paymentTxns) ??
-                              freshOrder.paymentTransactions.lastOrNull;
-                          final paymentId = freshPayment?.id;
-                          if (paymentId == null || paymentId.isEmpty) {
-                            throw Exception(
-                              'Không tìm thấy giao dịch thanh toán',
-                            );
-                          }
-                          final newDepositMethod = cashMethods.contains(
-                            selectedRetryMethod,
-                          )
-                              ? selectedDepositGateway
-                              : null;
-                          final url = await ref
-                              .read(orderRepositoryProvider)
-                              .retryPayment(
-                                paymentId,
-                                selectedRetryMethod,
-                                newDepositMethod: newDepositMethod,
-                                posSessionId: null,
-                              );
-                          final gatewayMethod =
-                              newDepositMethod ?? selectedRetryMethod;
-                          final shouldOpenGateway =
-                              gatewayMethod == 'VnPay' ||
-                              gatewayMethod == 'Momo' ||
-                              gatewayMethod == 'PayOs';
-                          if (shouldOpenGateway) {
-                            if (ctx.mounted) Navigator.pop(ctx);
-                            if (url.isNotEmpty && context.mounted) {
-                              context.push(
-                                '/payment-webview?url=${Uri.encodeComponent(url)}',
-                              );
-                            }
-                          } else {
-                            if (ctx.mounted) Navigator.pop(ctx);
-                            if (context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Đơn hàng đã được xác nhận!'),
-                                  backgroundColor: Colors.green,
-                                ),
-                              );
-                            }
-                          }
-                          ref.invalidate(orderDetailProvider(widget.orderId));
-                        } catch (e) {
-                          setDialogState(() => isSubmitting = false);
-                          if (context.mounted) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Không thể thanh toán lại: ${_retryPaymentErrorMessage(e)}',
-                                ),
-                                backgroundColor: Colors.red,
-                                duration: const Duration(seconds: 8),
-                              ),
-                            );
-                          }
-                        }
-                      },
+                                      final freshPayment =
+                                          largestOf(
+                                            nonDeposit.isNotEmpty
+                                                ? nonDeposit
+                                                : nonFailed,
+                                          ) ??
+                                          largestOf(paymentTxns) ??
+                                          freshOrder
+                                              .paymentTransactions
+                                              .lastOrNull;
+                                      final paymentId = freshPayment?.id;
+                                      if (paymentId == null ||
+                                          paymentId.isEmpty) {
+                                        throw Exception(
+                                          'Không tìm thấy giao dịch thanh toán',
+                                        );
+                                      }
+                                      final newDepositMethod =
+                                          cashMethods.contains(
+                                            selectedRetryMethod,
+                                          )
+                                          ? selectedDepositGateway
+                                          : null;
+                                      final url = await ref
+                                          .read(orderRepositoryProvider)
+                                          .retryPayment(
+                                            paymentId,
+                                            selectedRetryMethod,
+                                            newDepositMethod: newDepositMethod,
+                                            posSessionId: null,
+                                          );
+                                      final gatewayMethod =
+                                          newDepositMethod ??
+                                          selectedRetryMethod;
+                                      final shouldOpenGateway =
+                                          gatewayMethod == 'VnPay' ||
+                                          gatewayMethod == 'Momo' ||
+                                          gatewayMethod == 'PayOs';
+                                      if (shouldOpenGateway) {
+                                        if (ctx.mounted) Navigator.pop(ctx);
+                                        if (url.isNotEmpty && context.mounted) {
+                                          context.push(
+                                            '/payment-webview?url=${Uri.encodeComponent(url)}',
+                                          );
+                                        }
+                                      } else {
+                                        if (ctx.mounted) Navigator.pop(ctx);
+                                        if (context.mounted) {
+                                          ScaffoldMessenger.of(
+                                            context,
+                                          ).showSnackBar(
+                                            const SnackBar(
+                                              content: Text(
+                                                'Đơn hàng đã được xác nhận!',
+                                              ),
+                                              backgroundColor: Colors.green,
+                                            ),
+                                          );
+                                        }
+                                      }
+                                      ref.invalidate(
+                                        orderDetailProvider(widget.orderId),
+                                      );
+                                    } catch (e) {
+                                      setDialogState(
+                                        () => isSubmitting = false,
+                                      );
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Không thể thanh toán lại: ${_retryPaymentErrorMessage(e)}',
+                                            ),
+                                            backgroundColor: Colors.red,
+                                            duration: const Duration(
+                                              seconds: 8,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  },
                           ),
                         ),
                       ],

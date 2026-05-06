@@ -167,8 +167,9 @@ class CartRepositoryImpl implements CartRepository {
     final response = await _api.apiCartTotalGet(
       voucherCode: (voucherCode?.isNotEmpty == true) ? voucherCode : null,
       itemIds: (itemIds != null && itemIds.isNotEmpty) ? itemIds : null,
-      savedAddressId:
-          (savedAddressId?.isNotEmpty == true) ? savedAddressId : null,
+      savedAddressId: (savedAddressId?.isNotEmpty == true)
+          ? savedAddressId
+          : null,
       recipientPeriodContactName: (recipientContactName?.isNotEmpty == true)
           ? recipientContactName
           : null,
@@ -180,10 +181,12 @@ class CartRepositoryImpl implements CartRepository {
       recipientPeriodDistrictName: (recipientDistrictName?.isNotEmpty == true)
           ? recipientDistrictName
           : null,
-      recipientPeriodWardCode:
-          (recipientWardCode?.isNotEmpty == true) ? recipientWardCode : null,
-      recipientPeriodWardName:
-          (recipientWardName?.isNotEmpty == true) ? recipientWardName : null,
+      recipientPeriodWardCode: (recipientWardCode?.isNotEmpty == true)
+          ? recipientWardCode
+          : null,
+      recipientPeriodWardName: (recipientWardName?.isNotEmpty == true)
+          ? recipientWardName
+          : null,
       recipientPeriodProvinceId: recipientProvinceId,
       recipientPeriodProvinceName: (recipientProvinceName?.isNotEmpty == true)
           ? recipientProvinceName
@@ -205,7 +208,8 @@ class CartRepositoryImpl implements CartRepository {
           ? null
           : DepositPolicy(
               isDepositRequired:
-                  deposit.isDepositRequired ?? ((deposit.depositAmount ?? 0) > 0),
+                  deposit.isDepositRequired ??
+                  ((deposit.depositAmount ?? 0) > 0),
               depositRate: deposit.depositRate?.toDouble() ?? 0.0,
               depositAmount: deposit.depositAmount?.toDouble() ?? 0.0,
               remainingAmount: deposit.remainingAmount?.toDouble() ?? 0.0,
