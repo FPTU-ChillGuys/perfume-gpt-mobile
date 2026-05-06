@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/date_time_helper.dart';
 import '../../../../domain/entities/order.dart';
 import '../../../review/presentation/providers/review_providers.dart';
 import '../providers/cancel_request_providers.dart';
@@ -19,13 +20,11 @@ final _currencyFormat = NumberFormat('#,###', 'vi_VN');
 String _fmt(double amount) => '${_currencyFormat.format(amount)} ₫';
 
 String _fmtDate(DateTime? date) {
-  if (date == null) return '-';
-  return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+  return DateTimeHelper.formatDate(date);
 }
 
 String _fmtDateTime(DateTime? date) {
-  if (date == null) return '-';
-  return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year} ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
+  return DateTimeHelper.formatDateTime(date);
 }
 
 String _retryPaymentErrorMessage(Object error) {
@@ -1079,8 +1078,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
 
   Widget _buildRetryPaymentAlert(OrderDetail order) {
     final expiresAt = order.paymentExpiresAt;
-    final now = DateTime.now();
-    final isExpired = expiresAt != null && expiresAt.isBefore(now);
+    final now = DateTimeHelper.nowUtc7();
+    final isExpired = expiresAt != null && DateTimeHelper.toUtc7(expiresAt).isBefore(now);
 
     return Container(
       padding: const EdgeInsets.all(12),
@@ -1457,7 +1456,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 label: 'Hạn thanh toán',
                 value: _fmtDateTime(order.paymentExpiresAt),
                 isSmall: true,
-                valueColor: order.paymentExpiresAt!.isBefore(DateTime.now())
+                valueColor: DateTimeHelper.toUtc7(order.paymentExpiresAt!).isBefore(DateTimeHelper.nowUtc7())
                     ? Colors.red
                     : Colors.orange,
               ),

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/date_time_helper.dart';
 import '../../../../domain/entities/cancel_request.dart';
 import '../../../../domain/entities/order.dart';
 import '../../../../core/utils/image_url_helper.dart';
@@ -14,7 +15,6 @@ final _currencyFmt = NumberFormat.currency(
   symbol: '₫',
   decimalDigits: 0,
 );
-final _dateFmt = DateFormat('dd/MM/yyyy HH:mm');
 
 class CancelRequestDetailPage extends ConsumerWidget {
   final String requestId;
@@ -228,9 +228,9 @@ class CancelRequestDetailPage extends ConsumerWidget {
           _Row('Trạng thái', _statusInfo(req.status).label),
           if (req.requestedByEmail != null)
             _Row('Người yêu cầu', req.requestedByEmail!),
-          _Row('Ngày tạo', _dateFmt.format(req.createdAt)),
+          _Row('Ngày tạo', DateTimeHelper.formatDateTime(req.createdAt)),
           if (req.updatedAt != null)
-            _Row('Cập nhật', _dateFmt.format(req.updatedAt!)),
+            _Row('Cập nhật', DateTimeHelper.formatDateTime(req.updatedAt!)),
           const Divider(height: 20),
           _Row('Lý do', _reasonLabel(req.reason)),
           if (req.staffNote != null && req.staffNote!.isNotEmpty) ...[

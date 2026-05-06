@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/date_time_helper.dart';
 import '../../../../domain/entities/cancel_request.dart';
 import '../providers/cancel_request_providers.dart';
 import '../../../profile/presentation/widgets/resolved_user_avatar.dart';
@@ -12,7 +13,6 @@ final _currencyFmt = NumberFormat.currency(
   symbol: '₫',
   decimalDigits: 0,
 );
-final _dateFmt = DateFormat('dd/MM/yyyy HH:mm');
 
 const _statusTabs = <(String? value, String label, IconData icon)>[
   (null, 'Tất cả', Icons.list_alt_rounded),
@@ -308,7 +308,7 @@ class _CancelRequestCard extends StatelessWidget {
                               ),
                               const SizedBox(height: 2),
                               Text(
-                                _dateFmt.format(request.createdAt),
+                                DateTimeHelper.formatDateTime(request.createdAt),
                                 style: const TextStyle(
                                   fontSize: 11.5,
                                   color: AppColors.textSecondary,

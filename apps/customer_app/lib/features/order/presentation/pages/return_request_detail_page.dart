@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/date_time_helper.dart';
 import '../../../../core/utils/image_url_helper.dart';
 import '../../../../domain/entities/order.dart';
 import '../../../../domain/entities/return_request.dart';
@@ -17,7 +18,6 @@ final _currencyFmt = NumberFormat.currency(
   symbol: '₫',
   decimalDigits: 0,
 );
-final _dateFmt = DateFormat('dd/MM/yyyy HH:mm');
 
 class ReturnRequestDetailPage extends ConsumerStatefulWidget {
   final String requestId;
@@ -315,9 +315,9 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
           _Row('Trạng thái', _statusInfo(req.status).label),
           if (req.requestedByEmail != null)
             _Row('Người yêu cầu', req.requestedByEmail!),
-          _Row('Ngày tạo', _dateFmt.format(req.createdAt)),
+          _Row('Ngày tạo', DateTimeHelper.formatDateTime(req.createdAt)),
           if (req.updatedAt != null)
-            _Row('Cập nhật', _dateFmt.format(req.updatedAt!)),
+            _Row('Cập nhật', DateTimeHelper.formatDateTime(req.updatedAt!)),
           const Divider(height: 20),
           _AmountRow('Số tiền yêu cầu', req.requestedRefundAmount),
           if (req.approvedRefundAmount != null && req.approvedRefundAmount! > 0)

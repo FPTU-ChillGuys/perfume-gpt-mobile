@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import '../../../../core/utils/date_time_helper.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../domain/entities/voucher.dart';
 import '../../../loyalty/presentation/providers/loyalty_providers.dart';
 import '../providers/voucher_providers.dart';
 
 final _currencyFmt = NumberFormat('#,###', 'vi_VN');
-final _dateFmt = DateFormat('dd/MM/yyyy');
 
 String _extractError(Object e) {
   if (e is DioException) {
@@ -492,7 +492,7 @@ class _UserVoucherCard extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            'HSD: ${voucher.expiryDate != null ? _dateFmt.format(voucher.expiryDate!) : '—'}',
+                            'HSD: ${DateTimeHelper.formatDate(voucher.expiryDate, fallback: '—')}',
                             style: const TextStyle(
                               fontSize: 12,
                               color: AppColors.textSecondary,
@@ -501,7 +501,7 @@ class _UserVoucherCard extends StatelessWidget {
                           if (voucher.redeemedAt != null) ...[
                             const SizedBox(width: 12),
                             Text(
-                              'Nhận: ${_dateFmt.format(voucher.redeemedAt!)}',
+                              'Nhận: ${DateTimeHelper.formatDate(voucher.redeemedAt)}',
                               style: const TextStyle(
                                 fontSize: 12,
                                 color: AppColors.textSecondary,

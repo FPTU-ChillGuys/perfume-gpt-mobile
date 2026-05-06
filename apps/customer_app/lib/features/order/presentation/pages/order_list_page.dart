@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import '../../../../core/utils/date_time_helper.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_feedback.dart';
 import '../../../../domain/entities/order.dart';
@@ -18,8 +19,7 @@ final _currencyFormat = NumberFormat('#,###', 'vi_VN');
 String _fmt(double amount) => '${_currencyFormat.format(amount)} ₫';
 
 String _fmtDate(DateTime? date) {
-  if (date == null) return '-';
-  return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+  return DateTimeHelper.formatDate(date);
 }
 
 String? _fmtUnitPrice(double unitPrice, double total) {
