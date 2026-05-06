@@ -8,8 +8,9 @@ import '../../domain/repositories/return_request_repository.dart';
 class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
   final OrderReturnRequestsApi _api;
   final ShippingsApi _shippingsApi;
+  final Dio _dio;
 
-  ReturnRequestRepositoryImpl(this._api, this._shippingsApi);
+  ReturnRequestRepositoryImpl(this._api, this._shippingsApi, this._dio);
 
   @override
   Future<PaginatedReturnRequests> getMyRequests({
@@ -107,13 +108,38 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
         );
       }
     }
-    final response = await _api.apiOrderreturnrequestsVideosTemporaryPost(
-      images: imageParts.isEmpty ? null : imageParts,
-      videos: videoParts.isEmpty ? null : videoParts,
+
+    final formData = FormData();
+    for (final img in imageParts) {
+      formData.files.add(MapEntry('images', img));
+    }
+    for (final vid in videoParts) {
+      formData.files.add(MapEntry('videos', vid));
+    }
+
+    final response = await _dio.post<Map<String, dynamic>>(
+      '/api/orderreturnrequests/videos/temporary',
+      data: formData,
+      options: Options(
+        contentType: 'multipart/form-data',
+        extra: <String, dynamic>{
+          'secure': <Map<String, String>>[
+            {
+              'type': 'http',
+              'scheme': 'bearer',
+              'name': 'Bearer',
+            },
+          ],
+        },
+      ),
     );
-    final items = response.data?.payload?.data ?? [];
-    return items
-        .map<String>((m) => (m.id ?? '').toString())
+
+    final payload = response.data?['payload'];
+    final data = payload is Map<String, dynamic> ? payload['data'] : null;
+    if (data is! List) return [];
+    return data
+        .whereType<Map>()
+        .map((m) => m['id']?.toString() ?? '')
         .where((id) => id.isNotEmpty)
         .toList();
   }

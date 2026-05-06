@@ -607,196 +607,236 @@ class _OrderListPageState extends ConsumerState<OrderListPage>
             isLoadingPaymentId = false; // prevent re-triggering
           }
 
-          final selectedMethod = paymentMode == 'full'
+          final selectedGateway = paymentMode == 'full'
               ? selectedFullGateway
-              : selectedBaseMethod;
-          final selectedDepositMethod = paymentMode == 'full'
-              ? selectedBaseMethod
               : selectedDepositGateway;
-          return AlertDialog(
-            title: const Text('Thanh toán lại đơn hàng'),
-            content: SingleChildScrollView(
+          return Dialog(
+            insetPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+            clipBehavior: Clip.antiAlias,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: 430,
+                maxHeight: MediaQuery.sizeOf(ctx).height * 0.84,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Chọn cách thanh toán lại đơn hàng.',
-                    style: TextStyle(color: Colors.grey[600], fontSize: 13),
-                  ),
-                  const SizedBox(height: 16),
                   Container(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: paymentMode == 'deposit'
-                            ? _accent
-                            : Colors.grey[300]!,
+                    width: double.infinity,
+                    padding: const EdgeInsets.fromLTRB(20, 20, 16, 18),
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [AppColors.heroStart, AppColors.heroEnd],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                       ),
-                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: RadioListTile<String>(
-                      value: 'deposit',
-                      groupValue: paymentMode,
-                      dense: true,
-                      activeColor: _accent,
-                      title: const Text(
-                        'Thanh toán tiền đặt cọc',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.16),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: const Icon(Icons.payments_outlined, color: Colors.white, size: 24),
                         ),
-                      ),
-                      subtitle: Text(
-                        'Giữ đơn với ${_paymentMethodLabels[selectedBaseMethod] ?? selectedBaseMethod}, chọn cổng thu tiền cọc bên dưới.',
-                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                      ),
-                      onChanged: isSubmitting
-                          ? null
-                          : (v) => setDialogState(
-                              () => paymentMode = v ?? 'deposit',
-                            ),
-                    ),
-                  ),
-                  if (paymentMode == 'deposit') ...[
-                    DropdownButtonFormField<String>(
-                      initialValue: selectedDepositGateway,
-                      decoration: const InputDecoration(
-                        labelText: 'Cổng thanh toán tiền cọc',
-                        border: OutlineInputBorder(),
-                        isDense: true,
-                      ),
-                      items: const [
-                        DropdownMenuItem(value: 'VnPay', child: Text('VNPay')),
-                        DropdownMenuItem(value: 'Momo', child: Text('MoMo')),
-                        DropdownMenuItem(value: 'PayOs', child: Text('PayOS')),
+                        const SizedBox(width: 12),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Thanh toán lại',
+                                style: TextStyle(color: Colors.white, fontSize: 19, fontWeight: FontWeight.w800),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                'Chọn hình thức và cổng thanh toán để tiếp tục đơn hàng.',
+                                style: TextStyle(color: Colors.white70, fontSize: 13, height: 1.35),
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: isSubmitting ? null : () => Navigator.pop(ctx),
+                          icon: const Icon(Icons.close, color: Colors.white),
+                        ),
                       ],
-                      onChanged: (v) {
-                        if (v != null && !isSubmitting) {
-                          setDialogState(() => selectedDepositGateway = v);
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 6),
-                  ],
-                  Container(
-                    margin: const EdgeInsets.only(top: 6, bottom: 8),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: paymentMode == 'full'
-                            ? _accent
-                            : Colors.grey[300]!,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: RadioListTile<String>(
-                      value: 'full',
-                      groupValue: paymentMode,
-                      dense: true,
-                      activeColor: _accent,
-                      title: const Text(
-                        'Chuyển sang thanh toán toàn phần',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Thanh toán toàn bộ còn lại ngay qua VNPay/MoMo/PayOS.',
-                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                      ),
-                      onChanged: isSubmitting
-                          ? null
-                          : (v) =>
-                                setDialogState(() => paymentMode = v ?? 'full'),
                     ),
                   ),
-                  if (paymentMode == 'full')
-                    Wrap(
-                      spacing: 8,
-                      children: fullPaymentMethods.map((method) {
-                        final selected = selectedFullGateway == method;
-                        return ChoiceChip(
-                          label: Text(_paymentMethodLabels[method] ?? method),
-                          selected: selected,
-                          onSelected: isSubmitting
-                              ? null
-                              : (_) => setDialogState(
-                                  () => selectedFullGateway = method,
+                  Flexible(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.fromLTRB(18, 18, 18, 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primaryLight,
+                                  borderRadius: BorderRadius.circular(999),
                                 ),
-                        );
-                      }).toList(),
+                                child: Text(
+                                  order.code,
+                                  style: const TextStyle(
+                                    color: AppColors.primaryDark,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Hình thức thanh toán',
+                            style: TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.w800),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _RetryModeCard(
+                                  title: 'Thanh toán cọc',
+                                  subtitle: 'Giữ đơn, thu tiền cọc trước',
+                                  icon: Icons.account_balance_wallet_outlined,
+                                  color: AppColors.info,
+                                  selected: paymentMode == 'deposit',
+                                  onTap: isSubmitting ? null : () => setDialogState(() => paymentMode = 'deposit'),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: _RetryModeCard(
+                                  title: 'Thanh toán toàn phần',
+                                  subtitle: 'Thu toàn bộ số tiền còn lại',
+                                  icon: Icons.payments_rounded,
+                                  color: AppColors.success,
+                                  selected: paymentMode == 'full',
+                                  onTap: isSubmitting ? null : () => setDialogState(() => paymentMode = 'full'),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Cổng thanh toán',
+                            style: TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.w800),
+                          ),
+                          const SizedBox(height: 10),
+                          Wrap(
+                            spacing: 10,
+                            runSpacing: 10,
+                            children: fullPaymentMethods.map((method) {
+                              final selected = selectedGateway == method;
+                              final color = method == 'Momo'
+                                  ? const Color(0xFFD82D8B)
+                                  : (method == 'VnPay' ? AppColors.info : AppColors.primary);
+                              return ChoiceChip(
+                                label: Text(_paymentMethodLabels[method] ?? method),
+                                selected: selected,
+                                selectedColor: color,
+                                labelStyle: TextStyle(
+                                  color: selected ? Colors.white : AppColors.textPrimary,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12.5,
+                                ),
+                                side: BorderSide(color: selected ? color : AppColors.border),
+                                onSelected: isSubmitting
+                                    ? null
+                                    : (_) => setDialogState(() {
+                                        if (paymentMode == 'full') {
+                                          selectedFullGateway = method;
+                                        } else {
+                                          selectedDepositGateway = method;
+                                        }
+                                      }),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
                     ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(18, 12, 18, 18),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      border: Border(top: BorderSide(color: AppColors.border)),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: isSubmitting ? null : () => Navigator.pop(ctx),
+                            child: const Text('Đóng'),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          flex: 2,
+                          child: FilledButton.icon(
+                            style: FilledButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white),
+                            onPressed: isSubmitting || paymentId == null
+                                ? null
+                                : () async {
+                                    setDialogState(() => isSubmitting = true);
+                                    try {
+                                      final selectedMethod = paymentMode == 'full'
+                                          ? selectedFullGateway
+                                          : selectedBaseMethod;
+                                      final selectedDepositMethod = paymentMode == 'full'
+                                          ? null
+                                          : selectedDepositGateway;
+                                      final url = await ref.read(orderRepositoryProvider).retryPayment(
+                                            paymentId!,
+                                            selectedMethod,
+                                            newDepositMethod: selectedDepositMethod,
+                                            posSessionId: null,
+                                          );
+                                      if (ctx.mounted) Navigator.pop(ctx);
+                                      if (url.isNotEmpty && context.mounted) {
+                                        context.push('/payment-webview?url=${Uri.encodeComponent(url)}');
+                                      }
+                                      _invalidateOrders();
+                                    } catch (e) {
+                                      setDialogState(() => isSubmitting = false);
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                            content: Text('Không thể thanh toán lại: $e'),
+                                            backgroundColor: Colors.red,
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  },
+                            icon: isSubmitting
+                                ? const SizedBox(
+                                    width: 16,
+                                    height: 16,
+                                    child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                                  )
+                                : const Icon(Icons.arrow_forward_rounded),
+                            label: Text(
+                              isSubmitting
+                                  ? 'Đang xử lý...'
+                                  : paymentId == null
+                                      ? 'Đang tải...'
+                                      : 'Thanh toán ngay',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-            actions: [
-              TextButton(
-                onPressed: isSubmitting ? null : () => Navigator.pop(ctx),
-                child: const Text('Đóng'),
-              ),
-              FilledButton(
-                style: FilledButton.styleFrom(backgroundColor: Colors.orange),
-                onPressed: isSubmitting || paymentId == null
-                    ? null
-                    : () async {
-                        setDialogState(() => isSubmitting = true);
-                        try {
-                          final url = await ref
-                              .read(orderRepositoryProvider)
-                              .retryPayment(
-                                paymentId!,
-                                selectedMethod,
-                                newDepositMethod: selectedDepositMethod,
-                                posSessionId: null,
-                              );
-                          final gatewayMethod = paymentMode == 'full'
-                              ? selectedMethod
-                              : selectedDepositMethod;
-                          final shouldOpenGateway =
-                              gatewayMethod == 'VnPay' ||
-                              gatewayMethod == 'Momo' ||
-                              gatewayMethod == 'PayOs';
-                          if (shouldOpenGateway) {
-                            if (ctx.mounted) Navigator.pop(ctx);
-                            if (url.isNotEmpty && context.mounted) {
-                              context.push(
-                                '/payment-webview?url=${Uri.encodeComponent(url)}',
-                              );
-                            }
-                          } else {
-                            if (ctx.mounted) Navigator.pop(ctx);
-                            if (context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Đơn hàng đã được xác nhận!'),
-                                  backgroundColor: Colors.green,
-                                ),
-                              );
-                            }
-                          }
-                          _invalidateOrders();
-                        } catch (e) {
-                          setDialogState(() => isSubmitting = false);
-                          if (context.mounted) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Không thể thanh toán lại: $e'),
-                                backgroundColor: Colors.red,
-                              ),
-                            );
-                          }
-                        }
-                      },
-                child: Text(
-                  isSubmitting
-                      ? 'Đang xử lý...'
-                      : paymentId == null
-                      ? 'Đang tải...'
-                      : 'Thanh toán ngay',
-                ),
-              ),
-            ],
           );
         },
       ),
@@ -1287,6 +1327,80 @@ class _ActionBtn extends StatelessWidget {
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         child: Text(label),
+      ),
+    );
+  }
+}
+
+class _RetryModeCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final Color color;
+  final bool selected;
+  final VoidCallback? onTap;
+
+  const _RetryModeCard({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.color,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: selected ? color.withValues(alpha: 0.1) : Colors.white,
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: selected ? color : AppColors.border,
+              width: selected ? 1.5 : 1,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(icon, size: 18, color: color),
+                  const Spacer(),
+                  Icon(
+                    selected ? Icons.check_circle_rounded : Icons.circle_outlined,
+                    size: 18,
+                    color: selected ? color : AppColors.textSecondary,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                subtitle,
+                style: const TextStyle(
+                  fontSize: 11.5,
+                  color: AppColors.textSecondary,
+                  height: 1.25,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

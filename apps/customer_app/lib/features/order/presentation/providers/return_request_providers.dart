@@ -14,6 +14,7 @@ ReturnRequestRepository returnRequestRepository(Ref ref) {
   return ReturnRequestRepositoryImpl(
     apiClient.getOrderReturnRequestsApi(),
     apiClient.getShippingsApi(),
+    apiClient.dio,
   );
 }
 

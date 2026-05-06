@@ -149,23 +149,6 @@ String _paymentMethodLabel(String method) {
   }
 }
 
-String _paymentMethodSubtitle(String method) {
-  switch (method) {
-    case 'CashOnDelivery':
-      return 'Xác nhận đơn và thanh toán khi nhận hàng';
-    case 'CashInStore':
-      return 'Phù hợp cho đơn nhận trực tiếp tại cửa hàng';
-    case 'VnPay':
-      return 'Mở cổng VNPay để thanh toán an toàn';
-    case 'Momo':
-      return 'Thanh toán nhanh qua ví MoMo';
-    case 'PayOs':
-      return 'Thanh toán qua mã QR PayOS';
-    default:
-      return 'Tiếp tục với phương thức này';
-  }
-}
-
 IconData _paymentMethodIcon(String method) {
   switch (method) {
     case 'CashOnDelivery':
@@ -1822,14 +1805,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
   ) {
     final isOffline = order.type == 'Offline';
     final primaryCashMethod = isOffline ? 'CashInStore' : 'CashOnDelivery';
-    final retryMethods =
-        <String>['CashOnDelivery', 'CashInStore', 'VnPay', 'Momo']
-            .where(
-              (m) => isOffline ? m != 'CashOnDelivery' : m != 'CashInStore',
-            )
-            .toList();
     const gatewayMethods = {'VnPay', 'Momo', 'PayOs'};
-    const cashMethods = {'CashOnDelivery', 'CashInStore'};
     final depositAmount = order.requiredDepositAmount > 0
         ? order.requiredDepositAmount
         : order.depositAmount;
@@ -1843,22 +1819,17 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         )
         .lastOrNull;
     final latestMethod = latestPayment?.paymentMethod;
-    String selectedRetryMethod = isDepositOrder
-        ? primaryCashMethod
-        : (retryMethods.contains(latestMethod)
-              ? latestMethod!
-              : primaryCashMethod);
-    String selectedDepositGateway =
+    String paymentMode = isDepositOrder ? 'deposit' : 'full';
+    String selectedGateway =
         gatewayMethods.contains(depositTx?.paymentMethod)
         ? depositTx!.paymentMethod!
-        : 'VnPay';
+        : (gatewayMethods.contains(latestMethod) ? latestMethod! : 'VnPay');
     bool isSubmitting = false;
 
     showDialog(
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setDialogState) {
-          final isCashMethod = cashMethods.contains(selectedRetryMethod);
           return Dialog(
             insetPadding: const EdgeInsets.symmetric(
               horizontal: 18,
@@ -1982,7 +1953,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                           ),
                           const SizedBox(height: 16),
                           const Text(
-                            'Phương thức thanh toán',
+                            'Hình thức thanh toán',
                             style: TextStyle(
                               color: AppColors.textPrimary,
                               fontSize: 15,
@@ -1990,200 +1961,87 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          ...retryMethods.map((method) {
-                            final selected = selectedRetryMethod == method;
-                            final color = _paymentMethodColor(method);
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Material(
-                                color: selected
-                                    ? color.withValues(alpha: 0.08)
-                                    : Colors.white,
-                                borderRadius: BorderRadius.circular(16),
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(16),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _RetryModeCard(
+                                  title: 'Thanh toán cọc',
+                                  subtitle: 'Giữ đơn, thanh toán phần cọc trước',
+                                  icon: Icons.account_balance_wallet_outlined,
+                                  color: AppColors.info,
+                                  selected: paymentMode == 'deposit',
                                   onTap: isSubmitting
                                       ? null
                                       : () => setDialogState(
-                                          () => selectedRetryMethod = method,
+                                          () => paymentMode = 'deposit',
                                         ),
-                                  child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 180),
-                                    padding: const EdgeInsets.all(14),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      border: Border.all(
-                                        color: selected
-                                            ? color
-                                            : AppColors.border,
-                                        width: selected ? 1.5 : 1,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: 42,
-                                          height: 42,
-                                          decoration: BoxDecoration(
-                                            color: color.withValues(
-                                              alpha: 0.12,
-                                            ),
-                                            borderRadius: BorderRadius.circular(
-                                              14,
-                                            ),
-                                          ),
-                                          child: Icon(
-                                            _paymentMethodIcon(method),
-                                            color: color,
-                                            size: 22,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 12),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                _paymentMethodLabel(method),
-                                                style: const TextStyle(
-                                                  color: AppColors.textPrimary,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w800,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 3),
-                                              Text(
-                                                _paymentMethodSubtitle(method),
-                                                style: const TextStyle(
-                                                  color:
-                                                      AppColors.textSecondary,
-                                                  fontSize: 12.2,
-                                                  height: 1.25,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10),
-                                        AnimatedSwitcher(
-                                          duration: const Duration(
-                                            milliseconds: 160,
-                                          ),
-                                          child: selected
-                                              ? Icon(
-                                                  Icons.check_circle_rounded,
-                                                  key: const ValueKey(
-                                                    'checked',
-                                                  ),
-                                                  color: color,
-                                                  size: 24,
-                                                )
-                                              : const Icon(
-                                                  Icons.circle_outlined,
-                                                  key: ValueKey('unchecked'),
-                                                  color:
-                                                      AppColors.textSecondary,
-                                                  size: 22,
-                                                ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
                                 ),
                               ),
-                            );
-                          }),
-                          if (isCashMethod) ...[
-                            const SizedBox(height: 4),
-                            Container(
-                              padding: const EdgeInsets.all(14),
-                              decoration: BoxDecoration(
-                                color: AppColors.warning.withValues(
-                                  alpha: 0.08,
-                                ),
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(
-                                  color: AppColors.warning.withValues(
-                                    alpha: 0.28,
-                                  ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: _RetryModeCard(
+                                  title: 'Thanh toán toàn phần',
+                                  subtitle: 'Thanh toán toàn bộ ngay bây giờ',
+                                  icon: Icons.payments_rounded,
+                                  color: AppColors.success,
+                                  selected: paymentMode == 'full',
+                                  onTap: isSubmitting
+                                      ? null
+                                      : () => setDialogState(
+                                          () => paymentMode = 'full',
+                                        ),
                                 ),
                               ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.info_outline_rounded,
-                                        color: AppColors.warning,
-                                        size: 18,
-                                      ),
-                                      SizedBox(width: 8),
-                                      Expanded(
-                                        child: Text(
-                                          'Chọn cổng thanh toán tiền cọc',
-                                          style: TextStyle(
-                                            color: AppColors.textPrimary,
-                                            fontWeight: FontWeight.w800,
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10),
-                                  DropdownButtonFormField<String>(
-                                    initialValue: selectedDepositGateway,
-                                    decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                      prefixIcon: const Icon(
-                                        Icons.account_balance_wallet_outlined,
-                                        size: 19,
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(14),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(14),
-                                        borderSide: const BorderSide(
-                                          color: AppColors.border,
-                                        ),
-                                      ),
-                                      isDense: true,
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                            horizontal: 12,
-                                            vertical: 12,
-                                          ),
-                                    ),
-                                    items: const [
-                                      DropdownMenuItem(
-                                        value: 'VnPay',
-                                        child: Text('VNPay'),
-                                      ),
-                                      DropdownMenuItem(
-                                        value: 'Momo',
-                                        child: Text('MoMo'),
-                                      ),
-                                      DropdownMenuItem(
-                                        value: 'PayOs',
-                                        child: Text('PayOS'),
-                                      ),
-                                    ],
-                                    onChanged: (v) {
-                                      if (v != null && !isSubmitting) {
-                                        setDialogState(
-                                          () => selectedDepositGateway = v,
-                                        );
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Cổng thanh toán',
+                            style: TextStyle(
+                              color: AppColors.textPrimary,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
-                          ],
+                          ),
+                          const SizedBox(height: 10),
+                          Wrap(
+                            spacing: 10,
+                            runSpacing: 10,
+                            children: ['VnPay', 'Momo', 'PayOs'].map((method) {
+                              final selected = selectedGateway == method;
+                              final color = _paymentMethodColor(method);
+                              return ChoiceChip(
+                                label: Text(_paymentMethodLabel(method)),
+                                avatar: Icon(
+                                  _paymentMethodIcon(method),
+                                  size: 16,
+                                  color: selected ? Colors.white : color,
+                                ),
+                                selected: selected,
+                                selectedColor: color,
+                                labelStyle: TextStyle(
+                                  color: selected ? Colors.white : AppColors.textPrimary,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12.5,
+                                ),
+                                side: BorderSide(color: selected ? color : AppColors.border),
+                                onSelected: isSubmitting
+                                    ? null
+                                    : (_) => setDialogState(() => selectedGateway = method),
+                              );
+                            }).toList(),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            paymentMode == 'deposit'
+                                ? 'Đơn sẽ giữ ở trạng thái đặt cọc, phần cọc thu qua cổng đã chọn.'
+                                : 'Đơn sẽ chuyển sang thanh toán toàn phần qua cổng đã chọn.',
+                            style: const TextStyle(
+                              color: AppColors.textSecondary,
+                              fontSize: 12.5,
+                              height: 1.3,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -2291,11 +2149,13 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                                           'Không tìm thấy giao dịch thanh toán',
                                         );
                                       }
+                                      final selectedRetryMethod =
+                                          paymentMode == 'deposit'
+                                          ? primaryCashMethod
+                                          : selectedGateway;
                                       final newDepositMethod =
-                                          cashMethods.contains(
-                                            selectedRetryMethod,
-                                          )
-                                          ? selectedDepositGateway
+                                          paymentMode == 'deposit'
+                                          ? selectedGateway
                                           : null;
                                       final url = await ref
                                           .read(orderRepositoryProvider)
@@ -2305,9 +2165,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                                             newDepositMethod: newDepositMethod,
                                             posSessionId: null,
                                           );
-                                      final gatewayMethod =
-                                          newDepositMethod ??
-                                          selectedRetryMethod;
+                                      final gatewayMethod = selectedGateway;
                                       final shouldOpenGateway =
                                           gatewayMethod == 'VnPay' ||
                                           gatewayMethod == 'Momo' ||
@@ -2494,6 +2352,80 @@ class _PriceRow extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _RetryModeCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final Color color;
+  final bool selected;
+  final VoidCallback? onTap;
+
+  const _RetryModeCard({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.color,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: selected ? color.withValues(alpha: 0.1) : Colors.white,
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: selected ? color : AppColors.border,
+              width: selected ? 1.5 : 1,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(icon, size: 18, color: color),
+                  const Spacer(),
+                  Icon(
+                    selected ? Icons.check_circle_rounded : Icons.circle_outlined,
+                    size: 18,
+                    color: selected ? color : AppColors.textSecondary,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                subtitle,
+                style: const TextStyle(
+                  fontSize: 11.5,
+                  color: AppColors.textSecondary,
+                  height: 1.25,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
