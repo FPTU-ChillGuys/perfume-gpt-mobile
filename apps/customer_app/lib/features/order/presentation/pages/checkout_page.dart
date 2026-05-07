@@ -28,6 +28,13 @@ String _formatCurrency(double value) {
   return '$buf\u0111';
 }
 
+String _voucherPercentLabel(Voucher voucher) {
+  final raw = voucher.discountValue;
+  final hasFraction = raw % 1 != 0;
+  final value = hasFraction ? raw.toStringAsFixed(1) : raw.toStringAsFixed(0);
+  return '-$value%';
+}
+
 String _placeOrderErrorMessage(Object error) {
   if (error is DioException) {
     final data = error.response?.data;
@@ -2137,7 +2144,7 @@ class _VoucherPickerCard extends StatelessWidget {
                     Icon(Icons.local_offer, color: AppColors.primary, size: 22),
                     const SizedBox(height: 4),
                     Text(
-                      voucher.discountLabel,
+                      _voucherPercentLabel(voucher),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 12,

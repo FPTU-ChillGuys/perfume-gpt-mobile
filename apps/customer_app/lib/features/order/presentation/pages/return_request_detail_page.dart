@@ -1378,7 +1378,7 @@ String? _reasonLabel(String? reason) {
 String _shippingStatusLabel(String status) {
   switch (status) {
     case 'UnAssigned':
-      return 'Chưa gán';
+      return 'Chưa bàn giao';
     case 'ReadyToPick':
       return 'Chờ lấy hàng';
     case 'Delivering':

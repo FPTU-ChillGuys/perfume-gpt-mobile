@@ -195,6 +195,8 @@ String _carrierLabel(String? carrier) {
 
 String _shippingStatusLabel(String? status) {
   switch (status) {
+    case 'UnAssigned':
+      return 'Chưa bàn giao';
     case 'Pending':
       return 'Chờ lấy hàng';
     case 'PickedUp':
