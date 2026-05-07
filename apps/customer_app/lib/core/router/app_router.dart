@@ -63,6 +63,8 @@ class AppRouter {
             searchQuery: params['search'],
             categoryId: int.tryParse(params['categoryId'] ?? ''),
             categoryName: params['categoryName'],
+            campaignId: params['campaignId'],
+            initialBrandId: int.tryParse(params['brandId'] ?? ''),
           );
         },
       ),

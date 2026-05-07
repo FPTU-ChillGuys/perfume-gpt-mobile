@@ -65,6 +65,8 @@ class ProductListPage extends ConsumerStatefulWidget {
   final String? searchQuery;
   final int? categoryId;
   final String? categoryName;
+  final String? campaignId;
+  final int? initialBrandId;
 
   const ProductListPage({
     super.key,
@@ -73,6 +75,8 @@ class ProductListPage extends ConsumerStatefulWidget {
     this.searchQuery,
     this.categoryId,
     this.categoryName,
+    this.campaignId,
+    this.initialBrandId,
   });
 
   @override
@@ -106,6 +110,8 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
   List<BrandLookupItem> _brands = [];
 
   bool get _isSourceMode => widget.source != null;
+  bool get _isCampaignMode =>
+      widget.campaignId != null && widget.campaignId!.trim().isNotEmpty;
 
   // ========================================================================
   // Lifecycle
@@ -116,6 +122,7 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
     super.initState();
     _activeSearch = widget.searchQuery ?? '';
     _searchCtrl.text = _activeSearch;
+    _brandId = widget.initialBrandId;
     _fetchBrands();
     _fetchProducts();
   }
@@ -151,6 +158,31 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
     try {
       final repo = ref.read(productRepositoryProvider);
 
+      if (_isCampaignMode) {
+        final result = await repo.getCampaignProductsPaged(
+          campaignId: widget.campaignId!.trim(),
+          pageNumber: _page,
+          pageSize: _pageSize,
+          brandId: _brandId,
+          categoryId: widget.categoryId,
+          volume: _volume,
+          fromPrice: _priceRange.start > _priceMin ? _priceRange.start : null,
+          toPrice: _priceRange.end < _priceMax ? _priceRange.end : null,
+          sortBy: _sortBy,
+          isDescending: _isDescending,
+        );
+        final items = List<Product>.from(result.items);
+        _applySort(items);
+        if (!mounted) return;
+        setState(() {
+          _displayedProducts = items;
+          _totalCount = result.totalCount;
+          _totalPages = result.totalPages;
+          _isLoading = false;
+        });
+        return;
+      }
+
       // --- Source mode (bestsellers / new-arrivals): client-side -----------
       if (_isSourceMode) {
         List<Product> all;
@@ -174,11 +206,19 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
           pageNumber: _page,
           pageSize: _pageSize,
         );
+        var items = List<Product>.from(result.items);
+        items = items.where(_matchesStructuredFilters).toList();
+        _applySort(items);
         if (!mounted) return;
         setState(() {
-          _displayedProducts = result.items;
-          _totalCount = result.totalCount;
-          _totalPages = result.totalPages;
+          _displayedProducts = items;
+          // Keep AI API totals when available, but never show less than rendered count.
+          _totalCount = result.totalCount < items.length
+              ? items.length
+              : result.totalCount;
+          _totalPages = result.totalPages > 0
+              ? result.totalPages
+              : (_totalCount / _pageSize).ceil();
           _isLoading = false;
         });
         return;
@@ -195,9 +235,11 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
         sortBy: _sortBy,
         isDescending: _isDescending,
       );
+      final items = List<Product>.from(result.items);
+      _applySort(items);
       if (!mounted) return;
       setState(() {
-        _displayedProducts = result.items;
+        _displayedProducts = items;
         _totalCount = result.totalCount;
         _totalPages = result.totalPages;
         _isLoading = false;
@@ -222,36 +264,11 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
           !p.brand.toLowerCase().contains(search)) {
         return false;
       }
-      if (_brandId != null && p.brandId != _brandId) return false;
-      if (_priceRange.start > _priceMin || _priceRange.end < _priceMax) {
-        final prices = p.variantPrices ?? [];
-        if (prices.isNotEmpty) {
-          final maxP = prices.reduce((a, b) => a > b ? a : b);
-          final minP = prices.reduce((a, b) => a < b ? a : b);
-          if (maxP < _priceRange.start || minP > _priceRange.end) {
-            return false;
-          }
-        }
-      }
-      return true;
+      return _matchesStructuredFilters(p);
     }).toList();
 
     // Sort
-    switch (_sort) {
-      case _SortValue.featured:
-      case _SortValue.newest:
-        break;
-      case _SortValue.oldest:
-        list = list.reversed.toList();
-      case _SortValue.priceAsc:
-        list.sort((a, b) => a.price.compareTo(b.price));
-      case _SortValue.priceDesc:
-        list.sort((a, b) => b.price.compareTo(a.price));
-      case _SortValue.nameAsc:
-        list.sort((a, b) => a.name.compareTo(b.name));
-      case _SortValue.nameDesc:
-        list.sort((a, b) => b.name.compareTo(a.name));
-    }
+    _applySort(list);
 
     // Paginate
     final total = list.length;
@@ -263,6 +280,70 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
       _totalPages = (total / _pageSize).ceil();
       _isLoading = false;
     });
+  }
+
+  bool _matchesStructuredFilters(Product p) {
+    if (_brandId != null && p.brandId != _brandId) return false;
+
+    if (_priceRange.start > _priceMin || _priceRange.end < _priceMax) {
+      final prices = p.variantPrices ?? const <double>[];
+      final minP = p.minPrice ?? (prices.isNotEmpty ? prices.reduce((a, b) => a < b ? a : b) : p.price);
+      final maxP = p.maxPrice ?? (prices.isNotEmpty ? prices.reduce((a, b) => a > b ? a : b) : p.price);
+      if (maxP < _priceRange.start || minP > _priceRange.end) {
+        return false;
+      }
+    }
+
+    if (_volume != null) {
+      final variants = p.variants;
+      if (variants.isNotEmpty) {
+        final hasMatchedVolume = variants.any((v) => v.volumeMl == _volume);
+        if (!hasMatchedVolume) return false;
+      }
+    }
+
+    return true;
+  }
+
+  void _applySort(List<Product> list) {
+    switch (_sort) {
+      case _SortValue.featured:
+      case _SortValue.newest:
+        break;
+      case _SortValue.oldest:
+        final reversed = list.reversed.toList();
+        list
+          ..clear()
+          ..addAll(reversed);
+        break;
+      case _SortValue.priceAsc:
+        list.sort(
+          (a, b) => _priceForSort(a, descending: false).compareTo(
+            _priceForSort(b, descending: false),
+          ),
+        );
+        break;
+      case _SortValue.priceDesc:
+        list.sort(
+          (a, b) => _priceForSort(b, descending: true).compareTo(
+            _priceForSort(a, descending: true),
+          ),
+        );
+        break;
+      case _SortValue.nameAsc:
+        list.sort((a, b) => a.name.compareTo(b.name));
+        break;
+      case _SortValue.nameDesc:
+        list.sort((a, b) => b.name.compareTo(a.name));
+        break;
+    }
+  }
+
+  double _priceForSort(Product product, {required bool descending}) {
+    if (descending) {
+      return product.maxPrice ?? product.price;
+    }
+    return product.minPrice ?? product.price;
   }
 
   // ========================================================================
@@ -326,7 +407,9 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final title = _isSourceMode
+    final title = _isCampaignMode
+        ? 'Danh sách nước hoa — ${widget.sourceLabel ?? 'Chiến dịch'}'
+        : _isSourceMode
         ? 'Danh sách nước hoa — ${widget.sourceLabel ?? _sourceLabels[widget.source] ?? ''}'
         : widget.categoryName != null
         ? 'Danh sách nước hoa — ${_categoryLabel(widget.categoryName)}'

@@ -17,8 +17,8 @@ const _releaseSendTimeout = Duration(seconds: 12);
 const _releaseReceiveTimeout = Duration(seconds: 12);
 
 const _defaultProdApiBaseUrl = 'https://backend-sep490.vqnofficial.win';
-const _defaultLocalApiBaseUrl = 'https://localhost:7011';
-const _defaultAndroidEmulatorApiBaseUrl = 'https://10.0.2.2:7011';
+const _defaultLocalApiBaseUrl = 'https://backend-sep490.vqnofficial.win';
+const _defaultAndroidEmulatorApiBaseUrl = 'https://backend-sep490.vqnofficial.win';
 
 void _configureDioPolicies(Dio dio, {required bool isRelease}) {
   final connectTimeout = isRelease ? _releaseConnectTimeout : _debugConnectTimeout;

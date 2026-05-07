@@ -29,5 +29,18 @@ abstract class ProductRepository {
     int pageSize = 12,
   });
 
+  Future<PagedResult<Product>> getCampaignProductsPaged({
+    required String campaignId,
+    int pageNumber = 1,
+    int pageSize = 12,
+    int? brandId,
+    int? categoryId,
+    int? volume,
+    num? fromPrice,
+    num? toPrice,
+    String? sortBy,
+    bool? isDescending,
+  });
+
   Future<List<String>> getCampaignProductIds(String campaignId);
 }
