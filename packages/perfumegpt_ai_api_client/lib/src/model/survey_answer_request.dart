@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'survey_answer_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,52 +17,28 @@ part 'survey_answer_request.g.dart';
 )
 class SurveyAnswerRequest {
   /// Returns a new [SurveyAnswerRequest] instance.
-  SurveyAnswerRequest({
+  SurveyAnswerRequest({required this.answer, this.queryFragment});
 
-    required  this.answer,
-
-     this.queryFragment,
-  });
-
-      /// Nội dung câu trả lời
-  @JsonKey(
-    
-    name: r'answer',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Nội dung câu trả lời
+  @JsonKey(name: r'answer', required: true, includeIfNull: false)
   final String answer;
 
-
-
-      /// Query fragment cho survey v4
-  @JsonKey(
-    
-    name: r'queryFragment',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Query fragment cho survey v4
+  @JsonKey(name: r'queryFragment', required: false, includeIfNull: false)
   final Object? queryFragment;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SurveyAnswerRequest &&
+          other.answer == answer &&
+          other.queryFragment == queryFragment;
 
+  @override
+  int get hashCode => answer.hashCode + queryFragment.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is SurveyAnswerRequest &&
-      other.answer == answer &&
-      other.queryFragment == queryFragment;
-
-    @override
-    int get hashCode =>
-        answer.hashCode +
-        queryFragment.hashCode;
-
-  factory SurveyAnswerRequest.fromJson(Map<String, dynamic> json) => _$SurveyAnswerRequestFromJson(json);
+  factory SurveyAnswerRequest.fromJson(Map<String, dynamic> json) =>
+      _$SurveyAnswerRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$SurveyAnswerRequestToJson(this);
 
@@ -71,6 +46,4 @@ class SurveyAnswerRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

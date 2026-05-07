@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for NotificationListItemResponse
 void main() {
-  final NotificationListItemResponse? instance = /* NotificationListItemResponse(...) */ null;
+  final NotificationListItemResponse?
+  instance = /* NotificationListItemResponse(...) */ null;
   // TODO add properties to the entity
 
   group(NotificationListItemResponse, () {
@@ -61,6 +62,5 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
-
   });
 }

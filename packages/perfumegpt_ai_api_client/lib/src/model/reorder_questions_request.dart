@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'reorder_questions_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,35 +18,22 @@ part 'reorder_questions_request.g.dart';
 )
 class ReorderQuestionsRequest {
   /// Returns a new [ReorderQuestionsRequest] instance.
-  ReorderQuestionsRequest({
+  ReorderQuestionsRequest({required this.orders});
 
-    required  this.orders,
-  });
-
-      /// Danh sách thứ tự câu hỏi
-  @JsonKey(
-    
-    name: r'orders',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Danh sách thứ tự câu hỏi
+  @JsonKey(name: r'orders', required: true, includeIfNull: false)
   final List<ReorderQuestionItem> orders;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReorderQuestionsRequest && other.orders == orders;
 
+  @override
+  int get hashCode => orders.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ReorderQuestionsRequest &&
-      other.orders == orders;
-
-    @override
-    int get hashCode =>
-        orders.hashCode;
-
-  factory ReorderQuestionsRequest.fromJson(Map<String, dynamic> json) => _$ReorderQuestionsRequestFromJson(json);
+  factory ReorderQuestionsRequest.fromJson(Map<String, dynamic> json) =>
+      _$ReorderQuestionsRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReorderQuestionsRequestToJson(this);
 
@@ -55,6 +41,4 @@ class ReorderQuestionsRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

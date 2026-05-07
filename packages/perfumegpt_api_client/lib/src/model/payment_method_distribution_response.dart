@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'payment_method_distribution_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,72 +19,43 @@ part 'payment_method_distribution_response.g.dart';
 class PaymentMethodDistributionResponse {
   /// Returns a new [PaymentMethodDistributionResponse] instance.
   PaymentMethodDistributionResponse({
+    this.paymentMethod,
 
-     this.paymentMethod,
+    this.transactionsCount,
 
-     this.transactionsCount,
-
-     this.amount,
+    this.amount,
   });
 
-  @JsonKey(
-    
-    name: r'paymentMethod',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'paymentMethod', required: false, includeIfNull: false)
   final PaymentMethod? paymentMethod;
 
-
-
-  @JsonKey(
-    
-    name: r'transactionsCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'transactionsCount', required: false, includeIfNull: false)
   final int? transactionsCount;
 
-
-
-  @JsonKey(
-    
-    name: r'amount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'amount', required: false, includeIfNull: false)
   final num? amount;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PaymentMethodDistributionResponse &&
+          other.paymentMethod == paymentMethod &&
+          other.transactionsCount == transactionsCount &&
+          other.amount == amount;
 
+  @override
+  int get hashCode =>
+      paymentMethod.hashCode + transactionsCount.hashCode + amount.hashCode;
 
+  factory PaymentMethodDistributionResponse.fromJson(
+    Map<String, dynamic> json,
+  ) => _$PaymentMethodDistributionResponseFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PaymentMethodDistributionResponse &&
-      other.paymentMethod == paymentMethod &&
-      other.transactionsCount == transactionsCount &&
-      other.amount == amount;
-
-    @override
-    int get hashCode =>
-        paymentMethod.hashCode +
-        transactionsCount.hashCode +
-        amount.hashCode;
-
-  factory PaymentMethodDistributionResponse.fromJson(Map<String, dynamic> json) => _$PaymentMethodDistributionResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PaymentMethodDistributionResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$PaymentMethodDistributionResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

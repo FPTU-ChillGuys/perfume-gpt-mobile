@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_card_variant_output_dto.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,81 +18,42 @@ part 'product_card_variant_output_dto.g.dart';
 class ProductCardVariantOutputDto {
   /// Returns a new [ProductCardVariantOutputDto] instance.
   ProductCardVariantOutputDto({
+    required this.id,
 
-    required  this.id,
+    required this.sku,
 
-    required  this.sku,
+    required this.volumeMl,
 
-    required  this.volumeMl,
-
-    required  this.basePrice,
+    required this.basePrice,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: true, includeIfNull: false)
   final String id;
 
-
-
-  @JsonKey(
-    
-    name: r'sku',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'sku', required: true, includeIfNull: false)
   final String sku;
 
-
-
-  @JsonKey(
-    
-    name: r'volumeMl',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'volumeMl', required: true, includeIfNull: false)
   final num volumeMl;
 
-
-
-  @JsonKey(
-    
-    name: r'basePrice',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'basePrice', required: true, includeIfNull: false)
   final num basePrice;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductCardVariantOutputDto &&
+          other.id == id &&
+          other.sku == sku &&
+          other.volumeMl == volumeMl &&
+          other.basePrice == basePrice;
 
+  @override
+  int get hashCode =>
+      id.hashCode + sku.hashCode + volumeMl.hashCode + basePrice.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductCardVariantOutputDto &&
-      other.id == id &&
-      other.sku == sku &&
-      other.volumeMl == volumeMl &&
-      other.basePrice == basePrice;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        sku.hashCode +
-        volumeMl.hashCode +
-        basePrice.hashCode;
-
-  factory ProductCardVariantOutputDto.fromJson(Map<String, dynamic> json) => _$ProductCardVariantOutputDtoFromJson(json);
+  factory ProductCardVariantOutputDto.fromJson(Map<String, dynamic> json) =>
+      _$ProductCardVariantOutputDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductCardVariantOutputDtoToJson(this);
 
@@ -101,6 +61,4 @@ class ProductCardVariantOutputDto {
   String toString() {
     return toJson().toString();
   }
-
 }
-

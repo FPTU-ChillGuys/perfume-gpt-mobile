@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for InventoryLedgerItemResponse
 void main() {
-  final InventoryLedgerItemResponse? instance = /* InventoryLedgerItemResponse(...) */ null;
+  final InventoryLedgerItemResponse?
+  instance = /* InventoryLedgerItemResponse(...) */ null;
   // TODO add properties to the entity
 
   group(InventoryLedgerItemResponse, () {
@@ -56,6 +57,5 @@ void main() {
     test('to test the property `actorId`', () async {
       // TODO
     });
-
   });
 }

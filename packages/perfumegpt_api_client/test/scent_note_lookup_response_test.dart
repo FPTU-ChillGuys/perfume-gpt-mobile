@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ScentNoteLookupResponse
 void main() {
-  final ScentNoteLookupResponse? instance = /* ScentNoteLookupResponse(...) */ null;
+  final ScentNoteLookupResponse? instance = /* ScentNoteLookupResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(ScentNoteLookupResponse, () {
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `name`', () async {
       // TODO
     });
-
   });
 }

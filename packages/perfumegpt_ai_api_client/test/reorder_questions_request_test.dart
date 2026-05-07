@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ReorderQuestionsRequest
 void main() {
-  final ReorderQuestionsRequest? instance = /* ReorderQuestionsRequest(...) */ null;
+  final ReorderQuestionsRequest? instance = /* ReorderQuestionsRequest(...) */
+      null;
   // TODO add properties to the entity
 
   group(ReorderQuestionsRequest, () {
@@ -12,6 +13,5 @@ void main() {
     test('to test the property `orders`', () async {
       // TODO
     });
-
   });
 }

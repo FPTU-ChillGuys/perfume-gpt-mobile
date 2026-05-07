@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_import_detail_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,67 +18,38 @@ part 'create_import_detail_request.g.dart';
 class CreateImportDetailRequest {
   /// Returns a new [CreateImportDetailRequest] instance.
   CreateImportDetailRequest({
+    required this.variantId,
 
-    required  this.variantId,
+    this.expectedQuantity,
 
-     this.expectedQuantity,
-
-     this.unitPrice,
+    this.unitPrice,
   });
 
-  @JsonKey(
-    
-    name: r'variantId',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variantId', required: true, includeIfNull: false)
   final String variantId;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'expectedQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'expectedQuantity', required: false, includeIfNull: false)
   final int? expectedQuantity;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'unitPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
   final num? unitPrice;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateImportDetailRequest &&
+          other.variantId == variantId &&
+          other.expectedQuantity == expectedQuantity &&
+          other.unitPrice == unitPrice;
 
+  @override
+  int get hashCode =>
+      variantId.hashCode + expectedQuantity.hashCode + unitPrice.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateImportDetailRequest &&
-      other.variantId == variantId &&
-      other.expectedQuantity == expectedQuantity &&
-      other.unitPrice == unitPrice;
-
-    @override
-    int get hashCode =>
-        variantId.hashCode +
-        expectedQuantity.hashCode +
-        unitPrice.hashCode;
-
-  factory CreateImportDetailRequest.fromJson(Map<String, dynamic> json) => _$CreateImportDetailRequestFromJson(json);
+  factory CreateImportDetailRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateImportDetailRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateImportDetailRequestToJson(this);
 
@@ -87,6 +57,4 @@ class CreateImportDetailRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

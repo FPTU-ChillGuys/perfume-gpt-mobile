@@ -55,7 +55,7 @@ final class ReturnRequestRepositoryProvider
 }
 
 String _$returnRequestRepositoryHash() =>
-    r'0cd47c8f2ac9e2289bb4c3e8901ba7aeeca3e78d';
+    r'4765c39f25a3531ca66a7407c6b52d18d82f5c91';
 
 @ProviderFor(myReturnRequests)
 final myReturnRequestsProvider = MyReturnRequestsFamily._();

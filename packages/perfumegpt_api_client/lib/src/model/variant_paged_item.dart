@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'variant_paged_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,241 +21,115 @@ part 'variant_paged_item.g.dart';
 class VariantPagedItem {
   /// Returns a new [VariantPagedItem] instance.
   VariantPagedItem({
+    this.id,
 
-     this.id,
+    this.productId,
 
-     this.productId,
+    this.primaryImageUrl,
 
-     this.primaryImageUrl,
+    required this.barcode,
 
-    required  this.barcode,
+    required this.sku,
 
-    required  this.sku,
+    this.volumeMl,
 
-     this.volumeMl,
+    this.concentrationId,
 
-     this.concentrationId,
+    required this.concentrationName,
 
-    required  this.concentrationName,
+    this.type,
 
-     this.type,
+    this.basePrice,
 
-     this.basePrice,
+    this.retailPrice,
 
-     this.retailPrice,
+    this.status,
 
-     this.status,
+    this.stockQuantity,
 
-     this.stockQuantity,
-
-     this.attributes,
+    this.attributes,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'productId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'productId', required: false, includeIfNull: false)
   final String? productId;
 
-
-
-  @JsonKey(
-    
-    name: r'primaryImageUrl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'primaryImageUrl', required: false, includeIfNull: false)
   final String? primaryImageUrl;
 
-
-
-  @JsonKey(
-    
-    name: r'barcode',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'barcode', required: true, includeIfNull: false)
   final String barcode;
 
-
-
-  @JsonKey(
-    
-    name: r'sku',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'sku', required: true, includeIfNull: false)
   final String sku;
 
-
-
-  @JsonKey(
-    
-    name: r'volumeMl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'volumeMl', required: false, includeIfNull: false)
   final int? volumeMl;
 
-
-
-  @JsonKey(
-    
-    name: r'concentrationId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'concentrationId', required: false, includeIfNull: false)
   final int? concentrationId;
 
-
-
-  @JsonKey(
-    
-    name: r'concentrationName',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'concentrationName', required: true, includeIfNull: false)
   final String concentrationName;
 
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'type', required: false, includeIfNull: false)
   final VariantType? type;
 
-
-
-  @JsonKey(
-    
-    name: r'basePrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'basePrice', required: false, includeIfNull: false)
   final num? basePrice;
 
-
-
-  @JsonKey(
-    
-    name: r'retailPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'retailPrice', required: false, includeIfNull: false)
   final num? retailPrice;
 
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final VariantStatus? status;
 
-
-
-  @JsonKey(
-    
-    name: r'stockQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'stockQuantity', required: false, includeIfNull: false)
   final int? stockQuantity;
 
-
-
-  @JsonKey(
-    
-    name: r'attributes',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'attributes', required: false, includeIfNull: false)
   final List<ProductAttributeResponse>? attributes;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VariantPagedItem &&
+          other.id == id &&
+          other.productId == productId &&
+          other.primaryImageUrl == primaryImageUrl &&
+          other.barcode == barcode &&
+          other.sku == sku &&
+          other.volumeMl == volumeMl &&
+          other.concentrationId == concentrationId &&
+          other.concentrationName == concentrationName &&
+          other.type == type &&
+          other.basePrice == basePrice &&
+          other.retailPrice == retailPrice &&
+          other.status == status &&
+          other.stockQuantity == stockQuantity &&
+          other.attributes == attributes;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      productId.hashCode +
+      (primaryImageUrl == null ? 0 : primaryImageUrl.hashCode) +
+      barcode.hashCode +
+      sku.hashCode +
+      volumeMl.hashCode +
+      concentrationId.hashCode +
+      concentrationName.hashCode +
+      type.hashCode +
+      basePrice.hashCode +
+      (retailPrice == null ? 0 : retailPrice.hashCode) +
+      status.hashCode +
+      stockQuantity.hashCode +
+      (attributes == null ? 0 : attributes.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is VariantPagedItem &&
-      other.id == id &&
-      other.productId == productId &&
-      other.primaryImageUrl == primaryImageUrl &&
-      other.barcode == barcode &&
-      other.sku == sku &&
-      other.volumeMl == volumeMl &&
-      other.concentrationId == concentrationId &&
-      other.concentrationName == concentrationName &&
-      other.type == type &&
-      other.basePrice == basePrice &&
-      other.retailPrice == retailPrice &&
-      other.status == status &&
-      other.stockQuantity == stockQuantity &&
-      other.attributes == attributes;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        productId.hashCode +
-        (primaryImageUrl == null ? 0 : primaryImageUrl.hashCode) +
-        barcode.hashCode +
-        sku.hashCode +
-        volumeMl.hashCode +
-        concentrationId.hashCode +
-        concentrationName.hashCode +
-        type.hashCode +
-        basePrice.hashCode +
-        (retailPrice == null ? 0 : retailPrice.hashCode) +
-        status.hashCode +
-        stockQuantity.hashCode +
-        (attributes == null ? 0 : attributes.hashCode);
-
-  factory VariantPagedItem.fromJson(Map<String, dynamic> json) => _$VariantPagedItemFromJson(json);
+  factory VariantPagedItem.fromJson(Map<String, dynamic> json) =>
+      _$VariantPagedItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$VariantPagedItemToJson(this);
 
@@ -264,6 +137,4 @@ class VariantPagedItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

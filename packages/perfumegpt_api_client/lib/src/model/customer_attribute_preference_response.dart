@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'customer_attribute_preference_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,56 +18,36 @@ part 'customer_attribute_preference_response.g.dart';
 class CustomerAttributePreferenceResponse {
   /// Returns a new [CustomerAttributePreferenceResponse] instance.
   CustomerAttributePreferenceResponse({
+    this.attributeValueId,
 
-     this.attributeValueId,
-
-    required  this.attributeValueName,
+    required this.attributeValueName,
   });
 
-  @JsonKey(
-    
-    name: r'attributeValueId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'attributeValueId', required: false, includeIfNull: false)
   final int? attributeValueId;
 
-
-
-  @JsonKey(
-    
-    name: r'attributeValueName',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'attributeValueName', required: true, includeIfNull: false)
   final String attributeValueName;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CustomerAttributePreferenceResponse &&
+          other.attributeValueId == attributeValueId &&
+          other.attributeValueName == attributeValueName;
 
+  @override
+  int get hashCode => attributeValueId.hashCode + attributeValueName.hashCode;
 
+  factory CustomerAttributePreferenceResponse.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CustomerAttributePreferenceResponseFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CustomerAttributePreferenceResponse &&
-      other.attributeValueId == attributeValueId &&
-      other.attributeValueName == attributeValueName;
-
-    @override
-    int get hashCode =>
-        attributeValueId.hashCode +
-        attributeValueName.hashCode;
-
-  factory CustomerAttributePreferenceResponse.fromJson(Map<String, dynamic> json) => _$CustomerAttributePreferenceResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CustomerAttributePreferenceResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$CustomerAttributePreferenceResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

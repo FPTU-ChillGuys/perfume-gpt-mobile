@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CashFlowLedgerItemResponse
 void main() {
-  final CashFlowLedgerItemResponse? instance = /* CashFlowLedgerItemResponse(...) */ null;
+  final CashFlowLedgerItemResponse?
+  instance = /* CashFlowLedgerItemResponse(...) */ null;
   // TODO add properties to the entity
 
   group(CashFlowLedgerItemResponse, () {
@@ -46,6 +47,5 @@ void main() {
     test('to test the property `description`', () async {
       // TODO
     });
-
   });
 }

@@ -28,7 +28,10 @@ void main() {
     });
 
     test('notifier builds', () {
-      expect(container.read(importVerificationProvider), isA<ImportVerificationState>());
+      expect(
+        container.read(importVerificationProvider),
+        isA<ImportVerificationState>(),
+      );
     });
   });
 }

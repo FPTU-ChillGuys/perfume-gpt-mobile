@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
-
 /// tests for InventoryApi
 void main() {
   final instance = PerfumegptAiApiClient().getInventoryApi();
@@ -112,9 +111,12 @@ void main() {
     // Lấy thông tin variant kèm dữ liệu bán hàng theo ngày từ 2 tháng gần nhất, sử dụng cho tool dự đoán tái cấp hàng
     //
     //Future<InventoryControllerGetProductSalesAnalyticsForRestock200Response> inventoryControllerGetProductSalesAnalyticsForRestock() async
-    test('test inventoryControllerGetProductSalesAnalyticsForRestock', () async {
-      // TODO
-    });
+    test(
+      'test inventoryControllerGetProductSalesAnalyticsForRestock',
+      () async {
+        // TODO
+      },
+    );
 
     // Kiểm tra trạng thái hoàn thành của job phân tích nhu cầu nhập hàng (restock)
     //
@@ -129,6 +131,5 @@ void main() {
     test('test inventoryControllerGetStructuredAIInventoryReport', () async {
       // TODO
     });
-
   });
 }

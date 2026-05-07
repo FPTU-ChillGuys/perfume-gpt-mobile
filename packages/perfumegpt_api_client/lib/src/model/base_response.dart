@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,82 +18,38 @@ part 'base_response.g.dart';
 )
 class BaseResponse {
   /// Returns a new [BaseResponse] instance.
-  BaseResponse({
+  BaseResponse({this.success, this.message, this.errors, this.errorType});
 
-     this.success,
-
-     this.message,
-
-     this.errors,
-
-     this.errorType,
-  });
-
-  @JsonKey(
-    
-    name: r'success',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'success', required: false, includeIfNull: false)
   final bool? success;
 
-
-
-  @JsonKey(
-    
-    name: r'message',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'message', required: false, includeIfNull: false)
   final String? message;
 
-
-
-  @JsonKey(
-    
-    name: r'errors',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'errors', required: false, includeIfNull: false)
   final List<String>? errors;
 
-
-
-  @JsonKey(
-    
-    name: r'errorType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'errorType', required: false, includeIfNull: false)
   final ResponseErrorType? errorType;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BaseResponse &&
+          other.success == success &&
+          other.message == message &&
+          other.errors == errors &&
+          other.errorType == errorType;
 
+  @override
+  int get hashCode =>
+      success.hashCode +
+      message.hashCode +
+      (errors == null ? 0 : errors.hashCode) +
+      (errorType == null ? 0 : errorType.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BaseResponse &&
-      other.success == success &&
-      other.message == message &&
-      other.errors == errors &&
-      other.errorType == errorType;
-
-    @override
-    int get hashCode =>
-        success.hashCode +
-        message.hashCode +
-        (errors == null ? 0 : errors.hashCode) +
-        (errorType == null ? 0 : errorType.hashCode);
-
-  factory BaseResponse.fromJson(Map<String, dynamic> json) => _$BaseResponseFromJson(json);
+  factory BaseResponse.fromJson(Map<String, dynamic> json) =>
+      _$BaseResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$BaseResponseToJson(this);
 
@@ -102,6 +57,4 @@ class BaseResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

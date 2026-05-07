@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'year_normalizer_output.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,52 +17,28 @@ part 'year_normalizer_output.g.dart';
 )
 class YearNormalizerOutput {
   /// Returns a new [YearNormalizerOutput] instance.
-  YearNormalizerOutput({
+  YearNormalizerOutput({this.year, this.operator_});
 
-     this.year,
-
-     this.operator_,
-  });
-
-      /// Năm ra mắt
-  @JsonKey(
-    
-    name: r'year',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Năm ra mắt
+  @JsonKey(name: r'year', required: false, includeIfNull: false)
   final num? year;
 
-
-
-      /// Toán tử so sánh
-  @JsonKey(
-    
-    name: r'operator',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Toán tử so sánh
+  @JsonKey(name: r'operator', required: false, includeIfNull: false)
   final YearNormalizerOutputOperator_Enum? operator_;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is YearNormalizerOutput &&
+          other.year == year &&
+          other.operator_ == operator_;
 
+  @override
+  int get hashCode => year.hashCode + operator_.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is YearNormalizerOutput &&
-      other.year == year &&
-      other.operator_ == operator_;
-
-    @override
-    int get hashCode =>
-        year.hashCode +
-        operator_.hashCode;
-
-  factory YearNormalizerOutput.fromJson(Map<String, dynamic> json) => _$YearNormalizerOutputFromJson(json);
+  factory YearNormalizerOutput.fromJson(Map<String, dynamic> json) =>
+      _$YearNormalizerOutputFromJson(json);
 
   Map<String, dynamic> toJson() => _$YearNormalizerOutputToJson(this);
 
@@ -71,33 +46,34 @@ class YearNormalizerOutput {
   String toString() {
     return toJson().toString();
   }
-
 }
 
 /// Toán tử so sánh
 enum YearNormalizerOutputOperator_Enum {
-    /// Toán tử so sánh
-@JsonValue(r'eq')
-eq(r'eq'),
-    /// Toán tử so sánh
-@JsonValue(r'gte')
-gte(r'gte'),
-    /// Toán tử so sánh
-@JsonValue(r'lte')
-lte(r'lte'),
-    /// Toán tử so sánh
-@JsonValue(r'newer')
-newer(r'newer'),
-    /// Toán tử so sánh
-@JsonValue(r'older')
-older(r'older');
+  /// Toán tử so sánh
+  @JsonValue(r'eq')
+  eq(r'eq'),
 
-const YearNormalizerOutputOperator_Enum(this.value);
+  /// Toán tử so sánh
+  @JsonValue(r'gte')
+  gte(r'gte'),
 
-final String value;
+  /// Toán tử so sánh
+  @JsonValue(r'lte')
+  lte(r'lte'),
 
-@override
-String toString() => value;
+  /// Toán tử so sánh
+  @JsonValue(r'newer')
+  newer(r'newer'),
+
+  /// Toán tử so sánh
+  @JsonValue(r'older')
+  older(r'older');
+
+  const YearNormalizerOutputOperator_Enum(this.value);
+
+  final String value;
+
+  @override
+  String toString() => value;
 }
-
-

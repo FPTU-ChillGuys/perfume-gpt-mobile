@@ -6,25 +6,18 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot500_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_all_surveys403_response.dart';
-
 class HybridSearchEmbeddingsApi {
-
   final Dio _dio;
 
   const HybridSearchEmbeddingsApi(this._dio);
 
   /// Xóa embedding của 1 product
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
+  /// * [productId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -34,7 +27,7 @@ class HybridSearchEmbeddingsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> rebuildEmbeddingsControllerDeleteEmbedding({ 
+  Future<Response<void>> rebuildEmbeddingsControllerDeleteEmbedding({
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -43,19 +36,18 @@ class HybridSearchEmbeddingsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/hybrid-search/embeddings/{productId}'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/hybrid-search/embeddings/{productId}'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -74,7 +66,7 @@ class HybridSearchEmbeddingsApi {
   }
 
   /// Get stats về embeddings
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -86,7 +78,7 @@ class HybridSearchEmbeddingsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> rebuildEmbeddingsControllerGetStats({ 
+  Future<Response<void>> rebuildEmbeddingsControllerGetStats({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -97,16 +89,10 @@ class HybridSearchEmbeddingsApi {
     final _path = r'/hybrid-search/embeddings/stats';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -125,7 +111,7 @@ class HybridSearchEmbeddingsApi {
   }
 
   /// Rebuild tất cả embeddings
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -137,7 +123,7 @@ class HybridSearchEmbeddingsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> rebuildEmbeddingsControllerRebuildAll({ 
+  Future<Response<void>> rebuildEmbeddingsControllerRebuildAll({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -148,16 +134,10 @@ class HybridSearchEmbeddingsApi {
     final _path = r'/hybrid-search/embeddings/rebuild';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -176,10 +156,10 @@ class HybridSearchEmbeddingsApi {
   }
 
   /// Rebuild embedding cho 1 product cụ thể
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productId] 
+  /// * [productId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -189,7 +169,7 @@ class HybridSearchEmbeddingsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> rebuildEmbeddingsControllerRebuildOne({ 
+  Future<Response<void>> rebuildEmbeddingsControllerRebuildOne({
     required String productId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -198,19 +178,18 @@ class HybridSearchEmbeddingsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/hybrid-search/embeddings/rebuild/{productId}'.replaceAll('{' r'productId' '}', productId.toString());
+    final _path = r'/hybrid-search/embeddings/rebuild/{productId}'.replaceAll(
+      '{'
+      r'productId'
+      '}',
+      productId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -227,5 +206,4 @@ class HybridSearchEmbeddingsApi {
 
     return _response;
   }
-
 }

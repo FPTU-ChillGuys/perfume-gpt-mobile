@@ -16,21 +16,16 @@ import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_inve
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_by_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_product_sales_analytics_for_restock200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/inventory_controller_get_structured_ai_inventory_report200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_reorder_questions200_response.dart';
 
 class InventoryApi {
-
   final Dio _dio;
 
   const InventoryApi(this._dio);
 
   /// Convert markdown report theo ID sang PDF (không dùng AI)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [id] - ID của inventory log cần convert
@@ -43,7 +38,7 @@ class InventoryApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> inventoryControllerConvertInventoryLogToPdf({ 
+  Future<Response<void>> inventoryControllerConvertInventoryLogToPdf({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -52,19 +47,18 @@ class InventoryApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/inventory/report/logs/{id}/pdf'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/inventory/report/logs/{id}/pdf'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -83,7 +77,7 @@ class InventoryApi {
   }
 
   /// Convert log restock theo ID sang PDF (không dùng AI)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [id] - ID của restock log cần convert
@@ -96,7 +90,7 @@ class InventoryApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> inventoryControllerConvertRestockLogToPdf({ 
+  Future<Response<void>> inventoryControllerConvertRestockLogToPdf({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -105,19 +99,18 @@ class InventoryApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/inventory/restock/logs/{id}/pdf'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/inventory/restock/logs/{id}/pdf'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -136,7 +129,7 @@ class InventoryApi {
   }
 
   /// Khởi tạo job để tạo báo cáo tồn kho bằng AI
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [forceRefresh] - True để bỏ qua job đang cache và tạo job mới ngay lập tức
@@ -149,7 +142,8 @@ class InventoryApi {
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> inventoryControllerCreateInventoryReportJob({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  inventoryControllerCreateInventoryReportJob({
     bool? forceRefresh,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -161,16 +155,10 @@ class InventoryApi {
     final _path = r'/inventory/report/ai/job';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -193,9 +181,17 @@ class InventoryApi {
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -219,7 +215,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Khởi tạo job để phân tích nhu cầu nhập hàng (restock)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [forceRefresh] - True để bỏ qua job đang cache và tạo job mới ngay lập tức
@@ -232,7 +228,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> inventoryControllerCreateRestockReportJob({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  inventoryControllerCreateRestockReportJob({
     bool? forceRefresh,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -244,16 +241,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     final _path = r'/inventory/restock/job';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -276,9 +267,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -302,7 +301,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Tạo báo cáo tồn kho bằng AI
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -314,7 +313,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> inventoryControllerGetAIInventoryReport({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  inventoryControllerGetAIInventoryReport({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -325,16 +325,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     final _path = r'/inventory/report/ai';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -352,9 +346,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -378,7 +380,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Phân tích nhu cầu nhập hàng dựa trên xu hướng (AI)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -390,7 +392,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerReorderQuestions200Response>> inventoryControllerGetAIRestockingNeeds({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>>
+  inventoryControllerGetAIRestockingNeeds({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -401,16 +404,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     final _path = r'/inventory/restock/ai';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -428,9 +425,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerReorderQuestions200Response,
+              SurveyControllerReorderQuestions200Response
+            >(
+              rawData,
+              'SurveyControllerReorderQuestions200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -454,7 +459,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   }
 
   /// Lấy danh sách batch
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -484,7 +489,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   ///
   /// Returns a [Future] containing a [Response] with a [InventoryControllerGetBatch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<InventoryControllerGetBatch200Response>> inventoryControllerGetBatch({ 
+  Future<Response<InventoryControllerGetBatch200Response>>
+  inventoryControllerGetBatch({
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -513,16 +519,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     final _path = r'/inventory/batches';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -562,9 +562,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     InventoryControllerGetBatch200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<InventoryControllerGetBatch200Response, InventoryControllerGetBatch200Response>(rawData, 'InventoryControllerGetBatch200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              InventoryControllerGetBatch200Response,
+              InventoryControllerGetBatch200Response
+            >(
+              rawData,
+              'InventoryControllerGetBatch200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -588,10 +596,10 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetBatch
   }
 
   /// Lấy chi tiết báo cáo tồn kho theo ID
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -601,7 +609,8 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetBatch
   ///
   /// Returns a [Future] containing a [Response] with a [InventoryControllerGetInventoryLogById200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<InventoryControllerGetInventoryLogById200Response>> inventoryControllerGetInventoryLogById({ 
+  Future<Response<InventoryControllerGetInventoryLogById200Response>>
+  inventoryControllerGetInventoryLogById({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -610,19 +619,18 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetBatch
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/inventory/report/logs/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/inventory/report/logs/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -640,9 +648,17 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetBatch
     InventoryControllerGetInventoryLogById200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<InventoryControllerGetInventoryLogById200Response, InventoryControllerGetInventoryLogById200Response>(rawData, 'InventoryControllerGetInventoryLogById200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              InventoryControllerGetInventoryLogById200Response,
+              InventoryControllerGetInventoryLogById200Response
+            >(
+              rawData,
+              'InventoryControllerGetInventoryLogById200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -666,7 +682,7 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
   }
 
   /// Lấy báo cáo tồn kho
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -678,7 +694,8 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> inventoryControllerGetInventoryReport({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  inventoryControllerGetInventoryReport({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -689,16 +706,10 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
     final _path = r'/inventory/report';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -716,9 +727,17 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -742,7 +761,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Kiểm tra trạng thái hoàn thành của job báo cáo tồn kho
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [jobId] - ID của job
@@ -755,7 +774,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerReorderQuestions200Response>> inventoryControllerGetInventoryReportJobResult({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>>
+  inventoryControllerGetInventoryReportJobResult({
     required String jobId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -764,19 +784,18 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/inventory/report/ai/job/result/{jobId}'.replaceAll('{' r'jobId' '}', jobId.toString());
+    final _path = r'/inventory/report/ai/job/result/{jobId}'.replaceAll(
+      '{'
+      r'jobId'
+      '}',
+      jobId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -794,9 +813,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerReorderQuestions200Response,
+              SurveyControllerReorderQuestions200Response
+            >(
+              rawData,
+              'SurveyControllerReorderQuestions200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -820,7 +847,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   }
 
   /// Lấy lịch sử báo cáo tồn kho tổng quan
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -832,7 +859,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   ///
   /// Returns a [Future] containing a [Response] with a [InventoryControllerGetInventoryReportLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<InventoryControllerGetInventoryReportLogs200Response>> inventoryControllerGetInventoryReportLogs({ 
+  Future<Response<InventoryControllerGetInventoryReportLogs200Response>>
+  inventoryControllerGetInventoryReportLogs({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -843,16 +871,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     final _path = r'/inventory/report/logs';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -870,9 +892,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     InventoryControllerGetInventoryReportLogs200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<InventoryControllerGetInventoryReportLogs200Response, InventoryControllerGetInventoryReportLogs200Response>(rawData, 'InventoryControllerGetInventoryReportLogs200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              InventoryControllerGetInventoryReportLogs200Response,
+              InventoryControllerGetInventoryReportLogs200Response
+            >(
+              rawData,
+              'InventoryControllerGetInventoryReportLogs200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -896,7 +926,7 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
   }
 
   /// Lấy lịch sử phân tích nhu cầu nhập hàng (restock)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -908,7 +938,8 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
   ///
   /// Returns a [Future] containing a [Response] with a [InventoryControllerGetInventoryReportLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<InventoryControllerGetInventoryReportLogs200Response>> inventoryControllerGetInventoryRestockLogs({ 
+  Future<Response<InventoryControllerGetInventoryReportLogs200Response>>
+  inventoryControllerGetInventoryRestockLogs({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -919,16 +950,10 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
     final _path = r'/inventory/restock/logs';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -946,9 +971,17 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
     InventoryControllerGetInventoryReportLogs200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<InventoryControllerGetInventoryReportLogs200Response, InventoryControllerGetInventoryReportLogs200Response>(rawData, 'InventoryControllerGetInventoryReportLogs200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              InventoryControllerGetInventoryReportLogs200Response,
+              InventoryControllerGetInventoryReportLogs200Response
+            >(
+              rawData,
+              'InventoryControllerGetInventoryReportLogs200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -972,7 +1005,7 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
   }
 
   /// Lấy thông tin tồn kho
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -991,7 +1024,8 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
   ///
   /// Returns a [Future] containing a [Response] with a [InventoryControllerGetInventoryStock200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<InventoryControllerGetInventoryStock200Response>> inventoryControllerGetInventoryStock({ 
+  Future<Response<InventoryControllerGetInventoryStock200Response>>
+  inventoryControllerGetInventoryStock({
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -1009,16 +1043,10 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
     final _path = r'/inventory/stock';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -1047,9 +1075,17 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
     InventoryControllerGetInventoryStock200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<InventoryControllerGetInventoryStock200Response, InventoryControllerGetInventoryStock200Response>(rawData, 'InventoryControllerGetInventoryStock200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              InventoryControllerGetInventoryStock200Response,
+              InventoryControllerGetInventoryStock200Response
+            >(
+              rawData,
+              'InventoryControllerGetInventoryStock200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1086,7 +1122,8 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
   ///
   /// Returns a [Future] containing a [Response] with a [InventoryControllerGetProductSalesAnalyticsById200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<InventoryControllerGetProductSalesAnalyticsById200Response>> inventoryControllerGetProductSalesAnalyticsById({ 
+  Future<Response<InventoryControllerGetProductSalesAnalyticsById200Response>>
+  inventoryControllerGetProductSalesAnalyticsById({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1095,19 +1132,18 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/inventory/restock/sales-analytics/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/inventory/restock/sales-analytics/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -1125,9 +1161,17 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetInven
     InventoryControllerGetProductSalesAnalyticsById200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<InventoryControllerGetProductSalesAnalyticsById200Response, InventoryControllerGetProductSalesAnalyticsById200Response>(rawData, 'InventoryControllerGetProductSalesAnalyticsById200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              InventoryControllerGetProductSalesAnalyticsById200Response,
+              InventoryControllerGetProductSalesAnalyticsById200Response
+            >(
+              rawData,
+              'InventoryControllerGetProductSalesAnalyticsById200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1163,7 +1207,10 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
   ///
   /// Returns a [Future] containing a [Response] with a [InventoryControllerGetProductSalesAnalyticsForRestock200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<InventoryControllerGetProductSalesAnalyticsForRestock200Response>> inventoryControllerGetProductSalesAnalyticsForRestock({ 
+  Future<
+    Response<InventoryControllerGetProductSalesAnalyticsForRestock200Response>
+  >
+  inventoryControllerGetProductSalesAnalyticsForRestock({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1174,16 +1221,10 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
     final _path = r'/inventory/restock/sales-analytics';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -1198,12 +1239,21 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
       onReceiveProgress: onReceiveProgress,
     );
 
-    InventoryControllerGetProductSalesAnalyticsForRestock200Response? _responseData;
+    InventoryControllerGetProductSalesAnalyticsForRestock200Response?
+    _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<InventoryControllerGetProductSalesAnalyticsForRestock200Response, InventoryControllerGetProductSalesAnalyticsForRestock200Response>(rawData, 'InventoryControllerGetProductSalesAnalyticsForRestock200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              InventoryControllerGetProductSalesAnalyticsForRestock200Response,
+              InventoryControllerGetProductSalesAnalyticsForRestock200Response
+            >(
+              rawData,
+              'InventoryControllerGetProductSalesAnalyticsForRestock200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1214,7 +1264,9 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
       );
     }
 
-    return Response<InventoryControllerGetProductSalesAnalyticsForRestock200Response>(
+    return Response<
+      InventoryControllerGetProductSalesAnalyticsForRestock200Response
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1227,7 +1279,7 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
   }
 
   /// Kiểm tra trạng thái hoàn thành của job phân tích nhu cầu nhập hàng (restock)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [jobId] - ID của job
@@ -1240,7 +1292,8 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerReorderQuestions200Response>> inventoryControllerGetRestockJobResult({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>>
+  inventoryControllerGetRestockJobResult({
     required String jobId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1249,19 +1302,18 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/inventory/restock/job/result/{jobId}'.replaceAll('{' r'jobId' '}', jobId.toString());
+    final _path = r'/inventory/restock/job/result/{jobId}'.replaceAll(
+      '{'
+      r'jobId'
+      '}',
+      jobId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -1279,9 +1331,17 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetProdu
     SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerReorderQuestions200Response,
+              SurveyControllerReorderQuestions200Response
+            >(
+              rawData,
+              'SurveyControllerReorderQuestions200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1305,7 +1365,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   }
 
   /// Tạo báo cáo tồn kho AI có cấu trúc
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -1317,7 +1377,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   ///
   /// Returns a [Future] containing a [Response] with a [InventoryControllerGetStructuredAIInventoryReport200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<InventoryControllerGetStructuredAIInventoryReport200Response>> inventoryControllerGetStructuredAIInventoryReport({ 
+  Future<Response<InventoryControllerGetStructuredAIInventoryReport200Response>>
+  inventoryControllerGetStructuredAIInventoryReport({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1328,16 +1389,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     final _path = r'/inventory/report/ai/structured';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -1355,9 +1410,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     InventoryControllerGetStructuredAIInventoryReport200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<InventoryControllerGetStructuredAIInventoryReport200Response, InventoryControllerGetStructuredAIInventoryReport200Response>(rawData, 'InventoryControllerGetStructuredAIInventoryReport200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              InventoryControllerGetStructuredAIInventoryReport200Response,
+              InventoryControllerGetStructuredAIInventoryReport200Response
+            >(
+              rawData,
+              'InventoryControllerGetStructuredAIInventoryReport200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1368,7 +1431,9 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetStruc
       );
     }
 
-    return Response<InventoryControllerGetStructuredAIInventoryReport200Response>(
+    return Response<
+      InventoryControllerGetStructuredAIInventoryReport200Response
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1379,5 +1444,4 @@ _responseData = rawData == null ? null : deserialize<InventoryControllerGetStruc
       extra: _response.extra,
     );
   }
-
 }

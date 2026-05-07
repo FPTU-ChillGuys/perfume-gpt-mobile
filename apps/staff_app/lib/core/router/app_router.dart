@@ -11,6 +11,8 @@ import '../../features/pos/presentation/screens/counter_checkout_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/returns/presentation/screens/return_request_list_screen.dart';
 import '../../features/returns/presentation/screens/return_request_detail_screen.dart';
+import '../../features/ai_consultation/presentation/pages/chat_page.dart';
+import '../../features/ai_consultation/presentation/pages/chat_history_page.dart';
 
 part 'app_router.g.dart';
 
@@ -107,6 +109,20 @@ GoRouter appRouter(Ref ref) {
               ),
             ],
           ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/chat',
+                builder: (context, state) => const ChatPage(),
+                routes: [
+                  GoRoute(
+                    path: 'history',
+                    builder: (context, state) => const ChatHistoryPage(),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     ],
@@ -141,6 +157,10 @@ class ScaffoldWithBottomNavBar extends StatelessWidget {
           NavigationDestination(
             icon: Icon(Icons.assignment_return),
             label: 'Returns',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.chat_bubble_outline_rounded),
+            label: 'AI Chat',
           ),
         ],
       ),

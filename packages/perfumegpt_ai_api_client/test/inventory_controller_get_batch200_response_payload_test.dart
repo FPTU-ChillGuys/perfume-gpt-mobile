@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for InventoryControllerGetBatch200ResponsePayload
 void main() {
-  final InventoryControllerGetBatch200ResponsePayload? instance = /* InventoryControllerGetBatch200ResponsePayload(...) */ null;
+  final InventoryControllerGetBatch200ResponsePayload?
+  instance = /* InventoryControllerGetBatch200ResponsePayload(...) */ null;
   // TODO add properties to the entity
 
   group(InventoryControllerGetBatch200ResponsePayload, () {
@@ -35,6 +36,5 @@ void main() {
     test('to test the property `totalPages`', () async {
       // TODO
     });
-
   });
 }

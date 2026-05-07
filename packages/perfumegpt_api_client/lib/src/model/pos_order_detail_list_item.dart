@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'pos_order_detail_list_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,177 +18,87 @@ part 'pos_order_detail_list_item.g.dart';
 class PosOrderDetailListItem {
   /// Returns a new [PosOrderDetailListItem] instance.
   PosOrderDetailListItem({
+    this.variantId,
 
-     this.variantId,
+    this.batchId,
 
-     this.batchId,
+    this.variantName,
 
-     this.variantName,
+    this.batchCode,
 
-     this.batchCode,
+    this.imageUrl,
 
-     this.imageUrl,
+    this.quantity,
 
-     this.quantity,
+    this.unitPrice,
 
-     this.unitPrice,
+    this.subTotal,
 
-     this.subTotal,
+    this.discount,
 
-     this.discount,
-
-     this.finalTotal,
+    this.finalTotal,
   });
 
-  @JsonKey(
-    
-    name: r'variantId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
   final String? variantId;
 
-
-
-  @JsonKey(
-    
-    name: r'batchId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'batchId', required: false, includeIfNull: false)
   final String? batchId;
 
-
-
-  @JsonKey(
-    
-    name: r'variantName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variantName', required: false, includeIfNull: false)
   final String? variantName;
 
-
-
-  @JsonKey(
-    
-    name: r'batchCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'batchCode', required: false, includeIfNull: false)
   final String? batchCode;
 
-
-
-  @JsonKey(
-    
-    name: r'imageUrl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'imageUrl', required: false, includeIfNull: false)
   final String? imageUrl;
 
-
-
-  @JsonKey(
-    
-    name: r'quantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
   final int? quantity;
 
-
-
-  @JsonKey(
-    
-    name: r'unitPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
   final num? unitPrice;
 
-
-
-  @JsonKey(
-    
-    name: r'subTotal',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'subTotal', required: false, includeIfNull: false)
   final num? subTotal;
 
-
-
-  @JsonKey(
-    
-    name: r'discount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'discount', required: false, includeIfNull: false)
   final num? discount;
 
-
-
-  @JsonKey(
-    
-    name: r'finalTotal',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'finalTotal', required: false, includeIfNull: false)
   final num? finalTotal;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PosOrderDetailListItem &&
+          other.variantId == variantId &&
+          other.batchId == batchId &&
+          other.variantName == variantName &&
+          other.batchCode == batchCode &&
+          other.imageUrl == imageUrl &&
+          other.quantity == quantity &&
+          other.unitPrice == unitPrice &&
+          other.subTotal == subTotal &&
+          other.discount == discount &&
+          other.finalTotal == finalTotal;
 
+  @override
+  int get hashCode =>
+      variantId.hashCode +
+      batchId.hashCode +
+      variantName.hashCode +
+      batchCode.hashCode +
+      imageUrl.hashCode +
+      quantity.hashCode +
+      unitPrice.hashCode +
+      subTotal.hashCode +
+      discount.hashCode +
+      finalTotal.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PosOrderDetailListItem &&
-      other.variantId == variantId &&
-      other.batchId == batchId &&
-      other.variantName == variantName &&
-      other.batchCode == batchCode &&
-      other.imageUrl == imageUrl &&
-      other.quantity == quantity &&
-      other.unitPrice == unitPrice &&
-      other.subTotal == subTotal &&
-      other.discount == discount &&
-      other.finalTotal == finalTotal;
-
-    @override
-    int get hashCode =>
-        variantId.hashCode +
-        batchId.hashCode +
-        variantName.hashCode +
-        batchCode.hashCode +
-        imageUrl.hashCode +
-        quantity.hashCode +
-        unitPrice.hashCode +
-        subTotal.hashCode +
-        discount.hashCode +
-        finalTotal.hashCode;
-
-  factory PosOrderDetailListItem.fromJson(Map<String, dynamic> json) => _$PosOrderDetailListItemFromJson(json);
+  factory PosOrderDetailListItem.fromJson(Map<String, dynamic> json) =>
+      _$PosOrderDetailListItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$PosOrderDetailListItemToJson(this);
 
@@ -197,6 +106,4 @@ class PosOrderDetailListItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

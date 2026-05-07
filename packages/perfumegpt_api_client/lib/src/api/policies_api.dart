@@ -9,21 +9,19 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_system_policy_response.dart';
 import 'package:perfumegpt_api_client/src/model/system_policy_update_request.dart';
 
 class PoliciesApi {
-
   final Dio _dio;
 
   const PoliciesApi(this._dio);
 
   /// apiPoliciesPolicyCodeGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [policyCode] 
+  /// * [policyCode]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -33,7 +31,8 @@ class PoliciesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfSystemPolicyResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfSystemPolicyResponse>> apiPoliciesPolicyCodeGet({ 
+  Future<Response<BaseResponseOfSystemPolicyResponse>>
+  apiPoliciesPolicyCodeGet({
     required String policyCode,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -42,19 +41,18 @@ class PoliciesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/policies/{policyCode}'.replaceAll('{' r'policyCode' '}', policyCode.toString());
+    final _path = r'/api/policies/{policyCode}'.replaceAll(
+      '{'
+      r'policyCode'
+      '}',
+      policyCode.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -72,9 +70,13 @@ class PoliciesApi {
     BaseResponseOfSystemPolicyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfSystemPolicyResponse, BaseResponseOfSystemPolicyResponse>(rawData, 'BaseResponseOfSystemPolicyResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfSystemPolicyResponse,
+              BaseResponseOfSystemPolicyResponse
+            >(rawData, 'BaseResponseOfSystemPolicyResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -98,11 +100,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfSystemPolicyR
   }
 
   /// apiPoliciesPolicyCodePut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [policyCode] 
-  /// * [systemPolicyUpdateRequest] 
+  /// * [policyCode]
+  /// * [systemPolicyUpdateRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -112,7 +114,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfSystemPolicyR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfSystemPolicyResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfSystemPolicyResponse>> apiPoliciesPolicyCodePut({ 
+  Future<Response<BaseResponseOfSystemPolicyResponse>>
+  apiPoliciesPolicyCodePut({
     required String policyCode,
     required SystemPolicyUpdateRequest systemPolicyUpdateRequest,
     CancelToken? cancelToken,
@@ -122,19 +125,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfSystemPolicyR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/policies/{policyCode}'.replaceAll('{' r'policyCode' '}', policyCode.toString());
+    final _path = r'/api/policies/{policyCode}'.replaceAll(
+      '{'
+      r'policyCode'
+      '}',
+      policyCode.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -145,13 +147,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfSystemPolicyR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(systemPolicyUpdateRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(systemPolicyUpdateRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -170,9 +169,13 @@ _bodyData=jsonEncode(systemPolicyUpdateRequest);
     BaseResponseOfSystemPolicyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfSystemPolicyResponse, BaseResponseOfSystemPolicyResponse>(rawData, 'BaseResponseOfSystemPolicyResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfSystemPolicyResponse,
+              BaseResponseOfSystemPolicyResponse
+            >(rawData, 'BaseResponseOfSystemPolicyResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -194,5 +197,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfSystemPolicyR
       extra: _response.extra,
     );
   }
-
 }

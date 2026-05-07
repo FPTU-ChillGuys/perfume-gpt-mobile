@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_temp_item_dto_variants_inner.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,57 +17,32 @@ part 'product_temp_item_dto_variants_inner.g.dart';
 )
 class ProductTempItemDtoVariantsInner {
   /// Returns a new [ProductTempItemDtoVariantsInner] instance.
-  ProductTempItemDtoVariantsInner({
+  ProductTempItemDtoVariantsInner({this.id, this.price});
 
-     this.id,
-
-     this.price,
-  });
-
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'price',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'price', required: false, includeIfNull: false)
   final num? price;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductTempItemDtoVariantsInner &&
+          other.id == id &&
+          other.price == price;
 
+  @override
+  int get hashCode => id.hashCode + price.hashCode;
 
+  factory ProductTempItemDtoVariantsInner.fromJson(Map<String, dynamic> json) =>
+      _$ProductTempItemDtoVariantsInnerFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductTempItemDtoVariantsInner &&
-      other.id == id &&
-      other.price == price;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        price.hashCode;
-
-  factory ProductTempItemDtoVariantsInner.fromJson(Map<String, dynamic> json) => _$ProductTempItemDtoVariantsInnerFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProductTempItemDtoVariantsInnerToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ProductTempItemDtoVariantsInnerToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

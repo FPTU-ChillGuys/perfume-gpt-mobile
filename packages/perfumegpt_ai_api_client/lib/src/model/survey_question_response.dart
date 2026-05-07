@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'survey_question_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,153 +19,81 @@ part 'survey_question_response.g.dart';
 class SurveyQuestionResponse {
   /// Returns a new [SurveyQuestionResponse] instance.
   SurveyQuestionResponse({
+    required this.id,
 
-    required  this.id,
+    required this.createdAt,
 
-    required  this.createdAt,
+    required this.updatedAt,
 
-    required  this.updatedAt,
+    required this.isActive,
 
-    required  this.isActive,
+    this.questionType,
 
-     this.questionType,
+    this.question,
 
-     this.question,
+    this.order,
 
-     this.order,
-
-     this.answers,
+    this.answers,
   });
 
-      /// ID bản ghi
-  @JsonKey(
-    
-    name: r'id',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// ID bản ghi
+  @JsonKey(name: r'id', required: true, includeIfNull: false)
   final String id;
 
-
-
-      /// Ngày tạo
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Ngày tạo
+  @JsonKey(name: r'createdAt', required: true, includeIfNull: false)
   final DateTime createdAt;
 
-
-
-      /// Ngày cập nhật gần nhất
-  @JsonKey(
-    
-    name: r'updatedAt',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Ngày cập nhật gần nhất
+  @JsonKey(name: r'updatedAt', required: true, includeIfNull: false)
   final DateTime updatedAt;
 
-
-
-      /// Trạng thái hoạt động
-  @JsonKey(
-    
-    name: r'isActive',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Trạng thái hoạt động
+  @JsonKey(name: r'isActive', required: true, includeIfNull: false)
   final bool isActive;
 
-
-
-      /// Loại câu hỏi
-  @JsonKey(
-    
-    name: r'questionType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Loại câu hỏi
+  @JsonKey(name: r'questionType', required: false, includeIfNull: false)
   final SurveyQuestionResponseQuestionTypeEnum? questionType;
 
-
-
-      /// Nội dung câu hỏi
-  @JsonKey(
-    
-    name: r'question',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Nội dung câu hỏi
+  @JsonKey(name: r'question', required: false, includeIfNull: false)
   final String? question;
 
-
-
-      /// Thứ tự hiển thị
-  @JsonKey(
-    
-    name: r'order',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Thứ tự hiển thị
+  @JsonKey(name: r'order', required: false, includeIfNull: false)
   final num? order;
 
-
-
-      /// Danh sách câu trả lời
-  @JsonKey(
-    
-    name: r'answers',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Danh sách câu trả lời
+  @JsonKey(name: r'answers', required: false, includeIfNull: false)
   final List<SurveyAnswerResponse>? answers;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SurveyQuestionResponse &&
+          other.id == id &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt &&
+          other.isActive == isActive &&
+          other.questionType == questionType &&
+          other.question == question &&
+          other.order == order &&
+          other.answers == answers;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      createdAt.hashCode +
+      updatedAt.hashCode +
+      isActive.hashCode +
+      questionType.hashCode +
+      question.hashCode +
+      order.hashCode +
+      answers.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is SurveyQuestionResponse &&
-      other.id == id &&
-      other.createdAt == createdAt &&
-      other.updatedAt == updatedAt &&
-      other.isActive == isActive &&
-      other.questionType == questionType &&
-      other.question == question &&
-      other.order == order &&
-      other.answers == answers;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        createdAt.hashCode +
-        updatedAt.hashCode +
-        isActive.hashCode +
-        questionType.hashCode +
-        question.hashCode +
-        order.hashCode +
-        answers.hashCode;
-
-  factory SurveyQuestionResponse.fromJson(Map<String, dynamic> json) => _$SurveyQuestionResponseFromJson(json);
+  factory SurveyQuestionResponse.fromJson(Map<String, dynamic> json) =>
+      _$SurveyQuestionResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$SurveyQuestionResponseToJson(this);
 
@@ -174,24 +101,22 @@ class SurveyQuestionResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
 
 /// Loại câu hỏi
 enum SurveyQuestionResponseQuestionTypeEnum {
-    /// Loại câu hỏi
-@JsonValue(r'single')
-single(r'single'),
-    /// Loại câu hỏi
-@JsonValue(r'multiple')
-multiple(r'multiple');
+  /// Loại câu hỏi
+  @JsonValue(r'single')
+  single(r'single'),
 
-const SurveyQuestionResponseQuestionTypeEnum(this.value);
+  /// Loại câu hỏi
+  @JsonValue(r'multiple')
+  multiple(r'multiple');
 
-final String value;
+  const SurveyQuestionResponseQuestionTypeEnum(this.value);
 
-@override
-String toString() => value;
+  final String value;
+
+  @override
+  String toString() => value;
 }
-
-

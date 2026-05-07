@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
-
 /// tests for TrendsApi
 void main() {
   final instance = PerfumegptAiApiClient().getTrendsApi();
@@ -48,6 +47,5 @@ void main() {
     test('test trendControllerSummarizeLogsStructured', () async {
       // TODO
     });
-
   });
 }

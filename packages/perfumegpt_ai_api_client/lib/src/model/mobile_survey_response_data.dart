@@ -10,7 +10,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'mobile_survey_response_data.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,52 +19,28 @@ part 'mobile_survey_response_data.g.dart';
 )
 class MobileSurveyResponseData {
   /// Returns a new [MobileSurveyResponseData] instance.
-  MobileSurveyResponseData({
+  MobileSurveyResponseData({required this.messages, required this.products});
 
-    required  this.messages,
-
-    required  this.products,
-  });
-
-      /// Danh sách tin nhắn và sản phẩm
-  @JsonKey(
-    
-    name: r'messages',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Danh sách tin nhắn và sản phẩm
+  @JsonKey(name: r'messages', required: true, includeIfNull: false)
   final List<MobileSurveyMessage> messages;
 
-
-
-      /// Danh sách tất cả sản phẩm (đã gộp)
-  @JsonKey(
-    
-    name: r'products',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Danh sách tất cả sản phẩm (đã gộp)
+  @JsonKey(name: r'products', required: true, includeIfNull: false)
   final List<MobileSurveyProduct> products;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MobileSurveyResponseData &&
+          other.messages == messages &&
+          other.products == products;
 
+  @override
+  int get hashCode => messages.hashCode + products.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is MobileSurveyResponseData &&
-      other.messages == messages &&
-      other.products == products;
-
-    @override
-    int get hashCode =>
-        messages.hashCode +
-        products.hashCode;
-
-  factory MobileSurveyResponseData.fromJson(Map<String, dynamic> json) => _$MobileSurveyResponseDataFromJson(json);
+  factory MobileSurveyResponseData.fromJson(Map<String, dynamic> json) =>
+      _$MobileSurveyResponseDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$MobileSurveyResponseDataToJson(this);
 
@@ -73,6 +48,4 @@ class MobileSurveyResponseData {
   String toString() {
     return toJson().toString();
   }
-
 }
-

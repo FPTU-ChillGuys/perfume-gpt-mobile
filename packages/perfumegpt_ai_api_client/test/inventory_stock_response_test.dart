@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for InventoryStockResponse
 void main() {
-  final InventoryStockResponse? instance = /* InventoryStockResponse(...) */ null;
+  final InventoryStockResponse? instance = /* InventoryStockResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(InventoryStockResponse, () {
@@ -60,6 +61,5 @@ void main() {
     test('to test the property `volumeMl`', () async {
       // TODO
     });
-
   });
 }

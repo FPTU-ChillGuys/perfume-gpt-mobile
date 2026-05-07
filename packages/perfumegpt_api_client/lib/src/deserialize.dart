@@ -362,878 +362,1483 @@ final _regList = RegExp(r'^List<(.*)>$');
 final _regSet = RegExp(r'^Set<(.*)>$');
 final _regMap = RegExp(r'^Map<String,(.*)>$');
 
-  ReturnType deserialize<ReturnType, BaseType>(dynamic value, String targetType, {bool growable= true}) {
-      switch (targetType) {
-        case 'String':
-          return '$value' as ReturnType;
-        case 'int':
-          return (value is int ? value : int.parse('$value')) as ReturnType;
-        case 'bool':
-          if (value is bool) {
-            return value as ReturnType;
-          }
-          final valueString = '$value'.toLowerCase();
-          return (valueString == 'true' || valueString == '1') as ReturnType;
-        case 'double':
-          return (value is double ? value : double.parse('$value')) as ReturnType;
-        case 'AddressLevel4Response':
-          return AddressLevel4Response.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'AddressResponse':
-          return AddressResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'AnswerReviewRequest':
-          return AnswerReviewRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ApplicableVoucherCartItemRequest':
-          return ApplicableVoucherCartItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ApplicableVoucherResponse':
-          return ApplicableVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'AttributeLookupItem':
-          return AttributeLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'AttributeValueLookupItem':
-          return AttributeValueLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BannerLinkType':
-          
-          
-        case 'BannerPosition':
-          
-          
-        case 'BannerResponse':
-          return BannerResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponse':
-          return BaseResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfAddressLevel4Response':
-          return BaseResponseOfAddressLevel4Response.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfAddressResponse':
-          return BaseResponseOfAddressResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfBannerResponse':
-          return BaseResponseOfBannerResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfBatchDetailResponse':
-          return BaseResponseOfBatchDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfBrandResponse':
-          return BaseResponseOfBrandResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfBulkActionResultOfGuid':
-          return BaseResponseOfBulkActionResultOfGuid.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse':
-          return BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfBulkActionResultOfstring':
-          return BaseResponseOfBulkActionResultOfstring.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfCampaignPromotionItemResponse':
-          return BaseResponseOfCampaignPromotionItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfCampaignResponse':
-          return BaseResponseOfCampaignResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfCategoryResponse':
-          return BaseResponseOfCategoryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfConcentrationResponse':
-          return BaseResponseOfConcentrationResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfCreateImportTicketRequest':
-          return BaseResponseOfCreateImportTicketRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfCreatePaymentResponseDto':
-          return BaseResponseOfCreatePaymentResponseDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfCustomerForPosResponse':
-          return BaseResponseOfCustomerForPosResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfGetCartItemsResponse':
-          return BaseResponseOfGetCartItemsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfGetCartTotalResponse':
-          return BaseResponseOfGetCartTotalResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfIEnumerableOfCatalogItemResponse':
-          return BaseResponseOfIEnumerableOfCatalogItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfImportTicketResponse':
-          return BaseResponseOfImportTicketResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfInventoryLevelsResponse':
-          return BaseResponseOfInventoryLevelsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfInventorySummaryResponse':
-          return BaseResponseOfInventorySummaryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfAddressResponse':
-          return BaseResponseOfListOfAddressResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfApplicableVoucherResponse':
-          return BaseResponseOfListOfApplicableVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfAttributeLookupItem':
-          return BaseResponseOfListOfAttributeLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfAttributeValueLookupItem':
-          return BaseResponseOfListOfAttributeValueLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfBannerResponse':
-          return BaseResponseOfListOfBannerResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfBatchLookupResponse':
-          return BaseResponseOfListOfBatchLookupResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfBrandLookupItem':
-          return BaseResponseOfListOfBrandLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfBrandResponse':
-          return BaseResponseOfListOfBrandResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfCampaignLookupItem':
-          return BaseResponseOfListOfCampaignLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfCampaignPromotionItemResponse':
-          return BaseResponseOfListOfCampaignPromotionItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfCampaignResponse':
-          return BaseResponseOfListOfCampaignResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfCategoriesLookupItem':
-          return BaseResponseOfListOfCategoriesLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfCategoryResponse':
-          return BaseResponseOfListOfCategoryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfConcentrationLookupDto':
-          return BaseResponseOfListOfConcentrationLookupDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfConcentrationResponse':
-          return BaseResponseOfListOfConcentrationResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfDistrictResponse':
-          return BaseResponseOfListOfDistrictResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfMediaResponse':
-          return BaseResponseOfListOfMediaResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfOlfactoryFamilyResponse':
-          return BaseResponseOfListOfOlfactoryFamilyResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfOlfactoryLookupResponse':
-          return BaseResponseOfListOfOlfactoryLookupResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfProductDailySaleFigureResponse':
-          return BaseResponseOfListOfProductDailySaleFigureResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfProductLookupItem':
-          return BaseResponseOfListOfProductLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfProvinceResponse':
-          return BaseResponseOfListOfProvinceResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfRedeemableVoucherResponse':
-          return BaseResponseOfListOfRedeemableVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfReviewResponse':
-          return BaseResponseOfListOfReviewResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfScentNoteLookupResponse':
-          return BaseResponseOfListOfScentNoteLookupResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfScentNoteResponse':
-          return BaseResponseOfListOfScentNoteResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfStaffLookupItem':
-          return BaseResponseOfListOfStaffLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfStaffManageItem':
-          return BaseResponseOfListOfStaffManageItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfSupplierLookupItem':
-          return BaseResponseOfListOfSupplierLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfSupplierResponse':
-          return BaseResponseOfListOfSupplierResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfTopProductResponse':
-          return BaseResponseOfListOfTopProductResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfUserLookupItem':
-          return BaseResponseOfListOfUserLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfUserManageItem':
-          return BaseResponseOfListOfUserManageItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfVariantLookupItem':
-          return BaseResponseOfListOfVariantLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfVoucherResponse':
-          return BaseResponseOfListOfVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfListOfWardResponse':
-          return BaseResponseOfListOfWardResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfLoyaltyTransactionTotalsResponse':
-          return BaseResponseOfLoyaltyTransactionTotalsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfMediaResponse':
-          return BaseResponseOfMediaResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfOlfactoryFamilyResponse':
-          return BaseResponseOfOlfactoryFamilyResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfOrderCancelRequestResponse':
-          return BaseResponseOfOrderCancelRequestResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfOrderResponse':
-          return BaseResponseOfOrderResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfOrderReturnRequestResponse':
-          return BaseResponseOfOrderReturnRequestResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPageResponse':
-          return BaseResponseOfPageResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfBannerResponse':
-          return BaseResponseOfPagedResultOfBannerResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfBatchDetailResponse':
-          return BaseResponseOfPagedResultOfBatchDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfCampaignResponse':
-          return BaseResponseOfPagedResultOfCampaignResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfCashFlowLedgerItemResponse':
-          return BaseResponseOfPagedResultOfCashFlowLedgerItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfImportTicketListItem':
-          return BaseResponseOfPagedResultOfImportTicketListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfInventoryLedgerItemResponse':
-          return BaseResponseOfPagedResultOfInventoryLedgerItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse':
-          return BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfNotificationListItemResponse':
-          return BaseResponseOfPagedResultOfNotificationListItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfOrderCancelRequestResponse':
-          return BaseResponseOfPagedResultOfOrderCancelRequestResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfOrderListItem':
-          return BaseResponseOfPagedResultOfOrderListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfOrderReturnRequestResponse':
-          return BaseResponseOfPagedResultOfOrderReturnRequestResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfPageResponse':
-          return BaseResponseOfPagedResultOfPageResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfProductListItem':
-          return BaseResponseOfPagedResultOfProductListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfReviewListItem':
-          return BaseResponseOfPagedResultOfReviewListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfShippingInfoListItem':
-          return BaseResponseOfPagedResultOfShippingInfoListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfStockAdjustmentListItem':
-          return BaseResponseOfPagedResultOfStockAdjustmentListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfStockResponse':
-          return BaseResponseOfPagedResultOfStockResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfUserVoucherResponse':
-          return BaseResponseOfPagedResultOfUserVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfVariantPagedItem':
-          return BaseResponseOfPagedResultOfVariantPagedItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPagedResultOfVoucherResponse':
-          return BaseResponseOfPagedResultOfVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPaymentTransactionOverviewResponse':
-          return BaseResponseOfPaymentTransactionOverviewResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPickListResponse':
-          return BaseResponseOfPickListResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPreviewPosOrderResponse':
-          return BaseResponseOfPreviewPosOrderResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfProductFastLookResponse':
-          return BaseResponseOfProductFastLookResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfProductInforResponse':
-          return BaseResponseOfProductInforResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfProductResponse':
-          return BaseResponseOfProductResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfProductVariantForPosResponse':
-          return BaseResponseOfProductVariantForPosResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfProductVariantResponse':
-          return BaseResponseOfProductVariantResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfProfileResponse':
-          return BaseResponseOfProfileResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfPublicProductResponse':
-          return BaseResponseOfPublicProductResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfReceiptResponse':
-          return BaseResponseOfReceiptResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfRevenueSummaryResponse':
-          return BaseResponseOfRevenueSummaryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfReviewDetailResponse':
-          return BaseResponseOfReviewDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfReviewStatisticsResponse':
-          return BaseResponseOfReviewStatisticsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfScentNoteResponse':
-          return BaseResponseOfScentNoteResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfStockAdjustmentResponse':
-          return BaseResponseOfStockAdjustmentResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfStockResponse':
-          return BaseResponseOfStockResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfStorePolicyResponse':
-          return BaseResponseOfStorePolicyResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfSupplierResponse':
-          return BaseResponseOfSupplierResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfSwapDamagedStockResponse':
-          return BaseResponseOfSwapDamagedStockResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfSystemPolicyResponse':
-          return BaseResponseOfSystemPolicyResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfTokenResponse':
-          return BaseResponseOfTokenResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfUserCredentialsResponse':
-          return BaseResponseOfUserCredentialsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfUserOrderResponse':
-          return BaseResponseOfUserOrderResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfVoucherResponse':
-          return BaseResponseOfVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfboolean':
-          return BaseResponseOfboolean.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BaseResponseOfstring':
-          return BaseResponseOfstring.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BatchDetailResponse':
-          return BatchDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BatchLookupResponse':
-          return BatchLookupResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BatchResponse':
-          return BatchResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BrandLookupItem':
-          return BrandLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BrandResponse':
-          return BrandResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BulkActionError':
-          return BulkActionError.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BulkActionMetadata':
-          return BulkActionMetadata.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BulkActionResultOfGuid':
-          return BulkActionResultOfGuid.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BulkActionResultOfListOfTemporaryMediaResponse':
-          return BulkActionResultOfListOfTemporaryMediaResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BulkActionResultOfstring':
-          return BulkActionResultOfstring.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'BulkOperationResult':
-          return BulkOperationResult.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CampaignLookupItem':
-          return CampaignLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CampaignPromotionItemResponse':
-          return CampaignPromotionItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CampaignResponse':
-          return CampaignResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CampaignStatus':
-          
-          
-        case 'CampaignType':
-          
-          
-        case 'CancelOrderReason':
-          
-          
-        case 'CancelRequestStatus':
-          
-          
-        case 'CarrierName':
-          
-          
-        case 'CashFlowCategory':
-          
-          
-        case 'CashFlowLedgerItemResponse':
-          return CashFlowLedgerItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CashFlowType':
-          
-          
-        case 'CatalogItemResponse':
-          return CatalogItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CategoriesLookupItem':
-          return CategoriesLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CategoryResponse':
-          return CategoryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ConcentrationLookupDto':
-          return ConcentrationLookupDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ConcentrationResponse':
-          return ConcentrationResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ConfirmPaymentRequest':
-          return ConfirmPaymentRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ContactAddressInformation':
-          return ContactAddressInformation.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateAddressRequest':
-          return CreateAddressRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateAttributeRequest':
-          return CreateAttributeRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateAttributeValueRequest':
-          return CreateAttributeValueRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateBannerRequest':
-          return CreateBannerRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateBatchRequest':
-          return CreateBatchRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateBrandRequest':
-          return CreateBrandRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateCampaignPromotionItemRequest':
-          return CreateCampaignPromotionItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateCampaignRequest':
-          return CreateCampaignRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateCampaignVoucherRequest':
-          return CreateCampaignVoucherRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateCartItemRequest':
-          return CreateCartItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateCatalogItemRequest':
-          return CreateCatalogItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateCategoryRequest':
-          return CreateCategoryRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateConcentrationRequest':
-          return CreateConcentrationRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateImportDetailRequest':
-          return CreateImportDetailRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateImportTicketRequest':
-          return CreateImportTicketRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateInStoreOrderRequest':
-          return CreateInStoreOrderRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateOlfactoryFamilyRequest':
-          return CreateOlfactoryFamilyRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateOrderRequest':
-          return CreateOrderRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreatePageRequest':
-          return CreatePageRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreatePaymentResponseDto':
-          return CreatePaymentResponseDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreatePickupPaymentRequest':
-          return CreatePickupPaymentRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateProductRequest':
-          return CreateProductRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateReturnRequestDto':
-          return CreateReturnRequestDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateReviewRequest':
-          return CreateReviewRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateScentNoteRequest':
-          return CreateScentNoteRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateStockAdjustmentDetailRequest':
-          return CreateStockAdjustmentDetailRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateStockAdjustmentRequest':
-          return CreateStockAdjustmentRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateSupplierRequest':
-          return CreateSupplierRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateVariantRequest':
-          return CreateVariantRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CreateVoucherRequest':
-          return CreateVoucherRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CustomerAttributePreferenceResponse':
-          return CustomerAttributePreferenceResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CustomerFamilyPreferenceRespone':
-          return CustomerFamilyPreferenceRespone.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CustomerForPosResponse':
-          return CustomerForPosResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'CustomerNotePreferenceResponse':
-          return CustomerNotePreferenceResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'DailyRevenueItem':
-          return DailyRevenueItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'DeliverInStoreRequest':
-          return DeliverInStoreRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'DeliveryMethod':
-          
-          
-        case 'DepositPolicyPreviewResponse':
-          return DepositPolicyPreviewResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'DiscountType':
-          
-          
-        case 'DistrictResponse':
-          return DistrictResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'EntityTagHeaderValue':
-          return EntityTagHeaderValue.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'FileContentResult':
-          return FileContentResult.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ForgotPasswordRequest':
-          return ForgotPasswordRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'FulfillOrderItemRequest':
-          return FulfillOrderItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'FulfillOrderRequest':
-          return FulfillOrderRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'Gender':
-          
-          
-        case 'GetApplicableVouchersRequest':
-          return GetApplicableVouchersRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'GetCartItemResponse':
-          return GetCartItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'GetCartItemsResponse':
-          return GetCartItemsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'GetCartTotalResponse':
-          return GetCartTotalResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'GetOrderInfoRequest':
-          return GetOrderInfoRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'GoogleLoginRequest':
-          return GoogleLoginRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ImportDetailResponse':
-          return ImportDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ImportStatus':
-          
-          
-        case 'ImportTicketListItem':
-          return ImportTicketListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ImportTicketResponse':
-          return ImportTicketResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'InventoryLedgerItemResponse':
-          return InventoryLedgerItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'InventoryLevelsResponse':
-          return InventoryLevelsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'InventorySummaryResponse':
-          return InventorySummaryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'LoginRequest':
-          return LoginRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'LoyaltyTransactionHistoryItemResponse':
-          return LoyaltyTransactionHistoryItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'LoyaltyTransactionTotalsResponse':
-          return LoyaltyTransactionTotalsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'LoyaltyTransactionType':
-          
-          
-        case 'ManualChangeRequest':
-          return ManualChangeRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'MediaResponse':
-          return MediaResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'NoteType':
-          
-          
-        case 'NotifiReferecneType':
-          
-          
-        case 'NotificationListItemResponse':
-          return NotificationListItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'NotificationType':
-          
-          
-        case 'OlfactoryFamilyResponse':
-          return OlfactoryFamilyResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'OlfactoryLookupResponse':
-          return OlfactoryLookupResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'OrderCancelRequestResponse':
-          return OrderCancelRequestResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'OrderDetailListItem':
-          return OrderDetailListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'OrderDetailResponse':
-          return OrderDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'OrderListItem':
-          return OrderListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'OrderResponse':
-          return OrderResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'OrderReturnRequestDetailResponse':
-          return OrderReturnRequestDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'OrderReturnRequestResponse':
-          return OrderReturnRequestResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'OrderStatus':
-          
-          
-        case 'OrderType':
-          
-          
-        case 'PageResponse':
-          return PageResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfBannerResponse':
-          return PagedResultOfBannerResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfBatchDetailResponse':
-          return PagedResultOfBatchDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfCampaignResponse':
-          return PagedResultOfCampaignResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfCashFlowLedgerItemResponse':
-          return PagedResultOfCashFlowLedgerItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfImportTicketListItem':
-          return PagedResultOfImportTicketListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfInventoryLedgerItemResponse':
-          return PagedResultOfInventoryLedgerItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfLoyaltyTransactionHistoryItemResponse':
-          return PagedResultOfLoyaltyTransactionHistoryItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfNotificationListItemResponse':
-          return PagedResultOfNotificationListItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfOrderCancelRequestResponse':
-          return PagedResultOfOrderCancelRequestResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfOrderListItem':
-          return PagedResultOfOrderListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfOrderReturnRequestResponse':
-          return PagedResultOfOrderReturnRequestResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfPageResponse':
-          return PagedResultOfPageResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfPaymentTransactionAdminItemResponse':
-          return PagedResultOfPaymentTransactionAdminItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfProductListItem':
-          return PagedResultOfProductListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfReviewListItem':
-          return PagedResultOfReviewListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfShippingInfoListItem':
-          return PagedResultOfShippingInfoListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfStockAdjustmentListItem':
-          return PagedResultOfStockAdjustmentListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfStockResponse':
-          return PagedResultOfStockResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfUserVoucherResponse':
-          return PagedResultOfUserVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfVariantPagedItem':
-          return PagedResultOfVariantPagedItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PagedResultOfVoucherResponse':
-          return PagedResultOfVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PaymentInfoResponse':
-          return PaymentInfoResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PaymentInformation':
-          return PaymentInformation.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PaymentMethod':
-          
-          
-        case 'PaymentMethodDistributionResponse':
-          return PaymentMethodDistributionResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PaymentStatus':
-          
-          
-        case 'PaymentTransactionAdminItemResponse':
-          return PaymentTransactionAdminItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PaymentTransactionOverviewResponse':
-          return PaymentTransactionOverviewResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PaymentTransactionSummaryResponse':
-          return PaymentTransactionSummaryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PickListBatchInfo':
-          return PickListBatchInfo.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PickListItemResponse':
-          return PickListItemResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PickListResponse':
-          return PickListResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PosOrderDetailListItem':
-          return PosOrderDetailListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PosScanItemRequest':
-          return PosScanItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PreviewPosOrderRequest':
-          return PreviewPosOrderRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PreviewPosOrderResponse':
-          return PreviewPosOrderResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProblemDetails':
-          return ProblemDetails.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProcessCancelRequest':
-          return ProcessCancelRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProcessInStoreReturnFastTrackDto':
-          return ProcessInStoreReturnFastTrackDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProcessInitialReturnDto':
-          return ProcessInitialReturnDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProcessRefundRequest':
-          return ProcessRefundRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductAttributeDto':
-          return ProductAttributeDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductAttributeResponse':
-          return ProductAttributeResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductDailySaleFigureResponse':
-          return ProductDailySaleFigureResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductFastLookResponse':
-          return ProductFastLookResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductImageUploadItem':
-          return ProductImageUploadItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductInforResponse':
-          return ProductInforResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductListItem':
-          return ProductListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductLookupItem':
-          return ProductLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductOlfactoryFamilyResponse':
-          return ProductOlfactoryFamilyResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductResponse':
-          return ProductResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductScentNoteResponse':
-          return ProductScentNoteResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductVariantForPosResponse':
-          return ProductVariantForPosResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProductVariantResponse':
-          return ProductVariantResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ProfileResponse':
-          return ProfileResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PromotionType':
-          
-          
-        case 'ProvinceResponse':
-          return ProvinceResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PublicProductResponse':
-          return PublicProductResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'PublicProductVariantResponse':
-          return PublicProductVariantResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ReceiptItemDto':
-          return ReceiptItemDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ReceiptResponse':
-          return ReceiptResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'RecipientInfoResponse':
-          return RecipientInfoResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'RecordInspectionDto':
-          return RecordInspectionDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'RedeemVoucherRequest':
-          return RedeemVoucherRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'RedeemableVoucherResponse':
-          return RedeemableVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'RegisterRequest':
-          return RegisterRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'RejectInspectionDto':
-          return RejectInspectionDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ReplenishmentPolicy':
-          
-          
-        case 'ReservedBatchResponse':
-          return ReservedBatchResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ResetPasswordRequest':
-          return ResetPasswordRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ResponseErrorType':
-          
-          
-        case 'RetryOrChangePaymentRequest':
-          return RetryOrChangePaymentRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ReturnItemDto':
-          return ReturnItemDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ReturnOrderReason':
-          
-          
-        case 'ReturnRequestStatus':
-          
-          
-        case 'ReturnShippingInfoResponse':
-          return ReturnShippingInfoResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'RevenueSummaryResponse':
-          return RevenueSummaryResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ReviewDetailResponse':
-          return ReviewDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ReviewListItem':
-          return ReviewListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ReviewResponse':
-          return ReviewResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ReviewStatisticsResponse':
-          return ReviewStatisticsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ScentNoteDto':
-          return ScentNoteDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ScentNoteLookupResponse':
-          return ScentNoteLookupResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ScentNoteResponse':
-          return ScentNoteResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ShippingInfoListItem':
-          return ShippingInfoListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ShippingInfoResponse':
-          return ShippingInfoResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'ShippingStatus':
-          
-          
-        case 'ShippingType':
-          
-          
-        case 'StaffCancelOrderRequest':
-          return StaffCancelOrderRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'StaffLookupItem':
-          return StaffLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'StaffManageItem':
-          return StaffManageItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'StartInspectionDto':
-          return StartInspectionDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'StockAdjustmentDetailResponse':
-          return StockAdjustmentDetailResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'StockAdjustmentListItem':
-          return StockAdjustmentListItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'StockAdjustmentReason':
-          
-          
-        case 'StockAdjustmentResponse':
-          return StockAdjustmentResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'StockAdjustmentStatus':
-          
-          
-        case 'StockResponse':
-          return StockResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'StockStatus':
-          
-          
-        case 'StockTransactionType':
-          
-          
-        case 'StorePolicyResponse':
-          return StorePolicyResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'StringSegment':
-          return StringSegment.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'SupplierLookupItem':
-          return SupplierLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'SupplierResponse':
-          return SupplierResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'SwapDamagedStockRequest':
-          return SwapDamagedStockRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'SwapDamagedStockResponse':
-          return SwapDamagedStockResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'SystemPolicyResponse':
-          return SystemPolicyResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'SystemPolicyUpdateRequest':
-          return SystemPolicyUpdateRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'TemporaryMediaResponse':
-          return TemporaryMediaResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'TokenResponse':
-          return TokenResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'TopProductResponse':
-          return TopProductResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'TransactionStatus':
-          
-          
-        case 'TransactionType':
-          
-          
-        case 'UpdateAddressRequest':
-          return UpdateAddressRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateAttributeRequest':
-          return UpdateAttributeRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateAttributeValueRequest':
-          return UpdateAttributeValueRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateBannerRequest':
-          return UpdateBannerRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateBrandRequest':
-          return UpdateBrandRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateCampaignPromotionItemRequest':
-          return UpdateCampaignPromotionItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateCampaignRequest':
-          return UpdateCampaignRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateCampaignStatusRequest':
-          return UpdateCampaignStatusRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateCampaignVoucherRequest':
-          return UpdateCampaignVoucherRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateCartItemRequest':
-          return UpdateCartItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateCatalogItemRequest':
-          return UpdateCatalogItemRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateCategoryRequest':
-          return UpdateCategoryRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateConcentrationRequest':
-          return UpdateConcentrationRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateImportDetailRequest':
-          return UpdateImportDetailRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateImportRequest':
-          return UpdateImportRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateImportStatusRequest':
-          return UpdateImportStatusRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateNotePreferenceRequest':
-          return UpdateNotePreferenceRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateOlfactoryFamilyRequest':
-          return UpdateOlfactoryFamilyRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdatePageRequest':
-          return UpdatePageRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateProductRequest':
-          return UpdateProductRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateProfileRequest':
-          return UpdateProfileRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateReturnRequestDto':
-          return UpdateReturnRequestDto.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateScentNoteRequest':
-          return UpdateScentNoteRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateStockAdjustmentStatusRequest':
-          return UpdateStockAdjustmentStatusRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateStockRequest':
-          return UpdateStockRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateStorePolicyRequest':
-          return UpdateStorePolicyRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateSupplierRequest':
-          return UpdateSupplierRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateUserBasicInfoRequest':
-          return UpdateUserBasicInfoRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateVariantRequest':
-          return UpdateVariantRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UpdateVoucherRequest':
-          return UpdateVoucherRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UsageStatus':
-          
-          
-        case 'UserCancelOrderRequest':
-          return UserCancelOrderRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UserCredentialsResponse':
-          return UserCredentialsResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UserLookupItem':
-          return UserLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UserManageItem':
-          return UserManageItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UserOrderResponse':
-          return UserOrderResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'UserRole':
-          
-          
-        case 'UserVoucherResponse':
-          return UserVoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VariantDailySaleFigure':
-          return VariantDailySaleFigure.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VariantFastLookResponse':
-          return VariantFastLookResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VariantImageUploadItem':
-          return VariantImageUploadItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VariantLookupItem':
-          return VariantLookupItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VariantPagedItem':
-          return VariantPagedItem.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VariantStatus':
-          
-          
-        case 'VariantSupplierResponse':
-          return VariantSupplierResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VariantType':
-          
-          
-        case 'VerifyImportDetailRequest':
-          return VerifyImportDetailRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VerifyImportTicketRequest':
-          return VerifyImportTicketRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VerifyStockAdjustmentDetailRequest':
-          return VerifyStockAdjustmentDetailRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VerifyStockAdjustmentRequest':
-          return VerifyStockAdjustmentRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VoucherResponse':
-          return VoucherResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        case 'VoucherType':
-          
-          
-        case 'WardResponse':
-          return WardResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
-        default:
-          RegExpMatch? match;
+ReturnType deserialize<ReturnType, BaseType>(
+  dynamic value,
+  String targetType, {
+  bool growable = true,
+}) {
+  switch (targetType) {
+    case 'String':
+      return '$value' as ReturnType;
+    case 'int':
+      return (value is int ? value : int.parse('$value')) as ReturnType;
+    case 'bool':
+      if (value is bool) {
+        return value as ReturnType;
+      }
+      final valueString = '$value'.toLowerCase();
+      return (valueString == 'true' || valueString == '1') as ReturnType;
+    case 'double':
+      return (value is double ? value : double.parse('$value')) as ReturnType;
+    case 'AddressLevel4Response':
+      return AddressLevel4Response.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'AddressResponse':
+      return AddressResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'AnswerReviewRequest':
+      return AnswerReviewRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ApplicableVoucherCartItemRequest':
+      return ApplicableVoucherCartItemRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ApplicableVoucherResponse':
+      return ApplicableVoucherResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'AttributeLookupItem':
+      return AttributeLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'AttributeValueLookupItem':
+      return AttributeValueLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BannerLinkType':
+    case 'BannerPosition':
+    case 'BannerResponse':
+      return BannerResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseResponse':
+      return BaseResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'BaseResponseOfAddressLevel4Response':
+      return BaseResponseOfAddressLevel4Response.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfAddressResponse':
+      return BaseResponseOfAddressResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfBannerResponse':
+      return BaseResponseOfBannerResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfBatchDetailResponse':
+      return BaseResponseOfBatchDetailResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfBrandResponse':
+      return BaseResponseOfBrandResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseResponseOfBulkActionResultOfGuid':
+      return BaseResponseOfBulkActionResultOfGuid.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse':
+      return BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfBulkActionResultOfstring':
+      return BaseResponseOfBulkActionResultOfstring.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfCampaignPromotionItemResponse':
+      return BaseResponseOfCampaignPromotionItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfCampaignResponse':
+      return BaseResponseOfCampaignResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfCategoryResponse':
+      return BaseResponseOfCategoryResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfConcentrationResponse':
+      return BaseResponseOfConcentrationResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfCreateImportTicketRequest':
+      return BaseResponseOfCreateImportTicketRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfCreatePaymentResponseDto':
+      return BaseResponseOfCreatePaymentResponseDto.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfCustomerForPosResponse':
+      return BaseResponseOfCustomerForPosResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfGetCartItemsResponse':
+      return BaseResponseOfGetCartItemsResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfGetCartTotalResponse':
+      return BaseResponseOfGetCartTotalResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfIEnumerableOfCatalogItemResponse':
+      return BaseResponseOfIEnumerableOfCatalogItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfImportTicketResponse':
+      return BaseResponseOfImportTicketResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfInventoryLevelsResponse':
+      return BaseResponseOfInventoryLevelsResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfInventorySummaryResponse':
+      return BaseResponseOfInventorySummaryResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfAddressResponse':
+      return BaseResponseOfListOfAddressResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfApplicableVoucherResponse':
+      return BaseResponseOfListOfApplicableVoucherResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfAttributeLookupItem':
+      return BaseResponseOfListOfAttributeLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfAttributeValueLookupItem':
+      return BaseResponseOfListOfAttributeValueLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfBannerResponse':
+      return BaseResponseOfListOfBannerResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfBatchLookupResponse':
+      return BaseResponseOfListOfBatchLookupResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfBrandLookupItem':
+      return BaseResponseOfListOfBrandLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfBrandResponse':
+      return BaseResponseOfListOfBrandResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfCampaignLookupItem':
+      return BaseResponseOfListOfCampaignLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfCampaignPromotionItemResponse':
+      return BaseResponseOfListOfCampaignPromotionItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfCampaignResponse':
+      return BaseResponseOfListOfCampaignResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfCategoriesLookupItem':
+      return BaseResponseOfListOfCategoriesLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfCategoryResponse':
+      return BaseResponseOfListOfCategoryResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfConcentrationLookupDto':
+      return BaseResponseOfListOfConcentrationLookupDto.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfConcentrationResponse':
+      return BaseResponseOfListOfConcentrationResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfDistrictResponse':
+      return BaseResponseOfListOfDistrictResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfMediaResponse':
+      return BaseResponseOfListOfMediaResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfOlfactoryFamilyResponse':
+      return BaseResponseOfListOfOlfactoryFamilyResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfOlfactoryLookupResponse':
+      return BaseResponseOfListOfOlfactoryLookupResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfProductDailySaleFigureResponse':
+      return BaseResponseOfListOfProductDailySaleFigureResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfProductLookupItem':
+      return BaseResponseOfListOfProductLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfProvinceResponse':
+      return BaseResponseOfListOfProvinceResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfRedeemableVoucherResponse':
+      return BaseResponseOfListOfRedeemableVoucherResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfReviewResponse':
+      return BaseResponseOfListOfReviewResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfScentNoteLookupResponse':
+      return BaseResponseOfListOfScentNoteLookupResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfScentNoteResponse':
+      return BaseResponseOfListOfScentNoteResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfStaffLookupItem':
+      return BaseResponseOfListOfStaffLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfStaffManageItem':
+      return BaseResponseOfListOfStaffManageItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfSupplierLookupItem':
+      return BaseResponseOfListOfSupplierLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfSupplierResponse':
+      return BaseResponseOfListOfSupplierResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfTopProductResponse':
+      return BaseResponseOfListOfTopProductResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfUserLookupItem':
+      return BaseResponseOfListOfUserLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfUserManageItem':
+      return BaseResponseOfListOfUserManageItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfVariantLookupItem':
+      return BaseResponseOfListOfVariantLookupItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfVoucherResponse':
+      return BaseResponseOfListOfVoucherResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfListOfWardResponse':
+      return BaseResponseOfListOfWardResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfLoyaltyTransactionTotalsResponse':
+      return BaseResponseOfLoyaltyTransactionTotalsResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfMediaResponse':
+      return BaseResponseOfMediaResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseResponseOfOlfactoryFamilyResponse':
+      return BaseResponseOfOlfactoryFamilyResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfOrderCancelRequestResponse':
+      return BaseResponseOfOrderCancelRequestResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfOrderResponse':
+      return BaseResponseOfOrderResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseResponseOfOrderReturnRequestResponse':
+      return BaseResponseOfOrderReturnRequestResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPageResponse':
+      return BaseResponseOfPageResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfBannerResponse':
+      return BaseResponseOfPagedResultOfBannerResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfBatchDetailResponse':
+      return BaseResponseOfPagedResultOfBatchDetailResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfCampaignResponse':
+      return BaseResponseOfPagedResultOfCampaignResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfCashFlowLedgerItemResponse':
+      return BaseResponseOfPagedResultOfCashFlowLedgerItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfImportTicketListItem':
+      return BaseResponseOfPagedResultOfImportTicketListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfInventoryLedgerItemResponse':
+      return BaseResponseOfPagedResultOfInventoryLedgerItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse':
+      return BaseResponseOfPagedResultOfLoyaltyTransactionHistoryItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfNotificationListItemResponse':
+      return BaseResponseOfPagedResultOfNotificationListItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfOrderCancelRequestResponse':
+      return BaseResponseOfPagedResultOfOrderCancelRequestResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfOrderListItem':
+      return BaseResponseOfPagedResultOfOrderListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfOrderReturnRequestResponse':
+      return BaseResponseOfPagedResultOfOrderReturnRequestResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfPageResponse':
+      return BaseResponseOfPagedResultOfPageResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfProductListItem':
+      return BaseResponseOfPagedResultOfProductListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfReviewListItem':
+      return BaseResponseOfPagedResultOfReviewListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfShippingInfoListItem':
+      return BaseResponseOfPagedResultOfShippingInfoListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfStockAdjustmentListItem':
+      return BaseResponseOfPagedResultOfStockAdjustmentListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfStockResponse':
+      return BaseResponseOfPagedResultOfStockResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfUserVoucherResponse':
+      return BaseResponseOfPagedResultOfUserVoucherResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfVariantPagedItem':
+      return BaseResponseOfPagedResultOfVariantPagedItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPagedResultOfVoucherResponse':
+      return BaseResponseOfPagedResultOfVoucherResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPaymentTransactionOverviewResponse':
+      return BaseResponseOfPaymentTransactionOverviewResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPickListResponse':
+      return BaseResponseOfPickListResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPreviewPosOrderResponse':
+      return BaseResponseOfPreviewPosOrderResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfProductFastLookResponse':
+      return BaseResponseOfProductFastLookResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfProductInforResponse':
+      return BaseResponseOfProductInforResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfProductResponse':
+      return BaseResponseOfProductResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfProductVariantForPosResponse':
+      return BaseResponseOfProductVariantForPosResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfProductVariantResponse':
+      return BaseResponseOfProductVariantResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfProfileResponse':
+      return BaseResponseOfProfileResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfPublicProductResponse':
+      return BaseResponseOfPublicProductResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfReceiptResponse':
+      return BaseResponseOfReceiptResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfRevenueSummaryResponse':
+      return BaseResponseOfRevenueSummaryResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfReviewDetailResponse':
+      return BaseResponseOfReviewDetailResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfReviewStatisticsResponse':
+      return BaseResponseOfReviewStatisticsResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfScentNoteResponse':
+      return BaseResponseOfScentNoteResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfStockAdjustmentResponse':
+      return BaseResponseOfStockAdjustmentResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfStockResponse':
+      return BaseResponseOfStockResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseResponseOfStorePolicyResponse':
+      return BaseResponseOfStorePolicyResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfSupplierResponse':
+      return BaseResponseOfSupplierResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfSwapDamagedStockResponse':
+      return BaseResponseOfSwapDamagedStockResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfSystemPolicyResponse':
+      return BaseResponseOfSystemPolicyResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfTokenResponse':
+      return BaseResponseOfTokenResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseResponseOfUserCredentialsResponse':
+      return BaseResponseOfUserCredentialsResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfUserOrderResponse':
+      return BaseResponseOfUserOrderResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfVoucherResponse':
+      return BaseResponseOfVoucherResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BaseResponseOfboolean':
+      return BaseResponseOfboolean.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BaseResponseOfstring':
+      return BaseResponseOfstring.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BatchDetailResponse':
+      return BatchDetailResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BatchLookupResponse':
+      return BatchLookupResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BatchResponse':
+      return BatchResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BrandLookupItem':
+      return BrandLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BrandResponse':
+      return BrandResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BulkActionError':
+      return BulkActionError.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BulkActionMetadata':
+      return BulkActionMetadata.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BulkActionResultOfGuid':
+      return BulkActionResultOfGuid.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BulkActionResultOfListOfTemporaryMediaResponse':
+      return BulkActionResultOfListOfTemporaryMediaResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'BulkActionResultOfstring':
+      return BulkActionResultOfstring.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'BulkOperationResult':
+      return BulkOperationResult.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CampaignLookupItem':
+      return CampaignLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CampaignPromotionItemResponse':
+      return CampaignPromotionItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'CampaignResponse':
+      return CampaignResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CampaignStatus':
+    case 'CampaignType':
+    case 'CancelOrderReason':
+    case 'CancelRequestStatus':
+    case 'CarrierName':
+    case 'CashFlowCategory':
+    case 'CashFlowLedgerItemResponse':
+      return CashFlowLedgerItemResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CashFlowType':
+    case 'CatalogItemResponse':
+      return CatalogItemResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CategoriesLookupItem':
+      return CategoriesLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CategoryResponse':
+      return CategoryResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ConcentrationLookupDto':
+      return ConcentrationLookupDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ConcentrationResponse':
+      return ConcentrationResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ConfirmPaymentRequest':
+      return ConfirmPaymentRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ContactAddressInformation':
+      return ContactAddressInformation.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateAddressRequest':
+      return CreateAddressRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateAttributeRequest':
+      return CreateAttributeRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateAttributeValueRequest':
+      return CreateAttributeValueRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateBannerRequest':
+      return CreateBannerRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateBatchRequest':
+      return CreateBatchRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateBrandRequest':
+      return CreateBrandRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateCampaignPromotionItemRequest':
+      return CreateCampaignPromotionItemRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'CreateCampaignRequest':
+      return CreateCampaignRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateCampaignVoucherRequest':
+      return CreateCampaignVoucherRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'CreateCartItemRequest':
+      return CreateCartItemRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateCatalogItemRequest':
+      return CreateCatalogItemRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateCategoryRequest':
+      return CreateCategoryRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateConcentrationRequest':
+      return CreateConcentrationRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateImportDetailRequest':
+      return CreateImportDetailRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateImportTicketRequest':
+      return CreateImportTicketRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateInStoreOrderRequest':
+      return CreateInStoreOrderRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateOlfactoryFamilyRequest':
+      return CreateOlfactoryFamilyRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'CreateOrderRequest':
+      return CreateOrderRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreatePageRequest':
+      return CreatePageRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreatePaymentResponseDto':
+      return CreatePaymentResponseDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreatePickupPaymentRequest':
+      return CreatePickupPaymentRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateProductRequest':
+      return CreateProductRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateReturnRequestDto':
+      return CreateReturnRequestDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateReviewRequest':
+      return CreateReviewRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateScentNoteRequest':
+      return CreateScentNoteRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateStockAdjustmentDetailRequest':
+      return CreateStockAdjustmentDetailRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'CreateStockAdjustmentRequest':
+      return CreateStockAdjustmentRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'CreateSupplierRequest':
+      return CreateSupplierRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateVariantRequest':
+      return CreateVariantRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CreateVoucherRequest':
+      return CreateVoucherRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CustomerAttributePreferenceResponse':
+      return CustomerAttributePreferenceResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'CustomerFamilyPreferenceRespone':
+      return CustomerFamilyPreferenceRespone.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'CustomerForPosResponse':
+      return CustomerForPosResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'CustomerNotePreferenceResponse':
+      return CustomerNotePreferenceResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'DailyRevenueItem':
+      return DailyRevenueItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'DeliverInStoreRequest':
+      return DeliverInStoreRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'DeliveryMethod':
+    case 'DepositPolicyPreviewResponse':
+      return DepositPolicyPreviewResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'DiscountType':
+    case 'DistrictResponse':
+      return DistrictResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'EntityTagHeaderValue':
+      return EntityTagHeaderValue.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'FileContentResult':
+      return FileContentResult.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ForgotPasswordRequest':
+      return ForgotPasswordRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'FulfillOrderItemRequest':
+      return FulfillOrderItemRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'FulfillOrderRequest':
+      return FulfillOrderRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'Gender':
+    case 'GetApplicableVouchersRequest':
+      return GetApplicableVouchersRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'GetCartItemResponse':
+      return GetCartItemResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'GetCartItemsResponse':
+      return GetCartItemsResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'GetCartTotalResponse':
+      return GetCartTotalResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'GetOrderInfoRequest':
+      return GetOrderInfoRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'GoogleLoginRequest':
+      return GoogleLoginRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ImportDetailResponse':
+      return ImportDetailResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ImportStatus':
+    case 'ImportTicketListItem':
+      return ImportTicketListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ImportTicketResponse':
+      return ImportTicketResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'InventoryLedgerItemResponse':
+      return InventoryLedgerItemResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'InventoryLevelsResponse':
+      return InventoryLevelsResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'InventorySummaryResponse':
+      return InventorySummaryResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'LoginRequest':
+      return LoginRequest.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'LoyaltyTransactionHistoryItemResponse':
+      return LoyaltyTransactionHistoryItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'LoyaltyTransactionTotalsResponse':
+      return LoyaltyTransactionTotalsResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'LoyaltyTransactionType':
+    case 'ManualChangeRequest':
+      return ManualChangeRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'MediaResponse':
+      return MediaResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'NoteType':
+    case 'NotifiReferecneType':
+    case 'NotificationListItemResponse':
+      return NotificationListItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'NotificationType':
+    case 'OlfactoryFamilyResponse':
+      return OlfactoryFamilyResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OlfactoryLookupResponse':
+      return OlfactoryLookupResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OrderCancelRequestResponse':
+      return OrderCancelRequestResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OrderDetailListItem':
+      return OrderDetailListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OrderDetailResponse':
+      return OrderDetailResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OrderListItem':
+      return OrderListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OrderResponse':
+      return OrderResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OrderReturnRequestDetailResponse':
+      return OrderReturnRequestDetailResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'OrderReturnRequestResponse':
+      return OrderReturnRequestResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'OrderStatus':
+    case 'OrderType':
+    case 'PageResponse':
+      return PageResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'PagedResultOfBannerResponse':
+      return PagedResultOfBannerResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PagedResultOfBatchDetailResponse':
+      return PagedResultOfBatchDetailResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfCampaignResponse':
+      return PagedResultOfCampaignResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfCashFlowLedgerItemResponse':
+      return PagedResultOfCashFlowLedgerItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfImportTicketListItem':
+      return PagedResultOfImportTicketListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfInventoryLedgerItemResponse':
+      return PagedResultOfInventoryLedgerItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfLoyaltyTransactionHistoryItemResponse':
+      return PagedResultOfLoyaltyTransactionHistoryItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfNotificationListItemResponse':
+      return PagedResultOfNotificationListItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfOrderCancelRequestResponse':
+      return PagedResultOfOrderCancelRequestResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfOrderListItem':
+      return PagedResultOfOrderListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PagedResultOfOrderReturnRequestResponse':
+      return PagedResultOfOrderReturnRequestResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfPageResponse':
+      return PagedResultOfPageResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PagedResultOfPaymentTransactionAdminItemResponse':
+      return PagedResultOfPaymentTransactionAdminItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfProductListItem':
+      return PagedResultOfProductListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfReviewListItem':
+      return PagedResultOfReviewListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PagedResultOfShippingInfoListItem':
+      return PagedResultOfShippingInfoListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfStockAdjustmentListItem':
+      return PagedResultOfStockAdjustmentListItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfStockResponse':
+      return PagedResultOfStockResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PagedResultOfUserVoucherResponse':
+      return PagedResultOfUserVoucherResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfVariantPagedItem':
+      return PagedResultOfVariantPagedItem.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PagedResultOfVoucherResponse':
+      return PagedResultOfVoucherResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PaymentInfoResponse':
+      return PaymentInfoResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PaymentInformation':
+      return PaymentInformation.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PaymentMethod':
+    case 'PaymentMethodDistributionResponse':
+      return PaymentMethodDistributionResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PaymentStatus':
+    case 'PaymentTransactionAdminItemResponse':
+      return PaymentTransactionAdminItemResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PaymentTransactionOverviewResponse':
+      return PaymentTransactionOverviewResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PaymentTransactionSummaryResponse':
+      return PaymentTransactionSummaryResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'PickListBatchInfo':
+      return PickListBatchInfo.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PickListItemResponse':
+      return PickListItemResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PickListResponse':
+      return PickListResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PosOrderDetailListItem':
+      return PosOrderDetailListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PosScanItemRequest':
+      return PosScanItemRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PreviewPosOrderRequest':
+      return PreviewPosOrderRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PreviewPosOrderResponse':
+      return PreviewPosOrderResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProblemDetails':
+      return ProblemDetails.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProcessCancelRequest':
+      return ProcessCancelRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProcessInStoreReturnFastTrackDto':
+      return ProcessInStoreReturnFastTrackDto.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProcessInitialReturnDto':
+      return ProcessInitialReturnDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProcessRefundRequest':
+      return ProcessRefundRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductAttributeDto':
+      return ProductAttributeDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductAttributeResponse':
+      return ProductAttributeResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductDailySaleFigureResponse':
+      return ProductDailySaleFigureResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProductFastLookResponse':
+      return ProductFastLookResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductImageUploadItem':
+      return ProductImageUploadItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductInforResponse':
+      return ProductInforResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductListItem':
+      return ProductListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductLookupItem':
+      return ProductLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductOlfactoryFamilyResponse':
+      return ProductOlfactoryFamilyResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProductResponse':
+      return ProductResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductScentNoteResponse':
+      return ProductScentNoteResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProductVariantForPosResponse':
+      return ProductVariantForPosResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ProductVariantResponse':
+      return ProductVariantResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ProfileResponse':
+      return ProfileResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PromotionType':
+    case 'ProvinceResponse':
+      return ProvinceResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PublicProductResponse':
+      return PublicProductResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'PublicProductVariantResponse':
+      return PublicProductVariantResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'ReceiptItemDto':
+      return ReceiptItemDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ReceiptResponse':
+      return ReceiptResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RecipientInfoResponse':
+      return RecipientInfoResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RecordInspectionDto':
+      return RecordInspectionDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RedeemVoucherRequest':
+      return RedeemVoucherRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RedeemableVoucherResponse':
+      return RedeemableVoucherResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RegisterRequest':
+      return RegisterRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RejectInspectionDto':
+      return RejectInspectionDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ReplenishmentPolicy':
+    case 'ReservedBatchResponse':
+      return ReservedBatchResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ResetPasswordRequest':
+      return ResetPasswordRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ResponseErrorType':
+    case 'RetryOrChangePaymentRequest':
+      return RetryOrChangePaymentRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ReturnItemDto':
+      return ReturnItemDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ReturnOrderReason':
+    case 'ReturnRequestStatus':
+    case 'ReturnShippingInfoResponse':
+      return ReturnShippingInfoResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'RevenueSummaryResponse':
+      return RevenueSummaryResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ReviewDetailResponse':
+      return ReviewDetailResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ReviewListItem':
+      return ReviewListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ReviewResponse':
+      return ReviewResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ReviewStatisticsResponse':
+      return ReviewStatisticsResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ScentNoteDto':
+      return ScentNoteDto.fromJson(value as Map<String, dynamic>) as ReturnType;
+    case 'ScentNoteLookupResponse':
+      return ScentNoteLookupResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ScentNoteResponse':
+      return ScentNoteResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ShippingInfoListItem':
+      return ShippingInfoListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ShippingInfoResponse':
+      return ShippingInfoResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'ShippingStatus':
+    case 'ShippingType':
+    case 'StaffCancelOrderRequest':
+      return StaffCancelOrderRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'StaffLookupItem':
+      return StaffLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'StaffManageItem':
+      return StaffManageItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'StartInspectionDto':
+      return StartInspectionDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'StockAdjustmentDetailResponse':
+      return StockAdjustmentDetailResponse.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'StockAdjustmentListItem':
+      return StockAdjustmentListItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'StockAdjustmentReason':
+    case 'StockAdjustmentResponse':
+      return StockAdjustmentResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'StockAdjustmentStatus':
+    case 'StockResponse':
+      return StockResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'StockStatus':
+    case 'StockTransactionType':
+    case 'StorePolicyResponse':
+      return StorePolicyResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'StringSegment':
+      return StringSegment.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SupplierLookupItem':
+      return SupplierLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SupplierResponse':
+      return SupplierResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SwapDamagedStockRequest':
+      return SwapDamagedStockRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SwapDamagedStockResponse':
+      return SwapDamagedStockResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SystemPolicyResponse':
+      return SystemPolicyResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'SystemPolicyUpdateRequest':
+      return SystemPolicyUpdateRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'TemporaryMediaResponse':
+      return TemporaryMediaResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'TokenResponse':
+      return TokenResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'TopProductResponse':
+      return TopProductResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'TransactionStatus':
+    case 'TransactionType':
+    case 'UpdateAddressRequest':
+      return UpdateAddressRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateAttributeRequest':
+      return UpdateAttributeRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateAttributeValueRequest':
+      return UpdateAttributeValueRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateBannerRequest':
+      return UpdateBannerRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateBrandRequest':
+      return UpdateBrandRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateCampaignPromotionItemRequest':
+      return UpdateCampaignPromotionItemRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'UpdateCampaignRequest':
+      return UpdateCampaignRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateCampaignStatusRequest':
+      return UpdateCampaignStatusRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateCampaignVoucherRequest':
+      return UpdateCampaignVoucherRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'UpdateCartItemRequest':
+      return UpdateCartItemRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateCatalogItemRequest':
+      return UpdateCatalogItemRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateCategoryRequest':
+      return UpdateCategoryRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateConcentrationRequest':
+      return UpdateConcentrationRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateImportDetailRequest':
+      return UpdateImportDetailRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateImportRequest':
+      return UpdateImportRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateImportStatusRequest':
+      return UpdateImportStatusRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateNotePreferenceRequest':
+      return UpdateNotePreferenceRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateOlfactoryFamilyRequest':
+      return UpdateOlfactoryFamilyRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'UpdatePageRequest':
+      return UpdatePageRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateProductRequest':
+      return UpdateProductRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateProfileRequest':
+      return UpdateProfileRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateReturnRequestDto':
+      return UpdateReturnRequestDto.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateScentNoteRequest':
+      return UpdateScentNoteRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateStockAdjustmentStatusRequest':
+      return UpdateStockAdjustmentStatusRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'UpdateStockRequest':
+      return UpdateStockRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateStorePolicyRequest':
+      return UpdateStorePolicyRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateSupplierRequest':
+      return UpdateSupplierRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateUserBasicInfoRequest':
+      return UpdateUserBasicInfoRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateVariantRequest':
+      return UpdateVariantRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UpdateVoucherRequest':
+      return UpdateVoucherRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UsageStatus':
+    case 'UserCancelOrderRequest':
+      return UserCancelOrderRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UserCredentialsResponse':
+      return UserCredentialsResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UserLookupItem':
+      return UserLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UserManageItem':
+      return UserManageItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UserOrderResponse':
+      return UserOrderResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'UserRole':
+    case 'UserVoucherResponse':
+      return UserVoucherResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VariantDailySaleFigure':
+      return VariantDailySaleFigure.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VariantFastLookResponse':
+      return VariantFastLookResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VariantImageUploadItem':
+      return VariantImageUploadItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VariantLookupItem':
+      return VariantLookupItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VariantPagedItem':
+      return VariantPagedItem.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VariantStatus':
+    case 'VariantSupplierResponse':
+      return VariantSupplierResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VariantType':
+    case 'VerifyImportDetailRequest':
+      return VerifyImportDetailRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VerifyImportTicketRequest':
+      return VerifyImportTicketRequest.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VerifyStockAdjustmentDetailRequest':
+      return VerifyStockAdjustmentDetailRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'VerifyStockAdjustmentRequest':
+      return VerifyStockAdjustmentRequest.fromJson(
+            value as Map<String, dynamic>,
+          )
+          as ReturnType;
+    case 'VoucherResponse':
+      return VoucherResponse.fromJson(value as Map<String, dynamic>)
+          as ReturnType;
+    case 'VoucherType':
+    case 'WardResponse':
+      return WardResponse.fromJson(value as Map<String, dynamic>) as ReturnType;
+    default:
+      RegExpMatch? match;
 
-          if (value is List && (match = _regList.firstMatch(targetType)) != null) {
-            targetType = match![1]!; // ignore: parameter_assignments
-            return value
-              .map<BaseType>((dynamic v) => deserialize<BaseType, BaseType>(v, targetType, growable: growable))
-              .toList(growable: growable) as ReturnType;
-          }
-          if (value is Set && (match = _regSet.firstMatch(targetType)) != null) {
-            targetType = match![1]!; // ignore: parameter_assignments
-            return value
-              .map<BaseType>((dynamic v) => deserialize<BaseType, BaseType>(v, targetType, growable: growable))
-              .toSet() as ReturnType;
-          }
-          if (value is Map && (match = _regMap.firstMatch(targetType)) != null) {
-            targetType = match![1]!.trim(); // ignore: parameter_assignments
-            return Map<String, BaseType>.fromIterables(
+      if (value is List && (match = _regList.firstMatch(targetType)) != null) {
+        targetType = match![1]!; // ignore: parameter_assignments
+        return value
+                .map<BaseType>(
+                  (dynamic v) => deserialize<BaseType, BaseType>(
+                    v,
+                    targetType,
+                    growable: growable,
+                  ),
+                )
+                .toList(growable: growable)
+            as ReturnType;
+      }
+      if (value is Set && (match = _regSet.firstMatch(targetType)) != null) {
+        targetType = match![1]!; // ignore: parameter_assignments
+        return value
+                .map<BaseType>(
+                  (dynamic v) => deserialize<BaseType, BaseType>(
+                    v,
+                    targetType,
+                    growable: growable,
+                  ),
+                )
+                .toSet()
+            as ReturnType;
+      }
+      if (value is Map && (match = _regMap.firstMatch(targetType)) != null) {
+        targetType = match![1]!.trim(); // ignore: parameter_assignments
+        return Map<String, BaseType>.fromIterables(
               value.keys as Iterable<String>,
-              value.values.map((dynamic v) => deserialize<BaseType, BaseType>(v, targetType, growable: growable)),
-            ) as ReturnType;
-          }
-          break;
-    }
-    throw Exception('Cannot deserialize');
+              value.values.map(
+                (dynamic v) => deserialize<BaseType, BaseType>(
+                  v,
+                  targetType,
+                  growable: growable,
+                ),
+              ),
+            )
+            as ReturnType;
+      }
+      break;
   }
+  throw Exception('Cannot deserialize');
+}

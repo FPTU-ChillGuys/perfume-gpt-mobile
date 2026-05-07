@@ -12,25 +12,20 @@ import 'package:dio/dio.dart';
 import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_controller_create_instruction200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/admin_instruction_controller_get_all_instructions200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/create_admin_instruction_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_delete_survey_question200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/update_admin_instruction_request.dart';
 
 class AdminInstructionsApi {
-
   final Dio _dio;
 
   const AdminInstructionsApi(this._dio);
 
   /// Tạo chỉ thị admin mới
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createAdminInstructionRequest] 
+  /// * [createAdminInstructionRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -40,7 +35,8 @@ class AdminInstructionsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AdminInstructionControllerCreateInstruction200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AdminInstructionControllerCreateInstruction200Response>> adminInstructionControllerCreateInstruction({ 
+  Future<Response<AdminInstructionControllerCreateInstruction200Response>>
+  adminInstructionControllerCreateInstruction({
     required CreateAdminInstructionRequest createAdminInstructionRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -52,16 +48,10 @@ class AdminInstructionsApi {
     final _path = r'/admin/instructions';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -72,13 +62,10 @@ class AdminInstructionsApi {
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createAdminInstructionRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createAdminInstructionRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -97,9 +84,17 @@ _bodyData=jsonEncode(createAdminInstructionRequest);
     AdminInstructionControllerCreateInstruction200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<AdminInstructionControllerCreateInstruction200Response, AdminInstructionControllerCreateInstruction200Response>(rawData, 'AdminInstructionControllerCreateInstruction200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              AdminInstructionControllerCreateInstruction200Response,
+              AdminInstructionControllerCreateInstruction200Response
+            >(
+              rawData,
+              'AdminInstructionControllerCreateInstruction200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -123,7 +118,7 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerC
   }
 
   /// Xóa chỉ thị admin
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [id] - ID của chỉ thị cần xóa
@@ -136,7 +131,8 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerC
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerDeleteSurveyQuestion200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerDeleteSurveyQuestion200Response>> adminInstructionControllerDeleteInstruction({ 
+  Future<Response<SurveyControllerDeleteSurveyQuestion200Response>>
+  adminInstructionControllerDeleteInstruction({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -145,19 +141,18 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerC
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/instructions/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/instructions/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -175,9 +170,17 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerC
     SurveyControllerDeleteSurveyQuestion200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerDeleteSurveyQuestion200Response, SurveyControllerDeleteSurveyQuestion200Response>(rawData, 'SurveyControllerDeleteSurveyQuestion200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerDeleteSurveyQuestion200Response,
+              SurveyControllerDeleteSurveyQuestion200Response
+            >(
+              rawData,
+              'SurveyControllerDeleteSurveyQuestion200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -201,7 +204,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerDeleteSurve
   }
 
   /// Lấy tất cả chỉ thị admin
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -213,7 +216,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerDeleteSurve
   ///
   /// Returns a [Future] containing a [Response] with a [AdminInstructionControllerGetAllInstructions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AdminInstructionControllerGetAllInstructions200Response>> adminInstructionControllerGetAllInstructions({ 
+  Future<Response<AdminInstructionControllerGetAllInstructions200Response>>
+  adminInstructionControllerGetAllInstructions({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -224,16 +228,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerDeleteSurve
     final _path = r'/admin/instructions';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -251,9 +249,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerDeleteSurve
     AdminInstructionControllerGetAllInstructions200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<AdminInstructionControllerGetAllInstructions200Response, AdminInstructionControllerGetAllInstructions200Response>(rawData, 'AdminInstructionControllerGetAllInstructions200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              AdminInstructionControllerGetAllInstructions200Response,
+              AdminInstructionControllerGetAllInstructions200Response
+            >(
+              rawData,
+              'AdminInstructionControllerGetAllInstructions200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -277,7 +283,7 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
   }
 
   /// Gộp chỉ thị theo loại thành prompt cho AI
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [type] - Loại chỉ thị cần gộp
@@ -290,7 +296,8 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> adminInstructionControllerGetCombinedPromptByType({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  adminInstructionControllerGetCombinedPromptByType({
     required String type,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -299,19 +306,18 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/instructions/combined/{type}'.replaceAll('{' r'type' '}', type.toString());
+    final _path = r'/admin/instructions/combined/{type}'.replaceAll(
+      '{'
+      r'type'
+      '}',
+      type.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -329,9 +335,17 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -355,7 +369,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Lấy chỉ thị admin theo ID
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [id] - ID của chỉ thị
@@ -368,7 +382,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [AdminInstructionControllerCreateInstruction200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AdminInstructionControllerCreateInstruction200Response>> adminInstructionControllerGetInstructionById({ 
+  Future<Response<AdminInstructionControllerCreateInstruction200Response>>
+  adminInstructionControllerGetInstructionById({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -377,19 +392,18 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/instructions/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/instructions/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -407,9 +421,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     AdminInstructionControllerCreateInstruction200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<AdminInstructionControllerCreateInstruction200Response, AdminInstructionControllerCreateInstruction200Response>(rawData, 'AdminInstructionControllerCreateInstruction200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              AdminInstructionControllerCreateInstruction200Response,
+              AdminInstructionControllerCreateInstruction200Response
+            >(
+              rawData,
+              'AdminInstructionControllerCreateInstruction200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -433,7 +455,7 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerC
   }
 
   /// Lấy chỉ thị theo loại (system | prompt | rule)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [type] - Loại chỉ thị
@@ -446,7 +468,8 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerC
   ///
   /// Returns a [Future] containing a [Response] with a [AdminInstructionControllerGetAllInstructions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AdminInstructionControllerGetAllInstructions200Response>> adminInstructionControllerGetInstructionsByType({ 
+  Future<Response<AdminInstructionControllerGetAllInstructions200Response>>
+  adminInstructionControllerGetInstructionsByType({
     required String type,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -455,19 +478,18 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerC
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/instructions/type/{type}'.replaceAll('{' r'type' '}', type.toString());
+    final _path = r'/admin/instructions/type/{type}'.replaceAll(
+      '{'
+      r'type'
+      '}',
+      type.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -485,9 +507,17 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerC
     AdminInstructionControllerGetAllInstructions200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<AdminInstructionControllerGetAllInstructions200Response, AdminInstructionControllerGetAllInstructions200Response>(rawData, 'AdminInstructionControllerGetAllInstructions200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              AdminInstructionControllerGetAllInstructions200Response,
+              AdminInstructionControllerGetAllInstructions200Response
+            >(
+              rawData,
+              'AdminInstructionControllerGetAllInstructions200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -511,11 +541,11 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
   }
 
   /// Cập nhật chỉ thị admin
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [id] - ID của chỉ thị cần cập nhật
-  /// * [updateAdminInstructionRequest] 
+  /// * [updateAdminInstructionRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -525,7 +555,8 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
   ///
   /// Returns a [Future] containing a [Response] with a [AdminInstructionControllerCreateInstruction200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AdminInstructionControllerCreateInstruction200Response>> adminInstructionControllerUpdateInstruction({ 
+  Future<Response<AdminInstructionControllerCreateInstruction200Response>>
+  adminInstructionControllerUpdateInstruction({
     required String id,
     required UpdateAdminInstructionRequest updateAdminInstructionRequest,
     CancelToken? cancelToken,
@@ -535,19 +566,18 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/instructions/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/admin/instructions/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -558,13 +588,10 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerG
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateAdminInstructionRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateAdminInstructionRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -583,9 +610,17 @@ _bodyData=jsonEncode(updateAdminInstructionRequest);
     AdminInstructionControllerCreateInstruction200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<AdminInstructionControllerCreateInstruction200Response, AdminInstructionControllerCreateInstruction200Response>(rawData, 'AdminInstructionControllerCreateInstruction200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              AdminInstructionControllerCreateInstruction200Response,
+              AdminInstructionControllerCreateInstruction200Response
+            >(
+              rawData,
+              'AdminInstructionControllerCreateInstruction200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -607,5 +642,4 @@ _responseData = rawData == null ? null : deserialize<AdminInstructionControllerC
       extra: _response.extra,
     );
   }
-
 }

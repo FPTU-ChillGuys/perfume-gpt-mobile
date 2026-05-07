@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for OriginNormalizerOutput
 void main() {
-  final OriginNormalizerOutput? instance = /* OriginNormalizerOutput(...) */ null;
+  final OriginNormalizerOutput? instance = /* OriginNormalizerOutput(...) */
+      null;
   // TODO add properties to the entity
 
   group(OriginNormalizerOutput, () {
@@ -12,6 +13,5 @@ void main() {
     test('to test the property `origins`', () async {
       // TODO
     });
-
   });
 }

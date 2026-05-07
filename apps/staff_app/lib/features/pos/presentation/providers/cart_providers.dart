@@ -87,7 +87,10 @@ class PosCart extends _$PosCart {
         )
         .toList();
 
-    final subTotal = items.fold<double>(0.0, (sum, i) => sum + (i.subTotal?.toDouble() ?? 0.0));
+    final subTotal = items.fold<double>(
+      0.0,
+      (sum, i) => sum + (i.subTotal?.toDouble() ?? 0.0),
+    );
 
     signalRService.syncCartToCustomerDisplay(
       CartDisplayDto(

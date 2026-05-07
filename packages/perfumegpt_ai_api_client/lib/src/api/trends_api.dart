@@ -10,24 +10,18 @@ import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/all_user_log_request.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products400_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_reorder_questions200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/trend_controller_get_product_from_trend_caching200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/trend_controller_summarize_logs_structured200_response.dart';
 
 class TrendsApi {
-
   final Dio _dio;
 
   const TrendsApi(this._dio);
 
   /// Khởi tạo job để lấy product từ xu hướng
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
@@ -43,7 +37,8 @@ class TrendsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> trendControllerCreateProductTrendJob({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  trendControllerCreateProductTrendJob({
     required DateTime endDate,
     bool forceRefresh = false,
     String? period,
@@ -58,13 +53,8 @@ class TrendsApi {
     final _path = r'/trends/product/job';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -87,9 +77,17 @@ class TrendsApi {
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -113,11 +111,11 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Lấy product từ xu hướng người dùng (caching)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
-  /// * [allUserLogRequest] 
+  /// * [allUserLogRequest]
   /// * [period] - Khoảng thời gian lọc
   /// * [startDate] - Ngày bắt đầu
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -129,7 +127,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductFromTrendCaching200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductFromTrendCaching200Response>> trendControllerGetProductFromTrendCaching({ 
+  Future<Response<TrendControllerGetProductFromTrendCaching200Response>>
+  trendControllerGetProductFromTrendCaching({
     required DateTime endDate,
     required AllUserLogRequest allUserLogRequest,
     String? period,
@@ -144,13 +143,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     final _path = r'/trends/product/caching';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -164,10 +158,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(allUserLogRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(allUserLogRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -191,9 +185,17 @@ _bodyData=jsonEncode(allUserLogRequest);
     TrendControllerGetProductFromTrendCaching200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<TrendControllerGetProductFromTrendCaching200Response, TrendControllerGetProductFromTrendCaching200Response>(rawData, 'TrendControllerGetProductFromTrendCaching200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              TrendControllerGetProductFromTrendCaching200Response,
+              TrendControllerGetProductFromTrendCaching200Response
+            >(
+              rawData,
+              'TrendControllerGetProductFromTrendCaching200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -217,11 +219,11 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductFr
   }
 
   /// Lấy product từ xu hướng người dùng
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
-  /// * [allUserLogRequest] 
+  /// * [allUserLogRequest]
   /// * [period] - Khoảng thời gian lọc
   /// * [startDate] - Ngày bắt đầu
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -233,7 +235,8 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductFr
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerGetProductFromTrendCaching200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerGetProductFromTrendCaching200Response>> trendControllerGetProductNoCaching({ 
+  Future<Response<TrendControllerGetProductFromTrendCaching200Response>>
+  trendControllerGetProductNoCaching({
     required DateTime endDate,
     required AllUserLogRequest allUserLogRequest,
     String? period,
@@ -248,13 +251,8 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductFr
     final _path = r'/trends/product';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -268,10 +266,10 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductFr
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(allUserLogRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(allUserLogRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -295,9 +293,17 @@ _bodyData=jsonEncode(allUserLogRequest);
     TrendControllerGetProductFromTrendCaching200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<TrendControllerGetProductFromTrendCaching200Response, TrendControllerGetProductFromTrendCaching200Response>(rawData, 'TrendControllerGetProductFromTrendCaching200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              TrendControllerGetProductFromTrendCaching200Response,
+              TrendControllerGetProductFromTrendCaching200Response
+            >(
+              rawData,
+              'TrendControllerGetProductFromTrendCaching200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -321,10 +327,10 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductFr
   }
 
   /// Kiểm tra trạng thái hoàn thành của job
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [jobId] 
+  /// * [jobId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -334,7 +340,8 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductFr
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerReorderQuestions200Response>> trendControllerGetProductTrendJobResult({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>>
+  trendControllerGetProductTrendJobResult({
     required String jobId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -343,16 +350,16 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductFr
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/trends/product/job/{jobId}'.replaceAll('{' r'jobId' '}', jobId.toString());
+    final _path = r'/trends/product/job/{jobId}'.replaceAll(
+      '{'
+      r'jobId'
+      '}',
+      jobId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -367,9 +374,17 @@ _responseData = rawData == null ? null : deserialize<TrendControllerGetProductFr
     SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerReorderQuestions200Response,
+              SurveyControllerReorderQuestions200Response
+            >(
+              rawData,
+              'SurveyControllerReorderQuestions200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -393,11 +408,11 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   }
 
   /// Dự đoán xu hướng dựa trên tổng hợp log người dùng
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
-  /// * [allUserLogRequest] 
+  /// * [allUserLogRequest]
   /// * [period] - Khoảng thời gian lọc
   /// * [startDate] - Ngày bắt đầu
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -409,7 +424,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> trendControllerSummarizeLogs({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  trendControllerSummarizeLogs({
     required DateTime endDate,
     required AllUserLogRequest allUserLogRequest,
     String? period,
@@ -424,13 +440,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     final _path = r'/trends/summary';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -444,10 +455,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(allUserLogRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(allUserLogRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -471,9 +482,17 @@ _bodyData=jsonEncode(allUserLogRequest);
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -497,11 +516,11 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Dự đoán xu hướng có cấu trúc với metadata
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [endDate] - Ngày kết thúc
-  /// * [allUserLogRequest] 
+  /// * [allUserLogRequest]
   /// * [period] - Khoảng thời gian lọc
   /// * [startDate] - Ngày bắt đầu
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -513,7 +532,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [TrendControllerSummarizeLogsStructured200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TrendControllerSummarizeLogsStructured200Response>> trendControllerSummarizeLogsStructured({ 
+  Future<Response<TrendControllerSummarizeLogsStructured200Response>>
+  trendControllerSummarizeLogsStructured({
     required DateTime endDate,
     required AllUserLogRequest allUserLogRequest,
     String? period,
@@ -528,13 +548,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     final _path = r'/trends/summary/structured';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -548,10 +563,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(allUserLogRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(allUserLogRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
           queryParameters: _queryParameters,
@@ -575,9 +590,17 @@ _bodyData=jsonEncode(allUserLogRequest);
     TrendControllerSummarizeLogsStructured200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<TrendControllerSummarizeLogsStructured200Response, TrendControllerSummarizeLogsStructured200Response>(rawData, 'TrendControllerSummarizeLogsStructured200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              TrendControllerSummarizeLogsStructured200Response,
+              TrendControllerSummarizeLogsStructured200Response
+            >(
+              rawData,
+              'TrendControllerSummarizeLogsStructured200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -599,5 +622,4 @@ _responseData = rawData == null ? null : deserialize<TrendControllerSummarizeLog
       extra: _response.extra,
     );
   }
-
 }

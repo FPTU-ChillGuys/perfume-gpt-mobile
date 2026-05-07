@@ -9,18 +9,16 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_store_policy_response.dart';
 import 'package:perfumegpt_api_client/src/model/update_store_policy_request.dart';
 
 class StorePoliciesApi {
-
   final Dio _dio;
 
   const StorePoliciesApi(this._dio);
 
   /// apiStorepoliciesCurrentGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -32,7 +30,8 @@ class StorePoliciesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfStorePolicyResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfStorePolicyResponse>> apiStorepoliciesCurrentGet({ 
+  Future<Response<BaseResponseOfStorePolicyResponse>>
+  apiStorepoliciesCurrentGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -43,16 +42,10 @@ class StorePoliciesApi {
     final _path = r'/api/storepolicies/current';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -70,9 +63,13 @@ class StorePoliciesApi {
     BaseResponseOfStorePolicyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfStorePolicyResponse, BaseResponseOfStorePolicyResponse>(rawData, 'BaseResponseOfStorePolicyResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfStorePolicyResponse,
+              BaseResponseOfStorePolicyResponse
+            >(rawData, 'BaseResponseOfStorePolicyResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -96,10 +93,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStorePolicyRe
   }
 
   /// apiStorepoliciesCurrentPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [updateStorePolicyRequest] 
+  /// * [updateStorePolicyRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -109,7 +106,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStorePolicyRe
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfStorePolicyResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfStorePolicyResponse>> apiStorepoliciesCurrentPut({ 
+  Future<Response<BaseResponseOfStorePolicyResponse>>
+  apiStorepoliciesCurrentPut({
     required UpdateStorePolicyRequest updateStorePolicyRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -121,16 +119,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStorePolicyRe
     final _path = r'/api/storepolicies/current';
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -141,13 +133,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStorePolicyRe
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateStorePolicyRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateStorePolicyRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -166,9 +155,13 @@ _bodyData=jsonEncode(updateStorePolicyRequest);
     BaseResponseOfStorePolicyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfStorePolicyResponse, BaseResponseOfStorePolicyResponse>(rawData, 'BaseResponseOfStorePolicyResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfStorePolicyResponse,
+              BaseResponseOfStorePolicyResponse
+            >(rawData, 'BaseResponseOfStorePolicyResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -190,5 +183,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfStorePolicyRe
       extra: _response.extra,
     );
   }
-
 }

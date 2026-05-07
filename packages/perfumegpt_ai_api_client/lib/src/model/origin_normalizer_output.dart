@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'origin_normalizer_output.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,35 +17,22 @@ part 'origin_normalizer_output.g.dart';
 )
 class OriginNormalizerOutput {
   /// Returns a new [OriginNormalizerOutput] instance.
-  OriginNormalizerOutput({
+  OriginNormalizerOutput({this.origins});
 
-     this.origins,
-  });
-
-      /// Danh sách nguồn gốc
-  @JsonKey(
-    
-    name: r'origins',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Danh sách nguồn gốc
+  @JsonKey(name: r'origins', required: false, includeIfNull: false)
   final List<String>? origins;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OriginNormalizerOutput && other.origins == origins;
 
+  @override
+  int get hashCode => origins.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is OriginNormalizerOutput &&
-      other.origins == origins;
-
-    @override
-    int get hashCode =>
-        origins.hashCode;
-
-  factory OriginNormalizerOutput.fromJson(Map<String, dynamic> json) => _$OriginNormalizerOutputFromJson(json);
+  factory OriginNormalizerOutput.fromJson(Map<String, dynamic> json) =>
+      _$OriginNormalizerOutputFromJson(json);
 
   Map<String, dynamic> toJson() => _$OriginNormalizerOutputToJson(this);
 
@@ -54,6 +40,4 @@ class OriginNormalizerOutput {
   String toString() {
     return toJson().toString();
   }
-
 }
-

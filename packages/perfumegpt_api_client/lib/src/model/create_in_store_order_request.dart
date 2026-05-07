@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_in_store_order_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,161 +21,84 @@ part 'create_in_store_order_request.g.dart';
 class CreateInStoreOrderRequest {
   /// Returns a new [CreateInStoreOrderRequest] instance.
   CreateInStoreOrderRequest({
+    required this.scannedItems,
 
-    required  this.scannedItems,
+    this.voucherCode,
 
-     this.voucherCode,
+    this.guestEmailOrPhoneNumber,
 
-     this.guestEmailOrPhoneNumber,
+    this.customerId,
 
-     this.customerId,
+    this.isPickupInStore,
 
-     this.isPickupInStore,
+    this.recipient,
 
-     this.recipient,
+    required this.payment,
 
-    required  this.payment,
+    this.expectedTotalPrice,
 
-     this.expectedTotalPrice,
-
-     this.posSessionId,
+    this.posSessionId,
   });
 
-  @JsonKey(
-    
-    name: r'scannedItems',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'scannedItems', required: true, includeIfNull: false)
   final List<PosScanItemRequest> scannedItems;
 
-
-
-  @JsonKey(
-    
-    name: r'voucherCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'voucherCode', required: false, includeIfNull: false)
   final String? voucherCode;
 
-
-
   @JsonKey(
-    
     name: r'guestEmailOrPhoneNumber',
     required: false,
     includeIfNull: false,
   )
-
-
   final String? guestEmailOrPhoneNumber;
 
-
-
-  @JsonKey(
-    
-    name: r'customerId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'customerId', required: false, includeIfNull: false)
   final String? customerId;
 
-
-
-  @JsonKey(
-    
-    name: r'isPickupInStore',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isPickupInStore', required: false, includeIfNull: false)
   final bool? isPickupInStore;
 
-
-
-  @JsonKey(
-    
-    name: r'recipient',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'recipient', required: false, includeIfNull: false)
   final ContactAddressInformation? recipient;
 
-
-
-  @JsonKey(
-    
-    name: r'payment',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'payment', required: true, includeIfNull: false)
   final PaymentInformation payment;
 
-
-
-  @JsonKey(
-    
-    name: r'expectedTotalPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'expectedTotalPrice', required: false, includeIfNull: false)
   final num? expectedTotalPrice;
 
-
-
-  @JsonKey(
-    
-    name: r'posSessionId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'posSessionId', required: false, includeIfNull: false)
   final String? posSessionId;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreateInStoreOrderRequest &&
+          other.scannedItems == scannedItems &&
+          other.voucherCode == voucherCode &&
+          other.guestEmailOrPhoneNumber == guestEmailOrPhoneNumber &&
+          other.customerId == customerId &&
+          other.isPickupInStore == isPickupInStore &&
+          other.recipient == recipient &&
+          other.payment == payment &&
+          other.expectedTotalPrice == expectedTotalPrice &&
+          other.posSessionId == posSessionId;
 
+  @override
+  int get hashCode =>
+      scannedItems.hashCode +
+      (voucherCode == null ? 0 : voucherCode.hashCode) +
+      (guestEmailOrPhoneNumber == null ? 0 : guestEmailOrPhoneNumber.hashCode) +
+      (customerId == null ? 0 : customerId.hashCode) +
+      isPickupInStore.hashCode +
+      (recipient == null ? 0 : recipient.hashCode) +
+      payment.hashCode +
+      (expectedTotalPrice == null ? 0 : expectedTotalPrice.hashCode) +
+      (posSessionId == null ? 0 : posSessionId.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreateInStoreOrderRequest &&
-      other.scannedItems == scannedItems &&
-      other.voucherCode == voucherCode &&
-      other.guestEmailOrPhoneNumber == guestEmailOrPhoneNumber &&
-      other.customerId == customerId &&
-      other.isPickupInStore == isPickupInStore &&
-      other.recipient == recipient &&
-      other.payment == payment &&
-      other.expectedTotalPrice == expectedTotalPrice &&
-      other.posSessionId == posSessionId;
-
-    @override
-    int get hashCode =>
-        scannedItems.hashCode +
-        (voucherCode == null ? 0 : voucherCode.hashCode) +
-        (guestEmailOrPhoneNumber == null ? 0 : guestEmailOrPhoneNumber.hashCode) +
-        (customerId == null ? 0 : customerId.hashCode) +
-        isPickupInStore.hashCode +
-        (recipient == null ? 0 : recipient.hashCode) +
-        payment.hashCode +
-        (expectedTotalPrice == null ? 0 : expectedTotalPrice.hashCode) +
-        (posSessionId == null ? 0 : posSessionId.hashCode);
-
-  factory CreateInStoreOrderRequest.fromJson(Map<String, dynamic> json) => _$CreateInStoreOrderRequestFromJson(json);
+  factory CreateInStoreOrderRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateInStoreOrderRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreateInStoreOrderRequestToJson(this);
 
@@ -184,6 +106,4 @@ class CreateInStoreOrderRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

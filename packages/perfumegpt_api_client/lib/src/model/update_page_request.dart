@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_page_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,113 +18,63 @@ part 'update_page_request.g.dart';
 class UpdatePageRequest {
   /// Returns a new [UpdatePageRequest] instance.
   UpdatePageRequest({
+    required this.title,
 
-    required  this.title,
+    required this.slug,
 
-    required  this.slug,
+    required this.htmlContent,
 
-    required  this.htmlContent,
+    this.metaDescription,
 
-     this.metaDescription,
+    this.temporaryMediaIdsToAdd,
 
-     this.temporaryMediaIdsToAdd,
-
-     this.mediaIdsToDelete,
+    this.mediaIdsToDelete,
   });
 
-  @JsonKey(
-    
-    name: r'title',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'title', required: true, includeIfNull: false)
   final String title;
 
-
-
-  @JsonKey(
-    
-    name: r'slug',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'slug', required: true, includeIfNull: false)
   final String slug;
 
-
-
-  @JsonKey(
-    
-    name: r'htmlContent',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'htmlContent', required: true, includeIfNull: false)
   final String htmlContent;
 
-
-
-  @JsonKey(
-    
-    name: r'metaDescription',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'metaDescription', required: false, includeIfNull: false)
   final String? metaDescription;
 
-
-
   @JsonKey(
-    
     name: r'temporaryMediaIdsToAdd',
     required: false,
     includeIfNull: false,
   )
-
-
   final List<String>? temporaryMediaIdsToAdd;
 
-
-
-  @JsonKey(
-    
-    name: r'mediaIdsToDelete',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'mediaIdsToDelete', required: false, includeIfNull: false)
   final List<String>? mediaIdsToDelete;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdatePageRequest &&
+          other.title == title &&
+          other.slug == slug &&
+          other.htmlContent == htmlContent &&
+          other.metaDescription == metaDescription &&
+          other.temporaryMediaIdsToAdd == temporaryMediaIdsToAdd &&
+          other.mediaIdsToDelete == mediaIdsToDelete;
 
+  @override
+  int get hashCode =>
+      title.hashCode +
+      slug.hashCode +
+      htmlContent.hashCode +
+      (metaDescription == null ? 0 : metaDescription.hashCode) +
+      (temporaryMediaIdsToAdd == null ? 0 : temporaryMediaIdsToAdd.hashCode) +
+      (mediaIdsToDelete == null ? 0 : mediaIdsToDelete.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdatePageRequest &&
-      other.title == title &&
-      other.slug == slug &&
-      other.htmlContent == htmlContent &&
-      other.metaDescription == metaDescription &&
-      other.temporaryMediaIdsToAdd == temporaryMediaIdsToAdd &&
-      other.mediaIdsToDelete == mediaIdsToDelete;
-
-    @override
-    int get hashCode =>
-        title.hashCode +
-        slug.hashCode +
-        htmlContent.hashCode +
-        (metaDescription == null ? 0 : metaDescription.hashCode) +
-        (temporaryMediaIdsToAdd == null ? 0 : temporaryMediaIdsToAdd.hashCode) +
-        (mediaIdsToDelete == null ? 0 : mediaIdsToDelete.hashCode);
-
-  factory UpdatePageRequest.fromJson(Map<String, dynamic> json) => _$UpdatePageRequestFromJson(json);
+  factory UpdatePageRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdatePageRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdatePageRequestToJson(this);
 
@@ -133,6 +82,4 @@ class UpdatePageRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

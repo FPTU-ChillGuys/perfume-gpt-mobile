@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'categories_lookup_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,50 +17,24 @@ part 'categories_lookup_item.g.dart';
 )
 class CategoriesLookupItem {
   /// Returns a new [CategoriesLookupItem] instance.
-  CategoriesLookupItem({
+  CategoriesLookupItem({this.id, required this.name});
 
-     this.id,
-
-    required  this.name,
-  });
-
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final int? id;
 
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
   final String name;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CategoriesLookupItem && other.id == id && other.name == name;
 
+  @override
+  int get hashCode => id.hashCode + name.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CategoriesLookupItem &&
-      other.id == id &&
-      other.name == name;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        name.hashCode;
-
-  factory CategoriesLookupItem.fromJson(Map<String, dynamic> json) => _$CategoriesLookupItemFromJson(json);
+  factory CategoriesLookupItem.fromJson(Map<String, dynamic> json) =>
+      _$CategoriesLookupItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$CategoriesLookupItemToJson(this);
 
@@ -69,6 +42,4 @@ class CategoriesLookupItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

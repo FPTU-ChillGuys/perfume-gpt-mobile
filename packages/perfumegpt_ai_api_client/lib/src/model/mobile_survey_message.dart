@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'mobile_survey_message.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,52 +18,28 @@ part 'mobile_survey_message.g.dart';
 )
 class MobileSurveyMessage {
   /// Returns a new [MobileSurveyMessage] instance.
-  MobileSurveyMessage({
+  MobileSurveyMessage({required this.message, required this.products});
 
-    required  this.message,
-
-    required  this.products,
-  });
-
-      /// Tin nhắn tư vấn từ AI
-  @JsonKey(
-    
-    name: r'message',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Tin nhắn tư vấn từ AI
+  @JsonKey(name: r'message', required: true, includeIfNull: false)
   final String message;
 
-
-
-      /// Danh sách sản phẩm kèm theo
-  @JsonKey(
-    
-    name: r'products',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Danh sách sản phẩm kèm theo
+  @JsonKey(name: r'products', required: true, includeIfNull: false)
   final List<MobileSurveyProduct> products;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MobileSurveyMessage &&
+          other.message == message &&
+          other.products == products;
 
+  @override
+  int get hashCode => message.hashCode + products.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is MobileSurveyMessage &&
-      other.message == message &&
-      other.products == products;
-
-    @override
-    int get hashCode =>
-        message.hashCode +
-        products.hashCode;
-
-  factory MobileSurveyMessage.fromJson(Map<String, dynamic> json) => _$MobileSurveyMessageFromJson(json);
+  factory MobileSurveyMessage.fromJson(Map<String, dynamic> json) =>
+      _$MobileSurveyMessageFromJson(json);
 
   Map<String, dynamic> toJson() => _$MobileSurveyMessageToJson(this);
 
@@ -72,6 +47,4 @@ class MobileSurveyMessage {
   String toString() {
     return toJson().toString();
   }
-
 }
-

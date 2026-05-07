@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ProductCardVariantResponse
 void main() {
-  final ProductCardVariantResponse? instance = /* ProductCardVariantResponse(...) */ null;
+  final ProductCardVariantResponse?
+  instance = /* ProductCardVariantResponse(...) */ null;
   // TODO add properties to the entity
 
   group(ProductCardVariantResponse, () {
@@ -30,6 +31,5 @@ void main() {
     test('to test the property `basePrice`', () async {
       // TODO
     });
-
   });
 }

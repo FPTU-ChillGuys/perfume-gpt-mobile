@@ -10,7 +10,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'notification_list_item_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,193 +20,94 @@ part 'notification_list_item_response.g.dart';
 class NotificationListItemResponse {
   /// Returns a new [NotificationListItemResponse] instance.
   NotificationListItemResponse({
+    this.id,
 
-     this.id,
+    this.userId,
 
-     this.userId,
+    this.targetRole,
 
-     this.targetRole,
+    this.title,
 
-     this.title,
+    this.message,
 
-     this.message,
+    this.type,
 
-     this.type,
+    this.referenceId,
 
-     this.referenceId,
+    this.referenceType,
 
-     this.referenceType,
+    this.metadataJson,
 
-     this.metadataJson,
+    this.isRead,
 
-     this.isRead,
-
-     this.createdAt,
+    this.createdAt,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'userId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'userId', required: false, includeIfNull: false)
   final String? userId;
 
-
-
-  @JsonKey(
-    
-    name: r'targetRole',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'targetRole', required: false, includeIfNull: false)
   final String? targetRole;
 
-
-
-  @JsonKey(
-    
-    name: r'title',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'title', required: false, includeIfNull: false)
   final String? title;
 
-
-
-  @JsonKey(
-    
-    name: r'message',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'message', required: false, includeIfNull: false)
   final String? message;
 
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'type', required: false, includeIfNull: false)
   final NotificationType? type;
 
-
-
-  @JsonKey(
-    
-    name: r'referenceId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'referenceId', required: false, includeIfNull: false)
   final String? referenceId;
 
-
-
-  @JsonKey(
-    
-    name: r'referenceType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'referenceType', required: false, includeIfNull: false)
   final NotifiReferecneType? referenceType;
 
-
-
-  @JsonKey(
-    
-    name: r'metadataJson',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'metadataJson', required: false, includeIfNull: false)
   final String? metadataJson;
 
-
-
-  @JsonKey(
-    
-    name: r'isRead',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isRead', required: false, includeIfNull: false)
   final bool? isRead;
 
-
-
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'createdAt', required: false, includeIfNull: false)
   final DateTime? createdAt;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NotificationListItemResponse &&
+          other.id == id &&
+          other.userId == userId &&
+          other.targetRole == targetRole &&
+          other.title == title &&
+          other.message == message &&
+          other.type == type &&
+          other.referenceId == referenceId &&
+          other.referenceType == referenceType &&
+          other.metadataJson == metadataJson &&
+          other.isRead == isRead &&
+          other.createdAt == createdAt;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      (userId == null ? 0 : userId.hashCode) +
+      (targetRole == null ? 0 : targetRole.hashCode) +
+      (title == null ? 0 : title.hashCode) +
+      (message == null ? 0 : message.hashCode) +
+      type.hashCode +
+      (referenceId == null ? 0 : referenceId.hashCode) +
+      (referenceType == null ? 0 : referenceType.hashCode) +
+      (metadataJson == null ? 0 : metadataJson.hashCode) +
+      isRead.hashCode +
+      createdAt.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is NotificationListItemResponse &&
-      other.id == id &&
-      other.userId == userId &&
-      other.targetRole == targetRole &&
-      other.title == title &&
-      other.message == message &&
-      other.type == type &&
-      other.referenceId == referenceId &&
-      other.referenceType == referenceType &&
-      other.metadataJson == metadataJson &&
-      other.isRead == isRead &&
-      other.createdAt == createdAt;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        (userId == null ? 0 : userId.hashCode) +
-        (targetRole == null ? 0 : targetRole.hashCode) +
-        (title == null ? 0 : title.hashCode) +
-        (message == null ? 0 : message.hashCode) +
-        type.hashCode +
-        (referenceId == null ? 0 : referenceId.hashCode) +
-        (referenceType == null ? 0 : referenceType.hashCode) +
-        (metadataJson == null ? 0 : metadataJson.hashCode) +
-        isRead.hashCode +
-        createdAt.hashCode;
-
-  factory NotificationListItemResponse.fromJson(Map<String, dynamic> json) => _$NotificationListItemResponseFromJson(json);
+  factory NotificationListItemResponse.fromJson(Map<String, dynamic> json) =>
+      _$NotificationListItemResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$NotificationListItemResponseToJson(this);
 
@@ -215,6 +115,4 @@ class NotificationListItemResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

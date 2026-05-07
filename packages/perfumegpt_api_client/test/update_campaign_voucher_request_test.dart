@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateCampaignVoucherRequest
 void main() {
-  final UpdateCampaignVoucherRequest? instance = /* UpdateCampaignVoucherRequest(...) */ null;
+  final UpdateCampaignVoucherRequest?
+  instance = /* UpdateCampaignVoucherRequest(...) */ null;
   // TODO add properties to the entity
 
   group(UpdateCampaignVoucherRequest, () {
@@ -61,6 +62,5 @@ void main() {
     test('to test the property `isMemberOnly`', () async {
       // TODO
     });
-
   });
 }

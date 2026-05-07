@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for OrderReturnRequestsApi
 void main() {
   final instance = PerfumegptApiClient().getOrderReturnRequestsApi();
@@ -66,6 +65,5 @@ void main() {
     test('test apiOrderreturnrequestsVideosTemporaryPost', () async {
       // TODO
     });
-
   });
 }

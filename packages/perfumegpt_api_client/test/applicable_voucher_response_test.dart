@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ApplicableVoucherResponse
 void main() {
-  final ApplicableVoucherResponse? instance = /* ApplicableVoucherResponse(...) */ null;
+  final ApplicableVoucherResponse?
+  instance = /* ApplicableVoucherResponse(...) */ null;
   // TODO add properties to the entity
 
   group(ApplicableVoucherResponse, () {
@@ -36,6 +37,5 @@ void main() {
     test('to test the property `ineligibleReason`', () async {
       // TODO
     });
-
   });
 }

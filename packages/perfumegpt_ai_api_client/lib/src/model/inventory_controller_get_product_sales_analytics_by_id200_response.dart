@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'inventory_controller_get_product_sales_analytics_by_id200_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,74 +19,49 @@ part 'inventory_controller_get_product_sales_analytics_by_id200_response.g.dart'
 class InventoryControllerGetProductSalesAnalyticsById200Response {
   /// Returns a new [InventoryControllerGetProductSalesAnalyticsById200Response] instance.
   InventoryControllerGetProductSalesAnalyticsById200Response({
+    this.success,
 
-     this.success,
+    this.error,
 
-     this.error,
-
-     this.payload,
+    this.payload,
   });
 
-      /// Kết quả xử lý
-  @JsonKey(
-    
-    name: r'success',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Kết quả xử lý
+  @JsonKey(name: r'success', required: false, includeIfNull: false)
   final bool? success;
 
-
-
-      /// Thông báo lỗi
-  @JsonKey(
-    
-    name: r'error',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Thông báo lỗi
+  @JsonKey(name: r'error', required: false, includeIfNull: false)
   final String? error;
 
-
-
-  @JsonKey(
-    
-    name: r'payload',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'payload', required: false, includeIfNull: false)
   final VariantSalesAnalyticsResponse? payload;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is InventoryControllerGetProductSalesAnalyticsById200Response &&
+          other.success == success &&
+          other.error == error &&
+          other.payload == payload;
 
+  @override
+  int get hashCode =>
+      success.hashCode +
+      (error == null ? 0 : error.hashCode) +
+      payload.hashCode;
 
+  factory InventoryControllerGetProductSalesAnalyticsById200Response.fromJson(
+    Map<String, dynamic> json,
+  ) => _$InventoryControllerGetProductSalesAnalyticsById200ResponseFromJson(
+    json,
+  );
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is InventoryControllerGetProductSalesAnalyticsById200Response &&
-      other.success == success &&
-      other.error == error &&
-      other.payload == payload;
-
-    @override
-    int get hashCode =>
-        success.hashCode +
-        (error == null ? 0 : error.hashCode) +
-        payload.hashCode;
-
-  factory InventoryControllerGetProductSalesAnalyticsById200Response.fromJson(Map<String, dynamic> json) => _$InventoryControllerGetProductSalesAnalyticsById200ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$InventoryControllerGetProductSalesAnalyticsById200ResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$InventoryControllerGetProductSalesAnalyticsById200ResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

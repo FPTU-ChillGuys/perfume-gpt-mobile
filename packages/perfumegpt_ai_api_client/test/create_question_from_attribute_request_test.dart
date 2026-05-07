@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for CreateQuestionFromAttributeRequest
 void main() {
-  final CreateQuestionFromAttributeRequest? instance = /* CreateQuestionFromAttributeRequest(...) */ null;
+  final CreateQuestionFromAttributeRequest?
+  instance = /* CreateQuestionFromAttributeRequest(...) */ null;
   // TODO add properties to the entity
 
   group(CreateQuestionFromAttributeRequest, () {
@@ -36,6 +37,5 @@ void main() {
     test('to test the property `budgetRanges`', () async {
       // TODO
     });
-
   });
 }

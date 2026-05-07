@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for SurveyAttributeValueItemQueryFragment
 void main() {
-  final SurveyAttributeValueItemQueryFragment? instance = /* SurveyAttributeValueItemQueryFragment(...) */ null;
+  final SurveyAttributeValueItemQueryFragment?
+  instance = /* SurveyAttributeValueItemQueryFragment(...) */ null;
   // TODO add properties to the entity
 
   group(SurveyAttributeValueItemQueryFragment, () {
@@ -36,6 +37,5 @@ void main() {
     test('to test the property `max`', () async {
       // TODO
     });
-
   });
 }

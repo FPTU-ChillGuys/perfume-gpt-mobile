@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'survey_attribute_value_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,49 +19,29 @@ part 'survey_attribute_value_item.g.dart';
 class SurveyAttributeValueItem {
   /// Returns a new [SurveyAttributeValueItem] instance.
   SurveyAttributeValueItem({
+    required this.displayText,
 
-    required  this.displayText,
-
-    required  this.queryFragment,
+    required this.queryFragment,
   });
 
-  @JsonKey(
-    
-    name: r'displayText',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'displayText', required: true, includeIfNull: false)
   final String displayText;
 
-
-
-  @JsonKey(
-    
-    name: r'queryFragment',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'queryFragment', required: true, includeIfNull: false)
   final SurveyAttributeValueItemQueryFragment queryFragment;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SurveyAttributeValueItem &&
+          other.displayText == displayText &&
+          other.queryFragment == queryFragment;
 
+  @override
+  int get hashCode => displayText.hashCode + queryFragment.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is SurveyAttributeValueItem &&
-      other.displayText == displayText &&
-      other.queryFragment == queryFragment;
-
-    @override
-    int get hashCode =>
-        displayText.hashCode +
-        queryFragment.hashCode;
-
-  factory SurveyAttributeValueItem.fromJson(Map<String, dynamic> json) => _$SurveyAttributeValueItemFromJson(json);
+  factory SurveyAttributeValueItem.fromJson(Map<String, dynamic> json) =>
+      _$SurveyAttributeValueItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$SurveyAttributeValueItemToJson(this);
 
@@ -70,6 +49,4 @@ class SurveyAttributeValueItem {
   String toString() {
     return toJson().toString();
   }
-
 }
-

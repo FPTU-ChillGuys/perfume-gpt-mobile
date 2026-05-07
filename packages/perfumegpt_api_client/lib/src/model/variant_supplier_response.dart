@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'variant_supplier_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,97 +18,56 @@ part 'variant_supplier_response.g.dart';
 class VariantSupplierResponse {
   /// Returns a new [VariantSupplierResponse] instance.
   VariantSupplierResponse({
+    this.supplierId,
 
-     this.supplierId,
+    required this.supplierName,
 
-    required  this.supplierName,
+    this.negotiatedPrice,
 
-     this.negotiatedPrice,
+    this.estimatedLeadTimeDays,
 
-     this.estimatedLeadTimeDays,
-
-     this.isPrimary,
+    this.isPrimary,
   });
 
-  @JsonKey(
-    
-    name: r'supplierId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'supplierId', required: false, includeIfNull: false)
   final int? supplierId;
 
-
-
-  @JsonKey(
-    
-    name: r'supplierName',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'supplierName', required: true, includeIfNull: false)
   final String supplierName;
 
-
-
-  @JsonKey(
-    
-    name: r'negotiatedPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'negotiatedPrice', required: false, includeIfNull: false)
   final num? negotiatedPrice;
 
-
-
   @JsonKey(
-    
     name: r'estimatedLeadTimeDays',
     required: false,
     includeIfNull: false,
   )
-
-
   final int? estimatedLeadTimeDays;
 
-
-
-  @JsonKey(
-    
-    name: r'isPrimary',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isPrimary', required: false, includeIfNull: false)
   final bool? isPrimary;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VariantSupplierResponse &&
+          other.supplierId == supplierId &&
+          other.supplierName == supplierName &&
+          other.negotiatedPrice == negotiatedPrice &&
+          other.estimatedLeadTimeDays == estimatedLeadTimeDays &&
+          other.isPrimary == isPrimary;
 
+  @override
+  int get hashCode =>
+      supplierId.hashCode +
+      supplierName.hashCode +
+      negotiatedPrice.hashCode +
+      estimatedLeadTimeDays.hashCode +
+      isPrimary.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is VariantSupplierResponse &&
-      other.supplierId == supplierId &&
-      other.supplierName == supplierName &&
-      other.negotiatedPrice == negotiatedPrice &&
-      other.estimatedLeadTimeDays == estimatedLeadTimeDays &&
-      other.isPrimary == isPrimary;
-
-    @override
-    int get hashCode =>
-        supplierId.hashCode +
-        supplierName.hashCode +
-        negotiatedPrice.hashCode +
-        estimatedLeadTimeDays.hashCode +
-        isPrimary.hashCode;
-
-  factory VariantSupplierResponse.fromJson(Map<String, dynamic> json) => _$VariantSupplierResponseFromJson(json);
+  factory VariantSupplierResponse.fromJson(Map<String, dynamic> json) =>
+      _$VariantSupplierResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$VariantSupplierResponseToJson(this);
 
@@ -117,6 +75,4 @@ class VariantSupplierResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -5,18 +5,17 @@
 // ignore_for_file: unused_element
 import 'package:json_annotation/json_annotation.dart';
 
-
 enum PaymentStatus {
-      @JsonValue(r'Unpaid')
-      unpaid(r'Unpaid'),
-      @JsonValue(r'PartialPaid')
-      partialPaid(r'PartialPaid'),
-      @JsonValue(r'Paid')
-      paid(r'Paid'),
-      @JsonValue(r'Refunded')
-      refunded(r'Refunded'),
-      @JsonValue(r'PartialRefunded')
-      partialRefunded(r'PartialRefunded');
+  @JsonValue(r'Unpaid')
+  unpaid(r'Unpaid'),
+  @JsonValue(r'PartialPaid')
+  partialPaid(r'PartialPaid'),
+  @JsonValue(r'Paid')
+  paid(r'Paid'),
+  @JsonValue(r'Refunded')
+  refunded(r'Refunded'),
+  @JsonValue(r'PartialRefunded')
+  partialRefunded(r'PartialRefunded');
 
   const PaymentStatus(this.value);
 

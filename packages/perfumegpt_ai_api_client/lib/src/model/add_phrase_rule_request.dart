@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'add_phrase_rule_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,85 +18,49 @@ part 'add_phrase_rule_request.g.dart';
 class AddPhraseRuleRequest {
   /// Returns a new [AddPhraseRuleRequest] instance.
   AddPhraseRuleRequest({
+    required this.phrase,
 
-    required  this.phrase,
+    required this.ruleType,
 
-    required  this.ruleType,
+    this.scope,
 
-     this.scope,
-
-     this.confidence,
+    this.confidence,
   });
 
-      /// Phrase text (can include diacritics)
-  @JsonKey(
-    
-    name: r'phrase',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Phrase text (can include diacritics)
+  @JsonKey(name: r'phrase', required: true, includeIfNull: false)
   final String phrase;
 
-
-
-      /// Rule type
-  @JsonKey(
-    
-    name: r'ruleType',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Rule type
+  @JsonKey(name: r'ruleType', required: true, includeIfNull: false)
   final AddPhraseRuleRequestRuleTypeEnum ruleType;
 
-
-
-      /// Rule scope
-  @JsonKey(
-    
-    name: r'scope',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Rule scope
+  @JsonKey(name: r'scope', required: false, includeIfNull: false)
   final AddPhraseRuleRequestScopeEnum? scope;
 
-
-
-      /// Confidence score (0-1)
-  @JsonKey(
-    
-    name: r'confidence',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Confidence score (0-1)
+  @JsonKey(name: r'confidence', required: false, includeIfNull: false)
   final num? confidence;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AddPhraseRuleRequest &&
+          other.phrase == phrase &&
+          other.ruleType == ruleType &&
+          other.scope == scope &&
+          other.confidence == confidence;
 
+  @override
+  int get hashCode =>
+      phrase.hashCode +
+      ruleType.hashCode +
+      scope.hashCode +
+      confidence.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is AddPhraseRuleRequest &&
-      other.phrase == phrase &&
-      other.ruleType == ruleType &&
-      other.scope == scope &&
-      other.confidence == confidence;
-
-    @override
-    int get hashCode =>
-        phrase.hashCode +
-        ruleType.hashCode +
-        scope.hashCode +
-        confidence.hashCode;
-
-  factory AddPhraseRuleRequest.fromJson(Map<String, dynamic> json) => _$AddPhraseRuleRequestFromJson(json);
+  factory AddPhraseRuleRequest.fromJson(Map<String, dynamic> json) =>
+      _$AddPhraseRuleRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddPhraseRuleRequestToJson(this);
 
@@ -105,48 +68,48 @@ class AddPhraseRuleRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
 
 /// Rule type
 enum AddPhraseRuleRequestRuleTypeEnum {
-    /// Rule type
-@JsonValue(r'consume')
-consume(r'consume'),
-    /// Rule type
-@JsonValue(r'extract')
-extract(r'extract'),
-    /// Rule type
-@JsonValue(r'replace')
-replace(r'replace');
+  /// Rule type
+  @JsonValue(r'consume')
+  consume(r'consume'),
 
-const AddPhraseRuleRequestRuleTypeEnum(this.value);
+  /// Rule type
+  @JsonValue(r'extract')
+  extract(r'extract'),
 
-final String value;
+  /// Rule type
+  @JsonValue(r'replace')
+  replace(r'replace');
 
-@override
-String toString() => value;
+  const AddPhraseRuleRequestRuleTypeEnum(this.value);
+
+  final String value;
+
+  @override
+  String toString() => value;
 }
-
 
 /// Rule scope
 enum AddPhraseRuleRequestScopeEnum {
-    /// Rule scope
-@JsonValue(r'global')
-global(r'global'),
-    /// Rule scope
-@JsonValue(r'product')
-product(r'product'),
-    /// Rule scope
-@JsonValue(r'brand')
-brand(r'brand');
+  /// Rule scope
+  @JsonValue(r'global')
+  global(r'global'),
 
-const AddPhraseRuleRequestScopeEnum(this.value);
+  /// Rule scope
+  @JsonValue(r'product')
+  product(r'product'),
 
-final String value;
+  /// Rule scope
+  @JsonValue(r'brand')
+  brand(r'brand');
 
-@override
-String toString() => value;
+  const AddPhraseRuleRequestScopeEnum(this.value);
+
+  final String value;
+
+  @override
+  String toString() => value;
 }
-
-

@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'get_applicable_vouchers_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,34 +18,21 @@ part 'get_applicable_vouchers_request.g.dart';
 )
 class GetApplicableVouchersRequest {
   /// Returns a new [GetApplicableVouchersRequest] instance.
-  GetApplicableVouchersRequest({
+  GetApplicableVouchersRequest({required this.cartItems});
 
-    required  this.cartItems,
-  });
-
-  @JsonKey(
-    
-    name: r'cartItems',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'cartItems', required: true, includeIfNull: false)
   final List<ApplicableVoucherCartItemRequest> cartItems;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GetApplicableVouchersRequest && other.cartItems == cartItems;
 
+  @override
+  int get hashCode => cartItems.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is GetApplicableVouchersRequest &&
-      other.cartItems == cartItems;
-
-    @override
-    int get hashCode =>
-        cartItems.hashCode;
-
-  factory GetApplicableVouchersRequest.fromJson(Map<String, dynamic> json) => _$GetApplicableVouchersRequestFromJson(json);
+  factory GetApplicableVouchersRequest.fromJson(Map<String, dynamic> json) =>
+      _$GetApplicableVouchersRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$GetApplicableVouchersRequestToJson(this);
 
@@ -54,6 +40,4 @@ class GetApplicableVouchersRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

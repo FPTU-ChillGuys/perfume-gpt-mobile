@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ProductControllerGetAllProducts400Response
 void main() {
-  final ProductControllerGetAllProducts400Response? instance = /* ProductControllerGetAllProducts400Response(...) */ null;
+  final ProductControllerGetAllProducts400Response?
+  instance = /* ProductControllerGetAllProducts400Response(...) */ null;
   // TODO add properties to the entity
 
   group(ProductControllerGetAllProducts400Response, () {
@@ -29,6 +30,5 @@ void main() {
     test('to test the property `statusCode`', () async {
       // TODO
     });
-
   });
 }

@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_temp_item_dto.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,97 +19,52 @@ part 'product_temp_item_dto.g.dart';
 class ProductTempItemDto {
   /// Returns a new [ProductTempItemDto] instance.
   ProductTempItemDto({
+    required this.id,
 
-    required  this.id,
+    this.name,
 
-     this.name,
+    this.variants,
 
-     this.variants,
+    required this.reasoning,
 
-    required  this.reasoning,
-
-    required  this.source_,
+    required this.source_,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: true, includeIfNull: false)
   final String id;
 
-
-
-  @JsonKey(
-    
-    name: r'name',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: false, includeIfNull: false)
   final Object? name;
 
-
-
-  @JsonKey(
-    
-    name: r'variants',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variants', required: false, includeIfNull: false)
   final List<ProductTempItemDtoVariantsInner>? variants;
 
-
-
-  @JsonKey(
-    
-    name: r'reasoning',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'reasoning', required: true, includeIfNull: false)
   final String reasoning;
 
-
-
-  @JsonKey(
-    
-    name: r'source',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'source', required: true, includeIfNull: false)
   final String source_;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductTempItemDto &&
+          other.id == id &&
+          other.name == name &&
+          other.variants == variants &&
+          other.reasoning == reasoning &&
+          other.source_ == source_;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      (name == null ? 0 : name.hashCode) +
+      (variants == null ? 0 : variants.hashCode) +
+      reasoning.hashCode +
+      source_.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductTempItemDto &&
-      other.id == id &&
-      other.name == name &&
-      other.variants == variants &&
-      other.reasoning == reasoning &&
-      other.source_ == source_;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        (name == null ? 0 : name.hashCode) +
-        (variants == null ? 0 : variants.hashCode) +
-        reasoning.hashCode +
-        source_.hashCode;
-
-  factory ProductTempItemDto.fromJson(Map<String, dynamic> json) => _$ProductTempItemDtoFromJson(json);
+  factory ProductTempItemDto.fromJson(Map<String, dynamic> json) =>
+      _$ProductTempItemDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductTempItemDtoToJson(this);
 
@@ -118,6 +72,4 @@ class ProductTempItemDto {
   String toString() {
     return toJson().toString();
   }
-
 }
-

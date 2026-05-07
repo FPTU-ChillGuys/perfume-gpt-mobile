@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_campaign_status_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,34 +18,21 @@ part 'update_campaign_status_request.g.dart';
 )
 class UpdateCampaignStatusRequest {
   /// Returns a new [UpdateCampaignStatusRequest] instance.
-  UpdateCampaignStatusRequest({
+  UpdateCampaignStatusRequest({this.status});
 
-     this.status,
-  });
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final CampaignStatus? status;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateCampaignStatusRequest && other.status == status;
 
+  @override
+  int get hashCode => status.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateCampaignStatusRequest &&
-      other.status == status;
-
-    @override
-    int get hashCode =>
-        status.hashCode;
-
-  factory UpdateCampaignStatusRequest.fromJson(Map<String, dynamic> json) => _$UpdateCampaignStatusRequestFromJson(json);
+  factory UpdateCampaignStatusRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateCampaignStatusRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateCampaignStatusRequestToJson(this);
 
@@ -54,6 +40,4 @@ class UpdateCampaignStatusRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

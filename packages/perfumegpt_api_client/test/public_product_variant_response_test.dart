@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PublicProductVariantResponse
 void main() {
-  final PublicProductVariantResponse? instance = /* PublicProductVariantResponse(...) */ null;
+  final PublicProductVariantResponse?
+  instance = /* PublicProductVariantResponse(...) */ null;
   // TODO add properties to the entity
 
   group(PublicProductVariantResponse, () {
@@ -76,6 +77,5 @@ void main() {
     test('to test the property `discountedPrice`', () async {
       // TODO
     });
-
   });
 }

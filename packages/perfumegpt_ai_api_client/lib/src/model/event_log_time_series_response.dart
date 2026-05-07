@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'event_log_time_series_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,102 +19,57 @@ part 'event_log_time_series_response.g.dart';
 class EventLogTimeSeriesResponse {
   /// Returns a new [EventLogTimeSeriesResponse] instance.
   EventLogTimeSeriesResponse({
+    this.userId,
 
-     this.userId,
+    this.startDate,
 
-     this.startDate,
+    this.endDate,
 
-     this.endDate,
+    required this.granularity,
 
-    required  this.granularity,
-
-    required  this.points,
+    required this.points,
   });
 
-      /// ID người dùng
-  @JsonKey(
-    
-    name: r'userId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// ID người dùng
+  @JsonKey(name: r'userId', required: false, includeIfNull: false)
   final String? userId;
 
-
-
-      /// Ngày bắt đầu thống kê
-  @JsonKey(
-    
-    name: r'startDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Ngày bắt đầu thống kê
+  @JsonKey(name: r'startDate', required: false, includeIfNull: false)
   final DateTime? startDate;
 
-
-
-      /// Ngày kết thúc thống kê
-  @JsonKey(
-    
-    name: r'endDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Ngày kết thúc thống kê
+  @JsonKey(name: r'endDate', required: false, includeIfNull: false)
   final DateTime? endDate;
 
-
-
-      /// Mức gộp dữ liệu
-  @JsonKey(
-    
-    name: r'granularity',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Mức gộp dữ liệu
+  @JsonKey(name: r'granularity', required: true, includeIfNull: false)
   final EventLogTimeSeriesResponseGranularityEnum granularity;
 
-
-
-      /// Các điểm dữ liệu time-series
-  @JsonKey(
-    
-    name: r'points',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Các điểm dữ liệu time-series
+  @JsonKey(name: r'points', required: true, includeIfNull: false)
   final List<EventLogTimeSeriesPointResponse> points;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EventLogTimeSeriesResponse &&
+          other.userId == userId &&
+          other.startDate == startDate &&
+          other.endDate == endDate &&
+          other.granularity == granularity &&
+          other.points == points;
 
+  @override
+  int get hashCode =>
+      (userId == null ? 0 : userId.hashCode) +
+      (startDate == null ? 0 : startDate.hashCode) +
+      (endDate == null ? 0 : endDate.hashCode) +
+      granularity.hashCode +
+      points.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is EventLogTimeSeriesResponse &&
-      other.userId == userId &&
-      other.startDate == startDate &&
-      other.endDate == endDate &&
-      other.granularity == granularity &&
-      other.points == points;
-
-    @override
-    int get hashCode =>
-        (userId == null ? 0 : userId.hashCode) +
-        (startDate == null ? 0 : startDate.hashCode) +
-        (endDate == null ? 0 : endDate.hashCode) +
-        granularity.hashCode +
-        points.hashCode;
-
-  factory EventLogTimeSeriesResponse.fromJson(Map<String, dynamic> json) => _$EventLogTimeSeriesResponseFromJson(json);
+  factory EventLogTimeSeriesResponse.fromJson(Map<String, dynamic> json) =>
+      _$EventLogTimeSeriesResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$EventLogTimeSeriesResponseToJson(this);
 
@@ -123,24 +77,22 @@ class EventLogTimeSeriesResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
 
 /// Mức gộp dữ liệu
 enum EventLogTimeSeriesResponseGranularityEnum {
-    /// Mức gộp dữ liệu
-@JsonValue(r'day')
-day(r'day'),
-    /// Mức gộp dữ liệu
-@JsonValue(r'week')
-week(r'week');
+  /// Mức gộp dữ liệu
+  @JsonValue(r'day')
+  day(r'day'),
 
-const EventLogTimeSeriesResponseGranularityEnum(this.value);
+  /// Mức gộp dữ liệu
+  @JsonValue(r'week')
+  week(r'week');
 
-final String value;
+  const EventLogTimeSeriesResponseGranularityEnum(this.value);
 
-@override
-String toString() => value;
+  final String value;
+
+  @override
+  String toString() => value;
 }
-
-

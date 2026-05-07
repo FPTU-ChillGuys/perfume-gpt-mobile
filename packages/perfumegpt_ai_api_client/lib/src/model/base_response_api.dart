@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response_api.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,69 +17,36 @@ part 'base_response_api.g.dart';
 )
 class BaseResponseAPI {
   /// Returns a new [BaseResponseAPI] instance.
-  BaseResponseAPI({
+  BaseResponseAPI({required this.success, this.error, this.payload});
 
-    required  this.success,
-
-     this.error,
-
-     this.payload,
-  });
-
-      /// Kết quả xử lý
-  @JsonKey(
-    
-    name: r'success',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Kết quả xử lý
+  @JsonKey(name: r'success', required: true, includeIfNull: false)
   final bool success;
 
-
-
-      /// Thông báo lỗi
-  @JsonKey(
-    
-    name: r'error',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Thông báo lỗi
+  @JsonKey(name: r'error', required: false, includeIfNull: false)
   final Object? error;
 
-
-
-      /// Dữ liệu trả về
-  @JsonKey(
-    
-    name: r'payload',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Dữ liệu trả về
+  @JsonKey(name: r'payload', required: false, includeIfNull: false)
   final Object? payload;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BaseResponseAPI &&
+          other.success == success &&
+          other.error == error &&
+          other.payload == payload;
 
+  @override
+  int get hashCode =>
+      success.hashCode +
+      (error == null ? 0 : error.hashCode) +
+      payload.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BaseResponseAPI &&
-      other.success == success &&
-      other.error == error &&
-      other.payload == payload;
-
-    @override
-    int get hashCode =>
-        success.hashCode +
-        (error == null ? 0 : error.hashCode) +
-        payload.hashCode;
-
-  factory BaseResponseAPI.fromJson(Map<String, dynamic> json) => _$BaseResponseAPIFromJson(json);
+  factory BaseResponseAPI.fromJson(Map<String, dynamic> json) =>
+      _$BaseResponseAPIFromJson(json);
 
   Map<String, dynamic> toJson() => _$BaseResponseAPIToJson(this);
 
@@ -88,6 +54,4 @@ class BaseResponseAPI {
   String toString() {
     return toJson().toString();
   }
-
 }
-

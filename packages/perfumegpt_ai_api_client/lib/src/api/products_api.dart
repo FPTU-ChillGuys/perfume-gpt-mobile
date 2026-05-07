@@ -10,22 +10,18 @@ import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products400_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_hybrid_search200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_products_by_semantic_search200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/product_view_log_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/search_text_log_request.dart';
 
 class ProductsApi {
-
   final Dio _dio;
 
   const ProductsApi(this._dio);
 
   /// Lấy danh sách tất cả sản phẩm
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -41,7 +37,8 @@ class ProductsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [ProductControllerGetAllProducts200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetAllProducts200Response>> productControllerGetAllProducts({ 
+  Future<Response<ProductControllerGetAllProducts200Response>>
+  productControllerGetAllProducts({
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -56,13 +53,8 @@ class ProductsApi {
     final _path = r'/products';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -85,9 +77,17 @@ class ProductsApi {
     ProductControllerGetAllProducts200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ProductControllerGetAllProducts200Response, ProductControllerGetAllProducts200Response>(rawData, 'ProductControllerGetAllProducts200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ProductControllerGetAllProducts200Response,
+              ProductControllerGetAllProducts200Response
+            >(
+              rawData,
+              'ProductControllerGetAllProducts200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -111,7 +111,7 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetAllProd
   }
 
   /// Hybrid Search v4 - Kết hợp Query Layer (hard filters) và Vector Layer (similarity)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -128,7 +128,8 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetAllProd
   ///
   /// Returns a [Future] containing a [Response] with a [ProductControllerGetProductsByHybridSearch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetProductsByHybridSearch200Response>> productControllerGetProductsByHybridSearch({ 
+  Future<Response<ProductControllerGetProductsByHybridSearch200Response>>
+  productControllerGetProductsByHybridSearch({
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -144,13 +145,8 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetAllProd
     final _path = r'/products/search/v4';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -174,9 +170,17 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetAllProd
     ProductControllerGetProductsByHybridSearch200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ProductControllerGetProductsByHybridSearch200Response, ProductControllerGetProductsByHybridSearch200Response>(rawData, 'ProductControllerGetProductsByHybridSearch200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ProductControllerGetProductsByHybridSearch200Response,
+              ProductControllerGetProductsByHybridSearch200Response
+            >(
+              rawData,
+              'ProductControllerGetProductsByHybridSearch200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -200,7 +204,7 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetProduct
   }
 
   /// Tìm kiếm sản phẩm bằng semantic search
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -217,7 +221,8 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetProduct
   ///
   /// Returns a [Future] containing a [Response] with a [ProductControllerGetProductsBySemanticSearch200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ProductControllerGetProductsBySemanticSearch200Response>> productControllerGetProductsBySemanticSearch({ 
+  Future<Response<ProductControllerGetProductsBySemanticSearch200Response>>
+  productControllerGetProductsBySemanticSearch({
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -233,13 +238,8 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetProduct
     final _path = r'/products/search';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -263,9 +263,17 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetProduct
     ProductControllerGetProductsBySemanticSearch200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ProductControllerGetProductsBySemanticSearch200Response, ProductControllerGetProductsBySemanticSearch200Response>(rawData, 'ProductControllerGetProductsBySemanticSearch200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ProductControllerGetProductsBySemanticSearch200Response,
+              ProductControllerGetProductsBySemanticSearch200Response
+            >(
+              rawData,
+              'ProductControllerGetProductsBySemanticSearch200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -289,10 +297,10 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetProduct
   }
 
   /// Ghi log khi người dùng xem / click vào product hoặc variant
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [productViewLogRequest] 
+  /// * [productViewLogRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -302,7 +310,7 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetProduct
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> productControllerLogProductView({ 
+  Future<Response<void>> productControllerLogProductView({
     required ProductViewLogRequest productViewLogRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -314,13 +322,8 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetProduct
     final _path = r'/products/log/view';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -328,13 +331,10 @@ _responseData = rawData == null ? null : deserialize<ProductControllerGetProduct
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(productViewLogRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(productViewLogRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -354,10 +354,10 @@ _bodyData=jsonEncode(productViewLogRequest);
   }
 
   /// Ghi log từ khóa tìm kiếm (không thực hiện tìm kiếm)
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [searchTextLogRequest] 
+  /// * [searchTextLogRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -367,7 +367,7 @@ _bodyData=jsonEncode(productViewLogRequest);
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> productControllerLogSearchText({ 
+  Future<Response<void>> productControllerLogSearchText({
     required SearchTextLogRequest searchTextLogRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -379,13 +379,8 @@ _bodyData=jsonEncode(productViewLogRequest);
     final _path = r'/products/log/search';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -393,13 +388,10 @@ _bodyData=jsonEncode(productViewLogRequest);
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(searchTextLogRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(searchTextLogRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -417,5 +409,4 @@ _bodyData=jsonEncode(searchTextLogRequest);
 
     return _response;
   }
-
 }

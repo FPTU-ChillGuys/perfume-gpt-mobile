@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for LogControllerGetAllUserLogsSummaries200Response
 void main() {
-  final LogControllerGetAllUserLogsSummaries200Response? instance = /* LogControllerGetAllUserLogsSummaries200Response(...) */ null;
+  final LogControllerGetAllUserLogsSummaries200Response?
+  instance = /* LogControllerGetAllUserLogsSummaries200Response(...) */ null;
   // TODO add properties to the entity
 
   group(LogControllerGetAllUserLogsSummaries200Response, () {
@@ -29,6 +30,5 @@ void main() {
     test('to test the property `data`', () async {
       // TODO
     });
-
   });
 }

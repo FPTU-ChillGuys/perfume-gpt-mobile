@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ChatMessageRequestMessage
 void main() {
-  final ChatMessageRequestMessage? instance = /* ChatMessageRequestMessage(...) */ null;
+  final ChatMessageRequestMessage?
+  instance = /* ChatMessageRequestMessage(...) */ null;
   // TODO add properties to the entity
 
   group(ChatMessageRequestMessage, () {
@@ -28,6 +29,5 @@ void main() {
     test('to test the property `suggestedQuestions`', () async {
       // TODO
     });
-
   });
 }

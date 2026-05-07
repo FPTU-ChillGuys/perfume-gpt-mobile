@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for SurveyControllerGetAllSurveys403Response
 void main() {
-  final SurveyControllerGetAllSurveys403Response? instance = /* SurveyControllerGetAllSurveys403Response(...) */ null;
+  final SurveyControllerGetAllSurveys403Response?
+  instance = /* SurveyControllerGetAllSurveys403Response(...) */ null;
   // TODO add properties to the entity
 
   group(SurveyControllerGetAllSurveys403Response, () {
@@ -29,6 +30,5 @@ void main() {
     test('to test the property `statusCode`', () async {
       // TODO
     });
-
   });
 }

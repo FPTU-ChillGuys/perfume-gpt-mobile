@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for EventLogSummaryResponse
 void main() {
-  final EventLogSummaryResponse? instance = /* EventLogSummaryResponse(...) */ null;
+  final EventLogSummaryResponse? instance = /* EventLogSummaryResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(EventLogSummaryResponse, () {
@@ -54,6 +55,5 @@ void main() {
     test('to test the property `productCount`', () async {
       // TODO
     });
-
   });
 }

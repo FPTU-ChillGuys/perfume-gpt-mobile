@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'paged_result_of_order_return_request_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,136 +19,73 @@ part 'paged_result_of_order_return_request_response.g.dart';
 class PagedResultOfOrderReturnRequestResponse {
   /// Returns a new [PagedResultOfOrderReturnRequestResponse] instance.
   PagedResultOfOrderReturnRequestResponse({
+    required this.items,
 
-    required  this.items,
+    required this.pageNumber,
 
-    required  this.pageNumber,
+    required this.pageSize,
 
-    required  this.pageSize,
+    required this.totalCount,
 
-    required  this.totalCount,
+    this.totalPages,
 
-     this.totalPages,
+    this.hasPreviousPage,
 
-     this.hasPreviousPage,
-
-     this.hasNextPage,
+    this.hasNextPage,
   });
 
-  @JsonKey(
-    
-    name: r'items',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'items', required: true, includeIfNull: false)
   final List<OrderReturnRequestResponse> items;
 
-
-
-  @JsonKey(
-    
-    name: r'pageNumber',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'pageNumber', required: true, includeIfNull: false)
   final int pageNumber;
 
-
-
-  @JsonKey(
-    
-    name: r'pageSize',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'pageSize', required: true, includeIfNull: false)
   final int pageSize;
 
-
-
-  @JsonKey(
-    
-    name: r'totalCount',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'totalCount', required: true, includeIfNull: false)
   final int totalCount;
 
-
-
-  @JsonKey(
-    
-    name: r'totalPages',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'totalPages', required: false, includeIfNull: false)
   final int? totalPages;
 
-
-
-  @JsonKey(
-    
-    name: r'hasPreviousPage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'hasPreviousPage', required: false, includeIfNull: false)
   final bool? hasPreviousPage;
 
-
-
-  @JsonKey(
-    
-    name: r'hasNextPage',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'hasNextPage', required: false, includeIfNull: false)
   final bool? hasNextPage;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PagedResultOfOrderReturnRequestResponse &&
+          other.items == items &&
+          other.pageNumber == pageNumber &&
+          other.pageSize == pageSize &&
+          other.totalCount == totalCount &&
+          other.totalPages == totalPages &&
+          other.hasPreviousPage == hasPreviousPage &&
+          other.hasNextPage == hasNextPage;
 
+  @override
+  int get hashCode =>
+      items.hashCode +
+      pageNumber.hashCode +
+      pageSize.hashCode +
+      totalCount.hashCode +
+      totalPages.hashCode +
+      hasPreviousPage.hashCode +
+      hasNextPage.hashCode;
 
+  factory PagedResultOfOrderReturnRequestResponse.fromJson(
+    Map<String, dynamic> json,
+  ) => _$PagedResultOfOrderReturnRequestResponseFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PagedResultOfOrderReturnRequestResponse &&
-      other.items == items &&
-      other.pageNumber == pageNumber &&
-      other.pageSize == pageSize &&
-      other.totalCount == totalCount &&
-      other.totalPages == totalPages &&
-      other.hasPreviousPage == hasPreviousPage &&
-      other.hasNextPage == hasNextPage;
-
-    @override
-    int get hashCode =>
-        items.hashCode +
-        pageNumber.hashCode +
-        pageSize.hashCode +
-        totalCount.hashCode +
-        totalPages.hashCode +
-        hasPreviousPage.hashCode +
-        hasNextPage.hashCode;
-
-  factory PagedResultOfOrderReturnRequestResponse.fromJson(Map<String, dynamic> json) => _$PagedResultOfOrderReturnRequestResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PagedResultOfOrderReturnRequestResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$PagedResultOfOrderReturnRequestResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

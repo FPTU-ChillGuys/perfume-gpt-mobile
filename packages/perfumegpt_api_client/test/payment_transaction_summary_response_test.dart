@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PaymentTransactionSummaryResponse
 void main() {
-  final PaymentTransactionSummaryResponse? instance = /* PaymentTransactionSummaryResponse(...) */ null;
+  final PaymentTransactionSummaryResponse?
+  instance = /* PaymentTransactionSummaryResponse(...) */ null;
   // TODO add properties to the entity
 
   group(PaymentTransactionSummaryResponse, () {
@@ -63,14 +64,16 @@ void main() {
     });
 
     // num totalPaymentAmountExcludingShipping
-    test('to test the property `totalPaymentAmountExcludingShipping`', () async {
-      // TODO
-    });
+    test(
+      'to test the property `totalPaymentAmountExcludingShipping`',
+      () async {
+        // TODO
+      },
+    );
 
     // num totalRefundAmount
     test('to test the property `totalRefundAmount`', () async {
       // TODO
     });
-
   });
 }

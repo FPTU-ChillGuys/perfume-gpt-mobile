@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'verify_import_detail_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,82 +19,46 @@ part 'verify_import_detail_request.g.dart';
 class VerifyImportDetailRequest {
   /// Returns a new [VerifyImportDetailRequest] instance.
   VerifyImportDetailRequest({
+    required this.importDetailId,
 
-    required  this.importDetailId,
+    this.rejectedQuantity,
 
-     this.rejectedQuantity,
+    this.note,
 
-     this.note,
-
-    required  this.batches,
+    required this.batches,
   });
 
-  @JsonKey(
-    
-    name: r'importDetailId',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'importDetailId', required: true, includeIfNull: false)
   final String importDetailId;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'rejectedQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'rejectedQuantity', required: false, includeIfNull: false)
   final int? rejectedQuantity;
 
-
-
-  @JsonKey(
-    
-    name: r'note',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
   final String? note;
 
-
-
-  @JsonKey(
-    
-    name: r'batches',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'batches', required: true, includeIfNull: false)
   final List<CreateBatchRequest> batches;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VerifyImportDetailRequest &&
+          other.importDetailId == importDetailId &&
+          other.rejectedQuantity == rejectedQuantity &&
+          other.note == note &&
+          other.batches == batches;
 
+  @override
+  int get hashCode =>
+      importDetailId.hashCode +
+      rejectedQuantity.hashCode +
+      (note == null ? 0 : note.hashCode) +
+      batches.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is VerifyImportDetailRequest &&
-      other.importDetailId == importDetailId &&
-      other.rejectedQuantity == rejectedQuantity &&
-      other.note == note &&
-      other.batches == batches;
-
-    @override
-    int get hashCode =>
-        importDetailId.hashCode +
-        rejectedQuantity.hashCode +
-        (note == null ? 0 : note.hashCode) +
-        batches.hashCode;
-
-  factory VerifyImportDetailRequest.fromJson(Map<String, dynamic> json) => _$VerifyImportDetailRequestFromJson(json);
+  factory VerifyImportDetailRequest.fromJson(Map<String, dynamic> json) =>
+      _$VerifyImportDetailRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$VerifyImportDetailRequestToJson(this);
 
@@ -103,6 +66,4 @@ class VerifyImportDetailRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

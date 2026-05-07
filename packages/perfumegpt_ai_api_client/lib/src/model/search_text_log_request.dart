@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'search_text_log_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,52 +17,29 @@ part 'search_text_log_request.g.dart';
 )
 class SearchTextLogRequest {
   /// Returns a new [SearchTextLogRequest] instance.
-  SearchTextLogRequest({
+  SearchTextLogRequest({this.userId, required this.searchText});
 
-     this.userId,
-
-    required  this.searchText,
-  });
-
-      /// UUID của user cần gắn log (optional, dùng khi request không có Bearer token)
-  @JsonKey(
-    
-    name: r'userId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// UUID của user cần gắn log (optional, dùng khi request không có Bearer token)
+  @JsonKey(name: r'userId', required: false, includeIfNull: false)
   final String? userId;
 
-
-
-      /// Từ khóa tìm kiếm cần ghi log
-  @JsonKey(
-    
-    name: r'searchText',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Từ khóa tìm kiếm cần ghi log
+  @JsonKey(name: r'searchText', required: true, includeIfNull: false)
   final String searchText;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SearchTextLogRequest &&
+          other.userId == userId &&
+          other.searchText == searchText;
 
+  @override
+  int get hashCode =>
+      (userId == null ? 0 : userId.hashCode) + searchText.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is SearchTextLogRequest &&
-      other.userId == userId &&
-      other.searchText == searchText;
-
-    @override
-    int get hashCode =>
-        (userId == null ? 0 : userId.hashCode) +
-        searchText.hashCode;
-
-  factory SearchTextLogRequest.fromJson(Map<String, dynamic> json) => _$SearchTextLogRequestFromJson(json);
+  factory SearchTextLogRequest.fromJson(Map<String, dynamic> json) =>
+      _$SearchTextLogRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$SearchTextLogRequestToJson(this);
 
@@ -71,6 +47,4 @@ class SearchTextLogRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

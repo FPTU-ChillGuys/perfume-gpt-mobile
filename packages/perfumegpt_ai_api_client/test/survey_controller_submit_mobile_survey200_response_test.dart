@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for SurveyControllerSubmitMobileSurvey200Response
 void main() {
-  final SurveyControllerSubmitMobileSurvey200Response? instance = /* SurveyControllerSubmitMobileSurvey200Response(...) */ null;
+  final SurveyControllerSubmitMobileSurvey200Response?
+  instance = /* SurveyControllerSubmitMobileSurvey200Response(...) */ null;
   // TODO add properties to the entity
 
   group(SurveyControllerSubmitMobileSurvey200Response, () {
@@ -29,6 +30,5 @@ void main() {
     test('to test the property `data`', () async {
       // TODO
     });
-
   });
 }

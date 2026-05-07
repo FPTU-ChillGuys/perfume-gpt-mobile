@@ -3,7 +3,9 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ProductControllerGetProductsBySemanticSearch200Response
 void main() {
-  final ProductControllerGetProductsBySemanticSearch200Response? instance = /* ProductControllerGetProductsBySemanticSearch200Response(...) */ null;
+  final ProductControllerGetProductsBySemanticSearch200Response?
+  instance = /* ProductControllerGetProductsBySemanticSearch200Response(...) */
+      null;
   // TODO add properties to the entity
 
   group(ProductControllerGetProductsBySemanticSearch200Response, () {
@@ -23,6 +25,5 @@ void main() {
     test('to test the property `payload`', () async {
       // TODO
     });
-
   });
 }

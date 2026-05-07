@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for PaymentsApi
 void main() {
   final instance = PerfumegptApiClient().getPaymentsApi();
@@ -46,6 +45,5 @@ void main() {
     test('test apiPaymentsVnpayReturnGet', () async {
       // TODO
     });
-
   });
 }

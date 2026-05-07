@@ -3,7 +3,9 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for AdminInstructionControllerCreateInstruction200Response
 void main() {
-  final AdminInstructionControllerCreateInstruction200Response? instance = /* AdminInstructionControllerCreateInstruction200Response(...) */ null;
+  final AdminInstructionControllerCreateInstruction200Response?
+  instance = /* AdminInstructionControllerCreateInstruction200Response(...) */
+      null;
   // TODO add properties to the entity
 
   group(AdminInstructionControllerCreateInstruction200Response, () {
@@ -29,6 +31,5 @@ void main() {
     test('to test the property `data`', () async {
       // TODO
     });
-
   });
 }

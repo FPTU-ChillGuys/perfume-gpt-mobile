@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_payment_response_dto.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,66 +17,33 @@ part 'create_payment_response_dto.g.dart';
 )
 class CreatePaymentResponseDto {
   /// Returns a new [CreatePaymentResponseDto] instance.
-  CreatePaymentResponseDto({
+  CreatePaymentResponseDto({this.paymentId, this.paymentUrl, this.orderId});
 
-     this.paymentId,
-
-     this.paymentUrl,
-
-     this.orderId,
-  });
-
-  @JsonKey(
-    
-    name: r'paymentId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'paymentId', required: false, includeIfNull: false)
   final String? paymentId;
 
-
-
-  @JsonKey(
-    
-    name: r'paymentUrl',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'paymentUrl', required: false, includeIfNull: false)
   final String? paymentUrl;
 
-
-
-  @JsonKey(
-    
-    name: r'orderId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'orderId', required: false, includeIfNull: false)
   final String? orderId;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreatePaymentResponseDto &&
+          other.paymentId == paymentId &&
+          other.paymentUrl == paymentUrl &&
+          other.orderId == orderId;
 
+  @override
+  int get hashCode =>
+      (paymentId == null ? 0 : paymentId.hashCode) +
+      (paymentUrl == null ? 0 : paymentUrl.hashCode) +
+      (orderId == null ? 0 : orderId.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreatePaymentResponseDto &&
-      other.paymentId == paymentId &&
-      other.paymentUrl == paymentUrl &&
-      other.orderId == orderId;
-
-    @override
-    int get hashCode =>
-        (paymentId == null ? 0 : paymentId.hashCode) +
-        (paymentUrl == null ? 0 : paymentUrl.hashCode) +
-        (orderId == null ? 0 : orderId.hashCode);
-
-  factory CreatePaymentResponseDto.fromJson(Map<String, dynamic> json) => _$CreatePaymentResponseDtoFromJson(json);
+  factory CreatePaymentResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$CreatePaymentResponseDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreatePaymentResponseDtoToJson(this);
 
@@ -85,6 +51,4 @@ class CreatePaymentResponseDto {
   String toString() {
     return toJson().toString();
   }
-
 }
-

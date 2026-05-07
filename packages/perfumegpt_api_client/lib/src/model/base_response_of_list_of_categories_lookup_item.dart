@@ -10,7 +10,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response_of_list_of_categories_lookup_item.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,104 +20,59 @@ part 'base_response_of_list_of_categories_lookup_item.g.dart';
 class BaseResponseOfListOfCategoriesLookupItem {
   /// Returns a new [BaseResponseOfListOfCategoriesLookupItem] instance.
   BaseResponseOfListOfCategoriesLookupItem({
+    this.payload,
 
-     this.payload,
+    this.success,
 
-     this.success,
+    this.message,
 
-     this.message,
+    this.errors,
 
-     this.errors,
-
-     this.errorType,
+    this.errorType,
   });
 
-  @JsonKey(
-    
-    name: r'payload',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'payload', required: false, includeIfNull: false)
   final List<CategoriesLookupItem>? payload;
 
-
-
-  @JsonKey(
-    
-    name: r'success',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'success', required: false, includeIfNull: false)
   final bool? success;
 
-
-
-  @JsonKey(
-    
-    name: r'message',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'message', required: false, includeIfNull: false)
   final String? message;
 
-
-
-  @JsonKey(
-    
-    name: r'errors',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'errors', required: false, includeIfNull: false)
   final List<String>? errors;
 
-
-
-  @JsonKey(
-    
-    name: r'errorType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'errorType', required: false, includeIfNull: false)
   final ResponseErrorType? errorType;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BaseResponseOfListOfCategoriesLookupItem &&
+          other.payload == payload &&
+          other.success == success &&
+          other.message == message &&
+          other.errors == errors &&
+          other.errorType == errorType;
 
+  @override
+  int get hashCode =>
+      (payload == null ? 0 : payload.hashCode) +
+      success.hashCode +
+      message.hashCode +
+      (errors == null ? 0 : errors.hashCode) +
+      (errorType == null ? 0 : errorType.hashCode);
 
+  factory BaseResponseOfListOfCategoriesLookupItem.fromJson(
+    Map<String, dynamic> json,
+  ) => _$BaseResponseOfListOfCategoriesLookupItemFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is BaseResponseOfListOfCategoriesLookupItem &&
-      other.payload == payload &&
-      other.success == success &&
-      other.message == message &&
-      other.errors == errors &&
-      other.errorType == errorType;
-
-    @override
-    int get hashCode =>
-        (payload == null ? 0 : payload.hashCode) +
-        success.hashCode +
-        message.hashCode +
-        (errors == null ? 0 : errors.hashCode) +
-        (errorType == null ? 0 : errorType.hashCode);
-
-  factory BaseResponseOfListOfCategoriesLookupItem.fromJson(Map<String, dynamic> json) => _$BaseResponseOfListOfCategoriesLookupItemFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BaseResponseOfListOfCategoriesLookupItemToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$BaseResponseOfListOfCategoriesLookupItemToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_admin_instruction_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,52 +17,28 @@ part 'update_admin_instruction_request.g.dart';
 )
 class UpdateAdminInstructionRequest {
   /// Returns a new [UpdateAdminInstructionRequest] instance.
-  UpdateAdminInstructionRequest({
+  UpdateAdminInstructionRequest({this.instruction, this.instructionType});
 
-     this.instruction,
-
-     this.instructionType,
-  });
-
-      /// Nội dung chỉ thị mới
-  @JsonKey(
-    
-    name: r'instruction',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Nội dung chỉ thị mới
+  @JsonKey(name: r'instruction', required: false, includeIfNull: false)
   final String? instruction;
 
-
-
-      /// Loại chỉ thị
-  @JsonKey(
-    
-    name: r'instructionType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Loại chỉ thị
+  @JsonKey(name: r'instructionType', required: false, includeIfNull: false)
   final UpdateAdminInstructionRequestInstructionTypeEnum? instructionType;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateAdminInstructionRequest &&
+          other.instruction == instruction &&
+          other.instructionType == instructionType;
 
+  @override
+  int get hashCode => instruction.hashCode + instructionType.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateAdminInstructionRequest &&
-      other.instruction == instruction &&
-      other.instructionType == instructionType;
-
-    @override
-    int get hashCode =>
-        instruction.hashCode +
-        instructionType.hashCode;
-
-  factory UpdateAdminInstructionRequest.fromJson(Map<String, dynamic> json) => _$UpdateAdminInstructionRequestFromJson(json);
+  factory UpdateAdminInstructionRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateAdminInstructionRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateAdminInstructionRequestToJson(this);
 
@@ -71,57 +46,66 @@ class UpdateAdminInstructionRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
 
 /// Loại chỉ thị
 enum UpdateAdminInstructionRequestInstructionTypeEnum {
-    /// Loại chỉ thị
-@JsonValue(r'review')
-review(r'review'),
-    /// Loại chỉ thị
-@JsonValue(r'order')
-order(r'order'),
-    /// Loại chỉ thị
-@JsonValue(r'inventory')
-inventory(r'inventory'),
-    /// Loại chỉ thị
-@JsonValue(r'trend')
-trend(r'trend'),
-    /// Loại chỉ thị
-@JsonValue(r'recommendation')
-recommendation(r'recommendation'),
-    /// Loại chỉ thị
-@JsonValue(r'repurchase')
-repurchase(r'repurchase'),
-    /// Loại chỉ thị
-@JsonValue(r'log')
-log(r'log'),
-    /// Loại chỉ thị
-@JsonValue(r'conversation')
-conversation(r'conversation'),
-    /// Loại chỉ thị
-@JsonValue(r'survey')
-survey(r'survey'),
-    /// Loại chỉ thị
-@JsonValue(r'restock')
-restock(r'restock'),
-    /// Loại chỉ thị
-@JsonValue(r'slow_stock')
-slowStock(r'slow_stock'),
-    /// Loại chỉ thị
-@JsonValue(r'search_extraction')
-searchExtraction(r'search_extraction'),
-    /// Loại chỉ thị
-@JsonValue(r'staff_consultation')
-staffConsultation(r'staff_consultation');
+  /// Loại chỉ thị
+  @JsonValue(r'review')
+  review(r'review'),
 
-const UpdateAdminInstructionRequestInstructionTypeEnum(this.value);
+  /// Loại chỉ thị
+  @JsonValue(r'order')
+  order(r'order'),
 
-final String value;
+  /// Loại chỉ thị
+  @JsonValue(r'inventory')
+  inventory(r'inventory'),
 
-@override
-String toString() => value;
+  /// Loại chỉ thị
+  @JsonValue(r'trend')
+  trend(r'trend'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'recommendation')
+  recommendation(r'recommendation'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'repurchase')
+  repurchase(r'repurchase'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'log')
+  log(r'log'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'conversation')
+  conversation(r'conversation'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'survey')
+  survey(r'survey'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'restock')
+  restock(r'restock'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'slow_stock')
+  slowStock(r'slow_stock'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'search_extraction')
+  searchExtraction(r'search_extraction'),
+
+  /// Loại chỉ thị
+  @JsonValue(r'staff_consultation')
+  staffConsultation(r'staff_consultation');
+
+  const UpdateAdminInstructionRequestInstructionTypeEnum(this.value);
+
+  final String value;
+
+  @override
+  String toString() => value;
 }
-
-

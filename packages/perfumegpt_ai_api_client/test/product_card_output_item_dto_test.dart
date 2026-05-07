@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ProductCardOutputItemDto
 void main() {
-  final ProductCardOutputItemDto? instance = /* ProductCardOutputItemDto(...) */ null;
+  final ProductCardOutputItemDto? instance = /* ProductCardOutputItemDto(...) */
+      null;
   // TODO add properties to the entity
 
   group(ProductCardOutputItemDto, () {
@@ -41,6 +42,5 @@ void main() {
     test('to test the property `source_`', () async {
       // TODO
     });
-
   });
 }

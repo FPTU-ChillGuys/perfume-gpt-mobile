@@ -9,36 +9,33 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_payment_transaction_overview_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofboolean.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
 import 'package:perfumegpt_api_client/src/model/confirm_payment_request.dart';
 import 'package:perfumegpt_api_client/src/model/create_pickup_payment_request.dart';
 import 'package:perfumegpt_api_client/src/model/payment_method.dart';
-import 'package:perfumegpt_api_client/src/model/problem_details.dart';
 import 'package:perfumegpt_api_client/src/model/retry_or_change_payment_request.dart';
 import 'package:perfumegpt_api_client/src/model/transaction_type.dart';
 
 class PaymentsApi {
-
   final Dio _dio;
 
   const PaymentsApi(this._dio);
 
   /// apiPaymentsManagementTransactionsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [fromDate] 
-  /// * [toDate] 
-  /// * [paymentMethod] 
-  /// * [transactionType] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [fromDate]
+  /// * [toDate]
+  /// * [paymentMethod]
+  /// * [transactionType]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -48,7 +45,8 @@ class PaymentsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPaymentTransactionOverviewResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPaymentTransactionOverviewResponse>> apiPaymentsManagementTransactionsGet({ 
+  Future<Response<BaseResponseOfPaymentTransactionOverviewResponse>>
+  apiPaymentsManagementTransactionsGet({
     DateTime? fromDate,
     DateTime? toDate,
     PaymentMethod? paymentMethod,
@@ -68,16 +66,10 @@ class PaymentsApi {
     final _path = r'/api/payments/management-transactions';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -108,9 +100,17 @@ class PaymentsApi {
     BaseResponseOfPaymentTransactionOverviewResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPaymentTransactionOverviewResponse, BaseResponseOfPaymentTransactionOverviewResponse>(rawData, 'BaseResponseOfPaymentTransactionOverviewResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPaymentTransactionOverviewResponse,
+              BaseResponseOfPaymentTransactionOverviewResponse
+            >(
+              rawData,
+              'BaseResponseOfPaymentTransactionOverviewResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -134,7 +134,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPaymentTransa
   }
 
   /// apiPaymentsMomoReturnGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -146,7 +146,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPaymentTransa
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> apiPaymentsMomoReturnGet({ 
+  Future<Response<void>> apiPaymentsMomoReturnGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -157,16 +157,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPaymentTransa
     final _path = r'/api/payments/momo-return';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -185,11 +179,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPaymentTransa
   }
 
   /// apiPaymentsOrderIdPickupPaymentPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [orderId] 
-  /// * [createPickupPaymentRequest] 
+  /// * [orderId]
+  /// * [createPickupPaymentRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -199,7 +193,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPaymentTransa
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiPaymentsOrderIdPickupPaymentPost({ 
+  Future<Response<BaseResponseOfstring>> apiPaymentsOrderIdPickupPaymentPost({
     required String orderId,
     required CreatePickupPaymentRequest createPickupPaymentRequest,
     CancelToken? cancelToken,
@@ -209,19 +203,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPaymentTransa
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/payments/{orderId}/pickup-payment'.replaceAll('{' r'orderId' '}', orderId.toString());
+    final _path = r'/api/payments/{orderId}/pickup-payment'.replaceAll(
+      '{'
+      r'orderId'
+      '}',
+      orderId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -232,13 +225,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPaymentTransa
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createPickupPaymentRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createPickupPaymentRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -257,9 +247,14 @@ _bodyData=jsonEncode(createPickupPaymentRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -283,11 +278,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiPaymentsPaymentIdConfirmPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [paymentId] 
-  /// * [confirmPaymentRequest] 
+  /// * [paymentId]
+  /// * [confirmPaymentRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -297,7 +292,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiPaymentsPaymentIdConfirmPut({ 
+  Future<Response<BaseResponseOfboolean>> apiPaymentsPaymentIdConfirmPut({
     required String paymentId,
     required ConfirmPaymentRequest confirmPaymentRequest,
     CancelToken? cancelToken,
@@ -307,19 +302,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/payments/{paymentId}/confirm'.replaceAll('{' r'paymentId' '}', paymentId.toString());
+    final _path = r'/api/payments/{paymentId}/confirm'.replaceAll(
+      '{'
+      r'paymentId'
+      '}',
+      paymentId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -330,13 +324,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(confirmPaymentRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(confirmPaymentRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -355,9 +346,14 @@ _bodyData=jsonEncode(confirmPaymentRequest);
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
+              rawData,
+              'BaseResponseOfboolean',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -381,11 +377,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   }
 
   /// apiPaymentsPaymentIdRetryPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [paymentId] 
-  /// * [retryOrChangePaymentRequest] 
+  /// * [paymentId]
+  /// * [retryOrChangePaymentRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -395,7 +391,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiPaymentsPaymentIdRetryPost({ 
+  Future<Response<BaseResponseOfstring>> apiPaymentsPaymentIdRetryPost({
     required String paymentId,
     required RetryOrChangePaymentRequest retryOrChangePaymentRequest,
     CancelToken? cancelToken,
@@ -405,19 +401,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/payments/{paymentId}/retry'.replaceAll('{' r'paymentId' '}', paymentId.toString());
+    final _path = r'/api/payments/{paymentId}/retry'.replaceAll(
+      '{'
+      r'paymentId'
+      '}',
+      paymentId.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -428,13 +423,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(retryOrChangePaymentRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(retryOrChangePaymentRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -453,9 +445,14 @@ _bodyData=jsonEncode(retryOrChangePaymentRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -479,7 +476,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiPaymentsPayosCancelGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -491,7 +488,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> apiPaymentsPayosCancelGet({ 
+  Future<Response<void>> apiPaymentsPayosCancelGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -502,16 +499,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/payments/payos-cancel';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -530,7 +521,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiPaymentsPayosReturnGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -542,7 +533,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> apiPaymentsPayosReturnGet({ 
+  Future<Response<void>> apiPaymentsPayosReturnGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -553,16 +544,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/payments/payos-return';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -581,7 +566,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiPaymentsVnpayReturnGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -593,7 +578,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> apiPaymentsVnpayReturnGet({ 
+  Future<Response<void>> apiPaymentsVnpayReturnGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -604,16 +589,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/payments/vnpay-return';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -630,5 +609,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
 
     return _response;
   }
-
 }

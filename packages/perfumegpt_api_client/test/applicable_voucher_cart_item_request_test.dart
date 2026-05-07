@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ApplicableVoucherCartItemRequest
 void main() {
-  final ApplicableVoucherCartItemRequest? instance = /* ApplicableVoucherCartItemRequest(...) */ null;
+  final ApplicableVoucherCartItemRequest?
+  instance = /* ApplicableVoucherCartItemRequest(...) */ null;
   // TODO add properties to the entity
 
   group(ApplicableVoucherCartItemRequest, () {
@@ -21,6 +22,5 @@ void main() {
     test('to test the property `price`', () async {
       // TODO
     });
-
   });
 }

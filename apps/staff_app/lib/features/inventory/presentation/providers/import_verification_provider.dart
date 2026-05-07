@@ -29,13 +29,15 @@ class ImportVerificationNotifier extends _$ImportVerificationNotifier {
             variantSku: detail.variantSku,
             expectedQuantity: detail.expectedQuantity ?? 0,
             batches: detail.batches
-                .map((b) => BatchInputState(
-                      tempId: const Uuid().v4(),
-                      batchCode: b.batchCode,
-                      manufactureDate: b.manufactureDate,
-                      expiryDate: b.expiryDate,
-                      quantity: b.importQuantity ?? 0,
-                    ))
+                .map(
+                  (b) => BatchInputState(
+                    tempId: const Uuid().v4(),
+                    batchCode: b.batchCode,
+                    manufactureDate: b.manufactureDate,
+                    expiryDate: b.expiryDate,
+                    quantity: b.importQuantity ?? 0,
+                  ),
+                )
                 .toList(),
           );
         }).toList();
@@ -62,8 +64,9 @@ class ImportVerificationNotifier extends _$ImportVerificationNotifier {
       final api = ImportTicketsApi(dio);
       await api.apiImportticketsIdStatusPut(
         id: state.ticketId!,
-        updateImportStatusRequest:
-            UpdateImportStatusRequest(status: ImportStatus.inProgress),
+        updateImportStatusRequest: UpdateImportStatusRequest(
+          status: ImportStatus.inProgress,
+        ),
       );
       state = state.copyWith(isLoading: false, status: ImportStatus.inProgress);
       ref.invalidate(importTicketsProvider);
@@ -166,29 +169,35 @@ class ImportVerificationNotifier extends _$ImportVerificationNotifier {
 
       final verifyDetails = state.products.map((p) {
         final totalReceived = p.batches.fold(0, (sum, b) => sum + b.quantity);
-        final rejectedQuantity =
-            (p.expectedQuantity - totalReceived).clamp(0, p.expectedQuantity);
+        final rejectedQuantity = (p.expectedQuantity - totalReceived).clamp(
+          0,
+          p.expectedQuantity,
+        );
 
         return VerifyImportDetailRequest(
           importDetailId: p.importDetailId,
           rejectedQuantity: rejectedQuantity,
           note: state.staffNote,
           batches: p.batches
-              .map((b) => CreateBatchRequest(
-                    batchCode: b.batchCode,
-                    manufactureDate: b.manufactureDate ?? DateTime.now(),
-                    expiryDate: b.expiryDate ??
-                        DateTime.now().add(const Duration(days: 365 * 5)),
-                    quantity: b.quantity,
-                  ))
+              .map(
+                (b) => CreateBatchRequest(
+                  batchCode: b.batchCode,
+                  manufactureDate: b.manufactureDate ?? DateTime.now(),
+                  expiryDate:
+                      b.expiryDate ??
+                      DateTime.now().add(const Duration(days: 365 * 5)),
+                  quantity: b.quantity,
+                ),
+              )
               .toList(),
         );
       }).toList();
 
       await api.apiImportticketsTicketIdVerifyPost(
         ticketId: state.ticketId!,
-        verifyImportTicketRequest:
-            VerifyImportTicketRequest(importDetails: verifyDetails),
+        verifyImportTicketRequest: VerifyImportTicketRequest(
+          importDetails: verifyDetails,
+        ),
       );
 
       state = state.copyWith(isLoading: false);

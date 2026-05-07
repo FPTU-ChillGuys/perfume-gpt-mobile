@@ -10,7 +10,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'payment_transaction_overview_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,56 +20,36 @@ part 'payment_transaction_overview_response.g.dart';
 class PaymentTransactionOverviewResponse {
   /// Returns a new [PaymentTransactionOverviewResponse] instance.
   PaymentTransactionOverviewResponse({
+    required this.summary,
 
-    required  this.summary,
-
-    required  this.transactions,
+    required this.transactions,
   });
 
-  @JsonKey(
-    
-    name: r'summary',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'summary', required: true, includeIfNull: false)
   final PaymentTransactionSummaryResponse summary;
 
-
-
-  @JsonKey(
-    
-    name: r'transactions',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'transactions', required: true, includeIfNull: false)
   final PagedResultOfPaymentTransactionAdminItemResponse transactions;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PaymentTransactionOverviewResponse &&
+          other.summary == summary &&
+          other.transactions == transactions;
 
+  @override
+  int get hashCode => summary.hashCode + transactions.hashCode;
 
+  factory PaymentTransactionOverviewResponse.fromJson(
+    Map<String, dynamic> json,
+  ) => _$PaymentTransactionOverviewResponseFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PaymentTransactionOverviewResponse &&
-      other.summary == summary &&
-      other.transactions == transactions;
-
-    @override
-    int get hashCode =>
-        summary.hashCode +
-        transactions.hashCode;
-
-  factory PaymentTransactionOverviewResponse.fromJson(Map<String, dynamic> json) => _$PaymentTransactionOverviewResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PaymentTransactionOverviewResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$PaymentTransactionOverviewResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

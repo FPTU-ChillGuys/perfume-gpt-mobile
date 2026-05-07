@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
-
 /// tests for SurveysApi
 void main() {
   final instance = PerfumegptAiApiClient().getSurveysApi();
@@ -104,6 +103,5 @@ void main() {
     test('test surveyControllerUpdateSurveyAnswer', () async {
       // TODO
     });
-
   });
 }

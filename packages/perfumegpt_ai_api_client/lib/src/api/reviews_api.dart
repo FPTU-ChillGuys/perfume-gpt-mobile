@@ -9,24 +9,19 @@ import 'dart:convert';
 import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_all_review_logs200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_reviews200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/review_controller_get_structured_review_summary_by_variant_id200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_reorder_questions200_response.dart';
 
 class ReviewsApi {
-
   final Dio _dio;
 
   const ReviewsApi(this._dio);
 
   /// Thêm review log
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -38,7 +33,8 @@ class ReviewsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [ReviewControllerGetAllReviewLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ReviewControllerGetAllReviewLogs200Response>> reviewControllerAddReviewLog({ 
+  Future<Response<ReviewControllerGetAllReviewLogs200Response>>
+  reviewControllerAddReviewLog({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -49,16 +45,10 @@ class ReviewsApi {
     final _path = r'/reviews/logs';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -76,9 +66,17 @@ class ReviewsApi {
     ReviewControllerGetAllReviewLogs200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReviewControllerGetAllReviewLogs200Response, ReviewControllerGetAllReviewLogs200Response>(rawData, 'ReviewControllerGetAllReviewLogs200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ReviewControllerGetAllReviewLogs200Response,
+              ReviewControllerGetAllReviewLogs200Response
+            >(
+              rawData,
+              'ReviewControllerGetAllReviewLogs200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -102,7 +100,7 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   }
 
   /// Khởi tạo job để tóm tắt đánh giá theo variant ID
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [variantId] - ID của variant sản phẩm
@@ -115,7 +113,8 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> reviewControllerCreateReviewSummaryJob({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  reviewControllerCreateReviewSummaryJob({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -124,19 +123,18 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/summary/job/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/reviews/summary/job/{variantId}'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -154,9 +152,17 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -180,7 +186,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Lấy tất cả review logs
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -192,7 +198,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [ReviewControllerGetAllReviewLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ReviewControllerGetAllReviewLogs200Response>> reviewControllerGetAllReviewLogs({ 
+  Future<Response<ReviewControllerGetAllReviewLogs200Response>>
+  reviewControllerGetAllReviewLogs({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -203,16 +210,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     final _path = r'/reviews/logs';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -230,9 +231,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     ReviewControllerGetAllReviewLogs200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReviewControllerGetAllReviewLogs200Response, ReviewControllerGetAllReviewLogs200Response>(rawData, 'ReviewControllerGetAllReviewLogs200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ReviewControllerGetAllReviewLogs200Response,
+              ReviewControllerGetAllReviewLogs200Response
+            >(
+              rawData,
+              'ReviewControllerGetAllReviewLogs200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -256,7 +265,7 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   }
 
   /// Lấy review log mới nhất theo variant ID
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [variantId] - ID của variant sản phẩm
@@ -269,7 +278,8 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   ///
   /// Returns a [Future] containing a [Response] with a [ReviewControllerGetAllReviewLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ReviewControllerGetAllReviewLogs200Response>> reviewControllerGetLatestReviewLogByVariantId({ 
+  Future<Response<ReviewControllerGetAllReviewLogs200Response>>
+  reviewControllerGetLatestReviewLogByVariantId({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -278,19 +288,18 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/logs/latest/variant/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/reviews/logs/latest/variant/{variantId}'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -308,9 +317,17 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     ReviewControllerGetAllReviewLogs200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReviewControllerGetAllReviewLogs200Response, ReviewControllerGetAllReviewLogs200Response>(rawData, 'ReviewControllerGetAllReviewLogs200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ReviewControllerGetAllReviewLogs200Response,
+              ReviewControllerGetAllReviewLogs200Response
+            >(
+              rawData,
+              'ReviewControllerGetAllReviewLogs200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -334,7 +351,7 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   }
 
   /// Lấy review log theo ID
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [id] - ID của review log
@@ -347,7 +364,8 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   ///
   /// Returns a [Future] containing a [Response] with a [ReviewControllerGetAllReviewLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ReviewControllerGetAllReviewLogs200Response>> reviewControllerGetReviewLogById({ 
+  Future<Response<ReviewControllerGetAllReviewLogs200Response>>
+  reviewControllerGetReviewLogById({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -356,19 +374,18 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/logs/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/reviews/logs/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -386,9 +403,17 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     ReviewControllerGetAllReviewLogs200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReviewControllerGetAllReviewLogs200Response, ReviewControllerGetAllReviewLogs200Response>(rawData, 'ReviewControllerGetAllReviewLogs200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ReviewControllerGetAllReviewLogs200Response,
+              ReviewControllerGetAllReviewLogs200Response
+            >(
+              rawData,
+              'ReviewControllerGetAllReviewLogs200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -412,7 +437,7 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   }
 
   /// Lấy review logs theo variant ID
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [variantId] - ID của variant sản phẩm
@@ -425,7 +450,8 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   ///
   /// Returns a [Future] containing a [Response] with a [ReviewControllerGetAllReviewLogs200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ReviewControllerGetAllReviewLogs200Response>> reviewControllerGetReviewLogsByVariantId({ 
+  Future<Response<ReviewControllerGetAllReviewLogs200Response>>
+  reviewControllerGetReviewLogsByVariantId({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -434,19 +460,18 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/logs/variant/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/reviews/logs/variant/{variantId}'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -464,9 +489,17 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     ReviewControllerGetAllReviewLogs200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReviewControllerGetAllReviewLogs200Response, ReviewControllerGetAllReviewLogs200Response>(rawData, 'ReviewControllerGetAllReviewLogs200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ReviewControllerGetAllReviewLogs200Response,
+              ReviewControllerGetAllReviewLogs200Response
+            >(
+              rawData,
+              'ReviewControllerGetAllReviewLogs200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -490,7 +523,7 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   }
 
   /// Tóm tắt đánh giá bằng AI theo variant ID
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [variantId] - ID của variant sản phẩm
@@ -503,7 +536,8 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> reviewControllerGetReviewSummaryByVariantId({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  reviewControllerGetReviewSummaryByVariantId({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -512,19 +546,18 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/summary/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/reviews/summary/{variantId}'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -542,9 +575,17 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetAllRevie
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -568,7 +609,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Tóm tắt đánh giá bằng AI cho tất cả variant
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -580,7 +621,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> reviewControllerGetReviewSummaryFromAllVariant({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  reviewControllerGetReviewSummaryFromAllVariant({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -591,16 +633,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     final _path = r'/reviews/summary/all';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -618,9 +654,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -644,10 +688,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Kiểm tra trạng thái hoàn thành của job tóm tắt đánh giá
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [jobId] 
+  /// * [jobId]
   /// * [variantId] - ID của variant sản phẩm đã dùng tạo job
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -658,7 +702,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerReorderQuestions200Response>> reviewControllerGetReviewSummaryJobResult({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>>
+  reviewControllerGetReviewSummaryJobResult({
     required String jobId,
     required String variantId,
     CancelToken? cancelToken,
@@ -668,28 +713,25 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/summary/job/result/{jobId}'.replaceAll('{' r'jobId' '}', jobId.toString());
+    final _path = r'/reviews/summary/job/result/{jobId}'.replaceAll(
+      '{'
+      r'jobId'
+      '}',
+      jobId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-      r'variantId': variantId,
-    };
+    final _queryParameters = <String, dynamic>{r'variantId': variantId};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -703,9 +745,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerReorderQuestions200Response,
+              SurveyControllerReorderQuestions200Response
+            >(
+              rawData,
+              'SurveyControllerReorderQuestions200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -729,7 +779,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   }
 
   /// Lấy danh sách đánh giá (phân trang)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -751,7 +801,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   ///
   /// Returns a [Future] containing a [Response] with a [ReviewControllerGetReviews200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ReviewControllerGetReviews200Response>> reviewControllerGetReviews({ 
+  Future<Response<ReviewControllerGetReviews200Response>>
+  reviewControllerGetReviews({
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -772,16 +823,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     final _path = r'/reviews';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -813,9 +858,13 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     ReviewControllerGetReviews200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReviewControllerGetReviews200Response, ReviewControllerGetReviews200Response>(rawData, 'ReviewControllerGetReviews200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ReviewControllerGetReviews200Response,
+              ReviewControllerGetReviews200Response
+            >(rawData, 'ReviewControllerGetReviews200Response', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -839,7 +888,7 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetReviews2
   }
 
   /// Tóm tắt đánh giá có cấu trúc theo variant ID
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [variantId] - ID của variant sản phẩm
@@ -852,7 +901,10 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetReviews2
   ///
   /// Returns a [Future] containing a [Response] with a [ReviewControllerGetStructuredReviewSummaryByVariantId200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ReviewControllerGetStructuredReviewSummaryByVariantId200Response>> reviewControllerGetStructuredReviewSummaryByVariantId({ 
+  Future<
+    Response<ReviewControllerGetStructuredReviewSummaryByVariantId200Response>
+  >
+  reviewControllerGetStructuredReviewSummaryByVariantId({
     required String variantId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -861,19 +913,18 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetReviews2
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/summary/structured/{variantId}'.replaceAll('{' r'variantId' '}', variantId.toString());
+    final _path = r'/reviews/summary/structured/{variantId}'.replaceAll(
+      '{'
+      r'variantId'
+      '}',
+      variantId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -888,12 +939,21 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetReviews2
       onReceiveProgress: onReceiveProgress,
     );
 
-    ReviewControllerGetStructuredReviewSummaryByVariantId200Response? _responseData;
+    ReviewControllerGetStructuredReviewSummaryByVariantId200Response?
+    _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ReviewControllerGetStructuredReviewSummaryByVariantId200Response, ReviewControllerGetStructuredReviewSummaryByVariantId200Response>(rawData, 'ReviewControllerGetStructuredReviewSummaryByVariantId200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ReviewControllerGetStructuredReviewSummaryByVariantId200Response,
+              ReviewControllerGetStructuredReviewSummaryByVariantId200Response
+            >(
+              rawData,
+              'ReviewControllerGetStructuredReviewSummaryByVariantId200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -904,7 +964,9 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetStructur
       );
     }
 
-    return Response<ReviewControllerGetStructuredReviewSummaryByVariantId200Response>(
+    return Response<
+      ReviewControllerGetStructuredReviewSummaryByVariantId200Response
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -915,5 +977,4 @@ _responseData = rawData == null ? null : deserialize<ReviewControllerGetStructur
       extra: _response.extra,
     );
   }
-
 }

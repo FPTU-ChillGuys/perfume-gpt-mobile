@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for OrderReturnRequestResponse
 void main() {
-  final OrderReturnRequestResponse? instance = /* OrderReturnRequestResponse(...) */ null;
+  final OrderReturnRequestResponse?
+  instance = /* OrderReturnRequestResponse(...) */ null;
   // TODO add properties to the entity
 
   group(OrderReturnRequestResponse, () {
@@ -151,6 +152,5 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
-
   });
 }

@@ -33,9 +33,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
       duration: const Duration(milliseconds: 700),
     )..forward();
     _fadeAnim = CurvedAnimation(parent: _fadeCtrl, curve: Curves.easeOut);
-    _slideAnim = Tween<double>(begin: 40, end: 0).animate(
-      CurvedAnimation(parent: _fadeCtrl, curve: Curves.easeOut),
-    );
+    _slideAnim = Tween<double>(
+      begin: 40,
+      end: 0,
+    ).animate(CurvedAnimation(parent: _fadeCtrl, curve: Curves.easeOut));
   }
 
   @override
@@ -56,7 +57,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
           content: const Text('Vui lòng nhập email và mật khẩu'),
           backgroundColor: Colors.red.shade700,
           behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
       );
       return;
@@ -217,7 +220,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                               SizedBox(
                                 height: 52,
                                 child: ElevatedButton(
-                                  onPressed: authState.isLoading ? null : _login,
+                                  onPressed: authState.isLoading
+                                      ? null
+                                      : _login,
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: _kRed,
                                     foregroundColor: Colors.white,
@@ -250,11 +255,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                               Row(
                                 children: [
                                   Expanded(
-                                      child: Divider(
-                                          color: Colors.grey.shade200)),
+                                    child: Divider(color: Colors.grey.shade200),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 12),
+                                      horizontal: 12,
+                                    ),
                                     child: Text(
                                       'hoặc',
                                       style: TextStyle(
@@ -264,8 +270,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                     ),
                                   ),
                                   Expanded(
-                                      child: Divider(
-                                          color: Colors.grey.shade200)),
+                                    child: Divider(color: Colors.grey.shade200),
+                                  ),
                                 ],
                               ),
                               const SizedBox(height: 12),
@@ -281,16 +287,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                               .read(authProvider.notifier)
                                               .googleLogin();
                                         },
-                                  icon: const Icon(Icons.g_mobiledata, size: 28),
+                                  icon: const Icon(
+                                    Icons.g_mobiledata,
+                                    size: 28,
+                                  ),
                                   label: const Text(
                                     'Đăng nhập bằng Google',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                   style: OutlinedButton.styleFrom(
                                     foregroundColor: const Color(0xFF334155),
-                                    side:
-                                        BorderSide(color: Colors.grey.shade300),
+                                    side: BorderSide(
+                                      color: Colors.grey.shade300,
+                                    ),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16),
                                     ),
@@ -308,7 +319,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                           children: [
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 6),
+                                horizontal: 12,
+                                vertical: 6,
+                              ),
                               decoration: BoxDecoration(
                                 color: _kRedLight,
                                 borderRadius: BorderRadius.circular(20),
@@ -372,8 +385,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
         suffixIcon: suffixIcon,
         filled: true,
         fillColor: const Color(0xFFF8FAFC),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 14,
+          horizontal: 16,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(color: Colors.grey.shade200),

@@ -9,7 +9,6 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_cash_flow_ledger_item_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_inventory_ledger_item_response.dart';
 import 'package:perfumegpt_api_client/src/model/cash_flow_category.dart';
@@ -17,26 +16,25 @@ import 'package:perfumegpt_api_client/src/model/cash_flow_type.dart';
 import 'package:perfumegpt_api_client/src/model/stock_transaction_type.dart';
 
 class LedgersApi {
-
   final Dio _dio;
 
   const LedgersApi(this._dio);
 
   /// apiLedgersCashFlowGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [fromDate] 
-  /// * [toDate] 
-  /// * [flowType] 
-  /// * [category] 
-  /// * [referenceId] 
-  /// * [referenceCode] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [fromDate]
+  /// * [toDate]
+  /// * [flowType]
+  /// * [category]
+  /// * [referenceId]
+  /// * [referenceCode]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -46,7 +44,8 @@ class LedgersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfCashFlowLedgerItemResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfCashFlowLedgerItemResponse>> apiLedgersCashFlowGet({ 
+  Future<Response<BaseResponseOfPagedResultOfCashFlowLedgerItemResponse>>
+  apiLedgersCashFlowGet({
     DateTime? fromDate,
     DateTime? toDate,
     CashFlowType? flowType,
@@ -68,16 +67,10 @@ class LedgersApi {
     final _path = r'/api/ledgers/cash-flow';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -110,9 +103,17 @@ class LedgersApi {
     BaseResponseOfPagedResultOfCashFlowLedgerItemResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfCashFlowLedgerItemResponse, BaseResponseOfPagedResultOfCashFlowLedgerItemResponse>(rawData, 'BaseResponseOfPagedResultOfCashFlowLedgerItemResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfCashFlowLedgerItemResponse,
+              BaseResponseOfPagedResultOfCashFlowLedgerItemResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfCashFlowLedgerItemResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -136,21 +137,21 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiLedgersInventoryGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [fromDate] 
-  /// * [toDate] 
-  /// * [variantId] 
-  /// * [batchId] 
-  /// * [type] 
-  /// * [referenceId] 
-  /// * [actorId] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [fromDate]
+  /// * [toDate]
+  /// * [variantId]
+  /// * [batchId]
+  /// * [type]
+  /// * [referenceId]
+  /// * [actorId]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -160,7 +161,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfInventoryLedgerItemResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfInventoryLedgerItemResponse>> apiLedgersInventoryGet({ 
+  Future<Response<BaseResponseOfPagedResultOfInventoryLedgerItemResponse>>
+  apiLedgersInventoryGet({
     DateTime? fromDate,
     DateTime? toDate,
     String? variantId,
@@ -183,16 +185,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     final _path = r'/api/ledgers/inventory';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -226,9 +222,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfPagedResultOfInventoryLedgerItemResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfInventoryLedgerItemResponse, BaseResponseOfPagedResultOfInventoryLedgerItemResponse>(rawData, 'BaseResponseOfPagedResultOfInventoryLedgerItemResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfInventoryLedgerItemResponse,
+              BaseResponseOfPagedResultOfInventoryLedgerItemResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfInventoryLedgerItemResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -250,5 +254,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
       extra: _response.extra,
     );
   }
-
 }
