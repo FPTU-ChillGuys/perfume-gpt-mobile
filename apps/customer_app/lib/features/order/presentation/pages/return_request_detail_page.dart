@@ -1,9 +1,11 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/date_time_helper.dart';
 import '../../../../core/utils/image_url_helper.dart';
@@ -18,6 +20,7 @@ final _currencyFmt = NumberFormat.currency(
   symbol: '₫',
   decimalDigits: 0,
 );
+const int _maxVideoBytes = 50 * 1024 * 1024;
 
 class ReturnRequestDetailPage extends ConsumerStatefulWidget {
   final String requestId;
@@ -697,6 +700,7 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
                   (e) => _thumbPicked(
                     e.value.bytes,
                     isVideo: true,
+                    videoPath: e.value.filePath,
                     onRemove: () => setState(() => _newVideos.removeAt(e.key)),
                   ),
                 ),
@@ -755,6 +759,7 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
   Widget _thumbPicked(
     Uint8List? bytes, {
     required bool isVideo,
+    String? videoPath,
     required VoidCallback onRemove,
   }) {
     return Stack(
@@ -768,16 +773,7 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
           ),
           clipBehavior: Clip.antiAlias,
           child: isVideo
-              ? Container(
-                  color: Colors.grey.shade100,
-                  child: const Center(
-                    child: Icon(
-                      Icons.videocam_rounded,
-                      size: 24,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                )
+              ? _VideoThumbnailView(videoPath: videoPath)
               : (bytes != null
                     ? Image.memory(bytes, fit: BoxFit.cover)
                     : Container(
@@ -874,6 +870,20 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
   Future<void> _pickVideos() async {
     final file = await ImagePicker().pickVideo(source: ImageSource.gallery);
     if (file != null) {
+      final sizeBytes = await File(file.path).length();
+      if (sizeBytes > _maxVideoBytes) {
+        if (!mounted) return;
+        final sizeMb = (sizeBytes / (1024 * 1024)).toStringAsFixed(1);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Video quá lớn ($sizeMb MB). Vui lòng chọn video <= 50 MB.',
+            ),
+            backgroundColor: Colors.orange,
+          ),
+        );
+        return;
+      }
       setState(
         () => _newVideos.add((
           filename: file.name,
@@ -894,6 +904,12 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
           images: _newImages.isNotEmpty ? _newImages : null,
           videos: _newVideos.isNotEmpty ? _newVideos : null,
         );
+        final expectedMediaCount = _newImages.length + _newVideos.length;
+        if (tempIds.length < expectedMediaCount) {
+          throw Exception(
+            'Chưa tải đủ media (${tempIds.length}/$expectedMediaCount). Vui lòng thử lại.',
+          );
+        }
       }
       await repo.update(
         id: req.id,
@@ -1177,6 +1193,59 @@ class _NoteBlock extends StatelessWidget {
             style: const TextStyle(fontSize: 13, color: AppColors.textPrimary),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _VideoThumbnailView extends StatelessWidget {
+  final String? videoPath;
+
+  const _VideoThumbnailView({required this.videoPath});
+
+  @override
+  Widget build(BuildContext context) {
+    if (videoPath == null || videoPath!.isEmpty) {
+      return _fallback();
+    }
+    return FutureBuilder<Uint8List?>(
+      future: VideoThumbnail.thumbnailData(
+        video: videoPath!,
+        imageFormat: ImageFormat.JPEG,
+        maxWidth: 180,
+        quality: 55,
+        timeMs: 0,
+      ),
+      builder: (context, snapshot) {
+        final bytes = snapshot.data;
+        if (bytes == null) return _fallback();
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.memory(bytes, fit: BoxFit.cover),
+            Container(color: Colors.black.withValues(alpha: 0.18)),
+            const Center(
+              child: Icon(
+                Icons.play_circle_fill_rounded,
+                color: Colors.white,
+                size: 24,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _fallback() {
+    return Container(
+      color: Colors.grey.shade100,
+      child: const Center(
+        child: Icon(
+          Icons.videocam_rounded,
+          size: 24,
+          color: AppColors.textSecondary,
+        ),
       ),
     );
   }

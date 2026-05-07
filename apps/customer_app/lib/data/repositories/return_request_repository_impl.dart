@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http_parser/http_parser.dart';
@@ -6,6 +7,7 @@ import '../../domain/entities/return_request.dart';
 import '../../domain/repositories/return_request_repository.dart';
 
 class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
+  static const int _maxVideoBytes = 50 * 1024 * 1024; // 50 MB
   final OrderReturnRequestsApi _api;
   final ShippingsApi _shippingsApi;
   final Dio _dio;
@@ -103,6 +105,13 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
     }
     if (videos != null) {
       for (final vid in videos) {
+        final size = await _resolveMediaSizeBytes(vid);
+        if (size != null && size > _maxVideoBytes) {
+          final sizeMb = (size / (1024 * 1024)).toStringAsFixed(1);
+          throw StateError(
+            'Video "${vid.filename}" quá lớn ($sizeMb MB). Vui lòng chọn video <= 50 MB.',
+          );
+        }
         videoParts.add(
           await _buildMultipartFile(vid, MediaType('video', 'mp4')),
         );
@@ -117,6 +126,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
       formData.files.add(MapEntry('videos', vid));
     }
 
+    final expectedUploadCount = imageParts.length + videoParts.length;
     final response = await _dio.post<Map<String, dynamic>>(
       '/api/orderreturnrequests/videos/temporary',
       data: formData,
@@ -134,14 +144,42 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
       ),
     );
 
-    final payload = response.data?['payload'];
-    final data = payload is Map<String, dynamic> ? payload['data'] : null;
-    if (data is! List) return [];
-    return data
-        .whereType<Map>()
-        .map((m) => m['id']?.toString() ?? '')
-        .where((id) => id.isNotEmpty)
-        .toList();
+    final ids = _extractTemporaryMediaIds(response.data);
+    if (expectedUploadCount > 0 && ids.isEmpty) {
+      throw StateError(
+        'Upload media thành công nhưng không nhận được media id hợp lệ.',
+      );
+    }
+    return ids;
+  }
+
+  List<String> _extractTemporaryMediaIds(Map<String, dynamic>? raw) {
+    if (raw == null) return const [];
+    final payload = raw['payload'];
+    if (payload is! Map) return const [];
+    final data = payload['data'];
+    if (data is! List) return const [];
+
+    final ids = <String>[];
+    for (final entry in data) {
+      if (entry is String) {
+        final id = entry.trim();
+        if (id.isNotEmpty) ids.add(id);
+        continue;
+      }
+      if (entry is Map) {
+        final candidates = <dynamic>[
+          entry['id'],
+          entry['mediaId'],
+          entry['temporaryMediaId'],
+        ];
+        final id = candidates
+            .map((e) => e?.toString().trim() ?? '')
+            .firstWhere((v) => v.isNotEmpty, orElse: () => '');
+        if (id.isNotEmpty) ids.add(id);
+      }
+    }
+    return ids;
   }
 
   Future<MultipartFile> _buildMultipartFile(
@@ -163,6 +201,18 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
       );
     }
     throw ArgumentError('Media must provide bytes or filePath');
+  }
+
+  Future<int?> _resolveMediaSizeBytes(PendingUploadMedia media) async {
+    if (media.bytes != null) return media.bytes!.lengthInBytes;
+    final path = media.filePath;
+    if (path == null || path.isEmpty) return null;
+    try {
+      final len = await File(path).length();
+      return len >= 0 ? len : null;
+    } catch (_) {
+      return null;
+    }
   }
 
   @override

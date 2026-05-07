@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/image_url_helper.dart';
 import '../../../../domain/entities/order.dart';
@@ -28,6 +30,7 @@ const _reasons = <(String value, String label, IconData icon)>[
   ('ChangedMind', 'Đổi ý', Icons.psychology_outlined),
   ('AllergicReaction', 'Dị ứng sản phẩm', Icons.healing_outlined),
 ];
+const int _maxVideoBytes = 50 * 1024 * 1024;
 
 class CreateReturnRequestPage extends ConsumerStatefulWidget {
   final String orderId;
@@ -72,7 +75,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   bool get _canSubmit {
     if (_selectedReason == null ||
         !_selectedItems.values.any((q) => q > 0) ||
-        _videos.isEmpty ||
+        (_images.isEmpty && _videos.isEmpty) ||
         _isSubmitting) {
       return false;
     }
@@ -591,7 +594,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
                 const SizedBox(width: 8),
                 const Expanded(
                   child: Text(
-                    'Video bắt buộc. Vui lòng quay video sản phẩm.',
+                    'Vui lòng tải lên ảnh hoặc video làm bằng chứng.',
                     style: TextStyle(
                       fontSize: 12,
                       color: AppColors.textSecondary,
@@ -613,7 +616,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
                   Icons.videocam_rounded,
                   'Video',
                   _pickVideos,
-                  highlight: _videos.isEmpty,
+                  highlight: _videos.isEmpty && _images.isEmpty,
                 ),
               ),
             ],
@@ -635,6 +638,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
                   (e) => _thumb(
                     e.value.bytes,
                     isVideo: true,
+                    videoPath: e.value.filePath,
                     onRemove: () => setState(() => _videos.removeAt(e.key)),
                   ),
                 ),
@@ -670,6 +674,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   Widget _thumb(
     Uint8List? bytes, {
     required bool isVideo,
+    String? videoPath,
     required VoidCallback onRemove,
   }) {
     return Stack(
@@ -683,16 +688,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
           ),
           clipBehavior: Clip.antiAlias,
           child: isVideo
-              ? Container(
-                  color: Colors.grey.shade100,
-                  child: const Center(
-                    child: Icon(
-                      Icons.videocam_rounded,
-                      size: 24,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                )
+              ? _VideoThumbnailView(videoPath: videoPath)
               : (bytes != null
                     ? Image.memory(bytes, fit: BoxFit.cover)
                     : Container(
@@ -740,6 +736,20 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   Future<void> _pickVideos() async {
     final file = await ImagePicker().pickVideo(source: ImageSource.gallery);
     if (file != null) {
+      final sizeBytes = await File(file.path).length();
+      if (sizeBytes > _maxVideoBytes) {
+        if (!mounted) return;
+        final sizeMb = (sizeBytes / (1024 * 1024)).toStringAsFixed(1);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Video quá lớn ($sizeMb MB). Vui lòng chọn video <= 50 MB.',
+            ),
+            backgroundColor: Colors.orange,
+          ),
+        );
+        return;
+      }
       setState(
         () => _videos.add((
           filename: file.name,
@@ -1378,6 +1388,12 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
           images: _images.isNotEmpty ? _images : null,
           videos: _videos.isNotEmpty ? _videos : null,
         );
+        final expectedMediaCount = _images.length + _videos.length;
+        if (tempMediaIds.length < expectedMediaCount) {
+          throw Exception(
+            'Chưa tải đủ media (${tempMediaIds.length}/$expectedMediaCount). Vui lòng thử lại.',
+          );
+        }
       }
 
       final returnItems = _selectedItems.entries
@@ -1626,6 +1642,59 @@ class _QuantitySelector extends StatelessWidget {
                 ? AppColors.primary
                 : AppColors.textSecondary.withValues(alpha: 0.3),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _VideoThumbnailView extends StatelessWidget {
+  final String? videoPath;
+
+  const _VideoThumbnailView({required this.videoPath});
+
+  @override
+  Widget build(BuildContext context) {
+    if (videoPath == null || videoPath!.isEmpty) {
+      return _fallback();
+    }
+    return FutureBuilder<Uint8List?>(
+      future: VideoThumbnail.thumbnailData(
+        video: videoPath!,
+        imageFormat: ImageFormat.JPEG,
+        maxWidth: 180,
+        quality: 55,
+        timeMs: 0,
+      ),
+      builder: (context, snapshot) {
+        final bytes = snapshot.data;
+        if (bytes == null) return _fallback();
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.memory(bytes, fit: BoxFit.cover),
+            Container(color: Colors.black.withValues(alpha: 0.18)),
+            const Center(
+              child: Icon(
+                Icons.play_circle_fill_rounded,
+                color: Colors.white,
+                size: 24,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _fallback() {
+    return Container(
+      color: Colors.grey.shade100,
+      child: const Center(
+        child: Icon(
+          Icons.videocam_rounded,
+          size: 24,
+          color: AppColors.textSecondary,
         ),
       ),
     );
